@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingChallengeTTL, challenge_ttl_edit_params
+from ....types.zones.settings import ChallengeTTL, challenge_ttl_edit_params
 
-__all__ = ["ChallengeTTL", "AsyncChallengeTTL"]
+__all__ = ["ChallengeTTLResource", "AsyncChallengeTTLResource"]
 
 
-class ChallengeTTL(SyncAPIResource):
+class ChallengeTTLResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ChallengeTTLWithRawResponse:
-        return ChallengeTTLWithRawResponse(self)
+    def with_raw_response(self) -> ChallengeTTLResourceWithRawResponse:
+        return ChallengeTTLResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ChallengeTTLWithStreamingResponse:
-        return ChallengeTTLWithStreamingResponse(self)
+    def with_streaming_response(self) -> ChallengeTTLResourceWithStreamingResponse:
+        return ChallengeTTLResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class ChallengeTTL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingChallengeTTL]:
+    ) -> Optional[ChallengeTTL]:
         """
         Specify how long a visitor is allowed access to your site after successfully
         completing a challenge (such as a CAPTCHA). After the TTL has expired the
@@ -82,7 +82,7 @@ class ChallengeTTL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingChallengeTTL]], ResultWrapper[ZoneSettingChallengeTTL]),
+            cast_to=cast(Type[Optional[ChallengeTTL]], ResultWrapper[ChallengeTTL]),
         )
 
     def get(
@@ -95,7 +95,7 @@ class ChallengeTTL(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingChallengeTTL]:
+    ) -> Optional[ChallengeTTL]:
         """
         Specify how long a visitor is allowed access to your site after successfully
         completing a challenge (such as a CAPTCHA). After the TTL has expired the
@@ -125,18 +125,18 @@ class ChallengeTTL(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingChallengeTTL]], ResultWrapper[ZoneSettingChallengeTTL]),
+            cast_to=cast(Type[Optional[ChallengeTTL]], ResultWrapper[ChallengeTTL]),
         )
 
 
-class AsyncChallengeTTL(AsyncAPIResource):
+class AsyncChallengeTTLResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncChallengeTTLWithRawResponse:
-        return AsyncChallengeTTLWithRawResponse(self)
+    def with_raw_response(self) -> AsyncChallengeTTLResourceWithRawResponse:
+        return AsyncChallengeTTLResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncChallengeTTLWithStreamingResponse:
-        return AsyncChallengeTTLWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncChallengeTTLResourceWithStreamingResponse:
+        return AsyncChallengeTTLResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -149,7 +149,7 @@ class AsyncChallengeTTL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingChallengeTTL]:
+    ) -> Optional[ChallengeTTL]:
         """
         Specify how long a visitor is allowed access to your site after successfully
         completing a challenge (such as a CAPTCHA). After the TTL has expired the
@@ -182,7 +182,7 @@ class AsyncChallengeTTL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingChallengeTTL]], ResultWrapper[ZoneSettingChallengeTTL]),
+            cast_to=cast(Type[Optional[ChallengeTTL]], ResultWrapper[ChallengeTTL]),
         )
 
     async def get(
@@ -195,7 +195,7 @@ class AsyncChallengeTTL(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingChallengeTTL]:
+    ) -> Optional[ChallengeTTL]:
         """
         Specify how long a visitor is allowed access to your site after successfully
         completing a challenge (such as a CAPTCHA). After the TTL has expired the
@@ -225,12 +225,12 @@ class AsyncChallengeTTL(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingChallengeTTL]], ResultWrapper[ZoneSettingChallengeTTL]),
+            cast_to=cast(Type[Optional[ChallengeTTL]], ResultWrapper[ChallengeTTL]),
         )
 
 
-class ChallengeTTLWithRawResponse:
-    def __init__(self, challenge_ttl: ChallengeTTL) -> None:
+class ChallengeTTLResourceWithRawResponse:
+    def __init__(self, challenge_ttl: ChallengeTTLResource) -> None:
         self._challenge_ttl = challenge_ttl
 
         self.edit = to_raw_response_wrapper(
@@ -241,8 +241,8 @@ class ChallengeTTLWithRawResponse:
         )
 
 
-class AsyncChallengeTTLWithRawResponse:
-    def __init__(self, challenge_ttl: AsyncChallengeTTL) -> None:
+class AsyncChallengeTTLResourceWithRawResponse:
+    def __init__(self, challenge_ttl: AsyncChallengeTTLResource) -> None:
         self._challenge_ttl = challenge_ttl
 
         self.edit = async_to_raw_response_wrapper(
@@ -253,8 +253,8 @@ class AsyncChallengeTTLWithRawResponse:
         )
 
 
-class ChallengeTTLWithStreamingResponse:
-    def __init__(self, challenge_ttl: ChallengeTTL) -> None:
+class ChallengeTTLResourceWithStreamingResponse:
+    def __init__(self, challenge_ttl: ChallengeTTLResource) -> None:
         self._challenge_ttl = challenge_ttl
 
         self.edit = to_streamed_response_wrapper(
@@ -265,8 +265,8 @@ class ChallengeTTLWithStreamingResponse:
         )
 
 
-class AsyncChallengeTTLWithStreamingResponse:
-    def __init__(self, challenge_ttl: AsyncChallengeTTL) -> None:
+class AsyncChallengeTTLResourceWithStreamingResponse:
+    def __init__(self, challenge_ttl: AsyncChallengeTTLResource) -> None:
         self._challenge_ttl = challenge_ttl
 
         self.edit = async_to_streamed_response_wrapper(

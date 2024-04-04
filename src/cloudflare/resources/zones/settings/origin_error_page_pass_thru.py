@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingOriginErrorPagePassThru, origin_error_page_pass_thru_edit_params
+from ....types.zones.settings import OriginErrorPagePassThru, origin_error_page_pass_thru_edit_params
 
-__all__ = ["OriginErrorPagePassThru", "AsyncOriginErrorPagePassThru"]
+__all__ = ["OriginErrorPagePassThruResource", "AsyncOriginErrorPagePassThruResource"]
 
 
-class OriginErrorPagePassThru(SyncAPIResource):
+class OriginErrorPagePassThruResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OriginErrorPagePassThruWithRawResponse:
-        return OriginErrorPagePassThruWithRawResponse(self)
+    def with_raw_response(self) -> OriginErrorPagePassThruResourceWithRawResponse:
+        return OriginErrorPagePassThruResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OriginErrorPagePassThruWithStreamingResponse:
-        return OriginErrorPagePassThruWithStreamingResponse(self)
+    def with_streaming_response(self) -> OriginErrorPagePassThruResourceWithStreamingResponse:
+        return OriginErrorPagePassThruResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class OriginErrorPagePassThru(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOriginErrorPagePassThru]:
+    ) -> Optional[OriginErrorPagePassThru]:
         """
         Cloudflare will proxy customer error pages on any 502,504 errors on origin
         server instead of showing a default Cloudflare error page. This does not apply
@@ -82,9 +82,7 @@ class OriginErrorPagePassThru(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingOriginErrorPagePassThru]], ResultWrapper[ZoneSettingOriginErrorPagePassThru]
-            ),
+            cast_to=cast(Type[Optional[OriginErrorPagePassThru]], ResultWrapper[OriginErrorPagePassThru]),
         )
 
     def get(
@@ -97,7 +95,7 @@ class OriginErrorPagePassThru(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOriginErrorPagePassThru]:
+    ) -> Optional[OriginErrorPagePassThru]:
         """
         Cloudflare will proxy customer error pages on any 502,504 errors on origin
         server instead of showing a default Cloudflare error page. This does not apply
@@ -125,20 +123,18 @@ class OriginErrorPagePassThru(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingOriginErrorPagePassThru]], ResultWrapper[ZoneSettingOriginErrorPagePassThru]
-            ),
+            cast_to=cast(Type[Optional[OriginErrorPagePassThru]], ResultWrapper[OriginErrorPagePassThru]),
         )
 
 
-class AsyncOriginErrorPagePassThru(AsyncAPIResource):
+class AsyncOriginErrorPagePassThruResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOriginErrorPagePassThruWithRawResponse:
-        return AsyncOriginErrorPagePassThruWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOriginErrorPagePassThruResourceWithRawResponse:
+        return AsyncOriginErrorPagePassThruResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOriginErrorPagePassThruWithStreamingResponse:
-        return AsyncOriginErrorPagePassThruWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOriginErrorPagePassThruResourceWithStreamingResponse:
+        return AsyncOriginErrorPagePassThruResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -151,7 +147,7 @@ class AsyncOriginErrorPagePassThru(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOriginErrorPagePassThru]:
+    ) -> Optional[OriginErrorPagePassThru]:
         """
         Cloudflare will proxy customer error pages on any 502,504 errors on origin
         server instead of showing a default Cloudflare error page. This does not apply
@@ -184,9 +180,7 @@ class AsyncOriginErrorPagePassThru(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingOriginErrorPagePassThru]], ResultWrapper[ZoneSettingOriginErrorPagePassThru]
-            ),
+            cast_to=cast(Type[Optional[OriginErrorPagePassThru]], ResultWrapper[OriginErrorPagePassThru]),
         )
 
     async def get(
@@ -199,7 +193,7 @@ class AsyncOriginErrorPagePassThru(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOriginErrorPagePassThru]:
+    ) -> Optional[OriginErrorPagePassThru]:
         """
         Cloudflare will proxy customer error pages on any 502,504 errors on origin
         server instead of showing a default Cloudflare error page. This does not apply
@@ -227,14 +221,12 @@ class AsyncOriginErrorPagePassThru(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingOriginErrorPagePassThru]], ResultWrapper[ZoneSettingOriginErrorPagePassThru]
-            ),
+            cast_to=cast(Type[Optional[OriginErrorPagePassThru]], ResultWrapper[OriginErrorPagePassThru]),
         )
 
 
-class OriginErrorPagePassThruWithRawResponse:
-    def __init__(self, origin_error_page_pass_thru: OriginErrorPagePassThru) -> None:
+class OriginErrorPagePassThruResourceWithRawResponse:
+    def __init__(self, origin_error_page_pass_thru: OriginErrorPagePassThruResource) -> None:
         self._origin_error_page_pass_thru = origin_error_page_pass_thru
 
         self.edit = to_raw_response_wrapper(
@@ -245,8 +237,8 @@ class OriginErrorPagePassThruWithRawResponse:
         )
 
 
-class AsyncOriginErrorPagePassThruWithRawResponse:
-    def __init__(self, origin_error_page_pass_thru: AsyncOriginErrorPagePassThru) -> None:
+class AsyncOriginErrorPagePassThruResourceWithRawResponse:
+    def __init__(self, origin_error_page_pass_thru: AsyncOriginErrorPagePassThruResource) -> None:
         self._origin_error_page_pass_thru = origin_error_page_pass_thru
 
         self.edit = async_to_raw_response_wrapper(
@@ -257,8 +249,8 @@ class AsyncOriginErrorPagePassThruWithRawResponse:
         )
 
 
-class OriginErrorPagePassThruWithStreamingResponse:
-    def __init__(self, origin_error_page_pass_thru: OriginErrorPagePassThru) -> None:
+class OriginErrorPagePassThruResourceWithStreamingResponse:
+    def __init__(self, origin_error_page_pass_thru: OriginErrorPagePassThruResource) -> None:
         self._origin_error_page_pass_thru = origin_error_page_pass_thru
 
         self.edit = to_streamed_response_wrapper(
@@ -269,8 +261,8 @@ class OriginErrorPagePassThruWithStreamingResponse:
         )
 
 
-class AsyncOriginErrorPagePassThruWithStreamingResponse:
-    def __init__(self, origin_error_page_pass_thru: AsyncOriginErrorPagePassThru) -> None:
+class AsyncOriginErrorPagePassThruResourceWithStreamingResponse:
+    def __init__(self, origin_error_page_pass_thru: AsyncOriginErrorPagePassThruResource) -> None:
         self._origin_error_page_pass_thru = origin_error_page_pass_thru
 
         self.edit = async_to_streamed_response_wrapper(

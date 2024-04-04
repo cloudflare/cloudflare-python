@@ -3,92 +3,92 @@
 from __future__ import annotations
 
 from .nel import (
-    NEL,
-    AsyncNEL,
-    NELWithRawResponse,
-    AsyncNELWithRawResponse,
-    NELWithStreamingResponse,
-    AsyncNELWithStreamingResponse,
+    NELResource,
+    AsyncNELResource,
+    NELResourceWithRawResponse,
+    AsyncNELResourceWithRawResponse,
+    NELResourceWithStreamingResponse,
+    AsyncNELResourceWithStreamingResponse,
 )
 from .ssl import (
-    SSL,
-    AsyncSSL,
-    SSLWithRawResponse,
-    AsyncSSLWithRawResponse,
-    SSLWithStreamingResponse,
-    AsyncSSLWithStreamingResponse,
+    SSLResource,
+    AsyncSSLResource,
+    SSLResourceWithRawResponse,
+    AsyncSSLResourceWithRawResponse,
+    SSLResourceWithStreamingResponse,
+    AsyncSSLResourceWithStreamingResponse,
 )
 from .waf import (
-    WAF,
-    AsyncWAF,
-    WAFWithRawResponse,
-    AsyncWAFWithRawResponse,
-    WAFWithStreamingResponse,
-    AsyncWAFWithStreamingResponse,
+    WAFResource,
+    AsyncWAFResource,
+    WAFResourceWithRawResponse,
+    AsyncWAFResourceWithRawResponse,
+    WAFResourceWithStreamingResponse,
+    AsyncWAFResourceWithStreamingResponse,
 )
 from .ipv6 import (
-    IPV6,
-    AsyncIPV6,
-    IPV6WithRawResponse,
-    AsyncIPV6WithRawResponse,
-    IPV6WithStreamingResponse,
-    AsyncIPV6WithStreamingResponse,
+    IPV6Resource,
+    AsyncIPV6Resource,
+    IPV6ResourceWithRawResponse,
+    AsyncIPV6ResourceWithRawResponse,
+    IPV6ResourceWithStreamingResponse,
+    AsyncIPV6ResourceWithStreamingResponse,
 )
 from .webp import (
-    WebP,
-    AsyncWebP,
-    WebPWithRawResponse,
-    AsyncWebPWithRawResponse,
-    WebPWithStreamingResponse,
-    AsyncWebPWithStreamingResponse,
+    WebPResource,
+    AsyncWebPResource,
+    WebPResourceWithRawResponse,
+    AsyncWebPResourceWithRawResponse,
+    WebPResourceWithStreamingResponse,
+    AsyncWebPResourceWithStreamingResponse,
 )
 from .http2 import (
-    HTTP2,
-    AsyncHTTP2,
-    HTTP2WithRawResponse,
-    AsyncHTTP2WithRawResponse,
-    HTTP2WithStreamingResponse,
-    AsyncHTTP2WithStreamingResponse,
+    HTTP2Resource,
+    AsyncHTTP2Resource,
+    HTTP2ResourceWithRawResponse,
+    AsyncHTTP2ResourceWithRawResponse,
+    HTTP2ResourceWithStreamingResponse,
+    AsyncHTTP2ResourceWithStreamingResponse,
 )
 from .http3 import (
-    HTTP3,
-    AsyncHTTP3,
-    HTTP3WithRawResponse,
-    AsyncHTTP3WithRawResponse,
-    HTTP3WithStreamingResponse,
-    AsyncHTTP3WithStreamingResponse,
+    HTTP3Resource,
+    AsyncHTTP3Resource,
+    HTTP3ResourceWithRawResponse,
+    AsyncHTTP3ResourceWithRawResponse,
+    HTTP3ResourceWithStreamingResponse,
+    AsyncHTTP3ResourceWithStreamingResponse,
 )
 from .brotli import (
-    Brotli,
-    AsyncBrotli,
-    BrotliWithRawResponse,
-    AsyncBrotliWithRawResponse,
-    BrotliWithStreamingResponse,
-    AsyncBrotliWithStreamingResponse,
+    BrotliResource,
+    AsyncBrotliResource,
+    BrotliResourceWithRawResponse,
+    AsyncBrotliResourceWithRawResponse,
+    BrotliResourceWithStreamingResponse,
+    AsyncBrotliResourceWithStreamingResponse,
 )
 from .minify import (
-    Minify,
-    AsyncMinify,
-    MinifyWithRawResponse,
-    AsyncMinifyWithRawResponse,
-    MinifyWithStreamingResponse,
-    AsyncMinifyWithStreamingResponse,
+    MinifyResource,
+    AsyncMinifyResource,
+    MinifyResourceWithRawResponse,
+    AsyncMinifyResourceWithRawResponse,
+    MinifyResourceWithStreamingResponse,
+    AsyncMinifyResourceWithStreamingResponse,
 )
 from .mirage import (
-    Mirage,
-    AsyncMirage,
-    MirageWithRawResponse,
-    AsyncMirageWithRawResponse,
-    MirageWithStreamingResponse,
-    AsyncMirageWithStreamingResponse,
+    MirageResource,
+    AsyncMirageResource,
+    MirageResourceWithRawResponse,
+    AsyncMirageResourceWithRawResponse,
+    MirageResourceWithStreamingResponse,
+    AsyncMirageResourceWithStreamingResponse,
 )
 from .polish import (
-    Polish,
-    AsyncPolish,
-    PolishWithRawResponse,
-    AsyncPolishWithRawResponse,
-    PolishWithStreamingResponse,
-    AsyncPolishWithStreamingResponse,
+    PolishResource,
+    AsyncPolishResource,
+    PolishResourceWithRawResponse,
+    AsyncPolishResourceWithRawResponse,
+    PolishResourceWithStreamingResponse,
+    AsyncPolishResourceWithStreamingResponse,
 )
 from .ciphers import (
     Ciphers,
@@ -99,37 +99,37 @@ from .ciphers import (
     AsyncCiphersWithStreamingResponse,
 )
 from .tls_1_3 import (
-    TLS1_3,
-    AsyncTLS1_3,
-    TLS1_3WithRawResponse,
-    AsyncTLS1_3WithRawResponse,
-    TLS1_3WithStreamingResponse,
-    AsyncTLS1_3WithStreamingResponse,
+    TLS1_3Resource,
+    AsyncTLS1_3Resource,
+    TLS1_3ResourceWithRawResponse,
+    AsyncTLS1_3ResourceWithRawResponse,
+    TLS1_3ResourceWithStreamingResponse,
+    AsyncTLS1_3ResourceWithStreamingResponse,
 )
 from .zero_rtt import (
-    ZeroRTT,
-    AsyncZeroRTT,
-    ZeroRTTWithRawResponse,
-    AsyncZeroRTTWithRawResponse,
-    ZeroRTTWithStreamingResponse,
-    AsyncZeroRTTWithStreamingResponse,
+    ZeroRTTResource,
+    AsyncZeroRTTResource,
+    ZeroRTTResourceWithRawResponse,
+    AsyncZeroRTTResourceWithRawResponse,
+    ZeroRTTResourceWithStreamingResponse,
+    AsyncZeroRTTResourceWithStreamingResponse,
 )
 from .websocket import (
-    Websocket,
-    AsyncWebsocket,
-    WebsocketWithRawResponse,
-    AsyncWebsocketWithRawResponse,
-    WebsocketWithStreamingResponse,
-    AsyncWebsocketWithStreamingResponse,
+    WebsocketResource,
+    AsyncWebsocketResource,
+    WebsocketResourceWithRawResponse,
+    AsyncWebsocketResourceWithRawResponse,
+    WebsocketResourceWithStreamingResponse,
+    AsyncWebsocketResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from .cache_level import (
-    CacheLevel,
-    AsyncCacheLevel,
-    CacheLevelWithRawResponse,
-    AsyncCacheLevelWithRawResponse,
-    CacheLevelWithStreamingResponse,
-    AsyncCacheLevelWithStreamingResponse,
+    CacheLevelResource,
+    AsyncCacheLevelResource,
+    CacheLevelResourceWithRawResponse,
+    AsyncCacheLevelResourceWithRawResponse,
+    CacheLevelResourceWithStreamingResponse,
+    AsyncCacheLevelResourceWithStreamingResponse,
 )
 from .early_hints import (
     EarlyHints,
@@ -140,12 +140,12 @@ from .early_hints import (
     AsyncEarlyHintsWithStreamingResponse,
 )
 from .pseudo_ipv4 import (
-    PseudoIPV4,
-    AsyncPseudoIPV4,
-    PseudoIPV4WithRawResponse,
-    AsyncPseudoIPV4WithRawResponse,
-    PseudoIPV4WithStreamingResponse,
-    AsyncPseudoIPV4WithStreamingResponse,
+    PseudoIPV4Resource,
+    AsyncPseudoIPV4Resource,
+    PseudoIPV4ResourceWithRawResponse,
+    AsyncPseudoIPV4ResourceWithRawResponse,
+    PseudoIPV4ResourceWithStreamingResponse,
+    AsyncPseudoIPV4ResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from .advanced_ddos import (
@@ -157,28 +157,28 @@ from .advanced_ddos import (
     AsyncAdvancedDDoSWithStreamingResponse,
 )
 from .always_online import (
-    AlwaysOnline,
-    AsyncAlwaysOnline,
-    AlwaysOnlineWithRawResponse,
-    AsyncAlwaysOnlineWithRawResponse,
-    AlwaysOnlineWithStreamingResponse,
-    AsyncAlwaysOnlineWithStreamingResponse,
+    AlwaysOnlineResource,
+    AsyncAlwaysOnlineResource,
+    AlwaysOnlineResourceWithRawResponse,
+    AsyncAlwaysOnlineResourceWithRawResponse,
+    AlwaysOnlineResourceWithStreamingResponse,
+    AsyncAlwaysOnlineResourceWithStreamingResponse,
 )
 from .browser_check import (
-    BrowserCheck,
-    AsyncBrowserCheck,
-    BrowserCheckWithRawResponse,
-    AsyncBrowserCheckWithRawResponse,
-    BrowserCheckWithStreamingResponse,
-    AsyncBrowserCheckWithStreamingResponse,
+    BrowserCheckResource,
+    AsyncBrowserCheckResource,
+    BrowserCheckResourceWithRawResponse,
+    AsyncBrowserCheckResourceWithRawResponse,
+    BrowserCheckResourceWithStreamingResponse,
+    AsyncBrowserCheckResourceWithStreamingResponse,
 )
 from .challenge_ttl import (
-    ChallengeTTL,
-    AsyncChallengeTTL,
-    ChallengeTTLWithRawResponse,
-    AsyncChallengeTTLWithRawResponse,
-    ChallengeTTLWithStreamingResponse,
-    AsyncChallengeTTLWithStreamingResponse,
+    ChallengeTTLResource,
+    AsyncChallengeTTLResource,
+    ChallengeTTLResourceWithRawResponse,
+    AsyncChallengeTTLResourceWithRawResponse,
+    ChallengeTTLResourceWithStreamingResponse,
+    AsyncChallengeTTLResourceWithStreamingResponse,
 )
 from .font_settings import (
     FontSettings,
@@ -189,68 +189,68 @@ from .font_settings import (
     AsyncFontSettingsWithStreamingResponse,
 )
 from .rocket_loader import (
-    RocketLoader,
-    AsyncRocketLoader,
-    RocketLoaderWithRawResponse,
-    AsyncRocketLoaderWithRawResponse,
-    RocketLoaderWithStreamingResponse,
-    AsyncRocketLoaderWithStreamingResponse,
+    RocketLoaderResource,
+    AsyncRocketLoaderResource,
+    RocketLoaderResourceWithRawResponse,
+    AsyncRocketLoaderResourceWithRawResponse,
+    RocketLoaderResourceWithStreamingResponse,
+    AsyncRocketLoaderResourceWithStreamingResponse,
 )
 from .image_resizing import (
-    ImageResizing,
-    AsyncImageResizing,
-    ImageResizingWithRawResponse,
-    AsyncImageResizingWithRawResponse,
-    ImageResizingWithStreamingResponse,
-    AsyncImageResizingWithStreamingResponse,
+    ImageResizingResource,
+    AsyncImageResizingResource,
+    ImageResizingResourceWithRawResponse,
+    AsyncImageResizingResourceWithRawResponse,
+    ImageResizingResourceWithStreamingResponse,
+    AsyncImageResizingResourceWithStreamingResponse,
 )
 from .ip_geolocation import (
-    IPGeolocation,
-    AsyncIPGeolocation,
-    IPGeolocationWithRawResponse,
-    AsyncIPGeolocationWithRawResponse,
-    IPGeolocationWithStreamingResponse,
-    AsyncIPGeolocationWithStreamingResponse,
+    IPGeolocationResource,
+    AsyncIPGeolocationResource,
+    IPGeolocationResourceWithRawResponse,
+    AsyncIPGeolocationResourceWithRawResponse,
+    IPGeolocationResourceWithStreamingResponse,
+    AsyncIPGeolocationResourceWithStreamingResponse,
 )
 from .security_level import (
-    SecurityLevel,
-    AsyncSecurityLevel,
-    SecurityLevelWithRawResponse,
-    AsyncSecurityLevelWithRawResponse,
-    SecurityLevelWithStreamingResponse,
-    AsyncSecurityLevelWithStreamingResponse,
+    SecurityLevelResource,
+    AsyncSecurityLevelResource,
+    SecurityLevelResourceWithRawResponse,
+    AsyncSecurityLevelResourceWithRawResponse,
+    SecurityLevelResourceWithStreamingResponse,
+    AsyncSecurityLevelResourceWithStreamingResponse,
 )
 from .min_tls_version import (
-    MinTLSVersion,
-    AsyncMinTLSVersion,
-    MinTLSVersionWithRawResponse,
-    AsyncMinTLSVersionWithRawResponse,
-    MinTLSVersionWithStreamingResponse,
-    AsyncMinTLSVersionWithStreamingResponse,
+    MinTLSVersionResource,
+    AsyncMinTLSVersionResource,
+    MinTLSVersionResourceWithRawResponse,
+    AsyncMinTLSVersionResourceWithRawResponse,
+    MinTLSVersionResourceWithStreamingResponse,
+    AsyncMinTLSVersionResourceWithStreamingResponse,
 )
 from .mobile_redirect import (
-    MobileRedirect,
-    AsyncMobileRedirect,
-    MobileRedirectWithRawResponse,
-    AsyncMobileRedirectWithRawResponse,
-    MobileRedirectWithStreamingResponse,
-    AsyncMobileRedirectWithStreamingResponse,
+    MobileRedirectResource,
+    AsyncMobileRedirectResource,
+    MobileRedirectResourceWithRawResponse,
+    AsyncMobileRedirectResourceWithRawResponse,
+    MobileRedirectResourceWithStreamingResponse,
+    AsyncMobileRedirectResourceWithStreamingResponse,
 )
 from .ssl_recommender import (
-    SSLRecommender,
-    AsyncSSLRecommender,
-    SSLRecommenderWithRawResponse,
-    AsyncSSLRecommenderWithRawResponse,
-    SSLRecommenderWithStreamingResponse,
-    AsyncSSLRecommenderWithStreamingResponse,
+    SSLRecommenderResource,
+    AsyncSSLRecommenderResource,
+    SSLRecommenderResourceWithRawResponse,
+    AsyncSSLRecommenderResourceWithRawResponse,
+    SSLRecommenderResourceWithStreamingResponse,
+    AsyncSSLRecommenderResourceWithStreamingResponse,
 )
 from .tls_client_auth import (
-    TLSClientAuth,
-    AsyncTLSClientAuth,
-    TLSClientAuthWithRawResponse,
-    AsyncTLSClientAuthWithRawResponse,
-    TLSClientAuthWithStreamingResponse,
-    AsyncTLSClientAuthWithStreamingResponse,
+    TLSClientAuthResource,
+    AsyncTLSClientAuthResource,
+    TLSClientAuthResourceWithRawResponse,
+    AsyncTLSClientAuthResourceWithRawResponse,
+    TLSClientAuthResourceWithStreamingResponse,
+    AsyncTLSClientAuthResourceWithStreamingResponse,
 )
 from .always_use_https import (
     AlwaysUseHTTPS,
@@ -261,28 +261,28 @@ from .always_use_https import (
     AsyncAlwaysUseHTTPSWithStreamingResponse,
 )
 from .development_mode import (
-    DevelopmentMode,
-    AsyncDevelopmentMode,
-    DevelopmentModeWithRawResponse,
-    AsyncDevelopmentModeWithRawResponse,
-    DevelopmentModeWithStreamingResponse,
-    AsyncDevelopmentModeWithStreamingResponse,
+    DevelopmentModeResource,
+    AsyncDevelopmentModeResource,
+    DevelopmentModeResourceWithRawResponse,
+    AsyncDevelopmentModeResourceWithRawResponse,
+    DevelopmentModeResourceWithStreamingResponse,
+    AsyncDevelopmentModeResourceWithStreamingResponse,
 )
 from .orange_to_orange import (
-    OrangeToOrange,
-    AsyncOrangeToOrange,
-    OrangeToOrangeWithRawResponse,
-    AsyncOrangeToOrangeWithRawResponse,
-    OrangeToOrangeWithStreamingResponse,
-    AsyncOrangeToOrangeWithStreamingResponse,
+    OrangeToOrangeResource,
+    AsyncOrangeToOrangeResource,
+    OrangeToOrangeResourceWithRawResponse,
+    AsyncOrangeToOrangeResourceWithRawResponse,
+    OrangeToOrangeResourceWithStreamingResponse,
+    AsyncOrangeToOrangeResourceWithStreamingResponse,
 )
 from .prefetch_preload import (
-    PrefetchPreload,
-    AsyncPrefetchPreload,
-    PrefetchPreloadWithRawResponse,
-    AsyncPrefetchPreloadWithRawResponse,
-    PrefetchPreloadWithStreamingResponse,
-    AsyncPrefetchPreloadWithStreamingResponse,
+    PrefetchPreloadResource,
+    AsyncPrefetchPreloadResource,
+    PrefetchPreloadResourceWithRawResponse,
+    AsyncPrefetchPreloadResourceWithRawResponse,
+    PrefetchPreloadResourceWithStreamingResponse,
+    AsyncPrefetchPreloadResourceWithStreamingResponse,
 )
 from .security_headers import (
     SecurityHeaders,
@@ -293,60 +293,60 @@ from .security_headers import (
     AsyncSecurityHeadersWithStreamingResponse,
 )
 from .browser_cache_ttl import (
-    BrowserCacheTTL,
-    AsyncBrowserCacheTTL,
-    BrowserCacheTTLWithRawResponse,
-    AsyncBrowserCacheTTLWithRawResponse,
-    BrowserCacheTTLWithStreamingResponse,
-    AsyncBrowserCacheTTLWithStreamingResponse,
+    BrowserCacheTTLResource,
+    AsyncBrowserCacheTTLResource,
+    BrowserCacheTTLResourceWithRawResponse,
+    AsyncBrowserCacheTTLResourceWithRawResponse,
+    BrowserCacheTTLResourceWithStreamingResponse,
+    AsyncBrowserCacheTTLResourceWithStreamingResponse,
 )
 from .email_obfuscation import (
-    EmailObfuscation,
-    AsyncEmailObfuscation,
-    EmailObfuscationWithRawResponse,
-    AsyncEmailObfuscationWithRawResponse,
-    EmailObfuscationWithStreamingResponse,
-    AsyncEmailObfuscationWithStreamingResponse,
+    EmailObfuscationResource,
+    AsyncEmailObfuscationResource,
+    EmailObfuscationResourceWithRawResponse,
+    AsyncEmailObfuscationResourceWithRawResponse,
+    EmailObfuscationResourceWithStreamingResponse,
+    AsyncEmailObfuscationResourceWithStreamingResponse,
 )
 from .h2_prioritization import (
-    H2Prioritization,
-    AsyncH2Prioritization,
-    H2PrioritizationWithRawResponse,
-    AsyncH2PrioritizationWithRawResponse,
-    H2PrioritizationWithStreamingResponse,
-    AsyncH2PrioritizationWithStreamingResponse,
+    H2PrioritizationResource,
+    AsyncH2PrioritizationResource,
+    H2PrioritizationResourceWithRawResponse,
+    AsyncH2PrioritizationResourceWithRawResponse,
+    H2PrioritizationResourceWithStreamingResponse,
+    AsyncH2PrioritizationResourceWithStreamingResponse,
 )
 from .hotlink_protection import (
-    HotlinkProtection,
-    AsyncHotlinkProtection,
-    HotlinkProtectionWithRawResponse,
-    AsyncHotlinkProtectionWithRawResponse,
-    HotlinkProtectionWithStreamingResponse,
-    AsyncHotlinkProtectionWithStreamingResponse,
+    HotlinkProtectionResource,
+    AsyncHotlinkProtectionResource,
+    HotlinkProtectionResourceWithRawResponse,
+    AsyncHotlinkProtectionResourceWithRawResponse,
+    HotlinkProtectionResourceWithStreamingResponse,
+    AsyncHotlinkProtectionResourceWithStreamingResponse,
 )
 from .proxy_read_timeout import (
-    ProxyReadTimeout,
-    AsyncProxyReadTimeout,
-    ProxyReadTimeoutWithRawResponse,
-    AsyncProxyReadTimeoutWithRawResponse,
-    ProxyReadTimeoutWithStreamingResponse,
-    AsyncProxyReadTimeoutWithStreamingResponse,
+    ProxyReadTimeoutResource,
+    AsyncProxyReadTimeoutResource,
+    ProxyReadTimeoutResourceWithRawResponse,
+    AsyncProxyReadTimeoutResourceWithRawResponse,
+    ProxyReadTimeoutResourceWithStreamingResponse,
+    AsyncProxyReadTimeoutResourceWithStreamingResponse,
 )
 from .response_buffering import (
-    ResponseBuffering,
-    AsyncResponseBuffering,
-    ResponseBufferingWithRawResponse,
-    AsyncResponseBufferingWithRawResponse,
-    ResponseBufferingWithStreamingResponse,
-    AsyncResponseBufferingWithStreamingResponse,
+    ResponseBufferingResource,
+    AsyncResponseBufferingResource,
+    ResponseBufferingResourceWithRawResponse,
+    AsyncResponseBufferingResourceWithRawResponse,
+    ResponseBufferingResourceWithStreamingResponse,
+    AsyncResponseBufferingResourceWithStreamingResponse,
 )
 from .opportunistic_onion import (
-    OpportunisticOnion,
-    AsyncOpportunisticOnion,
-    OpportunisticOnionWithRawResponse,
-    AsyncOpportunisticOnionWithRawResponse,
-    OpportunisticOnionWithStreamingResponse,
-    AsyncOpportunisticOnionWithStreamingResponse,
+    OpportunisticOnionResource,
+    AsyncOpportunisticOnionResource,
+    OpportunisticOnionResourceWithRawResponse,
+    AsyncOpportunisticOnionResourceWithRawResponse,
+    OpportunisticOnionResourceWithStreamingResponse,
+    AsyncOpportunisticOnionResourceWithStreamingResponse,
 )
 from .server_side_excludes import (
     ServerSideExcludes,
@@ -357,12 +357,12 @@ from .server_side_excludes import (
     AsyncServerSideExcludesWithStreamingResponse,
 )
 from .true_client_ip_header import (
-    TrueClientIPHeader,
-    AsyncTrueClientIPHeader,
-    TrueClientIPHeaderWithRawResponse,
-    AsyncTrueClientIPHeaderWithRawResponse,
-    TrueClientIPHeaderWithStreamingResponse,
-    AsyncTrueClientIPHeaderWithStreamingResponse,
+    TrueClientIPHeaderResource,
+    AsyncTrueClientIPHeaderResource,
+    TrueClientIPHeaderResourceWithRawResponse,
+    AsyncTrueClientIPHeaderResourceWithRawResponse,
+    TrueClientIPHeaderResourceWithStreamingResponse,
+    AsyncTrueClientIPHeaderResourceWithStreamingResponse,
 )
 from .origin_max_http_version import (
     OriginMaxHTTPVersion,
@@ -381,36 +381,36 @@ from .automatic_https_rewrites import (
     AsyncAutomaticHTTPSRewritesWithStreamingResponse,
 )
 from .opportunistic_encryption import (
-    OpportunisticEncryption,
-    AsyncOpportunisticEncryption,
-    OpportunisticEncryptionWithRawResponse,
-    AsyncOpportunisticEncryptionWithRawResponse,
-    OpportunisticEncryptionWithStreamingResponse,
-    AsyncOpportunisticEncryptionWithStreamingResponse,
+    OpportunisticEncryptionResource,
+    AsyncOpportunisticEncryptionResource,
+    OpportunisticEncryptionResourceWithRawResponse,
+    AsyncOpportunisticEncryptionResourceWithRawResponse,
+    OpportunisticEncryptionResourceWithStreamingResponse,
+    AsyncOpportunisticEncryptionResourceWithStreamingResponse,
 )
 from .origin_error_page_pass_thru import (
-    OriginErrorPagePassThru,
-    AsyncOriginErrorPagePassThru,
-    OriginErrorPagePassThruWithRawResponse,
-    AsyncOriginErrorPagePassThruWithRawResponse,
-    OriginErrorPagePassThruWithStreamingResponse,
-    AsyncOriginErrorPagePassThruWithStreamingResponse,
+    OriginErrorPagePassThruResource,
+    AsyncOriginErrorPagePassThruResource,
+    OriginErrorPagePassThruResourceWithRawResponse,
+    AsyncOriginErrorPagePassThruResourceWithRawResponse,
+    OriginErrorPagePassThruResourceWithStreamingResponse,
+    AsyncOriginErrorPagePassThruResourceWithStreamingResponse,
 )
 from .sort_query_string_for_cache import (
-    SortQueryStringForCache,
-    AsyncSortQueryStringForCache,
-    SortQueryStringForCacheWithRawResponse,
-    AsyncSortQueryStringForCacheWithRawResponse,
-    SortQueryStringForCacheWithStreamingResponse,
-    AsyncSortQueryStringForCacheWithStreamingResponse,
+    SortQueryStringForCacheResource,
+    AsyncSortQueryStringForCacheResource,
+    SortQueryStringForCacheResourceWithRawResponse,
+    AsyncSortQueryStringForCacheResourceWithRawResponse,
+    SortQueryStringForCacheResourceWithStreamingResponse,
+    AsyncSortQueryStringForCacheResourceWithStreamingResponse,
 )
 from .automatic_platform_optimization import (
-    AutomaticPlatformOptimization,
-    AsyncAutomaticPlatformOptimization,
-    AutomaticPlatformOptimizationWithRawResponse,
-    AsyncAutomaticPlatformOptimizationWithRawResponse,
-    AutomaticPlatformOptimizationWithStreamingResponse,
-    AsyncAutomaticPlatformOptimizationWithStreamingResponse,
+    AutomaticPlatformOptimizationResource,
+    AsyncAutomaticPlatformOptimizationResource,
+    AutomaticPlatformOptimizationResourceWithRawResponse,
+    AsyncAutomaticPlatformOptimizationResourceWithRawResponse,
+    AutomaticPlatformOptimizationResourceWithStreamingResponse,
+    AsyncAutomaticPlatformOptimizationResourceWithStreamingResponse,
 )
 
 __all__ = ["Settings", "AsyncSettings"]
@@ -418,16 +418,16 @@ __all__ = ["Settings", "AsyncSettings"]
 
 class Settings(SyncAPIResource):
     @cached_property
-    def zero_rtt(self) -> ZeroRTT:
-        return ZeroRTT(self._client)
+    def zero_rtt(self) -> ZeroRTTResource:
+        return ZeroRTTResource(self._client)
 
     @cached_property
     def advanced_ddos(self) -> AdvancedDDoS:
         return AdvancedDDoS(self._client)
 
     @cached_property
-    def always_online(self) -> AlwaysOnline:
-        return AlwaysOnline(self._client)
+    def always_online(self) -> AlwaysOnlineResource:
+        return AlwaysOnlineResource(self._client)
 
     @cached_property
     def always_use_https(self) -> AlwaysUseHTTPS:
@@ -438,184 +438,184 @@ class Settings(SyncAPIResource):
         return AutomaticHTTPSRewrites(self._client)
 
     @cached_property
-    def automatic_platform_optimization(self) -> AutomaticPlatformOptimization:
-        return AutomaticPlatformOptimization(self._client)
+    def automatic_platform_optimization(self) -> AutomaticPlatformOptimizationResource:
+        return AutomaticPlatformOptimizationResource(self._client)
 
     @cached_property
-    def brotli(self) -> Brotli:
-        return Brotli(self._client)
+    def brotli(self) -> BrotliResource:
+        return BrotliResource(self._client)
 
     @cached_property
-    def browser_cache_ttl(self) -> BrowserCacheTTL:
-        return BrowserCacheTTL(self._client)
+    def browser_cache_ttl(self) -> BrowserCacheTTLResource:
+        return BrowserCacheTTLResource(self._client)
 
     @cached_property
-    def browser_check(self) -> BrowserCheck:
-        return BrowserCheck(self._client)
+    def browser_check(self) -> BrowserCheckResource:
+        return BrowserCheckResource(self._client)
 
     @cached_property
-    def cache_level(self) -> CacheLevel:
-        return CacheLevel(self._client)
+    def cache_level(self) -> CacheLevelResource:
+        return CacheLevelResource(self._client)
 
     @cached_property
-    def challenge_ttl(self) -> ChallengeTTL:
-        return ChallengeTTL(self._client)
+    def challenge_ttl(self) -> ChallengeTTLResource:
+        return ChallengeTTLResource(self._client)
 
     @cached_property
     def ciphers(self) -> Ciphers:
         return Ciphers(self._client)
 
     @cached_property
-    def development_mode(self) -> DevelopmentMode:
-        return DevelopmentMode(self._client)
+    def development_mode(self) -> DevelopmentModeResource:
+        return DevelopmentModeResource(self._client)
 
     @cached_property
     def early_hints(self) -> EarlyHints:
         return EarlyHints(self._client)
 
     @cached_property
-    def email_obfuscation(self) -> EmailObfuscation:
-        return EmailObfuscation(self._client)
+    def email_obfuscation(self) -> EmailObfuscationResource:
+        return EmailObfuscationResource(self._client)
 
     @cached_property
-    def h2_prioritization(self) -> H2Prioritization:
-        return H2Prioritization(self._client)
+    def h2_prioritization(self) -> H2PrioritizationResource:
+        return H2PrioritizationResource(self._client)
 
     @cached_property
-    def hotlink_protection(self) -> HotlinkProtection:
-        return HotlinkProtection(self._client)
+    def hotlink_protection(self) -> HotlinkProtectionResource:
+        return HotlinkProtectionResource(self._client)
 
     @cached_property
-    def http2(self) -> HTTP2:
-        return HTTP2(self._client)
+    def http2(self) -> HTTP2Resource:
+        return HTTP2Resource(self._client)
 
     @cached_property
-    def http3(self) -> HTTP3:
-        return HTTP3(self._client)
+    def http3(self) -> HTTP3Resource:
+        return HTTP3Resource(self._client)
 
     @cached_property
-    def image_resizing(self) -> ImageResizing:
-        return ImageResizing(self._client)
+    def image_resizing(self) -> ImageResizingResource:
+        return ImageResizingResource(self._client)
 
     @cached_property
-    def ip_geolocation(self) -> IPGeolocation:
-        return IPGeolocation(self._client)
+    def ip_geolocation(self) -> IPGeolocationResource:
+        return IPGeolocationResource(self._client)
 
     @cached_property
-    def ipv6(self) -> IPV6:
-        return IPV6(self._client)
+    def ipv6(self) -> IPV6Resource:
+        return IPV6Resource(self._client)
 
     @cached_property
-    def min_tls_version(self) -> MinTLSVersion:
-        return MinTLSVersion(self._client)
+    def min_tls_version(self) -> MinTLSVersionResource:
+        return MinTLSVersionResource(self._client)
 
     @cached_property
-    def minify(self) -> Minify:
-        return Minify(self._client)
+    def minify(self) -> MinifyResource:
+        return MinifyResource(self._client)
 
     @cached_property
-    def mirage(self) -> Mirage:
-        return Mirage(self._client)
+    def mirage(self) -> MirageResource:
+        return MirageResource(self._client)
 
     @cached_property
-    def mobile_redirect(self) -> MobileRedirect:
-        return MobileRedirect(self._client)
+    def mobile_redirect(self) -> MobileRedirectResource:
+        return MobileRedirectResource(self._client)
 
     @cached_property
-    def nel(self) -> NEL:
-        return NEL(self._client)
+    def nel(self) -> NELResource:
+        return NELResource(self._client)
 
     @cached_property
-    def opportunistic_encryption(self) -> OpportunisticEncryption:
-        return OpportunisticEncryption(self._client)
+    def opportunistic_encryption(self) -> OpportunisticEncryptionResource:
+        return OpportunisticEncryptionResource(self._client)
 
     @cached_property
-    def opportunistic_onion(self) -> OpportunisticOnion:
-        return OpportunisticOnion(self._client)
+    def opportunistic_onion(self) -> OpportunisticOnionResource:
+        return OpportunisticOnionResource(self._client)
 
     @cached_property
-    def orange_to_orange(self) -> OrangeToOrange:
-        return OrangeToOrange(self._client)
+    def orange_to_orange(self) -> OrangeToOrangeResource:
+        return OrangeToOrangeResource(self._client)
 
     @cached_property
-    def origin_error_page_pass_thru(self) -> OriginErrorPagePassThru:
-        return OriginErrorPagePassThru(self._client)
+    def origin_error_page_pass_thru(self) -> OriginErrorPagePassThruResource:
+        return OriginErrorPagePassThruResource(self._client)
 
     @cached_property
     def origin_max_http_version(self) -> OriginMaxHTTPVersion:
         return OriginMaxHTTPVersion(self._client)
 
     @cached_property
-    def polish(self) -> Polish:
-        return Polish(self._client)
+    def polish(self) -> PolishResource:
+        return PolishResource(self._client)
 
     @cached_property
-    def prefetch_preload(self) -> PrefetchPreload:
-        return PrefetchPreload(self._client)
+    def prefetch_preload(self) -> PrefetchPreloadResource:
+        return PrefetchPreloadResource(self._client)
 
     @cached_property
-    def proxy_read_timeout(self) -> ProxyReadTimeout:
-        return ProxyReadTimeout(self._client)
+    def proxy_read_timeout(self) -> ProxyReadTimeoutResource:
+        return ProxyReadTimeoutResource(self._client)
 
     @cached_property
-    def pseudo_ipv4(self) -> PseudoIPV4:
-        return PseudoIPV4(self._client)
+    def pseudo_ipv4(self) -> PseudoIPV4Resource:
+        return PseudoIPV4Resource(self._client)
 
     @cached_property
-    def response_buffering(self) -> ResponseBuffering:
-        return ResponseBuffering(self._client)
+    def response_buffering(self) -> ResponseBufferingResource:
+        return ResponseBufferingResource(self._client)
 
     @cached_property
-    def rocket_loader(self) -> RocketLoader:
-        return RocketLoader(self._client)
+    def rocket_loader(self) -> RocketLoaderResource:
+        return RocketLoaderResource(self._client)
 
     @cached_property
     def security_headers(self) -> SecurityHeaders:
         return SecurityHeaders(self._client)
 
     @cached_property
-    def security_level(self) -> SecurityLevel:
-        return SecurityLevel(self._client)
+    def security_level(self) -> SecurityLevelResource:
+        return SecurityLevelResource(self._client)
 
     @cached_property
     def server_side_excludes(self) -> ServerSideExcludes:
         return ServerSideExcludes(self._client)
 
     @cached_property
-    def sort_query_string_for_cache(self) -> SortQueryStringForCache:
-        return SortQueryStringForCache(self._client)
+    def sort_query_string_for_cache(self) -> SortQueryStringForCacheResource:
+        return SortQueryStringForCacheResource(self._client)
 
     @cached_property
-    def ssl(self) -> SSL:
-        return SSL(self._client)
+    def ssl(self) -> SSLResource:
+        return SSLResource(self._client)
 
     @cached_property
-    def ssl_recommender(self) -> SSLRecommender:
-        return SSLRecommender(self._client)
+    def ssl_recommender(self) -> SSLRecommenderResource:
+        return SSLRecommenderResource(self._client)
 
     @cached_property
-    def tls_1_3(self) -> TLS1_3:
-        return TLS1_3(self._client)
+    def tls_1_3(self) -> TLS1_3Resource:
+        return TLS1_3Resource(self._client)
 
     @cached_property
-    def tls_client_auth(self) -> TLSClientAuth:
-        return TLSClientAuth(self._client)
+    def tls_client_auth(self) -> TLSClientAuthResource:
+        return TLSClientAuthResource(self._client)
 
     @cached_property
-    def true_client_ip_header(self) -> TrueClientIPHeader:
-        return TrueClientIPHeader(self._client)
+    def true_client_ip_header(self) -> TrueClientIPHeaderResource:
+        return TrueClientIPHeaderResource(self._client)
 
     @cached_property
-    def waf(self) -> WAF:
-        return WAF(self._client)
+    def waf(self) -> WAFResource:
+        return WAFResource(self._client)
 
     @cached_property
-    def webp(self) -> WebP:
-        return WebP(self._client)
+    def webp(self) -> WebPResource:
+        return WebPResource(self._client)
 
     @cached_property
-    def websocket(self) -> Websocket:
-        return Websocket(self._client)
+    def websocket(self) -> WebsocketResource:
+        return WebsocketResource(self._client)
 
     @cached_property
     def font_settings(self) -> FontSettings:
@@ -632,16 +632,16 @@ class Settings(SyncAPIResource):
 
 class AsyncSettings(AsyncAPIResource):
     @cached_property
-    def zero_rtt(self) -> AsyncZeroRTT:
-        return AsyncZeroRTT(self._client)
+    def zero_rtt(self) -> AsyncZeroRTTResource:
+        return AsyncZeroRTTResource(self._client)
 
     @cached_property
     def advanced_ddos(self) -> AsyncAdvancedDDoS:
         return AsyncAdvancedDDoS(self._client)
 
     @cached_property
-    def always_online(self) -> AsyncAlwaysOnline:
-        return AsyncAlwaysOnline(self._client)
+    def always_online(self) -> AsyncAlwaysOnlineResource:
+        return AsyncAlwaysOnlineResource(self._client)
 
     @cached_property
     def always_use_https(self) -> AsyncAlwaysUseHTTPS:
@@ -652,184 +652,184 @@ class AsyncSettings(AsyncAPIResource):
         return AsyncAutomaticHTTPSRewrites(self._client)
 
     @cached_property
-    def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimization:
-        return AsyncAutomaticPlatformOptimization(self._client)
+    def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimizationResource:
+        return AsyncAutomaticPlatformOptimizationResource(self._client)
 
     @cached_property
-    def brotli(self) -> AsyncBrotli:
-        return AsyncBrotli(self._client)
+    def brotli(self) -> AsyncBrotliResource:
+        return AsyncBrotliResource(self._client)
 
     @cached_property
-    def browser_cache_ttl(self) -> AsyncBrowserCacheTTL:
-        return AsyncBrowserCacheTTL(self._client)
+    def browser_cache_ttl(self) -> AsyncBrowserCacheTTLResource:
+        return AsyncBrowserCacheTTLResource(self._client)
 
     @cached_property
-    def browser_check(self) -> AsyncBrowserCheck:
-        return AsyncBrowserCheck(self._client)
+    def browser_check(self) -> AsyncBrowserCheckResource:
+        return AsyncBrowserCheckResource(self._client)
 
     @cached_property
-    def cache_level(self) -> AsyncCacheLevel:
-        return AsyncCacheLevel(self._client)
+    def cache_level(self) -> AsyncCacheLevelResource:
+        return AsyncCacheLevelResource(self._client)
 
     @cached_property
-    def challenge_ttl(self) -> AsyncChallengeTTL:
-        return AsyncChallengeTTL(self._client)
+    def challenge_ttl(self) -> AsyncChallengeTTLResource:
+        return AsyncChallengeTTLResource(self._client)
 
     @cached_property
     def ciphers(self) -> AsyncCiphers:
         return AsyncCiphers(self._client)
 
     @cached_property
-    def development_mode(self) -> AsyncDevelopmentMode:
-        return AsyncDevelopmentMode(self._client)
+    def development_mode(self) -> AsyncDevelopmentModeResource:
+        return AsyncDevelopmentModeResource(self._client)
 
     @cached_property
     def early_hints(self) -> AsyncEarlyHints:
         return AsyncEarlyHints(self._client)
 
     @cached_property
-    def email_obfuscation(self) -> AsyncEmailObfuscation:
-        return AsyncEmailObfuscation(self._client)
+    def email_obfuscation(self) -> AsyncEmailObfuscationResource:
+        return AsyncEmailObfuscationResource(self._client)
 
     @cached_property
-    def h2_prioritization(self) -> AsyncH2Prioritization:
-        return AsyncH2Prioritization(self._client)
+    def h2_prioritization(self) -> AsyncH2PrioritizationResource:
+        return AsyncH2PrioritizationResource(self._client)
 
     @cached_property
-    def hotlink_protection(self) -> AsyncHotlinkProtection:
-        return AsyncHotlinkProtection(self._client)
+    def hotlink_protection(self) -> AsyncHotlinkProtectionResource:
+        return AsyncHotlinkProtectionResource(self._client)
 
     @cached_property
-    def http2(self) -> AsyncHTTP2:
-        return AsyncHTTP2(self._client)
+    def http2(self) -> AsyncHTTP2Resource:
+        return AsyncHTTP2Resource(self._client)
 
     @cached_property
-    def http3(self) -> AsyncHTTP3:
-        return AsyncHTTP3(self._client)
+    def http3(self) -> AsyncHTTP3Resource:
+        return AsyncHTTP3Resource(self._client)
 
     @cached_property
-    def image_resizing(self) -> AsyncImageResizing:
-        return AsyncImageResizing(self._client)
+    def image_resizing(self) -> AsyncImageResizingResource:
+        return AsyncImageResizingResource(self._client)
 
     @cached_property
-    def ip_geolocation(self) -> AsyncIPGeolocation:
-        return AsyncIPGeolocation(self._client)
+    def ip_geolocation(self) -> AsyncIPGeolocationResource:
+        return AsyncIPGeolocationResource(self._client)
 
     @cached_property
-    def ipv6(self) -> AsyncIPV6:
-        return AsyncIPV6(self._client)
+    def ipv6(self) -> AsyncIPV6Resource:
+        return AsyncIPV6Resource(self._client)
 
     @cached_property
-    def min_tls_version(self) -> AsyncMinTLSVersion:
-        return AsyncMinTLSVersion(self._client)
+    def min_tls_version(self) -> AsyncMinTLSVersionResource:
+        return AsyncMinTLSVersionResource(self._client)
 
     @cached_property
-    def minify(self) -> AsyncMinify:
-        return AsyncMinify(self._client)
+    def minify(self) -> AsyncMinifyResource:
+        return AsyncMinifyResource(self._client)
 
     @cached_property
-    def mirage(self) -> AsyncMirage:
-        return AsyncMirage(self._client)
+    def mirage(self) -> AsyncMirageResource:
+        return AsyncMirageResource(self._client)
 
     @cached_property
-    def mobile_redirect(self) -> AsyncMobileRedirect:
-        return AsyncMobileRedirect(self._client)
+    def mobile_redirect(self) -> AsyncMobileRedirectResource:
+        return AsyncMobileRedirectResource(self._client)
 
     @cached_property
-    def nel(self) -> AsyncNEL:
-        return AsyncNEL(self._client)
+    def nel(self) -> AsyncNELResource:
+        return AsyncNELResource(self._client)
 
     @cached_property
-    def opportunistic_encryption(self) -> AsyncOpportunisticEncryption:
-        return AsyncOpportunisticEncryption(self._client)
+    def opportunistic_encryption(self) -> AsyncOpportunisticEncryptionResource:
+        return AsyncOpportunisticEncryptionResource(self._client)
 
     @cached_property
-    def opportunistic_onion(self) -> AsyncOpportunisticOnion:
-        return AsyncOpportunisticOnion(self._client)
+    def opportunistic_onion(self) -> AsyncOpportunisticOnionResource:
+        return AsyncOpportunisticOnionResource(self._client)
 
     @cached_property
-    def orange_to_orange(self) -> AsyncOrangeToOrange:
-        return AsyncOrangeToOrange(self._client)
+    def orange_to_orange(self) -> AsyncOrangeToOrangeResource:
+        return AsyncOrangeToOrangeResource(self._client)
 
     @cached_property
-    def origin_error_page_pass_thru(self) -> AsyncOriginErrorPagePassThru:
-        return AsyncOriginErrorPagePassThru(self._client)
+    def origin_error_page_pass_thru(self) -> AsyncOriginErrorPagePassThruResource:
+        return AsyncOriginErrorPagePassThruResource(self._client)
 
     @cached_property
     def origin_max_http_version(self) -> AsyncOriginMaxHTTPVersion:
         return AsyncOriginMaxHTTPVersion(self._client)
 
     @cached_property
-    def polish(self) -> AsyncPolish:
-        return AsyncPolish(self._client)
+    def polish(self) -> AsyncPolishResource:
+        return AsyncPolishResource(self._client)
 
     @cached_property
-    def prefetch_preload(self) -> AsyncPrefetchPreload:
-        return AsyncPrefetchPreload(self._client)
+    def prefetch_preload(self) -> AsyncPrefetchPreloadResource:
+        return AsyncPrefetchPreloadResource(self._client)
 
     @cached_property
-    def proxy_read_timeout(self) -> AsyncProxyReadTimeout:
-        return AsyncProxyReadTimeout(self._client)
+    def proxy_read_timeout(self) -> AsyncProxyReadTimeoutResource:
+        return AsyncProxyReadTimeoutResource(self._client)
 
     @cached_property
-    def pseudo_ipv4(self) -> AsyncPseudoIPV4:
-        return AsyncPseudoIPV4(self._client)
+    def pseudo_ipv4(self) -> AsyncPseudoIPV4Resource:
+        return AsyncPseudoIPV4Resource(self._client)
 
     @cached_property
-    def response_buffering(self) -> AsyncResponseBuffering:
-        return AsyncResponseBuffering(self._client)
+    def response_buffering(self) -> AsyncResponseBufferingResource:
+        return AsyncResponseBufferingResource(self._client)
 
     @cached_property
-    def rocket_loader(self) -> AsyncRocketLoader:
-        return AsyncRocketLoader(self._client)
+    def rocket_loader(self) -> AsyncRocketLoaderResource:
+        return AsyncRocketLoaderResource(self._client)
 
     @cached_property
     def security_headers(self) -> AsyncSecurityHeaders:
         return AsyncSecurityHeaders(self._client)
 
     @cached_property
-    def security_level(self) -> AsyncSecurityLevel:
-        return AsyncSecurityLevel(self._client)
+    def security_level(self) -> AsyncSecurityLevelResource:
+        return AsyncSecurityLevelResource(self._client)
 
     @cached_property
     def server_side_excludes(self) -> AsyncServerSideExcludes:
         return AsyncServerSideExcludes(self._client)
 
     @cached_property
-    def sort_query_string_for_cache(self) -> AsyncSortQueryStringForCache:
-        return AsyncSortQueryStringForCache(self._client)
+    def sort_query_string_for_cache(self) -> AsyncSortQueryStringForCacheResource:
+        return AsyncSortQueryStringForCacheResource(self._client)
 
     @cached_property
-    def ssl(self) -> AsyncSSL:
-        return AsyncSSL(self._client)
+    def ssl(self) -> AsyncSSLResource:
+        return AsyncSSLResource(self._client)
 
     @cached_property
-    def ssl_recommender(self) -> AsyncSSLRecommender:
-        return AsyncSSLRecommender(self._client)
+    def ssl_recommender(self) -> AsyncSSLRecommenderResource:
+        return AsyncSSLRecommenderResource(self._client)
 
     @cached_property
-    def tls_1_3(self) -> AsyncTLS1_3:
-        return AsyncTLS1_3(self._client)
+    def tls_1_3(self) -> AsyncTLS1_3Resource:
+        return AsyncTLS1_3Resource(self._client)
 
     @cached_property
-    def tls_client_auth(self) -> AsyncTLSClientAuth:
-        return AsyncTLSClientAuth(self._client)
+    def tls_client_auth(self) -> AsyncTLSClientAuthResource:
+        return AsyncTLSClientAuthResource(self._client)
 
     @cached_property
-    def true_client_ip_header(self) -> AsyncTrueClientIPHeader:
-        return AsyncTrueClientIPHeader(self._client)
+    def true_client_ip_header(self) -> AsyncTrueClientIPHeaderResource:
+        return AsyncTrueClientIPHeaderResource(self._client)
 
     @cached_property
-    def waf(self) -> AsyncWAF:
-        return AsyncWAF(self._client)
+    def waf(self) -> AsyncWAFResource:
+        return AsyncWAFResource(self._client)
 
     @cached_property
-    def webp(self) -> AsyncWebP:
-        return AsyncWebP(self._client)
+    def webp(self) -> AsyncWebPResource:
+        return AsyncWebPResource(self._client)
 
     @cached_property
-    def websocket(self) -> AsyncWebsocket:
-        return AsyncWebsocket(self._client)
+    def websocket(self) -> AsyncWebsocketResource:
+        return AsyncWebsocketResource(self._client)
 
     @cached_property
     def font_settings(self) -> AsyncFontSettings:
@@ -849,16 +849,16 @@ class SettingsWithRawResponse:
         self._settings = settings
 
     @cached_property
-    def zero_rtt(self) -> ZeroRTTWithRawResponse:
-        return ZeroRTTWithRawResponse(self._settings.zero_rtt)
+    def zero_rtt(self) -> ZeroRTTResourceWithRawResponse:
+        return ZeroRTTResourceWithRawResponse(self._settings.zero_rtt)
 
     @cached_property
     def advanced_ddos(self) -> AdvancedDDoSWithRawResponse:
         return AdvancedDDoSWithRawResponse(self._settings.advanced_ddos)
 
     @cached_property
-    def always_online(self) -> AlwaysOnlineWithRawResponse:
-        return AlwaysOnlineWithRawResponse(self._settings.always_online)
+    def always_online(self) -> AlwaysOnlineResourceWithRawResponse:
+        return AlwaysOnlineResourceWithRawResponse(self._settings.always_online)
 
     @cached_property
     def always_use_https(self) -> AlwaysUseHTTPSWithRawResponse:
@@ -869,184 +869,184 @@ class SettingsWithRawResponse:
         return AutomaticHTTPSRewritesWithRawResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
-    def automatic_platform_optimization(self) -> AutomaticPlatformOptimizationWithRawResponse:
-        return AutomaticPlatformOptimizationWithRawResponse(self._settings.automatic_platform_optimization)
+    def automatic_platform_optimization(self) -> AutomaticPlatformOptimizationResourceWithRawResponse:
+        return AutomaticPlatformOptimizationResourceWithRawResponse(self._settings.automatic_platform_optimization)
 
     @cached_property
-    def brotli(self) -> BrotliWithRawResponse:
-        return BrotliWithRawResponse(self._settings.brotli)
+    def brotli(self) -> BrotliResourceWithRawResponse:
+        return BrotliResourceWithRawResponse(self._settings.brotli)
 
     @cached_property
-    def browser_cache_ttl(self) -> BrowserCacheTTLWithRawResponse:
-        return BrowserCacheTTLWithRawResponse(self._settings.browser_cache_ttl)
+    def browser_cache_ttl(self) -> BrowserCacheTTLResourceWithRawResponse:
+        return BrowserCacheTTLResourceWithRawResponse(self._settings.browser_cache_ttl)
 
     @cached_property
-    def browser_check(self) -> BrowserCheckWithRawResponse:
-        return BrowserCheckWithRawResponse(self._settings.browser_check)
+    def browser_check(self) -> BrowserCheckResourceWithRawResponse:
+        return BrowserCheckResourceWithRawResponse(self._settings.browser_check)
 
     @cached_property
-    def cache_level(self) -> CacheLevelWithRawResponse:
-        return CacheLevelWithRawResponse(self._settings.cache_level)
+    def cache_level(self) -> CacheLevelResourceWithRawResponse:
+        return CacheLevelResourceWithRawResponse(self._settings.cache_level)
 
     @cached_property
-    def challenge_ttl(self) -> ChallengeTTLWithRawResponse:
-        return ChallengeTTLWithRawResponse(self._settings.challenge_ttl)
+    def challenge_ttl(self) -> ChallengeTTLResourceWithRawResponse:
+        return ChallengeTTLResourceWithRawResponse(self._settings.challenge_ttl)
 
     @cached_property
     def ciphers(self) -> CiphersWithRawResponse:
         return CiphersWithRawResponse(self._settings.ciphers)
 
     @cached_property
-    def development_mode(self) -> DevelopmentModeWithRawResponse:
-        return DevelopmentModeWithRawResponse(self._settings.development_mode)
+    def development_mode(self) -> DevelopmentModeResourceWithRawResponse:
+        return DevelopmentModeResourceWithRawResponse(self._settings.development_mode)
 
     @cached_property
     def early_hints(self) -> EarlyHintsWithRawResponse:
         return EarlyHintsWithRawResponse(self._settings.early_hints)
 
     @cached_property
-    def email_obfuscation(self) -> EmailObfuscationWithRawResponse:
-        return EmailObfuscationWithRawResponse(self._settings.email_obfuscation)
+    def email_obfuscation(self) -> EmailObfuscationResourceWithRawResponse:
+        return EmailObfuscationResourceWithRawResponse(self._settings.email_obfuscation)
 
     @cached_property
-    def h2_prioritization(self) -> H2PrioritizationWithRawResponse:
-        return H2PrioritizationWithRawResponse(self._settings.h2_prioritization)
+    def h2_prioritization(self) -> H2PrioritizationResourceWithRawResponse:
+        return H2PrioritizationResourceWithRawResponse(self._settings.h2_prioritization)
 
     @cached_property
-    def hotlink_protection(self) -> HotlinkProtectionWithRawResponse:
-        return HotlinkProtectionWithRawResponse(self._settings.hotlink_protection)
+    def hotlink_protection(self) -> HotlinkProtectionResourceWithRawResponse:
+        return HotlinkProtectionResourceWithRawResponse(self._settings.hotlink_protection)
 
     @cached_property
-    def http2(self) -> HTTP2WithRawResponse:
-        return HTTP2WithRawResponse(self._settings.http2)
+    def http2(self) -> HTTP2ResourceWithRawResponse:
+        return HTTP2ResourceWithRawResponse(self._settings.http2)
 
     @cached_property
-    def http3(self) -> HTTP3WithRawResponse:
-        return HTTP3WithRawResponse(self._settings.http3)
+    def http3(self) -> HTTP3ResourceWithRawResponse:
+        return HTTP3ResourceWithRawResponse(self._settings.http3)
 
     @cached_property
-    def image_resizing(self) -> ImageResizingWithRawResponse:
-        return ImageResizingWithRawResponse(self._settings.image_resizing)
+    def image_resizing(self) -> ImageResizingResourceWithRawResponse:
+        return ImageResizingResourceWithRawResponse(self._settings.image_resizing)
 
     @cached_property
-    def ip_geolocation(self) -> IPGeolocationWithRawResponse:
-        return IPGeolocationWithRawResponse(self._settings.ip_geolocation)
+    def ip_geolocation(self) -> IPGeolocationResourceWithRawResponse:
+        return IPGeolocationResourceWithRawResponse(self._settings.ip_geolocation)
 
     @cached_property
-    def ipv6(self) -> IPV6WithRawResponse:
-        return IPV6WithRawResponse(self._settings.ipv6)
+    def ipv6(self) -> IPV6ResourceWithRawResponse:
+        return IPV6ResourceWithRawResponse(self._settings.ipv6)
 
     @cached_property
-    def min_tls_version(self) -> MinTLSVersionWithRawResponse:
-        return MinTLSVersionWithRawResponse(self._settings.min_tls_version)
+    def min_tls_version(self) -> MinTLSVersionResourceWithRawResponse:
+        return MinTLSVersionResourceWithRawResponse(self._settings.min_tls_version)
 
     @cached_property
-    def minify(self) -> MinifyWithRawResponse:
-        return MinifyWithRawResponse(self._settings.minify)
+    def minify(self) -> MinifyResourceWithRawResponse:
+        return MinifyResourceWithRawResponse(self._settings.minify)
 
     @cached_property
-    def mirage(self) -> MirageWithRawResponse:
-        return MirageWithRawResponse(self._settings.mirage)
+    def mirage(self) -> MirageResourceWithRawResponse:
+        return MirageResourceWithRawResponse(self._settings.mirage)
 
     @cached_property
-    def mobile_redirect(self) -> MobileRedirectWithRawResponse:
-        return MobileRedirectWithRawResponse(self._settings.mobile_redirect)
+    def mobile_redirect(self) -> MobileRedirectResourceWithRawResponse:
+        return MobileRedirectResourceWithRawResponse(self._settings.mobile_redirect)
 
     @cached_property
-    def nel(self) -> NELWithRawResponse:
-        return NELWithRawResponse(self._settings.nel)
+    def nel(self) -> NELResourceWithRawResponse:
+        return NELResourceWithRawResponse(self._settings.nel)
 
     @cached_property
-    def opportunistic_encryption(self) -> OpportunisticEncryptionWithRawResponse:
-        return OpportunisticEncryptionWithRawResponse(self._settings.opportunistic_encryption)
+    def opportunistic_encryption(self) -> OpportunisticEncryptionResourceWithRawResponse:
+        return OpportunisticEncryptionResourceWithRawResponse(self._settings.opportunistic_encryption)
 
     @cached_property
-    def opportunistic_onion(self) -> OpportunisticOnionWithRawResponse:
-        return OpportunisticOnionWithRawResponse(self._settings.opportunistic_onion)
+    def opportunistic_onion(self) -> OpportunisticOnionResourceWithRawResponse:
+        return OpportunisticOnionResourceWithRawResponse(self._settings.opportunistic_onion)
 
     @cached_property
-    def orange_to_orange(self) -> OrangeToOrangeWithRawResponse:
-        return OrangeToOrangeWithRawResponse(self._settings.orange_to_orange)
+    def orange_to_orange(self) -> OrangeToOrangeResourceWithRawResponse:
+        return OrangeToOrangeResourceWithRawResponse(self._settings.orange_to_orange)
 
     @cached_property
-    def origin_error_page_pass_thru(self) -> OriginErrorPagePassThruWithRawResponse:
-        return OriginErrorPagePassThruWithRawResponse(self._settings.origin_error_page_pass_thru)
+    def origin_error_page_pass_thru(self) -> OriginErrorPagePassThruResourceWithRawResponse:
+        return OriginErrorPagePassThruResourceWithRawResponse(self._settings.origin_error_page_pass_thru)
 
     @cached_property
     def origin_max_http_version(self) -> OriginMaxHTTPVersionWithRawResponse:
         return OriginMaxHTTPVersionWithRawResponse(self._settings.origin_max_http_version)
 
     @cached_property
-    def polish(self) -> PolishWithRawResponse:
-        return PolishWithRawResponse(self._settings.polish)
+    def polish(self) -> PolishResourceWithRawResponse:
+        return PolishResourceWithRawResponse(self._settings.polish)
 
     @cached_property
-    def prefetch_preload(self) -> PrefetchPreloadWithRawResponse:
-        return PrefetchPreloadWithRawResponse(self._settings.prefetch_preload)
+    def prefetch_preload(self) -> PrefetchPreloadResourceWithRawResponse:
+        return PrefetchPreloadResourceWithRawResponse(self._settings.prefetch_preload)
 
     @cached_property
-    def proxy_read_timeout(self) -> ProxyReadTimeoutWithRawResponse:
-        return ProxyReadTimeoutWithRawResponse(self._settings.proxy_read_timeout)
+    def proxy_read_timeout(self) -> ProxyReadTimeoutResourceWithRawResponse:
+        return ProxyReadTimeoutResourceWithRawResponse(self._settings.proxy_read_timeout)
 
     @cached_property
-    def pseudo_ipv4(self) -> PseudoIPV4WithRawResponse:
-        return PseudoIPV4WithRawResponse(self._settings.pseudo_ipv4)
+    def pseudo_ipv4(self) -> PseudoIPV4ResourceWithRawResponse:
+        return PseudoIPV4ResourceWithRawResponse(self._settings.pseudo_ipv4)
 
     @cached_property
-    def response_buffering(self) -> ResponseBufferingWithRawResponse:
-        return ResponseBufferingWithRawResponse(self._settings.response_buffering)
+    def response_buffering(self) -> ResponseBufferingResourceWithRawResponse:
+        return ResponseBufferingResourceWithRawResponse(self._settings.response_buffering)
 
     @cached_property
-    def rocket_loader(self) -> RocketLoaderWithRawResponse:
-        return RocketLoaderWithRawResponse(self._settings.rocket_loader)
+    def rocket_loader(self) -> RocketLoaderResourceWithRawResponse:
+        return RocketLoaderResourceWithRawResponse(self._settings.rocket_loader)
 
     @cached_property
     def security_headers(self) -> SecurityHeadersWithRawResponse:
         return SecurityHeadersWithRawResponse(self._settings.security_headers)
 
     @cached_property
-    def security_level(self) -> SecurityLevelWithRawResponse:
-        return SecurityLevelWithRawResponse(self._settings.security_level)
+    def security_level(self) -> SecurityLevelResourceWithRawResponse:
+        return SecurityLevelResourceWithRawResponse(self._settings.security_level)
 
     @cached_property
     def server_side_excludes(self) -> ServerSideExcludesWithRawResponse:
         return ServerSideExcludesWithRawResponse(self._settings.server_side_excludes)
 
     @cached_property
-    def sort_query_string_for_cache(self) -> SortQueryStringForCacheWithRawResponse:
-        return SortQueryStringForCacheWithRawResponse(self._settings.sort_query_string_for_cache)
+    def sort_query_string_for_cache(self) -> SortQueryStringForCacheResourceWithRawResponse:
+        return SortQueryStringForCacheResourceWithRawResponse(self._settings.sort_query_string_for_cache)
 
     @cached_property
-    def ssl(self) -> SSLWithRawResponse:
-        return SSLWithRawResponse(self._settings.ssl)
+    def ssl(self) -> SSLResourceWithRawResponse:
+        return SSLResourceWithRawResponse(self._settings.ssl)
 
     @cached_property
-    def ssl_recommender(self) -> SSLRecommenderWithRawResponse:
-        return SSLRecommenderWithRawResponse(self._settings.ssl_recommender)
+    def ssl_recommender(self) -> SSLRecommenderResourceWithRawResponse:
+        return SSLRecommenderResourceWithRawResponse(self._settings.ssl_recommender)
 
     @cached_property
-    def tls_1_3(self) -> TLS1_3WithRawResponse:
-        return TLS1_3WithRawResponse(self._settings.tls_1_3)
+    def tls_1_3(self) -> TLS1_3ResourceWithRawResponse:
+        return TLS1_3ResourceWithRawResponse(self._settings.tls_1_3)
 
     @cached_property
-    def tls_client_auth(self) -> TLSClientAuthWithRawResponse:
-        return TLSClientAuthWithRawResponse(self._settings.tls_client_auth)
+    def tls_client_auth(self) -> TLSClientAuthResourceWithRawResponse:
+        return TLSClientAuthResourceWithRawResponse(self._settings.tls_client_auth)
 
     @cached_property
-    def true_client_ip_header(self) -> TrueClientIPHeaderWithRawResponse:
-        return TrueClientIPHeaderWithRawResponse(self._settings.true_client_ip_header)
+    def true_client_ip_header(self) -> TrueClientIPHeaderResourceWithRawResponse:
+        return TrueClientIPHeaderResourceWithRawResponse(self._settings.true_client_ip_header)
 
     @cached_property
-    def waf(self) -> WAFWithRawResponse:
-        return WAFWithRawResponse(self._settings.waf)
+    def waf(self) -> WAFResourceWithRawResponse:
+        return WAFResourceWithRawResponse(self._settings.waf)
 
     @cached_property
-    def webp(self) -> WebPWithRawResponse:
-        return WebPWithRawResponse(self._settings.webp)
+    def webp(self) -> WebPResourceWithRawResponse:
+        return WebPResourceWithRawResponse(self._settings.webp)
 
     @cached_property
-    def websocket(self) -> WebsocketWithRawResponse:
-        return WebsocketWithRawResponse(self._settings.websocket)
+    def websocket(self) -> WebsocketResourceWithRawResponse:
+        return WebsocketResourceWithRawResponse(self._settings.websocket)
 
     @cached_property
     def font_settings(self) -> FontSettingsWithRawResponse:
@@ -1058,16 +1058,16 @@ class AsyncSettingsWithRawResponse:
         self._settings = settings
 
     @cached_property
-    def zero_rtt(self) -> AsyncZeroRTTWithRawResponse:
-        return AsyncZeroRTTWithRawResponse(self._settings.zero_rtt)
+    def zero_rtt(self) -> AsyncZeroRTTResourceWithRawResponse:
+        return AsyncZeroRTTResourceWithRawResponse(self._settings.zero_rtt)
 
     @cached_property
     def advanced_ddos(self) -> AsyncAdvancedDDoSWithRawResponse:
         return AsyncAdvancedDDoSWithRawResponse(self._settings.advanced_ddos)
 
     @cached_property
-    def always_online(self) -> AsyncAlwaysOnlineWithRawResponse:
-        return AsyncAlwaysOnlineWithRawResponse(self._settings.always_online)
+    def always_online(self) -> AsyncAlwaysOnlineResourceWithRawResponse:
+        return AsyncAlwaysOnlineResourceWithRawResponse(self._settings.always_online)
 
     @cached_property
     def always_use_https(self) -> AsyncAlwaysUseHTTPSWithRawResponse:
@@ -1078,184 +1078,184 @@ class AsyncSettingsWithRawResponse:
         return AsyncAutomaticHTTPSRewritesWithRawResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
-    def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimizationWithRawResponse:
-        return AsyncAutomaticPlatformOptimizationWithRawResponse(self._settings.automatic_platform_optimization)
+    def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimizationResourceWithRawResponse:
+        return AsyncAutomaticPlatformOptimizationResourceWithRawResponse(self._settings.automatic_platform_optimization)
 
     @cached_property
-    def brotli(self) -> AsyncBrotliWithRawResponse:
-        return AsyncBrotliWithRawResponse(self._settings.brotli)
+    def brotli(self) -> AsyncBrotliResourceWithRawResponse:
+        return AsyncBrotliResourceWithRawResponse(self._settings.brotli)
 
     @cached_property
-    def browser_cache_ttl(self) -> AsyncBrowserCacheTTLWithRawResponse:
-        return AsyncBrowserCacheTTLWithRawResponse(self._settings.browser_cache_ttl)
+    def browser_cache_ttl(self) -> AsyncBrowserCacheTTLResourceWithRawResponse:
+        return AsyncBrowserCacheTTLResourceWithRawResponse(self._settings.browser_cache_ttl)
 
     @cached_property
-    def browser_check(self) -> AsyncBrowserCheckWithRawResponse:
-        return AsyncBrowserCheckWithRawResponse(self._settings.browser_check)
+    def browser_check(self) -> AsyncBrowserCheckResourceWithRawResponse:
+        return AsyncBrowserCheckResourceWithRawResponse(self._settings.browser_check)
 
     @cached_property
-    def cache_level(self) -> AsyncCacheLevelWithRawResponse:
-        return AsyncCacheLevelWithRawResponse(self._settings.cache_level)
+    def cache_level(self) -> AsyncCacheLevelResourceWithRawResponse:
+        return AsyncCacheLevelResourceWithRawResponse(self._settings.cache_level)
 
     @cached_property
-    def challenge_ttl(self) -> AsyncChallengeTTLWithRawResponse:
-        return AsyncChallengeTTLWithRawResponse(self._settings.challenge_ttl)
+    def challenge_ttl(self) -> AsyncChallengeTTLResourceWithRawResponse:
+        return AsyncChallengeTTLResourceWithRawResponse(self._settings.challenge_ttl)
 
     @cached_property
     def ciphers(self) -> AsyncCiphersWithRawResponse:
         return AsyncCiphersWithRawResponse(self._settings.ciphers)
 
     @cached_property
-    def development_mode(self) -> AsyncDevelopmentModeWithRawResponse:
-        return AsyncDevelopmentModeWithRawResponse(self._settings.development_mode)
+    def development_mode(self) -> AsyncDevelopmentModeResourceWithRawResponse:
+        return AsyncDevelopmentModeResourceWithRawResponse(self._settings.development_mode)
 
     @cached_property
     def early_hints(self) -> AsyncEarlyHintsWithRawResponse:
         return AsyncEarlyHintsWithRawResponse(self._settings.early_hints)
 
     @cached_property
-    def email_obfuscation(self) -> AsyncEmailObfuscationWithRawResponse:
-        return AsyncEmailObfuscationWithRawResponse(self._settings.email_obfuscation)
+    def email_obfuscation(self) -> AsyncEmailObfuscationResourceWithRawResponse:
+        return AsyncEmailObfuscationResourceWithRawResponse(self._settings.email_obfuscation)
 
     @cached_property
-    def h2_prioritization(self) -> AsyncH2PrioritizationWithRawResponse:
-        return AsyncH2PrioritizationWithRawResponse(self._settings.h2_prioritization)
+    def h2_prioritization(self) -> AsyncH2PrioritizationResourceWithRawResponse:
+        return AsyncH2PrioritizationResourceWithRawResponse(self._settings.h2_prioritization)
 
     @cached_property
-    def hotlink_protection(self) -> AsyncHotlinkProtectionWithRawResponse:
-        return AsyncHotlinkProtectionWithRawResponse(self._settings.hotlink_protection)
+    def hotlink_protection(self) -> AsyncHotlinkProtectionResourceWithRawResponse:
+        return AsyncHotlinkProtectionResourceWithRawResponse(self._settings.hotlink_protection)
 
     @cached_property
-    def http2(self) -> AsyncHTTP2WithRawResponse:
-        return AsyncHTTP2WithRawResponse(self._settings.http2)
+    def http2(self) -> AsyncHTTP2ResourceWithRawResponse:
+        return AsyncHTTP2ResourceWithRawResponse(self._settings.http2)
 
     @cached_property
-    def http3(self) -> AsyncHTTP3WithRawResponse:
-        return AsyncHTTP3WithRawResponse(self._settings.http3)
+    def http3(self) -> AsyncHTTP3ResourceWithRawResponse:
+        return AsyncHTTP3ResourceWithRawResponse(self._settings.http3)
 
     @cached_property
-    def image_resizing(self) -> AsyncImageResizingWithRawResponse:
-        return AsyncImageResizingWithRawResponse(self._settings.image_resizing)
+    def image_resizing(self) -> AsyncImageResizingResourceWithRawResponse:
+        return AsyncImageResizingResourceWithRawResponse(self._settings.image_resizing)
 
     @cached_property
-    def ip_geolocation(self) -> AsyncIPGeolocationWithRawResponse:
-        return AsyncIPGeolocationWithRawResponse(self._settings.ip_geolocation)
+    def ip_geolocation(self) -> AsyncIPGeolocationResourceWithRawResponse:
+        return AsyncIPGeolocationResourceWithRawResponse(self._settings.ip_geolocation)
 
     @cached_property
-    def ipv6(self) -> AsyncIPV6WithRawResponse:
-        return AsyncIPV6WithRawResponse(self._settings.ipv6)
+    def ipv6(self) -> AsyncIPV6ResourceWithRawResponse:
+        return AsyncIPV6ResourceWithRawResponse(self._settings.ipv6)
 
     @cached_property
-    def min_tls_version(self) -> AsyncMinTLSVersionWithRawResponse:
-        return AsyncMinTLSVersionWithRawResponse(self._settings.min_tls_version)
+    def min_tls_version(self) -> AsyncMinTLSVersionResourceWithRawResponse:
+        return AsyncMinTLSVersionResourceWithRawResponse(self._settings.min_tls_version)
 
     @cached_property
-    def minify(self) -> AsyncMinifyWithRawResponse:
-        return AsyncMinifyWithRawResponse(self._settings.minify)
+    def minify(self) -> AsyncMinifyResourceWithRawResponse:
+        return AsyncMinifyResourceWithRawResponse(self._settings.minify)
 
     @cached_property
-    def mirage(self) -> AsyncMirageWithRawResponse:
-        return AsyncMirageWithRawResponse(self._settings.mirage)
+    def mirage(self) -> AsyncMirageResourceWithRawResponse:
+        return AsyncMirageResourceWithRawResponse(self._settings.mirage)
 
     @cached_property
-    def mobile_redirect(self) -> AsyncMobileRedirectWithRawResponse:
-        return AsyncMobileRedirectWithRawResponse(self._settings.mobile_redirect)
+    def mobile_redirect(self) -> AsyncMobileRedirectResourceWithRawResponse:
+        return AsyncMobileRedirectResourceWithRawResponse(self._settings.mobile_redirect)
 
     @cached_property
-    def nel(self) -> AsyncNELWithRawResponse:
-        return AsyncNELWithRawResponse(self._settings.nel)
+    def nel(self) -> AsyncNELResourceWithRawResponse:
+        return AsyncNELResourceWithRawResponse(self._settings.nel)
 
     @cached_property
-    def opportunistic_encryption(self) -> AsyncOpportunisticEncryptionWithRawResponse:
-        return AsyncOpportunisticEncryptionWithRawResponse(self._settings.opportunistic_encryption)
+    def opportunistic_encryption(self) -> AsyncOpportunisticEncryptionResourceWithRawResponse:
+        return AsyncOpportunisticEncryptionResourceWithRawResponse(self._settings.opportunistic_encryption)
 
     @cached_property
-    def opportunistic_onion(self) -> AsyncOpportunisticOnionWithRawResponse:
-        return AsyncOpportunisticOnionWithRawResponse(self._settings.opportunistic_onion)
+    def opportunistic_onion(self) -> AsyncOpportunisticOnionResourceWithRawResponse:
+        return AsyncOpportunisticOnionResourceWithRawResponse(self._settings.opportunistic_onion)
 
     @cached_property
-    def orange_to_orange(self) -> AsyncOrangeToOrangeWithRawResponse:
-        return AsyncOrangeToOrangeWithRawResponse(self._settings.orange_to_orange)
+    def orange_to_orange(self) -> AsyncOrangeToOrangeResourceWithRawResponse:
+        return AsyncOrangeToOrangeResourceWithRawResponse(self._settings.orange_to_orange)
 
     @cached_property
-    def origin_error_page_pass_thru(self) -> AsyncOriginErrorPagePassThruWithRawResponse:
-        return AsyncOriginErrorPagePassThruWithRawResponse(self._settings.origin_error_page_pass_thru)
+    def origin_error_page_pass_thru(self) -> AsyncOriginErrorPagePassThruResourceWithRawResponse:
+        return AsyncOriginErrorPagePassThruResourceWithRawResponse(self._settings.origin_error_page_pass_thru)
 
     @cached_property
     def origin_max_http_version(self) -> AsyncOriginMaxHTTPVersionWithRawResponse:
         return AsyncOriginMaxHTTPVersionWithRawResponse(self._settings.origin_max_http_version)
 
     @cached_property
-    def polish(self) -> AsyncPolishWithRawResponse:
-        return AsyncPolishWithRawResponse(self._settings.polish)
+    def polish(self) -> AsyncPolishResourceWithRawResponse:
+        return AsyncPolishResourceWithRawResponse(self._settings.polish)
 
     @cached_property
-    def prefetch_preload(self) -> AsyncPrefetchPreloadWithRawResponse:
-        return AsyncPrefetchPreloadWithRawResponse(self._settings.prefetch_preload)
+    def prefetch_preload(self) -> AsyncPrefetchPreloadResourceWithRawResponse:
+        return AsyncPrefetchPreloadResourceWithRawResponse(self._settings.prefetch_preload)
 
     @cached_property
-    def proxy_read_timeout(self) -> AsyncProxyReadTimeoutWithRawResponse:
-        return AsyncProxyReadTimeoutWithRawResponse(self._settings.proxy_read_timeout)
+    def proxy_read_timeout(self) -> AsyncProxyReadTimeoutResourceWithRawResponse:
+        return AsyncProxyReadTimeoutResourceWithRawResponse(self._settings.proxy_read_timeout)
 
     @cached_property
-    def pseudo_ipv4(self) -> AsyncPseudoIPV4WithRawResponse:
-        return AsyncPseudoIPV4WithRawResponse(self._settings.pseudo_ipv4)
+    def pseudo_ipv4(self) -> AsyncPseudoIPV4ResourceWithRawResponse:
+        return AsyncPseudoIPV4ResourceWithRawResponse(self._settings.pseudo_ipv4)
 
     @cached_property
-    def response_buffering(self) -> AsyncResponseBufferingWithRawResponse:
-        return AsyncResponseBufferingWithRawResponse(self._settings.response_buffering)
+    def response_buffering(self) -> AsyncResponseBufferingResourceWithRawResponse:
+        return AsyncResponseBufferingResourceWithRawResponse(self._settings.response_buffering)
 
     @cached_property
-    def rocket_loader(self) -> AsyncRocketLoaderWithRawResponse:
-        return AsyncRocketLoaderWithRawResponse(self._settings.rocket_loader)
+    def rocket_loader(self) -> AsyncRocketLoaderResourceWithRawResponse:
+        return AsyncRocketLoaderResourceWithRawResponse(self._settings.rocket_loader)
 
     @cached_property
     def security_headers(self) -> AsyncSecurityHeadersWithRawResponse:
         return AsyncSecurityHeadersWithRawResponse(self._settings.security_headers)
 
     @cached_property
-    def security_level(self) -> AsyncSecurityLevelWithRawResponse:
-        return AsyncSecurityLevelWithRawResponse(self._settings.security_level)
+    def security_level(self) -> AsyncSecurityLevelResourceWithRawResponse:
+        return AsyncSecurityLevelResourceWithRawResponse(self._settings.security_level)
 
     @cached_property
     def server_side_excludes(self) -> AsyncServerSideExcludesWithRawResponse:
         return AsyncServerSideExcludesWithRawResponse(self._settings.server_side_excludes)
 
     @cached_property
-    def sort_query_string_for_cache(self) -> AsyncSortQueryStringForCacheWithRawResponse:
-        return AsyncSortQueryStringForCacheWithRawResponse(self._settings.sort_query_string_for_cache)
+    def sort_query_string_for_cache(self) -> AsyncSortQueryStringForCacheResourceWithRawResponse:
+        return AsyncSortQueryStringForCacheResourceWithRawResponse(self._settings.sort_query_string_for_cache)
 
     @cached_property
-    def ssl(self) -> AsyncSSLWithRawResponse:
-        return AsyncSSLWithRawResponse(self._settings.ssl)
+    def ssl(self) -> AsyncSSLResourceWithRawResponse:
+        return AsyncSSLResourceWithRawResponse(self._settings.ssl)
 
     @cached_property
-    def ssl_recommender(self) -> AsyncSSLRecommenderWithRawResponse:
-        return AsyncSSLRecommenderWithRawResponse(self._settings.ssl_recommender)
+    def ssl_recommender(self) -> AsyncSSLRecommenderResourceWithRawResponse:
+        return AsyncSSLRecommenderResourceWithRawResponse(self._settings.ssl_recommender)
 
     @cached_property
-    def tls_1_3(self) -> AsyncTLS1_3WithRawResponse:
-        return AsyncTLS1_3WithRawResponse(self._settings.tls_1_3)
+    def tls_1_3(self) -> AsyncTLS1_3ResourceWithRawResponse:
+        return AsyncTLS1_3ResourceWithRawResponse(self._settings.tls_1_3)
 
     @cached_property
-    def tls_client_auth(self) -> AsyncTLSClientAuthWithRawResponse:
-        return AsyncTLSClientAuthWithRawResponse(self._settings.tls_client_auth)
+    def tls_client_auth(self) -> AsyncTLSClientAuthResourceWithRawResponse:
+        return AsyncTLSClientAuthResourceWithRawResponse(self._settings.tls_client_auth)
 
     @cached_property
-    def true_client_ip_header(self) -> AsyncTrueClientIPHeaderWithRawResponse:
-        return AsyncTrueClientIPHeaderWithRawResponse(self._settings.true_client_ip_header)
+    def true_client_ip_header(self) -> AsyncTrueClientIPHeaderResourceWithRawResponse:
+        return AsyncTrueClientIPHeaderResourceWithRawResponse(self._settings.true_client_ip_header)
 
     @cached_property
-    def waf(self) -> AsyncWAFWithRawResponse:
-        return AsyncWAFWithRawResponse(self._settings.waf)
+    def waf(self) -> AsyncWAFResourceWithRawResponse:
+        return AsyncWAFResourceWithRawResponse(self._settings.waf)
 
     @cached_property
-    def webp(self) -> AsyncWebPWithRawResponse:
-        return AsyncWebPWithRawResponse(self._settings.webp)
+    def webp(self) -> AsyncWebPResourceWithRawResponse:
+        return AsyncWebPResourceWithRawResponse(self._settings.webp)
 
     @cached_property
-    def websocket(self) -> AsyncWebsocketWithRawResponse:
-        return AsyncWebsocketWithRawResponse(self._settings.websocket)
+    def websocket(self) -> AsyncWebsocketResourceWithRawResponse:
+        return AsyncWebsocketResourceWithRawResponse(self._settings.websocket)
 
     @cached_property
     def font_settings(self) -> AsyncFontSettingsWithRawResponse:
@@ -1267,16 +1267,16 @@ class SettingsWithStreamingResponse:
         self._settings = settings
 
     @cached_property
-    def zero_rtt(self) -> ZeroRTTWithStreamingResponse:
-        return ZeroRTTWithStreamingResponse(self._settings.zero_rtt)
+    def zero_rtt(self) -> ZeroRTTResourceWithStreamingResponse:
+        return ZeroRTTResourceWithStreamingResponse(self._settings.zero_rtt)
 
     @cached_property
     def advanced_ddos(self) -> AdvancedDDoSWithStreamingResponse:
         return AdvancedDDoSWithStreamingResponse(self._settings.advanced_ddos)
 
     @cached_property
-    def always_online(self) -> AlwaysOnlineWithStreamingResponse:
-        return AlwaysOnlineWithStreamingResponse(self._settings.always_online)
+    def always_online(self) -> AlwaysOnlineResourceWithStreamingResponse:
+        return AlwaysOnlineResourceWithStreamingResponse(self._settings.always_online)
 
     @cached_property
     def always_use_https(self) -> AlwaysUseHTTPSWithStreamingResponse:
@@ -1287,184 +1287,186 @@ class SettingsWithStreamingResponse:
         return AutomaticHTTPSRewritesWithStreamingResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
-    def automatic_platform_optimization(self) -> AutomaticPlatformOptimizationWithStreamingResponse:
-        return AutomaticPlatformOptimizationWithStreamingResponse(self._settings.automatic_platform_optimization)
+    def automatic_platform_optimization(self) -> AutomaticPlatformOptimizationResourceWithStreamingResponse:
+        return AutomaticPlatformOptimizationResourceWithStreamingResponse(
+            self._settings.automatic_platform_optimization
+        )
 
     @cached_property
-    def brotli(self) -> BrotliWithStreamingResponse:
-        return BrotliWithStreamingResponse(self._settings.brotli)
+    def brotli(self) -> BrotliResourceWithStreamingResponse:
+        return BrotliResourceWithStreamingResponse(self._settings.brotli)
 
     @cached_property
-    def browser_cache_ttl(self) -> BrowserCacheTTLWithStreamingResponse:
-        return BrowserCacheTTLWithStreamingResponse(self._settings.browser_cache_ttl)
+    def browser_cache_ttl(self) -> BrowserCacheTTLResourceWithStreamingResponse:
+        return BrowserCacheTTLResourceWithStreamingResponse(self._settings.browser_cache_ttl)
 
     @cached_property
-    def browser_check(self) -> BrowserCheckWithStreamingResponse:
-        return BrowserCheckWithStreamingResponse(self._settings.browser_check)
+    def browser_check(self) -> BrowserCheckResourceWithStreamingResponse:
+        return BrowserCheckResourceWithStreamingResponse(self._settings.browser_check)
 
     @cached_property
-    def cache_level(self) -> CacheLevelWithStreamingResponse:
-        return CacheLevelWithStreamingResponse(self._settings.cache_level)
+    def cache_level(self) -> CacheLevelResourceWithStreamingResponse:
+        return CacheLevelResourceWithStreamingResponse(self._settings.cache_level)
 
     @cached_property
-    def challenge_ttl(self) -> ChallengeTTLWithStreamingResponse:
-        return ChallengeTTLWithStreamingResponse(self._settings.challenge_ttl)
+    def challenge_ttl(self) -> ChallengeTTLResourceWithStreamingResponse:
+        return ChallengeTTLResourceWithStreamingResponse(self._settings.challenge_ttl)
 
     @cached_property
     def ciphers(self) -> CiphersWithStreamingResponse:
         return CiphersWithStreamingResponse(self._settings.ciphers)
 
     @cached_property
-    def development_mode(self) -> DevelopmentModeWithStreamingResponse:
-        return DevelopmentModeWithStreamingResponse(self._settings.development_mode)
+    def development_mode(self) -> DevelopmentModeResourceWithStreamingResponse:
+        return DevelopmentModeResourceWithStreamingResponse(self._settings.development_mode)
 
     @cached_property
     def early_hints(self) -> EarlyHintsWithStreamingResponse:
         return EarlyHintsWithStreamingResponse(self._settings.early_hints)
 
     @cached_property
-    def email_obfuscation(self) -> EmailObfuscationWithStreamingResponse:
-        return EmailObfuscationWithStreamingResponse(self._settings.email_obfuscation)
+    def email_obfuscation(self) -> EmailObfuscationResourceWithStreamingResponse:
+        return EmailObfuscationResourceWithStreamingResponse(self._settings.email_obfuscation)
 
     @cached_property
-    def h2_prioritization(self) -> H2PrioritizationWithStreamingResponse:
-        return H2PrioritizationWithStreamingResponse(self._settings.h2_prioritization)
+    def h2_prioritization(self) -> H2PrioritizationResourceWithStreamingResponse:
+        return H2PrioritizationResourceWithStreamingResponse(self._settings.h2_prioritization)
 
     @cached_property
-    def hotlink_protection(self) -> HotlinkProtectionWithStreamingResponse:
-        return HotlinkProtectionWithStreamingResponse(self._settings.hotlink_protection)
+    def hotlink_protection(self) -> HotlinkProtectionResourceWithStreamingResponse:
+        return HotlinkProtectionResourceWithStreamingResponse(self._settings.hotlink_protection)
 
     @cached_property
-    def http2(self) -> HTTP2WithStreamingResponse:
-        return HTTP2WithStreamingResponse(self._settings.http2)
+    def http2(self) -> HTTP2ResourceWithStreamingResponse:
+        return HTTP2ResourceWithStreamingResponse(self._settings.http2)
 
     @cached_property
-    def http3(self) -> HTTP3WithStreamingResponse:
-        return HTTP3WithStreamingResponse(self._settings.http3)
+    def http3(self) -> HTTP3ResourceWithStreamingResponse:
+        return HTTP3ResourceWithStreamingResponse(self._settings.http3)
 
     @cached_property
-    def image_resizing(self) -> ImageResizingWithStreamingResponse:
-        return ImageResizingWithStreamingResponse(self._settings.image_resizing)
+    def image_resizing(self) -> ImageResizingResourceWithStreamingResponse:
+        return ImageResizingResourceWithStreamingResponse(self._settings.image_resizing)
 
     @cached_property
-    def ip_geolocation(self) -> IPGeolocationWithStreamingResponse:
-        return IPGeolocationWithStreamingResponse(self._settings.ip_geolocation)
+    def ip_geolocation(self) -> IPGeolocationResourceWithStreamingResponse:
+        return IPGeolocationResourceWithStreamingResponse(self._settings.ip_geolocation)
 
     @cached_property
-    def ipv6(self) -> IPV6WithStreamingResponse:
-        return IPV6WithStreamingResponse(self._settings.ipv6)
+    def ipv6(self) -> IPV6ResourceWithStreamingResponse:
+        return IPV6ResourceWithStreamingResponse(self._settings.ipv6)
 
     @cached_property
-    def min_tls_version(self) -> MinTLSVersionWithStreamingResponse:
-        return MinTLSVersionWithStreamingResponse(self._settings.min_tls_version)
+    def min_tls_version(self) -> MinTLSVersionResourceWithStreamingResponse:
+        return MinTLSVersionResourceWithStreamingResponse(self._settings.min_tls_version)
 
     @cached_property
-    def minify(self) -> MinifyWithStreamingResponse:
-        return MinifyWithStreamingResponse(self._settings.minify)
+    def minify(self) -> MinifyResourceWithStreamingResponse:
+        return MinifyResourceWithStreamingResponse(self._settings.minify)
 
     @cached_property
-    def mirage(self) -> MirageWithStreamingResponse:
-        return MirageWithStreamingResponse(self._settings.mirage)
+    def mirage(self) -> MirageResourceWithStreamingResponse:
+        return MirageResourceWithStreamingResponse(self._settings.mirage)
 
     @cached_property
-    def mobile_redirect(self) -> MobileRedirectWithStreamingResponse:
-        return MobileRedirectWithStreamingResponse(self._settings.mobile_redirect)
+    def mobile_redirect(self) -> MobileRedirectResourceWithStreamingResponse:
+        return MobileRedirectResourceWithStreamingResponse(self._settings.mobile_redirect)
 
     @cached_property
-    def nel(self) -> NELWithStreamingResponse:
-        return NELWithStreamingResponse(self._settings.nel)
+    def nel(self) -> NELResourceWithStreamingResponse:
+        return NELResourceWithStreamingResponse(self._settings.nel)
 
     @cached_property
-    def opportunistic_encryption(self) -> OpportunisticEncryptionWithStreamingResponse:
-        return OpportunisticEncryptionWithStreamingResponse(self._settings.opportunistic_encryption)
+    def opportunistic_encryption(self) -> OpportunisticEncryptionResourceWithStreamingResponse:
+        return OpportunisticEncryptionResourceWithStreamingResponse(self._settings.opportunistic_encryption)
 
     @cached_property
-    def opportunistic_onion(self) -> OpportunisticOnionWithStreamingResponse:
-        return OpportunisticOnionWithStreamingResponse(self._settings.opportunistic_onion)
+    def opportunistic_onion(self) -> OpportunisticOnionResourceWithStreamingResponse:
+        return OpportunisticOnionResourceWithStreamingResponse(self._settings.opportunistic_onion)
 
     @cached_property
-    def orange_to_orange(self) -> OrangeToOrangeWithStreamingResponse:
-        return OrangeToOrangeWithStreamingResponse(self._settings.orange_to_orange)
+    def orange_to_orange(self) -> OrangeToOrangeResourceWithStreamingResponse:
+        return OrangeToOrangeResourceWithStreamingResponse(self._settings.orange_to_orange)
 
     @cached_property
-    def origin_error_page_pass_thru(self) -> OriginErrorPagePassThruWithStreamingResponse:
-        return OriginErrorPagePassThruWithStreamingResponse(self._settings.origin_error_page_pass_thru)
+    def origin_error_page_pass_thru(self) -> OriginErrorPagePassThruResourceWithStreamingResponse:
+        return OriginErrorPagePassThruResourceWithStreamingResponse(self._settings.origin_error_page_pass_thru)
 
     @cached_property
     def origin_max_http_version(self) -> OriginMaxHTTPVersionWithStreamingResponse:
         return OriginMaxHTTPVersionWithStreamingResponse(self._settings.origin_max_http_version)
 
     @cached_property
-    def polish(self) -> PolishWithStreamingResponse:
-        return PolishWithStreamingResponse(self._settings.polish)
+    def polish(self) -> PolishResourceWithStreamingResponse:
+        return PolishResourceWithStreamingResponse(self._settings.polish)
 
     @cached_property
-    def prefetch_preload(self) -> PrefetchPreloadWithStreamingResponse:
-        return PrefetchPreloadWithStreamingResponse(self._settings.prefetch_preload)
+    def prefetch_preload(self) -> PrefetchPreloadResourceWithStreamingResponse:
+        return PrefetchPreloadResourceWithStreamingResponse(self._settings.prefetch_preload)
 
     @cached_property
-    def proxy_read_timeout(self) -> ProxyReadTimeoutWithStreamingResponse:
-        return ProxyReadTimeoutWithStreamingResponse(self._settings.proxy_read_timeout)
+    def proxy_read_timeout(self) -> ProxyReadTimeoutResourceWithStreamingResponse:
+        return ProxyReadTimeoutResourceWithStreamingResponse(self._settings.proxy_read_timeout)
 
     @cached_property
-    def pseudo_ipv4(self) -> PseudoIPV4WithStreamingResponse:
-        return PseudoIPV4WithStreamingResponse(self._settings.pseudo_ipv4)
+    def pseudo_ipv4(self) -> PseudoIPV4ResourceWithStreamingResponse:
+        return PseudoIPV4ResourceWithStreamingResponse(self._settings.pseudo_ipv4)
 
     @cached_property
-    def response_buffering(self) -> ResponseBufferingWithStreamingResponse:
-        return ResponseBufferingWithStreamingResponse(self._settings.response_buffering)
+    def response_buffering(self) -> ResponseBufferingResourceWithStreamingResponse:
+        return ResponseBufferingResourceWithStreamingResponse(self._settings.response_buffering)
 
     @cached_property
-    def rocket_loader(self) -> RocketLoaderWithStreamingResponse:
-        return RocketLoaderWithStreamingResponse(self._settings.rocket_loader)
+    def rocket_loader(self) -> RocketLoaderResourceWithStreamingResponse:
+        return RocketLoaderResourceWithStreamingResponse(self._settings.rocket_loader)
 
     @cached_property
     def security_headers(self) -> SecurityHeadersWithStreamingResponse:
         return SecurityHeadersWithStreamingResponse(self._settings.security_headers)
 
     @cached_property
-    def security_level(self) -> SecurityLevelWithStreamingResponse:
-        return SecurityLevelWithStreamingResponse(self._settings.security_level)
+    def security_level(self) -> SecurityLevelResourceWithStreamingResponse:
+        return SecurityLevelResourceWithStreamingResponse(self._settings.security_level)
 
     @cached_property
     def server_side_excludes(self) -> ServerSideExcludesWithStreamingResponse:
         return ServerSideExcludesWithStreamingResponse(self._settings.server_side_excludes)
 
     @cached_property
-    def sort_query_string_for_cache(self) -> SortQueryStringForCacheWithStreamingResponse:
-        return SortQueryStringForCacheWithStreamingResponse(self._settings.sort_query_string_for_cache)
+    def sort_query_string_for_cache(self) -> SortQueryStringForCacheResourceWithStreamingResponse:
+        return SortQueryStringForCacheResourceWithStreamingResponse(self._settings.sort_query_string_for_cache)
 
     @cached_property
-    def ssl(self) -> SSLWithStreamingResponse:
-        return SSLWithStreamingResponse(self._settings.ssl)
+    def ssl(self) -> SSLResourceWithStreamingResponse:
+        return SSLResourceWithStreamingResponse(self._settings.ssl)
 
     @cached_property
-    def ssl_recommender(self) -> SSLRecommenderWithStreamingResponse:
-        return SSLRecommenderWithStreamingResponse(self._settings.ssl_recommender)
+    def ssl_recommender(self) -> SSLRecommenderResourceWithStreamingResponse:
+        return SSLRecommenderResourceWithStreamingResponse(self._settings.ssl_recommender)
 
     @cached_property
-    def tls_1_3(self) -> TLS1_3WithStreamingResponse:
-        return TLS1_3WithStreamingResponse(self._settings.tls_1_3)
+    def tls_1_3(self) -> TLS1_3ResourceWithStreamingResponse:
+        return TLS1_3ResourceWithStreamingResponse(self._settings.tls_1_3)
 
     @cached_property
-    def tls_client_auth(self) -> TLSClientAuthWithStreamingResponse:
-        return TLSClientAuthWithStreamingResponse(self._settings.tls_client_auth)
+    def tls_client_auth(self) -> TLSClientAuthResourceWithStreamingResponse:
+        return TLSClientAuthResourceWithStreamingResponse(self._settings.tls_client_auth)
 
     @cached_property
-    def true_client_ip_header(self) -> TrueClientIPHeaderWithStreamingResponse:
-        return TrueClientIPHeaderWithStreamingResponse(self._settings.true_client_ip_header)
+    def true_client_ip_header(self) -> TrueClientIPHeaderResourceWithStreamingResponse:
+        return TrueClientIPHeaderResourceWithStreamingResponse(self._settings.true_client_ip_header)
 
     @cached_property
-    def waf(self) -> WAFWithStreamingResponse:
-        return WAFWithStreamingResponse(self._settings.waf)
+    def waf(self) -> WAFResourceWithStreamingResponse:
+        return WAFResourceWithStreamingResponse(self._settings.waf)
 
     @cached_property
-    def webp(self) -> WebPWithStreamingResponse:
-        return WebPWithStreamingResponse(self._settings.webp)
+    def webp(self) -> WebPResourceWithStreamingResponse:
+        return WebPResourceWithStreamingResponse(self._settings.webp)
 
     @cached_property
-    def websocket(self) -> WebsocketWithStreamingResponse:
-        return WebsocketWithStreamingResponse(self._settings.websocket)
+    def websocket(self) -> WebsocketResourceWithStreamingResponse:
+        return WebsocketResourceWithStreamingResponse(self._settings.websocket)
 
     @cached_property
     def font_settings(self) -> FontSettingsWithStreamingResponse:
@@ -1476,16 +1478,16 @@ class AsyncSettingsWithStreamingResponse:
         self._settings = settings
 
     @cached_property
-    def zero_rtt(self) -> AsyncZeroRTTWithStreamingResponse:
-        return AsyncZeroRTTWithStreamingResponse(self._settings.zero_rtt)
+    def zero_rtt(self) -> AsyncZeroRTTResourceWithStreamingResponse:
+        return AsyncZeroRTTResourceWithStreamingResponse(self._settings.zero_rtt)
 
     @cached_property
     def advanced_ddos(self) -> AsyncAdvancedDDoSWithStreamingResponse:
         return AsyncAdvancedDDoSWithStreamingResponse(self._settings.advanced_ddos)
 
     @cached_property
-    def always_online(self) -> AsyncAlwaysOnlineWithStreamingResponse:
-        return AsyncAlwaysOnlineWithStreamingResponse(self._settings.always_online)
+    def always_online(self) -> AsyncAlwaysOnlineResourceWithStreamingResponse:
+        return AsyncAlwaysOnlineResourceWithStreamingResponse(self._settings.always_online)
 
     @cached_property
     def always_use_https(self) -> AsyncAlwaysUseHTTPSWithStreamingResponse:
@@ -1496,184 +1498,186 @@ class AsyncSettingsWithStreamingResponse:
         return AsyncAutomaticHTTPSRewritesWithStreamingResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
-    def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimizationWithStreamingResponse:
-        return AsyncAutomaticPlatformOptimizationWithStreamingResponse(self._settings.automatic_platform_optimization)
+    def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimizationResourceWithStreamingResponse:
+        return AsyncAutomaticPlatformOptimizationResourceWithStreamingResponse(
+            self._settings.automatic_platform_optimization
+        )
 
     @cached_property
-    def brotli(self) -> AsyncBrotliWithStreamingResponse:
-        return AsyncBrotliWithStreamingResponse(self._settings.brotli)
+    def brotli(self) -> AsyncBrotliResourceWithStreamingResponse:
+        return AsyncBrotliResourceWithStreamingResponse(self._settings.brotli)
 
     @cached_property
-    def browser_cache_ttl(self) -> AsyncBrowserCacheTTLWithStreamingResponse:
-        return AsyncBrowserCacheTTLWithStreamingResponse(self._settings.browser_cache_ttl)
+    def browser_cache_ttl(self) -> AsyncBrowserCacheTTLResourceWithStreamingResponse:
+        return AsyncBrowserCacheTTLResourceWithStreamingResponse(self._settings.browser_cache_ttl)
 
     @cached_property
-    def browser_check(self) -> AsyncBrowserCheckWithStreamingResponse:
-        return AsyncBrowserCheckWithStreamingResponse(self._settings.browser_check)
+    def browser_check(self) -> AsyncBrowserCheckResourceWithStreamingResponse:
+        return AsyncBrowserCheckResourceWithStreamingResponse(self._settings.browser_check)
 
     @cached_property
-    def cache_level(self) -> AsyncCacheLevelWithStreamingResponse:
-        return AsyncCacheLevelWithStreamingResponse(self._settings.cache_level)
+    def cache_level(self) -> AsyncCacheLevelResourceWithStreamingResponse:
+        return AsyncCacheLevelResourceWithStreamingResponse(self._settings.cache_level)
 
     @cached_property
-    def challenge_ttl(self) -> AsyncChallengeTTLWithStreamingResponse:
-        return AsyncChallengeTTLWithStreamingResponse(self._settings.challenge_ttl)
+    def challenge_ttl(self) -> AsyncChallengeTTLResourceWithStreamingResponse:
+        return AsyncChallengeTTLResourceWithStreamingResponse(self._settings.challenge_ttl)
 
     @cached_property
     def ciphers(self) -> AsyncCiphersWithStreamingResponse:
         return AsyncCiphersWithStreamingResponse(self._settings.ciphers)
 
     @cached_property
-    def development_mode(self) -> AsyncDevelopmentModeWithStreamingResponse:
-        return AsyncDevelopmentModeWithStreamingResponse(self._settings.development_mode)
+    def development_mode(self) -> AsyncDevelopmentModeResourceWithStreamingResponse:
+        return AsyncDevelopmentModeResourceWithStreamingResponse(self._settings.development_mode)
 
     @cached_property
     def early_hints(self) -> AsyncEarlyHintsWithStreamingResponse:
         return AsyncEarlyHintsWithStreamingResponse(self._settings.early_hints)
 
     @cached_property
-    def email_obfuscation(self) -> AsyncEmailObfuscationWithStreamingResponse:
-        return AsyncEmailObfuscationWithStreamingResponse(self._settings.email_obfuscation)
+    def email_obfuscation(self) -> AsyncEmailObfuscationResourceWithStreamingResponse:
+        return AsyncEmailObfuscationResourceWithStreamingResponse(self._settings.email_obfuscation)
 
     @cached_property
-    def h2_prioritization(self) -> AsyncH2PrioritizationWithStreamingResponse:
-        return AsyncH2PrioritizationWithStreamingResponse(self._settings.h2_prioritization)
+    def h2_prioritization(self) -> AsyncH2PrioritizationResourceWithStreamingResponse:
+        return AsyncH2PrioritizationResourceWithStreamingResponse(self._settings.h2_prioritization)
 
     @cached_property
-    def hotlink_protection(self) -> AsyncHotlinkProtectionWithStreamingResponse:
-        return AsyncHotlinkProtectionWithStreamingResponse(self._settings.hotlink_protection)
+    def hotlink_protection(self) -> AsyncHotlinkProtectionResourceWithStreamingResponse:
+        return AsyncHotlinkProtectionResourceWithStreamingResponse(self._settings.hotlink_protection)
 
     @cached_property
-    def http2(self) -> AsyncHTTP2WithStreamingResponse:
-        return AsyncHTTP2WithStreamingResponse(self._settings.http2)
+    def http2(self) -> AsyncHTTP2ResourceWithStreamingResponse:
+        return AsyncHTTP2ResourceWithStreamingResponse(self._settings.http2)
 
     @cached_property
-    def http3(self) -> AsyncHTTP3WithStreamingResponse:
-        return AsyncHTTP3WithStreamingResponse(self._settings.http3)
+    def http3(self) -> AsyncHTTP3ResourceWithStreamingResponse:
+        return AsyncHTTP3ResourceWithStreamingResponse(self._settings.http3)
 
     @cached_property
-    def image_resizing(self) -> AsyncImageResizingWithStreamingResponse:
-        return AsyncImageResizingWithStreamingResponse(self._settings.image_resizing)
+    def image_resizing(self) -> AsyncImageResizingResourceWithStreamingResponse:
+        return AsyncImageResizingResourceWithStreamingResponse(self._settings.image_resizing)
 
     @cached_property
-    def ip_geolocation(self) -> AsyncIPGeolocationWithStreamingResponse:
-        return AsyncIPGeolocationWithStreamingResponse(self._settings.ip_geolocation)
+    def ip_geolocation(self) -> AsyncIPGeolocationResourceWithStreamingResponse:
+        return AsyncIPGeolocationResourceWithStreamingResponse(self._settings.ip_geolocation)
 
     @cached_property
-    def ipv6(self) -> AsyncIPV6WithStreamingResponse:
-        return AsyncIPV6WithStreamingResponse(self._settings.ipv6)
+    def ipv6(self) -> AsyncIPV6ResourceWithStreamingResponse:
+        return AsyncIPV6ResourceWithStreamingResponse(self._settings.ipv6)
 
     @cached_property
-    def min_tls_version(self) -> AsyncMinTLSVersionWithStreamingResponse:
-        return AsyncMinTLSVersionWithStreamingResponse(self._settings.min_tls_version)
+    def min_tls_version(self) -> AsyncMinTLSVersionResourceWithStreamingResponse:
+        return AsyncMinTLSVersionResourceWithStreamingResponse(self._settings.min_tls_version)
 
     @cached_property
-    def minify(self) -> AsyncMinifyWithStreamingResponse:
-        return AsyncMinifyWithStreamingResponse(self._settings.minify)
+    def minify(self) -> AsyncMinifyResourceWithStreamingResponse:
+        return AsyncMinifyResourceWithStreamingResponse(self._settings.minify)
 
     @cached_property
-    def mirage(self) -> AsyncMirageWithStreamingResponse:
-        return AsyncMirageWithStreamingResponse(self._settings.mirage)
+    def mirage(self) -> AsyncMirageResourceWithStreamingResponse:
+        return AsyncMirageResourceWithStreamingResponse(self._settings.mirage)
 
     @cached_property
-    def mobile_redirect(self) -> AsyncMobileRedirectWithStreamingResponse:
-        return AsyncMobileRedirectWithStreamingResponse(self._settings.mobile_redirect)
+    def mobile_redirect(self) -> AsyncMobileRedirectResourceWithStreamingResponse:
+        return AsyncMobileRedirectResourceWithStreamingResponse(self._settings.mobile_redirect)
 
     @cached_property
-    def nel(self) -> AsyncNELWithStreamingResponse:
-        return AsyncNELWithStreamingResponse(self._settings.nel)
+    def nel(self) -> AsyncNELResourceWithStreamingResponse:
+        return AsyncNELResourceWithStreamingResponse(self._settings.nel)
 
     @cached_property
-    def opportunistic_encryption(self) -> AsyncOpportunisticEncryptionWithStreamingResponse:
-        return AsyncOpportunisticEncryptionWithStreamingResponse(self._settings.opportunistic_encryption)
+    def opportunistic_encryption(self) -> AsyncOpportunisticEncryptionResourceWithStreamingResponse:
+        return AsyncOpportunisticEncryptionResourceWithStreamingResponse(self._settings.opportunistic_encryption)
 
     @cached_property
-    def opportunistic_onion(self) -> AsyncOpportunisticOnionWithStreamingResponse:
-        return AsyncOpportunisticOnionWithStreamingResponse(self._settings.opportunistic_onion)
+    def opportunistic_onion(self) -> AsyncOpportunisticOnionResourceWithStreamingResponse:
+        return AsyncOpportunisticOnionResourceWithStreamingResponse(self._settings.opportunistic_onion)
 
     @cached_property
-    def orange_to_orange(self) -> AsyncOrangeToOrangeWithStreamingResponse:
-        return AsyncOrangeToOrangeWithStreamingResponse(self._settings.orange_to_orange)
+    def orange_to_orange(self) -> AsyncOrangeToOrangeResourceWithStreamingResponse:
+        return AsyncOrangeToOrangeResourceWithStreamingResponse(self._settings.orange_to_orange)
 
     @cached_property
-    def origin_error_page_pass_thru(self) -> AsyncOriginErrorPagePassThruWithStreamingResponse:
-        return AsyncOriginErrorPagePassThruWithStreamingResponse(self._settings.origin_error_page_pass_thru)
+    def origin_error_page_pass_thru(self) -> AsyncOriginErrorPagePassThruResourceWithStreamingResponse:
+        return AsyncOriginErrorPagePassThruResourceWithStreamingResponse(self._settings.origin_error_page_pass_thru)
 
     @cached_property
     def origin_max_http_version(self) -> AsyncOriginMaxHTTPVersionWithStreamingResponse:
         return AsyncOriginMaxHTTPVersionWithStreamingResponse(self._settings.origin_max_http_version)
 
     @cached_property
-    def polish(self) -> AsyncPolishWithStreamingResponse:
-        return AsyncPolishWithStreamingResponse(self._settings.polish)
+    def polish(self) -> AsyncPolishResourceWithStreamingResponse:
+        return AsyncPolishResourceWithStreamingResponse(self._settings.polish)
 
     @cached_property
-    def prefetch_preload(self) -> AsyncPrefetchPreloadWithStreamingResponse:
-        return AsyncPrefetchPreloadWithStreamingResponse(self._settings.prefetch_preload)
+    def prefetch_preload(self) -> AsyncPrefetchPreloadResourceWithStreamingResponse:
+        return AsyncPrefetchPreloadResourceWithStreamingResponse(self._settings.prefetch_preload)
 
     @cached_property
-    def proxy_read_timeout(self) -> AsyncProxyReadTimeoutWithStreamingResponse:
-        return AsyncProxyReadTimeoutWithStreamingResponse(self._settings.proxy_read_timeout)
+    def proxy_read_timeout(self) -> AsyncProxyReadTimeoutResourceWithStreamingResponse:
+        return AsyncProxyReadTimeoutResourceWithStreamingResponse(self._settings.proxy_read_timeout)
 
     @cached_property
-    def pseudo_ipv4(self) -> AsyncPseudoIPV4WithStreamingResponse:
-        return AsyncPseudoIPV4WithStreamingResponse(self._settings.pseudo_ipv4)
+    def pseudo_ipv4(self) -> AsyncPseudoIPV4ResourceWithStreamingResponse:
+        return AsyncPseudoIPV4ResourceWithStreamingResponse(self._settings.pseudo_ipv4)
 
     @cached_property
-    def response_buffering(self) -> AsyncResponseBufferingWithStreamingResponse:
-        return AsyncResponseBufferingWithStreamingResponse(self._settings.response_buffering)
+    def response_buffering(self) -> AsyncResponseBufferingResourceWithStreamingResponse:
+        return AsyncResponseBufferingResourceWithStreamingResponse(self._settings.response_buffering)
 
     @cached_property
-    def rocket_loader(self) -> AsyncRocketLoaderWithStreamingResponse:
-        return AsyncRocketLoaderWithStreamingResponse(self._settings.rocket_loader)
+    def rocket_loader(self) -> AsyncRocketLoaderResourceWithStreamingResponse:
+        return AsyncRocketLoaderResourceWithStreamingResponse(self._settings.rocket_loader)
 
     @cached_property
     def security_headers(self) -> AsyncSecurityHeadersWithStreamingResponse:
         return AsyncSecurityHeadersWithStreamingResponse(self._settings.security_headers)
 
     @cached_property
-    def security_level(self) -> AsyncSecurityLevelWithStreamingResponse:
-        return AsyncSecurityLevelWithStreamingResponse(self._settings.security_level)
+    def security_level(self) -> AsyncSecurityLevelResourceWithStreamingResponse:
+        return AsyncSecurityLevelResourceWithStreamingResponse(self._settings.security_level)
 
     @cached_property
     def server_side_excludes(self) -> AsyncServerSideExcludesWithStreamingResponse:
         return AsyncServerSideExcludesWithStreamingResponse(self._settings.server_side_excludes)
 
     @cached_property
-    def sort_query_string_for_cache(self) -> AsyncSortQueryStringForCacheWithStreamingResponse:
-        return AsyncSortQueryStringForCacheWithStreamingResponse(self._settings.sort_query_string_for_cache)
+    def sort_query_string_for_cache(self) -> AsyncSortQueryStringForCacheResourceWithStreamingResponse:
+        return AsyncSortQueryStringForCacheResourceWithStreamingResponse(self._settings.sort_query_string_for_cache)
 
     @cached_property
-    def ssl(self) -> AsyncSSLWithStreamingResponse:
-        return AsyncSSLWithStreamingResponse(self._settings.ssl)
+    def ssl(self) -> AsyncSSLResourceWithStreamingResponse:
+        return AsyncSSLResourceWithStreamingResponse(self._settings.ssl)
 
     @cached_property
-    def ssl_recommender(self) -> AsyncSSLRecommenderWithStreamingResponse:
-        return AsyncSSLRecommenderWithStreamingResponse(self._settings.ssl_recommender)
+    def ssl_recommender(self) -> AsyncSSLRecommenderResourceWithStreamingResponse:
+        return AsyncSSLRecommenderResourceWithStreamingResponse(self._settings.ssl_recommender)
 
     @cached_property
-    def tls_1_3(self) -> AsyncTLS1_3WithStreamingResponse:
-        return AsyncTLS1_3WithStreamingResponse(self._settings.tls_1_3)
+    def tls_1_3(self) -> AsyncTLS1_3ResourceWithStreamingResponse:
+        return AsyncTLS1_3ResourceWithStreamingResponse(self._settings.tls_1_3)
 
     @cached_property
-    def tls_client_auth(self) -> AsyncTLSClientAuthWithStreamingResponse:
-        return AsyncTLSClientAuthWithStreamingResponse(self._settings.tls_client_auth)
+    def tls_client_auth(self) -> AsyncTLSClientAuthResourceWithStreamingResponse:
+        return AsyncTLSClientAuthResourceWithStreamingResponse(self._settings.tls_client_auth)
 
     @cached_property
-    def true_client_ip_header(self) -> AsyncTrueClientIPHeaderWithStreamingResponse:
-        return AsyncTrueClientIPHeaderWithStreamingResponse(self._settings.true_client_ip_header)
+    def true_client_ip_header(self) -> AsyncTrueClientIPHeaderResourceWithStreamingResponse:
+        return AsyncTrueClientIPHeaderResourceWithStreamingResponse(self._settings.true_client_ip_header)
 
     @cached_property
-    def waf(self) -> AsyncWAFWithStreamingResponse:
-        return AsyncWAFWithStreamingResponse(self._settings.waf)
+    def waf(self) -> AsyncWAFResourceWithStreamingResponse:
+        return AsyncWAFResourceWithStreamingResponse(self._settings.waf)
 
     @cached_property
-    def webp(self) -> AsyncWebPWithStreamingResponse:
-        return AsyncWebPWithStreamingResponse(self._settings.webp)
+    def webp(self) -> AsyncWebPResourceWithStreamingResponse:
+        return AsyncWebPResourceWithStreamingResponse(self._settings.webp)
 
     @cached_property
-    def websocket(self) -> AsyncWebsocketWithStreamingResponse:
-        return AsyncWebsocketWithStreamingResponse(self._settings.websocket)
+    def websocket(self) -> AsyncWebsocketResourceWithStreamingResponse:
+        return AsyncWebsocketResourceWithStreamingResponse(self._settings.websocket)
 
     @cached_property
     def font_settings(self) -> AsyncFontSettingsWithStreamingResponse:

@@ -9,9 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import (
-    ZoneSettingAutomaticPlatformOptimization,
-)
+from cloudflare.types.zones.settings import AutomaticPlatformOptimization
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -33,9 +31,7 @@ class TestAutomaticPlatformOptimization:
                 "wp_plugin": True,
             },
         )
-        assert_matches_type(
-            Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
-        )
+        assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,9 +51,7 @@ class TestAutomaticPlatformOptimization:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         automatic_platform_optimization = response.parse()
-        assert_matches_type(
-            Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
-        )
+        assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -78,7 +72,7 @@ class TestAutomaticPlatformOptimization:
 
             automatic_platform_optimization = response.parse()
             assert_matches_type(
-                Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
+                Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -105,9 +99,7 @@ class TestAutomaticPlatformOptimization:
         automatic_platform_optimization = client.zones.settings.automatic_platform_optimization.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
-        )
+        assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -119,9 +111,7 @@ class TestAutomaticPlatformOptimization:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         automatic_platform_optimization = response.parse()
-        assert_matches_type(
-            Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
-        )
+        assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +124,7 @@ class TestAutomaticPlatformOptimization:
 
             automatic_platform_optimization = response.parse()
             assert_matches_type(
-                Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
+                Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -165,9 +155,7 @@ class TestAsyncAutomaticPlatformOptimization:
                 "wp_plugin": True,
             },
         )
-        assert_matches_type(
-            Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
-        )
+        assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,9 +175,7 @@ class TestAsyncAutomaticPlatformOptimization:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         automatic_platform_optimization = await response.parse()
-        assert_matches_type(
-            Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
-        )
+        assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -210,7 +196,7 @@ class TestAsyncAutomaticPlatformOptimization:
 
             automatic_platform_optimization = await response.parse()
             assert_matches_type(
-                Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
+                Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True
@@ -237,9 +223,7 @@ class TestAsyncAutomaticPlatformOptimization:
         automatic_platform_optimization = await async_client.zones.settings.automatic_platform_optimization.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
-        )
+        assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -251,9 +235,7 @@ class TestAsyncAutomaticPlatformOptimization:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         automatic_platform_optimization = await response.parse()
-        assert_matches_type(
-            Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
-        )
+        assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -266,7 +248,7 @@ class TestAsyncAutomaticPlatformOptimization:
 
             automatic_platform_optimization = await response.parse()
             assert_matches_type(
-                Optional[ZoneSettingAutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
+                Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"]
             )
 
         assert cast(Any, response.is_closed) is True

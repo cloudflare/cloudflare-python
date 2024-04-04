@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSetting0rtt, zero_rtt_edit_params
+from ....types.zones.settings import ZeroRTT, zero_rtt_edit_params
 
-__all__ = ["ZeroRTT", "AsyncZeroRTT"]
+__all__ = ["ZeroRTTResource", "AsyncZeroRTTResource"]
 
 
-class ZeroRTT(SyncAPIResource):
+class ZeroRTTResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ZeroRTTWithRawResponse:
-        return ZeroRTTWithRawResponse(self)
+    def with_raw_response(self) -> ZeroRTTResourceWithRawResponse:
+        return ZeroRTTResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ZeroRTTWithStreamingResponse:
-        return ZeroRTTWithStreamingResponse(self)
+    def with_streaming_response(self) -> ZeroRTTResourceWithStreamingResponse:
+        return ZeroRTTResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class ZeroRTT(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSetting0rtt]:
+    ) -> Optional[ZeroRTT]:
         """
         Changes the 0-RTT session resumption setting.
 
@@ -78,7 +78,7 @@ class ZeroRTT(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSetting0rtt]], ResultWrapper[ZoneSetting0rtt]),
+            cast_to=cast(Type[Optional[ZeroRTT]], ResultWrapper[ZeroRTT]),
         )
 
     def get(
@@ -91,7 +91,7 @@ class ZeroRTT(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSetting0rtt]:
+    ) -> Optional[ZeroRTT]:
         """
         Gets 0-RTT session resumption setting.
 
@@ -117,18 +117,18 @@ class ZeroRTT(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSetting0rtt]], ResultWrapper[ZoneSetting0rtt]),
+            cast_to=cast(Type[Optional[ZeroRTT]], ResultWrapper[ZeroRTT]),
         )
 
 
-class AsyncZeroRTT(AsyncAPIResource):
+class AsyncZeroRTTResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncZeroRTTWithRawResponse:
-        return AsyncZeroRTTWithRawResponse(self)
+    def with_raw_response(self) -> AsyncZeroRTTResourceWithRawResponse:
+        return AsyncZeroRTTResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncZeroRTTWithStreamingResponse:
-        return AsyncZeroRTTWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncZeroRTTResourceWithStreamingResponse:
+        return AsyncZeroRTTResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -141,7 +141,7 @@ class AsyncZeroRTT(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSetting0rtt]:
+    ) -> Optional[ZeroRTT]:
         """
         Changes the 0-RTT session resumption setting.
 
@@ -170,7 +170,7 @@ class AsyncZeroRTT(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSetting0rtt]], ResultWrapper[ZoneSetting0rtt]),
+            cast_to=cast(Type[Optional[ZeroRTT]], ResultWrapper[ZeroRTT]),
         )
 
     async def get(
@@ -183,7 +183,7 @@ class AsyncZeroRTT(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSetting0rtt]:
+    ) -> Optional[ZeroRTT]:
         """
         Gets 0-RTT session resumption setting.
 
@@ -209,12 +209,12 @@ class AsyncZeroRTT(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSetting0rtt]], ResultWrapper[ZoneSetting0rtt]),
+            cast_to=cast(Type[Optional[ZeroRTT]], ResultWrapper[ZeroRTT]),
         )
 
 
-class ZeroRTTWithRawResponse:
-    def __init__(self, zero_rtt: ZeroRTT) -> None:
+class ZeroRTTResourceWithRawResponse:
+    def __init__(self, zero_rtt: ZeroRTTResource) -> None:
         self._zero_rtt = zero_rtt
 
         self.edit = to_raw_response_wrapper(
@@ -225,8 +225,8 @@ class ZeroRTTWithRawResponse:
         )
 
 
-class AsyncZeroRTTWithRawResponse:
-    def __init__(self, zero_rtt: AsyncZeroRTT) -> None:
+class AsyncZeroRTTResourceWithRawResponse:
+    def __init__(self, zero_rtt: AsyncZeroRTTResource) -> None:
         self._zero_rtt = zero_rtt
 
         self.edit = async_to_raw_response_wrapper(
@@ -237,8 +237,8 @@ class AsyncZeroRTTWithRawResponse:
         )
 
 
-class ZeroRTTWithStreamingResponse:
-    def __init__(self, zero_rtt: ZeroRTT) -> None:
+class ZeroRTTResourceWithStreamingResponse:
+    def __init__(self, zero_rtt: ZeroRTTResource) -> None:
         self._zero_rtt = zero_rtt
 
         self.edit = to_streamed_response_wrapper(
@@ -249,8 +249,8 @@ class ZeroRTTWithStreamingResponse:
         )
 
 
-class AsyncZeroRTTWithStreamingResponse:
-    def __init__(self, zero_rtt: AsyncZeroRTT) -> None:
+class AsyncZeroRTTResourceWithStreamingResponse:
+    def __init__(self, zero_rtt: AsyncZeroRTTResource) -> None:
         self._zero_rtt = zero_rtt
 
         self.edit = async_to_streamed_response_wrapper(

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .zone_setting_proxy_read_timeout_param import ZoneSettingProxyReadTimeoutParam
+from .proxy_read_timeout_param import ProxyReadTimeoutParam
 
 __all__ = ["ProxyReadTimeoutEditParams"]
 
@@ -13,5 +13,5 @@ class ProxyReadTimeoutEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    value: Required[ZoneSettingProxyReadTimeoutParam]
+    value: Required[ProxyReadTimeoutParam]
     """Maximum time between two read operations from origin."""

@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingCiphers, cipher_edit_params
+from ....types.zones.settings import ciphers, cipher_edit_params
 
 __all__ = ["Ciphers", "AsyncCiphers"]
 
@@ -48,7 +48,7 @@ class Ciphers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingCiphers]:
+    ) -> Optional[ciphers.Ciphers]:
         """
         Changes ciphers setting.
 
@@ -77,7 +77,7 @@ class Ciphers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingCiphers]], ResultWrapper[ZoneSettingCiphers]),
+            cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
         )
 
     def get(
@@ -90,7 +90,7 @@ class Ciphers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingCiphers]:
+    ) -> Optional[ciphers.Ciphers]:
         """
         Gets ciphers setting.
 
@@ -116,7 +116,7 @@ class Ciphers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingCiphers]], ResultWrapper[ZoneSettingCiphers]),
+            cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
         )
 
 
@@ -140,7 +140,7 @@ class AsyncCiphers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingCiphers]:
+    ) -> Optional[ciphers.Ciphers]:
         """
         Changes ciphers setting.
 
@@ -169,7 +169,7 @@ class AsyncCiphers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingCiphers]], ResultWrapper[ZoneSettingCiphers]),
+            cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
         )
 
     async def get(
@@ -182,7 +182,7 @@ class AsyncCiphers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingCiphers]:
+    ) -> Optional[ciphers.Ciphers]:
         """
         Gets ciphers setting.
 
@@ -208,7 +208,7 @@ class AsyncCiphers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingCiphers]], ResultWrapper[ZoneSettingCiphers]),
+            cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
         )
 
 

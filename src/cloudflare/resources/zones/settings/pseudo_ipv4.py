@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingPseudoIPV4, pseudo_ipv4_edit_params
+from ....types.zones.settings import PseudoIPV4, pseudo_ipv4_edit_params
 
-__all__ = ["PseudoIPV4", "AsyncPseudoIPV4"]
+__all__ = ["PseudoIPV4Resource", "AsyncPseudoIPV4Resource"]
 
 
-class PseudoIPV4(SyncAPIResource):
+class PseudoIPV4Resource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PseudoIPV4WithRawResponse:
-        return PseudoIPV4WithRawResponse(self)
+    def with_raw_response(self) -> PseudoIPV4ResourceWithRawResponse:
+        return PseudoIPV4ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PseudoIPV4WithStreamingResponse:
-        return PseudoIPV4WithStreamingResponse(self)
+    def with_streaming_response(self) -> PseudoIPV4ResourceWithStreamingResponse:
+        return PseudoIPV4ResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class PseudoIPV4(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPseudoIPV4]:
+    ) -> Optional[PseudoIPV4]:
         """
         Value of the Pseudo IPv4 setting.
 
@@ -78,7 +78,7 @@ class PseudoIPV4(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPseudoIPV4]], ResultWrapper[ZoneSettingPseudoIPV4]),
+            cast_to=cast(Type[Optional[PseudoIPV4]], ResultWrapper[PseudoIPV4]),
         )
 
     def get(
@@ -91,7 +91,7 @@ class PseudoIPV4(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPseudoIPV4]:
+    ) -> Optional[PseudoIPV4]:
         """
         Value of the Pseudo IPv4 setting.
 
@@ -117,18 +117,18 @@ class PseudoIPV4(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPseudoIPV4]], ResultWrapper[ZoneSettingPseudoIPV4]),
+            cast_to=cast(Type[Optional[PseudoIPV4]], ResultWrapper[PseudoIPV4]),
         )
 
 
-class AsyncPseudoIPV4(AsyncAPIResource):
+class AsyncPseudoIPV4Resource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPseudoIPV4WithRawResponse:
-        return AsyncPseudoIPV4WithRawResponse(self)
+    def with_raw_response(self) -> AsyncPseudoIPV4ResourceWithRawResponse:
+        return AsyncPseudoIPV4ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPseudoIPV4WithStreamingResponse:
-        return AsyncPseudoIPV4WithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPseudoIPV4ResourceWithStreamingResponse:
+        return AsyncPseudoIPV4ResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -141,7 +141,7 @@ class AsyncPseudoIPV4(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPseudoIPV4]:
+    ) -> Optional[PseudoIPV4]:
         """
         Value of the Pseudo IPv4 setting.
 
@@ -170,7 +170,7 @@ class AsyncPseudoIPV4(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPseudoIPV4]], ResultWrapper[ZoneSettingPseudoIPV4]),
+            cast_to=cast(Type[Optional[PseudoIPV4]], ResultWrapper[PseudoIPV4]),
         )
 
     async def get(
@@ -183,7 +183,7 @@ class AsyncPseudoIPV4(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPseudoIPV4]:
+    ) -> Optional[PseudoIPV4]:
         """
         Value of the Pseudo IPv4 setting.
 
@@ -209,12 +209,12 @@ class AsyncPseudoIPV4(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPseudoIPV4]], ResultWrapper[ZoneSettingPseudoIPV4]),
+            cast_to=cast(Type[Optional[PseudoIPV4]], ResultWrapper[PseudoIPV4]),
         )
 
 
-class PseudoIPV4WithRawResponse:
-    def __init__(self, pseudo_ipv4: PseudoIPV4) -> None:
+class PseudoIPV4ResourceWithRawResponse:
+    def __init__(self, pseudo_ipv4: PseudoIPV4Resource) -> None:
         self._pseudo_ipv4 = pseudo_ipv4
 
         self.edit = to_raw_response_wrapper(
@@ -225,8 +225,8 @@ class PseudoIPV4WithRawResponse:
         )
 
 
-class AsyncPseudoIPV4WithRawResponse:
-    def __init__(self, pseudo_ipv4: AsyncPseudoIPV4) -> None:
+class AsyncPseudoIPV4ResourceWithRawResponse:
+    def __init__(self, pseudo_ipv4: AsyncPseudoIPV4Resource) -> None:
         self._pseudo_ipv4 = pseudo_ipv4
 
         self.edit = async_to_raw_response_wrapper(
@@ -237,8 +237,8 @@ class AsyncPseudoIPV4WithRawResponse:
         )
 
 
-class PseudoIPV4WithStreamingResponse:
-    def __init__(self, pseudo_ipv4: PseudoIPV4) -> None:
+class PseudoIPV4ResourceWithStreamingResponse:
+    def __init__(self, pseudo_ipv4: PseudoIPV4Resource) -> None:
         self._pseudo_ipv4 = pseudo_ipv4
 
         self.edit = to_streamed_response_wrapper(
@@ -249,8 +249,8 @@ class PseudoIPV4WithStreamingResponse:
         )
 
 
-class AsyncPseudoIPV4WithStreamingResponse:
-    def __init__(self, pseudo_ipv4: AsyncPseudoIPV4) -> None:
+class AsyncPseudoIPV4ResourceWithStreamingResponse:
+    def __init__(self, pseudo_ipv4: AsyncPseudoIPV4Resource) -> None:
         self._pseudo_ipv4 = pseudo_ipv4
 
         self.edit = async_to_streamed_response_wrapper(

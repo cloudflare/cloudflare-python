@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingBuffering, response_buffering_edit_params
+from ....types.zones.settings import ResponseBuffering, response_buffering_edit_params
 
-__all__ = ["ResponseBuffering", "AsyncResponseBuffering"]
+__all__ = ["ResponseBufferingResource", "AsyncResponseBufferingResource"]
 
 
-class ResponseBuffering(SyncAPIResource):
+class ResponseBufferingResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ResponseBufferingWithRawResponse:
-        return ResponseBufferingWithRawResponse(self)
+    def with_raw_response(self) -> ResponseBufferingResourceWithRawResponse:
+        return ResponseBufferingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ResponseBufferingWithStreamingResponse:
-        return ResponseBufferingWithStreamingResponse(self)
+    def with_streaming_response(self) -> ResponseBufferingResourceWithStreamingResponse:
+        return ResponseBufferingResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class ResponseBuffering(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingBuffering]:
+    ) -> Optional[ResponseBuffering]:
         """Enables or disables buffering of responses from the proxied server.
 
         Cloudflare
@@ -82,7 +82,7 @@ class ResponseBuffering(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingBuffering]], ResultWrapper[ZoneSettingBuffering]),
+            cast_to=cast(Type[Optional[ResponseBuffering]], ResultWrapper[ResponseBuffering]),
         )
 
     def get(
@@ -95,7 +95,7 @@ class ResponseBuffering(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingBuffering]:
+    ) -> Optional[ResponseBuffering]:
         """Enables or disables buffering of responses from the proxied server.
 
         Cloudflare
@@ -125,18 +125,18 @@ class ResponseBuffering(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingBuffering]], ResultWrapper[ZoneSettingBuffering]),
+            cast_to=cast(Type[Optional[ResponseBuffering]], ResultWrapper[ResponseBuffering]),
         )
 
 
-class AsyncResponseBuffering(AsyncAPIResource):
+class AsyncResponseBufferingResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncResponseBufferingWithRawResponse:
-        return AsyncResponseBufferingWithRawResponse(self)
+    def with_raw_response(self) -> AsyncResponseBufferingResourceWithRawResponse:
+        return AsyncResponseBufferingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncResponseBufferingWithStreamingResponse:
-        return AsyncResponseBufferingWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncResponseBufferingResourceWithStreamingResponse:
+        return AsyncResponseBufferingResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -149,7 +149,7 @@ class AsyncResponseBuffering(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingBuffering]:
+    ) -> Optional[ResponseBuffering]:
         """Enables or disables buffering of responses from the proxied server.
 
         Cloudflare
@@ -184,7 +184,7 @@ class AsyncResponseBuffering(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingBuffering]], ResultWrapper[ZoneSettingBuffering]),
+            cast_to=cast(Type[Optional[ResponseBuffering]], ResultWrapper[ResponseBuffering]),
         )
 
     async def get(
@@ -197,7 +197,7 @@ class AsyncResponseBuffering(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingBuffering]:
+    ) -> Optional[ResponseBuffering]:
         """Enables or disables buffering of responses from the proxied server.
 
         Cloudflare
@@ -227,12 +227,12 @@ class AsyncResponseBuffering(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingBuffering]], ResultWrapper[ZoneSettingBuffering]),
+            cast_to=cast(Type[Optional[ResponseBuffering]], ResultWrapper[ResponseBuffering]),
         )
 
 
-class ResponseBufferingWithRawResponse:
-    def __init__(self, response_buffering: ResponseBuffering) -> None:
+class ResponseBufferingResourceWithRawResponse:
+    def __init__(self, response_buffering: ResponseBufferingResource) -> None:
         self._response_buffering = response_buffering
 
         self.edit = to_raw_response_wrapper(
@@ -243,8 +243,8 @@ class ResponseBufferingWithRawResponse:
         )
 
 
-class AsyncResponseBufferingWithRawResponse:
-    def __init__(self, response_buffering: AsyncResponseBuffering) -> None:
+class AsyncResponseBufferingResourceWithRawResponse:
+    def __init__(self, response_buffering: AsyncResponseBufferingResource) -> None:
         self._response_buffering = response_buffering
 
         self.edit = async_to_raw_response_wrapper(
@@ -255,8 +255,8 @@ class AsyncResponseBufferingWithRawResponse:
         )
 
 
-class ResponseBufferingWithStreamingResponse:
-    def __init__(self, response_buffering: ResponseBuffering) -> None:
+class ResponseBufferingResourceWithStreamingResponse:
+    def __init__(self, response_buffering: ResponseBufferingResource) -> None:
         self._response_buffering = response_buffering
 
         self.edit = to_streamed_response_wrapper(
@@ -267,8 +267,8 @@ class ResponseBufferingWithStreamingResponse:
         )
 
 
-class AsyncResponseBufferingWithStreamingResponse:
-    def __init__(self, response_buffering: AsyncResponseBuffering) -> None:
+class AsyncResponseBufferingResourceWithStreamingResponse:
+    def __init__(self, response_buffering: AsyncResponseBufferingResource) -> None:
         self._response_buffering = response_buffering
 
         self.edit = async_to_streamed_response_wrapper(

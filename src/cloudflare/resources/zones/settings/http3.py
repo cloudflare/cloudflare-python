@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingHTTP3, http3_edit_params
+from ....types.zones.settings import HTTP3, http3_edit_params
 
-__all__ = ["HTTP3", "AsyncHTTP3"]
+__all__ = ["HTTP3Resource", "AsyncHTTP3Resource"]
 
 
-class HTTP3(SyncAPIResource):
+class HTTP3Resource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HTTP3WithRawResponse:
-        return HTTP3WithRawResponse(self)
+    def with_raw_response(self) -> HTTP3ResourceWithRawResponse:
+        return HTTP3ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HTTP3WithStreamingResponse:
-        return HTTP3WithStreamingResponse(self)
+    def with_streaming_response(self) -> HTTP3ResourceWithStreamingResponse:
+        return HTTP3ResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class HTTP3(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHTTP3]:
+    ) -> Optional[HTTP3]:
         """
         Value of the HTTP3 setting.
 
@@ -78,7 +78,7 @@ class HTTP3(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHTTP3]], ResultWrapper[ZoneSettingHTTP3]),
+            cast_to=cast(Type[Optional[HTTP3]], ResultWrapper[HTTP3]),
         )
 
     def get(
@@ -91,7 +91,7 @@ class HTTP3(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHTTP3]:
+    ) -> Optional[HTTP3]:
         """
         Value of the HTTP3 setting.
 
@@ -117,18 +117,18 @@ class HTTP3(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHTTP3]], ResultWrapper[ZoneSettingHTTP3]),
+            cast_to=cast(Type[Optional[HTTP3]], ResultWrapper[HTTP3]),
         )
 
 
-class AsyncHTTP3(AsyncAPIResource):
+class AsyncHTTP3Resource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHTTP3WithRawResponse:
-        return AsyncHTTP3WithRawResponse(self)
+    def with_raw_response(self) -> AsyncHTTP3ResourceWithRawResponse:
+        return AsyncHTTP3ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHTTP3WithStreamingResponse:
-        return AsyncHTTP3WithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHTTP3ResourceWithStreamingResponse:
+        return AsyncHTTP3ResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -141,7 +141,7 @@ class AsyncHTTP3(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHTTP3]:
+    ) -> Optional[HTTP3]:
         """
         Value of the HTTP3 setting.
 
@@ -170,7 +170,7 @@ class AsyncHTTP3(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHTTP3]], ResultWrapper[ZoneSettingHTTP3]),
+            cast_to=cast(Type[Optional[HTTP3]], ResultWrapper[HTTP3]),
         )
 
     async def get(
@@ -183,7 +183,7 @@ class AsyncHTTP3(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHTTP3]:
+    ) -> Optional[HTTP3]:
         """
         Value of the HTTP3 setting.
 
@@ -209,12 +209,12 @@ class AsyncHTTP3(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHTTP3]], ResultWrapper[ZoneSettingHTTP3]),
+            cast_to=cast(Type[Optional[HTTP3]], ResultWrapper[HTTP3]),
         )
 
 
-class HTTP3WithRawResponse:
-    def __init__(self, http3: HTTP3) -> None:
+class HTTP3ResourceWithRawResponse:
+    def __init__(self, http3: HTTP3Resource) -> None:
         self._http3 = http3
 
         self.edit = to_raw_response_wrapper(
@@ -225,8 +225,8 @@ class HTTP3WithRawResponse:
         )
 
 
-class AsyncHTTP3WithRawResponse:
-    def __init__(self, http3: AsyncHTTP3) -> None:
+class AsyncHTTP3ResourceWithRawResponse:
+    def __init__(self, http3: AsyncHTTP3Resource) -> None:
         self._http3 = http3
 
         self.edit = async_to_raw_response_wrapper(
@@ -237,8 +237,8 @@ class AsyncHTTP3WithRawResponse:
         )
 
 
-class HTTP3WithStreamingResponse:
-    def __init__(self, http3: HTTP3) -> None:
+class HTTP3ResourceWithStreamingResponse:
+    def __init__(self, http3: HTTP3Resource) -> None:
         self._http3 = http3
 
         self.edit = to_streamed_response_wrapper(
@@ -249,8 +249,8 @@ class HTTP3WithStreamingResponse:
         )
 
 
-class AsyncHTTP3WithStreamingResponse:
-    def __init__(self, http3: AsyncHTTP3) -> None:
+class AsyncHTTP3ResourceWithStreamingResponse:
+    def __init__(self, http3: AsyncHTTP3Resource) -> None:
         self._http3 = http3
 
         self.edit = async_to_streamed_response_wrapper(
