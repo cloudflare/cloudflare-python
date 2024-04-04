@@ -1,23 +1,34 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
+from typing import Optional
+from datetime import datetime
+from typing_extensions import Literal
 
-from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from .._models import BaseModel
 
-from .request_rule_param import RequestRuleParam
-
-__all__ = ["RulesetCreateParams"]
+__all__ = ["Ruleset"]
 
 
-class RulesetCreateParams(TypedDict, total=False):
-    kind: Required[Literal["managed", "custom", "root", "zone"]]
+class Ruleset(BaseModel):
+    id: str
+    """The unique ID of the ruleset."""
+
+    last_updated: datetime
+    """The timestamp of when the ruleset was last modified."""
+
+    version: str
+    """The version of the ruleset."""
+
+    description: Optional[str] = None
+    """An informative description of the ruleset."""
+
+    kind: Optional[Literal["managed", "custom", "root", "zone"]] = None
     """The kind of the ruleset."""
 
-    name: Required[str]
+    name: Optional[str] = None
     """The human-readable name of the ruleset."""
 
-    phase: Required[
+    phase: Optional[
         Literal[
             "ddos_l4",
             "ddos_l7",
@@ -43,17 +54,5 @@ class RulesetCreateParams(TypedDict, total=False):
             "magic_transit_ids_managed",
             "magic_transit_managed",
         ]
-    ]
+    ] = None
     """The phase of the ruleset."""
-
-    rules: Required[Iterable[RequestRuleParam]]
-    """The list of rules in the ruleset."""
-
-    account_id: str
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: str
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
-    description: str
-    """An informative description of the ruleset."""

@@ -34,17 +34,26 @@ from .shared import (
     UnnamedSchemaRefFb1dc8bb871d835b75bd0c2f50bd8572 as UnnamedSchemaRefFb1dc8bb871d835b75bd0c2f50bd8572,
 )
 from .account import Account as Account
+from .ruleset import Ruleset as Ruleset
 from .snippet import Snippet as Snippet
+from .log_rule import LogRule as LogRule
 from .calls_app import CallsApp as CallsApp
+from .skip_rule import SkipRule as SkipRule
+from .block_rule import BlockRule as BlockRule
 from .membership import Membership as Membership
 from .healthcheck import Healthcheck as Healthcheck
 from .jdcloud_ips import JDCloudIPs as JDCloudIPs
+from .execute_rule import ExecuteRule as ExecuteRule
+from .request_rule import RequestRule as RequestRule
 from .waiting_room import WaitingRoom as WaitingRoom
 from .load_balancer import LoadBalancer as LoadBalancer
 from .stream_videos import StreamVideos as StreamVideos
 from .ip_list_params import IPListParams as IPListParams
+from .log_rule_param import LogRuleParam as LogRuleParam
 from .zones_pagerule import ZonesPagerule as ZonesPagerule
 from .firewall_filter import FirewallFilter as FirewallFilter
+from .skip_rule_param import SkipRuleParam as SkipRuleParam
+from .block_rule_param import BlockRuleParam as BlockRuleParam
 from .ip_list_response import IPListResponse as IPListResponse
 from .mtls_certificate import MTLSCertificate as MTLSCertificate
 from .user_edit_params import UserEditParams as UserEditParams
@@ -59,10 +68,12 @@ from .call_update_params import CallUpdateParams as CallUpdateParams
 from .client_certificate import ClientCertificate as ClientCertificate
 from .custom_certificate import CustomCertificate as CustomCertificate
 from .dnssec_edit_params import DNSSECEditParams as DNSSECEditParams
+from .execute_rule_param import ExecuteRuleParam as ExecuteRuleParam
 from .filter_list_params import FilterListParams as FilterListParams
 from .pcap_create_params import PCAPCreateParams as PCAPCreateParams
 from .pcap_list_response import PCAPListResponse as PCAPListResponse
 from .queue_get_response import QueueGetResponse as QueueGetResponse
+from .request_rule_param import RequestRuleParam as RequestRuleParam
 from .stream_list_params import StreamListParams as StreamListParams
 from .zone_create_params import ZoneCreateParams as ZoneCreateParams
 from .account_list_params import AccountListParams as AccountListParams
@@ -93,7 +104,6 @@ from .origin_ca_certificate import OriginCACertificate as OriginCACertificate
 from .queue_create_response import QueueCreateResponse as QueueCreateResponse
 from .queue_update_response import QueueUpdateResponse as QueueUpdateResponse
 from .ruleset_create_params import RulesetCreateParams as RulesetCreateParams
-from .ruleset_list_response import RulesetListResponse as RulesetListResponse
 from .ruleset_update_params import RulesetUpdateParams as RulesetUpdateParams
 from .snippet_update_params import SnippetUpdateParams as SnippetUpdateParams
 from .speed_delete_response import SpeedDeleteResponse as SpeedDeleteResponse
