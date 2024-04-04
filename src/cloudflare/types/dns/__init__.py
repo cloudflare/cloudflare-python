@@ -2,8 +2,31 @@
 
 from __future__ import annotations
 
-from .dns_record import DNSRecord as DNSRecord
+from .ttl import TTL as TTL
+from .record import Record as Record
+from .a_record import ARecord as ARecord
+from .ds_record import DSRecord as DSRecord
+from .mx_record import MXRecord as MXRecord
+from .ns_record import NSRecord as NSRecord
+from .ttl_param import TTLParam as TTLParam
+from .caa_record import CAARecord as CAARecord
+from .loc_record import LOCRecord as LOCRecord
+from .ptr_record import PTRRecord as PTRRecord
+from .srv_record import SRVRecord as SRVRecord
+from .txt_record import TXTRecord as TXTRecord
+from .uri_record import URIRecord as URIRecord
+from .aaaa_record import AAAARecord as AAAARecord
+from .cert_record import CERTRecord as CERTRecord
+from .svcb_record import SVCBRecord as SVCBRecord
+from .tlsa_record import TLSARecord as TLSARecord
+from .cname_record import CNAMERecord as CNAMERecord
 from .dns_firewall import DNSFirewall as DNSFirewall
+from .https_record import HTTPSRecord as HTTPSRecord
+from .naptr_record import NAPTRRecord as NAPTRRecord
+from .sshfp_record import SSHFPRecord as SSHFPRecord
+from .dnskey_record import DNSKEYRecord as DNSKEYRecord
+from .smimea_record import SMIMEARecord as SMIMEARecord
+from .record_tags_item import RecordTagsItem as RecordTagsItem
 from .record_edit_params import RecordEditParams as RecordEditParams
 from .record_list_params import RecordListParams as RecordListParams
 from .record_scan_params import RecordScanParams as RecordScanParams
