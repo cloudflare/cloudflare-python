@@ -13,8 +13,8 @@ from cloudflare.pagination import SyncV4PagePagination, AsyncV4PagePagination
 from cloudflare.types.images import (
     Image,
     V1ListResponse,
-    V1DeleteResponse,
 )
+from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -174,7 +174,7 @@ class TestV1:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(V1DeleteResponse, v1, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +188,7 @@ class TestV1:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v1 = response.parse()
-        assert_matches_type(V1DeleteResponse, v1, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -202,7 +202,7 @@ class TestV1:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v1 = response.parse()
-            assert_matches_type(V1DeleteResponse, v1, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, v1, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -494,7 +494,7 @@ class TestAsyncV1:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(V1DeleteResponse, v1, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -508,7 +508,7 @@ class TestAsyncV1:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v1 = await response.parse()
-        assert_matches_type(V1DeleteResponse, v1, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -522,7 +522,7 @@ class TestAsyncV1:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v1 = await response.parse()
-            assert_matches_type(V1DeleteResponse, v1, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, v1, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

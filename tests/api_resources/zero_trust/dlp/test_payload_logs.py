@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dlp import PayloadLogGetResponse, PayloadLogUpdateResponse
+from cloudflare.types.zero_trust.dlp import UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestPayloadLogs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             public_key="EmpOvSXw8BfbrGCi0fhGiD/3yXk2SiV1Nzg2lru3oj0=",
         )
-        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestPayloadLogs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload_log = response.parse()
-        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,9 @@ class TestPayloadLogs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload_log = response.parse()
-            assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+            assert_matches_type(
+                Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +71,7 @@ class TestPayloadLogs:
         payload_log = client.zero_trust.dlp.payload_logs.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +83,7 @@ class TestPayloadLogs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload_log = response.parse()
-        assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +95,9 @@ class TestPayloadLogs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload_log = response.parse()
-            assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+            assert_matches_type(
+                Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +120,7 @@ class TestAsyncPayloadLogs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             public_key="EmpOvSXw8BfbrGCi0fhGiD/3yXk2SiV1Nzg2lru3oj0=",
         )
-        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -129,7 +133,7 @@ class TestAsyncPayloadLogs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload_log = await response.parse()
-        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +146,9 @@ class TestAsyncPayloadLogs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload_log = await response.parse()
-            assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+            assert_matches_type(
+                Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +167,7 @@ class TestAsyncPayloadLogs:
         payload_log = await async_client.zero_trust.dlp.payload_logs.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +179,7 @@ class TestAsyncPayloadLogs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload_log = await response.parse()
-        assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +191,9 @@ class TestAsyncPayloadLogs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload_log = await response.parse()
-            assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+            assert_matches_type(
+                Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5], payload_log, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

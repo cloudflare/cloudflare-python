@@ -20,13 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.zones import (
-    HoldGetResponse,
-    HoldCreateResponse,
-    UnnamedSchemaRef64,
-    hold_create_params,
-    hold_delete_params,
-)
+from ...types.zones import UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold_create_params, hold_delete_params
 from ..._base_client import (
     make_request_options,
 )
@@ -54,7 +48,7 @@ class Holds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HoldCreateResponse:
+    ) -> UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820:
         """
         Enforce a zone hold on the zone, blocking the creation and activation of zones
         with this zone's hostname.
@@ -87,7 +81,10 @@ class Holds(SyncAPIResource):
                 query=maybe_transform({"include_subdomains": include_subdomains}, hold_create_params.HoldCreateParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HoldCreateResponse], ResultWrapper[HoldCreateResponse]),
+            cast_to=cast(
+                Type[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
+                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
+            ),
         )
 
     def delete(
@@ -101,7 +98,7 @@ class Holds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef64]:
+    ) -> Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820]:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
@@ -133,7 +130,10 @@ class Holds(SyncAPIResource):
                 query=maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[UnnamedSchemaRef64]], ResultWrapper[UnnamedSchemaRef64]),
+            cast_to=cast(
+                Type[Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820]],
+                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
+            ),
         )
 
     def get(
@@ -146,7 +146,7 @@ class Holds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HoldGetResponse:
+    ) -> UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820:
         """
         Retrieve whether the zone is subject to a zone hold, and metadata about the
         hold.
@@ -173,7 +173,10 @@ class Holds(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HoldGetResponse], ResultWrapper[HoldGetResponse]),
+            cast_to=cast(
+                Type[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
+                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
+            ),
         )
 
 
@@ -197,7 +200,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HoldCreateResponse:
+    ) -> UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820:
         """
         Enforce a zone hold on the zone, blocking the creation and activation of zones
         with this zone's hostname.
@@ -232,7 +235,10 @@ class AsyncHolds(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HoldCreateResponse], ResultWrapper[HoldCreateResponse]),
+            cast_to=cast(
+                Type[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
+                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
+            ),
         )
 
     async def delete(
@@ -246,7 +252,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef64]:
+    ) -> Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820]:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
@@ -278,7 +284,10 @@ class AsyncHolds(AsyncAPIResource):
                 query=await async_maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[UnnamedSchemaRef64]], ResultWrapper[UnnamedSchemaRef64]),
+            cast_to=cast(
+                Type[Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820]],
+                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
+            ),
         )
 
     async def get(
@@ -291,7 +300,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HoldGetResponse:
+    ) -> UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820:
         """
         Retrieve whether the zone is subject to a zone hold, and metadata about the
         hold.
@@ -318,7 +327,10 @@ class AsyncHolds(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HoldGetResponse], ResultWrapper[HoldGetResponse]),
+            cast_to=cast(
+                Type[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
+                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
+            ),
         )
 
 

@@ -25,8 +25,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ....types.zero_trust.gateway import (
-    ProxyEndpointDeleteResponse,
     ZeroTrustGatewayProxyEndpoints,
     proxy_endpoint_edit_params,
     proxy_endpoint_create_params,
@@ -141,7 +141,7 @@ class ProxyEndpoints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProxyEndpointDeleteResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Deletes a configured Zero Trust Gateway proxy endpoint.
 
@@ -159,7 +159,7 @@ class ProxyEndpoints(SyncAPIResource):
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
         return cast(
-            ProxyEndpointDeleteResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._delete(
                 f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
                 body=maybe_transform(body, proxy_endpoint_delete_params.ProxyEndpointDeleteParams),
@@ -171,7 +171,7 @@ class ProxyEndpoints(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProxyEndpointDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -375,7 +375,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProxyEndpointDeleteResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Deletes a configured Zero Trust Gateway proxy endpoint.
 
@@ -393,7 +393,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
         return cast(
-            ProxyEndpointDeleteResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._delete(
                 f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
                 body=await async_maybe_transform(body, proxy_endpoint_delete_params.ProxyEndpointDeleteParams),
@@ -405,7 +405,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProxyEndpointDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

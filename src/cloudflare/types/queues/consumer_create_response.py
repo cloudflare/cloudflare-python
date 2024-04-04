@@ -2,8 +2,8 @@
 
 from typing import Optional
 
-from ..shared import UnnamedSchemaRef41
 from ..._models import BaseModel
+from .unnamed_schema_ref_fbd3a4642487e41594e9af0ccb9a5ca5 import UnnamedSchemaRefFbd3a4642487e41594e9af0ccb9a5ca5
 
 __all__ = ["ConsumerCreateResponse"]
 
@@ -19,4 +19,4 @@ class ConsumerCreateResponse(BaseModel):
 
     script_name: Optional[object] = None
 
-    settings: Optional[UnnamedSchemaRef41] = None
+    settings: Optional[UnnamedSchemaRefFbd3a4642487e41594e9af0ccb9a5ca5] = None

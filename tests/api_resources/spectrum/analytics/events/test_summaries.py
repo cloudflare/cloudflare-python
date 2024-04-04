@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.spectrum.analytics.events import SummaryGetResponse
+from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestSummaries:
         summary = client.spectrum.analytics.events.summaries.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, summary, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -38,7 +38,7 @@ class TestSummaries:
             sort=["+count", "-bytesIngress"],
             until=parse_datetime("2014-01-02T03:20:00Z"),
         )
-        assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, summary, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestSummaries:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = response.parse()
-        assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, summary, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +62,7 @@ class TestSummaries:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = response.parse()
-            assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -84,7 +84,7 @@ class TestAsyncSummaries:
         summary = await async_client.spectrum.analytics.events.summaries.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, summary, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -98,7 +98,7 @@ class TestAsyncSummaries:
             sort=["+count", "-bytesIngress"],
             until=parse_datetime("2014-01-02T03:20:00Z"),
         )
-        assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, summary, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -110,7 +110,7 @@ class TestAsyncSummaries:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = await response.parse()
-        assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, summary, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -122,7 +122,7 @@ class TestAsyncSummaries:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = await response.parse()
-            assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

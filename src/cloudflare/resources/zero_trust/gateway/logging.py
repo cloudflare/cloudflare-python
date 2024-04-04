@@ -6,7 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from ....types import shared_params
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -24,7 +23,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.gateway import ZeroTrustGatewayGatewayAccountLoggingSettings, logging_update_params
+from ....types.zero_trust.gateway import (
+    ZeroTrustGatewayGatewayAccountLoggingSettings,
+    UnnamedSchemaRefE86eeb84b7e922c35cfb0031a6309f7bParam,
+    logging_update_params,
+)
 
 __all__ = ["Logging", "AsyncLogging"]
 
@@ -43,7 +46,7 @@ class Logging(SyncAPIResource):
         *,
         account_id: str,
         redact_pii: bool | NotGiven = NOT_GIVEN,
-        settings_by_rule_type: shared_params.UnnamedSchemaRef28 | NotGiven = NOT_GIVEN,
+        settings_by_rule_type: UnnamedSchemaRefE86eeb84b7e922c35cfb0031a6309f7bParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,7 +150,7 @@ class AsyncLogging(AsyncAPIResource):
         *,
         account_id: str,
         redact_pii: bool | NotGiven = NOT_GIVEN,
-        settings_by_rule_type: shared_params.UnnamedSchemaRef28 | NotGiven = NOT_GIVEN,
+        settings_by_rule_type: UnnamedSchemaRefE86eeb84b7e922c35cfb0031a6309f7bParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

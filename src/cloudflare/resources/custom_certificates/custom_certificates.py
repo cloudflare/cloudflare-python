@@ -9,10 +9,7 @@ import httpx
 
 from ...types import (
     CustomCertificate,
-    CustomCertificateGetResponse,
-    CustomCertificateEditResponse,
-    CustomCertificateCreateResponse,
-    CustomCertificateDeleteResponse,
+    UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1,
     custom_certificate_edit_params,
     custom_certificate_list_params,
     custom_certificate_create_params,
@@ -45,7 +42,10 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef78
+from ...types.shared import (
+    UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
+    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+)
 
 __all__ = ["CustomCertificates", "AsyncCustomCertificates"]
 
@@ -69,7 +69,7 @@ class CustomCertificates(SyncAPIResource):
         zone_id: str,
         certificate: str,
         private_key: str,
-        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
         geo_restrictions: custom_certificate_create_params.GeoRestrictions | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
         type: Literal["legacy_custom", "sni_custom"] | NotGiven = NOT_GIVEN,
@@ -79,7 +79,7 @@ class CustomCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateCreateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Upload a new SSL certificate for a zone.
 
@@ -127,7 +127,7 @@ class CustomCertificates(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            CustomCertificateCreateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._post(
                 f"/zones/{zone_id}/custom_certificates",
                 body=maybe_transform(
@@ -149,7 +149,7 @@ class CustomCertificates(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -229,7 +229,7 @@ class CustomCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateDeleteResponse:
+    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
         """
         Remove a SSL certificate from a zone.
 
@@ -262,7 +262,10 @@ class CustomCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomCertificateDeleteResponse], ResultWrapper[CustomCertificateDeleteResponse]),
+            cast_to=cast(
+                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+            ),
         )
 
     def edit(
@@ -270,7 +273,7 @@ class CustomCertificates(SyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         geo_restrictions: custom_certificate_edit_params.GeoRestrictions | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
@@ -281,7 +284,7 @@ class CustomCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateEditResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """Upload a new private key and/or PEM/CRT for the SSL certificate.
 
         Note: PATCHing
@@ -335,7 +338,7 @@ class CustomCertificates(SyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return cast(
-            CustomCertificateEditResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._patch(
                 f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
                 body=maybe_transform(
@@ -356,7 +359,7 @@ class CustomCertificates(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -372,7 +375,7 @@ class CustomCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         SSL Configuration Details
 
@@ -396,7 +399,7 @@ class CustomCertificates(SyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return cast(
-            CustomCertificateGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._get(
                 f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
                 options=make_request_options(
@@ -407,7 +410,7 @@ class CustomCertificates(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -432,7 +435,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         zone_id: str,
         certificate: str,
         private_key: str,
-        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
         geo_restrictions: custom_certificate_create_params.GeoRestrictions | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
         type: Literal["legacy_custom", "sni_custom"] | NotGiven = NOT_GIVEN,
@@ -442,7 +445,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateCreateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Upload a new SSL certificate for a zone.
 
@@ -490,7 +493,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            CustomCertificateCreateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._post(
                 f"/zones/{zone_id}/custom_certificates",
                 body=await async_maybe_transform(
@@ -512,7 +515,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -592,7 +595,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateDeleteResponse:
+    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
         """
         Remove a SSL certificate from a zone.
 
@@ -625,7 +628,10 @@ class AsyncCustomCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomCertificateDeleteResponse], ResultWrapper[CustomCertificateDeleteResponse]),
+            cast_to=cast(
+                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+            ),
         )
 
     async def edit(
@@ -633,7 +639,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         geo_restrictions: custom_certificate_edit_params.GeoRestrictions | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
@@ -644,7 +650,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateEditResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """Upload a new private key and/or PEM/CRT for the SSL certificate.
 
         Note: PATCHing
@@ -698,7 +704,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return cast(
-            CustomCertificateEditResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._patch(
                 f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
                 body=await async_maybe_transform(
@@ -719,7 +725,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -735,7 +741,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         SSL Configuration Details
 
@@ -759,7 +765,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return cast(
-            CustomCertificateGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._get(
                 f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
                 options=make_request_options(
@@ -770,7 +776,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

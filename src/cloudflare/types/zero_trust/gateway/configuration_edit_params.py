@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from ....types import shared_params
+from .unnamed_schema_ref_055aaf3918bf29f81c09d394a864182e_param import (
+    UnnamedSchemaRef055aaf3918bf29f81c09d394a864182eParam,
+)
 
 __all__ = ["ConfigurationEditParams"]
 
@@ -12,5 +14,5 @@ __all__ = ["ConfigurationEditParams"]
 class ConfigurationEditParams(TypedDict, total=False):
     account_id: Required[str]
 
-    settings: shared_params.UnnamedSchemaRef125
+    settings: UnnamedSchemaRef055aaf3918bf29f81c09d394a864182eParam
     """account settings."""

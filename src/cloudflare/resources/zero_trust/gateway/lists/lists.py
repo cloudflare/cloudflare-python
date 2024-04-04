@@ -34,9 +34,9 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from .....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from .....types.zero_trust.gateway import (
     ListCreateResponse,
-    ListDeleteResponse,
     ZeroTrustGatewayLists,
     list_edit_params,
     list_create_params,
@@ -219,7 +219,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListDeleteResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Deletes a Zero Trust list.
 
@@ -239,7 +239,7 @@ class Lists(SyncAPIResource):
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return cast(
-            ListDeleteResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._delete(
                 f"/accounts/{account_id}/gateway/lists/{list_id}",
                 body=maybe_transform(body, list_delete_params.ListDeleteParams),
@@ -251,7 +251,7 @@ class Lists(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ListDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -526,7 +526,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListDeleteResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Deletes a Zero Trust list.
 
@@ -546,7 +546,7 @@ class AsyncLists(AsyncAPIResource):
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return cast(
-            ListDeleteResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._delete(
                 f"/accounts/{account_id}/gateway/lists/{list_id}",
                 body=await async_maybe_transform(body, list_delete_params.ListDeleteParams),
@@ -558,7 +558,7 @@ class AsyncLists(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ListDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

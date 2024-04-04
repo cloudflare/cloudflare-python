@@ -9,10 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.addressing.address_maps import (
-    AccountDeleteResponse,
-    AccountUpdateResponse,
-)
+from cloudflare.types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +25,7 @@ class TestAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[AccountUpdateResponse], account, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -42,7 +39,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(Optional[AccountUpdateResponse], account, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +53,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(Optional[AccountUpdateResponse], account, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +82,7 @@ class TestAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,7 +96,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -113,7 +110,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,7 +143,7 @@ class TestAsyncAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[AccountUpdateResponse], account, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -160,7 +157,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(Optional[AccountUpdateResponse], account, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -174,7 +171,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(Optional[AccountUpdateResponse], account, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -203,7 +200,7 @@ class TestAsyncAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -217,7 +214,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -231,7 +228,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

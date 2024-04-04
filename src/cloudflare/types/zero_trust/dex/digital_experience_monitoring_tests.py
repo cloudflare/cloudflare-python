@@ -6,6 +6,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
+from ..unnamed_schema_ref_bf9e2abcf1b78a6cab8e6e29e2228a11 import UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11
 
 __all__ = [
     "DigitalExperienceMonitoringTests",
@@ -25,7 +26,6 @@ __all__ = [
     "TestHTTPResultsByColoResourceFetchTimeOverTime",
     "TestHTTPResultsByColoResourceFetchTimeOverTimeTimePeriod",
     "TestHTTPResultsByColoResourceFetchTimeOverTimeValue",
-    "TestTargetPolicy",
     "TestTracerouteResults",
     "TestTracerouteResultsRoundTripTime",
     "TestTracerouteResultsRoundTripTimeHistory",
@@ -157,16 +157,6 @@ class TestHTTPResultsByColo(BaseModel):
     """Cloudflare colo"""
 
     resource_fetch_time: TestHTTPResultsByColoResourceFetchTime = FieldInfo(alias="resourceFetchTime")
-
-
-class TestTargetPolicy(BaseModel):
-    __test__ = False
-    id: str
-
-    default: bool
-    """Whether the policy is the default for the account"""
-
-    name: str
 
 
 class TestTracerouteResultsRoundTripTimeHistoryTimePeriod(BaseModel):
@@ -311,7 +301,7 @@ class Test(BaseModel):
     method: Optional[str] = None
     """for HTTP, the method to use when running the test"""
 
-    target_policies: Optional[List[TestTargetPolicy]] = None
+    target_policies: Optional[List[UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11]] = None
 
     targeted: Optional[bool] = None
 

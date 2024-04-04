@@ -10,11 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePagination, AsyncV4PagePagination
+from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 from cloudflare.types.intel.attack_surface_report import (
     IssueListResponse,
     IssueTypeResponse,
     IssueClassResponse,
-    IssueDismissResponse,
     IssueSeverityResponse,
 )
 
@@ -155,7 +155,7 @@ class TestIssues:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, issue, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -165,7 +165,7 @@ class TestIssues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dismiss=True,
         )
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, issue, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -178,7 +178,7 @@ class TestIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = response.parse()
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, issue, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -191,7 +191,7 @@ class TestIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = response.parse()
-            assert_matches_type(IssueDismissResponse, issue, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -467,7 +467,7 @@ class TestAsyncIssues:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, issue, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -477,7 +477,7 @@ class TestAsyncIssues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dismiss=True,
         )
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, issue, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -490,7 +490,7 @@ class TestAsyncIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = await response.parse()
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, issue, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -503,7 +503,7 @@ class TestAsyncIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = await response.parse()
-            assert_matches_type(IssueDismissResponse, issue, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

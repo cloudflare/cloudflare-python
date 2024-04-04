@@ -6,7 +6,6 @@ from typing import Any, Type, cast, overload
 
 import httpx
 
-from ...types import shared_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     required_args,
@@ -27,11 +26,12 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef163
 from ...types.zero_trust import (
     ZeroTrustIdentityProviders,
     IdentityProviderListResponse,
     IdentityProviderDeleteResponse,
+    UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+    UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param,
     identity_provider_create_params,
     identity_provider_update_params,
 )
@@ -54,10 +54,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessAzureAdConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -102,10 +102,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessCentrifyConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -150,10 +150,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessFacebookConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -198,10 +198,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGitHubConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,10 +246,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -294,10 +294,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleAppsConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -342,10 +342,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessLinkedinConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -390,10 +390,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOidcConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -438,10 +438,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOktaConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -486,10 +486,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOneloginConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -534,10 +534,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessPingoneConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -582,10 +582,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessSamlConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -630,10 +630,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessYandexConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -678,10 +678,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: object,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -751,10 +751,10 @@ class IdentityProviders(SyncAPIResource):
         | identity_provider_create_params.AccessSamlConfig
         | object,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -810,10 +810,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessAzureAdConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -861,10 +861,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessCentrifyConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -912,10 +912,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessFacebookConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -963,10 +963,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGitHubConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1014,10 +1014,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1065,10 +1065,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleAppsConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1116,10 +1116,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessLinkedinConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1167,10 +1167,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOidcConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1218,10 +1218,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1269,10 +1269,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOneloginConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1320,10 +1320,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessPingoneConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1371,10 +1371,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessSamlConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1422,10 +1422,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessYandexConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1473,10 +1473,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: object,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1549,10 +1549,10 @@ class IdentityProviders(SyncAPIResource):
         | identity_provider_update_params.AccessSamlConfig
         | object,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1798,10 +1798,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessAzureAdConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1846,10 +1846,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessCentrifyConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1894,10 +1894,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessFacebookConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1942,10 +1942,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGitHubConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1990,10 +1990,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2038,10 +2038,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleAppsConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2086,10 +2086,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessLinkedinConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2134,10 +2134,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOidcConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2182,10 +2182,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOktaConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2230,10 +2230,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOneloginConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2278,10 +2278,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessPingoneConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2326,10 +2326,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessSamlConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2374,10 +2374,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessYandexConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2422,10 +2422,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: object,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2495,10 +2495,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         | identity_provider_create_params.AccessSamlConfig
         | object,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2554,10 +2554,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessAzureAdConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2605,10 +2605,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessCentrifyConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2656,10 +2656,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessFacebookConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2707,10 +2707,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGitHubConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2758,10 +2758,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2809,10 +2809,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleAppsConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2860,10 +2860,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessLinkedinConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2911,10 +2911,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOidcConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2962,10 +2962,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3013,10 +3013,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOneloginConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3064,10 +3064,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessPingoneConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3115,10 +3115,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessSamlConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3166,10 +3166,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessYandexConfig,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3217,10 +3217,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: object,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3293,10 +3293,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         | identity_provider_update_params.AccessSamlConfig
         | object,
         name: str,
-        type: UnnamedSchemaRef163,
+        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: shared_params.UnnamedSchemaRef158 | NotGiven = NOT_GIVEN,
+        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

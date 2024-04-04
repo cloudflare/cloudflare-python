@@ -23,12 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.kv.namespaces import (
-    ValueDeleteResponse,
-    ValueUpdateResponse,
-    value_delete_params,
-    value_update_params,
-)
+from ....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from ....types.kv.namespaces import value_delete_params, value_update_params
 
 __all__ = ["Values", "AsyncValues"]
 
@@ -56,7 +52,7 @@ class Values(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ValueUpdateResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """Write a value identified by a key.
 
         Use URL-encoding to use special characters
@@ -93,7 +89,7 @@ class Values(SyncAPIResource):
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         return cast(
-            ValueUpdateResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._put(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
                 body=maybe_transform(
@@ -111,7 +107,7 @@ class Values(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ValueUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -129,7 +125,7 @@ class Values(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ValueDeleteResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """Remove a KV pair from the namespace.
 
         Use URL-encoding to use special characters
@@ -158,7 +154,7 @@ class Values(SyncAPIResource):
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         return cast(
-            ValueDeleteResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
                 body=maybe_transform(body, value_delete_params.ValueDeleteParams),
@@ -170,7 +166,7 @@ class Values(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ValueDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -250,7 +246,7 @@ class AsyncValues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ValueUpdateResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """Write a value identified by a key.
 
         Use URL-encoding to use special characters
@@ -287,7 +283,7 @@ class AsyncValues(AsyncAPIResource):
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         return cast(
-            ValueUpdateResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._put(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
                 body=await async_maybe_transform(
@@ -305,7 +301,7 @@ class AsyncValues(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ValueUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -323,7 +319,7 @@ class AsyncValues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ValueDeleteResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """Remove a KV pair from the namespace.
 
         Use URL-encoding to use special characters
@@ -352,7 +348,7 @@ class AsyncValues(AsyncAPIResource):
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
         return cast(
-            ValueDeleteResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
                 body=await async_maybe_transform(body, value_delete_params.ValueDeleteParams),
@@ -364,7 +360,7 @@ class AsyncValues(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ValueDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

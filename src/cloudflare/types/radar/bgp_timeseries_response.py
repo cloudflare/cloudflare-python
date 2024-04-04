@@ -6,15 +6,15 @@ from datetime import datetime
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..unnamed_schema_ref_129 import UnnamedSchemaRef129
-from ..unnamed_schema_ref_174 import UnnamedSchemaRef174
-from ..unnamed_schema_ref_175 import UnnamedSchemaRef175
+from ..unnamed_schema_ref_75bae70cf28e6bcef364b9840db3bdeb import UnnamedSchemaRef75bae70cf28e6bcef364b9840db3bdeb
+from ..unnamed_schema_ref_b5f3bd1840490bc487ffef84567807b1 import UnnamedSchemaRefB5f3bd1840490bc487ffef84567807b1
+from ..unnamed_schema_ref_baac9d7da12de53e99142f8ecd3982e5 import UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5
 
 __all__ = ["BGPTimeseriesResponse", "Meta", "MetaConfidenceInfo"]
 
 
 class MetaConfidenceInfo(BaseModel):
-    annotations: Optional[List[UnnamedSchemaRef174]] = None
+    annotations: Optional[List[UnnamedSchemaRefB5f3bd1840490bc487ffef84567807b1]] = None
 
     level: Optional[int] = None
 
@@ -22,7 +22,7 @@ class MetaConfidenceInfo(BaseModel):
 class Meta(BaseModel):
     agg_interval: str = FieldInfo(alias="aggInterval")
 
-    date_range: List[UnnamedSchemaRef175] = FieldInfo(alias="dateRange")
+    date_range: List[UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5] = FieldInfo(alias="dateRange")
 
     last_updated: datetime = FieldInfo(alias="lastUpdated")
 
@@ -32,4 +32,4 @@ class Meta(BaseModel):
 class BGPTimeseriesResponse(BaseModel):
     meta: Meta
 
-    serie_0: UnnamedSchemaRef129
+    serie_0: UnnamedSchemaRef75bae70cf28e6bcef364b9840db3bdeb

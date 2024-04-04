@@ -2,22 +2,19 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Required, TypedDict
 
-from ...._utils import PropertyInfo
+from .unnamed_schema_ref_fda1c6f6758e763ae3b2964521f2fdd8_param import (
+    UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8Param,
+)
 
-__all__ = ["DeploymentCreateParams", "Annotations"]
+__all__ = ["DeploymentCreateParams"]
 
 
 class DeploymentCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    annotations: Annotations
+    annotations: UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8Param
 
     strategy: str
-
-
-class Annotations(TypedDict, total=False):
-    workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
-    """Human-readable message about the deployment."""

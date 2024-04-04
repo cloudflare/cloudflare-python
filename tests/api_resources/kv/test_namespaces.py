@@ -11,10 +11,9 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.kv import (
     WorkersKVNamespace,
-    NamespaceDeleteResponse,
-    NamespaceUpdateResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -76,7 +75,7 @@ class TestNamespaces:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         )
-        assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -90,7 +89,7 @@ class TestNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = response.parse()
-        assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +103,7 @@ class TestNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = response.parse()
-            assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -187,7 +186,7 @@ class TestNamespaces:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +200,7 @@ class TestNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = response.parse()
-        assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -215,7 +214,7 @@ class TestNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = response.parse()
-            assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -294,7 +293,7 @@ class TestAsyncNamespaces:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         )
-        assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -308,7 +307,7 @@ class TestAsyncNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = await response.parse()
-        assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -322,7 +321,7 @@ class TestAsyncNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = await response.parse()
-            assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -405,7 +404,7 @@ class TestAsyncNamespaces:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -419,7 +418,7 @@ class TestAsyncNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = await response.parse()
-        assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -433,7 +432,7 @@ class TestAsyncNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = await response.parse()
-            assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

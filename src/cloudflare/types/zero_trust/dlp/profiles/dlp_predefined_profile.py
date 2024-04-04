@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from ....shared import UnnamedSchemaRef97
 from ....._models import BaseModel
+from ..unnamed_schema_ref_e38bfdf1acf5a4bfada6779c79528bc0 import UnnamedSchemaRefE38bfdf1acf5a4bfada6779c79528bc0
 
 __all__ = ["DLPPredefinedProfile", "ContextAwareness", "ContextAwarenessSkip", "Entry"]
 
@@ -60,5 +60,5 @@ class DLPPredefinedProfile(BaseModel):
     ocr_enabled: Optional[bool] = None
     """If true, scan images via OCR to determine if any text present matches filters."""
 
-    type: Optional[UnnamedSchemaRef97] = None
+    type: Optional[UnnamedSchemaRefE38bfdf1acf5a4bfada6779c79528bc0] = None
     """The type of the profile."""

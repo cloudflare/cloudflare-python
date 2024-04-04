@@ -20,10 +20,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.logs import RayIDGetResponse, rayid_get_params
+from ...types.logs import rayid_get_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 
 __all__ = ["RayID", "AsyncRayID"]
 
@@ -50,7 +51,7 @@ class RayID(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RayIDGetResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """The `/rayids` api route allows lookups by specific rayid.
 
         The rayids route will
@@ -92,7 +93,7 @@ class RayID(SyncAPIResource):
         if not ray_identifier:
             raise ValueError(f"Expected a non-empty value for `ray_identifier` but received {ray_identifier!r}")
         return cast(
-            RayIDGetResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._get(
                 f"/zones/{zone_identifier}/logs/rayids/{ray_identifier}",
                 options=make_request_options(
@@ -108,7 +109,9 @@ class RayID(SyncAPIResource):
                         rayid_get_params.RayIDGetParams,
                     ),
                 ),
-                cast_to=cast(Any, RayIDGetResponse),  # Union types cannot be passed in as arguments in the type system
+                cast_to=cast(
+                    Any, UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
@@ -135,7 +138,7 @@ class AsyncRayID(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RayIDGetResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """The `/rayids` api route allows lookups by specific rayid.
 
         The rayids route will
@@ -177,7 +180,7 @@ class AsyncRayID(AsyncAPIResource):
         if not ray_identifier:
             raise ValueError(f"Expected a non-empty value for `ray_identifier` but received {ray_identifier!r}")
         return cast(
-            RayIDGetResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._get(
                 f"/zones/{zone_identifier}/logs/rayids/{ray_identifier}",
                 options=make_request_options(
@@ -193,7 +196,9 @@ class AsyncRayID(AsyncAPIResource):
                         rayid_get_params.RayIDGetParams,
                     ),
                 ),
-                cast_to=cast(Any, RayIDGetResponse),  # Union types cannot be passed in as arguments in the type system
+                cast_to=cast(
+                    Any, UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 

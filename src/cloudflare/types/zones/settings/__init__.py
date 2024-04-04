@@ -187,3 +187,6 @@ from .zone_setting_sort_query_string_for_cache_param import (
 from .zone_setting_automatic_platform_optimization_param import (
     ZoneSettingAutomaticPlatformOptimizationParam as ZoneSettingAutomaticPlatformOptimizationParam,
 )
+from .unnamed_schema_ref_b234e6a28c1a1c7c29213787c0621eaa import (
+    UnnamedSchemaRefB234e6a28c1a1c7c29213787c0621eaa as UnnamedSchemaRefB234e6a28c1a1c7c29213787c0621eaa,
+)

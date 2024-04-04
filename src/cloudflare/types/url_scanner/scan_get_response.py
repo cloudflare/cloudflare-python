@@ -5,9 +5,9 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ..shared import UnnamedSchemaRef155
+from ..shared import UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9
 from ..._models import BaseModel
-from .unnamed_schema_ref_134 import UnnamedSchemaRef134
+from .unnamed_schema_ref_6d7a78acccfc753a8e931b1c4e72b6a6 import UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6
 
 __all__ = [
     "ScanGetResponse",
@@ -17,7 +17,6 @@ __all__ = [
     "ScanMeta",
     "ScanMetaProcessors",
     "ScanMetaProcessorsCategories",
-    "ScanMetaProcessorsCategoriesContent",
     "ScanMetaProcessorsCategoriesRisk",
     "ScanMetaProcessorsRank",
     "ScanMetaProcessorsTech",
@@ -70,14 +69,6 @@ class ScanGeo(BaseModel):
     """GeoIP country location"""
 
 
-class ScanMetaProcessorsCategoriesContent(BaseModel):
-    id: int
-
-    name: str
-
-    super_category_id: Optional[int] = None
-
-
 class ScanMetaProcessorsCategoriesRisk(BaseModel):
     id: int
 
@@ -87,7 +78,7 @@ class ScanMetaProcessorsCategoriesRisk(BaseModel):
 
 
 class ScanMetaProcessorsCategories(BaseModel):
-    content: List[ScanMetaProcessorsCategoriesContent]
+    content: List[UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6]
 
     risks: List[ScanMetaProcessorsCategoriesRisk]
 
@@ -248,7 +239,7 @@ class ScanPage(BaseModel):
 
     domain: str
 
-    headers: List[UnnamedSchemaRef155]
+    headers: List[UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9]
 
     ip: str
 
@@ -410,19 +401,19 @@ class ScanASNs(BaseModel):
 
 
 class ScanDomainsExampleComCategoriesInherited(BaseModel):
-    content: Optional[List[UnnamedSchemaRef134]] = None
+    content: Optional[List[UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6]] = None
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
 
-    risks: Optional[List[UnnamedSchemaRef134]] = None
+    risks: Optional[List[UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6]] = None
 
 
 class ScanDomainsExampleComCategories(BaseModel):
     inherited: ScanDomainsExampleComCategoriesInherited
 
-    content: Optional[List[UnnamedSchemaRef134]] = None
+    content: Optional[List[UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6]] = None
 
-    risks: Optional[List[UnnamedSchemaRef134]] = None
+    risks: Optional[List[UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6]] = None
 
 
 class ScanDomainsExampleComDNS(BaseModel):

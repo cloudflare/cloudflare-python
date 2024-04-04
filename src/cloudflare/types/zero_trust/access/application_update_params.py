@@ -5,8 +5,11 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Literal, Required, TypedDict
 
-from ....types import shared_params
-from ...shared import UnnamedSchemaRef75, UnnamedSchemaRef77
+from .unnamed_schema_ref_c335ce55d4fdf132c942dfce6e45dcb9 import UnnamedSchemaRefC335ce55d4fdf132c942dfce6e45dcb9
+from .unnamed_schema_ref_c6200e37c458aaa3c42e6e5b999bc419 import UnnamedSchemaRefC6200e37c458aaa3c42e6e5b999bc419
+from .unnamed_schema_ref_6ed9646890b9be79e16f1cfff86ec832_param import (
+    UnnamedSchemaRef6ed9646890b9be79e16f1cfff86ec832Param,
+)
 
 __all__ = [
     "ApplicationUpdateParams",
@@ -224,10 +227,10 @@ class SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributes(TypedDict, total=F
     name: str
     """The name of the attribute."""
 
-    name_format: UnnamedSchemaRef75
+    name_format: UnnamedSchemaRefC335ce55d4fdf132c942dfce6e45dcb9
     """A globally unique name for an identity or service provider."""
 
-    source: shared_params.UnnamedSchemaRef76
+    source: UnnamedSchemaRef6ed9646890b9be79e16f1cfff86ec832Param
 
 
 class SaaSApplicationSaasAppAccessSamlSaasApp(TypedDict, total=False):
@@ -255,7 +258,7 @@ class SaaSApplicationSaasAppAccessSamlSaasApp(TypedDict, total=False):
     idp_entity_id: str
     """The unique identifier for your SaaS application."""
 
-    name_id_format: UnnamedSchemaRef77
+    name_id_format: UnnamedSchemaRefC6200e37c458aaa3c42e6e5b999bc419
     """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: str

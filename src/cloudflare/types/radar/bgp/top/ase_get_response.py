@@ -5,13 +5,13 @@ from typing import List
 from pydantic import Field as FieldInfo
 
 from ....._models import BaseModel
-from ....unnamed_schema_ref_175 import UnnamedSchemaRef175
+from ....unnamed_schema_ref_baac9d7da12de53e99142f8ecd3982e5 import UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5
 
 __all__ = ["AseGetResponse", "Meta", "Top0"]
 
 
 class Meta(BaseModel):
-    date_range: List[UnnamedSchemaRef175] = FieldInfo(alias="dateRange")
+    date_range: List[UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5] = FieldInfo(alias="dateRange")
 
 
 class Top0(BaseModel):

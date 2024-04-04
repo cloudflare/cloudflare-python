@@ -4,9 +4,9 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated
 
-from ..shared import UnnamedSchemaRef162
 from ..._utils import PropertyInfo
 from ..._models import BaseModel
+from .unnamed_schema_ref_1391721bdb8938d5420a8bc738a44deb import UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb
 
 __all__ = [
     "DNSRecord",
@@ -74,7 +74,7 @@ class A(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -134,7 +134,7 @@ class AAAA(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -208,7 +208,7 @@ class CAA(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -279,7 +279,7 @@ class CERT(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -333,7 +333,7 @@ class CNAME(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -410,7 +410,7 @@ class DNSKEY(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -481,7 +481,7 @@ class DS(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -549,7 +549,7 @@ class HTTPS(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -644,7 +644,7 @@ class LOC(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -704,7 +704,7 @@ class MX(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -781,7 +781,7 @@ class NAPTR(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -835,7 +835,7 @@ class NS(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -889,7 +889,7 @@ class PTR(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -960,7 +960,7 @@ class SMIMEA(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1063,7 +1063,7 @@ class SRV(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1131,7 +1131,7 @@ class SSHFP(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1199,7 +1199,7 @@ class SVCB(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1270,7 +1270,7 @@ class TLSA(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1324,7 +1324,7 @@ class TXT(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
@@ -1395,7 +1395,7 @@ class URI(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef162] = None
+    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None

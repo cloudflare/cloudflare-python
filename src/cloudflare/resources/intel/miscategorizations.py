@@ -21,10 +21,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.intel import MiscategorizationCreateResponse, miscategorization_create_params
+from ...types.intel import miscategorization_create_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 
 __all__ = ["Miscategorizations", "AsyncMiscategorizations"]
 
@@ -55,7 +56,7 @@ class Miscategorizations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MiscategorizationCreateResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Create Miscategorization
 
@@ -87,7 +88,7 @@ class Miscategorizations(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            MiscategorizationCreateResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._post(
                 f"/accounts/{account_id}/intel/miscategorization",
                 body=maybe_transform(
@@ -110,7 +111,7 @@ class Miscategorizations(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[MiscategorizationCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -142,7 +143,7 @@ class AsyncMiscategorizations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MiscategorizationCreateResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Create Miscategorization
 
@@ -174,7 +175,7 @@ class AsyncMiscategorizations(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            MiscategorizationCreateResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._post(
                 f"/accounts/{account_id}/intel/miscategorization",
                 body=await async_maybe_transform(
@@ -197,7 +198,7 @@ class AsyncMiscategorizations(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[MiscategorizationCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

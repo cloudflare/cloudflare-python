@@ -17,9 +17,9 @@ class SettingEditParams(TypedDict, total=False):
     service_name: Required[str]
     """Name of Worker to bind to"""
 
-    errors: Required[Iterable[shared_params.ResponseInfo]]
+    errors: Required[Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]]
 
-    messages: Required[Iterable[shared_params.ResponseInfo]]
+    messages: Required[Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]]
 
     result: Required[Result]
 

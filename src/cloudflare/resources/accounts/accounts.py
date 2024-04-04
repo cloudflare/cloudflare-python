@@ -15,12 +15,7 @@ from .roles import (
     RolesWithStreamingResponse,
     AsyncRolesWithStreamingResponse,
 )
-from ...types import (
-    AccountGetResponse,
-    AccountUpdateResponse,
-    account_list_params,
-    account_update_params,
-)
+from ...types import account_list_params, account_update_params
 from .members import (
     Members,
     AsyncMembers,
@@ -48,6 +43,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["Accounts", "AsyncAccounts"]
 
@@ -81,7 +77,7 @@ class Accounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Update an existing account.
 
@@ -99,7 +95,7 @@ class Accounts(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            AccountUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._put(
                 f"/accounts/{account_id}",
                 body=maybe_transform(
@@ -117,7 +113,7 @@ class Accounts(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccountUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -187,7 +183,7 @@ class Accounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Get information about a specific account that you are a member of.
 
@@ -201,7 +197,7 @@ class Accounts(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            AccountGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._get(
                 f"/accounts/{account_id}",
                 options=make_request_options(
@@ -212,7 +208,7 @@ class Accounts(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccountGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -247,7 +243,7 @@ class AsyncAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Update an existing account.
 
@@ -265,7 +261,7 @@ class AsyncAccounts(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            AccountUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._put(
                 f"/accounts/{account_id}",
                 body=await async_maybe_transform(
@@ -283,7 +279,7 @@ class AsyncAccounts(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccountUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -353,7 +349,7 @@ class AsyncAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Get information about a specific account that you are a member of.
 
@@ -367,7 +363,7 @@ class AsyncAccounts(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            AccountGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._get(
                 f"/accounts/{account_id}",
                 options=make_request_options(
@@ -378,7 +374,7 @@ class AsyncAccounts(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[AccountGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

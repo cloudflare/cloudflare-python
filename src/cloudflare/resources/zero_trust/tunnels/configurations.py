@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -23,11 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.tunnels import (
-    ConfigurationGetResponse,
-    ConfigurationUpdateResponse,
-    configuration_update_params,
-)
+from ....types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
+from ....types.zero_trust.tunnels import configuration_update_params
 
 __all__ = ["Configurations", "AsyncConfigurations"]
 
@@ -53,7 +50,7 @@ class Configurations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationUpdateResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Adds or updates the configuration for a remotely-managed tunnel.
 
@@ -77,7 +74,7 @@ class Configurations(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            ConfigurationUpdateResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._put(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
                 body=maybe_transform({"config": config}, configuration_update_params.ConfigurationUpdateParams),
@@ -89,7 +86,7 @@ class Configurations(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConfigurationUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -105,7 +102,7 @@ class Configurations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationGetResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Gets the configuration for a remotely-managed tunnel
 
@@ -127,7 +124,7 @@ class Configurations(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            ConfigurationGetResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._get(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
                 options=make_request_options(
@@ -138,7 +135,7 @@ class Configurations(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConfigurationGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -165,7 +162,7 @@ class AsyncConfigurations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationUpdateResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Adds or updates the configuration for a remotely-managed tunnel.
 
@@ -189,7 +186,7 @@ class AsyncConfigurations(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            ConfigurationUpdateResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._put(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
                 body=await async_maybe_transform(
@@ -203,7 +200,7 @@ class AsyncConfigurations(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConfigurationUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -219,7 +216,7 @@ class AsyncConfigurations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationGetResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Gets the configuration for a remotely-managed tunnel
 
@@ -241,7 +238,7 @@ class AsyncConfigurations(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            ConfigurationGetResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._get(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
                 options=make_request_options(
@@ -252,7 +249,7 @@ class AsyncConfigurations(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ConfigurationGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

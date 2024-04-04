@@ -10,13 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
-    PageruleGetResponse,
-    PageruleEditResponse,
     PageruleListResponse,
-    PageruleCreateResponse,
     PageruleDeleteResponse,
-    PageruleUpdateResponse,
 )
+from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -40,7 +37,7 @@ class TestPagerules:
                 }
             ],
         )
-        assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -68,7 +65,7 @@ class TestPagerules:
             priority=0,
             status="active",
         )
-        assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -90,7 +87,7 @@ class TestPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = response.parse()
-        assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -112,7 +109,7 @@ class TestPagerules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerule = response.parse()
-            assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -151,7 +148,7 @@ class TestPagerules:
                 }
             ],
         )
-        assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -180,7 +177,7 @@ class TestPagerules:
             priority=0,
             status="active",
         )
-        assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -203,7 +200,7 @@ class TestPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = response.parse()
-        assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -226,7 +223,7 @@ class TestPagerules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerule = response.parse()
-            assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -383,7 +380,7 @@ class TestPagerules:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -412,7 +409,7 @@ class TestPagerules:
                 }
             ],
         )
-        assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -425,7 +422,7 @@ class TestPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = response.parse()
-        assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -438,7 +435,7 @@ class TestPagerules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerule = response.parse()
-            assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -464,7 +461,7 @@ class TestPagerules:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageruleGetResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -477,7 +474,7 @@ class TestPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = response.parse()
-        assert_matches_type(PageruleGetResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -490,7 +487,7 @@ class TestPagerules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerule = response.parse()
-            assert_matches_type(PageruleGetResponse, pagerule, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -529,7 +526,7 @@ class TestAsyncPagerules:
                 }
             ],
         )
-        assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -557,7 +554,7 @@ class TestAsyncPagerules:
             priority=0,
             status="active",
         )
-        assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -579,7 +576,7 @@ class TestAsyncPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = await response.parse()
-        assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -601,7 +598,7 @@ class TestAsyncPagerules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerule = await response.parse()
-            assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -640,7 +637,7 @@ class TestAsyncPagerules:
                 }
             ],
         )
-        assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -669,7 +666,7 @@ class TestAsyncPagerules:
             priority=0,
             status="active",
         )
-        assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -692,7 +689,7 @@ class TestAsyncPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = await response.parse()
-        assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -715,7 +712,7 @@ class TestAsyncPagerules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerule = await response.parse()
-            assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -872,7 +869,7 @@ class TestAsyncPagerules:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -901,7 +898,7 @@ class TestAsyncPagerules:
                 }
             ],
         )
-        assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -914,7 +911,7 @@ class TestAsyncPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = await response.parse()
-        assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -927,7 +924,7 @@ class TestAsyncPagerules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerule = await response.parse()
-            assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -953,7 +950,7 @@ class TestAsyncPagerules:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageruleGetResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -966,7 +963,7 @@ class TestAsyncPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = await response.parse()
-        assert_matches_type(PageruleGetResponse, pagerule, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -979,7 +976,7 @@ class TestAsyncPagerules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerule = await response.parse()
-            assert_matches_type(PageruleGetResponse, pagerule, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

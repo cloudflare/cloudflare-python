@@ -22,17 +22,12 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...types.user import (
-    Organization,
-    OrganizationGetResponse,
-    OrganizationDeleteResponse,
-    organization_list_params,
-    organization_delete_params,
-)
+from ...types.user import Organization, OrganizationDeleteResponse, organization_list_params, organization_delete_params
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["Organizations", "AsyncOrganizations"]
 
@@ -160,7 +155,7 @@ class Organizations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrganizationGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Gets a specific organization the user is associated with.
 
@@ -178,7 +173,7 @@ class Organizations(SyncAPIResource):
         if not organization_id:
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
         return cast(
-            OrganizationGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._get(
                 f"/user/organizations/{organization_id}",
                 options=make_request_options(
@@ -189,7 +184,7 @@ class Organizations(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[OrganizationGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -318,7 +313,7 @@ class AsyncOrganizations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrganizationGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Gets a specific organization the user is associated with.
 
@@ -336,7 +331,7 @@ class AsyncOrganizations(AsyncAPIResource):
         if not organization_id:
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
         return cast(
-            OrganizationGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._get(
                 f"/user/organizations/{organization_id}",
                 options=make_request_options(
@@ -347,7 +342,7 @@ class AsyncOrganizations(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[OrganizationGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

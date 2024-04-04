@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef116
+from ...types.alerting import AvailableAlertListResponse
 
 __all__ = ["AvailableAlerts", "AsyncAvailableAlerts"]
 
@@ -43,7 +43,7 @@ class AvailableAlerts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef116]:
+    ) -> Optional[AvailableAlertListResponse]:
         """
         Gets a list of all alert types for which an account is eligible.
 
@@ -61,7 +61,7 @@ class AvailableAlerts(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef116],
+            Optional[AvailableAlertListResponse],
             self._get(
                 f"/accounts/{account_id}/alerting/v3/available_alerts",
                 options=make_request_options(
@@ -72,7 +72,7 @@ class AvailableAlerts(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef116]
+                    Any, ResultWrapper[AvailableAlertListResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -97,7 +97,7 @@ class AsyncAvailableAlerts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef116]:
+    ) -> Optional[AvailableAlertListResponse]:
         """
         Gets a list of all alert types for which an account is eligible.
 
@@ -115,7 +115,7 @@ class AsyncAvailableAlerts(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef116],
+            Optional[AvailableAlertListResponse],
             await self._get(
                 f"/accounts/{account_id}/alerting/v3/available_alerts",
                 options=make_request_options(
@@ -126,7 +126,7 @@ class AsyncAvailableAlerts(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef116]
+                    Any, ResultWrapper[AvailableAlertListResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

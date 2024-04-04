@@ -14,9 +14,9 @@ from cloudflare.types import (
     CustomHostnameEditResponse,
     CustomHostnameListResponse,
     CustomHostnameCreateResponse,
-    CustomHostnameDeleteResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.shared import UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -167,7 +167,7 @@ class TestCustomHostnames:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(CustomHostnameDeleteResponse, custom_hostname, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -181,7 +181,7 @@ class TestCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = response.parse()
-        assert_matches_type(CustomHostnameDeleteResponse, custom_hostname, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -195,7 +195,7 @@ class TestCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = response.parse()
-            assert_matches_type(CustomHostnameDeleteResponse, custom_hostname, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -495,7 +495,7 @@ class TestAsyncCustomHostnames:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(CustomHostnameDeleteResponse, custom_hostname, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -509,7 +509,7 @@ class TestAsyncCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = await response.parse()
-        assert_matches_type(CustomHostnameDeleteResponse, custom_hostname, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -523,7 +523,7 @@ class TestAsyncCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = await response.parse()
-            assert_matches_type(CustomHostnameDeleteResponse, custom_hostname, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

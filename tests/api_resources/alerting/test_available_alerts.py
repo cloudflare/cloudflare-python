@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRef116
+from cloudflare.types.alerting import AvailableAlertListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestAvailableAlerts:
         available_alert = client.alerting.available_alerts.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef116], available_alert, path=["response"])
+        assert_matches_type(Optional[AvailableAlertListResponse], available_alert, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestAvailableAlerts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         available_alert = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef116], available_alert, path=["response"])
+        assert_matches_type(Optional[AvailableAlertListResponse], available_alert, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestAvailableAlerts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             available_alert = response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef116], available_alert, path=["response"])
+            assert_matches_type(Optional[AvailableAlertListResponse], available_alert, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestAsyncAvailableAlerts:
         available_alert = await async_client.alerting.available_alerts.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef116], available_alert, path=["response"])
+        assert_matches_type(Optional[AvailableAlertListResponse], available_alert, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestAsyncAvailableAlerts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         available_alert = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef116], available_alert, path=["response"])
+        assert_matches_type(Optional[AvailableAlertListResponse], available_alert, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestAsyncAvailableAlerts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             available_alert = await response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef116], available_alert, path=["response"])
+            assert_matches_type(Optional[AvailableAlertListResponse], available_alert, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
