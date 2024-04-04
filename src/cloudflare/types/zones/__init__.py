@@ -5,9 +5,6 @@ from __future__ import annotations
 from .dns_setting import DNSSetting as DNSSetting
 from .hold_create_params import HoldCreateParams as HoldCreateParams
 from .hold_delete_params import HoldDeleteParams as HoldDeleteParams
-from .setting_edit_params import SettingEditParams as SettingEditParams
-from .setting_get_response import SettingGetResponse as SettingGetResponse
-from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .dns_setting_edit_params import DNSSettingEditParams as DNSSettingEditParams
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse
