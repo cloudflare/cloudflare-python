@@ -40,6 +40,14 @@ from .settings import (
     SettingsWithStreamingResponse,
     AsyncSettingsWithStreamingResponse,
 )
+from .versions import (
+    Versions,
+    AsyncVersions,
+    VersionsWithRawResponse,
+    AsyncVersionsWithRawResponse,
+    VersionsWithStreamingResponse,
+    AsyncVersionsWithStreamingResponse,
+)
 from .schedules import (
     Schedules,
     AsyncSchedules,
@@ -55,6 +63,14 @@ from .content_v2 import (
     AsyncContentV2WithRawResponse,
     ContentV2WithStreamingResponse,
     AsyncContentV2WithStreamingResponse,
+)
+from .deployments import (
+    Deployments,
+    AsyncDeployments,
+    DeploymentsWithRawResponse,
+    AsyncDeploymentsWithRawResponse,
+    DeploymentsWithStreamingResponse,
+    AsyncDeploymentsWithStreamingResponse,
 )
 from .usage_model import (
     UsageModel,
@@ -108,6 +124,18 @@ __all__ = [
     "AsyncSettingsWithRawResponse",
     "SettingsWithStreamingResponse",
     "AsyncSettingsWithStreamingResponse",
+    "Deployments",
+    "AsyncDeployments",
+    "DeploymentsWithRawResponse",
+    "AsyncDeploymentsWithRawResponse",
+    "DeploymentsWithStreamingResponse",
+    "AsyncDeploymentsWithStreamingResponse",
+    "Versions",
+    "AsyncVersions",
+    "VersionsWithRawResponse",
+    "AsyncVersionsWithRawResponse",
+    "VersionsWithStreamingResponse",
+    "AsyncVersionsWithStreamingResponse",
     "Scripts",
     "AsyncScripts",
     "ScriptsWithRawResponse",

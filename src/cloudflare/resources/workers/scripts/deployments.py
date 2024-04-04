@@ -2,75 +2,65 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
-from typing_extensions import Literal
+from typing import Type, cast
 
 import httpx
 
-from ......types import shared_params
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ......_compat import cached_property
-from ......_resource import SyncAPIResource, AsyncAPIResource
-from ......_response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_wrappers import ResultWrapper
-from ......_base_client import (
+from ...._wrappers import ResultWrapper
+from ...._base_client import (
     make_request_options,
 )
-from ......types.workers_for_platforms.dispatch.namespaces.scripts import (
-    SettingGetResponse,
-    SettingEditResponse,
-    setting_edit_params,
-)
+from ....types.workers.scripts import DeploymentGetResponse, DeploymentCreateResponse, deployment_create_params
 
-__all__ = ["Settings", "AsyncSettings"]
+__all__ = ["Deployments", "AsyncDeployments"]
 
 
-class Settings(SyncAPIResource):
+class Deployments(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self)
+    def with_raw_response(self) -> DeploymentsWithRawResponse:
+        return DeploymentsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> DeploymentsWithStreamingResponse:
+        return DeploymentsWithStreamingResponse(self)
 
-    def edit(
+    def create(
         self,
         script_name: str,
         *,
         account_id: str,
-        dispatch_namespace: str,
-        errors: Iterable[shared_params.ResponseInfo],
-        messages: Iterable[shared_params.ResponseInfo],
-        result: setting_edit_params.Result,
-        success: Literal[True],
+        annotations: deployment_create_params.Annotations | NotGiven = NOT_GIVEN,
+        strategy: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingEditResponse:
+    ) -> DeploymentCreateResponse:
         """
-        Patch script metadata, such as bindings
+        Deployments configure how
+        [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
+        are deployed to traffic. A deployment can consist of one or two versions of a
+        Worker.
 
         Args:
           account_id: Identifier
 
-          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
-
-          script_name: Name of the script, used in URLs and route configuration.
-
-          success: Whether the API call was successful
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -82,20 +72,16 @@ class Settings(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not dispatch_namespace:
-            raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return self._patch(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings",
+        return self._post(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments",
             body=maybe_transform(
                 {
-                    "errors": errors,
-                    "messages": messages,
-                    "result": result,
-                    "success": success,
+                    "annotations": annotations,
+                    "strategy": strategy,
                 },
-                setting_edit_params.SettingEditParams,
+                deployment_create_params.DeploymentCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -104,7 +90,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     def get(
@@ -112,23 +98,22 @@ class Settings(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        dispatch_namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingGetResponse:
-        """
-        Get script settings from a script uploaded to a Workers for Platforms namespace.
+    ) -> DeploymentGetResponse:
+        """List of Worker Deployments.
+
+        The first deployment in the list is the latest
+        deployment actively serving traffic.
 
         Args:
           account_id: Identifier
 
-          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
-
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -140,12 +125,10 @@ class Settings(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not dispatch_namespace:
-            raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings",
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -153,47 +136,43 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
 
-class AsyncSettings(AsyncAPIResource):
+class AsyncDeployments(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDeploymentsWithRawResponse:
+        return AsyncDeploymentsWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDeploymentsWithStreamingResponse:
+        return AsyncDeploymentsWithStreamingResponse(self)
 
-    async def edit(
+    async def create(
         self,
         script_name: str,
         *,
         account_id: str,
-        dispatch_namespace: str,
-        errors: Iterable[shared_params.ResponseInfo],
-        messages: Iterable[shared_params.ResponseInfo],
-        result: setting_edit_params.Result,
-        success: Literal[True],
+        annotations: deployment_create_params.Annotations | NotGiven = NOT_GIVEN,
+        strategy: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingEditResponse:
+    ) -> DeploymentCreateResponse:
         """
-        Patch script metadata, such as bindings
+        Deployments configure how
+        [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
+        are deployed to traffic. A deployment can consist of one or two versions of a
+        Worker.
 
         Args:
           account_id: Identifier
 
-          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
-
-          script_name: Name of the script, used in URLs and route configuration.
-
-          success: Whether the API call was successful
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -205,20 +184,16 @@ class AsyncSettings(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not dispatch_namespace:
-            raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return await self._patch(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings",
+        return await self._post(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments",
             body=await async_maybe_transform(
                 {
-                    "errors": errors,
-                    "messages": messages,
-                    "result": result,
-                    "success": success,
+                    "annotations": annotations,
+                    "strategy": strategy,
                 },
-                setting_edit_params.SettingEditParams,
+                deployment_create_params.DeploymentCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -227,7 +202,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     async def get(
@@ -235,23 +210,22 @@ class AsyncSettings(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        dispatch_namespace: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingGetResponse:
-        """
-        Get script settings from a script uploaded to a Workers for Platforms namespace.
+    ) -> DeploymentGetResponse:
+        """List of Worker Deployments.
+
+        The first deployment in the list is the latest
+        deployment actively serving traffic.
 
         Args:
           account_id: Identifier
 
-          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
-
-          script_name: Name of the script, used in URLs and route configuration.
+          script_name: Name of the script.
 
           extra_headers: Send extra headers
 
@@ -263,12 +237,10 @@ class AsyncSettings(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not dispatch_namespace:
-            raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings",
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,53 +248,53 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
 
-class SettingsWithRawResponse:
-    def __init__(self, settings: Settings) -> None:
-        self._settings = settings
+class DeploymentsWithRawResponse:
+    def __init__(self, deployments: Deployments) -> None:
+        self._deployments = deployments
 
-        self.edit = to_raw_response_wrapper(
-            settings.edit,
+        self.create = to_raw_response_wrapper(
+            deployments.create,
         )
         self.get = to_raw_response_wrapper(
-            settings.get,
+            deployments.get,
         )
 
 
-class AsyncSettingsWithRawResponse:
-    def __init__(self, settings: AsyncSettings) -> None:
-        self._settings = settings
+class AsyncDeploymentsWithRawResponse:
+    def __init__(self, deployments: AsyncDeployments) -> None:
+        self._deployments = deployments
 
-        self.edit = async_to_raw_response_wrapper(
-            settings.edit,
+        self.create = async_to_raw_response_wrapper(
+            deployments.create,
         )
         self.get = async_to_raw_response_wrapper(
-            settings.get,
+            deployments.get,
         )
 
 
-class SettingsWithStreamingResponse:
-    def __init__(self, settings: Settings) -> None:
-        self._settings = settings
+class DeploymentsWithStreamingResponse:
+    def __init__(self, deployments: Deployments) -> None:
+        self._deployments = deployments
 
-        self.edit = to_streamed_response_wrapper(
-            settings.edit,
+        self.create = to_streamed_response_wrapper(
+            deployments.create,
         )
         self.get = to_streamed_response_wrapper(
-            settings.get,
+            deployments.get,
         )
 
 
-class AsyncSettingsWithStreamingResponse:
-    def __init__(self, settings: AsyncSettings) -> None:
-        self._settings = settings
+class AsyncDeploymentsWithStreamingResponse:
+    def __init__(self, deployments: AsyncDeployments) -> None:
+        self._deployments = deployments
 
-        self.edit = async_to_streamed_response_wrapper(
-            settings.edit,
+        self.create = async_to_streamed_response_wrapper(
+            deployments.create,
         )
         self.get = async_to_streamed_response_wrapper(
-            settings.get,
+            deployments.get,
         )

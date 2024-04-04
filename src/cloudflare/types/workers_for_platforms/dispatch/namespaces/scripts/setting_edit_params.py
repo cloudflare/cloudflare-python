@@ -17,9 +17,9 @@ class SettingEditParams(TypedDict, total=False):
     dispatch_namespace: Required[str]
     """Name of the Workers for Platforms dispatch namespace."""
 
-    errors: Required[Iterable[shared_params.UnnamedSchemaRef172]]
+    errors: Required[Iterable[shared_params.ResponseInfo]]
 
-    messages: Required[Iterable[shared_params.UnnamedSchemaRef172]]
+    messages: Required[Iterable[shared_params.ResponseInfo]]
 
     result: Required[Result]
 

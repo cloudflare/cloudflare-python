@@ -38,6 +38,14 @@ from .settings import (
     SettingsWithStreamingResponse,
     AsyncSettingsWithStreamingResponse,
 )
+from .versions import (
+    Versions,
+    AsyncVersions,
+    VersionsWithRawResponse,
+    AsyncVersionsWithRawResponse,
+    VersionsWithStreamingResponse,
+    AsyncVersionsWithStreamingResponse,
+)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
 from ...._utils import (
     required_args,
@@ -60,6 +68,14 @@ from .content_v2 import (
     AsyncContentV2WithRawResponse,
     ContentV2WithStreamingResponse,
     AsyncContentV2WithStreamingResponse,
+)
+from .deployments import (
+    Deployments,
+    AsyncDeployments,
+    DeploymentsWithRawResponse,
+    AsyncDeploymentsWithRawResponse,
+    DeploymentsWithStreamingResponse,
+    AsyncDeploymentsWithStreamingResponse,
 )
 from .usage_model import (
     UsageModel,
@@ -91,6 +107,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.workers import WorkersScript, script_delete_params, script_update_params
+from .versions.versions import Versions, AsyncVersions
 
 __all__ = ["Scripts", "AsyncScripts"]
 
@@ -123,6 +140,14 @@ class Scripts(SyncAPIResource):
     @cached_property
     def settings(self) -> Settings:
         return Settings(self._client)
+
+    @cached_property
+    def deployments(self) -> Deployments:
+        return Deployments(self._client)
+
+    @cached_property
+    def versions(self) -> Versions:
+        return Versions(self._client)
 
     @cached_property
     def with_raw_response(self) -> ScriptsWithRawResponse:
@@ -419,6 +444,14 @@ class AsyncScripts(AsyncAPIResource):
     @cached_property
     def settings(self) -> AsyncSettings:
         return AsyncSettings(self._client)
+
+    @cached_property
+    def deployments(self) -> AsyncDeployments:
+        return AsyncDeployments(self._client)
+
+    @cached_property
+    def versions(self) -> AsyncVersions:
+        return AsyncVersions(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncScriptsWithRawResponse:
@@ -735,6 +768,14 @@ class ScriptsWithRawResponse:
     def settings(self) -> SettingsWithRawResponse:
         return SettingsWithRawResponse(self._scripts.settings)
 
+    @cached_property
+    def deployments(self) -> DeploymentsWithRawResponse:
+        return DeploymentsWithRawResponse(self._scripts.deployments)
+
+    @cached_property
+    def versions(self) -> VersionsWithRawResponse:
+        return VersionsWithRawResponse(self._scripts.versions)
+
 
 class AsyncScriptsWithRawResponse:
     def __init__(self, scripts: AsyncScripts) -> None:
@@ -781,6 +822,14 @@ class AsyncScriptsWithRawResponse:
     @cached_property
     def settings(self) -> AsyncSettingsWithRawResponse:
         return AsyncSettingsWithRawResponse(self._scripts.settings)
+
+    @cached_property
+    def deployments(self) -> AsyncDeploymentsWithRawResponse:
+        return AsyncDeploymentsWithRawResponse(self._scripts.deployments)
+
+    @cached_property
+    def versions(self) -> AsyncVersionsWithRawResponse:
+        return AsyncVersionsWithRawResponse(self._scripts.versions)
 
 
 class ScriptsWithStreamingResponse:
@@ -829,6 +878,14 @@ class ScriptsWithStreamingResponse:
     def settings(self) -> SettingsWithStreamingResponse:
         return SettingsWithStreamingResponse(self._scripts.settings)
 
+    @cached_property
+    def deployments(self) -> DeploymentsWithStreamingResponse:
+        return DeploymentsWithStreamingResponse(self._scripts.deployments)
+
+    @cached_property
+    def versions(self) -> VersionsWithStreamingResponse:
+        return VersionsWithStreamingResponse(self._scripts.versions)
+
 
 class AsyncScriptsWithStreamingResponse:
     def __init__(self, scripts: AsyncScripts) -> None:
@@ -875,3 +932,11 @@ class AsyncScriptsWithStreamingResponse:
     @cached_property
     def settings(self) -> AsyncSettingsWithStreamingResponse:
         return AsyncSettingsWithStreamingResponse(self._scripts.settings)
+
+    @cached_property
+    def deployments(self) -> AsyncDeploymentsWithStreamingResponse:
+        return AsyncDeploymentsWithStreamingResponse(self._scripts.deployments)
+
+    @cached_property
+    def versions(self) -> AsyncVersionsWithStreamingResponse:
+        return AsyncVersionsWithStreamingResponse(self._scripts.versions)
