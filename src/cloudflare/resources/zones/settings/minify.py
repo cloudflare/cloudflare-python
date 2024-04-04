@@ -23,19 +23,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingMinify, minify_edit_params
+from ....types.zones.settings import Minify, minify_edit_params
 
-__all__ = ["Minify", "AsyncMinify"]
+__all__ = ["MinifyResource", "AsyncMinifyResource"]
 
 
-class Minify(SyncAPIResource):
+class MinifyResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MinifyWithRawResponse:
-        return MinifyWithRawResponse(self)
+    def with_raw_response(self) -> MinifyResourceWithRawResponse:
+        return MinifyResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MinifyWithStreamingResponse:
-        return MinifyWithStreamingResponse(self)
+    def with_streaming_response(self) -> MinifyResourceWithStreamingResponse:
+        return MinifyResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -48,7 +48,7 @@ class Minify(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMinify]:
+    ) -> Optional[Minify]:
         """Automatically minify certain assets for your website.
 
         Refer to
@@ -80,7 +80,7 @@ class Minify(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMinify]], ResultWrapper[ZoneSettingMinify]),
+            cast_to=cast(Type[Optional[Minify]], ResultWrapper[Minify]),
         )
 
     def get(
@@ -93,7 +93,7 @@ class Minify(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMinify]:
+    ) -> Optional[Minify]:
         """Automatically minify certain assets for your website.
 
         Refer to
@@ -122,18 +122,18 @@ class Minify(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMinify]], ResultWrapper[ZoneSettingMinify]),
+            cast_to=cast(Type[Optional[Minify]], ResultWrapper[Minify]),
         )
 
 
-class AsyncMinify(AsyncAPIResource):
+class AsyncMinifyResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMinifyWithRawResponse:
-        return AsyncMinifyWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMinifyResourceWithRawResponse:
+        return AsyncMinifyResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMinifyWithStreamingResponse:
-        return AsyncMinifyWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMinifyResourceWithStreamingResponse:
+        return AsyncMinifyResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -146,7 +146,7 @@ class AsyncMinify(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMinify]:
+    ) -> Optional[Minify]:
         """Automatically minify certain assets for your website.
 
         Refer to
@@ -178,7 +178,7 @@ class AsyncMinify(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMinify]], ResultWrapper[ZoneSettingMinify]),
+            cast_to=cast(Type[Optional[Minify]], ResultWrapper[Minify]),
         )
 
     async def get(
@@ -191,7 +191,7 @@ class AsyncMinify(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMinify]:
+    ) -> Optional[Minify]:
         """Automatically minify certain assets for your website.
 
         Refer to
@@ -220,12 +220,12 @@ class AsyncMinify(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMinify]], ResultWrapper[ZoneSettingMinify]),
+            cast_to=cast(Type[Optional[Minify]], ResultWrapper[Minify]),
         )
 
 
-class MinifyWithRawResponse:
-    def __init__(self, minify: Minify) -> None:
+class MinifyResourceWithRawResponse:
+    def __init__(self, minify: MinifyResource) -> None:
         self._minify = minify
 
         self.edit = to_raw_response_wrapper(
@@ -236,8 +236,8 @@ class MinifyWithRawResponse:
         )
 
 
-class AsyncMinifyWithRawResponse:
-    def __init__(self, minify: AsyncMinify) -> None:
+class AsyncMinifyResourceWithRawResponse:
+    def __init__(self, minify: AsyncMinifyResource) -> None:
         self._minify = minify
 
         self.edit = async_to_raw_response_wrapper(
@@ -248,8 +248,8 @@ class AsyncMinifyWithRawResponse:
         )
 
 
-class MinifyWithStreamingResponse:
-    def __init__(self, minify: Minify) -> None:
+class MinifyResourceWithStreamingResponse:
+    def __init__(self, minify: MinifyResource) -> None:
         self._minify = minify
 
         self.edit = to_streamed_response_wrapper(
@@ -260,8 +260,8 @@ class MinifyWithStreamingResponse:
         )
 
 
-class AsyncMinifyWithStreamingResponse:
-    def __init__(self, minify: AsyncMinify) -> None:
+class AsyncMinifyResourceWithStreamingResponse:
+    def __init__(self, minify: AsyncMinifyResource) -> None:
         self._minify = minify
 
         self.edit = async_to_streamed_response_wrapper(

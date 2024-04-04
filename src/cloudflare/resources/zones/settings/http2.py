@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingHTTP2, http2_edit_params
+from ....types.zones.settings import HTTP2, http2_edit_params
 
-__all__ = ["HTTP2", "AsyncHTTP2"]
+__all__ = ["HTTP2Resource", "AsyncHTTP2Resource"]
 
 
-class HTTP2(SyncAPIResource):
+class HTTP2Resource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HTTP2WithRawResponse:
-        return HTTP2WithRawResponse(self)
+    def with_raw_response(self) -> HTTP2ResourceWithRawResponse:
+        return HTTP2ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HTTP2WithStreamingResponse:
-        return HTTP2WithStreamingResponse(self)
+    def with_streaming_response(self) -> HTTP2ResourceWithStreamingResponse:
+        return HTTP2ResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class HTTP2(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHTTP2]:
+    ) -> Optional[HTTP2]:
         """
         Value of the HTTP2 setting.
 
@@ -78,7 +78,7 @@ class HTTP2(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHTTP2]], ResultWrapper[ZoneSettingHTTP2]),
+            cast_to=cast(Type[Optional[HTTP2]], ResultWrapper[HTTP2]),
         )
 
     def get(
@@ -91,7 +91,7 @@ class HTTP2(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHTTP2]:
+    ) -> Optional[HTTP2]:
         """
         Value of the HTTP2 setting.
 
@@ -117,18 +117,18 @@ class HTTP2(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHTTP2]], ResultWrapper[ZoneSettingHTTP2]),
+            cast_to=cast(Type[Optional[HTTP2]], ResultWrapper[HTTP2]),
         )
 
 
-class AsyncHTTP2(AsyncAPIResource):
+class AsyncHTTP2Resource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHTTP2WithRawResponse:
-        return AsyncHTTP2WithRawResponse(self)
+    def with_raw_response(self) -> AsyncHTTP2ResourceWithRawResponse:
+        return AsyncHTTP2ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHTTP2WithStreamingResponse:
-        return AsyncHTTP2WithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHTTP2ResourceWithStreamingResponse:
+        return AsyncHTTP2ResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -141,7 +141,7 @@ class AsyncHTTP2(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHTTP2]:
+    ) -> Optional[HTTP2]:
         """
         Value of the HTTP2 setting.
 
@@ -170,7 +170,7 @@ class AsyncHTTP2(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHTTP2]], ResultWrapper[ZoneSettingHTTP2]),
+            cast_to=cast(Type[Optional[HTTP2]], ResultWrapper[HTTP2]),
         )
 
     async def get(
@@ -183,7 +183,7 @@ class AsyncHTTP2(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingHTTP2]:
+    ) -> Optional[HTTP2]:
         """
         Value of the HTTP2 setting.
 
@@ -209,12 +209,12 @@ class AsyncHTTP2(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingHTTP2]], ResultWrapper[ZoneSettingHTTP2]),
+            cast_to=cast(Type[Optional[HTTP2]], ResultWrapper[HTTP2]),
         )
 
 
-class HTTP2WithRawResponse:
-    def __init__(self, http2: HTTP2) -> None:
+class HTTP2ResourceWithRawResponse:
+    def __init__(self, http2: HTTP2Resource) -> None:
         self._http2 = http2
 
         self.edit = to_raw_response_wrapper(
@@ -225,8 +225,8 @@ class HTTP2WithRawResponse:
         )
 
 
-class AsyncHTTP2WithRawResponse:
-    def __init__(self, http2: AsyncHTTP2) -> None:
+class AsyncHTTP2ResourceWithRawResponse:
+    def __init__(self, http2: AsyncHTTP2Resource) -> None:
         self._http2 = http2
 
         self.edit = async_to_raw_response_wrapper(
@@ -237,8 +237,8 @@ class AsyncHTTP2WithRawResponse:
         )
 
 
-class HTTP2WithStreamingResponse:
-    def __init__(self, http2: HTTP2) -> None:
+class HTTP2ResourceWithStreamingResponse:
+    def __init__(self, http2: HTTP2Resource) -> None:
         self._http2 = http2
 
         self.edit = to_streamed_response_wrapper(
@@ -249,8 +249,8 @@ class HTTP2WithStreamingResponse:
         )
 
 
-class AsyncHTTP2WithStreamingResponse:
-    def __init__(self, http2: AsyncHTTP2) -> None:
+class AsyncHTTP2ResourceWithStreamingResponse:
+    def __init__(self, http2: AsyncHTTP2Resource) -> None:
         self._http2 = http2
 
         self.edit = async_to_streamed_response_wrapper(

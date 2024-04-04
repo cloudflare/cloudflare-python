@@ -23,32 +23,32 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingPolish, ZoneSettingPolishParam, polish_edit_params
+from ....types.zones.settings import Polish, PolishParam, polish_edit_params
 
-__all__ = ["Polish", "AsyncPolish"]
+__all__ = ["PolishResource", "AsyncPolishResource"]
 
 
-class Polish(SyncAPIResource):
+class PolishResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PolishWithRawResponse:
-        return PolishWithRawResponse(self)
+    def with_raw_response(self) -> PolishResourceWithRawResponse:
+        return PolishResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PolishWithStreamingResponse:
-        return PolishWithStreamingResponse(self)
+    def with_streaming_response(self) -> PolishResourceWithStreamingResponse:
+        return PolishResourceWithStreamingResponse(self)
 
     def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingPolishParam,
+        value: PolishParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPolish]:
+    ) -> Optional[Polish]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/polish-solving-mobile-speed)
@@ -84,7 +84,7 @@ class Polish(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPolish]], ResultWrapper[ZoneSettingPolish]),
+            cast_to=cast(Type[Optional[Polish]], ResultWrapper[Polish]),
         )
 
     def get(
@@ -97,7 +97,7 @@ class Polish(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPolish]:
+    ) -> Optional[Polish]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/polish-solving-mobile-speed)
@@ -125,31 +125,31 @@ class Polish(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPolish]], ResultWrapper[ZoneSettingPolish]),
+            cast_to=cast(Type[Optional[Polish]], ResultWrapper[Polish]),
         )
 
 
-class AsyncPolish(AsyncAPIResource):
+class AsyncPolishResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPolishWithRawResponse:
-        return AsyncPolishWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPolishResourceWithRawResponse:
+        return AsyncPolishResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPolishWithStreamingResponse:
-        return AsyncPolishWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPolishResourceWithStreamingResponse:
+        return AsyncPolishResourceWithStreamingResponse(self)
 
     async def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingPolishParam,
+        value: PolishParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPolish]:
+    ) -> Optional[Polish]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/polish-solving-mobile-speed)
@@ -185,7 +185,7 @@ class AsyncPolish(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPolish]], ResultWrapper[ZoneSettingPolish]),
+            cast_to=cast(Type[Optional[Polish]], ResultWrapper[Polish]),
         )
 
     async def get(
@@ -198,7 +198,7 @@ class AsyncPolish(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingPolish]:
+    ) -> Optional[Polish]:
         """
         Automatically optimize image loading for website visitors on mobile devices.
         Refer to our [blog post](http://blog.cloudflare.com/polish-solving-mobile-speed)
@@ -226,12 +226,12 @@ class AsyncPolish(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingPolish]], ResultWrapper[ZoneSettingPolish]),
+            cast_to=cast(Type[Optional[Polish]], ResultWrapper[Polish]),
         )
 
 
-class PolishWithRawResponse:
-    def __init__(self, polish: Polish) -> None:
+class PolishResourceWithRawResponse:
+    def __init__(self, polish: PolishResource) -> None:
         self._polish = polish
 
         self.edit = to_raw_response_wrapper(
@@ -242,8 +242,8 @@ class PolishWithRawResponse:
         )
 
 
-class AsyncPolishWithRawResponse:
-    def __init__(self, polish: AsyncPolish) -> None:
+class AsyncPolishResourceWithRawResponse:
+    def __init__(self, polish: AsyncPolishResource) -> None:
         self._polish = polish
 
         self.edit = async_to_raw_response_wrapper(
@@ -254,8 +254,8 @@ class AsyncPolishWithRawResponse:
         )
 
 
-class PolishWithStreamingResponse:
-    def __init__(self, polish: Polish) -> None:
+class PolishResourceWithStreamingResponse:
+    def __init__(self, polish: PolishResource) -> None:
         self._polish = polish
 
         self.edit = to_streamed_response_wrapper(
@@ -266,8 +266,8 @@ class PolishWithStreamingResponse:
         )
 
 
-class AsyncPolishWithStreamingResponse:
-    def __init__(self, polish: AsyncPolish) -> None:
+class AsyncPolishResourceWithStreamingResponse:
+    def __init__(self, polish: AsyncPolishResource) -> None:
         self._polish = polish
 
         self.edit = async_to_streamed_response_wrapper(

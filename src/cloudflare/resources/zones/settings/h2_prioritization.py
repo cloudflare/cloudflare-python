@@ -23,36 +23,32 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    ZoneSettingH2Prioritization,
-    ZoneSettingH2PrioritizationParam,
-    h2_prioritization_edit_params,
-)
+from ....types.zones.settings import H2Prioritization, H2PrioritizationParam, h2_prioritization_edit_params
 
-__all__ = ["H2Prioritization", "AsyncH2Prioritization"]
+__all__ = ["H2PrioritizationResource", "AsyncH2PrioritizationResource"]
 
 
-class H2Prioritization(SyncAPIResource):
+class H2PrioritizationResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> H2PrioritizationWithRawResponse:
-        return H2PrioritizationWithRawResponse(self)
+    def with_raw_response(self) -> H2PrioritizationResourceWithRawResponse:
+        return H2PrioritizationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> H2PrioritizationWithStreamingResponse:
-        return H2PrioritizationWithStreamingResponse(self)
+    def with_streaming_response(self) -> H2PrioritizationResourceWithStreamingResponse:
+        return H2PrioritizationResourceWithStreamingResponse(self)
 
     def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingH2PrioritizationParam,
+        value: H2PrioritizationParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingH2Prioritization]:
+    ) -> Optional[H2Prioritization]:
         """
         Gets HTTP/2 Edge Prioritization setting.
 
@@ -83,7 +79,7 @@ class H2Prioritization(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingH2Prioritization]], ResultWrapper[ZoneSettingH2Prioritization]),
+            cast_to=cast(Type[Optional[H2Prioritization]], ResultWrapper[H2Prioritization]),
         )
 
     def get(
@@ -96,7 +92,7 @@ class H2Prioritization(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingH2Prioritization]:
+    ) -> Optional[H2Prioritization]:
         """
         Gets HTTP/2 Edge Prioritization setting.
 
@@ -122,31 +118,31 @@ class H2Prioritization(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingH2Prioritization]], ResultWrapper[ZoneSettingH2Prioritization]),
+            cast_to=cast(Type[Optional[H2Prioritization]], ResultWrapper[H2Prioritization]),
         )
 
 
-class AsyncH2Prioritization(AsyncAPIResource):
+class AsyncH2PrioritizationResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncH2PrioritizationWithRawResponse:
-        return AsyncH2PrioritizationWithRawResponse(self)
+    def with_raw_response(self) -> AsyncH2PrioritizationResourceWithRawResponse:
+        return AsyncH2PrioritizationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncH2PrioritizationWithStreamingResponse:
-        return AsyncH2PrioritizationWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncH2PrioritizationResourceWithStreamingResponse:
+        return AsyncH2PrioritizationResourceWithStreamingResponse(self)
 
     async def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingH2PrioritizationParam,
+        value: H2PrioritizationParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingH2Prioritization]:
+    ) -> Optional[H2Prioritization]:
         """
         Gets HTTP/2 Edge Prioritization setting.
 
@@ -179,7 +175,7 @@ class AsyncH2Prioritization(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingH2Prioritization]], ResultWrapper[ZoneSettingH2Prioritization]),
+            cast_to=cast(Type[Optional[H2Prioritization]], ResultWrapper[H2Prioritization]),
         )
 
     async def get(
@@ -192,7 +188,7 @@ class AsyncH2Prioritization(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingH2Prioritization]:
+    ) -> Optional[H2Prioritization]:
         """
         Gets HTTP/2 Edge Prioritization setting.
 
@@ -218,12 +214,12 @@ class AsyncH2Prioritization(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingH2Prioritization]], ResultWrapper[ZoneSettingH2Prioritization]),
+            cast_to=cast(Type[Optional[H2Prioritization]], ResultWrapper[H2Prioritization]),
         )
 
 
-class H2PrioritizationWithRawResponse:
-    def __init__(self, h2_prioritization: H2Prioritization) -> None:
+class H2PrioritizationResourceWithRawResponse:
+    def __init__(self, h2_prioritization: H2PrioritizationResource) -> None:
         self._h2_prioritization = h2_prioritization
 
         self.edit = to_raw_response_wrapper(
@@ -234,8 +230,8 @@ class H2PrioritizationWithRawResponse:
         )
 
 
-class AsyncH2PrioritizationWithRawResponse:
-    def __init__(self, h2_prioritization: AsyncH2Prioritization) -> None:
+class AsyncH2PrioritizationResourceWithRawResponse:
+    def __init__(self, h2_prioritization: AsyncH2PrioritizationResource) -> None:
         self._h2_prioritization = h2_prioritization
 
         self.edit = async_to_raw_response_wrapper(
@@ -246,8 +242,8 @@ class AsyncH2PrioritizationWithRawResponse:
         )
 
 
-class H2PrioritizationWithStreamingResponse:
-    def __init__(self, h2_prioritization: H2Prioritization) -> None:
+class H2PrioritizationResourceWithStreamingResponse:
+    def __init__(self, h2_prioritization: H2PrioritizationResource) -> None:
         self._h2_prioritization = h2_prioritization
 
         self.edit = to_streamed_response_wrapper(
@@ -258,8 +254,8 @@ class H2PrioritizationWithStreamingResponse:
         )
 
 
-class AsyncH2PrioritizationWithStreamingResponse:
-    def __init__(self, h2_prioritization: AsyncH2Prioritization) -> None:
+class AsyncH2PrioritizationResourceWithStreamingResponse:
+    def __init__(self, h2_prioritization: AsyncH2PrioritizationResource) -> None:
         self._h2_prioritization = h2_prioritization
 
         self.edit = async_to_streamed_response_wrapper(

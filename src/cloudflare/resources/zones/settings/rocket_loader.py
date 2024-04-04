@@ -23,32 +23,32 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingRocketLoader, ZoneSettingRocketLoaderParam, rocket_loader_edit_params
+from ....types.zones.settings import RocketLoader, RocketLoaderParam, rocket_loader_edit_params
 
-__all__ = ["RocketLoader", "AsyncRocketLoader"]
+__all__ = ["RocketLoaderResource", "AsyncRocketLoaderResource"]
 
 
-class RocketLoader(SyncAPIResource):
+class RocketLoaderResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RocketLoaderWithRawResponse:
-        return RocketLoaderWithRawResponse(self)
+    def with_raw_response(self) -> RocketLoaderResourceWithRawResponse:
+        return RocketLoaderResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RocketLoaderWithStreamingResponse:
-        return RocketLoaderWithStreamingResponse(self)
+    def with_streaming_response(self) -> RocketLoaderResourceWithStreamingResponse:
+        return RocketLoaderResourceWithStreamingResponse(self)
 
     def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingRocketLoaderParam,
+        value: RocketLoaderParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingRocketLoader]:
+    ) -> Optional[RocketLoader]:
         """
         Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
         prioritises rendering your content while loading your site's Javascript
@@ -95,7 +95,7 @@ class RocketLoader(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingRocketLoader]], ResultWrapper[ZoneSettingRocketLoader]),
+            cast_to=cast(Type[Optional[RocketLoader]], ResultWrapper[RocketLoader]),
         )
 
     def get(
@@ -108,7 +108,7 @@ class RocketLoader(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingRocketLoader]:
+    ) -> Optional[RocketLoader]:
         """
         Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
         prioritises rendering your content while loading your site's Javascript
@@ -143,31 +143,31 @@ class RocketLoader(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingRocketLoader]], ResultWrapper[ZoneSettingRocketLoader]),
+            cast_to=cast(Type[Optional[RocketLoader]], ResultWrapper[RocketLoader]),
         )
 
 
-class AsyncRocketLoader(AsyncAPIResource):
+class AsyncRocketLoaderResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRocketLoaderWithRawResponse:
-        return AsyncRocketLoaderWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRocketLoaderResourceWithRawResponse:
+        return AsyncRocketLoaderResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRocketLoaderWithStreamingResponse:
-        return AsyncRocketLoaderWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRocketLoaderResourceWithStreamingResponse:
+        return AsyncRocketLoaderResourceWithStreamingResponse(self)
 
     async def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingRocketLoaderParam,
+        value: RocketLoaderParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingRocketLoader]:
+    ) -> Optional[RocketLoader]:
         """
         Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
         prioritises rendering your content while loading your site's Javascript
@@ -214,7 +214,7 @@ class AsyncRocketLoader(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingRocketLoader]], ResultWrapper[ZoneSettingRocketLoader]),
+            cast_to=cast(Type[Optional[RocketLoader]], ResultWrapper[RocketLoader]),
         )
 
     async def get(
@@ -227,7 +227,7 @@ class AsyncRocketLoader(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingRocketLoader]:
+    ) -> Optional[RocketLoader]:
         """
         Rocket Loader is a general-purpose asynchronous JavaScript optimisation that
         prioritises rendering your content while loading your site's Javascript
@@ -262,12 +262,12 @@ class AsyncRocketLoader(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingRocketLoader]], ResultWrapper[ZoneSettingRocketLoader]),
+            cast_to=cast(Type[Optional[RocketLoader]], ResultWrapper[RocketLoader]),
         )
 
 
-class RocketLoaderWithRawResponse:
-    def __init__(self, rocket_loader: RocketLoader) -> None:
+class RocketLoaderResourceWithRawResponse:
+    def __init__(self, rocket_loader: RocketLoaderResource) -> None:
         self._rocket_loader = rocket_loader
 
         self.edit = to_raw_response_wrapper(
@@ -278,8 +278,8 @@ class RocketLoaderWithRawResponse:
         )
 
 
-class AsyncRocketLoaderWithRawResponse:
-    def __init__(self, rocket_loader: AsyncRocketLoader) -> None:
+class AsyncRocketLoaderResourceWithRawResponse:
+    def __init__(self, rocket_loader: AsyncRocketLoaderResource) -> None:
         self._rocket_loader = rocket_loader
 
         self.edit = async_to_raw_response_wrapper(
@@ -290,8 +290,8 @@ class AsyncRocketLoaderWithRawResponse:
         )
 
 
-class RocketLoaderWithStreamingResponse:
-    def __init__(self, rocket_loader: RocketLoader) -> None:
+class RocketLoaderResourceWithStreamingResponse:
+    def __init__(self, rocket_loader: RocketLoaderResource) -> None:
         self._rocket_loader = rocket_loader
 
         self.edit = to_streamed_response_wrapper(
@@ -302,8 +302,8 @@ class RocketLoaderWithStreamingResponse:
         )
 
 
-class AsyncRocketLoaderWithStreamingResponse:
-    def __init__(self, rocket_loader: AsyncRocketLoader) -> None:
+class AsyncRocketLoaderResourceWithStreamingResponse:
+    def __init__(self, rocket_loader: AsyncRocketLoaderResource) -> None:
         self._rocket_loader = rocket_loader
 
         self.edit = async_to_streamed_response_wrapper(

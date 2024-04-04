@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingOpportunisticEncryption, opportunistic_encryption_edit_params
+from ....types.zones.settings import OpportunisticEncryption, opportunistic_encryption_edit_params
 
-__all__ = ["OpportunisticEncryption", "AsyncOpportunisticEncryption"]
+__all__ = ["OpportunisticEncryptionResource", "AsyncOpportunisticEncryptionResource"]
 
 
-class OpportunisticEncryption(SyncAPIResource):
+class OpportunisticEncryptionResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OpportunisticEncryptionWithRawResponse:
-        return OpportunisticEncryptionWithRawResponse(self)
+    def with_raw_response(self) -> OpportunisticEncryptionResourceWithRawResponse:
+        return OpportunisticEncryptionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OpportunisticEncryptionWithStreamingResponse:
-        return OpportunisticEncryptionWithStreamingResponse(self)
+    def with_streaming_response(self) -> OpportunisticEncryptionResourceWithStreamingResponse:
+        return OpportunisticEncryptionResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class OpportunisticEncryption(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOpportunisticEncryption]:
+    ) -> Optional[OpportunisticEncryption]:
         """
         Changes Opportunistic Encryption setting.
 
@@ -81,9 +81,7 @@ class OpportunisticEncryption(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingOpportunisticEncryption]], ResultWrapper[ZoneSettingOpportunisticEncryption]
-            ),
+            cast_to=cast(Type[Optional[OpportunisticEncryption]], ResultWrapper[OpportunisticEncryption]),
         )
 
     def get(
@@ -96,7 +94,7 @@ class OpportunisticEncryption(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOpportunisticEncryption]:
+    ) -> Optional[OpportunisticEncryption]:
         """
         Gets Opportunistic Encryption setting.
 
@@ -122,20 +120,18 @@ class OpportunisticEncryption(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingOpportunisticEncryption]], ResultWrapper[ZoneSettingOpportunisticEncryption]
-            ),
+            cast_to=cast(Type[Optional[OpportunisticEncryption]], ResultWrapper[OpportunisticEncryption]),
         )
 
 
-class AsyncOpportunisticEncryption(AsyncAPIResource):
+class AsyncOpportunisticEncryptionResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOpportunisticEncryptionWithRawResponse:
-        return AsyncOpportunisticEncryptionWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOpportunisticEncryptionResourceWithRawResponse:
+        return AsyncOpportunisticEncryptionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOpportunisticEncryptionWithStreamingResponse:
-        return AsyncOpportunisticEncryptionWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOpportunisticEncryptionResourceWithStreamingResponse:
+        return AsyncOpportunisticEncryptionResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -148,7 +144,7 @@ class AsyncOpportunisticEncryption(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOpportunisticEncryption]:
+    ) -> Optional[OpportunisticEncryption]:
         """
         Changes Opportunistic Encryption setting.
 
@@ -180,9 +176,7 @@ class AsyncOpportunisticEncryption(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingOpportunisticEncryption]], ResultWrapper[ZoneSettingOpportunisticEncryption]
-            ),
+            cast_to=cast(Type[Optional[OpportunisticEncryption]], ResultWrapper[OpportunisticEncryption]),
         )
 
     async def get(
@@ -195,7 +189,7 @@ class AsyncOpportunisticEncryption(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOpportunisticEncryption]:
+    ) -> Optional[OpportunisticEncryption]:
         """
         Gets Opportunistic Encryption setting.
 
@@ -221,14 +215,12 @@ class AsyncOpportunisticEncryption(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingOpportunisticEncryption]], ResultWrapper[ZoneSettingOpportunisticEncryption]
-            ),
+            cast_to=cast(Type[Optional[OpportunisticEncryption]], ResultWrapper[OpportunisticEncryption]),
         )
 
 
-class OpportunisticEncryptionWithRawResponse:
-    def __init__(self, opportunistic_encryption: OpportunisticEncryption) -> None:
+class OpportunisticEncryptionResourceWithRawResponse:
+    def __init__(self, opportunistic_encryption: OpportunisticEncryptionResource) -> None:
         self._opportunistic_encryption = opportunistic_encryption
 
         self.edit = to_raw_response_wrapper(
@@ -239,8 +231,8 @@ class OpportunisticEncryptionWithRawResponse:
         )
 
 
-class AsyncOpportunisticEncryptionWithRawResponse:
-    def __init__(self, opportunistic_encryption: AsyncOpportunisticEncryption) -> None:
+class AsyncOpportunisticEncryptionResourceWithRawResponse:
+    def __init__(self, opportunistic_encryption: AsyncOpportunisticEncryptionResource) -> None:
         self._opportunistic_encryption = opportunistic_encryption
 
         self.edit = async_to_raw_response_wrapper(
@@ -251,8 +243,8 @@ class AsyncOpportunisticEncryptionWithRawResponse:
         )
 
 
-class OpportunisticEncryptionWithStreamingResponse:
-    def __init__(self, opportunistic_encryption: OpportunisticEncryption) -> None:
+class OpportunisticEncryptionResourceWithStreamingResponse:
+    def __init__(self, opportunistic_encryption: OpportunisticEncryptionResource) -> None:
         self._opportunistic_encryption = opportunistic_encryption
 
         self.edit = to_streamed_response_wrapper(
@@ -263,8 +255,8 @@ class OpportunisticEncryptionWithStreamingResponse:
         )
 
 
-class AsyncOpportunisticEncryptionWithStreamingResponse:
-    def __init__(self, opportunistic_encryption: AsyncOpportunisticEncryption) -> None:
+class AsyncOpportunisticEncryptionResourceWithStreamingResponse:
+    def __init__(self, opportunistic_encryption: AsyncOpportunisticEncryptionResource) -> None:
         self._opportunistic_encryption = opportunistic_encryption
 
         self.edit = async_to_streamed_response_wrapper(

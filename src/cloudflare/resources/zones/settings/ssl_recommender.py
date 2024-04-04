@@ -23,36 +23,32 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    ZoneSettingSSLRecommender,
-    ZoneSettingSSLRecommenderParam,
-    ssl_recommender_edit_params,
-)
+from ....types.zones.settings import SSLRecommender, SSLRecommenderParam, ssl_recommender_edit_params
 
-__all__ = ["SSLRecommender", "AsyncSSLRecommender"]
+__all__ = ["SSLRecommenderResource", "AsyncSSLRecommenderResource"]
 
 
-class SSLRecommender(SyncAPIResource):
+class SSLRecommenderResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SSLRecommenderWithRawResponse:
-        return SSLRecommenderWithRawResponse(self)
+    def with_raw_response(self) -> SSLRecommenderResourceWithRawResponse:
+        return SSLRecommenderResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SSLRecommenderWithStreamingResponse:
-        return SSLRecommenderWithStreamingResponse(self)
+    def with_streaming_response(self) -> SSLRecommenderResourceWithStreamingResponse:
+        return SSLRecommenderResourceWithStreamingResponse(self)
 
     def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingSSLRecommenderParam,
+        value: SSLRecommenderParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSSLRecommender]:
+    ) -> Optional[SSLRecommender]:
         """
         Enrollment in the SSL/TLS Recommender service which tries to detect and
         recommend (by sending periodic emails) the most secure SSL/TLS setting your
@@ -85,7 +81,7 @@ class SSLRecommender(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingSSLRecommender]], ResultWrapper[ZoneSettingSSLRecommender]),
+            cast_to=cast(Type[Optional[SSLRecommender]], ResultWrapper[SSLRecommender]),
         )
 
     def get(
@@ -98,7 +94,7 @@ class SSLRecommender(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSSLRecommender]:
+    ) -> Optional[SSLRecommender]:
         """
         Enrollment in the SSL/TLS Recommender service which tries to detect and
         recommend (by sending periodic emails) the most secure SSL/TLS setting your
@@ -126,31 +122,31 @@ class SSLRecommender(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingSSLRecommender]], ResultWrapper[ZoneSettingSSLRecommender]),
+            cast_to=cast(Type[Optional[SSLRecommender]], ResultWrapper[SSLRecommender]),
         )
 
 
-class AsyncSSLRecommender(AsyncAPIResource):
+class AsyncSSLRecommenderResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSSLRecommenderWithRawResponse:
-        return AsyncSSLRecommenderWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSSLRecommenderResourceWithRawResponse:
+        return AsyncSSLRecommenderResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSSLRecommenderWithStreamingResponse:
-        return AsyncSSLRecommenderWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSSLRecommenderResourceWithStreamingResponse:
+        return AsyncSSLRecommenderResourceWithStreamingResponse(self)
 
     async def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingSSLRecommenderParam,
+        value: SSLRecommenderParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSSLRecommender]:
+    ) -> Optional[SSLRecommender]:
         """
         Enrollment in the SSL/TLS Recommender service which tries to detect and
         recommend (by sending periodic emails) the most secure SSL/TLS setting your
@@ -183,7 +179,7 @@ class AsyncSSLRecommender(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingSSLRecommender]], ResultWrapper[ZoneSettingSSLRecommender]),
+            cast_to=cast(Type[Optional[SSLRecommender]], ResultWrapper[SSLRecommender]),
         )
 
     async def get(
@@ -196,7 +192,7 @@ class AsyncSSLRecommender(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSSLRecommender]:
+    ) -> Optional[SSLRecommender]:
         """
         Enrollment in the SSL/TLS Recommender service which tries to detect and
         recommend (by sending periodic emails) the most secure SSL/TLS setting your
@@ -224,12 +220,12 @@ class AsyncSSLRecommender(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingSSLRecommender]], ResultWrapper[ZoneSettingSSLRecommender]),
+            cast_to=cast(Type[Optional[SSLRecommender]], ResultWrapper[SSLRecommender]),
         )
 
 
-class SSLRecommenderWithRawResponse:
-    def __init__(self, ssl_recommender: SSLRecommender) -> None:
+class SSLRecommenderResourceWithRawResponse:
+    def __init__(self, ssl_recommender: SSLRecommenderResource) -> None:
         self._ssl_recommender = ssl_recommender
 
         self.edit = to_raw_response_wrapper(
@@ -240,8 +236,8 @@ class SSLRecommenderWithRawResponse:
         )
 
 
-class AsyncSSLRecommenderWithRawResponse:
-    def __init__(self, ssl_recommender: AsyncSSLRecommender) -> None:
+class AsyncSSLRecommenderResourceWithRawResponse:
+    def __init__(self, ssl_recommender: AsyncSSLRecommenderResource) -> None:
         self._ssl_recommender = ssl_recommender
 
         self.edit = async_to_raw_response_wrapper(
@@ -252,8 +248,8 @@ class AsyncSSLRecommenderWithRawResponse:
         )
 
 
-class SSLRecommenderWithStreamingResponse:
-    def __init__(self, ssl_recommender: SSLRecommender) -> None:
+class SSLRecommenderResourceWithStreamingResponse:
+    def __init__(self, ssl_recommender: SSLRecommenderResource) -> None:
         self._ssl_recommender = ssl_recommender
 
         self.edit = to_streamed_response_wrapper(
@@ -264,8 +260,8 @@ class SSLRecommenderWithStreamingResponse:
         )
 
 
-class AsyncSSLRecommenderWithStreamingResponse:
-    def __init__(self, ssl_recommender: AsyncSSLRecommender) -> None:
+class AsyncSSLRecommenderResourceWithStreamingResponse:
+    def __init__(self, ssl_recommender: AsyncSSLRecommenderResource) -> None:
         self._ssl_recommender = ssl_recommender
 
         self.edit = async_to_streamed_response_wrapper(

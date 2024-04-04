@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingAlwaysOnline, always_online_edit_params
+from ....types.zones.settings import AlwaysOnline, always_online_edit_params
 
-__all__ = ["AlwaysOnline", "AsyncAlwaysOnline"]
+__all__ = ["AlwaysOnlineResource", "AsyncAlwaysOnlineResource"]
 
 
-class AlwaysOnline(SyncAPIResource):
+class AlwaysOnlineResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AlwaysOnlineWithRawResponse:
-        return AlwaysOnlineWithRawResponse(self)
+    def with_raw_response(self) -> AlwaysOnlineResourceWithRawResponse:
+        return AlwaysOnlineResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AlwaysOnlineWithStreamingResponse:
-        return AlwaysOnlineWithStreamingResponse(self)
+    def with_streaming_response(self) -> AlwaysOnlineResourceWithStreamingResponse:
+        return AlwaysOnlineResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class AlwaysOnline(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAlwaysOnline]:
+    ) -> Optional[AlwaysOnline]:
         """
         When enabled, Cloudflare serves limited copies of web pages available from the
         [Internet Archive's Wayback Machine](https://archive.org/web/) if your server is
@@ -82,7 +82,7 @@ class AlwaysOnline(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingAlwaysOnline]], ResultWrapper[ZoneSettingAlwaysOnline]),
+            cast_to=cast(Type[Optional[AlwaysOnline]], ResultWrapper[AlwaysOnline]),
         )
 
     def get(
@@ -95,7 +95,7 @@ class AlwaysOnline(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAlwaysOnline]:
+    ) -> Optional[AlwaysOnline]:
         """
         When enabled, Cloudflare serves limited copies of web pages available from the
         [Internet Archive's Wayback Machine](https://archive.org/web/) if your server is
@@ -125,18 +125,18 @@ class AlwaysOnline(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingAlwaysOnline]], ResultWrapper[ZoneSettingAlwaysOnline]),
+            cast_to=cast(Type[Optional[AlwaysOnline]], ResultWrapper[AlwaysOnline]),
         )
 
 
-class AsyncAlwaysOnline(AsyncAPIResource):
+class AsyncAlwaysOnlineResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAlwaysOnlineWithRawResponse:
-        return AsyncAlwaysOnlineWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAlwaysOnlineResourceWithRawResponse:
+        return AsyncAlwaysOnlineResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAlwaysOnlineWithStreamingResponse:
-        return AsyncAlwaysOnlineWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAlwaysOnlineResourceWithStreamingResponse:
+        return AsyncAlwaysOnlineResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -149,7 +149,7 @@ class AsyncAlwaysOnline(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAlwaysOnline]:
+    ) -> Optional[AlwaysOnline]:
         """
         When enabled, Cloudflare serves limited copies of web pages available from the
         [Internet Archive's Wayback Machine](https://archive.org/web/) if your server is
@@ -182,7 +182,7 @@ class AsyncAlwaysOnline(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingAlwaysOnline]], ResultWrapper[ZoneSettingAlwaysOnline]),
+            cast_to=cast(Type[Optional[AlwaysOnline]], ResultWrapper[AlwaysOnline]),
         )
 
     async def get(
@@ -195,7 +195,7 @@ class AsyncAlwaysOnline(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAlwaysOnline]:
+    ) -> Optional[AlwaysOnline]:
         """
         When enabled, Cloudflare serves limited copies of web pages available from the
         [Internet Archive's Wayback Machine](https://archive.org/web/) if your server is
@@ -225,12 +225,12 @@ class AsyncAlwaysOnline(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingAlwaysOnline]], ResultWrapper[ZoneSettingAlwaysOnline]),
+            cast_to=cast(Type[Optional[AlwaysOnline]], ResultWrapper[AlwaysOnline]),
         )
 
 
-class AlwaysOnlineWithRawResponse:
-    def __init__(self, always_online: AlwaysOnline) -> None:
+class AlwaysOnlineResourceWithRawResponse:
+    def __init__(self, always_online: AlwaysOnlineResource) -> None:
         self._always_online = always_online
 
         self.edit = to_raw_response_wrapper(
@@ -241,8 +241,8 @@ class AlwaysOnlineWithRawResponse:
         )
 
 
-class AsyncAlwaysOnlineWithRawResponse:
-    def __init__(self, always_online: AsyncAlwaysOnline) -> None:
+class AsyncAlwaysOnlineResourceWithRawResponse:
+    def __init__(self, always_online: AsyncAlwaysOnlineResource) -> None:
         self._always_online = always_online
 
         self.edit = async_to_raw_response_wrapper(
@@ -253,8 +253,8 @@ class AsyncAlwaysOnlineWithRawResponse:
         )
 
 
-class AlwaysOnlineWithStreamingResponse:
-    def __init__(self, always_online: AlwaysOnline) -> None:
+class AlwaysOnlineResourceWithStreamingResponse:
+    def __init__(self, always_online: AlwaysOnlineResource) -> None:
         self._always_online = always_online
 
         self.edit = to_streamed_response_wrapper(
@@ -265,8 +265,8 @@ class AlwaysOnlineWithStreamingResponse:
         )
 
 
-class AsyncAlwaysOnlineWithStreamingResponse:
-    def __init__(self, always_online: AsyncAlwaysOnline) -> None:
+class AsyncAlwaysOnlineResourceWithStreamingResponse:
+    def __init__(self, always_online: AsyncAlwaysOnlineResource) -> None:
         self._always_online = always_online
 
         self.edit = async_to_streamed_response_wrapper(

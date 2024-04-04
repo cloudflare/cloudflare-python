@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingOpportunisticOnion, opportunistic_onion_edit_params
+from ....types.zones.settings import OpportunisticOnion, opportunistic_onion_edit_params
 
-__all__ = ["OpportunisticOnion", "AsyncOpportunisticOnion"]
+__all__ = ["OpportunisticOnionResource", "AsyncOpportunisticOnionResource"]
 
 
-class OpportunisticOnion(SyncAPIResource):
+class OpportunisticOnionResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OpportunisticOnionWithRawResponse:
-        return OpportunisticOnionWithRawResponse(self)
+    def with_raw_response(self) -> OpportunisticOnionResourceWithRawResponse:
+        return OpportunisticOnionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OpportunisticOnionWithStreamingResponse:
-        return OpportunisticOnionWithStreamingResponse(self)
+    def with_streaming_response(self) -> OpportunisticOnionResourceWithStreamingResponse:
+        return OpportunisticOnionResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class OpportunisticOnion(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOpportunisticOnion]:
+    ) -> Optional[OpportunisticOnion]:
         """
         Add an Alt-Svc header to all legitimate requests from Tor, allowing the
         connection to use our onion services instead of exit nodes.
@@ -80,7 +80,7 @@ class OpportunisticOnion(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingOpportunisticOnion]], ResultWrapper[ZoneSettingOpportunisticOnion]),
+            cast_to=cast(Type[Optional[OpportunisticOnion]], ResultWrapper[OpportunisticOnion]),
         )
 
     def get(
@@ -93,7 +93,7 @@ class OpportunisticOnion(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOpportunisticOnion]:
+    ) -> Optional[OpportunisticOnion]:
         """
         Add an Alt-Svc header to all legitimate requests from Tor, allowing the
         connection to use our onion services instead of exit nodes.
@@ -120,18 +120,18 @@ class OpportunisticOnion(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingOpportunisticOnion]], ResultWrapper[ZoneSettingOpportunisticOnion]),
+            cast_to=cast(Type[Optional[OpportunisticOnion]], ResultWrapper[OpportunisticOnion]),
         )
 
 
-class AsyncOpportunisticOnion(AsyncAPIResource):
+class AsyncOpportunisticOnionResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOpportunisticOnionWithRawResponse:
-        return AsyncOpportunisticOnionWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOpportunisticOnionResourceWithRawResponse:
+        return AsyncOpportunisticOnionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOpportunisticOnionWithStreamingResponse:
-        return AsyncOpportunisticOnionWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOpportunisticOnionResourceWithStreamingResponse:
+        return AsyncOpportunisticOnionResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -144,7 +144,7 @@ class AsyncOpportunisticOnion(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOpportunisticOnion]:
+    ) -> Optional[OpportunisticOnion]:
         """
         Add an Alt-Svc header to all legitimate requests from Tor, allowing the
         connection to use our onion services instead of exit nodes.
@@ -177,7 +177,7 @@ class AsyncOpportunisticOnion(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingOpportunisticOnion]], ResultWrapper[ZoneSettingOpportunisticOnion]),
+            cast_to=cast(Type[Optional[OpportunisticOnion]], ResultWrapper[OpportunisticOnion]),
         )
 
     async def get(
@@ -190,7 +190,7 @@ class AsyncOpportunisticOnion(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOpportunisticOnion]:
+    ) -> Optional[OpportunisticOnion]:
         """
         Add an Alt-Svc header to all legitimate requests from Tor, allowing the
         connection to use our onion services instead of exit nodes.
@@ -217,12 +217,12 @@ class AsyncOpportunisticOnion(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingOpportunisticOnion]], ResultWrapper[ZoneSettingOpportunisticOnion]),
+            cast_to=cast(Type[Optional[OpportunisticOnion]], ResultWrapper[OpportunisticOnion]),
         )
 
 
-class OpportunisticOnionWithRawResponse:
-    def __init__(self, opportunistic_onion: OpportunisticOnion) -> None:
+class OpportunisticOnionResourceWithRawResponse:
+    def __init__(self, opportunistic_onion: OpportunisticOnionResource) -> None:
         self._opportunistic_onion = opportunistic_onion
 
         self.edit = to_raw_response_wrapper(
@@ -233,8 +233,8 @@ class OpportunisticOnionWithRawResponse:
         )
 
 
-class AsyncOpportunisticOnionWithRawResponse:
-    def __init__(self, opportunistic_onion: AsyncOpportunisticOnion) -> None:
+class AsyncOpportunisticOnionResourceWithRawResponse:
+    def __init__(self, opportunistic_onion: AsyncOpportunisticOnionResource) -> None:
         self._opportunistic_onion = opportunistic_onion
 
         self.edit = async_to_raw_response_wrapper(
@@ -245,8 +245,8 @@ class AsyncOpportunisticOnionWithRawResponse:
         )
 
 
-class OpportunisticOnionWithStreamingResponse:
-    def __init__(self, opportunistic_onion: OpportunisticOnion) -> None:
+class OpportunisticOnionResourceWithStreamingResponse:
+    def __init__(self, opportunistic_onion: OpportunisticOnionResource) -> None:
         self._opportunistic_onion = opportunistic_onion
 
         self.edit = to_streamed_response_wrapper(
@@ -257,8 +257,8 @@ class OpportunisticOnionWithStreamingResponse:
         )
 
 
-class AsyncOpportunisticOnionWithStreamingResponse:
-    def __init__(self, opportunistic_onion: AsyncOpportunisticOnion) -> None:
+class AsyncOpportunisticOnionResourceWithStreamingResponse:
+    def __init__(self, opportunistic_onion: AsyncOpportunisticOnionResource) -> None:
         self._opportunistic_onion = opportunistic_onion
 
         self.edit = async_to_streamed_response_wrapper(

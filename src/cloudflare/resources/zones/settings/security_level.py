@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingSecurityLevel, security_level_edit_params
+from ....types.zones.settings import SecurityLevel, security_level_edit_params
 
-__all__ = ["SecurityLevel", "AsyncSecurityLevel"]
+__all__ = ["SecurityLevelResource", "AsyncSecurityLevelResource"]
 
 
-class SecurityLevel(SyncAPIResource):
+class SecurityLevelResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SecurityLevelWithRawResponse:
-        return SecurityLevelWithRawResponse(self)
+    def with_raw_response(self) -> SecurityLevelResourceWithRawResponse:
+        return SecurityLevelResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SecurityLevelWithStreamingResponse:
-        return SecurityLevelWithStreamingResponse(self)
+    def with_streaming_response(self) -> SecurityLevelResourceWithStreamingResponse:
+        return SecurityLevelResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class SecurityLevel(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSecurityLevel]:
+    ) -> Optional[SecurityLevel]:
         """
         Choose the appropriate security profile for your website, which will
         automatically adjust each of the security settings. If you choose to customize
@@ -81,7 +81,7 @@ class SecurityLevel(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingSecurityLevel]], ResultWrapper[ZoneSettingSecurityLevel]),
+            cast_to=cast(Type[Optional[SecurityLevel]], ResultWrapper[SecurityLevel]),
         )
 
     def get(
@@ -94,7 +94,7 @@ class SecurityLevel(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSecurityLevel]:
+    ) -> Optional[SecurityLevel]:
         """
         Choose the appropriate security profile for your website, which will
         automatically adjust each of the security settings. If you choose to customize
@@ -123,18 +123,18 @@ class SecurityLevel(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingSecurityLevel]], ResultWrapper[ZoneSettingSecurityLevel]),
+            cast_to=cast(Type[Optional[SecurityLevel]], ResultWrapper[SecurityLevel]),
         )
 
 
-class AsyncSecurityLevel(AsyncAPIResource):
+class AsyncSecurityLevelResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSecurityLevelWithRawResponse:
-        return AsyncSecurityLevelWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSecurityLevelResourceWithRawResponse:
+        return AsyncSecurityLevelResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSecurityLevelWithStreamingResponse:
-        return AsyncSecurityLevelWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSecurityLevelResourceWithStreamingResponse:
+        return AsyncSecurityLevelResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -147,7 +147,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSecurityLevel]:
+    ) -> Optional[SecurityLevel]:
         """
         Choose the appropriate security profile for your website, which will
         automatically adjust each of the security settings. If you choose to customize
@@ -179,7 +179,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingSecurityLevel]], ResultWrapper[ZoneSettingSecurityLevel]),
+            cast_to=cast(Type[Optional[SecurityLevel]], ResultWrapper[SecurityLevel]),
         )
 
     async def get(
@@ -192,7 +192,7 @@ class AsyncSecurityLevel(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSecurityLevel]:
+    ) -> Optional[SecurityLevel]:
         """
         Choose the appropriate security profile for your website, which will
         automatically adjust each of the security settings. If you choose to customize
@@ -221,12 +221,12 @@ class AsyncSecurityLevel(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingSecurityLevel]], ResultWrapper[ZoneSettingSecurityLevel]),
+            cast_to=cast(Type[Optional[SecurityLevel]], ResultWrapper[SecurityLevel]),
         )
 
 
-class SecurityLevelWithRawResponse:
-    def __init__(self, security_level: SecurityLevel) -> None:
+class SecurityLevelResourceWithRawResponse:
+    def __init__(self, security_level: SecurityLevelResource) -> None:
         self._security_level = security_level
 
         self.edit = to_raw_response_wrapper(
@@ -237,8 +237,8 @@ class SecurityLevelWithRawResponse:
         )
 
 
-class AsyncSecurityLevelWithRawResponse:
-    def __init__(self, security_level: AsyncSecurityLevel) -> None:
+class AsyncSecurityLevelResourceWithRawResponse:
+    def __init__(self, security_level: AsyncSecurityLevelResource) -> None:
         self._security_level = security_level
 
         self.edit = async_to_raw_response_wrapper(
@@ -249,8 +249,8 @@ class AsyncSecurityLevelWithRawResponse:
         )
 
 
-class SecurityLevelWithStreamingResponse:
-    def __init__(self, security_level: SecurityLevel) -> None:
+class SecurityLevelResourceWithStreamingResponse:
+    def __init__(self, security_level: SecurityLevelResource) -> None:
         self._security_level = security_level
 
         self.edit = to_streamed_response_wrapper(
@@ -261,8 +261,8 @@ class SecurityLevelWithStreamingResponse:
         )
 
 
-class AsyncSecurityLevelWithStreamingResponse:
-    def __init__(self, security_level: AsyncSecurityLevel) -> None:
+class AsyncSecurityLevelResourceWithStreamingResponse:
+    def __init__(self, security_level: AsyncSecurityLevelResource) -> None:
         self._security_level = security_level
 
         self.edit = async_to_streamed_response_wrapper(
