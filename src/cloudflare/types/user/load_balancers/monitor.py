@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["LoadBalancingMonitor"]
+__all__ = ["Monitor"]
 
 
-class LoadBalancingMonitor(BaseModel):
+class Monitor(BaseModel):
     id: Optional[str] = None
 
     allow_insecure: Optional[bool] = None

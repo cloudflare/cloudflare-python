@@ -6,7 +6,6 @@ from .ips import IPs as IPs
 from .zone import Zone as Zone
 from .dnssec import DNSSEC as DNSSEC
 from .shared import (
-    Logging as Logging,
     ErrorData as ErrorData,
     ResponseInfo as ResponseInfo,
     UnnamedSchemaRef2 as UnnamedSchemaRef2,
@@ -122,13 +121,13 @@ from .shared import (
     UnnamedSchemaRef161 as UnnamedSchemaRef161,
     UnnamedSchemaRef162 as UnnamedSchemaRef162,
     UnnamedSchemaRef163 as UnnamedSchemaRef163,
-    UnnamedSchemaRef167 as UnnamedSchemaRef167,
     UnnamedSchemaRef169 as UnnamedSchemaRef169,
     UnnamedSchemaRef170 as UnnamedSchemaRef170,
     UnnamedSchemaRef171 as UnnamedSchemaRef171,
     UnnamedSchemaRef173 as UnnamedSchemaRef173,
 )
 from .account import Account as Account
+from .logging import Logging as Logging
 from .snippet import Snippet as Snippet
 from .calls_app import CallsApp as CallsApp
 from .membership import Membership as Membership
@@ -136,6 +135,7 @@ from .healthcheck import Healthcheck as Healthcheck
 from .jdcloud_ips import JDCloudIPs as JDCloudIPs
 from .waiting_room import WaitingRoom as WaitingRoom
 from .load_balancer import LoadBalancer as LoadBalancer
+from .logging_param import LoggingParam as LoggingParam
 from .stream_videos import StreamVideos as StreamVideos
 from .ip_list_params import IPListParams as IPListParams
 from .zones_pagerule import ZonesPagerule as ZonesPagerule
@@ -190,6 +190,7 @@ from .calls_app_with_secret import CallsAppWithSecret as CallsAppWithSecret
 from .origin_ca_certificate import OriginCACertificate as OriginCACertificate
 from .pagerule_get_response import PageruleGetResponse as PageruleGetResponse
 from .queue_create_response import QueueCreateResponse as QueueCreateResponse
+from .queue_delete_response import QueueDeleteResponse as QueueDeleteResponse
 from .queue_update_response import QueueUpdateResponse as QueueUpdateResponse
 from .ruleset_create_params import RulesetCreateParams as RulesetCreateParams
 from .ruleset_list_response import RulesetListResponse as RulesetListResponse

@@ -11,4 +11,5 @@ from .consumer_create_params import ConsumerCreateParams as ConsumerCreateParams
 from .consumer_delete_params import ConsumerDeleteParams as ConsumerDeleteParams
 from .consumer_update_params import ConsumerUpdateParams as ConsumerUpdateParams
 from .consumer_create_response import ConsumerCreateResponse as ConsumerCreateResponse
+from .consumer_delete_response import ConsumerDeleteResponse as ConsumerDeleteResponse
 from .consumer_update_response import ConsumerUpdateResponse as ConsumerUpdateResponse

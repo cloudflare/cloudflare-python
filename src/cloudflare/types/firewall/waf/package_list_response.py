@@ -3,7 +3,7 @@
 from typing import List, Union, Optional
 from typing_extensions import Literal
 
-from ...shared import ResponseInfo, UnnamedSchemaRef167
+from ...shared import ResponseInfo
 from ...._models import BaseModel
 
 __all__ = [
@@ -36,7 +36,7 @@ class LegacyJhsAPIResponseCollection(BaseModel):
 
     messages: List[ResponseInfo]
 
-    result: Optional[UnnamedSchemaRef167] = None
+    result: Union[List[object], str, object, None] = None
 
     success: Literal[True]
     """Whether the API call was successful"""

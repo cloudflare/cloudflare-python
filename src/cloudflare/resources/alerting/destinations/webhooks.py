@@ -25,10 +25,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef167
 from ....types.alerting.destinations import (
     AlertingWebhooks,
     WebhookCreateResponse,
+    WebhookDeleteResponse,
     WebhookUpdateResponse,
     webhook_create_params,
     webhook_update_params,
@@ -216,7 +216,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef167]:
+    ) -> Optional[WebhookDeleteResponse]:
         """
         Delete a configured webhook destination.
 
@@ -238,7 +238,7 @@ class Webhooks(SyncAPIResource):
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef167],
+            Optional[WebhookDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
                 options=make_request_options(
@@ -249,7 +249,7 @@ class Webhooks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef167]
+                    Any, ResultWrapper[WebhookDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -478,7 +478,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef167]:
+    ) -> Optional[WebhookDeleteResponse]:
         """
         Delete a configured webhook destination.
 
@@ -500,7 +500,7 @@ class AsyncWebhooks(AsyncAPIResource):
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef167],
+            Optional[WebhookDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
                 options=make_request_options(
@@ -511,7 +511,7 @@ class AsyncWebhooks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef167]
+                    Any, ResultWrapper[WebhookDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

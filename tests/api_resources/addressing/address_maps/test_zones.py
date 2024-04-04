@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRef167
+from cloudflare.types.addressing.address_maps import (
+    ZoneDeleteResponse,
+    ZoneUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +29,7 @@ class TestZones:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +44,7 @@ class TestZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +59,7 @@ class TestZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+            assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -96,7 +99,7 @@ class TestZones:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+        assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +114,7 @@ class TestZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+        assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -126,7 +129,7 @@ class TestZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+            assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -170,7 +173,7 @@ class TestAsyncZones:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +188,7 @@ class TestAsyncZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -200,7 +203,7 @@ class TestAsyncZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = await response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+            assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +243,7 @@ class TestAsyncZones:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+        assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -255,7 +258,7 @@ class TestAsyncZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+        assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -270,7 +273,7 @@ class TestAsyncZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = await response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef167], zone, path=["response"])
+            assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
