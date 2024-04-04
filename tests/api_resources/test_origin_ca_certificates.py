@@ -11,11 +11,12 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
     OriginCACertificate,
-    OriginCACertificateGetResponse,
-    OriginCACertificateCreateResponse,
-    OriginCACertificateDeleteResponse,
 )
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.shared import (
+    UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
+    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +28,7 @@ class TestOriginCACertificates:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         origin_ca_certificate = client.origin_ca_certificates.create()
-        assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -38,7 +39,7 @@ class TestOriginCACertificates:
             request_type="origin-rsa",
             requested_validity=5475,
         )
-        assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -48,7 +49,7 @@ class TestOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = response.parse()
-        assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +59,9 @@ class TestOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = response.parse()
-            assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
+            assert_matches_type(
+                UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -105,7 +108,7 @@ class TestOriginCACertificates:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -118,7 +121,7 @@ class TestOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = response.parse()
-        assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -131,7 +134,9 @@ class TestOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = response.parse()
-            assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
+            assert_matches_type(
+                UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, origin_ca_certificate, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -150,7 +155,7 @@ class TestOriginCACertificates:
         origin_ca_certificate = client.origin_ca_certificates.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(OriginCACertificateGetResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -162,7 +167,7 @@ class TestOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = response.parse()
-        assert_matches_type(OriginCACertificateGetResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -174,7 +179,9 @@ class TestOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = response.parse()
-            assert_matches_type(OriginCACertificateGetResponse, origin_ca_certificate, path=["response"])
+            assert_matches_type(
+                UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -194,7 +201,7 @@ class TestAsyncOriginCACertificates:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         origin_ca_certificate = await async_client.origin_ca_certificates.create()
-        assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -205,7 +212,7 @@ class TestAsyncOriginCACertificates:
             request_type="origin-rsa",
             requested_validity=5475,
         )
-        assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -215,7 +222,7 @@ class TestAsyncOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = await response.parse()
-        assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -225,7 +232,9 @@ class TestAsyncOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = await response.parse()
-            assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
+            assert_matches_type(
+                UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -272,7 +281,7 @@ class TestAsyncOriginCACertificates:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -285,7 +294,7 @@ class TestAsyncOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = await response.parse()
-        assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -298,7 +307,9 @@ class TestAsyncOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = await response.parse()
-            assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
+            assert_matches_type(
+                UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, origin_ca_certificate, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -317,7 +328,7 @@ class TestAsyncOriginCACertificates:
         origin_ca_certificate = await async_client.origin_ca_certificates.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(OriginCACertificateGetResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -329,7 +340,7 @@ class TestAsyncOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = await response.parse()
-        assert_matches_type(OriginCACertificateGetResponse, origin_ca_certificate, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -341,7 +352,9 @@ class TestAsyncOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = await response.parse()
-            assert_matches_type(OriginCACertificateGetResponse, origin_ca_certificate, path=["response"])
+            assert_matches_type(
+                UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, origin_ca_certificate, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

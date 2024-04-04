@@ -3,7 +3,7 @@
 
 
 from ...._models import BaseModel
-from ...unnamed_schema_ref_53 import UnnamedSchemaRef53
+from ...unnamed_schema_ref_9002274ed7cb7f3dc567421e31529a3a import UnnamedSchemaRef9002274ed7cb7f3dc567421e31529a3a
 
 __all__ = ["TimeseriesGroupIPVersionResponse"]
 
@@ -11,4 +11,4 @@ __all__ = ["TimeseriesGroupIPVersionResponse"]
 class TimeseriesGroupIPVersionResponse(BaseModel):
     meta: object
 
-    serie_0: UnnamedSchemaRef53
+    serie_0: UnnamedSchemaRef9002274ed7cb7f3dc567421e31529a3a

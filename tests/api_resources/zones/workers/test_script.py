@@ -17,7 +17,7 @@ from cloudflare._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from cloudflare.types.zones.workers import ScriptUpdateResponse
+from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -32,7 +32,7 @@ class TestScript:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, script, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestScript:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = response.parse()
-        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, script, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +58,7 @@ class TestScript:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = response.parse()
-            assert_matches_type(ScriptUpdateResponse, script, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -188,7 +188,7 @@ class TestAsyncScript:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, script, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +201,7 @@ class TestAsyncScript:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = await response.parse()
-        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, script, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -214,7 +214,7 @@ class TestAsyncScript:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = await response.parse()
-            assert_matches_type(ScriptUpdateResponse, script, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

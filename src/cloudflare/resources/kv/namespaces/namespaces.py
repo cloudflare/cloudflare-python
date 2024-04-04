@@ -47,8 +47,6 @@ from ...._utils import (
 from ...._compat import cached_property
 from ....types.kv import (
     WorkersKVNamespace,
-    NamespaceDeleteResponse,
-    NamespaceUpdateResponse,
     namespace_list_params,
     namespace_create_params,
     namespace_delete_params,
@@ -67,6 +65,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 
 __all__ = ["Namespaces", "AsyncNamespaces"]
 
@@ -154,7 +153,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceUpdateResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Modifies a namespace's title.
 
@@ -178,7 +177,7 @@ class Namespaces(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return cast(
-            NamespaceUpdateResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._put(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
                 body=maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
@@ -190,7 +189,7 @@ class Namespaces(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[NamespaceUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -267,7 +266,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceDeleteResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Deletes the namespace corresponding to the given ID.
 
@@ -289,7 +288,7 @@ class Namespaces(SyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return cast(
-            NamespaceDeleteResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
                 body=maybe_transform(body, namespace_delete_params.NamespaceDeleteParams),
@@ -301,7 +300,7 @@ class Namespaces(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[NamespaceDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -390,7 +389,7 @@ class AsyncNamespaces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceUpdateResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Modifies a namespace's title.
 
@@ -414,7 +413,7 @@ class AsyncNamespaces(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return cast(
-            NamespaceUpdateResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._put(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
                 body=await async_maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
@@ -426,7 +425,7 @@ class AsyncNamespaces(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[NamespaceUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -503,7 +502,7 @@ class AsyncNamespaces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceDeleteResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Deletes the namespace corresponding to the given ID.
 
@@ -525,7 +524,7 @@ class AsyncNamespaces(AsyncAPIResource):
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return cast(
-            NamespaceDeleteResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
                 body=await async_maybe_transform(body, namespace_delete_params.NamespaceDeleteParams),
@@ -537,7 +536,7 @@ class AsyncNamespaces(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[NamespaceDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

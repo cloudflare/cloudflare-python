@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -19,7 +19,7 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.pages.projects.deployments.history import LogGetResponse
+from ......types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
 
 __all__ = ["Logs", "AsyncLogs"]
 
@@ -45,7 +45,7 @@ class Logs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LogGetResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Fetch deployment logs for a project.
 
@@ -71,7 +71,7 @@ class Logs(SyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return cast(
-            LogGetResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._get(
                 f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs",
                 options=make_request_options(
@@ -82,7 +82,7 @@ class Logs(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[LogGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -109,7 +109,7 @@ class AsyncLogs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LogGetResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Fetch deployment logs for a project.
 
@@ -135,7 +135,7 @@ class AsyncLogs(AsyncAPIResource):
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return cast(
-            LogGetResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._get(
                 f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs",
                 options=make_request_options(
@@ -146,7 +146,7 @@ class AsyncLogs(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[LogGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

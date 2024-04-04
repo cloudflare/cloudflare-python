@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Iterable, Optional, cast, overload
+from typing import Any, List, Union, Iterable, Optional, cast, overload
 
 import httpx
 
-from ...types import shared_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     required_args,
@@ -159,7 +158,7 @@ class AI(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: shared_params.UnnamedSchemaRef121,
+        text: Union[str, List[str]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -469,7 +468,7 @@ class AI(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: str | shared_params.UnnamedSchemaRef121 | NotGiven = NOT_GIVEN,
+        text: str | Union[str, List[str]] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
         guidance: float | NotGiven = NOT_GIVEN,
         image: Iterable[float] | NotGiven = NOT_GIVEN,
@@ -670,7 +669,7 @@ class AsyncAI(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: shared_params.UnnamedSchemaRef121,
+        text: Union[str, List[str]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -980,7 +979,7 @@ class AsyncAI(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: str | shared_params.UnnamedSchemaRef121 | NotGiven = NOT_GIVEN,
+        text: str | Union[str, List[str]] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
         guidance: float | NotGiven = NOT_GIVEN,
         image: Iterable[float] | NotGiven = NOT_GIVEN,

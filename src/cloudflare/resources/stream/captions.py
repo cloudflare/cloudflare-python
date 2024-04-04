@@ -23,13 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import (
-    CaptionGetResponse,
-    CaptionDeleteResponse,
-    CaptionUpdateResponse,
-    caption_delete_params,
-    caption_update_params,
-)
+from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
+from ...types.stream import CaptionGetResponse, CaptionDeleteResponse, caption_delete_params, caption_update_params
 
 __all__ = ["Captions", "AsyncCaptions"]
 
@@ -56,7 +51,7 @@ class Captions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CaptionUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Uploads the caption or subtitle file to the endpoint for a specific BCP47
         language. One caption or subtitle file per language is allowed.
@@ -85,7 +80,7 @@ class Captions(SyncAPIResource):
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return cast(
-            CaptionUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._put(
                 f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
                 body=maybe_transform({"file": file}, caption_update_params.CaptionUpdateParams),
@@ -97,7 +92,7 @@ class Captions(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CaptionUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -225,7 +220,7 @@ class AsyncCaptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CaptionUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Uploads the caption or subtitle file to the endpoint for a specific BCP47
         language. One caption or subtitle file per language is allowed.
@@ -254,7 +249,7 @@ class AsyncCaptions(AsyncAPIResource):
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return cast(
-            CaptionUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._put(
                 f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
                 body=await async_maybe_transform({"file": file}, caption_update_params.CaptionUpdateParams),
@@ -266,7 +261,7 @@ class AsyncCaptions(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CaptionUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

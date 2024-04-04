@@ -45,8 +45,8 @@ class Settings(SyncAPIResource):
         *,
         account_id: str,
         service_name: str,
-        errors: Iterable[shared_params.ResponseInfo],
-        messages: Iterable[shared_params.ResponseInfo],
+        errors: Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72],
+        messages: Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72],
         result: setting_edit_params.Result,
         success: Literal[True],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -168,8 +168,8 @@ class AsyncSettings(AsyncAPIResource):
         *,
         account_id: str,
         service_name: str,
-        errors: Iterable[shared_params.ResponseInfo],
-        messages: Iterable[shared_params.ResponseInfo],
+        errors: Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72],
+        messages: Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72],
         result: setting_edit_params.Result,
         success: Literal[True],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-from ...shared import UnnamedSchemaRef92
-
 __all__ = ["MinifyEditParams", "Value"]
 
 
@@ -18,7 +16,7 @@ class MinifyEditParams(TypedDict, total=False):
 
 
 class Value(TypedDict, total=False):
-    css: UnnamedSchemaRef92
+    css: Literal["on", "off"]
     """Automatically minify all CSS files for your website."""
 
     html: Literal["on", "off"]

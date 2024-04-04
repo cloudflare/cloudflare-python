@@ -13,6 +13,5 @@ from .ownership_create_params import OwnershipCreateParams as OwnershipCreatePar
 from .validate_origin_response import ValidateOriginResponse as ValidateOriginResponse
 from .ownership_create_response import OwnershipCreateResponse as OwnershipCreateResponse
 from .ownership_validate_params import OwnershipValidateParams as OwnershipValidateParams
-from .ownership_validate_response import OwnershipValidateResponse as OwnershipValidateResponse
 from .validate_destination_params import ValidateDestinationParams as ValidateDestinationParams
 from .validate_destination_response import ValidateDestinationResponse as ValidateDestinationResponse

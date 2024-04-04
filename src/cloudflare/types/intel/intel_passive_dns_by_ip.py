@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from ..shared import UnnamedSchemaRef35
 from ..._models import BaseModel
+from .unnamed_schema_ref_b5e16cee4f32382c294201aedb9fc050 import UnnamedSchemaRefB5e16cee4f32382c294201aedb9fc050
 
 __all__ = ["IntelPassiveDNSByIP"]
 
@@ -18,5 +18,5 @@ class IntelPassiveDNSByIP(BaseModel):
     per_page: Optional[float] = None
     """Number of results per page of results."""
 
-    reverse_records: Optional[List[UnnamedSchemaRef35]] = None
+    reverse_records: Optional[List[UnnamedSchemaRefB5e16cee4f32382c294201aedb9fc050]] = None
     """Reverse DNS look-ups observed during the time period."""

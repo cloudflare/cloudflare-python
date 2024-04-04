@@ -10,11 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.pages.projects import (
-    DomainGetResponse,
-    DomainEditResponse,
-    DomainCreateResponse,
-)
+from cloudflare.types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -30,7 +26,7 @@ class TestDomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={"name": "example.com"},
         )
-        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +40,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +54,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -210,7 +206,7 @@ class TestDomains:
             project_name="this-is-my-project-01",
             body={},
         )
-        assert_matches_type(Optional[DomainEditResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -225,7 +221,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(Optional[DomainEditResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -240,7 +236,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(Optional[DomainEditResponse], domain, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -279,7 +275,7 @@ class TestDomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
-        assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -293,7 +289,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -307,7 +303,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -347,7 +343,7 @@ class TestAsyncDomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={"name": "example.com"},
         )
-        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -361,7 +357,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -375,7 +371,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -527,7 +523,7 @@ class TestAsyncDomains:
             project_name="this-is-my-project-01",
             body={},
         )
-        assert_matches_type(Optional[DomainEditResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -542,7 +538,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(Optional[DomainEditResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -557,7 +553,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(Optional[DomainEditResponse], domain, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -596,7 +592,7 @@ class TestAsyncDomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
-        assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -610,7 +606,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -624,7 +620,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

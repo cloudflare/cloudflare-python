@@ -12,10 +12,10 @@ from tests.utils import assert_matches_type
 from cloudflare.types import (
     CustomNameserver,
     CustomNameserverGetResponse,
-    CustomNameserverDeleteResponse,
     CustomNameserverVerifyResponse,
     CustomNameserverAvailabiltyResponse,
 )
+from cloudflare.types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -87,7 +87,9 @@ class TestCustomNameservers:
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
             body={},
         )
-        assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], custom_nameserver, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -101,7 +103,9 @@ class TestCustomNameservers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_nameserver = response.parse()
-        assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], custom_nameserver, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -115,7 +119,9 @@ class TestCustomNameservers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_nameserver = response.parse()
-            assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
+            assert_matches_type(
+                Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], custom_nameserver, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -334,7 +340,9 @@ class TestAsyncCustomNameservers:
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
             body={},
         )
-        assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], custom_nameserver, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -348,7 +356,9 @@ class TestAsyncCustomNameservers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_nameserver = await response.parse()
-        assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
+        assert_matches_type(
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], custom_nameserver, path=["response"]
+        )
 
     @pytest.mark.skip()
     @parametrize
@@ -362,7 +372,9 @@ class TestAsyncCustomNameservers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_nameserver = await response.parse()
-            assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
+            assert_matches_type(
+                Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], custom_nameserver, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

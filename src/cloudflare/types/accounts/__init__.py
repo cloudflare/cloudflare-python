@@ -8,7 +8,6 @@ from .role_param import RoleParam as RoleParam
 from .member_with_code import MemberWithCode as MemberWithCode
 from .permission_grant import PermissionGrant as PermissionGrant
 from .member_permission import MemberPermission as MemberPermission
-from .role_get_response import RoleGetResponse as RoleGetResponse
 from .member_list_params import MemberListParams as MemberListParams
 from .role_list_response import RoleListResponse as RoleListResponse
 from .member_create_params import MemberCreateParams as MemberCreateParams

@@ -3,8 +3,8 @@
 from typing import List, Union
 from typing_extensions import Literal
 
-from ....shared import UnnamedSchemaRef120
 from ....._models import BaseModel
+from .unnamed_schema_ref_532d8b97684c9032dd36bae8acddebf5 import UnnamedSchemaRef532d8b97684c9032dd36bae8acddebf5
 
 __all__ = [
     "WAFManagedRulesRule",
@@ -27,7 +27,7 @@ class WAFManagedRulesAnomalyRule(BaseModel):
     description: str
     """The public description of the WAF rule."""
 
-    group: UnnamedSchemaRef120
+    group: UnnamedSchemaRef532d8b97684c9032dd36bae8acddebf5
     """The rule group to which the current WAF rule belongs."""
 
     mode: Literal["on", "off"]
@@ -56,7 +56,7 @@ class WAFManagedRulesTraditionalDenyRule(BaseModel):
     description: str
     """The public description of the WAF rule."""
 
-    group: UnnamedSchemaRef120
+    group: UnnamedSchemaRef532d8b97684c9032dd36bae8acddebf5
     """The rule group to which the current WAF rule belongs."""
 
     mode: Literal["default", "disable", "simulate", "block", "challenge"]
@@ -84,7 +84,7 @@ class WAFManagedRulesTraditionalAllowRule(BaseModel):
     description: str
     """The public description of the WAF rule."""
 
-    group: UnnamedSchemaRef120
+    group: UnnamedSchemaRef532d8b97684c9032dd36bae8acddebf5
     """The rule group to which the current WAF rule belongs."""
 
     mode: Literal["on", "off"]

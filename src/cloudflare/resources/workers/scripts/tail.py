@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef171
+from ....types.shared import UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846
 from ....types.workers.scripts import TailGetResponse, TailCreateResponse, tail_create_params, tail_delete_params
 
 __all__ = ["Tail", "AsyncTail"]
@@ -97,7 +97,7 @@ class Tail(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef171:
+    ) -> UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846:
         """
         Deletes a tail from a Worker.
 
@@ -123,7 +123,7 @@ class Tail(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            UnnamedSchemaRef171,
+            UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846,
             self._delete(
                 f"/accounts/{account_id}/workers/scripts/{script_name}/tails/{id}",
                 body=maybe_transform(body, tail_delete_params.TailDeleteParams),
@@ -135,7 +135,7 @@ class Tail(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef171]
+                    Any, ResultWrapper[UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -253,7 +253,7 @@ class AsyncTail(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef171:
+    ) -> UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846:
         """
         Deletes a tail from a Worker.
 
@@ -279,7 +279,7 @@ class AsyncTail(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            UnnamedSchemaRef171,
+            UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846,
             await self._delete(
                 f"/accounts/{account_id}/workers/scripts/{script_name}/tails/{id}",
                 body=await async_maybe_transform(body, tail_delete_params.TailDeleteParams),
@@ -291,7 +291,7 @@ class AsyncTail(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef171]
+                    Any, ResultWrapper[UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

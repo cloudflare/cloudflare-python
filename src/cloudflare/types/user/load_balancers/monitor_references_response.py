@@ -2,14 +2,14 @@
 
 from typing import List, Optional
 
-from ...shared import UnnamedSchemaRef146
+from ...shared import UnnamedSchemaRefD8600eb4758b3ae35607a0327bcd691b
 from ...._models import BaseModel
 
 __all__ = ["MonitorReferencesResponse", "MonitorReferencesResponseItem"]
 
 
 class MonitorReferencesResponseItem(BaseModel):
-    reference_type: Optional[UnnamedSchemaRef146] = None
+    reference_type: Optional[UnnamedSchemaRefD8600eb4758b3ae35607a0327bcd691b] = None
 
     resource_id: Optional[str] = None
 

@@ -3,7 +3,7 @@
 
 
 from ....._models import BaseModel
-from ....unnamed_schema_ref_153 import UnnamedSchemaRef153
+from ....unnamed_schema_ref_7826220e105d84352ba1108d9ed88e55 import UnnamedSchemaRef7826220e105d84352ba1108d9ed88e55
 
 __all__ = ["TimeseriesGroupIndustryResponse"]
 
@@ -11,4 +11,4 @@ __all__ = ["TimeseriesGroupIndustryResponse"]
 class TimeseriesGroupIndustryResponse(BaseModel):
     meta: object
 
-    serie_0: UnnamedSchemaRef153
+    serie_0: UnnamedSchemaRef7826220e105d84352ba1108d9ed88e55

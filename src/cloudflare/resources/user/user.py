@@ -14,7 +14,7 @@ from .tokens import (
     TokensWithStreamingResponse,
     AsyncTokensWithStreamingResponse,
 )
-from ...types import UserGetResponse, UserEditResponse, user_edit_params
+from ...types import user_edit_params
 from .billing import (
     Billing,
     AsyncBilling,
@@ -81,6 +81,7 @@ from .tokens.tokens import Tokens, AsyncTokens
 from ..._base_client import (
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from .load_balancers import (
     LoadBalancers,
     AsyncLoadBalancers,
@@ -151,7 +152,7 @@ class UserResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserEditResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Edit part of your user details.
 
@@ -175,7 +176,7 @@ class UserResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            UserEditResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._patch(
                 "/user",
                 body=maybe_transform(
@@ -196,7 +197,7 @@ class UserResource(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UserEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -210,10 +211,10 @@ class UserResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """User Details"""
         return cast(
-            UserGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._get(
                 "/user",
                 options=make_request_options(
@@ -224,7 +225,7 @@ class UserResource(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UserGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -285,7 +286,7 @@ class AsyncUserResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserEditResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Edit part of your user details.
 
@@ -309,7 +310,7 @@ class AsyncUserResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            UserEditResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._patch(
                 "/user",
                 body=await async_maybe_transform(
@@ -330,7 +331,7 @@ class AsyncUserResource(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UserEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -344,10 +345,10 @@ class AsyncUserResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """User Details"""
         return cast(
-            UserGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._get(
                 "/user",
                 options=make_request_options(
@@ -358,7 +359,7 @@ class AsyncUserResource(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UserGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

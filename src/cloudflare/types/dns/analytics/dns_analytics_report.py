@@ -3,8 +3,8 @@
 from typing import List, Optional
 from datetime import datetime
 
-from ...shared import UnnamedSchemaRef22
 from ...._models import BaseModel
+from ...unnamed_schema_ref_6595695ff25b0614667b25f66b7bbaba import UnnamedSchemaRef6595695ff25b0614667b25f66b7bbaba
 
 __all__ = ["DNSAnalyticsReport", "Query"]
 
@@ -36,7 +36,7 @@ class Query(BaseModel):
 
 
 class DNSAnalyticsReport(BaseModel):
-    data: List[UnnamedSchemaRef22]
+    data: List[UnnamedSchemaRef6595695ff25b0614667b25f66b7bbaba]
     """Array with one row per combination of dimension values."""
 
     data_lag: float

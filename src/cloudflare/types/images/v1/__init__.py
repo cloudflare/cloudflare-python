@@ -9,4 +9,3 @@ from .images_images_stats import ImagesImagesStats as ImagesImagesStats
 from .variant_edit_params import VariantEditParams as VariantEditParams
 from .variant_create_params import VariantCreateParams as VariantCreateParams
 from .variant_delete_params import VariantDeleteParams as VariantDeleteParams
-from .variant_delete_response import VariantDeleteResponse as VariantDeleteResponse

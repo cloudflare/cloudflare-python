@@ -9,9 +9,6 @@ import httpx
 
 from ..types import (
     OriginCACertificate,
-    OriginCACertificateGetResponse,
-    OriginCACertificateCreateResponse,
-    OriginCACertificateDeleteResponse,
     origin_ca_certificate_list_params,
     origin_ca_certificate_create_params,
     origin_ca_certificate_delete_params,
@@ -34,6 +31,10 @@ from ..pagination import SyncSinglePage, AsyncSinglePage
 from .._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ..types.shared import (
+    UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
+    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
 )
 
 __all__ = ["OriginCACertificates", "AsyncOriginCACertificates"]
@@ -61,7 +62,7 @@ class OriginCACertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginCACertificateCreateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """Create an Origin CA certificate.
 
         Use your Origin CA Key as your User Service Key
@@ -87,7 +88,7 @@ class OriginCACertificates(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            OriginCACertificateCreateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._post(
                 "/certificates",
                 body=maybe_transform(
@@ -107,7 +108,7 @@ class OriginCACertificates(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[OriginCACertificateCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -166,7 +167,7 @@ class OriginCACertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginCACertificateDeleteResponse:
+    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
         """Revoke an existing Origin CA certificate by its serial number.
 
         Use your Origin
@@ -196,7 +197,10 @@ class OriginCACertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OriginCACertificateDeleteResponse], ResultWrapper[OriginCACertificateDeleteResponse]),
+            cast_to=cast(
+                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+            ),
         )
 
     def get(
@@ -209,7 +213,7 @@ class OriginCACertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginCACertificateGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """Get an existing Origin CA certificate by its serial number.
 
         Use your Origin CA
@@ -230,7 +234,7 @@ class OriginCACertificates(SyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            OriginCACertificateGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._get(
                 f"/certificates/{certificate_id}",
                 options=make_request_options(
@@ -241,7 +245,7 @@ class OriginCACertificates(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[OriginCACertificateGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -269,7 +273,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginCACertificateCreateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """Create an Origin CA certificate.
 
         Use your Origin CA Key as your User Service Key
@@ -295,7 +299,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            OriginCACertificateCreateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._post(
                 "/certificates",
                 body=await async_maybe_transform(
@@ -315,7 +319,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[OriginCACertificateCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -374,7 +378,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginCACertificateDeleteResponse:
+    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
         """Revoke an existing Origin CA certificate by its serial number.
 
         Use your Origin
@@ -404,7 +408,10 @@ class AsyncOriginCACertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OriginCACertificateDeleteResponse], ResultWrapper[OriginCACertificateDeleteResponse]),
+            cast_to=cast(
+                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+            ),
         )
 
     async def get(
@@ -417,7 +424,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginCACertificateGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """Get an existing Origin CA certificate by its serial number.
 
         Use your Origin CA
@@ -438,7 +445,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            OriginCACertificateGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._get(
                 f"/certificates/{certificate_id}",
                 options=make_request_options(
@@ -449,7 +456,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[OriginCACertificateGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

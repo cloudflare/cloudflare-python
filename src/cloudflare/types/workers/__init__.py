@@ -19,8 +19,6 @@ from .filter_delete_params import FilterDeleteParams as FilterDeleteParams
 from .filter_update_params import FilterUpdateParams as FilterUpdateParams
 from .script_delete_params import ScriptDeleteParams as ScriptDeleteParams
 from .script_update_params import ScriptUpdateParams as ScriptUpdateParams
-from .route_create_response import RouteCreateResponse as RouteCreateResponse
-from .route_delete_response import RouteDeleteResponse as RouteDeleteResponse
 from .filter_create_response import FilterCreateResponse as FilterCreateResponse
 from .filter_delete_response import FilterDeleteResponse as FilterDeleteResponse
 from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse

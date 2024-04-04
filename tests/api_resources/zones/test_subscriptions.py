@@ -10,11 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zones import (
-    SubscriptionGetResponse,
-    SubscriptionListResponse,
-    SubscriptionCreateResponse,
-)
+from cloudflare.types.zones import SubscriptionListResponse
+from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +25,7 @@ class TestSubscriptions:
         subscription = client.zones.subscriptions.create(
             "506e3185e9c882d175a2d0cb0093d9f2",
         )
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -68,7 +65,7 @@ class TestSubscriptions:
             },
             zone={},
         )
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -80,7 +77,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -92,7 +89,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +149,7 @@ class TestSubscriptions:
         subscription = client.zones.subscriptions.get(
             "506e3185e9c882d175a2d0cb0093d9f2",
         )
-        assert_matches_type(SubscriptionGetResponse, subscription, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -164,7 +161,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(SubscriptionGetResponse, subscription, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +173,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(SubscriptionGetResponse, subscription, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,7 +195,7 @@ class TestAsyncSubscriptions:
         subscription = await async_client.zones.subscriptions.create(
             "506e3185e9c882d175a2d0cb0093d9f2",
         )
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -238,7 +235,7 @@ class TestAsyncSubscriptions:
             },
             zone={},
         )
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -250,7 +247,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -262,7 +259,7 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -322,7 +319,7 @@ class TestAsyncSubscriptions:
         subscription = await async_client.zones.subscriptions.get(
             "506e3185e9c882d175a2d0cb0093d9f2",
         )
-        assert_matches_type(SubscriptionGetResponse, subscription, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -334,7 +331,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(SubscriptionGetResponse, subscription, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -346,7 +343,7 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(SubscriptionGetResponse, subscription, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

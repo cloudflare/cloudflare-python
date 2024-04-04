@@ -4,7 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ...shared import ResponseInfo
+from ...shared import UnnamedSchemaRef3248f24329456e19dfa042fff9986f72
 from ...._models import BaseModel
 
 __all__ = ["IssueListResponse", "Result", "ResultIssue"]
@@ -56,9 +56,9 @@ class Result(BaseModel):
 
 
 class IssueListResponse(BaseModel):
-    errors: List[ResponseInfo]
+    errors: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
 
-    messages: List[ResponseInfo]
+    messages: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
 
     result: Result
 

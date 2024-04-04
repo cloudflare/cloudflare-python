@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.logs import RayIDGetResponse
+from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestRayID:
             "41ddf1740f67442d",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(RayIDGetResponse, rayid, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, rayid, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestRayID:
             fields="ClientIP,RayID,EdgeStartTimestamp",
             timestamps="unixnano",
         )
-        assert_matches_type(RayIDGetResponse, rayid, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, rayid, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -48,7 +48,7 @@ class TestRayID:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rayid = response.parse()
-        assert_matches_type(RayIDGetResponse, rayid, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, rayid, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -61,7 +61,7 @@ class TestRayID:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rayid = response.parse()
-            assert_matches_type(RayIDGetResponse, rayid, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, rayid, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,7 +91,7 @@ class TestAsyncRayID:
             "41ddf1740f67442d",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(RayIDGetResponse, rayid, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, rayid, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +102,7 @@ class TestAsyncRayID:
             fields="ClientIP,RayID,EdgeStartTimestamp",
             timestamps="unixnano",
         )
-        assert_matches_type(RayIDGetResponse, rayid, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, rayid, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -115,7 +115,7 @@ class TestAsyncRayID:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rayid = await response.parse()
-        assert_matches_type(RayIDGetResponse, rayid, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, rayid, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -128,7 +128,7 @@ class TestAsyncRayID:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rayid = await response.parse()
-            assert_matches_type(RayIDGetResponse, rayid, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, rayid, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

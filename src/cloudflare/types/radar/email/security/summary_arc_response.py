@@ -5,21 +5,21 @@ from typing import List, Optional
 from pydantic import Field as FieldInfo
 
 from ....._models import BaseModel
-from ...unnamed_schema_ref_149 import UnnamedSchemaRef149
-from ....unnamed_schema_ref_174 import UnnamedSchemaRef174
-from ....unnamed_schema_ref_175 import UnnamedSchemaRef175
+from ...unnamed_schema_ref_853c157ad369010995e35be614e0343f import UnnamedSchemaRef853c157ad369010995e35be614e0343f
+from ....unnamed_schema_ref_b5f3bd1840490bc487ffef84567807b1 import UnnamedSchemaRefB5f3bd1840490bc487ffef84567807b1
+from ....unnamed_schema_ref_baac9d7da12de53e99142f8ecd3982e5 import UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5
 
 __all__ = ["SummaryARCResponse", "Meta", "MetaConfidenceInfo"]
 
 
 class MetaConfidenceInfo(BaseModel):
-    annotations: Optional[List[UnnamedSchemaRef174]] = None
+    annotations: Optional[List[UnnamedSchemaRefB5f3bd1840490bc487ffef84567807b1]] = None
 
     level: Optional[int] = None
 
 
 class Meta(BaseModel):
-    date_range: List[UnnamedSchemaRef175] = FieldInfo(alias="dateRange")
+    date_range: List[UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5] = FieldInfo(alias="dateRange")
 
     last_updated: str = FieldInfo(alias="lastUpdated")
 
@@ -31,4 +31,4 @@ class Meta(BaseModel):
 class SummaryARCResponse(BaseModel):
     meta: Meta
 
-    summary_0: UnnamedSchemaRef149
+    summary_0: UnnamedSchemaRef853c157ad369010995e35be614e0343f

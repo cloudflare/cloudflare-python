@@ -23,13 +23,11 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import (
-    WebhookGetResponse,
-    WebhookDeleteResponse,
-    WebhookUpdateResponse,
-    webhook_delete_params,
-    webhook_update_params,
+from ...types.shared import (
+    UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
+    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
 )
+from ...types.stream import webhook_delete_params, webhook_update_params
 
 __all__ = ["Webhooks", "AsyncWebhooks"]
 
@@ -54,7 +52,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Creates a webhook notification.
 
@@ -74,7 +72,7 @@ class Webhooks(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._put(
                 f"/accounts/{account_id}/stream/webhook",
                 body=maybe_transform({"notification_url": notification_url}, webhook_update_params.WebhookUpdateParams),
@@ -86,7 +84,7 @@ class Webhooks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WebhookUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -102,7 +100,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookDeleteResponse:
+    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
         """
         Deletes a webhook.
 
@@ -120,7 +118,7 @@ class Webhooks(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookDeleteResponse,
+            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
             self._delete(
                 f"/accounts/{account_id}/stream/webhook",
                 body=maybe_transform(body, webhook_delete_params.WebhookDeleteParams),
@@ -132,7 +130,7 @@ class Webhooks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WebhookDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -147,7 +145,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Retrieves a list of webhooks.
 
@@ -165,7 +163,7 @@ class Webhooks(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._get(
                 f"/accounts/{account_id}/stream/webhook",
                 options=make_request_options(
@@ -176,7 +174,7 @@ class Webhooks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WebhookGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -202,7 +200,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Creates a webhook notification.
 
@@ -222,7 +220,7 @@ class AsyncWebhooks(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._put(
                 f"/accounts/{account_id}/stream/webhook",
                 body=await async_maybe_transform(
@@ -236,7 +234,7 @@ class AsyncWebhooks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WebhookUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -252,7 +250,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookDeleteResponse:
+    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
         """
         Deletes a webhook.
 
@@ -270,7 +268,7 @@ class AsyncWebhooks(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookDeleteResponse,
+            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
             await self._delete(
                 f"/accounts/{account_id}/stream/webhook",
                 body=await async_maybe_transform(body, webhook_delete_params.WebhookDeleteParams),
@@ -282,7 +280,7 @@ class AsyncWebhooks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WebhookDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -297,7 +295,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Retrieves a list of webhooks.
 
@@ -315,7 +313,7 @@ class AsyncWebhooks(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._get(
                 f"/accounts/{account_id}/stream/webhook",
                 options=make_request_options(
@@ -326,7 +324,7 @@ class AsyncWebhooks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WebhookGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

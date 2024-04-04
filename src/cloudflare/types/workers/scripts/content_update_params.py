@@ -26,5 +26,5 @@ class ContentUpdateParams(TypedDict, total=False):
     part name.
     """
 
-    metadata: shared_params.UnnamedSchemaRef51
+    metadata: shared_params.UnnamedSchemaRefEe1e79edcb234d14c4dd266880f2fd24
     """JSON encoded metadata about the uploaded parts and Worker configuration."""

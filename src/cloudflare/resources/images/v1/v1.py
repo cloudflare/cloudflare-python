@@ -58,15 +58,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.images import (
-    Image,
-    V1ListResponse,
-    V1DeleteResponse,
-    v1_edit_params,
-    v1_list_params,
-    v1_create_params,
-    v1_delete_params,
-)
+from ....types.images import Image, V1ListResponse, v1_edit_params, v1_list_params, v1_create_params, v1_delete_params
+from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["V1", "AsyncV1"]
 
@@ -263,7 +256,7 @@ class V1(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1DeleteResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """Delete an image on Cloudflare Images.
 
         On success, all copies of the image are
@@ -287,7 +280,7 @@ class V1(SyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return cast(
-            V1DeleteResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._delete(
                 f"/accounts/{account_id}/images/v1/{image_id}",
                 body=maybe_transform(body, v1_delete_params.V1DeleteParams),
@@ -299,7 +292,7 @@ class V1(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[V1DeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -603,7 +596,7 @@ class AsyncV1(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1DeleteResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """Delete an image on Cloudflare Images.
 
         On success, all copies of the image are
@@ -627,7 +620,7 @@ class AsyncV1(AsyncAPIResource):
         if not image_id:
             raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
         return cast(
-            V1DeleteResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._delete(
                 f"/accounts/{account_id}/images/v1/{image_id}",
                 body=await async_maybe_transform(body, v1_delete_params.V1DeleteParams),
@@ -639,7 +632,7 @@ class AsyncV1(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[V1DeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

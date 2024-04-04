@@ -4,6 +4,7 @@ from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
+from ..shared import UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9
 from ..._models import BaseModel
 
 __all__ = [
@@ -13,10 +14,8 @@ __all__ = [
     "HarLogCreator",
     "HarLogEntry",
     "HarLogEntryRequest",
-    "HarLogEntryRequestHeader",
     "HarLogEntryResponse",
     "HarLogEntryResponseContent",
-    "HarLogEntryResponseHeader",
     "HarLogPage",
     "HarLogPagePageTimings",
 ]
@@ -30,16 +29,10 @@ class HarLogCreator(BaseModel):
     version: str
 
 
-class HarLogEntryRequestHeader(BaseModel):
-    name: str
-
-    value: str
-
-
 class HarLogEntryRequest(BaseModel):
     body_size: float = FieldInfo(alias="bodySize")
 
-    headers: List[HarLogEntryRequestHeader]
+    headers: List[UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9]
 
     headers_size: float = FieldInfo(alias="headersSize")
 
@@ -58,12 +51,6 @@ class HarLogEntryResponseContent(BaseModel):
     compression: Optional[int] = None
 
 
-class HarLogEntryResponseHeader(BaseModel):
-    name: str
-
-    value: str
-
-
 class HarLogEntryResponse(BaseModel):
     transfer_size: float = FieldInfo(alias="_transferSize")
 
@@ -71,7 +58,7 @@ class HarLogEntryResponse(BaseModel):
 
     content: HarLogEntryResponseContent
 
-    headers: List[HarLogEntryResponseHeader]
+    headers: List[UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9]
 
     headers_size: float = FieldInfo(alias="headersSize")
 

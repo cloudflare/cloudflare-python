@@ -3,14 +3,14 @@
 from typing import Optional
 from datetime import datetime
 
-from ..shared import UnnamedSchemaRef140
 from ..._models import BaseModel
+from .unnamed_schema_ref_6535d2df7d4d089d21166bd140651307 import UnnamedSchemaRef6535d2df7d4d089d21166bd140651307
 
 __all__ = ["RegionalTieredCacheEditResponse", "Value"]
 
 
 class Value(BaseModel):
-    id: UnnamedSchemaRef140
+    id: UnnamedSchemaRef6535d2df7d4d089d21166bd140651307
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None
@@ -18,7 +18,7 @@ class Value(BaseModel):
 
 
 class RegionalTieredCacheEditResponse(BaseModel):
-    id: UnnamedSchemaRef140
+    id: UnnamedSchemaRef6535d2df7d4d089d21166bd140651307
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None

@@ -10,7 +10,6 @@ from ...types import (
     QueueGetResponse,
     QueueListResponse,
     QueueCreateResponse,
-    QueueDeleteResponse,
     QueueUpdateResponse,
     queue_create_params,
     queue_delete_params,
@@ -49,6 +48,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
 
 __all__ = ["Queues", "AsyncQueues"]
 
@@ -208,7 +208,7 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Deletes a queue.
 
@@ -230,7 +230,7 @@ class Queues(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return cast(
-            Optional[QueueDeleteResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             self._delete(
                 f"/accounts/{account_id}/queues/{queue_id}",
                 body=maybe_transform(body, queue_delete_params.QueueDeleteParams),
@@ -242,7 +242,7 @@ class Queues(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[QueueDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -447,7 +447,7 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
         """
         Deletes a queue.
 
@@ -469,7 +469,7 @@ class AsyncQueues(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return cast(
-            Optional[QueueDeleteResponse],
+            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
             await self._delete(
                 f"/accounts/{account_id}/queues/{queue_id}",
                 body=await async_maybe_transform(body, queue_delete_params.QueueDeleteParams),
@@ -481,7 +481,7 @@ class AsyncQueues(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[QueueDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

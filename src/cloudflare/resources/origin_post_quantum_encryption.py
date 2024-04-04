@@ -7,11 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import (
-    OriginPostQuantumEncryptionGetResponse,
-    OriginPostQuantumEncryptionUpdateResponse,
-    origin_post_quantum_encryption_update_params,
-)
+from ..types import origin_post_quantum_encryption_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -29,6 +25,7 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
+from ..types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["OriginPostQuantumEncryption", "AsyncOriginPostQuantumEncryption"]
 
@@ -53,7 +50,7 @@ class OriginPostQuantumEncryption(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginPostQuantumEncryptionUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -78,7 +75,7 @@ class OriginPostQuantumEncryption(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            OriginPostQuantumEncryptionUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._put(
                 f"/zones/{zone_id}/cache/origin_post_quantum_encryption",
                 body=maybe_transform(
@@ -93,7 +90,7 @@ class OriginPostQuantumEncryption(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[OriginPostQuantumEncryptionUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -108,7 +105,7 @@ class OriginPostQuantumEncryption(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginPostQuantumEncryptionGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -131,7 +128,7 @@ class OriginPostQuantumEncryption(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            OriginPostQuantumEncryptionGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._get(
                 f"/zones/{zone_id}/cache/origin_post_quantum_encryption",
                 options=make_request_options(
@@ -142,7 +139,7 @@ class OriginPostQuantumEncryption(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[OriginPostQuantumEncryptionGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -168,7 +165,7 @@ class AsyncOriginPostQuantumEncryption(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginPostQuantumEncryptionUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -193,7 +190,7 @@ class AsyncOriginPostQuantumEncryption(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            OriginPostQuantumEncryptionUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._put(
                 f"/zones/{zone_id}/cache/origin_post_quantum_encryption",
                 body=await async_maybe_transform(
@@ -208,7 +205,7 @@ class AsyncOriginPostQuantumEncryption(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[OriginPostQuantumEncryptionUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -223,7 +220,7 @@ class AsyncOriginPostQuantumEncryption(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginPostQuantumEncryptionGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -246,7 +243,7 @@ class AsyncOriginPostQuantumEncryption(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            OriginPostQuantumEncryptionGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._get(
                 f"/zones/{zone_id}/cache/origin_post_quantum_encryption",
                 options=make_request_options(
@@ -257,7 +254,7 @@ class AsyncOriginPostQuantumEncryption(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[OriginPostQuantumEncryptionGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
