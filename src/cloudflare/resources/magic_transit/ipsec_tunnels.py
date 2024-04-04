@@ -84,7 +84,8 @@ class IPSECTunnels(SyncAPIResource):
 
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
 
-          customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel.
+          customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
+              but must be set for proactive traceroutes to work.
 
           description: An optional description forthe IPsec tunnel.
 
@@ -167,7 +168,8 @@ class IPSECTunnels(SyncAPIResource):
 
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
 
-          customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel.
+          customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
+              but must be set for proactive traceroutes to work.
 
           description: An optional description forthe IPsec tunnel.
 
@@ -440,7 +442,8 @@ class AsyncIPSECTunnels(AsyncAPIResource):
 
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
 
-          customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel.
+          customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
+              but must be set for proactive traceroutes to work.
 
           description: An optional description forthe IPsec tunnel.
 
@@ -523,7 +526,8 @@ class AsyncIPSECTunnels(AsyncAPIResource):
 
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
 
-          customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel.
+          customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
+              but must be set for proactive traceroutes to work.
 
           description: An optional description forthe IPsec tunnel.
 

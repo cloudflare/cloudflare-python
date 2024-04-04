@@ -61,7 +61,10 @@ class IPSECTunnel(BaseModel):
     """The date and time the tunnel was created."""
 
     customer_endpoint: Optional[str] = None
-    """The IP address assigned to the customer side of the IPsec tunnel."""
+    """The IP address assigned to the customer side of the IPsec tunnel.
+
+    Not required, but must be set for proactive traceroutes to work.
+    """
 
     description: Optional[str] = None
     """An optional description forthe IPsec tunnel."""
