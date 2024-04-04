@@ -4,6 +4,7 @@
 from cloudflare.types import (
     ErrorData,
     Logging,
+    ResponseInfo,
     UnnamedSchemaRef10,
     UnnamedSchemaRef100,
     UnnamedSchemaRef101,
@@ -62,7 +63,6 @@ from cloudflare.types import (
     UnnamedSchemaRef169,
     UnnamedSchemaRef170,
     UnnamedSchemaRef171,
-    UnnamedSchemaRef172,
     UnnamedSchemaRef173,
     UnnamedSchemaRef2,
     UnnamedSchemaRef22,
@@ -2836,8 +2836,52 @@ from cloudflare.types.workers.scripts import SettingEditResponse, SettingGetResp
 
 Methods:
 
-- <code title="patch /accounts/{account_id}/workers/scripts/{script_name}/settings">client.workers.scripts.settings.<a href="./src/cloudflare/resources/workers/scripts/settings.py">edit</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/setting_edit_response.py">SettingEditResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/settings">client.workers.scripts.settings.<a href="./src/cloudflare/resources/workers/scripts/settings.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/setting_get_response.py">SettingGetResponse</a></code>
+- <code title="patch /accounts/{account_id}/workers/scripts/{script_name}/script-settings">client.workers.scripts.settings.<a href="./src/cloudflare/resources/workers/scripts/settings.py">edit</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/setting_edit_response.py">SettingEditResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/script-settings">client.workers.scripts.settings.<a href="./src/cloudflare/resources/workers/scripts/settings.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/setting_get_response.py">SettingGetResponse</a></code>
+
+### Deployments
+
+Types:
+
+```python
+from cloudflare.types.workers.scripts import DeploymentCreateResponse, DeploymentGetResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/deployment_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/deployment_create_response.py">DeploymentCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/deployment_get_response.py">DeploymentGetResponse</a></code>
+
+### Versions
+
+Types:
+
+```python
+from cloudflare.types.workers.scripts import (
+    VersionCreateResponse,
+    VersionListResponse,
+    VersionGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions/versions.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/version_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/version_create_response.py">VersionCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions/versions.py">list</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/version_list_response.py">VersionListResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions/{version_id}">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions/versions.py">get</a>(version_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/version_get_response.py">VersionGetResponse</a></code>
+
+#### Settings
+
+Types:
+
+```python
+from cloudflare.types.workers.scripts.versions import SettingEditResponse, SettingGetResponse
+```
+
+Methods:
+
+- <code title="patch /accounts/{account_id}/workers/scripts/{script_name}/settings">client.workers.scripts.versions.settings.<a href="./src/cloudflare/resources/workers/scripts/versions/settings.py">edit</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/versions/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/versions/setting_edit_response.py">SettingEditResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/settings">client.workers.scripts.versions.settings.<a href="./src/cloudflare/resources/workers/scripts/versions/settings.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/versions/setting_get_response.py">SettingGetResponse</a></code>
 
 ## Filters
 
