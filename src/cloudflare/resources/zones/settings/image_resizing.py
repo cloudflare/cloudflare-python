@@ -23,32 +23,32 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingImageResizing, ZoneSettingImageResizingParam, image_resizing_edit_params
+from ....types.zones.settings import ImageResizing, ImageResizingParam, image_resizing_edit_params
 
-__all__ = ["ImageResizing", "AsyncImageResizing"]
+__all__ = ["ImageResizingResource", "AsyncImageResizingResource"]
 
 
-class ImageResizing(SyncAPIResource):
+class ImageResizingResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ImageResizingWithRawResponse:
-        return ImageResizingWithRawResponse(self)
+    def with_raw_response(self) -> ImageResizingResourceWithRawResponse:
+        return ImageResizingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ImageResizingWithStreamingResponse:
-        return ImageResizingWithStreamingResponse(self)
+    def with_streaming_response(self) -> ImageResizingResourceWithStreamingResponse:
+        return ImageResizingResourceWithStreamingResponse(self)
 
     def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingImageResizingParam,
+        value: ImageResizingParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingImageResizing]:
+    ) -> Optional[ImageResizing]:
         """
         Image Resizing provides on-demand resizing, conversion and optimisation for
         images served through Cloudflare's network. Refer to the
@@ -83,7 +83,7 @@ class ImageResizing(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingImageResizing]], ResultWrapper[ZoneSettingImageResizing]),
+            cast_to=cast(Type[Optional[ImageResizing]], ResultWrapper[ImageResizing]),
         )
 
     def get(
@@ -96,7 +96,7 @@ class ImageResizing(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingImageResizing]:
+    ) -> Optional[ImageResizing]:
         """
         Image Resizing provides on-demand resizing, conversion and optimisation for
         images served through Cloudflare's network. Refer to the
@@ -125,31 +125,31 @@ class ImageResizing(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingImageResizing]], ResultWrapper[ZoneSettingImageResizing]),
+            cast_to=cast(Type[Optional[ImageResizing]], ResultWrapper[ImageResizing]),
         )
 
 
-class AsyncImageResizing(AsyncAPIResource):
+class AsyncImageResizingResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncImageResizingWithRawResponse:
-        return AsyncImageResizingWithRawResponse(self)
+    def with_raw_response(self) -> AsyncImageResizingResourceWithRawResponse:
+        return AsyncImageResizingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncImageResizingWithStreamingResponse:
-        return AsyncImageResizingWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncImageResizingResourceWithStreamingResponse:
+        return AsyncImageResizingResourceWithStreamingResponse(self)
 
     async def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingImageResizingParam,
+        value: ImageResizingParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingImageResizing]:
+    ) -> Optional[ImageResizing]:
         """
         Image Resizing provides on-demand resizing, conversion and optimisation for
         images served through Cloudflare's network. Refer to the
@@ -184,7 +184,7 @@ class AsyncImageResizing(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingImageResizing]], ResultWrapper[ZoneSettingImageResizing]),
+            cast_to=cast(Type[Optional[ImageResizing]], ResultWrapper[ImageResizing]),
         )
 
     async def get(
@@ -197,7 +197,7 @@ class AsyncImageResizing(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingImageResizing]:
+    ) -> Optional[ImageResizing]:
         """
         Image Resizing provides on-demand resizing, conversion and optimisation for
         images served through Cloudflare's network. Refer to the
@@ -226,12 +226,12 @@ class AsyncImageResizing(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingImageResizing]], ResultWrapper[ZoneSettingImageResizing]),
+            cast_to=cast(Type[Optional[ImageResizing]], ResultWrapper[ImageResizing]),
         )
 
 
-class ImageResizingWithRawResponse:
-    def __init__(self, image_resizing: ImageResizing) -> None:
+class ImageResizingResourceWithRawResponse:
+    def __init__(self, image_resizing: ImageResizingResource) -> None:
         self._image_resizing = image_resizing
 
         self.edit = to_raw_response_wrapper(
@@ -242,8 +242,8 @@ class ImageResizingWithRawResponse:
         )
 
 
-class AsyncImageResizingWithRawResponse:
-    def __init__(self, image_resizing: AsyncImageResizing) -> None:
+class AsyncImageResizingResourceWithRawResponse:
+    def __init__(self, image_resizing: AsyncImageResizingResource) -> None:
         self._image_resizing = image_resizing
 
         self.edit = async_to_raw_response_wrapper(
@@ -254,8 +254,8 @@ class AsyncImageResizingWithRawResponse:
         )
 
 
-class ImageResizingWithStreamingResponse:
-    def __init__(self, image_resizing: ImageResizing) -> None:
+class ImageResizingResourceWithStreamingResponse:
+    def __init__(self, image_resizing: ImageResizingResource) -> None:
         self._image_resizing = image_resizing
 
         self.edit = to_streamed_response_wrapper(
@@ -266,8 +266,8 @@ class ImageResizingWithStreamingResponse:
         )
 
 
-class AsyncImageResizingWithStreamingResponse:
-    def __init__(self, image_resizing: AsyncImageResizing) -> None:
+class AsyncImageResizingResourceWithStreamingResponse:
+    def __init__(self, image_resizing: AsyncImageResizingResource) -> None:
         self._image_resizing = image_resizing
 
         self.edit = async_to_streamed_response_wrapper(

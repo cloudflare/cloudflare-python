@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingIPGeolocation, ip_geolocation_edit_params
+from ....types.zones.settings import IPGeolocation, ip_geolocation_edit_params
 
-__all__ = ["IPGeolocation", "AsyncIPGeolocation"]
+__all__ = ["IPGeolocationResource", "AsyncIPGeolocationResource"]
 
 
-class IPGeolocation(SyncAPIResource):
+class IPGeolocationResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IPGeolocationWithRawResponse:
-        return IPGeolocationWithRawResponse(self)
+    def with_raw_response(self) -> IPGeolocationResourceWithRawResponse:
+        return IPGeolocationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IPGeolocationWithStreamingResponse:
-        return IPGeolocationWithStreamingResponse(self)
+    def with_streaming_response(self) -> IPGeolocationResourceWithStreamingResponse:
+        return IPGeolocationResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class IPGeolocation(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingIPGeolocation]:
+    ) -> Optional[IPGeolocation]:
         """
         Enable IP Geolocation to have Cloudflare geolocate visitors to your website and
         pass the country code to you.
@@ -80,7 +80,7 @@ class IPGeolocation(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingIPGeolocation]], ResultWrapper[ZoneSettingIPGeolocation]),
+            cast_to=cast(Type[Optional[IPGeolocation]], ResultWrapper[IPGeolocation]),
         )
 
     def get(
@@ -93,7 +93,7 @@ class IPGeolocation(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingIPGeolocation]:
+    ) -> Optional[IPGeolocation]:
         """
         Enable IP Geolocation to have Cloudflare geolocate visitors to your website and
         pass the country code to you.
@@ -121,18 +121,18 @@ class IPGeolocation(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingIPGeolocation]], ResultWrapper[ZoneSettingIPGeolocation]),
+            cast_to=cast(Type[Optional[IPGeolocation]], ResultWrapper[IPGeolocation]),
         )
 
 
-class AsyncIPGeolocation(AsyncAPIResource):
+class AsyncIPGeolocationResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIPGeolocationWithRawResponse:
-        return AsyncIPGeolocationWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIPGeolocationResourceWithRawResponse:
+        return AsyncIPGeolocationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIPGeolocationWithStreamingResponse:
-        return AsyncIPGeolocationWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIPGeolocationResourceWithStreamingResponse:
+        return AsyncIPGeolocationResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -145,7 +145,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingIPGeolocation]:
+    ) -> Optional[IPGeolocation]:
         """
         Enable IP Geolocation to have Cloudflare geolocate visitors to your website and
         pass the country code to you.
@@ -176,7 +176,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingIPGeolocation]], ResultWrapper[ZoneSettingIPGeolocation]),
+            cast_to=cast(Type[Optional[IPGeolocation]], ResultWrapper[IPGeolocation]),
         )
 
     async def get(
@@ -189,7 +189,7 @@ class AsyncIPGeolocation(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingIPGeolocation]:
+    ) -> Optional[IPGeolocation]:
         """
         Enable IP Geolocation to have Cloudflare geolocate visitors to your website and
         pass the country code to you.
@@ -217,12 +217,12 @@ class AsyncIPGeolocation(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingIPGeolocation]], ResultWrapper[ZoneSettingIPGeolocation]),
+            cast_to=cast(Type[Optional[IPGeolocation]], ResultWrapper[IPGeolocation]),
         )
 
 
-class IPGeolocationWithRawResponse:
-    def __init__(self, ip_geolocation: IPGeolocation) -> None:
+class IPGeolocationResourceWithRawResponse:
+    def __init__(self, ip_geolocation: IPGeolocationResource) -> None:
         self._ip_geolocation = ip_geolocation
 
         self.edit = to_raw_response_wrapper(
@@ -233,8 +233,8 @@ class IPGeolocationWithRawResponse:
         )
 
 
-class AsyncIPGeolocationWithRawResponse:
-    def __init__(self, ip_geolocation: AsyncIPGeolocation) -> None:
+class AsyncIPGeolocationResourceWithRawResponse:
+    def __init__(self, ip_geolocation: AsyncIPGeolocationResource) -> None:
         self._ip_geolocation = ip_geolocation
 
         self.edit = async_to_raw_response_wrapper(
@@ -245,8 +245,8 @@ class AsyncIPGeolocationWithRawResponse:
         )
 
 
-class IPGeolocationWithStreamingResponse:
-    def __init__(self, ip_geolocation: IPGeolocation) -> None:
+class IPGeolocationResourceWithStreamingResponse:
+    def __init__(self, ip_geolocation: IPGeolocationResource) -> None:
         self._ip_geolocation = ip_geolocation
 
         self.edit = to_streamed_response_wrapper(
@@ -257,8 +257,8 @@ class IPGeolocationWithStreamingResponse:
         )
 
 
-class AsyncIPGeolocationWithStreamingResponse:
-    def __init__(self, ip_geolocation: AsyncIPGeolocation) -> None:
+class AsyncIPGeolocationResourceWithStreamingResponse:
+    def __init__(self, ip_geolocation: AsyncIPGeolocationResource) -> None:
         self._ip_geolocation = ip_geolocation
 
         self.edit = async_to_streamed_response_wrapper(

@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingWAF, waf_edit_params
+from ....types.zones.settings import WAF, waf_edit_params
 
-__all__ = ["WAF", "AsyncWAF"]
+__all__ = ["WAFResource", "AsyncWAFResource"]
 
 
-class WAF(SyncAPIResource):
+class WAFResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WAFWithRawResponse:
-        return WAFWithRawResponse(self)
+    def with_raw_response(self) -> WAFResourceWithRawResponse:
+        return WAFResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WAFWithStreamingResponse:
-        return WAFWithStreamingResponse(self)
+    def with_streaming_response(self) -> WAFResourceWithStreamingResponse:
+        return WAFResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class WAF(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingWAF]:
+    ) -> Optional[WAF]:
         """The WAF examines HTTP requests to your website.
 
         It inspects both GET and POST
@@ -88,7 +88,7 @@ class WAF(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingWAF]], ResultWrapper[ZoneSettingWAF]),
+            cast_to=cast(Type[Optional[WAF]], ResultWrapper[WAF]),
         )
 
     def get(
@@ -101,7 +101,7 @@ class WAF(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingWAF]:
+    ) -> Optional[WAF]:
         """The WAF examines HTTP requests to your website.
 
         It inspects both GET and POST
@@ -137,18 +137,18 @@ class WAF(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingWAF]], ResultWrapper[ZoneSettingWAF]),
+            cast_to=cast(Type[Optional[WAF]], ResultWrapper[WAF]),
         )
 
 
-class AsyncWAF(AsyncAPIResource):
+class AsyncWAFResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncWAFWithRawResponse:
-        return AsyncWAFWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWAFResourceWithRawResponse:
+        return AsyncWAFResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWAFWithStreamingResponse:
-        return AsyncWAFWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWAFResourceWithStreamingResponse:
+        return AsyncWAFResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -161,7 +161,7 @@ class AsyncWAF(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingWAF]:
+    ) -> Optional[WAF]:
         """The WAF examines HTTP requests to your website.
 
         It inspects both GET and POST
@@ -200,7 +200,7 @@ class AsyncWAF(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingWAF]], ResultWrapper[ZoneSettingWAF]),
+            cast_to=cast(Type[Optional[WAF]], ResultWrapper[WAF]),
         )
 
     async def get(
@@ -213,7 +213,7 @@ class AsyncWAF(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingWAF]:
+    ) -> Optional[WAF]:
         """The WAF examines HTTP requests to your website.
 
         It inspects both GET and POST
@@ -249,12 +249,12 @@ class AsyncWAF(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingWAF]], ResultWrapper[ZoneSettingWAF]),
+            cast_to=cast(Type[Optional[WAF]], ResultWrapper[WAF]),
         )
 
 
-class WAFWithRawResponse:
-    def __init__(self, waf: WAF) -> None:
+class WAFResourceWithRawResponse:
+    def __init__(self, waf: WAFResource) -> None:
         self._waf = waf
 
         self.edit = to_raw_response_wrapper(
@@ -265,8 +265,8 @@ class WAFWithRawResponse:
         )
 
 
-class AsyncWAFWithRawResponse:
-    def __init__(self, waf: AsyncWAF) -> None:
+class AsyncWAFResourceWithRawResponse:
+    def __init__(self, waf: AsyncWAFResource) -> None:
         self._waf = waf
 
         self.edit = async_to_raw_response_wrapper(
@@ -277,8 +277,8 @@ class AsyncWAFWithRawResponse:
         )
 
 
-class WAFWithStreamingResponse:
-    def __init__(self, waf: WAF) -> None:
+class WAFResourceWithStreamingResponse:
+    def __init__(self, waf: WAFResource) -> None:
         self._waf = waf
 
         self.edit = to_streamed_response_wrapper(
@@ -289,8 +289,8 @@ class WAFWithStreamingResponse:
         )
 
 
-class AsyncWAFWithStreamingResponse:
-    def __init__(self, waf: AsyncWAF) -> None:
+class AsyncWAFResourceWithStreamingResponse:
+    def __init__(self, waf: AsyncWAFResource) -> None:
         self._waf = waf
 
         self.edit = async_to_streamed_response_wrapper(

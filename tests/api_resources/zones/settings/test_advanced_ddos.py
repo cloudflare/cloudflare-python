@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings import ZoneSettingAdvancedDDoS
+from cloudflare.types.zones.settings import AdvancedDDoS
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestAdvancedDDoS:
         advanced_ddos = client.zones.settings.advanced_ddos.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZoneSettingAdvancedDDoS], advanced_ddos, path=["response"])
+        assert_matches_type(Optional[AdvancedDDoS], advanced_ddos, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestAdvancedDDoS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advanced_ddos = response.parse()
-        assert_matches_type(Optional[ZoneSettingAdvancedDDoS], advanced_ddos, path=["response"])
+        assert_matches_type(Optional[AdvancedDDoS], advanced_ddos, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestAdvancedDDoS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advanced_ddos = response.parse()
-            assert_matches_type(Optional[ZoneSettingAdvancedDDoS], advanced_ddos, path=["response"])
+            assert_matches_type(Optional[AdvancedDDoS], advanced_ddos, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestAsyncAdvancedDDoS:
         advanced_ddos = await async_client.zones.settings.advanced_ddos.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZoneSettingAdvancedDDoS], advanced_ddos, path=["response"])
+        assert_matches_type(Optional[AdvancedDDoS], advanced_ddos, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestAsyncAdvancedDDoS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advanced_ddos = await response.parse()
-        assert_matches_type(Optional[ZoneSettingAdvancedDDoS], advanced_ddos, path=["response"])
+        assert_matches_type(Optional[AdvancedDDoS], advanced_ddos, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestAsyncAdvancedDDoS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advanced_ddos = await response.parse()
-            assert_matches_type(Optional[ZoneSettingAdvancedDDoS], advanced_ddos, path=["response"])
+            assert_matches_type(Optional[AdvancedDDoS], advanced_ddos, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

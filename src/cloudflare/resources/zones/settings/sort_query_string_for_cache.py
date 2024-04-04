@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingSortQueryStringForCache, sort_query_string_for_cache_edit_params
+from ....types.zones.settings import SortQueryStringForCache, sort_query_string_for_cache_edit_params
 
-__all__ = ["SortQueryStringForCache", "AsyncSortQueryStringForCache"]
+__all__ = ["SortQueryStringForCacheResource", "AsyncSortQueryStringForCacheResource"]
 
 
-class SortQueryStringForCache(SyncAPIResource):
+class SortQueryStringForCacheResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SortQueryStringForCacheWithRawResponse:
-        return SortQueryStringForCacheWithRawResponse(self)
+    def with_raw_response(self) -> SortQueryStringForCacheResourceWithRawResponse:
+        return SortQueryStringForCacheResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SortQueryStringForCacheWithStreamingResponse:
-        return SortQueryStringForCacheWithStreamingResponse(self)
+    def with_streaming_response(self) -> SortQueryStringForCacheResourceWithStreamingResponse:
+        return SortQueryStringForCacheResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class SortQueryStringForCache(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSortQueryStringForCache]:
+    ) -> Optional[SortQueryStringForCache]:
         """
         Cloudflare will treat files with the same query strings as the same file in
         cache, regardless of the order of the query strings. This is limited to
@@ -82,9 +82,7 @@ class SortQueryStringForCache(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingSortQueryStringForCache]], ResultWrapper[ZoneSettingSortQueryStringForCache]
-            ),
+            cast_to=cast(Type[Optional[SortQueryStringForCache]], ResultWrapper[SortQueryStringForCache]),
         )
 
     def get(
@@ -97,7 +95,7 @@ class SortQueryStringForCache(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSortQueryStringForCache]:
+    ) -> Optional[SortQueryStringForCache]:
         """
         Cloudflare will treat files with the same query strings as the same file in
         cache, regardless of the order of the query strings. This is limited to
@@ -125,20 +123,18 @@ class SortQueryStringForCache(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingSortQueryStringForCache]], ResultWrapper[ZoneSettingSortQueryStringForCache]
-            ),
+            cast_to=cast(Type[Optional[SortQueryStringForCache]], ResultWrapper[SortQueryStringForCache]),
         )
 
 
-class AsyncSortQueryStringForCache(AsyncAPIResource):
+class AsyncSortQueryStringForCacheResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSortQueryStringForCacheWithRawResponse:
-        return AsyncSortQueryStringForCacheWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSortQueryStringForCacheResourceWithRawResponse:
+        return AsyncSortQueryStringForCacheResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSortQueryStringForCacheWithStreamingResponse:
-        return AsyncSortQueryStringForCacheWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSortQueryStringForCacheResourceWithStreamingResponse:
+        return AsyncSortQueryStringForCacheResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -151,7 +147,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSortQueryStringForCache]:
+    ) -> Optional[SortQueryStringForCache]:
         """
         Cloudflare will treat files with the same query strings as the same file in
         cache, regardless of the order of the query strings. This is limited to
@@ -184,9 +180,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingSortQueryStringForCache]], ResultWrapper[ZoneSettingSortQueryStringForCache]
-            ),
+            cast_to=cast(Type[Optional[SortQueryStringForCache]], ResultWrapper[SortQueryStringForCache]),
         )
 
     async def get(
@@ -199,7 +193,7 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingSortQueryStringForCache]:
+    ) -> Optional[SortQueryStringForCache]:
         """
         Cloudflare will treat files with the same query strings as the same file in
         cache, regardless of the order of the query strings. This is limited to
@@ -227,14 +221,12 @@ class AsyncSortQueryStringForCache(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingSortQueryStringForCache]], ResultWrapper[ZoneSettingSortQueryStringForCache]
-            ),
+            cast_to=cast(Type[Optional[SortQueryStringForCache]], ResultWrapper[SortQueryStringForCache]),
         )
 
 
-class SortQueryStringForCacheWithRawResponse:
-    def __init__(self, sort_query_string_for_cache: SortQueryStringForCache) -> None:
+class SortQueryStringForCacheResourceWithRawResponse:
+    def __init__(self, sort_query_string_for_cache: SortQueryStringForCacheResource) -> None:
         self._sort_query_string_for_cache = sort_query_string_for_cache
 
         self.edit = to_raw_response_wrapper(
@@ -245,8 +237,8 @@ class SortQueryStringForCacheWithRawResponse:
         )
 
 
-class AsyncSortQueryStringForCacheWithRawResponse:
-    def __init__(self, sort_query_string_for_cache: AsyncSortQueryStringForCache) -> None:
+class AsyncSortQueryStringForCacheResourceWithRawResponse:
+    def __init__(self, sort_query_string_for_cache: AsyncSortQueryStringForCacheResource) -> None:
         self._sort_query_string_for_cache = sort_query_string_for_cache
 
         self.edit = async_to_raw_response_wrapper(
@@ -257,8 +249,8 @@ class AsyncSortQueryStringForCacheWithRawResponse:
         )
 
 
-class SortQueryStringForCacheWithStreamingResponse:
-    def __init__(self, sort_query_string_for_cache: SortQueryStringForCache) -> None:
+class SortQueryStringForCacheResourceWithStreamingResponse:
+    def __init__(self, sort_query_string_for_cache: SortQueryStringForCacheResource) -> None:
         self._sort_query_string_for_cache = sort_query_string_for_cache
 
         self.edit = to_streamed_response_wrapper(
@@ -269,8 +261,8 @@ class SortQueryStringForCacheWithStreamingResponse:
         )
 
 
-class AsyncSortQueryStringForCacheWithStreamingResponse:
-    def __init__(self, sort_query_string_for_cache: AsyncSortQueryStringForCache) -> None:
+class AsyncSortQueryStringForCacheResourceWithStreamingResponse:
+    def __init__(self, sort_query_string_for_cache: AsyncSortQueryStringForCacheResource) -> None:
         self._sort_query_string_for_cache = sort_query_string_for_cache
 
         self.edit = async_to_streamed_response_wrapper(

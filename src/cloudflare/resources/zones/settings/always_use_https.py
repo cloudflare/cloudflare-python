@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingAlwaysUseHTTPS, always_use_https_edit_params
+from ....types.zones.settings import always_use_https, always_use_https_edit_params
 
 __all__ = ["AlwaysUseHTTPS", "AsyncAlwaysUseHTTPS"]
 
@@ -49,7 +49,7 @@ class AlwaysUseHTTPS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAlwaysUseHTTPS]:
+    ) -> Optional[always_use_https.AlwaysUseHTTPS]:
         """
         Reply to all requests for URLs that use "http" with a 301 redirect to the
         equivalent "https" URL. If you only want to redirect for a subset of requests,
@@ -80,7 +80,9 @@ class AlwaysUseHTTPS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingAlwaysUseHTTPS]], ResultWrapper[ZoneSettingAlwaysUseHTTPS]),
+            cast_to=cast(
+                Type[Optional[always_use_https.AlwaysUseHTTPS]], ResultWrapper[always_use_https.AlwaysUseHTTPS]
+            ),
         )
 
     def get(
@@ -93,7 +95,7 @@ class AlwaysUseHTTPS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAlwaysUseHTTPS]:
+    ) -> Optional[always_use_https.AlwaysUseHTTPS]:
         """
         Reply to all requests for URLs that use "http" with a 301 redirect to the
         equivalent "https" URL. If you only want to redirect for a subset of requests,
@@ -121,7 +123,9 @@ class AlwaysUseHTTPS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingAlwaysUseHTTPS]], ResultWrapper[ZoneSettingAlwaysUseHTTPS]),
+            cast_to=cast(
+                Type[Optional[always_use_https.AlwaysUseHTTPS]], ResultWrapper[always_use_https.AlwaysUseHTTPS]
+            ),
         )
 
 
@@ -145,7 +149,7 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAlwaysUseHTTPS]:
+    ) -> Optional[always_use_https.AlwaysUseHTTPS]:
         """
         Reply to all requests for URLs that use "http" with a 301 redirect to the
         equivalent "https" URL. If you only want to redirect for a subset of requests,
@@ -176,7 +180,9 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingAlwaysUseHTTPS]], ResultWrapper[ZoneSettingAlwaysUseHTTPS]),
+            cast_to=cast(
+                Type[Optional[always_use_https.AlwaysUseHTTPS]], ResultWrapper[always_use_https.AlwaysUseHTTPS]
+            ),
         )
 
     async def get(
@@ -189,7 +195,7 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAlwaysUseHTTPS]:
+    ) -> Optional[always_use_https.AlwaysUseHTTPS]:
         """
         Reply to all requests for URLs that use "http" with a 301 redirect to the
         equivalent "https" URL. If you only want to redirect for a subset of requests,
@@ -217,7 +223,9 @@ class AsyncAlwaysUseHTTPS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingAlwaysUseHTTPS]], ResultWrapper[ZoneSettingAlwaysUseHTTPS]),
+            cast_to=cast(
+                Type[Optional[always_use_https.AlwaysUseHTTPS]], ResultWrapper[always_use_https.AlwaysUseHTTPS]
+            ),
         )
 
 

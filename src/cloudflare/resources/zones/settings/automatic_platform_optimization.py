@@ -24,35 +24,35 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zones.settings import (
-    ZoneSettingAutomaticPlatformOptimization,
-    ZoneSettingAutomaticPlatformOptimizationParam,
+    AutomaticPlatformOptimization,
+    AutomaticPlatformOptimizationParam,
     automatic_platform_optimization_edit_params,
 )
 
-__all__ = ["AutomaticPlatformOptimization", "AsyncAutomaticPlatformOptimization"]
+__all__ = ["AutomaticPlatformOptimizationResource", "AsyncAutomaticPlatformOptimizationResource"]
 
 
-class AutomaticPlatformOptimization(SyncAPIResource):
+class AutomaticPlatformOptimizationResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AutomaticPlatformOptimizationWithRawResponse:
-        return AutomaticPlatformOptimizationWithRawResponse(self)
+    def with_raw_response(self) -> AutomaticPlatformOptimizationResourceWithRawResponse:
+        return AutomaticPlatformOptimizationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AutomaticPlatformOptimizationWithStreamingResponse:
-        return AutomaticPlatformOptimizationWithStreamingResponse(self)
+    def with_streaming_response(self) -> AutomaticPlatformOptimizationResourceWithStreamingResponse:
+        return AutomaticPlatformOptimizationResourceWithStreamingResponse(self)
 
     def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingAutomaticPlatformOptimizationParam,
+        value: AutomaticPlatformOptimizationParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAutomaticPlatformOptimization]:
+    ) -> Optional[AutomaticPlatformOptimization]:
         """
         [Automatic Platform Optimization for WordPress](https://developers.cloudflare.com/automatic-platform-optimization/)
         serves your WordPress site from Cloudflare's edge network and caches third-party
@@ -83,10 +83,7 @@ class AutomaticPlatformOptimization(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingAutomaticPlatformOptimization]],
-                ResultWrapper[ZoneSettingAutomaticPlatformOptimization],
-            ),
+            cast_to=cast(Type[Optional[AutomaticPlatformOptimization]], ResultWrapper[AutomaticPlatformOptimization]),
         )
 
     def get(
@@ -99,7 +96,7 @@ class AutomaticPlatformOptimization(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAutomaticPlatformOptimization]:
+    ) -> Optional[AutomaticPlatformOptimization]:
         """
         [Automatic Platform Optimization for WordPress](https://developers.cloudflare.com/automatic-platform-optimization/)
         serves your WordPress site from Cloudflare's edge network and caches third-party
@@ -127,34 +124,31 @@ class AutomaticPlatformOptimization(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingAutomaticPlatformOptimization]],
-                ResultWrapper[ZoneSettingAutomaticPlatformOptimization],
-            ),
+            cast_to=cast(Type[Optional[AutomaticPlatformOptimization]], ResultWrapper[AutomaticPlatformOptimization]),
         )
 
 
-class AsyncAutomaticPlatformOptimization(AsyncAPIResource):
+class AsyncAutomaticPlatformOptimizationResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAutomaticPlatformOptimizationWithRawResponse:
-        return AsyncAutomaticPlatformOptimizationWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAutomaticPlatformOptimizationResourceWithRawResponse:
+        return AsyncAutomaticPlatformOptimizationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAutomaticPlatformOptimizationWithStreamingResponse:
-        return AsyncAutomaticPlatformOptimizationWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAutomaticPlatformOptimizationResourceWithStreamingResponse:
+        return AsyncAutomaticPlatformOptimizationResourceWithStreamingResponse(self)
 
     async def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingAutomaticPlatformOptimizationParam,
+        value: AutomaticPlatformOptimizationParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAutomaticPlatformOptimization]:
+    ) -> Optional[AutomaticPlatformOptimization]:
         """
         [Automatic Platform Optimization for WordPress](https://developers.cloudflare.com/automatic-platform-optimization/)
         serves your WordPress site from Cloudflare's edge network and caches third-party
@@ -185,10 +179,7 @@ class AsyncAutomaticPlatformOptimization(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingAutomaticPlatformOptimization]],
-                ResultWrapper[ZoneSettingAutomaticPlatformOptimization],
-            ),
+            cast_to=cast(Type[Optional[AutomaticPlatformOptimization]], ResultWrapper[AutomaticPlatformOptimization]),
         )
 
     async def get(
@@ -201,7 +192,7 @@ class AsyncAutomaticPlatformOptimization(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingAutomaticPlatformOptimization]:
+    ) -> Optional[AutomaticPlatformOptimization]:
         """
         [Automatic Platform Optimization for WordPress](https://developers.cloudflare.com/automatic-platform-optimization/)
         serves your WordPress site from Cloudflare's edge network and caches third-party
@@ -229,15 +220,12 @@ class AsyncAutomaticPlatformOptimization(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ZoneSettingAutomaticPlatformOptimization]],
-                ResultWrapper[ZoneSettingAutomaticPlatformOptimization],
-            ),
+            cast_to=cast(Type[Optional[AutomaticPlatformOptimization]], ResultWrapper[AutomaticPlatformOptimization]),
         )
 
 
-class AutomaticPlatformOptimizationWithRawResponse:
-    def __init__(self, automatic_platform_optimization: AutomaticPlatformOptimization) -> None:
+class AutomaticPlatformOptimizationResourceWithRawResponse:
+    def __init__(self, automatic_platform_optimization: AutomaticPlatformOptimizationResource) -> None:
         self._automatic_platform_optimization = automatic_platform_optimization
 
         self.edit = to_raw_response_wrapper(
@@ -248,8 +236,8 @@ class AutomaticPlatformOptimizationWithRawResponse:
         )
 
 
-class AsyncAutomaticPlatformOptimizationWithRawResponse:
-    def __init__(self, automatic_platform_optimization: AsyncAutomaticPlatformOptimization) -> None:
+class AsyncAutomaticPlatformOptimizationResourceWithRawResponse:
+    def __init__(self, automatic_platform_optimization: AsyncAutomaticPlatformOptimizationResource) -> None:
         self._automatic_platform_optimization = automatic_platform_optimization
 
         self.edit = async_to_raw_response_wrapper(
@@ -260,8 +248,8 @@ class AsyncAutomaticPlatformOptimizationWithRawResponse:
         )
 
 
-class AutomaticPlatformOptimizationWithStreamingResponse:
-    def __init__(self, automatic_platform_optimization: AutomaticPlatformOptimization) -> None:
+class AutomaticPlatformOptimizationResourceWithStreamingResponse:
+    def __init__(self, automatic_platform_optimization: AutomaticPlatformOptimizationResource) -> None:
         self._automatic_platform_optimization = automatic_platform_optimization
 
         self.edit = to_streamed_response_wrapper(
@@ -272,8 +260,8 @@ class AutomaticPlatformOptimizationWithStreamingResponse:
         )
 
 
-class AsyncAutomaticPlatformOptimizationWithStreamingResponse:
-    def __init__(self, automatic_platform_optimization: AsyncAutomaticPlatformOptimization) -> None:
+class AsyncAutomaticPlatformOptimizationResourceWithStreamingResponse:
+    def __init__(self, automatic_platform_optimization: AsyncAutomaticPlatformOptimizationResource) -> None:
         self._automatic_platform_optimization = automatic_platform_optimization
 
         self.edit = async_to_streamed_response_wrapper(

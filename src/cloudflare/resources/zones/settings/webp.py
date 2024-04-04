@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingWebP, webp_edit_params
+from ....types.zones.settings import WebP, webp_edit_params
 
-__all__ = ["WebP", "AsyncWebP"]
+__all__ = ["WebPResource", "AsyncWebPResource"]
 
 
-class WebP(SyncAPIResource):
+class WebPResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WebPWithRawResponse:
-        return WebPWithRawResponse(self)
+    def with_raw_response(self) -> WebPResourceWithRawResponse:
+        return WebPResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WebPWithStreamingResponse:
-        return WebPWithStreamingResponse(self)
+    def with_streaming_response(self) -> WebPResourceWithStreamingResponse:
+        return WebPResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class WebP(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingWebP]:
+    ) -> Optional[WebP]:
         """
         When the client requesting the image supports the WebP image codec, and WebP
         offers a performance advantage over the original image format, Cloudflare will
@@ -80,7 +80,7 @@ class WebP(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingWebP]], ResultWrapper[ZoneSettingWebP]),
+            cast_to=cast(Type[Optional[WebP]], ResultWrapper[WebP]),
         )
 
     def get(
@@ -93,7 +93,7 @@ class WebP(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingWebP]:
+    ) -> Optional[WebP]:
         """
         When the client requesting the image supports the WebP image codec, and WebP
         offers a performance advantage over the original image format, Cloudflare will
@@ -121,18 +121,18 @@ class WebP(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingWebP]], ResultWrapper[ZoneSettingWebP]),
+            cast_to=cast(Type[Optional[WebP]], ResultWrapper[WebP]),
         )
 
 
-class AsyncWebP(AsyncAPIResource):
+class AsyncWebPResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncWebPWithRawResponse:
-        return AsyncWebPWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWebPResourceWithRawResponse:
+        return AsyncWebPResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWebPWithStreamingResponse:
-        return AsyncWebPWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWebPResourceWithStreamingResponse:
+        return AsyncWebPResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -145,7 +145,7 @@ class AsyncWebP(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingWebP]:
+    ) -> Optional[WebP]:
         """
         When the client requesting the image supports the WebP image codec, and WebP
         offers a performance advantage over the original image format, Cloudflare will
@@ -176,7 +176,7 @@ class AsyncWebP(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingWebP]], ResultWrapper[ZoneSettingWebP]),
+            cast_to=cast(Type[Optional[WebP]], ResultWrapper[WebP]),
         )
 
     async def get(
@@ -189,7 +189,7 @@ class AsyncWebP(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingWebP]:
+    ) -> Optional[WebP]:
         """
         When the client requesting the image supports the WebP image codec, and WebP
         offers a performance advantage over the original image format, Cloudflare will
@@ -217,12 +217,12 @@ class AsyncWebP(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingWebP]], ResultWrapper[ZoneSettingWebP]),
+            cast_to=cast(Type[Optional[WebP]], ResultWrapper[WebP]),
         )
 
 
-class WebPWithRawResponse:
-    def __init__(self, webp: WebP) -> None:
+class WebPResourceWithRawResponse:
+    def __init__(self, webp: WebPResource) -> None:
         self._webp = webp
 
         self.edit = to_raw_response_wrapper(
@@ -233,8 +233,8 @@ class WebPWithRawResponse:
         )
 
 
-class AsyncWebPWithRawResponse:
-    def __init__(self, webp: AsyncWebP) -> None:
+class AsyncWebPResourceWithRawResponse:
+    def __init__(self, webp: AsyncWebPResource) -> None:
         self._webp = webp
 
         self.edit = async_to_raw_response_wrapper(
@@ -245,8 +245,8 @@ class AsyncWebPWithRawResponse:
         )
 
 
-class WebPWithStreamingResponse:
-    def __init__(self, webp: WebP) -> None:
+class WebPResourceWithStreamingResponse:
+    def __init__(self, webp: WebPResource) -> None:
         self._webp = webp
 
         self.edit = to_streamed_response_wrapper(
@@ -257,8 +257,8 @@ class WebPWithStreamingResponse:
         )
 
 
-class AsyncWebPWithStreamingResponse:
-    def __init__(self, webp: AsyncWebP) -> None:
+class AsyncWebPResourceWithStreamingResponse:
+    def __init__(self, webp: AsyncWebPResource) -> None:
         self._webp = webp
 
         self.edit = async_to_streamed_response_wrapper(

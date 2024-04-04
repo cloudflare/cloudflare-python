@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .zone_setting_polish_param import ZoneSettingPolishParam
+from .polish_param import PolishParam
 
 __all__ = ["PolishEditParams"]
 
@@ -13,7 +13,7 @@ class PolishEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    value: Required[ZoneSettingPolishParam]
+    value: Required[PolishParam]
     """Removes metadata and compresses your images for faster page load times.
 
     Basic (Lossless): Reduce the size of PNG, JPEG, and GIF files - no impact on

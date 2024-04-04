@@ -24,19 +24,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingDevelopmentMode, development_mode_edit_params
+from ....types.zones.settings import DevelopmentMode, development_mode_edit_params
 
-__all__ = ["DevelopmentMode", "AsyncDevelopmentMode"]
+__all__ = ["DevelopmentModeResource", "AsyncDevelopmentModeResource"]
 
 
-class DevelopmentMode(SyncAPIResource):
+class DevelopmentModeResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DevelopmentModeWithRawResponse:
-        return DevelopmentModeWithRawResponse(self)
+    def with_raw_response(self) -> DevelopmentModeResourceWithRawResponse:
+        return DevelopmentModeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DevelopmentModeWithStreamingResponse:
-        return DevelopmentModeWithStreamingResponse(self)
+    def with_streaming_response(self) -> DevelopmentModeResourceWithStreamingResponse:
+        return DevelopmentModeResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +49,7 @@ class DevelopmentMode(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingDevelopmentMode]:
+    ) -> Optional[DevelopmentMode]:
         """
         Development Mode temporarily allows you to enter development mode for your
         websites if you need to make changes to your site. This will bypass Cloudflare's
@@ -83,7 +83,7 @@ class DevelopmentMode(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingDevelopmentMode]], ResultWrapper[ZoneSettingDevelopmentMode]),
+            cast_to=cast(Type[Optional[DevelopmentMode]], ResultWrapper[DevelopmentMode]),
         )
 
     def get(
@@ -96,7 +96,7 @@ class DevelopmentMode(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingDevelopmentMode]:
+    ) -> Optional[DevelopmentMode]:
         """
         Development Mode temporarily allows you to enter development mode for your
         websites if you need to make changes to your site. This will bypass Cloudflare's
@@ -127,18 +127,18 @@ class DevelopmentMode(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingDevelopmentMode]], ResultWrapper[ZoneSettingDevelopmentMode]),
+            cast_to=cast(Type[Optional[DevelopmentMode]], ResultWrapper[DevelopmentMode]),
         )
 
 
-class AsyncDevelopmentMode(AsyncAPIResource):
+class AsyncDevelopmentModeResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDevelopmentModeWithRawResponse:
-        return AsyncDevelopmentModeWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDevelopmentModeResourceWithRawResponse:
+        return AsyncDevelopmentModeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDevelopmentModeWithStreamingResponse:
-        return AsyncDevelopmentModeWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDevelopmentModeResourceWithStreamingResponse:
+        return AsyncDevelopmentModeResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -151,7 +151,7 @@ class AsyncDevelopmentMode(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingDevelopmentMode]:
+    ) -> Optional[DevelopmentMode]:
         """
         Development Mode temporarily allows you to enter development mode for your
         websites if you need to make changes to your site. This will bypass Cloudflare's
@@ -185,7 +185,7 @@ class AsyncDevelopmentMode(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingDevelopmentMode]], ResultWrapper[ZoneSettingDevelopmentMode]),
+            cast_to=cast(Type[Optional[DevelopmentMode]], ResultWrapper[DevelopmentMode]),
         )
 
     async def get(
@@ -198,7 +198,7 @@ class AsyncDevelopmentMode(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingDevelopmentMode]:
+    ) -> Optional[DevelopmentMode]:
         """
         Development Mode temporarily allows you to enter development mode for your
         websites if you need to make changes to your site. This will bypass Cloudflare's
@@ -229,12 +229,12 @@ class AsyncDevelopmentMode(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingDevelopmentMode]], ResultWrapper[ZoneSettingDevelopmentMode]),
+            cast_to=cast(Type[Optional[DevelopmentMode]], ResultWrapper[DevelopmentMode]),
         )
 
 
-class DevelopmentModeWithRawResponse:
-    def __init__(self, development_mode: DevelopmentMode) -> None:
+class DevelopmentModeResourceWithRawResponse:
+    def __init__(self, development_mode: DevelopmentModeResource) -> None:
         self._development_mode = development_mode
 
         self.edit = to_raw_response_wrapper(
@@ -245,8 +245,8 @@ class DevelopmentModeWithRawResponse:
         )
 
 
-class AsyncDevelopmentModeWithRawResponse:
-    def __init__(self, development_mode: AsyncDevelopmentMode) -> None:
+class AsyncDevelopmentModeResourceWithRawResponse:
+    def __init__(self, development_mode: AsyncDevelopmentModeResource) -> None:
         self._development_mode = development_mode
 
         self.edit = async_to_raw_response_wrapper(
@@ -257,8 +257,8 @@ class AsyncDevelopmentModeWithRawResponse:
         )
 
 
-class DevelopmentModeWithStreamingResponse:
-    def __init__(self, development_mode: DevelopmentMode) -> None:
+class DevelopmentModeResourceWithStreamingResponse:
+    def __init__(self, development_mode: DevelopmentModeResource) -> None:
         self._development_mode = development_mode
 
         self.edit = to_streamed_response_wrapper(
@@ -269,8 +269,8 @@ class DevelopmentModeWithStreamingResponse:
         )
 
 
-class AsyncDevelopmentModeWithStreamingResponse:
-    def __init__(self, development_mode: AsyncDevelopmentMode) -> None:
+class AsyncDevelopmentModeResourceWithStreamingResponse:
+    def __init__(self, development_mode: AsyncDevelopmentModeResource) -> None:
         self._development_mode = development_mode
 
         self.edit = async_to_streamed_response_wrapper(

@@ -23,36 +23,32 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    ZoneSettingOrangeToOrange,
-    ZoneSettingOrangeToOrangeParam,
-    orange_to_orange_edit_params,
-)
+from ....types.zones.settings import OrangeToOrange, OrangeToOrangeParam, orange_to_orange_edit_params
 
-__all__ = ["OrangeToOrange", "AsyncOrangeToOrange"]
+__all__ = ["OrangeToOrangeResource", "AsyncOrangeToOrangeResource"]
 
 
-class OrangeToOrange(SyncAPIResource):
+class OrangeToOrangeResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OrangeToOrangeWithRawResponse:
-        return OrangeToOrangeWithRawResponse(self)
+    def with_raw_response(self) -> OrangeToOrangeResourceWithRawResponse:
+        return OrangeToOrangeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OrangeToOrangeWithStreamingResponse:
-        return OrangeToOrangeWithStreamingResponse(self)
+    def with_streaming_response(self) -> OrangeToOrangeResourceWithStreamingResponse:
+        return OrangeToOrangeResourceWithStreamingResponse(self)
 
     def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingOrangeToOrangeParam,
+        value: OrangeToOrangeParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOrangeToOrange]:
+    ) -> Optional[OrangeToOrange]:
         """
         Orange to Orange (O2O) allows zones on Cloudflare to CNAME to other zones also
         on Cloudflare.
@@ -83,7 +79,7 @@ class OrangeToOrange(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingOrangeToOrange]], ResultWrapper[ZoneSettingOrangeToOrange]),
+            cast_to=cast(Type[Optional[OrangeToOrange]], ResultWrapper[OrangeToOrange]),
         )
 
     def get(
@@ -96,7 +92,7 @@ class OrangeToOrange(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOrangeToOrange]:
+    ) -> Optional[OrangeToOrange]:
         """
         Orange to Orange (O2O) allows zones on Cloudflare to CNAME to other zones also
         on Cloudflare.
@@ -123,31 +119,31 @@ class OrangeToOrange(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingOrangeToOrange]], ResultWrapper[ZoneSettingOrangeToOrange]),
+            cast_to=cast(Type[Optional[OrangeToOrange]], ResultWrapper[OrangeToOrange]),
         )
 
 
-class AsyncOrangeToOrange(AsyncAPIResource):
+class AsyncOrangeToOrangeResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOrangeToOrangeWithRawResponse:
-        return AsyncOrangeToOrangeWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOrangeToOrangeResourceWithRawResponse:
+        return AsyncOrangeToOrangeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOrangeToOrangeWithStreamingResponse:
-        return AsyncOrangeToOrangeWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOrangeToOrangeResourceWithStreamingResponse:
+        return AsyncOrangeToOrangeResourceWithStreamingResponse(self)
 
     async def edit(
         self,
         *,
         zone_id: str,
-        value: ZoneSettingOrangeToOrangeParam,
+        value: OrangeToOrangeParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOrangeToOrange]:
+    ) -> Optional[OrangeToOrange]:
         """
         Orange to Orange (O2O) allows zones on Cloudflare to CNAME to other zones also
         on Cloudflare.
@@ -178,7 +174,7 @@ class AsyncOrangeToOrange(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingOrangeToOrange]], ResultWrapper[ZoneSettingOrangeToOrange]),
+            cast_to=cast(Type[Optional[OrangeToOrange]], ResultWrapper[OrangeToOrange]),
         )
 
     async def get(
@@ -191,7 +187,7 @@ class AsyncOrangeToOrange(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingOrangeToOrange]:
+    ) -> Optional[OrangeToOrange]:
         """
         Orange to Orange (O2O) allows zones on Cloudflare to CNAME to other zones also
         on Cloudflare.
@@ -218,12 +214,12 @@ class AsyncOrangeToOrange(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingOrangeToOrange]], ResultWrapper[ZoneSettingOrangeToOrange]),
+            cast_to=cast(Type[Optional[OrangeToOrange]], ResultWrapper[OrangeToOrange]),
         )
 
 
-class OrangeToOrangeWithRawResponse:
-    def __init__(self, orange_to_orange: OrangeToOrange) -> None:
+class OrangeToOrangeResourceWithRawResponse:
+    def __init__(self, orange_to_orange: OrangeToOrangeResource) -> None:
         self._orange_to_orange = orange_to_orange
 
         self.edit = to_raw_response_wrapper(
@@ -234,8 +230,8 @@ class OrangeToOrangeWithRawResponse:
         )
 
 
-class AsyncOrangeToOrangeWithRawResponse:
-    def __init__(self, orange_to_orange: AsyncOrangeToOrange) -> None:
+class AsyncOrangeToOrangeResourceWithRawResponse:
+    def __init__(self, orange_to_orange: AsyncOrangeToOrangeResource) -> None:
         self._orange_to_orange = orange_to_orange
 
         self.edit = async_to_raw_response_wrapper(
@@ -246,8 +242,8 @@ class AsyncOrangeToOrangeWithRawResponse:
         )
 
 
-class OrangeToOrangeWithStreamingResponse:
-    def __init__(self, orange_to_orange: OrangeToOrange) -> None:
+class OrangeToOrangeResourceWithStreamingResponse:
+    def __init__(self, orange_to_orange: OrangeToOrangeResource) -> None:
         self._orange_to_orange = orange_to_orange
 
         self.edit = to_streamed_response_wrapper(
@@ -258,8 +254,8 @@ class OrangeToOrangeWithStreamingResponse:
         )
 
 
-class AsyncOrangeToOrangeWithStreamingResponse:
-    def __init__(self, orange_to_orange: AsyncOrangeToOrange) -> None:
+class AsyncOrangeToOrangeResourceWithStreamingResponse:
+    def __init__(self, orange_to_orange: AsyncOrangeToOrangeResource) -> None:
         self._orange_to_orange = orange_to_orange
 
         self.edit = async_to_streamed_response_wrapper(

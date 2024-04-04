@@ -23,19 +23,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZoneSettingMobileRedirect, mobile_redirect_edit_params
+from ....types.zones.settings import MobileRedirect, mobile_redirect_edit_params
 
-__all__ = ["MobileRedirect", "AsyncMobileRedirect"]
+__all__ = ["MobileRedirectResource", "AsyncMobileRedirectResource"]
 
 
-class MobileRedirect(SyncAPIResource):
+class MobileRedirectResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MobileRedirectWithRawResponse:
-        return MobileRedirectWithRawResponse(self)
+    def with_raw_response(self) -> MobileRedirectResourceWithRawResponse:
+        return MobileRedirectResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MobileRedirectWithStreamingResponse:
-        return MobileRedirectWithStreamingResponse(self)
+    def with_streaming_response(self) -> MobileRedirectResourceWithStreamingResponse:
+        return MobileRedirectResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -48,7 +48,7 @@ class MobileRedirect(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMobileRedirect]:
+    ) -> Optional[MobileRedirect]:
         """
         Automatically redirect visitors on mobile devices to a mobile-optimized
         subdomain. Refer to
@@ -80,7 +80,7 @@ class MobileRedirect(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMobileRedirect]], ResultWrapper[ZoneSettingMobileRedirect]),
+            cast_to=cast(Type[Optional[MobileRedirect]], ResultWrapper[MobileRedirect]),
         )
 
     def get(
@@ -93,7 +93,7 @@ class MobileRedirect(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMobileRedirect]:
+    ) -> Optional[MobileRedirect]:
         """
         Automatically redirect visitors on mobile devices to a mobile-optimized
         subdomain. Refer to
@@ -122,18 +122,18 @@ class MobileRedirect(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMobileRedirect]], ResultWrapper[ZoneSettingMobileRedirect]),
+            cast_to=cast(Type[Optional[MobileRedirect]], ResultWrapper[MobileRedirect]),
         )
 
 
-class AsyncMobileRedirect(AsyncAPIResource):
+class AsyncMobileRedirectResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMobileRedirectWithRawResponse:
-        return AsyncMobileRedirectWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMobileRedirectResourceWithRawResponse:
+        return AsyncMobileRedirectResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMobileRedirectWithStreamingResponse:
-        return AsyncMobileRedirectWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMobileRedirectResourceWithStreamingResponse:
+        return AsyncMobileRedirectResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -146,7 +146,7 @@ class AsyncMobileRedirect(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMobileRedirect]:
+    ) -> Optional[MobileRedirect]:
         """
         Automatically redirect visitors on mobile devices to a mobile-optimized
         subdomain. Refer to
@@ -178,7 +178,7 @@ class AsyncMobileRedirect(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMobileRedirect]], ResultWrapper[ZoneSettingMobileRedirect]),
+            cast_to=cast(Type[Optional[MobileRedirect]], ResultWrapper[MobileRedirect]),
         )
 
     async def get(
@@ -191,7 +191,7 @@ class AsyncMobileRedirect(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneSettingMobileRedirect]:
+    ) -> Optional[MobileRedirect]:
         """
         Automatically redirect visitors on mobile devices to a mobile-optimized
         subdomain. Refer to
@@ -220,12 +220,12 @@ class AsyncMobileRedirect(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneSettingMobileRedirect]], ResultWrapper[ZoneSettingMobileRedirect]),
+            cast_to=cast(Type[Optional[MobileRedirect]], ResultWrapper[MobileRedirect]),
         )
 
 
-class MobileRedirectWithRawResponse:
-    def __init__(self, mobile_redirect: MobileRedirect) -> None:
+class MobileRedirectResourceWithRawResponse:
+    def __init__(self, mobile_redirect: MobileRedirectResource) -> None:
         self._mobile_redirect = mobile_redirect
 
         self.edit = to_raw_response_wrapper(
@@ -236,8 +236,8 @@ class MobileRedirectWithRawResponse:
         )
 
 
-class AsyncMobileRedirectWithRawResponse:
-    def __init__(self, mobile_redirect: AsyncMobileRedirect) -> None:
+class AsyncMobileRedirectResourceWithRawResponse:
+    def __init__(self, mobile_redirect: AsyncMobileRedirectResource) -> None:
         self._mobile_redirect = mobile_redirect
 
         self.edit = async_to_raw_response_wrapper(
@@ -248,8 +248,8 @@ class AsyncMobileRedirectWithRawResponse:
         )
 
 
-class MobileRedirectWithStreamingResponse:
-    def __init__(self, mobile_redirect: MobileRedirect) -> None:
+class MobileRedirectResourceWithStreamingResponse:
+    def __init__(self, mobile_redirect: MobileRedirectResource) -> None:
         self._mobile_redirect = mobile_redirect
 
         self.edit = to_streamed_response_wrapper(
@@ -260,8 +260,8 @@ class MobileRedirectWithStreamingResponse:
         )
 
 
-class AsyncMobileRedirectWithStreamingResponse:
-    def __init__(self, mobile_redirect: AsyncMobileRedirect) -> None:
+class AsyncMobileRedirectResourceWithStreamingResponse:
+    def __init__(self, mobile_redirect: AsyncMobileRedirectResource) -> None:
         self._mobile_redirect = mobile_redirect
 
         self.edit = async_to_streamed_response_wrapper(
