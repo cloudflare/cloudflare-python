@@ -12,8 +12,8 @@ __all__ = [
     "LANRoutedSubnet",
     "LANRoutedSubnetNat",
     "LANStaticAddressing",
-    "LANStaticAddressingDhcpRelay",
-    "LANStaticAddressingDhcpServer",
+    "LANStaticAddressingDHCPRelay",
+    "LANStaticAddressingDHCPServer",
 ]
 
 
@@ -44,12 +44,12 @@ class LANRoutedSubnet(TypedDict, total=False):
     nat: LANRoutedSubnetNat
 
 
-class LANStaticAddressingDhcpRelay(TypedDict, total=False):
+class LANStaticAddressingDHCPRelay(TypedDict, total=False):
     server_addresses: List[str]
     """List of DHCP server IPs."""
 
 
-class LANStaticAddressingDhcpServer(TypedDict, total=False):
+class LANStaticAddressingDHCPServer(TypedDict, total=False):
     dhcp_pool_end: str
     """A valid IPv4 address."""
 
@@ -67,9 +67,9 @@ class LANStaticAddressing(TypedDict, total=False):
     address: Required[str]
     """A valid CIDR notation representing an IP range."""
 
-    dhcp_relay: LANStaticAddressingDhcpRelay
+    dhcp_relay: LANStaticAddressingDHCPRelay
 
-    dhcp_server: LANStaticAddressingDhcpServer
+    dhcp_server: LANStaticAddressingDHCPServer
 
     secondary_address: str
     """A valid CIDR notation representing an IP range."""

@@ -11,8 +11,8 @@ __all__ = [
     "DeletedLANRoutedSubnet",
     "DeletedLANRoutedSubnetNat",
     "DeletedLANStaticAddressing",
-    "DeletedLANStaticAddressingDhcpRelay",
-    "DeletedLANStaticAddressingDhcpServer",
+    "DeletedLANStaticAddressingDHCPRelay",
+    "DeletedLANStaticAddressingDHCPServer",
 ]
 
 
@@ -36,12 +36,12 @@ class DeletedLANRoutedSubnet(BaseModel):
     nat: Optional[DeletedLANRoutedSubnetNat] = None
 
 
-class DeletedLANStaticAddressingDhcpRelay(BaseModel):
+class DeletedLANStaticAddressingDHCPRelay(BaseModel):
     server_addresses: Optional[List[str]] = None
     """List of DHCP server IPs."""
 
 
-class DeletedLANStaticAddressingDhcpServer(BaseModel):
+class DeletedLANStaticAddressingDHCPServer(BaseModel):
     dhcp_pool_end: Optional[str] = None
     """A valid IPv4 address."""
 
@@ -59,9 +59,9 @@ class DeletedLANStaticAddressing(BaseModel):
     address: str
     """A valid CIDR notation representing an IP range."""
 
-    dhcp_relay: Optional[DeletedLANStaticAddressingDhcpRelay] = None
+    dhcp_relay: Optional[DeletedLANStaticAddressingDHCPRelay] = None
 
-    dhcp_server: Optional[DeletedLANStaticAddressingDhcpServer] = None
+    dhcp_server: Optional[DeletedLANStaticAddressingDHCPServer] = None
 
     secondary_address: Optional[str] = None
     """A valid CIDR notation representing an IP range."""
