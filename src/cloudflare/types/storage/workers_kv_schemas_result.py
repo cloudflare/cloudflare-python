@@ -3,14 +3,10 @@
 from typing import List, Optional
 from datetime import datetime
 
+from ..shared import UnnamedSchemaRef148
 from ..._models import BaseModel
 
-__all__ = ["WorkersKVSchemasResult", "Data", "Query"]
-
-
-class Data(BaseModel):
-    metrics: List[object]
-    """List of metrics returned by the query."""
+__all__ = ["WorkersKVSchemasResult", "Query"]
 
 
 class Query(BaseModel):
@@ -57,7 +53,7 @@ class Query(BaseModel):
 
 
 class WorkersKVSchemasResult(BaseModel):
-    data: Optional[List[Data]] = None
+    data: Optional[List[UnnamedSchemaRef148]] = None
 
     data_lag: float
     """Number of seconds between current time and last processed event, i.e.

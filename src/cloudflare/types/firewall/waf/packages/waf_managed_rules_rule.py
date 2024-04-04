@@ -1,27 +1,17 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Union
 from typing_extensions import Literal
 
+from ....shared import UnnamedSchemaRef120
 from ....._models import BaseModel
 
 __all__ = [
     "WAFManagedRulesRule",
     "WAFManagedRulesAnomalyRule",
-    "WAFManagedRulesAnomalyRuleGroup",
     "WAFManagedRulesTraditionalDenyRule",
-    "WAFManagedRulesTraditionalDenyRuleGroup",
     "WAFManagedRulesTraditionalAllowRule",
-    "WAFManagedRulesTraditionalAllowRuleGroup",
 ]
-
-
-class WAFManagedRulesAnomalyRuleGroup(BaseModel):
-    id: Optional[str] = None
-    """The unique identifier of the rule group."""
-
-    name: Optional[str] = None
-    """The name of the rule group."""
 
 
 class WAFManagedRulesAnomalyRule(BaseModel):
@@ -37,7 +27,7 @@ class WAFManagedRulesAnomalyRule(BaseModel):
     description: str
     """The public description of the WAF rule."""
 
-    group: WAFManagedRulesAnomalyRuleGroup
+    group: UnnamedSchemaRef120
     """The rule group to which the current WAF rule belongs."""
 
     mode: Literal["on", "off"]
@@ -53,14 +43,6 @@ class WAFManagedRulesAnomalyRule(BaseModel):
     """The order in which the individual WAF rule is executed within its rule group."""
 
 
-class WAFManagedRulesTraditionalDenyRuleGroup(BaseModel):
-    id: Optional[str] = None
-    """The unique identifier of the rule group."""
-
-    name: Optional[str] = None
-    """The name of the rule group."""
-
-
 class WAFManagedRulesTraditionalDenyRule(BaseModel):
     id: str
     """The unique identifier of the WAF rule."""
@@ -74,7 +56,7 @@ class WAFManagedRulesTraditionalDenyRule(BaseModel):
     description: str
     """The public description of the WAF rule."""
 
-    group: WAFManagedRulesTraditionalDenyRuleGroup
+    group: UnnamedSchemaRef120
     """The rule group to which the current WAF rule belongs."""
 
     mode: Literal["default", "disable", "simulate", "block", "challenge"]
@@ -90,14 +72,6 @@ class WAFManagedRulesTraditionalDenyRule(BaseModel):
     """The order in which the individual WAF rule is executed within its rule group."""
 
 
-class WAFManagedRulesTraditionalAllowRuleGroup(BaseModel):
-    id: Optional[str] = None
-    """The unique identifier of the rule group."""
-
-    name: Optional[str] = None
-    """The name of the rule group."""
-
-
 class WAFManagedRulesTraditionalAllowRule(BaseModel):
     id: str
     """The unique identifier of the WAF rule."""
@@ -110,7 +84,7 @@ class WAFManagedRulesTraditionalAllowRule(BaseModel):
     description: str
     """The public description of the WAF rule."""
 
-    group: WAFManagedRulesTraditionalAllowRuleGroup
+    group: UnnamedSchemaRef120
     """The rule group to which the current WAF rule belongs."""
 
     mode: Literal["on", "off"]

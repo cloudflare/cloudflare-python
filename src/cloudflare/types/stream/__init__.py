@@ -43,7 +43,6 @@ from .live_input_delete_params import LiveInputDeleteParams as LiveInputDeletePa
 from .live_input_list_response import LiveInputListResponse as LiveInputListResponse
 from .live_input_update_params import LiveInputUpdateParams as LiveInputUpdateParams
 from .watermark_create_response import WatermarkCreateResponse as WatermarkCreateResponse
-from .watermark_delete_response import WatermarkDeleteResponse as WatermarkDeleteResponse
 from .video_storage_usage_params import VideoStorageUsageParams as VideoStorageUsageParams
 from .audio_track_delete_response import AudioTrackDeleteResponse as AudioTrackDeleteResponse
 from .direct_upload_create_params import DirectUploadCreateParams as DirectUploadCreateParams

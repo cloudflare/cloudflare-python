@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
 
+from ....shared import UnnamedSchemaRef97
 from ....._models import BaseModel
 
 __all__ = ["DLPPredefinedProfile", "ContextAwareness", "ContextAwarenessSkip", "Entry"]
@@ -60,5 +60,5 @@ class DLPPredefinedProfile(BaseModel):
     ocr_enabled: Optional[bool] = None
     """If true, scan images via OCR to determine if any text present matches filters."""
 
-    type: Optional[Literal["predefined"]] = None
+    type: Optional[UnnamedSchemaRef97] = None
     """The type of the profile."""

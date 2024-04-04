@@ -6,7 +6,6 @@ from .request_list_params import RequestListParams as RequestListParams
 from .cloudforce_one_quota import CloudforceOneQuota as CloudforceOneQuota
 from .request_create_params import RequestCreateParams as RequestCreateParams
 from .request_update_params import RequestUpdateParams as RequestUpdateParams
-from .request_delete_response import RequestDeleteResponse as RequestDeleteResponse
 from .cloudforce_one_request_item import CloudforceOneRequestItem as CloudforceOneRequestItem
 from .cloudforce_one_request_types import CloudforceOneRequestTypes as CloudforceOneRequestTypes
 from .cloudforce_one_request_constants import CloudforceOneRequestConstants as CloudforceOneRequestConstants

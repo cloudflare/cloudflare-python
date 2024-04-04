@@ -25,8 +25,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef173
 from ...types.vectorize import (
-    IndexDeleteResponse,
     VectorizeIndexQuery,
     VectorizeCreateIndex,
     VectorizeIndexInsert,
@@ -200,7 +200,7 @@ class Indexes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef173]:
         """
         Deletes the specified Vectorize Index.
 
@@ -220,7 +220,7 @@ class Indexes(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return cast(
-            Optional[IndexDeleteResponse],
+            Optional[UnnamedSchemaRef173],
             self._delete(
                 f"/accounts/{account_identifier}/vectorize/indexes/{index_name}",
                 options=make_request_options(
@@ -231,7 +231,7 @@ class Indexes(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[IndexDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef173]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -682,7 +682,7 @@ class AsyncIndexes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef173]:
         """
         Deletes the specified Vectorize Index.
 
@@ -702,7 +702,7 @@ class AsyncIndexes(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return cast(
-            Optional[IndexDeleteResponse],
+            Optional[UnnamedSchemaRef173],
             await self._delete(
                 f"/accounts/{account_identifier}/vectorize/indexes/{index_name}",
                 options=make_request_options(
@@ -713,7 +713,7 @@ class AsyncIndexes(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[IndexDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef173]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

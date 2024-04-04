@@ -4,6 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from .shared import UnnamedSchemaRef78
 from .._models import BaseModel
 from .keyless_certificate_hostname import KeylessCertificateHostname
 
@@ -18,7 +19,7 @@ class CustomCertificate(BaseModel):
     id: str
     """Identifier"""
 
-    bundle_method: Literal["ubiquitous", "optimal", "force"]
+    bundle_method: UnnamedSchemaRef78
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
     even by clients using outdated or unusual trust stores. An optimal bundle uses

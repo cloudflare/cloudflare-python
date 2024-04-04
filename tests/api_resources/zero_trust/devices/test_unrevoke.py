@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.devices import UnrevokeCreateResponse
+from cloudflare.types.shared import UnnamedSchemaRef173
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +28,7 @@ class TestUnrevoke:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             ],
         )
-        assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], unrevoke, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestUnrevoke:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         unrevoke = response.parse()
-        assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], unrevoke, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +62,7 @@ class TestUnrevoke:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             unrevoke = response.parse()
-            assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], unrevoke, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -94,7 +94,7 @@ class TestAsyncUnrevoke:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             ],
         )
-        assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], unrevoke, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +111,7 @@ class TestAsyncUnrevoke:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         unrevoke = await response.parse()
-        assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], unrevoke, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -128,7 +128,7 @@ class TestAsyncUnrevoke:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             unrevoke = await response.parse()
-            assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], unrevoke, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

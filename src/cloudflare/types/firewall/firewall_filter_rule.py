@@ -1,23 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
+from ..shared import UnnamedSchemaRef107
 from ..._models import BaseModel
-from ..firewall_filter import FirewallFilter
 
-__all__ = ["FirewallFilterRule", "Filter", "FilterLegacyJhsDeletedFilter"]
-
-
-class FilterLegacyJhsDeletedFilter(BaseModel):
-    id: str
-    """The unique identifier of the filter."""
-
-    deleted: bool
-    """When true, indicates that the firewall rule was deleted."""
-
-
-Filter = Union[FirewallFilter, FilterLegacyJhsDeletedFilter]
+__all__ = ["FirewallFilterRule"]
 
 
 class FirewallFilterRule(BaseModel):
@@ -35,7 +24,7 @@ class FirewallFilterRule(BaseModel):
     description: Optional[str] = None
     """An informative summary of the firewall rule."""
 
-    filter: Optional[Filter] = None
+    filter: Optional[UnnamedSchemaRef107] = None
 
     paused: Optional[bool] = None
     """When true, indicates that the firewall rule is currently paused."""

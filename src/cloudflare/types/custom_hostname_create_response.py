@@ -4,6 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from .shared import UnnamedSchemaRef78, UnnamedSchemaRef79, UnnamedSchemaRef80, UnnamedSchemaRef81
 from .._models import BaseModel
 
 __all__ = ["CustomHostnameCreateResponse", "SSL", "SSLSettings", "SSLValidationError", "SSLValidationRecord"]
@@ -16,7 +17,7 @@ class SSLSettings(BaseModel):
     These ciphers must be in the BoringSSL format.
     """
 
-    early_hints: Optional[Literal["on", "off"]] = None
+    early_hints: Optional[UnnamedSchemaRef81] = None
     """Whether or not Early Hints is enabled."""
 
     http2: Optional[Literal["on", "off"]] = None
@@ -67,7 +68,7 @@ class SSL(BaseModel):
     id: Optional[str] = None
     """Custom hostname SSL identifier tag."""
 
-    bundle_method: Optional[Literal["ubiquitous", "optimal", "force"]] = None
+    bundle_method: Optional[UnnamedSchemaRef78] = None
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
     even by clients using outdated or unusual trust stores. An optimal bundle uses
@@ -96,7 +97,7 @@ class SSL(BaseModel):
     issuer: Optional[str] = None
     """The issuer on a custom uploaded certificate."""
 
-    method: Optional[Literal["http", "txt", "email"]] = None
+    method: Optional[UnnamedSchemaRef79] = None
     """Domain control validation (DCV) method used for this hostname."""
 
     serial_number: Optional[str] = None
@@ -135,7 +136,7 @@ class SSL(BaseModel):
     ] = None
     """Status of the hostname's SSL certificates."""
 
-    type: Optional[Literal["dv"]] = None
+    type: Optional[UnnamedSchemaRef80] = None
     """Level of validation to be used for this hostname.
 
     Domain validation (dv) must be used.

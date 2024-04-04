@@ -2,18 +2,11 @@
 
 from typing import List, Optional
 
+from ...shared import UnnamedSchemaRef102
 from ...._models import BaseModel
 
-__all__ = ["ScheduleUpdateResponse", "Schedule"]
-
-
-class Schedule(BaseModel):
-    created_on: Optional[object] = None
-
-    cron: Optional[object] = None
-
-    modified_on: Optional[object] = None
+__all__ = ["ScheduleUpdateResponse"]
 
 
 class ScheduleUpdateResponse(BaseModel):
-    schedules: Optional[List[Schedule]] = None
+    schedules: Optional[List[UnnamedSchemaRef102]] = None

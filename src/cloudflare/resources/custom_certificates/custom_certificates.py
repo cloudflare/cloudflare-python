@@ -45,6 +45,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef78
 
 __all__ = ["CustomCertificates", "AsyncCustomCertificates"]
 
@@ -68,7 +69,7 @@ class CustomCertificates(SyncAPIResource):
         zone_id: str,
         certificate: str,
         private_key: str,
-        bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
         geo_restrictions: custom_certificate_create_params.GeoRestrictions | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
         type: Literal["legacy_custom", "sni_custom"] | NotGiven = NOT_GIVEN,
@@ -269,7 +270,7 @@ class CustomCertificates(SyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         geo_restrictions: custom_certificate_edit_params.GeoRestrictions | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
@@ -431,7 +432,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         zone_id: str,
         certificate: str,
         private_key: str,
-        bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
         geo_restrictions: custom_certificate_create_params.GeoRestrictions | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
         type: Literal["legacy_custom", "sni_custom"] | NotGiven = NOT_GIVEN,
@@ -632,7 +633,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         geo_restrictions: custom_certificate_edit_params.GeoRestrictions | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,

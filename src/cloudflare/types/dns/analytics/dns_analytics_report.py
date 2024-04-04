@@ -3,20 +3,10 @@
 from typing import List, Optional
 from datetime import datetime
 
+from ...shared import UnnamedSchemaRef22
 from ...._models import BaseModel
 
-__all__ = ["DNSAnalyticsReport", "Data", "Query"]
-
-
-class Data(BaseModel):
-    dimensions: List[str]
-    """
-    Array of dimension values, representing the combination of dimension values
-    corresponding to this row.
-    """
-
-    metrics: List[float]
-    """Array with one item per requested metric. Each item is a single value."""
+__all__ = ["DNSAnalyticsReport", "Query"]
 
 
 class Query(BaseModel):
@@ -46,7 +36,7 @@ class Query(BaseModel):
 
 
 class DNSAnalyticsReport(BaseModel):
-    data: List[Data]
+    data: List[UnnamedSchemaRef22]
     """Array with one row per combination of dimension values."""
 
     data_lag: float

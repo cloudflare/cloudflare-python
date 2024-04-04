@@ -3,33 +3,16 @@
 from typing import List, Union, Optional
 from typing_extensions import Literal
 
+from ...shared import UnnamedSchemaRef172
 from ...._models import BaseModel
 
-__all__ = [
-    "PackageGetResponse",
-    "LegacyJhsAPIResponseSingle",
-    "LegacyJhsAPIResponseSingleError",
-    "LegacyJhsAPIResponseSingleMessage",
-    "Result",
-]
-
-
-class LegacyJhsAPIResponseSingleError(BaseModel):
-    code: int
-
-    message: str
-
-
-class LegacyJhsAPIResponseSingleMessage(BaseModel):
-    code: int
-
-    message: str
+__all__ = ["PackageGetResponse", "LegacyJhsAPIResponseSingle", "Result"]
 
 
 class LegacyJhsAPIResponseSingle(BaseModel):
-    errors: List[LegacyJhsAPIResponseSingleError]
+    errors: List[UnnamedSchemaRef172]
 
-    messages: List[LegacyJhsAPIResponseSingleMessage]
+    messages: List[UnnamedSchemaRef172]
 
     result: Union[str, object, None] = None
 

@@ -25,9 +25,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
+from ....types.shared import UnnamedSchemaRef171
 from ....types.cloudforce_one.requests import (
     MessageGetResponse,
-    MessageDeleteResponse,
     CloudforceOneRequestMessageItem,
     message_get_params,
     message_create_params,
@@ -178,7 +178,7 @@ class Message(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageDeleteResponse:
+    ) -> UnnamedSchemaRef171:
         """
         Delete a Request Message
 
@@ -200,7 +200,7 @@ class Message(SyncAPIResource):
         if not request_identifier:
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
         return cast(
-            MessageDeleteResponse,
+            UnnamedSchemaRef171,
             self._delete(
                 f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
                 options=make_request_options(
@@ -211,7 +211,7 @@ class Message(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[MessageDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef171]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -431,7 +431,7 @@ class AsyncMessage(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageDeleteResponse:
+    ) -> UnnamedSchemaRef171:
         """
         Delete a Request Message
 
@@ -453,7 +453,7 @@ class AsyncMessage(AsyncAPIResource):
         if not request_identifier:
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
         return cast(
-            MessageDeleteResponse,
+            UnnamedSchemaRef171,
             await self._delete(
                 f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
                 options=make_request_options(
@@ -464,7 +464,7 @@ class AsyncMessage(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[MessageDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef171]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

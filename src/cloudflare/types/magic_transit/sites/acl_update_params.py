@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from ...shared import UnnamedSchemaRef82
 
 __all__ = ["ACLUpdateParams", "ACL", "ACLLAN1", "ACLLAN2"]
 
@@ -79,4 +81,4 @@ class ACL(TypedDict, total=False):
     name: str
     """The name of the ACL."""
 
-    protocols: List[Literal["tcp", "udp", "icmp"]]
+    protocols: List[UnnamedSchemaRef82]

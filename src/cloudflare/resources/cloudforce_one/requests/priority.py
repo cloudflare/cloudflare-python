@@ -24,13 +24,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
+from ....types.shared import UnnamedSchemaRef171
 from ....types.cloudforce_one import CloudforceOneQuota, CloudforceOneRequestItem
-from ....types.cloudforce_one.requests import (
-    PriorityDeleteResponse,
-    CloudforceOnePriorityItem,
-    priority_create_params,
-    priority_update_params,
-)
+from ....types.cloudforce_one.requests import CloudforceOnePriorityItem, priority_create_params, priority_update_params
 
 __all__ = ["Priority", "AsyncPriority"]
 
@@ -180,7 +176,7 @@ class Priority(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityDeleteResponse:
+    ) -> UnnamedSchemaRef171:
         """
         Delete a Priority Intelligence Report
 
@@ -202,7 +198,7 @@ class Priority(SyncAPIResource):
         if not priority_identifer:
             raise ValueError(f"Expected a non-empty value for `priority_identifer` but received {priority_identifer!r}")
         return cast(
-            PriorityDeleteResponse,
+            UnnamedSchemaRef171,
             self._delete(
                 f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
                 options=make_request_options(
@@ -213,7 +209,7 @@ class Priority(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[PriorityDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef171]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -447,7 +443,7 @@ class AsyncPriority(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PriorityDeleteResponse:
+    ) -> UnnamedSchemaRef171:
         """
         Delete a Priority Intelligence Report
 
@@ -469,7 +465,7 @@ class AsyncPriority(AsyncAPIResource):
         if not priority_identifer:
             raise ValueError(f"Expected a non-empty value for `priority_identifer` but received {priority_identifer!r}")
         return cast(
-            PriorityDeleteResponse,
+            UnnamedSchemaRef171,
             await self._delete(
                 f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
                 options=make_request_options(
@@ -480,7 +476,7 @@ class AsyncPriority(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[PriorityDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef171]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

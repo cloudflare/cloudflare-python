@@ -5,7 +5,9 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
+from ..shared import UnnamedSchemaRef155
 from ..._models import BaseModel
+from .unnamed_schema_ref_134 import UnnamedSchemaRef134
 
 __all__ = [
     "ScanGetResponse",
@@ -25,7 +27,6 @@ __all__ = [
     "ScanPage",
     "ScanPageConsole",
     "ScanPageCooky",
-    "ScanPageHeader",
     "ScanPageJs",
     "ScanPageJsVariable",
     "ScanPageSecurityViolation",
@@ -42,10 +43,6 @@ __all__ = [
     "ScanDomainsExampleCom",
     "ScanDomainsExampleComCategories",
     "ScanDomainsExampleComCategoriesInherited",
-    "ScanDomainsExampleComCategoriesInheritedContent",
-    "ScanDomainsExampleComCategoriesInheritedRisk",
-    "ScanDomainsExampleComCategoriesContent",
-    "ScanDomainsExampleComCategoriesRisk",
     "ScanDomainsExampleComDNS",
     "ScanDomainsExampleComRank",
     "ScanIPs",
@@ -216,12 +213,6 @@ class ScanPageCooky(BaseModel):
     priority: Optional[str] = None
 
 
-class ScanPageHeader(BaseModel):
-    name: str
-
-    value: str
-
-
 class ScanPageJsVariable(BaseModel):
     name: str
 
@@ -257,7 +248,7 @@ class ScanPage(BaseModel):
 
     domain: str
 
-    headers: List[ScanPageHeader]
+    headers: List[UnnamedSchemaRef155]
 
     ip: str
 
@@ -418,52 +409,20 @@ class ScanASNs(BaseModel):
     """ASN's contacted"""
 
 
-class ScanDomainsExampleComCategoriesInheritedContent(BaseModel):
-    id: int
-
-    name: str
-
-    super_category_id: Optional[int] = None
-
-
-class ScanDomainsExampleComCategoriesInheritedRisk(BaseModel):
-    id: int
-
-    name: str
-
-    super_category_id: Optional[int] = None
-
-
 class ScanDomainsExampleComCategoriesInherited(BaseModel):
-    content: Optional[List[ScanDomainsExampleComCategoriesInheritedContent]] = None
+    content: Optional[List[UnnamedSchemaRef134]] = None
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
 
-    risks: Optional[List[ScanDomainsExampleComCategoriesInheritedRisk]] = None
-
-
-class ScanDomainsExampleComCategoriesContent(BaseModel):
-    id: int
-
-    name: str
-
-    super_category_id: Optional[int] = None
-
-
-class ScanDomainsExampleComCategoriesRisk(BaseModel):
-    id: int
-
-    name: str
-
-    super_category_id: Optional[int] = None
+    risks: Optional[List[UnnamedSchemaRef134]] = None
 
 
 class ScanDomainsExampleComCategories(BaseModel):
     inherited: ScanDomainsExampleComCategoriesInherited
 
-    content: Optional[List[ScanDomainsExampleComCategoriesContent]] = None
+    content: Optional[List[UnnamedSchemaRef134]] = None
 
-    risks: Optional[List[ScanDomainsExampleComCategoriesRisk]] = None
+    risks: Optional[List[UnnamedSchemaRef134]] = None
 
 
 class ScanDomainsExampleComDNS(BaseModel):

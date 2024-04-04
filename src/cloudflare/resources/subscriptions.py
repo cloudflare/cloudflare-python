@@ -11,7 +11,6 @@ from ..types import (
     SubscriptionGetResponse,
     SubscriptionListResponse,
     SubscriptionCreateResponse,
-    SubscriptionDeleteResponse,
     SubscriptionUpdateResponse,
     subscription_create_params,
     subscription_delete_params,
@@ -36,6 +35,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.shared import UnnamedSchemaRef3
 
 __all__ = ["Subscriptions", "AsyncSubscriptions"]
 
@@ -238,7 +238,7 @@ class Subscriptions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionDeleteResponse:
+    ) -> UnnamedSchemaRef3:
         """
         Deletes an account's subscription.
 
@@ -271,7 +271,7 @@ class Subscriptions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SubscriptionDeleteResponse], ResultWrapper[SubscriptionDeleteResponse]),
+            cast_to=cast(Type[UnnamedSchemaRef3], ResultWrapper[UnnamedSchemaRef3]),
         )
 
     def get(
@@ -517,7 +517,7 @@ class AsyncSubscriptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionDeleteResponse:
+    ) -> UnnamedSchemaRef3:
         """
         Deletes an account's subscription.
 
@@ -550,7 +550,7 @@ class AsyncSubscriptions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SubscriptionDeleteResponse], ResultWrapper[SubscriptionDeleteResponse]),
+            cast_to=cast(Type[UnnamedSchemaRef3], ResultWrapper[UnnamedSchemaRef3]),
         )
 
     async def get(

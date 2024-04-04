@@ -10,13 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
-    RateLimitGetResponse,
-    RateLimitEditResponse,
     RateLimitListResponse,
-    RateLimitCreateResponse,
     RateLimitDeleteResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.shared import UnnamedSchemaRef173
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -31,7 +29,7 @@ class TestRateLimits:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[RateLimitCreateResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +42,7 @@ class TestRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = response.parse()
-        assert_matches_type(Optional[RateLimitCreateResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +55,7 @@ class TestRateLimits:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rate_limit = response.parse()
-            assert_matches_type(Optional[RateLimitCreateResponse], rate_limit, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -187,7 +185,7 @@ class TestRateLimits:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[RateLimitEditResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +199,7 @@ class TestRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = response.parse()
-        assert_matches_type(Optional[RateLimitEditResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -215,7 +213,7 @@ class TestRateLimits:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rate_limit = response.parse()
-            assert_matches_type(Optional[RateLimitEditResponse], rate_limit, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -243,7 +241,7 @@ class TestRateLimits:
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RateLimitGetResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -256,7 +254,7 @@ class TestRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = response.parse()
-        assert_matches_type(Optional[RateLimitGetResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -269,7 +267,7 @@ class TestRateLimits:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rate_limit = response.parse()
-            assert_matches_type(Optional[RateLimitGetResponse], rate_limit, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -299,7 +297,7 @@ class TestAsyncRateLimits:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[RateLimitCreateResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -312,7 +310,7 @@ class TestAsyncRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = await response.parse()
-        assert_matches_type(Optional[RateLimitCreateResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -325,7 +323,7 @@ class TestAsyncRateLimits:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rate_limit = await response.parse()
-            assert_matches_type(Optional[RateLimitCreateResponse], rate_limit, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -455,7 +453,7 @@ class TestAsyncRateLimits:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[RateLimitEditResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -469,7 +467,7 @@ class TestAsyncRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = await response.parse()
-        assert_matches_type(Optional[RateLimitEditResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -483,7 +481,7 @@ class TestAsyncRateLimits:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rate_limit = await response.parse()
-            assert_matches_type(Optional[RateLimitEditResponse], rate_limit, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -511,7 +509,7 @@ class TestAsyncRateLimits:
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RateLimitGetResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -524,7 +522,7 @@ class TestAsyncRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = await response.parse()
-        assert_matches_type(Optional[RateLimitGetResponse], rate_limit, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -537,7 +535,7 @@ class TestAsyncRateLimits:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rate_limit = await response.parse()
-            assert_matches_type(Optional[RateLimitGetResponse], rate_limit, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

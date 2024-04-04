@@ -9,9 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.shared import UnnamedSchemaRef171
 from cloudflare.types.cloudforce_one import CloudforceOneQuota, CloudforceOneRequestItem
 from cloudflare.types.cloudforce_one.requests import (
-    PriorityDeleteResponse,
     CloudforceOnePriorityItem,
 )
 
@@ -158,7 +158,7 @@ class TestPriority:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +171,7 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -184,7 +184,7 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
+            assert_matches_type(UnnamedSchemaRef171, priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -438,7 +438,7 @@ class TestAsyncPriority:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -451,7 +451,7 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
+        assert_matches_type(UnnamedSchemaRef171, priority, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -464,7 +464,7 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
+            assert_matches_type(UnnamedSchemaRef171, priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

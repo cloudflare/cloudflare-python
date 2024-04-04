@@ -66,10 +66,9 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ....types.shared import UnnamedSchemaRef123
 from ....types.zero_trust import (
     TunnelArgoTunnel,
-    TunnelEditResponse,
-    TunnelListResponse,
     tunnel_edit_params,
     tunnel_list_params,
     tunnel_create_params,
@@ -182,7 +181,7 @@ class Tunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[TunnelListResponse]:
+    ) -> SyncV4PagePaginationArray[UnnamedSchemaRef123]:
         """
         Lists and filters all types of Tunnels in an account.
 
@@ -217,7 +216,7 @@ class Tunnels(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/tunnels",
-            page=SyncV4PagePaginationArray[TunnelListResponse],
+            page=SyncV4PagePaginationArray[UnnamedSchemaRef123],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -240,7 +239,7 @@ class Tunnels(SyncAPIResource):
                     tunnel_list_params.TunnelListParams,
                 ),
             ),
-            model=cast(Any, TunnelListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, UnnamedSchemaRef123),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -302,7 +301,7 @@ class Tunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelEditResponse:
+    ) -> UnnamedSchemaRef123:
         """
         Updates an existing Cloudflare Tunnel.
 
@@ -329,7 +328,7 @@ class Tunnels(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            TunnelEditResponse,
+            UnnamedSchemaRef123,
             self._patch(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
                 body=maybe_transform(
@@ -347,7 +346,7 @@ class Tunnels(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[TunnelEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef123]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -500,7 +499,7 @@ class AsyncTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[TunnelListResponse, AsyncV4PagePaginationArray[TunnelListResponse]]:
+    ) -> AsyncPaginator[UnnamedSchemaRef123, AsyncV4PagePaginationArray[UnnamedSchemaRef123]]:
         """
         Lists and filters all types of Tunnels in an account.
 
@@ -535,7 +534,7 @@ class AsyncTunnels(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/tunnels",
-            page=AsyncV4PagePaginationArray[TunnelListResponse],
+            page=AsyncV4PagePaginationArray[UnnamedSchemaRef123],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -558,7 +557,7 @@ class AsyncTunnels(AsyncAPIResource):
                     tunnel_list_params.TunnelListParams,
                 ),
             ),
-            model=cast(Any, TunnelListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, UnnamedSchemaRef123),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -620,7 +619,7 @@ class AsyncTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelEditResponse:
+    ) -> UnnamedSchemaRef123:
         """
         Updates an existing Cloudflare Tunnel.
 
@@ -647,7 +646,7 @@ class AsyncTunnels(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            TunnelEditResponse,
+            UnnamedSchemaRef123,
             await self._patch(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
                 body=await async_maybe_transform(
@@ -665,7 +664,7 @@ class AsyncTunnels(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[TunnelEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef123]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

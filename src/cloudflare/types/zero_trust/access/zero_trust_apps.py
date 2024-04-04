@@ -4,6 +4,7 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from ...shared import UnnamedSchemaRef75, UnnamedSchemaRef76, UnnamedSchemaRef77
 from ...._models import BaseModel
 
 __all__ = [
@@ -14,7 +15,6 @@ __all__ = [
     "SaaSApplicationSaasApp",
     "SaaSApplicationSaasAppAccessSamlSaasApp",
     "SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributes",
-    "SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributesSource",
     "SaaSApplicationSaasAppAccessOidcSaasApp",
     "BrowserSSHApplication",
     "BrowserSSHApplicationCorsHeaders",
@@ -180,25 +180,14 @@ class SelfHostedApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributesSource(BaseModel):
-    name: Optional[str] = None
-    """The name of the IdP attribute."""
-
-
 class SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributes(BaseModel):
     name: Optional[str] = None
     """The name of the attribute."""
 
-    name_format: Optional[
-        Literal[
-            "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-            "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
-            "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
-        ]
-    ] = None
+    name_format: Optional[UnnamedSchemaRef75] = None
     """A globally unique name for an identity or service provider."""
 
-    source: Optional[SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributesSource] = None
+    source: Optional[UnnamedSchemaRef76] = None
 
 
 class SaaSApplicationSaasAppAccessSamlSaasApp(BaseModel):
@@ -228,7 +217,7 @@ class SaaSApplicationSaasAppAccessSamlSaasApp(BaseModel):
     idp_entity_id: Optional[str] = None
     """The unique identifier for your SaaS application."""
 
-    name_id_format: Optional[Literal["id", "email"]] = None
+    name_id_format: Optional[UnnamedSchemaRef77] = None
     """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: Optional[str] = None

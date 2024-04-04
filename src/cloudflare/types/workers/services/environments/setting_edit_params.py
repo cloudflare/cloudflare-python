@@ -5,7 +5,9 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["SettingEditParams", "Error", "Message", "Result", "ResultTailConsumer"]
+from .....types import shared_params
+
+__all__ = ["SettingEditParams", "Result", "ResultTailConsumer"]
 
 
 class SettingEditParams(TypedDict, total=False):
@@ -15,26 +17,14 @@ class SettingEditParams(TypedDict, total=False):
     service_name: Required[str]
     """Name of Worker to bind to"""
 
-    errors: Required[Iterable[Error]]
+    errors: Required[Iterable[shared_params.UnnamedSchemaRef172]]
 
-    messages: Required[Iterable[Message]]
+    messages: Required[Iterable[shared_params.UnnamedSchemaRef172]]
 
     result: Required[Result]
 
     success: Required[Literal[True]]
     """Whether the API call was successful"""
-
-
-class Error(TypedDict, total=False):
-    code: Required[int]
-
-    message: Required[str]
-
-
-class Message(TypedDict, total=False):
-    code: Required[int]
-
-    message: Required[str]
 
 
 class ResultTailConsumer(TypedDict, total=False):

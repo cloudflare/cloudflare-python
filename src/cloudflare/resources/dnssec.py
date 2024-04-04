@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import DNSSEC, DNSSECDeleteResponse, dnssec_edit_params, dnssec_delete_params
+from ..types import DNSSEC, dnssec_edit_params, dnssec_delete_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -25,6 +25,7 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
+from ..types.shared import UnnamedSchemaRef49
 
 __all__ = ["DNSSECResource", "AsyncDNSSECResource"]
 
@@ -49,7 +50,7 @@ class DNSSECResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECDeleteResponse:
+    ) -> UnnamedSchemaRef49:
         """
         Delete DNSSEC.
 
@@ -67,7 +68,7 @@ class DNSSECResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            DNSSECDeleteResponse,
+            UnnamedSchemaRef49,
             self._delete(
                 f"/zones/{zone_id}/dnssec",
                 body=maybe_transform(body, dnssec_delete_params.DNSSECDeleteParams),
@@ -79,7 +80,7 @@ class DNSSECResource(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DNSSECDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef49]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -213,7 +214,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECDeleteResponse:
+    ) -> UnnamedSchemaRef49:
         """
         Delete DNSSEC.
 
@@ -231,7 +232,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            DNSSECDeleteResponse,
+            UnnamedSchemaRef49,
             await self._delete(
                 f"/zones/{zone_id}/dnssec",
                 body=await async_maybe_transform(body, dnssec_delete_params.DNSSECDeleteParams),
@@ -243,7 +244,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DNSSECDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef49]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
