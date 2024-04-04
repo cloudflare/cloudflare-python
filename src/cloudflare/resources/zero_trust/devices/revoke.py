@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.devices import RevokeCreateResponse, revoke_create_params
+from ....types.shared import UnnamedSchemaRef173
+from ....types.zero_trust.devices import revoke_create_params
 
 __all__ = ["Revoke", "AsyncRevoke"]
 
@@ -48,7 +49,7 @@ class Revoke(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RevokeCreateResponse]:
+    ) -> Optional[UnnamedSchemaRef173]:
         """
         Revokes a list of devices.
 
@@ -66,7 +67,7 @@ class Revoke(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[RevokeCreateResponse],
+            Optional[UnnamedSchemaRef173],
             self._post(
                 f"/accounts/{account_id}/devices/revoke",
                 body=maybe_transform(body, revoke_create_params.RevokeCreateParams),
@@ -78,7 +79,7 @@ class Revoke(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RevokeCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef173]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -104,7 +105,7 @@ class AsyncRevoke(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RevokeCreateResponse]:
+    ) -> Optional[UnnamedSchemaRef173]:
         """
         Revokes a list of devices.
 
@@ -122,7 +123,7 @@ class AsyncRevoke(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[RevokeCreateResponse],
+            Optional[UnnamedSchemaRef173],
             await self._post(
                 f"/accounts/{account_id}/devices/revoke",
                 body=await async_maybe_transform(body, revoke_create_params.RevokeCreateParams),
@@ -134,7 +135,7 @@ class AsyncRevoke(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RevokeCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef173]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

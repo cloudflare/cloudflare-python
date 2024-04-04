@@ -3,16 +3,9 @@
 from typing import List
 
 from ...._models import BaseModel
+from ...unnamed_schema_ref_130 import UnnamedSchemaRef130
 
-__all__ = ["RoutePfx2asResponse", "Meta", "PrefixOrigin"]
-
-
-class Meta(BaseModel):
-    data_time: str
-
-    query_time: str
-
-    total_peers: int
+__all__ = ["RoutePfx2asResponse", "PrefixOrigin"]
 
 
 class PrefixOrigin(BaseModel):
@@ -26,6 +19,6 @@ class PrefixOrigin(BaseModel):
 
 
 class RoutePfx2asResponse(BaseModel):
-    meta: Meta
+    meta: UnnamedSchemaRef130
 
     prefix_origins: List[PrefixOrigin]

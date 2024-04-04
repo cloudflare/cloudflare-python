@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Type, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -33,6 +32,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.shared import UnnamedSchemaRef78
 
 __all__ = ["KeylessCertificates", "AsyncKeylessCertificates"]
 
@@ -53,7 +53,7 @@ class KeylessCertificates(SyncAPIResource):
         certificate: str,
         host: str,
         port: float,
-        bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         tunnel: keyless_certificate_create_params.Tunnel | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -339,7 +339,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         certificate: str,
         host: str,
         port: float,
-        bundle_method: Literal["ubiquitous", "optimal", "force"] | NotGiven = NOT_GIVEN,
+        bundle_method: UnnamedSchemaRef78 | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         tunnel: keyless_certificate_create_params.Tunnel | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

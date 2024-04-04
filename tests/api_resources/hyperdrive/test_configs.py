@@ -10,12 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.shared import UnnamedSchemaRef173
 from cloudflare.types.hyperdrive import (
     ConfigGetResponse,
     ConfigEditResponse,
     ConfigListResponse,
     ConfigCreateResponse,
-    ConfigDeleteResponse,
     ConfigUpdateResponse,
 )
 
@@ -186,7 +186,7 @@ class TestConfigs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -199,7 +199,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -212,7 +212,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -510,7 +510,7 @@ class TestAsyncConfigs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -523,7 +523,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef173], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -536,7 +536,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef173], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

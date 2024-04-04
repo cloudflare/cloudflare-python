@@ -16,7 +16,6 @@ from ...types.d1 import (
     D1CreateDatabase,
     D1DatabaseDetails,
     DatabaseQueryResponse,
-    DatabaseDeleteResponse,
     database_list_params,
     database_query_params,
     database_create_params,
@@ -34,6 +33,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef173
 
 __all__ = ["Database", "AsyncDatabase"]
 
@@ -155,7 +155,7 @@ class Database(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DatabaseDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef173]:
         """
         Deletes the specified D1 database.
 
@@ -177,7 +177,7 @@ class Database(SyncAPIResource):
                 f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
             )
         return cast(
-            Optional[DatabaseDeleteResponse],
+            Optional[UnnamedSchemaRef173],
             self._delete(
                 f"/accounts/{account_identifier}/d1/database/{database_identifier}",
                 options=make_request_options(
@@ -188,7 +188,7 @@ class Database(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DatabaseDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef173]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -408,7 +408,7 @@ class AsyncDatabase(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DatabaseDeleteResponse]:
+    ) -> Optional[UnnamedSchemaRef173]:
         """
         Deletes the specified D1 database.
 
@@ -430,7 +430,7 @@ class AsyncDatabase(AsyncAPIResource):
                 f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
             )
         return cast(
-            Optional[DatabaseDeleteResponse],
+            Optional[UnnamedSchemaRef173],
             await self._delete(
                 f"/accounts/{account_identifier}/d1/database/{database_identifier}",
                 options=make_request_options(
@@ -441,7 +441,7 @@ class AsyncDatabase(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DatabaseDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef173]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

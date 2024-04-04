@@ -24,7 +24,6 @@ from ..._wrappers import ResultWrapper
 from ...types.user import (
     SubscriptionGetResponse,
     SubscriptionEditResponse,
-    SubscriptionDeleteResponse,
     SubscriptionUpdateResponse,
     subscription_edit_params,
     subscription_delete_params,
@@ -33,6 +32,7 @@ from ...types.user import (
 from ..._base_client import (
     make_request_options,
 )
+from ...types.shared import UnnamedSchemaRef3
 
 __all__ = ["Subscriptions", "AsyncSubscriptions"]
 
@@ -124,7 +124,7 @@ class Subscriptions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionDeleteResponse:
+    ) -> UnnamedSchemaRef3:
         """
         Deletes a user's subscription.
 
@@ -147,7 +147,7 @@ class Subscriptions(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubscriptionDeleteResponse,
+            cast_to=UnnamedSchemaRef3,
         )
 
     def edit(
@@ -328,7 +328,7 @@ class AsyncSubscriptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionDeleteResponse:
+    ) -> UnnamedSchemaRef3:
         """
         Deletes a user's subscription.
 
@@ -351,7 +351,7 @@ class AsyncSubscriptions(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SubscriptionDeleteResponse,
+            cast_to=UnnamedSchemaRef3,
         )
 
     async def edit(

@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare.types.zones import (
     HoldGetResponse,
     HoldCreateResponse,
-    HoldDeleteResponse,
+    UnnamedSchemaRef64,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -78,7 +78,7 @@ class TestHolds:
         hold = client.zones.holds.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[HoldDeleteResponse], hold, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef64], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -87,7 +87,7 @@ class TestHolds:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hold_after="string",
         )
-        assert_matches_type(Optional[HoldDeleteResponse], hold, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef64], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,7 +99,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(Optional[HoldDeleteResponse], hold, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef64], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +111,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(Optional[HoldDeleteResponse], hold, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef64], hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -226,7 +226,7 @@ class TestAsyncHolds:
         hold = await async_client.zones.holds.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[HoldDeleteResponse], hold, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef64], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -235,7 +235,7 @@ class TestAsyncHolds:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hold_after="string",
         )
-        assert_matches_type(Optional[HoldDeleteResponse], hold, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef64], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -247,7 +247,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = await response.parse()
-        assert_matches_type(Optional[HoldDeleteResponse], hold, path=["response"])
+        assert_matches_type(Optional[UnnamedSchemaRef64], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -259,7 +259,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(Optional[HoldDeleteResponse], hold, path=["response"])
+            assert_matches_type(Optional[UnnamedSchemaRef64], hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

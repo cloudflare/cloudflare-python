@@ -1,23 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
 
-from pydantic import Field as FieldInfo
 
 from ....._models import BaseModel
+from ...unnamed_schema_ref_150 import UnnamedSchemaRef150
 
-__all__ = ["TimeseriesGroupARCResponse", "Serie0"]
-
-
-class Serie0(BaseModel):
-    fail: List[str] = FieldInfo(alias="FAIL")
-
-    none: List[str] = FieldInfo(alias="NONE")
-
-    pass_: List[str] = FieldInfo(alias="PASS")
+__all__ = ["TimeseriesGroupARCResponse"]
 
 
 class TimeseriesGroupARCResponse(BaseModel):
     meta: object
 
-    serie_0: Serie0
+    serie_0: UnnamedSchemaRef150

@@ -6,20 +6,13 @@ from datetime import datetime
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
+from ...unnamed_schema_ref_175 import UnnamedSchemaRef175
 
-__all__ = ["RouteTimeseriesResponse", "Meta", "MetaDateRange", "SerieIPV4_24s", "SerieIPV6_48s"]
-
-
-class MetaDateRange(BaseModel):
-    end_time: datetime = FieldInfo(alias="endTime")
-    """Adjusted end of date range."""
-
-    start_time: datetime = FieldInfo(alias="startTime")
-    """Adjusted start of date range."""
+__all__ = ["RouteTimeseriesResponse", "Meta", "SerieIPV4_24s", "SerieIPV6_48s"]
 
 
 class Meta(BaseModel):
-    date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
+    date_range: List[UnnamedSchemaRef175] = FieldInfo(alias="dateRange")
 
 
 class SerieIPV4_24s(BaseModel):

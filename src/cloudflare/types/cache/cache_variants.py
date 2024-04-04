@@ -2,15 +2,15 @@
 
 from typing import Optional
 from datetime import datetime
-from typing_extensions import Literal
 
+from ..shared import UnnamedSchemaRef151
 from ..._models import BaseModel
 
 __all__ = ["CacheVariants"]
 
 
 class CacheVariants(BaseModel):
-    id: Literal["variants"]
+    id: UnnamedSchemaRef151
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None

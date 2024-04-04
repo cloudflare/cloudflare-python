@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from .shared import UnnamedSchemaRef78, UnnamedSchemaRef81
+
 __all__ = ["CustomHostnameCreateParams", "SSL", "SSLSettings", "CustomMetadata"]
 
 
@@ -29,7 +31,7 @@ class SSLSettings(TypedDict, total=False):
     These ciphers must be in the BoringSSL format.
     """
 
-    early_hints: Literal["on", "off"]
+    early_hints: UnnamedSchemaRef81
     """Whether or not Early Hints is enabled."""
 
     http2: Literal["on", "off"]
@@ -43,7 +45,7 @@ class SSLSettings(TypedDict, total=False):
 
 
 class SSL(TypedDict, total=False):
-    bundle_method: Literal["ubiquitous", "optimal", "force"]
+    bundle_method: UnnamedSchemaRef78
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
     even by clients using outdated or unusual trust stores. An optimal bundle uses

@@ -2,21 +2,10 @@
 
 from typing import List, Optional
 
+from ..shared import UnnamedSchemaRef172
 from ..._models import BaseModel
 
-__all__ = ["TestListResponse", "Error", "Message", "ResultInfo"]
-
-
-class Error(BaseModel):
-    code: int
-
-    message: str
-
-
-class Message(BaseModel):
-    code: int
-
-    message: str
+__all__ = ["TestListResponse", "ResultInfo"]
 
 
 class ResultInfo(BaseModel):
@@ -31,9 +20,9 @@ class ResultInfo(BaseModel):
 
 class TestListResponse(BaseModel):
     __test__ = False
-    errors: List[Error]
+    errors: List[UnnamedSchemaRef172]
 
-    messages: List[Message]
+    messages: List[UnnamedSchemaRef172]
 
     success: bool
     """Whether the API call was successful."""

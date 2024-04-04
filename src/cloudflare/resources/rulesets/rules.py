@@ -7,6 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from ...types import shared_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     required_args,
@@ -58,7 +59,7 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_create_params.RulesetsBlockRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -118,7 +119,7 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_create_params.RulesetsExecuteRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -178,7 +179,7 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_create_params.RulesetsLogRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -238,7 +239,7 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_create_params.RulesetsSkipRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -301,7 +302,7 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_create_params.RulesetsBlockRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -431,7 +432,7 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_edit_params.RulesetsBlockRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -492,7 +493,7 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_edit_params.RulesetsExecuteRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -553,7 +554,7 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_edit_params.RulesetsLogRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -614,7 +615,7 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_edit_params.RulesetsSkipRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -679,7 +680,7 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_edit_params.RulesetsBlockRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -755,7 +756,7 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_create_params.RulesetsBlockRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -815,7 +816,7 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_create_params.RulesetsExecuteRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -875,7 +876,7 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_create_params.RulesetsLogRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -935,7 +936,7 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_create_params.RulesetsSkipRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -998,7 +999,7 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_create_params.RulesetsBlockRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1128,7 +1129,7 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_edit_params.RulesetsBlockRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1189,7 +1190,7 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_edit_params.RulesetsExecuteRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1250,7 +1251,7 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_edit_params.RulesetsLogRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1311,7 +1312,7 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_edit_params.RulesetsSkipRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1376,7 +1377,7 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: rule_edit_params.RulesetsBlockRuleLogging | NotGiven = NOT_GIVEN,
+        logging: shared_params.Logging | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

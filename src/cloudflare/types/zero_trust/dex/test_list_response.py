@@ -3,22 +3,11 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
+from ...shared import UnnamedSchemaRef172
 from ...._models import BaseModel
 from .digital_experience_monitoring_tests import DigitalExperienceMonitoringTests
 
-__all__ = ["TestListResponse", "Error", "Message", "ResultInfo"]
-
-
-class Error(BaseModel):
-    code: int
-
-    message: str
-
-
-class Message(BaseModel):
-    code: int
-
-    message: str
+__all__ = ["TestListResponse", "ResultInfo"]
 
 
 class ResultInfo(BaseModel):
@@ -37,9 +26,9 @@ class ResultInfo(BaseModel):
 
 class TestListResponse(BaseModel):
     __test__ = False
-    errors: List[Error]
+    errors: List[UnnamedSchemaRef172]
 
-    messages: List[Message]
+    messages: List[UnnamedSchemaRef172]
 
     result: DigitalExperienceMonitoringTests
 

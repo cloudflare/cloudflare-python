@@ -5,6 +5,7 @@ from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
+from ...shared import UnnamedSchemaRef131
 from ...._models import BaseModel
 
 __all__ = [
@@ -23,7 +24,6 @@ __all__ = [
     "ExcludeAccessIPListRuleIPList",
     "ExcludeAccessCertificateRule",
     "ExcludeAccessAccessGroupRule",
-    "ExcludeAccessAccessGroupRuleGroup",
     "ExcludeAccessAzureGroupRule",
     "ExcludeAccessAzureGroupRuleAzureAd",
     "ExcludeAccessGitHubOrganizationRule",
@@ -59,7 +59,6 @@ __all__ = [
     "IncludeAccessIPListRuleIPList",
     "IncludeAccessCertificateRule",
     "IncludeAccessAccessGroupRule",
-    "IncludeAccessAccessGroupRuleGroup",
     "IncludeAccessAzureGroupRule",
     "IncludeAccessAzureGroupRuleAzureAd",
     "IncludeAccessGitHubOrganizationRule",
@@ -95,7 +94,6 @@ __all__ = [
     "IsDefaultAccessIPListRuleIPList",
     "IsDefaultAccessCertificateRule",
     "IsDefaultAccessAccessGroupRule",
-    "IsDefaultAccessAccessGroupRuleGroup",
     "IsDefaultAccessAzureGroupRule",
     "IsDefaultAccessAzureGroupRuleAzureAd",
     "IsDefaultAccessGitHubOrganizationRule",
@@ -131,7 +129,6 @@ __all__ = [
     "RequireAccessIPListRuleIPList",
     "RequireAccessCertificateRule",
     "RequireAccessAccessGroupRule",
-    "RequireAccessAccessGroupRuleGroup",
     "RequireAccessAzureGroupRule",
     "RequireAccessAzureGroupRuleAzureAd",
     "RequireAccessGitHubOrganizationRule",
@@ -210,13 +207,8 @@ class ExcludeAccessCertificateRule(BaseModel):
     certificate: object
 
 
-class ExcludeAccessAccessGroupRuleGroup(BaseModel):
-    id: str
-    """The ID of a previously created Access group."""
-
-
 class ExcludeAccessAccessGroupRule(BaseModel):
-    group: ExcludeAccessAccessGroupRuleGroup
+    group: UnnamedSchemaRef131
 
 
 class ExcludeAccessAzureGroupRuleAzureAd(BaseModel):
@@ -414,13 +406,8 @@ class IncludeAccessCertificateRule(BaseModel):
     certificate: object
 
 
-class IncludeAccessAccessGroupRuleGroup(BaseModel):
-    id: str
-    """The ID of a previously created Access group."""
-
-
 class IncludeAccessAccessGroupRule(BaseModel):
-    group: IncludeAccessAccessGroupRuleGroup
+    group: UnnamedSchemaRef131
 
 
 class IncludeAccessAzureGroupRuleAzureAd(BaseModel):
@@ -618,13 +605,8 @@ class IsDefaultAccessCertificateRule(BaseModel):
     certificate: object
 
 
-class IsDefaultAccessAccessGroupRuleGroup(BaseModel):
-    id: str
-    """The ID of a previously created Access group."""
-
-
 class IsDefaultAccessAccessGroupRule(BaseModel):
-    group: IsDefaultAccessAccessGroupRuleGroup
+    group: UnnamedSchemaRef131
 
 
 class IsDefaultAccessAzureGroupRuleAzureAd(BaseModel):
@@ -824,13 +806,8 @@ class RequireAccessCertificateRule(BaseModel):
     certificate: object
 
 
-class RequireAccessAccessGroupRuleGroup(BaseModel):
-    id: str
-    """The ID of a previously created Access group."""
-
-
 class RequireAccessAccessGroupRule(BaseModel):
-    group: RequireAccessAccessGroupRuleGroup
+    group: UnnamedSchemaRef131
 
 
 class RequireAccessAzureGroupRuleAzureAd(BaseModel):

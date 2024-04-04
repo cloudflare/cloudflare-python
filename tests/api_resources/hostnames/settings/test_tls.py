@@ -9,7 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.hostnames.settings import HostnameStting, TLSGetResponse, HostnameSettingDelete
+from cloudflare.types.shared import UnnamedSchemaRef65
+from cloudflare.types.hostnames.settings import TLSGetResponse, HostnameSettingDelete
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +27,7 @@ class TestTLS:
             setting_id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-GCM-SHA256"],
         )
-        assert_matches_type(HostnameStting, tls, path=["response"])
+        assert_matches_type(UnnamedSchemaRef65, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +42,7 @@ class TestTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = response.parse()
-        assert_matches_type(HostnameStting, tls, path=["response"])
+        assert_matches_type(UnnamedSchemaRef65, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +57,7 @@ class TestTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = response.parse()
-            assert_matches_type(HostnameStting, tls, path=["response"])
+            assert_matches_type(UnnamedSchemaRef65, tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -195,7 +196,7 @@ class TestAsyncTLS:
             setting_id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-GCM-SHA256"],
         )
-        assert_matches_type(HostnameStting, tls, path=["response"])
+        assert_matches_type(UnnamedSchemaRef65, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -210,7 +211,7 @@ class TestAsyncTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = await response.parse()
-        assert_matches_type(HostnameStting, tls, path=["response"])
+        assert_matches_type(UnnamedSchemaRef65, tls, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -225,7 +226,7 @@ class TestAsyncTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = await response.parse()
-            assert_matches_type(HostnameStting, tls, path=["response"])
+            assert_matches_type(UnnamedSchemaRef65, tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
