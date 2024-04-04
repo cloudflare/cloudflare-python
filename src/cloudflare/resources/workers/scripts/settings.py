@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -42,7 +42,8 @@ class Settings(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        settings: setting_edit_params.Settings | NotGiven = NOT_GIVEN,
+        logpush: bool | NotGiven = NOT_GIVEN,
+        tail_consumers: Iterable[setting_edit_params.TailConsumer] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -51,12 +52,18 @@ class Settings(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SettingEditResponse:
         """
-        Patch metadata or config, such as bindings or usage model
+        Patch script-level settings when using
+        [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
+        Includes Logpush and Tail Consumers.
 
         Args:
           account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
+
+          logpush: Whether Logpush is turned on for the Worker.
+
+          tail_consumers: List of Workers that will consume logs from the attached Worker.
 
           extra_headers: Send extra headers
 
@@ -71,8 +78,14 @@ class Settings(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._patch(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/settings",
-            body=maybe_transform({"settings": settings}, setting_edit_params.SettingEditParams),
+            f"/accounts/{account_id}/workers/scripts/{script_name}/script-settings",
+            body=maybe_transform(
+                {
+                    "logpush": logpush,
+                    "tail_consumers": tail_consumers,
+                },
+                setting_edit_params.SettingEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -96,7 +109,9 @@ class Settings(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SettingGetResponse:
         """
-        Get metadata and config, such as bindings or usage model
+        Get script-level settings when using
+        [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
+        Includes Logpush and Tail Consumers.
 
         Args:
           account_id: Identifier
@@ -116,7 +131,7 @@ class Settings(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/settings",
+            f"/accounts/{account_id}/workers/scripts/{script_name}/script-settings",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -142,7 +157,8 @@ class AsyncSettings(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        settings: setting_edit_params.Settings | NotGiven = NOT_GIVEN,
+        logpush: bool | NotGiven = NOT_GIVEN,
+        tail_consumers: Iterable[setting_edit_params.TailConsumer] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -151,12 +167,18 @@ class AsyncSettings(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SettingEditResponse:
         """
-        Patch metadata or config, such as bindings or usage model
+        Patch script-level settings when using
+        [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
+        Includes Logpush and Tail Consumers.
 
         Args:
           account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
+
+          logpush: Whether Logpush is turned on for the Worker.
+
+          tail_consumers: List of Workers that will consume logs from the attached Worker.
 
           extra_headers: Send extra headers
 
@@ -171,8 +193,14 @@ class AsyncSettings(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._patch(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/settings",
-            body=await async_maybe_transform({"settings": settings}, setting_edit_params.SettingEditParams),
+            f"/accounts/{account_id}/workers/scripts/{script_name}/script-settings",
+            body=await async_maybe_transform(
+                {
+                    "logpush": logpush,
+                    "tail_consumers": tail_consumers,
+                },
+                setting_edit_params.SettingEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -196,7 +224,9 @@ class AsyncSettings(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SettingGetResponse:
         """
-        Get metadata and config, such as bindings or usage model
+        Get script-level settings when using
+        [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
+        Includes Logpush and Tail Consumers.
 
         Args:
           account_id: Identifier
@@ -216,7 +246,7 @@ class AsyncSettings(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/workers/scripts/{script_name}/settings",
+            f"/accounts/{account_id}/workers/scripts/{script_name}/script-settings",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

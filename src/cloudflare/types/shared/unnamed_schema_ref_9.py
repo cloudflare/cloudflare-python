@@ -7,8 +7,8 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from .response_info import ResponseInfo
 from .unnamed_schema_ref_171 import UnnamedSchemaRef171
-from .unnamed_schema_ref_172 import UnnamedSchemaRef172
 
 __all__ = [
     "UnnamedSchemaRef9",
@@ -102,9 +102,9 @@ class UnionMember0(BaseModel):
 
 
 class AaaAPIResponseCommon(BaseModel):
-    errors: List[UnnamedSchemaRef172]
+    errors: List[ResponseInfo]
 
-    messages: List[UnnamedSchemaRef172]
+    messages: List[ResponseInfo]
 
     result: UnnamedSchemaRef171
 
