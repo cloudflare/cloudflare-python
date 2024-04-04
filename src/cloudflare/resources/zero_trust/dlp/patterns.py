@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.dlp import PatternValidateResponse, pattern_validate_params
+from ....types.shared import UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854
+from ....types.zero_trust.dlp import pattern_validate_params
 
 __all__ = ["Patterns", "AsyncPatterns"]
 
@@ -48,7 +49,7 @@ class Patterns(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PatternValidateResponse:
+    ) -> Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854]:
         """Validates whether this pattern is a valid regular expression.
 
         Rejects it if the
@@ -81,7 +82,10 @@ class Patterns(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PatternValidateResponse], ResultWrapper[PatternValidateResponse]),
+            cast_to=cast(
+                Type[Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854]],
+                ResultWrapper[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854],
+            ),
         )
 
 
@@ -105,7 +109,7 @@ class AsyncPatterns(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PatternValidateResponse:
+    ) -> Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854]:
         """Validates whether this pattern is a valid regular expression.
 
         Rejects it if the
@@ -138,7 +142,10 @@ class AsyncPatterns(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PatternValidateResponse], ResultWrapper[PatternValidateResponse]),
+            cast_to=cast(
+                Type[Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854]],
+                ResultWrapper[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854],
+            ),
         )
 
 

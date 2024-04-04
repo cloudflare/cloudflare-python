@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRef169
+from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 from cloudflare.types.zero_trust.dlp.profiles import (
     DLPCustomProfile,
     CustomCreateResponse,
@@ -174,7 +174,7 @@ class TestCustom:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(UnnamedSchemaRef169, custom, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +188,7 @@ class TestCustom:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = response.parse()
-        assert_matches_type(UnnamedSchemaRef169, custom, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -202,7 +202,7 @@ class TestCustom:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = response.parse()
-            assert_matches_type(UnnamedSchemaRef169, custom, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -432,7 +432,7 @@ class TestAsyncCustom:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(UnnamedSchemaRef169, custom, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -446,7 +446,7 @@ class TestAsyncCustom:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = await response.parse()
-        assert_matches_type(UnnamedSchemaRef169, custom, path=["response"])
+        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -460,7 +460,7 @@ class TestAsyncCustom:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = await response.parse()
-            assert_matches_type(UnnamedSchemaRef169, custom, path=["response"])
+            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

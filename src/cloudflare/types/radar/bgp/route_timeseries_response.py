@@ -6,13 +6,13 @@ from datetime import datetime
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
-from ...unnamed_schema_ref_175 import UnnamedSchemaRef175
+from ...unnamed_schema_ref_baac9d7da12de53e99142f8ecd3982e5 import UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5
 
 __all__ = ["RouteTimeseriesResponse", "Meta", "SerieIPV4_24s", "SerieIPV6_48s"]
 
 
 class Meta(BaseModel):
-    date_range: List[UnnamedSchemaRef175] = FieldInfo(alias="dateRange")
+    date_range: List[UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5] = FieldInfo(alias="dateRange")
 
 
 class SerieIPV4_24s(BaseModel):

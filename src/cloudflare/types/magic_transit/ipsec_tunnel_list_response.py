@@ -3,8 +3,9 @@
 from typing import List, Optional
 from datetime import datetime
 
-from ..shared import UnnamedSchemaRef83, UnnamedSchemaRef84
 from ..._models import BaseModel
+from ..unnamed_schema_ref_3b1a76a5e4a139b72ed7d93834773d39 import UnnamedSchemaRef3b1a76a5e4a139b72ed7d93834773d39
+from ..unnamed_schema_ref_eebdc868ce7f7ae92e23438caa84e7b5 import UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5
 
 __all__ = ["IPSECTunnelListResponse", "IPSECTunnel", "IPSECTunnelPSKMetadata", "IPSECTunnelTunnelHealthCheck"]
 
@@ -18,7 +19,7 @@ class IPSECTunnelTunnelHealthCheck(BaseModel):
     enabled: Optional[bool] = None
     """Determines whether to run healthchecks for a tunnel."""
 
-    rate: Optional[UnnamedSchemaRef83] = None
+    rate: Optional[UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5] = None
     """How frequent the health check is run. The default value is `mid`."""
 
     target: Optional[str] = None
@@ -29,7 +30,7 @@ class IPSECTunnelTunnelHealthCheck(BaseModel):
     `customer_gre_endpoint address`.
     """
 
-    type: Optional[UnnamedSchemaRef84] = None
+    type: Optional[UnnamedSchemaRef3b1a76a5e4a139b72ed7d93834773d39] = None
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -25,11 +25,9 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ....types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
 from ....types.zero_trust.networks import (
     TunnelVirtualNetwork,
-    VirtualNetworkEditResponse,
-    VirtualNetworkCreateResponse,
-    VirtualNetworkDeleteResponse,
     virtual_network_edit_params,
     virtual_network_list_params,
     virtual_network_create_params,
@@ -61,7 +59,7 @@ class VirtualNetworks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkCreateResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Adds a new virtual network to an account.
 
@@ -85,7 +83,7 @@ class VirtualNetworks(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            VirtualNetworkCreateResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._post(
                 f"/accounts/{account_id}/teamnet/virtual_networks",
                 body=maybe_transform(
@@ -104,7 +102,7 @@ class VirtualNetworks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -187,7 +185,7 @@ class VirtualNetworks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkDeleteResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Deletes an existing virtual network.
 
@@ -209,7 +207,7 @@ class VirtualNetworks(SyncAPIResource):
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return cast(
-            VirtualNetworkDeleteResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._delete(
                 f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
                 body=maybe_transform(body, virtual_network_delete_params.VirtualNetworkDeleteParams),
@@ -221,7 +219,7 @@ class VirtualNetworks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -240,7 +238,7 @@ class VirtualNetworks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkEditResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Updates an existing virtual network.
 
@@ -268,7 +266,7 @@ class VirtualNetworks(SyncAPIResource):
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return cast(
-            VirtualNetworkEditResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._patch(
                 f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
                 body=maybe_transform(
@@ -287,7 +285,7 @@ class VirtualNetworks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -315,7 +313,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkCreateResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Adds a new virtual network to an account.
 
@@ -339,7 +337,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            VirtualNetworkCreateResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._post(
                 f"/accounts/{account_id}/teamnet/virtual_networks",
                 body=await async_maybe_transform(
@@ -358,7 +356,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -441,7 +439,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkDeleteResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Deletes an existing virtual network.
 
@@ -463,7 +461,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return cast(
-            VirtualNetworkDeleteResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._delete(
                 f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
                 body=await async_maybe_transform(body, virtual_network_delete_params.VirtualNetworkDeleteParams),
@@ -475,7 +473,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -494,7 +492,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkEditResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Updates an existing virtual network.
 
@@ -522,7 +520,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return cast(
-            VirtualNetworkEditResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._patch(
                 f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
                 body=await async_maybe_transform(
@@ -541,7 +539,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

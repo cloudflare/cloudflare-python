@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Union, Iterable, Optional, cast
+from typing import Any, List, Union, Iterable, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.spectrum.analytics.events import SummaryGetResponse, summary_get_params
+from .....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from .....types.spectrum.analytics.events import summary_get_params
 
 __all__ = ["Summaries", "AsyncSummaries"]
 
@@ -60,7 +61,7 @@ class Summaries(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SummaryGetResponse]:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -126,7 +127,7 @@ class Summaries(SyncAPIResource):
         if not zone:
             raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
         return cast(
-            Optional[SummaryGetResponse],
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._get(
                 f"/zones/{zone}/spectrum/analytics/events/summary",
                 options=make_request_options(
@@ -148,7 +149,7 @@ class Summaries(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SummaryGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -184,7 +185,7 @@ class AsyncSummaries(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SummaryGetResponse]:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -250,7 +251,7 @@ class AsyncSummaries(AsyncAPIResource):
         if not zone:
             raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
         return cast(
-            Optional[SummaryGetResponse],
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._get(
                 f"/zones/{zone}/spectrum/analytics/events/summary",
                 options=make_request_options(
@@ -272,7 +273,7 @@ class AsyncSummaries(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SummaryGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

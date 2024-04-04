@@ -33,7 +33,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import UnnamedSchemaRef123
+from ..types.shared import UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8
 
 __all__ = ["WARPConnector", "AsyncWARPConnector"]
 
@@ -58,7 +58,7 @@ class WARPConnector(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef123:
+    ) -> UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8:
         """
         Creates a new Warp Connector Tunnel in an account.
 
@@ -78,7 +78,7 @@ class WARPConnector(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            UnnamedSchemaRef123,
+            UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
             self._post(
                 f"/accounts/{account_id}/warp_connector",
                 body=maybe_transform({"name": name}, warp_connector_create_params.WARPConnectorCreateParams),
@@ -90,7 +90,7 @@ class WARPConnector(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef123]
+                    Any, ResultWrapper[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -115,7 +115,7 @@ class WARPConnector(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[UnnamedSchemaRef123]:
+    ) -> SyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8]:
         """
         Lists and filters Warp Connector Tunnels in an account.
 
@@ -148,7 +148,7 @@ class WARPConnector(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/warp_connector",
-            page=SyncV4PagePaginationArray[UnnamedSchemaRef123],
+            page=SyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -170,7 +170,9 @@ class WARPConnector(SyncAPIResource):
                     warp_connector_list_params.WARPConnectorListParams,
                 ),
             ),
-            model=cast(Any, UnnamedSchemaRef123),  # Union types cannot be passed in as arguments in the type system
+            model=cast(
+                Any, UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8
+            ),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -185,7 +187,7 @@ class WARPConnector(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef123:
+    ) -> UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8:
         """
         Deletes a Warp Connector Tunnel from an account.
 
@@ -207,7 +209,7 @@ class WARPConnector(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            UnnamedSchemaRef123,
+            UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
             self._delete(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 body=maybe_transform(body, warp_connector_delete_params.WARPConnectorDeleteParams),
@@ -219,7 +221,7 @@ class WARPConnector(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef123]
+                    Any, ResultWrapper[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -237,7 +239,7 @@ class WARPConnector(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef123:
+    ) -> UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8:
         """
         Updates an existing Warp Connector Tunnel.
 
@@ -264,7 +266,7 @@ class WARPConnector(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            UnnamedSchemaRef123,
+            UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
             self._patch(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 body=maybe_transform(
@@ -282,7 +284,7 @@ class WARPConnector(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef123]
+                    Any, ResultWrapper[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -298,7 +300,7 @@ class WARPConnector(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef123:
+    ) -> UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8:
         """
         Fetches a single Warp Connector Tunnel.
 
@@ -320,7 +322,7 @@ class WARPConnector(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            UnnamedSchemaRef123,
+            UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
             self._get(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 options=make_request_options(
@@ -331,7 +333,7 @@ class WARPConnector(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef123]
+                    Any, ResultWrapper[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -407,7 +409,7 @@ class AsyncWARPConnector(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef123:
+    ) -> UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8:
         """
         Creates a new Warp Connector Tunnel in an account.
 
@@ -427,7 +429,7 @@ class AsyncWARPConnector(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            UnnamedSchemaRef123,
+            UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
             await self._post(
                 f"/accounts/{account_id}/warp_connector",
                 body=await async_maybe_transform(
@@ -441,7 +443,7 @@ class AsyncWARPConnector(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef123]
+                    Any, ResultWrapper[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -466,7 +468,10 @@ class AsyncWARPConnector(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[UnnamedSchemaRef123, AsyncV4PagePaginationArray[UnnamedSchemaRef123]]:
+    ) -> AsyncPaginator[
+        UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
+        AsyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
+    ]:
         """
         Lists and filters Warp Connector Tunnels in an account.
 
@@ -499,7 +504,7 @@ class AsyncWARPConnector(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/warp_connector",
-            page=AsyncV4PagePaginationArray[UnnamedSchemaRef123],
+            page=AsyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -521,7 +526,9 @@ class AsyncWARPConnector(AsyncAPIResource):
                     warp_connector_list_params.WARPConnectorListParams,
                 ),
             ),
-            model=cast(Any, UnnamedSchemaRef123),  # Union types cannot be passed in as arguments in the type system
+            model=cast(
+                Any, UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8
+            ),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -536,7 +543,7 @@ class AsyncWARPConnector(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef123:
+    ) -> UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8:
         """
         Deletes a Warp Connector Tunnel from an account.
 
@@ -558,7 +565,7 @@ class AsyncWARPConnector(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            UnnamedSchemaRef123,
+            UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
             await self._delete(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 body=await async_maybe_transform(body, warp_connector_delete_params.WARPConnectorDeleteParams),
@@ -570,7 +577,7 @@ class AsyncWARPConnector(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef123]
+                    Any, ResultWrapper[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -588,7 +595,7 @@ class AsyncWARPConnector(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef123:
+    ) -> UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8:
         """
         Updates an existing Warp Connector Tunnel.
 
@@ -615,7 +622,7 @@ class AsyncWARPConnector(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            UnnamedSchemaRef123,
+            UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
             await self._patch(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 body=await async_maybe_transform(
@@ -633,7 +640,7 @@ class AsyncWARPConnector(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef123]
+                    Any, ResultWrapper[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -649,7 +656,7 @@ class AsyncWARPConnector(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef123:
+    ) -> UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8:
         """
         Fetches a single Warp Connector Tunnel.
 
@@ -671,7 +678,7 @@ class AsyncWARPConnector(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            UnnamedSchemaRef123,
+            UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
             await self._get(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 options=make_request_options(
@@ -682,7 +689,7 @@ class AsyncWARPConnector(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef123]
+                    Any, ResultWrapper[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

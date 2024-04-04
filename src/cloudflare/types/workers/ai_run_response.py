@@ -2,13 +2,15 @@
 
 from typing import List, Union, Optional
 
-from ..shared import UnnamedSchemaRef94, UnnamedSchemaRef135
 from ..._models import BaseModel
 
 __all__ = [
     "AIRunResponse",
+    "TextClassification",
     "TextEmbeddings",
     "SpeechRecognition",
+    "SpeechRecognitionWord",
+    "ImageClassification",
     "ObjectDetection",
     "ObjectDetectionBox",
     "Response",
@@ -18,10 +20,24 @@ __all__ = [
 ]
 
 
+class TextClassification(BaseModel):
+    label: Optional[str] = None
+
+    score: Optional[float] = None
+
+
 class TextEmbeddings(BaseModel):
     data: Optional[List[List[float]]] = None
 
     shape: Optional[List[float]] = None
+
+
+class SpeechRecognitionWord(BaseModel):
+    end: Optional[float] = None
+
+    start: Optional[float] = None
+
+    word: Optional[str] = None
 
 
 class SpeechRecognition(BaseModel):
@@ -31,7 +47,13 @@ class SpeechRecognition(BaseModel):
 
     word_count: Optional[float] = None
 
-    words: Optional[List[UnnamedSchemaRef94]] = None
+    words: Optional[List[SpeechRecognitionWord]] = None
+
+
+class ImageClassification(BaseModel):
+    label: Optional[str] = None
+
+    score: Optional[float] = None
 
 
 class ObjectDetectionBox(BaseModel):
@@ -69,12 +91,12 @@ class ImageToText(BaseModel):
 
 
 AIRunResponse = Union[
-    List[UnnamedSchemaRef135],
+    List[TextClassification],
     object,
     List[float],
     TextEmbeddings,
     SpeechRecognition,
-    List[UnnamedSchemaRef135],
+    List[ImageClassification],
     List[ObjectDetection],
     Response,
     object,

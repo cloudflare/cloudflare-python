@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Any, Type, Optional, cast
 
 import httpx
 
@@ -40,9 +40,7 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ....types.pages import (
     PagesProjects,
     PagesDeployments,
-    ProjectEditResponse,
     PagesDeploymentsParam,
-    ProjectCreateResponse,
     project_edit_params,
     project_create_params,
     project_delete_params,
@@ -51,6 +49,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ....types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
 from .deployments.deployments import Deployments, AsyncDeployments
 
 __all__ = ["Projects", "AsyncProjects"]
@@ -89,7 +88,7 @@ class Projects(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectCreateResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Create a new project.
 
@@ -115,7 +114,7 @@ class Projects(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            ProjectCreateResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._post(
                 f"/accounts/{account_id}/pages/projects",
                 body=maybe_transform(
@@ -137,7 +136,7 @@ class Projects(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProjectCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -232,7 +231,7 @@ class Projects(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectEditResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """Set new attributes for an existing project.
 
         Modify environment variables. To
@@ -256,7 +255,7 @@ class Projects(SyncAPIResource):
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return cast(
-            ProjectEditResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._patch(
                 f"/accounts/{account_id}/pages/projects/{project_name}",
                 body=maybe_transform(body, project_edit_params.ProjectEditParams),
@@ -268,7 +267,7 @@ class Projects(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProjectEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -391,7 +390,7 @@ class AsyncProjects(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectCreateResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Create a new project.
 
@@ -417,7 +416,7 @@ class AsyncProjects(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            ProjectCreateResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._post(
                 f"/accounts/{account_id}/pages/projects",
                 body=await async_maybe_transform(
@@ -439,7 +438,7 @@ class AsyncProjects(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProjectCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -534,7 +533,7 @@ class AsyncProjects(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectEditResponse:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """Set new attributes for an existing project.
 
         Modify environment variables. To
@@ -558,7 +557,7 @@ class AsyncProjects(AsyncAPIResource):
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return cast(
-            ProjectEditResponse,
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._patch(
                 f"/accounts/{account_id}/pages/projects/{project_name}",
                 body=await async_maybe_transform(body, project_edit_params.ProjectEditParams),
@@ -570,7 +569,7 @@ class AsyncProjects(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProjectEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

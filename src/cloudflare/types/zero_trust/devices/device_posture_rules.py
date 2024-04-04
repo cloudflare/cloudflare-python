@@ -5,8 +5,9 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ...shared import UnnamedSchemaRef87, UnnamedSchemaRef88, UnnamedSchemaRef119
 from ...._models import BaseModel
+from .unnamed_schema_ref_34ef0ad73a63c3f76ed170adca181930 import UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930
+from .unnamed_schema_ref_41885dd46b9e0294254c49305a273681 import UnnamedSchemaRef41885dd46b9e0294254c49305a273681
 
 __all__ = [
     "DevicePostureRules",
@@ -32,7 +33,7 @@ __all__ = [
 
 
 class InputTeamsDevicesFileInputRequest(BaseModel):
-    operating_system: UnnamedSchemaRef119
+    operating_system: UnnamedSchemaRef41885dd46b9e0294254c49305a273681
     """Operating system"""
 
     path: str
@@ -68,8 +69,8 @@ class InputTeamsDevicesOSVersionInputRequest(BaseModel):
     operating_system: Literal["windows"]
     """Operating System"""
 
-    operator: Literal["<", "<=", ">", ">=", "=="]
-    """Operator"""
+    operator: UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930
+    """operator"""
 
     version: str
     """Version of OS"""
@@ -97,7 +98,7 @@ class InputTeamsDevicesFirewallInputRequest(BaseModel):
 
 
 class InputTeamsDevicesSentineloneInputRequest(BaseModel):
-    operating_system: UnnamedSchemaRef119
+    operating_system: UnnamedSchemaRef41885dd46b9e0294254c49305a273681
     """Operating system"""
 
     path: str
@@ -111,7 +112,7 @@ class InputTeamsDevicesSentineloneInputRequest(BaseModel):
 
 
 class InputTeamsDevicesCarbonblackInputRequest(BaseModel):
-    operating_system: UnnamedSchemaRef119
+    operating_system: UnnamedSchemaRef41885dd46b9e0294254c49305a273681
     """Operating system"""
 
     path: str
@@ -133,7 +134,7 @@ class InputTeamsDevicesDiskEncryptionInputRequest(BaseModel):
 
 
 class InputTeamsDevicesApplicationInputRequest(BaseModel):
-    operating_system: UnnamedSchemaRef119
+    operating_system: UnnamedSchemaRef41885dd46b9e0294254c49305a273681
     """Operating system"""
 
     path: str
@@ -169,8 +170,8 @@ class InputTeamsDevicesCrowdstrikeInputRequest(BaseModel):
     last_seen: Optional[str] = None
     """For more details on last seen, please refer to the Crowdstrike documentation."""
 
-    operator: Optional[UnnamedSchemaRef87] = None
-    """Operator"""
+    operator: Optional[UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930] = None
+    """operator"""
 
     os: Optional[str] = None
     """Os Version"""
@@ -187,7 +188,7 @@ class InputTeamsDevicesCrowdstrikeInputRequest(BaseModel):
     version: Optional[str] = None
     """Version"""
 
-    version_operator: Optional[UnnamedSchemaRef88] = FieldInfo(alias="versionOperator", default=None)
+    version_operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = FieldInfo(alias="versionOperator", default=None)
     """Version Operator"""
 
 
@@ -246,7 +247,7 @@ class InputTeamsDevicesSentineloneS2sInputRequest(BaseModel):
     network_status: Optional[Literal["connected", "disconnected", "disconnecting", "connecting"]] = None
     """Network status of device."""
 
-    operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = None
+    operator: Optional[UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930] = None
     """operator"""
 
 

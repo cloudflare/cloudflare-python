@@ -10,9 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from cloudflare.types.zero_trust.gateway import (
     ListCreateResponse,
-    ListDeleteResponse,
     ZeroTrustGatewayLists,
 )
 
@@ -202,7 +202,7 @@ class TestLists:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(ListDeleteResponse, list, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -216,7 +216,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list = response.parse()
-        assert_matches_type(ListDeleteResponse, list, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -230,7 +230,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list = response.parse()
-            assert_matches_type(ListDeleteResponse, list, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -550,7 +550,7 @@ class TestAsyncLists:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(ListDeleteResponse, list, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -564,7 +564,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list = await response.parse()
-        assert_matches_type(ListDeleteResponse, list, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -578,7 +578,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list = await response.parse()
-            assert_matches_type(ListDeleteResponse, list, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

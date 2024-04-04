@@ -23,8 +23,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.user import (
     SubscriptionGetResponse,
-    SubscriptionEditResponse,
-    SubscriptionUpdateResponse,
+    SubscriptionDeleteResponse,
     subscription_edit_params,
     subscription_delete_params,
     subscription_update_params,
@@ -32,7 +31,7 @@ from ...types.user import (
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef3
+from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["Subscriptions", "AsyncSubscriptions"]
 
@@ -61,7 +60,7 @@ class Subscriptions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Updates a user's subscriptions.
 
@@ -87,7 +86,7 @@ class Subscriptions(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            SubscriptionUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._put(
                 f"/user/subscriptions/{identifier}",
                 body=maybe_transform(
@@ -108,7 +107,7 @@ class Subscriptions(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SubscriptionUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -124,7 +123,7 @@ class Subscriptions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef3:
+    ) -> SubscriptionDeleteResponse:
         """
         Deletes a user's subscription.
 
@@ -147,7 +146,7 @@ class Subscriptions(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UnnamedSchemaRef3,
+            cast_to=SubscriptionDeleteResponse,
         )
 
     def edit(
@@ -165,7 +164,7 @@ class Subscriptions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionEditResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Updates zone subscriptions, either plan or add-ons.
 
@@ -191,7 +190,7 @@ class Subscriptions(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            SubscriptionEditResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._put(
                 f"/zones/{identifier}/subscription",
                 body=maybe_transform(
@@ -212,7 +211,7 @@ class Subscriptions(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SubscriptionEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -265,7 +264,7 @@ class AsyncSubscriptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionUpdateResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Updates a user's subscriptions.
 
@@ -291,7 +290,7 @@ class AsyncSubscriptions(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            SubscriptionUpdateResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._put(
                 f"/user/subscriptions/{identifier}",
                 body=await async_maybe_transform(
@@ -312,7 +311,7 @@ class AsyncSubscriptions(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SubscriptionUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -328,7 +327,7 @@ class AsyncSubscriptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef3:
+    ) -> SubscriptionDeleteResponse:
         """
         Deletes a user's subscription.
 
@@ -351,7 +350,7 @@ class AsyncSubscriptions(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UnnamedSchemaRef3,
+            cast_to=SubscriptionDeleteResponse,
         )
 
     async def edit(
@@ -369,7 +368,7 @@ class AsyncSubscriptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionEditResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Updates zone subscriptions, either plan or add-ons.
 
@@ -395,7 +394,7 @@ class AsyncSubscriptions(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            SubscriptionEditResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._put(
                 f"/zones/{identifier}/subscription",
                 body=await async_maybe_transform(
@@ -416,7 +415,7 @@ class AsyncSubscriptions(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[SubscriptionEditResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

@@ -4,14 +4,14 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ...shared import UnnamedSchemaRef142
 from ...._models import BaseModel
+from .unnamed_schema_ref_b234e6a28c1a1c7c29213787c0621eaa import UnnamedSchemaRefB234e6a28c1a1c7c29213787c0621eaa
 
 __all__ = ["OriginMaxHTTPVersionGetResponse"]
 
 
 class OriginMaxHTTPVersionGetResponse(BaseModel):
-    id: UnnamedSchemaRef142
+    id: UnnamedSchemaRefB234e6a28c1a1c7c29213787c0621eaa
     """Value of the zone setting."""
 
     modified_on: Optional[datetime] = None

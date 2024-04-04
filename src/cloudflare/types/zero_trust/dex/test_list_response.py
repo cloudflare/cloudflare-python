@@ -3,7 +3,7 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ...shared import ResponseInfo
+from ...shared import UnnamedSchemaRef3248f24329456e19dfa042fff9986f72
 from ...._models import BaseModel
 from .digital_experience_monitoring_tests import DigitalExperienceMonitoringTests
 
@@ -26,9 +26,9 @@ class ResultInfo(BaseModel):
 
 class TestListResponse(BaseModel):
     __test__ = False
-    errors: List[ResponseInfo]
+    errors: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
 
-    messages: List[ResponseInfo]
+    messages: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
 
     result: DigitalExperienceMonitoringTests
 

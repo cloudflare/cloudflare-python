@@ -4,8 +4,10 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .shared import UnnamedSchemaRef78, UnnamedSchemaRef79, UnnamedSchemaRef80, UnnamedSchemaRef81
 from .._models import BaseModel
+from .unnamed_schema_ref_9a9935a9a770967bb604ae41a81e42e1 import UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1
+from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
+from .unnamed_schema_ref_78adb375f06c6d462dd92b99e2ecf510 import UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510
 
 __all__ = ["CustomHostnameEditResponse", "SSL", "SSLSettings", "SSLValidationError", "SSLValidationRecord"]
 
@@ -17,7 +19,7 @@ class SSLSettings(BaseModel):
     These ciphers must be in the BoringSSL format.
     """
 
-    early_hints: Optional[UnnamedSchemaRef81] = None
+    early_hints: Optional[Literal["on", "off"]] = None
     """Whether or not Early Hints is enabled."""
 
     http2: Optional[Literal["on", "off"]] = None
@@ -68,7 +70,7 @@ class SSL(BaseModel):
     id: Optional[str] = None
     """Custom hostname SSL identifier tag."""
 
-    bundle_method: Optional[UnnamedSchemaRef78] = None
+    bundle_method: Optional[UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1] = None
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
     even by clients using outdated or unusual trust stores. An optimal bundle uses
@@ -97,7 +99,7 @@ class SSL(BaseModel):
     issuer: Optional[str] = None
     """The issuer on a custom uploaded certificate."""
 
-    method: Optional[UnnamedSchemaRef79] = None
+    method: Optional[UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510] = None
     """Domain control validation (DCV) method used for this hostname."""
 
     serial_number: Optional[str] = None
@@ -136,7 +138,7 @@ class SSL(BaseModel):
     ] = None
     """Status of the hostname's SSL certificates."""
 
-    type: Optional[UnnamedSchemaRef80] = None
+    type: Optional[UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1] = None
     """Level of validation to be used for this hostname.
 
     Domain validation (dv) must be used.

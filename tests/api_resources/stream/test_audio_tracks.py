@@ -9,11 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream import (
-    StreamAudio,
-    AudioTrackGetResponse,
-    AudioTrackDeleteResponse,
-)
+from cloudflare.types.shared import UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0
+from cloudflare.types.stream import StreamAudio, AudioTrackGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +26,7 @@ class TestAudioTracks:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
-        assert_matches_type(AudioTrackDeleteResponse, audio_track, path=["response"])
+        assert_matches_type(UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0, audio_track, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +40,7 @@ class TestAudioTracks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audio_track = response.parse()
-        assert_matches_type(AudioTrackDeleteResponse, audio_track, path=["response"])
+        assert_matches_type(UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0, audio_track, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +54,7 @@ class TestAudioTracks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audio_track = response.parse()
-            assert_matches_type(AudioTrackDeleteResponse, audio_track, path=["response"])
+            assert_matches_type(UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0, audio_track, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -293,7 +290,7 @@ class TestAsyncAudioTracks:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
-        assert_matches_type(AudioTrackDeleteResponse, audio_track, path=["response"])
+        assert_matches_type(UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0, audio_track, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -307,7 +304,7 @@ class TestAsyncAudioTracks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audio_track = await response.parse()
-        assert_matches_type(AudioTrackDeleteResponse, audio_track, path=["response"])
+        assert_matches_type(UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0, audio_track, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -321,7 +318,7 @@ class TestAsyncAudioTracks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audio_track = await response.parse()
-            assert_matches_type(AudioTrackDeleteResponse, audio_track, path=["response"])
+            assert_matches_type(UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0, audio_track, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

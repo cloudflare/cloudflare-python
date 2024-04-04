@@ -2,21 +2,23 @@
 
 from typing import List, Optional
 
-from .shared import UnnamedSchemaRef10, UnnamedSchemaRef11, UnnamedSchemaRef12
 from .._models import BaseModel
+from .unnamed_schema_ref_44e66100b948bfe723054c56b6144766 import UnnamedSchemaRef44e66100b948bfe723054c56b6144766
+from .unnamed_schema_ref_767c0981cf47f45f0c766253dbd18669 import UnnamedSchemaRef767c0981cf47f45f0c766253dbd18669
+from .unnamed_schema_ref_39419d70e2399b28b15cd660afd342fb import UnnamedSchemaRef39419d70e2399b28b15cd660afd342fb
 
 __all__ = ["IntelPhishingURLSubmit"]
 
 
 class IntelPhishingURLSubmit(BaseModel):
-    excluded_urls: Optional[List[UnnamedSchemaRef10]] = None
+    excluded_urls: Optional[List[UnnamedSchemaRef767c0981cf47f45f0c766253dbd18669]] = None
     """
     URLs that were excluded from scanning because their domain is in our no-scan
     list.
     """
 
-    skipped_urls: Optional[List[UnnamedSchemaRef11]] = None
+    skipped_urls: Optional[List[UnnamedSchemaRef44e66100b948bfe723054c56b6144766]] = None
     """URLs that were skipped because the same URL is currently being scanned"""
 
-    submitted_urls: Optional[List[UnnamedSchemaRef12]] = None
+    submitted_urls: Optional[List[UnnamedSchemaRef39419d70e2399b28b15cd660afd342fb]] = None
     """URLs that were successfully submitted for scanning."""

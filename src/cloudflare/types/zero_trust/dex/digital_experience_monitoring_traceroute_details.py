@@ -6,10 +6,10 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
+from ..unnamed_schema_ref_bf9e2abcf1b78a6cab8e6e29e2228a11 import UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11
 
 __all__ = [
     "DigitalExperienceMonitoringTracerouteDetails",
-    "TargetPolicy",
     "TracerouteStats",
     "TracerouteStatsAvailabilityPct",
     "TracerouteStatsAvailabilityPctSlot",
@@ -29,15 +29,6 @@ __all__ = [
     "TracerouteStatsByColoRoundTripTimeMs",
     "TracerouteStatsByColoRoundTripTimeMsSlot",
 ]
-
-
-class TargetPolicy(BaseModel):
-    id: str
-
-    default: bool
-    """Whether the policy is the default for the account"""
-
-    name: str
 
 
 class TracerouteStatsAvailabilityPctSlot(BaseModel):
@@ -232,7 +223,7 @@ class DigitalExperienceMonitoringTracerouteDetails(BaseModel):
     name: str
     """The name of the Traceroute synthetic application test"""
 
-    target_policies: Optional[List[TargetPolicy]] = None
+    target_policies: Optional[List[UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11]] = None
 
     targeted: Optional[bool] = None
 

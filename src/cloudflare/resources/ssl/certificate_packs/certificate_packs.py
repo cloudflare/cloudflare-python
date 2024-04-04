@@ -38,9 +38,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.ssl import (
-    CertificatePackGetResponse,
     CertificatePackEditResponse,
-    CertificatePackDeleteResponse,
     certificate_pack_edit_params,
     certificate_pack_list_params,
     certificate_pack_delete_params,
@@ -49,6 +47,10 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ....types.shared import (
+    UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
+    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
 )
 
 __all__ = ["CertificatePacks", "AsyncCertificatePacks"]
@@ -126,7 +128,7 @@ class CertificatePacks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificatePackDeleteResponse:
+    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
         """
         For a given zone, delete an advanced certificate pack.
 
@@ -159,7 +161,10 @@ class CertificatePacks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificatePackDeleteResponse], ResultWrapper[CertificatePackDeleteResponse]),
+            cast_to=cast(
+                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+            ),
         )
 
     def edit(
@@ -224,7 +229,7 @@ class CertificatePacks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificatePackGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         For a given zone, get a certificate pack.
 
@@ -248,7 +253,7 @@ class CertificatePacks(SyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return cast(
-            CertificatePackGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._get(
                 f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
                 options=make_request_options(
@@ -259,7 +264,7 @@ class CertificatePacks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CertificatePackGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -337,7 +342,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificatePackDeleteResponse:
+    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
         """
         For a given zone, delete an advanced certificate pack.
 
@@ -370,7 +375,10 @@ class AsyncCertificatePacks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificatePackDeleteResponse], ResultWrapper[CertificatePackDeleteResponse]),
+            cast_to=cast(
+                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
+            ),
         )
 
     async def edit(
@@ -435,7 +443,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificatePackGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         For a given zone, get a certificate pack.
 
@@ -459,7 +467,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return cast(
-            CertificatePackGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._get(
                 f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
                 options=make_request_options(
@@ -470,7 +478,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CertificatePackGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

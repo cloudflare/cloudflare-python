@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.shared import UnnamedSchemaRef173
+from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from cloudflare.types.zero_trust import ZeroTrustDevices
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -68,7 +68,7 @@ class TestDevices:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef173], device, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestDevices:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         device = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef173], device, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -94,7 +94,7 @@ class TestDevices:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             device = response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef173], device, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, device, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -166,7 +166,7 @@ class TestAsyncDevices:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef173], device, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -179,7 +179,7 @@ class TestAsyncDevices:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         device = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef173], device, path=["response"])
+        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -192,7 +192,7 @@ class TestAsyncDevices:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             device = await response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef173], device, path=["response"])
+            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, device, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

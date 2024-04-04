@@ -3,7 +3,7 @@
 from typing import List
 
 from ...._models import BaseModel
-from ...unnamed_schema_ref_130 import UnnamedSchemaRef130
+from ...unnamed_schema_ref_c5858f1f916a921846e0b6159af470a7 import UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7
 
 __all__ = ["RoutePfx2asResponse", "PrefixOrigin"]
 
@@ -19,6 +19,6 @@ class PrefixOrigin(BaseModel):
 
 
 class RoutePfx2asResponse(BaseModel):
-    meta: UnnamedSchemaRef130
+    meta: UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7
 
     prefix_origins: List[PrefixOrigin]

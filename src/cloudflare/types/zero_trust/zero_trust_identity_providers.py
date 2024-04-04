@@ -3,8 +3,9 @@
 from typing import List, Union, Optional
 from typing_extensions import Literal
 
-from ..shared import UnnamedSchemaRef158, UnnamedSchemaRef163
 from ..._models import BaseModel
+from .unnamed_schema_ref_9ab84e842cdf571c8f3898648bcdabcb import UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+from .unnamed_schema_ref_dd86d8b7ea73283da7b160ed3f86cae1 import UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1
 
 __all__ = [
     "ZeroTrustIdentityProviders",
@@ -86,7 +87,7 @@ class AccessAzureAd(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -96,7 +97,7 @@ class AccessAzureAd(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -134,7 +135,7 @@ class AccessCentrify(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -144,7 +145,7 @@ class AccessCentrify(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -170,7 +171,7 @@ class AccessFacebook(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -180,7 +181,7 @@ class AccessFacebook(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -206,7 +207,7 @@ class AccessGitHub(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -216,7 +217,7 @@ class AccessGitHub(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -248,7 +249,7 @@ class AccessGoogle(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -258,7 +259,7 @@ class AccessGoogle(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -293,7 +294,7 @@ class AccessGoogleApps(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -303,7 +304,7 @@ class AccessGoogleApps(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -329,7 +330,7 @@ class AccessLinkedin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -339,7 +340,7 @@ class AccessLinkedin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -383,7 +384,7 @@ class AccessOidc(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -393,7 +394,7 @@ class AccessOidc(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -431,7 +432,7 @@ class AccessOkta(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -441,7 +442,7 @@ class AccessOkta(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -476,7 +477,7 @@ class AccessOnelogin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -486,7 +487,7 @@ class AccessOnelogin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -521,7 +522,7 @@ class AccessPingone(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -531,7 +532,7 @@ class AccessPingone(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -589,7 +590,7 @@ class AccessSaml(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -599,7 +600,7 @@ class AccessSaml(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -625,7 +626,7 @@ class AccessYandex(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -635,7 +636,7 @@ class AccessYandex(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -653,7 +654,7 @@ class AccessOnetimepin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef163
+    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -663,7 +664,7 @@ class AccessOnetimepin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRef158] = None
+    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.

@@ -25,7 +25,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.registrar import DomainGetResponse, DomainListResponse, DomainUpdateResponse, domain_update_params
+from ...types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
+from ...types.registrar import DomainListResponse, domain_update_params
 
 __all__ = ["Domains", "AsyncDomains"]
 
@@ -53,7 +54,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainUpdateResponse]:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Update individual domain.
 
@@ -82,7 +83,7 @@ class Domains(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return cast(
-            Optional[DomainUpdateResponse],
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._put(
                 f"/accounts/{account_id}/registrar/domains/{domain_name}",
                 body=maybe_transform(
@@ -101,7 +102,7 @@ class Domains(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DomainUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -153,7 +154,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainGetResponse]:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Show individual domain.
 
@@ -175,7 +176,7 @@ class Domains(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return cast(
-            Optional[DomainGetResponse],
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             self._get(
                 f"/accounts/{account_id}/registrar/domains/{domain_name}",
                 options=make_request_options(
@@ -186,7 +187,7 @@ class Domains(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DomainGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -215,7 +216,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainUpdateResponse]:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Update individual domain.
 
@@ -244,7 +245,7 @@ class AsyncDomains(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return cast(
-            Optional[DomainUpdateResponse],
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._put(
                 f"/accounts/{account_id}/registrar/domains/{domain_name}",
                 body=await async_maybe_transform(
@@ -263,7 +264,7 @@ class AsyncDomains(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DomainUpdateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -315,7 +316,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainGetResponse]:
+    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
         """
         Show individual domain.
 
@@ -337,7 +338,7 @@ class AsyncDomains(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return cast(
-            Optional[DomainGetResponse],
+            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
             await self._get(
                 f"/accounts/{account_id}/registrar/domains/{domain_name}",
                 options=make_request_options(
@@ -348,7 +349,7 @@ class AsyncDomains(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[DomainGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

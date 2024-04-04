@@ -20,7 +20,6 @@ from .peer_delete_response import PeerDeleteResponse as PeerDeleteResponse
 from .tsig_delete_response import TSIGDeleteResponse as TSIGDeleteResponse
 from .incoming_get_response import IncomingGetResponse as IncomingGetResponse
 from .outgoing_get_response import OutgoingGetResponse as OutgoingGetResponse
-from .unnamed_schema_ref_70 import UnnamedSchemaRef70 as UnnamedSchemaRef70
 from .incoming_create_params import IncomingCreateParams as IncomingCreateParams
 from .incoming_delete_params import IncomingDeleteParams as IncomingDeleteParams
 from .incoming_update_params import IncomingUpdateParams as IncomingUpdateParams
@@ -40,3 +39,6 @@ from .outgoing_force_notify_params import OutgoingForceNotifyParams as OutgoingF
 from .secondary_dns_enable_transfer import SecondaryDNSEnableTransfer as SecondaryDNSEnableTransfer
 from .outgoing_force_notify_response import OutgoingForceNotifyResponse as OutgoingForceNotifyResponse
 from .secondary_dns_disable_transfer import SecondaryDNSDisableTransfer as SecondaryDNSDisableTransfer
+from .unnamed_schema_ref_bf34e74a34c9a2f63d85505dc69d4adc import (
+    UnnamedSchemaRefBf34e74a34c9a2f63d85505dc69d4adc as UnnamedSchemaRefBf34e74a34c9a2f63d85505dc69d4adc,
+)

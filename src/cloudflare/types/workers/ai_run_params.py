@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Required, TypedDict
 
-from ...types import shared_params
-
 __all__ = [
     "AIRunParams",
     "TextClassification",
@@ -57,7 +55,7 @@ class SentenceSimilarity(TypedDict, total=False):
 class TextEmbeddings(TypedDict, total=False):
     account_id: Required[str]
 
-    text: Required[shared_params.UnnamedSchemaRef121]
+    text: Required[Union[str, List[str]]]
 
 
 class SpeechRecognition(TypedDict, total=False):

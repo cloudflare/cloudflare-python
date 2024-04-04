@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.dlp import PayloadLogGetResponse, PayloadLogUpdateResponse, payload_log_update_params
+from ....types.zero_trust.dlp import UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5, payload_log_update_params
 
 __all__ = ["PayloadLogs", "AsyncPayloadLogs"]
 
@@ -48,7 +48,7 @@ class PayloadLogs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogUpdateResponse:
+    ) -> Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5]:
         """
         Updates the DLP payload log settings for this account.
 
@@ -77,7 +77,10 @@ class PayloadLogs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PayloadLogUpdateResponse], ResultWrapper[PayloadLogUpdateResponse]),
+            cast_to=cast(
+                Type[Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5]],
+                ResultWrapper[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5],
+            ),
         )
 
     def get(
@@ -90,7 +93,7 @@ class PayloadLogs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogGetResponse:
+    ) -> Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5]:
         """
         Gets the current DLP payload log settings for this account.
 
@@ -116,7 +119,10 @@ class PayloadLogs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PayloadLogGetResponse], ResultWrapper[PayloadLogGetResponse]),
+            cast_to=cast(
+                Type[Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5]],
+                ResultWrapper[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5],
+            ),
         )
 
 
@@ -140,7 +146,7 @@ class AsyncPayloadLogs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogUpdateResponse:
+    ) -> Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5]:
         """
         Updates the DLP payload log settings for this account.
 
@@ -171,7 +177,10 @@ class AsyncPayloadLogs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PayloadLogUpdateResponse], ResultWrapper[PayloadLogUpdateResponse]),
+            cast_to=cast(
+                Type[Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5]],
+                ResultWrapper[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5],
+            ),
         )
 
     async def get(
@@ -184,7 +193,7 @@ class AsyncPayloadLogs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogGetResponse:
+    ) -> Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5]:
         """
         Gets the current DLP payload log settings for this account.
 
@@ -210,7 +219,10 @@ class AsyncPayloadLogs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PayloadLogGetResponse], ResultWrapper[PayloadLogGetResponse]),
+            cast_to=cast(
+                Type[Optional[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5]],
+                ResultWrapper[UnnamedSchemaRefE31ff4936b1b42746e8cb62bbc87f2e5],
+            ),
         )
 
 

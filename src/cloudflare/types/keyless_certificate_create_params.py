@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .shared import UnnamedSchemaRef78
+from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
 
 __all__ = ["KeylessCertificateCreateParams", "Tunnel"]
 
@@ -25,7 +25,7 @@ class KeylessCertificateCreateParams(TypedDict, total=False):
     Keyless SSL server.
     """
 
-    bundle_method: UnnamedSchemaRef78
+    bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
     even by clients using outdated or unusual trust stores. An optimal bundle uses

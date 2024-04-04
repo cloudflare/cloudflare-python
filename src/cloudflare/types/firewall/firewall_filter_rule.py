@@ -3,8 +3,8 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ..shared import UnnamedSchemaRef107
 from ..._models import BaseModel
+from .unnamed_schema_ref_ab48d2d33259c9107401d174735701c7 import UnnamedSchemaRefAb48d2d33259c9107401d174735701c7
 
 __all__ = ["FirewallFilterRule"]
 
@@ -24,7 +24,7 @@ class FirewallFilterRule(BaseModel):
     description: Optional[str] = None
     """An informative summary of the firewall rule."""
 
-    filter: Optional[UnnamedSchemaRef107] = None
+    filter: Optional[UnnamedSchemaRefAb48d2d33259c9107401d174735701c7] = None
 
     paused: Optional[bool] = None
     """When true, indicates that the firewall rule is currently paused."""

@@ -25,14 +25,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.workers import (
-    WorkersRoute,
-    RouteCreateResponse,
-    RouteDeleteResponse,
-    route_create_params,
-    route_delete_params,
-    route_update_params,
-)
+from ...types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from ...types.workers import WorkersRoute, route_create_params, route_delete_params, route_update_params
 
 __all__ = ["Routes", "AsyncRoutes"]
 
@@ -58,7 +52,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteCreateResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Creates a route that maps a URL pattern to a Worker.
 
@@ -78,7 +72,7 @@ class Routes(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            RouteCreateResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._post(
                 f"/zones/{zone_id}/workers/routes",
                 body=maybe_transform(
@@ -96,7 +90,7 @@ class Routes(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RouteCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -204,7 +198,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteDeleteResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Deletes a route.
 
@@ -226,7 +220,7 @@ class Routes(SyncAPIResource):
         if not route_id:
             raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return cast(
-            RouteDeleteResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             self._delete(
                 f"/zones/{zone_id}/workers/routes/{route_id}",
                 body=maybe_transform(body, route_delete_params.RouteDeleteParams),
@@ -238,7 +232,7 @@ class Routes(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RouteDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -309,7 +303,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteCreateResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Creates a route that maps a URL pattern to a Worker.
 
@@ -329,7 +323,7 @@ class AsyncRoutes(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            RouteCreateResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._post(
                 f"/zones/{zone_id}/workers/routes",
                 body=await async_maybe_transform(
@@ -347,7 +341,7 @@ class AsyncRoutes(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RouteCreateResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -455,7 +449,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteDeleteResponse:
+    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
         """
         Deletes a route.
 
@@ -477,7 +471,7 @@ class AsyncRoutes(AsyncAPIResource):
         if not route_id:
             raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return cast(
-            RouteDeleteResponse,
+            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
             await self._delete(
                 f"/zones/{zone_id}/workers/routes/{route_id}",
                 body=await async_maybe_transform(body, route_delete_params.RouteDeleteParams),
@@ -489,7 +483,7 @@ class AsyncRoutes(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RouteDeleteResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.billing import ProfileGetResponse
+from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["Profiles", "AsyncProfiles"]
 
@@ -43,7 +43,7 @@ class Profiles(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProfileGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Gets the current billing profile for the account.
 
@@ -57,7 +57,7 @@ class Profiles(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            ProfileGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             self._get(
                 f"/accounts/{account_identifier}/billing/profile",
                 options=make_request_options(
@@ -68,7 +68,7 @@ class Profiles(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -93,7 +93,7 @@ class AsyncProfiles(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProfileGetResponse:
+    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
         """
         Gets the current billing profile for the account.
 
@@ -107,7 +107,7 @@ class AsyncProfiles(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            ProfileGetResponse,
+            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
             await self._get(
                 f"/accounts/{account_identifier}/billing/profile",
                 options=make_request_options(
@@ -118,7 +118,7 @@ class AsyncProfiles(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
+                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

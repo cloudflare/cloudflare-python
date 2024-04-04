@@ -5,8 +5,9 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ...shared import UnnamedSchemaRef87, UnnamedSchemaRef88, UnnamedSchemaRef119
 from ...._utils import PropertyInfo
+from .unnamed_schema_ref_34ef0ad73a63c3f76ed170adca181930 import UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930
+from .unnamed_schema_ref_41885dd46b9e0294254c49305a273681 import UnnamedSchemaRef41885dd46b9e0294254c49305a273681
 
 __all__ = [
     "PostureUpdateParams",
@@ -86,7 +87,7 @@ class PostureUpdateParams(TypedDict, total=False):
 
 
 class InputTeamsDevicesFileInputRequest(TypedDict, total=False):
-    operating_system: Required[UnnamedSchemaRef119]
+    operating_system: Required[UnnamedSchemaRef41885dd46b9e0294254c49305a273681]
     """Operating system"""
 
     path: Required[str]
@@ -122,8 +123,8 @@ class InputTeamsDevicesOSVersionInputRequest(TypedDict, total=False):
     operating_system: Required[Literal["windows"]]
     """Operating System"""
 
-    operator: Required[Literal["<", "<=", ">", ">=", "=="]]
-    """Operator"""
+    operator: Required[UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930]
+    """operator"""
 
     version: Required[str]
     """Version of OS"""
@@ -151,7 +152,7 @@ class InputTeamsDevicesFirewallInputRequest(TypedDict, total=False):
 
 
 class InputTeamsDevicesSentineloneInputRequest(TypedDict, total=False):
-    operating_system: Required[UnnamedSchemaRef119]
+    operating_system: Required[UnnamedSchemaRef41885dd46b9e0294254c49305a273681]
     """Operating system"""
 
     path: Required[str]
@@ -165,7 +166,7 @@ class InputTeamsDevicesSentineloneInputRequest(TypedDict, total=False):
 
 
 class InputTeamsDevicesCarbonblackInputRequest(TypedDict, total=False):
-    operating_system: Required[UnnamedSchemaRef119]
+    operating_system: Required[UnnamedSchemaRef41885dd46b9e0294254c49305a273681]
     """Operating system"""
 
     path: Required[str]
@@ -187,7 +188,7 @@ class InputTeamsDevicesDiskEncryptionInputRequest(TypedDict, total=False):
 
 
 class InputTeamsDevicesApplicationInputRequest(TypedDict, total=False):
-    operating_system: Required[UnnamedSchemaRef119]
+    operating_system: Required[UnnamedSchemaRef41885dd46b9e0294254c49305a273681]
     """Operating system"""
 
     path: Required[str]
@@ -223,8 +224,8 @@ class InputTeamsDevicesCrowdstrikeInputRequest(TypedDict, total=False):
     last_seen: str
     """For more details on last seen, please refer to the Crowdstrike documentation."""
 
-    operator: UnnamedSchemaRef87
-    """Operator"""
+    operator: UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930
+    """operator"""
 
     os: str
     """Os Version"""
@@ -241,7 +242,7 @@ class InputTeamsDevicesCrowdstrikeInputRequest(TypedDict, total=False):
     version: str
     """Version"""
 
-    version_operator: Annotated[UnnamedSchemaRef88, PropertyInfo(alias="versionOperator")]
+    version_operator: Annotated[Literal["<", "<=", ">", ">=", "=="], PropertyInfo(alias="versionOperator")]
     """Version Operator"""
 
 
@@ -302,7 +303,7 @@ class InputTeamsDevicesSentineloneS2sInputRequest(TypedDict, total=False):
     network_status: Literal["connected", "disconnected", "disconnecting", "connecting"]
     """Network status of device."""
 
-    operator: Literal["<", "<=", ">", ">=", "=="]
+    operator: UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930
     """operator"""
 
 

@@ -4,8 +4,10 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ...shared import UnnamedSchemaRef75, UnnamedSchemaRef76, UnnamedSchemaRef77
 from ...._models import BaseModel
+from .unnamed_schema_ref_6ed9646890b9be79e16f1cfff86ec832 import UnnamedSchemaRef6ed9646890b9be79e16f1cfff86ec832
+from .unnamed_schema_ref_c335ce55d4fdf132c942dfce6e45dcb9 import UnnamedSchemaRefC335ce55d4fdf132c942dfce6e45dcb9
+from .unnamed_schema_ref_c6200e37c458aaa3c42e6e5b999bc419 import UnnamedSchemaRefC6200e37c458aaa3c42e6e5b999bc419
 
 __all__ = [
     "ZeroTrustApps",
@@ -184,10 +186,10 @@ class SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributes(BaseModel):
     name: Optional[str] = None
     """The name of the attribute."""
 
-    name_format: Optional[UnnamedSchemaRef75] = None
+    name_format: Optional[UnnamedSchemaRefC335ce55d4fdf132c942dfce6e45dcb9] = None
     """A globally unique name for an identity or service provider."""
 
-    source: Optional[UnnamedSchemaRef76] = None
+    source: Optional[UnnamedSchemaRef6ed9646890b9be79e16f1cfff86ec832] = None
 
 
 class SaaSApplicationSaasAppAccessSamlSaasApp(BaseModel):
@@ -217,7 +219,7 @@ class SaaSApplicationSaasAppAccessSamlSaasApp(BaseModel):
     idp_entity_id: Optional[str] = None
     """The unique identifier for your SaaS application."""
 
-    name_id_format: Optional[UnnamedSchemaRef77] = None
+    name_id_format: Optional[UnnamedSchemaRefC6200e37c458aaa3c42e6e5b999bc419] = None
     """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: Optional[str] = None
