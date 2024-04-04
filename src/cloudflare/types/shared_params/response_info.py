@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["UnnamedSchemaRef172"]
+__all__ = ["ResponseInfo"]
 
 
-class UnnamedSchemaRef172(TypedDict, total=False):
+class ResponseInfo(TypedDict, total=False):
     code: Required[int]
 
     message: Required[str]
