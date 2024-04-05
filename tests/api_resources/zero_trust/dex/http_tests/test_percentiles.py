@@ -9,9 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dex.http_tests import (
-    DigitalExperienceMonitoringHTTPDetailsPercentiles,
-)
+from cloudflare.types.zero_trust.dex.http_tests import HTTPDetailsPercentiles
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +26,7 @@ class TestPercentiles:
             time_end="2023-09-20T17:00:00Z",
             time_start="2023-09-20T17:00:00Z",
         )
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetailsPercentiles, percentile, path=["response"])
+        assert_matches_type(HTTPDetailsPercentiles, percentile, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +39,7 @@ class TestPercentiles:
             colo="string",
             device_id=["string", "string", "string"],
         )
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetailsPercentiles, percentile, path=["response"])
+        assert_matches_type(HTTPDetailsPercentiles, percentile, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +54,7 @@ class TestPercentiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         percentile = response.parse()
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetailsPercentiles, percentile, path=["response"])
+        assert_matches_type(HTTPDetailsPercentiles, percentile, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -71,7 +69,7 @@ class TestPercentiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             percentile = response.parse()
-            assert_matches_type(DigitalExperienceMonitoringHTTPDetailsPercentiles, percentile, path=["response"])
+            assert_matches_type(HTTPDetailsPercentiles, percentile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -107,7 +105,7 @@ class TestAsyncPercentiles:
             time_end="2023-09-20T17:00:00Z",
             time_start="2023-09-20T17:00:00Z",
         )
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetailsPercentiles, percentile, path=["response"])
+        assert_matches_type(HTTPDetailsPercentiles, percentile, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +118,7 @@ class TestAsyncPercentiles:
             colo="string",
             device_id=["string", "string", "string"],
         )
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetailsPercentiles, percentile, path=["response"])
+        assert_matches_type(HTTPDetailsPercentiles, percentile, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -135,7 +133,7 @@ class TestAsyncPercentiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         percentile = await response.parse()
-        assert_matches_type(DigitalExperienceMonitoringHTTPDetailsPercentiles, percentile, path=["response"])
+        assert_matches_type(HTTPDetailsPercentiles, percentile, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -150,7 +148,7 @@ class TestAsyncPercentiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             percentile = await response.parse()
-            assert_matches_type(DigitalExperienceMonitoringHTTPDetailsPercentiles, percentile, path=["response"])
+            assert_matches_type(HTTPDetailsPercentiles, percentile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

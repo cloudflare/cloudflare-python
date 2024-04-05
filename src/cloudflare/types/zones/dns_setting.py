@@ -1,20 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .nameserver import Nameserver
 
-__all__ = ["DNSSetting", "Nameservers"]
-
-
-class Nameservers(BaseModel):
-    type: Literal["cloudflare.standard", "cloudflare.foundation_dns"]
-    """Nameserver type"""
+__all__ = ["DNSSetting"]
 
 
 class DNSSetting(BaseModel):
-    nameservers: Optional[Nameservers] = None
+    nameservers: Optional[Nameserver] = None
     """
     Settings determining the nameservers through which the zone should be available.
     """

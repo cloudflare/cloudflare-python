@@ -19,7 +19,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dex.traceroute_test_results import DigitalExperienceMonitoringTracerouteTestResultNetworkPath
+from .....types.zero_trust.dex.traceroute_test_results import TracerouteTestResultNetworkPath
 
 __all__ = ["NetworkPath", "AsyncNetworkPath"]
 
@@ -44,7 +44,7 @@ class NetworkPath(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringTracerouteTestResultNetworkPath:
+    ) -> TracerouteTestResultNetworkPath:
         """
         Get a breakdown of hops and performance metrics for a specific traceroute test
         run
@@ -73,10 +73,7 @@ class NetworkPath(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringTracerouteTestResultNetworkPath],
-                ResultWrapper[DigitalExperienceMonitoringTracerouteTestResultNetworkPath],
-            ),
+            cast_to=cast(Type[TracerouteTestResultNetworkPath], ResultWrapper[TracerouteTestResultNetworkPath]),
         )
 
 
@@ -100,7 +97,7 @@ class AsyncNetworkPath(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringTracerouteTestResultNetworkPath:
+    ) -> TracerouteTestResultNetworkPath:
         """
         Get a breakdown of hops and performance metrics for a specific traceroute test
         run
@@ -129,10 +126,7 @@ class AsyncNetworkPath(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringTracerouteTestResultNetworkPath],
-                ResultWrapper[DigitalExperienceMonitoringTracerouteTestResultNetworkPath],
-            ),
+            cast_to=cast(Type[TracerouteTestResultNetworkPath], ResultWrapper[TracerouteTestResultNetworkPath]),
         )
 
 

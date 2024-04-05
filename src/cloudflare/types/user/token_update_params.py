@@ -7,15 +7,17 @@ from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
+from .cidr_list_item import CIDRListItem
+from .policy_with_permission_groups_param import PolicyWithPermissionGroupsParam
 
-__all__ = ["TokenUpdateParams", "Policy", "PolicyPermissionGroup", "Condition", "ConditionRequestIP"]
+__all__ = ["TokenUpdateParams", "Condition", "ConditionRequestIP"]
 
 
 class TokenUpdateParams(TypedDict, total=False):
     name: Required[str]
     """Token name."""
 
-    policies: Required[Iterable[Policy]]
+    policies: Required[Iterable[PolicyWithPermissionGroupsParam]]
     """List of access policies assigned to the token."""
 
     status: Required[Literal["active", "disabled", "expired"]]
@@ -33,32 +35,17 @@ class TokenUpdateParams(TypedDict, total=False):
     """The time before which the token MUST NOT be accepted for processing."""
 
 
-class PolicyPermissionGroup(TypedDict, total=False):
-    pass
-
-
-class Policy(TypedDict, total=False):
-    effect: Required[Literal["allow", "deny"]]
-    """Allow or deny operations against the resources."""
-
-    permission_groups: Required[Iterable[PolicyPermissionGroup]]
-    """A set of permission groups that are specified to the policy."""
-
-    resources: Required[object]
-    """A list of resource names that the policy applies to."""
-
-
 _ConditionRequestIPReservedKeywords = TypedDict(
     "_ConditionRequestIPReservedKeywords",
     {
-        "in": List[str],
+        "in": List[CIDRListItem],
     },
     total=False,
 )
 
 
 class ConditionRequestIP(_ConditionRequestIPReservedKeywords, total=False):
-    not_in: List[str]
+    not_in: List[CIDRListItem]
     """List of IPv4/IPv6 CIDR addresses."""
 
 

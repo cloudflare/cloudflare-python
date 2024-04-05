@@ -28,6 +28,9 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ....types.zero_trust.gateway import (
+    FitlerItem,
+    ScheduleParam,
+    RuleSettingsParam,
     ZeroTrustGatewayRules,
     rule_create_params,
     rule_delete_params,
@@ -71,11 +74,11 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: List[Literal["http", "dns", "l4", "egress"]] | NotGiven = NOT_GIVEN,
+        filters: List[FitlerItem] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: rule_create_params.RuleSettings | NotGiven = NOT_GIVEN,
-        schedule: rule_create_params.Schedule | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingsParam | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -179,11 +182,11 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: List[Literal["http", "dns", "l4", "egress"]] | NotGiven = NOT_GIVEN,
+        filters: List[FitlerItem] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: rule_update_params.RuleSettings | NotGiven = NOT_GIVEN,
-        schedule: rule_update_params.Schedule | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingsParam | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -425,11 +428,11 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: List[Literal["http", "dns", "l4", "egress"]] | NotGiven = NOT_GIVEN,
+        filters: List[FitlerItem] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: rule_create_params.RuleSettings | NotGiven = NOT_GIVEN,
-        schedule: rule_create_params.Schedule | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingsParam | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -533,11 +536,11 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: List[Literal["http", "dns", "l4", "egress"]] | NotGiven = NOT_GIVEN,
+        filters: List[FitlerItem] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: rule_update_params.RuleSettings | NotGiven = NOT_GIVEN,
-        schedule: rule_update_params.Schedule | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingsParam | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -23,7 +23,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.workers.scripts.versions import SettingGetResponse, SettingEditResponse, setting_edit_params
+from .....types.workers.scripts.versions import SettingsItem, SettingsItemParam, setting_edit_params
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -42,14 +42,14 @@ class Settings(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        settings: setting_edit_params.Settings | NotGiven = NOT_GIVEN,
+        settings: SettingsItemParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingEditResponse:
+    ) -> SettingsItem:
         """
         Patch metadata or config, such as bindings or usage model
 
@@ -80,7 +80,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
+            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
         )
 
     def get(
@@ -94,7 +94,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingGetResponse:
+    ) -> SettingsItem:
         """
         Get metadata and config, such as bindings or usage model
 
@@ -124,7 +124,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
+            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
         )
 
 
@@ -142,14 +142,14 @@ class AsyncSettings(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        settings: setting_edit_params.Settings | NotGiven = NOT_GIVEN,
+        settings: SettingsItemParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingEditResponse:
+    ) -> SettingsItem:
         """
         Patch metadata or config, such as bindings or usage model
 
@@ -180,7 +180,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
+            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
         )
 
     async def get(
@@ -194,7 +194,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingGetResponse:
+    ) -> SettingsItem:
         """
         Get metadata and config, such as bindings or usage model
 
@@ -224,7 +224,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
+            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
         )
 
 

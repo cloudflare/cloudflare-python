@@ -1,9 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
+from .setting_value import SettingValue
 
 __all__ = ["TLSGetResponse", "TLSGetResponseItem"]
 
@@ -21,7 +22,7 @@ class TLSGetResponseItem(BaseModel):
     updated_at: Optional[datetime] = None
     """This is the time the tls setting was updated."""
 
-    value: Union[float, str, List[str], None] = None
+    value: Optional[SettingValue] = None
     """The tls setting value."""
 
 

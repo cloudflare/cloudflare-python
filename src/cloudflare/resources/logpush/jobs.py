@@ -28,7 +28,7 @@ from ..._base_client import (
 )
 from ...types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
 from ...types.logpush import job_create_params, job_delete_params, job_update_params
-from ...types.logpush.datasets import LogpushJob
+from ...types.logpush.datasets import Job, OutputOptionsParam
 
 __all__ = ["Jobs", "AsyncJobs"]
 
@@ -53,7 +53,7 @@ class Jobs(SyncAPIResource):
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[job_create_params.OutputOptions] | NotGiven = NOT_GIVEN,
+        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -61,7 +61,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    ) -> Optional[Job]:
         """
         Creates a new Logpush job for an account or zone.
 
@@ -142,7 +142,7 @@ class Jobs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
+            cast_to=cast(Type[Optional[Job]], ResultWrapper[Job]),
         )
 
     def update(
@@ -155,7 +155,7 @@ class Jobs(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[job_update_params.OutputOptions] | NotGiven = NOT_GIVEN,
+        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -163,7 +163,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    ) -> Optional[Job]:
         """
         Updates a Logpush job.
 
@@ -238,7 +238,7 @@ class Jobs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
+            cast_to=cast(Type[Optional[Job]], ResultWrapper[Job]),
         )
 
     def list(
@@ -252,7 +252,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Optional[LogpushJob]]:
+    ) -> SyncSinglePage[Optional[Job]]:
         """
         Lists Logpush jobs for an account or zone.
 
@@ -286,11 +286,11 @@ class Jobs(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
-            page=SyncSinglePage[Optional[LogpushJob]],
+            page=SyncSinglePage[Optional[Job]],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=LogpushJob,
+            model=Job,
         )
 
     def delete(
@@ -370,7 +370,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    ) -> Optional[Job]:
         """
         Gets the details of a Logpush job.
 
@@ -413,7 +413,7 @@ class Jobs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
+            cast_to=cast(Type[Optional[Job]], ResultWrapper[Job]),
         )
 
 
@@ -437,7 +437,7 @@ class AsyncJobs(AsyncAPIResource):
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[job_create_params.OutputOptions] | NotGiven = NOT_GIVEN,
+        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -445,7 +445,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    ) -> Optional[Job]:
         """
         Creates a new Logpush job for an account or zone.
 
@@ -526,7 +526,7 @@ class AsyncJobs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
+            cast_to=cast(Type[Optional[Job]], ResultWrapper[Job]),
         )
 
     async def update(
@@ -539,7 +539,7 @@ class AsyncJobs(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[job_update_params.OutputOptions] | NotGiven = NOT_GIVEN,
+        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -547,7 +547,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    ) -> Optional[Job]:
         """
         Updates a Logpush job.
 
@@ -622,7 +622,7 @@ class AsyncJobs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
+            cast_to=cast(Type[Optional[Job]], ResultWrapper[Job]),
         )
 
     def list(
@@ -636,7 +636,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Optional[LogpushJob], AsyncSinglePage[Optional[LogpushJob]]]:
+    ) -> AsyncPaginator[Optional[Job], AsyncSinglePage[Optional[Job]]]:
         """
         Lists Logpush jobs for an account or zone.
 
@@ -670,11 +670,11 @@ class AsyncJobs(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
-            page=AsyncSinglePage[Optional[LogpushJob]],
+            page=AsyncSinglePage[Optional[Job]],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=LogpushJob,
+            model=Job,
         )
 
     async def delete(
@@ -754,7 +754,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    ) -> Optional[Job]:
         """
         Gets the details of a Logpush job.
 
@@ -797,7 +797,7 @@ class AsyncJobs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
+            cast_to=cast(Type[Optional[Job]], ResultWrapper[Job]),
         )
 
 

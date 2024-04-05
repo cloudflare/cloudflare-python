@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .dex_test_schemas_http import DEXTestSchemasHTTP
+from .schema_http import SchemaHTTP
 
 __all__ = ["DEXTestDeleteResponse"]
 
-DEXTestDeleteResponse = List[DEXTestSchemasHTTP]
+DEXTestDeleteResponse = List[SchemaHTTP]

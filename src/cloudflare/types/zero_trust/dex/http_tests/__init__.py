@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
+from .test_stat_over_time import TestStatOverTime as TestStatOverTime
 from .percentile_get_params import PercentileGetParams as PercentileGetParams
-from .digital_experience_monitoring_http_details_percentiles import (
-    DigitalExperienceMonitoringHTTPDetailsPercentiles as DigitalExperienceMonitoringHTTPDetailsPercentiles,
-)
+from .http_details_percentiles import HTTPDetailsPercentiles as HTTPDetailsPercentiles

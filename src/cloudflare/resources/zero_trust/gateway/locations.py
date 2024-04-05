@@ -27,7 +27,8 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ....types.zero_trust.gateway import (
-    ZeroTrustGatewayLocations,
+    NetworkItemParam,
+    locations,
     location_create_params,
     location_delete_params,
     location_update_params,
@@ -52,14 +53,14 @@ class Locations(SyncAPIResource):
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
+        networks: Iterable[NetworkItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> locations.Locations:
         """
         Creates a new Zero Trust Gateway location.
 
@@ -100,7 +101,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[locations.Locations], ResultWrapper[locations.Locations]),
         )
 
     def update(
@@ -111,14 +112,14 @@ class Locations(SyncAPIResource):
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
+        networks: Iterable[NetworkItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> locations.Locations:
         """
         Updates a configured Zero Trust Gateway location.
 
@@ -161,7 +162,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[locations.Locations], ResultWrapper[locations.Locations]),
         )
 
     def list(
@@ -174,7 +175,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustGatewayLocations]:
+    ) -> SyncSinglePage[locations.Locations]:
         """
         Fetches Zero Trust Gateway locations for an account.
 
@@ -191,11 +192,11 @@ class Locations(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/locations",
-            page=SyncSinglePage[ZeroTrustGatewayLocations],
+            page=SyncSinglePage[locations.Locations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGatewayLocations,
+            model=locations.Locations,
         )
 
     def delete(
@@ -256,7 +257,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> locations.Locations:
         """
         Fetches a single Zero Trust Gateway location.
 
@@ -282,7 +283,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[locations.Locations], ResultWrapper[locations.Locations]),
         )
 
 
@@ -302,14 +303,14 @@ class AsyncLocations(AsyncAPIResource):
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
+        networks: Iterable[NetworkItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> locations.Locations:
         """
         Creates a new Zero Trust Gateway location.
 
@@ -350,7 +351,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[locations.Locations], ResultWrapper[locations.Locations]),
         )
 
     async def update(
@@ -361,14 +362,14 @@ class AsyncLocations(AsyncAPIResource):
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
+        networks: Iterable[NetworkItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> locations.Locations:
         """
         Updates a configured Zero Trust Gateway location.
 
@@ -411,7 +412,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[locations.Locations], ResultWrapper[locations.Locations]),
         )
 
     def list(
@@ -424,7 +425,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustGatewayLocations, AsyncSinglePage[ZeroTrustGatewayLocations]]:
+    ) -> AsyncPaginator[locations.Locations, AsyncSinglePage[locations.Locations]]:
         """
         Fetches Zero Trust Gateway locations for an account.
 
@@ -441,11 +442,11 @@ class AsyncLocations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/locations",
-            page=AsyncSinglePage[ZeroTrustGatewayLocations],
+            page=AsyncSinglePage[locations.Locations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGatewayLocations,
+            model=locations.Locations,
         )
 
     async def delete(
@@ -506,7 +507,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLocations:
+    ) -> locations.Locations:
         """
         Fetches a single Zero Trust Gateway location.
 
@@ -532,7 +533,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLocations], ResultWrapper[ZeroTrustGatewayLocations]),
+            cast_to=cast(Type[locations.Locations], ResultWrapper[locations.Locations]),
         )
 
 

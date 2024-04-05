@@ -3,9 +3,9 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
+from .tests import Tests
 from ...shared import UnnamedSchemaRef3248f24329456e19dfa042fff9986f72
 from ...._models import BaseModel
-from .digital_experience_monitoring_tests import DigitalExperienceMonitoringTests
 
 __all__ = ["TestListResponse", "ResultInfo"]
 
@@ -30,7 +30,7 @@ class TestListResponse(BaseModel):
 
     messages: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
 
-    result: DigitalExperienceMonitoringTests
+    result: Tests
 
     success: Literal[True]
     """Whether the API call was successful"""

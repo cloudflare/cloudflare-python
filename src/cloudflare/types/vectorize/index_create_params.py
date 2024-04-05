@@ -5,12 +5,9 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = [
-    "IndexCreateParams",
-    "Config",
-    "ConfigVectorizeIndexPresetConfiguration",
-    "ConfigVectorizeIndexDimensionConfiguration",
-]
+from .index_dimension_configuration_param import IndexDimensionConfigurationParam
+
+__all__ = ["IndexCreateParams", "Config", "ConfigVectorizeIndexPresetConfiguration"]
 
 
 class IndexCreateParams(TypedDict, total=False):
@@ -36,12 +33,4 @@ class ConfigVectorizeIndexPresetConfiguration(TypedDict, total=False):
     """Specifies the preset to use for the index."""
 
 
-class ConfigVectorizeIndexDimensionConfiguration(TypedDict, total=False):
-    dimensions: Required[int]
-    """Specifies the number of dimensions for the index"""
-
-    metric: Required[Literal["cosine", "euclidean", "dot-product"]]
-    """Specifies the type of metric to use calculating distance."""
-
-
-Config = Union[ConfigVectorizeIndexPresetConfiguration, ConfigVectorizeIndexDimensionConfiguration]
+Config = Union[ConfigVectorizeIndexPresetConfiguration, IndexDimensionConfigurationParam]

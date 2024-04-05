@@ -37,7 +37,7 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.dlp import DLPProfiles, ProfileGetResponse
+from .....types.zero_trust.dlp import DLPProfile, ProfileGetResponse
 
 __all__ = ["Profiles", "AsyncProfiles"]
 
@@ -69,7 +69,7 @@ class Profiles(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DLPProfiles]:
+    ) -> SyncSinglePage[DLPProfile]:
         """
         Lists all DLP profiles in an account.
 
@@ -88,11 +88,11 @@ class Profiles(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dlp/profiles",
-            page=SyncSinglePage[DLPProfiles],
+            page=SyncSinglePage[DLPProfile],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, DLPProfiles),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, DLPProfile),  # Union types cannot be passed in as arguments in the type system
         )
 
     def get(
@@ -173,7 +173,7 @@ class AsyncProfiles(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DLPProfiles, AsyncSinglePage[DLPProfiles]]:
+    ) -> AsyncPaginator[DLPProfile, AsyncSinglePage[DLPProfile]]:
         """
         Lists all DLP profiles in an account.
 
@@ -192,11 +192,11 @@ class AsyncProfiles(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dlp/profiles",
-            page=AsyncSinglePage[DLPProfiles],
+            page=AsyncSinglePage[DLPProfile],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, DLPProfiles),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, DLPProfile),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def get(

@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .hostname_stting import HostnameStting as HostnameStting
+from .setting import Setting as Setting
+from .setting_value import SettingValue as SettingValue
 from .tls_get_response import TLSGetResponse as TLSGetResponse
 from .tls_update_params import TLSUpdateParams as TLSUpdateParams
-from .hostname_setting_delete import HostnameSettingDelete as HostnameSettingDelete
+from .setting_value_param import SettingValueParam as SettingValueParam
+from .tls_delete_response import TLSDeleteResponse as TLSDeleteResponse

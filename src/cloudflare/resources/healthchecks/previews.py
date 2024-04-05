@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from typing import List, Type, Optional, cast
-from typing_extensions import Literal
 
 import httpx
 
-from ...types import Healthcheck
+from ...types import (
+    Healthcheck,
+    TcpConfigurationParam,
+    HTTPConfigurationParam,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -25,7 +28,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.healthchecks import PreviewDeleteResponse, preview_create_params, preview_delete_params
+from ...types.healthchecks import CheckRegionItem, PreviewDeleteResponse, preview_create_params, preview_delete_params
 
 __all__ = ["Previews", "AsyncPreviews"]
 
@@ -45,35 +48,15 @@ class Previews(SyncAPIResource):
         zone_id: str,
         address: str,
         name: str,
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "IN",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegionItem]] | NotGiven = NOT_GIVEN,
         consecutive_fails: int | NotGiven = NOT_GIVEN,
         consecutive_successes: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        http_config: Optional[preview_create_params.HTTPConfig] | NotGiven = NOT_GIVEN,
+        http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
-        tcp_config: Optional[preview_create_params.TcpConfig] | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TcpConfigurationParam] | NotGiven = NOT_GIVEN,
         healthcheck_timeout: int | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -269,35 +252,15 @@ class AsyncPreviews(AsyncAPIResource):
         zone_id: str,
         address: str,
         name: str,
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "IN",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegionItem]] | NotGiven = NOT_GIVEN,
         consecutive_fails: int | NotGiven = NOT_GIVEN,
         consecutive_successes: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        http_config: Optional[preview_create_params.HTTPConfig] | NotGiven = NOT_GIVEN,
+        http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
-        tcp_config: Optional[preview_create_params.TcpConfig] | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TcpConfigurationParam] | NotGiven = NOT_GIVEN,
         healthcheck_timeout: int | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -25,7 +25,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.access import ZeroTrustGroups, GroupDeleteResponse, group_create_params, group_update_params
+from ....types.zero_trust import ExcludeItemParam, IncludeItemParam, RequireItemParam
+from ....types.zero_trust.access import ZeroTrustGroup, GroupDeleteResponse, group_create_params, group_update_params
 
 __all__ = ["Groups", "AsyncGroups"]
 
@@ -42,20 +43,20 @@ class Groups(SyncAPIResource):
     def create(
         self,
         *,
-        include: Iterable[group_create_params.Include],
+        include: Iterable[IncludeItemParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        exclude: Iterable[group_create_params.Exclude] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[group_create_params.Require] | NotGiven = NOT_GIVEN,
+        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroups:
+    ) -> ZeroTrustGroup:
         """
         Creates a new Access group.
 
@@ -119,27 +120,27 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
+            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
         )
 
     def update(
         self,
         uuid: str,
         *,
-        include: Iterable[group_update_params.Include],
+        include: Iterable[IncludeItemParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        exclude: Iterable[group_update_params.Exclude] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[group_update_params.Require] | NotGiven = NOT_GIVEN,
+        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroups:
+    ) -> ZeroTrustGroup:
         """
         Updates a configured Access group.
 
@@ -207,7 +208,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
+            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
         )
 
     def list(
@@ -221,7 +222,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustGroups]:
+    ) -> SyncSinglePage[ZeroTrustGroup]:
         """
         Lists all Access groups.
 
@@ -255,11 +256,11 @@ class Groups(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/groups",
-            page=SyncSinglePage[ZeroTrustGroups],
+            page=SyncSinglePage[ZeroTrustGroup],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGroups,
+            model=ZeroTrustGroup,
         )
 
     def delete(
@@ -334,7 +335,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroups:
+    ) -> ZeroTrustGroup:
         """
         Fetches a single Access group.
 
@@ -379,7 +380,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
+            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
         )
 
 
@@ -395,20 +396,20 @@ class AsyncGroups(AsyncAPIResource):
     async def create(
         self,
         *,
-        include: Iterable[group_create_params.Include],
+        include: Iterable[IncludeItemParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        exclude: Iterable[group_create_params.Exclude] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[group_create_params.Require] | NotGiven = NOT_GIVEN,
+        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroups:
+    ) -> ZeroTrustGroup:
         """
         Creates a new Access group.
 
@@ -472,27 +473,27 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
+            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
         )
 
     async def update(
         self,
         uuid: str,
         *,
-        include: Iterable[group_update_params.Include],
+        include: Iterable[IncludeItemParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        exclude: Iterable[group_update_params.Exclude] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[group_update_params.Require] | NotGiven = NOT_GIVEN,
+        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroups:
+    ) -> ZeroTrustGroup:
         """
         Updates a configured Access group.
 
@@ -560,7 +561,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
+            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
         )
 
     def list(
@@ -574,7 +575,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustGroups, AsyncSinglePage[ZeroTrustGroups]]:
+    ) -> AsyncPaginator[ZeroTrustGroup, AsyncSinglePage[ZeroTrustGroup]]:
         """
         Lists all Access groups.
 
@@ -608,11 +609,11 @@ class AsyncGroups(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/groups",
-            page=AsyncSinglePage[ZeroTrustGroups],
+            page=AsyncSinglePage[ZeroTrustGroup],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGroups,
+            model=ZeroTrustGroup,
         )
 
     async def delete(
@@ -687,7 +688,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroups:
+    ) -> ZeroTrustGroup:
         """
         Fetches a single Access group.
 
@@ -732,7 +733,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroups], ResultWrapper[ZeroTrustGroups]),
+            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
         )
 
 

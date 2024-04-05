@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
+from .tests import Tests as Tests
+from .unique_devices import UniqueDevices as UniqueDevices
 from .unique_device_list_params import UniqueDeviceListParams as UniqueDeviceListParams
-from .digital_experience_monitoring_unique_devices import (
-    DigitalExperienceMonitoringUniqueDevices as DigitalExperienceMonitoringUniqueDevices,
-)

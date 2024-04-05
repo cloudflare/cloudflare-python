@@ -28,7 +28,7 @@ from ....._base_client import (
 )
 from .....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from .....types.zero_trust.devices.posture import (
-    DevicePostureIntegrations,
+    integrations,
     integration_edit_params,
     integration_create_params,
     integration_delete_params,
@@ -60,7 +60,7 @@ class Integrations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureIntegrations]:
+    ) -> Optional[integrations.Integrations]:
         """
         Create a new device posture integration.
 
@@ -102,7 +102,7 @@ class Integrations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureIntegrations]], ResultWrapper[DevicePostureIntegrations]),
+            cast_to=cast(Type[Optional[integrations.Integrations]], ResultWrapper[integrations.Integrations]),
         )
 
     def list(
@@ -115,7 +115,7 @@ class Integrations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DevicePostureIntegrations]:
+    ) -> SyncSinglePage[integrations.Integrations]:
         """
         Fetches the list of device posture integrations for an account.
 
@@ -132,11 +132,11 @@ class Integrations(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/posture/integration",
-            page=SyncSinglePage[DevicePostureIntegrations],
+            page=SyncSinglePage[integrations.Integrations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DevicePostureIntegrations,
+            model=integrations.Integrations,
         )
 
     def delete(
@@ -204,7 +204,7 @@ class Integrations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureIntegrations]:
+    ) -> Optional[integrations.Integrations]:
         """
         Updates a configured device posture integration.
 
@@ -250,7 +250,7 @@ class Integrations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureIntegrations]], ResultWrapper[DevicePostureIntegrations]),
+            cast_to=cast(Type[Optional[integrations.Integrations]], ResultWrapper[integrations.Integrations]),
         )
 
     def get(
@@ -264,7 +264,7 @@ class Integrations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureIntegrations]:
+    ) -> Optional[integrations.Integrations]:
         """
         Fetches details for a single device posture integration.
 
@@ -292,7 +292,7 @@ class Integrations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureIntegrations]], ResultWrapper[DevicePostureIntegrations]),
+            cast_to=cast(Type[Optional[integrations.Integrations]], ResultWrapper[integrations.Integrations]),
         )
 
 
@@ -319,7 +319,7 @@ class AsyncIntegrations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureIntegrations]:
+    ) -> Optional[integrations.Integrations]:
         """
         Create a new device posture integration.
 
@@ -361,7 +361,7 @@ class AsyncIntegrations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureIntegrations]], ResultWrapper[DevicePostureIntegrations]),
+            cast_to=cast(Type[Optional[integrations.Integrations]], ResultWrapper[integrations.Integrations]),
         )
 
     def list(
@@ -374,7 +374,7 @@ class AsyncIntegrations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DevicePostureIntegrations, AsyncSinglePage[DevicePostureIntegrations]]:
+    ) -> AsyncPaginator[integrations.Integrations, AsyncSinglePage[integrations.Integrations]]:
         """
         Fetches the list of device posture integrations for an account.
 
@@ -391,11 +391,11 @@ class AsyncIntegrations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/posture/integration",
-            page=AsyncSinglePage[DevicePostureIntegrations],
+            page=AsyncSinglePage[integrations.Integrations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DevicePostureIntegrations,
+            model=integrations.Integrations,
         )
 
     async def delete(
@@ -463,7 +463,7 @@ class AsyncIntegrations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureIntegrations]:
+    ) -> Optional[integrations.Integrations]:
         """
         Updates a configured device posture integration.
 
@@ -509,7 +509,7 @@ class AsyncIntegrations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureIntegrations]], ResultWrapper[DevicePostureIntegrations]),
+            cast_to=cast(Type[Optional[integrations.Integrations]], ResultWrapper[integrations.Integrations]),
         )
 
     async def get(
@@ -523,7 +523,7 @@ class AsyncIntegrations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureIntegrations]:
+    ) -> Optional[integrations.Integrations]:
         """
         Fetches details for a single device posture integration.
 
@@ -551,7 +551,7 @@ class AsyncIntegrations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureIntegrations]], ResultWrapper[DevicePostureIntegrations]),
+            cast_to=cast(Type[Optional[integrations.Integrations]], ResultWrapper[integrations.Integrations]),
         )
 
 

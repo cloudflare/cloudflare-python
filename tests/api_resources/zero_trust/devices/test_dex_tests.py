@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.devices import (
-    DEXTestSchemasHTTP,
+    SchemaHTTP,
     DEXTestDeleteResponse,
 )
 
@@ -31,7 +31,7 @@ class TestDEXTests:
             interval="30m",
             name="HTTP dash health check",
         )
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -48,7 +48,7 @@ class TestDEXTests:
             name="HTTP dash health check",
             description="Checks the dash endpoint every 30 minutes",
         )
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -64,7 +64,7 @@ class TestDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = response.parse()
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -80,7 +80,7 @@ class TestDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = response.parse()
-            assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -107,7 +107,7 @@ class TestDEXTests:
             interval="30m",
             name="HTTP dash health check",
         )
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -125,7 +125,7 @@ class TestDEXTests:
             name="HTTP dash health check",
             description="Checks the dash endpoint every 30 minutes",
         )
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = response.parse()
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -159,7 +159,7 @@ class TestDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = response.parse()
-            assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -192,7 +192,7 @@ class TestDEXTests:
         dex_test = client.zero_trust.devices.dex_tests.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncSinglePage[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(SyncSinglePage[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -204,7 +204,7 @@ class TestDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = response.parse()
-        assert_matches_type(SyncSinglePage[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(SyncSinglePage[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -216,7 +216,7 @@ class TestDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = response.parse()
-            assert_matches_type(SyncSinglePage[DEXTestSchemasHTTP], dex_test, path=["response"])
+            assert_matches_type(SyncSinglePage[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -287,7 +287,7 @@ class TestDEXTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -300,7 +300,7 @@ class TestDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = response.parse()
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -313,7 +313,7 @@ class TestDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = response.parse()
-            assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -346,7 +346,7 @@ class TestAsyncDEXTests:
             interval="30m",
             name="HTTP dash health check",
         )
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -363,7 +363,7 @@ class TestAsyncDEXTests:
             name="HTTP dash health check",
             description="Checks the dash endpoint every 30 minutes",
         )
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -379,7 +379,7 @@ class TestAsyncDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = await response.parse()
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -395,7 +395,7 @@ class TestAsyncDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = await response.parse()
-            assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -422,7 +422,7 @@ class TestAsyncDEXTests:
             interval="30m",
             name="HTTP dash health check",
         )
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -440,7 +440,7 @@ class TestAsyncDEXTests:
             name="HTTP dash health check",
             description="Checks the dash endpoint every 30 minutes",
         )
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -457,7 +457,7 @@ class TestAsyncDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = await response.parse()
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -474,7 +474,7 @@ class TestAsyncDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = await response.parse()
-            assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -507,7 +507,7 @@ class TestAsyncDEXTests:
         dex_test = await async_client.zero_trust.devices.dex_tests.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncSinglePage[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(AsyncSinglePage[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -519,7 +519,7 @@ class TestAsyncDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = await response.parse()
-        assert_matches_type(AsyncSinglePage[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(AsyncSinglePage[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -531,7 +531,7 @@ class TestAsyncDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = await response.parse()
-            assert_matches_type(AsyncSinglePage[DEXTestSchemasHTTP], dex_test, path=["response"])
+            assert_matches_type(AsyncSinglePage[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -602,7 +602,7 @@ class TestAsyncDEXTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -615,7 +615,7 @@ class TestAsyncDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = await response.parse()
-        assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+        assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -628,7 +628,7 @@ class TestAsyncDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = await response.parse()
-            assert_matches_type(Optional[DEXTestSchemasHTTP], dex_test, path=["response"])
+            assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
