@@ -4,17 +4,10 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from .tunnel import Tunnel
 from .._models import BaseModel
 
-__all__ = ["KeylessCertificateHostname", "Tunnel"]
-
-
-class Tunnel(BaseModel):
-    private_ip: str
-    """Private IP of the Key Server Host"""
-
-    vnet_id: str
-    """Cloudflare Tunnel Virtual Network ID"""
+__all__ = ["KeylessCertificateHostname"]
 
 
 class KeylessCertificateHostname(BaseModel):

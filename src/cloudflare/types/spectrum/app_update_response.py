@@ -1,64 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from ..dns import DNS
 from ..._models import BaseModel
+from ..edge_ips import EdgeIPs
+from ..origin_dns import OriginDNS
+from ..origin_port import OriginPort
 
-__all__ = ["AppUpdateResponse", "DNS", "EdgeIPs", "EdgeIPsEyeballIPs", "EdgeIPsCustomerOwnedIPs", "OriginDNS"]
-
-
-class DNS(BaseModel):
-    name: Optional[str] = None
-    """The name of the DNS record associated with the application."""
-
-    type: Optional[Literal["CNAME", "ADDRESS"]] = None
-    """The type of DNS record associated with the application."""
-
-
-class EdgeIPsEyeballIPs(BaseModel):
-    connectivity: Optional[Literal["all", "ipv4", "ipv6"]] = None
-    """The IP versions supported for inbound connections on Spectrum anycast IPs."""
-
-    type: Optional[Literal["dynamic"]] = None
-    """The type of edge IP configuration specified.
-
-    Dynamically allocated edge IPs use Spectrum anycast IPs in accordance with the
-    connectivity you specify. Only valid with CNAME DNS names.
-    """
-
-
-class EdgeIPsCustomerOwnedIPs(BaseModel):
-    ips: Optional[List[str]] = None
-    """
-    The array of customer owned IPs we broadcast via anycast for this hostname and
-    application.
-    """
-
-    type: Optional[Literal["static"]] = None
-    """The type of edge IP configuration specified.
-
-    Statically allocated edge IPs use customer IPs in accordance with the ips array
-    you specify. Only valid with ADDRESS DNS names.
-    """
-
-
-EdgeIPs = Union[EdgeIPsEyeballIPs, EdgeIPsCustomerOwnedIPs]
-
-
-class OriginDNS(BaseModel):
-    name: Optional[str] = None
-    """The name of the DNS record associated with the origin."""
-
-    ttl: Optional[int] = None
-    """The TTL of our resolution of your DNS record in seconds."""
-
-    type: Optional[Literal["", "A", "AAAA", "SRV"]] = None
-    """The type of DNS record associated with the origin.
-
-    "" is used to specify a combination of A/AAAA records.
-    """
+__all__ = ["AppUpdateResponse"]
 
 
 class AppUpdateResponse(BaseModel):
@@ -92,7 +44,7 @@ class AppUpdateResponse(BaseModel):
     origin_dns: Optional[OriginDNS] = None
     """The name and type of DNS record for the Spectrum application."""
 
-    origin_port: Union[int, str, None] = None
+    origin_port: Optional[OriginPort] = None
     """The destination port at the origin.
 
     Only specified in conjunction with origin_dns. May use an integer to specify a

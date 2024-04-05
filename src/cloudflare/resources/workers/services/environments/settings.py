@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.workers.services.environments import SettingGetResponse, SettingEditResponse, setting_edit_params
+from .....types.workers import SettingsItem, SettingsItemParam
+from .....types.workers.services.environments import setting_edit_params
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -47,7 +48,7 @@ class Settings(SyncAPIResource):
         service_name: str,
         errors: Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72],
         messages: Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72],
-        result: setting_edit_params.Result,
+        result: SettingsItemParam,
         success: Literal[True],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -55,7 +56,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingEditResponse:
+    ) -> SettingsItem:
         """
         Patch script metadata, such as bindings
 
@@ -100,7 +101,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
+            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
         )
 
     def get(
@@ -115,7 +116,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingGetResponse:
+    ) -> SettingsItem:
         """
         Get script settings from a worker with an environment
 
@@ -149,7 +150,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
+            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
         )
 
 
@@ -170,7 +171,7 @@ class AsyncSettings(AsyncAPIResource):
         service_name: str,
         errors: Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72],
         messages: Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72],
-        result: setting_edit_params.Result,
+        result: SettingsItemParam,
         success: Literal[True],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -178,7 +179,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingEditResponse:
+    ) -> SettingsItem:
         """
         Patch script metadata, such as bindings
 
@@ -223,7 +224,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
+            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
         )
 
     async def get(
@@ -238,7 +239,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingGetResponse:
+    ) -> SettingsItem:
         """
         Get script settings from a worker with an environment
 
@@ -272,7 +273,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
+            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
         )
 
 

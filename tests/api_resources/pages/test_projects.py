@@ -11,8 +11,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.pages import (
-    PagesProjects,
-    PagesDeployments,
+    Project,
+    Deployment,
 )
 from cloudflare.types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
 
@@ -150,7 +150,7 @@ class TestProjects:
         project = client.pages.projects.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[PagesDeployments], project, path=["response"])
+        assert_matches_type(SyncSinglePage[Deployment], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -162,7 +162,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(SyncSinglePage[PagesDeployments], project, path=["response"])
+        assert_matches_type(SyncSinglePage[Deployment], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -174,7 +174,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(SyncSinglePage[PagesDeployments], project, path=["response"])
+            assert_matches_type(SyncSinglePage[Deployment], project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -382,7 +382,7 @@ class TestProjects:
             "this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PagesProjects, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -395,7 +395,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(PagesProjects, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -408,7 +408,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(PagesProjects, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -611,7 +611,7 @@ class TestAsyncProjects:
         project = await async_client.pages.projects.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[PagesDeployments], project, path=["response"])
+        assert_matches_type(AsyncSinglePage[Deployment], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -623,7 +623,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(AsyncSinglePage[PagesDeployments], project, path=["response"])
+        assert_matches_type(AsyncSinglePage[Deployment], project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -635,7 +635,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(AsyncSinglePage[PagesDeployments], project, path=["response"])
+            assert_matches_type(AsyncSinglePage[Deployment], project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -843,7 +843,7 @@ class TestAsyncProjects:
             "this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PagesProjects, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -856,7 +856,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(PagesProjects, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -869,7 +869,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(PagesProjects, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

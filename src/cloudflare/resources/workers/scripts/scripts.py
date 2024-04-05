@@ -106,7 +106,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.workers import WorkersScript, script_delete_params, script_update_params
+from ....types.workers import Script, script_delete_params, script_update_params
 from .versions.versions import Versions, AsyncVersions
 
 __all__ = ["Scripts", "AsyncScripts"]
@@ -172,7 +172,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersScript:
+    ) -> Script:
         """
         Upload a worker module.
 
@@ -215,7 +215,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersScript:
+    ) -> Script:
         """
         Upload a worker module.
 
@@ -257,7 +257,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersScript:
+    ) -> Script:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -280,7 +280,7 @@ class Scripts(SyncAPIResource):
                 query=maybe_transform({"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersScript], ResultWrapper[WorkersScript]),
+            cast_to=cast(Type[Script], ResultWrapper[Script]),
         )
 
     def list(
@@ -293,7 +293,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[WorkersScript]:
+    ) -> SyncSinglePage[Script]:
         """
         Fetch a list of uploaded workers.
 
@@ -312,11 +312,11 @@ class Scripts(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/scripts",
-            page=SyncSinglePage[WorkersScript],
+            page=SyncSinglePage[Script],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=WorkersScript,
+            model=Script,
         )
 
     def delete(
@@ -476,7 +476,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersScript:
+    ) -> Script:
         """
         Upload a worker module.
 
@@ -519,7 +519,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersScript:
+    ) -> Script:
         """
         Upload a worker module.
 
@@ -561,7 +561,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersScript:
+    ) -> Script:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -586,7 +586,7 @@ class AsyncScripts(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersScript], ResultWrapper[WorkersScript]),
+            cast_to=cast(Type[Script], ResultWrapper[Script]),
         )
 
     def list(
@@ -599,7 +599,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WorkersScript, AsyncSinglePage[WorkersScript]]:
+    ) -> AsyncPaginator[Script, AsyncSinglePage[Script]]:
         """
         Fetch a list of uploaded workers.
 
@@ -618,11 +618,11 @@ class AsyncScripts(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/scripts",
-            page=AsyncSinglePage[WorkersScript],
+            page=AsyncSinglePage[Script],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=WorkersScript,
+            model=Script,
         )
 
     async def delete(

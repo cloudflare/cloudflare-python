@@ -2,19 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = [
-    "LANUpdateParams",
-    "LAN",
-    "LANNat",
-    "LANRoutedSubnet",
-    "LANRoutedSubnetNat",
-    "LANStaticAddressing",
-    "LANStaticAddressingDHCPRelay",
-    "LANStaticAddressingDHCPServer",
-]
+from .nat_param import NatParam
+from .routed_subnet_param import RoutedSubnetParam
+from .static_addressing_param import StaticAddressingParam
+
+__all__ = ["LANUpdateParams", "LAN"]
 
 
 class LANUpdateParams(TypedDict, total=False):
@@ -27,70 +22,16 @@ class LANUpdateParams(TypedDict, total=False):
     lan: LAN
 
 
-class LANNat(TypedDict, total=False):
-    static_prefix: str
-    """A valid CIDR notation representing an IP range."""
-
-
-class LANRoutedSubnetNat(TypedDict, total=False):
-    static_prefix: str
-    """A valid CIDR notation representing an IP range."""
-
-
-class LANRoutedSubnet(TypedDict, total=False):
-    next_hop: Required[str]
-    """A valid IPv4 address."""
-
-    prefix: Required[str]
-    """A valid CIDR notation representing an IP range."""
-
-    nat: LANRoutedSubnetNat
-
-
-class LANStaticAddressingDHCPRelay(TypedDict, total=False):
-    server_addresses: List[str]
-    """List of DHCP server IPs."""
-
-
-class LANStaticAddressingDHCPServer(TypedDict, total=False):
-    dhcp_pool_end: str
-    """A valid IPv4 address."""
-
-    dhcp_pool_start: str
-    """A valid IPv4 address."""
-
-    dns_server: str
-    """A valid IPv4 address."""
-
-    reservations: Dict[str, str]
-    """Mapping of MAC addresses to IP addresses"""
-
-
-class LANStaticAddressing(TypedDict, total=False):
-    address: Required[str]
-    """A valid CIDR notation representing an IP range."""
-
-    dhcp_relay: LANStaticAddressingDHCPRelay
-
-    dhcp_server: LANStaticAddressingDHCPServer
-
-    secondary_address: str
-    """A valid CIDR notation representing an IP range."""
-
-    virtual_address: str
-    """A valid CIDR notation representing an IP range."""
-
-
 class LAN(TypedDict, total=False):
     description: str
 
-    nat: LANNat
+    nat: NatParam
 
     physport: int
 
-    routed_subnets: Iterable[LANRoutedSubnet]
+    routed_subnets: Iterable[RoutedSubnetParam]
 
-    static_addressing: LANStaticAddressing
+    static_addressing: StaticAddressingParam
     """
     If the site is not configured in high availability mode, this configuration is
     optional (if omitted, use DHCP). However, if in high availability mode,

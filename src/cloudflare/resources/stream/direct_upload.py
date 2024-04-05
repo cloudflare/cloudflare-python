@@ -24,7 +24,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import DirectUploadCreateResponse, direct_upload_create_params
+from ...types.stream import AllowedOriginsItem, DirectUploadCreateResponse, direct_upload_create_params
 
 __all__ = ["DirectUpload", "AsyncDirectUpload"]
 
@@ -43,7 +43,7 @@ class DirectUpload(SyncAPIResource):
         *,
         account_id: str,
         max_duration_seconds: int,
-        allowed_origins: List[str] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
@@ -143,7 +143,7 @@ class AsyncDirectUpload(AsyncAPIResource):
         *,
         account_id: str,
         max_duration_seconds: int,
-        allowed_origins: List[str] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,

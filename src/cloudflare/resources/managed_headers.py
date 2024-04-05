@@ -6,7 +6,12 @@ from typing import Iterable
 
 import httpx
 
-from ..types import ManagedHeaderEditResponse, ManagedHeaderListResponse, managed_header_edit_params
+from ..types import (
+    RequestListItemParam,
+    ManagedHeaderEditResponse,
+    ManagedHeaderListResponse,
+    managed_header_edit_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -75,8 +80,8 @@ class ManagedHeaders(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        managed_request_headers: Iterable[managed_header_edit_params.ManagedRequestHeader],
-        managed_response_headers: Iterable[managed_header_edit_params.ManagedResponseHeader],
+        managed_request_headers: Iterable[RequestListItemParam],
+        managed_response_headers: Iterable[RequestListItemParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -164,8 +169,8 @@ class AsyncManagedHeaders(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        managed_request_headers: Iterable[managed_header_edit_params.ManagedRequestHeader],
-        managed_response_headers: Iterable[managed_header_edit_params.ManagedResponseHeader],
+        managed_request_headers: Iterable[RequestListItemParam],
+        managed_response_headers: Iterable[RequestListItemParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

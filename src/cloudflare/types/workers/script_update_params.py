@@ -5,25 +5,14 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from .scripts import ConsumerScriptParam
 from ..._types import FileTypes
 from ..._utils import PropertyInfo
+from ..stepped_migration_param import SteppedMigrationParam
+from ..single_step_migration_param import SingleStepMigrationParam
+from ..placement_configuration_param import PlacementConfigurationParam
 
-__all__ = [
-    "ScriptUpdateParams",
-    "Variant0",
-    "Variant0Metadata",
-    "Variant0MetadataMigrations",
-    "Variant0MetadataMigrationsWorkersSingleStepMigrations",
-    "Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClass",
-    "Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClass",
-    "Variant0MetadataMigrationsWorkersSteppedMigrations",
-    "Variant0MetadataMigrationsWorkersSteppedMigrationsStep",
-    "Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClass",
-    "Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClass",
-    "Variant0MetadataPlacement",
-    "Variant0MetadataTailConsumer",
-    "Variant1",
-]
+__all__ = ["ScriptUpdateParams", "Variant0", "Variant0Metadata", "Variant0MetadataMigrations", "Variant1"]
 
 
 class Variant0(TypedDict, total=False):
@@ -50,150 +39,7 @@ class Variant0(TypedDict, total=False):
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
 
-_Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords = TypedDict(
-    "_Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords",
-    {
-        "from": str,
-    },
-    total=False,
-)
-
-
-class Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClass(
-    _Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClassReservedKeywords, total=False
-):
-    to: str
-
-
-_Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords = TypedDict(
-    "_Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords",
-    {
-        "from": str,
-    },
-    total=False,
-)
-
-
-class Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClass(
-    _Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClassReservedKeywords, total=False
-):
-    from_script: str
-
-    to: str
-
-
-class Variant0MetadataMigrationsWorkersSingleStepMigrations(TypedDict, total=False):
-    deleted_classes: List[str]
-    """A list of classes to delete Durable Object namespaces from."""
-
-    new_classes: List[str]
-    """A list of classes to create Durable Object namespaces from."""
-
-    new_tag: str
-    """Tag to set as the latest migration tag."""
-
-    old_tag: str
-    """Tag used to verify against the latest migration tag for this Worker.
-
-    If they don't match, the upload is rejected.
-    """
-
-    renamed_classes: Iterable[Variant0MetadataMigrationsWorkersSingleStepMigrationsRenamedClass]
-    """A list of classes with Durable Object namespaces that were renamed."""
-
-    transferred_classes: Iterable[Variant0MetadataMigrationsWorkersSingleStepMigrationsTransferredClass]
-    """
-    A list of transfers for Durable Object namespaces from a different Worker and
-    class to a class defined in this Worker.
-    """
-
-
-_Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords = TypedDict(
-    "_Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords",
-    {
-        "from": str,
-    },
-    total=False,
-)
-
-
-class Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClass(
-    _Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClassReservedKeywords, total=False
-):
-    to: str
-
-
-_Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords = TypedDict(
-    "_Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords",
-    {
-        "from": str,
-    },
-    total=False,
-)
-
-
-class Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClass(
-    _Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClassReservedKeywords, total=False
-):
-    from_script: str
-
-    to: str
-
-
-class Variant0MetadataMigrationsWorkersSteppedMigrationsStep(TypedDict, total=False):
-    deleted_classes: List[str]
-    """A list of classes to delete Durable Object namespaces from."""
-
-    new_classes: List[str]
-    """A list of classes to create Durable Object namespaces from."""
-
-    renamed_classes: Iterable[Variant0MetadataMigrationsWorkersSteppedMigrationsStepRenamedClass]
-    """A list of classes with Durable Object namespaces that were renamed."""
-
-    transferred_classes: Iterable[Variant0MetadataMigrationsWorkersSteppedMigrationsStepTransferredClass]
-    """
-    A list of transfers for Durable Object namespaces from a different Worker and
-    class to a class defined in this Worker.
-    """
-
-
-class Variant0MetadataMigrationsWorkersSteppedMigrations(TypedDict, total=False):
-    new_tag: str
-    """Tag to set as the latest migration tag."""
-
-    old_tag: str
-    """Tag used to verify against the latest migration tag for this Worker.
-
-    If they don't match, the upload is rejected.
-    """
-
-    steps: Iterable[Variant0MetadataMigrationsWorkersSteppedMigrationsStep]
-    """Migrations to apply in order."""
-
-
-Variant0MetadataMigrations = Union[
-    Variant0MetadataMigrationsWorkersSingleStepMigrations, Variant0MetadataMigrationsWorkersSteppedMigrations
-]
-
-
-class Variant0MetadataPlacement(TypedDict, total=False):
-    mode: Literal["smart"]
-    """
-    Enables
-    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    Only `"smart"` is currently supported
-    """
-
-
-class Variant0MetadataTailConsumer(TypedDict, total=False):
-    service: Required[str]
-    """Name of Worker that is to be the consumer."""
-
-    environment: str
-    """Optional environment if the Worker utilizes one."""
-
-    namespace: str
-    """Optional dispatch namespace the script belongs to."""
+Variant0MetadataMigrations = Union[SingleStepMigrationParam, SteppedMigrationParam]
 
 
 class Variant0Metadata(TypedDict, total=False):
@@ -236,12 +82,12 @@ class Variant0Metadata(TypedDict, total=False):
     migrations: Variant0MetadataMigrations
     """Migrations to apply for Durable Objects associated with this Worker."""
 
-    placement: Variant0MetadataPlacement
+    placement: PlacementConfigurationParam
 
     tags: List[str]
     """List of strings to use as tags for this Worker"""
 
-    tail_consumers: Iterable[Variant0MetadataTailConsumer]
+    tail_consumers: Iterable[ConsumerScriptParam]
     """List of Workers that will consume logs from the attached Worker."""
 
     usage_model: Literal["bundled", "unbound"]

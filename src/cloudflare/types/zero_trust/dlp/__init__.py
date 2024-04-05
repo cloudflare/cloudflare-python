@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from .dlp_dataset import DLPDataset as DLPDataset
+from .dataset import Dataset as Dataset
 from .dlp_profile import DLPProfile as DLPProfile
+from .dataset_array import DatasetArray as DatasetArray
+from .dataset_creation import DatasetCreation as DatasetCreation
 from .context_awareness import ContextAwareness as ContextAwareness
-from .dlp_dataset_array import DLPDatasetArray as DLPDatasetArray
 from .skip_configuration import SkipConfiguration as SkipConfiguration
-from .dlp_dataset_creation import DLPDatasetCreation as DLPDatasetCreation
 from .profile_get_response import ProfileGetResponse as ProfileGetResponse
 from .dataset_create_params import DatasetCreateParams as DatasetCreateParams
 from .dataset_update_params import DatasetUpdateParams as DatasetUpdateParams

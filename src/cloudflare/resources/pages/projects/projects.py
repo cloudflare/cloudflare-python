@@ -38,9 +38,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ....types.pages import (
-    PagesProjects,
-    PagesDeployments,
-    PagesDeploymentsParam,
+    Project,
+    Deployment,
+    DeploymentParam,
     project_edit_params,
     project_create_params,
     project_delete_params,
@@ -77,9 +77,9 @@ class Projects(SyncAPIResource):
         *,
         account_id: str,
         build_config: project_create_params.BuildConfig | NotGiven = NOT_GIVEN,
-        canonical_deployment: PagesDeploymentsParam | NotGiven = NOT_GIVEN,
+        canonical_deployment: DeploymentParam | NotGiven = NOT_GIVEN,
         deployment_configs: project_create_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        latest_deployment: PagesDeploymentsParam | NotGiven = NOT_GIVEN,
+        latest_deployment: DeploymentParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         production_branch: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -151,7 +151,7 @@ class Projects(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PagesDeployments]:
+    ) -> SyncSinglePage[Deployment]:
         """
         Fetch a list of all user projects.
 
@@ -170,11 +170,11 @@ class Projects(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects",
-            page=SyncSinglePage[PagesDeployments],
+            page=SyncSinglePage[Deployment],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=PagesDeployments,
+            model=Deployment,
         )
 
     def delete(
@@ -283,7 +283,7 @@ class Projects(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagesProjects:
+    ) -> Project:
         """
         Fetch a project by name.
 
@@ -313,7 +313,7 @@ class Projects(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagesProjects], ResultWrapper[PagesProjects]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     def purge_build_cache(
@@ -379,9 +379,9 @@ class AsyncProjects(AsyncAPIResource):
         *,
         account_id: str,
         build_config: project_create_params.BuildConfig | NotGiven = NOT_GIVEN,
-        canonical_deployment: PagesDeploymentsParam | NotGiven = NOT_GIVEN,
+        canonical_deployment: DeploymentParam | NotGiven = NOT_GIVEN,
         deployment_configs: project_create_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        latest_deployment: PagesDeploymentsParam | NotGiven = NOT_GIVEN,
+        latest_deployment: DeploymentParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         production_branch: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -453,7 +453,7 @@ class AsyncProjects(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PagesDeployments, AsyncSinglePage[PagesDeployments]]:
+    ) -> AsyncPaginator[Deployment, AsyncSinglePage[Deployment]]:
         """
         Fetch a list of all user projects.
 
@@ -472,11 +472,11 @@ class AsyncProjects(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects",
-            page=AsyncSinglePage[PagesDeployments],
+            page=AsyncSinglePage[Deployment],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=PagesDeployments,
+            model=Deployment,
         )
 
     async def delete(
@@ -585,7 +585,7 @@ class AsyncProjects(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagesProjects:
+    ) -> Project:
         """
         Fetch a project by name.
 
@@ -615,7 +615,7 @@ class AsyncProjects(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagesProjects], ResultWrapper[PagesProjects]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     async def purge_build_cache(

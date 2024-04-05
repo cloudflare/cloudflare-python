@@ -5,7 +5,9 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["SettingEditParams", "TailConsumer"]
+from .consumer_script_param import ConsumerScriptParam
+
+__all__ = ["SettingEditParams"]
 
 
 class SettingEditParams(TypedDict, total=False):
@@ -15,16 +17,5 @@ class SettingEditParams(TypedDict, total=False):
     logpush: bool
     """Whether Logpush is turned on for the Worker."""
 
-    tail_consumers: Iterable[TailConsumer]
+    tail_consumers: Iterable[ConsumerScriptParam]
     """List of Workers that will consume logs from the attached Worker."""
-
-
-class TailConsumer(TypedDict, total=False):
-    service: Required[str]
-    """Name of Worker that is to be the consumer."""
-
-    environment: str
-    """Optional environment if the Worker utilizes one."""
-
-    namespace: str
-    """Optional dispatch namespace the script belongs to."""

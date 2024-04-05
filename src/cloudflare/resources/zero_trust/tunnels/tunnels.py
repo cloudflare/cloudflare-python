@@ -68,7 +68,7 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8
 from ....types.zero_trust import (
-    TunnelArgoTunnel,
+    Tunnel,
     tunnel_edit_params,
     tunnel_list_params,
     tunnel_create_params,
@@ -119,7 +119,7 @@ class Tunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelArgoTunnel:
+    ) -> Tunnel:
         """
         Creates a new Argo Tunnel in an account.
 
@@ -157,7 +157,7 @@ class Tunnels(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
+            cast_to=cast(Type[Tunnel], ResultWrapper[Tunnel]),
         )
 
     def list(
@@ -256,7 +256,7 @@ class Tunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelArgoTunnel:
+    ) -> Tunnel:
         """
         Deletes an Argo Tunnel from an account.
 
@@ -287,7 +287,7 @@ class Tunnels(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
+            cast_to=cast(Type[Tunnel], ResultWrapper[Tunnel]),
         )
 
     def edit(
@@ -364,7 +364,7 @@ class Tunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelArgoTunnel:
+    ) -> Tunnel:
         """
         Fetches a single Argo Tunnel.
 
@@ -394,7 +394,7 @@ class Tunnels(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
+            cast_to=cast(Type[Tunnel], ResultWrapper[Tunnel]),
         )
 
 
@@ -439,7 +439,7 @@ class AsyncTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelArgoTunnel:
+    ) -> Tunnel:
         """
         Creates a new Argo Tunnel in an account.
 
@@ -477,7 +477,7 @@ class AsyncTunnels(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
+            cast_to=cast(Type[Tunnel], ResultWrapper[Tunnel]),
         )
 
     def list(
@@ -579,7 +579,7 @@ class AsyncTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelArgoTunnel:
+    ) -> Tunnel:
         """
         Deletes an Argo Tunnel from an account.
 
@@ -610,7 +610,7 @@ class AsyncTunnels(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
+            cast_to=cast(Type[Tunnel], ResultWrapper[Tunnel]),
         )
 
     async def edit(
@@ -687,7 +687,7 @@ class AsyncTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelArgoTunnel:
+    ) -> Tunnel:
         """
         Fetches a single Argo Tunnel.
 
@@ -717,7 +717,7 @@ class AsyncTunnels(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelArgoTunnel], ResultWrapper[TunnelArgoTunnel]),
+            cast_to=cast(Type[Tunnel], ResultWrapper[Tunnel]),
         )
 
 

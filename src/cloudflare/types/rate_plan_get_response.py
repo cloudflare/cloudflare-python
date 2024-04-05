@@ -4,26 +4,16 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .component import Component
 
-__all__ = ["RatePlanGetResponse", "RatePlanGetResponseItem", "RatePlanGetResponseItemComponent"]
-
-
-class RatePlanGetResponseItemComponent(BaseModel):
-    default: Optional[float] = None
-    """The default amount allocated."""
-
-    name: Optional[Literal["zones", "page_rules", "dedicated_certificates", "dedicated_certificates_custom"]] = None
-    """The unique component."""
-
-    unit_price: Optional[float] = None
-    """The unit price of the addon."""
+__all__ = ["RatePlanGetResponse", "RatePlanGetResponseItem"]
 
 
 class RatePlanGetResponseItem(BaseModel):
     id: Optional[str] = None
     """Plan identifier tag."""
 
-    components: Optional[List[RatePlanGetResponseItemComponent]] = None
+    components: Optional[List[Component]] = None
     """Array of available components values for the plan."""
 
     currency: Optional[str] = None
