@@ -7,12 +7,13 @@ from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
+from .dimension_item import DimensionItem
 
 __all__ = ["BytimeGetParams"]
 
 
 class BytimeGetParams(TypedDict, total=False):
-    dimensions: List[Literal["event", "appID", "coloName", "ipVersion"]]
+    dimensions: List[DimensionItem]
     """Can be used to break down the data by given attributes. Options are:
 
     | Dimension | Name                          | Example                                                    |

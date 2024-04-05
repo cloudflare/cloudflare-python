@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["SiteCreateParams", "Site", "SiteLocation"]
+from .site_location_param import SiteLocationParam
+
+__all__ = ["SiteCreateParams", "Site"]
 
 
 class SiteCreateParams(TypedDict, total=False):
@@ -12,14 +14,6 @@ class SiteCreateParams(TypedDict, total=False):
     """Identifier"""
 
     site: Site
-
-
-class SiteLocation(TypedDict, total=False):
-    lat: str
-    """Latitude"""
-
-    lon: str
-    """Longitude"""
 
 
 class Site(TypedDict, total=False):
@@ -38,7 +32,7 @@ class Site(TypedDict, total=False):
     mode.
     """
 
-    location: SiteLocation
+    location: SiteLocationParam
     """Location of site in latitude and longitude."""
 
     secondary_connector_id: str

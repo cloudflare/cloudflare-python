@@ -2,18 +2,18 @@
 
 from __future__ import annotations
 
+from .consumer_script import ConsumerScript as ConsumerScript
 from .workers_binding import WorkersBinding as WorkersBinding
 from .tail_get_response import TailGetResponse as TailGetResponse
 from .tail_create_params import TailCreateParams as TailCreateParams
 from .tail_delete_params import TailDeleteParams as TailDeleteParams
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .binding_get_response import BindingGetResponse as BindingGetResponse
-from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .tail_create_response import TailCreateResponse as TailCreateResponse
 from .version_get_response import VersionGetResponse as VersionGetResponse
+from .consumer_script_param import ConsumerScriptParam as ConsumerScriptParam
 from .content_update_params import ContentUpdateParams as ContentUpdateParams
 from .schedule_get_response import ScheduleGetResponse as ScheduleGetResponse
-from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .version_create_params import VersionCreateParams as VersionCreateParams
 from .version_list_response import VersionListResponse as VersionListResponse
 from .schedule_update_params import ScheduleUpdateParams as ScheduleUpdateParams

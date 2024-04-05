@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["ItemUpdateParams", "Body", "BodyHostname", "BodyRedirect"]
+from ..hostname_param import HostnameParam
+from ..redirect_param import RedirectParam
+
+__all__ = ["ItemUpdateParams", "Body"]
 
 
 class ItemUpdateParams(TypedDict, total=False):
@@ -15,26 +18,6 @@ class ItemUpdateParams(TypedDict, total=False):
     body: Required[Iterable[Body]]
 
 
-class BodyHostname(TypedDict, total=False):
-    url_hostname: Required[str]
-
-
-class BodyRedirect(TypedDict, total=False):
-    source_url: Required[str]
-
-    target_url: Required[str]
-
-    include_subdomains: bool
-
-    preserve_path_suffix: bool
-
-    preserve_query_string: bool
-
-    status_code: Literal[301, 302, 307, 308]
-
-    subpath_matching: bool
-
-
 class Body(TypedDict, total=False):
     asn: int
     """A non-negative 32 bit integer"""
@@ -42,7 +25,7 @@ class Body(TypedDict, total=False):
     comment: str
     """An informative summary of the list item."""
 
-    hostname: BodyHostname
+    hostname: HostnameParam
     """
     Valid characters for hostnames are ASCII(7) letters from a to z, the digits from
     0 to 9, wildcards (\\**), and the hyphen (-).
@@ -54,5 +37,5 @@ class Body(TypedDict, total=False):
     IPv6 CIDRs are limited to a maximum of /64.
     """
 
-    redirect: BodyRedirect
+    redirect: RedirectParam
     """The definition of the redirect."""

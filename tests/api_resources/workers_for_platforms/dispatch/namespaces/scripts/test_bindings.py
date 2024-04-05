@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import BindingGetResponse
+from cloudflare.types import Binding
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +25,7 @@ class TestBindings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(BindingGetResponse, binding, path=["response"])
+        assert_matches_type(Binding, binding, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestBindings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         binding = response.parse()
-        assert_matches_type(BindingGetResponse, binding, path=["response"])
+        assert_matches_type(Binding, binding, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +53,7 @@ class TestBindings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             binding = response.parse()
-            assert_matches_type(BindingGetResponse, binding, path=["response"])
+            assert_matches_type(Binding, binding, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -93,7 +93,7 @@ class TestAsyncBindings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(BindingGetResponse, binding, path=["response"])
+        assert_matches_type(Binding, binding, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -107,7 +107,7 @@ class TestAsyncBindings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         binding = await response.parse()
-        assert_matches_type(BindingGetResponse, binding, path=["response"])
+        assert_matches_type(Binding, binding, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -121,7 +121,7 @@ class TestAsyncBindings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             binding = await response.parse()
-            assert_matches_type(BindingGetResponse, binding, path=["response"])
+            assert_matches_type(Binding, binding, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

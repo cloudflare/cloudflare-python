@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["SiteUpdateParams", "Site", "SiteLocation"]
+from .site_location_param import SiteLocationParam
+
+__all__ = ["SiteUpdateParams", "Site"]
 
 
 class SiteUpdateParams(TypedDict, total=False):
@@ -14,21 +16,13 @@ class SiteUpdateParams(TypedDict, total=False):
     site: Site
 
 
-class SiteLocation(TypedDict, total=False):
-    lat: str
-    """Latitude"""
-
-    lon: str
-    """Longitude"""
-
-
 class Site(TypedDict, total=False):
     connector_id: str
     """Magic WAN Connector identifier tag."""
 
     description: str
 
-    location: SiteLocation
+    location: SiteLocationParam
     """Location of site in latitude and longitude."""
 
     name: str

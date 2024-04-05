@@ -26,7 +26,7 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
-from .....types.spectrum.analytics.events import bytime_get_params
+from .....types.spectrum.analytics.events import DimensionItem, bytime_get_params
 
 __all__ = ["Bytimes", "AsyncBytimes"]
 
@@ -44,7 +44,7 @@ class Bytimes(SyncAPIResource):
         self,
         zone: str,
         *,
-        dimensions: List[Literal["event", "appID", "coloName", "ipVersion"]] | NotGiven = NOT_GIVEN,
+        dimensions: List[DimensionItem] | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         metrics: List[
             Literal[
@@ -173,7 +173,7 @@ class AsyncBytimes(AsyncAPIResource):
         self,
         zone: str,
         *,
-        dimensions: List[Literal["event", "appID", "coloName", "ipVersion"]] | NotGiven = NOT_GIVEN,
+        dimensions: List[DimensionItem] | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         metrics: List[
             Literal[

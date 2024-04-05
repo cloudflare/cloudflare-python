@@ -6,6 +6,7 @@ from typing import Type, cast
 
 import httpx
 
+from ...types import HealthCheckParam
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -99,7 +100,7 @@ class GRETunnels(SyncAPIResource):
         interface_address: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
-        health_check: gre_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
         ttl: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -368,7 +369,7 @@ class AsyncGRETunnels(AsyncAPIResource):
         interface_address: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
-        health_check: gre_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
         ttl: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -5,13 +5,9 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = [
-    "PCAPCreateParams",
-    "MagicVisibilityPCAPsRequestSimple",
-    "MagicVisibilityPCAPsRequestSimpleFilterV1",
-    "MagicVisibilityPCAPsRequestFull",
-    "MagicVisibilityPCAPsRequestFullFilterV1",
-]
+from .filter_param import FilterParam
+
+__all__ = ["PCAPCreateParams", "MagicVisibilityPCAPsRequestSimple", "MagicVisibilityPCAPsRequestFull"]
 
 
 class MagicVisibilityPCAPsRequestSimple(TypedDict, total=False):
@@ -34,25 +30,8 @@ class MagicVisibilityPCAPsRequestSimple(TypedDict, total=False):
     non-sampled packets.
     """
 
-    filter_v1: MagicVisibilityPCAPsRequestSimpleFilterV1
+    filter_v1: FilterParam
     """The packet capture filter. When this field is empty, all packets are captured."""
-
-
-class MagicVisibilityPCAPsRequestSimpleFilterV1(TypedDict, total=False):
-    destination_address: str
-    """The destination IP address of the packet."""
-
-    destination_port: float
-    """The destination port of the packet."""
-
-    protocol: float
-    """The protocol number of the packet."""
-
-    source_address: str
-    """The source IP address of the packet."""
-
-    source_port: float
-    """The source port of the packet."""
 
 
 class MagicVisibilityPCAPsRequestFull(TypedDict, total=False):
@@ -88,28 +67,11 @@ class MagicVisibilityPCAPsRequestFull(TypedDict, total=False):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: MagicVisibilityPCAPsRequestFullFilterV1
+    filter_v1: FilterParam
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     packet_limit: float
     """The limit of packets contained in a packet capture."""
-
-
-class MagicVisibilityPCAPsRequestFullFilterV1(TypedDict, total=False):
-    destination_address: str
-    """The destination IP address of the packet."""
-
-    destination_port: float
-    """The destination port of the packet."""
-
-    protocol: float
-    """The protocol number of the packet."""
-
-    source_address: str
-    """The source IP address of the packet."""
-
-    source_port: float
-    """The source port of the packet."""
 
 
 PCAPCreateParams = Union[MagicVisibilityPCAPsRequestSimple, MagicVisibilityPCAPsRequestFull]

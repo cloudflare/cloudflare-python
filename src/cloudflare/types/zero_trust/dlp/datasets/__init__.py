@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
+from .new_version import NewVersion as NewVersion
 from .upload_edit_params import UploadEditParams as UploadEditParams
-from .dlp_dataset_new_version import DLPDatasetNewVersion as DLPDatasetNewVersion

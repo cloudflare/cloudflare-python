@@ -7,6 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..types import (
+    TunnelParam,
     KeylessCertificateHostname,
     UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1,
     keyless_certificate_edit_params,
@@ -55,7 +56,7 @@ class KeylessCertificates(SyncAPIResource):
         port: float,
         bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        tunnel: keyless_certificate_create_params.Tunnel | NotGiven = NOT_GIVEN,
+        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -214,7 +215,7 @@ class KeylessCertificates(SyncAPIResource):
         host: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         port: float | NotGiven = NOT_GIVEN,
-        tunnel: keyless_certificate_edit_params.Tunnel | NotGiven = NOT_GIVEN,
+        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -344,7 +345,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         port: float,
         bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        tunnel: keyless_certificate_create_params.Tunnel | NotGiven = NOT_GIVEN,
+        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -503,7 +504,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         host: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         port: float | NotGiven = NOT_GIVEN,
-        tunnel: keyless_certificate_edit_params.Tunnel | NotGiven = NOT_GIVEN,
+        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

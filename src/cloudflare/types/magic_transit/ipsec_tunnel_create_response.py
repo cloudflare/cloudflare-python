@@ -4,15 +4,11 @@ from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
+from .psk_metadata import PSKMetadata
 from ..unnamed_schema_ref_3b1a76a5e4a139b72ed7d93834773d39 import UnnamedSchemaRef3b1a76a5e4a139b72ed7d93834773d39
 from ..unnamed_schema_ref_eebdc868ce7f7ae92e23438caa84e7b5 import UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5
 
-__all__ = ["IPSECTunnelCreateResponse", "IPSECTunnel", "IPSECTunnelPSKMetadata", "IPSECTunnelTunnelHealthCheck"]
-
-
-class IPSECTunnelPSKMetadata(BaseModel):
-    last_generated_on: Optional[datetime] = None
-    """The date and time the tunnel was last modified."""
+__all__ = ["IPSECTunnelCreateResponse", "IPSECTunnel", "IPSECTunnelTunnelHealthCheck"]
 
 
 class IPSECTunnelTunnelHealthCheck(BaseModel):
@@ -72,7 +68,7 @@ class IPSECTunnel(BaseModel):
     modified_on: Optional[datetime] = None
     """The date and time the tunnel was last modified."""
 
-    psk_metadata: Optional[IPSECTunnelPSKMetadata] = None
+    psk_metadata: Optional[PSKMetadata] = None
     """The PSK metadata that includes when the PSK was generated."""
 
     replay_protection: Optional[bool] = None
