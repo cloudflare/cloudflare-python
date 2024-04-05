@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .zones_pagerule import ZonesPagerule
+from .page_rule import PageRule
 
 __all__ = ["PageruleListResponse"]
 
-PageruleListResponse = List[ZonesPagerule]
+PageruleListResponse = List[PageRule]

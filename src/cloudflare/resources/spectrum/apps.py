@@ -2,11 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Union, Optional, cast
+from typing import Any, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
+from ...types import (
+    DNSParam,
+    EdgeIPsParam,
+    OriginDNSParam,
+    OriginPortParam,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -53,12 +59,12 @@ class Apps(SyncAPIResource):
         self,
         zone: str,
         *,
-        dns: app_create_params.DNS,
-        origin_dns: app_create_params.OriginDNS,
-        origin_port: Union[int, str],
+        dns: DNSParam,
+        origin_dns: OriginDNSParam,
+        origin_port: OriginPortParam,
         protocol: str,
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: app_create_params.EdgeIPs | NotGiven = NOT_GIVEN,
+        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
         tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
@@ -153,12 +159,12 @@ class Apps(SyncAPIResource):
         app_id: str,
         *,
         zone: str,
-        dns: app_update_params.DNS,
-        origin_dns: app_update_params.OriginDNS,
-        origin_port: Union[int, str],
+        dns: DNSParam,
+        origin_dns: OriginDNSParam,
+        origin_port: OriginPortParam,
         protocol: str,
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: app_update_params.EdgeIPs | NotGiven = NOT_GIVEN,
+        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
         tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
@@ -423,12 +429,12 @@ class AsyncApps(AsyncAPIResource):
         self,
         zone: str,
         *,
-        dns: app_create_params.DNS,
-        origin_dns: app_create_params.OriginDNS,
-        origin_port: Union[int, str],
+        dns: DNSParam,
+        origin_dns: OriginDNSParam,
+        origin_port: OriginPortParam,
         protocol: str,
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: app_create_params.EdgeIPs | NotGiven = NOT_GIVEN,
+        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
         tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
@@ -523,12 +529,12 @@ class AsyncApps(AsyncAPIResource):
         app_id: str,
         *,
         zone: str,
-        dns: app_update_params.DNS,
-        origin_dns: app_update_params.OriginDNS,
-        origin_port: Union[int, str],
+        dns: DNSParam,
+        origin_dns: OriginDNSParam,
+        origin_port: OriginPortParam,
         protocol: str,
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: app_update_params.EdgeIPs | NotGiven = NOT_GIVEN,
+        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
         tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,

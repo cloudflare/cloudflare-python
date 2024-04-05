@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["WANUpdateParams", "WAN", "WANStaticAddressing"]
+from .static_addressing_param import StaticAddressingParam
+
+__all__ = ["WANUpdateParams", "WAN"]
 
 
 class WANUpdateParams(TypedDict, total=False):
@@ -17,17 +19,6 @@ class WANUpdateParams(TypedDict, total=False):
     wan: WAN
 
 
-class WANStaticAddressing(TypedDict, total=False):
-    address: Required[str]
-    """A valid CIDR notation representing an IP range."""
-
-    gateway_address: Required[str]
-    """A valid IPv4 address."""
-
-    secondary_address: str
-    """A valid CIDR notation representing an IP range."""
-
-
 class WAN(TypedDict, total=False):
     description: str
 
@@ -35,7 +26,7 @@ class WAN(TypedDict, total=False):
 
     priority: int
 
-    static_addressing: WANStaticAddressing
+    static_addressing: StaticAddressingParam
     """(optional) if omitted, use DHCP.
 
     Submit secondary_address when site is in high availability mode.

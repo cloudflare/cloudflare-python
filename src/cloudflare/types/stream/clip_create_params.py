@@ -6,6 +6,7 @@ from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
+from .allowed_origins_item import AllowedOriginsItem
 
 __all__ = ["ClipCreateParams", "Watermark"]
 
@@ -23,7 +24,7 @@ class ClipCreateParams(TypedDict, total=False):
     start_time_seconds: Required[Annotated[int, PropertyInfo(alias="startTimeSeconds")]]
     """Specifies the start time for the video clip in seconds."""
 
-    allowed_origins: Annotated[List[str], PropertyInfo(alias="allowedOrigins")]
+    allowed_origins: Annotated[List[AllowedOriginsItem], PropertyInfo(alias="allowedOrigins")]
     """Lists the origins allowed to display the video.
 
     Enter allowed origin domains in an array and use `*` for wildcard subdomains.

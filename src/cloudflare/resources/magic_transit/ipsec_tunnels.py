@@ -6,6 +6,7 @@ from typing import Type, cast
 
 import httpx
 
+from ...types import HealthCheckParam
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -57,7 +58,7 @@ class IPSECTunnels(SyncAPIResource):
         name: str,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        health_check: ipsec_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
+        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,7 +140,7 @@ class IPSECTunnels(SyncAPIResource):
         name: str,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        health_check: ipsec_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -415,7 +416,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         name: str,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        health_check: ipsec_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
+        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -497,7 +498,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         name: str,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        health_check: ipsec_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

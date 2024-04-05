@@ -6,8 +6,9 @@ from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .....types import shared_params
+from ...settings_item_param import SettingsItemParam
 
-__all__ = ["SettingEditParams", "Result", "ResultTailConsumer"]
+__all__ = ["SettingEditParams"]
 
 
 class SettingEditParams(TypedDict, total=False):
@@ -21,26 +22,7 @@ class SettingEditParams(TypedDict, total=False):
 
     messages: Required[Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]]
 
-    result: Required[Result]
+    result: Required[SettingsItemParam]
 
     success: Required[Literal[True]]
     """Whether the API call was successful"""
-
-
-class ResultTailConsumer(TypedDict, total=False):
-    service: Required[str]
-    """Name of Worker that is to be the consumer."""
-
-    environment: str
-    """Optional environment if the Worker utilizes one."""
-
-    namespace: str
-    """Optional dispatch namespace the script belongs to."""
-
-
-class Result(TypedDict, total=False):
-    logpush: bool
-    """Whether Logpush is turned on for the Worker."""
-
-    tail_consumers: Iterable[ResultTailConsumer]
-    """List of Workers that will consume logs from the attached Worker."""

@@ -1,13 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Optional
-from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from ..labeled_region import LabeledRegion
 
-__all__ = ["ObservatoryAvailabilities", "Quota", "Region"]
+__all__ = ["ObservatoryAvailabilities", "Quota"]
 
 
 class Quota(BaseModel):
@@ -27,40 +27,9 @@ class Quota(BaseModel):
     """The number of schedules available per plan."""
 
 
-class Region(BaseModel):
-    label: Optional[str] = None
-
-    value: Optional[
-        Literal[
-            "asia-east1",
-            "asia-northeast1",
-            "asia-northeast2",
-            "asia-south1",
-            "asia-southeast1",
-            "australia-southeast1",
-            "europe-north1",
-            "europe-southwest1",
-            "europe-west1",
-            "europe-west2",
-            "europe-west3",
-            "europe-west4",
-            "europe-west8",
-            "europe-west9",
-            "me-west1",
-            "southamerica-east1",
-            "us-central1",
-            "us-east1",
-            "us-east4",
-            "us-south1",
-            "us-west1",
-        ]
-    ] = None
-    """A test region."""
-
-
 class ObservatoryAvailabilities(BaseModel):
     quota: Optional[Quota] = None
 
-    regions: Optional[List[Region]] = None
+    regions: Optional[List[LabeledRegion]] = None
 
     regions_per_plan: Optional[object] = FieldInfo(alias="regionsPerPlan", default=None)

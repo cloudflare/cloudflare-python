@@ -25,7 +25,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import copy_create_params
+from ...types.stream import AllowedOriginsItem, copy_create_params
 
 __all__ = ["Copy", "AsyncCopy"]
 
@@ -44,7 +44,7 @@ class Copy(SyncAPIResource):
         *,
         account_id: str,
         url: str,
-        allowed_origins: List[str] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -139,7 +139,7 @@ class AsyncCopy(AsyncAPIResource):
         *,
         account_id: str,
         url: str,
-        allowed_origins: List[str] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,

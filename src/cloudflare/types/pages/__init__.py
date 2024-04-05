@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from .pages_projects import PagesProjects as PagesProjects
-from .pages_deployments import PagesDeployments as PagesDeployments
+from .stage import Stage as Stage
+from .project import Project as Project
+from .deployment import Deployment as Deployment
+from .stage_param import StageParam as StageParam
+from .deployment_param import DeploymentParam as DeploymentParam
 from .project_edit_params import ProjectEditParams as ProjectEditParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .project_delete_params import ProjectDeleteParams as ProjectDeleteParams
-from .pages_deployments_param import PagesDeploymentsParam as PagesDeploymentsParam

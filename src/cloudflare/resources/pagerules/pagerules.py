@@ -8,6 +8,8 @@ from typing_extensions import Literal
 import httpx
 
 from ...types import (
+    ActionItemParam,
+    TargesItemParam,
     PageruleListResponse,
     PageruleDeleteResponse,
     pagerule_edit_params,
@@ -63,8 +65,8 @@ class Pagerules(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_create_params.Action],
-        targets: Iterable[pagerule_create_params.Target],
+        actions: Iterable[ActionItemParam],
+        targets: Iterable[TargesItemParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -134,8 +136,8 @@ class Pagerules(SyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_update_params.Action],
-        targets: Iterable[pagerule_update_params.Target],
+        actions: Iterable[ActionItemParam],
+        targets: Iterable[TargesItemParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -318,10 +320,10 @@ class Pagerules(SyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_edit_params.Action] | NotGiven = NOT_GIVEN,
+        actions: Iterable[ActionItemParam] | NotGiven = NOT_GIVEN,
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        targets: Iterable[pagerule_edit_params.Target] | NotGiven = NOT_GIVEN,
+        targets: Iterable[TargesItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -455,8 +457,8 @@ class AsyncPagerules(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_create_params.Action],
-        targets: Iterable[pagerule_create_params.Target],
+        actions: Iterable[ActionItemParam],
+        targets: Iterable[TargesItemParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -526,8 +528,8 @@ class AsyncPagerules(AsyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_update_params.Action],
-        targets: Iterable[pagerule_update_params.Target],
+        actions: Iterable[ActionItemParam],
+        targets: Iterable[TargesItemParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -710,10 +712,10 @@ class AsyncPagerules(AsyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_edit_params.Action] | NotGiven = NOT_GIVEN,
+        actions: Iterable[ActionItemParam] | NotGiven = NOT_GIVEN,
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        targets: Iterable[pagerule_edit_params.Target] | NotGiven = NOT_GIVEN,
+        targets: Iterable[TargesItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
