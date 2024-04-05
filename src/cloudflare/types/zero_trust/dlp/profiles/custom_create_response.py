@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .dlp_custom_profile import DLPCustomProfile
+from .custom_profile import CustomProfile
 
 __all__ = ["CustomCreateResponse"]
 
-CustomCreateResponse = List[DLPCustomProfile]
+CustomCreateResponse = List[CustomProfile]

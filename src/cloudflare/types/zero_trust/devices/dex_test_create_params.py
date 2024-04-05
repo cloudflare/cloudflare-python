@@ -4,13 +4,15 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["DEXTestCreateParams", "Data"]
+from .schema_data_param import SchemaDataParam
+
+__all__ = ["DEXTestCreateParams"]
 
 
 class DEXTestCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    data: Required[Data]
+    data: Required[SchemaDataParam]
     """
     The configuration object which contains the details for the WARP client to
     conduct the test.
@@ -27,14 +29,3 @@ class DEXTestCreateParams(TypedDict, total=False):
 
     description: str
     """Additional details about the test."""
-
-
-class Data(TypedDict, total=False):
-    host: str
-    """The desired endpoint to test."""
-
-    kind: str
-    """The type of test."""
-
-    method: str
-    """The HTTP request method type."""

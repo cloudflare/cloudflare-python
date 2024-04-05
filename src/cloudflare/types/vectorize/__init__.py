@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
+from .index_query import IndexQuery as IndexQuery
+from .create_index import CreateIndex as CreateIndex
+from .index_insert import IndexInsert as IndexInsert
+from .index_upsert import IndexUpsert as IndexUpsert
 from .index_query_params import IndexQueryParams as IndexQueryParams
 from .index_create_params import IndexCreateParams as IndexCreateParams
 from .index_insert_params import IndexInsertParams as IndexInsertParams
 from .index_update_params import IndexUpdateParams as IndexUpdateParams
 from .index_upsert_params import IndexUpsertParams as IndexUpsertParams
-from .vectorize_index_query import VectorizeIndexQuery as VectorizeIndexQuery
-from .vectorize_create_index import VectorizeCreateIndex as VectorizeCreateIndex
-from .vectorize_index_insert import VectorizeIndexInsert as VectorizeIndexInsert
-from .vectorize_index_upsert import VectorizeIndexUpsert as VectorizeIndexUpsert
 from .index_get_by_ids_params import IndexGetByIDsParams as IndexGetByIDsParams
 from .index_delete_by_ids_params import IndexDeleteByIDsParams as IndexDeleteByIDsParams
-from .vectorize_index_delete_vectors_by_id import VectorizeIndexDeleteVectorsByID as VectorizeIndexDeleteVectorsByID
+from .index_delete_vectors_by_id import IndexDeleteVectorsByID as IndexDeleteVectorsByID
+from .index_dimension_configuration import IndexDimensionConfiguration as IndexDimensionConfiguration
+from .index_dimension_configuration_param import IndexDimensionConfigurationParam as IndexDimensionConfigurationParam

@@ -32,7 +32,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dex import DigitalExperienceMonitoringHTTPDetails, http_test_get_params
+from .....types.zero_trust.dex import HTTPDetails, http_test_get_params
 
 __all__ = ["HTTPTests", "AsyncHTTPTests"]
 
@@ -66,7 +66,7 @@ class HTTPTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringHTTPDetails:
+    ) -> HTTPDetails:
         """
         Get test details and aggregate performance metrics for an http test for a given
         time period between 1 hour and 7 days.
@@ -117,9 +117,7 @@ class HTTPTests(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringHTTPDetails], ResultWrapper[DigitalExperienceMonitoringHTTPDetails]
-            ),
+            cast_to=cast(Type[HTTPDetails], ResultWrapper[HTTPDetails]),
         )
 
 
@@ -152,7 +150,7 @@ class AsyncHTTPTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DigitalExperienceMonitoringHTTPDetails:
+    ) -> HTTPDetails:
         """
         Get test details and aggregate performance metrics for an http test for a given
         time period between 1 hour and 7 days.
@@ -203,9 +201,7 @@ class AsyncHTTPTests(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DigitalExperienceMonitoringHTTPDetails], ResultWrapper[DigitalExperienceMonitoringHTTPDetails]
-            ),
+            cast_to=cast(Type[HTTPDetails], ResultWrapper[HTTPDetails]),
         )
 
 

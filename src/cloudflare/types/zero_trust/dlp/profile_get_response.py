@@ -4,7 +4,7 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .profiles import DLPCustomProfile, DLPPredefinedProfile
+from .profiles import CustomProfile, PredefinedProfile
 from ...._models import BaseModel
 
 __all__ = ["ProfileGetResponse", "DLPIntegrationProfile", "DLPIntegrationProfileEntry"]
@@ -49,4 +49,4 @@ class DLPIntegrationProfile(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-ProfileGetResponse = Union[DLPPredefinedProfile, DLPCustomProfile, DLPIntegrationProfile]
+ProfileGetResponse = Union[PredefinedProfile, CustomProfile, DLPIntegrationProfile]

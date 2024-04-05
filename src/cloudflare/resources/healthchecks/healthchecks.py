@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 from typing import List, Type, Optional, cast
-from typing_extensions import Literal
 
 import httpx
 
 from ...types import (
     Healthcheck,
+    CheckRegionItem,
+    TcpConfigurationParam,
+    HTTPConfigurationParam,
     HealthcheckDeleteResponse,
     healthcheck_edit_params,
     healthcheck_create_params,
@@ -65,35 +67,15 @@ class Healthchecks(SyncAPIResource):
         zone_id: str,
         address: str,
         name: str,
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "IN",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegionItem]] | NotGiven = NOT_GIVEN,
         consecutive_fails: int | NotGiven = NOT_GIVEN,
         consecutive_successes: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        http_config: Optional[healthcheck_create_params.HTTPConfig] | NotGiven = NOT_GIVEN,
+        http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
-        tcp_config: Optional[healthcheck_create_params.TcpConfig] | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TcpConfigurationParam] | NotGiven = NOT_GIVEN,
         healthcheck_timeout: int | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -190,35 +172,15 @@ class Healthchecks(SyncAPIResource):
         zone_id: str,
         address: str,
         name: str,
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "IN",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegionItem]] | NotGiven = NOT_GIVEN,
         consecutive_fails: int | NotGiven = NOT_GIVEN,
         consecutive_successes: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        http_config: Optional[healthcheck_update_params.HTTPConfig] | NotGiven = NOT_GIVEN,
+        http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
-        tcp_config: Optional[healthcheck_update_params.TcpConfig] | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TcpConfigurationParam] | NotGiven = NOT_GIVEN,
         healthcheck_timeout: int | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -401,35 +363,15 @@ class Healthchecks(SyncAPIResource):
         zone_id: str,
         address: str,
         name: str,
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "IN",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegionItem]] | NotGiven = NOT_GIVEN,
         consecutive_fails: int | NotGiven = NOT_GIVEN,
         consecutive_successes: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        http_config: Optional[healthcheck_edit_params.HTTPConfig] | NotGiven = NOT_GIVEN,
+        http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
-        tcp_config: Optional[healthcheck_edit_params.TcpConfig] | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TcpConfigurationParam] | NotGiven = NOT_GIVEN,
         healthcheck_timeout: int | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -587,35 +529,15 @@ class AsyncHealthchecks(AsyncAPIResource):
         zone_id: str,
         address: str,
         name: str,
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "IN",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegionItem]] | NotGiven = NOT_GIVEN,
         consecutive_fails: int | NotGiven = NOT_GIVEN,
         consecutive_successes: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        http_config: Optional[healthcheck_create_params.HTTPConfig] | NotGiven = NOT_GIVEN,
+        http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
-        tcp_config: Optional[healthcheck_create_params.TcpConfig] | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TcpConfigurationParam] | NotGiven = NOT_GIVEN,
         healthcheck_timeout: int | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -712,35 +634,15 @@ class AsyncHealthchecks(AsyncAPIResource):
         zone_id: str,
         address: str,
         name: str,
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "IN",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegionItem]] | NotGiven = NOT_GIVEN,
         consecutive_fails: int | NotGiven = NOT_GIVEN,
         consecutive_successes: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        http_config: Optional[healthcheck_update_params.HTTPConfig] | NotGiven = NOT_GIVEN,
+        http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
-        tcp_config: Optional[healthcheck_update_params.TcpConfig] | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TcpConfigurationParam] | NotGiven = NOT_GIVEN,
         healthcheck_timeout: int | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -923,35 +825,15 @@ class AsyncHealthchecks(AsyncAPIResource):
         zone_id: str,
         address: str,
         name: str,
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "IN",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegionItem]] | NotGiven = NOT_GIVEN,
         consecutive_fails: int | NotGiven = NOT_GIVEN,
         consecutive_successes: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        http_config: Optional[healthcheck_edit_params.HTTPConfig] | NotGiven = NOT_GIVEN,
+        http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
-        tcp_config: Optional[healthcheck_edit_params.TcpConfig] | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TcpConfigurationParam] | NotGiven = NOT_GIVEN,
         healthcheck_timeout: int | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

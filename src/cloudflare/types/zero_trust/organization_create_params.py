@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["OrganizationCreateParams", "LoginDesign"]
+from .login_design_param import LoginDesignParam
+
+__all__ = ["OrganizationCreateParams"]
 
 
 class OrganizationCreateParams(TypedDict, total=False):
@@ -38,7 +40,7 @@ class OrganizationCreateParams(TypedDict, total=False):
     Updates may only be made via the API or Terraform for this account when enabled.
     """
 
-    login_design: LoginDesign
+    login_design: LoginDesignParam
 
     session_duration: str
     """The amount of time that tokens issued for applications will be valid.
@@ -64,20 +66,3 @@ class OrganizationCreateParams(TypedDict, total=False):
 
     Must be in the format `30m` or `2h45m`. Valid time units are: m, h.
     """
-
-
-class LoginDesign(TypedDict, total=False):
-    background_color: str
-    """The background color on your login page."""
-
-    footer_text: str
-    """The text at the bottom of your login page."""
-
-    header_text: str
-    """The text at the top of your login page."""
-
-    logo_path: str
-    """The URL of the logo on your login page."""
-
-    text_color: str
-    """The text color on your login page."""

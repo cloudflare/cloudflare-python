@@ -2,21 +2,18 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["DNSSettingEditParams", "Nameservers"]
+from .nameserver_param import NameserverParam
+
+__all__ = ["DNSSettingEditParams"]
 
 
 class DNSSettingEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    nameservers: Nameservers
+    nameservers: NameserverParam
     """
     Settings determining the nameservers through which the zone should be available.
     """
-
-
-class Nameservers(TypedDict, total=False):
-    type: Required[Literal["cloudflare.standard", "cloudflare.foundation_dns"]]
-    """Nameserver type"""

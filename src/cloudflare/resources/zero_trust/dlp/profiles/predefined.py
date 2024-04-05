@@ -23,7 +23,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dlp.profiles import DLPPredefinedProfile, predefined_update_params
+from .....types.zero_trust.dlp import ContextAwarenessParam
+from .....types.zero_trust.dlp.profiles import PredefinedProfile, predefined_update_params
 
 __all__ = ["Predefined", "AsyncPredefined"]
 
@@ -43,7 +44,7 @@ class Predefined(SyncAPIResource):
         *,
         account_id: str,
         allowed_match_count: float | NotGiven = NOT_GIVEN,
-        context_awareness: predefined_update_params.ContextAwareness | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
         entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -52,7 +53,7 @@ class Predefined(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DLPPredefinedProfile:
+    ) -> PredefinedProfile:
         """Updates a DLP predefined profile.
 
         Only supports enabling/disabling entries.
@@ -97,7 +98,7 @@ class Predefined(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DLPPredefinedProfile,
+            cast_to=PredefinedProfile,
         )
 
     def get(
@@ -111,7 +112,7 @@ class Predefined(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DLPPredefinedProfile:
+    ) -> PredefinedProfile:
         """
         Fetches a predefined DLP profile.
 
@@ -141,7 +142,7 @@ class Predefined(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DLPPredefinedProfile], ResultWrapper[DLPPredefinedProfile]),
+            cast_to=cast(Type[PredefinedProfile], ResultWrapper[PredefinedProfile]),
         )
 
 
@@ -160,7 +161,7 @@ class AsyncPredefined(AsyncAPIResource):
         *,
         account_id: str,
         allowed_match_count: float | NotGiven = NOT_GIVEN,
-        context_awareness: predefined_update_params.ContextAwareness | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
         entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -169,7 +170,7 @@ class AsyncPredefined(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DLPPredefinedProfile:
+    ) -> PredefinedProfile:
         """Updates a DLP predefined profile.
 
         Only supports enabling/disabling entries.
@@ -214,7 +215,7 @@ class AsyncPredefined(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DLPPredefinedProfile,
+            cast_to=PredefinedProfile,
         )
 
     async def get(
@@ -228,7 +229,7 @@ class AsyncPredefined(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DLPPredefinedProfile:
+    ) -> PredefinedProfile:
         """
         Fetches a predefined DLP profile.
 
@@ -258,7 +259,7 @@ class AsyncPredefined(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DLPPredefinedProfile], ResultWrapper[DLPPredefinedProfile]),
+            cast_to=cast(Type[PredefinedProfile], ResultWrapper[PredefinedProfile]),
         )
 
 

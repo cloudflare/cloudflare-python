@@ -2,26 +2,20 @@
 
 from __future__ import annotations
 
+from .tests import Tests as Tests
+from .live_stat import LiveStat as LiveStat
+from .http_details import HTTPDetails as HTTPDetails
 from .colo_list_params import ColoListParams as ColoListParams
 from .test_list_params import TestListParams as TestListParams
 from .test_list_response import TestListResponse as TestListResponse
+from .traceroute_details import TracerouteDetails as TracerouteDetails
 from .http_test_get_params import HTTPTestGetParams as HTTPTestGetParams
+from .aggregate_time_period import AggregateTimePeriod as AggregateTimePeriod
 from .fleet_status_live_params import FleetStatusLiveParams as FleetStatusLiveParams
 from .fleet_status_live_response import FleetStatusLiveResponse as FleetStatusLiveResponse
 from .traceroute_test_get_params import TracerouteTestGetParams as TracerouteTestGetParams
+from .traceroute_test_network_path import TracerouteTestNetworkPath as TracerouteTestNetworkPath
 from .fleet_status_over_time_params import FleetStatusOverTimeParams as FleetStatusOverTimeParams
+from .traceroute_details_percentiles import TracerouteDetailsPercentiles as TracerouteDetailsPercentiles
 from .traceroute_test_percentiles_params import TracerouteTestPercentilesParams as TracerouteTestPercentilesParams
-from .digital_experience_monitoring_tests import DigitalExperienceMonitoringTests as DigitalExperienceMonitoringTests
 from .traceroute_test_network_path_params import TracerouteTestNetworkPathParams as TracerouteTestNetworkPathParams
-from .digital_experience_monitoring_http_details import (
-    DigitalExperienceMonitoringHTTPDetails as DigitalExperienceMonitoringHTTPDetails,
-)
-from .digital_experience_monitoring_traceroute_details import (
-    DigitalExperienceMonitoringTracerouteDetails as DigitalExperienceMonitoringTracerouteDetails,
-)
-from .digital_experience_monitoring_traceroute_test_network_path import (
-    DigitalExperienceMonitoringTracerouteTestNetworkPath as DigitalExperienceMonitoringTracerouteTestNetworkPath,
-)
-from .digital_experience_monitoring_traceroute_details_percentiles import (
-    DigitalExperienceMonitoringTracerouteDetailsPercentiles as DigitalExperienceMonitoringTracerouteDetailsPercentiles,
-)

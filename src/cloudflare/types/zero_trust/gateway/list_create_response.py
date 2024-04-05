@@ -5,15 +5,9 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
+from .lists_item import ListsItem
 
-__all__ = ["ListCreateResponse", "Item"]
-
-
-class Item(BaseModel):
-    created_at: Optional[datetime] = None
-
-    value: Optional[str] = None
-    """The value of the item in a list."""
+__all__ = ["ListCreateResponse"]
 
 
 class ListCreateResponse(BaseModel):
@@ -25,7 +19,7 @@ class ListCreateResponse(BaseModel):
     description: Optional[str] = None
     """The description of the list."""
 
-    items: Optional[List[Item]] = None
+    items: Optional[List[ListsItem]] = None
     """The items in the list."""
 
     name: Optional[str] = None

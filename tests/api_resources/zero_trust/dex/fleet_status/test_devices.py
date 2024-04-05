@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.zero_trust.dex.fleet_status import DigitalExperienceMonitoringDevice
+from cloudflare.types.zero_trust.dex.fleet_status import Device
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +28,7 @@ class TestDevices:
             time_end="2023-10-11T00:00:00Z",
             time_start="2023-10-11T00:00:00Z",
         )
-        assert_matches_type(SyncV4PagePaginationArray[DigitalExperienceMonitoringDevice], device, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Device], device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestDevices:
             status="connected",
             version="1.0.0",
         )
-        assert_matches_type(SyncV4PagePaginationArray[DigitalExperienceMonitoringDevice], device, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Device], device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestDevices:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         device = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[DigitalExperienceMonitoringDevice], device, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Device], device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -79,7 +79,7 @@ class TestDevices:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             device = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[DigitalExperienceMonitoringDevice], device, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Device], device, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -109,7 +109,7 @@ class TestAsyncDevices:
             time_end="2023-10-11T00:00:00Z",
             time_start="2023-10-11T00:00:00Z",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DigitalExperienceMonitoringDevice], device, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Device], device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -128,7 +128,7 @@ class TestAsyncDevices:
             status="connected",
             version="1.0.0",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DigitalExperienceMonitoringDevice], device, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Device], device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -144,7 +144,7 @@ class TestAsyncDevices:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         device = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[DigitalExperienceMonitoringDevice], device, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Device], device, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -160,9 +160,7 @@ class TestAsyncDevices:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             device = await response.parse()
-            assert_matches_type(
-                AsyncV4PagePaginationArray[DigitalExperienceMonitoringDevice], device, path=["response"]
-            )
+            assert_matches_type(AsyncV4PagePaginationArray[Device], device, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

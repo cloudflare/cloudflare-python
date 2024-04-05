@@ -2,5 +2,7 @@
 
 from __future__ import annotations
 
-from .logpush_job import LogpushJob as LogpushJob
+from .job import Job as Job
+from .output_options import OutputOptions as OutputOptions
 from .job_get_response import JobGetResponse as JobGetResponse
+from .output_options_param import OutputOptionsParam as OutputOptionsParam

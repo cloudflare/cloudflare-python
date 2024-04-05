@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import Type, cast
 
 import httpx
 
@@ -19,6 +19,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
+from .....types.zero_trust.access import AppIDParam
 from .....types.zero_trust.access.applications import UserPolicyCheckListResponse
 
 __all__ = ["UserPolicyChecks", "AsyncUserPolicyChecks"]
@@ -35,7 +36,7 @@ class UserPolicyChecks(SyncAPIResource):
 
     def list(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -103,7 +104,7 @@ class AsyncUserPolicyChecks(AsyncAPIResource):
 
     async def list(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,

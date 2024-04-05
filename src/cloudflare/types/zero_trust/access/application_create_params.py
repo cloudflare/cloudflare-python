@@ -5,25 +5,20 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Literal, Required, TypedDict
 
-from .unnamed_schema_ref_c335ce55d4fdf132c942dfce6e45dcb9 import UnnamedSchemaRefC335ce55d4fdf132c942dfce6e45dcb9
-from .unnamed_schema_ref_c6200e37c458aaa3c42e6e5b999bc419 import UnnamedSchemaRefC6200e37c458aaa3c42e6e5b999bc419
-from .unnamed_schema_ref_6ed9646890b9be79e16f1cfff86ec832_param import (
-    UnnamedSchemaRef6ed9646890b9be79e16f1cfff86ec832Param,
-)
+from .allowed_idps_item import AllowedIDPsItem
+from .custom_pages_item import CustomPagesItem
+from .cors_headers_param import CorsHeadersParam
+from .saml_saas_app_param import SamlSaasAppParam
+from .self_hosted_domains_item import SelfHostedDomainsItem
 
 __all__ = [
     "ApplicationCreateParams",
     "SelfHostedApplication",
-    "SelfHostedApplicationCorsHeaders",
     "SaaSApplication",
     "SaaSApplicationSaasApp",
-    "SaaSApplicationSaasAppAccessSamlSaasApp",
-    "SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributes",
     "SaaSApplicationSaasAppAccessOidcSaasApp",
     "BrowserSSHApplication",
-    "BrowserSSHApplicationCorsHeaders",
     "BrowserVncApplication",
-    "BrowserVncApplicationCorsHeaders",
     "AppLauncherApplication",
     "DeviceEnrollmentPermissionsApplication",
     "BrowserIsolationPermissionsApplication",
@@ -56,7 +51,7 @@ class SelfHostedApplication(TypedDict, total=False):
     authentication.
     """
 
-    allowed_idps: List[str]
+    allowed_idps: List[AllowedIDPsItem]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -73,7 +68,7 @@ class SelfHostedApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    cors_headers: SelfHostedApplicationCorsHeaders
+    cors_headers: CorsHeadersParam
 
     custom_deny_message: str
     """
@@ -93,7 +88,7 @@ class SelfHostedApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[str]
+    custom_pages: List[CustomPagesItem]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -126,7 +121,7 @@ class SelfHostedApplication(TypedDict, total=False):
     attacks.
     """
 
-    self_hosted_domains: List[str]
+    self_hosted_domains: List[SelfHostedDomainsItem]
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: bool
@@ -149,35 +144,6 @@ class SelfHostedApplication(TypedDict, total=False):
     """
 
 
-class SelfHostedApplicationCorsHeaders(TypedDict, total=False):
-    allow_all_headers: bool
-    """Allows all HTTP request headers."""
-
-    allow_all_methods: bool
-    """Allows all HTTP request methods."""
-
-    allow_all_origins: bool
-    """Allows all origins."""
-
-    allow_credentials: bool
-    """
-    When set to `true`, includes credentials (cookies, authorization headers, or TLS
-    client certificates) with requests.
-    """
-
-    allowed_headers: List[str]
-    """Allowed HTTP request headers."""
-
-    allowed_methods: List[Literal["GET", "POST", "HEAD", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"]]
-    """Allowed HTTP request methods."""
-
-    allowed_origins: List[str]
-    """Allowed origins."""
-
-    max_age: float
-    """The maximum number of seconds the results of a preflight request can be cached."""
-
-
 class SaaSApplication(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -185,7 +151,7 @@ class SaaSApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[str]
+    allowed_idps: List[AllowedIDPsItem]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -202,7 +168,7 @@ class SaaSApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    custom_pages: List[str]
+    custom_pages: List[CustomPagesItem]
     """The custom pages that will be displayed when applicable for this application"""
 
     logo_url: str
@@ -221,71 +187,6 @@ class SaaSApplication(TypedDict, total=False):
 
     type: str
     """The application type."""
-
-
-class SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributes(TypedDict, total=False):
-    name: str
-    """The name of the attribute."""
-
-    name_format: UnnamedSchemaRefC335ce55d4fdf132c942dfce6e45dcb9
-    """A globally unique name for an identity or service provider."""
-
-    source: UnnamedSchemaRef6ed9646890b9be79e16f1cfff86ec832Param
-
-
-class SaaSApplicationSaasAppAccessSamlSaasApp(TypedDict, total=False):
-    auth_type: Literal["saml", "oidc"]
-    """Optional identifier indicating the authentication protocol used for the saas
-    app.
-
-    Required for OIDC. Default if unset is "saml"
-    """
-
-    consumer_service_url: str
-    """
-    The service provider's endpoint that is responsible for receiving and parsing a
-    SAML assertion.
-    """
-
-    custom_attributes: SaaSApplicationSaasAppAccessSamlSaasAppCustomAttributes
-
-    default_relay_state: str
-    """
-    The URL that the user will be redirected to after a successful login for IDP
-    initiated logins.
-    """
-
-    idp_entity_id: str
-    """The unique identifier for your SaaS application."""
-
-    name_id_format: UnnamedSchemaRefC6200e37c458aaa3c42e6e5b999bc419
-    """The format of the name identifier sent to the SaaS application."""
-
-    name_id_transform_jsonata: str
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms an application's
-    user identities into a NameID value for its SAML assertion. This expression
-    should evaluate to a singular string. The output of this expression can override
-    the `name_id_format` setting.
-    """
-
-    public_key: str
-    """The Access public certificate that will be used to verify your identity."""
-
-    saml_attribute_transform_jsonata: str
-    """
-    A [JSONata] (https://jsonata.org/) expression that transforms an application's
-    user identities into attribute assertions in the SAML response. The expression
-    can transform id, email, name, and groups values. It can also transform fields
-    listed in the saml_attributes or oidc_fields of the identity provider used to
-    authenticate. The output of this expression must be a JSON object.
-    """
-
-    sp_entity_id: str
-    """A globally unique name for an identity or service provider."""
-
-    sso_endpoint: str
-    """The endpoint where your SaaS application will send login requests."""
 
 
 class SaaSApplicationSaasAppAccessOidcSaasApp(TypedDict, total=False):
@@ -323,7 +224,7 @@ class SaaSApplicationSaasAppAccessOidcSaasApp(TypedDict, total=False):
     """Define the user information shared with access"""
 
 
-SaaSApplicationSaasApp = Union[SaaSApplicationSaasAppAccessSamlSaasApp, SaaSApplicationSaasAppAccessOidcSaasApp]
+SaaSApplicationSaasApp = Union[SamlSaasAppParam, SaaSApplicationSaasAppAccessOidcSaasApp]
 
 
 class BrowserSSHApplication(TypedDict, total=False):
@@ -351,7 +252,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     authentication.
     """
 
-    allowed_idps: List[str]
+    allowed_idps: List[AllowedIDPsItem]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -368,7 +269,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    cors_headers: BrowserSSHApplicationCorsHeaders
+    cors_headers: CorsHeadersParam
 
     custom_deny_message: str
     """
@@ -388,7 +289,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[str]
+    custom_pages: List[CustomPagesItem]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -421,7 +322,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     attacks.
     """
 
-    self_hosted_domains: List[str]
+    self_hosted_domains: List[SelfHostedDomainsItem]
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: bool
@@ -442,35 +343,6 @@ class BrowserSSHApplication(TypedDict, total=False):
 
     Tags are used to filter applications in the App Launcher dashboard.
     """
-
-
-class BrowserSSHApplicationCorsHeaders(TypedDict, total=False):
-    allow_all_headers: bool
-    """Allows all HTTP request headers."""
-
-    allow_all_methods: bool
-    """Allows all HTTP request methods."""
-
-    allow_all_origins: bool
-    """Allows all origins."""
-
-    allow_credentials: bool
-    """
-    When set to `true`, includes credentials (cookies, authorization headers, or TLS
-    client certificates) with requests.
-    """
-
-    allowed_headers: List[str]
-    """Allowed HTTP request headers."""
-
-    allowed_methods: List[Literal["GET", "POST", "HEAD", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"]]
-    """Allowed HTTP request methods."""
-
-    allowed_origins: List[str]
-    """Allowed origins."""
-
-    max_age: float
-    """The maximum number of seconds the results of a preflight request can be cached."""
 
 
 class BrowserVncApplication(TypedDict, total=False):
@@ -498,7 +370,7 @@ class BrowserVncApplication(TypedDict, total=False):
     authentication.
     """
 
-    allowed_idps: List[str]
+    allowed_idps: List[AllowedIDPsItem]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -515,7 +387,7 @@ class BrowserVncApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    cors_headers: BrowserVncApplicationCorsHeaders
+    cors_headers: CorsHeadersParam
 
     custom_deny_message: str
     """
@@ -535,7 +407,7 @@ class BrowserVncApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[str]
+    custom_pages: List[CustomPagesItem]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -568,7 +440,7 @@ class BrowserVncApplication(TypedDict, total=False):
     attacks.
     """
 
-    self_hosted_domains: List[str]
+    self_hosted_domains: List[SelfHostedDomainsItem]
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: bool
@@ -591,35 +463,6 @@ class BrowserVncApplication(TypedDict, total=False):
     """
 
 
-class BrowserVncApplicationCorsHeaders(TypedDict, total=False):
-    allow_all_headers: bool
-    """Allows all HTTP request headers."""
-
-    allow_all_methods: bool
-    """Allows all HTTP request methods."""
-
-    allow_all_origins: bool
-    """Allows all origins."""
-
-    allow_credentials: bool
-    """
-    When set to `true`, includes credentials (cookies, authorization headers, or TLS
-    client certificates) with requests.
-    """
-
-    allowed_headers: List[str]
-    """Allowed HTTP request headers."""
-
-    allowed_methods: List[Literal["GET", "POST", "HEAD", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"]]
-    """Allowed HTTP request methods."""
-
-    allowed_origins: List[str]
-    """Allowed origins."""
-
-    max_age: float
-    """The maximum number of seconds the results of a preflight request can be cached."""
-
-
 class AppLauncherApplication(TypedDict, total=False):
     type: Required[Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]]
     """The application type."""
@@ -630,7 +473,7 @@ class AppLauncherApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[str]
+    allowed_idps: List[AllowedIDPsItem]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -662,7 +505,7 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[str]
+    allowed_idps: List[AllowedIDPsItem]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -694,7 +537,7 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[str]
+    allowed_idps: List[AllowedIDPsItem]
     """The identity providers your users can select when connecting to this
     application.
 

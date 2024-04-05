@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from .logpush_job import LogpushJob
+from .job import Job
 
 __all__ = ["JobGetResponse"]
 
-JobGetResponse = List[Optional[LogpushJob]]
+JobGetResponse = List[Optional[Job]]

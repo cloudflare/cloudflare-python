@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .check_region_item import CheckRegionItem
+from .tcp_configuration_param import TcpConfigurationParam
+from .http_configuration_param import HTTPConfigurationParam
 
-__all__ = ["HealthcheckUpdateParams", "HTTPConfig", "TcpConfig"]
+__all__ = ["HealthcheckUpdateParams"]
 
 
 class HealthcheckUpdateParams(TypedDict, total=False):
@@ -23,26 +26,7 @@ class HealthcheckUpdateParams(TypedDict, total=False):
     Only alphanumeric characters, hyphens and underscores are allowed.
     """
 
-    check_regions: Optional[
-        List[
-            Literal[
-                "WNAM",
-                "ENAM",
-                "WEU",
-                "EEU",
-                "NSAM",
-                "SSAM",
-                "OC",
-                "ME",
-                "NAF",
-                "SAF",
-                "IN",
-                "SEAS",
-                "NEAS",
-                "ALL_REGIONS",
-            ]
-        ]
-    ]
+    check_regions: Optional[List[CheckRegionItem]]
     """A list of regions from which to run health checks.
 
     Null means Cloudflare will pick a default region.
@@ -63,7 +47,7 @@ class HealthcheckUpdateParams(TypedDict, total=False):
     description: str
     """A human-readable description of the health check."""
 
-    http_config: Optional[HTTPConfig]
+    http_config: Optional[HTTPConfigurationParam]
     """Parameters specific to an HTTP or HTTPS health check."""
 
     interval: int
@@ -82,7 +66,7 @@ class HealthcheckUpdateParams(TypedDict, total=False):
     suspended: bool
     """If suspended, no health checks are sent to the origin."""
 
-    tcp_config: Optional[TcpConfig]
+    tcp_config: Optional[TcpConfigurationParam]
     """Parameters specific to TCP health check."""
 
     healthcheck_timeout: Annotated[int, PropertyInfo(alias="timeout")]
@@ -93,51 +77,3 @@ class HealthcheckUpdateParams(TypedDict, total=False):
 
     Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'.
     """
-
-
-class HTTPConfig(TypedDict, total=False):
-    allow_insecure: bool
-    """Do not validate the certificate when the health check uses HTTPS."""
-
-    expected_body: str
-    """A case-insensitive sub-string to look for in the response body.
-
-    If this string is not found, the origin will be marked as unhealthy.
-    """
-
-    expected_codes: Optional[List[str]]
-    """The expected HTTP response codes (e.g.
-
-    "200") or code ranges (e.g. "2xx" for all codes starting with 2) of the health
-    check.
-    """
-
-    follow_redirects: bool
-    """Follow redirects if the origin returns a 3xx status code."""
-
-    header: Optional[object]
-    """The HTTP request headers to send in the health check.
-
-    It is recommended you set a Host header by default. The User-Agent header cannot
-    be overridden.
-    """
-
-    method: Literal["GET", "HEAD"]
-    """The HTTP method to use for the health check."""
-
-    path: str
-    """The endpoint path to health check against."""
-
-    port: int
-    """Port number to connect to for the health check.
-
-    Defaults to 80 if type is HTTP or 443 if type is HTTPS.
-    """
-
-
-class TcpConfig(TypedDict, total=False):
-    method: Literal["connection_established"]
-    """The TCP connection method to use for the health check."""
-
-    port: int
-    """Port number to connect to for the health check. Defaults to 80."""

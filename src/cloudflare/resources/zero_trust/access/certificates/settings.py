@@ -24,9 +24,9 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.access.certificates import (
+    SettingsParam,
     SettingGetResponse,
     SettingUpdateResponse,
-    ZeroTrustSettingsParam,
     setting_update_params,
 )
 
@@ -45,7 +45,7 @@ class Settings(SyncAPIResource):
     def update(
         self,
         *,
-        settings: Iterable[ZeroTrustSettingsParam],
+        settings: Iterable[SettingsParam],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -167,7 +167,7 @@ class AsyncSettings(AsyncAPIResource):
     async def update(
         self,
         *,
-        settings: Iterable[ZeroTrustSettingsParam],
+        settings: Iterable[SettingsParam],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

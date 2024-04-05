@@ -25,13 +25,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.secondary_dns import (
-    SecondaryDNSTSIG,
-    TSIGDeleteResponse,
-    tsig_create_params,
-    tsig_delete_params,
-    tsig_update_params,
-)
+from ...types.secondary_dns import TSIG, TSIGDeleteResponse, tsig_create_params, tsig_delete_params, tsig_update_params
 
 __all__ = ["TSIGs", "AsyncTSIGs"]
 
@@ -58,7 +52,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSTSIG:
+    ) -> TSIG:
         """
         Create TSIG.
 
@@ -96,7 +90,7 @@ class TSIGs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
+            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
         )
 
     def update(
@@ -113,7 +107,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSTSIG:
+    ) -> TSIG:
         """
         Modify TSIG.
 
@@ -153,7 +147,7 @@ class TSIGs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
+            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
         )
 
     def list(
@@ -166,7 +160,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[SecondaryDNSTSIG]:
+    ) -> SyncSinglePage[TSIG]:
         """
         List TSIGs.
 
@@ -183,11 +177,11 @@ class TSIGs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/secondary_dns/tsigs",
-            page=SyncSinglePage[SecondaryDNSTSIG],
+            page=SyncSinglePage[TSIG],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SecondaryDNSTSIG,
+            model=TSIG,
         )
 
     def delete(
@@ -243,7 +237,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSTSIG:
+    ) -> TSIG:
         """
         Get TSIG.
 
@@ -269,7 +263,7 @@ class TSIGs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
+            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
         )
 
 
@@ -295,7 +289,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSTSIG:
+    ) -> TSIG:
         """
         Create TSIG.
 
@@ -333,7 +327,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
+            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
         )
 
     async def update(
@@ -350,7 +344,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSTSIG:
+    ) -> TSIG:
         """
         Modify TSIG.
 
@@ -390,7 +384,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
+            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
         )
 
     def list(
@@ -403,7 +397,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[SecondaryDNSTSIG, AsyncSinglePage[SecondaryDNSTSIG]]:
+    ) -> AsyncPaginator[TSIG, AsyncSinglePage[TSIG]]:
         """
         List TSIGs.
 
@@ -420,11 +414,11 @@ class AsyncTSIGs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/secondary_dns/tsigs",
-            page=AsyncSinglePage[SecondaryDNSTSIG],
+            page=AsyncSinglePage[TSIG],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SecondaryDNSTSIG,
+            model=TSIG,
         )
 
     async def delete(
@@ -480,7 +474,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSTSIG:
+    ) -> TSIG:
         """
         Get TSIG.
 
@@ -506,7 +500,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSTSIG], ResultWrapper[SecondaryDNSTSIG]),
+            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
         )
 
 

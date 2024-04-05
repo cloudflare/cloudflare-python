@@ -34,7 +34,8 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.access import (
-    ZeroTrustCertificates,
+    Certificate,
+    AssociatedHostnamesItem,
     CertificateDeleteResponse,
     certificate_create_params,
     certificate_update_params,
@@ -63,14 +64,14 @@ class Certificates(SyncAPIResource):
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        associated_hostnames: List[str] | NotGiven = NOT_GIVEN,
+        associated_hostnames: List[AssociatedHostnamesItem] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustCertificates:
+    ) -> Certificate:
         """
         Adds a new mTLS root certificate to Access.
 
@@ -125,14 +126,14 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustCertificates], ResultWrapper[ZeroTrustCertificates]),
+            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
         )
 
     def update(
         self,
         uuid: str,
         *,
-        associated_hostnames: List[str],
+        associated_hostnames: List[AssociatedHostnamesItem],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -142,7 +143,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustCertificates:
+    ) -> Certificate:
         """
         Updates a configured mTLS certificate.
 
@@ -198,7 +199,7 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustCertificates], ResultWrapper[ZeroTrustCertificates]),
+            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
         )
 
     def list(
@@ -212,7 +213,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustCertificates]:
+    ) -> SyncSinglePage[Certificate]:
         """
         Lists all mTLS root certificates.
 
@@ -246,11 +247,11 @@ class Certificates(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
-            page=SyncSinglePage[ZeroTrustCertificates],
+            page=SyncSinglePage[Certificate],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustCertificates,
+            model=Certificate,
         )
 
     def delete(
@@ -325,7 +326,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustCertificates:
+    ) -> Certificate:
         """
         Fetches a single mTLS certificate.
 
@@ -370,7 +371,7 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustCertificates], ResultWrapper[ZeroTrustCertificates]),
+            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
         )
 
 
@@ -394,14 +395,14 @@ class AsyncCertificates(AsyncAPIResource):
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        associated_hostnames: List[str] | NotGiven = NOT_GIVEN,
+        associated_hostnames: List[AssociatedHostnamesItem] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustCertificates:
+    ) -> Certificate:
         """
         Adds a new mTLS root certificate to Access.
 
@@ -456,14 +457,14 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustCertificates], ResultWrapper[ZeroTrustCertificates]),
+            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
         )
 
     async def update(
         self,
         uuid: str,
         *,
-        associated_hostnames: List[str],
+        associated_hostnames: List[AssociatedHostnamesItem],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -473,7 +474,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustCertificates:
+    ) -> Certificate:
         """
         Updates a configured mTLS certificate.
 
@@ -529,7 +530,7 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustCertificates], ResultWrapper[ZeroTrustCertificates]),
+            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
         )
 
     def list(
@@ -543,7 +544,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustCertificates, AsyncSinglePage[ZeroTrustCertificates]]:
+    ) -> AsyncPaginator[Certificate, AsyncSinglePage[Certificate]]:
         """
         Lists all mTLS root certificates.
 
@@ -577,11 +578,11 @@ class AsyncCertificates(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/certificates",
-            page=AsyncSinglePage[ZeroTrustCertificates],
+            page=AsyncSinglePage[Certificate],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustCertificates,
+            model=Certificate,
         )
 
     async def delete(
@@ -656,7 +657,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustCertificates:
+    ) -> Certificate:
         """
         Fetches a single mTLS certificate.
 
@@ -701,7 +702,7 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustCertificates], ResultWrapper[ZeroTrustCertificates]),
+            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
         )
 
 

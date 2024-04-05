@@ -3,27 +3,15 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["RuleUpdateParams", "Body"]
+from .rule_param import RuleParam
+
+__all__ = ["RuleUpdateParams"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    body: Required[Iterable[Body]]
-
-
-class Body(TypedDict, total=False):
-    action: Required[Literal["bypass_waiting_room"]]
-    """The action to take when the expression matches."""
-
-    expression: Required[str]
-    """Criteria defining when there is a match for the current rule."""
-
-    description: str
-    """The description of the rule."""
-
-    enabled: bool
-    """When set to true, the rule is enabled."""
+    body: Required[Iterable[RuleParam]]
