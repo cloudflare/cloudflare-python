@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from .generic_oauth_config_param import GenericOAuthConfigParam
 from .unnamed_schema_ref_9ab84e842cdf571c8f3898648bcdabcb import UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
 from .unnamed_schema_ref_dd86d8b7ea73283da7b160ed3f86cae1_param import (
     UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param,
@@ -12,20 +13,17 @@ from .unnamed_schema_ref_dd86d8b7ea73283da7b160ed3f86cae1_param import (
 
 __all__ = [
     "IdentityProviderUpdateParams",
-    "AccessAzureAd",
-    "AccessAzureAdConfig",
+    "AzureAd",
+    "AzureAdConfig",
     "AccessCentrify",
     "AccessCentrifyConfig",
     "AccessFacebook",
-    "AccessFacebookConfig",
     "AccessGitHub",
-    "AccessGitHubConfig",
     "AccessGoogle",
     "AccessGoogleConfig",
     "AccessGoogleApps",
     "AccessGoogleAppsConfig",
     "AccessLinkedin",
-    "AccessLinkedinConfig",
     "AccessOidc",
     "AccessOidcConfig",
     "AccessOkta",
@@ -38,13 +36,12 @@ __all__ = [
     "AccessSamlConfig",
     "AccessSamlConfigHeaderAttribute",
     "AccessYandex",
-    "AccessYandexConfig",
     "AccessOnetimepin",
 ]
 
 
-class AccessAzureAd(TypedDict, total=False):
-    config: Required[AccessAzureAdConfig]
+class AzureAd(TypedDict, total=False):
+    config: Required[AzureAdConfig]
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -74,7 +71,7 @@ class AccessAzureAd(TypedDict, total=False):
     """
 
 
-class AccessAzureAdConfig(TypedDict, total=False):
+class AzureAdConfig(TypedDict, total=False):
     claims: List[str]
     """Custom claims"""
 
@@ -162,7 +159,7 @@ class AccessCentrifyConfig(TypedDict, total=False):
 
 
 class AccessFacebook(TypedDict, total=False):
-    config: Required[AccessFacebookConfig]
+    config: Required[GenericOAuthConfigParam]
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -190,18 +187,10 @@ class AccessFacebook(TypedDict, total=False):
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
-
-
-class AccessFacebookConfig(TypedDict, total=False):
-    client_id: str
-    """Your OAuth Client ID"""
-
-    client_secret: str
-    """Your OAuth Client Secret"""
 
 
 class AccessGitHub(TypedDict, total=False):
-    config: Required[AccessGitHubConfig]
+    config: Required[GenericOAuthConfigParam]
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -229,14 +218,6 @@ class AccessGitHub(TypedDict, total=False):
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
-
-
-class AccessGitHubConfig(TypedDict, total=False):
-    client_id: str
-    """Your OAuth Client ID"""
-
-    client_secret: str
-    """Your OAuth Client Secret"""
 
 
 class AccessGoogle(TypedDict, total=False):
@@ -333,7 +314,7 @@ class AccessGoogleAppsConfig(TypedDict, total=False):
 
 
 class AccessLinkedin(TypedDict, total=False):
-    config: Required[AccessLinkedinConfig]
+    config: Required[GenericOAuthConfigParam]
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -361,14 +342,6 @@ class AccessLinkedin(TypedDict, total=False):
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
-
-
-class AccessLinkedinConfig(TypedDict, total=False):
-    client_id: str
-    """Your OAuth Client ID"""
-
-    client_secret: str
-    """Your OAuth Client Secret"""
 
 
 class AccessOidc(TypedDict, total=False):
@@ -647,7 +620,7 @@ class AccessSamlConfig(TypedDict, total=False):
 
 
 class AccessYandex(TypedDict, total=False):
-    config: Required[AccessYandexConfig]
+    config: Required[GenericOAuthConfigParam]
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -675,14 +648,6 @@ class AccessYandex(TypedDict, total=False):
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
-
-
-class AccessYandexConfig(TypedDict, total=False):
-    client_id: str
-    """Your OAuth Client ID"""
-
-    client_secret: str
-    """Your OAuth Client Secret"""
 
 
 class AccessOnetimepin(TypedDict, total=False):
@@ -717,7 +682,7 @@ class AccessOnetimepin(TypedDict, total=False):
 
 
 IdentityProviderUpdateParams = Union[
-    AccessAzureAd,
+    AzureAd,
     AccessCentrify,
     AccessFacebook,
     AccessGitHub,

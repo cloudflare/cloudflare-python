@@ -2,20 +2,22 @@
 
 from __future__ import annotations
 
+from .acl import ACL as ACL
+from .peer import Peer as Peer
+from .tsig import TSIG as TSIG
+from .force_axfr import ForceAXFR as ForceAXFR
+from .enable_transfer import EnableTransfer as EnableTransfer
+from .disable_transfer import DisableTransfer as DisableTransfer
 from .acl_create_params import ACLCreateParams as ACLCreateParams
 from .acl_delete_params import ACLDeleteParams as ACLDeleteParams
 from .acl_update_params import ACLUpdateParams as ACLUpdateParams
-from .secondary_dns_acl import SecondaryDNSACL as SecondaryDNSACL
 from .peer_create_params import PeerCreateParams as PeerCreateParams
 from .peer_delete_params import PeerDeleteParams as PeerDeleteParams
 from .peer_update_params import PeerUpdateParams as PeerUpdateParams
-from .secondary_dns_peer import SecondaryDNSPeer as SecondaryDNSPeer
-from .secondary_dns_tsig import SecondaryDNSTSIG as SecondaryDNSTSIG
 from .tsig_create_params import TSIGCreateParams as TSIGCreateParams
 from .tsig_delete_params import TSIGDeleteParams as TSIGDeleteParams
 from .tsig_update_params import TSIGUpdateParams as TSIGUpdateParams
 from .acl_delete_response import ACLDeleteResponse as ACLDeleteResponse
-from .secondary_dns_force import SecondaryDNSForce as SecondaryDNSForce
 from .peer_delete_response import PeerDeleteResponse as PeerDeleteResponse
 from .tsig_delete_response import TSIGDeleteResponse as TSIGDeleteResponse
 from .incoming_get_response import IncomingGetResponse as IncomingGetResponse
@@ -36,9 +38,7 @@ from .outgoing_create_response import OutgoingCreateResponse as OutgoingCreateRe
 from .outgoing_delete_response import OutgoingDeleteResponse as OutgoingDeleteResponse
 from .outgoing_update_response import OutgoingUpdateResponse as OutgoingUpdateResponse
 from .outgoing_force_notify_params import OutgoingForceNotifyParams as OutgoingForceNotifyParams
-from .secondary_dns_enable_transfer import SecondaryDNSEnableTransfer as SecondaryDNSEnableTransfer
 from .outgoing_force_notify_response import OutgoingForceNotifyResponse as OutgoingForceNotifyResponse
-from .secondary_dns_disable_transfer import SecondaryDNSDisableTransfer as SecondaryDNSDisableTransfer
 from .unnamed_schema_ref_bf34e74a34c9a2f63d85505dc69d4adc import (
     UnnamedSchemaRefBf34e74a34c9a2f63d85505dc69d4adc as UnnamedSchemaRefBf34e74a34c9a2f63d85505dc69d4adc,
 )

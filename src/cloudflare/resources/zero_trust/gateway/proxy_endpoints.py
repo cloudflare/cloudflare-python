@@ -27,6 +27,7 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ....types.zero_trust.gateway import (
+    GatewayIPsItem,
     ZeroTrustGatewayProxyEndpoints,
     proxy_endpoint_edit_params,
     proxy_endpoint_create_params,
@@ -49,7 +50,7 @@ class ProxyEndpoints(SyncAPIResource):
         self,
         *,
         account_id: str,
-        ips: List[str],
+        ips: List[GatewayIPsItem],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -181,7 +182,7 @@ class ProxyEndpoints(SyncAPIResource):
         proxy_endpoint_id: str,
         *,
         account_id: str,
-        ips: List[str] | NotGiven = NOT_GIVEN,
+        ips: List[GatewayIPsItem] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -283,7 +284,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        ips: List[str],
+        ips: List[GatewayIPsItem],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -415,7 +416,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         proxy_endpoint_id: str,
         *,
         account_id: str,
-        ips: List[str] | NotGiven = NOT_GIVEN,
+        ips: List[GatewayIPsItem] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

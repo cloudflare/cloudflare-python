@@ -2,26 +2,40 @@
 
 from __future__ import annotations
 
+from .application import Application as Application
+from .certificate import Certificate as Certificate
+from .app_id_param import AppIDParam as AppIDParam
+from .cors_headers import CorsHeaders as CorsHeaders
+from .saml_saas_app import SamlSaasApp as SamlSaasApp
 from .zero_trust_tag import ZeroTrustTag as ZeroTrustTag
-from .zero_trust_apps import ZeroTrustApps as ZeroTrustApps
+from .zero_trust_group import ZeroTrustGroup as ZeroTrustGroup
 from .zero_trust_users import ZeroTrustUsers as ZeroTrustUsers
+from .allowed_idps_item import AllowedIDPsItem as AllowedIDPsItem
+from .custom_pages_item import CustomPagesItem as CustomPagesItem
 from .key_update_params import KeyUpdateParams as KeyUpdateParams
 from .tag_create_params import TagCreateParams as TagCreateParams
 from .tag_update_params import TagUpdateParams as TagUpdateParams
-from .zero_trust_groups import ZeroTrustGroups as ZeroTrustGroups
+from .cors_headers_param import CorsHeadersParam as CorsHeadersParam
+from .exclude_item_param import ExcludeItemParam as ExcludeItemParam
+from .require_item_param import RequireItemParam as RequireItemParam
 from .group_create_params import GroupCreateParams as GroupCreateParams
 from .group_update_params import GroupUpdateParams as GroupUpdateParams
+from .saml_saas_app_param import SamlSaasAppParam as SamlSaasAppParam
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
+from .allowed_headers_item import AllowedHeadersItem as AllowedHeadersItem
+from .allowed_methods_item import AllowedMethodsItem as AllowedMethodsItem
+from .allowed_origins_item import AllowedOriginsItem as AllowedOriginsItem
 from .zero_trust_bookmarks import ZeroTrustBookmarks as ZeroTrustBookmarks
 from .group_delete_response import GroupDeleteResponse as GroupDeleteResponse
 from .bookmark_create_params import BookmarkCreateParams as BookmarkCreateParams
 from .bookmark_delete_params import BookmarkDeleteParams as BookmarkDeleteParams
 from .bookmark_update_params import BookmarkUpdateParams as BookmarkUpdateParams
 from .zero_trust_custom_page import ZeroTrustCustomPage as ZeroTrustCustomPage
-from .zero_trust_certificates import ZeroTrustCertificates as ZeroTrustCertificates
 from .bookmark_delete_response import BookmarkDeleteResponse as BookmarkDeleteResponse
+from .self_hosted_domains_item import SelfHostedDomainsItem as SelfHostedDomainsItem
 from .application_create_params import ApplicationCreateParams as ApplicationCreateParams
 from .application_update_params import ApplicationUpdateParams as ApplicationUpdateParams
+from .associated_hostnames_item import AssociatedHostnamesItem as AssociatedHostnamesItem
 from .certificate_create_params import CertificateCreateParams as CertificateCreateParams
 from .certificate_update_params import CertificateUpdateParams as CertificateUpdateParams
 from .custom_page_create_params import CustomPageCreateParams as CustomPageCreateParams

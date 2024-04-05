@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Union, cast, overload
+from typing import Any, List, Type, cast, overload
 from typing_extensions import Literal
 
 import httpx
@@ -51,7 +51,12 @@ from .user_policy_checks import (
     AsyncUserPolicyChecksWithStreamingResponse,
 )
 from .....types.zero_trust.access import (
-    ZeroTrustApps,
+    AppIDParam,
+    Application,
+    AllowedIDPsItem,
+    CustomPagesItem,
+    CorsHeadersParam,
+    SelfHostedDomainsItem,
     ApplicationDeleteResponse,
     application_create_params,
     application_update_params,
@@ -90,21 +95,21 @@ class Applications(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_create_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -115,7 +120,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -198,10 +203,10 @@ class Applications(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaasApp | NotGiven = NOT_GIVEN,
@@ -213,7 +218,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -260,21 +265,21 @@ class Applications(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_create_params.BrowserSSHApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -285,7 +290,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -371,21 +376,21 @@ class Applications(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_create_params.BrowserVncApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -396,7 +401,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -480,7 +485,7 @@ class Applications(SyncAPIResource):
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -489,7 +494,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -527,7 +532,7 @@ class Applications(SyncAPIResource):
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -536,7 +541,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -574,7 +579,7 @@ class Applications(SyncAPIResource):
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -583,7 +588,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -632,7 +637,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -674,21 +679,21 @@ class Applications(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_create_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -700,7 +705,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
@@ -717,7 +722,7 @@ class Applications(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            ZeroTrustApps,
+            Application,
             self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=maybe_transform(
@@ -756,7 +761,7 @@ class Applications(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ZeroTrustApps]
+                    Any, ResultWrapper[Application]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -764,28 +769,28 @@ class Applications(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         domain: str,
         type: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_update_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -796,7 +801,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -878,14 +883,14 @@ class Applications(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaasApp | NotGiven = NOT_GIVEN,
@@ -897,7 +902,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -940,28 +945,28 @@ class Applications(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         domain: str,
         type: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_update_params.BrowserSSHApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -972,7 +977,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1054,28 +1059,28 @@ class Applications(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         domain: str,
         type: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_update_params.BrowserVncApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -1086,7 +1091,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1168,12 +1173,12 @@ class Applications(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1182,7 +1187,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1218,12 +1223,12 @@ class Applications(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1232,7 +1237,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1268,12 +1273,12 @@ class Applications(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1282,7 +1287,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1318,7 +1323,7 @@ class Applications(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1334,7 +1339,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1370,7 +1375,7 @@ class Applications(SyncAPIResource):
 
     def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         domain: str | NotGiven = NOT_GIVEN,
         type: str
@@ -1379,21 +1384,21 @@ class Applications(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_update_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -1405,7 +1410,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
@@ -1422,7 +1427,7 @@ class Applications(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            ZeroTrustApps,
+            Application,
             self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=maybe_transform(
@@ -1461,7 +1466,7 @@ class Applications(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ZeroTrustApps]
+                    Any, ResultWrapper[Application]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -1477,7 +1482,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustApps]:
+    ) -> SyncSinglePage[Application]:
         """
         Lists all Access applications in an account or zone.
 
@@ -1511,16 +1516,16 @@ class Applications(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            page=SyncSinglePage[ZeroTrustApps],
+            page=SyncSinglePage[Application],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, ZeroTrustApps),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, Application),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1578,7 +1583,7 @@ class Applications(SyncAPIResource):
 
     def get(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1588,7 +1593,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Fetches information about an Access application.
 
@@ -1623,7 +1628,7 @@ class Applications(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            ZeroTrustApps,
+            Application,
             self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 options=make_request_options(
@@ -1634,14 +1639,14 @@ class Applications(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ZeroTrustApps]
+                    Any, ResultWrapper[Application]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
     def revoke_tokens(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1728,21 +1733,21 @@ class AsyncApplications(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_create_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -1753,7 +1758,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -1836,10 +1841,10 @@ class AsyncApplications(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaasApp | NotGiven = NOT_GIVEN,
@@ -1851,7 +1856,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -1898,21 +1903,21 @@ class AsyncApplications(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_create_params.BrowserSSHApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -1923,7 +1928,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2009,21 +2014,21 @@ class AsyncApplications(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_create_params.BrowserVncApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -2034,7 +2039,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2118,7 +2123,7 @@ class AsyncApplications(AsyncAPIResource):
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2127,7 +2132,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2165,7 +2170,7 @@ class AsyncApplications(AsyncAPIResource):
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2174,7 +2179,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2212,7 +2217,7 @@ class AsyncApplications(AsyncAPIResource):
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2221,7 +2226,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2270,7 +2275,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2312,21 +2317,21 @@ class AsyncApplications(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_create_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -2338,7 +2343,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
@@ -2355,7 +2360,7 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            ZeroTrustApps,
+            Application,
             await self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=await async_maybe_transform(
@@ -2394,7 +2399,7 @@ class AsyncApplications(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ZeroTrustApps]
+                    Any, ResultWrapper[Application]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -2402,28 +2407,28 @@ class AsyncApplications(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         domain: str,
         type: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_update_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -2434,7 +2439,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2516,14 +2521,14 @@ class AsyncApplications(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaasApp | NotGiven = NOT_GIVEN,
@@ -2535,7 +2540,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2578,28 +2583,28 @@ class AsyncApplications(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         domain: str,
         type: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_update_params.BrowserSSHApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -2610,7 +2615,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2692,28 +2697,28 @@ class AsyncApplications(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         domain: str,
         type: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_update_params.BrowserVncApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -2724,7 +2729,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2806,12 +2811,12 @@ class AsyncApplications(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2820,7 +2825,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2856,12 +2861,12 @@ class AsyncApplications(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2870,7 +2875,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2906,12 +2911,12 @@ class AsyncApplications(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2920,7 +2925,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2956,7 +2961,7 @@ class AsyncApplications(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -2972,7 +2977,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -3008,7 +3013,7 @@ class AsyncApplications(AsyncAPIResource):
 
     async def update(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         domain: str | NotGiven = NOT_GIVEN,
         type: str
@@ -3017,21 +3022,21 @@ class AsyncApplications(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-        allowed_idps: List[str] | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIDPsItem] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        cors_headers: application_update_params.SelfHostedApplicationCorsHeaders | NotGiven = NOT_GIVEN,
+        cors_headers: CorsHeadersParam | NotGiven = NOT_GIVEN,
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        custom_pages: List[CustomPagesItem] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        self_hosted_domains: List[str] | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomainsItem] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
@@ -3043,7 +3048,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not zone_id:
@@ -3060,7 +3065,7 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            ZeroTrustApps,
+            Application,
             await self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=await async_maybe_transform(
@@ -3099,7 +3104,7 @@ class AsyncApplications(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ZeroTrustApps]
+                    Any, ResultWrapper[Application]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -3115,7 +3120,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustApps, AsyncSinglePage[ZeroTrustApps]]:
+    ) -> AsyncPaginator[Application, AsyncSinglePage[Application]]:
         """
         Lists all Access applications in an account or zone.
 
@@ -3149,16 +3154,16 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            page=AsyncSinglePage[ZeroTrustApps],
+            page=AsyncSinglePage[Application],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, ZeroTrustApps),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, Application),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3216,7 +3221,7 @@ class AsyncApplications(AsyncAPIResource):
 
     async def get(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3226,7 +3231,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustApps:
+    ) -> Application:
         """
         Fetches information about an Access application.
 
@@ -3261,7 +3266,7 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            ZeroTrustApps,
+            Application,
             await self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 options=make_request_options(
@@ -3272,14 +3277,14 @@ class AsyncApplications(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ZeroTrustApps]
+                    Any, ResultWrapper[Application]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
 
     async def revoke_tokens(
         self,
-        app_id: Union[str, str],
+        app_id: AppIDParam,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,

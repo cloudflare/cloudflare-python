@@ -27,6 +27,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.zero_trust import (
+    GenericOAuthConfigParam,
     ZeroTrustIdentityProviders,
     IdentityProviderListResponse,
     IdentityProviderDeleteResponse,
@@ -52,7 +53,7 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        config: identity_provider_create_params.AccessAzureAdConfig,
+        config: identity_provider_create_params.AzureAdConfig,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -148,7 +149,7 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        config: identity_provider_create_params.AccessFacebookConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -196,7 +197,7 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        config: identity_provider_create_params.AccessGitHubConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -340,7 +341,7 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        config: identity_provider_create_params.AccessLinkedinConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -628,7 +629,7 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        config: identity_provider_create_params.AccessYandexConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -739,9 +740,9 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        config: identity_provider_create_params.AccessAzureAdConfig
+        config: identity_provider_create_params.AzureAdConfig
         | identity_provider_create_params.AccessCentrifyConfig
-        | identity_provider_create_params.AccessFacebookConfig
+        | GenericOAuthConfigParam
         | identity_provider_create_params.AccessGoogleConfig
         | identity_provider_create_params.AccessGoogleAppsConfig
         | identity_provider_create_params.AccessOidcConfig
@@ -808,7 +809,7 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessAzureAdConfig,
+        config: identity_provider_update_params.AzureAdConfig,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -910,7 +911,7 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessFacebookConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -961,7 +962,7 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessGitHubConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -1114,7 +1115,7 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessLinkedinConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -1420,7 +1421,7 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessYandexConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -1537,9 +1538,9 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessAzureAdConfig
+        config: identity_provider_update_params.AzureAdConfig
         | identity_provider_update_params.AccessCentrifyConfig
-        | identity_provider_update_params.AccessFacebookConfig
+        | GenericOAuthConfigParam
         | identity_provider_update_params.AccessGoogleConfig
         | identity_provider_update_params.AccessGoogleAppsConfig
         | identity_provider_update_params.AccessOidcConfig
@@ -1796,7 +1797,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: identity_provider_create_params.AccessAzureAdConfig,
+        config: identity_provider_create_params.AzureAdConfig,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -1892,7 +1893,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: identity_provider_create_params.AccessFacebookConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -1940,7 +1941,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: identity_provider_create_params.AccessGitHubConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -2084,7 +2085,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: identity_provider_create_params.AccessLinkedinConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -2372,7 +2373,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: identity_provider_create_params.AccessYandexConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -2483,9 +2484,9 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: identity_provider_create_params.AccessAzureAdConfig
+        config: identity_provider_create_params.AzureAdConfig
         | identity_provider_create_params.AccessCentrifyConfig
-        | identity_provider_create_params.AccessFacebookConfig
+        | GenericOAuthConfigParam
         | identity_provider_create_params.AccessGoogleConfig
         | identity_provider_create_params.AccessGoogleAppsConfig
         | identity_provider_create_params.AccessOidcConfig
@@ -2552,7 +2553,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessAzureAdConfig,
+        config: identity_provider_update_params.AzureAdConfig,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -2654,7 +2655,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessFacebookConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -2705,7 +2706,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessGitHubConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -2858,7 +2859,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessLinkedinConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -3164,7 +3165,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessYandexConfig,
+        config: GenericOAuthConfigParam,
         name: str,
         type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -3281,9 +3282,9 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessAzureAdConfig
+        config: identity_provider_update_params.AzureAdConfig
         | identity_provider_update_params.AccessCentrifyConfig
-        | identity_provider_update_params.AccessFacebookConfig
+        | GenericOAuthConfigParam
         | identity_provider_update_params.AccessGoogleConfig
         | identity_provider_update_params.AccessGoogleAppsConfig
         | identity_provider_update_params.AccessOidcConfig

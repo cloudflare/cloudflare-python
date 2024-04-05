@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import (
-    ZeroTrustApps,
+    Application,
     ApplicationDeleteResponse,
 )
 
@@ -30,7 +30,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -78,7 +78,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -108,7 +108,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -138,7 +138,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -180,7 +180,7 @@ class TestApplications:
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -193,7 +193,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +206,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -234,7 +234,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -282,7 +282,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -297,7 +297,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -312,7 +312,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -344,7 +344,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -392,7 +392,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -407,7 +407,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -422,7 +422,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -453,7 +453,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -470,7 +470,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -484,7 +484,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -498,7 +498,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -527,7 +527,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -544,7 +544,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -558,7 +558,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -572,7 +572,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -601,7 +601,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -618,7 +618,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -632,7 +632,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -646,7 +646,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -674,7 +674,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -689,7 +689,7 @@ class TestApplications:
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -702,7 +702,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -715,7 +715,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -744,7 +744,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -793,7 +793,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -809,7 +809,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -825,7 +825,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -858,7 +858,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -901,7 +901,7 @@ class TestApplications:
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -915,7 +915,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -929,7 +929,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -960,7 +960,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1009,7 +1009,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1025,7 +1025,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1041,7 +1041,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1076,7 +1076,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1125,7 +1125,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1141,7 +1141,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1157,7 +1157,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1191,7 +1191,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1209,7 +1209,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1224,7 +1224,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1239,7 +1239,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1271,7 +1271,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1289,7 +1289,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1304,7 +1304,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1319,7 +1319,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1351,7 +1351,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1369,7 +1369,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1384,7 +1384,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1399,7 +1399,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1430,7 +1430,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1446,7 +1446,7 @@ class TestApplications:
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1460,7 +1460,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1474,7 +1474,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1502,7 +1502,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(SyncSinglePage[ZeroTrustApps], application, path=["response"])
+        assert_matches_type(SyncSinglePage[Application], application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1511,7 +1511,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(SyncSinglePage[ZeroTrustApps], application, path=["response"])
+        assert_matches_type(SyncSinglePage[Application], application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1524,7 +1524,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(SyncSinglePage[ZeroTrustApps], application, path=["response"])
+        assert_matches_type(SyncSinglePage[Application], application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1537,7 +1537,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(SyncSinglePage[ZeroTrustApps], application, path=["response"])
+            assert_matches_type(SyncSinglePage[Application], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1631,7 +1631,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1641,7 +1641,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1655,7 +1655,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1669,7 +1669,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1770,7 +1770,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1818,7 +1818,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1833,7 +1833,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1848,7 +1848,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1878,7 +1878,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1920,7 +1920,7 @@ class TestAsyncApplications:
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1933,7 +1933,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1946,7 +1946,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1974,7 +1974,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2022,7 +2022,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2037,7 +2037,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2052,7 +2052,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2084,7 +2084,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2132,7 +2132,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2147,7 +2147,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2162,7 +2162,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2193,7 +2193,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2210,7 +2210,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2224,7 +2224,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2238,7 +2238,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2267,7 +2267,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2284,7 +2284,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2298,7 +2298,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2312,7 +2312,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2341,7 +2341,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2358,7 +2358,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2372,7 +2372,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2386,7 +2386,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2414,7 +2414,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2429,7 +2429,7 @@ class TestAsyncApplications:
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2442,7 +2442,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2455,7 +2455,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2484,7 +2484,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2533,7 +2533,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2549,7 +2549,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2565,7 +2565,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2598,7 +2598,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2641,7 +2641,7 @@ class TestAsyncApplications:
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2655,7 +2655,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2669,7 +2669,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2700,7 +2700,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2749,7 +2749,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2765,7 +2765,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2781,7 +2781,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2816,7 +2816,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2865,7 +2865,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2881,7 +2881,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2897,7 +2897,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2931,7 +2931,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2949,7 +2949,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2964,7 +2964,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2979,7 +2979,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3011,7 +3011,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3029,7 +3029,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3044,7 +3044,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3059,7 +3059,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3091,7 +3091,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3109,7 +3109,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3124,7 +3124,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3139,7 +3139,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3170,7 +3170,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3186,7 +3186,7 @@ class TestAsyncApplications:
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3200,7 +3200,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3214,7 +3214,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3242,7 +3242,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AsyncSinglePage[ZeroTrustApps], application, path=["response"])
+        assert_matches_type(AsyncSinglePage[Application], application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3251,7 +3251,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(AsyncSinglePage[ZeroTrustApps], application, path=["response"])
+        assert_matches_type(AsyncSinglePage[Application], application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3264,7 +3264,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(AsyncSinglePage[ZeroTrustApps], application, path=["response"])
+        assert_matches_type(AsyncSinglePage[Application], application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3277,7 +3277,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(AsyncSinglePage[ZeroTrustApps], application, path=["response"])
+            assert_matches_type(AsyncSinglePage[Application], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3371,7 +3371,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3381,7 +3381,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3395,7 +3395,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(ZeroTrustApps, application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3409,7 +3409,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(ZeroTrustApps, application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

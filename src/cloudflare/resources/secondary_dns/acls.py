@@ -25,13 +25,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.secondary_dns import (
-    SecondaryDNSACL,
-    ACLDeleteResponse,
-    acl_create_params,
-    acl_delete_params,
-    acl_update_params,
-)
+from ...types.secondary_dns import ACL, ACLDeleteResponse, acl_create_params, acl_delete_params, acl_update_params
 
 __all__ = ["ACLs", "AsyncACLs"]
 
@@ -56,7 +50,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSACL:
+    ) -> ACL:
         """
         Create ACL.
 
@@ -81,7 +75,7 @@ class ACLs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
     def update(
@@ -97,7 +91,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSACL:
+    ) -> ACL:
         """
         Modify ACL.
 
@@ -138,7 +132,7 @@ class ACLs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
     def list(
@@ -151,7 +145,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[SecondaryDNSACL]:
+    ) -> SyncSinglePage[ACL]:
         """
         List ACLs.
 
@@ -168,11 +162,11 @@ class ACLs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/secondary_dns/acls",
-            page=SyncSinglePage[SecondaryDNSACL],
+            page=SyncSinglePage[ACL],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SecondaryDNSACL,
+            model=ACL,
         )
 
     def delete(
@@ -228,7 +222,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSACL:
+    ) -> ACL:
         """
         Get ACL.
 
@@ -254,7 +248,7 @@ class ACLs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
 
@@ -278,7 +272,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSACL:
+    ) -> ACL:
         """
         Create ACL.
 
@@ -303,7 +297,7 @@ class AsyncACLs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
     async def update(
@@ -319,7 +313,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSACL:
+    ) -> ACL:
         """
         Modify ACL.
 
@@ -360,7 +354,7 @@ class AsyncACLs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
     def list(
@@ -373,7 +367,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[SecondaryDNSACL, AsyncSinglePage[SecondaryDNSACL]]:
+    ) -> AsyncPaginator[ACL, AsyncSinglePage[ACL]]:
         """
         List ACLs.
 
@@ -390,11 +384,11 @@ class AsyncACLs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/secondary_dns/acls",
-            page=AsyncSinglePage[SecondaryDNSACL],
+            page=AsyncSinglePage[ACL],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SecondaryDNSACL,
+            model=ACL,
         )
 
     async def delete(
@@ -450,7 +444,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecondaryDNSACL:
+    ) -> ACL:
         """
         Get ACL.
 
@@ -476,7 +470,7 @@ class AsyncACLs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecondaryDNSACL], ResultWrapper[SecondaryDNSACL]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
 

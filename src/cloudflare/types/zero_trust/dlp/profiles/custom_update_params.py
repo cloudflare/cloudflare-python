@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from .pattern_param import PatternParam
+from ..context_awareness_param import ContextAwarenessParam
 
 __all__ = [
     "CustomUpdateParams",
-    "ContextAwareness",
-    "ContextAwarenessSkip",
     "Entry",
-    "EntryPattern",
     "SharedEntry",
     "SharedEntryDLPSharedEntryUpdatePredefined",
     "SharedEntryDLPSharedEntryUpdateIntegration",
@@ -24,7 +24,7 @@ class CustomUpdateParams(TypedDict, total=False):
     allowed_match_count: float
     """Related DLP policies will trigger when the match count exceeds the number set."""
 
-    context_awareness: ContextAwareness
+    context_awareness: ContextAwarenessParam
     """
     Scan the context of predefined entries to only return matches surrounded by
     keywords.
@@ -54,34 +54,6 @@ class CustomUpdateParams(TypedDict, total=False):
     """
 
 
-class ContextAwarenessSkip(TypedDict, total=False):
-    files: Required[bool]
-    """If the content type is a file, skip context analysis and return all matches."""
-
-
-class ContextAwareness(TypedDict, total=False):
-    enabled: Required[bool]
-    """
-    If true, scan the context of predefined entries to only return matches
-    surrounded by keywords.
-    """
-
-    skip: Required[ContextAwarenessSkip]
-    """Content types to exclude from context analysis and return all matches."""
-
-
-class EntryPattern(TypedDict, total=False):
-    regex: Required[str]
-    """The regex pattern."""
-
-    validation: Literal["luhn"]
-    """Validation algorithm for the pattern.
-
-    This algorithm will get run on potential matches, and if it returns false, the
-    entry will not be matched.
-    """
-
-
 class Entry(TypedDict, total=False):
     enabled: bool
     """Whether the entry is enabled or not."""
@@ -89,7 +61,7 @@ class Entry(TypedDict, total=False):
     name: str
     """The name of the entry."""
 
-    pattern: EntryPattern
+    pattern: PatternParam
     """A pattern that matches an entry"""
 
     profile_id: object

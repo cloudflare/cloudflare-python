@@ -1,18 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
+from typing import List
 
-from ....._models import BaseModel
+from .lists_item import ListsItem
 
-__all__ = ["ItemListResponse", "ItemListResponseItem"]
+__all__ = ["ItemListResponse"]
 
-
-class ItemListResponseItem(BaseModel):
-    created_at: Optional[datetime] = None
-
-    value: Optional[str] = None
-    """The value of the item in a list."""
-
-
-ItemListResponse = List[ItemListResponseItem]
+ItemListResponse = List[ListsItem]

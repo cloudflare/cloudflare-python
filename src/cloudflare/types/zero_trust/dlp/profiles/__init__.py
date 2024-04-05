@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from .dlp_custom_profile import DLPCustomProfile as DLPCustomProfile
+from .pattern import Pattern as Pattern
+from .pattern_param import PatternParam as PatternParam
+from .custom_profile import CustomProfile as CustomProfile
+from .predefined_profile import PredefinedProfile as PredefinedProfile
 from .custom_create_params import CustomCreateParams as CustomCreateParams
 from .custom_delete_params import CustomDeleteParams as CustomDeleteParams
 from .custom_update_params import CustomUpdateParams as CustomUpdateParams
 from .custom_create_response import CustomCreateResponse as CustomCreateResponse
-from .dlp_predefined_profile import DLPPredefinedProfile as DLPPredefinedProfile
 from .predefined_update_params import PredefinedUpdateParams as PredefinedUpdateParams

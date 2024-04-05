@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 from cloudflare.types.zero_trust.dlp.profiles import (
-    DLPCustomProfile,
+    CustomProfile,
     CustomCreateResponse,
 )
 
@@ -74,7 +74,7 @@ class TestCustom:
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DLPCustomProfile, custom, path=["response"])
+        assert_matches_type(CustomProfile, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -121,7 +121,7 @@ class TestCustom:
             ocr_enabled=True,
             shared_entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
         )
-        assert_matches_type(DLPCustomProfile, custom, path=["response"])
+        assert_matches_type(CustomProfile, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +134,7 @@ class TestCustom:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = response.parse()
-        assert_matches_type(DLPCustomProfile, custom, path=["response"])
+        assert_matches_type(CustomProfile, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -147,7 +147,7 @@ class TestCustom:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = response.parse()
-            assert_matches_type(DLPCustomProfile, custom, path=["response"])
+            assert_matches_type(CustomProfile, custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -230,7 +230,7 @@ class TestCustom:
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DLPCustomProfile, custom, path=["response"])
+        assert_matches_type(CustomProfile, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -243,7 +243,7 @@ class TestCustom:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = response.parse()
-        assert_matches_type(DLPCustomProfile, custom, path=["response"])
+        assert_matches_type(CustomProfile, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -256,7 +256,7 @@ class TestCustom:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = response.parse()
-            assert_matches_type(DLPCustomProfile, custom, path=["response"])
+            assert_matches_type(CustomProfile, custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -332,7 +332,7 @@ class TestAsyncCustom:
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DLPCustomProfile, custom, path=["response"])
+        assert_matches_type(CustomProfile, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -379,7 +379,7 @@ class TestAsyncCustom:
             ocr_enabled=True,
             shared_entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
         )
-        assert_matches_type(DLPCustomProfile, custom, path=["response"])
+        assert_matches_type(CustomProfile, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -392,7 +392,7 @@ class TestAsyncCustom:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = await response.parse()
-        assert_matches_type(DLPCustomProfile, custom, path=["response"])
+        assert_matches_type(CustomProfile, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -405,7 +405,7 @@ class TestAsyncCustom:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = await response.parse()
-            assert_matches_type(DLPCustomProfile, custom, path=["response"])
+            assert_matches_type(CustomProfile, custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -488,7 +488,7 @@ class TestAsyncCustom:
             "384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DLPCustomProfile, custom, path=["response"])
+        assert_matches_type(CustomProfile, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -501,7 +501,7 @@ class TestAsyncCustom:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = await response.parse()
-        assert_matches_type(DLPCustomProfile, custom, path=["response"])
+        assert_matches_type(CustomProfile, custom, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -514,7 +514,7 @@ class TestAsyncCustom:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = await response.parse()
-            assert_matches_type(DLPCustomProfile, custom, path=["response"])
+            assert_matches_type(CustomProfile, custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
