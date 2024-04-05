@@ -145,10 +145,6 @@ class Rulesets(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id and not zone_id:
             raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
@@ -258,10 +254,6 @@ class Rulesets(SyncAPIResource):
         """
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id and not zone_id:
             raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
@@ -324,10 +316,6 @@ class Rulesets(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id and not zone_id:
             raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
@@ -381,10 +369,6 @@ class Rulesets(SyncAPIResource):
         """
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id and not zone_id:
             raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
@@ -438,10 +422,6 @@ class Rulesets(SyncAPIResource):
         """
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id and not zone_id:
             raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
@@ -554,10 +534,6 @@ class AsyncRulesets(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id and not zone_id:
             raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
@@ -667,10 +643,6 @@ class AsyncRulesets(AsyncAPIResource):
         """
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id and not zone_id:
             raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
@@ -733,10 +705,6 @@ class AsyncRulesets(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id and not zone_id:
             raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
@@ -790,10 +758,6 @@ class AsyncRulesets(AsyncAPIResource):
         """
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id and not zone_id:
             raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
@@ -847,10 +811,6 @@ class AsyncRulesets(AsyncAPIResource):
         """
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not account_id and not zone_id:
             raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
