@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
 
-__all__ = ["RouteUpdateParams", "Scope"]
+from .scope_param import ScopeParam
+
+__all__ = ["RouteUpdateParams"]
 
 
 class RouteUpdateParams(TypedDict, total=False):
@@ -24,16 +25,8 @@ class RouteUpdateParams(TypedDict, total=False):
     description: str
     """An optional human provided description of the static route."""
 
-    scope: Scope
+    scope: ScopeParam
     """Used only for ECMP routes."""
 
     weight: int
     """Optional weight of the ECMP scope - if provided."""
-
-
-class Scope(TypedDict, total=False):
-    colo_names: List[str]
-    """List of colo names for the ECMP scope."""
-
-    colo_regions: List[str]
-    """List of colo regions for the ECMP scope."""

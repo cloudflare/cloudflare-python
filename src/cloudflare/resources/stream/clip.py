@@ -23,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import StreamClipping, clip_create_params
+from ...types.stream import StreamClipping, AllowedOriginsItem, clip_create_params
 
 __all__ = ["Clip", "AsyncClip"]
 
@@ -44,7 +44,7 @@ class Clip(SyncAPIResource):
         clipped_from_video_uid: str,
         end_time_seconds: int,
         start_time_seconds: int,
-        allowed_origins: List[str] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         max_duration_seconds: int | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -141,7 +141,7 @@ class AsyncClip(AsyncAPIResource):
         clipped_from_video_uid: str,
         end_time_seconds: int,
         start_time_seconds: int,
-        allowed_origins: List[str] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         max_duration_seconds: int | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,

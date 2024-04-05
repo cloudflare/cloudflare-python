@@ -4,19 +4,9 @@ from typing import Union
 from typing_extensions import Literal
 
 from ...._models import BaseModel
+from ...kv_namespace_binding import KVNamespaceBinding
 
-__all__ = ["WorkersBinding", "WorkersKVNamespaceBinding", "WorkersWasmModuleBinding"]
-
-
-class WorkersKVNamespaceBinding(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    namespace_id: str
-    """Namespace identifier tag."""
-
-    type: Literal["kv_namespace"]
-    """The class of resource that the binding provides."""
+__all__ = ["WorkersBinding", "WorkersWasmModuleBinding"]
 
 
 class WorkersWasmModuleBinding(BaseModel):
@@ -27,4 +17,4 @@ class WorkersWasmModuleBinding(BaseModel):
     """The class of resource that the binding provides."""
 
 
-WorkersBinding = Union[WorkersKVNamespaceBinding, WorkersWasmModuleBinding]
+WorkersBinding = Union[KVNamespaceBinding, WorkersWasmModuleBinding]

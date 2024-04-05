@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
+from .tunnel_param import TunnelParam
 from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
 
-__all__ = ["KeylessCertificateCreateParams", "Tunnel"]
+__all__ = ["KeylessCertificateCreateParams"]
 
 
 class KeylessCertificateCreateParams(TypedDict, total=False):
@@ -36,13 +37,5 @@ class KeylessCertificateCreateParams(TypedDict, total=False):
     name: str
     """The keyless SSL name."""
 
-    tunnel: Tunnel
+    tunnel: TunnelParam
     """Configuration for using Keyless SSL through a Cloudflare Tunnel"""
-
-
-class Tunnel(TypedDict, total=False):
-    private_ip: Required[str]
-    """Private IP of the Key Server Host"""
-
-    vnet_id: Required[str]
-    """Cloudflare Tunnel Virtual Network ID"""

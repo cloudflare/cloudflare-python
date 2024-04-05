@@ -30,7 +30,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from .....types.pages import PagesDeployments
+from .....types.pages import Deployment
 from .history.history import History, AsyncHistory
 from ....._base_client import (
     AsyncPaginator,
@@ -72,7 +72,7 @@ class Deployments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagesDeployments:
+    ) -> Deployment:
         """Start a new deployment from production.
 
         The repository and account must have
@@ -108,7 +108,7 @@ class Deployments(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagesDeployments], ResultWrapper[PagesDeployments]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     def list(
@@ -123,7 +123,7 @@ class Deployments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PagesDeployments]:
+    ) -> SyncSinglePage[Deployment]:
         """
         Fetch a list of project deployments.
 
@@ -148,7 +148,7 @@ class Deployments(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            page=SyncSinglePage[PagesDeployments],
+            page=SyncSinglePage[Deployment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -156,7 +156,7 @@ class Deployments(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
             ),
-            model=PagesDeployments,
+            model=Deployment,
         )
 
     def delete(
@@ -218,7 +218,7 @@ class Deployments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagesDeployments:
+    ) -> Deployment:
         """
         Fetch information about a deployment.
 
@@ -252,7 +252,7 @@ class Deployments(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagesDeployments], ResultWrapper[PagesDeployments]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     def retry(
@@ -268,7 +268,7 @@ class Deployments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagesDeployments:
+    ) -> Deployment:
         """
         Retry a previous deployment.
 
@@ -303,7 +303,7 @@ class Deployments(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagesDeployments], ResultWrapper[PagesDeployments]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     def rollback(
@@ -319,7 +319,7 @@ class Deployments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagesDeployments:
+    ) -> Deployment:
         """Rollback the production deployment to a previous deployment.
 
         You can only
@@ -356,7 +356,7 @@ class Deployments(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagesDeployments], ResultWrapper[PagesDeployments]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
 
@@ -385,7 +385,7 @@ class AsyncDeployments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagesDeployments:
+    ) -> Deployment:
         """Start a new deployment from production.
 
         The repository and account must have
@@ -421,7 +421,7 @@ class AsyncDeployments(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagesDeployments], ResultWrapper[PagesDeployments]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     def list(
@@ -436,7 +436,7 @@ class AsyncDeployments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PagesDeployments, AsyncSinglePage[PagesDeployments]]:
+    ) -> AsyncPaginator[Deployment, AsyncSinglePage[Deployment]]:
         """
         Fetch a list of project deployments.
 
@@ -461,7 +461,7 @@ class AsyncDeployments(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            page=AsyncSinglePage[PagesDeployments],
+            page=AsyncSinglePage[Deployment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -469,7 +469,7 @@ class AsyncDeployments(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
             ),
-            model=PagesDeployments,
+            model=Deployment,
         )
 
     async def delete(
@@ -531,7 +531,7 @@ class AsyncDeployments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagesDeployments:
+    ) -> Deployment:
         """
         Fetch information about a deployment.
 
@@ -565,7 +565,7 @@ class AsyncDeployments(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagesDeployments], ResultWrapper[PagesDeployments]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     async def retry(
@@ -581,7 +581,7 @@ class AsyncDeployments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagesDeployments:
+    ) -> Deployment:
         """
         Retry a previous deployment.
 
@@ -616,7 +616,7 @@ class AsyncDeployments(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagesDeployments], ResultWrapper[PagesDeployments]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
     async def rollback(
@@ -632,7 +632,7 @@ class AsyncDeployments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagesDeployments:
+    ) -> Deployment:
         """Rollback the production deployment to a previous deployment.
 
         You can only
@@ -669,7 +669,7 @@ class AsyncDeployments(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PagesDeployments], ResultWrapper[PagesDeployments]),
+            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
 

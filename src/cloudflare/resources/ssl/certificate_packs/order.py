@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.ssl.certificate_packs import OrderCreateResponse, order_create_params
+from ....types.ssl.certificate_packs import HostItem, OrderCreateResponse, order_create_params
 
 __all__ = ["Order", "AsyncOrder"]
 
@@ -43,7 +43,7 @@ class Order(SyncAPIResource):
         *,
         zone_id: str,
         certificate_authority: Literal["google", "lets_encrypt"],
-        hosts: List[str],
+        hosts: List[HostItem],
         type: Literal["advanced"],
         validation_method: Literal["txt", "http", "email"],
         validity_days: Literal[14, 30, 90, 365],
@@ -125,7 +125,7 @@ class AsyncOrder(AsyncAPIResource):
         *,
         zone_id: str,
         certificate_authority: Literal["google", "lets_encrypt"],
-        hosts: List[str],
+        hosts: List[HostItem],
         type: Literal["advanced"],
         validation_method: Literal["txt", "http", "email"],
         validity_days: Literal[14, 30, 90, 365],

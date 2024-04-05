@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .rule import Rule as Rule
+from .tunnel import Tunnel as Tunnel
 from .ip_rule import IPRule as IPRule
 from .azure_ad import AzureAd as AzureAd
 from .email_rule import EmailRule as EmailRule
@@ -14,6 +15,7 @@ from .country_rule import CountryRule as CountryRule
 from .include_item import IncludeItem as IncludeItem
 from .ip_list_rule import IPListRule as IPListRule
 from .login_design import LoginDesign as LoginDesign
+from .tunnel_param import TunnelParam as TunnelParam
 from .everyone_rule import EveryoneRule as EveryoneRule
 from .ip_rule_param import IPRuleParam as IPRuleParam
 from .email_list_rule import EmailListRule as EmailListRule
@@ -33,7 +35,6 @@ from .ip_list_rule_param import IPListRuleParam as IPListRuleParam
 from .login_design_param import LoginDesignParam as LoginDesignParam
 from .seat_edit_response import SeatEditResponse as SeatEditResponse
 from .service_token_rule import ServiceTokenRule as ServiceTokenRule
-from .tunnel_argo_tunnel import TunnelArgoTunnel as TunnelArgoTunnel
 from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
 from .tunnel_list_params import TunnelListParams as TunnelListParams
 from .zero_trust_devices import ZeroTrustDevices as ZeroTrustDevices
@@ -46,6 +47,7 @@ from .email_list_rule_param import EmailListRuleParam as EmailListRuleParam
 from .gateway_list_response import GatewayListResponse as GatewayListResponse
 from .okta_group_rule_param import OktaGroupRuleParam as OktaGroupRuleParam
 from .saml_group_rule_param import SamlGroupRuleParam as SamlGroupRuleParam
+from .warp_connector_tunnel import WARPConnectorTunnel as WARPConnectorTunnel
 from .azure_group_rule_param import AzureGroupRuleParam as AzureGroupRuleParam
 from .certificate_rule_param import CertificateRuleParam as CertificateRuleParam
 from .gateway_create_response import GatewayCreateResponse as GatewayCreateResponse

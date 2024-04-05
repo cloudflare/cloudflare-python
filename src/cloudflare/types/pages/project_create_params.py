@@ -6,7 +6,7 @@ from typing import Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .pages_deployments_param import PagesDeploymentsParam
+from .deployment_param import DeploymentParam
 
 __all__ = [
     "ProjectCreateParams",
@@ -76,12 +76,12 @@ class ProjectCreateParams(TypedDict, total=False):
     build_config: BuildConfig
     """Configs for the project build process."""
 
-    canonical_deployment: PagesDeploymentsParam
+    canonical_deployment: DeploymentParam
 
     deployment_configs: DeploymentConfigs
     """Configs for deployments in a project."""
 
-    latest_deployment: PagesDeploymentsParam
+    latest_deployment: DeploymentParam
 
     name: str
     """Name of the project."""

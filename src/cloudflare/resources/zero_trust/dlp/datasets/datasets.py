@@ -33,7 +33,7 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.dlp import DLPDataset, DLPDatasetCreation, dataset_create_params, dataset_update_params
+from .....types.zero_trust.dlp import Dataset, DatasetCreation, dataset_create_params, dataset_update_params
 
 __all__ = ["Datasets", "AsyncDatasets"]
 
@@ -64,7 +64,7 @@ class Datasets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDatasetCreation]:
+    ) -> Optional[DatasetCreation]:
         """
         Create a new dataset.
 
@@ -101,7 +101,7 @@ class Datasets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDatasetCreation]], ResultWrapper[DLPDatasetCreation]),
+            cast_to=cast(Type[Optional[DatasetCreation]], ResultWrapper[DatasetCreation]),
         )
 
     def update(
@@ -117,7 +117,7 @@ class Datasets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDataset]:
+    ) -> Optional[Dataset]:
         """
         Update details about a dataset.
 
@@ -150,7 +150,7 @@ class Datasets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
     def list(
@@ -163,7 +163,7 @@ class Datasets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DLPDataset]:
+    ) -> SyncSinglePage[Dataset]:
         """
         Fetch all datasets with information about available versions.
 
@@ -180,11 +180,11 @@ class Datasets(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dlp/datasets",
-            page=SyncSinglePage[DLPDataset],
+            page=SyncSinglePage[Dataset],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DLPDataset,
+            model=Dataset,
         )
 
     def delete(
@@ -237,7 +237,7 @@ class Datasets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDataset]:
+    ) -> Optional[Dataset]:
         """
         Fetch a specific dataset with information about available versions.
 
@@ -263,7 +263,7 @@ class Datasets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
 
@@ -293,7 +293,7 @@ class AsyncDatasets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDatasetCreation]:
+    ) -> Optional[DatasetCreation]:
         """
         Create a new dataset.
 
@@ -330,7 +330,7 @@ class AsyncDatasets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDatasetCreation]], ResultWrapper[DLPDatasetCreation]),
+            cast_to=cast(Type[Optional[DatasetCreation]], ResultWrapper[DatasetCreation]),
         )
 
     async def update(
@@ -346,7 +346,7 @@ class AsyncDatasets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDataset]:
+    ) -> Optional[Dataset]:
         """
         Update details about a dataset.
 
@@ -379,7 +379,7 @@ class AsyncDatasets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
     def list(
@@ -392,7 +392,7 @@ class AsyncDatasets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DLPDataset, AsyncSinglePage[DLPDataset]]:
+    ) -> AsyncPaginator[Dataset, AsyncSinglePage[Dataset]]:
         """
         Fetch all datasets with information about available versions.
 
@@ -409,11 +409,11 @@ class AsyncDatasets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dlp/datasets",
-            page=AsyncSinglePage[DLPDataset],
+            page=AsyncSinglePage[Dataset],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DLPDataset,
+            model=Dataset,
         )
 
     async def delete(
@@ -466,7 +466,7 @@ class AsyncDatasets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DLPDataset]:
+    ) -> Optional[Dataset]:
         """
         Fetch a specific dataset with information about available versions.
 
@@ -492,7 +492,7 @@ class AsyncDatasets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DLPDataset]], ResultWrapper[DLPDataset]),
+            cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
 
 

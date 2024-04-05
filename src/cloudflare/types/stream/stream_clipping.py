@@ -7,6 +7,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from .allowed_origins_item import AllowedOriginsItem
 
 __all__ = ["StreamClipping", "Playback", "Watermark"]
 
@@ -25,7 +26,7 @@ class Watermark(BaseModel):
 
 
 class StreamClipping(BaseModel):
-    allowed_origins: Optional[List[str]] = FieldInfo(alias="allowedOrigins", default=None)
+    allowed_origins: Optional[List[AllowedOriginsItem]] = FieldInfo(alias="allowedOrigins", default=None)
     """Lists the origins allowed to display the video.
 
     Enter allowed origin domains in an array and use `*` for wildcard subdomains.

@@ -3,17 +3,10 @@
 from typing import List, Optional
 from datetime import datetime
 
+from .scope import Scope
 from ..._models import BaseModel
 
-__all__ = ["RouteListResponse", "Route", "RouteScope"]
-
-
-class RouteScope(BaseModel):
-    colo_names: Optional[List[str]] = None
-    """List of colo names for the ECMP scope."""
-
-    colo_regions: Optional[List[str]] = None
-    """List of colo regions for the ECMP scope."""
+__all__ = ["RouteListResponse", "Route"]
 
 
 class Route(BaseModel):
@@ -38,7 +31,7 @@ class Route(BaseModel):
     modified_on: Optional[datetime] = None
     """When the route was last modified."""
 
-    scope: Optional[RouteScope] = None
+    scope: Optional[Scope] = None
     """Used only for ECMP routes."""
 
     weight: Optional[int] = None

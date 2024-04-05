@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["KeylessCertificateEditParams", "Tunnel"]
+from .tunnel_param import TunnelParam
+
+__all__ = ["KeylessCertificateEditParams"]
 
 
 class KeylessCertificateEditParams(TypedDict, total=False):
@@ -26,13 +28,5 @@ class KeylessCertificateEditParams(TypedDict, total=False):
     Keyless SSL server.
     """
 
-    tunnel: Tunnel
+    tunnel: TunnelParam
     """Configuration for using Keyless SSL through a Cloudflare Tunnel"""
-
-
-class Tunnel(TypedDict, total=False):
-    private_ip: Required[str]
-    """Private IP of the Key Server Host"""
-
-    vnet_id: Required[str]
-    """Cloudflare Tunnel Virtual Network ID"""

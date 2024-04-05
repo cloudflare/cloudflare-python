@@ -3,7 +3,7 @@
 from typing import Optional
 from datetime import datetime
 
-from ....workers import WorkersScript
+from ....workers import Script
 from ....._models import BaseModel
 
 __all__ = ["WorkersForPlatformsNamespaceScript"]
@@ -19,4 +19,4 @@ class WorkersForPlatformsNamespaceScript(BaseModel):
     modified_on: Optional[datetime] = None
     """When the script was last modified."""
 
-    script: Optional[WorkersScript] = None
+    script: Optional[Script] = None
