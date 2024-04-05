@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Optional, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -30,6 +30,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.dns import (
     DNSFirewall,
+    FirewallIPsItemParam,
+    AttackMitigationParam,
+    UpstreamIPsItemsParam,
     FirewallDeleteResponse,
     firewall_edit_params,
     firewall_list_params,
@@ -64,8 +67,8 @@ class Firewall(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        upstream_ips: List[Union[str, str]],
-        attack_mitigation: Optional[firewall_create_params.AttackMitigation] | NotGiven = NOT_GIVEN,
+        upstream_ips: List[UpstreamIPsItemsParam],
+        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
         ecs_fallback: bool | NotGiven = NOT_GIVEN,
         maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
@@ -247,13 +250,13 @@ class Firewall(SyncAPIResource):
         *,
         account_id: str,
         deprecate_any_requests: bool,
-        dns_firewall_ips: List[Union[str, str]],
+        dns_firewall_ips: List[FirewallIPsItemParam],
         ecs_fallback: bool,
         maximum_cache_ttl: float,
         minimum_cache_ttl: float,
         name: str,
-        upstream_ips: List[Union[str, str]],
-        attack_mitigation: Optional[firewall_edit_params.AttackMitigation] | NotGiven = NOT_GIVEN,
+        upstream_ips: List[UpstreamIPsItemsParam],
+        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
         retries: float | NotGiven = NOT_GIVEN,
@@ -395,8 +398,8 @@ class AsyncFirewall(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        upstream_ips: List[Union[str, str]],
-        attack_mitigation: Optional[firewall_create_params.AttackMitigation] | NotGiven = NOT_GIVEN,
+        upstream_ips: List[UpstreamIPsItemsParam],
+        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
         ecs_fallback: bool | NotGiven = NOT_GIVEN,
         maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
@@ -578,13 +581,13 @@ class AsyncFirewall(AsyncAPIResource):
         *,
         account_id: str,
         deprecate_any_requests: bool,
-        dns_firewall_ips: List[Union[str, str]],
+        dns_firewall_ips: List[FirewallIPsItemParam],
         ecs_fallback: bool,
         maximum_cache_ttl: float,
         minimum_cache_ttl: float,
         name: str,
-        upstream_ips: List[Union[str, str]],
-        attack_mitigation: Optional[firewall_edit_params.AttackMitigation] | NotGiven = NOT_GIVEN,
+        upstream_ips: List[UpstreamIPsItemsParam],
+        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
         retries: float | NotGiven = NOT_GIVEN,

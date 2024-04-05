@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["FirewallCreateParams", "AttackMitigation"]
+from .attack_mitigation_param import AttackMitigationParam
+from .upstream_ips_items_param import UpstreamIPsItemsParam
+
+__all__ = ["FirewallCreateParams"]
 
 
 class FirewallCreateParams(TypedDict, total=False):
@@ -15,9 +18,9 @@ class FirewallCreateParams(TypedDict, total=False):
     name: Required[str]
     """DNS Firewall Cluster Name."""
 
-    upstream_ips: Required[List[Union[str, str]]]
+    upstream_ips: Required[List[UpstreamIPsItemsParam]]
 
-    attack_mitigation: Optional[AttackMitigation]
+    attack_mitigation: Optional[AttackMitigationParam]
     """Attack mitigation settings."""
 
     deprecate_any_requests: bool
@@ -46,14 +49,3 @@ class FirewallCreateParams(TypedDict, total=False):
     Number of retries for fetching DNS responses from upstream nameservers (not
     counting the initial attempt).
     """
-
-
-class AttackMitigation(TypedDict, total=False):
-    enabled: bool
-    """
-    When enabled, random-prefix attacks are automatically mitigated and the upstream
-    DNS servers protected.
-    """
-
-    only_when_upstream_unhealthy: bool
-    """Only mitigate attacks when upstream servers seem unhealthy."""

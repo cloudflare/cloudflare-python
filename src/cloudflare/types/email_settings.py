@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["EmailRoutingEnableResponse"]
+__all__ = ["EmailSettings"]
 
 
-class EmailRoutingEnableResponse(BaseModel):
+class EmailSettings(BaseModel):
     id: Optional[str] = None
     """Email Routing settings identifier."""
 

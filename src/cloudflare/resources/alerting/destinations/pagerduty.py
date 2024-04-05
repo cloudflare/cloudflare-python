@@ -22,17 +22,17 @@ from ...._base_client import (
 from ....types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
 from ....types.alerting.destinations import PagerdutyGetResponse, PagerdutyLinkResponse, PagerdutyCreateResponse
 
-__all__ = ["Pagerduty", "AsyncPagerduty"]
+__all__ = ["PagerdutyResource", "AsyncPagerdutyResource"]
 
 
-class Pagerduty(SyncAPIResource):
+class PagerdutyResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PagerdutyWithRawResponse:
-        return PagerdutyWithRawResponse(self)
+    def with_raw_response(self) -> PagerdutyResourceWithRawResponse:
+        return PagerdutyResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PagerdutyWithStreamingResponse:
-        return PagerdutyWithStreamingResponse(self)
+    def with_streaming_response(self) -> PagerdutyResourceWithStreamingResponse:
+        return PagerdutyResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -201,14 +201,14 @@ class Pagerduty(SyncAPIResource):
         )
 
 
-class AsyncPagerduty(AsyncAPIResource):
+class AsyncPagerdutyResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPagerdutyWithRawResponse:
-        return AsyncPagerdutyWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPagerdutyResourceWithRawResponse:
+        return AsyncPagerdutyResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPagerdutyWithStreamingResponse:
-        return AsyncPagerdutyWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPagerdutyResourceWithStreamingResponse:
+        return AsyncPagerdutyResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -377,8 +377,8 @@ class AsyncPagerduty(AsyncAPIResource):
         )
 
 
-class PagerdutyWithRawResponse:
-    def __init__(self, pagerduty: Pagerduty) -> None:
+class PagerdutyResourceWithRawResponse:
+    def __init__(self, pagerduty: PagerdutyResource) -> None:
         self._pagerduty = pagerduty
 
         self.create = to_raw_response_wrapper(
@@ -395,8 +395,8 @@ class PagerdutyWithRawResponse:
         )
 
 
-class AsyncPagerdutyWithRawResponse:
-    def __init__(self, pagerduty: AsyncPagerduty) -> None:
+class AsyncPagerdutyResourceWithRawResponse:
+    def __init__(self, pagerduty: AsyncPagerdutyResource) -> None:
         self._pagerduty = pagerduty
 
         self.create = async_to_raw_response_wrapper(
@@ -413,8 +413,8 @@ class AsyncPagerdutyWithRawResponse:
         )
 
 
-class PagerdutyWithStreamingResponse:
-    def __init__(self, pagerduty: Pagerduty) -> None:
+class PagerdutyResourceWithStreamingResponse:
+    def __init__(self, pagerduty: PagerdutyResource) -> None:
         self._pagerduty = pagerduty
 
         self.create = to_streamed_response_wrapper(
@@ -431,8 +431,8 @@ class PagerdutyWithStreamingResponse:
         )
 
 
-class AsyncPagerdutyWithStreamingResponse:
-    def __init__(self, pagerduty: AsyncPagerduty) -> None:
+class AsyncPagerdutyResourceWithStreamingResponse:
+    def __init__(self, pagerduty: AsyncPagerdutyResource) -> None:
         self._pagerduty = pagerduty
 
         self.create = async_to_streamed_response_wrapper(

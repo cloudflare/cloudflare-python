@@ -5,22 +5,9 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..accounts import Role
 
-__all__ = ["InviteListResponse", "Role"]
-
-
-class Role(BaseModel):
-    id: str
-    """Role identifier tag."""
-
-    description: str
-    """Description of role's permissions."""
-
-    name: str
-    """Role Name."""
-
-    permissions: List[str]
-    """Access permissions for this User."""
+__all__ = ["InviteListResponse"]
 
 
 class InviteListResponse(BaseModel):

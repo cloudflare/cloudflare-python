@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
+from .geo_restrictions_param import GeoRestrictionsParam
 from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
 
-__all__ = ["CustomCertificateCreateParams", "GeoRestrictions"]
+__all__ = ["CustomCertificateCreateParams"]
 
 
 class CustomCertificateCreateParams(TypedDict, total=False):
@@ -27,7 +28,7 @@ class CustomCertificateCreateParams(TypedDict, total=False):
     chain, but does not otherwise modify it.
     """
 
-    geo_restrictions: GeoRestrictions
+    geo_restrictions: GeoRestrictionsParam
     """
     Specify the region where your private key can be held locally for optimal TLS
     performance. HTTPS connections to any excluded data center will still be fully
@@ -56,7 +57,3 @@ class CustomCertificateCreateParams(TypedDict, total=False):
     The type 'legacy_custom' enables support for legacy clients which do not include
     SNI in the TLS handshake.
     """
-
-
-class GeoRestrictions(TypedDict, total=False):
-    label: Literal["us", "eu", "highest_security"]

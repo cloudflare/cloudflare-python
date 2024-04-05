@@ -10,13 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.email_routing import (
-    RuleGetResponse,
-    RuleListResponse,
-    RuleCreateResponse,
-    RuleDeleteResponse,
-    RuleUpdateResponse,
-)
+from cloudflare.types.email_routing import Properties
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -73,7 +67,7 @@ class TestRules:
                 },
             ],
         )
-        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -127,7 +121,7 @@ class TestRules:
             name="Send to user@example.net rule.",
             priority=0,
         )
-        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -182,7 +176,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -237,7 +231,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(RuleCreateResponse, rule, path=["response"])
+            assert_matches_type(Properties, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -342,7 +336,7 @@ class TestRules:
                 },
             ],
         )
-        assert_matches_type(RuleUpdateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -397,7 +391,7 @@ class TestRules:
             name="Send to user@example.net rule.",
             priority=0,
         )
-        assert_matches_type(RuleUpdateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -453,7 +447,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(RuleUpdateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -509,7 +503,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(RuleUpdateResponse, rule, path=["response"])
+            assert_matches_type(Properties, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -620,7 +614,7 @@ class TestRules:
         rule = client.email_routing.rules.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Properties], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -631,7 +625,7 @@ class TestRules:
             page=1,
             per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Properties], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -643,7 +637,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Properties], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -655,7 +649,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Properties], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -674,7 +668,7 @@ class TestRules:
             "a7e6fb77503c41d8a7f3113c6918f10c",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -687,7 +681,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -700,7 +694,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+            assert_matches_type(Properties, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -726,7 +720,7 @@ class TestRules:
             "a7e6fb77503c41d8a7f3113c6918f10c",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(RuleGetResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -739,7 +733,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(RuleGetResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -752,7 +746,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(RuleGetResponse, rule, path=["response"])
+            assert_matches_type(Properties, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -824,7 +818,7 @@ class TestAsyncRules:
                 },
             ],
         )
-        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -878,7 +872,7 @@ class TestAsyncRules:
             name="Send to user@example.net rule.",
             priority=0,
         )
-        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -933,7 +927,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(RuleCreateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -988,7 +982,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(RuleCreateResponse, rule, path=["response"])
+            assert_matches_type(Properties, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1093,7 +1087,7 @@ class TestAsyncRules:
                 },
             ],
         )
-        assert_matches_type(RuleUpdateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1148,7 +1142,7 @@ class TestAsyncRules:
             name="Send to user@example.net rule.",
             priority=0,
         )
-        assert_matches_type(RuleUpdateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1204,7 +1198,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(RuleUpdateResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1260,7 +1254,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(RuleUpdateResponse, rule, path=["response"])
+            assert_matches_type(Properties, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1371,7 +1365,7 @@ class TestAsyncRules:
         rule = await async_client.email_routing.rules.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Properties], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1382,7 +1376,7 @@ class TestAsyncRules:
             page=1,
             per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Properties], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1394,7 +1388,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Properties], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1406,7 +1400,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[RuleListResponse], rule, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Properties], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1425,7 +1419,7 @@ class TestAsyncRules:
             "a7e6fb77503c41d8a7f3113c6918f10c",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1438,7 +1432,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1451,7 +1445,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+            assert_matches_type(Properties, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1477,7 +1471,7 @@ class TestAsyncRules:
             "a7e6fb77503c41d8a7f3113c6918f10c",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(RuleGetResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1490,7 +1484,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(RuleGetResponse, rule, path=["response"])
+        assert_matches_type(Properties, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1503,7 +1497,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(RuleGetResponse, rule, path=["response"])
+            assert_matches_type(Properties, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
