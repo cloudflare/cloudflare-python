@@ -9,6 +9,7 @@ import httpx
 
 from ...types import (
     CustomCertificate,
+    GeoRestrictionsParam,
     UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1,
     custom_certificate_edit_params,
     custom_certificate_list_params,
@@ -70,7 +71,7 @@ class CustomCertificates(SyncAPIResource):
         certificate: str,
         private_key: str,
         bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
-        geo_restrictions: custom_certificate_create_params.GeoRestrictions | NotGiven = NOT_GIVEN,
+        geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
         type: Literal["legacy_custom", "sni_custom"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -275,7 +276,7 @@ class CustomCertificates(SyncAPIResource):
         zone_id: str,
         bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
-        geo_restrictions: custom_certificate_edit_params.GeoRestrictions | NotGiven = NOT_GIVEN,
+        geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
         private_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -436,7 +437,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         certificate: str,
         private_key: str,
         bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
-        geo_restrictions: custom_certificate_create_params.GeoRestrictions | NotGiven = NOT_GIVEN,
+        geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
         type: Literal["legacy_custom", "sni_custom"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -641,7 +642,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         zone_id: str,
         bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
-        geo_restrictions: custom_certificate_edit_params.GeoRestrictions | NotGiven = NOT_GIVEN,
+        geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
         private_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["AddressCreateResponse"]
+__all__ = ["DestinationAddress"]
 
 
-class AddressCreateResponse(BaseModel):
+class DestinationAddress(BaseModel):
     id: Optional[str] = None
     """Destination address identifier."""
 

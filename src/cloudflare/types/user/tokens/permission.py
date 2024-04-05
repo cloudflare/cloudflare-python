@@ -2,13 +2,13 @@
 
 from typing import Optional
 
-from ..._models import BaseModel
-from .permission_grant import PermissionGrant
+from ...._models import BaseModel
+from ...accounts import PermissionGrant
 
-__all__ = ["MemberPermission"]
+__all__ = ["Permission"]
 
 
-class MemberPermission(BaseModel):
+class Permission(BaseModel):
     analytics: Optional[PermissionGrant] = None
 
     billing: Optional[PermissionGrant] = None

@@ -52,7 +52,6 @@ Types:
 ```python
 from cloudflare.types.accounts import (
     Member,
-    MemberPermission,
     MemberWithCode,
     MemberListResponse,
     MemberDeleteResponse,
@@ -72,12 +71,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.accounts import PermissionGrant, Role, RoleListResponse
+from cloudflare.types.accounts import PermissionGrant, Role
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role_list_response.py">SyncSinglePage[RoleListResponse]</a></code>
+- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role.py">SyncSinglePage[Role]</a></code>
 - <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
 
 # OriginCACertificates
@@ -332,7 +331,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.user.tokens import PermissionGroupListResponse
+from cloudflare.types.user.tokens import Permission, PermissionItem, PermissionGroupListResponse
 ```
 
 Methods:
@@ -1111,7 +1110,16 @@ Types:
 
 ```python
 from cloudflare.types import (
+    CheckRegion,
+    FilterOptions,
+    Header,
+    HostItem,
     LoadBalancer,
+    LoadShedding,
+    NotificationFilter,
+    Origin,
+    OriginItem,
+    OriginSteering,
     UnnamedSchemaRef06ba14ec7860c091efc98fd9af30f382,
     LoadBalancerDeleteResponse,
 )
@@ -1489,6 +1497,7 @@ Types:
 
 ```python
 from cloudflare.types.certificate_authorities import (
+    HostnameAssociationItem,
     TLSHostnameAssociation,
     HostnameAssociationUpdateResponse,
     HostnameAssociationGetResponse,
@@ -1521,7 +1530,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import CustomCertificate
+from cloudflare.types import CustomCertificate, GeoRestrictions
 ```
 
 Methods:
@@ -1551,6 +1560,7 @@ Types:
 ```python
 from cloudflare.types import (
     CustomHostname,
+    SSL,
     UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1,
     UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510,
     UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1,
@@ -1694,8 +1704,11 @@ Types:
 
 ```python
 from cloudflare.types.dns import (
+    AttackMitigation,
     DNSFirewall,
+    FirewallIPsItem,
     UnnamedSchemaRef7a0f93d9e1afc3221d2a57b7bab16955,
+    UpstreamIPsItems,
     FirewallDeleteResponse,
 )
 ```
@@ -1741,19 +1754,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import (
-    EmailSettings,
-    EmailRoutingDisableResponse,
-    EmailRoutingEnableResponse,
-    EmailRoutingGetResponse,
-)
+from cloudflare.types import EmailSettings
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_identifier}/email/routing/disable">client.email_routing.<a href="./src/cloudflare/resources/email_routing/email_routing.py">disable</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing_disable_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing_disable_response.py">EmailRoutingDisableResponse</a></code>
-- <code title="post /zones/{zone_identifier}/email/routing/enable">client.email_routing.<a href="./src/cloudflare/resources/email_routing/email_routing.py">enable</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing_enable_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing_enable_response.py">EmailRoutingEnableResponse</a></code>
-- <code title="get /zones/{zone_identifier}/email/routing">client.email_routing.<a href="./src/cloudflare/resources/email_routing/email_routing.py">get</a>(zone_identifier) -> <a href="./src/cloudflare/types/email_routing_get_response.py">EmailRoutingGetResponse</a></code>
+- <code title="post /zones/{zone_identifier}/email/routing/disable">client.email_routing.<a href="./src/cloudflare/resources/email_routing/email_routing.py">disable</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing_disable_params.py">params</a>) -> <a href="./src/cloudflare/types/email_settings.py">EmailSettings</a></code>
+- <code title="post /zones/{zone_identifier}/email/routing/enable">client.email_routing.<a href="./src/cloudflare/resources/email_routing/email_routing.py">enable</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing_enable_params.py">params</a>) -> <a href="./src/cloudflare/types/email_settings.py">EmailSettings</a></code>
+- <code title="get /zones/{zone_identifier}/email/routing">client.email_routing.<a href="./src/cloudflare/resources/email_routing/email_routing.py">get</a>(zone_identifier) -> <a href="./src/cloudflare/types/email_settings.py">EmailSettings</a></code>
 
 ## DNS
 
@@ -1773,29 +1781,29 @@ Types:
 
 ```python
 from cloudflare.types.email_routing import (
-    EmailRules,
-    RuleCreateResponse,
-    RuleUpdateResponse,
-    RuleListResponse,
-    RuleDeleteResponse,
-    RuleGetResponse,
+    Action,
+    ActionItem,
+    EmailRule,
+    Matcher,
+    MatcherItem,
+    Properties,
 )
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_identifier}/email/routing/rules">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">create</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/rule_create_response.py">RuleCreateResponse</a></code>
-- <code title="put /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">update</a>(rule_identifier, \*, zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/rule_update_response.py">RuleUpdateResponse</a></code>
-- <code title="get /zones/{zone_identifier}/email/routing/rules">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/rule_list_response.py">SyncV4PagePaginationArray[RuleListResponse]</a></code>
-- <code title="delete /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">delete</a>(rule_identifier, \*, zone_identifier) -> <a href="./src/cloudflare/types/email_routing/rule_delete_response.py">RuleDeleteResponse</a></code>
-- <code title="get /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">get</a>(rule_identifier, \*, zone_identifier) -> <a href="./src/cloudflare/types/email_routing/rule_get_response.py">RuleGetResponse</a></code>
+- <code title="post /zones/{zone_identifier}/email/routing/rules">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">create</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/properties.py">Properties</a></code>
+- <code title="put /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">update</a>(rule_identifier, \*, zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/properties.py">Properties</a></code>
+- <code title="get /zones/{zone_identifier}/email/routing/rules">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/properties.py">SyncV4PagePaginationArray[Properties]</a></code>
+- <code title="delete /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">delete</a>(rule_identifier, \*, zone_identifier) -> <a href="./src/cloudflare/types/email_routing/properties.py">Properties</a></code>
+- <code title="get /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">get</a>(rule_identifier, \*, zone_identifier) -> <a href="./src/cloudflare/types/email_routing/properties.py">Properties</a></code>
 
 ### CatchAlls
 
 Types:
 
 ```python
-from cloudflare.types.email_routing.rules import EmailCatchAllRule
+from cloudflare.types.email_routing.rules import Action, EmailCatchAllRule, Matcher
 ```
 
 Methods:
@@ -1808,21 +1816,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_routing import (
-    EmailAddresses,
-    AddressCreateResponse,
-    AddressListResponse,
-    AddressDeleteResponse,
-    AddressGetResponse,
-)
+from cloudflare.types.email_routing import DestinationAddress, EmailAddresses
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_identifier}/email/routing/addresses">client.email_routing.addresses.<a href="./src/cloudflare/resources/email_routing/addresses.py">create</a>(account_identifier, \*\*<a href="src/cloudflare/types/email_routing/address_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/address_create_response.py">AddressCreateResponse</a></code>
-- <code title="get /accounts/{account_identifier}/email/routing/addresses">client.email_routing.addresses.<a href="./src/cloudflare/resources/email_routing/addresses.py">list</a>(account_identifier, \*\*<a href="src/cloudflare/types/email_routing/address_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/address_list_response.py">SyncV4PagePaginationArray[AddressListResponse]</a></code>
-- <code title="delete /accounts/{account_identifier}/email/routing/addresses/{destination_address_identifier}">client.email_routing.addresses.<a href="./src/cloudflare/resources/email_routing/addresses.py">delete</a>(destination_address_identifier, \*, account_identifier) -> <a href="./src/cloudflare/types/email_routing/address_delete_response.py">AddressDeleteResponse</a></code>
-- <code title="get /accounts/{account_identifier}/email/routing/addresses/{destination_address_identifier}">client.email_routing.addresses.<a href="./src/cloudflare/resources/email_routing/addresses.py">get</a>(destination_address_identifier, \*, account_identifier) -> <a href="./src/cloudflare/types/email_routing/address_get_response.py">AddressGetResponse</a></code>
+- <code title="post /accounts/{account_identifier}/email/routing/addresses">client.email_routing.addresses.<a href="./src/cloudflare/resources/email_routing/addresses.py">create</a>(account_identifier, \*\*<a href="src/cloudflare/types/email_routing/address_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/destination_address.py">DestinationAddress</a></code>
+- <code title="get /accounts/{account_identifier}/email/routing/addresses">client.email_routing.addresses.<a href="./src/cloudflare/resources/email_routing/addresses.py">list</a>(account_identifier, \*\*<a href="src/cloudflare/types/email_routing/address_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/destination_address.py">SyncV4PagePaginationArray[DestinationAddress]</a></code>
+- <code title="delete /accounts/{account_identifier}/email/routing/addresses/{destination_address_identifier}">client.email_routing.addresses.<a href="./src/cloudflare/resources/email_routing/addresses.py">delete</a>(destination_address_identifier, \*, account_identifier) -> <a href="./src/cloudflare/types/email_routing/destination_address.py">DestinationAddress</a></code>
+- <code title="get /accounts/{account_identifier}/email/routing/addresses/{destination_address_identifier}">client.email_routing.addresses.<a href="./src/cloudflare/resources/email_routing/addresses.py">get</a>(destination_address_identifier, \*, account_identifier) -> <a href="./src/cloudflare/types/email_routing/destination_address.py">DestinationAddress</a></code>
 
 # Filters
 
@@ -4483,13 +4485,13 @@ Methods:
 
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/eligible">client.alerting.destinations.eligible.<a href="./src/cloudflare/resources/alerting/destinations/eligible.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/eligible_get_response.py">Optional</a></code>
 
-### Pagerduty
+### PagerdutyResource
 
 Types:
 
 ```python
 from cloudflare.types.alerting.destinations import (
-    AlertingPagerduty,
+    Pagerduty,
     PagerdutyCreateResponse,
     PagerdutyGetResponse,
     PagerdutyLinkResponse,
@@ -4540,16 +4542,22 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.alerting import AlertingPolicies, PolicyCreateResponse, PolicyUpdateResponse
+from cloudflare.types.alerting import (
+    Filters,
+    Mechanisms,
+    Policies,
+    PolicyCreateResponse,
+    PolicyUpdateResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/alerting/v3/policies">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/policy_create_response.py">PolicyCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/policy_update_response.py">PolicyUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/policies">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/alerting_policies.py">SyncSinglePage[AlertingPolicies]</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/policies">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/policies.py">SyncSinglePage[Policies]</a></code>
 - <code title="delete /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_67bbb1ccdd42c3e2937b9fd19f791151.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/alerting_policies.py">AlertingPolicies</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/policies.py">Policies</a></code>
 
 # D1
 
@@ -5785,7 +5793,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.challenges import ChallengesWidget, ChallengesWidgetList
+from cloudflare.types.challenges import (
+    ChallengesWidget,
+    ChallengesWidgetList,
+    ChallengesWidgetListItem,
+)
 ```
 
 Methods:
@@ -6997,7 +7009,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import BotManagementUpdateResponse, BotManagementGetResponse
+from cloudflare.types import (
+    BotFightModeConfiguration,
+    SubscriptionConfiguration,
+    SuperBotFightModeDefinitelyConfiguration,
+    SuperBotFightModeLikelyConfig,
+    BotManagementUpdateResponse,
+    BotManagementGetResponse,
+)
 ```
 
 Methods:

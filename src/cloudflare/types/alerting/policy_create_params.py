@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["PolicyCreateParams", "Mechanisms", "Filters"]
+from .filters_param import FiltersParam
+from .mechanisms_param import MechanismsParam
+
+__all__ = ["PolicyCreateParams"]
 
 
 class PolicyCreateParams(TypedDict, total=False):
@@ -80,7 +82,7 @@ class PolicyCreateParams(TypedDict, total=False):
     enabled: Required[bool]
     """Whether or not the Notification policy is enabled."""
 
-    mechanisms: Required[Dict[str, Iterable[Mechanisms]]]
+    mechanisms: Required[MechanismsParam]
     """List of IDs that will be used when dispatching a notification.
 
     IDs for email type will be the email address.
@@ -92,141 +94,9 @@ class PolicyCreateParams(TypedDict, total=False):
     description: str
     """Optional description for the Notification policy."""
 
-    filters: Filters
+    filters: FiltersParam
     """
     Optional filters that allow you to be alerted only on a subset of events for
     that alert type based on some criteria. This is only available for select alert
     types. See alert type documentation for more details.
     """
-
-
-class Mechanisms(TypedDict, total=False):
-    id: Union[str, str]
-    """UUID"""
-
-
-class Filters(TypedDict, total=False):
-    actions: List[str]
-    """Usage depends on specific alert type"""
-
-    affected_asns: List[str]
-    """Used for configuring radar_notification"""
-
-    affected_components: List[str]
-    """Used for configuring incident_alert.
-
-    A list of identifiers for each component to monitor.
-    """
-
-    affected_locations: List[str]
-    """Used for configuring radar_notification"""
-
-    airport_code: List[str]
-    """Used for configuring maintenance_event_notification"""
-
-    alert_trigger_preferences: List[str]
-    """Usage depends on specific alert type"""
-
-    alert_trigger_preferences_value: List[Literal["99.0", "98.0", "97.0"]]
-    """Used for configuring magic_tunnel_health_check_event"""
-
-    enabled: List[str]
-    """Used for configuring load_balancing_pool_enablement_alert"""
-
-    environment: List[str]
-    """Used for configuring pages_event_alert"""
-
-    event: List[str]
-    """Used for configuring pages_event_alert"""
-
-    event_source: List[str]
-    """Used for configuring load_balancing_health_alert"""
-
-    event_type: List[str]
-    """Usage depends on specific alert type"""
-
-    group_by: List[str]
-    """Usage depends on specific alert type"""
-
-    health_check_id: List[str]
-    """Used for configuring health_check_status_notification"""
-
-    incident_impact: List[
-        Literal["INCIDENT_IMPACT_NONE", "INCIDENT_IMPACT_MINOR", "INCIDENT_IMPACT_MAJOR", "INCIDENT_IMPACT_CRITICAL"]
-    ]
-    """Used for configuring incident_alert"""
-
-    input_id: List[str]
-    """Used for configuring stream_live_notifications"""
-
-    limit: List[str]
-    """Used for configuring billing_usage_alert"""
-
-    logo_tag: List[str]
-    """Used for configuring logo_match_alert"""
-
-    megabits_per_second: List[str]
-    """Used for configuring advanced_ddos_attack_l4_alert"""
-
-    new_health: List[str]
-    """Used for configuring load_balancing_health_alert"""
-
-    new_status: List[str]
-    """Used for configuring tunnel_health_event"""
-
-    packets_per_second: List[str]
-    """Used for configuring advanced_ddos_attack_l4_alert"""
-
-    pool_id: List[str]
-    """Usage depends on specific alert type"""
-
-    product: List[str]
-    """Used for configuring billing_usage_alert"""
-
-    project_id: List[str]
-    """Used for configuring pages_event_alert"""
-
-    protocol: List[str]
-    """Used for configuring advanced_ddos_attack_l4_alert"""
-
-    query_tag: List[str]
-    """Usage depends on specific alert type"""
-
-    requests_per_second: List[str]
-    """Used for configuring advanced_ddos_attack_l7_alert"""
-
-    selectors: List[str]
-    """Usage depends on specific alert type"""
-
-    services: List[str]
-    """Used for configuring clickhouse_alert_fw_ent_anomaly"""
-
-    slo: List[str]
-    """Usage depends on specific alert type"""
-
-    status: List[str]
-    """Used for configuring health_check_status_notification"""
-
-    target_hostname: List[str]
-    """Used for configuring advanced_ddos_attack_l7_alert"""
-
-    target_ip: List[str]
-    """Used for configuring advanced_ddos_attack_l4_alert"""
-
-    target_zone_name: List[str]
-    """Used for configuring advanced_ddos_attack_l7_alert"""
-
-    traffic_exclusions: List[Literal["security_events"]]
-    """Used for configuring traffic_anomalies_alert"""
-
-    tunnel_id: List[str]
-    """Used for configuring tunnel_health_event"""
-
-    tunnel_name: List[str]
-    """Used for configuring magic_tunnel_health_check_event"""
-
-    where: List[str]
-    """Usage depends on specific alert type"""
-
-    zones: List[str]
-    """Usage depends on specific alert type"""

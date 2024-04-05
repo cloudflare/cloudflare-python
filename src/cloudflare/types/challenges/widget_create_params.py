@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from .challenges_widget_list_item import ChallengesWidgetListItem
+
 __all__ = ["WidgetCreateParams"]
 
 
@@ -12,7 +14,7 @@ class WidgetCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    domains: Required[List[str]]
+    domains: Required[List[ChallengesWidgetListItem]]
 
     mode: Required[Literal["non-interactive", "invisible", "managed"]]
     """Widget Mode"""

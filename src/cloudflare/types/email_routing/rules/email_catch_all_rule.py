@@ -3,21 +3,11 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
+from .action import Action
+from .matcher import Matcher
 from ...._models import BaseModel
 
-__all__ = ["EmailCatchAllRule", "Action", "Matcher"]
-
-
-class Action(BaseModel):
-    type: Literal["drop", "forward", "worker"]
-    """Type of action for catch-all rule."""
-
-    value: Optional[List[str]] = None
-
-
-class Matcher(BaseModel):
-    type: Literal["all"]
-    """Type of matcher. Default is 'all'."""
+__all__ = ["EmailCatchAllRule"]
 
 
 class EmailCatchAllRule(BaseModel):
