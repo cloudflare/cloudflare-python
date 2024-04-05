@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Type, Iterable, Optional, cast
+from typing import Any, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -28,9 +28,11 @@ from ..._base_client import (
 )
 from ...types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
 from ...types.alerting import (
-    AlertingPolicies,
+    FiltersParam,
+    MechanismsParam,
     PolicyCreateResponse,
     PolicyUpdateResponse,
+    policies,
     policy_create_params,
     policy_update_params,
 )
@@ -109,10 +111,10 @@ class Policies(SyncAPIResource):
             "zone_aop_custom_certificate_expiration_type",
         ],
         enabled: bool,
-        mechanisms: Dict[str, Iterable[policy_create_params.Mechanisms]],
+        mechanisms: MechanismsParam,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
-        filters: policy_create_params.Filters | NotGiven = NOT_GIVEN,
+        filters: FiltersParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -241,8 +243,8 @@ class Policies(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: policy_update_params.Filters | NotGiven = NOT_GIVEN,
-        mechanisms: Dict[str, Iterable[policy_update_params.Mechanisms]] | NotGiven = NOT_GIVEN,
+        filters: FiltersParam | NotGiven = NOT_GIVEN,
+        mechanisms: MechanismsParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -321,7 +323,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[AlertingPolicies]:
+    ) -> SyncSinglePage[policies.Policies]:
         """
         Get a list of all Notification policies.
 
@@ -340,11 +342,11 @@ class Policies(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/policies",
-            page=SyncSinglePage[AlertingPolicies],
+            page=SyncSinglePage[policies.Policies],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AlertingPolicies,
+            model=policies.Policies,
         )
 
     def delete(
@@ -407,7 +409,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AlertingPolicies:
+    ) -> policies.Policies:
         """
         Get details for a single policy.
 
@@ -437,7 +439,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AlertingPolicies], ResultWrapper[AlertingPolicies]),
+            cast_to=cast(Type[policies.Policies], ResultWrapper[policies.Policies]),
         )
 
 
@@ -512,10 +514,10 @@ class AsyncPolicies(AsyncAPIResource):
             "zone_aop_custom_certificate_expiration_type",
         ],
         enabled: bool,
-        mechanisms: Dict[str, Iterable[policy_create_params.Mechanisms]],
+        mechanisms: MechanismsParam,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
-        filters: policy_create_params.Filters | NotGiven = NOT_GIVEN,
+        filters: FiltersParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -644,8 +646,8 @@ class AsyncPolicies(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: policy_update_params.Filters | NotGiven = NOT_GIVEN,
-        mechanisms: Dict[str, Iterable[policy_update_params.Mechanisms]] | NotGiven = NOT_GIVEN,
+        filters: FiltersParam | NotGiven = NOT_GIVEN,
+        mechanisms: MechanismsParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -724,7 +726,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AlertingPolicies, AsyncSinglePage[AlertingPolicies]]:
+    ) -> AsyncPaginator[policies.Policies, AsyncSinglePage[policies.Policies]]:
         """
         Get a list of all Notification policies.
 
@@ -743,11 +745,11 @@ class AsyncPolicies(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/policies",
-            page=AsyncSinglePage[AlertingPolicies],
+            page=AsyncSinglePage[policies.Policies],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AlertingPolicies,
+            model=policies.Policies,
         )
 
     async def delete(
@@ -810,7 +812,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AlertingPolicies:
+    ) -> policies.Policies:
         """
         Get details for a single policy.
 
@@ -840,7 +842,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AlertingPolicies], ResultWrapper[AlertingPolicies]),
+            cast_to=cast(Type[policies.Policies], ResultWrapper[policies.Policies]),
         )
 
 

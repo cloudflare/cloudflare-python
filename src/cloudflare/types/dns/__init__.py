@@ -27,9 +27,12 @@ from .sshfp_record import SSHFPRecord as SSHFPRecord
 from .dnskey_record import DNSKEYRecord as DNSKEYRecord
 from .smimea_record import SMIMEARecord as SMIMEARecord
 from .record_tags_item import RecordTagsItem as RecordTagsItem
+from .attack_mitigation import AttackMitigation as AttackMitigation
+from .firewall_ips_item import FirewallIPsItem as FirewallIPsItem
 from .record_edit_params import RecordEditParams as RecordEditParams
 from .record_list_params import RecordListParams as RecordListParams
 from .record_scan_params import RecordScanParams as RecordScanParams
+from .upstream_ips_items import UpstreamIPsItems as UpstreamIPsItems
 from .firewall_edit_params import FirewallEditParams as FirewallEditParams
 from .firewall_list_params import FirewallListParams as FirewallListParams
 from .record_create_params import RecordCreateParams as RecordCreateParams
@@ -42,7 +45,10 @@ from .firewall_delete_params import FirewallDeleteParams as FirewallDeleteParams
 from .record_delete_response import RecordDeleteResponse as RecordDeleteResponse
 from .record_export_response import RecordExportResponse as RecordExportResponse
 from .record_import_response import RecordImportResponse as RecordImportResponse
+from .attack_mitigation_param import AttackMitigationParam as AttackMitigationParam
+from .firewall_ips_item_param import FirewallIPsItemParam as FirewallIPsItemParam
 from .firewall_delete_response import FirewallDeleteResponse as FirewallDeleteResponse
+from .upstream_ips_items_param import UpstreamIPsItemsParam as UpstreamIPsItemsParam
 from .unnamed_schema_ref_2f895e023ae55b55d2f5925449b819cd import (
     UnnamedSchemaRef2f895e023ae55b55d2f5925449b819cd as UnnamedSchemaRef2f895e023ae55b55d2f5925449b819cd,
 )

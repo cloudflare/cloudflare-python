@@ -4,10 +4,10 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["AlertingPagerduty"]
+__all__ = ["Pagerduty"]
 
 
-class AlertingPagerduty(BaseModel):
+class Pagerduty(BaseModel):
     id: Optional[str] = None
     """UUID"""
 

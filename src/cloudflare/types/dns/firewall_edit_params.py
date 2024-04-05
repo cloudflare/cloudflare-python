@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["FirewallEditParams", "AttackMitigation"]
+from .attack_mitigation_param import AttackMitigationParam
+from .firewall_ips_item_param import FirewallIPsItemParam
+from .upstream_ips_items_param import UpstreamIPsItemsParam
+
+__all__ = ["FirewallEditParams"]
 
 
 class FirewallEditParams(TypedDict, total=False):
@@ -15,7 +19,7 @@ class FirewallEditParams(TypedDict, total=False):
     deprecate_any_requests: Required[bool]
     """Deprecate the response to ANY requests."""
 
-    dns_firewall_ips: Required[List[Union[str, str]]]
+    dns_firewall_ips: Required[List[FirewallIPsItemParam]]
 
     ecs_fallback: Required[bool]
     """Forward client IP (resolver) subnet if no EDNS Client Subnet is sent."""
@@ -29,9 +33,9 @@ class FirewallEditParams(TypedDict, total=False):
     name: Required[str]
     """DNS Firewall Cluster Name."""
 
-    upstream_ips: Required[List[Union[str, str]]]
+    upstream_ips: Required[List[UpstreamIPsItemsParam]]
 
-    attack_mitigation: Optional[AttackMitigation]
+    attack_mitigation: Optional[AttackMitigationParam]
     """Attack mitigation settings."""
 
     negative_cache_ttl: Optional[float]
@@ -48,14 +52,3 @@ class FirewallEditParams(TypedDict, total=False):
     Number of retries for fetching DNS responses from upstream nameservers (not
     counting the initial attempt).
     """
-
-
-class AttackMitigation(TypedDict, total=False):
-    enabled: bool
-    """
-    When enabled, random-prefix attacks are automatically mitigated and the upstream
-    DNS servers protected.
-    """
-
-    only_when_upstream_unhealthy: bool
-    """Only mitigate attacks when upstream servers seem unhealthy."""

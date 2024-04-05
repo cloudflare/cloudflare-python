@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
+from .geo_restrictions_param import GeoRestrictionsParam
 from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
 
-__all__ = ["CustomCertificateEditParams", "GeoRestrictions"]
+__all__ = ["CustomCertificateEditParams"]
 
 
 class CustomCertificateEditParams(TypedDict, total=False):
@@ -24,7 +25,7 @@ class CustomCertificateEditParams(TypedDict, total=False):
     certificate: str
     """The zone's SSL certificate or certificate and the intermediate(s)."""
 
-    geo_restrictions: GeoRestrictions
+    geo_restrictions: GeoRestrictionsParam
     """
     Specify the region where your private key can be held locally for optimal TLS
     performance. HTTPS connections to any excluded data center will still be fully
@@ -50,7 +51,3 @@ class CustomCertificateEditParams(TypedDict, total=False):
 
     private_key: str
     """The zone's private key."""
-
-
-class GeoRestrictions(TypedDict, total=False):
-    label: Literal["us", "eu", "highest_security"]

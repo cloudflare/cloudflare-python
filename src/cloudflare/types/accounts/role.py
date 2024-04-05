@@ -1,9 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-
+from typing import List
 
 from ..._models import BaseModel
-from .member_permission import MemberPermission
 
 __all__ = ["Role"]
 
@@ -16,6 +15,7 @@ class Role(BaseModel):
     """Description of role's permissions."""
 
     name: str
-    """Role name."""
+    """Role Name."""
 
-    permissions: MemberPermission
+    permissions: List[str]
+    """Access permissions for this User."""
