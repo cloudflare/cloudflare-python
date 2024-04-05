@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from .permission_grant_param import PermissionGrantParam
+from ...accounts import PermissionGrantParam
 
-__all__ = ["MemberPermissionParam"]
+__all__ = ["PermissionParam"]
 
 
-class MemberPermissionParam(TypedDict, total=False):
+class PermissionParam(TypedDict, total=False):
     analytics: PermissionGrantParam
 
     billing: PermissionGrantParam

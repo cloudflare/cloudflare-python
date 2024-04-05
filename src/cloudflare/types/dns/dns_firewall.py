@@ -4,19 +4,9 @@ from typing import List, Union, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
+from .attack_mitigation import AttackMitigation
 
-__all__ = ["DNSFirewall", "AttackMitigation"]
-
-
-class AttackMitigation(BaseModel):
-    enabled: Optional[bool] = None
-    """
-    When enabled, random-prefix attacks are automatically mitigated and the upstream
-    DNS servers protected.
-    """
-
-    only_when_upstream_unhealthy: Optional[bool] = None
-    """Only mitigate attacks when upstream servers seem unhealthy."""
+__all__ = ["DNSFirewall"]
 
 
 class DNSFirewall(BaseModel):

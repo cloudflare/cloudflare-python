@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from .account import Account
 from .._models import BaseModel
-from .accounts import MemberPermission
+from .user.tokens import Permission
 
 __all__ = ["Membership"]
 
@@ -26,7 +26,7 @@ class Membership(BaseModel):
     code: Optional[str] = None
     """The unique activation code for the account membership."""
 
-    permissions: Optional[MemberPermission] = None
+    permissions: Optional[Permission] = None
     """All access permissions for the user at the account."""
 
     roles: Optional[List[str]] = None

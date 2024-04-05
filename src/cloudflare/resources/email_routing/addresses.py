@@ -26,14 +26,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.email_routing import (
-    AddressGetResponse,
-    AddressListResponse,
-    AddressCreateResponse,
-    AddressDeleteResponse,
-    address_list_params,
-    address_create_params,
-)
+from ...types.email_routing import DestinationAddress, address_list_params, address_create_params
 
 __all__ = ["Addresses", "AsyncAddresses"]
 
@@ -58,7 +51,7 @@ class Addresses(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressCreateResponse:
+    ) -> DestinationAddress:
         """Create a destination address to forward your emails to.
 
         Destination addresses
@@ -89,7 +82,7 @@ class Addresses(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressCreateResponse], ResultWrapper[AddressCreateResponse]),
+            cast_to=cast(Type[DestinationAddress], ResultWrapper[DestinationAddress]),
         )
 
     def list(
@@ -106,7 +99,7 @@ class Addresses(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[AddressListResponse]:
+    ) -> SyncV4PagePaginationArray[DestinationAddress]:
         """
         Lists existing destination addresses.
 
@@ -133,7 +126,7 @@ class Addresses(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return self._get_api_list(
             f"/accounts/{account_identifier}/email/routing/addresses",
-            page=SyncV4PagePaginationArray[AddressListResponse],
+            page=SyncV4PagePaginationArray[DestinationAddress],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -149,7 +142,7 @@ class Addresses(SyncAPIResource):
                     address_list_params.AddressListParams,
                 ),
             ),
-            model=AddressListResponse,
+            model=DestinationAddress,
         )
 
     def delete(
@@ -163,7 +156,7 @@ class Addresses(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressDeleteResponse:
+    ) -> DestinationAddress:
         """
         Deletes a specific destination address.
 
@@ -195,7 +188,7 @@ class Addresses(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressDeleteResponse], ResultWrapper[AddressDeleteResponse]),
+            cast_to=cast(Type[DestinationAddress], ResultWrapper[DestinationAddress]),
         )
 
     def get(
@@ -209,7 +202,7 @@ class Addresses(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressGetResponse:
+    ) -> DestinationAddress:
         """
         Gets information for a specific destination email already created.
 
@@ -241,7 +234,7 @@ class Addresses(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressGetResponse], ResultWrapper[AddressGetResponse]),
+            cast_to=cast(Type[DestinationAddress], ResultWrapper[DestinationAddress]),
         )
 
 
@@ -265,7 +258,7 @@ class AsyncAddresses(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressCreateResponse:
+    ) -> DestinationAddress:
         """Create a destination address to forward your emails to.
 
         Destination addresses
@@ -296,7 +289,7 @@ class AsyncAddresses(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressCreateResponse], ResultWrapper[AddressCreateResponse]),
+            cast_to=cast(Type[DestinationAddress], ResultWrapper[DestinationAddress]),
         )
 
     def list(
@@ -313,7 +306,7 @@ class AsyncAddresses(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AddressListResponse, AsyncV4PagePaginationArray[AddressListResponse]]:
+    ) -> AsyncPaginator[DestinationAddress, AsyncV4PagePaginationArray[DestinationAddress]]:
         """
         Lists existing destination addresses.
 
@@ -340,7 +333,7 @@ class AsyncAddresses(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return self._get_api_list(
             f"/accounts/{account_identifier}/email/routing/addresses",
-            page=AsyncV4PagePaginationArray[AddressListResponse],
+            page=AsyncV4PagePaginationArray[DestinationAddress],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -356,7 +349,7 @@ class AsyncAddresses(AsyncAPIResource):
                     address_list_params.AddressListParams,
                 ),
             ),
-            model=AddressListResponse,
+            model=DestinationAddress,
         )
 
     async def delete(
@@ -370,7 +363,7 @@ class AsyncAddresses(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressDeleteResponse:
+    ) -> DestinationAddress:
         """
         Deletes a specific destination address.
 
@@ -402,7 +395,7 @@ class AsyncAddresses(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressDeleteResponse], ResultWrapper[AddressDeleteResponse]),
+            cast_to=cast(Type[DestinationAddress], ResultWrapper[DestinationAddress]),
         )
 
     async def get(
@@ -416,7 +409,7 @@ class AsyncAddresses(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressGetResponse:
+    ) -> DestinationAddress:
         """
         Gets information for a specific destination email already created.
 
@@ -448,7 +441,7 @@ class AsyncAddresses(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressGetResponse], ResultWrapper[AddressGetResponse]),
+            cast_to=cast(Type[DestinationAddress], ResultWrapper[DestinationAddress]),
         )
 
 

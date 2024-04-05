@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.email_routing.rules import EmailCatchAllRule, catch_all_update_params
+from ....types.email_routing.rules import ActionParam, MatcherParam, EmailCatchAllRule, catch_all_update_params
 
 __all__ = ["CatchAlls", "AsyncCatchAlls"]
 
@@ -42,8 +42,8 @@ class CatchAlls(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        actions: Iterable[catch_all_update_params.Action],
-        matchers: Iterable[catch_all_update_params.Matcher],
+        actions: Iterable[ActionParam],
+        matchers: Iterable[MatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -152,8 +152,8 @@ class AsyncCatchAlls(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        actions: Iterable[catch_all_update_params.Action],
-        matchers: Iterable[catch_all_update_params.Matcher],
+        actions: Iterable[ActionParam],
+        matchers: Iterable[MatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

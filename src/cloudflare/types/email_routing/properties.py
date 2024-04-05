@@ -4,39 +4,23 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .action_item import ActionItem
+from .matcher_item import MatcherItem
 
-__all__ = ["RuleCreateResponse", "Action", "Matcher"]
-
-
-class Action(BaseModel):
-    type: Literal["drop", "forward", "worker"]
-    """Type of supported action."""
-
-    value: List[str]
+__all__ = ["Properties"]
 
 
-class Matcher(BaseModel):
-    field: Literal["to"]
-    """Field for type matcher."""
-
-    type: Literal["literal"]
-    """Type of matcher."""
-
-    value: str
-    """Value for matcher."""
-
-
-class RuleCreateResponse(BaseModel):
+class Properties(BaseModel):
     id: Optional[str] = None
     """Routing rule identifier."""
 
-    actions: Optional[List[Action]] = None
+    actions: Optional[List[ActionItem]] = None
     """List actions patterns."""
 
     enabled: Optional[Literal[True, False]] = None
     """Routing rule status."""
 
-    matchers: Optional[List[Matcher]] = None
+    matchers: Optional[List[MatcherItem]] = None
     """Matching patterns to forward to your actions."""
 
     name: Optional[str] = None

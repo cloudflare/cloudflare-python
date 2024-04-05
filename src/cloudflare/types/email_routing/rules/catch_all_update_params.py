@@ -2,17 +2,20 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["CatchAllUpdateParams", "Action", "Matcher"]
+from .action_param import ActionParam
+from .matcher_param import MatcherParam
+
+__all__ = ["CatchAllUpdateParams"]
 
 
 class CatchAllUpdateParams(TypedDict, total=False):
-    actions: Required[Iterable[Action]]
+    actions: Required[Iterable[ActionParam]]
     """List actions for the catch-all routing rule."""
 
-    matchers: Required[Iterable[Matcher]]
+    matchers: Required[Iterable[MatcherParam]]
     """List of matchers for the catch-all routing rule."""
 
     enabled: Literal[True, False]
@@ -20,15 +23,3 @@ class CatchAllUpdateParams(TypedDict, total=False):
 
     name: str
     """Routing rule name."""
-
-
-class Action(TypedDict, total=False):
-    type: Required[Literal["drop", "forward", "worker"]]
-    """Type of action for catch-all rule."""
-
-    value: List[str]
-
-
-class Matcher(TypedDict, total=False):
-    type: Required[Literal["all"]]
-    """Type of matcher. Default is 'all'."""

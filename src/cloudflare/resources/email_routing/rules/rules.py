@@ -35,11 +35,11 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.email_routing import (
-    RuleGetResponse,
-    RuleListResponse,
-    RuleCreateResponse,
-    RuleDeleteResponse,
-    RuleUpdateResponse,
+    Properties,
+    ActionParam,
+    MatcherParam,
+    ActionItemParam,
+    MatcherItemParam,
     rule_list_params,
     rule_create_params,
     rule_update_params,
@@ -65,8 +65,8 @@ class Rules(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        actions: Iterable[rule_create_params.Action],
-        matchers: Iterable[rule_create_params.Matcher],
+        actions: Iterable[ActionParam],
+        matchers: Iterable[MatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -76,7 +76,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleCreateResponse:
+    ) -> Properties:
         """
         Rules consist of a set of criteria for matching emails (such as an email being
         sent to a specific custom email address) plus a set of actions to take on the
@@ -124,7 +124,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleCreateResponse], ResultWrapper[RuleCreateResponse]),
+            cast_to=cast(Type[Properties], ResultWrapper[Properties]),
         )
 
     def update(
@@ -132,8 +132,8 @@ class Rules(SyncAPIResource):
         rule_identifier: str,
         *,
         zone_identifier: str,
-        actions: Iterable[rule_update_params.Action],
-        matchers: Iterable[rule_update_params.Matcher],
+        actions: Iterable[ActionItemParam],
+        matchers: Iterable[MatcherItemParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -143,7 +143,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleUpdateResponse:
+    ) -> Properties:
         """
         Update actions and matches, or enable/disable specific routing rules.
 
@@ -193,7 +193,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleUpdateResponse], ResultWrapper[RuleUpdateResponse]),
+            cast_to=cast(Type[Properties], ResultWrapper[Properties]),
         )
 
     def list(
@@ -209,7 +209,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[RuleListResponse]:
+    ) -> SyncV4PagePaginationArray[Properties]:
         """
         Lists existing routing rules.
 
@@ -234,7 +234,7 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/email/routing/rules",
-            page=SyncV4PagePaginationArray[RuleListResponse],
+            page=SyncV4PagePaginationArray[Properties],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -249,7 +249,7 @@ class Rules(SyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            model=RuleListResponse,
+            model=Properties,
         )
 
     def delete(
@@ -263,7 +263,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleDeleteResponse:
+    ) -> Properties:
         """
         Delete a specific routing rule.
 
@@ -293,7 +293,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleDeleteResponse], ResultWrapper[RuleDeleteResponse]),
+            cast_to=cast(Type[Properties], ResultWrapper[Properties]),
         )
 
     def get(
@@ -307,7 +307,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleGetResponse:
+    ) -> Properties:
         """
         Get information for a specific routing rule already created.
 
@@ -337,7 +337,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleGetResponse], ResultWrapper[RuleGetResponse]),
+            cast_to=cast(Type[Properties], ResultWrapper[Properties]),
         )
 
 
@@ -358,8 +358,8 @@ class AsyncRules(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        actions: Iterable[rule_create_params.Action],
-        matchers: Iterable[rule_create_params.Matcher],
+        actions: Iterable[ActionParam],
+        matchers: Iterable[MatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -369,7 +369,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleCreateResponse:
+    ) -> Properties:
         """
         Rules consist of a set of criteria for matching emails (such as an email being
         sent to a specific custom email address) plus a set of actions to take on the
@@ -417,7 +417,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleCreateResponse], ResultWrapper[RuleCreateResponse]),
+            cast_to=cast(Type[Properties], ResultWrapper[Properties]),
         )
 
     async def update(
@@ -425,8 +425,8 @@ class AsyncRules(AsyncAPIResource):
         rule_identifier: str,
         *,
         zone_identifier: str,
-        actions: Iterable[rule_update_params.Action],
-        matchers: Iterable[rule_update_params.Matcher],
+        actions: Iterable[ActionItemParam],
+        matchers: Iterable[MatcherItemParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -436,7 +436,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleUpdateResponse:
+    ) -> Properties:
         """
         Update actions and matches, or enable/disable specific routing rules.
 
@@ -486,7 +486,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleUpdateResponse], ResultWrapper[RuleUpdateResponse]),
+            cast_to=cast(Type[Properties], ResultWrapper[Properties]),
         )
 
     def list(
@@ -502,7 +502,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RuleListResponse, AsyncV4PagePaginationArray[RuleListResponse]]:
+    ) -> AsyncPaginator[Properties, AsyncV4PagePaginationArray[Properties]]:
         """
         Lists existing routing rules.
 
@@ -527,7 +527,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/email/routing/rules",
-            page=AsyncV4PagePaginationArray[RuleListResponse],
+            page=AsyncV4PagePaginationArray[Properties],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -542,7 +542,7 @@ class AsyncRules(AsyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            model=RuleListResponse,
+            model=Properties,
         )
 
     async def delete(
@@ -556,7 +556,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleDeleteResponse:
+    ) -> Properties:
         """
         Delete a specific routing rule.
 
@@ -586,7 +586,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleDeleteResponse], ResultWrapper[RuleDeleteResponse]),
+            cast_to=cast(Type[Properties], ResultWrapper[Properties]),
         )
 
     async def get(
@@ -600,7 +600,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleGetResponse:
+    ) -> Properties:
         """
         Get information for a specific routing rule already created.
 
@@ -630,7 +630,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RuleGetResponse], ResultWrapper[RuleGetResponse]),
+            cast_to=cast(Type[Properties], ResultWrapper[Properties]),
         )
 
 

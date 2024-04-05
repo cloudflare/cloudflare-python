@@ -3,9 +3,10 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
+from .hostname_association_item import HostnameAssociationItem
 
 __all__ = ["HostnameAssociationGetResponse"]
 
 
 class HostnameAssociationGetResponse(BaseModel):
-    hostnames: Optional[List[str]] = None
+    hostnames: Optional[List[HostnameAssociationItem]] = None

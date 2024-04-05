@@ -7,14 +7,14 @@ from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "BotManagementUpdateParams",
-    "BotManagementBotFightModeConfig",
-    "BotManagementSbfmDefinitelyConfig",
-    "BotManagementSbfmLikelyConfig",
-    "BotManagementBmSubscriptionConfig",
+    "BotFightModeConfiguration",
+    "SuperBotFightModeDefinitelyConfiguration",
+    "SuperBotFightModeLikelyConfig",
+    "SubscriptionConfiguration",
 ]
 
 
-class BotManagementBotFightModeConfig(TypedDict, total=False):
+class BotFightModeConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -28,7 +28,7 @@ class BotManagementBotFightModeConfig(TypedDict, total=False):
     """Whether to enable Bot Fight Mode."""
 
 
-class BotManagementSbfmDefinitelyConfig(TypedDict, total=False):
+class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -55,7 +55,7 @@ class BotManagementSbfmDefinitelyConfig(TypedDict, total=False):
     """Super Bot Fight Mode (SBFM) action to take on verified bots requests."""
 
 
-class BotManagementSbfmLikelyConfig(TypedDict, total=False):
+class SuperBotFightModeLikelyConfig(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -85,7 +85,7 @@ class BotManagementSbfmLikelyConfig(TypedDict, total=False):
     """Super Bot Fight Mode (SBFM) action to take on verified bots requests."""
 
 
-class BotManagementBmSubscriptionConfig(TypedDict, total=False):
+class SubscriptionConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -110,8 +110,8 @@ class BotManagementBmSubscriptionConfig(TypedDict, total=False):
 
 
 BotManagementUpdateParams = Union[
-    BotManagementBotFightModeConfig,
-    BotManagementSbfmDefinitelyConfig,
-    BotManagementSbfmLikelyConfig,
-    BotManagementBmSubscriptionConfig,
+    BotFightModeConfiguration,
+    SuperBotFightModeDefinitelyConfiguration,
+    SuperBotFightModeLikelyConfig,
+    SubscriptionConfiguration,
 ]

@@ -7,6 +7,12 @@ from typing_extensions import Literal
 
 import httpx
 
+from ....types import (
+    OriginParam,
+    LoadSheddingParam,
+    OriginSteeringParam,
+    NotificationFilterParam,
+)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -56,7 +62,7 @@ class Pools(SyncAPIResource):
         self,
         *,
         name: str,
-        origins: Iterable[pool_create_params.Origin],
+        origins: Iterable[OriginParam],
         check_regions: Optional[
             List[
                 Literal[
@@ -81,13 +87,13 @@ class Pools(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: pool_create_params.LoadShedding | NotGiven = NOT_GIVEN,
+        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: object | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[pool_create_params.NotificationFilter] | NotGiven = NOT_GIVEN,
-        origin_steering: pool_create_params.OriginSteering | NotGiven = NOT_GIVEN,
+        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
+        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -185,7 +191,7 @@ class Pools(SyncAPIResource):
         pool_id: str,
         *,
         name: str,
-        origins: Iterable[pool_update_params.Origin],
+        origins: Iterable[OriginParam],
         check_regions: Optional[
             List[
                 Literal[
@@ -210,13 +216,13 @@ class Pools(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: pool_update_params.LoadShedding | NotGiven = NOT_GIVEN,
+        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: object | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[pool_update_params.NotificationFilter] | NotGiven = NOT_GIVEN,
-        origin_steering: pool_update_params.OriginSteering | NotGiven = NOT_GIVEN,
+        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
+        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -417,15 +423,15 @@ class Pools(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: pool_edit_params.LoadShedding | NotGiven = NOT_GIVEN,
+        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: object | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[pool_edit_params.NotificationFilter] | NotGiven = NOT_GIVEN,
-        origin_steering: pool_edit_params.OriginSteering | NotGiven = NOT_GIVEN,
-        origins: Iterable[pool_edit_params.Origin] | NotGiven = NOT_GIVEN,
+        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
+        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
+        origins: Iterable[OriginParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -774,7 +780,7 @@ class AsyncPools(AsyncAPIResource):
         self,
         *,
         name: str,
-        origins: Iterable[pool_create_params.Origin],
+        origins: Iterable[OriginParam],
         check_regions: Optional[
             List[
                 Literal[
@@ -799,13 +805,13 @@ class AsyncPools(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: pool_create_params.LoadShedding | NotGiven = NOT_GIVEN,
+        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: object | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[pool_create_params.NotificationFilter] | NotGiven = NOT_GIVEN,
-        origin_steering: pool_create_params.OriginSteering | NotGiven = NOT_GIVEN,
+        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
+        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -903,7 +909,7 @@ class AsyncPools(AsyncAPIResource):
         pool_id: str,
         *,
         name: str,
-        origins: Iterable[pool_update_params.Origin],
+        origins: Iterable[OriginParam],
         check_regions: Optional[
             List[
                 Literal[
@@ -928,13 +934,13 @@ class AsyncPools(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: pool_update_params.LoadShedding | NotGiven = NOT_GIVEN,
+        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: object | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[pool_update_params.NotificationFilter] | NotGiven = NOT_GIVEN,
-        origin_steering: pool_update_params.OriginSteering | NotGiven = NOT_GIVEN,
+        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
+        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1135,15 +1141,15 @@ class AsyncPools(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: pool_edit_params.LoadShedding | NotGiven = NOT_GIVEN,
+        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: object | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[pool_edit_params.NotificationFilter] | NotGiven = NOT_GIVEN,
-        origin_steering: pool_edit_params.OriginSteering | NotGiven = NOT_GIVEN,
-        origins: Iterable[pool_edit_params.Origin] | NotGiven = NOT_GIVEN,
+        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
+        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
+        origins: Iterable[OriginParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
