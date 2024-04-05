@@ -3,16 +3,12 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = [
-    "CustomCreateParams",
-    "Profile",
-    "ProfileContextAwareness",
-    "ProfileContextAwarenessSkip",
-    "ProfileEntry",
-    "ProfileEntryPattern",
-]
+from .pattern_param import PatternParam
+from ..context_awareness_param import ContextAwarenessParam
+
+__all__ = ["CustomCreateParams", "Profile", "ProfileEntry"]
 
 
 class CustomCreateParams(TypedDict, total=False):
@@ -22,34 +18,6 @@ class CustomCreateParams(TypedDict, total=False):
     profiles: Required[Iterable[Profile]]
 
 
-class ProfileContextAwarenessSkip(TypedDict, total=False):
-    files: Required[bool]
-    """If the content type is a file, skip context analysis and return all matches."""
-
-
-class ProfileContextAwareness(TypedDict, total=False):
-    enabled: Required[bool]
-    """
-    If true, scan the context of predefined entries to only return matches
-    surrounded by keywords.
-    """
-
-    skip: Required[ProfileContextAwarenessSkip]
-    """Content types to exclude from context analysis and return all matches."""
-
-
-class ProfileEntryPattern(TypedDict, total=False):
-    regex: Required[str]
-    """The regex pattern."""
-
-    validation: Literal["luhn"]
-    """Validation algorithm for the pattern.
-
-    This algorithm will get run on potential matches, and if it returns false, the
-    entry will not be matched.
-    """
-
-
 class ProfileEntry(TypedDict, total=False):
     enabled: Required[bool]
     """Whether the entry is enabled or not."""
@@ -57,7 +25,7 @@ class ProfileEntry(TypedDict, total=False):
     name: Required[str]
     """The name of the entry."""
 
-    pattern: Required[ProfileEntryPattern]
+    pattern: Required[PatternParam]
     """A pattern that matches an entry"""
 
 
@@ -65,7 +33,7 @@ class Profile(TypedDict, total=False):
     allowed_match_count: float
     """Related DLP policies will trigger when the match count exceeds the number set."""
 
-    context_awareness: ProfileContextAwareness
+    context_awareness: ContextAwarenessParam
     """
     Scan the context of predefined entries to only return matches surrounded by
     keywords.

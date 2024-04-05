@@ -26,7 +26,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.devices import (
-    DEXTestSchemasHTTP,
+    SchemaHTTP,
+    SchemaDataParam,
     DEXTestDeleteResponse,
     dex_test_create_params,
     dex_test_update_params,
@@ -48,7 +49,7 @@ class DEXTests(SyncAPIResource):
         self,
         *,
         account_id: str,
-        data: dex_test_create_params.Data,
+        data: SchemaDataParam,
         enabled: bool,
         interval: str,
         name: str,
@@ -59,7 +60,7 @@ class DEXTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DEXTestSchemasHTTP]:
+    ) -> Optional[SchemaHTTP]:
         """
         Create a DEX test.
 
@@ -104,7 +105,7 @@ class DEXTests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestSchemasHTTP]], ResultWrapper[DEXTestSchemasHTTP]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
     def update(
@@ -112,7 +113,7 @@ class DEXTests(SyncAPIResource):
         dex_test_id: str,
         *,
         account_id: str,
-        data: dex_test_update_params.Data,
+        data: SchemaDataParam,
         enabled: bool,
         interval: str,
         name: str,
@@ -123,7 +124,7 @@ class DEXTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DEXTestSchemasHTTP]:
+    ) -> Optional[SchemaHTTP]:
         """
         Update a DEX test.
 
@@ -172,7 +173,7 @@ class DEXTests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestSchemasHTTP]], ResultWrapper[DEXTestSchemasHTTP]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
     def list(
@@ -185,7 +186,7 @@ class DEXTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DEXTestSchemasHTTP]:
+    ) -> SyncSinglePage[SchemaHTTP]:
         """
         Fetch all DEX tests.
 
@@ -202,11 +203,11 @@ class DEXTests(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/dex_tests",
-            page=SyncSinglePage[DEXTestSchemasHTTP],
+            page=SyncSinglePage[SchemaHTTP],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DEXTestSchemasHTTP,
+            model=SchemaHTTP,
         )
 
     def delete(
@@ -264,7 +265,7 @@ class DEXTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DEXTestSchemasHTTP]:
+    ) -> Optional[SchemaHTTP]:
         """
         Fetch a single DEX test.
 
@@ -292,7 +293,7 @@ class DEXTests(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestSchemasHTTP]], ResultWrapper[DEXTestSchemasHTTP]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
 
@@ -309,7 +310,7 @@ class AsyncDEXTests(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        data: dex_test_create_params.Data,
+        data: SchemaDataParam,
         enabled: bool,
         interval: str,
         name: str,
@@ -320,7 +321,7 @@ class AsyncDEXTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DEXTestSchemasHTTP]:
+    ) -> Optional[SchemaHTTP]:
         """
         Create a DEX test.
 
@@ -365,7 +366,7 @@ class AsyncDEXTests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestSchemasHTTP]], ResultWrapper[DEXTestSchemasHTTP]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
     async def update(
@@ -373,7 +374,7 @@ class AsyncDEXTests(AsyncAPIResource):
         dex_test_id: str,
         *,
         account_id: str,
-        data: dex_test_update_params.Data,
+        data: SchemaDataParam,
         enabled: bool,
         interval: str,
         name: str,
@@ -384,7 +385,7 @@ class AsyncDEXTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DEXTestSchemasHTTP]:
+    ) -> Optional[SchemaHTTP]:
         """
         Update a DEX test.
 
@@ -433,7 +434,7 @@ class AsyncDEXTests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestSchemasHTTP]], ResultWrapper[DEXTestSchemasHTTP]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
     def list(
@@ -446,7 +447,7 @@ class AsyncDEXTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DEXTestSchemasHTTP, AsyncSinglePage[DEXTestSchemasHTTP]]:
+    ) -> AsyncPaginator[SchemaHTTP, AsyncSinglePage[SchemaHTTP]]:
         """
         Fetch all DEX tests.
 
@@ -463,11 +464,11 @@ class AsyncDEXTests(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/dex_tests",
-            page=AsyncSinglePage[DEXTestSchemasHTTP],
+            page=AsyncSinglePage[SchemaHTTP],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DEXTestSchemasHTTP,
+            model=SchemaHTTP,
         )
 
     async def delete(
@@ -525,7 +526,7 @@ class AsyncDEXTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DEXTestSchemasHTTP]:
+    ) -> Optional[SchemaHTTP]:
         """
         Fetch a single DEX test.
 
@@ -553,7 +554,7 @@ class AsyncDEXTests(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestSchemasHTTP]], ResultWrapper[DEXTestSchemasHTTP]),
+            cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
 
 

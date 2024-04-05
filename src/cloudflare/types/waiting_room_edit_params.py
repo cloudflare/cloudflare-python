@@ -5,7 +5,10 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["WaitingRoomEditParams", "AdditionalRoute", "CookieAttributes"]
+from .cookie_attributes_param import CookieAttributesParam
+from .additional_routes_item_param import AdditionalRoutesItemParam
+
+__all__ = ["WaitingRoomEditParams"]
 
 
 class WaitingRoomEditParams(TypedDict, total=False):
@@ -43,7 +46,7 @@ class WaitingRoomEditParams(TypedDict, total=False):
     around the world.
     """
 
-    additional_routes: Iterable[AdditionalRoute]
+    additional_routes: Iterable[AdditionalRoutesItemParam]
     """Only available for the Waiting Room Advanced subscription.
 
     Additional hostname and path combinations to which this waiting room will be
@@ -51,7 +54,7 @@ class WaitingRoomEditParams(TypedDict, total=False):
     path combination must be unique to this and all other waiting rooms.
     """
 
-    cookie_attributes: CookieAttributes
+    cookie_attributes: CookieAttributesParam
     """Configures cookie attributes for the waiting room cookie.
 
     This encrypted cookie stores a user's status in the waiting room, such as queue
@@ -337,40 +340,4 @@ class WaitingRoomEditParams(TypedDict, total=False):
     """Suspends or allows traffic going to the waiting room.
 
     If set to `true`, the traffic will not go to the waiting room.
-    """
-
-
-class AdditionalRoute(TypedDict, total=False):
-    host: str
-    """The hostname to which this waiting room will be applied (no wildcards).
-
-    The hostname must be the primary domain, subdomain, or custom hostname (if using
-    SSL for SaaS) of this zone. Please do not include the scheme (http:// or
-    https://).
-    """
-
-    path: str
-    """Sets the path within the host to enable the waiting room on.
-
-    The waiting room will be enabled for all subpaths as well. If there are two
-    waiting rooms on the same subpath, the waiting room for the most specific path
-    will be chosen. Wildcards and query parameters are not supported.
-    """
-
-
-class CookieAttributes(TypedDict, total=False):
-    samesite: Literal["auto", "lax", "none", "strict"]
-    """Configures the SameSite attribute on the waiting room cookie.
-
-    Value `auto` will be translated to `lax` or `none` depending if **Always Use
-    HTTPS** is enabled. Note that when using value `none`, the secure attribute
-    cannot be set to `never`.
-    """
-
-    secure: Literal["auto", "always", "never"]
-    """Configures the Secure attribute on the waiting room cookie.
-
-    Value `always` indicates that the Secure attribute will be set in the Set-Cookie
-    header, `never` indicates that the Secure attribute will not be set, and `auto`
-    will set the Secure attribute depending if **Always Use HTTPS** is enabled.
     """

@@ -22,7 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ...types.user import InviteListResponse, invite_edit_params
+from ...types.user import Invite, invite_edit_params
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -50,15 +50,15 @@ class Invites(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[InviteListResponse]:
+    ) -> SyncSinglePage[Invite]:
         """Lists all invitations associated with my user."""
         return self._get_api_list(
             "/user/invites",
-            page=SyncSinglePage[InviteListResponse],
+            page=SyncSinglePage[Invite],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=InviteListResponse,
+            model=Invite,
         )
 
     def edit(
@@ -172,15 +172,15 @@ class AsyncInvites(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[InviteListResponse, AsyncSinglePage[InviteListResponse]]:
+    ) -> AsyncPaginator[Invite, AsyncSinglePage[Invite]]:
         """Lists all invitations associated with my user."""
         return self._get_api_list(
             "/user/invites",
-            page=AsyncSinglePage[InviteListResponse],
+            page=AsyncSinglePage[Invite],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=InviteListResponse,
+            model=Invite,
         )
 
     async def edit(

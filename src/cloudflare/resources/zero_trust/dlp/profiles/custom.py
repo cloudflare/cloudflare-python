@@ -24,8 +24,9 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from .....types.zero_trust.dlp import ContextAwarenessParam
 from .....types.zero_trust.dlp.profiles import (
-    DLPCustomProfile,
+    CustomProfile,
     CustomCreateResponse,
     custom_create_params,
     custom_delete_params,
@@ -91,7 +92,7 @@ class Custom(SyncAPIResource):
         *,
         account_id: str,
         allowed_match_count: float | NotGiven = NOT_GIVEN,
-        context_awareness: custom_update_params.ContextAwareness | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         entries: Iterable[custom_update_params.Entry] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -103,7 +104,7 @@ class Custom(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DLPCustomProfile:
+    ) -> CustomProfile:
         """
         Updates a DLP custom profile.
 
@@ -159,7 +160,7 @@ class Custom(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DLPCustomProfile,
+            cast_to=CustomProfile,
         )
 
     def delete(
@@ -224,7 +225,7 @@ class Custom(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DLPCustomProfile:
+    ) -> CustomProfile:
         """
         Fetches a custom DLP profile.
 
@@ -254,7 +255,7 @@ class Custom(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DLPCustomProfile], ResultWrapper[DLPCustomProfile]),
+            cast_to=cast(Type[CustomProfile], ResultWrapper[CustomProfile]),
         )
 
 
@@ -314,7 +315,7 @@ class AsyncCustom(AsyncAPIResource):
         *,
         account_id: str,
         allowed_match_count: float | NotGiven = NOT_GIVEN,
-        context_awareness: custom_update_params.ContextAwareness | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         entries: Iterable[custom_update_params.Entry] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -326,7 +327,7 @@ class AsyncCustom(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DLPCustomProfile:
+    ) -> CustomProfile:
         """
         Updates a DLP custom profile.
 
@@ -382,7 +383,7 @@ class AsyncCustom(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DLPCustomProfile,
+            cast_to=CustomProfile,
         )
 
     async def delete(
@@ -447,7 +448,7 @@ class AsyncCustom(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DLPCustomProfile:
+    ) -> CustomProfile:
         """
         Fetches a custom DLP profile.
 
@@ -477,7 +478,7 @@ class AsyncCustom(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DLPCustomProfile], ResultWrapper[DLPCustomProfile]),
+            cast_to=cast(Type[CustomProfile], ResultWrapper[CustomProfile]),
         )
 
 

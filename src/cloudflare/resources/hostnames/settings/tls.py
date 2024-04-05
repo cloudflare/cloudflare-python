@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -24,7 +24,13 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.hostnames.settings import HostnameStting, TLSGetResponse, HostnameSettingDelete, tls_update_params
+from ....types.hostnames.settings import (
+    Setting,
+    TLSGetResponse,
+    SettingValueParam,
+    TLSDeleteResponse,
+    tls_update_params,
+)
 
 __all__ = ["TLS", "AsyncTLS"]
 
@@ -44,14 +50,14 @@ class TLS(SyncAPIResource):
         *,
         zone_id: str,
         setting_id: Literal["ciphers", "min_tls_version", "http2"],
-        value: Union[float, str, List[str]],
+        value: SettingValueParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameStting:
+    ) -> Setting:
         """
         Update the tls setting value for the hostname.
 
@@ -88,7 +94,7 @@ class TLS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HostnameStting], ResultWrapper[HostnameStting]),
+            cast_to=cast(Type[Setting], ResultWrapper[Setting]),
         )
 
     def delete(
@@ -103,7 +109,7 @@ class TLS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameSettingDelete:
+    ) -> TLSDeleteResponse:
         """
         Delete the tls setting value for the hostname.
 
@@ -137,7 +143,7 @@ class TLS(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HostnameSettingDelete], ResultWrapper[HostnameSettingDelete]),
+            cast_to=cast(Type[TLSDeleteResponse], ResultWrapper[TLSDeleteResponse]),
         )
 
     def get(
@@ -200,14 +206,14 @@ class AsyncTLS(AsyncAPIResource):
         *,
         zone_id: str,
         setting_id: Literal["ciphers", "min_tls_version", "http2"],
-        value: Union[float, str, List[str]],
+        value: SettingValueParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameStting:
+    ) -> Setting:
         """
         Update the tls setting value for the hostname.
 
@@ -244,7 +250,7 @@ class AsyncTLS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HostnameStting], ResultWrapper[HostnameStting]),
+            cast_to=cast(Type[Setting], ResultWrapper[Setting]),
         )
 
     async def delete(
@@ -259,7 +265,7 @@ class AsyncTLS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameSettingDelete:
+    ) -> TLSDeleteResponse:
         """
         Delete the tls setting value for the hostname.
 
@@ -293,7 +299,7 @@ class AsyncTLS(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HostnameSettingDelete], ResultWrapper[HostnameSettingDelete]),
+            cast_to=cast(Type[TLSDeleteResponse], ResultWrapper[TLSDeleteResponse]),
         )
 
     async def get(

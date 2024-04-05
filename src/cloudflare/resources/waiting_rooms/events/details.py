@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.waiting_rooms.events import WaitingroomEventDetails
+from ....types.waiting_rooms.events import DetailGetResponse
 
 __all__ = ["Details", "AsyncDetails"]
 
@@ -45,7 +45,7 @@ class Details(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventDetails:
+    ) -> DetailGetResponse:
         """Previews an event's configuration as if it was active.
 
         Inherited fields from the
@@ -77,7 +77,7 @@ class Details(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventDetails], ResultWrapper[WaitingroomEventDetails]),
+            cast_to=cast(Type[DetailGetResponse], ResultWrapper[DetailGetResponse]),
         )
 
 
@@ -102,7 +102,7 @@ class AsyncDetails(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WaitingroomEventDetails:
+    ) -> DetailGetResponse:
         """Previews an event's configuration as if it was active.
 
         Inherited fields from the
@@ -134,7 +134,7 @@ class AsyncDetails(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WaitingroomEventDetails], ResultWrapper[WaitingroomEventDetails]),
+            cast_to=cast(Type[DetailGetResponse], ResultWrapper[DetailGetResponse]),
         )
 
 

@@ -2,12 +2,18 @@
 
 from __future__ import annotations
 
+from .input import Input as Input
+from .match_item import MatchItem as MatchItem
+from .input_param import InputParam as InputParam
+from .schema_data import SchemaData as SchemaData
+from .schema_http import SchemaHTTP as SchemaHTTP
+from .match_item_param import MatchItemParam as MatchItemParam
+from .schema_data_param import SchemaDataParam as SchemaDataParam
 from .policy_edit_params import PolicyEditParams as PolicyEditParams
-from .device_posture_rules import DevicePostureRules as DevicePostureRules
+from .device_posture_rule import DevicePostureRule as DevicePostureRule
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_delete_params import PolicyDeleteParams as PolicyDeleteParams
 from .revoke_create_params import RevokeCreateParams as RevokeCreateParams
-from .dex_test_schemas_http import DEXTestSchemasHTTP as DEXTestSchemasHTTP
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_delete_params import NetworkDeleteParams as NetworkDeleteParams
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
@@ -23,6 +29,7 @@ from .device_managed_networks import DeviceManagedNetworks as DeviceManagedNetwo
 from .network_delete_response import NetworkDeleteResponse as NetworkDeleteResponse
 from .posture_delete_response import PostureDeleteResponse as PostureDeleteResponse
 from .dex_test_delete_response import DEXTestDeleteResponse as DEXTestDeleteResponse
+from .device_posture_rule_param import DevicePostureRuleParam as DevicePostureRuleParam
 from .override_code_list_response import OverrideCodeListResponse as OverrideCodeListResponse
 from .devices_device_settings_policy import DevicesDeviceSettingsPolicy as DevicesDeviceSettingsPolicy
 from .zero_trust_account_device_settings import ZeroTrustAccountDeviceSettings as ZeroTrustAccountDeviceSettings

@@ -5,70 +5,12 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .random_steering import RandomSteering
+from .adaptive_routing import AdaptiveRouting
+from .location_strategy import LocationStrategy
+from .session_affinity_attributes import SessionAffinityAttributes
 
-__all__ = [
-    "LoadBalancer",
-    "AdaptiveRouting",
-    "LocationStrategy",
-    "RandomSteering",
-    "Rule",
-    "RuleFixedResponse",
-    "RuleOverrides",
-    "RuleOverridesAdaptiveRouting",
-    "RuleOverridesLocationStrategy",
-    "RuleOverridesRandomSteering",
-    "RuleOverridesSessionAffinityAttributes",
-    "SessionAffinityAttributes",
-]
-
-
-class AdaptiveRouting(BaseModel):
-    failover_across_pools: Optional[bool] = None
-    """
-    Extends zero-downtime failover of requests to healthy origins from alternate
-    pools, when no healthy alternate exists in the same pool, according to the
-    failover order defined by traffic and origin steering. When set false (the
-    default) zero-downtime failover will only occur between origins within the same
-    pool. See `session_affinity_attributes` for control over when sessions are
-    broken or reassigned.
-    """
-
-
-class LocationStrategy(BaseModel):
-    mode: Optional[Literal["pop", "resolver_ip"]] = None
-    """
-    Determines the authoritative location when ECS is not preferred, does not exist
-    in the request, or its GeoIP lookup is unsuccessful.
-
-    - `"pop"`: Use the Cloudflare PoP location.
-    - `"resolver_ip"`: Use the DNS resolver GeoIP location. If the GeoIP lookup is
-      unsuccessful, use the Cloudflare PoP location.
-    """
-
-    prefer_ecs: Optional[Literal["always", "never", "proximity", "geo"]] = None
-    """
-    Whether the EDNS Client Subnet (ECS) GeoIP should be preferred as the
-    authoritative location.
-
-    - `"always"`: Always prefer ECS.
-    - `"never"`: Never prefer ECS.
-    - `"proximity"`: Prefer ECS only when `steering_policy="proximity"`.
-    - `"geo"`: Prefer ECS only when `steering_policy="geo"`.
-    """
-
-
-class RandomSteering(BaseModel):
-    default_weight: Optional[float] = None
-    """
-    The default weight for pools in the load balancer that are not specified in the
-    pool_weights map.
-    """
-
-    pool_weights: Optional[object] = None
-    """A mapping of pool IDs to custom weights.
-
-    The weight is relative to other pools in the load balancer.
-    """
+__all__ = ["LoadBalancer", "Rule", "RuleFixedResponse", "RuleOverrides"]
 
 
 class RuleFixedResponse(BaseModel):
@@ -85,122 +27,8 @@ class RuleFixedResponse(BaseModel):
     """The http status code to respond with."""
 
 
-class RuleOverridesAdaptiveRouting(BaseModel):
-    failover_across_pools: Optional[bool] = None
-    """
-    Extends zero-downtime failover of requests to healthy origins from alternate
-    pools, when no healthy alternate exists in the same pool, according to the
-    failover order defined by traffic and origin steering. When set false (the
-    default) zero-downtime failover will only occur between origins within the same
-    pool. See `session_affinity_attributes` for control over when sessions are
-    broken or reassigned.
-    """
-
-
-class RuleOverridesLocationStrategy(BaseModel):
-    mode: Optional[Literal["pop", "resolver_ip"]] = None
-    """
-    Determines the authoritative location when ECS is not preferred, does not exist
-    in the request, or its GeoIP lookup is unsuccessful.
-
-    - `"pop"`: Use the Cloudflare PoP location.
-    - `"resolver_ip"`: Use the DNS resolver GeoIP location. If the GeoIP lookup is
-      unsuccessful, use the Cloudflare PoP location.
-    """
-
-    prefer_ecs: Optional[Literal["always", "never", "proximity", "geo"]] = None
-    """
-    Whether the EDNS Client Subnet (ECS) GeoIP should be preferred as the
-    authoritative location.
-
-    - `"always"`: Always prefer ECS.
-    - `"never"`: Never prefer ECS.
-    - `"proximity"`: Prefer ECS only when `steering_policy="proximity"`.
-    - `"geo"`: Prefer ECS only when `steering_policy="geo"`.
-    """
-
-
-class RuleOverridesRandomSteering(BaseModel):
-    default_weight: Optional[float] = None
-    """
-    The default weight for pools in the load balancer that are not specified in the
-    pool_weights map.
-    """
-
-    pool_weights: Optional[object] = None
-    """A mapping of pool IDs to custom weights.
-
-    The weight is relative to other pools in the load balancer.
-    """
-
-
-class RuleOverridesSessionAffinityAttributes(BaseModel):
-    drain_duration: Optional[float] = None
-    """Configures the drain duration in seconds.
-
-    This field is only used when session affinity is enabled on the load balancer.
-    """
-
-    headers: Optional[List[str]] = None
-    """
-    Configures the names of HTTP headers to base session affinity on when header
-    `session_affinity` is enabled. At least one HTTP header name must be provided.
-    To specify the exact cookies to be used, include an item in the following
-    format: `"cookie:<cookie-name-1>,<cookie-name-2>"` (example) where everything
-    after the colon is a comma-separated list of cookie names. Providing only
-    `"cookie"` will result in all cookies being used. The default max number of HTTP
-    header names that can be provided depends on your plan: 5 for Enterprise, 1 for
-    all other plans.
-    """
-
-    require_all_headers: Optional[bool] = None
-    """
-    When header `session_affinity` is enabled, this option can be used to specify
-    how HTTP headers on load balancing requests will be used. The supported values
-    are:
-
-    - `"true"`: Load balancing requests must contain _all_ of the HTTP headers
-      specified by the `headers` session affinity attribute, otherwise sessions
-      aren't created.
-    - `"false"`: Load balancing requests must contain _at least one_ of the HTTP
-      headers specified by the `headers` session affinity attribute, otherwise
-      sessions aren't created.
-    """
-
-    samesite: Optional[Literal["Auto", "Lax", "None", "Strict"]] = None
-    """Configures the SameSite attribute on session affinity cookie.
-
-    Value "Auto" will be translated to "Lax" or "None" depending if Always Use HTTPS
-    is enabled. Note: when using value "None", the secure attribute can not be set
-    to "Never".
-    """
-
-    secure: Optional[Literal["Auto", "Always", "Never"]] = None
-    """Configures the Secure attribute on session affinity cookie.
-
-    Value "Always" indicates the Secure attribute will be set in the Set-Cookie
-    header, "Never" indicates the Secure attribute will not be set, and "Auto" will
-    set the Secure attribute depending if Always Use HTTPS is enabled.
-    """
-
-    zero_downtime_failover: Optional[Literal["none", "temporary", "sticky"]] = None
-    """
-    Configures the zero-downtime failover between origins within a pool when session
-    affinity is enabled. This feature is currently incompatible with Argo, Tiered
-    Cache, and Bandwidth Alliance. The supported values are:
-
-    - `"none"`: No failover takes place for sessions pinned to the origin (default).
-    - `"temporary"`: Traffic will be sent to another other healthy origin until the
-      originally pinned origin is available; note that this can potentially result
-      in heavy origin flapping.
-    - `"sticky"`: The session affinity cookie is updated and subsequent requests are
-      sent to the new origin. Note: Zero-downtime failover with sticky sessions is
-      currently not supported for session affinity by header.
-    """
-
-
 class RuleOverrides(BaseModel):
-    adaptive_routing: Optional[RuleOverridesAdaptiveRouting] = None
+    adaptive_routing: Optional[AdaptiveRouting] = None
     """
     Controls features that modify the routing of requests to pools and origins in
     response to dynamic conditions, such as during the interval between active
@@ -228,7 +56,7 @@ class RuleOverrides(BaseModel):
     fallback_pool: Optional[object] = None
     """The pool ID to use when all other pools are detected as unhealthy."""
 
-    location_strategy: Optional[RuleOverridesLocationStrategy] = None
+    location_strategy: Optional[LocationStrategy] = None
     """Controls location-based steering for non-proxied requests.
 
     See `steering_policy` to learn how steering is affected.
@@ -242,7 +70,7 @@ class RuleOverrides(BaseModel):
     region_pool mapping if it exists else to default_pools.
     """
 
-    random_steering: Optional[RuleOverridesRandomSteering] = None
+    random_steering: Optional[RandomSteering] = None
     """Configures pool weights.
 
     - `steering_policy="random"`: A random pool is selected with probability
@@ -287,7 +115,7 @@ class RuleOverrides(BaseModel):
       configuration.
     """
 
-    session_affinity_attributes: Optional[RuleOverridesSessionAffinityAttributes] = None
+    session_affinity_attributes: Optional[SessionAffinityAttributes] = None
     """Configures attributes for session affinity."""
 
     session_affinity_ttl: Optional[float] = None
@@ -391,71 +219,6 @@ class Rule(BaseModel):
     """
     If this rule's condition is true, this causes rule evaluation to stop after
     processing this rule.
-    """
-
-
-class SessionAffinityAttributes(BaseModel):
-    drain_duration: Optional[float] = None
-    """Configures the drain duration in seconds.
-
-    This field is only used when session affinity is enabled on the load balancer.
-    """
-
-    headers: Optional[List[str]] = None
-    """
-    Configures the names of HTTP headers to base session affinity on when header
-    `session_affinity` is enabled. At least one HTTP header name must be provided.
-    To specify the exact cookies to be used, include an item in the following
-    format: `"cookie:<cookie-name-1>,<cookie-name-2>"` (example) where everything
-    after the colon is a comma-separated list of cookie names. Providing only
-    `"cookie"` will result in all cookies being used. The default max number of HTTP
-    header names that can be provided depends on your plan: 5 for Enterprise, 1 for
-    all other plans.
-    """
-
-    require_all_headers: Optional[bool] = None
-    """
-    When header `session_affinity` is enabled, this option can be used to specify
-    how HTTP headers on load balancing requests will be used. The supported values
-    are:
-
-    - `"true"`: Load balancing requests must contain _all_ of the HTTP headers
-      specified by the `headers` session affinity attribute, otherwise sessions
-      aren't created.
-    - `"false"`: Load balancing requests must contain _at least one_ of the HTTP
-      headers specified by the `headers` session affinity attribute, otherwise
-      sessions aren't created.
-    """
-
-    samesite: Optional[Literal["Auto", "Lax", "None", "Strict"]] = None
-    """Configures the SameSite attribute on session affinity cookie.
-
-    Value "Auto" will be translated to "Lax" or "None" depending if Always Use HTTPS
-    is enabled. Note: when using value "None", the secure attribute can not be set
-    to "Never".
-    """
-
-    secure: Optional[Literal["Auto", "Always", "Never"]] = None
-    """Configures the Secure attribute on session affinity cookie.
-
-    Value "Always" indicates the Secure attribute will be set in the Set-Cookie
-    header, "Never" indicates the Secure attribute will not be set, and "Auto" will
-    set the Secure attribute depending if Always Use HTTPS is enabled.
-    """
-
-    zero_downtime_failover: Optional[Literal["none", "temporary", "sticky"]] = None
-    """
-    Configures the zero-downtime failover between origins within a pool when session
-    affinity is enabled. This feature is currently incompatible with Argo, Tiered
-    Cache, and Bandwidth Alliance. The supported values are:
-
-    - `"none"`: No failover takes place for sessions pinned to the origin (default).
-    - `"temporary"`: Traffic will be sent to another other healthy origin until the
-      originally pinned origin is available; note that this can potentially result
-      in heavy origin flapping.
-    - `"sticky"`: The session affinity cookie is updated and subsequent requests are
-      sent to the new origin. Note: Zero-downtime failover with sticky sessions is
-      currently not supported for session affinity by header.
     """
 
 

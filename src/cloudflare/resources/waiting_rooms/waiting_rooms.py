@@ -33,6 +33,8 @@ from .events import (
 )
 from ...types import (
     WaitingRoom,
+    CookieAttributesParam,
+    AdditionalRoutesItemParam,
     WaitingRoomDeleteResponse,
     waiting_room_edit_params,
     waiting_room_create_params,
@@ -116,8 +118,8 @@ class WaitingRooms(SyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[waiting_room_create_params.AdditionalRoute] | NotGiven = NOT_GIVEN,
-        cookie_attributes: waiting_room_create_params.CookieAttributes | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesItemParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
         cookie_suffix: str | NotGiven = NOT_GIVEN,
         custom_page_html: str | NotGiven = NOT_GIVEN,
         default_template_language: Literal[
@@ -472,8 +474,8 @@ class WaitingRooms(SyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[waiting_room_update_params.AdditionalRoute] | NotGiven = NOT_GIVEN,
-        cookie_attributes: waiting_room_update_params.CookieAttributes | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesItemParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
         cookie_suffix: str | NotGiven = NOT_GIVEN,
         custom_page_html: str | NotGiven = NOT_GIVEN,
         default_template_language: Literal[
@@ -910,8 +912,8 @@ class WaitingRooms(SyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[waiting_room_edit_params.AdditionalRoute] | NotGiven = NOT_GIVEN,
-        cookie_attributes: waiting_room_edit_params.CookieAttributes | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesItemParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
         cookie_suffix: str | NotGiven = NOT_GIVEN,
         custom_page_html: str | NotGiven = NOT_GIVEN,
         default_template_language: Literal[
@@ -1339,8 +1341,8 @@ class AsyncWaitingRooms(AsyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[waiting_room_create_params.AdditionalRoute] | NotGiven = NOT_GIVEN,
-        cookie_attributes: waiting_room_create_params.CookieAttributes | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesItemParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
         cookie_suffix: str | NotGiven = NOT_GIVEN,
         custom_page_html: str | NotGiven = NOT_GIVEN,
         default_template_language: Literal[
@@ -1695,8 +1697,8 @@ class AsyncWaitingRooms(AsyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[waiting_room_update_params.AdditionalRoute] | NotGiven = NOT_GIVEN,
-        cookie_attributes: waiting_room_update_params.CookieAttributes | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesItemParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
         cookie_suffix: str | NotGiven = NOT_GIVEN,
         custom_page_html: str | NotGiven = NOT_GIVEN,
         default_template_language: Literal[
@@ -2133,8 +2135,8 @@ class AsyncWaitingRooms(AsyncAPIResource):
         name: str,
         new_users_per_minute: int,
         total_active_users: int,
-        additional_routes: Iterable[waiting_room_edit_params.AdditionalRoute] | NotGiven = NOT_GIVEN,
-        cookie_attributes: waiting_room_edit_params.CookieAttributes | NotGiven = NOT_GIVEN,
+        additional_routes: Iterable[AdditionalRoutesItemParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
         cookie_suffix: str | NotGiven = NOT_GIVEN,
         custom_page_html: str | NotGiven = NOT_GIVEN,
         default_template_language: Literal[

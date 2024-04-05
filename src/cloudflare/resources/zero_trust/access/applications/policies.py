@@ -26,9 +26,11 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from .....types.zero_trust import ExcludeItemParam, IncludeItemParam, RequireItemParam
 from .....types.zero_trust.access.applications import (
-    ZeroTrustPolicies,
+    Policy,
     PolicyDeleteResponse,
+    ApprovalGroupItemParam,
     policy_create_params,
     policy_update_params,
 )
@@ -50,18 +52,18 @@ class Policies(SyncAPIResource):
         uuid: str,
         *,
         decision: Literal["allow", "deny", "non_identity", "bypass"],
-        include: Iterable[policy_create_params.Include],
+        include: Iterable[IncludeItemParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        approval_groups: Iterable[policy_create_params.ApprovalGroup] | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupItemParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[policy_create_params.Exclude] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
         purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[policy_create_params.Require] | NotGiven = NOT_GIVEN,
+        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -69,7 +71,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustPolicies:
+    ) -> Policy:
         """
         Create a new Access policy for an application.
 
@@ -163,7 +165,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
     def update(
@@ -172,18 +174,18 @@ class Policies(SyncAPIResource):
         *,
         uuid1: str,
         decision: Literal["allow", "deny", "non_identity", "bypass"],
-        include: Iterable[policy_update_params.Include],
+        include: Iterable[IncludeItemParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        approval_groups: Iterable[policy_update_params.ApprovalGroup] | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupItemParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[policy_update_params.Exclude] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
         purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[policy_update_params.Require] | NotGiven = NOT_GIVEN,
+        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -191,7 +193,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustPolicies:
+    ) -> Policy:
         """
         Update a configured Access policy.
 
@@ -289,7 +291,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
     def list(
@@ -304,7 +306,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustPolicies]:
+    ) -> SyncSinglePage[Policy]:
         """
         Lists Access policies configured for an application.
 
@@ -342,11 +344,11 @@ class Policies(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
-            page=SyncSinglePage[ZeroTrustPolicies],
+            page=SyncSinglePage[Policy],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustPolicies,
+            model=Policy,
         )
 
     def delete(
@@ -427,7 +429,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustPolicies:
+    ) -> Policy:
         """
         Fetches a single Access policy.
 
@@ -476,7 +478,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
 
@@ -494,18 +496,18 @@ class AsyncPolicies(AsyncAPIResource):
         uuid: str,
         *,
         decision: Literal["allow", "deny", "non_identity", "bypass"],
-        include: Iterable[policy_create_params.Include],
+        include: Iterable[IncludeItemParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        approval_groups: Iterable[policy_create_params.ApprovalGroup] | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupItemParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[policy_create_params.Exclude] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
         purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[policy_create_params.Require] | NotGiven = NOT_GIVEN,
+        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -513,7 +515,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustPolicies:
+    ) -> Policy:
         """
         Create a new Access policy for an application.
 
@@ -607,7 +609,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
     async def update(
@@ -616,18 +618,18 @@ class AsyncPolicies(AsyncAPIResource):
         *,
         uuid1: str,
         decision: Literal["allow", "deny", "non_identity", "bypass"],
-        include: Iterable[policy_update_params.Include],
+        include: Iterable[IncludeItemParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        approval_groups: Iterable[policy_update_params.ApprovalGroup] | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupItemParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[policy_update_params.Exclude] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
         purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[policy_update_params.Require] | NotGiven = NOT_GIVEN,
+        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -635,7 +637,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustPolicies:
+    ) -> Policy:
         """
         Update a configured Access policy.
 
@@ -733,7 +735,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
     def list(
@@ -748,7 +750,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustPolicies, AsyncSinglePage[ZeroTrustPolicies]]:
+    ) -> AsyncPaginator[Policy, AsyncSinglePage[Policy]]:
         """
         Lists Access policies configured for an application.
 
@@ -786,11 +788,11 @@ class AsyncPolicies(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
-            page=AsyncSinglePage[ZeroTrustPolicies],
+            page=AsyncSinglePage[Policy],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustPolicies,
+            model=Policy,
         )
 
     async def delete(
@@ -871,7 +873,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustPolicies:
+    ) -> Policy:
         """
         Fetches a single Access policy.
 
@@ -920,7 +922,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustPolicies], ResultWrapper[ZeroTrustPolicies]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
 

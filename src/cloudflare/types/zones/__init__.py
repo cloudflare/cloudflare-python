@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+from .nameserver import Nameserver as Nameserver
 from .dns_setting import DNSSetting as DNSSetting
+from .nameserver_param import NameserverParam as NameserverParam
 from .hold_create_params import HoldCreateParams as HoldCreateParams
 from .hold_delete_params import HoldDeleteParams as HoldDeleteParams
 from .dns_setting_edit_params import DNSSettingEditParams as DNSSettingEditParams

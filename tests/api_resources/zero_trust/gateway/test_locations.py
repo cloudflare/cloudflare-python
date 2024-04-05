@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from cloudflare.types.zero_trust.gateway import (
-    ZeroTrustGatewayLocations,
+    Locations,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -28,7 +28,7 @@ class TestLocations:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         )
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -40,7 +40,7 @@ class TestLocations:
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +53,7 @@ class TestLocations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         location = response.parse()
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -66,7 +66,7 @@ class TestLocations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             location = response.parse()
-            assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+            assert_matches_type(Locations, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -87,7 +87,7 @@ class TestLocations:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         )
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +100,7 @@ class TestLocations:
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -114,7 +114,7 @@ class TestLocations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         location = response.parse()
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -128,7 +128,7 @@ class TestLocations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             location = response.parse()
-            assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+            assert_matches_type(Locations, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestLocations:
         location = client.zero_trust.gateway.locations.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncSinglePage[ZeroTrustGatewayLocations], location, path=["response"])
+        assert_matches_type(SyncSinglePage[Locations], location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -167,7 +167,7 @@ class TestLocations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         location = response.parse()
-        assert_matches_type(SyncSinglePage[ZeroTrustGatewayLocations], location, path=["response"])
+        assert_matches_type(SyncSinglePage[Locations], location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -179,7 +179,7 @@ class TestLocations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             location = response.parse()
-            assert_matches_type(SyncSinglePage[ZeroTrustGatewayLocations], location, path=["response"])
+            assert_matches_type(SyncSinglePage[Locations], location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -255,7 +255,7 @@ class TestLocations:
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -268,7 +268,7 @@ class TestLocations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         location = response.parse()
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -281,7 +281,7 @@ class TestLocations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             location = response.parse()
-            assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+            assert_matches_type(Locations, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -311,7 +311,7 @@ class TestAsyncLocations:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         )
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -323,7 +323,7 @@ class TestAsyncLocations:
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -336,7 +336,7 @@ class TestAsyncLocations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         location = await response.parse()
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -349,7 +349,7 @@ class TestAsyncLocations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             location = await response.parse()
-            assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+            assert_matches_type(Locations, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -370,7 +370,7 @@ class TestAsyncLocations:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         )
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -383,7 +383,7 @@ class TestAsyncLocations:
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -397,7 +397,7 @@ class TestAsyncLocations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         location = await response.parse()
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -411,7 +411,7 @@ class TestAsyncLocations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             location = await response.parse()
-            assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+            assert_matches_type(Locations, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -438,7 +438,7 @@ class TestAsyncLocations:
         location = await async_client.zero_trust.gateway.locations.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncSinglePage[ZeroTrustGatewayLocations], location, path=["response"])
+        assert_matches_type(AsyncSinglePage[Locations], location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -450,7 +450,7 @@ class TestAsyncLocations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         location = await response.parse()
-        assert_matches_type(AsyncSinglePage[ZeroTrustGatewayLocations], location, path=["response"])
+        assert_matches_type(AsyncSinglePage[Locations], location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -462,7 +462,7 @@ class TestAsyncLocations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             location = await response.parse()
-            assert_matches_type(AsyncSinglePage[ZeroTrustGatewayLocations], location, path=["response"])
+            assert_matches_type(AsyncSinglePage[Locations], location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -538,7 +538,7 @@ class TestAsyncLocations:
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -551,7 +551,7 @@ class TestAsyncLocations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         location = await response.parse()
-        assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+        assert_matches_type(Locations, location, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -564,7 +564,7 @@ class TestAsyncLocations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             location = await response.parse()
-            assert_matches_type(ZeroTrustGatewayLocations, location, path=["response"])
+            assert_matches_type(Locations, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -5,8 +5,9 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .cookie_attributes import CookieAttributes
 
-__all__ = ["WaitingRoom", "AdditionalRoute", "CookieAttributes"]
+__all__ = ["WaitingRoom", "AdditionalRoute"]
 
 
 class AdditionalRoute(BaseModel):
@@ -24,24 +25,6 @@ class AdditionalRoute(BaseModel):
     The waiting room will be enabled for all subpaths as well. If there are two
     waiting rooms on the same subpath, the waiting room for the most specific path
     will be chosen. Wildcards and query parameters are not supported.
-    """
-
-
-class CookieAttributes(BaseModel):
-    samesite: Optional[Literal["auto", "lax", "none", "strict"]] = None
-    """Configures the SameSite attribute on the waiting room cookie.
-
-    Value `auto` will be translated to `lax` or `none` depending if **Always Use
-    HTTPS** is enabled. Note that when using value `none`, the secure attribute
-    cannot be set to `never`.
-    """
-
-    secure: Optional[Literal["auto", "always", "never"]] = None
-    """Configures the Secure attribute on the waiting room cookie.
-
-    Value `always` indicates that the Secure attribute will be set in the Set-Cookie
-    header, `never` indicates that the Secure attribute will not be set, and `auto`
-    will set the Secure attribute depending if **Always Use HTTPS** is enabled.
     """
 
 

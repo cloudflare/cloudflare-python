@@ -35,7 +35,9 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.devices import (
-    DevicePostureRules,
+    InputParam,
+    MatchItemParam,
+    DevicePostureRule,
     PostureDeleteResponse,
     posture_create_params,
     posture_delete_params,
@@ -86,8 +88,8 @@ class Posture(SyncAPIResource):
         ],
         description: str | NotGiven = NOT_GIVEN,
         expiration: str | NotGiven = NOT_GIVEN,
-        input: posture_create_params.Input | NotGiven = NOT_GIVEN,
-        match: Iterable[posture_create_params.Match] | NotGiven = NOT_GIVEN,
+        input: InputParam | NotGiven = NOT_GIVEN,
+        match: Iterable[MatchItemParam] | NotGiven = NOT_GIVEN,
         schedule: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -95,7 +97,7 @@ class Posture(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureRules]:
+    ) -> Optional[DevicePostureRule]:
         """
         Creates a new device posture rule.
 
@@ -147,7 +149,7 @@ class Posture(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureRules]], ResultWrapper[DevicePostureRules]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
     def update(
@@ -179,8 +181,8 @@ class Posture(SyncAPIResource):
         ],
         description: str | NotGiven = NOT_GIVEN,
         expiration: str | NotGiven = NOT_GIVEN,
-        input: posture_update_params.Input | NotGiven = NOT_GIVEN,
-        match: Iterable[posture_update_params.Match] | NotGiven = NOT_GIVEN,
+        input: InputParam | NotGiven = NOT_GIVEN,
+        match: Iterable[MatchItemParam] | NotGiven = NOT_GIVEN,
         schedule: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -188,7 +190,7 @@ class Posture(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureRules]:
+    ) -> Optional[DevicePostureRule]:
         """
         Updates a device posture rule.
 
@@ -244,7 +246,7 @@ class Posture(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureRules]], ResultWrapper[DevicePostureRules]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
     def list(
@@ -257,7 +259,7 @@ class Posture(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DevicePostureRules]:
+    ) -> SyncSinglePage[DevicePostureRule]:
         """
         Fetches device posture rules for a Zero Trust account.
 
@@ -274,11 +276,11 @@ class Posture(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/posture",
-            page=SyncSinglePage[DevicePostureRules],
+            page=SyncSinglePage[DevicePostureRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DevicePostureRules,
+            model=DevicePostureRule,
         )
 
     def delete(
@@ -336,7 +338,7 @@ class Posture(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureRules]:
+    ) -> Optional[DevicePostureRule]:
         """
         Fetches a single device posture rule.
 
@@ -364,7 +366,7 @@ class Posture(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureRules]], ResultWrapper[DevicePostureRules]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
 
@@ -409,8 +411,8 @@ class AsyncPosture(AsyncAPIResource):
         ],
         description: str | NotGiven = NOT_GIVEN,
         expiration: str | NotGiven = NOT_GIVEN,
-        input: posture_create_params.Input | NotGiven = NOT_GIVEN,
-        match: Iterable[posture_create_params.Match] | NotGiven = NOT_GIVEN,
+        input: InputParam | NotGiven = NOT_GIVEN,
+        match: Iterable[MatchItemParam] | NotGiven = NOT_GIVEN,
         schedule: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -418,7 +420,7 @@ class AsyncPosture(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureRules]:
+    ) -> Optional[DevicePostureRule]:
         """
         Creates a new device posture rule.
 
@@ -470,7 +472,7 @@ class AsyncPosture(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureRules]], ResultWrapper[DevicePostureRules]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
     async def update(
@@ -502,8 +504,8 @@ class AsyncPosture(AsyncAPIResource):
         ],
         description: str | NotGiven = NOT_GIVEN,
         expiration: str | NotGiven = NOT_GIVEN,
-        input: posture_update_params.Input | NotGiven = NOT_GIVEN,
-        match: Iterable[posture_update_params.Match] | NotGiven = NOT_GIVEN,
+        input: InputParam | NotGiven = NOT_GIVEN,
+        match: Iterable[MatchItemParam] | NotGiven = NOT_GIVEN,
         schedule: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -511,7 +513,7 @@ class AsyncPosture(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureRules]:
+    ) -> Optional[DevicePostureRule]:
         """
         Updates a device posture rule.
 
@@ -567,7 +569,7 @@ class AsyncPosture(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureRules]], ResultWrapper[DevicePostureRules]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
     def list(
@@ -580,7 +582,7 @@ class AsyncPosture(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DevicePostureRules, AsyncSinglePage[DevicePostureRules]]:
+    ) -> AsyncPaginator[DevicePostureRule, AsyncSinglePage[DevicePostureRule]]:
         """
         Fetches device posture rules for a Zero Trust account.
 
@@ -597,11 +599,11 @@ class AsyncPosture(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/posture",
-            page=AsyncSinglePage[DevicePostureRules],
+            page=AsyncSinglePage[DevicePostureRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DevicePostureRules,
+            model=DevicePostureRule,
         )
 
     async def delete(
@@ -659,7 +661,7 @@ class AsyncPosture(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DevicePostureRules]:
+    ) -> Optional[DevicePostureRule]:
         """
         Fetches a single device posture rule.
 
@@ -687,7 +689,7 @@ class AsyncPosture(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DevicePostureRules]], ResultWrapper[DevicePostureRules]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
 

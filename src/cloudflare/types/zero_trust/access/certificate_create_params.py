@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, TypedDict
 
+from .associated_hostnames_item import AssociatedHostnamesItem
+
 __all__ = ["CertificateCreateParams"]
 
 
@@ -21,5 +23,5 @@ class CertificateCreateParams(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    associated_hostnames: List[str]
+    associated_hostnames: List[AssociatedHostnamesItem]
     """The hostnames of the applications that will use this certificate."""

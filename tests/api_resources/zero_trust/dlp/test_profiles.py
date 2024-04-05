@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.dlp import DLPProfiles, ProfileGetResponse
+from cloudflare.types.zero_trust.dlp import DLPProfile, ProfileGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestProfiles:
         profile = client.zero_trust.dlp.profiles.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[DLPProfiles], profile, path=["response"])
+        assert_matches_type(SyncSinglePage[DLPProfile], profile, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -36,7 +36,7 @@ class TestProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         profile = response.parse()
-        assert_matches_type(SyncSinglePage[DLPProfiles], profile, path=["response"])
+        assert_matches_type(SyncSinglePage[DLPProfile], profile, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -48,7 +48,7 @@ class TestProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             profile = response.parse()
-            assert_matches_type(SyncSinglePage[DLPProfiles], profile, path=["response"])
+            assert_matches_type(SyncSinglePage[DLPProfile], profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -122,7 +122,7 @@ class TestAsyncProfiles:
         profile = await async_client.zero_trust.dlp.profiles.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[DLPProfiles], profile, path=["response"])
+        assert_matches_type(AsyncSinglePage[DLPProfile], profile, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +134,7 @@ class TestAsyncProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         profile = await response.parse()
-        assert_matches_type(AsyncSinglePage[DLPProfiles], profile, path=["response"])
+        assert_matches_type(AsyncSinglePage[DLPProfile], profile, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -146,7 +146,7 @@ class TestAsyncProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             profile = await response.parse()
-            assert_matches_type(AsyncSinglePage[DLPProfiles], profile, path=["response"])
+            assert_matches_type(AsyncSinglePage[DLPProfile], profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
