@@ -9,22 +9,22 @@ from ...types import shared_params
 
 __all__ = [
     "RuleCreateParams",
-    "RulesetsBlockRule",
-    "RulesetsBlockRuleActionParameters",
-    "RulesetsBlockRuleActionParametersResponse",
-    "RulesetsExecuteRule",
-    "RulesetsExecuteRuleActionParameters",
-    "RulesetsExecuteRuleActionParametersMatchedData",
-    "RulesetsExecuteRuleActionParametersOverrides",
-    "RulesetsExecuteRuleActionParametersOverridesCategory",
-    "RulesetsExecuteRuleActionParametersOverridesRule",
-    "RulesetsLogRule",
-    "RulesetsSkipRule",
-    "RulesetsSkipRuleActionParameters",
+    "BlockRule",
+    "BlockRuleActionParameters",
+    "BlockRuleActionParametersResponse",
+    "ExecuteRule",
+    "ExecuteRuleActionParameters",
+    "ExecuteRuleActionParametersMatchedData",
+    "ExecuteRuleActionParametersOverrides",
+    "ExecuteRuleActionParametersOverridesCategory",
+    "ExecuteRuleActionParametersOverridesRule",
+    "LogRule",
+    "SkipRule",
+    "SkipRuleActionParameters",
 ]
 
 
-class RulesetsBlockRule(TypedDict, total=False):
+class BlockRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -37,7 +37,7 @@ class RulesetsBlockRule(TypedDict, total=False):
     action: Literal["block"]
     """The action to perform when the rule matches."""
 
-    action_parameters: RulesetsBlockRuleActionParameters
+    action_parameters: BlockRuleActionParameters
     """The parameters configuring the rule's action."""
 
     description: str
@@ -56,7 +56,7 @@ class RulesetsBlockRule(TypedDict, total=False):
     """The reference of the rule (the rule ID by default)."""
 
 
-class RulesetsBlockRuleActionParametersResponse(TypedDict, total=False):
+class BlockRuleActionParametersResponse(TypedDict, total=False):
     content: Required[str]
     """The content to return."""
 
@@ -67,12 +67,12 @@ class RulesetsBlockRuleActionParametersResponse(TypedDict, total=False):
     """The status code to return."""
 
 
-class RulesetsBlockRuleActionParameters(TypedDict, total=False):
-    response: RulesetsBlockRuleActionParametersResponse
+class BlockRuleActionParameters(TypedDict, total=False):
+    response: BlockRuleActionParametersResponse
     """The response to show when the block is applied."""
 
 
-class RulesetsExecuteRule(TypedDict, total=False):
+class ExecuteRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -85,7 +85,7 @@ class RulesetsExecuteRule(TypedDict, total=False):
     action: Literal["execute"]
     """The action to perform when the rule matches."""
 
-    action_parameters: RulesetsExecuteRuleActionParameters
+    action_parameters: ExecuteRuleActionParameters
     """The parameters configuring the rule's action."""
 
     description: str
@@ -104,12 +104,12 @@ class RulesetsExecuteRule(TypedDict, total=False):
     """The reference of the rule (the rule ID by default)."""
 
 
-class RulesetsExecuteRuleActionParametersMatchedData(TypedDict, total=False):
+class ExecuteRuleActionParametersMatchedData(TypedDict, total=False):
     public_key: Required[str]
     """The public key to encrypt matched data logs with."""
 
 
-class RulesetsExecuteRuleActionParametersOverridesCategory(TypedDict, total=False):
+class ExecuteRuleActionParametersOverridesCategory(TypedDict, total=False):
     category: Required[str]
     """The name of the category to override."""
 
@@ -123,7 +123,7 @@ class RulesetsExecuteRuleActionParametersOverridesCategory(TypedDict, total=Fals
     """The sensitivity level to use for rules in the category."""
 
 
-class RulesetsExecuteRuleActionParametersOverridesRule(TypedDict, total=False):
+class ExecuteRuleActionParametersOverridesRule(TypedDict, total=False):
     id: Required[str]
     """The ID of the rule to override."""
 
@@ -140,14 +140,14 @@ class RulesetsExecuteRuleActionParametersOverridesRule(TypedDict, total=False):
     """The sensitivity level to use for the rule."""
 
 
-class RulesetsExecuteRuleActionParametersOverrides(TypedDict, total=False):
+class ExecuteRuleActionParametersOverrides(TypedDict, total=False):
     action: str
     """An action to override all rules with.
 
     This option has lower precedence than rule and category overrides.
     """
 
-    categories: Iterable[RulesetsExecuteRuleActionParametersOverridesCategory]
+    categories: Iterable[ExecuteRuleActionParametersOverridesCategory]
     """A list of category-level overrides.
 
     This option has the second-highest precedence after rule-level overrides.
@@ -159,7 +159,7 @@ class RulesetsExecuteRuleActionParametersOverrides(TypedDict, total=False):
     This option has lower precedence than rule and category overrides.
     """
 
-    rules: Iterable[RulesetsExecuteRuleActionParametersOverridesRule]
+    rules: Iterable[ExecuteRuleActionParametersOverridesRule]
     """A list of rule-level overrides. This option has the highest precedence."""
 
     sensitivity_level: Literal["default", "medium", "low", "eoff"]
@@ -170,18 +170,18 @@ class RulesetsExecuteRuleActionParametersOverrides(TypedDict, total=False):
     """
 
 
-class RulesetsExecuteRuleActionParameters(TypedDict, total=False):
+class ExecuteRuleActionParameters(TypedDict, total=False):
     id: Required[str]
     """The ID of the ruleset to execute."""
 
-    matched_data: RulesetsExecuteRuleActionParametersMatchedData
+    matched_data: ExecuteRuleActionParametersMatchedData
     """The configuration to use for matched data logging."""
 
-    overrides: RulesetsExecuteRuleActionParametersOverrides
+    overrides: ExecuteRuleActionParametersOverrides
     """A set of overrides to apply to the target ruleset."""
 
 
-class RulesetsLogRule(TypedDict, total=False):
+class LogRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -213,7 +213,7 @@ class RulesetsLogRule(TypedDict, total=False):
     """The reference of the rule (the rule ID by default)."""
 
 
-class RulesetsSkipRule(TypedDict, total=False):
+class SkipRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -226,7 +226,7 @@ class RulesetsSkipRule(TypedDict, total=False):
     action: Literal["skip"]
     """The action to perform when the rule matches."""
 
-    action_parameters: RulesetsSkipRuleActionParameters
+    action_parameters: SkipRuleActionParameters
     """The parameters configuring the rule's action."""
 
     description: str
@@ -245,7 +245,7 @@ class RulesetsSkipRule(TypedDict, total=False):
     """The reference of the rule (the rule ID by default)."""
 
 
-class RulesetsSkipRuleActionParameters(TypedDict, total=False):
+class SkipRuleActionParameters(TypedDict, total=False):
     phases: List[
         Literal[
             "ddos_l4",
@@ -300,4 +300,4 @@ class RulesetsSkipRuleActionParameters(TypedDict, total=False):
     """
 
 
-RuleCreateParams = Union[RulesetsBlockRule, RulesetsExecuteRule, RulesetsLogRule, RulesetsSkipRule]
+RuleCreateParams = Union[BlockRule, ExecuteRule, LogRule, SkipRule]
