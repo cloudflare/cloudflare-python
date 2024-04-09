@@ -2,18 +2,18 @@
 
 from typing import List, Union, Optional
 
-from . import filter
 from ..action import Action
 from .products import Products
 from ..._models import BaseModel
 from .deleted_filter import DeletedFilter
+from ..firewall_filter import FirewallFilter
 
-__all__ = ["Rule", "Filter"]
+__all__ = ["FirewallRule", "Filter"]
 
-Filter = Union[filter.Filter, DeletedFilter]
+Filter = Union[FirewallFilter, DeletedFilter]
 
 
-class Rule(BaseModel):
+class FirewallRule(BaseModel):
     id: Optional[str] = None
     """The unique identifier of the firewall rule."""
 

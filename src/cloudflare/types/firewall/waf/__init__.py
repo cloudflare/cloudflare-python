@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 from .urls import URLs as URLs
-from .rules import Rules as Rules
 from .override import Override as Override
-from .rules_param import RulesParam as RulesParam
+from .waf_rule import WAFRule as WAFRule
 from .rewrite_action import RewriteAction as RewriteAction
 from .package_list_params import PackageListParams as PackageListParams
 from .override_list_params import OverrideListParams as OverrideListParams

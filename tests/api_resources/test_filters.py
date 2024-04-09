@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
-    Filter,
+    FirewallFilter,
     FilterCreateResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
@@ -75,7 +75,7 @@ class TestFilters:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -89,7 +89,7 @@ class TestFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = response.parse()
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -103,7 +103,7 @@ class TestFilters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             filter = response.parse()
-            assert_matches_type(Filter, filter, path=["response"])
+            assert_matches_type(FirewallFilter, filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -130,7 +130,7 @@ class TestFilters:
         filter = client.filters.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[Filter], filter, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -145,7 +145,7 @@ class TestFilters:
             per_page=5,
             ref="FIL-100",
         )
-        assert_matches_type(SyncV4PagePaginationArray[Filter], filter, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -157,7 +157,7 @@ class TestFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[Filter], filter, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -169,7 +169,7 @@ class TestFilters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             filter = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[Filter], filter, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[FirewallFilter], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -189,7 +189,7 @@ class TestFilters:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -203,7 +203,7 @@ class TestFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = response.parse()
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -217,7 +217,7 @@ class TestFilters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             filter = response.parse()
-            assert_matches_type(Filter, filter, path=["response"])
+            assert_matches_type(FirewallFilter, filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -245,7 +245,7 @@ class TestFilters:
             "372e67954025e0ba6aaa6d586b9e0b61",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -258,7 +258,7 @@ class TestFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = response.parse()
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -271,7 +271,7 @@ class TestFilters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             filter = response.parse()
-            assert_matches_type(Filter, filter, path=["response"])
+            assert_matches_type(FirewallFilter, filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -348,7 +348,7 @@ class TestAsyncFilters:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -362,7 +362,7 @@ class TestAsyncFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = await response.parse()
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -376,7 +376,7 @@ class TestAsyncFilters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             filter = await response.parse()
-            assert_matches_type(Filter, filter, path=["response"])
+            assert_matches_type(FirewallFilter, filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -403,7 +403,7 @@ class TestAsyncFilters:
         filter = await async_client.filters.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Filter], filter, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -418,7 +418,7 @@ class TestAsyncFilters:
             per_page=5,
             ref="FIL-100",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Filter], filter, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -430,7 +430,7 @@ class TestAsyncFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[Filter], filter, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -442,7 +442,7 @@ class TestAsyncFilters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             filter = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[Filter], filter, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[FirewallFilter], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -462,7 +462,7 @@ class TestAsyncFilters:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -476,7 +476,7 @@ class TestAsyncFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = await response.parse()
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -490,7 +490,7 @@ class TestAsyncFilters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             filter = await response.parse()
-            assert_matches_type(Filter, filter, path=["response"])
+            assert_matches_type(FirewallFilter, filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -518,7 +518,7 @@ class TestAsyncFilters:
             "372e67954025e0ba6aaa6d586b9e0b61",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -531,7 +531,7 @@ class TestAsyncFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = await response.parse()
-        assert_matches_type(Filter, filter, path=["response"])
+        assert_matches_type(FirewallFilter, filter, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -544,7 +544,7 @@ class TestAsyncFilters:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             filter = await response.parse()
-            assert_matches_type(Filter, filter, path=["response"])
+            assert_matches_type(FirewallFilter, filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

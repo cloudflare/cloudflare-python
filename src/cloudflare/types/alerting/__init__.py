@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from .filter import Filter as Filter
 from .policy import Policy as Policy
 from .history import History as History
 from .mechanism import Mechanism as Mechanism
-from .filter_param import FilterParam as FilterParam
 from .policy_param import PolicyParam as PolicyParam
+from .policy_filter import PolicyFilter as PolicyFilter
 from .mechanism_param import MechanismParam as MechanismParam
 from .history_list_params import HistoryListParams as HistoryListParams
+from .policy_filter_param import PolicyFilterParam as PolicyFilterParam
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .policy_create_response import PolicyCreateResponse as PolicyCreateResponse

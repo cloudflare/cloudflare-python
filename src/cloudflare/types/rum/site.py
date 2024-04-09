@@ -3,7 +3,7 @@
 from typing import List, Optional
 from datetime import datetime
 
-from .rule import Rule
+from .rum_rule import RUMRule
 from ..._models import BaseModel
 
 __all__ = ["Site", "Ruleset"]
@@ -31,7 +31,7 @@ class Site(BaseModel):
 
     created: Optional[datetime] = None
 
-    rules: Optional[List[Rule]] = None
+    rules: Optional[List[RUMRule]] = None
     """A list of rules."""
 
     ruleset: Optional[Ruleset] = None
