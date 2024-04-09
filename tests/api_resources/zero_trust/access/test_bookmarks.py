@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import (
-    Bookmarks,
+    Bookmark,
     BookmarkDeleteResponse,
 )
 
@@ -29,7 +29,7 @@ class TestBookmarks:
             identifier="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +43,7 @@ class TestBookmarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bookmark = response.parse()
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestBookmarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bookmark = response.parse()
-            assert_matches_type(Bookmarks, bookmark, path=["response"])
+            assert_matches_type(Bookmark, bookmark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -86,7 +86,7 @@ class TestBookmarks:
             identifier="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +100,7 @@ class TestBookmarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bookmark = response.parse()
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -114,7 +114,7 @@ class TestBookmarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bookmark = response.parse()
-            assert_matches_type(Bookmarks, bookmark, path=["response"])
+            assert_matches_type(Bookmark, bookmark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -141,7 +141,7 @@ class TestBookmarks:
         bookmark = client.zero_trust.access.bookmarks.list(
             "699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncSinglePage[Bookmarks], bookmark, path=["response"])
+        assert_matches_type(SyncSinglePage[Bookmark], bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -153,7 +153,7 @@ class TestBookmarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bookmark = response.parse()
-        assert_matches_type(SyncSinglePage[Bookmarks], bookmark, path=["response"])
+        assert_matches_type(SyncSinglePage[Bookmark], bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -165,7 +165,7 @@ class TestBookmarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bookmark = response.parse()
-            assert_matches_type(SyncSinglePage[Bookmarks], bookmark, path=["response"])
+            assert_matches_type(SyncSinglePage[Bookmark], bookmark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -241,7 +241,7 @@ class TestBookmarks:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -254,7 +254,7 @@ class TestBookmarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bookmark = response.parse()
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -267,7 +267,7 @@ class TestBookmarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bookmark = response.parse()
-            assert_matches_type(Bookmarks, bookmark, path=["response"])
+            assert_matches_type(Bookmark, bookmark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -298,7 +298,7 @@ class TestAsyncBookmarks:
             identifier="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -312,7 +312,7 @@ class TestAsyncBookmarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bookmark = await response.parse()
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -326,7 +326,7 @@ class TestAsyncBookmarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bookmark = await response.parse()
-            assert_matches_type(Bookmarks, bookmark, path=["response"])
+            assert_matches_type(Bookmark, bookmark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -355,7 +355,7 @@ class TestAsyncBookmarks:
             identifier="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -369,7 +369,7 @@ class TestAsyncBookmarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bookmark = await response.parse()
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -383,7 +383,7 @@ class TestAsyncBookmarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bookmark = await response.parse()
-            assert_matches_type(Bookmarks, bookmark, path=["response"])
+            assert_matches_type(Bookmark, bookmark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -410,7 +410,7 @@ class TestAsyncBookmarks:
         bookmark = await async_client.zero_trust.access.bookmarks.list(
             "699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncSinglePage[Bookmarks], bookmark, path=["response"])
+        assert_matches_type(AsyncSinglePage[Bookmark], bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -422,7 +422,7 @@ class TestAsyncBookmarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bookmark = await response.parse()
-        assert_matches_type(AsyncSinglePage[Bookmarks], bookmark, path=["response"])
+        assert_matches_type(AsyncSinglePage[Bookmark], bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -434,7 +434,7 @@ class TestAsyncBookmarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bookmark = await response.parse()
-            assert_matches_type(AsyncSinglePage[Bookmarks], bookmark, path=["response"])
+            assert_matches_type(AsyncSinglePage[Bookmark], bookmark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -510,7 +510,7 @@ class TestAsyncBookmarks:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -523,7 +523,7 @@ class TestAsyncBookmarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bookmark = await response.parse()
-        assert_matches_type(Bookmarks, bookmark, path=["response"])
+        assert_matches_type(Bookmark, bookmark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -536,7 +536,7 @@ class TestAsyncBookmarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bookmark = await response.parse()
-            assert_matches_type(Bookmarks, bookmark, path=["response"])
+            assert_matches_type(Bookmark, bookmark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -35,8 +35,8 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.devices import (
-    InputParam,
-    MatchParam,
+    DeviceInputParam,
+    DeviceMatchParam,
     DevicePostureRule,
     PostureDeleteResponse,
     posture_create_params,
@@ -88,8 +88,8 @@ class Posture(SyncAPIResource):
         ],
         description: str | NotGiven = NOT_GIVEN,
         expiration: str | NotGiven = NOT_GIVEN,
-        input: InputParam | NotGiven = NOT_GIVEN,
-        match: Iterable[MatchParam] | NotGiven = NOT_GIVEN,
+        input: DeviceInputParam | NotGiven = NOT_GIVEN,
+        match: Iterable[DeviceMatchParam] | NotGiven = NOT_GIVEN,
         schedule: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -181,8 +181,8 @@ class Posture(SyncAPIResource):
         ],
         description: str | NotGiven = NOT_GIVEN,
         expiration: str | NotGiven = NOT_GIVEN,
-        input: InputParam | NotGiven = NOT_GIVEN,
-        match: Iterable[MatchParam] | NotGiven = NOT_GIVEN,
+        input: DeviceInputParam | NotGiven = NOT_GIVEN,
+        match: Iterable[DeviceMatchParam] | NotGiven = NOT_GIVEN,
         schedule: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -411,8 +411,8 @@ class AsyncPosture(AsyncAPIResource):
         ],
         description: str | NotGiven = NOT_GIVEN,
         expiration: str | NotGiven = NOT_GIVEN,
-        input: InputParam | NotGiven = NOT_GIVEN,
-        match: Iterable[MatchParam] | NotGiven = NOT_GIVEN,
+        input: DeviceInputParam | NotGiven = NOT_GIVEN,
+        match: Iterable[DeviceMatchParam] | NotGiven = NOT_GIVEN,
         schedule: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -504,8 +504,8 @@ class AsyncPosture(AsyncAPIResource):
         ],
         description: str | NotGiven = NOT_GIVEN,
         expiration: str | NotGiven = NOT_GIVEN,
-        input: InputParam | NotGiven = NOT_GIVEN,
-        match: Iterable[MatchParam] | NotGiven = NOT_GIVEN,
+        input: DeviceInputParam | NotGiven = NOT_GIVEN,
+        match: Iterable[DeviceMatchParam] | NotGiven = NOT_GIVEN,
         schedule: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

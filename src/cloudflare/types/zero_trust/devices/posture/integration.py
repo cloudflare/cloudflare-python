@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ....._models import BaseModel
 
-__all__ = ["Integrations", "Config"]
+__all__ = ["Integration", "Config"]
 
 
 class Config(BaseModel):
@@ -19,7 +19,7 @@ class Config(BaseModel):
     """The Workspace One client ID provided in the Workspace One Admin Dashboard."""
 
 
-class Integrations(BaseModel):
+class Integration(BaseModel):
     id: Optional[str] = None
     """API UUID."""
 

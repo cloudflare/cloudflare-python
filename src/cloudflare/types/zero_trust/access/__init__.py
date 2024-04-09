@@ -4,16 +4,16 @@ from __future__ import annotations
 
 from .tag import Tag as Tag
 from .user import User as User
-from .bookmarks import Bookmarks as Bookmarks
+from .bookmark import Bookmark as Bookmark
 from .application import Application as Application
 from .certificate import Certificate as Certificate
 from .custom_page import CustomPage as CustomPage
 from .app_id_param import AppIDParam as AppIDParam
 from .cors_headers import CorsHeaders as CorsHeaders
-from .ervice_token import ErviceToken as ErviceToken
 from .allowed_idpsh import AllowedIdpsh as AllowedIdpsh
 from .custom_pagesh import CustomPagesh as CustomPagesh
 from .saml_saas_app import SAMLSaasApp as SAMLSaasApp
+from .service_token import ServiceToken as ServiceToken
 from .allowed_headersh import AllowedHeadersh as AllowedHeadersh
 from .allowed_methodsh import AllowedMethodsh as AllowedMethodsh
 from .allowed_originsh import AllowedOriginsh as AllowedOriginsh

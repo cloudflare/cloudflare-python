@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["MatchParam"]
+__all__ = ["DeviceMatchParam"]
 
 
-class MatchParam(TypedDict, total=False):
+class DeviceMatchParam(TypedDict, total=False):
     platform: Literal["windows", "mac", "linux", "android", "ios"]
