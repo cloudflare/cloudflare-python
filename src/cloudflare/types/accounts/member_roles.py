@@ -2,6 +2,6 @@
 
 from typing import List
 
-__all__ = ["Roles"]
+__all__ = ["MemberRoles"]
 
-Roles = List[str]
+MemberRoles = List[str]

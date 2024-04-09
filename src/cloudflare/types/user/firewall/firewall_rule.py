@@ -5,11 +5,19 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
-from ...firewall import IPConfiguration, ASNConfiguration, CIDRConfiguration, IPV6Configuration, CountryConfiguration
+from ...firewall import (
+    ASNConfiguration,
+    IPV6Configuration,
+    CountryConfiguration,
+    AccessRuleIPConfiguration,
+    AccessRuleCIDRConfiguration,
+)
 
 __all__ = ["FirewallRule", "Configuration"]
 
-Configuration = Union[IPConfiguration, IPV6Configuration, CIDRConfiguration, ASNConfiguration, CountryConfiguration]
+Configuration = Union[
+    AccessRuleIPConfiguration, IPV6Configuration, AccessRuleCIDRConfiguration, ASNConfiguration, CountryConfiguration
+]
 
 
 class FirewallRule(BaseModel):

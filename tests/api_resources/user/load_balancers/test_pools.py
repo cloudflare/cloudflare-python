@@ -10,8 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.load_balancers import Pool
 from cloudflare.types.user.load_balancers import (
-    Pool,
     PoolDeleteResponse,
     PoolHealthResponse,
     PoolPreviewResponse,

@@ -38,8 +38,8 @@ Types:
 ```python
 from cloudflare.types.accounts import (
     Member,
+    MemberRoles,
     MemberWithInviteCode,
-    Roles,
     MemberListResponse,
     MemberDeleteResponse,
 )
@@ -214,7 +214,6 @@ Types:
 
 ```python
 from cloudflare.types.user.load_balancers import (
-    Pool,
     PoolDeleteResponse,
     PoolHealthResponse,
     PoolPreviewResponse,
@@ -224,12 +223,12 @@ from cloudflare.types.user.load_balancers import (
 
 Methods:
 
-- <code title="post /user/load_balancers/pools">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">create</a>(\*\*<a href="src/cloudflare/types/user/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
-- <code title="put /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">update</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
-- <code title="get /user/load_balancers/pools">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">list</a>(\*\*<a href="src/cloudflare/types/user/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">SyncSinglePage[Pool]</a></code>
+- <code title="post /user/load_balancers/pools">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">create</a>(\*\*<a href="src/cloudflare/types/user/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool.py">Pool</a></code>
+- <code title="put /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">update</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool.py">Pool</a></code>
+- <code title="get /user/load_balancers/pools">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">list</a>(\*\*<a href="src/cloudflare/types/user/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool.py">SyncSinglePage[Pool]</a></code>
 - <code title="delete /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">delete</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool_delete_response.py">PoolDeleteResponse</a></code>
-- <code title="patch /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">edit</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
-- <code title="get /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">get</a>(pool_id) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
+- <code title="patch /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">edit</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool.py">Pool</a></code>
+- <code title="get /user/load_balancers/pools/{pool_id}">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">get</a>(pool_id) -> <a href="./src/cloudflare/types/load_balancers/pool.py">Pool</a></code>
 - <code title="get /user/load_balancers/pools/{pool_id}/health">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">health</a>(pool_id) -> <a href="./src/cloudflare/types/user/load_balancers/pool_health_response.py">PoolHealthResponse</a></code>
 - <code title="post /user/load_balancers/pools/{pool_id}/preview">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">preview</a>(pool_id, \*\*<a href="src/cloudflare/types/user/load_balancers/pool_preview_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool_preview_response.py">PoolPreviewResponse</a></code>
 - <code title="get /user/load_balancers/pools/{pool_id}/references">client.user.load_balancers.pools.<a href="./src/cloudflare/resources/user/load_balancers/pools.py">references</a>(pool_id) -> <a href="./src/cloudflare/types/user/load_balancers/pool_references_response.py">Optional</a></code>
@@ -1173,12 +1172,12 @@ from cloudflare.types.load_balancers import Pool, PoolDeleteResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
-- <code title="put /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">update</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
-- <code title="get /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">SyncSinglePage[Pool]</a></code>
+- <code title="post /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_create_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool.py">Pool</a></code>
+- <code title="put /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">update</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_update_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool.py">Pool</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/pools">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_list_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool.py">SyncSinglePage[Pool]</a></code>
 - <code title="delete /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">delete</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool_delete_response.py">PoolDeleteResponse</a></code>
-- <code title="patch /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">edit</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
-- <code title="get /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">get</a>(pool_id, \*, account_id) -> <a href="./src/cloudflare/types/user/load_balancers/pool.py">Pool</a></code>
+- <code title="patch /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">edit</a>(pool_id, \*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/pool_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/pool.py">Pool</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/pools/{pool_id}">client.load_balancers.pools.<a href="./src/cloudflare/resources/load_balancers/pools/pools.py">get</a>(pool_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/pool.py">Pool</a></code>
 
 ### Health
 
@@ -1834,10 +1833,10 @@ Types:
 
 ```python
 from cloudflare.types.firewall import (
-    CIDRConfiguration,
     Configuration,
-    IPConfiguration,
     Lockdown,
+    LockdownCIDRConfiguration,
+    LockdownIPConfiguration,
     URLsItem,
     LockdownDeleteResponse,
 )
@@ -1880,10 +1879,10 @@ Types:
 
 ```python
 from cloudflare.types.firewall import (
+    AccessRuleCIDRConfiguration,
+    AccessRuleIPConfiguration,
     ASNConfiguration,
-    CIDRConfiguration,
     CountryConfiguration,
-    IPConfiguration,
     IPV6Configuration,
     AccessRuleListResponse,
     AccessRuleDeleteResponse,
@@ -5584,8 +5583,6 @@ Types:
 ```python
 from cloudflare.types.zero_trust.dlp import (
     ContextAwareness,
-    CustomProfile,
-    PredefinedProfile,
     Profile,
     SkipConfiguration,
     ProfileGetResponse,

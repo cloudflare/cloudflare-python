@@ -9,11 +9,9 @@ from .configuration import Configuration as Configuration
 from .products_item import ProductsItem as ProductsItem
 from .deleted_filter import DeletedFilter as DeletedFilter
 from .rule_get_params import RuleGetParams as RuleGetParams
-from .ip_configuration import IPConfiguration as IPConfiguration
 from .rule_edit_params import RuleEditParams as RuleEditParams
 from .rule_list_params import RuleListParams as RuleListParams
 from .asn_configuration import ASNConfiguration as ASNConfiguration
-from .cidr_configuration import CIDRConfiguration as CIDRConfiguration
 from .ipv6_configuration import IPV6Configuration as IPV6Configuration
 from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_delete_params import RuleDeleteParams as RuleDeleteParams
@@ -28,7 +26,6 @@ from .ua_rule_create_params import UARuleCreateParams as UARuleCreateParams
 from .ua_rule_delete_params import UARuleDeleteParams as UARuleDeleteParams
 from .ua_rule_list_response import UARuleListResponse as UARuleListResponse
 from .ua_rule_update_params import UARuleUpdateParams as UARuleUpdateParams
-from .ip_configuration_param import IPConfigurationParam as IPConfigurationParam
 from .lockdown_create_params import LockdownCreateParams as LockdownCreateParams
 from .lockdown_delete_params import LockdownDeleteParams as LockdownDeleteParams
 from .lockdown_update_params import LockdownUpdateParams as LockdownUpdateParams
@@ -36,10 +33,15 @@ from .access_rule_edit_params import AccessRuleEditParams as AccessRuleEditParam
 from .access_rule_list_params import AccessRuleListParams as AccessRuleListParams
 from .asn_configuration_param import ASNConfigurationParam as ASNConfigurationParam
 from .ua_rule_delete_response import UARuleDeleteResponse as UARuleDeleteResponse
-from .cidr_configuration_param import CIDRConfigurationParam as CIDRConfigurationParam
 from .ipv6_configuration_param import IPV6ConfigurationParam as IPV6ConfigurationParam
 from .lockdown_delete_response import LockdownDeleteResponse as LockdownDeleteResponse
 from .access_rule_create_params import AccessRuleCreateParams as AccessRuleCreateParams
 from .access_rule_delete_params import AccessRuleDeleteParams as AccessRuleDeleteParams
+from .lockdown_ip_configuration import LockdownIPConfiguration as LockdownIPConfiguration
 from .access_rule_delete_response import AccessRuleDeleteResponse as AccessRuleDeleteResponse
 from .country_configuration_param import CountryConfigurationParam as CountryConfigurationParam
+from .lockdown_cidr_configuration import LockdownCIDRConfiguration as LockdownCIDRConfiguration
+from .access_rule_ip_configuration import AccessRuleIPConfiguration as AccessRuleIPConfiguration
+from .access_rule_cidr_configuration import AccessRuleCIDRConfiguration as AccessRuleCIDRConfiguration
+from .access_rule_ip_configuration_param import AccessRuleIPConfigurationParam as AccessRuleIPConfigurationParam
+from .access_rule_cidr_configuration_param import AccessRuleCIDRConfigurationParam as AccessRuleCIDRConfigurationParam
