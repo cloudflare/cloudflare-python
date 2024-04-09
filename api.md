@@ -1456,7 +1456,6 @@ Types:
 ```python
 from cloudflare.types import (
     CustomHostname,
-    CustomMetadata,
     UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1,
     UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510,
     UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1,
@@ -1673,16 +1672,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_routing import Action, EmailRule, Matcher
+from cloudflare.types.email_routing import Action, EmailRoutingRule, Matcher
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_identifier}/email/routing/rules">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">create</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/email_rule.py">EmailRule</a></code>
-- <code title="put /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">update</a>(rule_identifier, \*, zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/email_rule.py">EmailRule</a></code>
-- <code title="get /zones/{zone_identifier}/email/routing/rules">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/email_rule.py">SyncV4PagePaginationArray[EmailRule]</a></code>
-- <code title="delete /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">delete</a>(rule_identifier, \*, zone_identifier) -> <a href="./src/cloudflare/types/email_routing/email_rule.py">EmailRule</a></code>
-- <code title="get /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">get</a>(rule_identifier, \*, zone_identifier) -> <a href="./src/cloudflare/types/email_routing/email_rule.py">EmailRule</a></code>
+- <code title="post /zones/{zone_identifier}/email/routing/rules">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">create</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/email_routing_rule.py">EmailRoutingRule</a></code>
+- <code title="put /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">update</a>(rule_identifier, \*, zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/email_routing_rule.py">EmailRoutingRule</a></code>
+- <code title="get /zones/{zone_identifier}/email/routing/rules">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/email_routing/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_routing/email_routing_rule.py">SyncV4PagePaginationArray[EmailRoutingRule]</a></code>
+- <code title="delete /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">delete</a>(rule_identifier, \*, zone_identifier) -> <a href="./src/cloudflare/types/email_routing/email_routing_rule.py">EmailRoutingRule</a></code>
+- <code title="get /zones/{zone_identifier}/email/routing/rules/{rule_identifier}">client.email_routing.rules.<a href="./src/cloudflare/resources/email_routing/rules/rules.py">get</a>(rule_identifier, \*, zone_identifier) -> <a href="./src/cloudflare/types/email_routing/email_routing_rule.py">EmailRoutingRule</a></code>
 
 ### CatchAlls
 
