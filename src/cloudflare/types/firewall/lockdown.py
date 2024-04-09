@@ -3,8 +3,8 @@
 from typing import List
 from datetime import datetime
 
-from .urls import URLs
 from ..._models import BaseModel
+from .lockdown_url import LockdownURL
 from .configuration import Configuration
 
 __all__ = ["Lockdown"]
@@ -33,7 +33,7 @@ class Lockdown(BaseModel):
     paused: bool
     """When true, indicates that the rule is currently paused."""
 
-    urls: List[URLs]
+    urls: List[LockdownURL]
     """The URLs to include in the rule definition.
 
     You can use wildcards. Each entered URL will be escaped before use, which means
