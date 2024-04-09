@@ -13,7 +13,7 @@ from .ip_list_rule_param import IPListRuleParam
 from .everyone_rule_param import EveryoneRuleParam
 from .email_list_rule_param import EmailListRuleParam
 from .okta_group_rule_param import OktaGroupRuleParam
-from .saml_group_rule_param import SamlGroupRuleParam
+from .saml_group_rule_param import SAMLGroupRuleParam
 from .azure_group_rule_param import AzureGroupRuleParam
 from .certificate_rule_param import CertificateRuleParam
 from .gsuite_group_rule_param import GsuiteGroupRuleParam
@@ -39,7 +39,7 @@ AccessRuleParam = Union[
     GitHubOrganizationRuleParam,
     GsuiteGroupRuleParam,
     OktaGroupRuleParam,
-    SamlGroupRuleParam,
+    SAMLGroupRuleParam,
     ServiceTokenRuleParam,
     AnyValidServiceTokenRuleParam,
     ExternalEvaluationRuleParam,

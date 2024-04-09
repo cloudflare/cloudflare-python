@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .pool import Pool as Pool
 from .monitor import Monitor as Monitor
 from .preview import Preview as Preview
 from .analytics import Analytics as Analytics

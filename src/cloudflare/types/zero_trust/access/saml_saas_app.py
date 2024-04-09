@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["SamlSaasApp", "CustomAttributes", "CustomAttributesSource"]
+__all__ = ["SAMLSaasApp", "CustomAttributes", "CustomAttributesSource"]
 
 
 class CustomAttributesSource(BaseModel):
@@ -30,7 +30,7 @@ class CustomAttributes(BaseModel):
     source: Optional[CustomAttributesSource] = None
 
 
-class SamlSaasApp(BaseModel):
+class SAMLSaasApp(BaseModel):
     auth_type: Optional[Literal["saml", "oidc"]] = None
     """Optional identifier indicating the authentication protocol used for the saas
     app.

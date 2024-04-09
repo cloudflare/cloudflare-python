@@ -5,9 +5,9 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Required, TypedDict
 
+from .upstream_ips_param import UpstreamIPsParam
 from .attack_mitigation_param import AttackMitigationParam
 from .firewall_ips_item_param import FirewallIPsItemParam
-from .upstream_ips_items_param import UpstreamIPsItemsParam
 
 __all__ = ["FirewallEditParams"]
 
@@ -33,7 +33,7 @@ class FirewallEditParams(TypedDict, total=False):
     name: Required[str]
     """DNS Firewall Cluster Name."""
 
-    upstream_ips: Required[List[UpstreamIPsItemsParam]]
+    upstream_ips: Required[List[UpstreamIPsParam]]
 
     attack_mitigation: Optional[AttackMitigationParam]
     """Attack mitigation settings."""

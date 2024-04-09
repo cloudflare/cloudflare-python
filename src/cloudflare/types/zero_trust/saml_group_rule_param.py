@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["SamlGroupRuleParam", "Saml"]
+__all__ = ["SAMLGroupRuleParam", "SAML"]
 
 
-class Saml(TypedDict, total=False):
+class SAML(TypedDict, total=False):
     attribute_name: Required[str]
     """The name of the SAML attribute."""
 
@@ -15,5 +15,5 @@ class Saml(TypedDict, total=False):
     """The SAML attribute value to look for."""
 
 
-class SamlGroupRuleParam(TypedDict, total=False):
-    saml: Required[Saml]
+class SAMLGroupRuleParam(TypedDict, total=False):
+    saml: Required[SAML]

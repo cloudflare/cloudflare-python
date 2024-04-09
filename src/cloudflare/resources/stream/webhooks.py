@@ -23,11 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import (
-    UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
-    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
-)
-from ...types.stream import webhook_delete_params, webhook_update_params
+from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
+from ...types.stream import WebhookDeleteResponse, webhook_delete_params, webhook_update_params
 
 __all__ = ["Webhooks", "AsyncWebhooks"]
 
@@ -100,7 +97,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
+    ) -> WebhookDeleteResponse:
         """
         Deletes a webhook.
 
@@ -118,7 +115,7 @@ class Webhooks(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
+            WebhookDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/stream/webhook",
                 body=maybe_transform(body, webhook_delete_params.WebhookDeleteParams),
@@ -130,7 +127,7 @@ class Webhooks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
+                    Any, ResultWrapper[WebhookDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -250,7 +247,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
+    ) -> WebhookDeleteResponse:
         """
         Deletes a webhook.
 
@@ -268,7 +265,7 @@ class AsyncWebhooks(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
+            WebhookDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/stream/webhook",
                 body=await async_maybe_transform(body, webhook_delete_params.WebhookDeleteParams),
@@ -280,7 +277,7 @@ class AsyncWebhooks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
+                    Any, ResultWrapper[WebhookDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

@@ -2,9 +2,9 @@
 
 from typing import List, Optional
 
+from . import predefined_profile
 from ....._models import BaseModel
 from ..context_awareness import ContextAwareness
-from ..unnamed_schema_ref_e38bfdf1acf5a4bfada6779c79528bc0 import UnnamedSchemaRefE38bfdf1acf5a4bfada6779c79528bc0
 
 __all__ = ["PredefinedProfile", "Entry"]
 
@@ -45,5 +45,5 @@ class PredefinedProfile(BaseModel):
     ocr_enabled: Optional[bool] = None
     """If true, scan images via OCR to determine if any text present matches filters."""
 
-    type: Optional[UnnamedSchemaRefE38bfdf1acf5a4bfada6779c79528bc0] = None
+    type: Optional[predefined_profile.PredefinedProfile] = None
     """The type of the profile."""

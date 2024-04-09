@@ -19,8 +19,12 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
-from ....types.alerting.destinations import PagerdutyGetResponse, PagerdutyLinkResponse, PagerdutyCreateResponse
+from ....types.alerting.destinations import (
+    PagerdutyGetResponse,
+    PagerdutyLinkResponse,
+    PagerdutyCreateResponse,
+    PagerdutyDeleteResponse,
+)
 
 __all__ = ["PagerdutyResource", "AsyncPagerdutyResource"]
 
@@ -83,7 +87,7 @@ class PagerdutyResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
+    ) -> Optional[PagerdutyDeleteResponse]:
         """
         Deletes all the PagerDuty Services connected to the account.
 
@@ -101,7 +105,7 @@ class PagerdutyResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
+            Optional[PagerdutyDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
                 options=make_request_options(
@@ -112,7 +116,7 @@ class PagerdutyResource(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
+                    Any, ResultWrapper[PagerdutyDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -259,7 +263,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
+    ) -> Optional[PagerdutyDeleteResponse]:
         """
         Deletes all the PagerDuty Services connected to the account.
 
@@ -277,7 +281,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
+            Optional[PagerdutyDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
                 options=make_request_options(
@@ -288,7 +292,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
+                    Any, ResultWrapper[PagerdutyDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

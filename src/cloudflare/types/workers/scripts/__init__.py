@@ -8,6 +8,7 @@ from .tail_delete_params import TailDeleteParams as TailDeleteParams
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .consumer_script_item import ConsumerScriptItem as ConsumerScriptItem
 from .tail_create_response import TailCreateResponse as TailCreateResponse
+from .tail_delete_response import TailDeleteResponse as TailDeleteResponse
 from .version_get_response import VersionGetResponse as VersionGetResponse
 from .content_update_params import ContentUpdateParams as ContentUpdateParams
 from .schedule_get_response import ScheduleGetResponse as ScheduleGetResponse

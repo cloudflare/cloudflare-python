@@ -5,13 +5,13 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
-from .unnamed_schema_ref_b234e6a28c1a1c7c29213787c0621eaa import UnnamedSchemaRefB234e6a28c1a1c7c29213787c0621eaa
+from .origin_max_http_version import OriginMaxHTTPVersion
 
 __all__ = ["OriginMaxHTTPVersionGetResponse"]
 
 
 class OriginMaxHTTPVersionGetResponse(BaseModel):
-    id: UnnamedSchemaRefB234e6a28c1a1c7c29213787c0621eaa
+    id: OriginMaxHTTPVersion
     """Value of the zone setting."""
 
     modified_on: Optional[datetime] = None

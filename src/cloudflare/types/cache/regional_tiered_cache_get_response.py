@@ -4,13 +4,13 @@ from typing import Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from .unnamed_schema_ref_6535d2df7d4d089d21166bd140651307 import UnnamedSchemaRef6535d2df7d4d089d21166bd140651307
+from .regional_tiered_cache import RegionalTieredCache
 
 __all__ = ["RegionalTieredCacheGetResponse", "Value"]
 
 
 class Value(BaseModel):
-    id: UnnamedSchemaRef6535d2df7d4d089d21166bd140651307
+    id: RegionalTieredCache
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None
@@ -18,7 +18,7 @@ class Value(BaseModel):
 
 
 class RegionalTieredCacheGetResponse(BaseModel):
-    id: UnnamedSchemaRef6535d2df7d4d089d21166bd140651307
+    id: RegionalTieredCache
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None
