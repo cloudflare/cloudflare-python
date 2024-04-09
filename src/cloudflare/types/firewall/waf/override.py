@@ -2,9 +2,9 @@
 
 from typing import Dict, List, Optional
 
-from .urls import URLs
 from .waf_rule import WAFRule
 from ...._models import BaseModel
+from .override_url import OverrideURL
 from .rewrite_action import RewriteAction
 
 __all__ = ["Override"]
@@ -51,7 +51,7 @@ class Override(BaseModel):
     override, you must provide a `groups` object or a `rules` object.
     """
 
-    urls: Optional[List[URLs]] = None
+    urls: Optional[List[OverrideURL]] = None
     """The URLs to include in the current WAF override.
 
     You can use wildcards. Each entered URL will be escaped before use, which means

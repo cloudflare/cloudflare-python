@@ -1745,7 +1745,7 @@ from cloudflare.types.firewall import (
     Lockdown,
     LockdownCIDRConfiguration,
     LockdownIPConfiguration,
-    URLs,
+    LockdownURL,
     LockdownDeleteResponse,
 )
 ```
@@ -1830,8 +1830,8 @@ Types:
 ```python
 from cloudflare.types.firewall.waf import (
     Override,
+    OverrideURL,
     RewriteAction,
-    URLs,
     WAFRule,
     OverrideDeleteResponse,
 )
