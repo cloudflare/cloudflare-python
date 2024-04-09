@@ -7,7 +7,7 @@ from datetime import datetime
 
 import httpx
 
-from ...types import AllowedOriginsItem
+from ...types import AllowedOrigins
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -44,7 +44,7 @@ class DirectUpload(SyncAPIResource):
         *,
         account_id: str,
         max_duration_seconds: int,
-        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
@@ -144,7 +144,7 @@ class AsyncDirectUpload(AsyncAPIResource):
         *,
         account_id: str,
         max_duration_seconds: int,
-        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,

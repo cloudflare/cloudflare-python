@@ -3,7 +3,7 @@
 from typing import List
 
 from ..._models import BaseModel
-from ..user.tokens import PermissionItem
+from ..user.tokens import Permission
 
 __all__ = ["Role"]
 
@@ -18,5 +18,5 @@ class Role(BaseModel):
     name: str
     """Role Name."""
 
-    permissions: List[PermissionItem]
+    permissions: List[Permission]
     """Access permissions for this User."""

@@ -4,8 +4,8 @@ from typing import List
 from datetime import datetime
 from typing_extensions import Literal
 
+from .label import Label
 from ...._models import BaseModel
-from .label_item import LabelItem
 
 __all__ = ["Priority"]
 
@@ -17,7 +17,7 @@ class Priority(BaseModel):
     created: datetime
     """Priority creation time"""
 
-    labels: List[LabelItem]
+    labels: List[Label]
     """List of labels"""
 
     priority: int

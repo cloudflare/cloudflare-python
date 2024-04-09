@@ -3,7 +3,7 @@
 from typing import List, Optional
 from datetime import datetime
 
-from .scripts import ConsumerScriptItem
+from .scripts import ConsumerScript
 from ..._models import BaseModel
 
 __all__ = ["Script"]
@@ -31,7 +31,7 @@ class Script(BaseModel):
     placement_mode: Optional[str] = None
     """Specifies the placement mode for the Worker (e.g. 'smart')."""
 
-    tail_consumers: Optional[List[ConsumerScriptItem]] = None
+    tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""
 
     usage_model: Optional[str] = None

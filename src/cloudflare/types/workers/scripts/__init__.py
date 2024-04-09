@@ -3,15 +3,16 @@
 from __future__ import annotations
 
 from .deployment import Deployment as Deployment
+from .consumer_script import ConsumerScript as ConsumerScript
 from .deployment_param import DeploymentParam as DeploymentParam
 from .tail_get_response import TailGetResponse as TailGetResponse
 from .tail_create_params import TailCreateParams as TailCreateParams
 from .tail_delete_params import TailDeleteParams as TailDeleteParams
 from .setting_edit_params import SettingEditParams as SettingEditParams
-from .consumer_script_item import ConsumerScriptItem as ConsumerScriptItem
 from .tail_create_response import TailCreateResponse as TailCreateResponse
 from .tail_delete_response import TailDeleteResponse as TailDeleteResponse
 from .version_get_response import VersionGetResponse as VersionGetResponse
+from .consumer_script_param import ConsumerScriptParam as ConsumerScriptParam
 from .content_update_params import ContentUpdateParams as ContentUpdateParams
 from .schedule_get_response import ScheduleGetResponse as ScheduleGetResponse
 from .version_create_params import VersionCreateParams as VersionCreateParams
@@ -21,7 +22,6 @@ from .deployment_get_response import DeploymentGetResponse as DeploymentGetRespo
 from .version_create_response import VersionCreateResponse as VersionCreateResponse
 from .deployment_create_params import DeploymentCreateParams as DeploymentCreateParams
 from .schedule_update_response import ScheduleUpdateResponse as ScheduleUpdateResponse
-from .consumer_script_item_param import ConsumerScriptItemParam as ConsumerScriptItemParam
 from .deployment_create_response import DeploymentCreateResponse as DeploymentCreateResponse
 from .unnamed_schema_ref_c8302c265937f9d6f96fd69644e56b26 import (
     UnnamedSchemaRefC8302c265937f9d6f96fd69644e56b26 as UnnamedSchemaRefC8302c265937f9d6f96fd69644e56b26,

@@ -29,7 +29,7 @@ from ..._base_client import (
 from ...types.challenges import (
     Widget,
     WidgetDomain,
-    WidgetDomainItem,
+    WidgetListResponse,
     widget_list_params,
     widget_create_params,
     widget_update_params,
@@ -52,7 +52,7 @@ class Widgets(SyncAPIResource):
         self,
         *,
         account_id: str,
-        domains: List[WidgetDomainItem],
+        domains: List[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -148,7 +148,7 @@ class Widgets(SyncAPIResource):
         sitekey: str,
         *,
         account_id: str,
-        domains: List[WidgetDomainItem],
+        domains: List[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
         bot_fight_mode: bool | NotGiven = NOT_GIVEN,
@@ -232,7 +232,7 @@ class Widgets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[WidgetDomain]:
+    ) -> SyncV4PagePaginationArray[WidgetListResponse]:
         """
         Lists all turnstile widgets of an account.
 
@@ -259,7 +259,7 @@ class Widgets(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/challenges/widgets",
-            page=SyncV4PagePaginationArray[WidgetDomain],
+            page=SyncV4PagePaginationArray[WidgetListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -275,7 +275,7 @@ class Widgets(SyncAPIResource):
                     widget_list_params.WidgetListParams,
                 ),
             ),
-            model=WidgetDomain,
+            model=WidgetListResponse,
         )
 
     def delete(
@@ -436,7 +436,7 @@ class AsyncWidgets(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        domains: List[WidgetDomainItem],
+        domains: List[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -532,7 +532,7 @@ class AsyncWidgets(AsyncAPIResource):
         sitekey: str,
         *,
         account_id: str,
-        domains: List[WidgetDomainItem],
+        domains: List[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
         bot_fight_mode: bool | NotGiven = NOT_GIVEN,
@@ -616,7 +616,7 @@ class AsyncWidgets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WidgetDomain, AsyncV4PagePaginationArray[WidgetDomain]]:
+    ) -> AsyncPaginator[WidgetListResponse, AsyncV4PagePaginationArray[WidgetListResponse]]:
         """
         Lists all turnstile widgets of an account.
 
@@ -643,7 +643,7 @@ class AsyncWidgets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/challenges/widgets",
-            page=AsyncV4PagePaginationArray[WidgetDomain],
+            page=AsyncV4PagePaginationArray[WidgetListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -659,7 +659,7 @@ class AsyncWidgets(AsyncAPIResource):
                     widget_list_params.WidgetListParams,
                 ),
             ),
-            model=WidgetDomain,
+            model=WidgetListResponse,
         )
 
     async def delete(

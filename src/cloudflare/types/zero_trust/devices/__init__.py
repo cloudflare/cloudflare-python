@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 from .input import Input as Input
+from .match import Match as Match
 from .network import Network as Network
-from .match_item import MatchItem as MatchItem
 from .input_param import InputParam as InputParam
+from .match_param import MatchParam as MatchParam
 from .schema_data import SchemaData as SchemaData
 from .schema_http import SchemaHTTP as SchemaHTTP
 from .device_settings import DeviceSettings as DeviceSettings
 from .settings_policy import SettingsPolicy as SettingsPolicy
-from .match_item_param import MatchItemParam as MatchItemParam
 from .schema_data_param import SchemaDataParam as SchemaDataParam
 from .policy_edit_params import PolicyEditParams as PolicyEditParams
 from .device_posture_rule import DevicePostureRule as DevicePostureRule

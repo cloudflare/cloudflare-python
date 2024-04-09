@@ -18,18 +18,19 @@ from .txt_record import TXTRecord as TXTRecord
 from .uri_record import URIRecord as URIRecord
 from .aaaa_record import AAAARecord as AAAARecord
 from .cert_record import CERTRecord as CERTRecord
+from .record_tags import RecordTags as RecordTags
 from .svcb_record import SVCBRecord as SVCBRecord
 from .tlsa_record import TLSARecord as TLSARecord
 from .cname_record import CNAMERecord as CNAMERecord
+from .firewall_ips import FirewallIPs as FirewallIPs
 from .https_record import HTTPSRecord as HTTPSRecord
 from .naptr_record import NAPTRRecord as NAPTRRecord
 from .sshfp_record import SSHFPRecord as SSHFPRecord
 from .upstream_ips import UpstreamIPs as UpstreamIPs
 from .dnskey_record import DNSKEYRecord as DNSKEYRecord
 from .smimea_record import SMIMEARecord as SMIMEARecord
-from .record_tags_item import RecordTagsItem as RecordTagsItem
 from .attack_mitigation import AttackMitigation as AttackMitigation
-from .firewall_ips_item import FirewallIPsItem as FirewallIPsItem
+from .firewall_ips_param import FirewallIPsParam as FirewallIPsParam
 from .record_edit_params import RecordEditParams as RecordEditParams
 from .record_list_params import RecordListParams as RecordListParams
 from .record_scan_params import RecordScanParams as RecordScanParams
@@ -47,7 +48,6 @@ from .record_delete_response import RecordDeleteResponse as RecordDeleteResponse
 from .record_export_response import RecordExportResponse as RecordExportResponse
 from .record_import_response import RecordImportResponse as RecordImportResponse
 from .attack_mitigation_param import AttackMitigationParam as AttackMitigationParam
-from .firewall_ips_item_param import FirewallIPsItemParam as FirewallIPsItemParam
 from .firewall_delete_response import FirewallDeleteResponse as FirewallDeleteResponse
 from .unnamed_schema_ref_2f895e023ae55b55d2f5925449b819cd import (
     UnnamedSchemaRef2f895e023ae55b55d2f5925449b819cd as UnnamedSchemaRef2f895e023ae55b55d2f5925449b819cd,

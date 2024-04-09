@@ -25,7 +25,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.spectrum.analytics import DimensionItem
+from .....types.spectrum.analytics import Dimension
 from .....types.spectrum.analytics.events import BytimeGetResponse, bytime_get_params
 
 __all__ = ["Bytimes", "AsyncBytimes"]
@@ -44,7 +44,7 @@ class Bytimes(SyncAPIResource):
         self,
         zone: str,
         *,
-        dimensions: List[DimensionItem] | NotGiven = NOT_GIVEN,
+        dimensions: List[Dimension] | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         metrics: List[
             Literal[
@@ -173,7 +173,7 @@ class AsyncBytimes(AsyncAPIResource):
         self,
         zone: str,
         *,
-        dimensions: List[DimensionItem] | NotGiven = NOT_GIVEN,
+        dimensions: List[Dimension] | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         metrics: List[
             Literal[

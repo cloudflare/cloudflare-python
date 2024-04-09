@@ -30,8 +30,8 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.dns import (
     Firewall,
+    FirewallIPsParam,
     UpstreamIPsParam,
-    FirewallIPsItemParam,
     AttackMitigationParam,
     FirewallDeleteResponse,
     firewall_edit_params,
@@ -250,7 +250,7 @@ class FirewallResource(SyncAPIResource):
         *,
         account_id: str,
         deprecate_any_requests: bool,
-        dns_firewall_ips: List[FirewallIPsItemParam],
+        dns_firewall_ips: List[FirewallIPsParam],
         ecs_fallback: bool,
         maximum_cache_ttl: float,
         minimum_cache_ttl: float,
@@ -581,7 +581,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         *,
         account_id: str,
         deprecate_any_requests: bool,
-        dns_firewall_ips: List[FirewallIPsItemParam],
+        dns_firewall_ips: List[FirewallIPsParam],
         ecs_fallback: bool,
         maximum_cache_ttl: float,
         minimum_cache_ttl: float,

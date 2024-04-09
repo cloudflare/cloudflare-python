@@ -36,14 +36,6 @@ from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from .firewall import (
-    Firewall,
-    AsyncFirewall,
-    FirewallWithRawResponse,
-    AsyncFirewallWithRawResponse,
-    FirewallWithStreamingResponse,
-    AsyncFirewallWithStreamingResponse,
-)
 from ..._compat import cached_property
 from .audit_logs import (
     AuditLogs,
@@ -82,17 +74,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from .load_balancing import (
-    LoadBalancing,
-    AsyncLoadBalancing,
-    LoadBalancingWithRawResponse,
-    AsyncLoadBalancingWithRawResponse,
-    LoadBalancingWithStreamingResponse,
-    AsyncLoadBalancingWithStreamingResponse,
-)
 from .billing.billing import Billing, AsyncBilling
-from .firewall.firewall import Firewall, AsyncFirewall
-from .load_balancing.load_balancing import LoadBalancing, AsyncLoadBalancing
 
 __all__ = ["User", "AsyncUser"]
 
@@ -107,16 +89,8 @@ class User(SyncAPIResource):
         return Billing(self._client)
 
     @cached_property
-    def firewall(self) -> Firewall:
-        return Firewall(self._client)
-
-    @cached_property
     def invites(self) -> Invites:
         return Invites(self._client)
-
-    @cached_property
-    def load_balancing(self) -> LoadBalancing:
-        return LoadBalancing(self._client)
 
     @cached_property
     def organizations(self) -> Organizations:
@@ -241,16 +215,8 @@ class AsyncUser(AsyncAPIResource):
         return AsyncBilling(self._client)
 
     @cached_property
-    def firewall(self) -> AsyncFirewall:
-        return AsyncFirewall(self._client)
-
-    @cached_property
     def invites(self) -> AsyncInvites:
         return AsyncInvites(self._client)
-
-    @cached_property
-    def load_balancing(self) -> AsyncLoadBalancing:
-        return AsyncLoadBalancing(self._client)
 
     @cached_property
     def organizations(self) -> AsyncOrganizations:
@@ -385,16 +351,8 @@ class UserWithRawResponse:
         return BillingWithRawResponse(self._user.billing)
 
     @cached_property
-    def firewall(self) -> FirewallWithRawResponse:
-        return FirewallWithRawResponse(self._user.firewall)
-
-    @cached_property
     def invites(self) -> InvitesWithRawResponse:
         return InvitesWithRawResponse(self._user.invites)
-
-    @cached_property
-    def load_balancing(self) -> LoadBalancingWithRawResponse:
-        return LoadBalancingWithRawResponse(self._user.load_balancing)
 
     @cached_property
     def organizations(self) -> OrganizationsWithRawResponse:
@@ -429,16 +387,8 @@ class AsyncUserWithRawResponse:
         return AsyncBillingWithRawResponse(self._user.billing)
 
     @cached_property
-    def firewall(self) -> AsyncFirewallWithRawResponse:
-        return AsyncFirewallWithRawResponse(self._user.firewall)
-
-    @cached_property
     def invites(self) -> AsyncInvitesWithRawResponse:
         return AsyncInvitesWithRawResponse(self._user.invites)
-
-    @cached_property
-    def load_balancing(self) -> AsyncLoadBalancingWithRawResponse:
-        return AsyncLoadBalancingWithRawResponse(self._user.load_balancing)
 
     @cached_property
     def organizations(self) -> AsyncOrganizationsWithRawResponse:
@@ -473,16 +423,8 @@ class UserWithStreamingResponse:
         return BillingWithStreamingResponse(self._user.billing)
 
     @cached_property
-    def firewall(self) -> FirewallWithStreamingResponse:
-        return FirewallWithStreamingResponse(self._user.firewall)
-
-    @cached_property
     def invites(self) -> InvitesWithStreamingResponse:
         return InvitesWithStreamingResponse(self._user.invites)
-
-    @cached_property
-    def load_balancing(self) -> LoadBalancingWithStreamingResponse:
-        return LoadBalancingWithStreamingResponse(self._user.load_balancing)
 
     @cached_property
     def organizations(self) -> OrganizationsWithStreamingResponse:
@@ -517,16 +459,8 @@ class AsyncUserWithStreamingResponse:
         return AsyncBillingWithStreamingResponse(self._user.billing)
 
     @cached_property
-    def firewall(self) -> AsyncFirewallWithStreamingResponse:
-        return AsyncFirewallWithStreamingResponse(self._user.firewall)
-
-    @cached_property
     def invites(self) -> AsyncInvitesWithStreamingResponse:
         return AsyncInvitesWithStreamingResponse(self._user.invites)
-
-    @cached_property
-    def load_balancing(self) -> AsyncLoadBalancingWithStreamingResponse:
-        return AsyncLoadBalancingWithStreamingResponse(self._user.load_balancing)
 
     @cached_property
     def organizations(self) -> AsyncOrganizationsWithStreamingResponse:

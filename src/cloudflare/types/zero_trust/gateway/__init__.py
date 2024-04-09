@@ -8,6 +8,8 @@ from .app_type import AppType as AppType
 from .category import Category as Category
 from .location import Location as Location
 from .schedule import Schedule as Schedule
+from .gateway_ips import GatewayIPs as GatewayIPs
+from .lists_param import ListsParam as ListsParam
 from .rule_setting import RuleSetting as RuleSetting
 from .tls_settings import TLSSettings as TLSSettings
 from .fips_settings import FipsSettings as FipsSettings
@@ -15,7 +17,6 @@ from .gateway_filter import GatewayFilter as GatewayFilter
 from .proxy_endpoint import ProxyEndpoint as ProxyEndpoint
 from .schedule_param import ScheduleParam as ScheduleParam
 from .logging_setting import LoggingSetting as LoggingSetting
-from .gateway_ips_item import GatewayIPsItem as GatewayIPsItem
 from .gateway_settings import GatewaySettings as GatewaySettings
 from .list_edit_params import ListEditParams as ListEditParams
 from .location_network import LocationNetwork as LocationNetwork

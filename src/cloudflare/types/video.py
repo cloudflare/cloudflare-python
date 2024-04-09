@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from .stream import Watermaks
 from .._models import BaseModel
-from .allowed_origins_item import AllowedOriginsItem
+from .allowed_origins import AllowedOrigins
 
 __all__ = ["Video", "Input", "Playback", "Status"]
 
@@ -62,7 +62,7 @@ class Status(BaseModel):
 
 
 class Video(BaseModel):
-    allowed_origins: Optional[List[AllowedOriginsItem]] = FieldInfo(alias="allowedOrigins", default=None)
+    allowed_origins: Optional[List[AllowedOrigins]] = FieldInfo(alias="allowedOrigins", default=None)
     """Lists the origins allowed to display the video.
 
     Enter allowed origin domains in an array and use `*` for wildcard subdomains.

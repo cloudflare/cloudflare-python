@@ -24,7 +24,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.certificate_authorities import (
-    HostnameAssociationItem,
+    HostnameAssociation,
     HostnameAssociationGetResponse,
     HostnameAssociationUpdateResponse,
     hostname_association_get_params,
@@ -47,7 +47,7 @@ class HostnameAssociations(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        hostnames: List[HostnameAssociationItem] | NotGiven = NOT_GIVEN,
+        hostnames: List[HostnameAssociation] | NotGiven = NOT_GIVEN,
         mtls_certificate_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -157,7 +157,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        hostnames: List[HostnameAssociationItem] | NotGiven = NOT_GIVEN,
+        hostnames: List[HostnameAssociation] | NotGiven = NOT_GIVEN,
         mtls_certificate_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
