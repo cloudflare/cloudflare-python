@@ -16,14 +16,6 @@ from .zones import (
     ZonesWithStreamingResponse,
     AsyncZonesWithStreamingResponse,
 )
-from .workers import (
-    Workers,
-    AsyncWorkers,
-    WorkersWithRawResponse,
-    AsyncWorkersWithRawResponse,
-    WorkersWithStreamingResponse,
-    AsyncWorkersWithStreamingResponse,
-)
 from .settings import (
     Settings,
     AsyncSettings,
@@ -96,12 +88,6 @@ __all__ = [
     "AsyncHoldsWithRawResponse",
     "HoldsWithStreamingResponse",
     "AsyncHoldsWithStreamingResponse",
-    "Workers",
-    "AsyncWorkers",
-    "WorkersWithRawResponse",
-    "AsyncWorkersWithRawResponse",
-    "WorkersWithStreamingResponse",
-    "AsyncWorkersWithStreamingResponse",
     "Subscriptions",
     "AsyncSubscriptions",
     "SubscriptionsWithRawResponse",
