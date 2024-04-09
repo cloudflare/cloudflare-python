@@ -22,7 +22,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from ...types.accounts import Role
+from ...types.accounts import RoleListResponse
 
 __all__ = ["Roles", "AsyncRoles"]
 
@@ -46,7 +46,7 @@ class Roles(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Role]:
+    ) -> SyncSinglePage[RoleListResponse]:
         """
         Get all available roles for an account.
 
@@ -61,11 +61,11 @@ class Roles(SyncAPIResource):
         """
         return self._get_api_list(
             f"/accounts/{account_id}/roles",
-            page=SyncSinglePage[Role],
+            page=SyncSinglePage[RoleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Role,
+            model=RoleListResponse,
         )
 
     def get(
@@ -129,7 +129,7 @@ class AsyncRoles(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Role, AsyncSinglePage[Role]]:
+    ) -> AsyncPaginator[RoleListResponse, AsyncSinglePage[RoleListResponse]]:
         """
         Get all available roles for an account.
 
@@ -144,11 +144,11 @@ class AsyncRoles(AsyncAPIResource):
         """
         return self._get_api_list(
             f"/accounts/{account_id}/roles",
-            page=AsyncSinglePage[Role],
+            page=AsyncSinglePage[RoleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Role,
+            model=RoleListResponse,
         )
 
     async def get(

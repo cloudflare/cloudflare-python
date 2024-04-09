@@ -5,10 +5,10 @@ from typing import List
 from ..._models import BaseModel
 from ..user.tokens import Permission
 
-__all__ = ["Role"]
+__all__ = ["RoleListResponse"]
 
 
-class Role(BaseModel):
+class RoleListResponse(BaseModel):
     id: str
     """Role identifier tag."""
 

@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from .account import Account
 from .._models import BaseModel
-from .accounts import MemberRoles, PermissionGrant
+from .accounts import MemberRole, PermissionGrant
 
 __all__ = ["Membership", "Permissions"]
 
@@ -55,7 +55,7 @@ class Membership(BaseModel):
     permissions: Optional[Permissions] = None
     """All access permissions for the user at the account."""
 
-    roles: Optional[MemberRoles] = None
+    roles: Optional[MemberRole] = None
     """List of role names for the user at the account."""
 
     status: Optional[Literal["accepted", "pending", "rejected"]] = None
