@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypedDict
 
-from .ip_configuration_param import IPConfigurationParam
 from .asn_configuration_param import ASNConfigurationParam
-from .cidr_configuration_param import CIDRConfigurationParam
 from .ipv6_configuration_param import IPV6ConfigurationParam
 from .country_configuration_param import CountryConfigurationParam
+from .access_rule_ip_configuration_param import AccessRuleIPConfigurationParam
+from .access_rule_cidr_configuration_param import AccessRuleCIDRConfigurationParam
 
 __all__ = ["AccessRuleEditParams", "Configuration"]
 
@@ -34,9 +34,9 @@ class AccessRuleEditParams(TypedDict, total=False):
 
 
 Configuration = Union[
-    IPConfigurationParam,
+    AccessRuleIPConfigurationParam,
     IPV6ConfigurationParam,
-    CIDRConfigurationParam,
+    AccessRuleCIDRConfigurationParam,
     ASNConfigurationParam,
     CountryConfigurationParam,
 ]

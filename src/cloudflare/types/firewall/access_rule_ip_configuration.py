@@ -5,15 +5,14 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["IPConfiguration"]
+__all__ = ["AccessRuleIPConfiguration"]
 
 
-class IPConfiguration(BaseModel):
+class AccessRuleIPConfiguration(BaseModel):
     target: Optional[Literal["ip"]] = None
     """The configuration target.
 
-    You must set the target to `ip` when specifying an IP address in the Zone
-    Lockdown rule.
+    You must set the target to `ip` when specifying an IP address in the rule.
     """
 
     value: Optional[str] = None

@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
-from . import custom_profile
 from .pattern import Pattern
 from ....._models import BaseModel
 from ..context_awareness import ContextAwareness
@@ -59,7 +59,7 @@ class CustomProfile(BaseModel):
     ocr_enabled: Optional[bool] = None
     """If true, scan images via OCR to determine if any text present matches filters."""
 
-    type: Optional[custom_profile.CustomProfile] = None
+    type: Optional[Literal["custom"]] = None
     """The type of the profile."""
 
     updated_at: Optional[datetime] = None

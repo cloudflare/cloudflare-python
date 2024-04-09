@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
-from . import predefined_profile
 from ....._models import BaseModel
 from ..context_awareness import ContextAwareness
 
@@ -45,5 +45,5 @@ class PredefinedProfile(BaseModel):
     ocr_enabled: Optional[bool] = None
     """If true, scan images via OCR to determine if any text present matches filters."""
 
-    type: Optional[predefined_profile.PredefinedProfile] = None
+    type: Optional[Literal["predefined"]] = None
     """The type of the profile."""
