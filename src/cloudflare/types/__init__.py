@@ -17,9 +17,11 @@ from .filter import Filter as Filter
 from .header import Header as Header
 from .origin import Origin as Origin
 from .shared import (
+    Result as Result,
     ErrorData as ErrorData,
+    Identifier as Identifier,
+    ResponseInfo as ResponseInfo,
     UnnamedSchemaRef025497b7e63379c31929636b5186e45c as UnnamedSchemaRef025497b7e63379c31929636b5186e45c,
-    UnnamedSchemaRef5cf232a1d651060af6450ae882932776 as UnnamedSchemaRef5cf232a1d651060af6450ae882932776,
     UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f as UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
     UnnamedSchemaRef33f2e3917f3fe46ad98af0acbb1d9a19 as UnnamedSchemaRef33f2e3917f3fe46ad98af0acbb1d9a19,
     UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1 as UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1,
@@ -28,8 +30,6 @@ from .shared import (
     UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8 as UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
     UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0 as UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
     UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9 as UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9,
-    UnnamedSchemaRef3248f24329456e19dfa042fff9986f72 as UnnamedSchemaRef3248f24329456e19dfa042fff9986f72,
-    UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837 as UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
     UnnamedSchemaRef23001f1f0b697900e282236466a95fa3 as UnnamedSchemaRef23001f1f0b697900e282236466a95fa3,
     UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a as UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
     UnnamedSchemaRef619309774d07ec6904f1e354560d6028 as UnnamedSchemaRef619309774d07ec6904f1e354560d6028,
@@ -38,7 +38,6 @@ from .shared import (
     UnnamedSchemaRefB92f86eb861cd3dee83c40884802fda6 as UnnamedSchemaRefB92f86eb861cd3dee83c40884802fda6,
     UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854 as UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854,
     UnnamedSchemaRefD8600eb4758b3ae35607a0327bcd691b as UnnamedSchemaRefD8600eb4758b3ae35607a0327bcd691b,
-    UnnamedSchemaRefE7c61ebe06ebfc3861ae8b9db4ba152b as UnnamedSchemaRefE7c61ebe06ebfc3861ae8b9db4ba152b,
     UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846 as UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846,
     UnnamedSchemaRefEe1e79edcb234d14c4dd266880f2fd24 as UnnamedSchemaRefEe1e79edcb234d14c4dd266880f2fd24,
 )
@@ -262,6 +261,7 @@ from .mtls_certificate_create_params import MTLSCertificateCreateParams as MTLSC
 from .mtls_certificate_delete_params import MTLSCertificateDeleteParams as MTLSCertificateDeleteParams
 from .url_normalization_get_response import URLNormalizationGetResponse as URLNormalizationGetResponse
 from .zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull as ZoneAuthenticatedOriginPull
+from .custom_hostname_delete_response import CustomHostnameDeleteResponse as CustomHostnameDeleteResponse
 from .custom_nameserver_create_params import CustomNameserverCreateParams as CustomNameserverCreateParams
 from .custom_nameserver_delete_params import CustomNameserverDeleteParams as CustomNameserverDeleteParams
 from .custom_nameserver_verify_params import CustomNameserverVerifyParams as CustomNameserverVerifyParams
@@ -278,11 +278,16 @@ from .keyless_certificate_delete_params import KeylessCertificateDeleteParams as
 from .origin_ca_certificate_list_params import OriginCACertificateListParams as OriginCACertificateListParams
 from .session_affinity_attributes_param import SessionAffinityAttributesParam as SessionAffinityAttributesParam
 from .url_normalization_update_response import URLNormalizationUpdateResponse as URLNormalizationUpdateResponse
+from .custom_certificate_delete_response import CustomCertificateDeleteResponse as CustomCertificateDeleteResponse
 from .super_bot_fight_mode_likely_config import SuperBotFightModeLikelyConfig as SuperBotFightModeLikelyConfig
+from .keyless_certificate_delete_response import KeylessCertificateDeleteResponse as KeylessCertificateDeleteResponse
 from .origin_ca_certificate_create_params import OriginCACertificateCreateParams as OriginCACertificateCreateParams
 from .origin_ca_certificate_delete_params import OriginCACertificateDeleteParams as OriginCACertificateDeleteParams
 from .origin_tls_client_auth_create_params import OriginTLSClientAuthCreateParams as OriginTLSClientAuthCreateParams
 from .origin_tls_client_auth_delete_params import OriginTLSClientAuthDeleteParams as OriginTLSClientAuthDeleteParams
+from .origin_ca_certificate_delete_response import (
+    OriginCACertificateDeleteResponse as OriginCACertificateDeleteResponse,
+)
 from .custom_nameserver_availabilty_response import (
     CustomNameserverAvailabiltyResponse as CustomNameserverAvailabiltyResponse,
 )

@@ -10,6 +10,7 @@ import httpx
 from ...types import (
     CustomHostname,
     CustomMetadataParam,
+    CustomHostnameDeleteResponse,
     custom_hostname_edit_params,
     custom_hostname_list_params,
     custom_hostname_create_params,
@@ -34,7 +35,6 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837
 from .fallback_origin import (
     FallbackOrigin,
     AsyncFallbackOrigin,
@@ -209,7 +209,7 @@ class CustomHostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
+    ) -> CustomHostnameDeleteResponse:
         """
         Delete Custom Hostname (and any issued SSL certificates)
 
@@ -236,7 +236,7 @@ class CustomHostnames(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
+            cast_to=CustomHostnameDeleteResponse,
         )
 
     def edit(
@@ -520,7 +520,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
+    ) -> CustomHostnameDeleteResponse:
         """
         Delete Custom Hostname (and any issued SSL certificates)
 
@@ -547,7 +547,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
+            cast_to=CustomHostnameDeleteResponse,
         )
 
     async def edit(

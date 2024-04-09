@@ -4,10 +4,10 @@
 
 from ..._models import BaseModel
 
-__all__ = ["UnnamedSchemaRef3248f24329456e19dfa042fff9986f72"]
+__all__ = ["ResponseInfo"]
 
 
-class UnnamedSchemaRef3248f24329456e19dfa042fff9986f72(BaseModel):
+class ResponseInfo(BaseModel):
     code: int
 
     message: str

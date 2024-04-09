@@ -11,12 +11,10 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
     CustomCertificate,
+    CustomCertificateDeleteResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.shared import (
-    UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
-    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
-)
+from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -150,7 +148,7 @@ class TestCustomCertificates:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_certificate, path=["response"])
+        assert_matches_type(CustomCertificateDeleteResponse, custom_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -164,7 +162,7 @@ class TestCustomCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_certificate = response.parse()
-        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_certificate, path=["response"])
+        assert_matches_type(CustomCertificateDeleteResponse, custom_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -178,7 +176,7 @@ class TestCustomCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_certificate = response.parse()
-            assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_certificate, path=["response"])
+            assert_matches_type(CustomCertificateDeleteResponse, custom_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -447,7 +445,7 @@ class TestAsyncCustomCertificates:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_certificate, path=["response"])
+        assert_matches_type(CustomCertificateDeleteResponse, custom_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -461,7 +459,7 @@ class TestAsyncCustomCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_certificate = await response.parse()
-        assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_certificate, path=["response"])
+        assert_matches_type(CustomCertificateDeleteResponse, custom_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -475,7 +473,7 @@ class TestAsyncCustomCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_certificate = await response.parse()
-            assert_matches_type(UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837, custom_certificate, path=["response"])
+            assert_matches_type(CustomCertificateDeleteResponse, custom_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
