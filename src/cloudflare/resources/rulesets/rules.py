@@ -55,7 +55,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["block"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.BlockRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsBlockRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -115,7 +115,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["execute"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -235,7 +235,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsSkipRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -294,10 +294,10 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["block"] | Literal["execute"] | Literal["log"] | Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.BlockRuleActionParameters
-        | rule_create_params.ExecuteRuleActionParameters
+        action_parameters: rule_create_params.RulesetsBlockRuleActionParameters
+        | rule_create_params.RulesetsExecuteRuleActionParameters
         | object
-        | rule_create_params.SkipRuleActionParameters
+        | rule_create_params.RulesetsSkipRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -428,7 +428,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["block"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.BlockRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsBlockRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -489,7 +489,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["execute"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -611,7 +611,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsSkipRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -672,10 +672,10 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["block"] | Literal["execute"] | Literal["log"] | Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.BlockRuleActionParameters
-        | rule_edit_params.ExecuteRuleActionParameters
+        action_parameters: rule_edit_params.RulesetsBlockRuleActionParameters
+        | rule_edit_params.RulesetsExecuteRuleActionParameters
         | object
-        | rule_edit_params.SkipRuleActionParameters
+        | rule_edit_params.RulesetsSkipRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -752,7 +752,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["block"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.BlockRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsBlockRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -812,7 +812,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["execute"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -932,7 +932,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsSkipRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -991,10 +991,10 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["block"] | Literal["execute"] | Literal["log"] | Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.BlockRuleActionParameters
-        | rule_create_params.ExecuteRuleActionParameters
+        action_parameters: rule_create_params.RulesetsBlockRuleActionParameters
+        | rule_create_params.RulesetsExecuteRuleActionParameters
         | object
-        | rule_create_params.SkipRuleActionParameters
+        | rule_create_params.RulesetsSkipRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -1125,7 +1125,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["block"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.BlockRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsBlockRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1186,7 +1186,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["execute"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1308,7 +1308,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsSkipRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1369,10 +1369,10 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["block"] | Literal["execute"] | Literal["log"] | Literal["skip"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.BlockRuleActionParameters
-        | rule_edit_params.ExecuteRuleActionParameters
+        action_parameters: rule_edit_params.RulesetsBlockRuleActionParameters
+        | rule_edit_params.RulesetsExecuteRuleActionParameters
         | object
-        | rule_edit_params.SkipRuleActionParameters
+        | rule_edit_params.RulesetsSkipRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
