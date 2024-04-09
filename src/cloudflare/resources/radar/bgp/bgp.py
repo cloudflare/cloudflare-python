@@ -47,6 +47,7 @@ from ...._utils import (
     async_maybe_transform,
 )
 from ...._compat import cached_property
+from .leaks.leaks import Leaks, AsyncLeaks
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -59,6 +60,7 @@ from ....types.radar import BGPTimeseriesResponse, bgp_timeseries_params
 from ...._base_client import (
     make_request_options,
 )
+from .hijacks.hijacks import Hijacks, AsyncHijacks
 
 __all__ = ["BGP", "AsyncBGP"]
 
