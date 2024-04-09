@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .network_path import NetworkPath as NetworkPath
+from .network_path_get_response import NetworkPathGetResponse as NetworkPathGetResponse

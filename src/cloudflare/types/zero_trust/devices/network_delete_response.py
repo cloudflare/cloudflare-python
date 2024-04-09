@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .network import Network
+from .device_network import DeviceNetwork
 
 __all__ = ["NetworkDeleteResponse"]
 
-NetworkDeleteResponse = List[Network]
+NetworkDeleteResponse = List[DeviceNetwork]

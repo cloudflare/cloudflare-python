@@ -9,9 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.zero_trust import NetworkPath
 from cloudflare.types.zero_trust.dex import (
     Traceroute,
-    NetworkPath,
     TracerouteTestPercentilesResponse,
 )
 

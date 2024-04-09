@@ -5,8 +5,8 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["Match"]
+__all__ = ["DeviceMatch"]
 
 
-class Match(BaseModel):
+class DeviceMatch(BaseModel):
     platform: Optional[Literal["windows", "mac", "linux", "android", "ios"]] = None
