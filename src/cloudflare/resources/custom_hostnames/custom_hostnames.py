@@ -9,7 +9,6 @@ import httpx
 
 from ...types import (
     CustomHostname,
-    CustomMetadataParam,
     CustomHostnameDeleteResponse,
     custom_hostname_edit_params,
     custom_hostname_list_params,
@@ -66,7 +65,7 @@ class CustomHostnames(SyncAPIResource):
         zone_id: str,
         hostname: str,
         ssl: custom_hostname_create_params.SSL,
-        custom_metadata: CustomMetadataParam | NotGiven = NOT_GIVEN,
+        custom_metadata: custom_hostname_create_params.CustomMetadata | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -244,7 +243,7 @@ class CustomHostnames(SyncAPIResource):
         custom_hostname_id: str,
         *,
         zone_id: str,
-        custom_metadata: CustomMetadataParam | NotGiven = NOT_GIVEN,
+        custom_metadata: custom_hostname_edit_params.CustomMetadata | NotGiven = NOT_GIVEN,
         custom_origin_server: str | NotGiven = NOT_GIVEN,
         custom_origin_sni: str | NotGiven = NOT_GIVEN,
         ssl: custom_hostname_edit_params.SSL | NotGiven = NOT_GIVEN,
@@ -377,7 +376,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
         zone_id: str,
         hostname: str,
         ssl: custom_hostname_create_params.SSL,
-        custom_metadata: CustomMetadataParam | NotGiven = NOT_GIVEN,
+        custom_metadata: custom_hostname_create_params.CustomMetadata | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -555,7 +554,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
         custom_hostname_id: str,
         *,
         zone_id: str,
-        custom_metadata: CustomMetadataParam | NotGiven = NOT_GIVEN,
+        custom_metadata: custom_hostname_edit_params.CustomMetadata | NotGiven = NOT_GIVEN,
         custom_origin_server: str | NotGiven = NOT_GIVEN,
         custom_origin_sni: str | NotGiven = NOT_GIVEN,
         ssl: custom_hostname_edit_params.SSL | NotGiven = NOT_GIVEN,
