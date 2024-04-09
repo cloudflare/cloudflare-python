@@ -38,7 +38,7 @@ Types:
 ```python
 from cloudflare.types.accounts import (
     Member,
-    MemberRoles,
+    MemberRole,
     MemberWithInviteCode,
     MemberListResponse,
     MemberDeleteResponse,
@@ -58,12 +58,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.accounts import PermissionGrant, Role
+from cloudflare.types.accounts import PermissionGrant, RoleListResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role.py">SyncSinglePage[Role]</a></code>
+- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role_list_response.py">SyncSinglePage[RoleListResponse]</a></code>
 - <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
 
 # OriginCACertificates
