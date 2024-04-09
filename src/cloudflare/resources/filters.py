@@ -7,11 +7,8 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..types import (
-    FilterGetResponse,
-    FilterListResponse,
+    Filter,
     FilterCreateResponse,
-    FilterDeleteResponse,
-    FilterUpdateResponse,
     filter_list_params,
     filter_create_params,
     filter_delete_params,
@@ -102,7 +99,7 @@ class Filters(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FilterUpdateResponse:
+    ) -> Filter:
         """
         Updates an existing filter.
 
@@ -133,7 +130,7 @@ class Filters(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[FilterUpdateResponse], ResultWrapper[FilterUpdateResponse]),
+            cast_to=cast(Type[Filter], ResultWrapper[Filter]),
         )
 
     def list(
@@ -153,7 +150,7 @@ class Filters(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[FilterListResponse]:
+    ) -> SyncV4PagePaginationArray[Filter]:
         """Fetches filters in a zone.
 
         You can filter the results using several optional
@@ -188,7 +185,7 @@ class Filters(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/filters",
-            page=SyncV4PagePaginationArray[FilterListResponse],
+            page=SyncV4PagePaginationArray[Filter],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -207,7 +204,7 @@ class Filters(SyncAPIResource):
                     filter_list_params.FilterListParams,
                 ),
             ),
-            model=FilterListResponse,
+            model=Filter,
         )
 
     def delete(
@@ -222,7 +219,7 @@ class Filters(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FilterDeleteResponse:
+    ) -> Filter:
         """
         Deletes an existing filter.
 
@@ -253,7 +250,7 @@ class Filters(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[FilterDeleteResponse], ResultWrapper[FilterDeleteResponse]),
+            cast_to=cast(Type[Filter], ResultWrapper[Filter]),
         )
 
     def get(
@@ -267,7 +264,7 @@ class Filters(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FilterGetResponse:
+    ) -> Filter:
         """
         Fetches the details of a filter.
 
@@ -297,7 +294,7 @@ class Filters(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[FilterGetResponse], ResultWrapper[FilterGetResponse]),
+            cast_to=cast(Type[Filter], ResultWrapper[Filter]),
         )
 
 
@@ -363,7 +360,7 @@ class AsyncFilters(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FilterUpdateResponse:
+    ) -> Filter:
         """
         Updates an existing filter.
 
@@ -394,7 +391,7 @@ class AsyncFilters(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[FilterUpdateResponse], ResultWrapper[FilterUpdateResponse]),
+            cast_to=cast(Type[Filter], ResultWrapper[Filter]),
         )
 
     def list(
@@ -414,7 +411,7 @@ class AsyncFilters(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[FilterListResponse, AsyncV4PagePaginationArray[FilterListResponse]]:
+    ) -> AsyncPaginator[Filter, AsyncV4PagePaginationArray[Filter]]:
         """Fetches filters in a zone.
 
         You can filter the results using several optional
@@ -449,7 +446,7 @@ class AsyncFilters(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/filters",
-            page=AsyncV4PagePaginationArray[FilterListResponse],
+            page=AsyncV4PagePaginationArray[Filter],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -468,7 +465,7 @@ class AsyncFilters(AsyncAPIResource):
                     filter_list_params.FilterListParams,
                 ),
             ),
-            model=FilterListResponse,
+            model=Filter,
         )
 
     async def delete(
@@ -483,7 +480,7 @@ class AsyncFilters(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FilterDeleteResponse:
+    ) -> Filter:
         """
         Deletes an existing filter.
 
@@ -514,7 +511,7 @@ class AsyncFilters(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[FilterDeleteResponse], ResultWrapper[FilterDeleteResponse]),
+            cast_to=cast(Type[Filter], ResultWrapper[Filter]),
         )
 
     async def get(
@@ -528,7 +525,7 @@ class AsyncFilters(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FilterGetResponse:
+    ) -> Filter:
         """
         Fetches the details of a filter.
 
@@ -558,7 +555,7 @@ class AsyncFilters(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[FilterGetResponse], ResultWrapper[FilterGetResponse]),
+            cast_to=cast(Type[Filter], ResultWrapper[Filter]),
         )
 
 

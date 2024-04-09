@@ -8,7 +8,6 @@ from .app_type import AppType as AppType
 from .category import Category as Category
 from .location import Location as Location
 from .schedule import Schedule as Schedule
-from .rule_param import RuleParam as RuleParam
 from .rule_setting import RuleSetting as RuleSetting
 from .tls_settings import TLSSettings as TLSSettings
 from .fips_settings import FipsSettings as FipsSettings

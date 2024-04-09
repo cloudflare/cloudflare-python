@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .event import Event
+from .rule import Rule
 
 __all__ = ["RuleUpdateResponse"]
 
-RuleUpdateResponse = List[Event]
+RuleUpdateResponse = List[Rule]

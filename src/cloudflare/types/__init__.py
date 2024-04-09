@@ -11,6 +11,7 @@ from .zone import Zone as Zone
 from .route import Route as Route
 from .trend import Trend as Trend
 from .video import Video as Video
+from .action import Action as Action
 from .dnssec import DNSSEC as DNSSEC
 from .filter import Filter as Filter
 from .header import Header as Header
@@ -46,6 +47,7 @@ from .targes import Targes as Targes
 from .tunnel import Tunnel as Tunnel
 from .account import Account as Account
 from .binding import Binding as Binding
+from .methods import Methods as Methods
 from .ruleset import Ruleset as Ruleset
 from .setting import Setting as Setting
 from .snippet import Snippet as Snippet
@@ -66,6 +68,7 @@ from .hyperdrive import Hyperdrive as Hyperdrive
 from .membership import Membership as Membership
 from .origin_dns import OriginDNS as OriginDNS
 from .r2_binding import R2Binding as R2Binding
+from .rate_limit import RateLimit as RateLimit
 from .rules_item import RulesItem as RulesItem
 from .healthcheck import Healthcheck as Healthcheck
 from .jdcloud_ips import JDCloudIPs as JDCloudIPs
@@ -134,7 +137,6 @@ from .zone_create_params import ZoneCreateParams as ZoneCreateParams
 from .account_list_params import AccountListParams as AccountListParams
 from .available_rate_plan import AvailableRatePlan as AvailableRatePlan
 from .configuration_param import ConfigurationParam as ConfigurationParam
-from .filter_get_response import FilterGetResponse as FilterGetResponse
 from .keyless_certificate import KeylessCertificate as KeylessCertificate
 from .load_shedding_param import LoadSheddingParam as LoadSheddingParam
 from .notification_filter import NotificationFilter as NotificationFilter
@@ -149,7 +151,6 @@ from .cache_purge_response import CachePurgeResponse as CachePurgeResponse
 from .dnssec_delete_params import DNSSECDeleteParams as DNSSECDeleteParams
 from .filter_create_params import FilterCreateParams as FilterCreateParams
 from .filter_delete_params import FilterDeleteParams as FilterDeleteParams
-from .filter_list_response import FilterListResponse as FilterListResponse
 from .filter_options_param import FilterOptionsParam as FilterOptionsParam
 from .filter_update_params import FilterUpdateParams as FilterUpdateParams
 from .kv_namespace_binding import KVNamespaceBinding as KVNamespaceBinding
@@ -164,6 +165,7 @@ from .zone_delete_response import ZoneDeleteResponse as ZoneDeleteResponse
 from .account_update_params import AccountUpdateParams as AccountUpdateParams
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .calls_app_with_secret import CallsAppWithSecret as CallsAppWithSecret
+from .custom_metadata_param import CustomMetadataParam as CustomMetadataParam
 from .origin_ca_certificate import OriginCACertificate as OriginCACertificate
 from .origin_steering_param import OriginSteeringParam as OriginSteeringParam
 from .queue_create_response import QueueCreateResponse as QueueCreateResponse
@@ -177,8 +179,6 @@ from .adaptive_routing_param import AdaptiveRoutingParam as AdaptiveRoutingParam
 from .additional_routes_item import AdditionalRoutesItem as AdditionalRoutesItem
 from .durable_object_binding import DurableObjectBinding as DurableObjectBinding
 from .filter_create_response import FilterCreateResponse as FilterCreateResponse
-from .filter_delete_response import FilterDeleteResponse as FilterDeleteResponse
-from .filter_update_response import FilterUpdateResponse as FilterUpdateResponse
 from .geo_restrictions_param import GeoRestrictionsParam as GeoRestrictionsParam
 from .membership_list_params import MembershipListParams as MembershipListParams
 from .pagerule_create_params import PageruleCreateParams as PageruleCreateParams
@@ -203,7 +203,6 @@ from .membership_update_params import MembershipUpdateParams as MembershipUpdate
 from .pagerule_delete_response import PageruleDeleteResponse as PageruleDeleteResponse
 from .rate_limit_create_params import RateLimitCreateParams as RateLimitCreateParams
 from .rate_limit_delete_params import RateLimitDeleteParams as RateLimitDeleteParams
-from .rate_limit_list_response import RateLimitListResponse as RateLimitListResponse
 from .speed_trends_list_params import SpeedTrendsListParams as SpeedTrendsListParams
 from .waiting_room_edit_params import WaitingRoomEditParams as WaitingRoomEditParams
 from .healthcheck_create_params import HealthcheckCreateParams as HealthcheckCreateParams

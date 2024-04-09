@@ -7,7 +7,7 @@ from typing import Any, Type, cast
 import httpx
 
 from ..types import (
-    RateLimitListResponse,
+    RateLimit,
     RateLimitDeleteResponse,
     rate_limit_edit_params,
     rate_limit_list_params,
@@ -107,7 +107,7 @@ class RateLimits(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[RateLimitListResponse]:
+    ) -> SyncV4PagePaginationArray[RateLimit]:
         """
         Fetches the rate limits for a zone.
 
@@ -131,7 +131,7 @@ class RateLimits(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/rate_limits",
-            page=SyncV4PagePaginationArray[RateLimitListResponse],
+            page=SyncV4PagePaginationArray[RateLimit],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -145,7 +145,7 @@ class RateLimits(SyncAPIResource):
                     rate_limit_list_params.RateLimitListParams,
                 ),
             ),
-            model=RateLimitListResponse,
+            model=RateLimit,
         )
 
     def delete(
@@ -364,7 +364,7 @@ class AsyncRateLimits(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RateLimitListResponse, AsyncV4PagePaginationArray[RateLimitListResponse]]:
+    ) -> AsyncPaginator[RateLimit, AsyncV4PagePaginationArray[RateLimit]]:
         """
         Fetches the rate limits for a zone.
 
@@ -388,7 +388,7 @@ class AsyncRateLimits(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/rate_limits",
-            page=AsyncV4PagePaginationArray[RateLimitListResponse],
+            page=AsyncV4PagePaginationArray[RateLimit],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -402,7 +402,7 @@ class AsyncRateLimits(AsyncAPIResource):
                     rate_limit_list_params.RateLimitListParams,
                 ),
             ),
-            model=RateLimitListResponse,
+            model=RateLimit,
         )
 
     async def delete(

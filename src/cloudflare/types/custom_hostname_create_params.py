@@ -5,11 +5,12 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from .custom_metadata_param import CustomMetadataParam
 from .unnamed_schema_ref_9a9935a9a770967bb604ae41a81e42e1 import UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1
 from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
 from .unnamed_schema_ref_78adb375f06c6d462dd92b99e2ecf510 import UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510
 
-__all__ = ["CustomHostnameCreateParams", "SSL", "SSLSettings", "CustomMetadata"]
+__all__ = ["CustomHostnameCreateParams", "SSL", "SSLSettings"]
 
 
 class CustomHostnameCreateParams(TypedDict, total=False):
@@ -22,7 +23,7 @@ class CustomHostnameCreateParams(TypedDict, total=False):
     ssl: Required[SSL]
     """SSL properties used when creating the custom hostname."""
 
-    custom_metadata: CustomMetadata
+    custom_metadata: CustomMetadataParam
     """These are per-hostname (customer) settings."""
 
 
@@ -78,8 +79,3 @@ class SSL(TypedDict, total=False):
 
     wildcard: bool
     """Indicates whether the certificate covers a wildcard."""
-
-
-class CustomMetadata(TypedDict, total=False):
-    key: str
-    """Unique metadata for this hostname."""

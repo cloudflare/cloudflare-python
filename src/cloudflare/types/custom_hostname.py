@@ -5,13 +5,13 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .custom_metadata import CustomMetadata
 from .unnamed_schema_ref_9a9935a9a770967bb604ae41a81e42e1 import UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1
 from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
 from .unnamed_schema_ref_78adb375f06c6d462dd92b99e2ecf510 import UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510
 
 __all__ = [
     "CustomHostname",
-    "CustomMetadata",
     "OwnershipVerification",
     "OwnershipVerificationHTTP",
     "SSL",
@@ -19,11 +19,6 @@ __all__ = [
     "SSLValidationError",
     "SSLValidationRecord",
 ]
-
-
-class CustomMetadata(BaseModel):
-    key: Optional[str] = None
-    """Unique metadata for this hostname."""
 
 
 class OwnershipVerification(BaseModel):
