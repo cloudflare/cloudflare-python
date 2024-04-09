@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
-    RateLimitListResponse,
+    RateLimit,
     RateLimitDeleteResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
@@ -74,7 +74,7 @@ class TestRateLimits:
         rate_limit = client.rate_limits.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[RateLimitListResponse], rate_limit, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -84,7 +84,7 @@ class TestRateLimits:
             page=1,
             per_page=1,
         )
-        assert_matches_type(SyncV4PagePaginationArray[RateLimitListResponse], rate_limit, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -96,7 +96,7 @@ class TestRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[RateLimitListResponse], rate_limit, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -108,7 +108,7 @@ class TestRateLimits:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rate_limit = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[RateLimitListResponse], rate_limit, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -342,7 +342,7 @@ class TestAsyncRateLimits:
         rate_limit = await async_client.rate_limits.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[RateLimitListResponse], rate_limit, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -352,7 +352,7 @@ class TestAsyncRateLimits:
             page=1,
             per_page=1,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[RateLimitListResponse], rate_limit, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -364,7 +364,7 @@ class TestAsyncRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[RateLimitListResponse], rate_limit, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -376,7 +376,7 @@ class TestAsyncRateLimits:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rate_limit = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[RateLimitListResponse], rate_limit, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

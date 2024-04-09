@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing import Union
 
-from .ip_configuration import IPConfiguration
-from .cidr_configuration import CIDRConfiguration
+from .ip_configuration_param import IPConfigurationParam
+from .cidr_configuration_param import CIDRConfigurationParam
 
 __all__ = ["ConfigurationParam"]
 
-ConfigurationParam = Union[IPConfiguration, CIDRConfiguration]
+ConfigurationParam = Union[IPConfigurationParam, CIDRConfigurationParam]

@@ -4,6 +4,7 @@ from typing import List, Union
 from typing_extensions import Literal
 
 from ....._models import BaseModel
+from .allowed_modes_anomaly import AllowedModesAnomaly
 from .unnamed_schema_ref_532d8b97684c9032dd36bae8acddebf5 import UnnamedSchemaRef532d8b97684c9032dd36bae8acddebf5
 
 __all__ = [
@@ -18,7 +19,7 @@ class WAFManagedRulesAnomalyRule(BaseModel):
     id: str
     """The unique identifier of the WAF rule."""
 
-    allowed_modes: List[Literal["on", "off"]]
+    allowed_modes: List[AllowedModesAnomaly]
     """Defines the available modes for the current WAF rule.
 
     Applies to anomaly detection WAF rules.
