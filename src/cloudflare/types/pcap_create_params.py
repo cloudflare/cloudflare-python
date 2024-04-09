@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypedDict
 
-from .filter_param import FilterParam
+from .pcap_filter_param import PCAPFilterParam
 
 __all__ = ["PCAPCreateParams", "MagicVisibilityPCAPsRequestSimple", "MagicVisibilityPCAPsRequestFull"]
 
@@ -30,7 +30,7 @@ class MagicVisibilityPCAPsRequestSimple(TypedDict, total=False):
     non-sampled packets.
     """
 
-    filter_v1: FilterParam
+    filter_v1: PCAPFilterParam
     """The packet capture filter. When this field is empty, all packets are captured."""
 
 
@@ -67,7 +67,7 @@ class MagicVisibilityPCAPsRequestFull(TypedDict, total=False):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: FilterParam
+    filter_v1: PCAPFilterParam
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     packet_limit: float

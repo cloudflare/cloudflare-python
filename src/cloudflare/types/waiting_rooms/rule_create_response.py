@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .rule import Rule
+from .waiting_room_rule import WaitingRoomRule
 
 __all__ = ["RuleCreateResponse"]
 
-RuleCreateResponse = List[Rule]
+RuleCreateResponse = List[WaitingRoomRule]

@@ -1,25 +1,28 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
+from typing import Optional
 
-from typing_extensions import TypedDict
+from .._models import BaseModel
 
-__all__ = ["FilterParam"]
+__all__ = ["FirewallFilter"]
 
 
-class FilterParam(TypedDict, total=False):
-    description: str
+class FirewallFilter(BaseModel):
+    id: Optional[str] = None
+    """The unique identifier of the filter."""
+
+    description: Optional[str] = None
     """An informative summary of the filter."""
 
-    expression: str
+    expression: Optional[str] = None
     """The filter expression.
 
     For more information, refer to
     [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
     """
 
-    paused: bool
+    paused: Optional[bool] = None
     """When true, indicates that the filter is currently paused."""
 
-    ref: str
+    ref: Optional[str] = None
     """A short reference tag. Allows you to select related filters."""

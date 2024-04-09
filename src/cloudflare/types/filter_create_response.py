@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .filter import Filter
+from .firewall_filter import FirewallFilter
 
 __all__ = ["FilterCreateResponse"]
 
-FilterCreateResponse = List[Filter]
+FilterCreateResponse = List[FirewallFilter]

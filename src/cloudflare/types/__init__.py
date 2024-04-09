@@ -15,7 +15,6 @@ from .trend import Trend as Trend
 from .video import Video as Video
 from .action import Action as Action
 from .dnssec import DNSSEC as DNSSEC
-from .filter import Filter as Filter
 from .header import Header as Header
 from .origin import Origin as Origin
 from .shared import (
@@ -61,11 +60,11 @@ from .rate_limit import RateLimit as RateLimit
 from .healthcheck import Healthcheck as Healthcheck
 from .jdcloud_ips import JDCloudIPs as JDCloudIPs
 from .origin_port import OriginPort as OriginPort
+from .pcap_filter import PCAPFilter as PCAPFilter
 from .route_param import RouteParam as RouteParam
 from .rules_param import RulesParam as RulesParam
 from .check_region import CheckRegion as CheckRegion
 from .execute_rule import ExecuteRule as ExecuteRule
-from .filter_param import FilterParam as FilterParam
 from .header_param import HeaderParam as HeaderParam
 from .health_check import HealthCheck as HealthCheck
 from .origin_param import OriginParam as OriginParam
@@ -87,6 +86,7 @@ from .log_rule_param import LogRuleParam as LogRuleParam
 from .warp_connector import WARPConnector as WARPConnector
 from .allowed_origins import AllowedOrigins as AllowedOrigins
 from .custom_hostname import CustomHostname as CustomHostname
+from .firewall_filter import FirewallFilter as FirewallFilter
 from .origin_steering import OriginSteering as OriginSteering
 from .random_steering import RandomSteering as RandomSteering
 from .service_binding import ServiceBinding as ServiceBinding
@@ -108,6 +108,7 @@ from .lighthouse_report import LighthouseReport as LighthouseReport
 from .location_strategy import LocationStrategy as LocationStrategy
 from .mtls_cert_binding import MTLSCERTBinding as MTLSCERTBinding
 from .origin_port_param import OriginPortParam as OriginPortParam
+from .pcap_filter_param import PCAPFilterParam as PCAPFilterParam
 from .pcap_get_response import PCAPGetResponse as PCAPGetResponse
 from .tcp_configuration import TCPConfiguration as TCPConfiguration
 from .cache_purge_params import CachePurgeParams as CachePurgeParams

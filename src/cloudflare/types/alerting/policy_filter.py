@@ -1,135 +1,139 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
+from typing import List, Optional
+from typing_extensions import Literal
 
-from typing import List
-from typing_extensions import Literal, TypedDict
+from ..._models import BaseModel
 
-__all__ = ["FilterParam"]
+__all__ = ["PolicyFilter"]
 
 
-class FilterParam(TypedDict, total=False):
-    actions: List[str]
+class PolicyFilter(BaseModel):
+    actions: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    affected_asns: List[str]
+    affected_asns: Optional[List[str]] = None
     """Used for configuring radar_notification"""
 
-    affected_components: List[str]
+    affected_components: Optional[List[str]] = None
     """Used for configuring incident_alert.
 
     A list of identifiers for each component to monitor.
     """
 
-    affected_locations: List[str]
+    affected_locations: Optional[List[str]] = None
     """Used for configuring radar_notification"""
 
-    airport_code: List[str]
+    airport_code: Optional[List[str]] = None
     """Used for configuring maintenance_event_notification"""
 
-    alert_trigger_preferences: List[str]
+    alert_trigger_preferences: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    alert_trigger_preferences_value: List[Literal["99.0", "98.0", "97.0"]]
+    alert_trigger_preferences_value: Optional[List[Literal["99.0", "98.0", "97.0"]]] = None
     """Used for configuring magic_tunnel_health_check_event"""
 
-    enabled: List[str]
+    enabled: Optional[List[str]] = None
     """Used for configuring load_balancing_pool_enablement_alert"""
 
-    environment: List[str]
+    environment: Optional[List[str]] = None
     """Used for configuring pages_event_alert"""
 
-    event: List[str]
+    event: Optional[List[str]] = None
     """Used for configuring pages_event_alert"""
 
-    event_source: List[str]
+    event_source: Optional[List[str]] = None
     """Used for configuring load_balancing_health_alert"""
 
-    event_type: List[str]
+    event_type: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    group_by: List[str]
+    group_by: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    health_check_id: List[str]
+    health_check_id: Optional[List[str]] = None
     """Used for configuring health_check_status_notification"""
 
-    incident_impact: List[
-        Literal["INCIDENT_IMPACT_NONE", "INCIDENT_IMPACT_MINOR", "INCIDENT_IMPACT_MAJOR", "INCIDENT_IMPACT_CRITICAL"]
-    ]
+    incident_impact: Optional[
+        List[
+            Literal[
+                "INCIDENT_IMPACT_NONE", "INCIDENT_IMPACT_MINOR", "INCIDENT_IMPACT_MAJOR", "INCIDENT_IMPACT_CRITICAL"
+            ]
+        ]
+    ] = None
     """Used for configuring incident_alert"""
 
-    input_id: List[str]
+    input_id: Optional[List[str]] = None
     """Used for configuring stream_live_notifications"""
 
-    limit: List[str]
+    limit: Optional[List[str]] = None
     """Used for configuring billing_usage_alert"""
 
-    logo_tag: List[str]
+    logo_tag: Optional[List[str]] = None
     """Used for configuring logo_match_alert"""
 
-    megabits_per_second: List[str]
+    megabits_per_second: Optional[List[str]] = None
     """Used for configuring advanced_ddos_attack_l4_alert"""
 
-    new_health: List[str]
+    new_health: Optional[List[str]] = None
     """Used for configuring load_balancing_health_alert"""
 
-    new_status: List[str]
+    new_status: Optional[List[str]] = None
     """Used for configuring tunnel_health_event"""
 
-    packets_per_second: List[str]
+    packets_per_second: Optional[List[str]] = None
     """Used for configuring advanced_ddos_attack_l4_alert"""
 
-    pool_id: List[str]
+    pool_id: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    product: List[str]
+    product: Optional[List[str]] = None
     """Used for configuring billing_usage_alert"""
 
-    project_id: List[str]
+    project_id: Optional[List[str]] = None
     """Used for configuring pages_event_alert"""
 
-    protocol: List[str]
+    protocol: Optional[List[str]] = None
     """Used for configuring advanced_ddos_attack_l4_alert"""
 
-    query_tag: List[str]
+    query_tag: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    requests_per_second: List[str]
+    requests_per_second: Optional[List[str]] = None
     """Used for configuring advanced_ddos_attack_l7_alert"""
 
-    selectors: List[str]
+    selectors: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    services: List[str]
+    services: Optional[List[str]] = None
     """Used for configuring clickhouse_alert_fw_ent_anomaly"""
 
-    slo: List[str]
+    slo: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    status: List[str]
+    status: Optional[List[str]] = None
     """Used for configuring health_check_status_notification"""
 
-    target_hostname: List[str]
+    target_hostname: Optional[List[str]] = None
     """Used for configuring advanced_ddos_attack_l7_alert"""
 
-    target_ip: List[str]
+    target_ip: Optional[List[str]] = None
     """Used for configuring advanced_ddos_attack_l4_alert"""
 
-    target_zone_name: List[str]
+    target_zone_name: Optional[List[str]] = None
     """Used for configuring advanced_ddos_attack_l7_alert"""
 
-    traffic_exclusions: List[Literal["security_events"]]
+    traffic_exclusions: Optional[List[Literal["security_events"]]] = None
     """Used for configuring traffic_anomalies_alert"""
 
-    tunnel_id: List[str]
+    tunnel_id: Optional[List[str]] = None
     """Used for configuring tunnel_health_event"""
 
-    tunnel_name: List[str]
+    tunnel_name: Optional[List[str]] = None
     """Used for configuring magic_tunnel_health_check_event"""
 
-    where: List[str]
+    where: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    zones: List[str]
+    zones: Optional[List[str]] = None
     """Usage depends on specific alert type"""
