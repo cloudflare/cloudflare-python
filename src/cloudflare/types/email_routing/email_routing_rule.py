@@ -7,10 +7,10 @@ from .action import Action
 from .matcher import Matcher
 from ..._models import BaseModel
 
-__all__ = ["EmailRule"]
+__all__ = ["EmailRoutingRule"]
 
 
-class EmailRule(BaseModel):
+class EmailRoutingRule(BaseModel):
     id: Optional[str] = None
     """Routing rule identifier."""
 
