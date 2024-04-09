@@ -14,7 +14,7 @@ from .okta_group_rule import OktaGroupRule
 from .saml_group_rule import SAMLGroupRule
 from .azure_group_rule import AzureGroupRule
 from .certificate_rule import CertificateRule
-from .gsuite_group_rule import GsuiteGroupRule
+from .gsuite_group_rule import GSuiteGroupRule
 from .service_token_rule import ServiceTokenRule
 from .external_evaluation_rule import ExternalEvaluationRule
 from .github_organization_rule import GitHubOrganizationRule
@@ -35,7 +35,7 @@ AccessRule = Union[
     GroupRule,
     AzureGroupRule,
     GitHubOrganizationRule,
-    GsuiteGroupRule,
+    GSuiteGroupRule,
     OktaGroupRule,
     SAMLGroupRule,
     ServiceTokenRule,

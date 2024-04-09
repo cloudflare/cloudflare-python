@@ -16,7 +16,7 @@ from .okta_group_rule_param import OktaGroupRuleParam
 from .saml_group_rule_param import SAMLGroupRuleParam
 from .azure_group_rule_param import AzureGroupRuleParam
 from .certificate_rule_param import CertificateRuleParam
-from .gsuite_group_rule_param import GsuiteGroupRuleParam
+from .gsuite_group_rule_param import GSuiteGroupRuleParam
 from .service_token_rule_param import ServiceTokenRuleParam
 from .external_evaluation_rule_param import ExternalEvaluationRuleParam
 from .github_organization_rule_param import GitHubOrganizationRuleParam
@@ -37,7 +37,7 @@ AccessRuleParam = Union[
     GroupRuleParam,
     AzureGroupRuleParam,
     GitHubOrganizationRuleParam,
-    GsuiteGroupRuleParam,
+    GSuiteGroupRuleParam,
     OktaGroupRuleParam,
     SAMLGroupRuleParam,
     ServiceTokenRuleParam,
