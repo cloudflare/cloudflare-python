@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ......_models import BaseModel
 
-__all__ = ["ContentList"]
+__all__ = ["EntryCreateResponse"]
 
 
-class ContentList(BaseModel):
+class EntryCreateResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 

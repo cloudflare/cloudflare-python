@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Required, TypedDict
 
-from .lists import ListsParam
+from .lists_param import ListsParam
 
 __all__ = ["ListEditParams"]
 

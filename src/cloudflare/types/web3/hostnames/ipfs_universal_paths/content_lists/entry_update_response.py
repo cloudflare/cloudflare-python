@@ -1,15 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ......_models import BaseModel
 
-__all__ = ["EntryListResponse", "Entry"]
+__all__ = ["EntryUpdateResponse"]
 
 
-class Entry(BaseModel):
+class EntryUpdateResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
@@ -25,8 +25,3 @@ class Entry(BaseModel):
 
     type: Optional[Literal["cid", "content_path"]] = None
     """Type of content list entry to block."""
-
-
-class EntryListResponse(BaseModel):
-    entries: Optional[List[Entry]] = None
-    """Content list entries."""

@@ -33,7 +33,6 @@ from ......_base_client import (
     make_request_options,
 )
 from ......types.web3.hostnames.ipfs_universal_paths import ContentList, content_list_update_params
-from ......types.web3.hostnames.ipfs_universal_paths.content_lists import ContentListParam
 
 __all__ = ["ContentLists", "AsyncContentLists"]
 
@@ -57,7 +56,7 @@ class ContentLists(SyncAPIResource):
         *,
         zone_identifier: str,
         action: Literal["block"],
-        entries: Iterable[ContentListParam],
+        entries: Iterable[content_list_update_params.Entry],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -172,7 +171,7 @@ class AsyncContentLists(AsyncAPIResource):
         *,
         zone_identifier: str,
         action: Literal["block"],
-        entries: Iterable[ContentListParam],
+        entries: Iterable[content_list_update_params.Entry],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
