@@ -1080,16 +1080,6 @@ Methods:
 - <code title="delete /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">delete</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/hold_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/zone_hold.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/zone_hold.py">ZoneHold</a></code>
 
-## Workers
-
-### Script
-
-Methods:
-
-- <code title="put /zones/{zone_id}/workers/script">client.zones.workers.script.<a href="./src/cloudflare/resources/zones/workers/script.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/workers/script_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
-- <code title="delete /zones/{zone_id}/workers/script">client.zones.workers.script.<a href="./src/cloudflare/resources/zones/workers/script.py">delete</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/workers/script_delete_params.py">params</a>) -> None</code>
-- <code title="get /zones/{zone_id}/workers/script">client.zones.workers.script.<a href="./src/cloudflare/resources/zones/workers/script.py">get</a>(\*, zone_id) -> BinaryAPIResponse</code>
-
 ## Subscriptions
 
 Methods:
@@ -2665,18 +2655,6 @@ Methods:
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">delete</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/script_delete_params.py">params</a>) -> None</code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">get</a>(script_name, \*, account_id) -> BinaryAPIResponse</code>
 
-### Bindings
-
-Types:
-
-```python
-from cloudflare.types.workers.scripts import BindingGetResponse
-```
-
-Methods:
-
-- <code title="get /zones/{zone_id}/workers/script/bindings">client.workers.scripts.bindings.<a href="./src/cloudflare/resources/workers/scripts/bindings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/workers/scripts/binding_get_response.py">BindingGetResponse</a></code>
-
 ### Schedules
 
 Types:
@@ -2713,30 +2691,12 @@ Methods:
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}/tails/{id}">client.workers.scripts.tail.<a href="./src/cloudflare/resources/workers/scripts/tail.py">delete</a>(id, \*, account_id, script_name, \*\*<a href="src/cloudflare/types/workers/scripts/tail_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_ec4d85c3d1bcc6b3b7e99c199ae99846.py">UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846</a></code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}/tails">client.workers.scripts.tail.<a href="./src/cloudflare/resources/workers/scripts/tail.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/tail_get_response.py">TailGetResponse</a></code>
 
-### UsageModel
-
-Types:
-
-```python
-from cloudflare.types.workers.scripts import UsageModelUpdateResponse, UsageModelGetResponse
-```
-
-Methods:
-
-- <code title="put /accounts/{account_id}/workers/scripts/{script_name}/usage-model">client.workers.scripts.usage_model.<a href="./src/cloudflare/resources/workers/scripts/usage_model.py">update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/usage_model_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/usage_model_update_response.py">UsageModelUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/usage-model">client.workers.scripts.usage_model.<a href="./src/cloudflare/resources/workers/scripts/usage_model.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/usage_model_get_response.py">UsageModelGetResponse</a></code>
-
 ### Content
 
 Methods:
 
 - <code title="put /accounts/{account_id}/workers/scripts/{script_name}/content">client.workers.scripts.content.<a href="./src/cloudflare/resources/workers/scripts/content.py">update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/content_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">Script</a></code>
-
-### ContentV2
-
-Methods:
-
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/content/v2">client.workers.scripts.content_v2.<a href="./src/cloudflare/resources/workers/scripts/content_v2.py">get</a>(script_name, \*, account_id) -> BinaryAPIResponse</code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/content/v2">client.workers.scripts.content.<a href="./src/cloudflare/resources/workers/scripts/content.py">get</a>(script_name, \*, account_id) -> BinaryAPIResponse</code>
 
 ### Settings
 
@@ -2776,53 +2736,9 @@ from cloudflare.types.workers.scripts import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions/versions.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/version_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/version_create_response.py">VersionCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions/versions.py">list</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/version_list_response.py">VersionListResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions/{version_id}">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions/versions.py">get</a>(version_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/version_get_response.py">VersionGetResponse</a></code>
-
-#### Settings
-
-Types:
-
-```python
-from cloudflare.types.workers.scripts.versions import CompatibilityFlags, Settings, Tags
-```
-
-Methods:
-
-- <code title="patch /accounts/{account_id}/workers/scripts/{script_name}/settings">client.workers.scripts.versions.settings.<a href="./src/cloudflare/resources/workers/scripts/versions/settings.py">edit</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/versions/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/versions/settings.py">Settings</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/settings">client.workers.scripts.versions.settings.<a href="./src/cloudflare/resources/workers/scripts/versions/settings.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/versions/settings.py">Settings</a></code>
-
-## Filters
-
-Types:
-
-```python
-from cloudflare.types.workers import WorkersFilter, FilterCreateResponse, FilterDeleteResponse
-```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/workers/filters">client.workers.filters.<a href="./src/cloudflare/resources/workers/filters.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/workers/filter_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/filter_create_response.py">Optional</a></code>
-- <code title="put /zones/{zone_id}/workers/filters/{filter_id}">client.workers.filters.<a href="./src/cloudflare/resources/workers/filters.py">update</a>(filter_id, \*, zone_id, \*\*<a href="src/cloudflare/types/workers/filter_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/workers_filter.py">WorkersFilter</a></code>
-- <code title="get /zones/{zone_id}/workers/filters">client.workers.filters.<a href="./src/cloudflare/resources/workers/filters.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/workers/workers_filter.py">SyncSinglePage[WorkersFilter]</a></code>
-- <code title="delete /zones/{zone_id}/workers/filters/{filter_id}">client.workers.filters.<a href="./src/cloudflare/resources/workers/filters.py">delete</a>(filter_id, \*, zone_id, \*\*<a href="src/cloudflare/types/workers/filter_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/filter_delete_response.py">Optional</a></code>
-
-## Routes
-
-Types:
-
-```python
-from cloudflare.types.workers import WorkersRoute
-```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/workers/routes">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/workers/route_create_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_8d6a37a1e4190f86652802244d29525f.py">UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f</a></code>
-- <code title="put /zones/{zone_id}/workers/routes/{route_id}">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">update</a>(route_id, \*, zone_id, \*\*<a href="src/cloudflare/types/workers/route_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/workers_route.py">WorkersRoute</a></code>
-- <code title="get /zones/{zone_id}/workers/routes">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/workers/workers_route.py">SyncSinglePage[WorkersRoute]</a></code>
-- <code title="delete /zones/{zone_id}/workers/routes/{route_id}">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">delete</a>(route_id, \*, zone_id, \*\*<a href="src/cloudflare/types/workers/route_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_8d6a37a1e4190f86652802244d29525f.py">UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f</a></code>
-- <code title="get /zones/{zone_id}/workers/routes/{route_id}">client.workers.routes.<a href="./src/cloudflare/resources/workers/routes.py">get</a>(route_id, \*, zone_id) -> <a href="./src/cloudflare/types/workers/workers_route.py">WorkersRoute</a></code>
+- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/version_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/version_create_response.py">VersionCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">list</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/version_list_response.py">VersionListResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions/{version_id}">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">get</a>(version_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/version_get_response.py">VersionGetResponse</a></code>
 
 ## AccountSettings
 
@@ -2836,32 +2752,6 @@ Methods:
 
 - <code title="put /accounts/{account_id}/workers/account-settings">client.workers.account_settings.<a href="./src/cloudflare/resources/workers/account_settings.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/account_setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/account_setting_update_response.py">AccountSettingUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/workers/account-settings">client.workers.account_settings.<a href="./src/cloudflare/resources/workers/account_settings.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/account_setting_get_response.py">AccountSettingGetResponse</a></code>
-
-## Deployments
-
-### ByScripts
-
-Types:
-
-```python
-from cloudflare.types.workers.deployments import ByScriptGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/workers/deployments/by-script/{script_id}">client.workers.deployments.by_scripts.<a href="./src/cloudflare/resources/workers/deployments/by_scripts/by_scripts.py">get</a>(script_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/deployments/by_script_get_response.py">ByScriptGetResponse</a></code>
-
-#### Details
-
-Types:
-
-```python
-from cloudflare.types.workers.deployments.by_scripts import DetailGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/workers/deployments/by-script/{script_id}/detail/{deployment_id}">client.workers.deployments.by_scripts.details.<a href="./src/cloudflare/resources/workers/deployments/by_scripts/details.py">get</a>(deployment_id, \*, account_id, script_id) -> <a href="./src/cloudflare/types/workers/deployments/by_scripts/detail_get_response.py">DetailGetResponse</a></code>
 
 ## Domains
 
@@ -2890,24 +2780,6 @@ Methods:
 
 - <code title="put /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/subdomain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/subdomain_update_response.py">SubdomainUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/subdomain_get_response.py">SubdomainGetResponse</a></code>
-
-## Services
-
-### Environments
-
-#### Content
-
-Methods:
-
-- <code title="put /accounts/{account_id}/workers/services/{service_name}/environments/{environment_name}/content">client.workers.services.environments.content.<a href="./src/cloudflare/resources/workers/services/environments/content.py">update</a>(environment_name, \*, account_id, service_name, \*\*<a href="src/cloudflare/types/workers/services/environments/content_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">Script</a></code>
-- <code title="get /accounts/{account_id}/workers/services/{service_name}/environments/{environment_name}/content">client.workers.services.environments.content.<a href="./src/cloudflare/resources/workers/services/environments/content.py">get</a>(environment_name, \*, account_id, service_name) -> BinaryAPIResponse</code>
-
-#### Settings
-
-Methods:
-
-- <code title="patch /accounts/{account_id}/workers/services/{service_name}/environments/{environment_name}/settings">client.workers.services.environments.settings.<a href="./src/cloudflare/resources/workers/services/environments/settings.py">edit</a>(environment_name, \*, account_id, service_name, \*\*<a href="src/cloudflare/types/workers/services/environments/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script_setting.py">ScriptSetting</a></code>
-- <code title="get /accounts/{account_id}/workers/services/{service_name}/environments/{environment_name}/settings">client.workers.services.environments.settings.<a href="./src/cloudflare/resources/workers/services/environments/settings.py">get</a>(environment_name, \*, account_id, service_name) -> <a href="./src/cloudflare/types/workers/script_setting.py">ScriptSetting</a></code>
 
 # KV
 
