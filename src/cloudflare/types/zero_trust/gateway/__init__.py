@@ -20,8 +20,11 @@ from .logging_setting import LoggingSetting as LoggingSetting
 from .gateway_settings import GatewaySettings as GatewaySettings
 from .list_edit_params import ListEditParams as ListEditParams
 from .location_network import LocationNetwork as LocationNetwork
+from .list_get_response import ListGetResponse as ListGetResponse
 from .list_create_params import ListCreateParams as ListCreateParams
 from .list_delete_params import ListDeleteParams as ListDeleteParams
+from .list_edit_response import ListEditResponse as ListEditResponse
+from .list_list_response import ListListResponse as ListListResponse
 from .list_update_params import ListUpdateParams as ListUpdateParams
 from .protocol_detection import ProtocolDetection as ProtocolDetection
 from .rule_create_params import RuleCreateParams as RuleCreateParams
@@ -33,6 +36,7 @@ from .anti_virus_settings import AntiVirusSettings as AntiVirusSettings
 from .block_page_settings import BlockPageSettings as BlockPageSettings
 from .fips_settings_param import FipsSettingsParam as FipsSettingsParam
 from .list_create_response import ListCreateResponse as ListCreateResponse
+from .list_update_response import ListUpdateResponse as ListUpdateResponse
 from .activity_log_settings import ActivityLogSettings as ActivityLogSettings
 from .logging_update_params import LoggingUpdateParams as LoggingUpdateParams
 from .notification_settings import NotificationSettings as NotificationSettings

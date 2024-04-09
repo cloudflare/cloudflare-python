@@ -2510,20 +2510,22 @@ Types:
 
 ```python
 from cloudflare.types.web3.hostnames.ipfs_universal_paths.content_lists import (
-    ContentList,
     UnnamedSchemaRef5e618833803e286db9ee7c73727f8b86,
+    EntryCreateResponse,
+    EntryUpdateResponse,
     EntryListResponse,
     EntryDeleteResponse,
+    EntryGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries">client.web3.hostnames.ipfs_universal_paths.content_lists.entries.<a href="./src/cloudflare/resources/web3/hostnames/ipfs_universal_paths/content_lists/entries.py">create</a>(identifier, \*, zone_identifier, \*\*<a href="src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/entry_create_params.py">params</a>) -> <a href="./src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/content_list.py">ContentList</a></code>
-- <code title="put /zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}">client.web3.hostnames.ipfs_universal_paths.content_lists.entries.<a href="./src/cloudflare/resources/web3/hostnames/ipfs_universal_paths/content_lists/entries.py">update</a>(content_list_entry_identifier, \*, zone_identifier, identifier, \*\*<a href="src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/entry_update_params.py">params</a>) -> <a href="./src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/content_list.py">ContentList</a></code>
+- <code title="post /zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries">client.web3.hostnames.ipfs_universal_paths.content_lists.entries.<a href="./src/cloudflare/resources/web3/hostnames/ipfs_universal_paths/content_lists/entries.py">create</a>(identifier, \*, zone_identifier, \*\*<a href="src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/entry_create_params.py">params</a>) -> <a href="./src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/entry_create_response.py">EntryCreateResponse</a></code>
+- <code title="put /zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}">client.web3.hostnames.ipfs_universal_paths.content_lists.entries.<a href="./src/cloudflare/resources/web3/hostnames/ipfs_universal_paths/content_lists/entries.py">update</a>(content_list_entry_identifier, \*, zone_identifier, identifier, \*\*<a href="src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/entry_update_params.py">params</a>) -> <a href="./src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/entry_update_response.py">EntryUpdateResponse</a></code>
 - <code title="get /zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries">client.web3.hostnames.ipfs_universal_paths.content_lists.entries.<a href="./src/cloudflare/resources/web3/hostnames/ipfs_universal_paths/content_lists/entries.py">list</a>(identifier, \*, zone_identifier) -> <a href="./src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/entry_list_response.py">Optional</a></code>
 - <code title="delete /zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}">client.web3.hostnames.ipfs_universal_paths.content_lists.entries.<a href="./src/cloudflare/resources/web3/hostnames/ipfs_universal_paths/content_lists/entries.py">delete</a>(content_list_entry_identifier, \*, zone_identifier, identifier, \*\*<a href="src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/entry_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/entry_delete_response.py">Optional</a></code>
-- <code title="get /zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}">client.web3.hostnames.ipfs_universal_paths.content_lists.entries.<a href="./src/cloudflare/resources/web3/hostnames/ipfs_universal_paths/content_lists/entries.py">get</a>(content_list_entry_identifier, \*, zone_identifier, identifier) -> <a href="./src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/content_list.py">ContentList</a></code>
+- <code title="get /zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}">client.web3.hostnames.ipfs_universal_paths.content_lists.entries.<a href="./src/cloudflare/resources/web3/hostnames/ipfs_universal_paths/content_lists/entries.py">get</a>(content_list_entry_identifier, \*, zone_identifier, identifier) -> <a href="./src/cloudflare/types/web3/hostnames/ipfs_universal_paths/content_lists/entry_get_response.py">EntryGetResponse</a></code>
 
 # Workers
 
@@ -2818,7 +2820,7 @@ Methods:
 
 - <code title="post /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/queue_create_params.py">params</a>) -> <a href="./src/cloudflare/types/queue_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">update</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/queue_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/queue_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/queue_list_response.py">SyncSinglePage[QueueListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">delete</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queue_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/queue_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">get</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queue_get_response.py">Optional</a></code>
 
@@ -5619,24 +5621,31 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import Lists, ListCreateResponse
+from cloudflare.types.zero_trust.gateway import (
+    Lists,
+    ListCreateResponse,
+    ListUpdateResponse,
+    ListListResponse,
+    ListEditResponse,
+    ListGetResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/gateway/lists">client.zero_trust.gateway.lists.<a href="./src/cloudflare/resources/zero_trust/gateway/lists/lists.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/list_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/list_create_response.py">ListCreateResponse</a></code>
-- <code title="put /accounts/{account_id}/gateway/lists/{list_id}">client.zero_trust.gateway.lists.<a href="./src/cloudflare/resources/zero_trust/gateway/lists/lists.py">update</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/list_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/lists.py">Lists</a></code>
-- <code title="get /accounts/{account_id}/gateway/lists">client.zero_trust.gateway.lists.<a href="./src/cloudflare/resources/zero_trust/gateway/lists/lists.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/lists.py">SyncSinglePage[Lists]</a></code>
+- <code title="put /accounts/{account_id}/gateway/lists/{list_id}">client.zero_trust.gateway.lists.<a href="./src/cloudflare/resources/zero_trust/gateway/lists/lists.py">update</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/list_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/list_update_response.py">ListUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/gateway/lists">client.zero_trust.gateway.lists.<a href="./src/cloudflare/resources/zero_trust/gateway/lists/lists.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/list_list_response.py">SyncSinglePage[ListListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/gateway/lists/{list_id}">client.zero_trust.gateway.lists.<a href="./src/cloudflare/resources/zero_trust/gateway/lists/lists.py">delete</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/list_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
-- <code title="patch /accounts/{account_id}/gateway/lists/{list_id}">client.zero_trust.gateway.lists.<a href="./src/cloudflare/resources/zero_trust/gateway/lists/lists.py">edit</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/list_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/lists.py">Lists</a></code>
-- <code title="get /accounts/{account_id}/gateway/lists/{list_id}">client.zero_trust.gateway.lists.<a href="./src/cloudflare/resources/zero_trust/gateway/lists/lists.py">get</a>(list_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/lists.py">Lists</a></code>
+- <code title="patch /accounts/{account_id}/gateway/lists/{list_id}">client.zero_trust.gateway.lists.<a href="./src/cloudflare/resources/zero_trust/gateway/lists/lists.py">edit</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/list_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/list_edit_response.py">ListEditResponse</a></code>
+- <code title="get /accounts/{account_id}/gateway/lists/{list_id}">client.zero_trust.gateway.lists.<a href="./src/cloudflare/resources/zero_trust/gateway/lists/lists.py">get</a>(list_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/list_get_response.py">ListGetResponse</a></code>
 
 #### Items
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway.lists import Lists, ItemListResponse
+from cloudflare.types.zero_trust.gateway.lists import ItemListResponse
 ```
 
 Methods:

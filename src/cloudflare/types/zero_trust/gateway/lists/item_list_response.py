@@ -2,7 +2,7 @@
 
 from typing import List
 
-from .lists import Lists
+from cloudflare.types.zero_trust.gateway import Lists
 
 __all__ = ["ItemListResponse"]
 
