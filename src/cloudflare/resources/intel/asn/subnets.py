@@ -13,7 +13,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....types.intel import IntelASN
+from ....types.intel import ASN
 from ...._base_client import (
     make_request_options,
 )
@@ -33,7 +33,7 @@ class Subnets(SyncAPIResource):
 
     def get(
         self,
-        asn: IntelASN,
+        asn: ASN,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -79,7 +79,7 @@ class AsyncSubnets(AsyncAPIResource):
 
     async def get(
         self,
-        asn: IntelASN,
+        asn: ASN,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Any, List, Type, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -28,9 +27,14 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 from ....types.intel.attack_surface_report import (
+    Product,
+    Subject,
+    IssueType,
+    IssueClass,
     IssueListResponse,
     IssueTypeResponse,
     IssueClassResponse,
+    SeverityQueryParam,
     IssueSeverityResponse,
     issue_list_params,
     issue_type_params,
@@ -56,36 +60,18 @@ class Issues(SyncAPIResource):
         *,
         account_id: str,
         dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
-        issue_type: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        issue_type_neq: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        issue_class: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_class_neq: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
-        severity: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        severity_neq: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        product: List[Product] | NotGiven = NOT_GIVEN,
+        product_neq: List[Product] | NotGiven = NOT_GIVEN,
+        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        subject: List[Subject] | NotGiven = NOT_GIVEN,
+        subject_neq: List[Subject] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -148,34 +134,16 @@ class Issues(SyncAPIResource):
         *,
         account_id: str,
         dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
-        issue_type: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        issue_type_neq: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
-        severity: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        severity_neq: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        issue_class: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_class_neq: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
+        product: List[Product] | NotGiven = NOT_GIVEN,
+        product_neq: List[Product] | NotGiven = NOT_GIVEN,
+        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        subject: List[Subject] | NotGiven = NOT_GIVEN,
+        subject_neq: List[Subject] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -281,34 +249,16 @@ class Issues(SyncAPIResource):
         *,
         account_id: str,
         dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
-        issue_type: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        issue_type_neq: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
-        severity: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        severity_neq: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        issue_class: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_class_neq: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
+        product: List[Product] | NotGiven = NOT_GIVEN,
+        product_neq: List[Product] | NotGiven = NOT_GIVEN,
+        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        subject: List[Subject] | NotGiven = NOT_GIVEN,
+        subject_neq: List[Subject] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -365,34 +315,16 @@ class Issues(SyncAPIResource):
         *,
         account_id: str,
         dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
-        issue_type: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        issue_type_neq: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
-        severity: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        severity_neq: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        issue_class: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_class_neq: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
+        product: List[Product] | NotGiven = NOT_GIVEN,
+        product_neq: List[Product] | NotGiven = NOT_GIVEN,
+        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        subject: List[Subject] | NotGiven = NOT_GIVEN,
+        subject_neq: List[Subject] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -459,36 +391,18 @@ class AsyncIssues(AsyncAPIResource):
         *,
         account_id: str,
         dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
-        issue_type: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        issue_type_neq: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        issue_class: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_class_neq: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
-        severity: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        severity_neq: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        product: List[Product] | NotGiven = NOT_GIVEN,
+        product_neq: List[Product] | NotGiven = NOT_GIVEN,
+        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        subject: List[Subject] | NotGiven = NOT_GIVEN,
+        subject_neq: List[Subject] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -551,34 +465,16 @@ class AsyncIssues(AsyncAPIResource):
         *,
         account_id: str,
         dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
-        issue_type: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        issue_type_neq: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
-        severity: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        severity_neq: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        issue_class: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_class_neq: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
+        product: List[Product] | NotGiven = NOT_GIVEN,
+        product_neq: List[Product] | NotGiven = NOT_GIVEN,
+        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        subject: List[Subject] | NotGiven = NOT_GIVEN,
+        subject_neq: List[Subject] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -684,34 +580,16 @@ class AsyncIssues(AsyncAPIResource):
         *,
         account_id: str,
         dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
-        issue_type: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        issue_type_neq: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
-        severity: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        severity_neq: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        issue_class: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_class_neq: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
+        product: List[Product] | NotGiven = NOT_GIVEN,
+        product_neq: List[Product] | NotGiven = NOT_GIVEN,
+        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        subject: List[Subject] | NotGiven = NOT_GIVEN,
+        subject_neq: List[Subject] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -768,34 +646,16 @@ class AsyncIssues(AsyncAPIResource):
         *,
         account_id: str,
         dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
-        issue_type: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        issue_type_neq: List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
-        severity: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        severity_neq: List[Literal["low", "moderate", "critical"]] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        issue_class: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_class_neq: List[IssueClass] | NotGiven = NOT_GIVEN,
+        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
+        product: List[Product] | NotGiven = NOT_GIVEN,
+        product_neq: List[Product] | NotGiven = NOT_GIVEN,
+        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        subject: List[Subject] | NotGiven = NOT_GIVEN,
+        subject_neq: List[Subject] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

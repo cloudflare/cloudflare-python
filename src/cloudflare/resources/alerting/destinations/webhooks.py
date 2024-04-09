@@ -27,9 +27,9 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
 from ....types.alerting.destinations import (
-    AlertingWebhooks,
     WebhookCreateResponse,
     WebhookUpdateResponse,
+    webhooks,
     webhook_create_params,
     webhook_update_params,
 )
@@ -179,7 +179,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[AlertingWebhooks]:
+    ) -> SyncSinglePage[webhooks.Webhooks]:
         """
         Gets a list of all configured webhook destinations.
 
@@ -198,11 +198,11 @@ class Webhooks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks",
-            page=SyncSinglePage[AlertingWebhooks],
+            page=SyncSinglePage[webhooks.Webhooks],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AlertingWebhooks,
+            model=webhooks.Webhooks,
         )
 
     def delete(
@@ -265,7 +265,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AlertingWebhooks:
+    ) -> webhooks.Webhooks:
         """
         Get details for a single webhooks destination.
 
@@ -295,7 +295,7 @@ class Webhooks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AlertingWebhooks], ResultWrapper[AlertingWebhooks]),
+            cast_to=cast(Type[webhooks.Webhooks], ResultWrapper[webhooks.Webhooks]),
         )
 
 
@@ -441,7 +441,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AlertingWebhooks, AsyncSinglePage[AlertingWebhooks]]:
+    ) -> AsyncPaginator[webhooks.Webhooks, AsyncSinglePage[webhooks.Webhooks]]:
         """
         Gets a list of all configured webhook destinations.
 
@@ -460,11 +460,11 @@ class AsyncWebhooks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks",
-            page=AsyncSinglePage[AlertingWebhooks],
+            page=AsyncSinglePage[webhooks.Webhooks],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AlertingWebhooks,
+            model=webhooks.Webhooks,
         )
 
     async def delete(
@@ -527,7 +527,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AlertingWebhooks:
+    ) -> webhooks.Webhooks:
         """
         Get details for a single webhooks destination.
 
@@ -557,7 +557,7 @@ class AsyncWebhooks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AlertingWebhooks], ResultWrapper[AlertingWebhooks]),
+            cast_to=cast(Type[webhooks.Webhooks], ResultWrapper[webhooks.Webhooks]),
         )
 
 

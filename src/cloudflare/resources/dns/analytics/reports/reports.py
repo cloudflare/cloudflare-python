@@ -32,7 +32,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.dns.analytics import DNSAnalyticsReport, report_get_params
+from .....types.dns.analytics import Report, report_get_params
 
 __all__ = ["Reports", "AsyncReports"]
 
@@ -67,7 +67,7 @@ class Reports(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSAnalyticsReport:
+    ) -> Report:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -124,7 +124,7 @@ class Reports(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSAnalyticsReport], ResultWrapper[DNSAnalyticsReport]),
+            cast_to=cast(Type[Report], ResultWrapper[Report]),
         )
 
 
@@ -158,7 +158,7 @@ class AsyncReports(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSAnalyticsReport:
+    ) -> Report:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -215,7 +215,7 @@ class AsyncReports(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSAnalyticsReport], ResultWrapper[DNSAnalyticsReport]),
+            cast_to=cast(Type[Report], ResultWrapper[Report]),
         )
 
 

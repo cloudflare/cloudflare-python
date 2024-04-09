@@ -2,5 +2,4 @@
 
 from __future__ import annotations
 
-from .event import Event as Event
 from .detail_get_response import DetailGetResponse as DetailGetResponse

@@ -26,8 +26,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.access import (
-    ZeroTrustBookmarks,
     BookmarkDeleteResponse,
+    bookmarks,
     bookmark_create_params,
     bookmark_delete_params,
     bookmark_update_params,
@@ -57,7 +57,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustBookmarks:
+    ) -> bookmarks.Bookmarks:
         """
         Create a new Bookmark application.
 
@@ -86,7 +86,7 @@ class Bookmarks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustBookmarks], ResultWrapper[ZeroTrustBookmarks]),
+            cast_to=cast(Type[bookmarks.Bookmarks], ResultWrapper[bookmarks.Bookmarks]),
         )
 
     def update(
@@ -101,7 +101,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustBookmarks:
+    ) -> bookmarks.Bookmarks:
         """
         Updates a configured Bookmark application.
 
@@ -130,7 +130,7 @@ class Bookmarks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustBookmarks], ResultWrapper[ZeroTrustBookmarks]),
+            cast_to=cast(Type[bookmarks.Bookmarks], ResultWrapper[bookmarks.Bookmarks]),
         )
 
     def list(
@@ -143,7 +143,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustBookmarks]:
+    ) -> SyncSinglePage[bookmarks.Bookmarks]:
         """
         Lists Bookmark applications.
 
@@ -160,11 +160,11 @@ class Bookmarks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get_api_list(
             f"/accounts/{identifier}/access/bookmarks",
-            page=SyncSinglePage[ZeroTrustBookmarks],
+            page=SyncSinglePage[bookmarks.Bookmarks],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustBookmarks,
+            model=bookmarks.Bookmarks,
         )
 
     def delete(
@@ -222,7 +222,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustBookmarks:
+    ) -> bookmarks.Bookmarks:
         """
         Fetches a single Bookmark application.
 
@@ -250,7 +250,7 @@ class Bookmarks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustBookmarks], ResultWrapper[ZeroTrustBookmarks]),
+            cast_to=cast(Type[bookmarks.Bookmarks], ResultWrapper[bookmarks.Bookmarks]),
         )
 
 
@@ -275,7 +275,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustBookmarks:
+    ) -> bookmarks.Bookmarks:
         """
         Create a new Bookmark application.
 
@@ -304,7 +304,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustBookmarks], ResultWrapper[ZeroTrustBookmarks]),
+            cast_to=cast(Type[bookmarks.Bookmarks], ResultWrapper[bookmarks.Bookmarks]),
         )
 
     async def update(
@@ -319,7 +319,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustBookmarks:
+    ) -> bookmarks.Bookmarks:
         """
         Updates a configured Bookmark application.
 
@@ -348,7 +348,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustBookmarks], ResultWrapper[ZeroTrustBookmarks]),
+            cast_to=cast(Type[bookmarks.Bookmarks], ResultWrapper[bookmarks.Bookmarks]),
         )
 
     def list(
@@ -361,7 +361,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustBookmarks, AsyncSinglePage[ZeroTrustBookmarks]]:
+    ) -> AsyncPaginator[bookmarks.Bookmarks, AsyncSinglePage[bookmarks.Bookmarks]]:
         """
         Lists Bookmark applications.
 
@@ -378,11 +378,11 @@ class AsyncBookmarks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get_api_list(
             f"/accounts/{identifier}/access/bookmarks",
-            page=AsyncSinglePage[ZeroTrustBookmarks],
+            page=AsyncSinglePage[bookmarks.Bookmarks],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustBookmarks,
+            model=bookmarks.Bookmarks,
         )
 
     async def delete(
@@ -440,7 +440,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustBookmarks:
+    ) -> bookmarks.Bookmarks:
         """
         Fetches a single Bookmark application.
 
@@ -468,7 +468,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustBookmarks], ResultWrapper[ZeroTrustBookmarks]),
+            cast_to=cast(Type[bookmarks.Bookmarks], ResultWrapper[bookmarks.Bookmarks]),
         )
 
 

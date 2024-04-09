@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.firewall import (
-    FirewallZoneLockdown,
+    Lockdown,
     LockdownDeleteResponse,
 )
 
@@ -29,7 +29,7 @@ class TestLockdowns:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -42,7 +42,7 @@ class TestLockdowns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lockdown = response.parse()
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +55,7 @@ class TestLockdowns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lockdown = response.parse()
-            assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+            assert_matches_type(Lockdown, lockdown, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -76,7 +76,7 @@ class TestLockdowns:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -90,7 +90,7 @@ class TestLockdowns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lockdown = response.parse()
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +104,7 @@ class TestLockdowns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lockdown = response.parse()
-            assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+            assert_matches_type(Lockdown, lockdown, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -131,7 +131,7 @@ class TestLockdowns:
         lockdown = client.firewall.lockdowns.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Lockdown], lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -150,7 +150,7 @@ class TestLockdowns:
             priority=5,
             uri_search="/some/path",
         )
-        assert_matches_type(SyncV4PagePaginationArray[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Lockdown], lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -162,7 +162,7 @@ class TestLockdowns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lockdown = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Lockdown], lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -174,7 +174,7 @@ class TestLockdowns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lockdown = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[FirewallZoneLockdown], lockdown, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Lockdown], lockdown, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -250,7 +250,7 @@ class TestLockdowns:
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -263,7 +263,7 @@ class TestLockdowns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lockdown = response.parse()
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -276,7 +276,7 @@ class TestLockdowns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lockdown = response.parse()
-            assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+            assert_matches_type(Lockdown, lockdown, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -306,7 +306,7 @@ class TestAsyncLockdowns:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -319,7 +319,7 @@ class TestAsyncLockdowns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lockdown = await response.parse()
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -332,7 +332,7 @@ class TestAsyncLockdowns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lockdown = await response.parse()
-            assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+            assert_matches_type(Lockdown, lockdown, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -353,7 +353,7 @@ class TestAsyncLockdowns:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -367,7 +367,7 @@ class TestAsyncLockdowns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lockdown = await response.parse()
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -381,7 +381,7 @@ class TestAsyncLockdowns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lockdown = await response.parse()
-            assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+            assert_matches_type(Lockdown, lockdown, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -408,7 +408,7 @@ class TestAsyncLockdowns:
         lockdown = await async_client.firewall.lockdowns.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Lockdown], lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -427,7 +427,7 @@ class TestAsyncLockdowns:
             priority=5,
             uri_search="/some/path",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Lockdown], lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -439,7 +439,7 @@ class TestAsyncLockdowns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lockdown = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Lockdown], lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -451,7 +451,7 @@ class TestAsyncLockdowns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lockdown = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[FirewallZoneLockdown], lockdown, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Lockdown], lockdown, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -527,7 +527,7 @@ class TestAsyncLockdowns:
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -540,7 +540,7 @@ class TestAsyncLockdowns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lockdown = await response.parse()
-        assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+        assert_matches_type(Lockdown, lockdown, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -553,7 +553,7 @@ class TestAsyncLockdowns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lockdown = await response.parse()
-            assert_matches_type(Optional[FirewallZoneLockdown], lockdown, path=["response"])
+            assert_matches_type(Lockdown, lockdown, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

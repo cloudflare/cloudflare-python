@@ -13,11 +13,11 @@ from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.shared import UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846
 from cloudflare.types.cloudforce_one import (
-    CloudforceOneQuota,
-    CloudforceOneRequestItem,
-    CloudforceOneRequestTypes,
-    CloudforceOneRequestListItem,
-    CloudforceOneRequestConstants,
+    Item,
+    Quota,
+    ListItem,
+    RequestTypes,
+    RequestConstants,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -32,7 +32,7 @@ class TestRequests:
         request = client.cloudforce_one.requests.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestRequests:
             summary="DoS attack",
             tlp="clear",
         )
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -69,7 +69,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -88,7 +88,7 @@ class TestRequests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +102,7 @@ class TestRequests:
             summary="DoS attack",
             tlp="clear",
         )
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -115,7 +115,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -128,7 +128,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestRequests:
             page=0,
             per_page=10,
         )
-        assert_matches_type(SyncV4PagePaginationArray[CloudforceOneRequestListItem], request, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +173,7 @@ class TestRequests:
             sort_order="asc",
             status="open",
         )
-        assert_matches_type(SyncV4PagePaginationArray[CloudforceOneRequestListItem], request, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +187,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[CloudforceOneRequestListItem], request, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +201,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[CloudforceOneRequestListItem], request, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -273,7 +273,7 @@ class TestRequests:
         request = client.cloudforce_one.requests.constants(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestConstants, request, path=["response"])
+        assert_matches_type(RequestConstants, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -285,7 +285,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(CloudforceOneRequestConstants, request, path=["response"])
+        assert_matches_type(RequestConstants, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -297,7 +297,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(CloudforceOneRequestConstants, request, path=["response"])
+            assert_matches_type(RequestConstants, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -316,7 +316,7 @@ class TestRequests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -329,7 +329,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -342,7 +342,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -367,7 +367,7 @@ class TestRequests:
         request = client.cloudforce_one.requests.quota(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneQuota, request, path=["response"])
+        assert_matches_type(Quota, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -379,7 +379,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(CloudforceOneQuota, request, path=["response"])
+        assert_matches_type(Quota, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -391,7 +391,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(CloudforceOneQuota, request, path=["response"])
+            assert_matches_type(Quota, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -409,7 +409,7 @@ class TestRequests:
         request = client.cloudforce_one.requests.types(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestTypes, request, path=["response"])
+        assert_matches_type(RequestTypes, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -421,7 +421,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(CloudforceOneRequestTypes, request, path=["response"])
+        assert_matches_type(RequestTypes, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -433,7 +433,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(CloudforceOneRequestTypes, request, path=["response"])
+            assert_matches_type(RequestTypes, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -455,7 +455,7 @@ class TestAsyncRequests:
         request = await async_client.cloudforce_one.requests.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -468,7 +468,7 @@ class TestAsyncRequests:
             summary="DoS attack",
             tlp="clear",
         )
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -480,7 +480,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -492,7 +492,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -511,7 +511,7 @@ class TestAsyncRequests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -525,7 +525,7 @@ class TestAsyncRequests:
             summary="DoS attack",
             tlp="clear",
         )
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -538,7 +538,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -551,7 +551,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -578,7 +578,7 @@ class TestAsyncRequests:
             page=0,
             per_page=10,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[CloudforceOneRequestListItem], request, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -596,7 +596,7 @@ class TestAsyncRequests:
             sort_order="asc",
             status="open",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[CloudforceOneRequestListItem], request, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -610,7 +610,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[CloudforceOneRequestListItem], request, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -624,7 +624,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[CloudforceOneRequestListItem], request, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -696,7 +696,7 @@ class TestAsyncRequests:
         request = await async_client.cloudforce_one.requests.constants(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestConstants, request, path=["response"])
+        assert_matches_type(RequestConstants, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -708,7 +708,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(CloudforceOneRequestConstants, request, path=["response"])
+        assert_matches_type(RequestConstants, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -720,7 +720,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(CloudforceOneRequestConstants, request, path=["response"])
+            assert_matches_type(RequestConstants, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -739,7 +739,7 @@ class TestAsyncRequests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -752,7 +752,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -765,7 +765,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(CloudforceOneRequestItem, request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -790,7 +790,7 @@ class TestAsyncRequests:
         request = await async_client.cloudforce_one.requests.quota(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneQuota, request, path=["response"])
+        assert_matches_type(Quota, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -802,7 +802,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(CloudforceOneQuota, request, path=["response"])
+        assert_matches_type(Quota, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -814,7 +814,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(CloudforceOneQuota, request, path=["response"])
+            assert_matches_type(Quota, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -832,7 +832,7 @@ class TestAsyncRequests:
         request = await async_client.cloudforce_one.requests.types(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CloudforceOneRequestTypes, request, path=["response"])
+        assert_matches_type(RequestTypes, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -844,7 +844,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(CloudforceOneRequestTypes, request, path=["response"])
+        assert_matches_type(RequestTypes, request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -856,7 +856,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(CloudforceOneRequestTypes, request, path=["response"])
+            assert_matches_type(RequestTypes, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

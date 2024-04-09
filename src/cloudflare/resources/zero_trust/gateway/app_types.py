@@ -20,7 +20,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.gateway import ZeroTrustGatewayAppTypes
+from ....types.zero_trust.gateway import AppType
 
 __all__ = ["AppTypes", "AsyncAppTypes"]
 
@@ -44,7 +44,7 @@ class AppTypes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustGatewayAppTypes]:
+    ) -> SyncSinglePage[AppType]:
         """
         Fetches all application and application type mappings.
 
@@ -63,13 +63,11 @@ class AppTypes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/app_types",
-            page=SyncSinglePage[ZeroTrustGatewayAppTypes],
+            page=SyncSinglePage[AppType],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(
-                Any, ZeroTrustGatewayAppTypes
-            ),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, AppType),  # Union types cannot be passed in as arguments in the type system
         )
 
 
@@ -92,7 +90,7 @@ class AsyncAppTypes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustGatewayAppTypes, AsyncSinglePage[ZeroTrustGatewayAppTypes]]:
+    ) -> AsyncPaginator[AppType, AsyncSinglePage[AppType]]:
         """
         Fetches all application and application type mappings.
 
@@ -111,13 +109,11 @@ class AsyncAppTypes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/app_types",
-            page=AsyncSinglePage[ZeroTrustGatewayAppTypes],
+            page=AsyncSinglePage[AppType],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(
-                Any, ZeroTrustGatewayAppTypes
-            ),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, AppType),  # Union types cannot be passed in as arguments in the type system
         )
 
 

@@ -7,7 +7,7 @@ from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
-from .dimension_item import DimensionItem
+from ..dimension_item import DimensionItem
 
 __all__ = ["BytimeGetParams"]
 

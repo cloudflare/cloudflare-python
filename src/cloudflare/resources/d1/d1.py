@@ -13,39 +13,39 @@ from .database import (
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["D1", "AsyncD1"]
+__all__ = ["D1Resource", "AsyncD1Resource"]
 
 
-class D1(SyncAPIResource):
+class D1Resource(SyncAPIResource):
     @cached_property
     def database(self) -> Database:
         return Database(self._client)
 
     @cached_property
-    def with_raw_response(self) -> D1WithRawResponse:
-        return D1WithRawResponse(self)
+    def with_raw_response(self) -> D1ResourceWithRawResponse:
+        return D1ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> D1WithStreamingResponse:
-        return D1WithStreamingResponse(self)
+    def with_streaming_response(self) -> D1ResourceWithStreamingResponse:
+        return D1ResourceWithStreamingResponse(self)
 
 
-class AsyncD1(AsyncAPIResource):
+class AsyncD1Resource(AsyncAPIResource):
     @cached_property
     def database(self) -> AsyncDatabase:
         return AsyncDatabase(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncD1WithRawResponse:
-        return AsyncD1WithRawResponse(self)
+    def with_raw_response(self) -> AsyncD1ResourceWithRawResponse:
+        return AsyncD1ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncD1WithStreamingResponse:
-        return AsyncD1WithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncD1ResourceWithStreamingResponse:
+        return AsyncD1ResourceWithStreamingResponse(self)
 
 
-class D1WithRawResponse:
-    def __init__(self, d1: D1) -> None:
+class D1ResourceWithRawResponse:
+    def __init__(self, d1: D1Resource) -> None:
         self._d1 = d1
 
     @cached_property
@@ -53,8 +53,8 @@ class D1WithRawResponse:
         return DatabaseWithRawResponse(self._d1.database)
 
 
-class AsyncD1WithRawResponse:
-    def __init__(self, d1: AsyncD1) -> None:
+class AsyncD1ResourceWithRawResponse:
+    def __init__(self, d1: AsyncD1Resource) -> None:
         self._d1 = d1
 
     @cached_property
@@ -62,8 +62,8 @@ class AsyncD1WithRawResponse:
         return AsyncDatabaseWithRawResponse(self._d1.database)
 
 
-class D1WithStreamingResponse:
-    def __init__(self, d1: D1) -> None:
+class D1ResourceWithStreamingResponse:
+    def __init__(self, d1: D1Resource) -> None:
         self._d1 = d1
 
     @cached_property
@@ -71,8 +71,8 @@ class D1WithStreamingResponse:
         return DatabaseWithStreamingResponse(self._d1.database)
 
 
-class AsyncD1WithStreamingResponse:
-    def __init__(self, d1: AsyncD1) -> None:
+class AsyncD1ResourceWithStreamingResponse:
+    def __init__(self, d1: AsyncD1Resource) -> None:
         self._d1 = d1
 
     @cached_property

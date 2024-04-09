@@ -3,22 +3,9 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from ..user.tokens import Permission
+from .member_role import MemberRole
 
-__all__ = ["Member", "Role", "User"]
-
-
-class Role(BaseModel):
-    id: str
-    """Role identifier tag."""
-
-    description: str
-    """Description of role's permissions."""
-
-    name: str
-    """Role name."""
-
-    permissions: Permission
+__all__ = ["Member", "User"]
 
 
 class User(BaseModel):
@@ -45,7 +32,7 @@ class Member(BaseModel):
     id: str
     """Membership identifier tag."""
 
-    roles: List[Role]
+    roles: List[MemberRole]
     """Roles assigned to this member."""
 
     status: object

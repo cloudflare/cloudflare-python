@@ -3,11 +3,11 @@
 from typing import List, Optional
 
 from ......_models import BaseModel
-from .distributed_web_config_content_list_entry import DistributedWebConfigContentListEntry
+from .content_list_item import ContentListItem
 
 __all__ = ["EntryListResponse"]
 
 
 class EntryListResponse(BaseModel):
-    entries: Optional[List[DistributedWebConfigContentListEntry]] = None
+    entries: Optional[List[ContentListItem]] = None
     """Content list entries."""

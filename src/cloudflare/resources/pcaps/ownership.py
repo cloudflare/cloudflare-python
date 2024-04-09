@@ -20,27 +20,22 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.pcaps import (
-    OwnershipGetResponse,
-    MagicVisibilityPCAPsOwnership,
-    ownership_create_params,
-    ownership_validate_params,
-)
+from ...types.pcaps import Ownership, OwnershipGetResponse, ownership_create_params, ownership_validate_params
 from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["Ownership", "AsyncOwnership"]
+__all__ = ["OwnershipResource", "AsyncOwnershipResource"]
 
 
-class Ownership(SyncAPIResource):
+class OwnershipResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OwnershipWithRawResponse:
-        return OwnershipWithRawResponse(self)
+    def with_raw_response(self) -> OwnershipResourceWithRawResponse:
+        return OwnershipResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OwnershipWithStreamingResponse:
-        return OwnershipWithStreamingResponse(self)
+    def with_streaming_response(self) -> OwnershipResourceWithStreamingResponse:
+        return OwnershipResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -53,7 +48,7 @@ class Ownership(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityPCAPsOwnership:
+    ) -> Ownership:
         """
         Adds an AWS or GCP bucket to use with full packet captures.
 
@@ -82,7 +77,7 @@ class Ownership(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityPCAPsOwnership], ResultWrapper[MagicVisibilityPCAPsOwnership]),
+            cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
         )
 
     def delete(
@@ -177,7 +172,7 @@ class Ownership(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityPCAPsOwnership:
+    ) -> Ownership:
         """
         Validates buckets added to the packet captures API.
 
@@ -214,18 +209,18 @@ class Ownership(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityPCAPsOwnership], ResultWrapper[MagicVisibilityPCAPsOwnership]),
+            cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
         )
 
 
-class AsyncOwnership(AsyncAPIResource):
+class AsyncOwnershipResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOwnershipWithRawResponse:
-        return AsyncOwnershipWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOwnershipResourceWithRawResponse:
+        return AsyncOwnershipResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOwnershipWithStreamingResponse:
-        return AsyncOwnershipWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOwnershipResourceWithStreamingResponse:
+        return AsyncOwnershipResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -238,7 +233,7 @@ class AsyncOwnership(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityPCAPsOwnership:
+    ) -> Ownership:
         """
         Adds an AWS or GCP bucket to use with full packet captures.
 
@@ -269,7 +264,7 @@ class AsyncOwnership(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityPCAPsOwnership], ResultWrapper[MagicVisibilityPCAPsOwnership]),
+            cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
         )
 
     async def delete(
@@ -364,7 +359,7 @@ class AsyncOwnership(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicVisibilityPCAPsOwnership:
+    ) -> Ownership:
         """
         Validates buckets added to the packet captures API.
 
@@ -401,12 +396,12 @@ class AsyncOwnership(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicVisibilityPCAPsOwnership], ResultWrapper[MagicVisibilityPCAPsOwnership]),
+            cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
         )
 
 
-class OwnershipWithRawResponse:
-    def __init__(self, ownership: Ownership) -> None:
+class OwnershipResourceWithRawResponse:
+    def __init__(self, ownership: OwnershipResource) -> None:
         self._ownership = ownership
 
         self.create = to_raw_response_wrapper(
@@ -423,8 +418,8 @@ class OwnershipWithRawResponse:
         )
 
 
-class AsyncOwnershipWithRawResponse:
-    def __init__(self, ownership: AsyncOwnership) -> None:
+class AsyncOwnershipResourceWithRawResponse:
+    def __init__(self, ownership: AsyncOwnershipResource) -> None:
         self._ownership = ownership
 
         self.create = async_to_raw_response_wrapper(
@@ -441,8 +436,8 @@ class AsyncOwnershipWithRawResponse:
         )
 
 
-class OwnershipWithStreamingResponse:
-    def __init__(self, ownership: Ownership) -> None:
+class OwnershipResourceWithStreamingResponse:
+    def __init__(self, ownership: OwnershipResource) -> None:
         self._ownership = ownership
 
         self.create = to_streamed_response_wrapper(
@@ -459,8 +454,8 @@ class OwnershipWithStreamingResponse:
         )
 
 
-class AsyncOwnershipWithStreamingResponse:
-    def __init__(self, ownership: AsyncOwnership) -> None:
+class AsyncOwnershipResourceWithStreamingResponse:
+    def __init__(self, ownership: AsyncOwnershipResource) -> None:
         self._ownership = ownership
 
         self.create = async_to_streamed_response_wrapper(

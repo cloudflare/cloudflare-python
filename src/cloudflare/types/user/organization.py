@@ -3,6 +3,7 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
+from .tokens import PermissionItem
 from ..._models import BaseModel
 
 __all__ = ["Organization"]
@@ -15,7 +16,7 @@ class Organization(BaseModel):
     name: Optional[str] = None
     """Organization name."""
 
-    permissions: Optional[List[str]] = None
+    permissions: Optional[List[PermissionItem]] = None
     """Access permissions for this User."""
 
     roles: Optional[List[str]] = None

@@ -9,9 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones import (
-    UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820,
-)
+from cloudflare.types.zones import ZoneHold
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +23,7 @@ class TestHolds:
         hold = client.zones.holds.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -34,7 +32,7 @@ class TestHolds:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             include_subdomains=True,
         )
-        assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -46,7 +44,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +56,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -76,7 +74,7 @@ class TestHolds:
         hold = client.zones.holds.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820], hold, path=["response"])
+        assert_matches_type(Optional[ZoneHold], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -85,7 +83,7 @@ class TestHolds:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hold_after="string",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820], hold, path=["response"])
+        assert_matches_type(Optional[ZoneHold], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -97,7 +95,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820], hold, path=["response"])
+        assert_matches_type(Optional[ZoneHold], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -109,7 +107,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820], hold, path=["response"])
+            assert_matches_type(Optional[ZoneHold], hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -127,7 +125,7 @@ class TestHolds:
         hold = client.zones.holds.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -139,7 +137,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -151,7 +149,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -173,7 +171,7 @@ class TestAsyncHolds:
         hold = await async_client.zones.holds.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -182,7 +180,7 @@ class TestAsyncHolds:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             include_subdomains=True,
         )
-        assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -194,7 +192,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = await response.parse()
-        assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +204,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -224,7 +222,7 @@ class TestAsyncHolds:
         hold = await async_client.zones.holds.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820], hold, path=["response"])
+        assert_matches_type(Optional[ZoneHold], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -233,7 +231,7 @@ class TestAsyncHolds:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hold_after="string",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820], hold, path=["response"])
+        assert_matches_type(Optional[ZoneHold], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -245,7 +243,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820], hold, path=["response"])
+        assert_matches_type(Optional[ZoneHold], hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -257,7 +255,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820], hold, path=["response"])
+            assert_matches_type(Optional[ZoneHold], hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -275,7 +273,7 @@ class TestAsyncHolds:
         hold = await async_client.zones.holds.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -287,7 +285,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = await response.parse()
-        assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -299,7 +297,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

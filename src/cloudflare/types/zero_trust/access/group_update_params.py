@@ -5,15 +5,13 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from ..exclude_item_param import ExcludeItemParam
-from ..include_item_param import IncludeItemParam
-from ..require_item_param import RequireItemParam
+from ..access_rule_param import AccessRuleParam
 
 __all__ = ["GroupUpdateParams"]
 
 
 class GroupUpdateParams(TypedDict, total=False):
-    include: Required[Iterable[IncludeItemParam]]
+    include: Required[Iterable[AccessRuleParam]]
     """Rules evaluated with an OR logical operator.
 
     A user needs to meet only one of the Include rules.
@@ -28,7 +26,7 @@ class GroupUpdateParams(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    exclude: Iterable[ExcludeItemParam]
+    exclude: Iterable[AccessRuleParam]
     """Rules evaluated with a NOT logical operator.
 
     To match a policy, a user cannot meet any of the Exclude rules.
@@ -37,7 +35,7 @@ class GroupUpdateParams(TypedDict, total=False):
     is_default: bool
     """Whether this is the default group"""
 
-    require: Iterable[RequireItemParam]
+    require: Iterable[AccessRuleParam]
     """Rules evaluated with an AND logical operator.
 
     To match a policy, a user must meet all of the Require rules.

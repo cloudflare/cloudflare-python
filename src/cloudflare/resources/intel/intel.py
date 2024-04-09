@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from .asn import (
-    ASN,
-    AsyncASN,
-    ASNWithRawResponse,
-    AsyncASNWithRawResponse,
-    ASNWithStreamingResponse,
-    AsyncASNWithStreamingResponse,
+    ASNResource,
+    AsyncASNResource,
+    ASNResourceWithRawResponse,
+    AsyncASNResourceWithRawResponse,
+    ASNResourceWithStreamingResponse,
+    AsyncASNResourceWithStreamingResponse,
 )
 from .dns import (
     DNS,
@@ -34,7 +34,7 @@ from .whois import (
     WhoisWithStreamingResponse,
     AsyncWhoisWithStreamingResponse,
 )
-from .asn.asn import ASN, AsyncASN
+from .asn.asn import ASNResource, AsyncASNResource
 from .domains import (
     Domains,
     AsyncDomains,
@@ -62,12 +62,12 @@ from .sinkholes import (
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .domain_history import (
-    DomainHistory,
-    AsyncDomainHistory,
-    DomainHistoryWithRawResponse,
-    AsyncDomainHistoryWithRawResponse,
-    DomainHistoryWithStreamingResponse,
-    AsyncDomainHistoryWithStreamingResponse,
+    DomainHistoryResource,
+    AsyncDomainHistoryResource,
+    DomainHistoryResourceWithRawResponse,
+    AsyncDomainHistoryResourceWithRawResponse,
+    DomainHistoryResourceWithStreamingResponse,
+    AsyncDomainHistoryResourceWithStreamingResponse,
 )
 from .domains.domains import Domains, AsyncDomains
 from .indicator_feeds import (
@@ -102,8 +102,8 @@ __all__ = ["Intel", "AsyncIntel"]
 
 class Intel(SyncAPIResource):
     @cached_property
-    def asn(self) -> ASN:
-        return ASN(self._client)
+    def asn(self) -> ASNResource:
+        return ASNResource(self._client)
 
     @cached_property
     def dns(self) -> DNS:
@@ -114,8 +114,8 @@ class Intel(SyncAPIResource):
         return Domains(self._client)
 
     @cached_property
-    def domain_history(self) -> DomainHistory:
-        return DomainHistory(self._client)
+    def domain_history(self) -> DomainHistoryResource:
+        return DomainHistoryResource(self._client)
 
     @cached_property
     def ips(self) -> IPs:
@@ -156,8 +156,8 @@ class Intel(SyncAPIResource):
 
 class AsyncIntel(AsyncAPIResource):
     @cached_property
-    def asn(self) -> AsyncASN:
-        return AsyncASN(self._client)
+    def asn(self) -> AsyncASNResource:
+        return AsyncASNResource(self._client)
 
     @cached_property
     def dns(self) -> AsyncDNS:
@@ -168,8 +168,8 @@ class AsyncIntel(AsyncAPIResource):
         return AsyncDomains(self._client)
 
     @cached_property
-    def domain_history(self) -> AsyncDomainHistory:
-        return AsyncDomainHistory(self._client)
+    def domain_history(self) -> AsyncDomainHistoryResource:
+        return AsyncDomainHistoryResource(self._client)
 
     @cached_property
     def ips(self) -> AsyncIPs:
@@ -213,8 +213,8 @@ class IntelWithRawResponse:
         self._intel = intel
 
     @cached_property
-    def asn(self) -> ASNWithRawResponse:
-        return ASNWithRawResponse(self._intel.asn)
+    def asn(self) -> ASNResourceWithRawResponse:
+        return ASNResourceWithRawResponse(self._intel.asn)
 
     @cached_property
     def dns(self) -> DNSWithRawResponse:
@@ -225,8 +225,8 @@ class IntelWithRawResponse:
         return DomainsWithRawResponse(self._intel.domains)
 
     @cached_property
-    def domain_history(self) -> DomainHistoryWithRawResponse:
-        return DomainHistoryWithRawResponse(self._intel.domain_history)
+    def domain_history(self) -> DomainHistoryResourceWithRawResponse:
+        return DomainHistoryResourceWithRawResponse(self._intel.domain_history)
 
     @cached_property
     def ips(self) -> IPsWithRawResponse:
@@ -262,8 +262,8 @@ class AsyncIntelWithRawResponse:
         self._intel = intel
 
     @cached_property
-    def asn(self) -> AsyncASNWithRawResponse:
-        return AsyncASNWithRawResponse(self._intel.asn)
+    def asn(self) -> AsyncASNResourceWithRawResponse:
+        return AsyncASNResourceWithRawResponse(self._intel.asn)
 
     @cached_property
     def dns(self) -> AsyncDNSWithRawResponse:
@@ -274,8 +274,8 @@ class AsyncIntelWithRawResponse:
         return AsyncDomainsWithRawResponse(self._intel.domains)
 
     @cached_property
-    def domain_history(self) -> AsyncDomainHistoryWithRawResponse:
-        return AsyncDomainHistoryWithRawResponse(self._intel.domain_history)
+    def domain_history(self) -> AsyncDomainHistoryResourceWithRawResponse:
+        return AsyncDomainHistoryResourceWithRawResponse(self._intel.domain_history)
 
     @cached_property
     def ips(self) -> AsyncIPsWithRawResponse:
@@ -311,8 +311,8 @@ class IntelWithStreamingResponse:
         self._intel = intel
 
     @cached_property
-    def asn(self) -> ASNWithStreamingResponse:
-        return ASNWithStreamingResponse(self._intel.asn)
+    def asn(self) -> ASNResourceWithStreamingResponse:
+        return ASNResourceWithStreamingResponse(self._intel.asn)
 
     @cached_property
     def dns(self) -> DNSWithStreamingResponse:
@@ -323,8 +323,8 @@ class IntelWithStreamingResponse:
         return DomainsWithStreamingResponse(self._intel.domains)
 
     @cached_property
-    def domain_history(self) -> DomainHistoryWithStreamingResponse:
-        return DomainHistoryWithStreamingResponse(self._intel.domain_history)
+    def domain_history(self) -> DomainHistoryResourceWithStreamingResponse:
+        return DomainHistoryResourceWithStreamingResponse(self._intel.domain_history)
 
     @cached_property
     def ips(self) -> IPsWithStreamingResponse:
@@ -360,8 +360,8 @@ class AsyncIntelWithStreamingResponse:
         self._intel = intel
 
     @cached_property
-    def asn(self) -> AsyncASNWithStreamingResponse:
-        return AsyncASNWithStreamingResponse(self._intel.asn)
+    def asn(self) -> AsyncASNResourceWithStreamingResponse:
+        return AsyncASNResourceWithStreamingResponse(self._intel.asn)
 
     @cached_property
     def dns(self) -> AsyncDNSWithStreamingResponse:
@@ -372,8 +372,8 @@ class AsyncIntelWithStreamingResponse:
         return AsyncDomainsWithStreamingResponse(self._intel.domains)
 
     @cached_property
-    def domain_history(self) -> AsyncDomainHistoryWithStreamingResponse:
-        return AsyncDomainHistoryWithStreamingResponse(self._intel.domain_history)
+    def domain_history(self) -> AsyncDomainHistoryResourceWithStreamingResponse:
+        return AsyncDomainHistoryResourceWithStreamingResponse(self._intel.domain_history)
 
     @cached_property
     def ips(self) -> AsyncIPsWithStreamingResponse:

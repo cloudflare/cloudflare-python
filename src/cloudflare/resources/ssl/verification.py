@@ -31,17 +31,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["Verification", "AsyncVerification"]
+__all__ = ["VerificationResource", "AsyncVerificationResource"]
 
 
-class Verification(SyncAPIResource):
+class VerificationResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> VerificationWithRawResponse:
-        return VerificationWithRawResponse(self)
+    def with_raw_response(self) -> VerificationResourceWithRawResponse:
+        return VerificationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> VerificationWithStreamingResponse:
-        return VerificationWithStreamingResponse(self)
+    def with_streaming_response(self) -> VerificationResourceWithStreamingResponse:
+        return VerificationResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -143,14 +143,14 @@ class Verification(SyncAPIResource):
         )
 
 
-class AsyncVerification(AsyncAPIResource):
+class AsyncVerificationResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncVerificationWithRawResponse:
-        return AsyncVerificationWithRawResponse(self)
+    def with_raw_response(self) -> AsyncVerificationResourceWithRawResponse:
+        return AsyncVerificationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVerificationWithStreamingResponse:
-        return AsyncVerificationWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncVerificationResourceWithStreamingResponse:
+        return AsyncVerificationResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -252,8 +252,8 @@ class AsyncVerification(AsyncAPIResource):
         )
 
 
-class VerificationWithRawResponse:
-    def __init__(self, verification: Verification) -> None:
+class VerificationResourceWithRawResponse:
+    def __init__(self, verification: VerificationResource) -> None:
         self._verification = verification
 
         self.edit = to_raw_response_wrapper(
@@ -264,8 +264,8 @@ class VerificationWithRawResponse:
         )
 
 
-class AsyncVerificationWithRawResponse:
-    def __init__(self, verification: AsyncVerification) -> None:
+class AsyncVerificationResourceWithRawResponse:
+    def __init__(self, verification: AsyncVerificationResource) -> None:
         self._verification = verification
 
         self.edit = async_to_raw_response_wrapper(
@@ -276,8 +276,8 @@ class AsyncVerificationWithRawResponse:
         )
 
 
-class VerificationWithStreamingResponse:
-    def __init__(self, verification: Verification) -> None:
+class VerificationResourceWithStreamingResponse:
+    def __init__(self, verification: VerificationResource) -> None:
         self._verification = verification
 
         self.edit = to_streamed_response_wrapper(
@@ -288,8 +288,8 @@ class VerificationWithStreamingResponse:
         )
 
 
-class AsyncVerificationWithStreamingResponse:
-    def __init__(self, verification: AsyncVerification) -> None:
+class AsyncVerificationResourceWithStreamingResponse:
+    def __init__(self, verification: AsyncVerificationResource) -> None:
         self._verification = verification
 
         self.edit = async_to_streamed_response_wrapper(

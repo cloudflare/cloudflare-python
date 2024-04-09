@@ -11,8 +11,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.networks import (
-    TunnelRoute,
-    TunnelTeamnet,
+    Route,
+    Teamnet,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -28,7 +28,7 @@ class TestRoutes:
             account_id="699d98642c564d2e855e9661899b7252",
             ip_network="172.16.0.0/16",
         )
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestRoutes:
             comment="Example comment for this route.",
             virtual_network_id={},
         )
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -52,7 +52,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -65,7 +65,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(TunnelRoute, route, path=["response"])
+            assert_matches_type(Route, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -84,7 +84,7 @@ class TestRoutes:
         route = client.zero_trust.networks.routes.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncV4PagePaginationArray[TunnelTeamnet], route, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Teamnet], route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -103,7 +103,7 @@ class TestRoutes:
             tunnel_id={},
             virtual_network_id={},
         )
-        assert_matches_type(SyncV4PagePaginationArray[TunnelTeamnet], route, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Teamnet], route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -115,7 +115,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[TunnelTeamnet], route, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Teamnet], route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -127,7 +127,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[TunnelTeamnet], route, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Teamnet], route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,7 +146,7 @@ class TestRoutes:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -159,7 +159,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -172,7 +172,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(TunnelRoute, route, path=["response"])
+            assert_matches_type(Route, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,7 +198,7 @@ class TestRoutes:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -212,7 +212,7 @@ class TestRoutes:
             tunnel_id={},
             virtual_network_id={},
         )
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -225,7 +225,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -238,7 +238,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(TunnelRoute, route, path=["response"])
+            assert_matches_type(Route, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -268,7 +268,7 @@ class TestAsyncRoutes:
             account_id="699d98642c564d2e855e9661899b7252",
             ip_network="172.16.0.0/16",
         )
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -279,7 +279,7 @@ class TestAsyncRoutes:
             comment="Example comment for this route.",
             virtual_network_id={},
         )
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -292,7 +292,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -305,7 +305,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(TunnelRoute, route, path=["response"])
+            assert_matches_type(Route, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -324,7 +324,7 @@ class TestAsyncRoutes:
         route = await async_client.zero_trust.networks.routes.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[TunnelTeamnet], route, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Teamnet], route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -343,7 +343,7 @@ class TestAsyncRoutes:
             tunnel_id={},
             virtual_network_id={},
         )
-        assert_matches_type(AsyncV4PagePaginationArray[TunnelTeamnet], route, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Teamnet], route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -355,7 +355,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[TunnelTeamnet], route, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Teamnet], route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -367,7 +367,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[TunnelTeamnet], route, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Teamnet], route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -386,7 +386,7 @@ class TestAsyncRoutes:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -399,7 +399,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -412,7 +412,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(TunnelRoute, route, path=["response"])
+            assert_matches_type(Route, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -438,7 +438,7 @@ class TestAsyncRoutes:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -452,7 +452,7 @@ class TestAsyncRoutes:
             tunnel_id={},
             virtual_network_id={},
         )
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -465,7 +465,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(TunnelRoute, route, path=["response"])
+        assert_matches_type(Route, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -478,7 +478,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(TunnelRoute, route, path=["response"])
+            assert_matches_type(Route, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

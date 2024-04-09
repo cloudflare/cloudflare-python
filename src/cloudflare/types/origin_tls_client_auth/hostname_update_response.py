@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .origin_tls_client_certificate_id import OriginTLSClientCertificateID
+from .authenticated_origin_pull import AuthenticatedOriginPull
 
 __all__ = ["HostnameUpdateResponse"]
 
-HostnameUpdateResponse = List[OriginTLSClientCertificateID]
+HostnameUpdateResponse = List[AuthenticatedOriginPull]

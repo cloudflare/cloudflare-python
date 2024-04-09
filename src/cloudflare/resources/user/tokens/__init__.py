@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .value import (
-    Value,
-    AsyncValue,
-    ValueWithRawResponse,
-    AsyncValueWithRawResponse,
-    ValueWithStreamingResponse,
-    AsyncValueWithStreamingResponse,
+    ValueResource,
+    AsyncValueResource,
+    ValueResourceWithRawResponse,
+    AsyncValueResourceWithRawResponse,
+    ValueResourceWithStreamingResponse,
+    AsyncValueResourceWithStreamingResponse,
 )
 from .tokens import (
     Tokens,
@@ -32,12 +32,12 @@ __all__ = [
     "AsyncPermissionGroupsWithRawResponse",
     "PermissionGroupsWithStreamingResponse",
     "AsyncPermissionGroupsWithStreamingResponse",
-    "Value",
-    "AsyncValue",
-    "ValueWithRawResponse",
-    "AsyncValueWithRawResponse",
-    "ValueWithStreamingResponse",
-    "AsyncValueWithStreamingResponse",
+    "ValueResource",
+    "AsyncValueResource",
+    "ValueResourceWithRawResponse",
+    "AsyncValueResourceWithRawResponse",
+    "ValueResourceWithStreamingResponse",
+    "AsyncValueResourceWithStreamingResponse",
     "Tokens",
     "AsyncTokens",
     "TokensWithRawResponse",

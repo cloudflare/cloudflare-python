@@ -26,7 +26,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.durable_objects import DurableObjectNamespace
+from ....types.durable_objects import Namespace
 
 __all__ = ["Namespaces", "AsyncNamespaces"]
 
@@ -54,7 +54,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DurableObjectNamespace]:
+    ) -> SyncSinglePage[Namespace]:
         """
         Returns the Durable Object namespaces owned by an account.
 
@@ -73,11 +73,11 @@ class Namespaces(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/durable_objects/namespaces",
-            page=SyncSinglePage[DurableObjectNamespace],
+            page=SyncSinglePage[Namespace],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DurableObjectNamespace,
+            model=Namespace,
         )
 
 
@@ -104,7 +104,7 @@ class AsyncNamespaces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DurableObjectNamespace, AsyncSinglePage[DurableObjectNamespace]]:
+    ) -> AsyncPaginator[Namespace, AsyncSinglePage[Namespace]]:
         """
         Returns the Durable Object namespaces owned by an account.
 
@@ -123,11 +123,11 @@ class AsyncNamespaces(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/durable_objects/namespaces",
-            page=AsyncSinglePage[DurableObjectNamespace],
+            page=AsyncSinglePage[Namespace],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DurableObjectNamespace,
+            model=Namespace,
         )
 
 

@@ -8,16 +8,16 @@ from ...._models import BaseModel
 
 __all__ = [
     "PackageListResponse",
-    "LegacyJhsAPIResponseCollection",
-    "LegacyJhsAPIResponseCollectionResultInfo",
+    "FirewallAPIResponseCollection",
+    "FirewallAPIResponseCollectionResultInfo",
     "Result",
     "ResultResult",
-    "ResultResultLegacyJhsPackageDefinition",
-    "ResultResultLegacyJhsAnomalyPackage",
+    "ResultResultFirewallPackageDefinition",
+    "ResultResultFirewallAnomalyPackage",
 ]
 
 
-class LegacyJhsAPIResponseCollectionResultInfo(BaseModel):
+class FirewallAPIResponseCollectionResultInfo(BaseModel):
     count: Optional[float] = None
     """Total number of results for the requested service"""
 
@@ -31,7 +31,7 @@ class LegacyJhsAPIResponseCollectionResultInfo(BaseModel):
     """Total results available without any search parameters"""
 
 
-class LegacyJhsAPIResponseCollection(BaseModel):
+class FirewallAPIResponseCollection(BaseModel):
     errors: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
 
     messages: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
@@ -41,12 +41,12 @@ class LegacyJhsAPIResponseCollection(BaseModel):
     success: Literal[True]
     """Whether the API call was successful"""
 
-    result_info: Optional[LegacyJhsAPIResponseCollectionResultInfo] = None
+    result_info: Optional[FirewallAPIResponseCollectionResultInfo] = None
 
 
-class ResultResultLegacyJhsPackageDefinition(BaseModel):
+class ResultResultFirewallPackageDefinition(BaseModel):
     id: str
-    """The unique identifier of a WAF package."""
+    """Identifier"""
 
     description: str
     """A summary of the purpose/function of the WAF package."""
@@ -77,9 +77,9 @@ class ResultResultLegacyJhsPackageDefinition(BaseModel):
     """
 
 
-class ResultResultLegacyJhsAnomalyPackage(BaseModel):
+class ResultResultFirewallAnomalyPackage(BaseModel):
     id: str
-    """The unique identifier of a WAF package."""
+    """Identifier"""
 
     description: str
     """A summary of the purpose/function of the WAF package."""
@@ -110,11 +110,11 @@ class ResultResultLegacyJhsAnomalyPackage(BaseModel):
     """
 
 
-ResultResult = Union[ResultResultLegacyJhsPackageDefinition, ResultResultLegacyJhsAnomalyPackage]
+ResultResult = Union[ResultResultFirewallPackageDefinition, ResultResultFirewallAnomalyPackage]
 
 
 class Result(BaseModel):
     result: Optional[List[ResultResult]] = None
 
 
-PackageListResponse = Union[LegacyJhsAPIResponseCollection, Result]
+PackageListResponse = Union[FirewallAPIResponseCollection, Result]

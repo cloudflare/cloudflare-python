@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
+from .by_time import ByTime as ByTime
 from .bytime_get_params import BytimeGetParams as BytimeGetParams
-from .dns_analytics_report_by_time import DNSAnalyticsReportByTime as DNSAnalyticsReportByTime

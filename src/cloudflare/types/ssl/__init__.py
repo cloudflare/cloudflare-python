@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 from .host_item import HostItem as HostItem
+from .verification import Verification as Verification
 from .analyze_create_params import AnalyzeCreateParams as AnalyzeCreateParams
 from .verification_get_params import VerificationGetParams as VerificationGetParams
-from .tls_verification_setting import TLSVerificationSetting as TLSVerificationSetting
 from .verification_edit_params import VerificationEditParams as VerificationEditParams
 from .verification_get_response import VerificationGetResponse as VerificationGetResponse
 from .verification_edit_response import VerificationEditResponse as VerificationEditResponse

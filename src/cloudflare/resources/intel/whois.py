@@ -20,7 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.intel import IntelWhois, whois_get_params
+from ...types.intel import whois, whois_get_params
 from ..._base_client import (
     make_request_options,
 )
@@ -48,7 +48,7 @@ class Whois(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IntelWhois:
+    ) -> whois.Whois:
         """
         Get WHOIS Record
 
@@ -75,7 +75,7 @@ class Whois(SyncAPIResource):
                 query=maybe_transform({"domain": domain}, whois_get_params.WhoisGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IntelWhois], ResultWrapper[IntelWhois]),
+            cast_to=cast(Type[whois.Whois], ResultWrapper[whois.Whois]),
         )
 
 
@@ -99,7 +99,7 @@ class AsyncWhois(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IntelWhois:
+    ) -> whois.Whois:
         """
         Get WHOIS Record
 
@@ -126,7 +126,7 @@ class AsyncWhois(AsyncAPIResource):
                 query=await async_maybe_transform({"domain": domain}, whois_get_params.WhoisGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IntelWhois], ResultWrapper[IntelWhois]),
+            cast_to=cast(Type[whois.Whois], ResultWrapper[whois.Whois]),
         )
 
 

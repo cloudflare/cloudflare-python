@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.email_routing import DestinationAddress
+from cloudflare.types.email_routing import Address
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +25,7 @@ class TestAddresses:
             "023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
         )
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -38,7 +38,7 @@ class TestAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address = response.parse()
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -51,7 +51,7 @@ class TestAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address = response.parse()
-            assert_matches_type(DestinationAddress, address, path=["response"])
+            assert_matches_type(Address, address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,7 +70,7 @@ class TestAddresses:
         address = client.email_routing.addresses.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[DestinationAddress], address, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Address], address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -82,7 +82,7 @@ class TestAddresses:
             per_page=5,
             verified=True,
         )
-        assert_matches_type(SyncV4PagePaginationArray[DestinationAddress], address, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Address], address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -94,7 +94,7 @@ class TestAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[DestinationAddress], address, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Address], address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +106,7 @@ class TestAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[DestinationAddress], address, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Address], address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -125,7 +125,7 @@ class TestAddresses:
             "ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -138,7 +138,7 @@ class TestAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address = response.parse()
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -151,7 +151,7 @@ class TestAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address = response.parse()
-            assert_matches_type(DestinationAddress, address, path=["response"])
+            assert_matches_type(Address, address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -179,7 +179,7 @@ class TestAddresses:
             "ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -192,7 +192,7 @@ class TestAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address = response.parse()
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -205,7 +205,7 @@ class TestAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address = response.parse()
-            assert_matches_type(DestinationAddress, address, path=["response"])
+            assert_matches_type(Address, address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -237,7 +237,7 @@ class TestAsyncAddresses:
             "023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
         )
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -250,7 +250,7 @@ class TestAsyncAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address = await response.parse()
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -263,7 +263,7 @@ class TestAsyncAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address = await response.parse()
-            assert_matches_type(DestinationAddress, address, path=["response"])
+            assert_matches_type(Address, address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -282,7 +282,7 @@ class TestAsyncAddresses:
         address = await async_client.email_routing.addresses.list(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DestinationAddress], address, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Address], address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -294,7 +294,7 @@ class TestAsyncAddresses:
             per_page=5,
             verified=True,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DestinationAddress], address, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Address], address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -306,7 +306,7 @@ class TestAsyncAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[DestinationAddress], address, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Address], address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -318,7 +318,7 @@ class TestAsyncAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[DestinationAddress], address, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Address], address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -337,7 +337,7 @@ class TestAsyncAddresses:
             "ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -350,7 +350,7 @@ class TestAsyncAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address = await response.parse()
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -363,7 +363,7 @@ class TestAsyncAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address = await response.parse()
-            assert_matches_type(DestinationAddress, address, path=["response"])
+            assert_matches_type(Address, address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -391,7 +391,7 @@ class TestAsyncAddresses:
             "ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -404,7 +404,7 @@ class TestAsyncAddresses:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address = await response.parse()
-        assert_matches_type(DestinationAddress, address, path=["response"])
+        assert_matches_type(Address, address, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -417,7 +417,7 @@ class TestAsyncAddresses:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address = await response.parse()
-            assert_matches_type(DestinationAddress, address, path=["response"])
+            assert_matches_type(Address, address, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

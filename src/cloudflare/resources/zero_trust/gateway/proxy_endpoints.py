@@ -27,8 +27,8 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ....types.zero_trust.gateway import (
+    ProxyEndpoint,
     GatewayIPsItem,
-    ZeroTrustGatewayProxyEndpoints,
     proxy_endpoint_edit_params,
     proxy_endpoint_create_params,
     proxy_endpoint_delete_params,
@@ -58,7 +58,7 @@ class ProxyEndpoints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayProxyEndpoints:
+    ) -> ProxyEndpoint:
         """
         Creates a new Zero Trust Gateway proxy endpoint.
 
@@ -93,7 +93,7 @@ class ProxyEndpoints(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayProxyEndpoints], ResultWrapper[ZeroTrustGatewayProxyEndpoints]),
+            cast_to=cast(Type[ProxyEndpoint], ResultWrapper[ProxyEndpoint]),
         )
 
     def list(
@@ -106,7 +106,7 @@ class ProxyEndpoints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustGatewayProxyEndpoints]:
+    ) -> SyncSinglePage[ProxyEndpoint]:
         """
         Fetches a single Zero Trust Gateway proxy endpoint.
 
@@ -123,11 +123,11 @@ class ProxyEndpoints(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
-            page=SyncSinglePage[ZeroTrustGatewayProxyEndpoints],
+            page=SyncSinglePage[ProxyEndpoint],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGatewayProxyEndpoints,
+            model=ProxyEndpoint,
         )
 
     def delete(
@@ -190,7 +190,7 @@ class ProxyEndpoints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayProxyEndpoints:
+    ) -> ProxyEndpoint:
         """
         Updates a configured Zero Trust Gateway proxy endpoint.
 
@@ -227,7 +227,7 @@ class ProxyEndpoints(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayProxyEndpoints], ResultWrapper[ZeroTrustGatewayProxyEndpoints]),
+            cast_to=cast(Type[ProxyEndpoint], ResultWrapper[ProxyEndpoint]),
         )
 
     def get(
@@ -241,7 +241,7 @@ class ProxyEndpoints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayProxyEndpoints:
+    ) -> ProxyEndpoint:
         """
         Fetches all Zero Trust Gateway proxy endpoints for an account.
 
@@ -267,7 +267,7 @@ class ProxyEndpoints(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayProxyEndpoints], ResultWrapper[ZeroTrustGatewayProxyEndpoints]),
+            cast_to=cast(Type[ProxyEndpoint], ResultWrapper[ProxyEndpoint]),
         )
 
 
@@ -292,7 +292,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayProxyEndpoints:
+    ) -> ProxyEndpoint:
         """
         Creates a new Zero Trust Gateway proxy endpoint.
 
@@ -327,7 +327,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayProxyEndpoints], ResultWrapper[ZeroTrustGatewayProxyEndpoints]),
+            cast_to=cast(Type[ProxyEndpoint], ResultWrapper[ProxyEndpoint]),
         )
 
     def list(
@@ -340,7 +340,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustGatewayProxyEndpoints, AsyncSinglePage[ZeroTrustGatewayProxyEndpoints]]:
+    ) -> AsyncPaginator[ProxyEndpoint, AsyncSinglePage[ProxyEndpoint]]:
         """
         Fetches a single Zero Trust Gateway proxy endpoint.
 
@@ -357,11 +357,11 @@ class AsyncProxyEndpoints(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
-            page=AsyncSinglePage[ZeroTrustGatewayProxyEndpoints],
+            page=AsyncSinglePage[ProxyEndpoint],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGatewayProxyEndpoints,
+            model=ProxyEndpoint,
         )
 
     async def delete(
@@ -424,7 +424,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayProxyEndpoints:
+    ) -> ProxyEndpoint:
         """
         Updates a configured Zero Trust Gateway proxy endpoint.
 
@@ -461,7 +461,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayProxyEndpoints], ResultWrapper[ZeroTrustGatewayProxyEndpoints]),
+            cast_to=cast(Type[ProxyEndpoint], ResultWrapper[ProxyEndpoint]),
         )
 
     async def get(
@@ -475,7 +475,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayProxyEndpoints:
+    ) -> ProxyEndpoint:
         """
         Fetches all Zero Trust Gateway proxy endpoints for an account.
 
@@ -501,7 +501,7 @@ class AsyncProxyEndpoints(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayProxyEndpoints], ResultWrapper[ZeroTrustGatewayProxyEndpoints]),
+            cast_to=cast(Type[ProxyEndpoint], ResultWrapper[ProxyEndpoint]),
         )
 
 

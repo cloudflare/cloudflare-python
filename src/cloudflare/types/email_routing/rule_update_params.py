@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .action_item_param import ActionItemParam
-from .matcher_item_param import MatcherItemParam
+from .action_param import ActionParam
+from .matcher_param import MatcherParam
 
 __all__ = ["RuleUpdateParams"]
 
@@ -15,10 +15,10 @@ class RuleUpdateParams(TypedDict, total=False):
     zone_identifier: Required[str]
     """Identifier"""
 
-    actions: Required[Iterable[ActionItemParam]]
+    actions: Required[Iterable[ActionParam]]
     """List actions patterns."""
 
-    matchers: Required[Iterable[MatcherItemParam]]
+    matchers: Required[Iterable[MatcherParam]]
     """Matching patterns to forward to your actions."""
 
     enabled: Literal[True, False]

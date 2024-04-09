@@ -10,10 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
-    CustomHostnameGetResponse,
-    CustomHostnameEditResponse,
-    CustomHostnameListResponse,
-    CustomHostnameCreateResponse,
+    CustomHostname,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.shared import UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837
@@ -32,7 +29,7 @@ class TestCustomHostnames:
             hostname="app.example.com",
             ssl={},
         )
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +55,7 @@ class TestCustomHostnames:
             },
             custom_metadata={"key": "value"},
         )
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -72,7 +69,7 @@ class TestCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = response.parse()
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -86,7 +83,7 @@ class TestCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = response.parse()
-            assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+            assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -106,7 +103,7 @@ class TestCustomHostnames:
         custom_hostname = client.custom_hostnames.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CustomHostname], custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -121,7 +118,7 @@ class TestCustomHostnames:
             per_page=5,
             ssl=0,
         )
-        assert_matches_type(SyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CustomHostname], custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +130,7 @@ class TestCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CustomHostname], custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -145,9 +142,7 @@ class TestCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = response.parse()
-            assert_matches_type(
-                SyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"]
-            )
+            assert_matches_type(SyncV4PagePaginationArray[CustomHostname], custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -223,7 +218,7 @@ class TestCustomHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -251,7 +246,7 @@ class TestCustomHostnames:
                 "wildcard": False,
             },
         )
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -264,7 +259,7 @@ class TestCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = response.parse()
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -277,7 +272,7 @@ class TestCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = response.parse()
-            assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+            assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -303,7 +298,7 @@ class TestCustomHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -316,7 +311,7 @@ class TestCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = response.parse()
-        assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -329,7 +324,7 @@ class TestCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = response.parse()
-            assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+            assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -360,7 +355,7 @@ class TestAsyncCustomHostnames:
             hostname="app.example.com",
             ssl={},
         )
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -386,7 +381,7 @@ class TestAsyncCustomHostnames:
             },
             custom_metadata={"key": "value"},
         )
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -400,7 +395,7 @@ class TestAsyncCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = await response.parse()
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -414,7 +409,7 @@ class TestAsyncCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = await response.parse()
-            assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+            assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -434,7 +429,7 @@ class TestAsyncCustomHostnames:
         custom_hostname = await async_client.custom_hostnames.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CustomHostname], custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -449,7 +444,7 @@ class TestAsyncCustomHostnames:
             per_page=5,
             ssl=0,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CustomHostname], custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -461,7 +456,7 @@ class TestAsyncCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CustomHostname], custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -473,9 +468,7 @@ class TestAsyncCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = await response.parse()
-            assert_matches_type(
-                AsyncV4PagePaginationArray[CustomHostnameListResponse], custom_hostname, path=["response"]
-            )
+            assert_matches_type(AsyncV4PagePaginationArray[CustomHostname], custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -551,7 +544,7 @@ class TestAsyncCustomHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -579,7 +572,7 @@ class TestAsyncCustomHostnames:
                 "wildcard": False,
             },
         )
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -592,7 +585,7 @@ class TestAsyncCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = await response.parse()
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -605,7 +598,7 @@ class TestAsyncCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = await response.parse()
-            assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+            assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -631,7 +624,7 @@ class TestAsyncCustomHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -644,7 +637,7 @@ class TestAsyncCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = await response.parse()
-        assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+        assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -657,7 +650,7 @@ class TestAsyncCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = await response.parse()
-            assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+            assert_matches_type(CustomHostname, custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -7,8 +7,8 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
+from .policy_param import PolicyParam
 from .cidr_list_item import CIDRListItem
-from .policy_with_permission_groups_param import PolicyWithPermissionGroupsParam
 
 __all__ = ["TokenCreateParams", "Condition", "ConditionRequestIP"]
 
@@ -17,7 +17,7 @@ class TokenCreateParams(TypedDict, total=False):
     name: Required[str]
     """Token name."""
 
-    policies: Required[Iterable[PolicyWithPermissionGroupsParam]]
+    policies: Required[Iterable[PolicyParam]]
     """List of access policies assigned to the token."""
 
     condition: Condition

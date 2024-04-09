@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -188,7 +188,7 @@ class TestUARules:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UARuleDeleteResponse], ua_rule, path=["response"])
+        assert_matches_type(UARuleDeleteResponse, ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -202,7 +202,7 @@ class TestUARules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ua_rule = response.parse()
-        assert_matches_type(Optional[UARuleDeleteResponse], ua_rule, path=["response"])
+        assert_matches_type(UARuleDeleteResponse, ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -216,7 +216,7 @@ class TestUARules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ua_rule = response.parse()
-            assert_matches_type(Optional[UARuleDeleteResponse], ua_rule, path=["response"])
+            assert_matches_type(UARuleDeleteResponse, ua_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -459,7 +459,7 @@ class TestAsyncUARules:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UARuleDeleteResponse], ua_rule, path=["response"])
+        assert_matches_type(UARuleDeleteResponse, ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -473,7 +473,7 @@ class TestAsyncUARules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ua_rule = await response.parse()
-        assert_matches_type(Optional[UARuleDeleteResponse], ua_rule, path=["response"])
+        assert_matches_type(UARuleDeleteResponse, ua_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -487,7 +487,7 @@ class TestAsyncUARules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ua_rule = await response.parse()
-            assert_matches_type(Optional[UARuleDeleteResponse], ua_rule, path=["response"])
+            assert_matches_type(UARuleDeleteResponse, ua_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

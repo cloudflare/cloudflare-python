@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from .r2_sippy import R2Sippy as R2Sippy
-from .r2_bucket import R2Bucket as R2Bucket
+from .sippy import Sippy as Sippy
+from .bucket import Bucket as Bucket
 from .bucket_list_params import BucketListParams as BucketListParams
 from .sippy_update_params import SippyUpdateParams as SippyUpdateParams
 from .bucket_create_params import BucketCreateParams as BucketCreateParams

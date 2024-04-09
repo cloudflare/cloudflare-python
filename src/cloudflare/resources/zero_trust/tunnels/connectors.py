@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.tunnels import TunnelTunnelClient
+from ....types.zero_trust.tunnels import Client
 
 __all__ = ["Connectors", "AsyncConnectors"]
 
@@ -45,7 +45,7 @@ class Connectors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelTunnelClient:
+    ) -> Client:
         """
         Fetches connector and connection details for a Cloudflare Tunnel.
 
@@ -79,7 +79,7 @@ class Connectors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelTunnelClient], ResultWrapper[TunnelTunnelClient]),
+            cast_to=cast(Type[Client], ResultWrapper[Client]),
         )
 
 
@@ -104,7 +104,7 @@ class AsyncConnectors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelTunnelClient:
+    ) -> Client:
         """
         Fetches connector and connection details for a Cloudflare Tunnel.
 
@@ -138,7 +138,7 @@ class AsyncConnectors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelTunnelClient], ResultWrapper[TunnelTunnelClient]),
+            cast_to=cast(Type[Client], ResultWrapper[Client]),
         )
 
 

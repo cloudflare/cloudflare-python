@@ -37,12 +37,13 @@ from ....._base_client import (
 from .....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from .....types.zero_trust.gateway import (
     ListCreateResponse,
-    ZeroTrustGatewayLists,
+    lists,
     list_edit_params,
     list_create_params,
     list_delete_params,
     list_update_params,
 )
+from .....types.zero_trust.gateway.lists import ListsItemParam
 
 __all__ = ["Lists", "AsyncLists"]
 
@@ -67,7 +68,7 @@ class Lists(SyncAPIResource):
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"],
         description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[list_create_params.Item] | NotGiven = NOT_GIVEN,
+        items: Iterable[ListsItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,7 +132,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLists:
+    ) -> lists.Lists:
         """
         Updates a configured Zero Trust list.
 
@@ -170,7 +171,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
+            cast_to=cast(Type[lists.Lists], ResultWrapper[lists.Lists]),
         )
 
     def list(
@@ -183,7 +184,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustGatewayLists]:
+    ) -> SyncSinglePage[lists.Lists]:
         """
         Fetches all Zero Trust lists for an account.
 
@@ -200,11 +201,11 @@ class Lists(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/lists",
-            page=SyncSinglePage[ZeroTrustGatewayLists],
+            page=SyncSinglePage[lists.Lists],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGatewayLists,
+            model=lists.Lists,
         )
 
     def delete(
@@ -261,7 +262,7 @@ class Lists(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        append: Iterable[list_edit_params.Append] | NotGiven = NOT_GIVEN,
+        append: Iterable[ListsItemParam] | NotGiven = NOT_GIVEN,
         remove: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -269,7 +270,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLists:
+    ) -> lists.Lists:
         """
         Appends or removes an item from a configured Zero Trust list.
 
@@ -308,7 +309,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
+            cast_to=cast(Type[lists.Lists], ResultWrapper[lists.Lists]),
         )
 
     def get(
@@ -322,7 +323,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLists:
+    ) -> lists.Lists:
         """
         Fetches a single Zero Trust list.
 
@@ -350,7 +351,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
+            cast_to=cast(Type[lists.Lists], ResultWrapper[lists.Lists]),
         )
 
 
@@ -374,7 +375,7 @@ class AsyncLists(AsyncAPIResource):
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"],
         description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[list_create_params.Item] | NotGiven = NOT_GIVEN,
+        items: Iterable[ListsItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -438,7 +439,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLists:
+    ) -> lists.Lists:
         """
         Updates a configured Zero Trust list.
 
@@ -477,7 +478,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
+            cast_to=cast(Type[lists.Lists], ResultWrapper[lists.Lists]),
         )
 
     def list(
@@ -490,7 +491,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustGatewayLists, AsyncSinglePage[ZeroTrustGatewayLists]]:
+    ) -> AsyncPaginator[lists.Lists, AsyncSinglePage[lists.Lists]]:
         """
         Fetches all Zero Trust lists for an account.
 
@@ -507,11 +508,11 @@ class AsyncLists(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/lists",
-            page=AsyncSinglePage[ZeroTrustGatewayLists],
+            page=AsyncSinglePage[lists.Lists],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGatewayLists,
+            model=lists.Lists,
         )
 
     async def delete(
@@ -568,7 +569,7 @@ class AsyncLists(AsyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        append: Iterable[list_edit_params.Append] | NotGiven = NOT_GIVEN,
+        append: Iterable[ListsItemParam] | NotGiven = NOT_GIVEN,
         remove: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -576,7 +577,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLists:
+    ) -> lists.Lists:
         """
         Appends or removes an item from a configured Zero Trust list.
 
@@ -615,7 +616,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
+            cast_to=cast(Type[lists.Lists], ResultWrapper[lists.Lists]),
         )
 
     async def get(
@@ -629,7 +630,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayLists:
+    ) -> lists.Lists:
         """
         Fetches a single Zero Trust list.
 
@@ -657,7 +658,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayLists], ResultWrapper[ZeroTrustGatewayLists]),
+            cast_to=cast(Type[lists.Lists], ResultWrapper[lists.Lists]),
         )
 
 

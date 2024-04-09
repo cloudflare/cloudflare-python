@@ -27,7 +27,7 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from .....types.firewall.waf.packages import WAFManagedRulesGroup, group_edit_params, group_list_params
+from .....types.firewall.waf.packages import Group, group_edit_params, group_list_params
 
 __all__ = ["Groups", "AsyncGroups"]
 
@@ -60,7 +60,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[WAFManagedRulesGroup]:
+    ) -> SyncV4PagePaginationArray[Group]:
         """
         Fetches the WAF rule groups in a WAF package.
 
@@ -104,7 +104,7 @@ class Groups(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups",
-            page=SyncV4PagePaginationArray[WAFManagedRulesGroup],
+            page=SyncV4PagePaginationArray[Group],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -124,7 +124,7 @@ class Groups(SyncAPIResource):
                     group_list_params.GroupListParams,
                 ),
             ),
-            model=WAFManagedRulesGroup,
+            model=Group,
         )
 
     def edit(
@@ -277,7 +277,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WAFManagedRulesGroup, AsyncV4PagePaginationArray[WAFManagedRulesGroup]]:
+    ) -> AsyncPaginator[Group, AsyncV4PagePaginationArray[Group]]:
         """
         Fetches the WAF rule groups in a WAF package.
 
@@ -321,7 +321,7 @@ class AsyncGroups(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups",
-            page=AsyncV4PagePaginationArray[WAFManagedRulesGroup],
+            page=AsyncV4PagePaginationArray[Group],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -341,7 +341,7 @@ class AsyncGroups(AsyncAPIResource):
                     group_list_params.GroupListParams,
                 ),
             ),
-            model=WAFManagedRulesGroup,
+            model=Group,
         )
 
     async def edit(

@@ -26,7 +26,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
-from ...types.registrar import DomainListResponse, domain_update_params
+from ...types.registrar import Domain, domain_update_params
 
 __all__ = ["Domains", "AsyncDomains"]
 
@@ -117,7 +117,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DomainListResponse]:
+    ) -> SyncSinglePage[Domain]:
         """
         List domains handled by Registrar.
 
@@ -136,11 +136,11 @@ class Domains(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/registrar/domains",
-            page=SyncSinglePage[DomainListResponse],
+            page=SyncSinglePage[Domain],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DomainListResponse,
+            model=Domain,
         )
 
     def get(
@@ -279,7 +279,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DomainListResponse, AsyncSinglePage[DomainListResponse]]:
+    ) -> AsyncPaginator[Domain, AsyncSinglePage[Domain]]:
         """
         List domains handled by Registrar.
 
@@ -298,11 +298,11 @@ class AsyncDomains(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/registrar/domains",
-            page=AsyncSinglePage[DomainListResponse],
+            page=AsyncSinglePage[Domain],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DomainListResponse,
+            model=Domain,
         )
 
     async def get(

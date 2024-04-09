@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .action_item_param import ActionItemParam
-from .targes_item_param import TargesItemParam
+from .route_param import RouteParam
+from .targes_param import TargesParam
 
 __all__ = ["PageruleUpdateParams"]
 
@@ -15,13 +15,13 @@ class PageruleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    actions: Required[Iterable[ActionItemParam]]
+    actions: Required[Iterable[RouteParam]]
     """The set of actions to perform if the targets of this rule match the request.
 
     Actions can redirect to another URL or override settings, but not both.
     """
 
-    targets: Required[Iterable[TargesItemParam]]
+    targets: Required[Iterable[TargesParam]]
     """The rule targets to evaluate on each request."""
 
     priority: int

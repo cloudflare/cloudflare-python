@@ -27,9 +27,9 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.waiting_rooms import (
+    Event,
     RuleParam,
     RuleEditResponse,
-    RuleListResponse,
     RuleCreateResponse,
     RuleDeleteResponse,
     RuleUpdateResponse,
@@ -173,7 +173,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[RuleListResponse]:
+    ) -> SyncSinglePage[Event]:
         """
         Lists rules for a waiting room.
 
@@ -194,11 +194,11 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            page=SyncSinglePage[RuleListResponse],
+            page=SyncSinglePage[Event],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=RuleListResponse,
+            model=Event,
         )
 
     def delete(
@@ -454,7 +454,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RuleListResponse, AsyncSinglePage[RuleListResponse]]:
+    ) -> AsyncPaginator[Event, AsyncSinglePage[Event]]:
         """
         Lists rules for a waiting room.
 
@@ -475,11 +475,11 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            page=AsyncSinglePage[RuleListResponse],
+            page=AsyncSinglePage[Event],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=RuleListResponse,
+            model=Event,
         )
 
     async def delete(

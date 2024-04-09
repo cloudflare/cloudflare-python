@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from .sippy import (
-    Sippy,
-    AsyncSippy,
-    SippyWithRawResponse,
-    AsyncSippyWithRawResponse,
-    SippyWithStreamingResponse,
-    AsyncSippyWithStreamingResponse,
+    SippyResource,
+    AsyncSippyResource,
+    SippyResourceWithRawResponse,
+    AsyncSippyResourceWithRawResponse,
+    SippyResourceWithStreamingResponse,
+    AsyncSippyResourceWithStreamingResponse,
 )
 from .buckets import (
     Buckets,
@@ -30,8 +30,8 @@ class R2(SyncAPIResource):
         return Buckets(self._client)
 
     @cached_property
-    def sippy(self) -> Sippy:
-        return Sippy(self._client)
+    def sippy(self) -> SippyResource:
+        return SippyResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> R2WithRawResponse:
@@ -48,8 +48,8 @@ class AsyncR2(AsyncAPIResource):
         return AsyncBuckets(self._client)
 
     @cached_property
-    def sippy(self) -> AsyncSippy:
-        return AsyncSippy(self._client)
+    def sippy(self) -> AsyncSippyResource:
+        return AsyncSippyResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncR2WithRawResponse:
@@ -69,8 +69,8 @@ class R2WithRawResponse:
         return BucketsWithRawResponse(self._r2.buckets)
 
     @cached_property
-    def sippy(self) -> SippyWithRawResponse:
-        return SippyWithRawResponse(self._r2.sippy)
+    def sippy(self) -> SippyResourceWithRawResponse:
+        return SippyResourceWithRawResponse(self._r2.sippy)
 
 
 class AsyncR2WithRawResponse:
@@ -82,8 +82,8 @@ class AsyncR2WithRawResponse:
         return AsyncBucketsWithRawResponse(self._r2.buckets)
 
     @cached_property
-    def sippy(self) -> AsyncSippyWithRawResponse:
-        return AsyncSippyWithRawResponse(self._r2.sippy)
+    def sippy(self) -> AsyncSippyResourceWithRawResponse:
+        return AsyncSippyResourceWithRawResponse(self._r2.sippy)
 
 
 class R2WithStreamingResponse:
@@ -95,8 +95,8 @@ class R2WithStreamingResponse:
         return BucketsWithStreamingResponse(self._r2.buckets)
 
     @cached_property
-    def sippy(self) -> SippyWithStreamingResponse:
-        return SippyWithStreamingResponse(self._r2.sippy)
+    def sippy(self) -> SippyResourceWithStreamingResponse:
+        return SippyResourceWithStreamingResponse(self._r2.sippy)
 
 
 class AsyncR2WithStreamingResponse:
@@ -108,5 +108,5 @@ class AsyncR2WithStreamingResponse:
         return AsyncBucketsWithStreamingResponse(self._r2.buckets)
 
     @cached_property
-    def sippy(self) -> AsyncSippyWithStreamingResponse:
-        return AsyncSippyWithStreamingResponse(self._r2.sippy)
+    def sippy(self) -> AsyncSippyResourceWithStreamingResponse:
+        return AsyncSippyResourceWithStreamingResponse(self._r2.sippy)

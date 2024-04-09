@@ -21,7 +21,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.page_shield import PageShieldScript, ScriptGetResponse, script_list_params
+from ...types.page_shield import Script, ScriptGetResponse, script_list_params
 
 __all__ = ["Scripts", "AsyncScripts"]
 
@@ -58,7 +58,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PageShieldScript]:
+    ) -> SyncSinglePage[Script]:
         """
         Lists all scripts detected by Page Shield.
 
@@ -128,7 +128,7 @@ class Scripts(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/scripts",
-            page=SyncSinglePage[PageShieldScript],
+            page=SyncSinglePage[Script],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -153,7 +153,7 @@ class Scripts(SyncAPIResource):
                     script_list_params.ScriptListParams,
                 ),
             ),
-            model=PageShieldScript,
+            model=Script,
         )
 
     def get(
@@ -229,7 +229,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PageShieldScript, AsyncSinglePage[PageShieldScript]]:
+    ) -> AsyncPaginator[Script, AsyncSinglePage[Script]]:
         """
         Lists all scripts detected by Page Shield.
 
@@ -299,7 +299,7 @@ class AsyncScripts(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/scripts",
-            page=AsyncSinglePage[PageShieldScript],
+            page=AsyncSinglePage[Script],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -324,7 +324,7 @@ class AsyncScripts(AsyncAPIResource):
                     script_list_params.ScriptListParams,
                 ),
             ),
-            model=PageShieldScript,
+            model=Script,
         )
 
     async def get(

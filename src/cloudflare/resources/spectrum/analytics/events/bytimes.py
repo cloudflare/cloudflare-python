@@ -26,7 +26,8 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
-from .....types.spectrum.analytics.events import DimensionItem, bytime_get_params
+from .....types.spectrum.analytics import DimensionItem
+from .....types.spectrum.analytics.events import bytime_get_params
 
 __all__ = ["Bytimes", "AsyncBytimes"]
 

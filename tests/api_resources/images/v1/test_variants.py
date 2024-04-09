@@ -11,8 +11,10 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from cloudflare.types.images.v1 import (
-    V1ImageVariant,
-    V1ImageVariants,
+    Variant,
+    VariantGetResponse,
+    VariantEditResponse,
+    VariantCreateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -34,7 +36,7 @@ class TestVariants:
                 "width": 1366,
             },
         )
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantCreateResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +52,7 @@ class TestVariants:
             },
             never_require_signed_urls=True,
         )
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantCreateResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -69,7 +71,7 @@ class TestVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = response.parse()
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantCreateResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -88,7 +90,7 @@ class TestVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = response.parse()
-            assert_matches_type(V1ImageVariant, variant, path=["response"])
+            assert_matches_type(VariantCreateResponse, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -113,7 +115,7 @@ class TestVariants:
         variant = client.images.v1.variants.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(V1ImageVariants, variant, path=["response"])
+        assert_matches_type(Variant, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -125,7 +127,7 @@ class TestVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = response.parse()
-        assert_matches_type(V1ImageVariants, variant, path=["response"])
+        assert_matches_type(Variant, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -137,7 +139,7 @@ class TestVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = response.parse()
-            assert_matches_type(V1ImageVariants, variant, path=["response"])
+            assert_matches_type(Variant, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -219,7 +221,7 @@ class TestVariants:
                 "width": 1366,
             },
         )
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -235,7 +237,7 @@ class TestVariants:
             },
             never_require_signed_urls=True,
         )
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -254,7 +256,7 @@ class TestVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = response.parse()
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -273,7 +275,7 @@ class TestVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = response.parse()
-            assert_matches_type(V1ImageVariant, variant, path=["response"])
+            assert_matches_type(VariantEditResponse, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -311,7 +313,7 @@ class TestVariants:
             "hero",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantGetResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -324,7 +326,7 @@ class TestVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = response.parse()
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantGetResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -337,7 +339,7 @@ class TestVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = response.parse()
-            assert_matches_type(V1ImageVariant, variant, path=["response"])
+            assert_matches_type(VariantGetResponse, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -373,7 +375,7 @@ class TestAsyncVariants:
                 "width": 1366,
             },
         )
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantCreateResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -389,7 +391,7 @@ class TestAsyncVariants:
             },
             never_require_signed_urls=True,
         )
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantCreateResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -408,7 +410,7 @@ class TestAsyncVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = await response.parse()
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantCreateResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -427,7 +429,7 @@ class TestAsyncVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = await response.parse()
-            assert_matches_type(V1ImageVariant, variant, path=["response"])
+            assert_matches_type(VariantCreateResponse, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -452,7 +454,7 @@ class TestAsyncVariants:
         variant = await async_client.images.v1.variants.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(V1ImageVariants, variant, path=["response"])
+        assert_matches_type(Variant, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -464,7 +466,7 @@ class TestAsyncVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = await response.parse()
-        assert_matches_type(V1ImageVariants, variant, path=["response"])
+        assert_matches_type(Variant, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -476,7 +478,7 @@ class TestAsyncVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = await response.parse()
-            assert_matches_type(V1ImageVariants, variant, path=["response"])
+            assert_matches_type(Variant, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -558,7 +560,7 @@ class TestAsyncVariants:
                 "width": 1366,
             },
         )
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -574,7 +576,7 @@ class TestAsyncVariants:
             },
             never_require_signed_urls=True,
         )
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -593,7 +595,7 @@ class TestAsyncVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = await response.parse()
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -612,7 +614,7 @@ class TestAsyncVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = await response.parse()
-            assert_matches_type(V1ImageVariant, variant, path=["response"])
+            assert_matches_type(VariantEditResponse, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -650,7 +652,7 @@ class TestAsyncVariants:
             "hero",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantGetResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -663,7 +665,7 @@ class TestAsyncVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = await response.parse()
-        assert_matches_type(V1ImageVariant, variant, path=["response"])
+        assert_matches_type(VariantGetResponse, variant, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -676,7 +678,7 @@ class TestAsyncVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = await response.parse()
-            assert_matches_type(V1ImageVariant, variant, path=["response"])
+            assert_matches_type(VariantGetResponse, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

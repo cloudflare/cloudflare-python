@@ -9,12 +9,12 @@ from typing_extensions import Literal
 import httpx
 
 from .value import (
-    Value,
-    AsyncValue,
-    ValueWithRawResponse,
-    AsyncValueWithRawResponse,
-    ValueWithStreamingResponse,
-    AsyncValueWithStreamingResponse,
+    ValueResource,
+    AsyncValueResource,
+    ValueResourceWithRawResponse,
+    AsyncValueResourceWithRawResponse,
+    ValueResourceWithStreamingResponse,
+    AsyncValueResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -32,10 +32,10 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....types.user import (
+    PolicyParam,
     TokenCreateResponse,
     TokenDeleteResponse,
     TokenVerifyResponse,
-    PolicyWithPermissionGroupsParam,
     token_list_params,
     token_create_params,
     token_delete_params,
@@ -64,8 +64,8 @@ class Tokens(SyncAPIResource):
         return PermissionGroups(self._client)
 
     @cached_property
-    def value(self) -> Value:
-        return Value(self._client)
+    def value(self) -> ValueResource:
+        return ValueResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> TokensWithRawResponse:
@@ -79,7 +79,7 @@ class Tokens(SyncAPIResource):
         self,
         *,
         name: str,
-        policies: Iterable[PolicyWithPermissionGroupsParam],
+        policies: Iterable[PolicyParam],
         condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -138,7 +138,7 @@ class Tokens(SyncAPIResource):
         token_id: object,
         *,
         name: str,
-        policies: Iterable[PolicyWithPermissionGroupsParam],
+        policies: Iterable[PolicyParam],
         status: Literal["active", "disabled", "expired"],
         condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -359,8 +359,8 @@ class AsyncTokens(AsyncAPIResource):
         return AsyncPermissionGroups(self._client)
 
     @cached_property
-    def value(self) -> AsyncValue:
-        return AsyncValue(self._client)
+    def value(self) -> AsyncValueResource:
+        return AsyncValueResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncTokensWithRawResponse:
@@ -374,7 +374,7 @@ class AsyncTokens(AsyncAPIResource):
         self,
         *,
         name: str,
-        policies: Iterable[PolicyWithPermissionGroupsParam],
+        policies: Iterable[PolicyParam],
         condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -433,7 +433,7 @@ class AsyncTokens(AsyncAPIResource):
         token_id: object,
         *,
         name: str,
-        policies: Iterable[PolicyWithPermissionGroupsParam],
+        policies: Iterable[PolicyParam],
         status: Literal["active", "disabled", "expired"],
         condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -676,8 +676,8 @@ class TokensWithRawResponse:
         return PermissionGroupsWithRawResponse(self._tokens.permission_groups)
 
     @cached_property
-    def value(self) -> ValueWithRawResponse:
-        return ValueWithRawResponse(self._tokens.value)
+    def value(self) -> ValueResourceWithRawResponse:
+        return ValueResourceWithRawResponse(self._tokens.value)
 
 
 class AsyncTokensWithRawResponse:
@@ -708,8 +708,8 @@ class AsyncTokensWithRawResponse:
         return AsyncPermissionGroupsWithRawResponse(self._tokens.permission_groups)
 
     @cached_property
-    def value(self) -> AsyncValueWithRawResponse:
-        return AsyncValueWithRawResponse(self._tokens.value)
+    def value(self) -> AsyncValueResourceWithRawResponse:
+        return AsyncValueResourceWithRawResponse(self._tokens.value)
 
 
 class TokensWithStreamingResponse:
@@ -740,8 +740,8 @@ class TokensWithStreamingResponse:
         return PermissionGroupsWithStreamingResponse(self._tokens.permission_groups)
 
     @cached_property
-    def value(self) -> ValueWithStreamingResponse:
-        return ValueWithStreamingResponse(self._tokens.value)
+    def value(self) -> ValueResourceWithStreamingResponse:
+        return ValueResourceWithStreamingResponse(self._tokens.value)
 
 
 class AsyncTokensWithStreamingResponse:
@@ -772,5 +772,5 @@ class AsyncTokensWithStreamingResponse:
         return AsyncPermissionGroupsWithStreamingResponse(self._tokens.permission_groups)
 
     @cached_property
-    def value(self) -> AsyncValueWithStreamingResponse:
-        return AsyncValueWithStreamingResponse(self._tokens.value)
+    def value(self) -> AsyncValueResourceWithStreamingResponse:
+        return AsyncValueResourceWithStreamingResponse(self._tokens.value)

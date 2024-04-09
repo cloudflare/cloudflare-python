@@ -25,7 +25,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.workers import WorkersDomain, domain_list_params, domain_delete_params, domain_update_params
+from ...types.workers import Domain, domain_list_params, domain_delete_params, domain_update_params
 
 __all__ = ["Domains", "AsyncDomains"]
 
@@ -53,7 +53,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersDomain:
+    ) -> Domain:
         """
         Attaches a Worker to a zone and hostname.
 
@@ -94,7 +94,7 @@ class Domains(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersDomain], ResultWrapper[WorkersDomain]),
+            cast_to=cast(Type[Domain], ResultWrapper[Domain]),
         )
 
     def list(
@@ -112,7 +112,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[WorkersDomain]:
+    ) -> SyncSinglePage[Domain]:
         """
         Lists all Worker Domains for an account.
 
@@ -139,7 +139,7 @@ class Domains(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/domains",
-            page=SyncSinglePage[WorkersDomain],
+            page=SyncSinglePage[Domain],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -156,7 +156,7 @@ class Domains(SyncAPIResource):
                     domain_list_params.DomainListParams,
                 ),
             ),
-            model=WorkersDomain,
+            model=Domain,
         )
 
     def delete(
@@ -211,7 +211,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersDomain:
+    ) -> Domain:
         """
         Gets a Worker domain.
 
@@ -239,7 +239,7 @@ class Domains(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersDomain], ResultWrapper[WorkersDomain]),
+            cast_to=cast(Type[Domain], ResultWrapper[Domain]),
         )
 
 
@@ -266,7 +266,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersDomain:
+    ) -> Domain:
         """
         Attaches a Worker to a zone and hostname.
 
@@ -307,7 +307,7 @@ class AsyncDomains(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersDomain], ResultWrapper[WorkersDomain]),
+            cast_to=cast(Type[Domain], ResultWrapper[Domain]),
         )
 
     def list(
@@ -325,7 +325,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WorkersDomain, AsyncSinglePage[WorkersDomain]]:
+    ) -> AsyncPaginator[Domain, AsyncSinglePage[Domain]]:
         """
         Lists all Worker Domains for an account.
 
@@ -352,7 +352,7 @@ class AsyncDomains(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/domains",
-            page=AsyncSinglePage[WorkersDomain],
+            page=AsyncSinglePage[Domain],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -369,7 +369,7 @@ class AsyncDomains(AsyncAPIResource):
                     domain_list_params.DomainListParams,
                 ),
             ),
-            model=WorkersDomain,
+            model=Domain,
         )
 
     async def delete(
@@ -424,7 +424,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WorkersDomain:
+    ) -> Domain:
         """
         Gets a Worker domain.
 
@@ -452,7 +452,7 @@ class AsyncDomains(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[WorkersDomain], ResultWrapper[WorkersDomain]),
+            cast_to=cast(Type[Domain], ResultWrapper[Domain]),
         )
 
 

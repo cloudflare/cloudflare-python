@@ -24,7 +24,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.page_shield import PageShieldPolicy, policy_create_params, policy_update_params
+from ...types.page_shield import Policy, policy_create_params, policy_update_params
 
 __all__ = ["Policies", "AsyncPolicies"]
 
@@ -53,7 +53,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPolicy:
+    ) -> Policy:
         """
         Create a Page Shield policy.
 
@@ -96,7 +96,7 @@ class Policies(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPolicy,
+            cast_to=Policy,
         )
 
     def update(
@@ -115,7 +115,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPolicy:
+    ) -> Policy:
         """
         Update a Page Shield policy by ID.
 
@@ -162,7 +162,7 @@ class Policies(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPolicy,
+            cast_to=Policy,
         )
 
     def list(
@@ -175,7 +175,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PageShieldPolicy]:
+    ) -> SyncSinglePage[Policy]:
         """
         Lists all Page Shield policies.
 
@@ -194,11 +194,11 @@ class Policies(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/policies",
-            page=SyncSinglePage[PageShieldPolicy],
+            page=SyncSinglePage[Policy],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=PageShieldPolicy,
+            model=Policy,
         )
 
     def delete(
@@ -253,7 +253,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPolicy:
+    ) -> Policy:
         """
         Fetches a Page Shield policy by ID.
 
@@ -279,7 +279,7 @@ class Policies(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPolicy,
+            cast_to=Policy,
         )
 
 
@@ -307,7 +307,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPolicy:
+    ) -> Policy:
         """
         Create a Page Shield policy.
 
@@ -350,7 +350,7 @@ class AsyncPolicies(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPolicy,
+            cast_to=Policy,
         )
 
     async def update(
@@ -369,7 +369,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPolicy:
+    ) -> Policy:
         """
         Update a Page Shield policy by ID.
 
@@ -416,7 +416,7 @@ class AsyncPolicies(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPolicy,
+            cast_to=Policy,
         )
 
     def list(
@@ -429,7 +429,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PageShieldPolicy, AsyncSinglePage[PageShieldPolicy]]:
+    ) -> AsyncPaginator[Policy, AsyncSinglePage[Policy]]:
         """
         Lists all Page Shield policies.
 
@@ -448,11 +448,11 @@ class AsyncPolicies(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/policies",
-            page=AsyncSinglePage[PageShieldPolicy],
+            page=AsyncSinglePage[Policy],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=PageShieldPolicy,
+            model=Policy,
         )
 
     async def delete(
@@ -507,7 +507,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldPolicy:
+    ) -> Policy:
         """
         Fetches a Page Shield policy by ID.
 
@@ -533,7 +533,7 @@ class AsyncPolicies(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldPolicy,
+            cast_to=Policy,
         )
 
 

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-from .filters_param import FiltersParam
-from .mechanisms_param import MechanismsParam
+from .filter_param import FilterParam
+from .mechanism_param import MechanismParam
 
 __all__ = ["PolicyUpdateParams"]
 
@@ -83,14 +83,14 @@ class PolicyUpdateParams(TypedDict, total=False):
     enabled: bool
     """Whether or not the Notification policy is enabled."""
 
-    filters: FiltersParam
+    filters: FilterParam
     """
     Optional filters that allow you to be alerted only on a subset of events for
     that alert type based on some criteria. This is only available for select alert
     types. See alert type documentation for more details.
     """
 
-    mechanisms: MechanismsParam
+    mechanisms: MechanismParam
     """List of IDs that will be used when dispatching a notification.
 
     IDs for email type will be the email address.

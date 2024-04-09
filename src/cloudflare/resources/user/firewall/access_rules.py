@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -27,7 +27,9 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.user.firewall import (
-    AccessRule,
+    AccessRuleEditResponse,
+    AccessRuleListResponse,
+    AccessRuleCreateResponse,
     AccessRuleDeleteResponse,
     access_rule_edit_params,
     access_rule_list_params,
@@ -59,7 +61,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRule]:
+    ) -> AccessRuleCreateResponse:
         """
         Creates a new IP Access rule for all zones owned by the current user.
 
@@ -98,7 +100,7 @@ class AccessRules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccessRule]], ResultWrapper[AccessRule]),
+            cast_to=cast(Type[AccessRuleCreateResponse], ResultWrapper[AccessRuleCreateResponse]),
         )
 
     def list(
@@ -116,7 +118,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[AccessRule]:
+    ) -> SyncV4PagePaginationArray[AccessRuleListResponse]:
         """Fetches IP Access rules of the user.
 
         You can filter the results using several
@@ -141,7 +143,7 @@ class AccessRules(SyncAPIResource):
         """
         return self._get_api_list(
             "/user/firewall/access_rules/rules",
-            page=SyncV4PagePaginationArray[AccessRule],
+            page=SyncV4PagePaginationArray[AccessRuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -159,7 +161,7 @@ class AccessRules(SyncAPIResource):
                     access_rule_list_params.AccessRuleListParams,
                 ),
             ),
-            model=AccessRule,
+            model=AccessRuleListResponse,
         )
 
     def delete(
@@ -173,7 +175,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRuleDeleteResponse]:
+    ) -> AccessRuleDeleteResponse:
         """
         Deletes an IP Access rule at the user level.
 
@@ -202,7 +204,7 @@ class AccessRules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccessRuleDeleteResponse]], ResultWrapper[AccessRuleDeleteResponse]),
+            cast_to=cast(Type[AccessRuleDeleteResponse], ResultWrapper[AccessRuleDeleteResponse]),
         )
 
     def edit(
@@ -217,7 +219,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRule]:
+    ) -> AccessRuleEditResponse:
         """Updates an IP Access rule defined at the user level.
 
         You can only update the
@@ -256,7 +258,7 @@ class AccessRules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccessRule]], ResultWrapper[AccessRule]),
+            cast_to=cast(Type[AccessRuleEditResponse], ResultWrapper[AccessRuleEditResponse]),
         )
 
 
@@ -281,7 +283,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRule]:
+    ) -> AccessRuleCreateResponse:
         """
         Creates a new IP Access rule for all zones owned by the current user.
 
@@ -320,7 +322,7 @@ class AsyncAccessRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccessRule]], ResultWrapper[AccessRule]),
+            cast_to=cast(Type[AccessRuleCreateResponse], ResultWrapper[AccessRuleCreateResponse]),
         )
 
     def list(
@@ -338,7 +340,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AccessRule, AsyncV4PagePaginationArray[AccessRule]]:
+    ) -> AsyncPaginator[AccessRuleListResponse, AsyncV4PagePaginationArray[AccessRuleListResponse]]:
         """Fetches IP Access rules of the user.
 
         You can filter the results using several
@@ -363,7 +365,7 @@ class AsyncAccessRules(AsyncAPIResource):
         """
         return self._get_api_list(
             "/user/firewall/access_rules/rules",
-            page=AsyncV4PagePaginationArray[AccessRule],
+            page=AsyncV4PagePaginationArray[AccessRuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -381,7 +383,7 @@ class AsyncAccessRules(AsyncAPIResource):
                     access_rule_list_params.AccessRuleListParams,
                 ),
             ),
-            model=AccessRule,
+            model=AccessRuleListResponse,
         )
 
     async def delete(
@@ -395,7 +397,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRuleDeleteResponse]:
+    ) -> AccessRuleDeleteResponse:
         """
         Deletes an IP Access rule at the user level.
 
@@ -424,7 +426,7 @@ class AsyncAccessRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccessRuleDeleteResponse]], ResultWrapper[AccessRuleDeleteResponse]),
+            cast_to=cast(Type[AccessRuleDeleteResponse], ResultWrapper[AccessRuleDeleteResponse]),
         )
 
     async def edit(
@@ -439,7 +441,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRule]:
+    ) -> AccessRuleEditResponse:
         """Updates an IP Access rule defined at the user level.
 
         You can only update the
@@ -478,7 +480,7 @@ class AsyncAccessRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccessRule]], ResultWrapper[AccessRule]),
+            cast_to=cast(Type[AccessRuleEditResponse], ResultWrapper[AccessRuleEditResponse]),
         )
 
 

@@ -10,10 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.storage import (
-    WorkersKVSchemasResult,
-    WorkersKVComponentsSchemasResult,
-)
+from cloudflare.types.storage import Schema, Components
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +24,7 @@ class TestAnalytics:
         analytics = client.storage.analytics.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WorkersKVSchemasResult, analytics, path=["response"])
+        assert_matches_type(Schema, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +41,7 @@ class TestAnalytics:
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
             },
         )
-        assert_matches_type(WorkersKVSchemasResult, analytics, path=["response"])
+        assert_matches_type(Schema, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +53,7 @@ class TestAnalytics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         analytics = response.parse()
-        assert_matches_type(WorkersKVSchemasResult, analytics, path=["response"])
+        assert_matches_type(Schema, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -68,7 +65,7 @@ class TestAnalytics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             analytics = response.parse()
-            assert_matches_type(WorkersKVSchemasResult, analytics, path=["response"])
+            assert_matches_type(Schema, analytics, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -86,7 +83,7 @@ class TestAnalytics:
         analytics = client.storage.analytics.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WorkersKVComponentsSchemasResult, analytics, path=["response"])
+        assert_matches_type(Components, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -103,7 +100,7 @@ class TestAnalytics:
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
             },
         )
-        assert_matches_type(WorkersKVComponentsSchemasResult, analytics, path=["response"])
+        assert_matches_type(Components, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -115,7 +112,7 @@ class TestAnalytics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         analytics = response.parse()
-        assert_matches_type(WorkersKVComponentsSchemasResult, analytics, path=["response"])
+        assert_matches_type(Components, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -127,7 +124,7 @@ class TestAnalytics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             analytics = response.parse()
-            assert_matches_type(WorkersKVComponentsSchemasResult, analytics, path=["response"])
+            assert_matches_type(Components, analytics, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -149,7 +146,7 @@ class TestAsyncAnalytics:
         analytics = await async_client.storage.analytics.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WorkersKVSchemasResult, analytics, path=["response"])
+        assert_matches_type(Schema, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -166,7 +163,7 @@ class TestAsyncAnalytics:
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
             },
         )
-        assert_matches_type(WorkersKVSchemasResult, analytics, path=["response"])
+        assert_matches_type(Schema, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -178,7 +175,7 @@ class TestAsyncAnalytics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         analytics = await response.parse()
-        assert_matches_type(WorkersKVSchemasResult, analytics, path=["response"])
+        assert_matches_type(Schema, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -190,7 +187,7 @@ class TestAsyncAnalytics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             analytics = await response.parse()
-            assert_matches_type(WorkersKVSchemasResult, analytics, path=["response"])
+            assert_matches_type(Schema, analytics, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -208,7 +205,7 @@ class TestAsyncAnalytics:
         analytics = await async_client.storage.analytics.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WorkersKVComponentsSchemasResult, analytics, path=["response"])
+        assert_matches_type(Components, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -225,7 +222,7 @@ class TestAsyncAnalytics:
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
             },
         )
-        assert_matches_type(WorkersKVComponentsSchemasResult, analytics, path=["response"])
+        assert_matches_type(Components, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -237,7 +234,7 @@ class TestAsyncAnalytics:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         analytics = await response.parse()
-        assert_matches_type(WorkersKVComponentsSchemasResult, analytics, path=["response"])
+        assert_matches_type(Components, analytics, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -249,7 +246,7 @@ class TestAsyncAnalytics:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             analytics = await response.parse()
-            assert_matches_type(WorkersKVComponentsSchemasResult, analytics, path=["response"])
+            assert_matches_type(Components, analytics, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .tunnel_tunnel_client import TunnelTunnelClient
+from .client import Client
 
 __all__ = ["ConnectionGetResponse"]
 
-ConnectionGetResponse = List[TunnelTunnelClient]
+ConnectionGetResponse = List[Client]

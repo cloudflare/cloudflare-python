@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_network_monitoring import MagicNetworkMonitoringConfig
+from cloudflare.types.magic_network_monitoring import Configuration
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestFull:
         full = client.magic_network_monitoring.configs.full.get(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(MagicNetworkMonitoringConfig, full, path=["response"])
+        assert_matches_type(Configuration, full, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestFull:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         full = response.parse()
-        assert_matches_type(MagicNetworkMonitoringConfig, full, path=["response"])
+        assert_matches_type(Configuration, full, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestFull:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             full = response.parse()
-            assert_matches_type(MagicNetworkMonitoringConfig, full, path=["response"])
+            assert_matches_type(Configuration, full, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestAsyncFull:
         full = await async_client.magic_network_monitoring.configs.full.get(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(MagicNetworkMonitoringConfig, full, path=["response"])
+        assert_matches_type(Configuration, full, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestAsyncFull:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         full = await response.parse()
-        assert_matches_type(MagicNetworkMonitoringConfig, full, path=["response"])
+        assert_matches_type(Configuration, full, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestAsyncFull:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             full = await response.parse()
-            assert_matches_type(MagicNetworkMonitoringConfig, full, path=["response"])
+            assert_matches_type(Configuration, full, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

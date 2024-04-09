@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from typing import List, Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
+from ...check_region import CheckRegion
 from ...origin_param import OriginParam
 from ...load_shedding_param import LoadSheddingParam
 from ...origin_steering_param import OriginSteeringParam
@@ -27,26 +28,7 @@ class PoolCreateParams(TypedDict, total=False):
     provided the pool itself is healthy.
     """
 
-    check_regions: Optional[
-        List[
-            Literal[
-                "WNAM",
-                "ENAM",
-                "WEU",
-                "EEU",
-                "NSAM",
-                "SSAM",
-                "OC",
-                "ME",
-                "NAF",
-                "SAF",
-                "SAS",
-                "SEAS",
-                "NEAS",
-                "ALL_REGIONS",
-            ]
-        ]
-    ]
+    check_regions: Optional[List[CheckRegion]]
     """A list of regions from which to run health checks.
 
     Null means every Cloudflare data center.

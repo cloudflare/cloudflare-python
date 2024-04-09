@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .workers_kv_key import WorkersKVKey as WorkersKVKey
+from .key import Key as Key
 from .key_list_params import KeyListParams as KeyListParams
 from .bulk_delete_params import BulkDeleteParams as BulkDeleteParams
 from .bulk_update_params import BulkUpdateParams as BulkUpdateParams

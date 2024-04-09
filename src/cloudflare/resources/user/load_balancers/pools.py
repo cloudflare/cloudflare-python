@@ -8,6 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....types import (
+    CheckRegion,
     OriginParam,
     LoadSheddingParam,
     OriginSteeringParam,
@@ -63,27 +64,7 @@ class Pools(SyncAPIResource):
         *,
         name: str,
         origins: Iterable[OriginParam],
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "SAS",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
@@ -192,27 +173,7 @@ class Pools(SyncAPIResource):
         *,
         name: str,
         origins: Iterable[OriginParam],
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "SAS",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
@@ -399,27 +360,7 @@ class Pools(SyncAPIResource):
         self,
         pool_id: str,
         *,
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "SAS",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
@@ -781,27 +722,7 @@ class AsyncPools(AsyncAPIResource):
         *,
         name: str,
         origins: Iterable[OriginParam],
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "SAS",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
@@ -910,27 +831,7 @@ class AsyncPools(AsyncAPIResource):
         *,
         name: str,
         origins: Iterable[OriginParam],
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "SAS",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
@@ -1117,27 +1018,7 @@ class AsyncPools(AsyncAPIResource):
         self,
         pool_id: str,
         *,
-        check_regions: Optional[
-            List[
-                Literal[
-                    "WNAM",
-                    "ENAM",
-                    "WEU",
-                    "EEU",
-                    "NSAM",
-                    "SSAM",
-                    "OC",
-                    "ME",
-                    "NAF",
-                    "SAF",
-                    "SAS",
-                    "SEAS",
-                    "NEAS",
-                    "ALL_REGIONS",
-                ]
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,

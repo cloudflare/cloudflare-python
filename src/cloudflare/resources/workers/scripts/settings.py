@@ -23,8 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers import SettingsItem
-from ....types.workers.scripts import ConsumerScriptParam, setting_edit_params
+from ....types.workers import ScriptSetting
+from ....types.workers.scripts import ConsumerScriptItemParam, setting_edit_params
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -44,14 +44,14 @@ class Settings(SyncAPIResource):
         *,
         account_id: str,
         logpush: bool | NotGiven = NOT_GIVEN,
-        tail_consumers: Iterable[ConsumerScriptParam] | NotGiven = NOT_GIVEN,
+        tail_consumers: Iterable[ConsumerScriptItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingsItem:
+    ) -> ScriptSetting:
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -94,7 +94,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
     def get(
@@ -108,7 +108,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingsItem:
+    ) -> ScriptSetting:
         """
         Get script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -140,7 +140,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
 
@@ -159,14 +159,14 @@ class AsyncSettings(AsyncAPIResource):
         *,
         account_id: str,
         logpush: bool | NotGiven = NOT_GIVEN,
-        tail_consumers: Iterable[ConsumerScriptParam] | NotGiven = NOT_GIVEN,
+        tail_consumers: Iterable[ConsumerScriptItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingsItem:
+    ) -> ScriptSetting:
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -209,7 +209,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
     async def get(
@@ -223,7 +223,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingsItem:
+    ) -> ScriptSetting:
         """
         Get script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -255,7 +255,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SettingsItem], ResultWrapper[SettingsItem]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
 

@@ -25,8 +25,7 @@ from .tests import (
     AsyncTestsWithStreamingResponse,
 )
 from ...types import (
-    ObservatoryTrend,
-    ObservatorySchedule,
+    Trend,
     SpeedDeleteResponse,
     speed_delete_params,
     speed_trends_list_params,
@@ -38,12 +37,12 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .schedule import (
-    Schedule,
-    AsyncSchedule,
-    ScheduleWithRawResponse,
-    AsyncScheduleWithRawResponse,
-    ScheduleWithStreamingResponse,
-    AsyncScheduleWithStreamingResponse,
+    ScheduleResource,
+    AsyncScheduleResource,
+    ScheduleResourceWithRawResponse,
+    AsyncScheduleResourceWithRawResponse,
+    ScheduleResourceWithStreamingResponse,
+    AsyncScheduleResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -54,6 +53,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...types.speed import Schedule
 from ..._base_client import (
     make_request_options,
 )
@@ -75,8 +75,8 @@ class Speed(SyncAPIResource):
         return Tests(self._client)
 
     @cached_property
-    def schedule(self) -> Schedule:
-        return Schedule(self._client)
+    def schedule(self) -> ScheduleResource:
+        return ScheduleResource(self._client)
 
     @cached_property
     def availabilities(self) -> Availabilities:
@@ -200,7 +200,7 @@ class Speed(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ObservatorySchedule]:
+    ) -> Optional[Schedule]:
         """
         Retrieves the test schedule for a page in a specific region.
 
@@ -233,7 +233,7 @@ class Speed(SyncAPIResource):
                 query=maybe_transform({"region": region}, speed_schedule_get_params.SpeedScheduleGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ObservatorySchedule]], ResultWrapper[ObservatorySchedule]),
+            cast_to=cast(Type[Optional[Schedule]], ResultWrapper[Schedule]),
         )
 
     def trends_list(
@@ -275,7 +275,7 @@ class Speed(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ObservatoryTrend]:
+    ) -> Optional[Trend]:
         """
         Lists the core web vital metrics trend over time for a specific page.
 
@@ -324,7 +324,7 @@ class Speed(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ObservatoryTrend]], ResultWrapper[ObservatoryTrend]),
+            cast_to=cast(Type[Optional[Trend]], ResultWrapper[Trend]),
         )
 
 
@@ -334,8 +334,8 @@ class AsyncSpeed(AsyncAPIResource):
         return AsyncTests(self._client)
 
     @cached_property
-    def schedule(self) -> AsyncSchedule:
-        return AsyncSchedule(self._client)
+    def schedule(self) -> AsyncScheduleResource:
+        return AsyncScheduleResource(self._client)
 
     @cached_property
     def availabilities(self) -> AsyncAvailabilities:
@@ -459,7 +459,7 @@ class AsyncSpeed(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ObservatorySchedule]:
+    ) -> Optional[Schedule]:
         """
         Retrieves the test schedule for a page in a specific region.
 
@@ -492,7 +492,7 @@ class AsyncSpeed(AsyncAPIResource):
                 query=await async_maybe_transform({"region": region}, speed_schedule_get_params.SpeedScheduleGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ObservatorySchedule]], ResultWrapper[ObservatorySchedule]),
+            cast_to=cast(Type[Optional[Schedule]], ResultWrapper[Schedule]),
         )
 
     async def trends_list(
@@ -534,7 +534,7 @@ class AsyncSpeed(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ObservatoryTrend]:
+    ) -> Optional[Trend]:
         """
         Lists the core web vital metrics trend over time for a specific page.
 
@@ -583,7 +583,7 @@ class AsyncSpeed(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ObservatoryTrend]], ResultWrapper[ObservatoryTrend]),
+            cast_to=cast(Type[Optional[Trend]], ResultWrapper[Trend]),
         )
 
 
@@ -606,8 +606,8 @@ class SpeedWithRawResponse:
         return TestsWithRawResponse(self._speed.tests)
 
     @cached_property
-    def schedule(self) -> ScheduleWithRawResponse:
-        return ScheduleWithRawResponse(self._speed.schedule)
+    def schedule(self) -> ScheduleResourceWithRawResponse:
+        return ScheduleResourceWithRawResponse(self._speed.schedule)
 
     @cached_property
     def availabilities(self) -> AvailabilitiesWithRawResponse:
@@ -637,8 +637,8 @@ class AsyncSpeedWithRawResponse:
         return AsyncTestsWithRawResponse(self._speed.tests)
 
     @cached_property
-    def schedule(self) -> AsyncScheduleWithRawResponse:
-        return AsyncScheduleWithRawResponse(self._speed.schedule)
+    def schedule(self) -> AsyncScheduleResourceWithRawResponse:
+        return AsyncScheduleResourceWithRawResponse(self._speed.schedule)
 
     @cached_property
     def availabilities(self) -> AsyncAvailabilitiesWithRawResponse:
@@ -668,8 +668,8 @@ class SpeedWithStreamingResponse:
         return TestsWithStreamingResponse(self._speed.tests)
 
     @cached_property
-    def schedule(self) -> ScheduleWithStreamingResponse:
-        return ScheduleWithStreamingResponse(self._speed.schedule)
+    def schedule(self) -> ScheduleResourceWithStreamingResponse:
+        return ScheduleResourceWithStreamingResponse(self._speed.schedule)
 
     @cached_property
     def availabilities(self) -> AvailabilitiesWithStreamingResponse:
@@ -699,8 +699,8 @@ class AsyncSpeedWithStreamingResponse:
         return AsyncTestsWithStreamingResponse(self._speed.tests)
 
     @cached_property
-    def schedule(self) -> AsyncScheduleWithStreamingResponse:
-        return AsyncScheduleWithStreamingResponse(self._speed.schedule)
+    def schedule(self) -> AsyncScheduleResourceWithStreamingResponse:
+        return AsyncScheduleResourceWithStreamingResponse(self._speed.schedule)
 
     @cached_property
     def availabilities(self) -> AsyncAvailabilitiesWithStreamingResponse:

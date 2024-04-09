@@ -4,8 +4,8 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from .lists import ListsItem
 from ...._models import BaseModel
-from .lists_item import ListsItem
 
 __all__ = ["ListCreateResponse"]
 

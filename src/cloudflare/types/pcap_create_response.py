@@ -7,12 +7,34 @@ from .pcap import PCAP
 from .filter import Filter
 from .._models import BaseModel
 
-__all__ = ["PCAPCreateResponse", "MagicVisibilityPCAPsResponseSimple"]
+__all__ = ["PCAPCreateResponse", "MagicVisibilityPCAPsResponseFull"]
 
 
-class MagicVisibilityPCAPsResponseSimple(BaseModel):
+class MagicVisibilityPCAPsResponseFull(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
+
+    byte_limit: Optional[float] = None
+    """The maximum number of bytes to capture.
+
+    This field only applies to `full` packet captures.
+    """
+
+    colo_name: Optional[str] = None
+    """The name of the data center used for the packet capture.
+
+    This can be a specific colo (ord02) or a multi-colo name (ORD). This field only
+    applies to `full` packet captures.
+    """
+
+    destination_conf: Optional[str] = None
+    """The full URI for the bucket. This field only applies to `full` packet captures."""
+
+    error_message: Optional[str] = None
+    """An error message that describes why the packet capture failed.
+
+    This field only applies to `full` packet captures.
+    """
 
     filter_v1: Optional[Filter] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
@@ -41,4 +63,4 @@ class MagicVisibilityPCAPsResponseSimple(BaseModel):
     """
 
 
-PCAPCreateResponse = Union[MagicVisibilityPCAPsResponseSimple, PCAP]
+PCAPCreateResponse = Union[PCAP, MagicVisibilityPCAPsResponseFull]

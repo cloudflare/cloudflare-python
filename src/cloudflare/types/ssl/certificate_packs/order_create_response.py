@@ -3,8 +3,8 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from .host_item import HostItem
 from ...._models import BaseModel
+from ..host_item import HostItem
 
 __all__ = ["OrderCreateResponse"]
 

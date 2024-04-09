@@ -31,11 +31,7 @@ from .certificates import (
 from ...._base_client import (
     make_request_options,
 )
-from ....types.origin_tls_client_auth import (
-    HostnameUpdateResponse,
-    OriginTLSClientCertificateID,
-    hostname_update_params,
-)
+from ....types.origin_tls_client_auth import ID, HostnameUpdateResponse, hostname_update_params
 
 __all__ = ["Hostnames", "AsyncHostnames"]
 
@@ -109,7 +105,7 @@ class Hostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginTLSClientCertificateID:
+    ) -> ID:
         """
         Get the Hostname Status for Client Authentication
 
@@ -140,7 +136,7 @@ class Hostnames(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OriginTLSClientCertificateID], ResultWrapper[OriginTLSClientCertificateID]),
+            cast_to=cast(Type[ID], ResultWrapper[ID]),
         )
 
 
@@ -213,7 +209,7 @@ class AsyncHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginTLSClientCertificateID:
+    ) -> ID:
         """
         Get the Hostname Status for Client Authentication
 
@@ -244,7 +240,7 @@ class AsyncHostnames(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OriginTLSClientCertificateID], ResultWrapper[OriginTLSClientCertificateID]),
+            cast_to=cast(Type[ID], ResultWrapper[ID]),
         )
 
 

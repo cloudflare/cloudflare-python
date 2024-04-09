@@ -24,7 +24,13 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.email_routing.rules import ActionParam, MatcherParam, EmailCatchAllRule, catch_all_update_params
+from ....types.email_routing.rules import (
+    CatchAllActionParam,
+    CatchAllGetResponse,
+    CatchAllMatcherParam,
+    CatchAllUpdateResponse,
+    catch_all_update_params,
+)
 
 __all__ = ["CatchAlls", "AsyncCatchAlls"]
 
@@ -42,8 +48,8 @@ class CatchAlls(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        actions: Iterable[ActionParam],
-        matchers: Iterable[MatcherParam],
+        actions: Iterable[CatchAllActionParam],
+        matchers: Iterable[CatchAllMatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -52,7 +58,7 @@ class CatchAlls(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailCatchAllRule:
+    ) -> CatchAllUpdateResponse:
         """
         Enable or disable catch-all routing rule, or change action to forward to
         specific destination address.
@@ -96,7 +102,7 @@ class CatchAlls(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailCatchAllRule], ResultWrapper[EmailCatchAllRule]),
+            cast_to=cast(Type[CatchAllUpdateResponse], ResultWrapper[CatchAllUpdateResponse]),
         )
 
     def get(
@@ -109,7 +115,7 @@ class CatchAlls(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailCatchAllRule:
+    ) -> CatchAllGetResponse:
         """
         Get information on the default catch-all routing rule.
 
@@ -135,7 +141,7 @@ class CatchAlls(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailCatchAllRule], ResultWrapper[EmailCatchAllRule]),
+            cast_to=cast(Type[CatchAllGetResponse], ResultWrapper[CatchAllGetResponse]),
         )
 
 
@@ -152,8 +158,8 @@ class AsyncCatchAlls(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        actions: Iterable[ActionParam],
-        matchers: Iterable[MatcherParam],
+        actions: Iterable[CatchAllActionParam],
+        matchers: Iterable[CatchAllMatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -162,7 +168,7 @@ class AsyncCatchAlls(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailCatchAllRule:
+    ) -> CatchAllUpdateResponse:
         """
         Enable or disable catch-all routing rule, or change action to forward to
         specific destination address.
@@ -206,7 +212,7 @@ class AsyncCatchAlls(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailCatchAllRule], ResultWrapper[EmailCatchAllRule]),
+            cast_to=cast(Type[CatchAllUpdateResponse], ResultWrapper[CatchAllUpdateResponse]),
         )
 
     async def get(
@@ -219,7 +225,7 @@ class AsyncCatchAlls(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailCatchAllRule:
+    ) -> CatchAllGetResponse:
         """
         Get information on the default catch-all routing rule.
 
@@ -245,7 +251,7 @@ class AsyncCatchAlls(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailCatchAllRule], ResultWrapper[EmailCatchAllRule]),
+            cast_to=cast(Type[CatchAllGetResponse], ResultWrapper[CatchAllGetResponse]),
         )
 
 
