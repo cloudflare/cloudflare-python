@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
-from ......shared import UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9
+from .....http import Browser
 from ......._models import BaseModel
 from ......unnamed_schema_ref_b5f3bd1840490bc487ffef84567807b1 import UnnamedSchemaRefB5f3bd1840490bc487ffef84567807b1
 from ......unnamed_schema_ref_baac9d7da12de53e99142f8ecd3982e5 import UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5
@@ -29,4 +29,4 @@ class Meta(BaseModel):
 class SpamGetResponse(BaseModel):
     meta: Meta
 
-    top_0: List[UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9]
+    top_0: List[Browser]

@@ -31,12 +31,12 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from .cache_reserve import (
-    CacheReserve,
-    AsyncCacheReserve,
-    CacheReserveWithRawResponse,
-    AsyncCacheReserveWithRawResponse,
-    CacheReserveWithStreamingResponse,
-    AsyncCacheReserveWithStreamingResponse,
+    CacheReserveResource,
+    AsyncCacheReserveResource,
+    CacheReserveResourceWithRawResponse,
+    AsyncCacheReserveResourceWithRawResponse,
+    CacheReserveResourceWithStreamingResponse,
+    AsyncCacheReserveResourceWithStreamingResponse,
 )
 from ..._base_client import (
     make_request_options,
@@ -63,8 +63,8 @@ __all__ = ["Cache", "AsyncCache"]
 
 class Cache(SyncAPIResource):
     @cached_property
-    def cache_reserve(self) -> CacheReserve:
-        return CacheReserve(self._client)
+    def cache_reserve(self) -> CacheReserveResource:
+        return CacheReserveResource(self._client)
 
     @cached_property
     def smart_tiered_cache(self) -> SmartTieredCache:
@@ -415,8 +415,8 @@ class Cache(SyncAPIResource):
 
 class AsyncCache(AsyncAPIResource):
     @cached_property
-    def cache_reserve(self) -> AsyncCacheReserve:
-        return AsyncCacheReserve(self._client)
+    def cache_reserve(self) -> AsyncCacheReserveResource:
+        return AsyncCacheReserveResource(self._client)
 
     @cached_property
     def smart_tiered_cache(self) -> AsyncSmartTieredCache:
@@ -774,8 +774,8 @@ class CacheWithRawResponse:
         )
 
     @cached_property
-    def cache_reserve(self) -> CacheReserveWithRawResponse:
-        return CacheReserveWithRawResponse(self._cache.cache_reserve)
+    def cache_reserve(self) -> CacheReserveResourceWithRawResponse:
+        return CacheReserveResourceWithRawResponse(self._cache.cache_reserve)
 
     @cached_property
     def smart_tiered_cache(self) -> SmartTieredCacheWithRawResponse:
@@ -799,8 +799,8 @@ class AsyncCacheWithRawResponse:
         )
 
     @cached_property
-    def cache_reserve(self) -> AsyncCacheReserveWithRawResponse:
-        return AsyncCacheReserveWithRawResponse(self._cache.cache_reserve)
+    def cache_reserve(self) -> AsyncCacheReserveResourceWithRawResponse:
+        return AsyncCacheReserveResourceWithRawResponse(self._cache.cache_reserve)
 
     @cached_property
     def smart_tiered_cache(self) -> AsyncSmartTieredCacheWithRawResponse:
@@ -824,8 +824,8 @@ class CacheWithStreamingResponse:
         )
 
     @cached_property
-    def cache_reserve(self) -> CacheReserveWithStreamingResponse:
-        return CacheReserveWithStreamingResponse(self._cache.cache_reserve)
+    def cache_reserve(self) -> CacheReserveResourceWithStreamingResponse:
+        return CacheReserveResourceWithStreamingResponse(self._cache.cache_reserve)
 
     @cached_property
     def smart_tiered_cache(self) -> SmartTieredCacheWithStreamingResponse:
@@ -849,8 +849,8 @@ class AsyncCacheWithStreamingResponse:
         )
 
     @cached_property
-    def cache_reserve(self) -> AsyncCacheReserveWithStreamingResponse:
-        return AsyncCacheReserveWithStreamingResponse(self._cache.cache_reserve)
+    def cache_reserve(self) -> AsyncCacheReserveResourceWithStreamingResponse:
+        return AsyncCacheReserveResourceWithStreamingResponse(self._cache.cache_reserve)
 
     @cached_property
     def smart_tiered_cache(self) -> AsyncSmartTieredCacheWithStreamingResponse:

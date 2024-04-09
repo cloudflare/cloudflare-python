@@ -33,17 +33,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["CacheReserve", "AsyncCacheReserve"]
+__all__ = ["CacheReserveResource", "AsyncCacheReserveResource"]
 
 
-class CacheReserve(SyncAPIResource):
+class CacheReserveResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CacheReserveWithRawResponse:
-        return CacheReserveWithRawResponse(self)
+    def with_raw_response(self) -> CacheReserveResourceWithRawResponse:
+        return CacheReserveResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CacheReserveWithStreamingResponse:
-        return CacheReserveWithStreamingResponse(self)
+    def with_streaming_response(self) -> CacheReserveResourceWithStreamingResponse:
+        return CacheReserveResourceWithStreamingResponse(self)
 
     def clear(
         self,
@@ -224,14 +224,14 @@ class CacheReserve(SyncAPIResource):
         )
 
 
-class AsyncCacheReserve(AsyncAPIResource):
+class AsyncCacheReserveResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCacheReserveWithRawResponse:
-        return AsyncCacheReserveWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCacheReserveResourceWithRawResponse:
+        return AsyncCacheReserveResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCacheReserveWithStreamingResponse:
-        return AsyncCacheReserveWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCacheReserveResourceWithStreamingResponse:
+        return AsyncCacheReserveResourceWithStreamingResponse(self)
 
     async def clear(
         self,
@@ -412,8 +412,8 @@ class AsyncCacheReserve(AsyncAPIResource):
         )
 
 
-class CacheReserveWithRawResponse:
-    def __init__(self, cache_reserve: CacheReserve) -> None:
+class CacheReserveResourceWithRawResponse:
+    def __init__(self, cache_reserve: CacheReserveResource) -> None:
         self._cache_reserve = cache_reserve
 
         self.clear = to_raw_response_wrapper(
@@ -430,8 +430,8 @@ class CacheReserveWithRawResponse:
         )
 
 
-class AsyncCacheReserveWithRawResponse:
-    def __init__(self, cache_reserve: AsyncCacheReserve) -> None:
+class AsyncCacheReserveResourceWithRawResponse:
+    def __init__(self, cache_reserve: AsyncCacheReserveResource) -> None:
         self._cache_reserve = cache_reserve
 
         self.clear = async_to_raw_response_wrapper(
@@ -448,8 +448,8 @@ class AsyncCacheReserveWithRawResponse:
         )
 
 
-class CacheReserveWithStreamingResponse:
-    def __init__(self, cache_reserve: CacheReserve) -> None:
+class CacheReserveResourceWithStreamingResponse:
+    def __init__(self, cache_reserve: CacheReserveResource) -> None:
         self._cache_reserve = cache_reserve
 
         self.clear = to_streamed_response_wrapper(
@@ -466,8 +466,8 @@ class CacheReserveWithStreamingResponse:
         )
 
 
-class AsyncCacheReserveWithStreamingResponse:
-    def __init__(self, cache_reserve: AsyncCacheReserve) -> None:
+class AsyncCacheReserveResourceWithStreamingResponse:
+    def __init__(self, cache_reserve: AsyncCacheReserveResource) -> None:
         self._cache_reserve = cache_reserve
 
         self.clear = async_to_streamed_response_wrapper(

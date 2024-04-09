@@ -23,8 +23,12 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854
-from ...types.logpush import OwnershipCreateResponse, ownership_create_params, ownership_validate_params
+from ...types.logpush import (
+    OwnershipValidation,
+    OwnershipCreateResponse,
+    ownership_create_params,
+    ownership_validate_params,
+)
 
 __all__ = ["Ownership", "AsyncOwnership"]
 
@@ -112,7 +116,7 @@ class Ownership(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854]:
+    ) -> Optional[OwnershipValidation]:
         """
         Validates ownership challenge of the destination.
 
@@ -166,10 +170,7 @@ class Ownership(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854]],
-                ResultWrapper[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854],
-            ),
+            cast_to=cast(Type[Optional[OwnershipValidation]], ResultWrapper[OwnershipValidation]),
         )
 
 
@@ -258,7 +259,7 @@ class AsyncOwnership(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854]:
+    ) -> Optional[OwnershipValidation]:
         """
         Validates ownership challenge of the destination.
 
@@ -312,10 +313,7 @@ class AsyncOwnership(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854]],
-                ResultWrapper[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854],
-            ),
+            cast_to=cast(Type[Optional[OwnershipValidation]], ResultWrapper[OwnershipValidation]),
         )
 
 

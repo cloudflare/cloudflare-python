@@ -4,12 +4,12 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["UnnamedSchemaRefB52ad7cf99890d19f16edcd84d16ef5b"]
+__all__ = ["MonitorGetResponse"]
 
 
-class UnnamedSchemaRefB52ad7cf99890d19f16edcd84d16ef5b(BaseModel):
+class MonitorGetResponse(BaseModel):
     id: Optional[str] = None
 
     allow_insecure: Optional[bool] = None

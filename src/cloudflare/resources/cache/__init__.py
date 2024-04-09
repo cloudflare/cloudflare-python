@@ -17,12 +17,12 @@ from .variants import (
     AsyncVariantsWithStreamingResponse,
 )
 from .cache_reserve import (
-    CacheReserve,
-    AsyncCacheReserve,
-    CacheReserveWithRawResponse,
-    AsyncCacheReserveWithRawResponse,
-    CacheReserveWithStreamingResponse,
-    AsyncCacheReserveWithStreamingResponse,
+    CacheReserveResource,
+    AsyncCacheReserveResource,
+    CacheReserveResourceWithRawResponse,
+    AsyncCacheReserveResourceWithRawResponse,
+    CacheReserveResourceWithStreamingResponse,
+    AsyncCacheReserveResourceWithStreamingResponse,
 )
 from .smart_tiered_cache import (
     SmartTieredCache,
@@ -42,12 +42,12 @@ from .regional_tiered_cache import (
 )
 
 __all__ = [
-    "CacheReserve",
-    "AsyncCacheReserve",
-    "CacheReserveWithRawResponse",
-    "AsyncCacheReserveWithRawResponse",
-    "CacheReserveWithStreamingResponse",
-    "AsyncCacheReserveWithStreamingResponse",
+    "CacheReserveResource",
+    "AsyncCacheReserveResource",
+    "CacheReserveResourceWithRawResponse",
+    "AsyncCacheReserveResourceWithRawResponse",
+    "CacheReserveResourceWithStreamingResponse",
+    "AsyncCacheReserveResourceWithStreamingResponse",
     "SmartTieredCache",
     "AsyncSmartTieredCache",
     "SmartTieredCacheWithRawResponse",
