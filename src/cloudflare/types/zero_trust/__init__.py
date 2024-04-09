@@ -30,7 +30,7 @@ from .group_rule_param import GroupRuleParam as GroupRuleParam
 from .seat_edit_params import SeatEditParams as SeatEditParams
 from .access_rule_param import AccessRuleParam as AccessRuleParam
 from .domain_rule_param import DomainRuleParam as DomainRuleParam
-from .gsuite_group_rule import GsuiteGroupRule as GsuiteGroupRule
+from .gsuite_group_rule import GSuiteGroupRule as GSuiteGroupRule
 from .identity_provider import IdentityProvider as IdentityProvider
 from .scim_config_param import ScimConfigParam as ScimConfigParam
 from .country_rule_param import CountryRuleParam as CountryRuleParam
@@ -53,7 +53,7 @@ from .azure_group_rule_param import AzureGroupRuleParam as AzureGroupRuleParam
 from .certificate_rule_param import CertificateRuleParam as CertificateRuleParam
 from .identity_provider_type import IdentityProviderType as IdentityProviderType
 from .gateway_create_response import GatewayCreateResponse as GatewayCreateResponse
-from .gsuite_group_rule_param import GsuiteGroupRuleParam as GsuiteGroupRuleParam
+from .gsuite_group_rule_param import GSuiteGroupRuleParam as GSuiteGroupRuleParam
 from .external_evaluation_rule import ExternalEvaluationRule as ExternalEvaluationRule
 from .github_organization_rule import GitHubOrganizationRule as GitHubOrganizationRule
 from .service_token_rule_param import ServiceTokenRuleParam as ServiceTokenRuleParam

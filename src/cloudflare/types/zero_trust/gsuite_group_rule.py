@@ -2,10 +2,10 @@
 
 from ..._models import BaseModel
 
-__all__ = ["GsuiteGroupRule", "Gsuite"]
+__all__ = ["GSuiteGroupRule", "GSuite"]
 
 
-class Gsuite(BaseModel):
+class GSuite(BaseModel):
     connection_id: str
     """The ID of your Google Workspace identity provider."""
 
@@ -13,5 +13,5 @@ class Gsuite(BaseModel):
     """The email of the Google Workspace group."""
 
 
-class GsuiteGroupRule(BaseModel):
-    gsuite: Gsuite
+class GSuiteGroupRule(BaseModel):
+    gsuite: GSuite
