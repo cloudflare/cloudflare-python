@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854
+from cloudflare.types.logpush import OwnershipValidation
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestPatterns:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             regex="^4[0-9]{6,}$",
         )
-        assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], pattern, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], pattern, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestPatterns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pattern = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], pattern, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], pattern, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestPatterns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pattern = response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], pattern, path=["response"])
+            assert_matches_type(Optional[OwnershipValidation], pattern, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,7 +74,7 @@ class TestAsyncPatterns:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             regex="^4[0-9]{6,}$",
         )
-        assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], pattern, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], pattern, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -87,7 +87,7 @@ class TestAsyncPatterns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pattern = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], pattern, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], pattern, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +100,7 @@ class TestAsyncPatterns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pattern = await response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], pattern, path=["response"])
+            assert_matches_type(Optional[OwnershipValidation], pattern, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

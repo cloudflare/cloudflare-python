@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .browser import Browser as Browser
 from .ase_get_params import AseGetParams as AseGetParams
 from .ase_get_response import AseGetResponse as AseGetResponse
 from .summary_os_params import SummaryOSParams as SummaryOSParams

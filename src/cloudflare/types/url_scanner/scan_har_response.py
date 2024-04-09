@@ -4,8 +4,8 @@ from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
-from ..shared import UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9
 from ..._models import BaseModel
+from ..radar.http import Browser
 
 __all__ = [
     "ScanHarResponse",
@@ -32,7 +32,7 @@ class HarLogCreator(BaseModel):
 class HarLogEntryRequest(BaseModel):
     body_size: float = FieldInfo(alias="bodySize")
 
-    headers: List[UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9]
+    headers: List[Browser]
 
     headers_size: float = FieldInfo(alias="headersSize")
 
@@ -58,7 +58,7 @@ class HarLogEntryResponse(BaseModel):
 
     content: HarLogEntryResponseContent
 
-    headers: List[UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9]
+    headers: List[Browser]
 
     headers_size: float = FieldInfo(alias="headersSize")
 

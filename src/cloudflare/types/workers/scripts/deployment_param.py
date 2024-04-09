@@ -6,9 +6,9 @@ from typing_extensions import Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = ["UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8Param"]
+__all__ = ["DeploymentParam"]
 
 
-class UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8Param(TypedDict, total=False):
+class DeploymentParam(TypedDict, total=False):
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
     """Human-readable message about the deployment."""

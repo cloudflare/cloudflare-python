@@ -33,8 +33,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.load_balancers import Pool
 from ....types.user.load_balancers import (
+    Pool,
     PoolDeleteResponse,
     PoolHealthResponse,
     PoolPreviewResponse,
