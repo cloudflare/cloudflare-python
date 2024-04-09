@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import StreamVideos
+from cloudflare.types import Video
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
@@ -71,7 +71,7 @@ class TestStream:
         stream = client.stream.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[StreamVideos], stream, path=["response"])
+        assert_matches_type(SyncSinglePage[Video], stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -87,7 +87,7 @@ class TestStream:
             status="inprogress",
             type="live",
         )
-        assert_matches_type(SyncSinglePage[StreamVideos], stream, path=["response"])
+        assert_matches_type(SyncSinglePage[Video], stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,7 +99,7 @@ class TestStream:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stream = response.parse()
-        assert_matches_type(SyncSinglePage[StreamVideos], stream, path=["response"])
+        assert_matches_type(SyncSinglePage[Video], stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +111,7 @@ class TestStream:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stream = response.parse()
-            assert_matches_type(SyncSinglePage[StreamVideos], stream, path=["response"])
+            assert_matches_type(SyncSinglePage[Video], stream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -187,7 +187,7 @@ class TestStream:
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(StreamVideos, stream, path=["response"])
+        assert_matches_type(Video, stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -200,7 +200,7 @@ class TestStream:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stream = response.parse()
-        assert_matches_type(StreamVideos, stream, path=["response"])
+        assert_matches_type(Video, stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -213,7 +213,7 @@ class TestStream:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stream = response.parse()
-            assert_matches_type(StreamVideos, stream, path=["response"])
+            assert_matches_type(Video, stream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -288,7 +288,7 @@ class TestAsyncStream:
         stream = await async_client.stream.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[StreamVideos], stream, path=["response"])
+        assert_matches_type(AsyncSinglePage[Video], stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -304,7 +304,7 @@ class TestAsyncStream:
             status="inprogress",
             type="live",
         )
-        assert_matches_type(AsyncSinglePage[StreamVideos], stream, path=["response"])
+        assert_matches_type(AsyncSinglePage[Video], stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -316,7 +316,7 @@ class TestAsyncStream:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stream = await response.parse()
-        assert_matches_type(AsyncSinglePage[StreamVideos], stream, path=["response"])
+        assert_matches_type(AsyncSinglePage[Video], stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -328,7 +328,7 @@ class TestAsyncStream:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stream = await response.parse()
-            assert_matches_type(AsyncSinglePage[StreamVideos], stream, path=["response"])
+            assert_matches_type(AsyncSinglePage[Video], stream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -404,7 +404,7 @@ class TestAsyncStream:
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(StreamVideos, stream, path=["response"])
+        assert_matches_type(Video, stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -417,7 +417,7 @@ class TestAsyncStream:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stream = await response.parse()
-        assert_matches_type(StreamVideos, stream, path=["response"])
+        assert_matches_type(Video, stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -430,7 +430,7 @@ class TestAsyncStream:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stream = await response.parse()
-            assert_matches_type(StreamVideos, stream, path=["response"])
+            assert_matches_type(Video, stream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

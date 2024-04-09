@@ -26,10 +26,10 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.devices.policies import (
-    DevicesSplitTunnel,
     ExcludeGetResponse,
+    SplitTunnelExclude,
     ExcludeUpdateResponse,
-    DevicesSplitTunnelParam,
+    SplitTunnelExcludeParam,
     exclude_update_params,
 )
 
@@ -49,7 +49,7 @@ class Excludes(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[DevicesSplitTunnelParam],
+        body: Iterable[SplitTunnelExcludeParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,7 +94,7 @@ class Excludes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DevicesSplitTunnel]:
+    ) -> SyncSinglePage[SplitTunnelExclude]:
         """
         Fetches the list of routes excluded from the WARP client's tunnel.
 
@@ -111,11 +111,11 @@ class Excludes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/exclude",
-            page=SyncSinglePage[DevicesSplitTunnel],
+            page=SyncSinglePage[SplitTunnelExclude],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DevicesSplitTunnel,
+            model=SplitTunnelExclude,
         )
 
     def get(
@@ -175,7 +175,7 @@ class AsyncExcludes(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[DevicesSplitTunnelParam],
+        body: Iterable[SplitTunnelExcludeParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -220,7 +220,7 @@ class AsyncExcludes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DevicesSplitTunnel, AsyncSinglePage[DevicesSplitTunnel]]:
+    ) -> AsyncPaginator[SplitTunnelExclude, AsyncSinglePage[SplitTunnelExclude]]:
         """
         Fetches the list of routes excluded from the WARP client's tunnel.
 
@@ -237,11 +237,11 @@ class AsyncExcludes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/exclude",
-            page=AsyncSinglePage[DevicesSplitTunnel],
+            page=AsyncSinglePage[SplitTunnelExclude],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DevicesSplitTunnel,
+            model=SplitTunnelExclude,
         )
 
     async def get(

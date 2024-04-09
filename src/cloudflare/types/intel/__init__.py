@@ -2,20 +2,21 @@
 
 from __future__ import annotations
 
-from .intel_asn import IntelASN as IntelASN
-from .intel_whois import IntelWhois as IntelWhois
-from .intel_domain import IntelDomain as IntelDomain
-from .intel_ip_list import IntelIPList as IntelIPList
+from .ip import IP as IP
+from .asn import ASN as ASN
+from .dns import DNS as DNS
+from .whois import Whois as Whois
+from .domain import Domain as Domain
+from .ip_list import IPList as IPList
+from .dns_param import DNSParam as DNSParam
 from .ip_get_params import IPGetParams as IPGetParams
+from .sinkhole_item import SinkholeItem as SinkholeItem
 from .dns_get_params import DNSGetParams as DNSGetParams
+from .domain_history import DomainHistory as DomainHistory
 from .ip_get_response import IPGetResponse as IPGetResponse
-from .intel_schemas_ip import IntelSchemasIP as IntelSchemasIP
 from .whois_get_params import WhoisGetParams as WhoisGetParams
 from .domain_get_params import DomainGetParams as DomainGetParams
-from .intel_sinkhole_item import IntelSinkholeItem as IntelSinkholeItem
-from .intel_domain_history import IntelDomainHistory as IntelDomainHistory
 from .ip_list_get_response import IPListGetResponse as IPListGetResponse
-from .intel_passive_dns_by_ip import IntelPassiveDNSByIP as IntelPassiveDNSByIP
 from .domain_history_get_params import DomainHistoryGetParams as DomainHistoryGetParams
 from .domain_history_get_response import DomainHistoryGetResponse as DomainHistoryGetResponse
 from .indicator_feed_get_response import IndicatorFeedGetResponse as IndicatorFeedGetResponse

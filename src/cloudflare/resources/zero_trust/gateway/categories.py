@@ -18,7 +18,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.gateway import ZeroTrustGatewayCategories
+from ....types.zero_trust.gateway import Category
 
 __all__ = ["Categories", "AsyncCategories"]
 
@@ -42,7 +42,7 @@ class Categories(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustGatewayCategories]:
+    ) -> SyncSinglePage[Category]:
         """
         Fetches a list of all categories.
 
@@ -61,11 +61,11 @@ class Categories(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/categories",
-            page=SyncSinglePage[ZeroTrustGatewayCategories],
+            page=SyncSinglePage[Category],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGatewayCategories,
+            model=Category,
         )
 
 
@@ -88,7 +88,7 @@ class AsyncCategories(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustGatewayCategories, AsyncSinglePage[ZeroTrustGatewayCategories]]:
+    ) -> AsyncPaginator[Category, AsyncSinglePage[Category]]:
         """
         Fetches a list of all categories.
 
@@ -107,11 +107,11 @@ class AsyncCategories(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/categories",
-            page=AsyncSinglePage[ZeroTrustGatewayCategories],
+            page=AsyncSinglePage[Category],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGatewayCategories,
+            model=Category,
         )
 
 

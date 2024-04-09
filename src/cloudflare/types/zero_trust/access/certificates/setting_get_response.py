@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .settings import Settings
+from .certificate_settings import CertificateSettings
 
 __all__ = ["SettingGetResponse"]
 
-SettingGetResponse = List[Settings]
+SettingGetResponse = List[CertificateSettings]

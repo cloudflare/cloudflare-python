@@ -22,7 +22,8 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.user.load_balancers.analytics import LoadBalancingAnalytics, event_list_params
+from .....types.user.load_balancers import Analytics
+from .....types.user.load_balancers.analytics import event_list_params
 
 __all__ = ["Events", "AsyncEvents"]
 
@@ -52,7 +53,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[LoadBalancingAnalytics]:
+    ) -> SyncSinglePage[Analytics]:
         """
         List origin health changes.
 
@@ -81,7 +82,7 @@ class Events(SyncAPIResource):
         """
         return self._get_api_list(
             "/user/load_balancing_analytics/events",
-            page=SyncSinglePage[LoadBalancingAnalytics],
+            page=SyncSinglePage[Analytics],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -100,7 +101,7 @@ class Events(SyncAPIResource):
                     event_list_params.EventListParams,
                 ),
             ),
-            model=LoadBalancingAnalytics,
+            model=Analytics,
         )
 
 
@@ -129,7 +130,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[LoadBalancingAnalytics, AsyncSinglePage[LoadBalancingAnalytics]]:
+    ) -> AsyncPaginator[Analytics, AsyncSinglePage[Analytics]]:
         """
         List origin health changes.
 
@@ -158,7 +159,7 @@ class AsyncEvents(AsyncAPIResource):
         """
         return self._get_api_list(
             "/user/load_balancing_analytics/events",
-            page=AsyncSinglePage[LoadBalancingAnalytics],
+            page=AsyncSinglePage[Analytics],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -177,7 +178,7 @@ class AsyncEvents(AsyncAPIResource):
                     event_list_params.EventListParams,
                 ),
             ),
-            model=LoadBalancingAnalytics,
+            model=Analytics,
         )
 
 

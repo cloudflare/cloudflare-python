@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from .history import (
-    History,
-    AsyncHistory,
-    HistoryWithRawResponse,
-    AsyncHistoryWithRawResponse,
-    HistoryWithStreamingResponse,
-    AsyncHistoryWithStreamingResponse,
+    HistoryResource,
+    AsyncHistoryResource,
+    HistoryResourceWithRawResponse,
+    AsyncHistoryResourceWithRawResponse,
+    HistoryResourceWithStreamingResponse,
+    AsyncHistoryResourceWithStreamingResponse,
 )
 from .policies import (
     Policies,
@@ -51,8 +51,8 @@ class Alerting(SyncAPIResource):
         return Destinations(self._client)
 
     @cached_property
-    def history(self) -> History:
-        return History(self._client)
+    def history(self) -> HistoryResource:
+        return HistoryResource(self._client)
 
     @cached_property
     def policies(self) -> Policies:
@@ -77,8 +77,8 @@ class AsyncAlerting(AsyncAPIResource):
         return AsyncDestinations(self._client)
 
     @cached_property
-    def history(self) -> AsyncHistory:
-        return AsyncHistory(self._client)
+    def history(self) -> AsyncHistoryResource:
+        return AsyncHistoryResource(self._client)
 
     @cached_property
     def policies(self) -> AsyncPolicies:
@@ -106,8 +106,8 @@ class AlertingWithRawResponse:
         return DestinationsWithRawResponse(self._alerting.destinations)
 
     @cached_property
-    def history(self) -> HistoryWithRawResponse:
-        return HistoryWithRawResponse(self._alerting.history)
+    def history(self) -> HistoryResourceWithRawResponse:
+        return HistoryResourceWithRawResponse(self._alerting.history)
 
     @cached_property
     def policies(self) -> PoliciesWithRawResponse:
@@ -127,8 +127,8 @@ class AsyncAlertingWithRawResponse:
         return AsyncDestinationsWithRawResponse(self._alerting.destinations)
 
     @cached_property
-    def history(self) -> AsyncHistoryWithRawResponse:
-        return AsyncHistoryWithRawResponse(self._alerting.history)
+    def history(self) -> AsyncHistoryResourceWithRawResponse:
+        return AsyncHistoryResourceWithRawResponse(self._alerting.history)
 
     @cached_property
     def policies(self) -> AsyncPoliciesWithRawResponse:
@@ -148,8 +148,8 @@ class AlertingWithStreamingResponse:
         return DestinationsWithStreamingResponse(self._alerting.destinations)
 
     @cached_property
-    def history(self) -> HistoryWithStreamingResponse:
-        return HistoryWithStreamingResponse(self._alerting.history)
+    def history(self) -> HistoryResourceWithStreamingResponse:
+        return HistoryResourceWithStreamingResponse(self._alerting.history)
 
     @cached_property
     def policies(self) -> PoliciesWithStreamingResponse:
@@ -169,8 +169,8 @@ class AsyncAlertingWithStreamingResponse:
         return AsyncDestinationsWithStreamingResponse(self._alerting.destinations)
 
     @cached_property
-    def history(self) -> AsyncHistoryWithStreamingResponse:
-        return AsyncHistoryWithStreamingResponse(self._alerting.history)
+    def history(self) -> AsyncHistoryResourceWithStreamingResponse:
+        return AsyncHistoryResourceWithStreamingResponse(self._alerting.history)
 
     @cached_property
     def policies(self) -> AsyncPoliciesWithStreamingResponse:

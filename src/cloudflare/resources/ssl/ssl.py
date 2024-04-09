@@ -21,12 +21,12 @@ from .universal import (
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .verification import (
-    Verification,
-    AsyncVerification,
-    VerificationWithRawResponse,
-    AsyncVerificationWithRawResponse,
-    VerificationWithStreamingResponse,
-    AsyncVerificationWithStreamingResponse,
+    VerificationResource,
+    AsyncVerificationResource,
+    VerificationResourceWithRawResponse,
+    AsyncVerificationResourceWithRawResponse,
+    VerificationResourceWithStreamingResponse,
+    AsyncVerificationResourceWithStreamingResponse,
 )
 from .recommendations import (
     Recommendations,
@@ -68,8 +68,8 @@ class SSL(SyncAPIResource):
         return Universal(self._client)
 
     @cached_property
-    def verification(self) -> Verification:
-        return Verification(self._client)
+    def verification(self) -> VerificationResource:
+        return VerificationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> SSLWithRawResponse:
@@ -98,8 +98,8 @@ class AsyncSSL(AsyncAPIResource):
         return AsyncUniversal(self._client)
 
     @cached_property
-    def verification(self) -> AsyncVerification:
-        return AsyncVerification(self._client)
+    def verification(self) -> AsyncVerificationResource:
+        return AsyncVerificationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncSSLWithRawResponse:
@@ -131,8 +131,8 @@ class SSLWithRawResponse:
         return UniversalWithRawResponse(self._ssl.universal)
 
     @cached_property
-    def verification(self) -> VerificationWithRawResponse:
-        return VerificationWithRawResponse(self._ssl.verification)
+    def verification(self) -> VerificationResourceWithRawResponse:
+        return VerificationResourceWithRawResponse(self._ssl.verification)
 
 
 class AsyncSSLWithRawResponse:
@@ -156,8 +156,8 @@ class AsyncSSLWithRawResponse:
         return AsyncUniversalWithRawResponse(self._ssl.universal)
 
     @cached_property
-    def verification(self) -> AsyncVerificationWithRawResponse:
-        return AsyncVerificationWithRawResponse(self._ssl.verification)
+    def verification(self) -> AsyncVerificationResourceWithRawResponse:
+        return AsyncVerificationResourceWithRawResponse(self._ssl.verification)
 
 
 class SSLWithStreamingResponse:
@@ -181,8 +181,8 @@ class SSLWithStreamingResponse:
         return UniversalWithStreamingResponse(self._ssl.universal)
 
     @cached_property
-    def verification(self) -> VerificationWithStreamingResponse:
-        return VerificationWithStreamingResponse(self._ssl.verification)
+    def verification(self) -> VerificationResourceWithStreamingResponse:
+        return VerificationResourceWithStreamingResponse(self._ssl.verification)
 
 
 class AsyncSSLWithStreamingResponse:
@@ -206,5 +206,5 @@ class AsyncSSLWithStreamingResponse:
         return AsyncUniversalWithStreamingResponse(self._ssl.universal)
 
     @cached_property
-    def verification(self) -> AsyncVerificationWithStreamingResponse:
-        return AsyncVerificationWithStreamingResponse(self._ssl.verification)
+    def verification(self) -> AsyncVerificationResourceWithStreamingResponse:
+        return AsyncVerificationResourceWithStreamingResponse(self._ssl.verification)

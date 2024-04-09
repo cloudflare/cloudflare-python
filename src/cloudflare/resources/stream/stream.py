@@ -9,12 +9,12 @@ from typing_extensions import Literal
 import httpx
 
 from .clip import (
-    Clip,
-    AsyncClip,
-    ClipWithRawResponse,
-    AsyncClipWithRawResponse,
-    ClipWithStreamingResponse,
-    AsyncClipWithStreamingResponse,
+    ClipResource,
+    AsyncClipResource,
+    ClipResourceWithRawResponse,
+    AsyncClipResourceWithRawResponse,
+    ClipResourceWithStreamingResponse,
+    AsyncClipResourceWithStreamingResponse,
 )
 from .copy import (
     Copy,
@@ -56,7 +56,7 @@ from .videos import (
     VideosWithStreamingResponse,
     AsyncVideosWithStreamingResponse,
 )
-from ...types import StreamVideos, stream_list_params, stream_create_params, stream_delete_params
+from ...types import Video, stream_list_params, stream_create_params, stream_delete_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -147,8 +147,8 @@ class Stream(SyncAPIResource):
         return Videos(self._client)
 
     @cached_property
-    def clip(self) -> Clip:
-        return Clip(self._client)
+    def clip(self) -> ClipResource:
+        return ClipResource(self._client)
 
     @cached_property
     def copy(self) -> Copy:
@@ -259,7 +259,7 @@ class Stream(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[StreamVideos]:
+    ) -> SyncSinglePage[Video]:
         """Lists up to 1000 videos from a single request.
 
         For a specific range, refer to
@@ -298,7 +298,7 @@ class Stream(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/stream",
-            page=SyncSinglePage[StreamVideos],
+            page=SyncSinglePage[Video],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -318,7 +318,7 @@ class Stream(SyncAPIResource):
                     stream_list_params.StreamListParams,
                 ),
             ),
-            model=StreamVideos,
+            model=Video,
         )
 
     def delete(
@@ -375,7 +375,7 @@ class Stream(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamVideos:
+    ) -> Video:
         """
         Fetches details for a single video.
 
@@ -405,7 +405,7 @@ class Stream(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamVideos], ResultWrapper[StreamVideos]),
+            cast_to=cast(Type[Video], ResultWrapper[Video]),
         )
 
 
@@ -419,8 +419,8 @@ class AsyncStream(AsyncAPIResource):
         return AsyncVideos(self._client)
 
     @cached_property
-    def clip(self) -> AsyncClip:
-        return AsyncClip(self._client)
+    def clip(self) -> AsyncClipResource:
+        return AsyncClipResource(self._client)
 
     @cached_property
     def copy(self) -> AsyncCopy:
@@ -531,7 +531,7 @@ class AsyncStream(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[StreamVideos, AsyncSinglePage[StreamVideos]]:
+    ) -> AsyncPaginator[Video, AsyncSinglePage[Video]]:
         """Lists up to 1000 videos from a single request.
 
         For a specific range, refer to
@@ -570,7 +570,7 @@ class AsyncStream(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/stream",
-            page=AsyncSinglePage[StreamVideos],
+            page=AsyncSinglePage[Video],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -590,7 +590,7 @@ class AsyncStream(AsyncAPIResource):
                     stream_list_params.StreamListParams,
                 ),
             ),
-            model=StreamVideos,
+            model=Video,
         )
 
     async def delete(
@@ -647,7 +647,7 @@ class AsyncStream(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamVideos:
+    ) -> Video:
         """
         Fetches details for a single video.
 
@@ -677,7 +677,7 @@ class AsyncStream(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamVideos], ResultWrapper[StreamVideos]),
+            cast_to=cast(Type[Video], ResultWrapper[Video]),
         )
 
 
@@ -707,8 +707,8 @@ class StreamWithRawResponse:
         return VideosWithRawResponse(self._stream.videos)
 
     @cached_property
-    def clip(self) -> ClipWithRawResponse:
-        return ClipWithRawResponse(self._stream.clip)
+    def clip(self) -> ClipResourceWithRawResponse:
+        return ClipResourceWithRawResponse(self._stream.clip)
 
     @cached_property
     def copy(self) -> CopyWithRawResponse:
@@ -777,8 +777,8 @@ class AsyncStreamWithRawResponse:
         return AsyncVideosWithRawResponse(self._stream.videos)
 
     @cached_property
-    def clip(self) -> AsyncClipWithRawResponse:
-        return AsyncClipWithRawResponse(self._stream.clip)
+    def clip(self) -> AsyncClipResourceWithRawResponse:
+        return AsyncClipResourceWithRawResponse(self._stream.clip)
 
     @cached_property
     def copy(self) -> AsyncCopyWithRawResponse:
@@ -847,8 +847,8 @@ class StreamWithStreamingResponse:
         return VideosWithStreamingResponse(self._stream.videos)
 
     @cached_property
-    def clip(self) -> ClipWithStreamingResponse:
-        return ClipWithStreamingResponse(self._stream.clip)
+    def clip(self) -> ClipResourceWithStreamingResponse:
+        return ClipResourceWithStreamingResponse(self._stream.clip)
 
     @cached_property
     def copy(self) -> CopyWithStreamingResponse:
@@ -917,8 +917,8 @@ class AsyncStreamWithStreamingResponse:
         return AsyncVideosWithStreamingResponse(self._stream.videos)
 
     @cached_property
-    def clip(self) -> AsyncClipWithStreamingResponse:
-        return AsyncClipWithStreamingResponse(self._stream.clip)
+    def clip(self) -> AsyncClipResourceWithStreamingResponse:
+        return AsyncClipResourceWithStreamingResponse(self._stream.clip)
 
     @cached_property
     def copy(self) -> AsyncCopyWithStreamingResponse:

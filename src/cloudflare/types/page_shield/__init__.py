@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from .page_shield_policy import PageShieldPolicy as PageShieldPolicy
-from .page_shield_script import PageShieldScript as PageShieldScript
+from .policy import Policy as Policy
+from .script import Script as Script
+from .connection import Connection as Connection
+from .policy_param import PolicyParam as PolicyParam
 from .script_list_params import ScriptListParams as ScriptListParams
 from .script_get_response import ScriptGetResponse as ScriptGetResponse
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .connection_list_params import ConnectionListParams as ConnectionListParams
-from .page_shield_connection import PageShieldConnection as PageShieldConnection

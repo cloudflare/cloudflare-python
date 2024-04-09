@@ -27,24 +27,24 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846
 from ....types.cloudforce_one.requests import (
+    Message,
     MessageGetResponse,
-    CloudforceOneRequestMessageItem,
     message_get_params,
     message_create_params,
     message_update_params,
 )
 
-__all__ = ["Message", "AsyncMessage"]
+__all__ = ["MessageResource", "AsyncMessageResource"]
 
 
-class Message(SyncAPIResource):
+class MessageResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MessageWithRawResponse:
-        return MessageWithRawResponse(self)
+    def with_raw_response(self) -> MessageResourceWithRawResponse:
+        return MessageResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MessageWithStreamingResponse:
-        return MessageWithStreamingResponse(self)
+    def with_streaming_response(self) -> MessageResourceWithStreamingResponse:
+        return MessageResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -58,7 +58,7 @@ class Message(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOneRequestMessageItem:
+    ) -> Message:
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
         In addition to the content, a short title, type, priority, and releasability
@@ -93,7 +93,7 @@ class Message(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOneRequestMessageItem], ResultWrapper[CloudforceOneRequestMessageItem]),
+            cast_to=cast(Type[Message], ResultWrapper[Message]),
         )
 
     def update(
@@ -113,7 +113,7 @@ class Message(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOneRequestMessageItem:
+    ) -> Message:
         """
         Update a Request Message
 
@@ -163,7 +163,7 @@ class Message(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOneRequestMessageItem], ResultWrapper[CloudforceOneRequestMessageItem]),
+            cast_to=cast(Type[Message], ResultWrapper[Message]),
         )
 
     def delete(
@@ -290,14 +290,14 @@ class Message(SyncAPIResource):
         )
 
 
-class AsyncMessage(AsyncAPIResource):
+class AsyncMessageResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMessageWithRawResponse:
-        return AsyncMessageWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMessageResourceWithRawResponse:
+        return AsyncMessageResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMessageWithStreamingResponse:
-        return AsyncMessageWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMessageResourceWithStreamingResponse:
+        return AsyncMessageResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -311,7 +311,7 @@ class AsyncMessage(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOneRequestMessageItem:
+    ) -> Message:
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
         In addition to the content, a short title, type, priority, and releasability
@@ -346,7 +346,7 @@ class AsyncMessage(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOneRequestMessageItem], ResultWrapper[CloudforceOneRequestMessageItem]),
+            cast_to=cast(Type[Message], ResultWrapper[Message]),
         )
 
     async def update(
@@ -366,7 +366,7 @@ class AsyncMessage(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOneRequestMessageItem:
+    ) -> Message:
         """
         Update a Request Message
 
@@ -416,7 +416,7 @@ class AsyncMessage(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOneRequestMessageItem], ResultWrapper[CloudforceOneRequestMessageItem]),
+            cast_to=cast(Type[Message], ResultWrapper[Message]),
         )
 
     async def delete(
@@ -543,8 +543,8 @@ class AsyncMessage(AsyncAPIResource):
         )
 
 
-class MessageWithRawResponse:
-    def __init__(self, message: Message) -> None:
+class MessageResourceWithRawResponse:
+    def __init__(self, message: MessageResource) -> None:
         self._message = message
 
         self.create = to_raw_response_wrapper(
@@ -561,8 +561,8 @@ class MessageWithRawResponse:
         )
 
 
-class AsyncMessageWithRawResponse:
-    def __init__(self, message: AsyncMessage) -> None:
+class AsyncMessageResourceWithRawResponse:
+    def __init__(self, message: AsyncMessageResource) -> None:
         self._message = message
 
         self.create = async_to_raw_response_wrapper(
@@ -579,8 +579,8 @@ class AsyncMessageWithRawResponse:
         )
 
 
-class MessageWithStreamingResponse:
-    def __init__(self, message: Message) -> None:
+class MessageResourceWithStreamingResponse:
+    def __init__(self, message: MessageResource) -> None:
         self._message = message
 
         self.create = to_streamed_response_wrapper(
@@ -597,8 +597,8 @@ class MessageWithStreamingResponse:
         )
 
 
-class AsyncMessageWithStreamingResponse:
-    def __init__(self, message: AsyncMessage) -> None:
+class AsyncMessageResourceWithStreamingResponse:
+    def __init__(self, message: AsyncMessageResource) -> None:
         self._message = message
 
         self.create = async_to_streamed_response_wrapper(

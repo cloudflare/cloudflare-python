@@ -29,7 +29,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.dns import (
-    DNSFirewall,
+    Firewall,
     FirewallIPsItemParam,
     AttackMitigationParam,
     UpstreamIPsItemsParam,
@@ -46,21 +46,21 @@ from ...._base_client import (
 )
 from .analytics.analytics import Analytics, AsyncAnalytics
 
-__all__ = ["Firewall", "AsyncFirewall"]
+__all__ = ["FirewallResource", "AsyncFirewallResource"]
 
 
-class Firewall(SyncAPIResource):
+class FirewallResource(SyncAPIResource):
     @cached_property
     def analytics(self) -> Analytics:
         return Analytics(self._client)
 
     @cached_property
-    def with_raw_response(self) -> FirewallWithRawResponse:
-        return FirewallWithRawResponse(self)
+    def with_raw_response(self) -> FirewallResourceWithRawResponse:
+        return FirewallResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FirewallWithStreamingResponse:
-        return FirewallWithStreamingResponse(self)
+    def with_streaming_response(self) -> FirewallResourceWithStreamingResponse:
+        return FirewallResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -82,7 +82,7 @@ class Firewall(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSFirewall:
+    ) -> Firewall:
         """
         Create a configured DNS Firewall Cluster.
 
@@ -143,7 +143,7 @@ class Firewall(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSFirewall], ResultWrapper[DNSFirewall]),
+            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
 
     def list(
@@ -158,7 +158,7 @@ class Firewall(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[DNSFirewall]:
+    ) -> SyncV4PagePaginationArray[Firewall]:
         """
         List configured DNS Firewall clusters for an account.
 
@@ -181,7 +181,7 @@ class Firewall(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dns_firewall",
-            page=SyncV4PagePaginationArray[DNSFirewall],
+            page=SyncV4PagePaginationArray[Firewall],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -195,7 +195,7 @@ class Firewall(SyncAPIResource):
                     firewall_list_params.FirewallListParams,
                 ),
             ),
-            model=DNSFirewall,
+            model=Firewall,
         )
 
     def delete(
@@ -266,7 +266,7 @@ class Firewall(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSFirewall:
+    ) -> Firewall:
         """
         Modify a DNS Firewall Cluster configuration.
 
@@ -332,7 +332,7 @@ class Firewall(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSFirewall], ResultWrapper[DNSFirewall]),
+            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
 
     def get(
@@ -346,7 +346,7 @@ class Firewall(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSFirewall:
+    ) -> Firewall:
         """
         Show a single configured DNS Firewall cluster for an account.
 
@@ -376,22 +376,22 @@ class Firewall(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSFirewall], ResultWrapper[DNSFirewall]),
+            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
 
 
-class AsyncFirewall(AsyncAPIResource):
+class AsyncFirewallResource(AsyncAPIResource):
     @cached_property
     def analytics(self) -> AsyncAnalytics:
         return AsyncAnalytics(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncFirewallWithRawResponse:
-        return AsyncFirewallWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFirewallResourceWithRawResponse:
+        return AsyncFirewallResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFirewallWithStreamingResponse:
-        return AsyncFirewallWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFirewallResourceWithStreamingResponse:
+        return AsyncFirewallResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -413,7 +413,7 @@ class AsyncFirewall(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSFirewall:
+    ) -> Firewall:
         """
         Create a configured DNS Firewall Cluster.
 
@@ -474,7 +474,7 @@ class AsyncFirewall(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSFirewall], ResultWrapper[DNSFirewall]),
+            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
 
     def list(
@@ -489,7 +489,7 @@ class AsyncFirewall(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DNSFirewall, AsyncV4PagePaginationArray[DNSFirewall]]:
+    ) -> AsyncPaginator[Firewall, AsyncV4PagePaginationArray[Firewall]]:
         """
         List configured DNS Firewall clusters for an account.
 
@@ -512,7 +512,7 @@ class AsyncFirewall(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dns_firewall",
-            page=AsyncV4PagePaginationArray[DNSFirewall],
+            page=AsyncV4PagePaginationArray[Firewall],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -526,7 +526,7 @@ class AsyncFirewall(AsyncAPIResource):
                     firewall_list_params.FirewallListParams,
                 ),
             ),
-            model=DNSFirewall,
+            model=Firewall,
         )
 
     async def delete(
@@ -597,7 +597,7 @@ class AsyncFirewall(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSFirewall:
+    ) -> Firewall:
         """
         Modify a DNS Firewall Cluster configuration.
 
@@ -663,7 +663,7 @@ class AsyncFirewall(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSFirewall], ResultWrapper[DNSFirewall]),
+            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
 
     async def get(
@@ -677,7 +677,7 @@ class AsyncFirewall(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSFirewall:
+    ) -> Firewall:
         """
         Show a single configured DNS Firewall cluster for an account.
 
@@ -707,12 +707,12 @@ class AsyncFirewall(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSFirewall], ResultWrapper[DNSFirewall]),
+            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
 
 
-class FirewallWithRawResponse:
-    def __init__(self, firewall: Firewall) -> None:
+class FirewallResourceWithRawResponse:
+    def __init__(self, firewall: FirewallResource) -> None:
         self._firewall = firewall
 
         self.create = to_raw_response_wrapper(
@@ -736,8 +736,8 @@ class FirewallWithRawResponse:
         return AnalyticsWithRawResponse(self._firewall.analytics)
 
 
-class AsyncFirewallWithRawResponse:
-    def __init__(self, firewall: AsyncFirewall) -> None:
+class AsyncFirewallResourceWithRawResponse:
+    def __init__(self, firewall: AsyncFirewallResource) -> None:
         self._firewall = firewall
 
         self.create = async_to_raw_response_wrapper(
@@ -761,8 +761,8 @@ class AsyncFirewallWithRawResponse:
         return AsyncAnalyticsWithRawResponse(self._firewall.analytics)
 
 
-class FirewallWithStreamingResponse:
-    def __init__(self, firewall: Firewall) -> None:
+class FirewallResourceWithStreamingResponse:
+    def __init__(self, firewall: FirewallResource) -> None:
         self._firewall = firewall
 
         self.create = to_streamed_response_wrapper(
@@ -786,8 +786,8 @@ class FirewallWithStreamingResponse:
         return AnalyticsWithStreamingResponse(self._firewall.analytics)
 
 
-class AsyncFirewallWithStreamingResponse:
-    def __init__(self, firewall: AsyncFirewall) -> None:
+class AsyncFirewallResourceWithStreamingResponse:
+    def __init__(self, firewall: AsyncFirewallResource) -> None:
         self._firewall = firewall
 
         self.create = async_to_streamed_response_wrapper(

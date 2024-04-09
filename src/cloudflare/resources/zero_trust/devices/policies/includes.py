@@ -27,9 +27,9 @@ from ....._base_client import (
 )
 from .....types.zero_trust.devices.policies import (
     IncludeGetResponse,
+    SplitTunnelInclude,
     IncludeUpdateResponse,
-    DevicesSplitTunnelInclude,
-    DevicesSplitTunnelIncludeParam,
+    SplitTunnelIncludeParam,
     include_update_params,
 )
 
@@ -49,7 +49,7 @@ class Includes(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[DevicesSplitTunnelIncludeParam],
+        body: Iterable[SplitTunnelIncludeParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,7 +94,7 @@ class Includes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DevicesSplitTunnelInclude]:
+    ) -> SyncSinglePage[SplitTunnelInclude]:
         """
         Fetches the list of routes included in the WARP client's tunnel.
 
@@ -111,11 +111,11 @@ class Includes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/include",
-            page=SyncSinglePage[DevicesSplitTunnelInclude],
+            page=SyncSinglePage[SplitTunnelInclude],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DevicesSplitTunnelInclude,
+            model=SplitTunnelInclude,
         )
 
     def get(
@@ -175,7 +175,7 @@ class AsyncIncludes(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[DevicesSplitTunnelIncludeParam],
+        body: Iterable[SplitTunnelIncludeParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -220,7 +220,7 @@ class AsyncIncludes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DevicesSplitTunnelInclude, AsyncSinglePage[DevicesSplitTunnelInclude]]:
+    ) -> AsyncPaginator[SplitTunnelInclude, AsyncSinglePage[SplitTunnelInclude]]:
         """
         Fetches the list of routes included in the WARP client's tunnel.
 
@@ -237,11 +237,11 @@ class AsyncIncludes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/include",
-            page=AsyncSinglePage[DevicesSplitTunnelInclude],
+            page=AsyncSinglePage[SplitTunnelInclude],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DevicesSplitTunnelInclude,
+            model=SplitTunnelInclude,
         )
 
     async def get(

@@ -4,9 +4,8 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ...rule import Rule
 from ....._models import BaseModel
-from ...include_item import IncludeItem
+from ...access_rule import AccessRule
 from .approval_group import ApprovalGroup
 
 __all__ = ["Policy"]
@@ -30,13 +29,13 @@ class Policy(BaseModel):
     decision: Optional[Literal["allow", "deny", "non_identity", "bypass"]] = None
     """The action Access will take if a user matches this policy."""
 
-    exclude: Optional[List[Rule]] = None
+    exclude: Optional[List[AccessRule]] = None
     """Rules evaluated with a NOT logical operator.
 
     To match the policy, a user cannot meet any of the Exclude rules.
     """
 
-    include: Optional[List[IncludeItem]] = None
+    include: Optional[List[AccessRule]] = None
     """Rules evaluated with an OR logical operator.
 
     A user needs to meet only one of the Include rules.
@@ -61,7 +60,7 @@ class Policy(BaseModel):
     purpose_justification_required: Optional[bool] = None
     """Require users to enter a justification when they log in to the application."""
 
-    require: Optional[List[Rule]] = None
+    require: Optional[List[AccessRule]] = None
     """Rules evaluated with an AND logical operator.
 
     To match the policy, a user must meet all of the Require rules.

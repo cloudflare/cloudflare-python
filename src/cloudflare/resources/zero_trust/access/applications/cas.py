@@ -22,7 +22,7 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from .....types.zero_trust.access.applications import ZeroTrustCA, CADeleteResponse
+from .....types.zero_trust.access.applications import CA, CADeleteResponse
 
 __all__ = ["CAs", "AsyncCAs"]
 
@@ -112,7 +112,7 @@ class CAs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustCA]:
+    ) -> SyncSinglePage[CA]:
         """
         Lists short-lived certificate CAs and their public keys.
 
@@ -146,11 +146,11 @@ class CAs(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/ca",
-            page=SyncSinglePage[ZeroTrustCA],
+            page=SyncSinglePage[CA],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustCA,
+            model=CA,
         )
 
     def delete(
@@ -364,7 +364,7 @@ class AsyncCAs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustCA, AsyncSinglePage[ZeroTrustCA]]:
+    ) -> AsyncPaginator[CA, AsyncSinglePage[CA]]:
         """
         Lists short-lived certificate CAs and their public keys.
 
@@ -398,11 +398,11 @@ class AsyncCAs(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/ca",
-            page=AsyncSinglePage[ZeroTrustCA],
+            page=AsyncSinglePage[CA],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustCA,
+            model=CA,
         )
 
     async def delete(

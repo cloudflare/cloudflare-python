@@ -88,7 +88,7 @@ from ...._base_client import (
 from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from .posture.posture import Posture, AsyncPosture
 from .policies.policies import Policies, AsyncPolicies
-from ....types.zero_trust import ZeroTrustDevices
+from ....types.zero_trust import Device
 
 __all__ = ["Devices", "AsyncDevices"]
 
@@ -144,7 +144,7 @@ class Devices(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustDevices]:
+    ) -> SyncSinglePage[Device]:
         """
         Fetches a list of enrolled devices.
 
@@ -161,11 +161,11 @@ class Devices(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices",
-            page=SyncSinglePage[ZeroTrustDevices],
+            page=SyncSinglePage[Device],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustDevices,
+            model=Device,
         )
 
     def get(
@@ -267,7 +267,7 @@ class AsyncDevices(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustDevices, AsyncSinglePage[ZeroTrustDevices]]:
+    ) -> AsyncPaginator[Device, AsyncSinglePage[Device]]:
         """
         Fetches a list of enrolled devices.
 
@@ -284,11 +284,11 @@ class AsyncDevices(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices",
-            page=AsyncSinglePage[ZeroTrustDevices],
+            page=AsyncSinglePage[Device],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustDevices,
+            model=Device,
         )
 
     async def get(

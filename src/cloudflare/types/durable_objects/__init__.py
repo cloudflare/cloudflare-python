@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .durable_object_namespace import DurableObjectNamespace as DurableObjectNamespace
+from .namespace import Namespace as Namespace

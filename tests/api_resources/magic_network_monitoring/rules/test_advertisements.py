@@ -9,9 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_network_monitoring.rules import (
-    MagicNetworkMonitoringRuleAdvertisable,
-)
+from cloudflare.types.magic_network_monitoring.rules import Advertisement
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +25,7 @@ class TestAdvertisements:
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRuleAdvertisable], advertisement, path=["response"])
+        assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +39,7 @@ class TestAdvertisements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advertisement = response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRuleAdvertisable], advertisement, path=["response"])
+        assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +53,7 @@ class TestAdvertisements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advertisement = response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRuleAdvertisable], advertisement, path=["response"])
+            assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -88,7 +86,7 @@ class TestAsyncAdvertisements:
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRuleAdvertisable], advertisement, path=["response"])
+        assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +100,7 @@ class TestAsyncAdvertisements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advertisement = await response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRuleAdvertisable], advertisement, path=["response"])
+        assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -116,7 +114,7 @@ class TestAsyncAdvertisements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advertisement = await response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRuleAdvertisable], advertisement, path=["response"])
+            assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

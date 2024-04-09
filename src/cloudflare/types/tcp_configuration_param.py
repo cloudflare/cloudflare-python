@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["TcpConfigurationParam"]
+__all__ = ["TCPConfigurationParam"]
 
 
-class TcpConfigurationParam(TypedDict, total=False):
+class TCPConfigurationParam(TypedDict, total=False):
     method: Literal["connection_established"]
     """The TCP connection method to use for the health check."""
 

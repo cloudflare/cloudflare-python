@@ -1,20 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .message import (
-    Message,
-    AsyncMessage,
-    MessageWithRawResponse,
-    AsyncMessageWithRawResponse,
-    MessageWithStreamingResponse,
-    AsyncMessageWithStreamingResponse,
+    MessageResource,
+    AsyncMessageResource,
+    MessageResourceWithRawResponse,
+    AsyncMessageResourceWithRawResponse,
+    MessageResourceWithStreamingResponse,
+    AsyncMessageResourceWithStreamingResponse,
 )
 from .priority import (
-    Priority,
-    AsyncPriority,
-    PriorityWithRawResponse,
-    AsyncPriorityWithRawResponse,
-    PriorityWithStreamingResponse,
-    AsyncPriorityWithStreamingResponse,
+    PriorityResource,
+    AsyncPriorityResource,
+    PriorityResourceWithRawResponse,
+    AsyncPriorityResourceWithRawResponse,
+    PriorityResourceWithStreamingResponse,
+    AsyncPriorityResourceWithStreamingResponse,
 )
 from .requests import (
     Requests,
@@ -26,18 +26,18 @@ from .requests import (
 )
 
 __all__ = [
-    "Message",
-    "AsyncMessage",
-    "MessageWithRawResponse",
-    "AsyncMessageWithRawResponse",
-    "MessageWithStreamingResponse",
-    "AsyncMessageWithStreamingResponse",
-    "Priority",
-    "AsyncPriority",
-    "PriorityWithRawResponse",
-    "AsyncPriorityWithRawResponse",
-    "PriorityWithStreamingResponse",
-    "AsyncPriorityWithStreamingResponse",
+    "MessageResource",
+    "AsyncMessageResource",
+    "MessageResourceWithRawResponse",
+    "AsyncMessageResourceWithRawResponse",
+    "MessageResourceWithStreamingResponse",
+    "AsyncMessageResourceWithStreamingResponse",
+    "PriorityResource",
+    "AsyncPriorityResource",
+    "PriorityResourceWithRawResponse",
+    "AsyncPriorityResourceWithRawResponse",
+    "PriorityResourceWithStreamingResponse",
+    "AsyncPriorityResourceWithStreamingResponse",
     "Requests",
     "AsyncRequests",
     "RequestsWithRawResponse",

@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_date
-from cloudflare.types.intel import IntelPassiveDNSByIP
+from cloudflare.types.intel import DNS
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestDNS:
         dns = client.intel.dns.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IntelPassiveDNSByIP, dns, path=["response"])
+        assert_matches_type(DNS, dns, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestDNS:
                 "start": parse_date("2021-04-01"),
             },
         )
-        assert_matches_type(IntelPassiveDNSByIP, dns, path=["response"])
+        assert_matches_type(DNS, dns, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -51,7 +51,7 @@ class TestDNS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dns = response.parse()
-        assert_matches_type(IntelPassiveDNSByIP, dns, path=["response"])
+        assert_matches_type(DNS, dns, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestDNS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dns = response.parse()
-            assert_matches_type(IntelPassiveDNSByIP, dns, path=["response"])
+            assert_matches_type(DNS, dns, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +85,7 @@ class TestAsyncDNS:
         dns = await async_client.intel.dns.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IntelPassiveDNSByIP, dns, path=["response"])
+        assert_matches_type(DNS, dns, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +100,7 @@ class TestAsyncDNS:
                 "start": parse_date("2021-04-01"),
             },
         )
-        assert_matches_type(IntelPassiveDNSByIP, dns, path=["response"])
+        assert_matches_type(DNS, dns, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -112,7 +112,7 @@ class TestAsyncDNS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dns = await response.parse()
-        assert_matches_type(IntelPassiveDNSByIP, dns, path=["response"])
+        assert_matches_type(DNS, dns, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -124,7 +124,7 @@ class TestAsyncDNS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dns = await response.parse()
-            assert_matches_type(IntelPassiveDNSByIP, dns, path=["response"])
+            assert_matches_type(DNS, dns, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

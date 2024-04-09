@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.devices.policies import (
-    DevicesFallbackDomain,
+    FallbackDomain,
     FallbackDomainGetResponse,
     FallbackDomainUpdateResponse,
 )
@@ -85,7 +85,7 @@ class TestFallbackDomains:
         fallback_domain = client.zero_trust.devices.policies.fallback_domains.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncSinglePage[DevicesFallbackDomain], fallback_domain, path=["response"])
+        assert_matches_type(SyncSinglePage[FallbackDomain], fallback_domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -97,7 +97,7 @@ class TestFallbackDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fallback_domain = response.parse()
-        assert_matches_type(SyncSinglePage[DevicesFallbackDomain], fallback_domain, path=["response"])
+        assert_matches_type(SyncSinglePage[FallbackDomain], fallback_domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -109,7 +109,7 @@ class TestFallbackDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fallback_domain = response.parse()
-            assert_matches_type(SyncSinglePage[DevicesFallbackDomain], fallback_domain, path=["response"])
+            assert_matches_type(SyncSinglePage[FallbackDomain], fallback_domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +240,7 @@ class TestAsyncFallbackDomains:
         fallback_domain = await async_client.zero_trust.devices.policies.fallback_domains.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncSinglePage[DevicesFallbackDomain], fallback_domain, path=["response"])
+        assert_matches_type(AsyncSinglePage[FallbackDomain], fallback_domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -252,7 +252,7 @@ class TestAsyncFallbackDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fallback_domain = await response.parse()
-        assert_matches_type(AsyncSinglePage[DevicesFallbackDomain], fallback_domain, path=["response"])
+        assert_matches_type(AsyncSinglePage[FallbackDomain], fallback_domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -264,7 +264,7 @@ class TestAsyncFallbackDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fallback_domain = await response.parse()
-            assert_matches_type(AsyncSinglePage[DevicesFallbackDomain], fallback_domain, path=["response"])
+            assert_matches_type(AsyncSinglePage[FallbackDomain], fallback_domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

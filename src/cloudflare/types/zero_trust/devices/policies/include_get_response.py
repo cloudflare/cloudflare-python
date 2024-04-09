@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .devices_split_tunnel_include import DevicesSplitTunnelInclude
+from .split_tunnel_include import SplitTunnelInclude
 
 __all__ = ["IncludeGetResponse"]
 
-IncludeGetResponse = List[DevicesSplitTunnelInclude]
+IncludeGetResponse = List[SplitTunnelInclude]

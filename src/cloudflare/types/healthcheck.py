@@ -5,7 +5,8 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .tcp_configuration import TcpConfiguration
+from .check_region import CheckRegion
+from .tcp_configuration import TCPConfiguration
 from .http_configuration import HTTPConfiguration
 
 __all__ = ["Healthcheck"]
@@ -18,26 +19,7 @@ class Healthcheck(BaseModel):
     address: Optional[str] = None
     """The hostname or IP address of the origin server to run health checks on."""
 
-    check_regions: Optional[
-        List[
-            Literal[
-                "WNAM",
-                "ENAM",
-                "WEU",
-                "EEU",
-                "NSAM",
-                "SSAM",
-                "OC",
-                "ME",
-                "NAF",
-                "SAF",
-                "IN",
-                "SEAS",
-                "NEAS",
-                "ALL_REGIONS",
-            ]
-        ]
-    ] = None
+    check_regions: Optional[List[CheckRegion]] = None
     """A list of regions from which to run health checks.
 
     Null means Cloudflare will pick a default region.
@@ -93,7 +75,7 @@ class Healthcheck(BaseModel):
     suspended: Optional[bool] = None
     """If suspended, no health checks are sent to the origin."""
 
-    tcp_config: Optional[TcpConfiguration] = None
+    tcp_config: Optional[TCPConfiguration] = None
     """Parameters specific to TCP health check."""
 
     timeout: Optional[int] = None

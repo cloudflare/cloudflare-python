@@ -27,7 +27,7 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
 from ....types.zero_trust.networks import (
-    TunnelVirtualNetwork,
+    VirtualNetwork,
     virtual_network_edit_params,
     virtual_network_list_params,
     virtual_network_create_params,
@@ -122,7 +122,7 @@ class VirtualNetworks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[TunnelVirtualNetwork]:
+    ) -> SyncSinglePage[VirtualNetwork]:
         """
         Lists and filters virtual networks in an account.
 
@@ -153,7 +153,7 @@ class VirtualNetworks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/teamnet/virtual_networks",
-            page=SyncSinglePage[TunnelVirtualNetwork],
+            page=SyncSinglePage[VirtualNetwork],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -170,7 +170,7 @@ class VirtualNetworks(SyncAPIResource):
                     virtual_network_list_params.VirtualNetworkListParams,
                 ),
             ),
-            model=TunnelVirtualNetwork,
+            model=VirtualNetwork,
         )
 
     def delete(
@@ -376,7 +376,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[TunnelVirtualNetwork, AsyncSinglePage[TunnelVirtualNetwork]]:
+    ) -> AsyncPaginator[VirtualNetwork, AsyncSinglePage[VirtualNetwork]]:
         """
         Lists and filters virtual networks in an account.
 
@@ -407,7 +407,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/teamnet/virtual_networks",
-            page=AsyncSinglePage[TunnelVirtualNetwork],
+            page=AsyncSinglePage[VirtualNetwork],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -424,7 +424,7 @@ class AsyncVirtualNetworks(AsyncAPIResource):
                     virtual_network_list_params.VirtualNetworkListParams,
                 ),
             ),
-            model=TunnelVirtualNetwork,
+            model=VirtualNetwork,
         )
 
     async def delete(

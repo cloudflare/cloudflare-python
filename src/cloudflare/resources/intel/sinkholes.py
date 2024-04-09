@@ -14,7 +14,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ...types.intel import IntelSinkholeItem
+from ...types.intel import SinkholeItem
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -42,7 +42,7 @@ class Sinkholes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[IntelSinkholeItem]:
+    ) -> SyncSinglePage[SinkholeItem]:
         """
         List sinkholes owned by this account
 
@@ -61,11 +61,11 @@ class Sinkholes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/sinkholes",
-            page=SyncSinglePage[IntelSinkholeItem],
+            page=SyncSinglePage[SinkholeItem],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=IntelSinkholeItem,
+            model=SinkholeItem,
         )
 
 
@@ -88,7 +88,7 @@ class AsyncSinkholes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[IntelSinkholeItem, AsyncSinglePage[IntelSinkholeItem]]:
+    ) -> AsyncPaginator[SinkholeItem, AsyncSinglePage[SinkholeItem]]:
         """
         List sinkholes owned by this account
 
@@ -107,11 +107,11 @@ class AsyncSinkholes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/sinkholes",
-            page=AsyncSinglePage[IntelSinkholeItem],
+            page=AsyncSinglePage[SinkholeItem],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=IntelSinkholeItem,
+            model=SinkholeItem,
         )
 
 

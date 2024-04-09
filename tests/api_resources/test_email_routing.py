@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import EmailSettings
+from cloudflare.types import Settings
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestEmailRouting:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = response.parse()
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = response.parse()
-            assert_matches_type(EmailSettings, email_routing, path=["response"])
+            assert_matches_type(Settings, email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,7 +70,7 @@ class TestEmailRouting:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -83,7 +83,7 @@ class TestEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = response.parse()
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -96,7 +96,7 @@ class TestEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = response.parse()
-            assert_matches_type(EmailSettings, email_routing, path=["response"])
+            assert_matches_type(Settings, email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -115,7 +115,7 @@ class TestEmailRouting:
         email_routing = client.email_routing.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -127,7 +127,7 @@ class TestEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = response.parse()
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -139,7 +139,7 @@ class TestEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = response.parse()
-            assert_matches_type(EmailSettings, email_routing, path=["response"])
+            assert_matches_type(Settings, email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -162,7 +162,7 @@ class TestAsyncEmailRouting:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -175,7 +175,7 @@ class TestAsyncEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = await response.parse()
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +188,7 @@ class TestAsyncEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = await response.parse()
-            assert_matches_type(EmailSettings, email_routing, path=["response"])
+            assert_matches_type(Settings, email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -208,7 +208,7 @@ class TestAsyncEmailRouting:
             "023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -221,7 +221,7 @@ class TestAsyncEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = await response.parse()
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -234,7 +234,7 @@ class TestAsyncEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = await response.parse()
-            assert_matches_type(EmailSettings, email_routing, path=["response"])
+            assert_matches_type(Settings, email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -253,7 +253,7 @@ class TestAsyncEmailRouting:
         email_routing = await async_client.email_routing.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -265,7 +265,7 @@ class TestAsyncEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = await response.parse()
-        assert_matches_type(EmailSettings, email_routing, path=["response"])
+        assert_matches_type(Settings, email_routing, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -277,7 +277,7 @@ class TestAsyncEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = await response.parse()
-            assert_matches_type(EmailSettings, email_routing, path=["response"])
+            assert_matches_type(Settings, email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

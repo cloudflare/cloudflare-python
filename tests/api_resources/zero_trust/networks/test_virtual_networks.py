@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
 from cloudflare.types.zero_trust.networks import (
-    TunnelVirtualNetwork,
+    VirtualNetwork,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -92,7 +92,7 @@ class TestVirtualNetworks:
         virtual_network = client.zero_trust.networks.virtual_networks.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncSinglePage[TunnelVirtualNetwork], virtual_network, path=["response"])
+        assert_matches_type(SyncSinglePage[VirtualNetwork], virtual_network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -105,7 +105,7 @@ class TestVirtualNetworks:
             vnet_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             vnet_name="us-east-1-vpc",
         )
-        assert_matches_type(SyncSinglePage[TunnelVirtualNetwork], virtual_network, path=["response"])
+        assert_matches_type(SyncSinglePage[VirtualNetwork], virtual_network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +117,7 @@ class TestVirtualNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_network = response.parse()
-        assert_matches_type(SyncSinglePage[TunnelVirtualNetwork], virtual_network, path=["response"])
+        assert_matches_type(SyncSinglePage[VirtualNetwork], virtual_network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -129,7 +129,7 @@ class TestVirtualNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             virtual_network = response.parse()
-            assert_matches_type(SyncSinglePage[TunnelVirtualNetwork], virtual_network, path=["response"])
+            assert_matches_type(SyncSinglePage[VirtualNetwork], virtual_network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -351,7 +351,7 @@ class TestAsyncVirtualNetworks:
         virtual_network = await async_client.zero_trust.networks.virtual_networks.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncSinglePage[TunnelVirtualNetwork], virtual_network, path=["response"])
+        assert_matches_type(AsyncSinglePage[VirtualNetwork], virtual_network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -364,7 +364,7 @@ class TestAsyncVirtualNetworks:
             vnet_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             vnet_name="us-east-1-vpc",
         )
-        assert_matches_type(AsyncSinglePage[TunnelVirtualNetwork], virtual_network, path=["response"])
+        assert_matches_type(AsyncSinglePage[VirtualNetwork], virtual_network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -376,7 +376,7 @@ class TestAsyncVirtualNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_network = await response.parse()
-        assert_matches_type(AsyncSinglePage[TunnelVirtualNetwork], virtual_network, path=["response"])
+        assert_matches_type(AsyncSinglePage[VirtualNetwork], virtual_network, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -388,7 +388,7 @@ class TestAsyncVirtualNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             virtual_network = await response.parse()
-            assert_matches_type(AsyncSinglePage[TunnelVirtualNetwork], virtual_network, path=["response"])
+            assert_matches_type(AsyncSinglePage[VirtualNetwork], virtual_network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

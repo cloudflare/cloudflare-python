@@ -22,19 +22,19 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.alerting import AlertingHistory, history_list_params
+from ...types.alerting import History, history_list_params
 
-__all__ = ["History", "AsyncHistory"]
+__all__ = ["HistoryResource", "AsyncHistoryResource"]
 
 
-class History(SyncAPIResource):
+class HistoryResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HistoryWithRawResponse:
-        return HistoryWithRawResponse(self)
+    def with_raw_response(self) -> HistoryResourceWithRawResponse:
+        return HistoryResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HistoryWithStreamingResponse:
-        return HistoryWithStreamingResponse(self)
+    def with_streaming_response(self) -> HistoryResourceWithStreamingResponse:
+        return HistoryResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -50,7 +50,7 @@ class History(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[AlertingHistory]:
+    ) -> SyncV4PagePaginationArray[History]:
         """Gets a list of history records for notifications sent to an account.
 
         The records
@@ -82,7 +82,7 @@ class History(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/history",
-            page=SyncV4PagePaginationArray[AlertingHistory],
+            page=SyncV4PagePaginationArray[History],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -98,18 +98,18 @@ class History(SyncAPIResource):
                     history_list_params.HistoryListParams,
                 ),
             ),
-            model=AlertingHistory,
+            model=History,
         )
 
 
-class AsyncHistory(AsyncAPIResource):
+class AsyncHistoryResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHistoryWithRawResponse:
-        return AsyncHistoryWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHistoryResourceWithRawResponse:
+        return AsyncHistoryResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHistoryWithStreamingResponse:
-        return AsyncHistoryWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHistoryResourceWithStreamingResponse:
+        return AsyncHistoryResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -125,7 +125,7 @@ class AsyncHistory(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AlertingHistory, AsyncV4PagePaginationArray[AlertingHistory]]:
+    ) -> AsyncPaginator[History, AsyncV4PagePaginationArray[History]]:
         """Gets a list of history records for notifications sent to an account.
 
         The records
@@ -157,7 +157,7 @@ class AsyncHistory(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/history",
-            page=AsyncV4PagePaginationArray[AlertingHistory],
+            page=AsyncV4PagePaginationArray[History],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -173,12 +173,12 @@ class AsyncHistory(AsyncAPIResource):
                     history_list_params.HistoryListParams,
                 ),
             ),
-            model=AlertingHistory,
+            model=History,
         )
 
 
-class HistoryWithRawResponse:
-    def __init__(self, history: History) -> None:
+class HistoryResourceWithRawResponse:
+    def __init__(self, history: HistoryResource) -> None:
         self._history = history
 
         self.list = to_raw_response_wrapper(
@@ -186,8 +186,8 @@ class HistoryWithRawResponse:
         )
 
 
-class AsyncHistoryWithRawResponse:
-    def __init__(self, history: AsyncHistory) -> None:
+class AsyncHistoryResourceWithRawResponse:
+    def __init__(self, history: AsyncHistoryResource) -> None:
         self._history = history
 
         self.list = async_to_raw_response_wrapper(
@@ -195,8 +195,8 @@ class AsyncHistoryWithRawResponse:
         )
 
 
-class HistoryWithStreamingResponse:
-    def __init__(self, history: History) -> None:
+class HistoryResourceWithStreamingResponse:
+    def __init__(self, history: HistoryResource) -> None:
         self._history = history
 
         self.list = to_streamed_response_wrapper(
@@ -204,8 +204,8 @@ class HistoryWithStreamingResponse:
         )
 
 
-class AsyncHistoryWithStreamingResponse:
-    def __init__(self, history: AsyncHistory) -> None:
+class AsyncHistoryResourceWithStreamingResponse:
+    def __init__(self, history: AsyncHistoryResource) -> None:
         self._history = history
 
         self.list = async_to_streamed_response_wrapper(

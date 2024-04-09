@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-from .host_item import HostItem
+from ..host_item import HostItem
 
 __all__ = ["OrderCreateParams"]
 

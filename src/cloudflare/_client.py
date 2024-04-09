@@ -51,7 +51,7 @@ class Cloudflare(SyncAPIClient):
     origin_ca_certificates: resources.OriginCACertificates
     ips: resources.IPs
     memberships: resources.Memberships
-    user: resources.UserResource
+    user: resources.User
     zones: resources.Zones
     load_balancers: resources.LoadBalancers
     cache: resources.Cache
@@ -108,7 +108,7 @@ class Cloudflare(SyncAPIClient):
     storage: resources.Storage
     stream: resources.Stream
     alerting: resources.Alerting
-    d1: resources.D1
+    d1: resources.D1Resource
     r2: resources.R2
     warp_connector: resources.WARPConnector
     workers_for_platforms: resources.WorkersForPlatforms
@@ -148,7 +148,9 @@ class Cloudflare(SyncAPIClient):
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
-        # Configure a custom httpx client. See the [httpx documentation](https://www.python-httpx.org/api/#client) for more details.
+        # Configure a custom httpx client.
+        # We provide a `DefaultHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
+        # See the [httpx documentation](https://www.python-httpx.org/api/#client) for more details.
         http_client: httpx.Client | None = None,
         # Enable or disable schema validation for data returned by the API.
         # When enabled an error APIResponseValidationError is raised
@@ -204,7 +206,7 @@ class Cloudflare(SyncAPIClient):
         self.origin_ca_certificates = resources.OriginCACertificates(self)
         self.ips = resources.IPs(self)
         self.memberships = resources.Memberships(self)
-        self.user = resources.UserResource(self)
+        self.user = resources.User(self)
         self.zones = resources.Zones(self)
         self.load_balancers = resources.LoadBalancers(self)
         self.cache = resources.Cache(self)
@@ -261,7 +263,7 @@ class Cloudflare(SyncAPIClient):
         self.storage = resources.Storage(self)
         self.stream = resources.Stream(self)
         self.alerting = resources.Alerting(self)
-        self.d1 = resources.D1(self)
+        self.d1 = resources.D1Resource(self)
         self.r2 = resources.R2(self)
         self.warp_connector = resources.WARPConnector(self)
         self.workers_for_platforms = resources.WorkersForPlatforms(self)
@@ -462,7 +464,7 @@ class AsyncCloudflare(AsyncAPIClient):
     origin_ca_certificates: resources.AsyncOriginCACertificates
     ips: resources.AsyncIPs
     memberships: resources.AsyncMemberships
-    user: resources.AsyncUserResource
+    user: resources.AsyncUser
     zones: resources.AsyncZones
     load_balancers: resources.AsyncLoadBalancers
     cache: resources.AsyncCache
@@ -519,7 +521,7 @@ class AsyncCloudflare(AsyncAPIClient):
     storage: resources.AsyncStorage
     stream: resources.AsyncStream
     alerting: resources.AsyncAlerting
-    d1: resources.AsyncD1
+    d1: resources.AsyncD1Resource
     r2: resources.AsyncR2
     warp_connector: resources.AsyncWARPConnector
     workers_for_platforms: resources.AsyncWorkersForPlatforms
@@ -559,7 +561,9 @@ class AsyncCloudflare(AsyncAPIClient):
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
-        # Configure a custom httpx client. See the [httpx documentation](https://www.python-httpx.org/api/#asyncclient) for more details.
+        # Configure a custom httpx client.
+        # We provide a `DefaultAsyncHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
+        # See the [httpx documentation](https://www.python-httpx.org/api/#asyncclient) for more details.
         http_client: httpx.AsyncClient | None = None,
         # Enable or disable schema validation for data returned by the API.
         # When enabled an error APIResponseValidationError is raised
@@ -615,7 +619,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.origin_ca_certificates = resources.AsyncOriginCACertificates(self)
         self.ips = resources.AsyncIPs(self)
         self.memberships = resources.AsyncMemberships(self)
-        self.user = resources.AsyncUserResource(self)
+        self.user = resources.AsyncUser(self)
         self.zones = resources.AsyncZones(self)
         self.load_balancers = resources.AsyncLoadBalancers(self)
         self.cache = resources.AsyncCache(self)
@@ -672,7 +676,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.storage = resources.AsyncStorage(self)
         self.stream = resources.AsyncStream(self)
         self.alerting = resources.AsyncAlerting(self)
-        self.d1 = resources.AsyncD1(self)
+        self.d1 = resources.AsyncD1Resource(self)
         self.r2 = resources.AsyncR2(self)
         self.warp_connector = resources.AsyncWARPConnector(self)
         self.workers_for_platforms = resources.AsyncWorkersForPlatforms(self)
@@ -874,7 +878,7 @@ class CloudflareWithRawResponse:
         self.origin_ca_certificates = resources.OriginCACertificatesWithRawResponse(client.origin_ca_certificates)
         self.ips = resources.IPsWithRawResponse(client.ips)
         self.memberships = resources.MembershipsWithRawResponse(client.memberships)
-        self.user = resources.UserResourceWithRawResponse(client.user)
+        self.user = resources.UserWithRawResponse(client.user)
         self.zones = resources.ZonesWithRawResponse(client.zones)
         self.load_balancers = resources.LoadBalancersWithRawResponse(client.load_balancers)
         self.cache = resources.CacheWithRawResponse(client.cache)
@@ -931,7 +935,7 @@ class CloudflareWithRawResponse:
         self.storage = resources.StorageWithRawResponse(client.storage)
         self.stream = resources.StreamWithRawResponse(client.stream)
         self.alerting = resources.AlertingWithRawResponse(client.alerting)
-        self.d1 = resources.D1WithRawResponse(client.d1)
+        self.d1 = resources.D1ResourceWithRawResponse(client.d1)
         self.r2 = resources.R2WithRawResponse(client.r2)
         self.warp_connector = resources.WARPConnectorWithRawResponse(client.warp_connector)
         self.workers_for_platforms = resources.WorkersForPlatformsWithRawResponse(client.workers_for_platforms)
@@ -960,7 +964,7 @@ class AsyncCloudflareWithRawResponse:
         self.origin_ca_certificates = resources.AsyncOriginCACertificatesWithRawResponse(client.origin_ca_certificates)
         self.ips = resources.AsyncIPsWithRawResponse(client.ips)
         self.memberships = resources.AsyncMembershipsWithRawResponse(client.memberships)
-        self.user = resources.AsyncUserResourceWithRawResponse(client.user)
+        self.user = resources.AsyncUserWithRawResponse(client.user)
         self.zones = resources.AsyncZonesWithRawResponse(client.zones)
         self.load_balancers = resources.AsyncLoadBalancersWithRawResponse(client.load_balancers)
         self.cache = resources.AsyncCacheWithRawResponse(client.cache)
@@ -1021,7 +1025,7 @@ class AsyncCloudflareWithRawResponse:
         self.storage = resources.AsyncStorageWithRawResponse(client.storage)
         self.stream = resources.AsyncStreamWithRawResponse(client.stream)
         self.alerting = resources.AsyncAlertingWithRawResponse(client.alerting)
-        self.d1 = resources.AsyncD1WithRawResponse(client.d1)
+        self.d1 = resources.AsyncD1ResourceWithRawResponse(client.d1)
         self.r2 = resources.AsyncR2WithRawResponse(client.r2)
         self.warp_connector = resources.AsyncWARPConnectorWithRawResponse(client.warp_connector)
         self.workers_for_platforms = resources.AsyncWorkersForPlatformsWithRawResponse(client.workers_for_platforms)
@@ -1050,7 +1054,7 @@ class CloudflareWithStreamedResponse:
         self.origin_ca_certificates = resources.OriginCACertificatesWithStreamingResponse(client.origin_ca_certificates)
         self.ips = resources.IPsWithStreamingResponse(client.ips)
         self.memberships = resources.MembershipsWithStreamingResponse(client.memberships)
-        self.user = resources.UserResourceWithStreamingResponse(client.user)
+        self.user = resources.UserWithStreamingResponse(client.user)
         self.zones = resources.ZonesWithStreamingResponse(client.zones)
         self.load_balancers = resources.LoadBalancersWithStreamingResponse(client.load_balancers)
         self.cache = resources.CacheWithStreamingResponse(client.cache)
@@ -1111,7 +1115,7 @@ class CloudflareWithStreamedResponse:
         self.storage = resources.StorageWithStreamingResponse(client.storage)
         self.stream = resources.StreamWithStreamingResponse(client.stream)
         self.alerting = resources.AlertingWithStreamingResponse(client.alerting)
-        self.d1 = resources.D1WithStreamingResponse(client.d1)
+        self.d1 = resources.D1ResourceWithStreamingResponse(client.d1)
         self.r2 = resources.R2WithStreamingResponse(client.r2)
         self.warp_connector = resources.WARPConnectorWithStreamingResponse(client.warp_connector)
         self.workers_for_platforms = resources.WorkersForPlatformsWithStreamingResponse(client.workers_for_platforms)
@@ -1142,7 +1146,7 @@ class AsyncCloudflareWithStreamedResponse:
         )
         self.ips = resources.AsyncIPsWithStreamingResponse(client.ips)
         self.memberships = resources.AsyncMembershipsWithStreamingResponse(client.memberships)
-        self.user = resources.AsyncUserResourceWithStreamingResponse(client.user)
+        self.user = resources.AsyncUserWithStreamingResponse(client.user)
         self.zones = resources.AsyncZonesWithStreamingResponse(client.zones)
         self.load_balancers = resources.AsyncLoadBalancersWithStreamingResponse(client.load_balancers)
         self.cache = resources.AsyncCacheWithStreamingResponse(client.cache)
@@ -1205,7 +1209,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.storage = resources.AsyncStorageWithStreamingResponse(client.storage)
         self.stream = resources.AsyncStreamWithStreamingResponse(client.stream)
         self.alerting = resources.AsyncAlertingWithStreamingResponse(client.alerting)
-        self.d1 = resources.AsyncD1WithStreamingResponse(client.d1)
+        self.d1 = resources.AsyncD1ResourceWithStreamingResponse(client.d1)
         self.r2 = resources.AsyncR2WithStreamingResponse(client.r2)
         self.warp_connector = resources.AsyncWARPConnectorWithStreamingResponse(client.warp_connector)
         self.workers_for_platforms = resources.AsyncWorkersForPlatformsWithStreamingResponse(

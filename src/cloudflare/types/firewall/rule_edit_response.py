@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .firewall_filter_rule import FirewallFilterRule
+from .rule import Rule
 
 __all__ = ["RuleEditResponse"]
 
-RuleEditResponse = List[FirewallFilterRule]
+RuleEditResponse = List[Rule]

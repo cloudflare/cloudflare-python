@@ -9,15 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types import Hyperdrive
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from cloudflare.types.hyperdrive import (
-    ConfigGetResponse,
-    ConfigEditResponse,
-    ConfigListResponse,
-    ConfigCreateResponse,
-    ConfigUpdateResponse,
-)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -33,7 +27,7 @@ class TestConfigs:
             name={},
             origin={"password": "password1234!"},
         )
-        assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +41,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -61,7 +55,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
+            assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -84,7 +78,7 @@ class TestConfigs:
             name={},
             origin={"password": "password1234!"},
         )
-        assert_matches_type(Optional[ConfigUpdateResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,7 +93,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Optional[ConfigUpdateResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -114,7 +108,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Optional[ConfigUpdateResponse], config, path=["response"])
+            assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -143,7 +137,7 @@ class TestConfigs:
         config = client.hyperdrive.configs.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[ConfigListResponse], config, path=["response"])
+        assert_matches_type(SyncSinglePage[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -155,7 +149,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(SyncSinglePage[ConfigListResponse], config, path=["response"])
+        assert_matches_type(SyncSinglePage[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -167,7 +161,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(SyncSinglePage[ConfigListResponse], config, path=["response"])
+            assert_matches_type(SyncSinglePage[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -238,7 +232,7 @@ class TestConfigs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -248,7 +242,7 @@ class TestConfigs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             origin={"password": "password1234!"},
         )
-        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -261,7 +255,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -274,7 +268,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+            assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -300,7 +294,7 @@ class TestConfigs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -313,7 +307,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -326,7 +320,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
+            assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -357,7 +351,7 @@ class TestAsyncConfigs:
             name={},
             origin={"password": "password1234!"},
         )
-        assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -371,7 +365,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -385,7 +379,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Optional[ConfigCreateResponse], config, path=["response"])
+            assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -408,7 +402,7 @@ class TestAsyncConfigs:
             name={},
             origin={"password": "password1234!"},
         )
-        assert_matches_type(Optional[ConfigUpdateResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -423,7 +417,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Optional[ConfigUpdateResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -438,7 +432,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Optional[ConfigUpdateResponse], config, path=["response"])
+            assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -467,7 +461,7 @@ class TestAsyncConfigs:
         config = await async_client.hyperdrive.configs.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[ConfigListResponse], config, path=["response"])
+        assert_matches_type(AsyncSinglePage[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -479,7 +473,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(AsyncSinglePage[ConfigListResponse], config, path=["response"])
+        assert_matches_type(AsyncSinglePage[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -491,7 +485,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(AsyncSinglePage[ConfigListResponse], config, path=["response"])
+            assert_matches_type(AsyncSinglePage[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -562,7 +556,7 @@ class TestAsyncConfigs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -572,7 +566,7 @@ class TestAsyncConfigs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             origin={"password": "password1234!"},
         )
-        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -585,7 +579,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -598,7 +592,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Optional[ConfigEditResponse], config, path=["response"])
+            assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -624,7 +618,7 @@ class TestAsyncConfigs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -637,7 +631,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -650,7 +644,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Optional[ConfigGetResponse], config, path=["response"])
+            assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

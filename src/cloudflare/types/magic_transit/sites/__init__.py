@@ -26,7 +26,6 @@ from .lan_create_params import LANCreateParams as LANCreateParams
 from .lan_delete_params import LANDeleteParams as LANDeleteParams
 from .lan_list_response import LANListResponse as LANListResponse
 from .lan_update_params import LANUpdateParams as LANUpdateParams
-from .static_addressing import StaticAddressing as StaticAddressing
 from .wan_create_params import WANCreateParams as WANCreateParams
 from .wan_delete_params import WANDeleteParams as WANDeleteParams
 from .wan_list_response import WANListResponse as WANListResponse
@@ -41,8 +40,11 @@ from .routed_subnet_param import RoutedSubnetParam as RoutedSubnetParam
 from .wan_create_response import WANCreateResponse as WANCreateResponse
 from .wan_delete_response import WANDeleteResponse as WANDeleteResponse
 from .wan_update_response import WANUpdateResponse as WANUpdateResponse
+from .lan_static_addressing import LANStaticAddressing as LANStaticAddressing
+from .wan_static_addressing import WANStaticAddressing as WANStaticAddressing
 from .acl_configuration_param import ACLConfigurationParam as ACLConfigurationParam
-from .static_addressing_param import StaticAddressingParam as StaticAddressingParam
+from .lan_static_addressing_param import LANStaticAddressingParam as LANStaticAddressingParam
+from .wan_static_addressing_param import WANStaticAddressingParam as WANStaticAddressingParam
 from .unnamed_schema_ref_87fa9e5fe9f6b8d607be1df57340d916 import (
     UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916 as UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916,
 )

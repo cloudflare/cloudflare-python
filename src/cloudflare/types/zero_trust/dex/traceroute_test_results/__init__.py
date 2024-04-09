@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .traceroute_test_result_network_path import TracerouteTestResultNetworkPath as TracerouteTestResultNetworkPath
+from .network_path import NetworkPath as NetworkPath

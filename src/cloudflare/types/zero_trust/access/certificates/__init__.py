@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from .settings import Settings as Settings
-from .settings_param import SettingsParam as SettingsParam
+from .certificate_settings import CertificateSettings as CertificateSettings
 from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
 from .setting_update_response import SettingUpdateResponse as SettingUpdateResponse
+from .certificate_settings_param import CertificateSettingsParam as CertificateSettingsParam

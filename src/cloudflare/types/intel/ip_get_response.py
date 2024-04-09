@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .intel_schemas_ip import IntelSchemasIP
+from .ip import IP
 
 __all__ = ["IPGetResponse"]
 
-IPGetResponse = List[IntelSchemasIP]
+IPGetResponse = List[IP]

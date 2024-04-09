@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast, overload
+from typing import Any, Type, cast
 
 import httpx
 
@@ -40,7 +40,6 @@ from .variants import (
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
-    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -89,78 +88,13 @@ class V1(SyncAPIResource):
     def with_streaming_response(self) -> V1WithStreamingResponse:
         return V1WithStreamingResponse(self)
 
-    @overload
-    def create(
-        self,
-        *,
-        account_id: str,
-        file: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
-        """
-        Upload an image with up to 10 Megabytes using a single HTTP POST
-        (multipart/form-data) request. An image can be uploaded by sending an image file
-        or passing an accessible to an API url.
-
-        Args:
-          account_id: Account identifier tag.
-
-          file: An image binary data.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        account_id: str,
-        url: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
-        """
-        Upload an image with up to 10 Megabytes using a single HTTP POST
-        (multipart/form-data) request. An image can be uploaded by sending an image file
-        or passing an accessible to an API url.
-
-        Args:
-          account_id: Account identifier tag.
-
-          url: A URL to fetch an image from origin.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "file"], ["account_id", "url"])
     def create(
         self,
         *,
         account_id: str,
         file: object | NotGiven = NOT_GIVEN,
+        metadata: object | NotGiven = NOT_GIVEN,
+        require_signed_urls: bool | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -169,6 +103,32 @@ class V1(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Image:
+        """
+        Upload an image with up to 10 Megabytes using a single HTTP POST
+        (multipart/form-data) request. An image can be uploaded by sending an image file
+        or passing an accessible to an API url.
+
+        Args:
+          account_id: Account identifier tag.
+
+          file: An image binary data. Only needed when type is uploading a file.
+
+          metadata: User modifiable key-value store. Can use used for keeping references to another
+              system of record for managing images.
+
+          require_signed_urls: Indicates whether the image requires a signature token for the access.
+
+          url: A URL to fetch an image from origin. Only needed when type is uploading from a
+              URL.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -176,6 +136,8 @@ class V1(SyncAPIResource):
             body=maybe_transform(
                 {
                     "file": file,
+                    "metadata": metadata,
+                    "require_signed_urls": require_signed_urls,
                     "url": url,
                 },
                 v1_create_params.V1CreateParams,
@@ -429,78 +391,13 @@ class AsyncV1(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncV1WithStreamingResponse:
         return AsyncV1WithStreamingResponse(self)
 
-    @overload
-    async def create(
-        self,
-        *,
-        account_id: str,
-        file: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
-        """
-        Upload an image with up to 10 Megabytes using a single HTTP POST
-        (multipart/form-data) request. An image can be uploaded by sending an image file
-        or passing an accessible to an API url.
-
-        Args:
-          account_id: Account identifier tag.
-
-          file: An image binary data.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        account_id: str,
-        url: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
-        """
-        Upload an image with up to 10 Megabytes using a single HTTP POST
-        (multipart/form-data) request. An image can be uploaded by sending an image file
-        or passing an accessible to an API url.
-
-        Args:
-          account_id: Account identifier tag.
-
-          url: A URL to fetch an image from origin.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "file"], ["account_id", "url"])
     async def create(
         self,
         *,
         account_id: str,
         file: object | NotGiven = NOT_GIVEN,
+        metadata: object | NotGiven = NOT_GIVEN,
+        require_signed_urls: bool | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -509,6 +406,32 @@ class AsyncV1(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Image:
+        """
+        Upload an image with up to 10 Megabytes using a single HTTP POST
+        (multipart/form-data) request. An image can be uploaded by sending an image file
+        or passing an accessible to an API url.
+
+        Args:
+          account_id: Account identifier tag.
+
+          file: An image binary data. Only needed when type is uploading a file.
+
+          metadata: User modifiable key-value store. Can use used for keeping references to another
+              system of record for managing images.
+
+          require_signed_urls: Indicates whether the image requires a signature token for the access.
+
+          url: A URL to fetch an image from origin. Only needed when type is uploading from a
+              URL.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -516,6 +439,8 @@ class AsyncV1(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "file": file,
+                    "metadata": metadata,
+                    "require_signed_urls": require_signed_urls,
                     "url": url,
                 },
                 v1_create_params.V1CreateParams,

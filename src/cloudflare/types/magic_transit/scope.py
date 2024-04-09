@@ -3,15 +3,15 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from .colo_names_item import ColoNamesItem
-from .colo_regions_item import ColoRegionsItem
+from .colo_name import ColoName
+from .colo_region import ColoRegion
 
 __all__ = ["Scope"]
 
 
 class Scope(BaseModel):
-    colo_names: Optional[List[ColoNamesItem]] = None
+    colo_names: Optional[List[ColoName]] = None
     """List of colo names for the ECMP scope."""
 
-    colo_regions: Optional[List[ColoRegionsItem]] = None
+    colo_regions: Optional[List[ColoRegion]] = None
     """List of colo regions for the ECMP scope."""

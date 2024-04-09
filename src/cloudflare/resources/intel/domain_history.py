@@ -25,17 +25,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["DomainHistory", "AsyncDomainHistory"]
+__all__ = ["DomainHistoryResource", "AsyncDomainHistoryResource"]
 
 
-class DomainHistory(SyncAPIResource):
+class DomainHistoryResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DomainHistoryWithRawResponse:
-        return DomainHistoryWithRawResponse(self)
+    def with_raw_response(self) -> DomainHistoryResourceWithRawResponse:
+        return DomainHistoryResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DomainHistoryWithStreamingResponse:
-        return DomainHistoryWithStreamingResponse(self)
+    def with_streaming_response(self) -> DomainHistoryResourceWithStreamingResponse:
+        return DomainHistoryResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -79,14 +79,14 @@ class DomainHistory(SyncAPIResource):
         )
 
 
-class AsyncDomainHistory(AsyncAPIResource):
+class AsyncDomainHistoryResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDomainHistoryWithRawResponse:
-        return AsyncDomainHistoryWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDomainHistoryResourceWithRawResponse:
+        return AsyncDomainHistoryResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDomainHistoryWithStreamingResponse:
-        return AsyncDomainHistoryWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDomainHistoryResourceWithStreamingResponse:
+        return AsyncDomainHistoryResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -130,8 +130,8 @@ class AsyncDomainHistory(AsyncAPIResource):
         )
 
 
-class DomainHistoryWithRawResponse:
-    def __init__(self, domain_history: DomainHistory) -> None:
+class DomainHistoryResourceWithRawResponse:
+    def __init__(self, domain_history: DomainHistoryResource) -> None:
         self._domain_history = domain_history
 
         self.get = to_raw_response_wrapper(
@@ -139,8 +139,8 @@ class DomainHistoryWithRawResponse:
         )
 
 
-class AsyncDomainHistoryWithRawResponse:
-    def __init__(self, domain_history: AsyncDomainHistory) -> None:
+class AsyncDomainHistoryResourceWithRawResponse:
+    def __init__(self, domain_history: AsyncDomainHistoryResource) -> None:
         self._domain_history = domain_history
 
         self.get = async_to_raw_response_wrapper(
@@ -148,8 +148,8 @@ class AsyncDomainHistoryWithRawResponse:
         )
 
 
-class DomainHistoryWithStreamingResponse:
-    def __init__(self, domain_history: DomainHistory) -> None:
+class DomainHistoryResourceWithStreamingResponse:
+    def __init__(self, domain_history: DomainHistoryResource) -> None:
         self._domain_history = domain_history
 
         self.get = to_streamed_response_wrapper(
@@ -157,8 +157,8 @@ class DomainHistoryWithStreamingResponse:
         )
 
 
-class AsyncDomainHistoryWithStreamingResponse:
-    def __init__(self, domain_history: AsyncDomainHistory) -> None:
+class AsyncDomainHistoryResourceWithStreamingResponse:
+    def __init__(self, domain_history: AsyncDomainHistoryResource) -> None:
         self._domain_history = domain_history
 
         self.get = async_to_streamed_response_wrapper(

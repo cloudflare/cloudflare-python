@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .firewall import (
-    Firewall,
-    AsyncFirewall,
-    FirewallWithRawResponse,
-    AsyncFirewallWithRawResponse,
-    FirewallWithStreamingResponse,
-    AsyncFirewallWithStreamingResponse,
+    FirewallResource,
+    AsyncFirewallResource,
+    FirewallResourceWithRawResponse,
+    AsyncFirewallResourceWithRawResponse,
+    FirewallResourceWithStreamingResponse,
+    AsyncFirewallResourceWithStreamingResponse,
 )
 from .analytics import (
     Analytics,
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncAnalyticsWithRawResponse",
     "AnalyticsWithStreamingResponse",
     "AsyncAnalyticsWithStreamingResponse",
-    "Firewall",
-    "AsyncFirewall",
-    "FirewallWithRawResponse",
-    "AsyncFirewallWithRawResponse",
-    "FirewallWithStreamingResponse",
-    "AsyncFirewallWithStreamingResponse",
+    "FirewallResource",
+    "AsyncFirewallResource",
+    "FirewallResourceWithRawResponse",
+    "AsyncFirewallResourceWithRawResponse",
+    "FirewallResourceWithStreamingResponse",
+    "AsyncFirewallResourceWithStreamingResponse",
 ]

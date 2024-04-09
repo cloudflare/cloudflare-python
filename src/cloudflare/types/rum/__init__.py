@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from .rum_rule import RUMRule as RUMRule
-from .rum_site import RUMSite as RUMSite
+from .rule import Rule as Rule
+from .site import Site as Site
+from .rule_param import RuleParam as RuleParam
 from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_list_response import RuleListResponse as RuleListResponse
 from .rule_update_params import RuleUpdateParams as RuleUpdateParams

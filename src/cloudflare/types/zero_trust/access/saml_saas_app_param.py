@@ -4,23 +4,26 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .unnamed_schema_ref_c335ce55d4fdf132c942dfce6e45dcb9 import UnnamedSchemaRefC335ce55d4fdf132c942dfce6e45dcb9
-from .unnamed_schema_ref_c6200e37c458aaa3c42e6e5b999bc419 import UnnamedSchemaRefC6200e37c458aaa3c42e6e5b999bc419
-from .unnamed_schema_ref_6ed9646890b9be79e16f1cfff86ec832_param import (
-    UnnamedSchemaRef6ed9646890b9be79e16f1cfff86ec832Param,
-)
+__all__ = ["SamlSaasAppParam", "CustomAttributes", "CustomAttributesSource"]
 
-__all__ = ["SamlSaasAppParam", "CustomAttributes"]
+
+class CustomAttributesSource(TypedDict, total=False):
+    name: str
+    """The name of the IdP attribute."""
 
 
 class CustomAttributes(TypedDict, total=False):
     name: str
     """The name of the attribute."""
 
-    name_format: UnnamedSchemaRefC335ce55d4fdf132c942dfce6e45dcb9
+    name_format: Literal[
+        "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
+        "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
+        "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
+    ]
     """A globally unique name for an identity or service provider."""
 
-    source: UnnamedSchemaRef6ed9646890b9be79e16f1cfff86ec832Param
+    source: CustomAttributesSource
 
 
 class SamlSaasAppParam(TypedDict, total=False):
@@ -48,7 +51,7 @@ class SamlSaasAppParam(TypedDict, total=False):
     idp_entity_id: str
     """The unique identifier for your SaaS application."""
 
-    name_id_format: UnnamedSchemaRefC6200e37c458aaa3c42e6e5b999bc419
+    name_id_format: Literal["id", "email"]
     """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: str

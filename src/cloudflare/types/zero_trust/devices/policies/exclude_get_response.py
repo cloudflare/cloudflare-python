@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .devices_split_tunnel import DevicesSplitTunnel
+from .split_tunnel_exclude import SplitTunnelExclude
 
 __all__ = ["ExcludeGetResponse"]
 
-ExcludeGetResponse = List[DevicesSplitTunnel]
+ExcludeGetResponse = List[SplitTunnelExclude]

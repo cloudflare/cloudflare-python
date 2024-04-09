@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from .pool import Pool as Pool
 from .monitor import Monitor as Monitor
+from .preview import Preview as Preview
+from .analytics import Analytics as Analytics
 from .pool_edit_params import PoolEditParams as PoolEditParams
 from .pool_list_params import PoolListParams as PoolListParams
 from .pool_create_params import PoolCreateParams as PoolCreateParams
@@ -17,7 +19,6 @@ from .monitor_create_params import MonitorCreateParams as MonitorCreateParams
 from .monitor_delete_params import MonitorDeleteParams as MonitorDeleteParams
 from .monitor_update_params import MonitorUpdateParams as MonitorUpdateParams
 from .pool_preview_response import PoolPreviewResponse as PoolPreviewResponse
-from .load_balancing_preview import LoadBalancingPreview as LoadBalancingPreview
 from .monitor_preview_params import MonitorPreviewParams as MonitorPreviewParams
 from .monitor_delete_response import MonitorDeleteResponse as MonitorDeleteResponse
 from .monitor_preview_response import MonitorPreviewResponse as MonitorPreviewResponse

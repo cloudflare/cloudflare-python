@@ -25,7 +25,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.stream.live_inputs import StreamOutput, output_create_params, output_delete_params, output_update_params
+from ....types.stream.live_inputs import Output, output_create_params, output_delete_params, output_update_params
 
 __all__ = ["Outputs", "AsyncOutputs"]
 
@@ -53,7 +53,7 @@ class Outputs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamOutput:
+    ) -> Output:
         """
         Creates a new output that can be used to simulcast or restream live video to
         other RTMP or SRT destinations. Outputs are always linked to a specific live
@@ -105,7 +105,7 @@ class Outputs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamOutput], ResultWrapper[StreamOutput]),
+            cast_to=cast(Type[Output], ResultWrapper[Output]),
         )
 
     def update(
@@ -121,7 +121,7 @@ class Outputs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamOutput:
+    ) -> Output:
         """
         Updates the state of an output.
 
@@ -164,7 +164,7 @@ class Outputs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamOutput], ResultWrapper[StreamOutput]),
+            cast_to=cast(Type[Output], ResultWrapper[Output]),
         )
 
     def list(
@@ -178,7 +178,7 @@ class Outputs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[StreamOutput]:
+    ) -> SyncSinglePage[Output]:
         """
         Retrieves all outputs associated with a specified live input.
 
@@ -203,11 +203,11 @@ class Outputs(SyncAPIResource):
             )
         return self._get_api_list(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
-            page=SyncSinglePage[StreamOutput],
+            page=SyncSinglePage[Output],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=StreamOutput,
+            model=Output,
         )
 
     def delete(
@@ -284,7 +284,7 @@ class AsyncOutputs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamOutput:
+    ) -> Output:
         """
         Creates a new output that can be used to simulcast or restream live video to
         other RTMP or SRT destinations. Outputs are always linked to a specific live
@@ -336,7 +336,7 @@ class AsyncOutputs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamOutput], ResultWrapper[StreamOutput]),
+            cast_to=cast(Type[Output], ResultWrapper[Output]),
         )
 
     async def update(
@@ -352,7 +352,7 @@ class AsyncOutputs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamOutput:
+    ) -> Output:
         """
         Updates the state of an output.
 
@@ -395,7 +395,7 @@ class AsyncOutputs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamOutput], ResultWrapper[StreamOutput]),
+            cast_to=cast(Type[Output], ResultWrapper[Output]),
         )
 
     def list(
@@ -409,7 +409,7 @@ class AsyncOutputs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[StreamOutput, AsyncSinglePage[StreamOutput]]:
+    ) -> AsyncPaginator[Output, AsyncSinglePage[Output]]:
         """
         Retrieves all outputs associated with a specified live input.
 
@@ -434,11 +434,11 @@ class AsyncOutputs(AsyncAPIResource):
             )
         return self._get_api_list(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}/outputs",
-            page=AsyncSinglePage[StreamOutput],
+            page=AsyncSinglePage[Output],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=StreamOutput,
+            model=Output,
         )
 
     async def delete(

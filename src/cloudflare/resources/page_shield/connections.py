@@ -21,7 +21,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.page_shield import PageShieldConnection, connection_list_params
+from ...types.page_shield import Connection, connection_list_params
 
 __all__ = ["Connections", "AsyncConnections"]
 
@@ -57,7 +57,7 @@ class Connections(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PageShieldConnection]:
+    ) -> SyncSinglePage[Connection]:
         """
         Lists all connections detected by Page Shield.
 
@@ -122,7 +122,7 @@ class Connections(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/connections",
-            page=SyncSinglePage[PageShieldConnection],
+            page=SyncSinglePage[Connection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -146,7 +146,7 @@ class Connections(SyncAPIResource):
                     connection_list_params.ConnectionListParams,
                 ),
             ),
-            model=PageShieldConnection,
+            model=Connection,
         )
 
     def get(
@@ -160,7 +160,7 @@ class Connections(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldConnection:
+    ) -> Connection:
         """
         Fetches a connection detected by Page Shield by connection ID.
 
@@ -186,7 +186,7 @@ class Connections(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldConnection,
+            cast_to=Connection,
         )
 
 
@@ -221,7 +221,7 @@ class AsyncConnections(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PageShieldConnection, AsyncSinglePage[PageShieldConnection]]:
+    ) -> AsyncPaginator[Connection, AsyncSinglePage[Connection]]:
         """
         Lists all connections detected by Page Shield.
 
@@ -286,7 +286,7 @@ class AsyncConnections(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/connections",
-            page=AsyncSinglePage[PageShieldConnection],
+            page=AsyncSinglePage[Connection],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -310,7 +310,7 @@ class AsyncConnections(AsyncAPIResource):
                     connection_list_params.ConnectionListParams,
                 ),
             ),
-            model=PageShieldConnection,
+            model=Connection,
         )
 
     async def get(
@@ -324,7 +324,7 @@ class AsyncConnections(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldConnection:
+    ) -> Connection:
         """
         Fetches a connection detected by Page Shield by connection ID.
 
@@ -350,7 +350,7 @@ class AsyncConnections(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PageShieldConnection,
+            cast_to=Connection,
         )
 
 

@@ -2,7 +2,7 @@
 
 from typing import List, Optional
 
-from .rum_rule import RUMRule
+from .rule import Rule
 from ..._models import BaseModel
 
 __all__ = ["RuleListResponse", "Ruleset"]
@@ -22,7 +22,7 @@ class Ruleset(BaseModel):
 
 
 class RuleListResponse(BaseModel):
-    rules: Optional[List[RUMRule]] = None
+    rules: Optional[List[Rule]] = None
     """A list of rules."""
 
     ruleset: Optional[Ruleset] = None

@@ -6,7 +6,7 @@ from datetime import datetime
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from .stream_watermarks import StreamWatermarks
+from .watermaks import Watermaks
 
 __all__ = ["DirectUploadCreateResponse"]
 
@@ -29,4 +29,4 @@ class DirectUploadCreateResponse(BaseModel):
     `HTTP POST multipart/form-data` request.
     """
 
-    watermark: Optional[StreamWatermarks] = None
+    watermark: Optional[Watermaks] = None

@@ -5,21 +5,29 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
-from .unnamed_schema_ref_6ed9646890b9be79e16f1cfff86ec832 import UnnamedSchemaRef6ed9646890b9be79e16f1cfff86ec832
-from .unnamed_schema_ref_c335ce55d4fdf132c942dfce6e45dcb9 import UnnamedSchemaRefC335ce55d4fdf132c942dfce6e45dcb9
-from .unnamed_schema_ref_c6200e37c458aaa3c42e6e5b999bc419 import UnnamedSchemaRefC6200e37c458aaa3c42e6e5b999bc419
 
-__all__ = ["SamlSaasApp", "CustomAttributes"]
+__all__ = ["SamlSaasApp", "CustomAttributes", "CustomAttributesSource"]
+
+
+class CustomAttributesSource(BaseModel):
+    name: Optional[str] = None
+    """The name of the IdP attribute."""
 
 
 class CustomAttributes(BaseModel):
     name: Optional[str] = None
     """The name of the attribute."""
 
-    name_format: Optional[UnnamedSchemaRefC335ce55d4fdf132c942dfce6e45dcb9] = None
+    name_format: Optional[
+        Literal[
+            "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
+            "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
+            "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
+        ]
+    ] = None
     """A globally unique name for an identity or service provider."""
 
-    source: Optional[UnnamedSchemaRef6ed9646890b9be79e16f1cfff86ec832] = None
+    source: Optional[CustomAttributesSource] = None
 
 
 class SamlSaasApp(BaseModel):
@@ -49,7 +57,7 @@ class SamlSaasApp(BaseModel):
     idp_entity_id: Optional[str] = None
     """The unique identifier for your SaaS application."""
 
-    name_id_format: Optional[UnnamedSchemaRefC6200e37c458aaa3c42e6e5b999bc419] = None
+    name_id_format: Optional[Literal["id", "email"]] = None
     """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: Optional[str] = None

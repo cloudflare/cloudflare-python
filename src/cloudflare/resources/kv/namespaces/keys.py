@@ -19,7 +19,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.kv.namespaces import WorkersKVKey, key_list_params
+from ....types.kv.namespaces import Key, key_list_params
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -47,7 +47,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorLimitPagination[WorkersKVKey]:
+    ) -> SyncCursorLimitPagination[Key]:
         """
         Lists a namespace's keys.
 
@@ -81,7 +81,7 @@ class Keys(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
-            page=SyncCursorLimitPagination[WorkersKVKey],
+            page=SyncCursorLimitPagination[Key],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -96,7 +96,7 @@ class Keys(SyncAPIResource):
                     key_list_params.KeyListParams,
                 ),
             ),
-            model=WorkersKVKey,
+            model=Key,
         )
 
 
@@ -123,7 +123,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WorkersKVKey, AsyncCursorLimitPagination[WorkersKVKey]]:
+    ) -> AsyncPaginator[Key, AsyncCursorLimitPagination[Key]]:
         """
         Lists a namespace's keys.
 
@@ -157,7 +157,7 @@ class AsyncKeys(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
-            page=AsyncCursorLimitPagination[WorkersKVKey],
+            page=AsyncCursorLimitPagination[Key],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -172,7 +172,7 @@ class AsyncKeys(AsyncAPIResource):
                     key_list_params.KeyListParams,
                 ),
             ),
-            model=WorkersKVKey,
+            model=Key,
         )
 
 
