@@ -7,7 +7,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._types import FileTypes
 from ....._utils import PropertyInfo
-from ....workers.scripts import ConsumerScriptParam
+from ....workers.scripts import ConsumerScriptItemParam
 from ....stepped_migration_param import SteppedMigrationParam
 from ....single_step_migration_param import SingleStepMigrationParam
 from ....placement_configuration_param import PlacementConfigurationParam
@@ -82,7 +82,7 @@ class Variant0Metadata(TypedDict, total=False):
     tags: List[str]
     """List of strings to use as tags for this Worker"""
 
-    tail_consumers: Iterable[ConsumerScriptParam]
+    tail_consumers: Iterable[ConsumerScriptItemParam]
     """List of Workers that will consume logs from the attached Worker."""
 
     usage_model: Literal["bundled", "unbound"]

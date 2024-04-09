@@ -24,19 +24,29 @@ class TestV1:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_overload_1(self, client: Cloudflare) -> None:
+    def test_method_create(self, client: Cloudflare) -> None:
         v1 = client.images.v1.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file={},
         )
         assert_matches_type(Image, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
-        response = client.images.v1.with_raw_response.create(
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        v1 = client.images.v1.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             file={},
+            metadata={},
+            require_signed_urls=True,
+            url="https://example.com/path/to/logo.png",
+        )
+        assert_matches_type(Image, v1, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.images.v1.with_raw_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -46,10 +56,9 @@ class TestV1:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.images.v1.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,57 +70,10 @@ class TestV1:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
+    def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v1.with_raw_response.create(
                 account_id="",
-                file={},
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_create_overload_2(self, client: Cloudflare) -> None:
-        v1 = client.images.v1.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            url="https://example.com/path/to/logo.png",
-        )
-        assert_matches_type(Image, v1, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
-        response = client.images.v1.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            url="https://example.com/path/to/logo.png",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = response.parse()
-        assert_matches_type(Image, v1, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
-        with client.images.v1.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            url="https://example.com/path/to/logo.png",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            v1 = response.parse()
-            assert_matches_type(Image, v1, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.images.v1.with_raw_response.create(
-                account_id="",
-                url="https://example.com/path/to/logo.png",
             )
 
     @pytest.mark.skip()
@@ -344,19 +306,29 @@ class TestAsyncV1:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         v1 = await async_client.images.v1.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file={},
         )
         assert_matches_type(Image, v1, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.images.v1.with_raw_response.create(
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        v1 = await async_client.images.v1.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             file={},
+            metadata={},
+            require_signed_urls=True,
+            url="https://example.com/path/to/logo.png",
+        )
+        assert_matches_type(Image, v1, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.images.v1.with_raw_response.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -366,10 +338,9 @@ class TestAsyncV1:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v1.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -381,57 +352,10 @@ class TestAsyncV1:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v1.with_raw_response.create(
                 account_id="",
-                file={},
-            )
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        v1 = await async_client.images.v1.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            url="https://example.com/path/to/logo.png",
-        )
-        assert_matches_type(Image, v1, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.images.v1.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            url="https://example.com/path/to/logo.png",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        v1 = await response.parse()
-        assert_matches_type(Image, v1, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.images.v1.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            url="https://example.com/path/to/logo.png",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            v1 = await response.parse()
-            assert_matches_type(Image, v1, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.images.v1.with_raw_response.create(
-                account_id="",
-                url="https://example.com/path/to/logo.png",
             )
 
     @pytest.mark.skip()

@@ -26,17 +26,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["Schedule", "AsyncSchedule"]
+__all__ = ["ScheduleResource", "AsyncScheduleResource"]
 
 
-class Schedule(SyncAPIResource):
+class ScheduleResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ScheduleWithRawResponse:
-        return ScheduleWithRawResponse(self)
+    def with_raw_response(self) -> ScheduleResourceWithRawResponse:
+        return ScheduleResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ScheduleWithStreamingResponse:
-        return ScheduleWithStreamingResponse(self)
+    def with_streaming_response(self) -> ScheduleResourceWithStreamingResponse:
+        return ScheduleResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -110,14 +110,14 @@ class Schedule(SyncAPIResource):
         )
 
 
-class AsyncSchedule(AsyncAPIResource):
+class AsyncScheduleResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncScheduleWithRawResponse:
-        return AsyncScheduleWithRawResponse(self)
+    def with_raw_response(self) -> AsyncScheduleResourceWithRawResponse:
+        return AsyncScheduleResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncScheduleWithStreamingResponse:
-        return AsyncScheduleWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncScheduleResourceWithStreamingResponse:
+        return AsyncScheduleResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -191,8 +191,8 @@ class AsyncSchedule(AsyncAPIResource):
         )
 
 
-class ScheduleWithRawResponse:
-    def __init__(self, schedule: Schedule) -> None:
+class ScheduleResourceWithRawResponse:
+    def __init__(self, schedule: ScheduleResource) -> None:
         self._schedule = schedule
 
         self.create = to_raw_response_wrapper(
@@ -200,8 +200,8 @@ class ScheduleWithRawResponse:
         )
 
 
-class AsyncScheduleWithRawResponse:
-    def __init__(self, schedule: AsyncSchedule) -> None:
+class AsyncScheduleResourceWithRawResponse:
+    def __init__(self, schedule: AsyncScheduleResource) -> None:
         self._schedule = schedule
 
         self.create = async_to_raw_response_wrapper(
@@ -209,8 +209,8 @@ class AsyncScheduleWithRawResponse:
         )
 
 
-class ScheduleWithStreamingResponse:
-    def __init__(self, schedule: Schedule) -> None:
+class ScheduleResourceWithStreamingResponse:
+    def __init__(self, schedule: ScheduleResource) -> None:
         self._schedule = schedule
 
         self.create = to_streamed_response_wrapper(
@@ -218,8 +218,8 @@ class ScheduleWithStreamingResponse:
         )
 
 
-class AsyncScheduleWithStreamingResponse:
-    def __init__(self, schedule: AsyncSchedule) -> None:
+class AsyncScheduleResourceWithStreamingResponse:
+    def __init__(self, schedule: AsyncScheduleResource) -> None:
         self._schedule = schedule
 
         self.create = async_to_streamed_response_wrapper(

@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .email_dns_record import EmailDNSRecord
+from .dns_record import DNSRecord
 
 __all__ = ["DNSGetResponse"]
 
-DNSGetResponse = List[EmailDNSRecord]
+DNSGetResponse = List[DNSRecord]

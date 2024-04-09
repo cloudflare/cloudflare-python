@@ -19,19 +19,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.user.load_balancers import LoadBalancingPreview
+from ....types.user.load_balancers import Preview
 
-__all__ = ["Preview", "AsyncPreview"]
+__all__ = ["PreviewResource", "AsyncPreviewResource"]
 
 
-class Preview(SyncAPIResource):
+class PreviewResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PreviewWithRawResponse:
-        return PreviewWithRawResponse(self)
+    def with_raw_response(self) -> PreviewResourceWithRawResponse:
+        return PreviewResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PreviewWithStreamingResponse:
-        return PreviewWithStreamingResponse(self)
+    def with_streaming_response(self) -> PreviewResourceWithStreamingResponse:
+        return PreviewResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -43,7 +43,7 @@ class Preview(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPreview:
+    ) -> Preview:
         """
         Get the result of a previous preview operation using the provided preview_id.
 
@@ -67,18 +67,18 @@ class Preview(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPreview], ResultWrapper[LoadBalancingPreview]),
+            cast_to=cast(Type[Preview], ResultWrapper[Preview]),
         )
 
 
-class AsyncPreview(AsyncAPIResource):
+class AsyncPreviewResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPreviewWithRawResponse:
-        return AsyncPreviewWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPreviewResourceWithRawResponse:
+        return AsyncPreviewResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPreviewWithStreamingResponse:
-        return AsyncPreviewWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPreviewResourceWithStreamingResponse:
+        return AsyncPreviewResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -90,7 +90,7 @@ class AsyncPreview(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoadBalancingPreview:
+    ) -> Preview:
         """
         Get the result of a previous preview operation using the provided preview_id.
 
@@ -114,12 +114,12 @@ class AsyncPreview(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoadBalancingPreview], ResultWrapper[LoadBalancingPreview]),
+            cast_to=cast(Type[Preview], ResultWrapper[Preview]),
         )
 
 
-class PreviewWithRawResponse:
-    def __init__(self, preview: Preview) -> None:
+class PreviewResourceWithRawResponse:
+    def __init__(self, preview: PreviewResource) -> None:
         self._preview = preview
 
         self.get = to_raw_response_wrapper(
@@ -127,8 +127,8 @@ class PreviewWithRawResponse:
         )
 
 
-class AsyncPreviewWithRawResponse:
-    def __init__(self, preview: AsyncPreview) -> None:
+class AsyncPreviewResourceWithRawResponse:
+    def __init__(self, preview: AsyncPreviewResource) -> None:
         self._preview = preview
 
         self.get = async_to_raw_response_wrapper(
@@ -136,8 +136,8 @@ class AsyncPreviewWithRawResponse:
         )
 
 
-class PreviewWithStreamingResponse:
-    def __init__(self, preview: Preview) -> None:
+class PreviewResourceWithStreamingResponse:
+    def __init__(self, preview: PreviewResource) -> None:
         self._preview = preview
 
         self.get = to_streamed_response_wrapper(
@@ -145,8 +145,8 @@ class PreviewWithStreamingResponse:
         )
 
 
-class AsyncPreviewWithStreamingResponse:
-    def __init__(self, preview: AsyncPreview) -> None:
+class AsyncPreviewResourceWithStreamingResponse:
+    def __init__(self, preview: AsyncPreviewResource) -> None:
         self._preview = preview
 
         self.get = async_to_streamed_response_wrapper(

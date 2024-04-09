@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-from .check_region import CheckRegion
-from ..origin_item_param import OriginItemParam
+from ..check_region import CheckRegion
+from ..origin_param import OriginParam
 from ..load_shedding_param import LoadSheddingParam
 from ..origin_steering_param import OriginSteeringParam
 from ..notification_filter_param import NotificationFilterParam
@@ -24,7 +24,7 @@ class PoolUpdateParams(TypedDict, total=False):
     Only alphanumeric characters, hyphens, and underscores are allowed.
     """
 
-    origins: Required[Iterable[OriginItemParam]]
+    origins: Required[Iterable[OriginParam]]
     """The list of origins within this pool.
 
     Traffic directed at this pool is balanced across all currently healthy origins,

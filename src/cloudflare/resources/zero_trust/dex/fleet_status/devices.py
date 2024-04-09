@@ -21,7 +21,7 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.dex.fleet_status import Device, device_list_params
+from .....types.zero_trust.dex.fleet_status import DeviceListResponse, device_list_params
 
 __all__ = ["Devices", "AsyncDevices"]
 
@@ -57,7 +57,7 @@ class Devices(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[Device]:
+    ) -> SyncV4PagePaginationArray[DeviceListResponse]:
         """
         List details for devices using WARP
 
@@ -96,7 +96,7 @@ class Devices(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dex/fleet-status/devices",
-            page=SyncV4PagePaginationArray[Device],
+            page=SyncV4PagePaginationArray[DeviceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -119,7 +119,7 @@ class Devices(SyncAPIResource):
                     device_list_params.DeviceListParams,
                 ),
             ),
-            model=Device,
+            model=DeviceListResponse,
         )
 
 
@@ -154,7 +154,7 @@ class AsyncDevices(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Device, AsyncV4PagePaginationArray[Device]]:
+    ) -> AsyncPaginator[DeviceListResponse, AsyncV4PagePaginationArray[DeviceListResponse]]:
         """
         List details for devices using WARP
 
@@ -193,7 +193,7 @@ class AsyncDevices(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dex/fleet-status/devices",
-            page=AsyncV4PagePaginationArray[Device],
+            page=AsyncV4PagePaginationArray[DeviceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -216,7 +216,7 @@ class AsyncDevices(AsyncAPIResource):
                     device_list_params.DeviceListParams,
                 ),
             ),
-            model=Device,
+            model=DeviceListResponse,
         )
 
 

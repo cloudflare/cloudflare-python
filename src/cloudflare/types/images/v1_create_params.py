@@ -2,26 +2,32 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
-__all__ = ["V1CreateParams", "ImagesImageUploadViaFile", "ImagesImageUploadViaURL"]
+from ..._utils import PropertyInfo
+
+__all__ = ["V1CreateParams"]
 
 
-class ImagesImageUploadViaFile(TypedDict, total=False):
+class V1CreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
-    file: Required[object]
-    """An image binary data."""
+    file: object
+    """An image binary data. Only needed when type is uploading a file."""
 
+    metadata: object
+    """User modifiable key-value store.
 
-class ImagesImageUploadViaURL(TypedDict, total=False):
-    account_id: Required[str]
-    """Account identifier tag."""
+    Can use used for keeping references to another system of record for managing
+    images.
+    """
 
-    url: Required[str]
-    """A URL to fetch an image from origin."""
+    require_signed_urls: Annotated[bool, PropertyInfo(alias="requireSignedURLs")]
+    """Indicates whether the image requires a signature token for the access."""
 
+    url: str
+    """A URL to fetch an image from origin.
 
-V1CreateParams = Union[ImagesImageUploadViaFile, ImagesImageUploadViaURL]
+    Only needed when type is uploading from a URL.
+    """

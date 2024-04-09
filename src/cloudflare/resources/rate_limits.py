@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Type, cast
 
 import httpx
 
@@ -160,7 +160,7 @@ class RateLimits(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RateLimitDeleteResponse]:
+    ) -> RateLimitDeleteResponse:
         """
         Deletes an existing rate limit.
 
@@ -191,7 +191,7 @@ class RateLimits(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RateLimitDeleteResponse]], ResultWrapper[RateLimitDeleteResponse]),
+            cast_to=cast(Type[RateLimitDeleteResponse], ResultWrapper[RateLimitDeleteResponse]),
         )
 
     def edit(
@@ -417,7 +417,7 @@ class AsyncRateLimits(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RateLimitDeleteResponse]:
+    ) -> RateLimitDeleteResponse:
         """
         Deletes an existing rate limit.
 
@@ -448,7 +448,7 @@ class AsyncRateLimits(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RateLimitDeleteResponse]], ResultWrapper[RateLimitDeleteResponse]),
+            cast_to=cast(Type[RateLimitDeleteResponse], ResultWrapper[RateLimitDeleteResponse]),
         )
 
     async def edit(

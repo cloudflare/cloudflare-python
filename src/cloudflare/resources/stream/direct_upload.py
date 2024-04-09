@@ -7,6 +7,7 @@ from datetime import datetime
 
 import httpx
 
+from ...types import AllowedOriginsItem
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -24,7 +25,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import AllowedOriginsItem, DirectUploadCreateResponse, direct_upload_create_params
+from ...types.stream import DirectUploadCreateResponse, direct_upload_create_params
 
 __all__ = ["DirectUpload", "AsyncDirectUpload"]
 

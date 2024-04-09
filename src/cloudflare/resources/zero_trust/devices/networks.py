@@ -27,7 +27,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.devices import (
-    DeviceManagedNetworks,
+    Network,
     NetworkDeleteResponse,
     network_create_params,
     network_delete_params,
@@ -59,7 +59,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceManagedNetworks]:
+    ) -> Optional[Network]:
         """
         Creates a new device managed network.
 
@@ -98,7 +98,7 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeviceManagedNetworks]], ResultWrapper[DeviceManagedNetworks]),
+            cast_to=cast(Type[Optional[Network]], ResultWrapper[Network]),
         )
 
     def update(
@@ -115,7 +115,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceManagedNetworks]:
+    ) -> Optional[Network]:
         """
         Updates a configured device managed network.
 
@@ -158,7 +158,7 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeviceManagedNetworks]], ResultWrapper[DeviceManagedNetworks]),
+            cast_to=cast(Type[Optional[Network]], ResultWrapper[Network]),
         )
 
     def list(
@@ -171,7 +171,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DeviceManagedNetworks]:
+    ) -> SyncSinglePage[Network]:
         """
         Fetches a list of managed networks for an account.
 
@@ -188,11 +188,11 @@ class Networks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/networks",
-            page=SyncSinglePage[DeviceManagedNetworks],
+            page=SyncSinglePage[Network],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DeviceManagedNetworks,
+            model=Network,
         )
 
     def delete(
@@ -251,7 +251,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceManagedNetworks]:
+    ) -> Optional[Network]:
         """
         Fetches details for a single managed network.
 
@@ -279,7 +279,7 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeviceManagedNetworks]], ResultWrapper[DeviceManagedNetworks]),
+            cast_to=cast(Type[Optional[Network]], ResultWrapper[Network]),
         )
 
 
@@ -305,7 +305,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceManagedNetworks]:
+    ) -> Optional[Network]:
         """
         Creates a new device managed network.
 
@@ -344,7 +344,7 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeviceManagedNetworks]], ResultWrapper[DeviceManagedNetworks]),
+            cast_to=cast(Type[Optional[Network]], ResultWrapper[Network]),
         )
 
     async def update(
@@ -361,7 +361,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceManagedNetworks]:
+    ) -> Optional[Network]:
         """
         Updates a configured device managed network.
 
@@ -404,7 +404,7 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeviceManagedNetworks]], ResultWrapper[DeviceManagedNetworks]),
+            cast_to=cast(Type[Optional[Network]], ResultWrapper[Network]),
         )
 
     def list(
@@ -417,7 +417,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DeviceManagedNetworks, AsyncSinglePage[DeviceManagedNetworks]]:
+    ) -> AsyncPaginator[Network, AsyncSinglePage[Network]]:
         """
         Fetches a list of managed networks for an account.
 
@@ -434,11 +434,11 @@ class AsyncNetworks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/networks",
-            page=AsyncSinglePage[DeviceManagedNetworks],
+            page=AsyncSinglePage[Network],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DeviceManagedNetworks,
+            model=Network,
         )
 
     async def delete(
@@ -497,7 +497,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceManagedNetworks]:
+    ) -> Optional[Network]:
         """
         Fetches details for a single managed network.
 
@@ -525,7 +525,7 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeviceManagedNetworks]], ResultWrapper[DeviceManagedNetworks]),
+            cast_to=cast(Type[Optional[Network]], ResultWrapper[Network]),
         )
 
 

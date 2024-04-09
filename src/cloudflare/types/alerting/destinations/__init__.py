@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from .webhooks import Webhooks as Webhooks
 from .pagerduty import Pagerduty as Pagerduty
-from .alerting_webhooks import AlertingWebhooks as AlertingWebhooks
 from .eligible_get_response import EligibleGetResponse as EligibleGetResponse
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams

@@ -20,7 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.intel import IntelPassiveDNSByIP, dns_get_params
+from ...types.intel import dns, dns_get_params
 from ..._base_client import (
     make_request_options,
 )
@@ -51,7 +51,7 @@ class DNS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IntelPassiveDNSByIP:
+    ) -> dns.DNS:
         """
         Get Passive DNS by IP
 
@@ -90,7 +90,7 @@ class DNS(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IntelPassiveDNSByIP], ResultWrapper[IntelPassiveDNSByIP]),
+            cast_to=cast(Type[dns.DNS], ResultWrapper[dns.DNS]),
         )
 
 
@@ -117,7 +117,7 @@ class AsyncDNS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IntelPassiveDNSByIP:
+    ) -> dns.DNS:
         """
         Get Passive DNS by IP
 
@@ -156,7 +156,7 @@ class AsyncDNS(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IntelPassiveDNSByIP], ResultWrapper[IntelPassiveDNSByIP]),
+            cast_to=cast(Type[dns.DNS], ResultWrapper[dns.DNS]),
         )
 
 

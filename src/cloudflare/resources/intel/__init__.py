@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .asn import (
-    ASN,
-    AsyncASN,
-    ASNWithRawResponse,
-    AsyncASNWithRawResponse,
-    ASNWithStreamingResponse,
-    AsyncASNWithStreamingResponse,
+    ASNResource,
+    AsyncASNResource,
+    ASNResourceWithRawResponse,
+    AsyncASNResourceWithRawResponse,
+    ASNResourceWithStreamingResponse,
+    AsyncASNResourceWithStreamingResponse,
 )
 from .dns import (
     DNS,
@@ -65,12 +65,12 @@ from .sinkholes import (
     AsyncSinkholesWithStreamingResponse,
 )
 from .domain_history import (
-    DomainHistory,
-    AsyncDomainHistory,
-    DomainHistoryWithRawResponse,
-    AsyncDomainHistoryWithRawResponse,
-    DomainHistoryWithStreamingResponse,
-    AsyncDomainHistoryWithStreamingResponse,
+    DomainHistoryResource,
+    AsyncDomainHistoryResource,
+    DomainHistoryResourceWithRawResponse,
+    AsyncDomainHistoryResourceWithRawResponse,
+    DomainHistoryResourceWithStreamingResponse,
+    AsyncDomainHistoryResourceWithStreamingResponse,
 )
 from .indicator_feeds import (
     IndicatorFeeds,
@@ -98,12 +98,12 @@ from .attack_surface_report import (
 )
 
 __all__ = [
-    "ASN",
-    "AsyncASN",
-    "ASNWithRawResponse",
-    "AsyncASNWithRawResponse",
-    "ASNWithStreamingResponse",
-    "AsyncASNWithStreamingResponse",
+    "ASNResource",
+    "AsyncASNResource",
+    "ASNResourceWithRawResponse",
+    "AsyncASNResourceWithRawResponse",
+    "ASNResourceWithStreamingResponse",
+    "AsyncASNResourceWithStreamingResponse",
     "DNS",
     "AsyncDNS",
     "DNSWithRawResponse",
@@ -116,12 +116,12 @@ __all__ = [
     "AsyncDomainsWithRawResponse",
     "DomainsWithStreamingResponse",
     "AsyncDomainsWithStreamingResponse",
-    "DomainHistory",
-    "AsyncDomainHistory",
-    "DomainHistoryWithRawResponse",
-    "AsyncDomainHistoryWithRawResponse",
-    "DomainHistoryWithStreamingResponse",
-    "AsyncDomainHistoryWithStreamingResponse",
+    "DomainHistoryResource",
+    "AsyncDomainHistoryResource",
+    "DomainHistoryResourceWithRawResponse",
+    "AsyncDomainHistoryResourceWithRawResponse",
+    "DomainHistoryResourceWithStreamingResponse",
+    "AsyncDomainHistoryResourceWithStreamingResponse",
     "IPs",
     "AsyncIPs",
     "IPsWithRawResponse",

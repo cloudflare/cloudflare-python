@@ -5,8 +5,8 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .route import Route
+from .targes import Targes
 from .._models import BaseModel
-from .url_target import URLTarget
 
 __all__ = ["PageRule"]
 
@@ -39,5 +39,5 @@ class PageRule(BaseModel):
     status: Literal["active", "disabled"]
     """The status of the Page Rule."""
 
-    targets: List[URLTarget]
+    targets: List[Targes]
     """The rule targets to evaluate on each request."""

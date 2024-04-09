@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .history import (
-    History,
-    AsyncHistory,
-    HistoryWithRawResponse,
-    AsyncHistoryWithRawResponse,
-    HistoryWithStreamingResponse,
-    AsyncHistoryWithStreamingResponse,
+    HistoryResource,
+    AsyncHistoryResource,
+    HistoryResourceWithRawResponse,
+    AsyncHistoryResourceWithRawResponse,
+    HistoryResourceWithStreamingResponse,
+    AsyncHistoryResourceWithStreamingResponse,
 )
 from .alerting import (
     Alerting,
@@ -54,12 +54,12 @@ __all__ = [
     "AsyncDestinationsWithRawResponse",
     "DestinationsWithStreamingResponse",
     "AsyncDestinationsWithStreamingResponse",
-    "History",
-    "AsyncHistory",
-    "HistoryWithRawResponse",
-    "AsyncHistoryWithRawResponse",
-    "HistoryWithStreamingResponse",
-    "AsyncHistoryWithStreamingResponse",
+    "HistoryResource",
+    "AsyncHistoryResource",
+    "HistoryResourceWithRawResponse",
+    "AsyncHistoryResourceWithRawResponse",
+    "HistoryResourceWithStreamingResponse",
+    "AsyncHistoryResourceWithStreamingResponse",
     "Policies",
     "AsyncPolicies",
     "PoliciesWithRawResponse",

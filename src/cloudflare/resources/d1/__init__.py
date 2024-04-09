@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .d1 import (
-    D1,
-    AsyncD1,
-    D1WithRawResponse,
-    AsyncD1WithRawResponse,
-    D1WithStreamingResponse,
-    AsyncD1WithStreamingResponse,
+    D1Resource,
+    AsyncD1Resource,
+    D1ResourceWithRawResponse,
+    AsyncD1ResourceWithRawResponse,
+    D1ResourceWithStreamingResponse,
+    AsyncD1ResourceWithStreamingResponse,
 )
 from .database import (
     Database,
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncDatabaseWithRawResponse",
     "DatabaseWithStreamingResponse",
     "AsyncDatabaseWithStreamingResponse",
-    "D1",
-    "AsyncD1",
-    "D1WithRawResponse",
-    "AsyncD1WithRawResponse",
-    "D1WithStreamingResponse",
-    "AsyncD1WithStreamingResponse",
+    "D1Resource",
+    "AsyncD1Resource",
+    "D1ResourceWithRawResponse",
+    "AsyncD1ResourceWithRawResponse",
+    "D1ResourceWithStreamingResponse",
+    "AsyncD1ResourceWithStreamingResponse",
 ]

@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Required, TypedDict
 
 from .schema_data_param import SchemaDataParam
 
-__all__ = ["DEXTestCreateParams"]
+__all__ = ["DEXTestCreateParams", "TargetPolicy"]
 
 
 class DEXTestCreateParams(TypedDict, total=False):
@@ -29,3 +30,19 @@ class DEXTestCreateParams(TypedDict, total=False):
 
     description: str
     """Additional details about the test."""
+
+    target_policies: Iterable[TargetPolicy]
+    """Device settings profiles targeted by this test"""
+
+    targeted: bool
+
+
+class TargetPolicy(TypedDict, total=False):
+    id: str
+    """The id of the device settings profile"""
+
+    default: bool
+    """Whether the profile is the account default"""
+
+    name: str
+    """The name of the device settings profile"""

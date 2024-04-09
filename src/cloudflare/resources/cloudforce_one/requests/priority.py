@@ -25,26 +25,26 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.shared import UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846
-from ....types.cloudforce_one import CloudforceOneQuota, CloudforceOneRequestItem
-from ....types.cloudforce_one.requests import CloudforceOnePriorityItem, priority_create_params, priority_update_params
+from ....types.cloudforce_one import Item, Quota
+from ....types.cloudforce_one.requests import Priority, LabelItem, priority_create_params, priority_update_params
 
-__all__ = ["Priority", "AsyncPriority"]
+__all__ = ["PriorityResource", "AsyncPriorityResource"]
 
 
-class Priority(SyncAPIResource):
+class PriorityResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PriorityWithRawResponse:
-        return PriorityWithRawResponse(self)
+    def with_raw_response(self) -> PriorityResourceWithRawResponse:
+        return PriorityResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PriorityWithStreamingResponse:
-        return PriorityWithStreamingResponse(self)
+    def with_streaming_response(self) -> PriorityResourceWithStreamingResponse:
+        return PriorityResourceWithStreamingResponse(self)
 
     def create(
         self,
         account_identifier: str,
         *,
-        labels: List[str],
+        labels: List[LabelItem],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -54,7 +54,7 @@ class Priority(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOnePriorityItem:
+    ) -> Priority:
         """
         Create a New Priority Requirement
 
@@ -97,7 +97,7 @@ class Priority(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOnePriorityItem], ResultWrapper[CloudforceOnePriorityItem]),
+            cast_to=cast(Type[Priority], ResultWrapper[Priority]),
         )
 
     def update(
@@ -105,7 +105,7 @@ class Priority(SyncAPIResource):
         priority_identifer: str,
         *,
         account_identifier: str,
-        labels: List[str],
+        labels: List[LabelItem],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -115,7 +115,7 @@ class Priority(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOneRequestItem:
+    ) -> Item:
         """
         Update a Priority Intelligence Requirement
 
@@ -162,7 +162,7 @@ class Priority(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
+            cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
 
     def delete(
@@ -225,7 +225,7 @@ class Priority(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOneRequestItem:
+    ) -> Item:
         """
         Get a Priority Intelligence Requirement
 
@@ -255,7 +255,7 @@ class Priority(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
+            cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
 
     def quota(
@@ -268,7 +268,7 @@ class Priority(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOneQuota:
+    ) -> Quota:
         """
         Get Priority Intelligence Requirement Quota
 
@@ -294,24 +294,24 @@ class Priority(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOneQuota], ResultWrapper[CloudforceOneQuota]),
+            cast_to=cast(Type[Quota], ResultWrapper[Quota]),
         )
 
 
-class AsyncPriority(AsyncAPIResource):
+class AsyncPriorityResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPriorityWithRawResponse:
-        return AsyncPriorityWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPriorityResourceWithRawResponse:
+        return AsyncPriorityResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPriorityWithStreamingResponse:
-        return AsyncPriorityWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPriorityResourceWithStreamingResponse:
+        return AsyncPriorityResourceWithStreamingResponse(self)
 
     async def create(
         self,
         account_identifier: str,
         *,
-        labels: List[str],
+        labels: List[LabelItem],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -321,7 +321,7 @@ class AsyncPriority(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOnePriorityItem:
+    ) -> Priority:
         """
         Create a New Priority Requirement
 
@@ -364,7 +364,7 @@ class AsyncPriority(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOnePriorityItem], ResultWrapper[CloudforceOnePriorityItem]),
+            cast_to=cast(Type[Priority], ResultWrapper[Priority]),
         )
 
     async def update(
@@ -372,7 +372,7 @@ class AsyncPriority(AsyncAPIResource):
         priority_identifer: str,
         *,
         account_identifier: str,
-        labels: List[str],
+        labels: List[LabelItem],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -382,7 +382,7 @@ class AsyncPriority(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOneRequestItem:
+    ) -> Item:
         """
         Update a Priority Intelligence Requirement
 
@@ -429,7 +429,7 @@ class AsyncPriority(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
+            cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
 
     async def delete(
@@ -492,7 +492,7 @@ class AsyncPriority(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOneRequestItem:
+    ) -> Item:
         """
         Get a Priority Intelligence Requirement
 
@@ -522,7 +522,7 @@ class AsyncPriority(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOneRequestItem], ResultWrapper[CloudforceOneRequestItem]),
+            cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
 
     async def quota(
@@ -535,7 +535,7 @@ class AsyncPriority(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CloudforceOneQuota:
+    ) -> Quota:
         """
         Get Priority Intelligence Requirement Quota
 
@@ -561,12 +561,12 @@ class AsyncPriority(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CloudforceOneQuota], ResultWrapper[CloudforceOneQuota]),
+            cast_to=cast(Type[Quota], ResultWrapper[Quota]),
         )
 
 
-class PriorityWithRawResponse:
-    def __init__(self, priority: Priority) -> None:
+class PriorityResourceWithRawResponse:
+    def __init__(self, priority: PriorityResource) -> None:
         self._priority = priority
 
         self.create = to_raw_response_wrapper(
@@ -586,8 +586,8 @@ class PriorityWithRawResponse:
         )
 
 
-class AsyncPriorityWithRawResponse:
-    def __init__(self, priority: AsyncPriority) -> None:
+class AsyncPriorityResourceWithRawResponse:
+    def __init__(self, priority: AsyncPriorityResource) -> None:
         self._priority = priority
 
         self.create = async_to_raw_response_wrapper(
@@ -607,8 +607,8 @@ class AsyncPriorityWithRawResponse:
         )
 
 
-class PriorityWithStreamingResponse:
-    def __init__(self, priority: Priority) -> None:
+class PriorityResourceWithStreamingResponse:
+    def __init__(self, priority: PriorityResource) -> None:
         self._priority = priority
 
         self.create = to_streamed_response_wrapper(
@@ -628,8 +628,8 @@ class PriorityWithStreamingResponse:
         )
 
 
-class AsyncPriorityWithStreamingResponse:
-    def __init__(self, priority: AsyncPriority) -> None:
+class AsyncPriorityResourceWithStreamingResponse:
+    def __init__(self, priority: AsyncPriorityResource) -> None:
         self._priority = priority
 
         self.create = async_to_streamed_response_wrapper(

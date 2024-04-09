@@ -25,9 +25,9 @@ from ......_base_client import (
     make_request_options,
 )
 from ......types.web3.hostnames.ipfs_universal_paths.content_lists import (
+    ContentListItem,
     EntryListResponse,
     EntryDeleteResponse,
-    DistributedWebConfigContentListEntry,
     entry_create_params,
     entry_delete_params,
     entry_update_params,
@@ -59,7 +59,7 @@ class Entries(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DistributedWebConfigContentListEntry:
+    ) -> ContentListItem:
         """
         Create IPFS Universal Path Gateway Content List Entry
 
@@ -103,9 +103,7 @@ class Entries(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DistributedWebConfigContentListEntry], ResultWrapper[DistributedWebConfigContentListEntry]
-            ),
+            cast_to=cast(Type[ContentListItem], ResultWrapper[ContentListItem]),
         )
 
     def update(
@@ -123,7 +121,7 @@ class Entries(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DistributedWebConfigContentListEntry:
+    ) -> ContentListItem:
         """
         Edit IPFS Universal Path Gateway Content List Entry
 
@@ -173,9 +171,7 @@ class Entries(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DistributedWebConfigContentListEntry], ResultWrapper[DistributedWebConfigContentListEntry]
-            ),
+            cast_to=cast(Type[ContentListItem], ResultWrapper[ContentListItem]),
         )
 
     def list(
@@ -287,7 +283,7 @@ class Entries(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DistributedWebConfigContentListEntry:
+    ) -> ContentListItem:
         """
         IPFS Universal Path Gateway Content List Entry Details
 
@@ -323,9 +319,7 @@ class Entries(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DistributedWebConfigContentListEntry], ResultWrapper[DistributedWebConfigContentListEntry]
-            ),
+            cast_to=cast(Type[ContentListItem], ResultWrapper[ContentListItem]),
         )
 
 
@@ -352,7 +346,7 @@ class AsyncEntries(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DistributedWebConfigContentListEntry:
+    ) -> ContentListItem:
         """
         Create IPFS Universal Path Gateway Content List Entry
 
@@ -396,9 +390,7 @@ class AsyncEntries(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DistributedWebConfigContentListEntry], ResultWrapper[DistributedWebConfigContentListEntry]
-            ),
+            cast_to=cast(Type[ContentListItem], ResultWrapper[ContentListItem]),
         )
 
     async def update(
@@ -416,7 +408,7 @@ class AsyncEntries(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DistributedWebConfigContentListEntry:
+    ) -> ContentListItem:
         """
         Edit IPFS Universal Path Gateway Content List Entry
 
@@ -466,9 +458,7 @@ class AsyncEntries(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DistributedWebConfigContentListEntry], ResultWrapper[DistributedWebConfigContentListEntry]
-            ),
+            cast_to=cast(Type[ContentListItem], ResultWrapper[ContentListItem]),
         )
 
     async def list(
@@ -580,7 +570,7 @@ class AsyncEntries(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DistributedWebConfigContentListEntry:
+    ) -> ContentListItem:
         """
         IPFS Universal Path Gateway Content List Entry Details
 
@@ -616,9 +606,7 @@ class AsyncEntries(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[DistributedWebConfigContentListEntry], ResultWrapper[DistributedWebConfigContentListEntry]
-            ),
+            cast_to=cast(Type[ContentListItem], ResultWrapper[ContentListItem]),
         )
 
 

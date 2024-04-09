@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .static_addressing_param import StaticAddressingParam
+from .wan_static_addressing_param import WANStaticAddressingParam
 
 __all__ = ["WANUpdateParams", "WAN"]
 
@@ -26,7 +26,7 @@ class WAN(TypedDict, total=False):
 
     priority: int
 
-    static_addressing: StaticAddressingParam
+    static_addressing: WANStaticAddressingParam
     """(optional) if omitted, use DHCP.
 
     Submit secondary_address when site is in high availability mode.

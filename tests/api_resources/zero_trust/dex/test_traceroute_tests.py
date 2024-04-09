@@ -10,9 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.dex import (
-    TracerouteDetails,
-    TracerouteTestNetworkPath,
-    TracerouteDetailsPercentiles,
+    Traceroute,
+    NetworkPath,
+    TracerouteTestPercentilesResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -31,7 +31,7 @@ class TestTracerouteTests:
             time_end="string",
             time_start="string",
         )
-        assert_matches_type(TracerouteDetails, traceroute_test, path=["response"])
+        assert_matches_type(Traceroute, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestTracerouteTests:
             colo="string",
             device_id=["string", "string", "string"],
         )
-        assert_matches_type(TracerouteDetails, traceroute_test, path=["response"])
+        assert_matches_type(Traceroute, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -61,7 +61,7 @@ class TestTracerouteTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         traceroute_test = response.parse()
-        assert_matches_type(TracerouteDetails, traceroute_test, path=["response"])
+        assert_matches_type(Traceroute, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -77,7 +77,7 @@ class TestTracerouteTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             traceroute_test = response.parse()
-            assert_matches_type(TracerouteDetails, traceroute_test, path=["response"])
+            assert_matches_type(Traceroute, traceroute_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -113,7 +113,7 @@ class TestTracerouteTests:
             time_end="string",
             time_start="string",
         )
-        assert_matches_type(TracerouteTestNetworkPath, traceroute_test, path=["response"])
+        assert_matches_type(NetworkPath, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -130,7 +130,7 @@ class TestTracerouteTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         traceroute_test = response.parse()
-        assert_matches_type(TracerouteTestNetworkPath, traceroute_test, path=["response"])
+        assert_matches_type(NetworkPath, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -147,7 +147,7 @@ class TestTracerouteTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             traceroute_test = response.parse()
-            assert_matches_type(TracerouteTestNetworkPath, traceroute_test, path=["response"])
+            assert_matches_type(NetworkPath, traceroute_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -183,7 +183,7 @@ class TestTracerouteTests:
             time_end="2023-09-20T17:00:00Z",
             time_start="2023-09-20T17:00:00Z",
         )
-        assert_matches_type(TracerouteDetailsPercentiles, traceroute_test, path=["response"])
+        assert_matches_type(TracerouteTestPercentilesResponse, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -196,7 +196,7 @@ class TestTracerouteTests:
             colo="string",
             device_id=["string", "string", "string"],
         )
-        assert_matches_type(TracerouteDetailsPercentiles, traceroute_test, path=["response"])
+        assert_matches_type(TracerouteTestPercentilesResponse, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -211,7 +211,7 @@ class TestTracerouteTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         traceroute_test = response.parse()
-        assert_matches_type(TracerouteDetailsPercentiles, traceroute_test, path=["response"])
+        assert_matches_type(TracerouteTestPercentilesResponse, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -226,7 +226,7 @@ class TestTracerouteTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             traceroute_test = response.parse()
-            assert_matches_type(TracerouteDetailsPercentiles, traceroute_test, path=["response"])
+            assert_matches_type(TracerouteTestPercentilesResponse, traceroute_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -263,7 +263,7 @@ class TestAsyncTracerouteTests:
             time_end="string",
             time_start="string",
         )
-        assert_matches_type(TracerouteDetails, traceroute_test, path=["response"])
+        assert_matches_type(Traceroute, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -277,7 +277,7 @@ class TestAsyncTracerouteTests:
             colo="string",
             device_id=["string", "string", "string"],
         )
-        assert_matches_type(TracerouteDetails, traceroute_test, path=["response"])
+        assert_matches_type(Traceroute, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -293,7 +293,7 @@ class TestAsyncTracerouteTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         traceroute_test = await response.parse()
-        assert_matches_type(TracerouteDetails, traceroute_test, path=["response"])
+        assert_matches_type(Traceroute, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -309,7 +309,7 @@ class TestAsyncTracerouteTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             traceroute_test = await response.parse()
-            assert_matches_type(TracerouteDetails, traceroute_test, path=["response"])
+            assert_matches_type(Traceroute, traceroute_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -345,7 +345,7 @@ class TestAsyncTracerouteTests:
             time_end="string",
             time_start="string",
         )
-        assert_matches_type(TracerouteTestNetworkPath, traceroute_test, path=["response"])
+        assert_matches_type(NetworkPath, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -362,7 +362,7 @@ class TestAsyncTracerouteTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         traceroute_test = await response.parse()
-        assert_matches_type(TracerouteTestNetworkPath, traceroute_test, path=["response"])
+        assert_matches_type(NetworkPath, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -379,7 +379,7 @@ class TestAsyncTracerouteTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             traceroute_test = await response.parse()
-            assert_matches_type(TracerouteTestNetworkPath, traceroute_test, path=["response"])
+            assert_matches_type(NetworkPath, traceroute_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -415,7 +415,7 @@ class TestAsyncTracerouteTests:
             time_end="2023-09-20T17:00:00Z",
             time_start="2023-09-20T17:00:00Z",
         )
-        assert_matches_type(TracerouteDetailsPercentiles, traceroute_test, path=["response"])
+        assert_matches_type(TracerouteTestPercentilesResponse, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -428,7 +428,7 @@ class TestAsyncTracerouteTests:
             colo="string",
             device_id=["string", "string", "string"],
         )
-        assert_matches_type(TracerouteDetailsPercentiles, traceroute_test, path=["response"])
+        assert_matches_type(TracerouteTestPercentilesResponse, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -443,7 +443,7 @@ class TestAsyncTracerouteTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         traceroute_test = await response.parse()
-        assert_matches_type(TracerouteDetailsPercentiles, traceroute_test, path=["response"])
+        assert_matches_type(TracerouteTestPercentilesResponse, traceroute_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -458,7 +458,7 @@ class TestAsyncTracerouteTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             traceroute_test = await response.parse()
-            assert_matches_type(TracerouteDetailsPercentiles, traceroute_test, path=["response"])
+            assert_matches_type(TracerouteTestPercentilesResponse, traceroute_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

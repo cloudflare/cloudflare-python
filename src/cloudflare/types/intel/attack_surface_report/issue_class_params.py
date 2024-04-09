@@ -3,9 +3,14 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
+from .product import Product
+from .subject import Subject
 from ...._utils import PropertyInfo
+from .issue_type import IssueType
+from .issue_class import IssueClass
+from .severity_query_param import SeverityQueryParam
 
 __all__ = ["IssueClassParams"]
 
@@ -16,41 +21,22 @@ class IssueClassParams(TypedDict, total=False):
 
     dismissed: bool
 
-    issue_class: List[str]
+    issue_class: List[IssueClass]
 
-    issue_class_neq: Annotated[List[str], PropertyInfo(alias="issue_class~neq")]
+    issue_class_neq: Annotated[List[IssueClass], PropertyInfo(alias="issue_class~neq")]
 
-    issue_type: List[
-        Literal[
-            "compliance_violation",
-            "email_security",
-            "exposed_infrastructure",
-            "insecure_configuration",
-            "weak_authentication",
-        ]
-    ]
+    issue_type: List[IssueType]
 
-    issue_type_neq: Annotated[
-        List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ],
-        PropertyInfo(alias="issue_type~neq"),
-    ]
+    issue_type_neq: Annotated[List[IssueType], PropertyInfo(alias="issue_type~neq")]
 
-    product: List[str]
+    product: List[Product]
 
-    product_neq: Annotated[List[str], PropertyInfo(alias="product~neq")]
+    product_neq: Annotated[List[Product], PropertyInfo(alias="product~neq")]
 
-    severity: List[Literal["low", "moderate", "critical"]]
+    severity: List[SeverityQueryParam]
 
-    severity_neq: Annotated[List[Literal["low", "moderate", "critical"]], PropertyInfo(alias="severity~neq")]
+    severity_neq: Annotated[List[SeverityQueryParam], PropertyInfo(alias="severity~neq")]
 
-    subject: List[str]
+    subject: List[Subject]
 
-    subject_neq: Annotated[List[str], PropertyInfo(alias="subject~neq")]
+    subject_neq: Annotated[List[Subject], PropertyInfo(alias="subject~neq")]

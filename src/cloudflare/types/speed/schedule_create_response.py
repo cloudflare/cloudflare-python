@@ -2,15 +2,15 @@
 
 from typing import Optional
 
+from .test import Test
+from .schedule import Schedule
 from ..._models import BaseModel
-from ..observatory_schedule import ObservatorySchedule
-from .observatory_page_test import ObservatoryPageTest
 
 __all__ = ["ScheduleCreateResponse"]
 
 
 class ScheduleCreateResponse(BaseModel):
-    schedule: Optional[ObservatorySchedule] = None
+    schedule: Optional[Schedule] = None
     """The test schedule."""
 
-    test: Optional[ObservatoryPageTest] = None
+    test: Optional[Test] = None

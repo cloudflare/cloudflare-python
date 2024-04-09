@@ -20,7 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.zones import UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820, hold_create_params, hold_delete_params
+from ...types.zones import ZoneHold, hold_create_params, hold_delete_params
 from ..._base_client import (
     make_request_options,
 )
@@ -48,7 +48,7 @@ class Holds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820:
+    ) -> ZoneHold:
         """
         Enforce a zone hold on the zone, blocking the creation and activation of zones
         with this zone's hostname.
@@ -81,10 +81,7 @@ class Holds(SyncAPIResource):
                 query=maybe_transform({"include_subdomains": include_subdomains}, hold_create_params.HoldCreateParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
-                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
-            ),
+            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
 
     def delete(
@@ -98,7 +95,7 @@ class Holds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820]:
+    ) -> Optional[ZoneHold]:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
@@ -130,10 +127,7 @@ class Holds(SyncAPIResource):
                 query=maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820]],
-                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
-            ),
+            cast_to=cast(Type[Optional[ZoneHold]], ResultWrapper[ZoneHold]),
         )
 
     def get(
@@ -146,7 +140,7 @@ class Holds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820:
+    ) -> ZoneHold:
         """
         Retrieve whether the zone is subject to a zone hold, and metadata about the
         hold.
@@ -173,10 +167,7 @@ class Holds(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
-                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
-            ),
+            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
 
 
@@ -200,7 +191,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820:
+    ) -> ZoneHold:
         """
         Enforce a zone hold on the zone, blocking the creation and activation of zones
         with this zone's hostname.
@@ -235,10 +226,7 @@ class AsyncHolds(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
-                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
-            ),
+            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
 
     async def delete(
@@ -252,7 +240,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820]:
+    ) -> Optional[ZoneHold]:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
@@ -284,10 +272,7 @@ class AsyncHolds(AsyncAPIResource):
                 query=await async_maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820]],
-                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
-            ),
+            cast_to=cast(Type[Optional[ZoneHold]], ResultWrapper[ZoneHold]),
         )
 
     async def get(
@@ -300,7 +285,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820:
+    ) -> ZoneHold:
         """
         Retrieve whether the zone is subject to a zone hold, and metadata about the
         hold.
@@ -327,10 +312,7 @@ class AsyncHolds(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
-                ResultWrapper[UnnamedSchemaRef45004a9444b6da9f88158ed2fb9a5820],
-            ),
+            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
 
 

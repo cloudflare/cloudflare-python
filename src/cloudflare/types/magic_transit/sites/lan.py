@@ -5,7 +5,7 @@ from typing import List, Optional
 from .nat import Nat
 from ...._models import BaseModel
 from .routed_subnet import RoutedSubnet
-from .static_addressing import StaticAddressing
+from .lan_static_addressing import LANStaticAddressing
 
 __all__ = ["LAN"]
 
@@ -31,7 +31,7 @@ class LAN(BaseModel):
     site_id: Optional[str] = None
     """Identifier"""
 
-    static_addressing: Optional[StaticAddressing] = None
+    static_addressing: Optional[LANStaticAddressing] = None
     """
     If the site is not configured in high availability mode, this configuration is
     optional (if omitted, use DHCP). However, if in high availability mode,

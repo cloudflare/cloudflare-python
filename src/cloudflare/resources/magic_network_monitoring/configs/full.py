@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.magic_network_monitoring import MagicNetworkMonitoringConfig
+from ....types.magic_network_monitoring import Configuration
 
 __all__ = ["Full", "AsyncFull"]
 
@@ -43,7 +43,7 @@ class Full(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicNetworkMonitoringConfig:
+    ) -> Configuration:
         """
         Lists default sampling, router IPs, and rules for account.
 
@@ -67,7 +67,7 @@ class Full(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
 
@@ -90,7 +90,7 @@ class AsyncFull(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MagicNetworkMonitoringConfig:
+    ) -> Configuration:
         """
         Lists default sampling, router IPs, and rules for account.
 
@@ -114,7 +114,7 @@ class AsyncFull(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MagicNetworkMonitoringConfig], ResultWrapper[MagicNetworkMonitoringConfig]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
 

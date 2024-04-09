@@ -13,7 +13,7 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from ...types.r2 import R2Bucket, bucket_list_params, bucket_create_params
+from ...types.r2 import Bucket, bucket_list_params, bucket_create_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -52,7 +52,7 @@ class Buckets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Bucket:
+    ) -> Bucket:
         """
         Creates a new R2 bucket.
 
@@ -89,7 +89,7 @@ class Buckets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Bucket], ResultWrapper[R2Bucket]),
+            cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
         )
 
     def list(
@@ -108,7 +108,7 @@ class Buckets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPagination[R2Bucket]:
+    ) -> SyncCursorPagination[Bucket]:
         """
         Lists all R2 buckets on your account
 
@@ -141,7 +141,7 @@ class Buckets(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/r2/buckets",
-            page=SyncCursorPagination[R2Bucket],
+            page=SyncCursorPagination[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -159,7 +159,7 @@ class Buckets(SyncAPIResource):
                     bucket_list_params.BucketListParams,
                 ),
             ),
-            model=R2Bucket,
+            model=Bucket,
         )
 
     def delete(
@@ -217,7 +217,7 @@ class Buckets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Bucket:
+    ) -> Bucket:
         """
         Gets metadata for an existing R2 bucket.
 
@@ -247,7 +247,7 @@ class Buckets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Bucket], ResultWrapper[R2Bucket]),
+            cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
         )
 
 
@@ -272,7 +272,7 @@ class AsyncBuckets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Bucket:
+    ) -> Bucket:
         """
         Creates a new R2 bucket.
 
@@ -309,7 +309,7 @@ class AsyncBuckets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Bucket], ResultWrapper[R2Bucket]),
+            cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
         )
 
     def list(
@@ -328,7 +328,7 @@ class AsyncBuckets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[R2Bucket, AsyncCursorPagination[R2Bucket]]:
+    ) -> AsyncPaginator[Bucket, AsyncCursorPagination[Bucket]]:
         """
         Lists all R2 buckets on your account
 
@@ -361,7 +361,7 @@ class AsyncBuckets(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/r2/buckets",
-            page=AsyncCursorPagination[R2Bucket],
+            page=AsyncCursorPagination[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -379,7 +379,7 @@ class AsyncBuckets(AsyncAPIResource):
                     bucket_list_params.BucketListParams,
                 ),
             ),
-            model=R2Bucket,
+            model=Bucket,
         )
 
     async def delete(
@@ -437,7 +437,7 @@ class AsyncBuckets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Bucket:
+    ) -> Bucket:
         """
         Gets metadata for an existing R2 bucket.
 
@@ -467,7 +467,7 @@ class AsyncBuckets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Bucket], ResultWrapper[R2Bucket]),
+            cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
         )
 
 

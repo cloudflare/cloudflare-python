@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .devices_split_tunnel_include_param import DevicesSplitTunnelIncludeParam
+from .split_tunnel_include_param import SplitTunnelIncludeParam
 
 __all__ = ["IncludeUpdateParams"]
 
@@ -13,4 +13,4 @@ __all__ = ["IncludeUpdateParams"]
 class IncludeUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    body: Required[Iterable[DevicesSplitTunnelIncludeParam]]
+    body: Required[Iterable[SplitTunnelIncludeParam]]

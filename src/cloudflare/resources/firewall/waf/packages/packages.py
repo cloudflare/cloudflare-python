@@ -153,7 +153,7 @@ class Packages(SyncAPIResource):
         Args:
           zone_identifier: Identifier
 
-          identifier: The unique identifier of a WAF package.
+          identifier: Identifier
 
           extra_headers: Send extra headers
 
@@ -291,7 +291,7 @@ class AsyncPackages(AsyncAPIResource):
         Args:
           zone_identifier: Identifier
 
-          identifier: The unique identifier of a WAF package.
+          identifier: Identifier
 
           extra_headers: Send extra headers
 

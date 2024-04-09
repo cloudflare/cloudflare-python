@@ -28,10 +28,10 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ....types.zero_trust.gateway import (
-    FitlerItem,
+    Rule,
+    GatewayFilter,
     ScheduleParam,
-    RuleSettingsParam,
-    ZeroTrustGatewayRules,
+    RuleSettingParam,
     rule_create_params,
     rule_delete_params,
     rule_update_params,
@@ -74,10 +74,10 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: List[FitlerItem] | NotGiven = NOT_GIVEN,
+        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: RuleSettingsParam | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
         schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -86,7 +86,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayRules:
+    ) -> Rule:
         """
         Creates a new Zero Trust Gateway rule.
 
@@ -153,7 +153,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
+            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
         )
 
     def update(
@@ -182,10 +182,10 @@ class Rules(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: List[FitlerItem] | NotGiven = NOT_GIVEN,
+        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: RuleSettingsParam | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
         schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -194,7 +194,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayRules:
+    ) -> Rule:
         """
         Updates a configured Zero Trust Gateway rule.
 
@@ -265,7 +265,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
+            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
         )
 
     def list(
@@ -278,7 +278,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustGatewayRules]:
+    ) -> SyncSinglePage[Rule]:
         """
         Fetches the Zero Trust Gateway rules for an account.
 
@@ -295,11 +295,11 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/rules",
-            page=SyncSinglePage[ZeroTrustGatewayRules],
+            page=SyncSinglePage[Rule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGatewayRules,
+            model=Rule,
         )
 
     def delete(
@@ -362,7 +362,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayRules:
+    ) -> Rule:
         """
         Fetches a single Zero Trust Gateway rule.
 
@@ -390,7 +390,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
+            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
         )
 
 
@@ -428,10 +428,10 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: List[FitlerItem] | NotGiven = NOT_GIVEN,
+        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: RuleSettingsParam | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
         schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -440,7 +440,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayRules:
+    ) -> Rule:
         """
         Creates a new Zero Trust Gateway rule.
 
@@ -507,7 +507,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
+            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
         )
 
     async def update(
@@ -536,10 +536,10 @@ class AsyncRules(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: List[FitlerItem] | NotGiven = NOT_GIVEN,
+        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
-        rule_settings: RuleSettingsParam | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
         schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -548,7 +548,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayRules:
+    ) -> Rule:
         """
         Updates a configured Zero Trust Gateway rule.
 
@@ -619,7 +619,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
+            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
         )
 
     def list(
@@ -632,7 +632,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustGatewayRules, AsyncSinglePage[ZeroTrustGatewayRules]]:
+    ) -> AsyncPaginator[Rule, AsyncSinglePage[Rule]]:
         """
         Fetches the Zero Trust Gateway rules for an account.
 
@@ -649,11 +649,11 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/rules",
-            page=AsyncSinglePage[ZeroTrustGatewayRules],
+            page=AsyncSinglePage[Rule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustGatewayRules,
+            model=Rule,
         )
 
     async def delete(
@@ -716,7 +716,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGatewayRules:
+    ) -> Rule:
         """
         Fetches a single Zero Trust Gateway rule.
 
@@ -744,7 +744,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGatewayRules], ResultWrapper[ZeroTrustGatewayRules]),
+            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
         )
 
 

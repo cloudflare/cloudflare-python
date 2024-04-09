@@ -3,8 +3,8 @@
 from typing import List, Optional
 from datetime import datetime
 
-from ..rule import Rule
 from ...._models import BaseModel
+from ..access_rule import AccessRule
 
 __all__ = ["ZeroTrustGroup"]
 
@@ -15,19 +15,19 @@ class ZeroTrustGroup(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    exclude: Optional[List[Rule]] = None
+    exclude: Optional[List[AccessRule]] = None
     """Rules evaluated with a NOT logical operator.
 
     To match a policy, a user cannot meet any of the Exclude rules.
     """
 
-    include: Optional[List[Rule]] = None
+    include: Optional[List[AccessRule]] = None
     """Rules evaluated with an OR logical operator.
 
     A user needs to meet only one of the Include rules.
     """
 
-    is_default: Optional[List[Rule]] = None
+    is_default: Optional[List[AccessRule]] = None
     """Rules evaluated with an AND logical operator.
 
     To match a policy, a user must meet all of the Require rules.
@@ -36,7 +36,7 @@ class ZeroTrustGroup(BaseModel):
     name: Optional[str] = None
     """The name of the Access group."""
 
-    require: Optional[List[Rule]] = None
+    require: Optional[List[AccessRule]] = None
     """Rules evaluated with an AND logical operator.
 
     To match a policy, a user must meet all of the Require rules.

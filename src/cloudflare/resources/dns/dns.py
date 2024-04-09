@@ -11,12 +11,12 @@ from .records import (
     AsyncRecordsWithStreamingResponse,
 )
 from .firewall import (
-    Firewall,
-    AsyncFirewall,
-    FirewallWithRawResponse,
-    AsyncFirewallWithRawResponse,
-    FirewallWithStreamingResponse,
-    AsyncFirewallWithStreamingResponse,
+    FirewallResource,
+    AsyncFirewallResource,
+    FirewallResourceWithRawResponse,
+    AsyncFirewallResourceWithRawResponse,
+    FirewallResourceWithStreamingResponse,
+    AsyncFirewallResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .analytics import (
@@ -28,7 +28,7 @@ from .analytics import (
     AsyncAnalyticsWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .firewall.firewall import Firewall, AsyncFirewall
+from .firewall.firewall import FirewallResource, AsyncFirewallResource
 from .analytics.analytics import Analytics, AsyncAnalytics
 
 __all__ = ["DNS", "AsyncDNS"]
@@ -44,8 +44,8 @@ class DNS(SyncAPIResource):
         return Analytics(self._client)
 
     @cached_property
-    def firewall(self) -> Firewall:
-        return Firewall(self._client)
+    def firewall(self) -> FirewallResource:
+        return FirewallResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DNSWithRawResponse:
@@ -66,8 +66,8 @@ class AsyncDNS(AsyncAPIResource):
         return AsyncAnalytics(self._client)
 
     @cached_property
-    def firewall(self) -> AsyncFirewall:
-        return AsyncFirewall(self._client)
+    def firewall(self) -> AsyncFirewallResource:
+        return AsyncFirewallResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDNSWithRawResponse:
@@ -91,8 +91,8 @@ class DNSWithRawResponse:
         return AnalyticsWithRawResponse(self._dns.analytics)
 
     @cached_property
-    def firewall(self) -> FirewallWithRawResponse:
-        return FirewallWithRawResponse(self._dns.firewall)
+    def firewall(self) -> FirewallResourceWithRawResponse:
+        return FirewallResourceWithRawResponse(self._dns.firewall)
 
 
 class AsyncDNSWithRawResponse:
@@ -108,8 +108,8 @@ class AsyncDNSWithRawResponse:
         return AsyncAnalyticsWithRawResponse(self._dns.analytics)
 
     @cached_property
-    def firewall(self) -> AsyncFirewallWithRawResponse:
-        return AsyncFirewallWithRawResponse(self._dns.firewall)
+    def firewall(self) -> AsyncFirewallResourceWithRawResponse:
+        return AsyncFirewallResourceWithRawResponse(self._dns.firewall)
 
 
 class DNSWithStreamingResponse:
@@ -125,8 +125,8 @@ class DNSWithStreamingResponse:
         return AnalyticsWithStreamingResponse(self._dns.analytics)
 
     @cached_property
-    def firewall(self) -> FirewallWithStreamingResponse:
-        return FirewallWithStreamingResponse(self._dns.firewall)
+    def firewall(self) -> FirewallResourceWithStreamingResponse:
+        return FirewallResourceWithStreamingResponse(self._dns.firewall)
 
 
 class AsyncDNSWithStreamingResponse:
@@ -142,5 +142,5 @@ class AsyncDNSWithStreamingResponse:
         return AsyncAnalyticsWithStreamingResponse(self._dns.analytics)
 
     @cached_property
-    def firewall(self) -> AsyncFirewallWithStreamingResponse:
-        return AsyncFirewallWithStreamingResponse(self._dns.firewall)
+    def firewall(self) -> AsyncFirewallResourceWithStreamingResponse:
+        return AsyncFirewallResourceWithStreamingResponse(self._dns.firewall)

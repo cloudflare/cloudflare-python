@@ -10,7 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
-    KeylessCertificateHostname,
+    Hostname,
+    KeylessCertificate,
 )
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.shared import UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837
@@ -30,7 +31,7 @@ class TestKeylessCertificates:
             host="example.com",
             port=24008,
         )
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +48,7 @@ class TestKeylessCertificates:
                 "vnet_id": "7365377a-85a4-4390-9480-531ef7dc7a3c",
             },
         )
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +63,7 @@ class TestKeylessCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         keyless_certificate = response.parse()
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -77,7 +78,7 @@ class TestKeylessCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             keyless_certificate = response.parse()
-            assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+            assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -98,7 +99,7 @@ class TestKeylessCertificates:
         keyless_certificate = client.keyless_certificates.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[KeylessCertificateHostname], keyless_certificate, path=["response"])
+        assert_matches_type(SyncSinglePage[KeylessCertificate], keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -110,7 +111,7 @@ class TestKeylessCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         keyless_certificate = response.parse()
-        assert_matches_type(SyncSinglePage[KeylessCertificateHostname], keyless_certificate, path=["response"])
+        assert_matches_type(SyncSinglePage[KeylessCertificate], keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -122,7 +123,7 @@ class TestKeylessCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             keyless_certificate = response.parse()
-            assert_matches_type(SyncSinglePage[KeylessCertificateHostname], keyless_certificate, path=["response"])
+            assert_matches_type(SyncSinglePage[KeylessCertificate], keyless_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -202,7 +203,7 @@ class TestKeylessCertificates:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -219,7 +220,7 @@ class TestKeylessCertificates:
                 "vnet_id": "7365377a-85a4-4390-9480-531ef7dc7a3c",
             },
         )
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -232,7 +233,7 @@ class TestKeylessCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         keyless_certificate = response.parse()
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -245,7 +246,7 @@ class TestKeylessCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             keyless_certificate = response.parse()
-            assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+            assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -273,7 +274,7 @@ class TestKeylessCertificates:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -286,7 +287,7 @@ class TestKeylessCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         keyless_certificate = response.parse()
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -299,7 +300,7 @@ class TestKeylessCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             keyless_certificate = response.parse()
-            assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+            assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -333,7 +334,7 @@ class TestAsyncKeylessCertificates:
             host="example.com",
             port=24008,
         )
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -350,7 +351,7 @@ class TestAsyncKeylessCertificates:
                 "vnet_id": "7365377a-85a4-4390-9480-531ef7dc7a3c",
             },
         )
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -365,7 +366,7 @@ class TestAsyncKeylessCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         keyless_certificate = await response.parse()
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -380,7 +381,7 @@ class TestAsyncKeylessCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             keyless_certificate = await response.parse()
-            assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+            assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -401,7 +402,7 @@ class TestAsyncKeylessCertificates:
         keyless_certificate = await async_client.keyless_certificates.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[KeylessCertificateHostname], keyless_certificate, path=["response"])
+        assert_matches_type(AsyncSinglePage[KeylessCertificate], keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -413,7 +414,7 @@ class TestAsyncKeylessCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         keyless_certificate = await response.parse()
-        assert_matches_type(AsyncSinglePage[KeylessCertificateHostname], keyless_certificate, path=["response"])
+        assert_matches_type(AsyncSinglePage[KeylessCertificate], keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -425,7 +426,7 @@ class TestAsyncKeylessCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             keyless_certificate = await response.parse()
-            assert_matches_type(AsyncSinglePage[KeylessCertificateHostname], keyless_certificate, path=["response"])
+            assert_matches_type(AsyncSinglePage[KeylessCertificate], keyless_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -505,7 +506,7 @@ class TestAsyncKeylessCertificates:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -522,7 +523,7 @@ class TestAsyncKeylessCertificates:
                 "vnet_id": "7365377a-85a4-4390-9480-531ef7dc7a3c",
             },
         )
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -535,7 +536,7 @@ class TestAsyncKeylessCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         keyless_certificate = await response.parse()
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -548,7 +549,7 @@ class TestAsyncKeylessCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             keyless_certificate = await response.parse()
-            assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+            assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -576,7 +577,7 @@ class TestAsyncKeylessCertificates:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -589,7 +590,7 @@ class TestAsyncKeylessCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         keyless_certificate = await response.parse()
-        assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+        assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -602,7 +603,7 @@ class TestAsyncKeylessCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             keyless_certificate = await response.parse()
-            assert_matches_type(KeylessCertificateHostname, keyless_certificate, path=["response"])
+            assert_matches_type(Hostname, keyless_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

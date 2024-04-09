@@ -7,7 +7,7 @@ from typing_extensions import Required, TypedDict
 
 from .nat_param import NatParam
 from .routed_subnet_param import RoutedSubnetParam
-from .static_addressing_param import StaticAddressingParam
+from .lan_static_addressing_param import LANStaticAddressingParam
 
 __all__ = ["LANCreateParams", "LAN"]
 
@@ -37,7 +37,7 @@ class LAN(TypedDict, total=False):
 
     routed_subnets: Iterable[RoutedSubnetParam]
 
-    static_addressing: StaticAddressingParam
+    static_addressing: LANStaticAddressingParam
     """
     If the site is not configured in high availability mode, this configuration is
     optional (if omitted, use DHCP). However, if in high availability mode,

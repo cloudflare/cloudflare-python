@@ -5,6 +5,7 @@ from __future__ import annotations
 from .ttl import TTL as TTL
 from .record import Record as Record
 from .a_record import ARecord as ARecord
+from .firewall import Firewall as Firewall
 from .ds_record import DSRecord as DSRecord
 from .mx_record import MXRecord as MXRecord
 from .ns_record import NSRecord as NSRecord
@@ -20,7 +21,6 @@ from .cert_record import CERTRecord as CERTRecord
 from .svcb_record import SVCBRecord as SVCBRecord
 from .tlsa_record import TLSARecord as TLSARecord
 from .cname_record import CNAMERecord as CNAMERecord
-from .dns_firewall import DNSFirewall as DNSFirewall
 from .https_record import HTTPSRecord as HTTPSRecord
 from .naptr_record import NAPTRRecord as NAPTRRecord
 from .sshfp_record import SSHFPRecord as SSHFPRecord

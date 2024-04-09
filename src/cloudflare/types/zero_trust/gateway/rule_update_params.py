@@ -5,9 +5,9 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-from .fitler_item import FitlerItem
+from .gateway_filter import GatewayFilter
 from .schedule_param import ScheduleParam
-from .rule_settings_param import RuleSettingsParam
+from .rule_setting_param import RuleSettingParam
 
 __all__ = ["RuleUpdateParams"]
 
@@ -51,7 +51,7 @@ class RuleUpdateParams(TypedDict, total=False):
     enabled: bool
     """True if the rule is enabled."""
 
-    filters: List[FitlerItem]
+    filters: List[GatewayFilter]
     """
     The protocol or layer to evaluate the traffic, identity, and device posture
     expressions.
@@ -67,7 +67,7 @@ class RuleUpdateParams(TypedDict, total=False):
     rules are evaluated in ascending order of this value.
     """
 
-    rule_settings: RuleSettingsParam
+    rule_settings: RuleSettingParam
     """Additional settings that modify the rule's action."""
 
     schedule: ScheduleParam

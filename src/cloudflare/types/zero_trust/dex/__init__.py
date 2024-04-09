@@ -4,18 +4,18 @@ from __future__ import annotations
 
 from .tests import Tests as Tests
 from .live_stat import LiveStat as LiveStat
+from .traceroute import Traceroute as Traceroute
 from .http_details import HTTPDetails as HTTPDetails
+from .network_path import NetworkPath as NetworkPath
 from .colo_list_params import ColoListParams as ColoListParams
 from .test_list_params import TestListParams as TestListParams
 from .test_list_response import TestListResponse as TestListResponse
-from .traceroute_details import TracerouteDetails as TracerouteDetails
 from .http_test_get_params import HTTPTestGetParams as HTTPTestGetParams
 from .aggregate_time_period import AggregateTimePeriod as AggregateTimePeriod
 from .fleet_status_live_params import FleetStatusLiveParams as FleetStatusLiveParams
 from .fleet_status_live_response import FleetStatusLiveResponse as FleetStatusLiveResponse
 from .traceroute_test_get_params import TracerouteTestGetParams as TracerouteTestGetParams
-from .traceroute_test_network_path import TracerouteTestNetworkPath as TracerouteTestNetworkPath
 from .fleet_status_over_time_params import FleetStatusOverTimeParams as FleetStatusOverTimeParams
-from .traceroute_details_percentiles import TracerouteDetailsPercentiles as TracerouteDetailsPercentiles
 from .traceroute_test_percentiles_params import TracerouteTestPercentilesParams as TracerouteTestPercentilesParams
 from .traceroute_test_network_path_params import TracerouteTestNetworkPathParams as TracerouteTestNetworkPathParams
+from .traceroute_test_percentiles_response import TracerouteTestPercentilesResponse as TracerouteTestPercentilesResponse

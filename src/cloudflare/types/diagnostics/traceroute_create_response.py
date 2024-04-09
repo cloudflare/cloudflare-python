@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .magic_transit_target_result import MagicTransitTargetResult
+from .traceroute import Traceroute
 
 __all__ = ["TracerouteCreateResponse"]
 
-TracerouteCreateResponse = List[MagicTransitTargetResult]
+TracerouteCreateResponse = List[Traceroute]

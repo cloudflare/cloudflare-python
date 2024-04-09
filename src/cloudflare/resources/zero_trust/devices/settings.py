@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.devices import ZeroTrustAccountDeviceSettings, setting_update_params
+from ....types.zero_trust.devices import DeviceSettings, setting_update_params
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -51,7 +51,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZeroTrustAccountDeviceSettings]:
+    ) -> Optional[DeviceSettings]:
         """
         Updates the current device settings for a Zero Trust account.
 
@@ -92,7 +92,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZeroTrustAccountDeviceSettings]], ResultWrapper[ZeroTrustAccountDeviceSettings]),
+            cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
     def list(
@@ -105,7 +105,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZeroTrustAccountDeviceSettings]:
+    ) -> Optional[DeviceSettings]:
         """
         Describes the current device settings for a Zero Trust account.
 
@@ -129,7 +129,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZeroTrustAccountDeviceSettings]], ResultWrapper[ZeroTrustAccountDeviceSettings]),
+            cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
 
@@ -156,7 +156,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZeroTrustAccountDeviceSettings]:
+    ) -> Optional[DeviceSettings]:
         """
         Updates the current device settings for a Zero Trust account.
 
@@ -197,7 +197,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZeroTrustAccountDeviceSettings]], ResultWrapper[ZeroTrustAccountDeviceSettings]),
+            cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
     async def list(
@@ -210,7 +210,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZeroTrustAccountDeviceSettings]:
+    ) -> Optional[DeviceSettings]:
         """
         Describes the current device settings for a Zero Trust account.
 
@@ -234,7 +234,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZeroTrustAccountDeviceSettings]], ResultWrapper[ZeroTrustAccountDeviceSettings]),
+            cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
 

@@ -17,21 +17,21 @@ from .download import (
     AsyncDownloadWithStreamingResponse,
 )
 from .ownership import (
-    Ownership,
-    AsyncOwnership,
-    OwnershipWithRawResponse,
-    AsyncOwnershipWithRawResponse,
-    OwnershipWithStreamingResponse,
-    AsyncOwnershipWithStreamingResponse,
+    OwnershipResource,
+    AsyncOwnershipResource,
+    OwnershipResourceWithRawResponse,
+    AsyncOwnershipResourceWithRawResponse,
+    OwnershipResourceWithStreamingResponse,
+    AsyncOwnershipResourceWithStreamingResponse,
 )
 
 __all__ = [
-    "Ownership",
-    "AsyncOwnership",
-    "OwnershipWithRawResponse",
-    "AsyncOwnershipWithRawResponse",
-    "OwnershipWithStreamingResponse",
-    "AsyncOwnershipWithStreamingResponse",
+    "OwnershipResource",
+    "AsyncOwnershipResource",
+    "OwnershipResourceWithRawResponse",
+    "AsyncOwnershipResourceWithRawResponse",
+    "OwnershipResourceWithStreamingResponse",
+    "AsyncOwnershipResourceWithStreamingResponse",
     "Download",
     "AsyncDownload",
     "DownloadWithRawResponse",

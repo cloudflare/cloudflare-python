@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.intel import IntelSinkholeItem
+from cloudflare.types.intel import SinkholeItem
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestSinkholes:
         sinkhole = client.intel.sinkholes.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[IntelSinkholeItem], sinkhole, path=["response"])
+        assert_matches_type(SyncSinglePage[SinkholeItem], sinkhole, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -36,7 +36,7 @@ class TestSinkholes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sinkhole = response.parse()
-        assert_matches_type(SyncSinglePage[IntelSinkholeItem], sinkhole, path=["response"])
+        assert_matches_type(SyncSinglePage[SinkholeItem], sinkhole, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -48,7 +48,7 @@ class TestSinkholes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sinkhole = response.parse()
-            assert_matches_type(SyncSinglePage[IntelSinkholeItem], sinkhole, path=["response"])
+            assert_matches_type(SyncSinglePage[SinkholeItem], sinkhole, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,7 +70,7 @@ class TestAsyncSinkholes:
         sinkhole = await async_client.intel.sinkholes.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[IntelSinkholeItem], sinkhole, path=["response"])
+        assert_matches_type(AsyncSinglePage[SinkholeItem], sinkhole, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -82,7 +82,7 @@ class TestAsyncSinkholes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sinkhole = await response.parse()
-        assert_matches_type(AsyncSinglePage[IntelSinkholeItem], sinkhole, path=["response"])
+        assert_matches_type(AsyncSinglePage[SinkholeItem], sinkhole, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -94,7 +94,7 @@ class TestAsyncSinkholes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sinkhole = await response.parse()
-            assert_matches_type(AsyncSinglePage[IntelSinkholeItem], sinkhole, path=["response"])
+            assert_matches_type(AsyncSinglePage[SinkholeItem], sinkhole, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

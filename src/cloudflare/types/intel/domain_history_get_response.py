@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .intel_domain_history import IntelDomainHistory
+from .domain_history import DomainHistory
 
 __all__ = ["DomainHistoryGetResponse"]
 
-DomainHistoryGetResponse = List[IntelDomainHistory]
+DomainHistoryGetResponse = List[DomainHistory]

@@ -42,7 +42,7 @@ from .last_seen_identity import (
     LastSeenIdentityWithStreamingResponse,
     AsyncLastSeenIdentityWithStreamingResponse,
 )
-from .....types.zero_trust.access import ZeroTrustUsers
+from .....types.zero_trust.access import User
 
 __all__ = ["Users", "AsyncUsers"]
 
@@ -78,7 +78,7 @@ class Users(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustUsers]:
+    ) -> SyncSinglePage[User]:
         """
         Gets a list of users for an account.
 
@@ -97,11 +97,11 @@ class Users(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get_api_list(
             f"/accounts/{identifier}/access/users",
-            page=SyncSinglePage[ZeroTrustUsers],
+            page=SyncSinglePage[User],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustUsers,
+            model=User,
         )
 
 
@@ -136,7 +136,7 @@ class AsyncUsers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustUsers, AsyncSinglePage[ZeroTrustUsers]]:
+    ) -> AsyncPaginator[User, AsyncSinglePage[User]]:
         """
         Gets a list of users for an account.
 
@@ -155,11 +155,11 @@ class AsyncUsers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get_api_list(
             f"/accounts/{identifier}/access/users",
-            page=AsyncSinglePage[ZeroTrustUsers],
+            page=AsyncSinglePage[User],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustUsers,
+            model=User,
         )
 
 

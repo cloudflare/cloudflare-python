@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .zero_trust_seats import ZeroTrustSeats
+from .seat import Seat
 
 __all__ = ["SeatEditResponse"]
 
-SeatEditResponse = List[ZeroTrustSeats]
+SeatEditResponse = List[Seat]

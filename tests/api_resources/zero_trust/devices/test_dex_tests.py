@@ -47,6 +47,24 @@ class TestDEXTests:
             interval="30m",
             name="HTTP dash health check",
             description="Checks the dash endpoint every 30 minutes",
+            target_policies=[
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+            ],
+            targeted=True,
         )
         assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
@@ -124,6 +142,24 @@ class TestDEXTests:
             interval="30m",
             name="HTTP dash health check",
             description="Checks the dash endpoint every 30 minutes",
+            target_policies=[
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+            ],
+            targeted=True,
         )
         assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
@@ -362,6 +398,24 @@ class TestAsyncDEXTests:
             interval="30m",
             name="HTTP dash health check",
             description="Checks the dash endpoint every 30 minutes",
+            target_policies=[
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+            ],
+            targeted=True,
         )
         assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 
@@ -439,6 +493,24 @@ class TestAsyncDEXTests:
             interval="30m",
             name="HTTP dash health check",
             description="Checks the dash endpoint every 30 minutes",
+            target_policies=[
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+                {
+                    "default": True,
+                    "id": "string",
+                    "name": "string",
+                },
+            ],
+            targeted=True,
         )
         assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
 

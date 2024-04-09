@@ -7,8 +7,9 @@ from typing import List, Type, Optional, cast
 import httpx
 
 from ...types import (
+    CheckRegion,
     Healthcheck,
-    TcpConfigurationParam,
+    TCPConfigurationParam,
     HTTPConfigurationParam,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -28,7 +29,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.healthchecks import CheckRegionItem, PreviewDeleteResponse, preview_create_params, preview_delete_params
+from ...types.healthchecks import PreviewDeleteResponse, preview_create_params, preview_delete_params
 
 __all__ = ["Previews", "AsyncPreviews"]
 
@@ -48,7 +49,7 @@ class Previews(SyncAPIResource):
         zone_id: str,
         address: str,
         name: str,
-        check_regions: Optional[List[CheckRegionItem]] | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         consecutive_fails: int | NotGiven = NOT_GIVEN,
         consecutive_successes: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -56,7 +57,7 @@ class Previews(SyncAPIResource):
         interval: int | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
-        tcp_config: Optional[TcpConfigurationParam] | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TCPConfigurationParam] | NotGiven = NOT_GIVEN,
         healthcheck_timeout: int | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -252,7 +253,7 @@ class AsyncPreviews(AsyncAPIResource):
         zone_id: str,
         address: str,
         name: str,
-        check_regions: Optional[List[CheckRegionItem]] | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         consecutive_fails: int | NotGiven = NOT_GIVEN,
         consecutive_successes: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -260,7 +261,7 @@ class AsyncPreviews(AsyncAPIResource):
         interval: int | NotGiven = NOT_GIVEN,
         retries: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
-        tcp_config: Optional[TcpConfigurationParam] | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TCPConfigurationParam] | NotGiven = NOT_GIVEN,
         healthcheck_timeout: int | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

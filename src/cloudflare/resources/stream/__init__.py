@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .clip import (
-    Clip,
-    AsyncClip,
-    ClipWithRawResponse,
-    AsyncClipWithRawResponse,
-    ClipWithStreamingResponse,
-    AsyncClipWithStreamingResponse,
+    ClipResource,
+    AsyncClipResource,
+    ClipResourceWithRawResponse,
+    AsyncClipResourceWithRawResponse,
+    ClipResourceWithStreamingResponse,
+    AsyncClipResourceWithStreamingResponse,
 )
 from .copy import (
     Copy,
@@ -126,12 +126,12 @@ __all__ = [
     "AsyncVideosWithRawResponse",
     "VideosWithStreamingResponse",
     "AsyncVideosWithStreamingResponse",
-    "Clip",
-    "AsyncClip",
-    "ClipWithRawResponse",
-    "AsyncClipWithRawResponse",
-    "ClipWithStreamingResponse",
-    "AsyncClipWithStreamingResponse",
+    "ClipResource",
+    "AsyncClipResource",
+    "ClipResourceWithRawResponse",
+    "AsyncClipResourceWithRawResponse",
+    "ClipResourceWithStreamingResponse",
+    "AsyncClipResourceWithStreamingResponse",
     "Copy",
     "AsyncCopy",
     "CopyWithRawResponse",

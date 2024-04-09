@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.r2 import R2Sippy, SippyDeleteResponse
+from cloudflare.types.r2 import Sippy, SippyDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestSippy:
             "example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestSippy:
                 "secret_access_key": "string",
             },
         )
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -58,7 +58,7 @@ class TestSippy:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sippy = response.parse()
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -71,7 +71,7 @@ class TestSippy:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sippy = response.parse()
-            assert_matches_type(R2Sippy, sippy, path=["response"])
+            assert_matches_type(Sippy, sippy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -97,7 +97,7 @@ class TestSippy:
             "example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +117,7 @@ class TestSippy:
                 "provider": "gcs",
             },
         )
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -130,7 +130,7 @@ class TestSippy:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sippy = response.parse()
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -143,7 +143,7 @@ class TestSippy:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sippy = response.parse()
-            assert_matches_type(R2Sippy, sippy, path=["response"])
+            assert_matches_type(Sippy, sippy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -221,7 +221,7 @@ class TestSippy:
             "example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -234,7 +234,7 @@ class TestSippy:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sippy = response.parse()
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -247,7 +247,7 @@ class TestSippy:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sippy = response.parse()
-            assert_matches_type(R2Sippy, sippy, path=["response"])
+            assert_matches_type(Sippy, sippy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -277,7 +277,7 @@ class TestAsyncSippy:
             "example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -298,7 +298,7 @@ class TestAsyncSippy:
                 "secret_access_key": "string",
             },
         )
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -311,7 +311,7 @@ class TestAsyncSippy:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sippy = await response.parse()
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -324,7 +324,7 @@ class TestAsyncSippy:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sippy = await response.parse()
-            assert_matches_type(R2Sippy, sippy, path=["response"])
+            assert_matches_type(Sippy, sippy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -350,7 +350,7 @@ class TestAsyncSippy:
             "example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -370,7 +370,7 @@ class TestAsyncSippy:
                 "provider": "gcs",
             },
         )
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -383,7 +383,7 @@ class TestAsyncSippy:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sippy = await response.parse()
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -396,7 +396,7 @@ class TestAsyncSippy:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sippy = await response.parse()
-            assert_matches_type(R2Sippy, sippy, path=["response"])
+            assert_matches_type(Sippy, sippy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -474,7 +474,7 @@ class TestAsyncSippy:
             "example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -487,7 +487,7 @@ class TestAsyncSippy:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sippy = await response.parse()
-        assert_matches_type(R2Sippy, sippy, path=["response"])
+        assert_matches_type(Sippy, sippy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -500,7 +500,7 @@ class TestAsyncSippy:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sippy = await response.parse()
-            assert_matches_type(R2Sippy, sippy, path=["response"])
+            assert_matches_type(Sippy, sippy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

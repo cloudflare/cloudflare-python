@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .action_item_param import ActionItemParam
-from .targes_item_param import TargesItemParam
+from .route_param import RouteParam
+from .targes_param import TargesParam
 
 __all__ = ["PageruleEditParams"]
 
@@ -15,7 +15,7 @@ class PageruleEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    actions: Iterable[ActionItemParam]
+    actions: Iterable[RouteParam]
     """The set of actions to perform if the targets of this rule match the request.
 
     Actions can redirect to another URL or override settings, but not both.
@@ -33,5 +33,5 @@ class PageruleEditParams(TypedDict, total=False):
     status: Literal["active", "disabled"]
     """The status of the Page Rule."""
 
-    targets: Iterable[TargesItemParam]
+    targets: Iterable[TargesParam]
     """The rule targets to evaluate on each request."""

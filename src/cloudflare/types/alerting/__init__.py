@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from .filters import Filters as Filters
-from .policies import Policies as Policies
-from .mechanisms import Mechanisms as Mechanisms
-from .filters_param import FiltersParam as FiltersParam
-from .alerting_history import AlertingHistory as AlertingHistory
-from .mechanisms_param import MechanismsParam as MechanismsParam
+from .filter import Filter as Filter
+from .policy import Policy as Policy
+from .history import History as History
+from .mechanism import Mechanism as Mechanism
+from .filter_param import FilterParam as FilterParam
+from .policy_param import PolicyParam as PolicyParam
+from .mechanism_param import MechanismParam as MechanismParam
 from .history_list_params import HistoryListParams as HistoryListParams
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams

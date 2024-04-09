@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from ......types import shared_params
-from .....workers import SettingsItemParam
+from .....workers import ScriptSettingParam
 
 __all__ = ["SettingEditParams"]
 
@@ -22,7 +22,7 @@ class SettingEditParams(TypedDict, total=False):
 
     messages: Required[Iterable[shared_params.UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]]
 
-    result: Required[SettingsItemParam]
+    result: Required[ScriptSettingParam]
 
     success: Required[Literal[True]]
     """Whether the API call was successful"""

@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
+from .analytics import Analytics as Analytics
 from .event_list_params import EventListParams as EventListParams
-from .load_balancing_analytics import LoadBalancingAnalytics as LoadBalancingAnalytics

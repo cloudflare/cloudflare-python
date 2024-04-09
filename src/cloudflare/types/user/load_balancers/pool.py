@@ -2,10 +2,10 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from ...origin import Origin
 from ...._models import BaseModel
+from ...check_region import CheckRegion
 from ...load_shedding import LoadShedding
 from ...origin_steering import OriginSteering
 from ...notification_filter import NotificationFilter
@@ -16,26 +16,7 @@ __all__ = ["Pool"]
 class Pool(BaseModel):
     id: Optional[str] = None
 
-    check_regions: Optional[
-        List[
-            Literal[
-                "WNAM",
-                "ENAM",
-                "WEU",
-                "EEU",
-                "NSAM",
-                "SSAM",
-                "OC",
-                "ME",
-                "NAF",
-                "SAF",
-                "SAS",
-                "SEAS",
-                "NEAS",
-                "ALL_REGIONS",
-            ]
-        ]
-    ] = None
+    check_regions: Optional[List[CheckRegion]] = None
     """A list of regions from which to run health checks.
 
     Null means every Cloudflare data center.

@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ...types import PageShieldSetting, PageShieldUpdateResponse, page_shield_update_params
+from ...types import Setting, PageShieldUpdateResponse, page_shield_update_params
 from .scripts import (
     Scripts,
     AsyncScripts,
@@ -140,7 +140,7 @@ class PageShield(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldSetting:
+    ) -> Setting:
         """
         Fetches the Page Shield settings.
 
@@ -166,7 +166,7 @@ class PageShield(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PageShieldSetting], ResultWrapper[PageShieldSetting]),
+            cast_to=cast(Type[Setting], ResultWrapper[Setting]),
         )
 
 
@@ -258,7 +258,7 @@ class AsyncPageShield(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldSetting:
+    ) -> Setting:
         """
         Fetches the Page Shield settings.
 
@@ -284,7 +284,7 @@ class AsyncPageShield(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PageShieldSetting], ResultWrapper[PageShieldSetting]),
+            cast_to=cast(Type[Setting], ResultWrapper[Setting]),
         )
 
 

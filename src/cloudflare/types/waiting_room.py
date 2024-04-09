@@ -6,32 +6,15 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .cookie_attributes import CookieAttributes
+from .additional_routes_item import AdditionalRoutesItem
 
-__all__ = ["WaitingRoom", "AdditionalRoute"]
-
-
-class AdditionalRoute(BaseModel):
-    host: Optional[str] = None
-    """The hostname to which this waiting room will be applied (no wildcards).
-
-    The hostname must be the primary domain, subdomain, or custom hostname (if using
-    SSL for SaaS) of this zone. Please do not include the scheme (http:// or
-    https://).
-    """
-
-    path: Optional[str] = None
-    """Sets the path within the host to enable the waiting room on.
-
-    The waiting room will be enabled for all subpaths as well. If there are two
-    waiting rooms on the same subpath, the waiting room for the most specific path
-    will be chosen. Wildcards and query parameters are not supported.
-    """
+__all__ = ["WaitingRoom"]
 
 
 class WaitingRoom(BaseModel):
     id: Optional[str] = None
 
-    additional_routes: Optional[List[AdditionalRoute]] = None
+    additional_routes: Optional[List[AdditionalRoutesItem]] = None
     """Only available for the Waiting Room Advanced subscription.
 
     Additional hostname and path combinations to which this waiting room will be

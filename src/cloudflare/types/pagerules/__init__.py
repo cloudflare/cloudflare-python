@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .zone_pagerule_settings import ZonePageruleSettings as ZonePageruleSettings
+from .setting_list_response import SettingListResponse as SettingListResponse

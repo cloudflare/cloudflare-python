@@ -6,8 +6,8 @@ from typing import List, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .check_region_item import CheckRegionItem
-from .tcp_configuration_param import TcpConfigurationParam
+from .check_region import CheckRegion
+from .tcp_configuration_param import TCPConfigurationParam
 from .http_configuration_param import HTTPConfigurationParam
 
 __all__ = ["HealthcheckEditParams"]
@@ -26,7 +26,7 @@ class HealthcheckEditParams(TypedDict, total=False):
     Only alphanumeric characters, hyphens and underscores are allowed.
     """
 
-    check_regions: Optional[List[CheckRegionItem]]
+    check_regions: Optional[List[CheckRegion]]
     """A list of regions from which to run health checks.
 
     Null means Cloudflare will pick a default region.
@@ -66,7 +66,7 @@ class HealthcheckEditParams(TypedDict, total=False):
     suspended: bool
     """If suspended, no health checks are sent to the origin."""
 
-    tcp_config: Optional[TcpConfigurationParam]
+    tcp_config: Optional[TCPConfigurationParam]
     """Parameters specific to TCP health check."""
 
     healthcheck_timeout: Annotated[int, PropertyInfo(alias="timeout")]

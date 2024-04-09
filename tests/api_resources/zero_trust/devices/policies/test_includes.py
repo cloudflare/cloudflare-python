@@ -12,8 +12,8 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.devices.policies import (
     IncludeGetResponse,
+    SplitTunnelInclude,
     IncludeUpdateResponse,
-    DevicesSplitTunnelInclude,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -126,7 +126,7 @@ class TestIncludes:
         include = client.zero_trust.devices.policies.includes.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncSinglePage[DevicesSplitTunnelInclude], include, path=["response"])
+        assert_matches_type(SyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -138,7 +138,7 @@ class TestIncludes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         include = response.parse()
-        assert_matches_type(SyncSinglePage[DevicesSplitTunnelInclude], include, path=["response"])
+        assert_matches_type(SyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -150,7 +150,7 @@ class TestIncludes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             include = response.parse()
-            assert_matches_type(SyncSinglePage[DevicesSplitTunnelInclude], include, path=["response"])
+            assert_matches_type(SyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -322,7 +322,7 @@ class TestAsyncIncludes:
         include = await async_client.zero_trust.devices.policies.includes.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncSinglePage[DevicesSplitTunnelInclude], include, path=["response"])
+        assert_matches_type(AsyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -334,7 +334,7 @@ class TestAsyncIncludes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         include = await response.parse()
-        assert_matches_type(AsyncSinglePage[DevicesSplitTunnelInclude], include, path=["response"])
+        assert_matches_type(AsyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -346,7 +346,7 @@ class TestAsyncIncludes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             include = await response.parse()
-            assert_matches_type(AsyncSinglePage[DevicesSplitTunnelInclude], include, path=["response"])
+            assert_matches_type(AsyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
