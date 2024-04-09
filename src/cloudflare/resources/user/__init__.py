@@ -64,13 +64,13 @@ from .subscriptions import (
     SubscriptionsWithStreamingResponse,
     AsyncSubscriptionsWithStreamingResponse,
 )
-from .load_balancers import (
-    LoadBalancers,
-    AsyncLoadBalancers,
-    LoadBalancersWithRawResponse,
-    AsyncLoadBalancersWithRawResponse,
-    LoadBalancersWithStreamingResponse,
-    AsyncLoadBalancersWithStreamingResponse,
+from .load_balancing import (
+    LoadBalancing,
+    AsyncLoadBalancing,
+    LoadBalancingWithRawResponse,
+    AsyncLoadBalancingWithRawResponse,
+    LoadBalancingWithStreamingResponse,
+    AsyncLoadBalancingWithStreamingResponse,
 )
 
 __all__ = [
@@ -98,12 +98,12 @@ __all__ = [
     "AsyncInvitesWithRawResponse",
     "InvitesWithStreamingResponse",
     "AsyncInvitesWithStreamingResponse",
-    "LoadBalancers",
-    "AsyncLoadBalancers",
-    "LoadBalancersWithRawResponse",
-    "AsyncLoadBalancersWithRawResponse",
-    "LoadBalancersWithStreamingResponse",
-    "AsyncLoadBalancersWithStreamingResponse",
+    "LoadBalancing",
+    "AsyncLoadBalancing",
+    "LoadBalancingWithRawResponse",
+    "AsyncLoadBalancingWithRawResponse",
+    "LoadBalancingWithStreamingResponse",
+    "AsyncLoadBalancingWithStreamingResponse",
     "Organizations",
     "AsyncOrganizations",
     "OrganizationsWithRawResponse",

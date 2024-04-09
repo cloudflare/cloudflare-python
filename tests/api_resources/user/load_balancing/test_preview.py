@@ -9,29 +9,27 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.load_balancers import PreviewGetResponse
+from cloudflare.types.user.load_balancing import PreviewGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestPreviews:
+class TestPreview:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        preview = client.load_balancers.previews.get(
-            "p1aba936b94213e5b8dca0c0dbf1f9cc",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        preview = client.user.load_balancing.preview.get(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
         )
         assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.load_balancers.previews.with_raw_response.get(
-            "p1aba936b94213e5b8dca0c0dbf1f9cc",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        response = client.user.load_balancing.preview.with_raw_response.get(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
         )
 
         assert response.is_closed is True
@@ -42,9 +40,8 @@ class TestPreviews:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.load_balancers.previews.with_streaming_response.get(
-            "p1aba936b94213e5b8dca0c0dbf1f9cc",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        with client.user.load_balancing.preview.with_streaming_response.get(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -57,37 +54,28 @@ class TestPreviews:
     @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.load_balancers.previews.with_raw_response.get(
-                "p1aba936b94213e5b8dca0c0dbf1f9cc",
-                account_id="",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `preview_id` but received ''"):
-            client.load_balancers.previews.with_raw_response.get(
+            client.user.load_balancing.preview.with_raw_response.get(
                 "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
-class TestAsyncPreviews:
+class TestAsyncPreview:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        preview = await async_client.load_balancers.previews.get(
-            "p1aba936b94213e5b8dca0c0dbf1f9cc",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        preview = await async_client.user.load_balancing.preview.get(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
         )
         assert_matches_type(PreviewGetResponse, preview, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.load_balancers.previews.with_raw_response.get(
-            "p1aba936b94213e5b8dca0c0dbf1f9cc",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        response = await async_client.user.load_balancing.preview.with_raw_response.get(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
         )
 
         assert response.is_closed is True
@@ -98,9 +86,8 @@ class TestAsyncPreviews:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.load_balancers.previews.with_streaming_response.get(
-            "p1aba936b94213e5b8dca0c0dbf1f9cc",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        async with async_client.user.load_balancing.preview.with_streaming_response.get(
+            "f1aba936b94213e5b8dca0c0dbf1f9cc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -113,14 +100,7 @@ class TestAsyncPreviews:
     @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.load_balancers.previews.with_raw_response.get(
-                "p1aba936b94213e5b8dca0c0dbf1f9cc",
-                account_id="",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `preview_id` but received ''"):
-            await async_client.load_balancers.previews.with_raw_response.get(
+            await async_client.user.load_balancing.preview.with_raw_response.get(
                 "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

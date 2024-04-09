@@ -48,7 +48,6 @@ from .email_list_rule_param import EmailListRuleParam as EmailListRuleParam
 from .gateway_list_response import GatewayListResponse as GatewayListResponse
 from .okta_group_rule_param import OktaGroupRuleParam as OktaGroupRuleParam
 from .saml_group_rule_param import SAMLGroupRuleParam as SAMLGroupRuleParam
-from .warp_connector_tunnel import WARPConnectorTunnel as WARPConnectorTunnel
 from .azure_group_rule_param import AzureGroupRuleParam as AzureGroupRuleParam
 from .certificate_rule_param import CertificateRuleParam as CertificateRuleParam
 from .identity_provider_type import IdentityProviderType as IdentityProviderType
