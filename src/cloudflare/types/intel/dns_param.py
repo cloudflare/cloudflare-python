@@ -2,12 +2,24 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import TypedDict
+from typing import Union, Iterable
+from datetime import date
+from typing_extensions import Annotated, TypedDict
 
-from .unnamed_schema_ref_b5e16cee4f32382c294201aedb9fc050 import UnnamedSchemaRefB5e16cee4f32382c294201aedb9fc050
+from ..._utils import PropertyInfo
 
-__all__ = ["DNSParam"]
+__all__ = ["DNSParam", "ReverseRecord"]
+
+
+class ReverseRecord(TypedDict, total=False):
+    first_seen: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    """First seen date of the DNS record during the time period."""
+
+    hostname: object
+    """Hostname that the IP was observed resolving to."""
+
+    last_seen: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    """Last seen date of the DNS record during the time period."""
 
 
 class DNSParam(TypedDict, total=False):
@@ -20,5 +32,5 @@ class DNSParam(TypedDict, total=False):
     per_page: float
     """Number of results per page of results."""
 
-    reverse_records: Iterable[UnnamedSchemaRefB5e16cee4f32382c294201aedb9fc050]
+    reverse_records: Iterable[ReverseRecord]
     """Reverse DNS look-ups observed during the time period."""
