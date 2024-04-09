@@ -2,9 +2,9 @@
 
 from typing import Union
 
-from .ip_configuration import IPConfiguration
-from .cidr_configuration import CIDRConfiguration
+from .lockdown_ip_configuration import LockdownIPConfiguration
+from .lockdown_cidr_configuration import LockdownCIDRConfiguration
 
 __all__ = ["Configuration"]
 
-Configuration = Union[IPConfiguration, CIDRConfiguration]
+Configuration = Union[LockdownIPConfiguration, LockdownCIDRConfiguration]

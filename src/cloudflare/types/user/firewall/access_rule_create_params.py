@@ -6,11 +6,11 @@ from typing import Union
 from typing_extensions import Literal, Required, TypedDict
 
 from ...firewall import (
-    IPConfigurationParam,
     ASNConfigurationParam,
-    CIDRConfigurationParam,
     IPV6ConfigurationParam,
     CountryConfigurationParam,
+    AccessRuleIPConfigurationParam,
+    AccessRuleCIDRConfigurationParam,
 )
 
 __all__ = ["AccessRuleCreateParams", "Configuration"]
@@ -30,9 +30,9 @@ class AccessRuleCreateParams(TypedDict, total=False):
 
 
 Configuration = Union[
-    IPConfigurationParam,
+    AccessRuleIPConfigurationParam,
     IPV6ConfigurationParam,
-    CIDRConfigurationParam,
+    AccessRuleCIDRConfigurationParam,
     ASNConfigurationParam,
     CountryConfigurationParam,
 ]

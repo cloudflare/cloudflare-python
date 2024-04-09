@@ -49,6 +49,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.load_balancers import (
+    Pool,
     PoolDeleteResponse,
     pool_edit_params,
     pool_list_params,
@@ -56,7 +57,6 @@ from ....types.load_balancers import (
     pool_delete_params,
     pool_update_params,
 )
-from ....types.user.load_balancers import Pool
 
 __all__ = ["Pools", "AsyncPools"]
 
