@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from .rule import Rule as Rule
 from .event import Event as Event
 from .setting import Setting as Setting
 from .rule_edit_params import RuleEditParams as RuleEditParams
 from .event_edit_params import EventEditParams as EventEditParams
+from .waiting_room_rule import WaitingRoomRule as WaitingRoomRule
 from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_delete_params import RuleDeleteParams as RuleDeleteParams
 from .rule_edit_response import RuleEditResponse as RuleEditResponse

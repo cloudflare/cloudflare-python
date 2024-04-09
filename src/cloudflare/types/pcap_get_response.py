@@ -4,8 +4,8 @@ from typing import Union, Optional
 from typing_extensions import Literal
 
 from .pcap import PCAP
-from .filter import Filter
 from .._models import BaseModel
+from .pcap_filter import PCAPFilter
 
 __all__ = ["PCAPGetResponse", "MagicVisibilityPCAPsResponseFull"]
 
@@ -36,7 +36,7 @@ class MagicVisibilityPCAPsResponseFull(BaseModel):
     This field only applies to `full` packet captures.
     """
 
-    filter_v1: Optional[Filter] = None
+    filter_v1: Optional[PCAPFilter] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[

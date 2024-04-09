@@ -4,9 +4,9 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .filter import Filter
 from ..._models import BaseModel
 from .mechanism import Mechanism
+from .policy_filter import PolicyFilter
 
 __all__ = ["Policy"]
 
@@ -88,7 +88,7 @@ class Policy(BaseModel):
     enabled: Optional[bool] = None
     """Whether or not the Notification policy is enabled."""
 
-    filters: Optional[Filter] = None
+    filters: Optional[PolicyFilter] = None
     """
     Optional filters that allow you to be alerted only on a subset of events for
     that alert type based on some criteria. This is only available for select alert

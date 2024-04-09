@@ -1722,16 +1722,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import Filter, FilterCreateResponse
+from cloudflare.types import FirewallFilter, FilterCreateResponse
 ```
 
 Methods:
 
 - <code title="post /zones/{zone_identifier}/filters">client.filters.<a href="./src/cloudflare/resources/filters.py">create</a>(zone_identifier, \*\*<a href="src/cloudflare/types/filter_create_params.py">params</a>) -> <a href="./src/cloudflare/types/filter_create_response.py">Optional</a></code>
-- <code title="put /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">update</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/filter_update_params.py">params</a>) -> <a href="./src/cloudflare/types/filter.py">Filter</a></code>
-- <code title="get /zones/{zone_identifier}/filters">client.filters.<a href="./src/cloudflare/resources/filters.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/filter_list_params.py">params</a>) -> <a href="./src/cloudflare/types/filter.py">SyncV4PagePaginationArray[Filter]</a></code>
-- <code title="delete /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">delete</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/filter_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/filter.py">Filter</a></code>
-- <code title="get /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">get</a>(id, \*, zone_identifier) -> <a href="./src/cloudflare/types/filter.py">Filter</a></code>
+- <code title="put /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">update</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/filter_update_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall_filter.py">FirewallFilter</a></code>
+- <code title="get /zones/{zone_identifier}/filters">client.filters.<a href="./src/cloudflare/resources/filters.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/filter_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall_filter.py">SyncV4PagePaginationArray[FirewallFilter]</a></code>
+- <code title="delete /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">delete</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/filter_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall_filter.py">FirewallFilter</a></code>
+- <code title="get /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">get</a>(id, \*, zone_identifier) -> <a href="./src/cloudflare/types/firewall_filter.py">FirewallFilter</a></code>
 
 # Firewall
 
@@ -1764,8 +1764,8 @@ Types:
 
 ```python
 from cloudflare.types.firewall import (
+    FirewallRule,
     Products,
-    Rule,
     DeletedFilter,
     RuleCreateResponse,
     RuleEditResponse,
@@ -1775,11 +1775,11 @@ from cloudflare.types.firewall import (
 Methods:
 
 - <code title="post /zones/{zone_identifier}/firewall/rules">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">create</a>(zone_identifier, \*\*<a href="src/cloudflare/types/firewall/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/rule_create_response.py">Optional</a></code>
-- <code title="put /zones/{zone_identifier}/firewall/rules/{id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">update</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/firewall/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/rule.py">Rule</a></code>
-- <code title="get /zones/{zone_identifier}/firewall/rules">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/firewall/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/rule.py">SyncV4PagePaginationArray[Rule]</a></code>
-- <code title="delete /zones/{zone_identifier}/firewall/rules/{id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">delete</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/firewall/rule_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/rule.py">Rule</a></code>
+- <code title="put /zones/{zone_identifier}/firewall/rules/{id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">update</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/firewall/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">FirewallRule</a></code>
+- <code title="get /zones/{zone_identifier}/firewall/rules">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/firewall/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">SyncV4PagePaginationArray[FirewallRule]</a></code>
+- <code title="delete /zones/{zone_identifier}/firewall/rules/{id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">delete</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/firewall/rule_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">FirewallRule</a></code>
 - <code title="patch /zones/{zone_identifier}/firewall/rules/{id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">edit</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/firewall/rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/rule_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_identifier}/firewall/rules/{id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">get</a>(zone_identifier, \*, path_id, \*\*<a href="src/cloudflare/types/firewall/rule_get_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/rule.py">Rule</a></code>
+- <code title="get /zones/{zone_identifier}/firewall/rules/{id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">get</a>(zone_identifier, \*, path_id, \*\*<a href="src/cloudflare/types/firewall/rule_get_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">FirewallRule</a></code>
 
 ## AccessRules
 
@@ -1831,8 +1831,8 @@ Types:
 from cloudflare.types.firewall.waf import (
     Override,
     RewriteAction,
-    Rules,
     URLs,
+    WAFRule,
     OverrideDeleteResponse,
 )
 ```
@@ -1879,15 +1879,15 @@ Types:
 ```python
 from cloudflare.types.firewall.waf.packages import (
     AllowedModesAnomaly,
-    Rule,
     UnnamedSchemaRef532d8b97684c9032dd36bae8acddebf5,
+    RuleListResponse,
     RuleEditResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /zones/{zone_id}/firewall/waf/packages/{package_id}/rules">client.firewall.waf.packages.rules.<a href="./src/cloudflare/resources/firewall/waf/packages/rules.py">list</a>(package_id, \*, zone_id, \*\*<a href="src/cloudflare/types/firewall/waf/packages/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/waf/packages/rule.py">SyncV4PagePaginationArray[Rule]</a></code>
+- <code title="get /zones/{zone_id}/firewall/waf/packages/{package_id}/rules">client.firewall.waf.packages.rules.<a href="./src/cloudflare/resources/firewall/waf/packages/rules.py">list</a>(package_id, \*, zone_id, \*\*<a href="src/cloudflare/types/firewall/waf/packages/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/waf/packages/rule_list_response.py">SyncV4PagePaginationArray[RuleListResponse]</a></code>
 - <code title="patch /zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}">client.firewall.waf.packages.rules.<a href="./src/cloudflare/resources/firewall/waf/packages/rules.py">edit</a>(rule_id, \*, zone_id, package_id, \*\*<a href="src/cloudflare/types/firewall/waf/packages/rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/waf/packages/rule_edit_response.py">RuleEditResponse</a></code>
 - <code title="get /zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}">client.firewall.waf.packages.rules.<a href="./src/cloudflare/resources/firewall/waf/packages/rules.py">get</a>(rule_id, \*, zone_id, package_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
 
@@ -2419,8 +2419,8 @@ Types:
 
 ```python
 from cloudflare.types.waiting_rooms import (
-    Rule,
     UnnamedSchemaRefF1c0ba8f44601f2db2e07b9397b6c430,
+    WaitingRoomRule,
     RuleCreateResponse,
     RuleUpdateResponse,
     RuleDeleteResponse,
@@ -2432,7 +2432,7 @@ Methods:
 
 - <code title="post /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">create</a>(waiting_room_id, \*, zone_id, \*\*<a href="src/cloudflare/types/waiting_rooms/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/rule_create_response.py">Optional</a></code>
 - <code title="put /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">update</a>(waiting_room_id, \*, zone_id, \*\*<a href="src/cloudflare/types/waiting_rooms/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/rule_update_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">list</a>(waiting_room_id, \*, zone_id) -> <a href="./src/cloudflare/types/waiting_rooms/rule.py">SyncSinglePage[Rule]</a></code>
+- <code title="get /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">list</a>(waiting_room_id, \*, zone_id) -> <a href="./src/cloudflare/types/waiting_rooms/waiting_room_rule.py">SyncSinglePage[WaitingRoomRule]</a></code>
 - <code title="delete /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">delete</a>(rule_id, \*, zone_id, waiting_room_id, \*\*<a href="src/cloudflare/types/waiting_rooms/rule_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/rule_delete_response.py">Optional</a></code>
 - <code title="patch /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">edit</a>(rule_id, \*, zone_id, waiting_room_id, \*\*<a href="src/cloudflare/types/waiting_rooms/rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/rule_edit_response.py">Optional</a></code>
 
@@ -3900,19 +3900,19 @@ Types:
 
 ```python
 from cloudflare.types.magic_network_monitoring import (
-    Rule,
+    MagicNetworkMonitoringRule,
     UnnamedSchemaRef99ba74ba6027c3c87ca03d4e81cfc16d,
 )
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/mnm/rules">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_network_monitoring/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_network_monitoring/rule.py">Optional</a></code>
-- <code title="put /accounts/{account_id}/mnm/rules">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_network_monitoring/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_network_monitoring/rule.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/mnm/rules">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/rule.py">SyncSinglePage[Optional]</a></code>
-- <code title="delete /accounts/{account_id}/mnm/rules/{rule_id}">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">delete</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_network_monitoring/rule_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_network_monitoring/rule.py">Optional</a></code>
-- <code title="patch /accounts/{account_id}/mnm/rules/{rule_id}">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">edit</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_network_monitoring/rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_network_monitoring/rule.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/mnm/rules/{rule_id}">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/rule.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/mnm/rules">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_network_monitoring/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_network_monitoring_rule.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/mnm/rules">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_network_monitoring/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_network_monitoring_rule.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/mnm/rules">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_network_monitoring_rule.py">SyncSinglePage[Optional]</a></code>
+- <code title="delete /accounts/{account_id}/mnm/rules/{rule_id}">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">delete</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_network_monitoring/rule_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_network_monitoring_rule.py">Optional</a></code>
+- <code title="patch /accounts/{account_id}/mnm/rules/{rule_id}">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">edit</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_network_monitoring/rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_network_monitoring_rule.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/mnm/rules/{rule_id}">client.magic_network_monitoring.rules.<a href="./src/cloudflare/resources/magic_network_monitoring/rules/rules.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/magic_network_monitoring_rule.py">Optional</a></code>
 
 ### Advertisements
 
@@ -4038,7 +4038,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import Filter, PCAP, PCAPCreateResponse, PCAPListResponse, PCAPGetResponse
+from cloudflare.types import PCAP, PCAPFilter, PCAPCreateResponse, PCAPListResponse, PCAPGetResponse
 ```
 
 Methods:
@@ -4472,9 +4472,9 @@ Types:
 
 ```python
 from cloudflare.types.alerting import (
-    Filter,
     Mechanism,
     Policy,
+    PolicyFilter,
     PolicyCreateResponse,
     PolicyUpdateResponse,
     PolicyDeleteResponse,
@@ -5717,7 +5717,7 @@ from cloudflare.types.zero_trust.gateway import (
     DNSResolverSettingsV4,
     DNSResolverSettingsV6,
     GatewayFilter,
-    Rule,
+    GatewayRule,
     RuleSetting,
     Schedule,
 )
@@ -5725,11 +5725,11 @@ from cloudflare.types.zero_trust.gateway import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/gateway/rules">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/rule.py">Rule</a></code>
-- <code title="put /accounts/{account_id}/gateway/rules/{rule_id}">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">update</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/rule.py">Rule</a></code>
-- <code title="get /accounts/{account_id}/gateway/rules">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/rule.py">SyncSinglePage[Rule]</a></code>
+- <code title="post /accounts/{account_id}/gateway/rules">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/gateway_rule.py">GatewayRule</a></code>
+- <code title="put /accounts/{account_id}/gateway/rules/{rule_id}">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">update</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/gateway_rule.py">GatewayRule</a></code>
+- <code title="get /accounts/{account_id}/gateway/rules">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/gateway_rule.py">SyncSinglePage[GatewayRule]</a></code>
 - <code title="delete /accounts/{account_id}/gateway/rules/{rule_id}">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">delete</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/rule_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
-- <code title="get /accounts/{account_id}/gateway/rules/{rule_id}">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/rule.py">Rule</a></code>
+- <code title="get /accounts/{account_id}/gateway/rules/{rule_id}">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/gateway_rule.py">GatewayRule</a></code>
 
 ## Networks
 
@@ -5847,13 +5847,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rum import Rule, RuleListResponse, RuleDeleteResponse
+from cloudflare.types.rum import RUMRule, RuleListResponse, RuleDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/rum/v2/{ruleset_id}/rule">client.rum.rules.<a href="./src/cloudflare/resources/rum/rules.py">create</a>(ruleset_id, \*, account_id, \*\*<a href="src/cloudflare/types/rum/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/rum/rule.py">Optional</a></code>
-- <code title="put /accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}">client.rum.rules.<a href="./src/cloudflare/resources/rum/rules.py">update</a>(rule_id, \*, account_id, ruleset_id, \*\*<a href="src/cloudflare/types/rum/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/rum/rule.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/rum/v2/{ruleset_id}/rule">client.rum.rules.<a href="./src/cloudflare/resources/rum/rules.py">create</a>(ruleset_id, \*, account_id, \*\*<a href="src/cloudflare/types/rum/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/rum/rum_rule.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}">client.rum.rules.<a href="./src/cloudflare/resources/rum/rules.py">update</a>(rule_id, \*, account_id, ruleset_id, \*\*<a href="src/cloudflare/types/rum/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/rum/rum_rule.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/rum/v2/{ruleset_id}/rules">client.rum.rules.<a href="./src/cloudflare/resources/rum/rules.py">list</a>(ruleset_id, \*, account_id) -> <a href="./src/cloudflare/types/rum/rule_list_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}">client.rum.rules.<a href="./src/cloudflare/resources/rum/rules.py">delete</a>(rule_id, \*, account_id, ruleset_id) -> <a href="./src/cloudflare/types/rum/rule_delete_response.py">Optional</a></code>
 

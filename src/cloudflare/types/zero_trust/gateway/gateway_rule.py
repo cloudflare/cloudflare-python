@@ -9,10 +9,10 @@ from ...._models import BaseModel
 from .rule_setting import RuleSetting
 from .gateway_filter import GatewayFilter
 
-__all__ = ["Rule"]
+__all__ = ["GatewayRule"]
 
 
-class Rule(BaseModel):
+class GatewayRule(BaseModel):
     id: Optional[str] = None
     """The API resource UUID."""
 

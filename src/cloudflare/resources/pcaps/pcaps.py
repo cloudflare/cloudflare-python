@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...types import (
-    FilterParam,
+    PCAPFilterParam,
     PCAPGetResponse,
     PCAPListResponse,
     PCAPCreateResponse,
@@ -80,7 +80,7 @@ class PCAPs(SyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: FilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -126,7 +126,7 @@ class PCAPs(SyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: FilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -183,7 +183,7 @@ class PCAPs(SyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: FilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
         byte_limit: float | NotGiven = NOT_GIVEN,
@@ -338,7 +338,7 @@ class AsyncPCAPs(AsyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: FilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -384,7 +384,7 @@ class AsyncPCAPs(AsyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: FilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -441,7 +441,7 @@ class AsyncPCAPs(AsyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: FilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
         byte_limit: float | NotGiven = NOT_GIVEN,

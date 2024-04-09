@@ -28,7 +28,7 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ....types.zero_trust.gateway import (
-    Rule,
+    GatewayRule,
     GatewayFilter,
     ScheduleParam,
     RuleSettingParam,
@@ -86,7 +86,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> GatewayRule:
         """
         Creates a new Zero Trust Gateway rule.
 
@@ -153,7 +153,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[GatewayRule], ResultWrapper[GatewayRule]),
         )
 
     def update(
@@ -194,7 +194,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> GatewayRule:
         """
         Updates a configured Zero Trust Gateway rule.
 
@@ -265,7 +265,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[GatewayRule], ResultWrapper[GatewayRule]),
         )
 
     def list(
@@ -278,7 +278,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Rule]:
+    ) -> SyncSinglePage[GatewayRule]:
         """
         Fetches the Zero Trust Gateway rules for an account.
 
@@ -295,11 +295,11 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/rules",
-            page=SyncSinglePage[Rule],
+            page=SyncSinglePage[GatewayRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Rule,
+            model=GatewayRule,
         )
 
     def delete(
@@ -362,7 +362,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> GatewayRule:
         """
         Fetches a single Zero Trust Gateway rule.
 
@@ -390,7 +390,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[GatewayRule], ResultWrapper[GatewayRule]),
         )
 
 
@@ -440,7 +440,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> GatewayRule:
         """
         Creates a new Zero Trust Gateway rule.
 
@@ -507,7 +507,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[GatewayRule], ResultWrapper[GatewayRule]),
         )
 
     async def update(
@@ -548,7 +548,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> GatewayRule:
         """
         Updates a configured Zero Trust Gateway rule.
 
@@ -619,7 +619,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[GatewayRule], ResultWrapper[GatewayRule]),
         )
 
     def list(
@@ -632,7 +632,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Rule, AsyncSinglePage[Rule]]:
+    ) -> AsyncPaginator[GatewayRule, AsyncSinglePage[GatewayRule]]:
         """
         Fetches the Zero Trust Gateway rules for an account.
 
@@ -649,11 +649,11 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/rules",
-            page=AsyncSinglePage[Rule],
+            page=AsyncSinglePage[GatewayRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Rule,
+            model=GatewayRule,
         )
 
     async def delete(
@@ -716,7 +716,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> GatewayRule:
         """
         Fetches a single Zero Trust Gateway rule.
 
@@ -744,7 +744,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[GatewayRule], ResultWrapper[GatewayRule]),
         )
 
 

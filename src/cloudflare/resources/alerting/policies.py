@@ -28,8 +28,8 @@ from ..._base_client import (
 )
 from ...types.alerting import (
     Policy,
-    FilterParam,
     MechanismParam,
+    PolicyFilterParam,
     PolicyCreateResponse,
     PolicyDeleteResponse,
     PolicyUpdateResponse,
@@ -114,7 +114,7 @@ class Policies(SyncAPIResource):
         mechanisms: MechanismParam,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
-        filters: FilterParam | NotGiven = NOT_GIVEN,
+        filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -243,7 +243,7 @@ class Policies(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: FilterParam | NotGiven = NOT_GIVEN,
+        filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
         mechanisms: MechanismParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -517,7 +517,7 @@ class AsyncPolicies(AsyncAPIResource):
         mechanisms: MechanismParam,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
-        filters: FilterParam | NotGiven = NOT_GIVEN,
+        filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -646,7 +646,7 @@ class AsyncPolicies(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        filters: FilterParam | NotGiven = NOT_GIVEN,
+        filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
         mechanisms: MechanismParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

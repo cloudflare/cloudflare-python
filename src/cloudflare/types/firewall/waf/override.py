@@ -3,7 +3,7 @@
 from typing import Dict, List, Optional
 
 from .urls import URLs
-from .rules import Rules
+from .waf_rule import WAFRule
 from ...._models import BaseModel
 from .rewrite_action import RewriteAction
 
@@ -42,7 +42,7 @@ class Override(BaseModel):
     by the action configured in this object.
     """
 
-    rules: Optional[Rules] = None
+    rules: Optional[WAFRule] = None
     """An object that allows you to override the action of specific WAF rules.
 
     Each key of this object must be the ID of a WAF rule, and each value must be a

@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["Rule"]
+__all__ = ["RUMRule"]
 
 
-class Rule(BaseModel):
+class RUMRule(BaseModel):
     id: Optional[str] = None
     """The Web Analytics rule identifier."""
 
