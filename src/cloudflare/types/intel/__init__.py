@@ -11,10 +11,11 @@ from .ip_list import IPList as IPList
 from .dns_param import DNSParam as DNSParam
 from .ip_get_params import IPGetParams as IPGetParams
 from .sinkhole_item import SinkholeItem as SinkholeItem
-from .dns_get_params import DNSGetParams as DNSGetParams
 from .domain_history import DomainHistory as DomainHistory
+from .dns_list_params import DNSListParams as DNSListParams
 from .ip_get_response import IPGetResponse as IPGetResponse
 from .whois_get_params import WhoisGetParams as WhoisGetParams
+from .dns_list_response import DNSListResponse as DNSListResponse
 from .domain_get_params import DomainGetParams as DomainGetParams
 from .ip_list_get_response import IPListGetResponse as IPListGetResponse
 from .domain_history_get_params import DomainHistoryGetParams as DomainHistoryGetParams

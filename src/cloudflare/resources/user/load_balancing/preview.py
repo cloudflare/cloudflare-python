@@ -6,38 +6,37 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ..._base_client import (
+from ...._wrappers import ResultWrapper
+from ...._base_client import (
     make_request_options,
 )
-from ...types.load_balancers import PreviewGetResponse
+from ....types.user.load_balancing import PreviewGetResponse
 
-__all__ = ["Previews", "AsyncPreviews"]
+__all__ = ["Preview", "AsyncPreview"]
 
 
-class Previews(SyncAPIResource):
+class Preview(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PreviewsWithRawResponse:
-        return PreviewsWithRawResponse(self)
+    def with_raw_response(self) -> PreviewWithRawResponse:
+        return PreviewWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PreviewsWithStreamingResponse:
-        return PreviewsWithStreamingResponse(self)
+    def with_streaming_response(self) -> PreviewWithStreamingResponse:
+        return PreviewWithStreamingResponse(self)
 
     def get(
         self,
         preview_id: str,
         *,
-        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -49,8 +48,6 @@ class Previews(SyncAPIResource):
         Get the result of a previous preview operation using the provided preview_id.
 
         Args:
-          account_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -59,12 +56,10 @@ class Previews(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not preview_id:
             raise ValueError(f"Expected a non-empty value for `preview_id` but received {preview_id!r}")
         return self._get(
-            f"/accounts/{account_id}/load_balancers/preview/{preview_id}",
+            f"/user/load_balancers/preview/{preview_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -76,20 +71,19 @@ class Previews(SyncAPIResource):
         )
 
 
-class AsyncPreviews(AsyncAPIResource):
+class AsyncPreview(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPreviewsWithRawResponse:
-        return AsyncPreviewsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPreviewWithRawResponse:
+        return AsyncPreviewWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPreviewsWithStreamingResponse:
-        return AsyncPreviewsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPreviewWithStreamingResponse:
+        return AsyncPreviewWithStreamingResponse(self)
 
     async def get(
         self,
         preview_id: str,
         *,
-        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -101,8 +95,6 @@ class AsyncPreviews(AsyncAPIResource):
         Get the result of a previous preview operation using the provided preview_id.
 
         Args:
-          account_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -111,12 +103,10 @@ class AsyncPreviews(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not preview_id:
             raise ValueError(f"Expected a non-empty value for `preview_id` but received {preview_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/load_balancers/preview/{preview_id}",
+            f"/user/load_balancers/preview/{preview_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -128,37 +118,37 @@ class AsyncPreviews(AsyncAPIResource):
         )
 
 
-class PreviewsWithRawResponse:
-    def __init__(self, previews: Previews) -> None:
-        self._previews = previews
+class PreviewWithRawResponse:
+    def __init__(self, preview: Preview) -> None:
+        self._preview = preview
 
         self.get = to_raw_response_wrapper(
-            previews.get,
+            preview.get,
         )
 
 
-class AsyncPreviewsWithRawResponse:
-    def __init__(self, previews: AsyncPreviews) -> None:
-        self._previews = previews
+class AsyncPreviewWithRawResponse:
+    def __init__(self, preview: AsyncPreview) -> None:
+        self._preview = preview
 
         self.get = async_to_raw_response_wrapper(
-            previews.get,
+            preview.get,
         )
 
 
-class PreviewsWithStreamingResponse:
-    def __init__(self, previews: Previews) -> None:
-        self._previews = previews
+class PreviewWithStreamingResponse:
+    def __init__(self, preview: Preview) -> None:
+        self._preview = preview
 
         self.get = to_streamed_response_wrapper(
-            previews.get,
+            preview.get,
         )
 
 
-class AsyncPreviewsWithStreamingResponse:
-    def __init__(self, previews: AsyncPreviews) -> None:
-        self._previews = previews
+class AsyncPreviewWithStreamingResponse:
+    def __init__(self, preview: AsyncPreview) -> None:
+        self._preview = preview
 
         self.get = async_to_streamed_response_wrapper(
-            previews.get,
+            preview.get,
         )
