@@ -34,12 +34,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.waiting_rooms import (
-    EventGetResponse,
-    EventEditResponse,
-    EventListResponse,
-    EventCreateResponse,
+    Event,
     EventDeleteResponse,
-    EventUpdateResponse,
     event_edit_params,
     event_create_params,
     event_delete_params,
@@ -86,7 +82,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EventCreateResponse:
+    ) -> Event:
         """Only available for the Waiting Room Advanced subscription.
 
         Creates an event for
@@ -183,7 +179,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EventCreateResponse], ResultWrapper[EventCreateResponse]),
+            cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
     def update(
@@ -211,7 +207,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EventUpdateResponse:
+    ) -> Event:
         """
         Updates a configured event for a waiting room.
 
@@ -304,7 +300,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EventUpdateResponse], ResultWrapper[EventUpdateResponse]),
+            cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
     def list(
@@ -318,7 +314,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[EventListResponse]:
+    ) -> SyncSinglePage[Event]:
         """
         Lists events for a waiting room.
 
@@ -339,11 +335,11 @@ class Events(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
-            page=SyncSinglePage[EventListResponse],
+            page=SyncSinglePage[Event],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=EventListResponse,
+            model=Event,
         )
 
     def delete(
@@ -418,7 +414,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EventEditResponse:
+    ) -> Event:
         """
         Patches a configured event for a waiting room.
 
@@ -511,7 +507,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EventEditResponse], ResultWrapper[EventEditResponse]),
+            cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
     def get(
@@ -526,7 +522,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EventGetResponse:
+    ) -> Event:
         """
         Fetches a single configured event for a waiting room.
 
@@ -556,7 +552,7 @@ class Events(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EventGetResponse], ResultWrapper[EventGetResponse]),
+            cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
 
@@ -597,7 +593,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EventCreateResponse:
+    ) -> Event:
         """Only available for the Waiting Room Advanced subscription.
 
         Creates an event for
@@ -694,7 +690,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EventCreateResponse], ResultWrapper[EventCreateResponse]),
+            cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
     async def update(
@@ -722,7 +718,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EventUpdateResponse:
+    ) -> Event:
         """
         Updates a configured event for a waiting room.
 
@@ -815,7 +811,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EventUpdateResponse], ResultWrapper[EventUpdateResponse]),
+            cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
     def list(
@@ -829,7 +825,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[EventListResponse, AsyncSinglePage[EventListResponse]]:
+    ) -> AsyncPaginator[Event, AsyncSinglePage[Event]]:
         """
         Lists events for a waiting room.
 
@@ -850,11 +846,11 @@ class AsyncEvents(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
-            page=AsyncSinglePage[EventListResponse],
+            page=AsyncSinglePage[Event],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=EventListResponse,
+            model=Event,
         )
 
     async def delete(
@@ -929,7 +925,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EventEditResponse:
+    ) -> Event:
         """
         Patches a configured event for a waiting room.
 
@@ -1022,7 +1018,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EventEditResponse], ResultWrapper[EventEditResponse]),
+            cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
     async def get(
@@ -1037,7 +1033,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EventGetResponse:
+    ) -> Event:
         """
         Fetches a single configured event for a waiting room.
 
@@ -1067,7 +1063,7 @@ class AsyncEvents(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EventGetResponse], ResultWrapper[EventGetResponse]),
+            cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
 

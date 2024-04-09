@@ -8,17 +8,21 @@ __all__ = ["Filter"]
 
 
 class Filter(BaseModel):
-    destination_address: Optional[str] = None
-    """The destination IP address of the packet."""
+    id: Optional[str] = None
+    """The unique identifier of the filter."""
 
-    destination_port: Optional[float] = None
-    """The destination port of the packet."""
+    description: Optional[str] = None
+    """An informative summary of the filter."""
 
-    protocol: Optional[float] = None
-    """The protocol number of the packet."""
+    expression: Optional[str] = None
+    """The filter expression.
 
-    source_address: Optional[str] = None
-    """The source IP address of the packet."""
+    For more information, refer to
+    [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
+    """
 
-    source_port: Optional[float] = None
-    """The source port of the packet."""
+    paused: Optional[bool] = None
+    """When true, indicates that the filter is currently paused."""
+
+    ref: Optional[str] = None
+    """A short reference tag. Allows you to select related filters."""

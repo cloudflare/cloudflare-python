@@ -166,20 +166,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.user.firewall import (
-    AccessRuleCreateResponse,
-    AccessRuleListResponse,
-    AccessRuleDeleteResponse,
-    AccessRuleEditResponse,
-)
+from cloudflare.types.user.firewall import FirewallRule, AccessRuleDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /user/firewall/access_rules/rules">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">create</a>(\*\*<a href="src/cloudflare/types/user/firewall/access_rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/access_rule_create_response.py">AccessRuleCreateResponse</a></code>
-- <code title="get /user/firewall/access_rules/rules">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">list</a>(\*\*<a href="src/cloudflare/types/user/firewall/access_rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/access_rule_list_response.py">SyncV4PagePaginationArray[AccessRuleListResponse]</a></code>
+- <code title="post /user/firewall/access_rules/rules">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">create</a>(\*\*<a href="src/cloudflare/types/user/firewall/access_rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/firewall_rule.py">FirewallRule</a></code>
+- <code title="get /user/firewall/access_rules/rules">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">list</a>(\*\*<a href="src/cloudflare/types/user/firewall/access_rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/firewall_rule.py">SyncV4PagePaginationArray[FirewallRule]</a></code>
 - <code title="delete /user/firewall/access_rules/rules/{identifier}">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">delete</a>(identifier, \*\*<a href="src/cloudflare/types/user/firewall/access_rule_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/access_rule_delete_response.py">AccessRuleDeleteResponse</a></code>
-- <code title="patch /user/firewall/access_rules/rules/{identifier}">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">edit</a>(identifier, \*\*<a href="src/cloudflare/types/user/firewall/access_rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/access_rule_edit_response.py">AccessRuleEditResponse</a></code>
+- <code title="patch /user/firewall/access_rules/rules/{identifier}">client.user.firewall.access_rules.<a href="./src/cloudflare/resources/user/firewall/access_rules.py">edit</a>(identifier, \*\*<a href="src/cloudflare/types/user/firewall/access_rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/firewall/firewall_rule.py">FirewallRule</a></code>
 
 ## Invites
 
@@ -1545,6 +1540,7 @@ Types:
 ```python
 from cloudflare.types import (
     CustomHostname,
+    CustomMetadata,
     UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1,
     UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510,
     UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1,
@@ -1809,22 +1805,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import (
-    FilterCreateResponse,
-    FilterUpdateResponse,
-    FilterListResponse,
-    FilterDeleteResponse,
-    FilterGetResponse,
-)
+from cloudflare.types import Filter, FilterCreateResponse
 ```
 
 Methods:
 
 - <code title="post /zones/{zone_identifier}/filters">client.filters.<a href="./src/cloudflare/resources/filters.py">create</a>(zone_identifier, \*\*<a href="src/cloudflare/types/filter_create_params.py">params</a>) -> <a href="./src/cloudflare/types/filter_create_response.py">Optional</a></code>
-- <code title="put /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">update</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/filter_update_params.py">params</a>) -> <a href="./src/cloudflare/types/filter_update_response.py">FilterUpdateResponse</a></code>
-- <code title="get /zones/{zone_identifier}/filters">client.filters.<a href="./src/cloudflare/resources/filters.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/filter_list_params.py">params</a>) -> <a href="./src/cloudflare/types/filter_list_response.py">SyncV4PagePaginationArray[FilterListResponse]</a></code>
-- <code title="delete /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">delete</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/filter_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/filter_delete_response.py">FilterDeleteResponse</a></code>
-- <code title="get /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">get</a>(id, \*, zone_identifier) -> <a href="./src/cloudflare/types/filter_get_response.py">FilterGetResponse</a></code>
+- <code title="put /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">update</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/filter_update_params.py">params</a>) -> <a href="./src/cloudflare/types/filter.py">Filter</a></code>
+- <code title="get /zones/{zone_identifier}/filters">client.filters.<a href="./src/cloudflare/resources/filters.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/filter_list_params.py">params</a>) -> <a href="./src/cloudflare/types/filter.py">SyncV4PagePaginationArray[Filter]</a></code>
+- <code title="delete /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">delete</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/filter_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/filter.py">Filter</a></code>
+- <code title="get /zones/{zone_identifier}/filters/{id}">client.filters.<a href="./src/cloudflare/resources/filters.py">get</a>(id, \*, zone_identifier) -> <a href="./src/cloudflare/types/filter.py">Filter</a></code>
 
 # Firewall
 
@@ -1879,7 +1869,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.firewall import AccessRuleListResponse, AccessRuleDeleteResponse
+from cloudflare.types.firewall import (
+    ASNConfiguration,
+    CIDRConfiguration,
+    CountryConfiguration,
+    IPConfiguration,
+    IPV6Configuration,
+    AccessRuleListResponse,
+    AccessRuleDeleteResponse,
+)
 ```
 
 Methods:
@@ -1963,6 +1961,7 @@ Types:
 
 ```python
 from cloudflare.types.firewall.waf.packages import (
+    AllowedModesAnomaly,
     Rule,
     UnnamedSchemaRef532d8b97684c9032dd36bae8acddebf5,
     RuleEditResponse,
@@ -2281,13 +2280,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import RateLimitListResponse, RateLimitDeleteResponse
+from cloudflare.types import Action, Methods, RateLimit, RateLimitDeleteResponse
 ```
 
 Methods:
 
 - <code title="post /zones/{zone_identifier}/rate_limits">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">create</a>(zone_identifier, \*\*<a href="src/cloudflare/types/rate_limit_create_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
-- <code title="get /zones/{zone_identifier}/rate_limits">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/rate_limit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/rate_limit_list_response.py">SyncV4PagePaginationArray[RateLimitListResponse]</a></code>
+- <code title="get /zones/{zone_identifier}/rate_limits">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">list</a>(zone_identifier, \*\*<a href="src/cloudflare/types/rate_limit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/rate_limit.py">SyncV4PagePaginationArray[RateLimit]</a></code>
 - <code title="delete /zones/{zone_identifier}/rate_limits/{id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">delete</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/rate_limit_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/rate_limit_delete_response.py">RateLimitDeleteResponse</a></code>
 - <code title="put /zones/{zone_identifier}/rate_limits/{id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">edit</a>(id, \*, zone_identifier, \*\*<a href="src/cloudflare/types/rate_limit_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
 - <code title="get /zones/{zone_identifier}/rate_limits/{id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">get</a>(id, \*, zone_identifier) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
@@ -2465,23 +2464,18 @@ Types:
 from cloudflare.types.waiting_rooms import (
     Event,
     UnnamedSchemaRef229c159575bc68a9c21f5a1615629cf6,
-    EventCreateResponse,
-    EventUpdateResponse,
-    EventListResponse,
     EventDeleteResponse,
-    EventEditResponse,
-    EventGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">create</a>(waiting_room_id, \*, zone_id, \*\*<a href="src/cloudflare/types/waiting_rooms/event_create_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/event_create_response.py">EventCreateResponse</a></code>
-- <code title="put /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">update</a>(event_id, \*, zone_id, waiting_room_id, \*\*<a href="src/cloudflare/types/waiting_rooms/event_update_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/event_update_response.py">EventUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">list</a>(waiting_room_id, \*, zone_id) -> <a href="./src/cloudflare/types/waiting_rooms/event_list_response.py">SyncSinglePage[EventListResponse]</a></code>
+- <code title="post /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">create</a>(waiting_room_id, \*, zone_id, \*\*<a href="src/cloudflare/types/waiting_rooms/event_create_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/event.py">Event</a></code>
+- <code title="put /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">update</a>(event_id, \*, zone_id, waiting_room_id, \*\*<a href="src/cloudflare/types/waiting_rooms/event_update_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/event.py">Event</a></code>
+- <code title="get /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">list</a>(waiting_room_id, \*, zone_id) -> <a href="./src/cloudflare/types/waiting_rooms/event.py">SyncSinglePage[Event]</a></code>
 - <code title="delete /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">delete</a>(event_id, \*, zone_id, waiting_room_id, \*\*<a href="src/cloudflare/types/waiting_rooms/event_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/event_delete_response.py">EventDeleteResponse</a></code>
-- <code title="patch /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">edit</a>(event_id, \*, zone_id, waiting_room_id, \*\*<a href="src/cloudflare/types/waiting_rooms/event_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/event_edit_response.py">EventEditResponse</a></code>
-- <code title="get /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">get</a>(event_id, \*, zone_id, waiting_room_id) -> <a href="./src/cloudflare/types/waiting_rooms/event_get_response.py">EventGetResponse</a></code>
+- <code title="patch /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">edit</a>(event_id, \*, zone_id, waiting_room_id, \*\*<a href="src/cloudflare/types/waiting_rooms/event_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/event.py">Event</a></code>
+- <code title="get /zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}">client.waiting_rooms.events.<a href="./src/cloudflare/resources/waiting_rooms/events/events.py">get</a>(event_id, \*, zone_id, waiting_room_id) -> <a href="./src/cloudflare/types/waiting_rooms/event.py">Event</a></code>
 
 ### Details
 
@@ -2514,7 +2508,7 @@ Methods:
 
 - <code title="post /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">create</a>(waiting_room_id, \*, zone_id, \*\*<a href="src/cloudflare/types/waiting_rooms/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/rule_create_response.py">Optional</a></code>
 - <code title="put /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">update</a>(waiting_room_id, \*, zone_id, \*\*<a href="src/cloudflare/types/waiting_rooms/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/rule_update_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">list</a>(waiting_room_id, \*, zone_id) -> <a href="./src/cloudflare/types/waiting_rooms/event.py">SyncSinglePage[Event]</a></code>
+- <code title="get /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">list</a>(waiting_room_id, \*, zone_id) -> <a href="./src/cloudflare/types/waiting_rooms/rule.py">SyncSinglePage[Rule]</a></code>
 - <code title="delete /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">delete</a>(rule_id, \*, zone_id, waiting_room_id, \*\*<a href="src/cloudflare/types/waiting_rooms/rule_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/rule_delete_response.py">Optional</a></code>
 - <code title="patch /zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}">client.waiting_rooms.rules.<a href="./src/cloudflare/resources/waiting_rooms/rules.py">edit</a>(rule_id, \*, zone_id, waiting_room_id, \*\*<a href="src/cloudflare/types/waiting_rooms/rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/waiting_rooms/rule_edit_response.py">Optional</a></code>
 
