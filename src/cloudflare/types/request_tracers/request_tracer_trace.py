@@ -7,10 +7,10 @@ from typing import List, Optional
 from ..._compat import PYDANTIC_V2
 from ..._models import BaseModel
 
-__all__ = ["Trace", "TraceItem"]
+__all__ = ["RequestTracerTrace", "RequestTracerTraceItem"]
 
 
-class TraceItem(BaseModel):
+class RequestTracerTraceItem(BaseModel):
     action: Optional[str] = None
     """If step type is rule, then action performed by this rule"""
 
@@ -35,15 +35,15 @@ class TraceItem(BaseModel):
     step_name: Optional[str] = None
     """Tracing step identifying name"""
 
-    trace: Optional[Trace] = None
+    trace: Optional[RequestTracerTrace] = None
 
     type: Optional[str] = None
     """Tracing step type"""
 
 
-Trace = List[TraceItem]
+RequestTracerTrace = List[RequestTracerTraceItem]
 
 if PYDANTIC_V2:
-    TraceItem.model_rebuild()
+    RequestTracerTraceItem.model_rebuild()
 else:
-    TraceItem.update_forward_refs()  # type: ignore
+    RequestTracerTraceItem.update_forward_refs()  # type: ignore

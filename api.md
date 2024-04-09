@@ -4086,7 +4086,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.request_tracers import Trace, TraceCreateResponse
+from cloudflare.types.request_tracers import RequestTracerTrace, TraceCreateResponse
 ```
 
 Methods:
