@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["ErviceToken"]
+__all__ = ["ServiceToken"]
 
 
-class ErviceToken(BaseModel):
+class ServiceToken(BaseModel):
     id: Optional[object] = None
     """The ID of the service token."""
 

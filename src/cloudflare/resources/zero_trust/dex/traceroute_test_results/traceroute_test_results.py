@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from ....._compat import cached_property
 from .network_path import (
-    NetworkPathResource,
-    AsyncNetworkPathResource,
-    NetworkPathResourceWithRawResponse,
-    AsyncNetworkPathResourceWithRawResponse,
-    NetworkPathResourceWithStreamingResponse,
-    AsyncNetworkPathResourceWithStreamingResponse,
+    NetworkPath,
+    AsyncNetworkPath,
+    NetworkPathWithRawResponse,
+    AsyncNetworkPathWithRawResponse,
+    NetworkPathWithStreamingResponse,
+    AsyncNetworkPathWithStreamingResponse,
 )
 from ....._resource import SyncAPIResource, AsyncAPIResource
 
@@ -18,8 +18,8 @@ __all__ = ["TracerouteTestResults", "AsyncTracerouteTestResults"]
 
 class TracerouteTestResults(SyncAPIResource):
     @cached_property
-    def network_path(self) -> NetworkPathResource:
-        return NetworkPathResource(self._client)
+    def network_path(self) -> NetworkPath:
+        return NetworkPath(self._client)
 
     @cached_property
     def with_raw_response(self) -> TracerouteTestResultsWithRawResponse:
@@ -32,8 +32,8 @@ class TracerouteTestResults(SyncAPIResource):
 
 class AsyncTracerouteTestResults(AsyncAPIResource):
     @cached_property
-    def network_path(self) -> AsyncNetworkPathResource:
-        return AsyncNetworkPathResource(self._client)
+    def network_path(self) -> AsyncNetworkPath:
+        return AsyncNetworkPath(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncTracerouteTestResultsWithRawResponse:
@@ -49,8 +49,8 @@ class TracerouteTestResultsWithRawResponse:
         self._traceroute_test_results = traceroute_test_results
 
     @cached_property
-    def network_path(self) -> NetworkPathResourceWithRawResponse:
-        return NetworkPathResourceWithRawResponse(self._traceroute_test_results.network_path)
+    def network_path(self) -> NetworkPathWithRawResponse:
+        return NetworkPathWithRawResponse(self._traceroute_test_results.network_path)
 
 
 class AsyncTracerouteTestResultsWithRawResponse:
@@ -58,8 +58,8 @@ class AsyncTracerouteTestResultsWithRawResponse:
         self._traceroute_test_results = traceroute_test_results
 
     @cached_property
-    def network_path(self) -> AsyncNetworkPathResourceWithRawResponse:
-        return AsyncNetworkPathResourceWithRawResponse(self._traceroute_test_results.network_path)
+    def network_path(self) -> AsyncNetworkPathWithRawResponse:
+        return AsyncNetworkPathWithRawResponse(self._traceroute_test_results.network_path)
 
 
 class TracerouteTestResultsWithStreamingResponse:
@@ -67,8 +67,8 @@ class TracerouteTestResultsWithStreamingResponse:
         self._traceroute_test_results = traceroute_test_results
 
     @cached_property
-    def network_path(self) -> NetworkPathResourceWithStreamingResponse:
-        return NetworkPathResourceWithStreamingResponse(self._traceroute_test_results.network_path)
+    def network_path(self) -> NetworkPathWithStreamingResponse:
+        return NetworkPathWithStreamingResponse(self._traceroute_test_results.network_path)
 
 
 class AsyncTracerouteTestResultsWithStreamingResponse:
@@ -76,5 +76,5 @@ class AsyncTracerouteTestResultsWithStreamingResponse:
         self._traceroute_test_results = traceroute_test_results
 
     @cached_property
-    def network_path(self) -> AsyncNetworkPathResourceWithStreamingResponse:
-        return AsyncNetworkPathResourceWithStreamingResponse(self._traceroute_test_results.network_path)
+    def network_path(self) -> AsyncNetworkPathWithStreamingResponse:
+        return AsyncNetworkPathWithStreamingResponse(self._traceroute_test_results.network_path)

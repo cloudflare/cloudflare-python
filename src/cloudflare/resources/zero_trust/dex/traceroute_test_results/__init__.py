@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .network_path import (
-    NetworkPathResource,
-    AsyncNetworkPathResource,
-    NetworkPathResourceWithRawResponse,
-    AsyncNetworkPathResourceWithRawResponse,
-    NetworkPathResourceWithStreamingResponse,
-    AsyncNetworkPathResourceWithStreamingResponse,
+    NetworkPath,
+    AsyncNetworkPath,
+    NetworkPathWithRawResponse,
+    AsyncNetworkPathWithRawResponse,
+    NetworkPathWithStreamingResponse,
+    AsyncNetworkPathWithStreamingResponse,
 )
 from .traceroute_test_results import (
     TracerouteTestResults,
@@ -18,12 +18,12 @@ from .traceroute_test_results import (
 )
 
 __all__ = [
-    "NetworkPathResource",
-    "AsyncNetworkPathResource",
-    "NetworkPathResourceWithRawResponse",
-    "AsyncNetworkPathResourceWithRawResponse",
-    "NetworkPathResourceWithStreamingResponse",
-    "AsyncNetworkPathResourceWithStreamingResponse",
+    "NetworkPath",
+    "AsyncNetworkPath",
+    "NetworkPathWithRawResponse",
+    "AsyncNetworkPathWithRawResponse",
+    "NetworkPathWithStreamingResponse",
+    "AsyncNetworkPathWithStreamingResponse",
     "TracerouteTestResults",
     "AsyncTracerouteTestResults",
     "TracerouteTestResultsWithRawResponse",

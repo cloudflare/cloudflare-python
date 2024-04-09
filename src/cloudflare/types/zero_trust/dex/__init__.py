@@ -6,7 +6,6 @@ from .tests import Tests as Tests
 from .live_stat import LiveStat as LiveStat
 from .traceroute import Traceroute as Traceroute
 from .http_details import HTTPDetails as HTTPDetails
-from .network_path import NetworkPath as NetworkPath
 from .colo_list_params import ColoListParams as ColoListParams
 from .test_list_params import TestListParams as TestListParams
 from .test_list_response import TestListResponse as TestListResponse

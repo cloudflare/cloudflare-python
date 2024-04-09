@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["Bookmarks"]
+__all__ = ["Bookmark"]
 
 
-class Bookmarks(BaseModel):
+class Bookmark(BaseModel):
     id: Optional[str] = None
     """The unique identifier for the Bookmark application."""
 

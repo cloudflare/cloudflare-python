@@ -3,9 +3,9 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from .input import Input
-from .match import Match
 from ...._models import BaseModel
+from .device_input import DeviceInput
+from .device_match import DeviceMatch
 
 __all__ = ["DevicePostureRule"]
 
@@ -24,10 +24,10 @@ class DevicePostureRule(BaseModel):
     WARP client.
     """
 
-    input: Optional[Input] = None
+    input: Optional[DeviceInput] = None
     """The value to be checked against."""
 
-    match: Optional[List[Match]] = None
+    match: Optional[List[DeviceMatch]] = None
     """The conditions that the client must match to run the rule."""
 
     name: Optional[str] = None

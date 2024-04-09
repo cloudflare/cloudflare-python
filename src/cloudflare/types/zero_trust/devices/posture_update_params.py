@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .input_param import InputParam
-from .match_param import MatchParam
+from .device_input_param import DeviceInputParam
+from .device_match_param import DeviceMatchParam
 
 __all__ = ["PostureUpdateParams"]
 
@@ -52,10 +52,10 @@ class PostureUpdateParams(TypedDict, total=False):
     WARP client.
     """
 
-    input: InputParam
+    input: DeviceInputParam
     """The value to be checked against."""
 
-    match: Iterable[MatchParam]
+    match: Iterable[DeviceMatchParam]
     """The conditions that the client must match to run the rule."""
 
     schedule: str

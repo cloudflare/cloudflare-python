@@ -24,9 +24,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
+from ....types.zero_trust import NetworkPath
 from ....types.zero_trust.dex import (
     Traceroute,
-    NetworkPath,
     TracerouteTestPercentilesResponse,
     traceroute_test_get_params,
     traceroute_test_percentiles_params,
