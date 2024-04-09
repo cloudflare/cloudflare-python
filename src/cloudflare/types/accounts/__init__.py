@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from .role import Role as Role
-from .roles import Roles as Roles
 from .member import Member as Member
+from .member_roles import MemberRoles as MemberRoles
 from .permission_grant import PermissionGrant as PermissionGrant
 from .member_list_params import MemberListParams as MemberListParams
 from .member_create_params import MemberCreateParams as MemberCreateParams
