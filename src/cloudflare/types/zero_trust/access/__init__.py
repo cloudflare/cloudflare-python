@@ -29,6 +29,7 @@ from .key_rotate_response import KeyRotateResponse as KeyRotateResponse
 from .key_update_response import KeyUpdateResponse as KeyUpdateResponse
 from .saml_saas_app_param import SAMLSaasAppParam as SAMLSaasAppParam
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
+from .associated_hostnames import AssociatedHostnames as AssociatedHostnames
 from .self_hosted_domainsh import SelfHostedDomainsh as SelfHostedDomainsh
 from .group_delete_response import GroupDeleteResponse as GroupDeleteResponse
 from .bookmark_create_params import BookmarkCreateParams as BookmarkCreateParams
@@ -38,7 +39,6 @@ from .bookmark_delete_response import BookmarkDeleteResponse as BookmarkDeleteRe
 from .custom_page_without_html import CustomPageWithoutHTML as CustomPageWithoutHTML
 from .application_create_params import ApplicationCreateParams as ApplicationCreateParams
 from .application_update_params import ApplicationUpdateParams as ApplicationUpdateParams
-from .associated_hostnames_item import AssociatedHostnamesItem as AssociatedHostnamesItem
 from .certificate_create_params import CertificateCreateParams as CertificateCreateParams
 from .certificate_update_params import CertificateUpdateParams as CertificateUpdateParams
 from .custom_page_create_params import CustomPageCreateParams as CustomPageCreateParams

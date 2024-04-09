@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from .additional_routes_param import AdditionalRoutesParam
 from .cookie_attributes_param import CookieAttributesParam
-from .additional_routes_item_param import AdditionalRoutesItemParam
 
 __all__ = ["WaitingRoomCreateParams"]
 
@@ -46,7 +46,7 @@ class WaitingRoomCreateParams(TypedDict, total=False):
     around the world.
     """
 
-    additional_routes: Iterable[AdditionalRoutesItemParam]
+    additional_routes: Iterable[AdditionalRoutesParam]
     """Only available for the Waiting Room Advanced subscription.
 
     Additional hostname and path combinations to which this waiting room will be

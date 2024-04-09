@@ -6,7 +6,7 @@ from typing import List, Union
 from typing_extensions import Literal, Required, TypedDict
 
 from .ttl_param import TTLParam
-from .record_tags_item import RecordTagsItem
+from .record_tags import RecordTags
 
 __all__ = [
     "RecordUpdateParams",
@@ -71,7 +71,7 @@ class ARecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -107,7 +107,7 @@ class AAAARecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -137,7 +137,7 @@ class CAARecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -178,7 +178,7 @@ class CERTRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -228,7 +228,7 @@ class CNAMERecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -258,7 +258,7 @@ class DNSKEYRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -302,7 +302,7 @@ class DSRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -346,7 +346,7 @@ class HTTPSRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -387,7 +387,7 @@ class LOCRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -461,7 +461,7 @@ class MXRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -491,7 +491,7 @@ class NAPTRRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -541,7 +541,7 @@ class NSRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -571,7 +571,7 @@ class PTRRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -601,7 +601,7 @@ class SMIMEARecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -649,7 +649,7 @@ class SRVRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -718,7 +718,7 @@ class SSHFPRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -759,7 +759,7 @@ class SVCBRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -800,7 +800,7 @@ class TLSARecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -844,7 +844,7 @@ class TXTRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam
@@ -880,7 +880,7 @@ class URIRecord(TypedDict, total=False):
     This field has no effect on DNS responses.
     """
 
-    tags: List[RecordTagsItem]
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: TTLParam

@@ -5,8 +5,8 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .additional_routes import AdditionalRoutes
 from .cookie_attributes import CookieAttributes
-from .additional_routes_item import AdditionalRoutesItem
 
 __all__ = ["WaitingRoom"]
 
@@ -14,7 +14,7 @@ __all__ = ["WaitingRoom"]
 class WaitingRoom(BaseModel):
     id: Optional[str] = None
 
-    additional_routes: Optional[List[AdditionalRoutesItem]] = None
+    additional_routes: Optional[List[AdditionalRoutes]] = None
     """Only available for the Waiting Room Advanced subscription.
 
     Additional hostname and path combinations to which this waiting room will be

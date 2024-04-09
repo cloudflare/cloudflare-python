@@ -7,13 +7,13 @@ from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
-from ..dimension_item import DimensionItem
+from ..dimension import Dimension
 
 __all__ = ["SummaryGetParams"]
 
 
 class SummaryGetParams(TypedDict, total=False):
-    dimensions: List[DimensionItem]
+    dimensions: List[Dimension]
     """Can be used to break down the data by given attributes. Options are:
 
     | Dimension | Name                          | Example                                                    |

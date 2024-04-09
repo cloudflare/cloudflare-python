@@ -6,7 +6,7 @@ from typing import List, Type, cast
 
 import httpx
 
-from ...types import AllowedOriginsItem
+from ...types import AllowedOrigins
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -45,7 +45,7 @@ class ClipResource(SyncAPIResource):
         clipped_from_video_uid: str,
         end_time_seconds: int,
         start_time_seconds: int,
-        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         max_duration_seconds: int | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -142,7 +142,7 @@ class AsyncClipResource(AsyncAPIResource):
         clipped_from_video_uid: str,
         end_time_seconds: int,
         start_time_seconds: int,
-        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         max_duration_seconds: int | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,

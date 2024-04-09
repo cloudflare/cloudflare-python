@@ -32,14 +32,6 @@ from .invites import (
     InvitesWithStreamingResponse,
     AsyncInvitesWithStreamingResponse,
 )
-from .firewall import (
-    Firewall,
-    AsyncFirewall,
-    FirewallWithRawResponse,
-    AsyncFirewallWithRawResponse,
-    FirewallWithStreamingResponse,
-    AsyncFirewallWithStreamingResponse,
-)
 from .audit_logs import (
     AuditLogs,
     AsyncAuditLogs,
@@ -64,14 +56,6 @@ from .subscriptions import (
     SubscriptionsWithStreamingResponse,
     AsyncSubscriptionsWithStreamingResponse,
 )
-from .load_balancing import (
-    LoadBalancing,
-    AsyncLoadBalancing,
-    LoadBalancingWithRawResponse,
-    AsyncLoadBalancingWithRawResponse,
-    LoadBalancingWithStreamingResponse,
-    AsyncLoadBalancingWithStreamingResponse,
-)
 
 __all__ = [
     "AuditLogs",
@@ -86,24 +70,12 @@ __all__ = [
     "AsyncBillingWithRawResponse",
     "BillingWithStreamingResponse",
     "AsyncBillingWithStreamingResponse",
-    "Firewall",
-    "AsyncFirewall",
-    "FirewallWithRawResponse",
-    "AsyncFirewallWithRawResponse",
-    "FirewallWithStreamingResponse",
-    "AsyncFirewallWithStreamingResponse",
     "Invites",
     "AsyncInvites",
     "InvitesWithRawResponse",
     "AsyncInvitesWithRawResponse",
     "InvitesWithStreamingResponse",
     "AsyncInvitesWithStreamingResponse",
-    "LoadBalancing",
-    "AsyncLoadBalancing",
-    "LoadBalancingWithRawResponse",
-    "AsyncLoadBalancingWithRawResponse",
-    "LoadBalancingWithStreamingResponse",
-    "AsyncLoadBalancingWithStreamingResponse",
     "Organizations",
     "AsyncOrganizations",
     "OrganizationsWithRawResponse",

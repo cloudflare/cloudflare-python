@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .lists import ListsItemParam
+from .lists import ListsParam
 
 __all__ = ["ListCreateParams"]
 
@@ -22,5 +22,5 @@ class ListCreateParams(TypedDict, total=False):
     description: str
     """The description of the list."""
 
-    items: Iterable[ListsItemParam]
+    items: Iterable[ListsParam]
     """The items in the list."""

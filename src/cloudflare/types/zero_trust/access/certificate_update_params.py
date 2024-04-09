@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, TypedDict
 
-from .associated_hostnames_item import AssociatedHostnamesItem
+from .associated_hostnames import AssociatedHostnames
 
 __all__ = ["CertificateUpdateParams"]
 
 
 class CertificateUpdateParams(TypedDict, total=False):
-    associated_hostnames: Required[List[AssociatedHostnamesItem]]
+    associated_hostnames: Required[List[AssociatedHostnames]]
     """The hostnames of the applications that will use this certificate."""
 
     account_id: str

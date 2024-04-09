@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .dimension_item import DimensionItem as DimensionItem
+from .dimension import Dimension as Dimension

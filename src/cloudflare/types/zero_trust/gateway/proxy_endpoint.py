@@ -4,7 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
-from .gateway_ips_item import GatewayIPsItem
+from .gateway_ips import GatewayIPs
 
 __all__ = ["ProxyEndpoint"]
 
@@ -14,7 +14,7 @@ class ProxyEndpoint(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    ips: Optional[List[GatewayIPsItem]] = None
+    ips: Optional[List[GatewayIPs]] = None
     """A list of CIDRs to restrict ingress connections."""
 
     name: Optional[str] = None

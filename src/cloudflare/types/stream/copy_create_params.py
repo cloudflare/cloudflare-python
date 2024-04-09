@@ -7,7 +7,7 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from ..allowed_origins_item import AllowedOriginsItem
+from ..allowed_origins import AllowedOrigins
 
 __all__ = ["CopyCreateParams", "Watermark"]
 
@@ -24,7 +24,7 @@ class CopyCreateParams(TypedDict, total=False):
     with a `content-range` header that includes the size of the file.
     """
 
-    allowed_origins: Annotated[List[AllowedOriginsItem], PropertyInfo(alias="allowedOrigins")]
+    allowed_origins: Annotated[List[AllowedOrigins], PropertyInfo(alias="allowedOrigins")]
     """Lists the origins allowed to display the video.
 
     Enter allowed origin domains in an array and use `*` for wildcard subdomains.

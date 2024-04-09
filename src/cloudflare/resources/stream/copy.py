@@ -7,7 +7,7 @@ from datetime import datetime
 
 import httpx
 
-from ...types import Video, AllowedOriginsItem
+from ...types import Video, AllowedOrigins
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -44,7 +44,7 @@ class Copy(SyncAPIResource):
         *,
         account_id: str,
         url: str,
-        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -139,7 +139,7 @@ class AsyncCopy(AsyncAPIResource):
         *,
         account_id: str,
         url: str,
-        allowed_origins: List[AllowedOriginsItem] | NotGiven = NOT_GIVEN,
+        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,

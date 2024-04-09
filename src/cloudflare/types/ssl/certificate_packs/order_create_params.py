@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-from ..host_item import HostItem
+from ..host import Host
 
 __all__ = ["OrderCreateParams"]
 
@@ -21,7 +21,7 @@ class OrderCreateParams(TypedDict, total=False):
     [see this page for more details.](https://developers.cloudflare.com/ssl/reference/certificate-authorities)
     """
 
-    hosts: Required[List[HostItem]]
+    hosts: Required[List[Host]]
     """Comma separated list of valid host names for the certificate packs.
 
     Must contain the zone apex, may not contain more than 50 hosts, and may not be

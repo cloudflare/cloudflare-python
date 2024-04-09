@@ -8,9 +8,9 @@ from .dns import DNS as DNS
 from .whois import Whois as Whois
 from .domain import Domain as Domain
 from .ip_list import IPList as IPList
+from .sinkhole import Sinkhole as Sinkhole
 from .dns_param import DNSParam as DNSParam
 from .ip_get_params import IPGetParams as IPGetParams
-from .sinkhole_item import SinkholeItem as SinkholeItem
 from .domain_history import DomainHistory as DomainHistory
 from .dns_list_params import DNSListParams as DNSListParams
 from .ip_get_response import IPGetResponse as IPGetResponse

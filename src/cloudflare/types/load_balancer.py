@@ -4,12 +4,12 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from .rules import Rules
 from .._models import BaseModel
-from .rules_item import RulesItem
+from .default_pools import DefaultPools
 from .random_steering import RandomSteering
 from .adaptive_routing import AdaptiveRouting
 from .location_strategy import LocationStrategy
-from .default_pools_item import DefaultPoolsItem
 from .session_affinity_attributes import SessionAffinityAttributes
 
 __all__ = ["LoadBalancer"]
@@ -38,7 +38,7 @@ class LoadBalancer(BaseModel):
 
     created_on: Optional[datetime] = None
 
-    default_pools: Optional[List[DefaultPoolsItem]] = None
+    default_pools: Optional[List[DefaultPools]] = None
     """A list of pool IDs ordered by their failover priority.
 
     Pools defined here are used by default, or when region_pools are not configured
@@ -98,7 +98,7 @@ class LoadBalancer(BaseModel):
     back to using default_pools.
     """
 
-    rules: Optional[List[RulesItem]] = None
+    rules: Optional[List[Rules]] = None
     """
     BETA Field Not General Access: A list of rules for this load balancer to
     execute.

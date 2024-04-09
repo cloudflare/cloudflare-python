@@ -3,16 +3,14 @@
 from __future__ import annotations
 
 from .rule import Rule as Rule
+from .urls import URLs as URLs
 from .lockdown import Lockdown as Lockdown
-from .urls_item import URLsItem as URLsItem
+from .products import Products as Products
 from .configuration import Configuration as Configuration
-from .products_item import ProductsItem as ProductsItem
 from .deleted_filter import DeletedFilter as DeletedFilter
 from .rule_get_params import RuleGetParams as RuleGetParams
 from .rule_edit_params import RuleEditParams as RuleEditParams
 from .rule_list_params import RuleListParams as RuleListParams
-from .asn_configuration import ASNConfiguration as ASNConfiguration
-from .ipv6_configuration import IPV6Configuration as IPV6Configuration
 from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_delete_params import RuleDeleteParams as RuleDeleteParams
 from .rule_edit_response import RuleEditResponse as RuleEditResponse
@@ -21,7 +19,6 @@ from .configuration_param import ConfigurationParam as ConfigurationParam
 from .ua_rule_list_params import UARuleListParams as UARuleListParams
 from .lockdown_list_params import LockdownListParams as LockdownListParams
 from .rule_create_response import RuleCreateResponse as RuleCreateResponse
-from .country_configuration import CountryConfiguration as CountryConfiguration
 from .ua_rule_create_params import UARuleCreateParams as UARuleCreateParams
 from .ua_rule_delete_params import UARuleDeleteParams as UARuleDeleteParams
 from .ua_rule_list_response import UARuleListResponse as UARuleListResponse
@@ -41,7 +38,5 @@ from .lockdown_ip_configuration import LockdownIPConfiguration as LockdownIPConf
 from .access_rule_delete_response import AccessRuleDeleteResponse as AccessRuleDeleteResponse
 from .country_configuration_param import CountryConfigurationParam as CountryConfigurationParam
 from .lockdown_cidr_configuration import LockdownCIDRConfiguration as LockdownCIDRConfiguration
-from .access_rule_ip_configuration import AccessRuleIPConfiguration as AccessRuleIPConfiguration
-from .access_rule_cidr_configuration import AccessRuleCIDRConfiguration as AccessRuleCIDRConfiguration
 from .access_rule_ip_configuration_param import AccessRuleIPConfigurationParam as AccessRuleIPConfigurationParam
 from .access_rule_cidr_configuration_param import AccessRuleCIDRConfigurationParam as AccessRuleCIDRConfigurationParam

@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .rules_item_param import RulesItemParam
-from .default_pools_item import DefaultPoolsItem
+from .rules_param import RulesParam
+from .default_pools import DefaultPools
 from .random_steering_param import RandomSteeringParam
 from .adaptive_routing_param import AdaptiveRoutingParam
 from .location_strategy_param import LocationStrategyParam
@@ -18,7 +18,7 @@ __all__ = ["LoadBalancerCreateParams"]
 class LoadBalancerCreateParams(TypedDict, total=False):
     zone_id: Required[str]
 
-    default_pools: Required[List[DefaultPoolsItem]]
+    default_pools: Required[List[DefaultPools]]
     """A list of pool IDs ordered by their failover priority.
 
     Pools defined here are used by default, or when region_pools are not configured
@@ -91,7 +91,7 @@ class LoadBalancerCreateParams(TypedDict, total=False):
     back to using default_pools.
     """
 
-    rules: Iterable[RulesItemParam]
+    rules: Iterable[RulesParam]
     """
     BETA Field Not General Access: A list of rules for this load balancer to
     execute.
