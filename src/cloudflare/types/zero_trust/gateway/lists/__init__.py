@@ -3,5 +3,4 @@
 from __future__ import annotations
 
 from .lists import Lists as Lists
-from .lists_param import ListsParam as ListsParam
 from .item_list_response import ItemListResponse as ItemListResponse
