@@ -157,7 +157,6 @@ from .zone_delete_response import ZoneDeleteResponse as ZoneDeleteResponse
 from .account_update_params import AccountUpdateParams as AccountUpdateParams
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .calls_app_with_secret import CallsAppWithSecret as CallsAppWithSecret
-from .custom_metadata_param import CustomMetadataParam as CustomMetadataParam
 from .origin_ca_certificate import OriginCACertificate as OriginCACertificate
 from .origin_steering_param import OriginSteeringParam as OriginSteeringParam
 from .queue_create_response import QueueCreateResponse as QueueCreateResponse

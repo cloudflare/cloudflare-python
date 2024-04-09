@@ -5,19 +5,18 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-from .custom_metadata_param import CustomMetadataParam
 from .unnamed_schema_ref_9a9935a9a770967bb604ae41a81e42e1 import UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1
 from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
 from .unnamed_schema_ref_78adb375f06c6d462dd92b99e2ecf510 import UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510
 
-__all__ = ["CustomHostnameEditParams", "SSL", "SSLSettings"]
+__all__ = ["CustomHostnameEditParams", "CustomMetadata", "SSL", "SSLSettings"]
 
 
 class CustomHostnameEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    custom_metadata: CustomMetadataParam
+    custom_metadata: CustomMetadata
     """These are per-hostname (customer) settings."""
 
     custom_origin_server: str
@@ -37,6 +36,11 @@ class CustomHostnameEditParams(TypedDict, total=False):
 
     ssl: SSL
     """SSL properties used when creating the custom hostname."""
+
+
+class CustomMetadata(TypedDict, total=False):
+    key: str
+    """Unique metadata for this hostname."""
 
 
 class SSLSettings(TypedDict, total=False):

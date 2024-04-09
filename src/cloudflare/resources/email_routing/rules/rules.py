@@ -35,9 +35,9 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.email_routing import (
-    EmailRule,
     ActionParam,
     MatcherParam,
+    EmailRoutingRule,
     rule_list_params,
     rule_create_params,
     rule_update_params,
@@ -74,7 +74,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailRule:
+    ) -> EmailRoutingRule:
         """
         Rules consist of a set of criteria for matching emails (such as an email being
         sent to a specific custom email address) plus a set of actions to take on the
@@ -122,7 +122,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailRule], ResultWrapper[EmailRule]),
+            cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
 
     def update(
@@ -141,7 +141,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailRule:
+    ) -> EmailRoutingRule:
         """
         Update actions and matches, or enable/disable specific routing rules.
 
@@ -191,7 +191,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailRule], ResultWrapper[EmailRule]),
+            cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
 
     def list(
@@ -207,7 +207,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[EmailRule]:
+    ) -> SyncV4PagePaginationArray[EmailRoutingRule]:
         """
         Lists existing routing rules.
 
@@ -232,7 +232,7 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/email/routing/rules",
-            page=SyncV4PagePaginationArray[EmailRule],
+            page=SyncV4PagePaginationArray[EmailRoutingRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -247,7 +247,7 @@ class Rules(SyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            model=EmailRule,
+            model=EmailRoutingRule,
         )
 
     def delete(
@@ -261,7 +261,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailRule:
+    ) -> EmailRoutingRule:
         """
         Delete a specific routing rule.
 
@@ -291,7 +291,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailRule], ResultWrapper[EmailRule]),
+            cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
 
     def get(
@@ -305,7 +305,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailRule:
+    ) -> EmailRoutingRule:
         """
         Get information for a specific routing rule already created.
 
@@ -335,7 +335,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailRule], ResultWrapper[EmailRule]),
+            cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
 
 
@@ -367,7 +367,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailRule:
+    ) -> EmailRoutingRule:
         """
         Rules consist of a set of criteria for matching emails (such as an email being
         sent to a specific custom email address) plus a set of actions to take on the
@@ -415,7 +415,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailRule], ResultWrapper[EmailRule]),
+            cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
 
     async def update(
@@ -434,7 +434,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailRule:
+    ) -> EmailRoutingRule:
         """
         Update actions and matches, or enable/disable specific routing rules.
 
@@ -484,7 +484,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailRule], ResultWrapper[EmailRule]),
+            cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
 
     def list(
@@ -500,7 +500,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[EmailRule, AsyncV4PagePaginationArray[EmailRule]]:
+    ) -> AsyncPaginator[EmailRoutingRule, AsyncV4PagePaginationArray[EmailRoutingRule]]:
         """
         Lists existing routing rules.
 
@@ -525,7 +525,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/email/routing/rules",
-            page=AsyncV4PagePaginationArray[EmailRule],
+            page=AsyncV4PagePaginationArray[EmailRoutingRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -540,7 +540,7 @@ class AsyncRules(AsyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            model=EmailRule,
+            model=EmailRoutingRule,
         )
 
     async def delete(
@@ -554,7 +554,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailRule:
+    ) -> EmailRoutingRule:
         """
         Delete a specific routing rule.
 
@@ -584,7 +584,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailRule], ResultWrapper[EmailRule]),
+            cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
 
     async def get(
@@ -598,7 +598,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EmailRule:
+    ) -> EmailRoutingRule:
         """
         Get information for a specific routing rule already created.
 
@@ -628,7 +628,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[EmailRule], ResultWrapper[EmailRule]),
+            cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
 
 
