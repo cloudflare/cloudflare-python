@@ -28,11 +28,10 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....types.logs import received_get_params
+from ....types.logs import ReceivedGetResponse, received_get_params
 from ...._base_client import (
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 
 __all__ = ["Received", "AsyncReceived"]
 
@@ -66,7 +65,7 @@ class Received(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
+    ) -> ReceivedGetResponse:
         """The `/received` api route allows customers to retrieve their edge HTTP logs.
 
         The
@@ -134,7 +133,7 @@ class Received(SyncAPIResource):
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return cast(
-            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
+            ReceivedGetResponse,
             self._get(
                 f"/zones/{zone_identifier}/logs/received",
                 options=make_request_options(
@@ -155,7 +154,7 @@ class Received(SyncAPIResource):
                     ),
                 ),
                 cast_to=cast(
-                    Any, UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+                    Any, ReceivedGetResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -190,7 +189,7 @@ class AsyncReceived(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
+    ) -> ReceivedGetResponse:
         """The `/received` api route allows customers to retrieve their edge HTTP logs.
 
         The
@@ -258,7 +257,7 @@ class AsyncReceived(AsyncAPIResource):
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return cast(
-            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
+            ReceivedGetResponse,
             await self._get(
                 f"/zones/{zone_identifier}/logs/received",
                 options=make_request_options(
@@ -279,7 +278,7 @@ class AsyncReceived(AsyncAPIResource):
                     ),
                 ),
                 cast_to=cast(
-                    Any, UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+                    Any, ReceivedGetResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

@@ -23,11 +23,11 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
 from .....types.zero_trust.dlp import ContextAwarenessParam
 from .....types.zero_trust.dlp.profiles import (
     CustomProfile,
     CustomCreateResponse,
+    CustomDeleteResponse,
     custom_create_params,
     custom_delete_params,
     custom_update_params,
@@ -175,7 +175,7 @@ class Custom(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
+    ) -> CustomDeleteResponse:
         """
         Deletes a DLP custom profile.
 
@@ -197,7 +197,7 @@ class Custom(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
+            CustomDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 body=maybe_transform(body, custom_delete_params.CustomDeleteParams),
@@ -209,7 +209,7 @@ class Custom(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
+                    Any, ResultWrapper[CustomDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -398,7 +398,7 @@ class AsyncCustom(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
+    ) -> CustomDeleteResponse:
         """
         Deletes a DLP custom profile.
 
@@ -420,7 +420,7 @@ class AsyncCustom(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
+            CustomDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 body=await async_maybe_transform(body, custom_delete_params.CustomDeleteParams),
@@ -432,7 +432,7 @@ class AsyncCustom(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
+                    Any, ResultWrapper[CustomDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

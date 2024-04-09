@@ -6,17 +6,17 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 from .cors_headers import CorsHeaders
-from .saml_saas_app import SamlSaasApp
-from .allowed_idps_item import AllowedIDPsItem
-from .custom_pages_item import CustomPagesItem
-from .self_hosted_domains_item import SelfHostedDomainsItem
+from .allowed_idpsh import AllowedIdpsh
+from .custom_pagesh import CustomPagesh
+from .saml_saas_app import SAMLSaasApp
+from .self_hosted_domainsh import SelfHostedDomainsh
 
 __all__ = [
     "Application",
     "SelfHostedApplication",
     "SaaSApplication",
     "SaaSApplicationSaasApp",
-    "SaaSApplicationSaasAppAccessOidcSaasApp",
+    "SaaSApplicationSaasAppAccessOIDCSaasApp",
     "BrowserSSHApplication",
     "BrowserVncApplication",
     "AppLauncherApplication",
@@ -48,7 +48,7 @@ class SelfHostedApplication(BaseModel):
     authentication.
     """
 
-    allowed_idps: Optional[List[AllowedIDPsItem]] = None
+    allowed_idps: Optional[List[AllowedIdpsh]] = None
     """The identity providers your users can select when connecting to this
     application.
 
@@ -90,7 +90,7 @@ class SelfHostedApplication(BaseModel):
     application when failing non-identity rules.
     """
 
-    custom_pages: Optional[List[CustomPagesItem]] = None
+    custom_pages: Optional[List[CustomPagesh]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: Optional[bool] = None
@@ -123,7 +123,7 @@ class SelfHostedApplication(BaseModel):
     attacks.
     """
 
-    self_hosted_domains: Optional[List[SelfHostedDomainsItem]] = None
+    self_hosted_domains: Optional[List[SelfHostedDomainsh]] = None
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: Optional[bool] = None
@@ -148,7 +148,7 @@ class SelfHostedApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class SaaSApplicationSaasAppAccessOidcSaasApp(BaseModel):
+class SaaSApplicationSaasAppAccessOIDCSaasApp(BaseModel):
     app_launcher_url: Optional[str] = None
     """The URL where this applications tile redirects users"""
 
@@ -187,14 +187,14 @@ class SaaSApplicationSaasAppAccessOidcSaasApp(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-SaaSApplicationSaasApp = Union[SamlSaasApp, SaaSApplicationSaasAppAccessOidcSaasApp]
+SaaSApplicationSaasApp = Union[SAMLSaasApp, SaaSApplicationSaasAppAccessOIDCSaasApp]
 
 
 class SaaSApplication(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    allowed_idps: Optional[List[AllowedIDPsItem]] = None
+    allowed_idps: Optional[List[AllowedIdpsh]] = None
     """The identity providers your users can select when connecting to this
     application.
 
@@ -216,7 +216,7 @@ class SaaSApplication(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    custom_pages: Optional[List[CustomPagesItem]] = None
+    custom_pages: Optional[List[CustomPagesh]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
     logo_url: Optional[str] = None
@@ -261,7 +261,7 @@ class BrowserSSHApplication(BaseModel):
     authentication.
     """
 
-    allowed_idps: Optional[List[AllowedIDPsItem]] = None
+    allowed_idps: Optional[List[AllowedIdpsh]] = None
     """The identity providers your users can select when connecting to this
     application.
 
@@ -303,7 +303,7 @@ class BrowserSSHApplication(BaseModel):
     application when failing non-identity rules.
     """
 
-    custom_pages: Optional[List[CustomPagesItem]] = None
+    custom_pages: Optional[List[CustomPagesh]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: Optional[bool] = None
@@ -336,7 +336,7 @@ class BrowserSSHApplication(BaseModel):
     attacks.
     """
 
-    self_hosted_domains: Optional[List[SelfHostedDomainsItem]] = None
+    self_hosted_domains: Optional[List[SelfHostedDomainsh]] = None
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: Optional[bool] = None
@@ -383,7 +383,7 @@ class BrowserVncApplication(BaseModel):
     authentication.
     """
 
-    allowed_idps: Optional[List[AllowedIDPsItem]] = None
+    allowed_idps: Optional[List[AllowedIdpsh]] = None
     """The identity providers your users can select when connecting to this
     application.
 
@@ -425,7 +425,7 @@ class BrowserVncApplication(BaseModel):
     application when failing non-identity rules.
     """
 
-    custom_pages: Optional[List[CustomPagesItem]] = None
+    custom_pages: Optional[List[CustomPagesh]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: Optional[bool] = None
@@ -458,7 +458,7 @@ class BrowserVncApplication(BaseModel):
     attacks.
     """
 
-    self_hosted_domains: Optional[List[SelfHostedDomainsItem]] = None
+    self_hosted_domains: Optional[List[SelfHostedDomainsh]] = None
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: Optional[bool] = None
@@ -490,7 +490,7 @@ class AppLauncherApplication(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    allowed_idps: Optional[List[AllowedIDPsItem]] = None
+    allowed_idps: Optional[List[AllowedIdpsh]] = None
     """The identity providers your users can select when connecting to this
     application.
 
@@ -536,7 +536,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    allowed_idps: Optional[List[AllowedIDPsItem]] = None
+    allowed_idps: Optional[List[AllowedIdpsh]] = None
     """The identity providers your users can select when connecting to this
     application.
 
@@ -582,7 +582,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    allowed_idps: Optional[List[AllowedIDPsItem]] = None
+    allowed_idps: Optional[List[AllowedIdpsh]] = None
     """The identity providers your users can select when connecting to this
     application.
 

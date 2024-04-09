@@ -110,7 +110,7 @@ class Cloudflare(SyncAPIClient):
     alerting: resources.Alerting
     d1: resources.D1Resource
     r2: resources.R2
-    warp_connector: resources.WARPConnector
+    warp_connector: resources.WARPConnectorResource
     workers_for_platforms: resources.WorkersForPlatforms
     zero_trust: resources.ZeroTrust
     challenges: resources.Challenges
@@ -265,7 +265,7 @@ class Cloudflare(SyncAPIClient):
         self.alerting = resources.Alerting(self)
         self.d1 = resources.D1Resource(self)
         self.r2 = resources.R2(self)
-        self.warp_connector = resources.WARPConnector(self)
+        self.warp_connector = resources.WARPConnectorResource(self)
         self.workers_for_platforms = resources.WorkersForPlatforms(self)
         self.zero_trust = resources.ZeroTrust(self)
         self.challenges = resources.Challenges(self)
@@ -523,7 +523,7 @@ class AsyncCloudflare(AsyncAPIClient):
     alerting: resources.AsyncAlerting
     d1: resources.AsyncD1Resource
     r2: resources.AsyncR2
-    warp_connector: resources.AsyncWARPConnector
+    warp_connector: resources.AsyncWARPConnectorResource
     workers_for_platforms: resources.AsyncWorkersForPlatforms
     zero_trust: resources.AsyncZeroTrust
     challenges: resources.AsyncChallenges
@@ -678,7 +678,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.alerting = resources.AsyncAlerting(self)
         self.d1 = resources.AsyncD1Resource(self)
         self.r2 = resources.AsyncR2(self)
-        self.warp_connector = resources.AsyncWARPConnector(self)
+        self.warp_connector = resources.AsyncWARPConnectorResource(self)
         self.workers_for_platforms = resources.AsyncWorkersForPlatforms(self)
         self.zero_trust = resources.AsyncZeroTrust(self)
         self.challenges = resources.AsyncChallenges(self)
@@ -937,7 +937,7 @@ class CloudflareWithRawResponse:
         self.alerting = resources.AlertingWithRawResponse(client.alerting)
         self.d1 = resources.D1ResourceWithRawResponse(client.d1)
         self.r2 = resources.R2WithRawResponse(client.r2)
-        self.warp_connector = resources.WARPConnectorWithRawResponse(client.warp_connector)
+        self.warp_connector = resources.WARPConnectorResourceWithRawResponse(client.warp_connector)
         self.workers_for_platforms = resources.WorkersForPlatformsWithRawResponse(client.workers_for_platforms)
         self.zero_trust = resources.ZeroTrustWithRawResponse(client.zero_trust)
         self.challenges = resources.ChallengesWithRawResponse(client.challenges)
@@ -1027,7 +1027,7 @@ class AsyncCloudflareWithRawResponse:
         self.alerting = resources.AsyncAlertingWithRawResponse(client.alerting)
         self.d1 = resources.AsyncD1ResourceWithRawResponse(client.d1)
         self.r2 = resources.AsyncR2WithRawResponse(client.r2)
-        self.warp_connector = resources.AsyncWARPConnectorWithRawResponse(client.warp_connector)
+        self.warp_connector = resources.AsyncWARPConnectorResourceWithRawResponse(client.warp_connector)
         self.workers_for_platforms = resources.AsyncWorkersForPlatformsWithRawResponse(client.workers_for_platforms)
         self.zero_trust = resources.AsyncZeroTrustWithRawResponse(client.zero_trust)
         self.challenges = resources.AsyncChallengesWithRawResponse(client.challenges)
@@ -1117,7 +1117,7 @@ class CloudflareWithStreamedResponse:
         self.alerting = resources.AlertingWithStreamingResponse(client.alerting)
         self.d1 = resources.D1ResourceWithStreamingResponse(client.d1)
         self.r2 = resources.R2WithStreamingResponse(client.r2)
-        self.warp_connector = resources.WARPConnectorWithStreamingResponse(client.warp_connector)
+        self.warp_connector = resources.WARPConnectorResourceWithStreamingResponse(client.warp_connector)
         self.workers_for_platforms = resources.WorkersForPlatformsWithStreamingResponse(client.workers_for_platforms)
         self.zero_trust = resources.ZeroTrustWithStreamingResponse(client.zero_trust)
         self.challenges = resources.ChallengesWithStreamingResponse(client.challenges)
@@ -1211,7 +1211,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.alerting = resources.AsyncAlertingWithStreamingResponse(client.alerting)
         self.d1 = resources.AsyncD1ResourceWithStreamingResponse(client.d1)
         self.r2 = resources.AsyncR2WithStreamingResponse(client.r2)
-        self.warp_connector = resources.AsyncWARPConnectorWithStreamingResponse(client.warp_connector)
+        self.warp_connector = resources.AsyncWARPConnectorResourceWithStreamingResponse(client.warp_connector)
         self.workers_for_platforms = resources.AsyncWorkersForPlatformsWithStreamingResponse(
             client.workers_for_platforms
         )

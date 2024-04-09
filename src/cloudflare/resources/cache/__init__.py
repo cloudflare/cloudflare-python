@@ -33,12 +33,12 @@ from .smart_tiered_cache import (
     AsyncSmartTieredCacheWithStreamingResponse,
 )
 from .regional_tiered_cache import (
-    RegionalTieredCache,
-    AsyncRegionalTieredCache,
-    RegionalTieredCacheWithRawResponse,
-    AsyncRegionalTieredCacheWithRawResponse,
-    RegionalTieredCacheWithStreamingResponse,
-    AsyncRegionalTieredCacheWithStreamingResponse,
+    RegionalTieredCacheResource,
+    AsyncRegionalTieredCacheResource,
+    RegionalTieredCacheResourceWithRawResponse,
+    AsyncRegionalTieredCacheResourceWithRawResponse,
+    RegionalTieredCacheResourceWithStreamingResponse,
+    AsyncRegionalTieredCacheResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -60,12 +60,12 @@ __all__ = [
     "AsyncVariantsWithRawResponse",
     "VariantsWithStreamingResponse",
     "AsyncVariantsWithStreamingResponse",
-    "RegionalTieredCache",
-    "AsyncRegionalTieredCache",
-    "RegionalTieredCacheWithRawResponse",
-    "AsyncRegionalTieredCacheWithRawResponse",
-    "RegionalTieredCacheWithStreamingResponse",
-    "AsyncRegionalTieredCacheWithStreamingResponse",
+    "RegionalTieredCacheResource",
+    "AsyncRegionalTieredCacheResource",
+    "RegionalTieredCacheResourceWithRawResponse",
+    "AsyncRegionalTieredCacheResourceWithRawResponse",
+    "RegionalTieredCacheResourceWithStreamingResponse",
+    "AsyncRegionalTieredCacheResourceWithStreamingResponse",
     "Cache",
     "AsyncCache",
     "CacheWithRawResponse",

@@ -1,15 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
-from ...shared import UnnamedSchemaRefD8600eb4758b3ae35607a0327bcd691b
 from ...._models import BaseModel
 
 __all__ = ["PoolReferencesResponse", "PoolReferencesResponseItem"]
 
 
 class PoolReferencesResponseItem(BaseModel):
-    reference_type: Optional[UnnamedSchemaRefD8600eb4758b3ae35607a0327bcd691b] = None
+    reference_type: Optional[Literal["*", "referral", "referrer"]] = None
 
     resource_id: Optional[str] = None
 

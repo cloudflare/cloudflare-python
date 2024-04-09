@@ -2,10 +2,10 @@
 
 from ..._models import BaseModel
 
-__all__ = ["SamlGroupRule", "Saml"]
+__all__ = ["SAMLGroupRule", "SAML"]
 
 
-class Saml(BaseModel):
+class SAML(BaseModel):
     attribute_name: str
     """The name of the SAML attribute."""
 
@@ -13,5 +13,5 @@ class Saml(BaseModel):
     """The SAML attribute value to look for."""
 
 
-class SamlGroupRule(BaseModel):
-    saml: Saml
+class SAMLGroupRule(BaseModel):
+    saml: SAML

@@ -9,6 +9,7 @@ import httpx
 from ..types import (
     CustomNameserver,
     CustomNameserverGetResponse,
+    CustomNameserverDeleteResponse,
     CustomNameserverVerifyResponse,
     CustomNameserverAvailabiltyResponse,
     custom_nameserver_create_params,
@@ -32,7 +33,6 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
-from ..types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
 
 __all__ = ["CustomNameservers", "AsyncCustomNameservers"]
 
@@ -110,7 +110,7 @@ class CustomNameservers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
+    ) -> Optional[CustomNameserverDeleteResponse]:
         """
         Delete Account Custom Nameserver
 
@@ -132,7 +132,7 @@ class CustomNameservers(SyncAPIResource):
         if not custom_ns_id:
             raise ValueError(f"Expected a non-empty value for `custom_ns_id` but received {custom_ns_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
+            Optional[CustomNameserverDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/custom_ns/{custom_ns_id}",
                 body=maybe_transform(body, custom_nameserver_delete_params.CustomNameserverDeleteParams),
@@ -144,7 +144,7 @@ class CustomNameservers(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
+                    Any, ResultWrapper[CustomNameserverDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -344,7 +344,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]:
+    ) -> Optional[CustomNameserverDeleteResponse]:
         """
         Delete Account Custom Nameserver
 
@@ -366,7 +366,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
         if not custom_ns_id:
             raise ValueError(f"Expected a non-empty value for `custom_ns_id` but received {custom_ns_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151],
+            Optional[CustomNameserverDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/custom_ns/{custom_ns_id}",
                 body=await async_maybe_transform(body, custom_nameserver_delete_params.CustomNameserverDeleteParams),
@@ -378,7 +378,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151]
+                    Any, ResultWrapper[CustomNameserverDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .pool import Pool as Pool
 from .pool_edit_params import PoolEditParams as PoolEditParams
 from .pool_list_params import PoolListParams as PoolListParams
 from .search_get_params import SearchGetParams as SearchGetParams

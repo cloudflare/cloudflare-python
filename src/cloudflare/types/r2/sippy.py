@@ -5,8 +5,8 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
+from .provider import Provider
 from ..._models import BaseModel
-from .unnamed_schema_ref_6430970563db310f19d39aafe3debd27 import UnnamedSchemaRef6430970563db310f19d39aafe3debd27
 
 __all__ = ["Sippy", "Destination", "Source"]
 
@@ -20,7 +20,7 @@ class Destination(BaseModel):
     bucket: Optional[str] = None
     """Name of the bucket on the provider"""
 
-    provider: Optional[UnnamedSchemaRef6430970563db310f19d39aafe3debd27] = None
+    provider: Optional[Provider] = None
 
 
 class Source(BaseModel):

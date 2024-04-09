@@ -4,10 +4,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["AzureGroupRule", "AzureAd"]
+__all__ = ["AzureGroupRule", "AzureAD"]
 
 
-class AzureAd(BaseModel):
+class AzureAD(BaseModel):
     id: str
     """The ID of an Azure group."""
 
@@ -16,4 +16,4 @@ class AzureAd(BaseModel):
 
 
 class AzureGroupRule(BaseModel):
-    azure_ad: AzureAd = FieldInfo(alias="azureAD")
+    azure_ad: AzureAD = FieldInfo(alias="azureAD")

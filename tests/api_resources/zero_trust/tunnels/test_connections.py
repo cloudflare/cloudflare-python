@@ -9,8 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
-from cloudflare.types.zero_trust.tunnels import ConnectionGetResponse
+from cloudflare.types.zero_trust.tunnels import (
+    ConnectionGetResponse,
+    ConnectionDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +28,7 @@ class TestConnections:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], connection, path=["response"])
+        assert_matches_type(ConnectionDeleteResponse, connection, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -40,7 +42,7 @@ class TestConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connection = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], connection, path=["response"])
+        assert_matches_type(ConnectionDeleteResponse, connection, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -54,9 +56,7 @@ class TestConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connection = response.parse()
-            assert_matches_type(
-                Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], connection, path=["response"]
-            )
+            assert_matches_type(ConnectionDeleteResponse, connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -141,7 +141,7 @@ class TestAsyncConnections:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], connection, path=["response"])
+        assert_matches_type(ConnectionDeleteResponse, connection, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -155,7 +155,7 @@ class TestAsyncConnections:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connection = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], connection, path=["response"])
+        assert_matches_type(ConnectionDeleteResponse, connection, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -169,9 +169,7 @@ class TestAsyncConnections:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             connection = await response.parse()
-            assert_matches_type(
-                Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], connection, path=["response"]
-            )
+            assert_matches_type(ConnectionDeleteResponse, connection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

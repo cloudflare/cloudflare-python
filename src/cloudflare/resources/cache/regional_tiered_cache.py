@@ -30,17 +30,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["RegionalTieredCache", "AsyncRegionalTieredCache"]
+__all__ = ["RegionalTieredCacheResource", "AsyncRegionalTieredCacheResource"]
 
 
-class RegionalTieredCache(SyncAPIResource):
+class RegionalTieredCacheResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RegionalTieredCacheWithRawResponse:
-        return RegionalTieredCacheWithRawResponse(self)
+    def with_raw_response(self) -> RegionalTieredCacheResourceWithRawResponse:
+        return RegionalTieredCacheResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RegionalTieredCacheWithStreamingResponse:
-        return RegionalTieredCacheWithStreamingResponse(self)
+    def with_streaming_response(self) -> RegionalTieredCacheResourceWithStreamingResponse:
+        return RegionalTieredCacheResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -129,14 +129,14 @@ class RegionalTieredCache(SyncAPIResource):
         )
 
 
-class AsyncRegionalTieredCache(AsyncAPIResource):
+class AsyncRegionalTieredCacheResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRegionalTieredCacheWithRawResponse:
-        return AsyncRegionalTieredCacheWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRegionalTieredCacheResourceWithRawResponse:
+        return AsyncRegionalTieredCacheResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRegionalTieredCacheWithStreamingResponse:
-        return AsyncRegionalTieredCacheWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRegionalTieredCacheResourceWithStreamingResponse:
+        return AsyncRegionalTieredCacheResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -227,8 +227,8 @@ class AsyncRegionalTieredCache(AsyncAPIResource):
         )
 
 
-class RegionalTieredCacheWithRawResponse:
-    def __init__(self, regional_tiered_cache: RegionalTieredCache) -> None:
+class RegionalTieredCacheResourceWithRawResponse:
+    def __init__(self, regional_tiered_cache: RegionalTieredCacheResource) -> None:
         self._regional_tiered_cache = regional_tiered_cache
 
         self.edit = to_raw_response_wrapper(
@@ -239,8 +239,8 @@ class RegionalTieredCacheWithRawResponse:
         )
 
 
-class AsyncRegionalTieredCacheWithRawResponse:
-    def __init__(self, regional_tiered_cache: AsyncRegionalTieredCache) -> None:
+class AsyncRegionalTieredCacheResourceWithRawResponse:
+    def __init__(self, regional_tiered_cache: AsyncRegionalTieredCacheResource) -> None:
         self._regional_tiered_cache = regional_tiered_cache
 
         self.edit = async_to_raw_response_wrapper(
@@ -251,8 +251,8 @@ class AsyncRegionalTieredCacheWithRawResponse:
         )
 
 
-class RegionalTieredCacheWithStreamingResponse:
-    def __init__(self, regional_tiered_cache: RegionalTieredCache) -> None:
+class RegionalTieredCacheResourceWithStreamingResponse:
+    def __init__(self, regional_tiered_cache: RegionalTieredCacheResource) -> None:
         self._regional_tiered_cache = regional_tiered_cache
 
         self.edit = to_streamed_response_wrapper(
@@ -263,8 +263,8 @@ class RegionalTieredCacheWithStreamingResponse:
         )
 
 
-class AsyncRegionalTieredCacheWithStreamingResponse:
-    def __init__(self, regional_tiered_cache: AsyncRegionalTieredCache) -> None:
+class AsyncRegionalTieredCacheResourceWithStreamingResponse:
+    def __init__(self, regional_tiered_cache: AsyncRegionalTieredCacheResource) -> None:
         self._regional_tiered_cache = regional_tiered_cache
 
         self.edit = async_to_streamed_response_wrapper(
