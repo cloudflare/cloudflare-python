@@ -4,7 +4,7 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .image import Image
-from ..shared import UnnamedSchemaRef3248f24329456e19dfa042fff9986f72
+from ..shared import ResponseInfo
 from ..._models import BaseModel
 
 __all__ = ["V1ListResponse", "Result"]
@@ -15,9 +15,9 @@ class Result(BaseModel):
 
 
 class V1ListResponse(BaseModel):
-    errors: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
+    errors: List[ResponseInfo]
 
-    messages: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
+    messages: List[ResponseInfo]
 
     result: Result
 

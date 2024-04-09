@@ -7,11 +7,11 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from .unnamed_schema_ref_3248f24329456e19dfa042fff9986f72 import UnnamedSchemaRef3248f24329456e19dfa042fff9986f72
+from .response_info import ResponseInfo
 from .unnamed_schema_ref_ec4d85c3d1bcc6b3b7e99c199ae99846 import UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846
 
 __all__ = [
-    "UnnamedSchemaRefE7c61ebe06ebfc3861ae8b9db4ba152b",
+    "Result",
     "UnionMember0",
     "UnionMember0Result",
     "UnionMember0ResultAction",
@@ -102,9 +102,9 @@ class UnionMember0(BaseModel):
 
 
 class AaaAPIResponseCommon(BaseModel):
-    errors: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
+    errors: List[ResponseInfo]
 
-    messages: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
+    messages: List[ResponseInfo]
 
     result: UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846
 
@@ -112,4 +112,4 @@ class AaaAPIResponseCommon(BaseModel):
     """Whether the API call was successful"""
 
 
-UnnamedSchemaRefE7c61ebe06ebfc3861ae8b9db4ba152b = Union[UnionMember0, AaaAPIResponseCommon]
+Result = Union[UnionMember0, AaaAPIResponseCommon]
