@@ -3472,11 +3472,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.intel import (
-    DNS,
-    UnnamedSchemaRefB5e16cee4f32382c294201aedb9fc050,
-    DNSListResponse,
-)
+from cloudflare.types.intel import DNS, DNSListResponse
 ```
 
 Methods:
