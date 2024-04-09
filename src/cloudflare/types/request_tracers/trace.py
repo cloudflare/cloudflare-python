@@ -1,16 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import List, Optional
 
-from ..._compat import PYDANTIC_V2
 from ..._models import BaseModel
 
-__all__ = ["RequestTracerTrace", "RequestTracerTraceItem"]
+__all__ = ["Trace"]
 
 
-class RequestTracerTraceItem(BaseModel):
+class Trace(BaseModel):
     action: Optional[str] = None
     """If step type is rule, then action performed by this rule"""
 
@@ -35,15 +32,7 @@ class RequestTracerTraceItem(BaseModel):
     step_name: Optional[str] = None
     """Tracing step identifying name"""
 
-    trace: Optional[RequestTracerTrace] = None
+    trace: Optional[List[Trace]] = None
 
     type: Optional[str] = None
     """Tracing step type"""
-
-
-RequestTracerTrace = List[RequestTracerTraceItem]
-
-if PYDANTIC_V2:
-    RequestTracerTraceItem.model_rebuild()
-else:
-    RequestTracerTraceItem.update_forward_refs()  # type: ignore
