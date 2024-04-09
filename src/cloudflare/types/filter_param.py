@@ -8,17 +8,18 @@ __all__ = ["FilterParam"]
 
 
 class FilterParam(TypedDict, total=False):
-    destination_address: str
-    """The destination IP address of the packet."""
+    description: str
+    """An informative summary of the filter."""
 
-    destination_port: float
-    """The destination port of the packet."""
+    expression: str
+    """The filter expression.
 
-    protocol: float
-    """The protocol number of the packet."""
+    For more information, refer to
+    [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
+    """
 
-    source_address: str
-    """The source IP address of the packet."""
+    paused: bool
+    """When true, indicates that the filter is currently paused."""
 
-    source_port: float
-    """The source port of the packet."""
+    ref: str
+    """A short reference tag. Allows you to select related filters."""

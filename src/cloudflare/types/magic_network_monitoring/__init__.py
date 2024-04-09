@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from .rule import Rule as Rule
-from .rule_param import RuleParam as RuleParam
 from .configuration import Configuration as Configuration
 from .rule_edit_params import RuleEditParams as RuleEditParams
 from .config_edit_params import ConfigEditParams as ConfigEditParams

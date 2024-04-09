@@ -1,46 +1,23 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal
 
+from . import filter
+from ..action import Action
 from ..._models import BaseModel
 from .products_item import ProductsItem
 from .deleted_filter import DeletedFilter
 
-__all__ = ["Rule", "Filter", "FilterFirewallFilter"]
+__all__ = ["Rule", "Filter"]
 
-
-class FilterFirewallFilter(BaseModel):
-    id: Optional[str] = None
-    """The unique identifier of the filter."""
-
-    description: Optional[str] = None
-    """An informative summary of the filter."""
-
-    expression: Optional[str] = None
-    """The filter expression.
-
-    For more information, refer to
-    [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
-    """
-
-    paused: Optional[bool] = None
-    """When true, indicates that the filter is currently paused."""
-
-    ref: Optional[str] = None
-    """A short reference tag. Allows you to select related filters."""
-
-
-Filter = Union[FilterFirewallFilter, DeletedFilter]
+Filter = Union[filter.Filter, DeletedFilter]
 
 
 class Rule(BaseModel):
     id: Optional[str] = None
     """The unique identifier of the firewall rule."""
 
-    action: Optional[
-        Literal["block", "challenge", "js_challenge", "managed_challenge", "allow", "log", "bypass"]
-    ] = None
+    action: Optional[Action] = None
     """The action to apply to a matched request.
 
     The `log` action is only available on an Enterprise plan.

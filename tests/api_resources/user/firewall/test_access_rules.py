@@ -11,9 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.user.firewall import (
-    AccessRuleEditResponse,
-    AccessRuleListResponse,
-    AccessRuleCreateResponse,
+    FirewallRule,
     AccessRuleDeleteResponse,
 )
 
@@ -30,7 +28,7 @@ class TestAccessRules:
             configuration={},
             mode="challenge",
         )
-        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +41,7 @@ class TestAccessRules:
             mode="challenge",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
-        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +54,7 @@ class TestAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = response.parse()
-        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -69,7 +67,7 @@ class TestAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = response.parse()
-            assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
+            assert_matches_type(FirewallRule, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -77,7 +75,7 @@ class TestAccessRules:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         access_rule = client.user.firewall.access_rules.list()
-        assert_matches_type(SyncV4PagePaginationArray[AccessRuleListResponse], access_rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[FirewallRule], access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -101,7 +99,7 @@ class TestAccessRules:
             page=1,
             per_page=20,
         )
-        assert_matches_type(SyncV4PagePaginationArray[AccessRuleListResponse], access_rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[FirewallRule], access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +109,7 @@ class TestAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[AccessRuleListResponse], access_rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[FirewallRule], access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -121,7 +119,7 @@ class TestAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[AccessRuleListResponse], access_rule, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[FirewallRule], access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -177,7 +175,7 @@ class TestAccessRules:
         access_rule = client.user.firewall.access_rules.edit(
             "92f17202ed8bd63d69a66b86a49a8f6b",
         )
-        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +185,7 @@ class TestAccessRules:
             mode="challenge",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
-        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -199,7 +197,7 @@ class TestAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = response.parse()
-        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -211,7 +209,7 @@ class TestAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = response.parse()
-            assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
+            assert_matches_type(FirewallRule, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -234,7 +232,7 @@ class TestAsyncAccessRules:
             configuration={},
             mode="challenge",
         )
-        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -247,7 +245,7 @@ class TestAsyncAccessRules:
             mode="challenge",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
-        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -260,7 +258,7 @@ class TestAsyncAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = await response.parse()
-        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -273,7 +271,7 @@ class TestAsyncAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = await response.parse()
-            assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
+            assert_matches_type(FirewallRule, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -281,7 +279,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.user.firewall.access_rules.list()
-        assert_matches_type(AsyncV4PagePaginationArray[AccessRuleListResponse], access_rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[FirewallRule], access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -305,7 +303,7 @@ class TestAsyncAccessRules:
             page=1,
             per_page=20,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[AccessRuleListResponse], access_rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[FirewallRule], access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -315,7 +313,7 @@ class TestAsyncAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[AccessRuleListResponse], access_rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[FirewallRule], access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -325,7 +323,7 @@ class TestAsyncAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[AccessRuleListResponse], access_rule, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[FirewallRule], access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -381,7 +379,7 @@ class TestAsyncAccessRules:
         access_rule = await async_client.user.firewall.access_rules.edit(
             "92f17202ed8bd63d69a66b86a49a8f6b",
         )
-        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -391,7 +389,7 @@ class TestAsyncAccessRules:
             mode="challenge",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
-        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -403,7 +401,7 @@ class TestAsyncAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = await response.parse()
-        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
+        assert_matches_type(FirewallRule, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -415,7 +413,7 @@ class TestAsyncAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = await response.parse()
-            assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
+            assert_matches_type(FirewallRule, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

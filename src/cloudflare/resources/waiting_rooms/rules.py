@@ -27,8 +27,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.waiting_rooms import (
-    Event,
-    RuleParam,
+    Rule,
     RuleEditResponse,
     RuleCreateResponse,
     RuleDeleteResponse,
@@ -121,7 +120,7 @@ class Rules(SyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        body: Iterable[RuleParam],
+        body: Iterable[rule_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -173,7 +172,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Event]:
+    ) -> SyncSinglePage[Rule]:
         """
         Lists rules for a waiting room.
 
@@ -194,11 +193,11 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            page=SyncSinglePage[Event],
+            page=SyncSinglePage[Rule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Event,
+            model=Rule,
         )
 
     def delete(
@@ -402,7 +401,7 @@ class AsyncRules(AsyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        body: Iterable[RuleParam],
+        body: Iterable[rule_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -454,7 +453,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Event, AsyncSinglePage[Event]]:
+    ) -> AsyncPaginator[Rule, AsyncSinglePage[Rule]]:
         """
         Lists rules for a waiting room.
 
@@ -475,11 +474,11 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            page=AsyncSinglePage[Event],
+            page=AsyncSinglePage[Rule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Event,
+            model=Rule,
         )
 
     async def delete(
