@@ -6,34 +6,26 @@ from typing import List, Type, Mapping, cast
 
 import httpx
 
-from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
-)
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from ....._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._utils import (
     extract_files,
     maybe_transform,
     deepcopy_minimal,
     async_maybe_transform,
 )
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from ....._base_client import (
+from ...._wrappers import ResultWrapper
+from ...._base_client import (
     make_request_options,
 )
-from .....types.workers.scripts import (
+from ....types.workers.scripts import (
     VersionGetResponse,
     VersionListResponse,
     VersionCreateResponse,
@@ -44,10 +36,6 @@ __all__ = ["Versions", "AsyncVersions"]
 
 
 class Versions(SyncAPIResource):
-    @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
-
     @cached_property
     def with_raw_response(self) -> VersionsWithRawResponse:
         return VersionsWithRawResponse(self)
@@ -216,10 +204,6 @@ class Versions(SyncAPIResource):
 
 
 class AsyncVersions(AsyncAPIResource):
-    @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
-
     @cached_property
     def with_raw_response(self) -> AsyncVersionsWithRawResponse:
         return AsyncVersionsWithRawResponse(self)
@@ -401,10 +385,6 @@ class VersionsWithRawResponse:
             versions.get,
         )
 
-    @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._versions.settings)
-
 
 class AsyncVersionsWithRawResponse:
     def __init__(self, versions: AsyncVersions) -> None:
@@ -419,10 +399,6 @@ class AsyncVersionsWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             versions.get,
         )
-
-    @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._versions.settings)
 
 
 class VersionsWithStreamingResponse:
@@ -439,10 +415,6 @@ class VersionsWithStreamingResponse:
             versions.get,
         )
 
-    @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._versions.settings)
-
 
 class AsyncVersionsWithStreamingResponse:
     def __init__(self, versions: AsyncVersions) -> None:
@@ -457,7 +429,3 @@ class AsyncVersionsWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             versions.get,
         )
-
-    @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._versions.settings)
