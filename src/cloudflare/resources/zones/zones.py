@@ -16,14 +16,6 @@ from .holds import (
     AsyncHoldsWithStreamingResponse,
 )
 from ...types import Zone, ZoneDeleteResponse, zone_edit_params, zone_list_params, zone_create_params
-from .workers import (
-    Workers,
-    AsyncWorkers,
-    WorkersWithRawResponse,
-    AsyncWorkersWithRawResponse,
-    WorkersWithStreamingResponse,
-    AsyncWorkersWithStreamingResponse,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -67,7 +59,6 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .workers.workers import Workers, AsyncWorkers
 from .activation_check import (
     ActivationCheck,
     AsyncActivationCheck,
@@ -109,10 +100,6 @@ class Zones(SyncAPIResource):
     @cached_property
     def holds(self) -> Holds:
         return Holds(self._client)
-
-    @cached_property
-    def workers(self) -> Workers:
-        return Workers(self._client)
 
     @cached_property
     def subscriptions(self) -> Subscriptions:
@@ -417,10 +404,6 @@ class AsyncZones(AsyncAPIResource):
     @cached_property
     def holds(self) -> AsyncHolds:
         return AsyncHolds(self._client)
-
-    @cached_property
-    def workers(self) -> AsyncWorkers:
-        return AsyncWorkers(self._client)
 
     @cached_property
     def subscriptions(self) -> AsyncSubscriptions:
@@ -746,10 +729,6 @@ class ZonesWithRawResponse:
         return HoldsWithRawResponse(self._zones.holds)
 
     @cached_property
-    def workers(self) -> WorkersWithRawResponse:
-        return WorkersWithRawResponse(self._zones.workers)
-
-    @cached_property
     def subscriptions(self) -> SubscriptionsWithRawResponse:
         return SubscriptionsWithRawResponse(self._zones.subscriptions)
 
@@ -793,10 +772,6 @@ class AsyncZonesWithRawResponse:
     @cached_property
     def holds(self) -> AsyncHoldsWithRawResponse:
         return AsyncHoldsWithRawResponse(self._zones.holds)
-
-    @cached_property
-    def workers(self) -> AsyncWorkersWithRawResponse:
-        return AsyncWorkersWithRawResponse(self._zones.workers)
 
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsWithRawResponse:
@@ -844,10 +819,6 @@ class ZonesWithStreamingResponse:
         return HoldsWithStreamingResponse(self._zones.holds)
 
     @cached_property
-    def workers(self) -> WorkersWithStreamingResponse:
-        return WorkersWithStreamingResponse(self._zones.workers)
-
-    @cached_property
     def subscriptions(self) -> SubscriptionsWithStreamingResponse:
         return SubscriptionsWithStreamingResponse(self._zones.subscriptions)
 
@@ -891,10 +862,6 @@ class AsyncZonesWithStreamingResponse:
     @cached_property
     def holds(self) -> AsyncHoldsWithStreamingResponse:
         return AsyncHoldsWithStreamingResponse(self._zones.holds)
-
-    @cached_property
-    def workers(self) -> AsyncWorkersWithStreamingResponse:
-        return AsyncWorkersWithStreamingResponse(self._zones.workers)
 
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsWithStreamingResponse:

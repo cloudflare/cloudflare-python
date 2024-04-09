@@ -22,14 +22,6 @@ from .content import (
     ContentWithStreamingResponse,
     AsyncContentWithStreamingResponse,
 )
-from .bindings import (
-    Bindings,
-    AsyncBindings,
-    BindingsWithRawResponse,
-    AsyncBindingsWithRawResponse,
-    BindingsWithStreamingResponse,
-    AsyncBindingsWithStreamingResponse,
-)
 from .settings import (
     Settings,
     AsyncSettings,
@@ -61,14 +53,6 @@ from .schedules import (
     AsyncSchedulesWithStreamingResponse,
 )
 from ...._compat import cached_property
-from .content_v2 import (
-    ContentV2,
-    AsyncContentV2,
-    ContentV2WithRawResponse,
-    AsyncContentV2WithRawResponse,
-    ContentV2WithStreamingResponse,
-    AsyncContentV2WithStreamingResponse,
-)
 from .deployments import (
     Deployments,
     AsyncDeployments,
@@ -76,14 +60,6 @@ from .deployments import (
     AsyncDeploymentsWithRawResponse,
     DeploymentsWithStreamingResponse,
     AsyncDeploymentsWithStreamingResponse,
-)
-from .usage_model import (
-    UsageModel,
-    AsyncUsageModel,
-    UsageModelWithRawResponse,
-    AsyncUsageModelWithRawResponse,
-    UsageModelWithStreamingResponse,
-    AsyncUsageModelWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -107,16 +83,11 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.workers import Script, script_delete_params, script_update_params
-from .versions.versions import Versions, AsyncVersions
 
 __all__ = ["Scripts", "AsyncScripts"]
 
 
 class Scripts(SyncAPIResource):
-    @cached_property
-    def bindings(self) -> Bindings:
-        return Bindings(self._client)
-
     @cached_property
     def schedules(self) -> Schedules:
         return Schedules(self._client)
@@ -126,16 +97,8 @@ class Scripts(SyncAPIResource):
         return Tail(self._client)
 
     @cached_property
-    def usage_model(self) -> UsageModel:
-        return UsageModel(self._client)
-
-    @cached_property
     def content(self) -> Content:
         return Content(self._client)
-
-    @cached_property
-    def content_v2(self) -> ContentV2:
-        return ContentV2(self._client)
 
     @cached_property
     def settings(self) -> Settings:
@@ -418,10 +381,6 @@ class Scripts(SyncAPIResource):
 
 class AsyncScripts(AsyncAPIResource):
     @cached_property
-    def bindings(self) -> AsyncBindings:
-        return AsyncBindings(self._client)
-
-    @cached_property
     def schedules(self) -> AsyncSchedules:
         return AsyncSchedules(self._client)
 
@@ -430,16 +389,8 @@ class AsyncScripts(AsyncAPIResource):
         return AsyncTail(self._client)
 
     @cached_property
-    def usage_model(self) -> AsyncUsageModel:
-        return AsyncUsageModel(self._client)
-
-    @cached_property
     def content(self) -> AsyncContent:
         return AsyncContent(self._client)
-
-    @cached_property
-    def content_v2(self) -> AsyncContentV2:
-        return AsyncContentV2(self._client)
 
     @cached_property
     def settings(self) -> AsyncSettings:
@@ -741,10 +692,6 @@ class ScriptsWithRawResponse:
         )
 
     @cached_property
-    def bindings(self) -> BindingsWithRawResponse:
-        return BindingsWithRawResponse(self._scripts.bindings)
-
-    @cached_property
     def schedules(self) -> SchedulesWithRawResponse:
         return SchedulesWithRawResponse(self._scripts.schedules)
 
@@ -753,16 +700,8 @@ class ScriptsWithRawResponse:
         return TailWithRawResponse(self._scripts.tail)
 
     @cached_property
-    def usage_model(self) -> UsageModelWithRawResponse:
-        return UsageModelWithRawResponse(self._scripts.usage_model)
-
-    @cached_property
     def content(self) -> ContentWithRawResponse:
         return ContentWithRawResponse(self._scripts.content)
-
-    @cached_property
-    def content_v2(self) -> ContentV2WithRawResponse:
-        return ContentV2WithRawResponse(self._scripts.content_v2)
 
     @cached_property
     def settings(self) -> SettingsWithRawResponse:
@@ -796,10 +735,6 @@ class AsyncScriptsWithRawResponse:
         )
 
     @cached_property
-    def bindings(self) -> AsyncBindingsWithRawResponse:
-        return AsyncBindingsWithRawResponse(self._scripts.bindings)
-
-    @cached_property
     def schedules(self) -> AsyncSchedulesWithRawResponse:
         return AsyncSchedulesWithRawResponse(self._scripts.schedules)
 
@@ -808,16 +743,8 @@ class AsyncScriptsWithRawResponse:
         return AsyncTailWithRawResponse(self._scripts.tail)
 
     @cached_property
-    def usage_model(self) -> AsyncUsageModelWithRawResponse:
-        return AsyncUsageModelWithRawResponse(self._scripts.usage_model)
-
-    @cached_property
     def content(self) -> AsyncContentWithRawResponse:
         return AsyncContentWithRawResponse(self._scripts.content)
-
-    @cached_property
-    def content_v2(self) -> AsyncContentV2WithRawResponse:
-        return AsyncContentV2WithRawResponse(self._scripts.content_v2)
 
     @cached_property
     def settings(self) -> AsyncSettingsWithRawResponse:
@@ -851,10 +778,6 @@ class ScriptsWithStreamingResponse:
         )
 
     @cached_property
-    def bindings(self) -> BindingsWithStreamingResponse:
-        return BindingsWithStreamingResponse(self._scripts.bindings)
-
-    @cached_property
     def schedules(self) -> SchedulesWithStreamingResponse:
         return SchedulesWithStreamingResponse(self._scripts.schedules)
 
@@ -863,16 +786,8 @@ class ScriptsWithStreamingResponse:
         return TailWithStreamingResponse(self._scripts.tail)
 
     @cached_property
-    def usage_model(self) -> UsageModelWithStreamingResponse:
-        return UsageModelWithStreamingResponse(self._scripts.usage_model)
-
-    @cached_property
     def content(self) -> ContentWithStreamingResponse:
         return ContentWithStreamingResponse(self._scripts.content)
-
-    @cached_property
-    def content_v2(self) -> ContentV2WithStreamingResponse:
-        return ContentV2WithStreamingResponse(self._scripts.content_v2)
 
     @cached_property
     def settings(self) -> SettingsWithStreamingResponse:
@@ -906,10 +821,6 @@ class AsyncScriptsWithStreamingResponse:
         )
 
     @cached_property
-    def bindings(self) -> AsyncBindingsWithStreamingResponse:
-        return AsyncBindingsWithStreamingResponse(self._scripts.bindings)
-
-    @cached_property
     def schedules(self) -> AsyncSchedulesWithStreamingResponse:
         return AsyncSchedulesWithStreamingResponse(self._scripts.schedules)
 
@@ -918,16 +829,8 @@ class AsyncScriptsWithStreamingResponse:
         return AsyncTailWithStreamingResponse(self._scripts.tail)
 
     @cached_property
-    def usage_model(self) -> AsyncUsageModelWithStreamingResponse:
-        return AsyncUsageModelWithStreamingResponse(self._scripts.usage_model)
-
-    @cached_property
     def content(self) -> AsyncContentWithStreamingResponse:
         return AsyncContentWithStreamingResponse(self._scripts.content)
-
-    @cached_property
-    def content_v2(self) -> AsyncContentV2WithStreamingResponse:
-        return AsyncContentV2WithStreamingResponse(self._scripts.content_v2)
 
     @cached_property
     def settings(self) -> AsyncSettingsWithStreamingResponse:
