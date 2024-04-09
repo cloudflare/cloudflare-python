@@ -3,6 +3,6 @@
 from typing import Dict
 from typing_extensions import Literal
 
-__all__ = ["Rules"]
+__all__ = ["WAFRule"]
 
-Rules = Dict[str, Literal["challenge", "block", "simulate", "disable", "default"]]
+WAFRule = Dict[str, Literal["challenge", "block", "simulate", "disable", "default"]]

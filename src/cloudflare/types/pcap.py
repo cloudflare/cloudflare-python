@@ -3,8 +3,8 @@
 from typing import Optional
 from typing_extensions import Literal
 
-from .filter import Filter
 from .._models import BaseModel
+from .pcap_filter import PCAPFilter
 
 __all__ = ["PCAP"]
 
@@ -13,7 +13,7 @@ class PCAP(BaseModel):
     id: Optional[str] = None
     """The ID for the packet capture."""
 
-    filter_v1: Optional[Filter] = None
+    filter_v1: Optional[PCAPFilter] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
     status: Optional[

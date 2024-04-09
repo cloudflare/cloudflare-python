@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from cloudflare.types.zero_trust.gateway import (
-    Rule,
+    GatewayRule,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +29,7 @@ class TestRules:
             action="allow",
             name="block bad websites",
         )
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestRules:
             },
             traffic='http.request.uri matches ".*a/partial/uri.*" and http.request.host in $01302951-49f9-47c9-a400-0297e60b6a10',
         )
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +156,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -170,7 +170,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Rule, rule, path=["response"])
+            assert_matches_type(GatewayRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -193,7 +193,7 @@ class TestRules:
             action="allow",
             name="block bad websites",
         )
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -307,7 +307,7 @@ class TestRules:
             },
             traffic='http.request.uri matches ".*a/partial/uri.*" and http.request.host in $01302951-49f9-47c9-a400-0297e60b6a10',
         )
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -322,7 +322,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -337,7 +337,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Rule, rule, path=["response"])
+            assert_matches_type(GatewayRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -366,7 +366,7 @@ class TestRules:
         rule = client.zero_trust.gateway.rules.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncSinglePage[Rule], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[GatewayRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -378,7 +378,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(SyncSinglePage[Rule], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[GatewayRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -390,7 +390,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(SyncSinglePage[Rule], rule, path=["response"])
+            assert_matches_type(SyncSinglePage[GatewayRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -466,7 +466,7 @@ class TestRules:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -479,7 +479,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -492,7 +492,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Rule, rule, path=["response"])
+            assert_matches_type(GatewayRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -523,7 +523,7 @@ class TestAsyncRules:
             action="allow",
             name="block bad websites",
         )
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -636,7 +636,7 @@ class TestAsyncRules:
             },
             traffic='http.request.uri matches ".*a/partial/uri.*" and http.request.host in $01302951-49f9-47c9-a400-0297e60b6a10',
         )
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -650,7 +650,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -664,7 +664,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Rule, rule, path=["response"])
+            assert_matches_type(GatewayRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -687,7 +687,7 @@ class TestAsyncRules:
             action="allow",
             name="block bad websites",
         )
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -801,7 +801,7 @@ class TestAsyncRules:
             },
             traffic='http.request.uri matches ".*a/partial/uri.*" and http.request.host in $01302951-49f9-47c9-a400-0297e60b6a10',
         )
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -816,7 +816,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -831,7 +831,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Rule, rule, path=["response"])
+            assert_matches_type(GatewayRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -860,7 +860,7 @@ class TestAsyncRules:
         rule = await async_client.zero_trust.gateway.rules.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncSinglePage[Rule], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[GatewayRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -872,7 +872,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(AsyncSinglePage[Rule], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[GatewayRule], rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -884,7 +884,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(AsyncSinglePage[Rule], rule, path=["response"])
+            assert_matches_type(AsyncSinglePage[GatewayRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -960,7 +960,7 @@ class TestAsyncRules:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -973,7 +973,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Rule, rule, path=["response"])
+        assert_matches_type(GatewayRule, rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -986,7 +986,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Rule, rule, path=["response"])
+            assert_matches_type(GatewayRule, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

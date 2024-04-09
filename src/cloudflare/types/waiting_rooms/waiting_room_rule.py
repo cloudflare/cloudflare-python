@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["Rule"]
+__all__ = ["WaitingRoomRule"]
 
 
-class Rule(BaseModel):
+class WaitingRoomRule(BaseModel):
     id: Optional[str] = None
     """The ID of the rule."""
 

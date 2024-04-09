@@ -4,10 +4,10 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["Rule"]
+__all__ = ["MagicNetworkMonitoringRule"]
 
 
-class Rule(BaseModel):
+class MagicNetworkMonitoringRule(BaseModel):
     automatic_advertisement: Optional[bool] = None
     """
     Toggle on if you would like Cloudflare to automatically advertise the IP

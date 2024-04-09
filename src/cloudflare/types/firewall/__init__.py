@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from .rule import Rule as Rule
 from .urls import URLs as URLs
 from .lockdown import Lockdown as Lockdown
 from .products import Products as Products
 from .configuration import Configuration as Configuration
+from .firewall_rule import FirewallRule as FirewallRule
 from .deleted_filter import DeletedFilter as DeletedFilter
 from .rule_get_params import RuleGetParams as RuleGetParams
 from .rule_edit_params import RuleEditParams as RuleEditParams

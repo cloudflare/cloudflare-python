@@ -8,7 +8,7 @@ from .allowed_modes_anomaly import AllowedModesAnomaly
 from .unnamed_schema_ref_532d8b97684c9032dd36bae8acddebf5 import UnnamedSchemaRef532d8b97684c9032dd36bae8acddebf5
 
 __all__ = [
-    "Rule",
+    "RuleListResponse",
     "WAFManagedRulesAnomalyRule",
     "WAFManagedRulesTraditionalDenyRule",
     "WAFManagedRulesTraditionalAllowRule",
@@ -101,4 +101,6 @@ class WAFManagedRulesTraditionalAllowRule(BaseModel):
     """The order in which the individual WAF rule is executed within its rule group."""
 
 
-Rule = Union[WAFManagedRulesAnomalyRule, WAFManagedRulesTraditionalDenyRule, WAFManagedRulesTraditionalAllowRule]
+RuleListResponse = Union[
+    WAFManagedRulesAnomalyRule, WAFManagedRulesTraditionalDenyRule, WAFManagedRulesTraditionalAllowRule
+]

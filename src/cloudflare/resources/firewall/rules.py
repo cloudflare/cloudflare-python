@@ -26,7 +26,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.firewall import (
-    Rule,
+    FirewallRule,
     RuleEditResponse,
     RuleCreateResponse,
     rule_get_params,
@@ -102,7 +102,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> FirewallRule:
         """
         Updates an existing firewall rule.
 
@@ -133,7 +133,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
 
     def list(
@@ -152,7 +152,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[Rule]:
+    ) -> SyncV4PagePaginationArray[FirewallRule]:
         """Fetches firewall rules in a zone.
 
         You can filter the results using several
@@ -185,7 +185,7 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/rules",
-            page=SyncV4PagePaginationArray[Rule],
+            page=SyncV4PagePaginationArray[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -203,7 +203,7 @@ class Rules(SyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            model=Rule,
+            model=FirewallRule,
         )
 
     def delete(
@@ -218,7 +218,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> FirewallRule:
         """
         Deletes an existing firewall rule.
 
@@ -254,7 +254,7 @@ class Rules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
 
     def edit(
@@ -315,7 +315,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> FirewallRule:
         """
         Fetches the details of a firewall rule.
 
@@ -348,7 +348,7 @@ class Rules(SyncAPIResource):
                 query=maybe_transform({"id": query_id}, rule_get_params.RuleGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
 
 
@@ -414,7 +414,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> FirewallRule:
         """
         Updates an existing firewall rule.
 
@@ -445,7 +445,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
 
     def list(
@@ -464,7 +464,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Rule, AsyncV4PagePaginationArray[Rule]]:
+    ) -> AsyncPaginator[FirewallRule, AsyncV4PagePaginationArray[FirewallRule]]:
         """Fetches firewall rules in a zone.
 
         You can filter the results using several
@@ -497,7 +497,7 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/rules",
-            page=AsyncV4PagePaginationArray[Rule],
+            page=AsyncV4PagePaginationArray[FirewallRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -515,7 +515,7 @@ class AsyncRules(AsyncAPIResource):
                     rule_list_params.RuleListParams,
                 ),
             ),
-            model=Rule,
+            model=FirewallRule,
         )
 
     async def delete(
@@ -530,7 +530,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> FirewallRule:
         """
         Deletes an existing firewall rule.
 
@@ -566,7 +566,7 @@ class AsyncRules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
 
     async def edit(
@@ -627,7 +627,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Rule:
+    ) -> FirewallRule:
         """
         Fetches the details of a firewall rule.
 
@@ -660,7 +660,7 @@ class AsyncRules(AsyncAPIResource):
                 query=await async_maybe_transform({"id": query_id}, rule_get_params.RuleGetParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Rule], ResultWrapper[Rule]),
+            cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
 
 

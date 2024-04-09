@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .rule import Rule as Rule
 from .lists import Lists as Lists
 from .app_type import AppType as AppType
 from .category import Category as Category
@@ -10,6 +9,7 @@ from .location import Location as Location
 from .schedule import Schedule as Schedule
 from .gateway_ips import GatewayIPs as GatewayIPs
 from .lists_param import ListsParam as ListsParam
+from .gateway_rule import GatewayRule as GatewayRule
 from .rule_setting import RuleSetting as RuleSetting
 from .tls_settings import TLSSettings as TLSSettings
 from .fips_settings import FipsSettings as FipsSettings

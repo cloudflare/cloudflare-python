@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-from .filter_param import FilterParam
 from .mechanism_param import MechanismParam
+from .policy_filter_param import PolicyFilterParam
 
 __all__ = ["PolicyUpdateParams"]
 
@@ -83,7 +83,7 @@ class PolicyUpdateParams(TypedDict, total=False):
     enabled: bool
     """Whether or not the Notification policy is enabled."""
 
-    filters: FilterParam
+    filters: PolicyFilterParam
     """
     Optional filters that allow you to be alerted only on a subset of events for
     that alert type based on some criteria. This is only available for select alert

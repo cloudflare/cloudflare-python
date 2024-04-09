@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .rule import Rule
+from .firewall_rule import FirewallRule
 
 __all__ = ["RuleCreateResponse"]
 
-RuleCreateResponse = List[Rule]
+RuleCreateResponse = List[FirewallRule]
