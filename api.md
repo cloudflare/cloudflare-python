@@ -2932,7 +2932,11 @@ Types:
 
 ```python
 from cloudflare.types import (
+    BlockRule,
+    ExecuteRule,
+    LogRule,
     Ruleset,
+    SkipRule,
     RulesetCreateResponse,
     RulesetUpdateResponse,
     RulesetGetResponse,
