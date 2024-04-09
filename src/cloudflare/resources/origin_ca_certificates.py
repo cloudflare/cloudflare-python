@@ -9,6 +9,7 @@ import httpx
 
 from ..types import (
     OriginCACertificate,
+    OriginCACertificateDeleteResponse,
     origin_ca_certificate_list_params,
     origin_ca_certificate_create_params,
     origin_ca_certificate_delete_params,
@@ -32,10 +33,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import (
-    UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
-    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
-)
+from ..types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["OriginCACertificates", "AsyncOriginCACertificates"]
 
@@ -167,7 +165,7 @@ class OriginCACertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
+    ) -> OriginCACertificateDeleteResponse:
         """Revoke an existing Origin CA certificate by its serial number.
 
         Use your Origin
@@ -197,10 +195,7 @@ class OriginCACertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-            ),
+            cast_to=cast(Type[OriginCACertificateDeleteResponse], ResultWrapper[OriginCACertificateDeleteResponse]),
         )
 
     def get(
@@ -378,7 +373,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
+    ) -> OriginCACertificateDeleteResponse:
         """Revoke an existing Origin CA certificate by its serial number.
 
         Use your Origin
@@ -408,10 +403,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-            ),
+            cast_to=cast(Type[OriginCACertificateDeleteResponse], ResultWrapper[OriginCACertificateDeleteResponse]),
         )
 
     async def get(

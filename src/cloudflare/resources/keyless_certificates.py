@@ -10,6 +10,7 @@ from ..types import (
     Hostname,
     TunnelParam,
     KeylessCertificate,
+    KeylessCertificateDeleteResponse,
     UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1,
     keyless_certificate_edit_params,
     keyless_certificate_create_params,
@@ -34,7 +35,6 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837
 
 __all__ = ["KeylessCertificates", "AsyncKeylessCertificates"]
 
@@ -168,7 +168,7 @@ class KeylessCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
+    ) -> KeylessCertificateDeleteResponse:
         """
         Delete Keyless SSL Configuration
 
@@ -201,10 +201,7 @@ class KeylessCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-            ),
+            cast_to=cast(Type[KeylessCertificateDeleteResponse], ResultWrapper[KeylessCertificateDeleteResponse]),
         )
 
     def edit(
@@ -457,7 +454,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
+    ) -> KeylessCertificateDeleteResponse:
         """
         Delete Keyless SSL Configuration
 
@@ -490,10 +487,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-            ),
+            cast_to=cast(Type[KeylessCertificateDeleteResponse], ResultWrapper[KeylessCertificateDeleteResponse]),
         )
 
     async def edit(

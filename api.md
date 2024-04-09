@@ -3,19 +3,19 @@
 ```python
 from cloudflare.types import (
     ErrorData,
+    Identifier,
+    ResponseInfo,
+    Result,
     UnnamedSchemaRef025497b7e63379c31929636b5186e45c,
     UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9,
     UnnamedSchemaRef23001f1f0b697900e282236466a95fa3,
-    UnnamedSchemaRef3248f24329456e19dfa042fff9986f72,
     UnnamedSchemaRef33f2e3917f3fe46ad98af0acbb1d9a19,
     UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8,
-    UnnamedSchemaRef5cf232a1d651060af6450ae882932776,
     UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
     UnnamedSchemaRef619309774d07ec6904f1e354560d6028,
     UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1,
     UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151,
     UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c,
-    UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
     UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
     UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
     UnnamedSchemaRefB0ec5cc02c98b665099a5707a2db4ea6,
@@ -23,7 +23,6 @@ from cloudflare.types import (
     UnnamedSchemaRefB92f86eb861cd3dee83c40884802fda6,
     UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854,
     UnnamedSchemaRefD8600eb4758b3ae35607a0327bcd691b,
-    UnnamedSchemaRefE7c61ebe06ebfc3861ae8b9db4ba152b,
     UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846,
     UnnamedSchemaRefEe1e79edcb234d14c4dd266880f2fd24,
 )
@@ -83,14 +82,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import OriginCACertificate
+from cloudflare.types import OriginCACertificate, OriginCACertificateDeleteResponse
 ```
 
 Methods:
 
 - <code title="post /certificates">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">create</a>(\*\*<a href="src/cloudflare/types/origin_ca_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
 - <code title="get /certificates">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">list</a>(\*\*<a href="src/cloudflare/types/origin_ca_certificate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_ca_certificate.py">SyncSinglePage[OriginCACertificate]</a></code>
-- <code title="delete /certificates/{certificate_id}">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">delete</a>(certificate_id, \*\*<a href="src/cloudflare/types/origin_ca_certificate_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_8900f4cb9dca9b9ed0ac41ad571e6837.py">UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837</a></code>
+- <code title="delete /certificates/{certificate_id}">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">delete</a>(certificate_id, \*\*<a href="src/cloudflare/types/origin_ca_certificate_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_ca_certificate_delete_response.py">OriginCACertificateDeleteResponse</a></code>
 - <code title="get /certificates/{certificate_id}">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">get</a>(certificate_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
 
 # IPs
@@ -1323,13 +1322,18 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.ssl import HostItem, CertificatePackListResponse, CertificatePackEditResponse
+from cloudflare.types.ssl import (
+    HostItem,
+    CertificatePackListResponse,
+    CertificatePackDeleteResponse,
+    CertificatePackEditResponse,
+)
 ```
 
 Methods:
 
 - <code title="get /zones/{zone_id}/ssl/certificate_packs">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_pack_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_pack_list_response.py">SyncSinglePage[object]</a></code>
-- <code title="delete /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">delete</a>(certificate_pack_id, \*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_pack_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_8900f4cb9dca9b9ed0ac41ad571e6837.py">UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837</a></code>
+- <code title="delete /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">delete</a>(certificate_pack_id, \*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_pack_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_pack_delete_response.py">CertificatePackDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">edit</a>(certificate_pack_id, \*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_pack_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_pack_edit_response.py">CertificatePackEditResponse</a></code>
 - <code title="get /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">get</a>(certificate_pack_id, \*, zone_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
 
@@ -1510,14 +1514,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import CustomCertificate, GeoRestrictions
+from cloudflare.types import CustomCertificate, GeoRestrictions, CustomCertificateDeleteResponse
 ```
 
 Methods:
 
 - <code title="post /zones/{zone_id}/custom_certificates">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
 - <code title="get /zones/{zone_id}/custom_certificates">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificate.py">SyncV4PagePaginationArray[CustomCertificate]</a></code>
-- <code title="delete /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">delete</a>(custom_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificate_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_8900f4cb9dca9b9ed0ac41ad571e6837.py">UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837</a></code>
+- <code title="delete /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">delete</a>(custom_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificate_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificate_delete_response.py">CustomCertificateDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">edit</a>(custom_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
 - <code title="get /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">get</a>(custom_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_9444735ca60712dbcf8afd832eb5716a.py">UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a</a></code>
 
@@ -1545,6 +1549,7 @@ from cloudflare.types import (
     UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510,
     UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1,
     UnnamedSchemaRefD2a16d7ee1ad3a888dd5821c918d51fd,
+    CustomHostnameDeleteResponse,
 )
 ```
 
@@ -1552,7 +1557,7 @@ Methods:
 
 - <code title="post /zones/{zone_id}/custom_hostnames">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostname_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostname.py">CustomHostname</a></code>
 - <code title="get /zones/{zone_id}/custom_hostnames">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostname_list_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostname.py">SyncV4PagePaginationArray[CustomHostname]</a></code>
-- <code title="delete /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">delete</a>(custom_hostname_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostname_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_8900f4cb9dca9b9ed0ac41ad571e6837.py">UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837</a></code>
+- <code title="delete /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">delete</a>(custom_hostname_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostname_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostname_delete_response.py">CustomHostnameDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">edit</a>(custom_hostname_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostname_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostname.py">CustomHostname</a></code>
 - <code title="get /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">get</a>(custom_hostname_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_hostname.py">CustomHostname</a></code>
 
@@ -2023,6 +2028,7 @@ from cloudflare.types import (
     KeylessCertificate,
     Tunnel,
     UnnamedSchemaRefA91f0bd72ee433f010eecfdc94ccf298,
+    KeylessCertificateDeleteResponse,
 )
 ```
 
@@ -2030,7 +2036,7 @@ Methods:
 
 - <code title="post /zones/{zone_id}/keyless_certificates">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/keyless_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/hostname.py">Hostname</a></code>
 - <code title="get /zones/{zone_id}/keyless_certificates">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/keyless_certificate.py">SyncSinglePage[KeylessCertificate]</a></code>
-- <code title="delete /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">delete</a>(keyless_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/keyless_certificate_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/unnamed_schema_ref_8900f4cb9dca9b9ed0ac41ad571e6837.py">UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837</a></code>
+- <code title="delete /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">delete</a>(keyless_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/keyless_certificate_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/keyless_certificate_delete_response.py">KeylessCertificateDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">edit</a>(keyless_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/keyless_certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/hostname.py">Hostname</a></code>
 - <code title="get /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">get</a>(keyless_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/hostname.py">Hostname</a></code>
 
