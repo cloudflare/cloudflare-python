@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ....._models import BaseModel
 
-__all__ = ["NetworkPath", "Hop", "HopLocation"]
+__all__ = ["NetworkPathGetResponse", "Hop", "HopLocation"]
 
 
 class HopLocation(BaseModel):
@@ -38,7 +38,7 @@ class Hop(BaseModel):
     rtt_ms: Optional[int] = FieldInfo(alias="rttMs", default=None)
 
 
-class NetworkPath(BaseModel):
+class NetworkPathGetResponse(BaseModel):
     hops: List[Hop]
     """an array of the hops taken by the device to reach the end destination"""
 

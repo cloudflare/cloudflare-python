@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["Network", "Config"]
+__all__ = ["DeviceNetwork", "Config"]
 
 
 class Config(BaseModel):
@@ -23,7 +23,7 @@ class Config(BaseModel):
     """
 
 
-class Network(BaseModel):
+class DeviceNetwork(BaseModel):
     config: Optional[Config] = None
     """
     The configuration object containing information for the WARP client to detect

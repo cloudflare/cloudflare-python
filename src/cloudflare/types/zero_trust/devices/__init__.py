@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from .input import Input as Input
-from .match import Match as Match
-from .network import Network as Network
-from .input_param import InputParam as InputParam
-from .match_param import MatchParam as MatchParam
 from .schema_data import SchemaData as SchemaData
 from .schema_http import SchemaHTTP as SchemaHTTP
+from .device_input import DeviceInput as DeviceInput
+from .device_match import DeviceMatch as DeviceMatch
+from .device_network import DeviceNetwork as DeviceNetwork
 from .device_settings import DeviceSettings as DeviceSettings
 from .settings_policy import SettingsPolicy as SettingsPolicy
 from .schema_data_param import SchemaDataParam as SchemaDataParam
+from .device_input_param import DeviceInputParam as DeviceInputParam
+from .device_match_param import DeviceMatchParam as DeviceMatchParam
 from .policy_edit_params import PolicyEditParams as PolicyEditParams
 from .device_posture_rule import DevicePostureRule as DevicePostureRule
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams

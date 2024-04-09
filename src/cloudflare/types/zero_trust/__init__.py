@@ -16,6 +16,7 @@ from .scim_config import ScimConfig as ScimConfig
 from .country_rule import CountryRule as CountryRule
 from .ip_list_rule import IPListRule as IPListRule
 from .login_design import LoginDesign as LoginDesign
+from .network_path import NetworkPath as NetworkPath
 from .organization import Organization as Organization
 from .tunnel_param import TunnelParam as TunnelParam
 from .everyone_rule import EveryoneRule as EveryoneRule

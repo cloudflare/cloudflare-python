@@ -10,7 +10,7 @@ from .unnamed_schema_ref_34ef0ad73a63c3f76ed170adca181930 import UnnamedSchemaRe
 from .unnamed_schema_ref_41885dd46b9e0294254c49305a273681 import UnnamedSchemaRef41885dd46b9e0294254c49305a273681
 
 __all__ = [
-    "InputParam",
+    "DeviceInputParam",
     "TeamsDevicesFileInputRequest",
     "TeamsDevicesUniqueClientIDInputRequest",
     "TeamsDevicesDomainJoinedInputRequest",
@@ -251,7 +251,7 @@ class TeamsDevicesSentineloneS2sInputRequest(TypedDict, total=False):
     """operator"""
 
 
-InputParam = Union[
+DeviceInputParam = Union[
     TeamsDevicesFileInputRequest,
     TeamsDevicesUniqueClientIDInputRequest,
     TeamsDevicesDomainJoinedInputRequest,
