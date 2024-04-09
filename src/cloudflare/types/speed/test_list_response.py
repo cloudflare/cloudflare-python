@@ -2,7 +2,7 @@
 
 from typing import List, Optional
 
-from ..shared import UnnamedSchemaRef3248f24329456e19dfa042fff9986f72
+from ..shared import ResponseInfo
 from ..._models import BaseModel
 
 __all__ = ["TestListResponse", "ResultInfo"]
@@ -20,9 +20,9 @@ class ResultInfo(BaseModel):
 
 class TestListResponse(BaseModel):
     __test__ = False
-    errors: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
+    errors: List[ResponseInfo]
 
-    messages: List[UnnamedSchemaRef3248f24329456e19dfa042fff9986f72]
+    messages: List[ResponseInfo]
 
     success: bool
     """Whether the API call was successful."""

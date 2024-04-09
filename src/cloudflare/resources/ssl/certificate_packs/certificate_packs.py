@@ -39,6 +39,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.ssl import (
     CertificatePackEditResponse,
+    CertificatePackDeleteResponse,
     certificate_pack_edit_params,
     certificate_pack_list_params,
     certificate_pack_delete_params,
@@ -48,10 +49,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.shared import (
-    UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
-    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
-)
+from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["CertificatePacks", "AsyncCertificatePacks"]
 
@@ -128,7 +126,7 @@ class CertificatePacks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
+    ) -> CertificatePackDeleteResponse:
         """
         For a given zone, delete an advanced certificate pack.
 
@@ -161,10 +159,7 @@ class CertificatePacks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-            ),
+            cast_to=cast(Type[CertificatePackDeleteResponse], ResultWrapper[CertificatePackDeleteResponse]),
         )
 
     def edit(
@@ -342,7 +337,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
+    ) -> CertificatePackDeleteResponse:
         """
         For a given zone, delete an advanced certificate pack.
 
@@ -375,10 +370,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-            ),
+            cast_to=cast(Type[CertificatePackDeleteResponse], ResultWrapper[CertificatePackDeleteResponse]),
         )
 
     async def edit(

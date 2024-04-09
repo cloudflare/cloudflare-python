@@ -10,6 +10,7 @@ import httpx
 from ...types import (
     CustomCertificate,
     GeoRestrictionsParam,
+    CustomCertificateDeleteResponse,
     UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1,
     custom_certificate_edit_params,
     custom_certificate_list_params,
@@ -43,10 +44,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import (
-    UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837,
-    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
-)
+from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["CustomCertificates", "AsyncCustomCertificates"]
 
@@ -230,7 +228,7 @@ class CustomCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
+    ) -> CustomCertificateDeleteResponse:
         """
         Remove a SSL certificate from a zone.
 
@@ -263,10 +261,7 @@ class CustomCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-            ),
+            cast_to=cast(Type[CustomCertificateDeleteResponse], ResultWrapper[CustomCertificateDeleteResponse]),
         )
 
     def edit(
@@ -596,7 +591,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837:
+    ) -> CustomCertificateDeleteResponse:
         """
         Remove a SSL certificate from a zone.
 
@@ -629,10 +624,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-                ResultWrapper[UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837],
-            ),
+            cast_to=cast(Type[CustomCertificateDeleteResponse], ResultWrapper[CustomCertificateDeleteResponse]),
         )
 
     async def edit(

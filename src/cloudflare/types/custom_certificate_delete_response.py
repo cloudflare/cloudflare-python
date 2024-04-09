@@ -2,11 +2,11 @@
 
 from typing import Optional
 
-from ..._models import BaseModel
+from .._models import BaseModel
 
-__all__ = ["UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837"]
+__all__ = ["CustomCertificateDeleteResponse"]
 
 
-class UnnamedSchemaRef8900f4cb9dca9b9ed0ac41ad571e6837(BaseModel):
+class CustomCertificateDeleteResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
