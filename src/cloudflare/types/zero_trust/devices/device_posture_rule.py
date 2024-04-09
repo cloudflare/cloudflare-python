@@ -4,8 +4,8 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .input import Input
+from .match import Match
 from ...._models import BaseModel
-from .match_item import MatchItem
 
 __all__ = ["DevicePostureRule"]
 
@@ -27,7 +27,7 @@ class DevicePostureRule(BaseModel):
     input: Optional[Input] = None
     """The value to be checked against."""
 
-    match: Optional[List[MatchItem]] = None
+    match: Optional[List[Match]] = None
     """The conditions that the client must match to run the rule."""
 
     name: Optional[str] = None

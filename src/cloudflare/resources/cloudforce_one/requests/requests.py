@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Union, cast
+from typing import Any, List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -45,8 +45,8 @@ from ...._base_client import (
 )
 from ....types.cloudforce_one import (
     Item,
+    List,
     Quota,
-    ListItem,
     RequestTypes,
     RequestConstants,
     RequestDeleteResponse,
@@ -233,7 +233,7 @@ class Requests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[ListItem]:
+    ) -> SyncV4PagePaginationArray[List]:
         """
         List Requests
 
@@ -272,7 +272,7 @@ class Requests(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests",
-            page=SyncV4PagePaginationArray[ListItem],
+            page=SyncV4PagePaginationArray[List],
             body=maybe_transform(
                 {
                     "page": page,
@@ -291,7 +291,7 @@ class Requests(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ListItem,
+            model=List,
             method="post",
         )
 
@@ -681,7 +681,7 @@ class AsyncRequests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ListItem, AsyncV4PagePaginationArray[ListItem]]:
+    ) -> AsyncPaginator[List, AsyncV4PagePaginationArray[List]]:
         """
         List Requests
 
@@ -720,7 +720,7 @@ class AsyncRequests(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests",
-            page=AsyncV4PagePaginationArray[ListItem],
+            page=AsyncV4PagePaginationArray[List],
             body=maybe_transform(
                 {
                     "page": page,
@@ -739,7 +739,7 @@ class AsyncRequests(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ListItem,
+            model=List,
             method="post",
         )
 

@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from .item import Item as Item
+from .list import List as List
 from .quota import Quota as Quota
-from .list_item import ListItem as ListItem
 from .request_types import RequestTypes as RequestTypes
 from .request_constants import RequestConstants as RequestConstants
 from .request_list_params import RequestListParams as RequestListParams

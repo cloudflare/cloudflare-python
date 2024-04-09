@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from .invite import Invite as Invite
 from .policy import Policy as Policy
+from .cidr_list import CIDRList as CIDRList
 from .organization import Organization as Organization
 from .policy_param import PolicyParam as PolicyParam
 from .subscription import Subscription as Subscription
-from .cidr_list_item import CIDRListItem as CIDRListItem
 from .token_list_params import TokenListParams as TokenListParams
 from .invite_edit_params import InviteEditParams as InviteEditParams
 from .token_create_params import TokenCreateParams as TokenCreateParams

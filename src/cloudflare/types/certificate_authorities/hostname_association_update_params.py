@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, TypedDict
 
-from .hostname_association_item import HostnameAssociationItem
+from .hostname_association import HostnameAssociation
 
 __all__ = ["HostnameAssociationUpdateParams"]
 
@@ -14,7 +14,7 @@ class HostnameAssociationUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    hostnames: List[HostnameAssociationItem]
+    hostnames: List[HostnameAssociation]
 
     mtls_certificate_id: str
     """

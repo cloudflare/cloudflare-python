@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .lists_item import ListsItem
+from .lists import Lists
 
 __all__ = ["ItemListResponse"]
 
-ItemListResponse = List[ListsItem]
+ItemListResponse = List[Lists]

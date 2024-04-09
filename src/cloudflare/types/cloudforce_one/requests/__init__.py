@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+from .label import Label as Label
 from .message import Message as Message
 from .priority import Priority as Priority
-from .label_item import LabelItem as LabelItem
 from .message_get_params import MessageGetParams as MessageGetParams
 from .message_get_response import MessageGetResponse as MessageGetResponse
 from .message_create_params import MessageCreateParams as MessageCreateParams

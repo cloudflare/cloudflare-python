@@ -4,9 +4,9 @@ from typing import List, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
+from ..firewall_ips import FirewallIPs
 from ..upstream_ips import UpstreamIPs
 from ..attack_mitigation import AttackMitigation
-from ..firewall_ips_item import FirewallIPsItem
 
 __all__ = ["Firewall"]
 
@@ -18,7 +18,7 @@ class Firewall(BaseModel):
     deprecate_any_requests: bool
     """Deprecate the response to ANY requests."""
 
-    dns_firewall_ips: List[FirewallIPsItem]
+    dns_firewall_ips: List[FirewallIPs]
 
     ecs_fallback: bool
     """Forward client IP (resolver) subnet if no EDNS Client Subnet is sent."""

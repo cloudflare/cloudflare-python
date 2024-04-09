@@ -5,10 +5,12 @@ from __future__ import annotations
 from .d1 import D1 as D1
 from .dns import DNS as DNS
 from .ips import IPs as IPs
+from .host import Host as Host
 from .info import Info as Info
 from .pcap import PCAP as PCAP
 from .zone import Zone as Zone
 from .route import Route as Route
+from .rules import Rules as Rules
 from .trend import Trend as Trend
 from .video import Video as Video
 from .action import Action as Action
@@ -46,7 +48,6 @@ from .settings import Settings as Settings
 from .calls_app import CallsApp as CallsApp
 from .component import Component as Component
 from .dns_param import DNSParam as DNSParam
-from .host_item import HostItem as HostItem
 from .page_rule import PageRule as PageRule
 from .rate_plan import RatePlan as RatePlan
 from .skip_rule import SkipRule as SkipRule
@@ -57,11 +58,11 @@ from .membership import Membership as Membership
 from .origin_dns import OriginDNS as OriginDNS
 from .r2_binding import R2Binding as R2Binding
 from .rate_limit import RateLimit as RateLimit
-from .rules_item import RulesItem as RulesItem
 from .healthcheck import Healthcheck as Healthcheck
 from .jdcloud_ips import JDCloudIPs as JDCloudIPs
 from .origin_port import OriginPort as OriginPort
 from .route_param import RouteParam as RouteParam
+from .rules_param import RulesParam as RulesParam
 from .check_region import CheckRegion as CheckRegion
 from .execute_rule import ExecuteRule as ExecuteRule
 from .filter_param import FilterParam as FilterParam
@@ -73,6 +74,7 @@ from .targes_param import TargesParam as TargesParam
 from .tunnel_param import TunnelParam as TunnelParam
 from .waiting_room import WaitingRoom as WaitingRoom
 from .configuration import Configuration as Configuration
+from .default_pools import DefaultPools as DefaultPools
 from .load_balancer import LoadBalancer as LoadBalancer
 from .load_shedding import LoadShedding as LoadShedding
 from .request_model import RequestModel as RequestModel
@@ -83,6 +85,7 @@ from .ip_list_params import IPListParams as IPListParams
 from .labeled_region import LabeledRegion as LabeledRegion
 from .log_rule_param import LogRuleParam as LogRuleParam
 from .warp_connector import WARPConnector as WARPConnector
+from .allowed_origins import AllowedOrigins as AllowedOrigins
 from .custom_hostname import CustomHostname as CustomHostname
 from .origin_steering import OriginSteering as OriginSteering
 from .random_steering import RandomSteering as RandomSteering
@@ -94,10 +97,10 @@ from .geo_restrictions import GeoRestrictions as GeoRestrictions
 from .ip_list_response import IPListResponse as IPListResponse
 from .mtls_certificate import MTLSCertificate as MTLSCertificate
 from .origin_dns_param import OriginDNSParam as OriginDNSParam
-from .rules_item_param import RulesItemParam as RulesItemParam
 from .user_edit_params import UserEditParams as UserEditParams
 from .zone_edit_params import ZoneEditParams as ZoneEditParams
 from .zone_list_params import ZoneListParams as ZoneListParams
+from .additional_routes import AdditionalRoutes as AdditionalRoutes
 from .cookie_attributes import CookieAttributes as CookieAttributes
 from .custom_nameserver import CustomNameserver as CustomNameserver
 from .health_check_type import HealthCheckType as HealthCheckType
@@ -112,7 +115,6 @@ from .call_create_params import CallCreateParams as CallCreateParams
 from .call_update_params import CallUpdateParams as CallUpdateParams
 from .client_certificate import ClientCertificate as ClientCertificate
 from .custom_certificate import CustomCertificate as CustomCertificate
-from .default_pools_item import DefaultPoolsItem as DefaultPoolsItem
 from .dnssec_edit_params import DNSSECEditParams as DNSSECEditParams
 from .execute_rule_param import ExecuteRuleParam as ExecuteRuleParam
 from .filter_list_params import FilterListParams as FilterListParams
@@ -136,7 +138,6 @@ from .queue_list_response import QueueListResponse as QueueListResponse
 from .queue_update_params import QueueUpdateParams as QueueUpdateParams
 from .request_model_param import RequestModelParam as RequestModelParam
 from .speed_delete_params import SpeedDeleteParams as SpeedDeleteParams
-from .allowed_origins_item import AllowedOriginsItem as AllowedOriginsItem
 from .cache_purge_response import CachePurgeResponse as CachePurgeResponse
 from .dnssec_delete_params import DNSSECDeleteParams as DNSSECDeleteParams
 from .filter_create_params import FilterCreateParams as FilterCreateParams
@@ -167,7 +168,6 @@ from .ruleset_update_params import RulesetUpdateParams as RulesetUpdateParams
 from .snippet_update_params import SnippetUpdateParams as SnippetUpdateParams
 from .speed_delete_response import SpeedDeleteResponse as SpeedDeleteResponse
 from .adaptive_routing_param import AdaptiveRoutingParam as AdaptiveRoutingParam
-from .additional_routes_item import AdditionalRoutesItem as AdditionalRoutesItem
 from .dnssec_delete_response import DNSSECDeleteResponse as DNSSECDeleteResponse
 from .durable_object_binding import DurableObjectBinding as DurableObjectBinding
 from .filter_create_response import FilterCreateResponse as FilterCreateResponse
@@ -180,6 +180,7 @@ from .pagerule_update_params import PageruleUpdateParams as PageruleUpdateParams
 from .rate_limit_edit_params import RateLimitEditParams as RateLimitEditParams
 from .rate_limit_list_params import RateLimitListParams as RateLimitListParams
 from .rate_plan_get_response import RatePlanGetResponse as RatePlanGetResponse
+from .additional_routes_param import AdditionalRoutesParam as AdditionalRoutesParam
 from .audit_log_list_response import AuditLogListResponse as AuditLogListResponse
 from .cookie_attributes_param import CookieAttributesParam as CookieAttributesParam
 from .healthcheck_edit_params import HealthcheckEditParams as HealthcheckEditParams
@@ -230,7 +231,6 @@ from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalance
 from .page_shield_update_response import PageShieldUpdateResponse as PageShieldUpdateResponse
 from .session_affinity_attributes import SessionAffinityAttributes as SessionAffinityAttributes
 from .single_step_migration_param import SingleStepMigrationParam as SingleStepMigrationParam
-from .additional_routes_item_param import AdditionalRoutesItemParam as AdditionalRoutesItemParam
 from .bot_fight_mode_configuration import BotFightModeConfiguration as BotFightModeConfiguration
 from .bot_management_update_params import BotManagementUpdateParams as BotManagementUpdateParams
 from .email_routing_disable_params import EmailRoutingDisableParams as EmailRoutingDisableParams

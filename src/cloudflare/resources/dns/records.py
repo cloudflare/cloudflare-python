@@ -25,7 +25,7 @@ from ..._wrappers import ResultWrapper
 from ...types.dns import (
     Record,
     TTLParam,
-    RecordTagsItem,
+    RecordTags,
     RecordScanResponse,
     RecordDeleteResponse,
     RecordImportResponse,
@@ -65,7 +65,7 @@ class Records(SyncAPIResource):
         type: Literal["A"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -125,7 +125,7 @@ class Records(SyncAPIResource):
         type: Literal["AAAA"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -184,7 +184,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["CAA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -240,7 +240,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["CERT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -297,7 +297,7 @@ class Records(SyncAPIResource):
         type: Literal["CNAME"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -356,7 +356,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["DNSKEY"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -412,7 +412,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["DS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -468,7 +468,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["HTTPS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -524,7 +524,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["LOC"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -581,7 +581,7 @@ class Records(SyncAPIResource):
         priority: float,
         type: Literal["MX"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -640,7 +640,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["NAPTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -696,7 +696,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["NS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -752,7 +752,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["PTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -808,7 +808,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SMIMEA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -864,7 +864,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SRV"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -922,7 +922,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SSHFP"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -978,7 +978,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SVCB"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1034,7 +1034,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["TLSA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1090,7 +1090,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["TXT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1147,7 +1147,7 @@ class Records(SyncAPIResource):
         priority: float,
         type: Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1247,7 +1247,7 @@ class Records(SyncAPIResource):
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData
         | record_create_params.CERTRecordData
@@ -1313,7 +1313,7 @@ class Records(SyncAPIResource):
         type: Literal["A"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1375,7 +1375,7 @@ class Records(SyncAPIResource):
         type: Literal["AAAA"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1436,7 +1436,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["CAA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1494,7 +1494,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["CERT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1553,7 +1553,7 @@ class Records(SyncAPIResource):
         type: Literal["CNAME"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1614,7 +1614,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["DNSKEY"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1672,7 +1672,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["DS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1730,7 +1730,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["HTTPS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1788,7 +1788,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["LOC"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1847,7 +1847,7 @@ class Records(SyncAPIResource):
         priority: float,
         type: Literal["MX"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1908,7 +1908,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["NAPTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1966,7 +1966,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["NS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2024,7 +2024,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["PTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2082,7 +2082,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SMIMEA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2140,7 +2140,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SRV"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2200,7 +2200,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SSHFP"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2258,7 +2258,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SVCB"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2316,7 +2316,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["TLSA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2374,7 +2374,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["TXT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2433,7 +2433,7 @@ class Records(SyncAPIResource):
         priority: float,
         type: Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2535,7 +2535,7 @@ class Records(SyncAPIResource):
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData
         | record_update_params.CERTRecordData
@@ -2774,7 +2774,7 @@ class Records(SyncAPIResource):
         type: Literal["A"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2836,7 +2836,7 @@ class Records(SyncAPIResource):
         type: Literal["AAAA"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2897,7 +2897,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["CAA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2955,7 +2955,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["CERT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3014,7 +3014,7 @@ class Records(SyncAPIResource):
         type: Literal["CNAME"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3075,7 +3075,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["DNSKEY"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3133,7 +3133,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["DS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3191,7 +3191,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["HTTPS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3249,7 +3249,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["LOC"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3308,7 +3308,7 @@ class Records(SyncAPIResource):
         priority: float,
         type: Literal["MX"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3369,7 +3369,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["NAPTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3427,7 +3427,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["NS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3485,7 +3485,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["PTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3543,7 +3543,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SMIMEA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3601,7 +3601,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SRV"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3661,7 +3661,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SSHFP"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3719,7 +3719,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["SVCB"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3777,7 +3777,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["TLSA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3835,7 +3835,7 @@ class Records(SyncAPIResource):
         name: str,
         type: Literal["TXT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3894,7 +3894,7 @@ class Records(SyncAPIResource):
         priority: float,
         type: Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3996,7 +3996,7 @@ class Records(SyncAPIResource):
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData
@@ -4271,7 +4271,7 @@ class AsyncRecords(AsyncAPIResource):
         type: Literal["A"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4331,7 +4331,7 @@ class AsyncRecords(AsyncAPIResource):
         type: Literal["AAAA"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4390,7 +4390,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["CAA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4446,7 +4446,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["CERT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4503,7 +4503,7 @@ class AsyncRecords(AsyncAPIResource):
         type: Literal["CNAME"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4562,7 +4562,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["DNSKEY"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4618,7 +4618,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["DS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4674,7 +4674,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["HTTPS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4730,7 +4730,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["LOC"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4787,7 +4787,7 @@ class AsyncRecords(AsyncAPIResource):
         priority: float,
         type: Literal["MX"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4846,7 +4846,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["NAPTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4902,7 +4902,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["NS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4958,7 +4958,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["PTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5014,7 +5014,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SMIMEA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5070,7 +5070,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SRV"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5128,7 +5128,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SSHFP"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5184,7 +5184,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SVCB"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5240,7 +5240,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["TLSA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5296,7 +5296,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["TXT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5353,7 +5353,7 @@ class AsyncRecords(AsyncAPIResource):
         priority: float,
         type: Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5453,7 +5453,7 @@ class AsyncRecords(AsyncAPIResource):
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData
         | record_create_params.CERTRecordData
@@ -5519,7 +5519,7 @@ class AsyncRecords(AsyncAPIResource):
         type: Literal["A"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5581,7 +5581,7 @@ class AsyncRecords(AsyncAPIResource):
         type: Literal["AAAA"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5642,7 +5642,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["CAA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5700,7 +5700,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["CERT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5759,7 +5759,7 @@ class AsyncRecords(AsyncAPIResource):
         type: Literal["CNAME"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5820,7 +5820,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["DNSKEY"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5878,7 +5878,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["DS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5936,7 +5936,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["HTTPS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5994,7 +5994,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["LOC"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6053,7 +6053,7 @@ class AsyncRecords(AsyncAPIResource):
         priority: float,
         type: Literal["MX"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6114,7 +6114,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["NAPTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6172,7 +6172,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["NS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6230,7 +6230,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["PTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6288,7 +6288,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SMIMEA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6346,7 +6346,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SRV"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6406,7 +6406,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SSHFP"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6464,7 +6464,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SVCB"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6522,7 +6522,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["TLSA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6580,7 +6580,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["TXT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6639,7 +6639,7 @@ class AsyncRecords(AsyncAPIResource):
         priority: float,
         type: Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6741,7 +6741,7 @@ class AsyncRecords(AsyncAPIResource):
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData
         | record_update_params.CERTRecordData
@@ -6980,7 +6980,7 @@ class AsyncRecords(AsyncAPIResource):
         type: Literal["A"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7042,7 +7042,7 @@ class AsyncRecords(AsyncAPIResource):
         type: Literal["AAAA"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7103,7 +7103,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["CAA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7161,7 +7161,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["CERT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7220,7 +7220,7 @@ class AsyncRecords(AsyncAPIResource):
         type: Literal["CNAME"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7281,7 +7281,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["DNSKEY"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7339,7 +7339,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["DS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7397,7 +7397,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["HTTPS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7455,7 +7455,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["LOC"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7514,7 +7514,7 @@ class AsyncRecords(AsyncAPIResource):
         priority: float,
         type: Literal["MX"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7575,7 +7575,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["NAPTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7633,7 +7633,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["NS"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7691,7 +7691,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["PTR"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7749,7 +7749,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SMIMEA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7807,7 +7807,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SRV"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7867,7 +7867,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SSHFP"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7925,7 +7925,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["SVCB"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7983,7 +7983,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["TLSA"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -8041,7 +8041,7 @@ class AsyncRecords(AsyncAPIResource):
         name: str,
         type: Literal["TXT"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -8100,7 +8100,7 @@ class AsyncRecords(AsyncAPIResource):
         priority: float,
         type: Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -8202,7 +8202,7 @@ class AsyncRecords(AsyncAPIResource):
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTagsItem] | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData

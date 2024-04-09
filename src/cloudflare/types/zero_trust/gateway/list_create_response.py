@@ -4,7 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .lists import ListsItem
+from .lists import Lists
 from ...._models import BaseModel
 
 __all__ = ["ListCreateResponse"]
@@ -19,7 +19,7 @@ class ListCreateResponse(BaseModel):
     description: Optional[str] = None
     """The description of the list."""
 
-    items: Optional[List[ListsItem]] = None
+    items: Optional[List[Lists]] = None
     """The items in the list."""
 
     name: Optional[str] = None

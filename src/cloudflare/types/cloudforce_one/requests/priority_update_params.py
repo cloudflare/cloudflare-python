@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-from .label_item import LabelItem
+from .label import Label
 
 __all__ = ["PriorityUpdateParams"]
 
@@ -14,7 +14,7 @@ class PriorityUpdateParams(TypedDict, total=False):
     account_identifier: Required[str]
     """Identifier"""
 
-    labels: Required[List[LabelItem]]
+    labels: Required[List[Label]]
     """List of labels"""
 
     priority: Required[int]

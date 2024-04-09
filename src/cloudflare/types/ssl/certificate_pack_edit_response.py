@@ -3,8 +3,8 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
+from .host import Host
 from ..._models import BaseModel
-from .host_item import HostItem
 
 __all__ = ["CertificatePackEditResponse"]
 
@@ -26,7 +26,7 @@ class CertificatePackEditResponse(BaseModel):
     This will add sni.cloudflaressl.com as the Common Name if set true.
     """
 
-    hosts: Optional[List[HostItem]] = None
+    hosts: Optional[List[Host]] = None
     """Comma separated list of valid host names for the certificate packs.
 
     Must contain the zone apex, may not contain more than 50 hosts, and may not be

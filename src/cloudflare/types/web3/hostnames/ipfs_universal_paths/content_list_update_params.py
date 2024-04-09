@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .content_lists import ContentListItemParam
+from .content_lists import ContentListParam
 
 __all__ = ["ContentListUpdateParams"]
 
@@ -17,5 +17,5 @@ class ContentListUpdateParams(TypedDict, total=False):
     action: Required[Literal["block"]]
     """Behavior of the content list."""
 
-    entries: Required[Iterable[ContentListItemParam]]
+    entries: Required[Iterable[ContentListParam]]
     """Content list entries."""

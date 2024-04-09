@@ -5,7 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .widget_domain_item import WidgetDomainItem
+from .widget_domain import WidgetDomain
 
 __all__ = ["Widget"]
 
@@ -26,7 +26,7 @@ class Widget(BaseModel):
     created_on: datetime
     """When the widget was created."""
 
-    domains: List[WidgetDomainItem]
+    domains: List[WidgetDomain]
 
     mode: Literal["non-interactive", "invisible", "managed"]
     """Widget Mode"""
