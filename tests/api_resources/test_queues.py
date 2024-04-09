@@ -16,6 +16,7 @@ from cloudflare.types import (
     QueueDeleteResponse,
     QueueUpdateResponse,
 )
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -132,7 +133,7 @@ class TestQueues:
         queue = client.queues.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[QueueListResponse], queue, path=["response"])
+        assert_matches_type(SyncSinglePage[QueueListResponse], queue, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -144,7 +145,7 @@ class TestQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = response.parse()
-        assert_matches_type(Optional[QueueListResponse], queue, path=["response"])
+        assert_matches_type(SyncSinglePage[QueueListResponse], queue, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +157,7 @@ class TestQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = response.parse()
-            assert_matches_type(Optional[QueueListResponse], queue, path=["response"])
+            assert_matches_type(SyncSinglePage[QueueListResponse], queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -390,7 +391,7 @@ class TestAsyncQueues:
         queue = await async_client.queues.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[QueueListResponse], queue, path=["response"])
+        assert_matches_type(AsyncSinglePage[QueueListResponse], queue, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -402,7 +403,7 @@ class TestAsyncQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = await response.parse()
-        assert_matches_type(Optional[QueueListResponse], queue, path=["response"])
+        assert_matches_type(AsyncSinglePage[QueueListResponse], queue, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -414,7 +415,7 @@ class TestAsyncQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = await response.parse()
-            assert_matches_type(Optional[QueueListResponse], queue, path=["response"])
+            assert_matches_type(AsyncSinglePage[QueueListResponse], queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
