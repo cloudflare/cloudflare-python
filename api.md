@@ -5011,7 +5011,7 @@ from cloudflare.types.zero_trust import (
     ExternalEvaluationRule,
     GitHubOrganizationRule,
     GroupRule,
-    GsuiteGroupRule,
+    GSuiteGroupRule,
     IPListRule,
     IPRule,
     OktaGroupRule,
