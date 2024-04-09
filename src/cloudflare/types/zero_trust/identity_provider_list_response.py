@@ -2,11 +2,11 @@
 
 from typing import List, Union, Optional
 
-from .azure_ad import AzureAd
+from .azure_ad import AzureAD
 from ..._models import BaseModel
+from .scim_config import ScimConfig
 from .generic_oauth_config import GenericOAuthConfig
-from .unnamed_schema_ref_9ab84e842cdf571c8f3898648bcdabcb import UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
-from .unnamed_schema_ref_dd86d8b7ea73283da7b160ed3f86cae1 import UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1
+from .identity_provider_type import IdentityProviderType
 
 __all__ = [
     "IdentityProviderListResponse",
@@ -19,17 +19,17 @@ __all__ = [
     "AccessGoogleApps",
     "AccessGoogleAppsConfig",
     "AccessLinkedin",
-    "AccessOidc",
-    "AccessOidcConfig",
+    "AccessOIDC",
+    "AccessOIDCConfig",
     "AccessOkta",
     "AccessOktaConfig",
     "AccessOnelogin",
     "AccessOneloginConfig",
     "AccessPingone",
     "AccessPingoneConfig",
-    "AccessSaml",
-    "AccessSamlConfig",
-    "AccessSamlConfigHeaderAttribute",
+    "AccessSAML",
+    "AccessSAMLConfig",
+    "AccessSAMLConfigHeaderAttribute",
     "AccessYandex",
 ]
 
@@ -65,7 +65,7 @@ class AccessCentrify(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -75,7 +75,7 @@ class AccessCentrify(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -93,7 +93,7 @@ class AccessFacebook(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -103,7 +103,7 @@ class AccessFacebook(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -121,7 +121,7 @@ class AccessGitHub(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -131,7 +131,7 @@ class AccessGitHub(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -163,7 +163,7 @@ class AccessGoogle(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -173,7 +173,7 @@ class AccessGoogle(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -208,7 +208,7 @@ class AccessGoogleApps(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -218,7 +218,7 @@ class AccessGoogleApps(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -236,7 +236,7 @@ class AccessLinkedin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -246,14 +246,14 @@ class AccessLinkedin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class AccessOidcConfig(BaseModel):
+class AccessOIDCConfig(BaseModel):
     auth_url: Optional[str] = None
     """The authorization_endpoint URL of your IdP"""
 
@@ -279,8 +279,8 @@ class AccessOidcConfig(BaseModel):
     """The token_endpoint URL of your IdP"""
 
 
-class AccessOidc(BaseModel):
-    config: AccessOidcConfig
+class AccessOIDC(BaseModel):
+    config: AccessOIDCConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -290,7 +290,7 @@ class AccessOidc(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -300,7 +300,7 @@ class AccessOidc(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -338,7 +338,7 @@ class AccessOkta(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -348,7 +348,7 @@ class AccessOkta(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -383,7 +383,7 @@ class AccessOnelogin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -393,7 +393,7 @@ class AccessOnelogin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -428,7 +428,7 @@ class AccessPingone(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -438,14 +438,14 @@ class AccessPingone(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class AccessSamlConfigHeaderAttribute(BaseModel):
+class AccessSAMLConfigHeaderAttribute(BaseModel):
     attribute_name: Optional[str] = None
     """attribute name from the IDP"""
 
@@ -453,7 +453,7 @@ class AccessSamlConfigHeaderAttribute(BaseModel):
     """header that will be added on the request to the origin"""
 
 
-class AccessSamlConfig(BaseModel):
+class AccessSAMLConfig(BaseModel):
     attributes: Optional[List[str]] = None
     """
     A list of SAML attribute names that will be added to your signed JWT token and
@@ -463,7 +463,7 @@ class AccessSamlConfig(BaseModel):
     email_attribute_name: Optional[str] = None
     """The attribute name for email in the SAML response."""
 
-    header_attributes: Optional[List[AccessSamlConfigHeaderAttribute]] = None
+    header_attributes: Optional[List[AccessSAMLConfigHeaderAttribute]] = None
     """
     Add a list of attribute names that will be returned in the response header from
     the Access callback.
@@ -485,8 +485,8 @@ class AccessSamlConfig(BaseModel):
     """URL to send the SAML authentication requests to"""
 
 
-class AccessSaml(BaseModel):
-    config: AccessSamlConfig
+class AccessSAML(BaseModel):
+    config: AccessSAMLConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -496,7 +496,7 @@ class AccessSaml(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -506,7 +506,7 @@ class AccessSaml(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -524,7 +524,7 @@ class AccessYandex(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -534,7 +534,7 @@ class AccessYandex(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -542,17 +542,17 @@ class AccessYandex(BaseModel):
 
 
 IdentityProviderListResponse = Union[
-    AzureAd,
+    AzureAD,
     AccessCentrify,
     AccessFacebook,
     AccessGitHub,
     AccessGoogle,
     AccessGoogleApps,
     AccessLinkedin,
-    AccessOidc,
+    AccessOIDC,
     AccessOkta,
     AccessOnelogin,
     AccessPingone,
-    AccessSaml,
+    AccessSAML,
     AccessYandex,
 ]

@@ -10,8 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
-from cloudflare.types.registrar import Domain
+from cloudflare.types.registrar import Domain, DomainGetResponse, DomainUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +25,7 @@ class TestDomains:
             "cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -38,7 +37,7 @@ class TestDomains:
             locked=False,
             privacy=True,
         )
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -51,7 +50,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -64,7 +63,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+            assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -132,7 +131,7 @@ class TestDomains:
             "cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+        assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -145,7 +144,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+        assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -158,7 +157,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+            assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -188,7 +187,7 @@ class TestAsyncDomains:
             "cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -200,7 +199,7 @@ class TestAsyncDomains:
             locked=False,
             privacy=True,
         )
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -213,7 +212,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+        assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -226,7 +225,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+            assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -294,7 +293,7 @@ class TestAsyncDomains:
             "cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+        assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -307,7 +306,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+        assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -320,7 +319,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1], domain, path=["response"])
+            assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

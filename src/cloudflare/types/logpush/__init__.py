@@ -8,6 +8,7 @@ from .job_delete_params import JobDeleteParams as JobDeleteParams
 from .job_update_params import JobUpdateParams as JobUpdateParams
 from .edge_create_params import EdgeCreateParams as EdgeCreateParams
 from .instant_logpush_job import InstantLogpushJob as InstantLogpushJob
+from .job_delete_response import JobDeleteResponse as JobDeleteResponse
 from .validate_origin_params import ValidateOriginParams as ValidateOriginParams
 from .ownership_create_params import OwnershipCreateParams as OwnershipCreateParams
 from .validate_origin_response import ValidateOriginResponse as ValidateOriginResponse

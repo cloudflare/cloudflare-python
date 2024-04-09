@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from cloudflare.types.intel import MiscategorizationCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestMiscategorizations:
         miscategorization = client.intel.miscategorizations.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -38,7 +38,7 @@ class TestMiscategorizations:
             security_removes=[83],
             url="string",
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestMiscategorizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         miscategorization = response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -62,7 +62,7 @@ class TestMiscategorizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             miscategorization = response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, miscategorization, path=["response"])
+            assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -84,7 +84,7 @@ class TestAsyncMiscategorizations:
         miscategorization = await async_client.intel.miscategorizations.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,7 +99,7 @@ class TestAsyncMiscategorizations:
             security_removes=[83],
             url="string",
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +111,7 @@ class TestAsyncMiscategorizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         miscategorization = await response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -123,7 +123,7 @@ class TestAsyncMiscategorizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             miscategorization = await response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, miscategorization, path=["response"])
+            assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

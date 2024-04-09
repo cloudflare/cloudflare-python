@@ -365,12 +365,12 @@ from .true_client_ip_header import (
     AsyncTrueClientIPHeaderResourceWithStreamingResponse,
 )
 from .origin_max_http_version import (
-    OriginMaxHTTPVersion,
-    AsyncOriginMaxHTTPVersion,
-    OriginMaxHTTPVersionWithRawResponse,
-    AsyncOriginMaxHTTPVersionWithRawResponse,
-    OriginMaxHTTPVersionWithStreamingResponse,
-    AsyncOriginMaxHTTPVersionWithStreamingResponse,
+    OriginMaxHTTPVersionResource,
+    AsyncOriginMaxHTTPVersionResource,
+    OriginMaxHTTPVersionResourceWithRawResponse,
+    AsyncOriginMaxHTTPVersionResourceWithRawResponse,
+    OriginMaxHTTPVersionResourceWithStreamingResponse,
+    AsyncOriginMaxHTTPVersionResourceWithStreamingResponse,
 )
 from .automatic_https_rewrites import (
     AutomaticHTTPSRewrites,
@@ -542,8 +542,8 @@ class Settings(SyncAPIResource):
         return OriginErrorPagePassThruResource(self._client)
 
     @cached_property
-    def origin_max_http_version(self) -> OriginMaxHTTPVersion:
-        return OriginMaxHTTPVersion(self._client)
+    def origin_max_http_version(self) -> OriginMaxHTTPVersionResource:
+        return OriginMaxHTTPVersionResource(self._client)
 
     @cached_property
     def polish(self) -> PolishResource:
@@ -756,8 +756,8 @@ class AsyncSettings(AsyncAPIResource):
         return AsyncOriginErrorPagePassThruResource(self._client)
 
     @cached_property
-    def origin_max_http_version(self) -> AsyncOriginMaxHTTPVersion:
-        return AsyncOriginMaxHTTPVersion(self._client)
+    def origin_max_http_version(self) -> AsyncOriginMaxHTTPVersionResource:
+        return AsyncOriginMaxHTTPVersionResource(self._client)
 
     @cached_property
     def polish(self) -> AsyncPolishResource:
@@ -973,8 +973,8 @@ class SettingsWithRawResponse:
         return OriginErrorPagePassThruResourceWithRawResponse(self._settings.origin_error_page_pass_thru)
 
     @cached_property
-    def origin_max_http_version(self) -> OriginMaxHTTPVersionWithRawResponse:
-        return OriginMaxHTTPVersionWithRawResponse(self._settings.origin_max_http_version)
+    def origin_max_http_version(self) -> OriginMaxHTTPVersionResourceWithRawResponse:
+        return OriginMaxHTTPVersionResourceWithRawResponse(self._settings.origin_max_http_version)
 
     @cached_property
     def polish(self) -> PolishResourceWithRawResponse:
@@ -1182,8 +1182,8 @@ class AsyncSettingsWithRawResponse:
         return AsyncOriginErrorPagePassThruResourceWithRawResponse(self._settings.origin_error_page_pass_thru)
 
     @cached_property
-    def origin_max_http_version(self) -> AsyncOriginMaxHTTPVersionWithRawResponse:
-        return AsyncOriginMaxHTTPVersionWithRawResponse(self._settings.origin_max_http_version)
+    def origin_max_http_version(self) -> AsyncOriginMaxHTTPVersionResourceWithRawResponse:
+        return AsyncOriginMaxHTTPVersionResourceWithRawResponse(self._settings.origin_max_http_version)
 
     @cached_property
     def polish(self) -> AsyncPolishResourceWithRawResponse:
@@ -1393,8 +1393,8 @@ class SettingsWithStreamingResponse:
         return OriginErrorPagePassThruResourceWithStreamingResponse(self._settings.origin_error_page_pass_thru)
 
     @cached_property
-    def origin_max_http_version(self) -> OriginMaxHTTPVersionWithStreamingResponse:
-        return OriginMaxHTTPVersionWithStreamingResponse(self._settings.origin_max_http_version)
+    def origin_max_http_version(self) -> OriginMaxHTTPVersionResourceWithStreamingResponse:
+        return OriginMaxHTTPVersionResourceWithStreamingResponse(self._settings.origin_max_http_version)
 
     @cached_property
     def polish(self) -> PolishResourceWithStreamingResponse:
@@ -1604,8 +1604,8 @@ class AsyncSettingsWithStreamingResponse:
         return AsyncOriginErrorPagePassThruResourceWithStreamingResponse(self._settings.origin_error_page_pass_thru)
 
     @cached_property
-    def origin_max_http_version(self) -> AsyncOriginMaxHTTPVersionWithStreamingResponse:
-        return AsyncOriginMaxHTTPVersionWithStreamingResponse(self._settings.origin_max_http_version)
+    def origin_max_http_version(self) -> AsyncOriginMaxHTTPVersionResourceWithStreamingResponse:
+        return AsyncOriginMaxHTTPVersionResourceWithStreamingResponse(self._settings.origin_max_http_version)
 
     @cached_property
     def polish(self) -> AsyncPolishResourceWithStreamingResponse:

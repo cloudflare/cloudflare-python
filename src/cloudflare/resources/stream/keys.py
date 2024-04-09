@@ -23,8 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0
-from ...types.stream import KeyGetResponse, keys, key_create_params, key_delete_params
+from ...types.stream import KeyGetResponse, KeyDeleteResponse, keys, key_create_params, key_delete_params
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -94,7 +93,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
+    ) -> KeyDeleteResponse:
         """
         Deletes signing keys and revokes all signed URLs generated with the key.
 
@@ -116,7 +115,7 @@ class Keys(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
+            KeyDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/stream/keys/{identifier}",
                 body=maybe_transform(body, key_delete_params.KeyDeleteParams),
@@ -128,7 +127,7 @@ class Keys(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
+                    Any, ResultWrapper[KeyDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -238,7 +237,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
+    ) -> KeyDeleteResponse:
         """
         Deletes signing keys and revokes all signed URLs generated with the key.
 
@@ -260,7 +259,7 @@ class AsyncKeys(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
+            KeyDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/stream/keys/{identifier}",
                 body=await async_maybe_transform(body, key_delete_params.KeyDeleteParams),
@@ -272,7 +271,7 @@ class AsyncKeys(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
+                    Any, ResultWrapper[KeyDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

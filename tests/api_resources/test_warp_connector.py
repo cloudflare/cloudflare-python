@@ -10,11 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
+    WARPConnector,
     WARPConnectorTokenResponse,
 )
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.shared import UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +29,7 @@ class TestWARPConnector:
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
         )
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -42,7 +42,7 @@ class TestWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = response.parse()
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +55,7 @@ class TestWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = response.parse()
-            assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+            assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,11 +74,7 @@ class TestWARPConnector:
         warp_connector = client.warp_connector.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(
-            SyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
-            warp_connector,
-            path=["response"],
-        )
+        assert_matches_type(SyncV4PagePaginationArray[WARPConnector], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -96,11 +92,7 @@ class TestWARPConnector:
             was_active_at=parse_datetime("2009-11-10T23:00:00Z"),
             was_inactive_at=parse_datetime("2009-11-10T23:00:00Z"),
         )
-        assert_matches_type(
-            SyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
-            warp_connector,
-            path=["response"],
-        )
+        assert_matches_type(SyncV4PagePaginationArray[WARPConnector], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -112,11 +104,7 @@ class TestWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = response.parse()
-        assert_matches_type(
-            SyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
-            warp_connector,
-            path=["response"],
-        )
+        assert_matches_type(SyncV4PagePaginationArray[WARPConnector], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -128,11 +116,7 @@ class TestWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = response.parse()
-            assert_matches_type(
-                SyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
-                warp_connector,
-                path=["response"],
-            )
+            assert_matches_type(SyncV4PagePaginationArray[WARPConnector], warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +136,7 @@ class TestWARPConnector:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -166,7 +150,7 @@ class TestWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = response.parse()
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -180,7 +164,7 @@ class TestWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = response.parse()
-            assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+            assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -208,7 +192,7 @@ class TestWARPConnector:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -219,7 +203,7 @@ class TestWARPConnector:
             name="blog",
             tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -232,7 +216,7 @@ class TestWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = response.parse()
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -245,7 +229,7 @@ class TestWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = response.parse()
-            assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+            assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -271,7 +255,7 @@ class TestWARPConnector:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -284,7 +268,7 @@ class TestWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = response.parse()
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -297,7 +281,7 @@ class TestWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = response.parse()
-            assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+            assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -379,7 +363,7 @@ class TestAsyncWARPConnector:
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
         )
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -392,7 +376,7 @@ class TestAsyncWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = await response.parse()
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -405,7 +389,7 @@ class TestAsyncWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = await response.parse()
-            assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+            assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -424,11 +408,7 @@ class TestAsyncWARPConnector:
         warp_connector = await async_client.warp_connector.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(
-            AsyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
-            warp_connector,
-            path=["response"],
-        )
+        assert_matches_type(AsyncV4PagePaginationArray[WARPConnector], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -446,11 +426,7 @@ class TestAsyncWARPConnector:
             was_active_at=parse_datetime("2009-11-10T23:00:00Z"),
             was_inactive_at=parse_datetime("2009-11-10T23:00:00Z"),
         )
-        assert_matches_type(
-            AsyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
-            warp_connector,
-            path=["response"],
-        )
+        assert_matches_type(AsyncV4PagePaginationArray[WARPConnector], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -462,11 +438,7 @@ class TestAsyncWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = await response.parse()
-        assert_matches_type(
-            AsyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
-            warp_connector,
-            path=["response"],
-        )
+        assert_matches_type(AsyncV4PagePaginationArray[WARPConnector], warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -478,11 +450,7 @@ class TestAsyncWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = await response.parse()
-            assert_matches_type(
-                AsyncV4PagePaginationArray[UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8],
-                warp_connector,
-                path=["response"],
-            )
+            assert_matches_type(AsyncV4PagePaginationArray[WARPConnector], warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -502,7 +470,7 @@ class TestAsyncWARPConnector:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -516,7 +484,7 @@ class TestAsyncWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = await response.parse()
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -530,7 +498,7 @@ class TestAsyncWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = await response.parse()
-            assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+            assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -558,7 +526,7 @@ class TestAsyncWARPConnector:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -569,7 +537,7 @@ class TestAsyncWARPConnector:
             name="blog",
             tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -582,7 +550,7 @@ class TestAsyncWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = await response.parse()
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -595,7 +563,7 @@ class TestAsyncWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = await response.parse()
-            assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+            assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -621,7 +589,7 @@ class TestAsyncWARPConnector:
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -634,7 +602,7 @@ class TestAsyncWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = await response.parse()
-        assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+        assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -647,7 +615,7 @@ class TestAsyncWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = await response.parse()
-            assert_matches_type(UnnamedSchemaRef413ab4522f0bb93f63444799121fe2f8, warp_connector, path=["response"])
+            assert_matches_type(WARPConnector, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

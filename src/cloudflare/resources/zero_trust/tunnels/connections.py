@@ -23,8 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
-from ....types.zero_trust.tunnels import ConnectionGetResponse, connection_delete_params
+from ....types.zero_trust.tunnels import ConnectionGetResponse, ConnectionDeleteResponse, connection_delete_params
 
 __all__ = ["Connections", "AsyncConnections"]
 
@@ -50,7 +49,7 @@ class Connections(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
+    ) -> ConnectionDeleteResponse:
         """Removes connections that are in a disconnected or pending reconnect state.
 
         We
@@ -74,7 +73,7 @@ class Connections(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
+            ConnectionDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/tunnels/{tunnel_id}/connections",
                 body=maybe_transform(body, connection_delete_params.ConnectionDeleteParams),
@@ -86,7 +85,7 @@ class Connections(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
+                    Any, ResultWrapper[ConnectionDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -157,7 +156,7 @@ class AsyncConnections(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
+    ) -> ConnectionDeleteResponse:
         """Removes connections that are in a disconnected or pending reconnect state.
 
         We
@@ -181,7 +180,7 @@ class AsyncConnections(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
+            ConnectionDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/tunnels/{tunnel_id}/connections",
                 body=await async_maybe_transform(body, connection_delete_params.ConnectionDeleteParams),
@@ -193,7 +192,7 @@ class AsyncConnections(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
+                    Any, ResultWrapper[ConnectionDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

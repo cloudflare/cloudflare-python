@@ -4,9 +4,9 @@ from typing import List, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
+from ..upstream_ips import UpstreamIPs
 from ..attack_mitigation import AttackMitigation
 from ..firewall_ips_item import FirewallIPsItem
-from ..upstream_ips_items import UpstreamIPsItems
 
 __all__ = ["Firewall"]
 
@@ -35,7 +35,7 @@ class Firewall(BaseModel):
     name: str
     """DNS Firewall Cluster Name."""
 
-    upstream_ips: List[UpstreamIPsItems]
+    upstream_ips: List[UpstreamIPs]
 
     attack_mitigation: Optional[AttackMitigation] = None
     """Attack mitigation settings."""

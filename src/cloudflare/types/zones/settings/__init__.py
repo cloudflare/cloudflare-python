@@ -71,6 +71,7 @@ from .early_hint_edit_params import EarlyHintEditParams as EarlyHintEditParams
 from .orange_to_orange_param import OrangeToOrangeParam as OrangeToOrangeParam
 from .cache_level_edit_params import CacheLevelEditParams as CacheLevelEditParams
 from .h2_prioritization_param import H2PrioritizationParam as H2PrioritizationParam
+from .origin_max_http_version import OriginMaxHTTPVersion as OriginMaxHTTPVersion
 from .pseudo_ipv4_edit_params import PseudoIPV4EditParams as PseudoIPV4EditParams
 from .automatic_https_rewrites import AutomaticHTTPSRewrites as AutomaticHTTPSRewrites
 from .font_setting_edit_params import FontSettingEditParams as FontSettingEditParams
@@ -120,7 +121,4 @@ from .sort_query_string_for_cache_edit_params import (
 )
 from .automatic_platform_optimization_edit_params import (
     AutomaticPlatformOptimizationEditParams as AutomaticPlatformOptimizationEditParams,
-)
-from .unnamed_schema_ref_b234e6a28c1a1c7c29213787c0621eaa import (
-    UnnamedSchemaRefB234e6a28c1a1c7c29213787c0621eaa as UnnamedSchemaRefB234e6a28c1a1c7c29213787c0621eaa,
 )

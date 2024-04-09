@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from cloudflare.types.logs import ReceivedGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestReceived:
             "023e105f4ecef8ad9ca31a8372d0c353",
             end="2018-05-20T10:01:00Z",
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, received, path=["response"])
+        assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -38,7 +38,7 @@ class TestReceived:
             start="2018-05-20T10:00:00Z",
             timestamps="unixnano",
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, received, path=["response"])
+        assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -51,7 +51,7 @@ class TestReceived:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         received = response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, received, path=["response"])
+        assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -64,7 +64,7 @@ class TestReceived:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             received = response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, received, path=["response"])
+            assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -88,7 +88,7 @@ class TestAsyncReceived:
             "023e105f4ecef8ad9ca31a8372d0c353",
             end="2018-05-20T10:01:00Z",
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, received, path=["response"])
+        assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -102,7 +102,7 @@ class TestAsyncReceived:
             start="2018-05-20T10:00:00Z",
             timestamps="unixnano",
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, received, path=["response"])
+        assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -115,7 +115,7 @@ class TestAsyncReceived:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         received = await response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, received, path=["response"])
+        assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -128,7 +128,7 @@ class TestAsyncReceived:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             received = await response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, received, path=["response"])
+            assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

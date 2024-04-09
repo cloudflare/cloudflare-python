@@ -3,9 +3,9 @@
 from typing import List, Optional
 
 from ...._models import BaseModel
-from .allowed_headers_item import AllowedHeadersItem
-from .allowed_methods_item import AllowedMethodsItem
-from .allowed_origins_item import AllowedOriginsItem
+from .allowed_headersh import AllowedHeadersh
+from .allowed_methodsh import AllowedMethodsh
+from .allowed_originsh import AllowedOriginsh
 
 __all__ = ["CorsHeaders"]
 
@@ -26,13 +26,13 @@ class CorsHeaders(BaseModel):
     client certificates) with requests.
     """
 
-    allowed_headers: Optional[List[AllowedHeadersItem]] = None
+    allowed_headers: Optional[List[AllowedHeadersh]] = None
     """Allowed HTTP request headers."""
 
-    allowed_methods: Optional[List[AllowedMethodsItem]] = None
+    allowed_methods: Optional[List[AllowedMethodsh]] = None
     """Allowed HTTP request methods."""
 
-    allowed_origins: Optional[List[AllowedOriginsItem]] = None
+    allowed_origins: Optional[List[AllowedOriginsh]] = None
     """Allowed origins."""
 
     max_age: Optional[float] = None

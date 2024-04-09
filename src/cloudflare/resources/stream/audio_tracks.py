@@ -23,8 +23,13 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0
-from ...types.stream import Audio, AudioTrackGetResponse, audio_track_copy_params, audio_track_edit_params
+from ...types.stream import (
+    Audio,
+    AudioTrackGetResponse,
+    AudioTrackDeleteResponse,
+    audio_track_copy_params,
+    audio_track_edit_params,
+)
 
 __all__ = ["AudioTracks", "AsyncAudioTracks"]
 
@@ -50,7 +55,7 @@ class AudioTracks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
+    ) -> AudioTrackDeleteResponse:
         """Deletes additional audio tracks on a video.
 
         Deleting a default audio track is
@@ -78,7 +83,7 @@ class AudioTracks(SyncAPIResource):
         if not audio_identifier:
             raise ValueError(f"Expected a non-empty value for `audio_identifier` but received {audio_identifier!r}")
         return cast(
-            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
+            AudioTrackDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
                 options=make_request_options(
@@ -89,7 +94,7 @@ class AudioTracks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
+                    Any, ResultWrapper[AudioTrackDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -288,7 +293,7 @@ class AsyncAudioTracks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
+    ) -> AudioTrackDeleteResponse:
         """Deletes additional audio tracks on a video.
 
         Deleting a default audio track is
@@ -316,7 +321,7 @@ class AsyncAudioTracks(AsyncAPIResource):
         if not audio_identifier:
             raise ValueError(f"Expected a non-empty value for `audio_identifier` but received {audio_identifier!r}")
         return cast(
-            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
+            AudioTrackDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
                 options=make_request_options(
@@ -327,7 +332,7 @@ class AsyncAudioTracks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
+                    Any, ResultWrapper[AudioTrackDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

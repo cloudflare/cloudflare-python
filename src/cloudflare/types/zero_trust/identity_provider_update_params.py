@@ -5,16 +5,14 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from .scim_config_param import ScimConfigParam
+from .identity_provider_type import IdentityProviderType
 from .generic_oauth_config_param import GenericOAuthConfigParam
-from .unnamed_schema_ref_9ab84e842cdf571c8f3898648bcdabcb import UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
-from .unnamed_schema_ref_dd86d8b7ea73283da7b160ed3f86cae1_param import (
-    UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param,
-)
 
 __all__ = [
     "IdentityProviderUpdateParams",
-    "AzureAd",
-    "AzureAdConfig",
+    "AzureAD",
+    "AzureADConfig",
     "AccessCentrify",
     "AccessCentrifyConfig",
     "AccessFacebook",
@@ -24,24 +22,24 @@ __all__ = [
     "AccessGoogleApps",
     "AccessGoogleAppsConfig",
     "AccessLinkedin",
-    "AccessOidc",
-    "AccessOidcConfig",
+    "AccessOIDC",
+    "AccessOIDCConfig",
     "AccessOkta",
     "AccessOktaConfig",
     "AccessOnelogin",
     "AccessOneloginConfig",
     "AccessPingone",
     "AccessPingoneConfig",
-    "AccessSaml",
-    "AccessSamlConfig",
-    "AccessSamlConfigHeaderAttribute",
+    "AccessSAML",
+    "AccessSAMLConfig",
+    "AccessSAMLConfigHeaderAttribute",
     "AccessYandex",
     "AccessOnetimepin",
 ]
 
 
-class AzureAd(TypedDict, total=False):
-    config: Required[AzureAdConfig]
+class AzureAD(TypedDict, total=False):
+    config: Required[AzureADConfig]
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -51,7 +49,7 @@ class AzureAd(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -64,14 +62,14 @@ class AzureAd(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class AzureAdConfig(TypedDict, total=False):
+class AzureADConfig(TypedDict, total=False):
     claims: List[str]
     """Custom claims"""
 
@@ -118,7 +116,7 @@ class AccessCentrify(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -131,7 +129,7 @@ class AccessCentrify(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -169,7 +167,7 @@ class AccessFacebook(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -182,7 +180,7 @@ class AccessFacebook(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -200,7 +198,7 @@ class AccessGitHub(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -213,7 +211,7 @@ class AccessGitHub(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -231,7 +229,7 @@ class AccessGoogle(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -244,7 +242,7 @@ class AccessGoogle(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -276,7 +274,7 @@ class AccessGoogleApps(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -289,7 +287,7 @@ class AccessGoogleApps(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -324,7 +322,7 @@ class AccessLinkedin(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -337,15 +335,15 @@ class AccessLinkedin(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class AccessOidc(TypedDict, total=False):
-    config: Required[AccessOidcConfig]
+class AccessOIDC(TypedDict, total=False):
+    config: Required[AccessOIDCConfig]
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -355,7 +353,7 @@ class AccessOidc(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -368,14 +366,14 @@ class AccessOidc(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class AccessOidcConfig(TypedDict, total=False):
+class AccessOIDCConfig(TypedDict, total=False):
     auth_url: str
     """The authorization_endpoint URL of your IdP"""
 
@@ -412,7 +410,7 @@ class AccessOkta(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -425,7 +423,7 @@ class AccessOkta(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -463,7 +461,7 @@ class AccessOnelogin(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -476,7 +474,7 @@ class AccessOnelogin(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -511,7 +509,7 @@ class AccessPingone(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -524,7 +522,7 @@ class AccessPingone(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -548,8 +546,8 @@ class AccessPingoneConfig(TypedDict, total=False):
     """Your PingOne environment identifier"""
 
 
-class AccessSaml(TypedDict, total=False):
-    config: Required[AccessSamlConfig]
+class AccessSAML(TypedDict, total=False):
+    config: Required[AccessSAMLConfig]
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -559,7 +557,7 @@ class AccessSaml(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -572,14 +570,14 @@ class AccessSaml(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-class AccessSamlConfigHeaderAttribute(TypedDict, total=False):
+class AccessSAMLConfigHeaderAttribute(TypedDict, total=False):
     attribute_name: str
     """attribute name from the IDP"""
 
@@ -587,7 +585,7 @@ class AccessSamlConfigHeaderAttribute(TypedDict, total=False):
     """header that will be added on the request to the origin"""
 
 
-class AccessSamlConfig(TypedDict, total=False):
+class AccessSAMLConfig(TypedDict, total=False):
     attributes: List[str]
     """
     A list of SAML attribute names that will be added to your signed JWT token and
@@ -597,7 +595,7 @@ class AccessSamlConfig(TypedDict, total=False):
     email_attribute_name: str
     """The attribute name for email in the SAML response."""
 
-    header_attributes: Iterable[AccessSamlConfigHeaderAttribute]
+    header_attributes: Iterable[AccessSAMLConfigHeaderAttribute]
     """
     Add a list of attribute names that will be returned in the response header from
     the Access callback.
@@ -630,7 +628,7 @@ class AccessYandex(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -643,7 +641,7 @@ class AccessYandex(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -661,7 +659,7 @@ class AccessOnetimepin(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb]
+    type: Required[IdentityProviderType]
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -674,7 +672,7 @@ class AccessOnetimepin(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param
+    scim_config: ScimConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -682,18 +680,18 @@ class AccessOnetimepin(TypedDict, total=False):
 
 
 IdentityProviderUpdateParams = Union[
-    AzureAd,
+    AzureAD,
     AccessCentrify,
     AccessFacebook,
     AccessGitHub,
     AccessGoogle,
     AccessGoogleApps,
     AccessLinkedin,
-    AccessOidc,
+    AccessOIDC,
     AccessOkta,
     AccessOnelogin,
     AccessPingone,
-    AccessSaml,
+    AccessSAML,
     AccessYandex,
     AccessOnetimepin,
 ]

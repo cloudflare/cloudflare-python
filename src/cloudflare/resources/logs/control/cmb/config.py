@@ -23,8 +23,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.shared import UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1
-from .....types.logs.control.cmb import CmbConfig, config_create_params, config_delete_params
+from .....types.logs.control.cmb import CmbConfig, ConfigDeleteResponse, config_create_params, config_delete_params
 
 __all__ = ["Config", "AsyncConfig"]
 
@@ -92,7 +91,7 @@ class Config(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
+    ) -> Optional[ConfigDeleteResponse]:
         """
         Deletes CMB config.
 
@@ -110,7 +109,7 @@ class Config(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
+            Optional[ConfigDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/logs/control/cmb/config",
                 body=maybe_transform(body, config_delete_params.ConfigDeleteParams),
@@ -122,7 +121,7 @@ class Config(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
+                    Any, ResultWrapper[ConfigDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -230,7 +229,7 @@ class AsyncConfig(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]:
+    ) -> Optional[ConfigDeleteResponse]:
         """
         Deletes CMB config.
 
@@ -248,7 +247,7 @@ class AsyncConfig(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1],
+            Optional[ConfigDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/logs/control/cmb/config",
                 body=await async_maybe_transform(body, config_delete_params.ConfigDeleteParams),
@@ -260,7 +259,7 @@ class AsyncConfig(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef65e3c8c1a9c4638ec25cdbbaca7165c1]
+                    Any, ResultWrapper[ConfigDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

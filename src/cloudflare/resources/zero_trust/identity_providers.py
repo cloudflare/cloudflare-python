@@ -27,12 +27,12 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.zero_trust import (
+    ScimConfigParam,
     IdentityProvider,
+    IdentityProviderType,
     GenericOAuthConfigParam,
     IdentityProviderListResponse,
     IdentityProviderDeleteResponse,
-    UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
-    UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param,
     identity_provider_create_params,
     identity_provider_update_params,
 )
@@ -53,12 +53,12 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        config: identity_provider_create_params.AzureAdConfig,
+        config: identity_provider_create_params.AzureADConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -103,10 +103,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessCentrifyConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -151,10 +151,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,10 +199,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -247,10 +247,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -295,10 +295,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleAppsConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -343,10 +343,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -389,12 +389,12 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        config: identity_provider_create_params.AccessOidcConfig,
+        config: identity_provider_create_params.AccessOIDCConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -439,10 +439,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOktaConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -487,10 +487,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOneloginConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -535,10 +535,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessPingoneConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -581,12 +581,12 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        config: identity_provider_create_params.AccessSamlConfig,
+        config: identity_provider_create_params.AccessSAMLConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -631,10 +631,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -679,10 +679,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: object,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -740,22 +740,22 @@ class IdentityProviders(SyncAPIResource):
     def create(
         self,
         *,
-        config: identity_provider_create_params.AzureAdConfig
+        config: identity_provider_create_params.AzureADConfig
         | identity_provider_create_params.AccessCentrifyConfig
         | GenericOAuthConfigParam
         | identity_provider_create_params.AccessGoogleConfig
         | identity_provider_create_params.AccessGoogleAppsConfig
-        | identity_provider_create_params.AccessOidcConfig
+        | identity_provider_create_params.AccessOIDCConfig
         | identity_provider_create_params.AccessOktaConfig
         | identity_provider_create_params.AccessOneloginConfig
         | identity_provider_create_params.AccessPingoneConfig
-        | identity_provider_create_params.AccessSamlConfig
+        | identity_provider_create_params.AccessSAMLConfig
         | object,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -809,12 +809,12 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AzureAdConfig,
+        config: identity_provider_update_params.AzureADConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -862,10 +862,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessCentrifyConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -913,10 +913,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -964,10 +964,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1015,10 +1015,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1066,10 +1066,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleAppsConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1117,10 +1117,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1166,12 +1166,12 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessOidcConfig,
+        config: identity_provider_update_params.AccessOIDCConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1219,10 +1219,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1270,10 +1270,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOneloginConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1321,10 +1321,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessPingoneConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1370,12 +1370,12 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessSamlConfig,
+        config: identity_provider_update_params.AccessSAMLConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1423,10 +1423,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1474,10 +1474,10 @@ class IdentityProviders(SyncAPIResource):
         *,
         config: object,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1538,22 +1538,22 @@ class IdentityProviders(SyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AzureAdConfig
+        config: identity_provider_update_params.AzureADConfig
         | identity_provider_update_params.AccessCentrifyConfig
         | GenericOAuthConfigParam
         | identity_provider_update_params.AccessGoogleConfig
         | identity_provider_update_params.AccessGoogleAppsConfig
-        | identity_provider_update_params.AccessOidcConfig
+        | identity_provider_update_params.AccessOIDCConfig
         | identity_provider_update_params.AccessOktaConfig
         | identity_provider_update_params.AccessOneloginConfig
         | identity_provider_update_params.AccessPingoneConfig
-        | identity_provider_update_params.AccessSamlConfig
+        | identity_provider_update_params.AccessSAMLConfig
         | object,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1797,12 +1797,12 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: identity_provider_create_params.AzureAdConfig,
+        config: identity_provider_create_params.AzureADConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1847,10 +1847,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessCentrifyConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1895,10 +1895,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1943,10 +1943,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1991,10 +1991,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2039,10 +2039,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleAppsConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2087,10 +2087,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2133,12 +2133,12 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: identity_provider_create_params.AccessOidcConfig,
+        config: identity_provider_create_params.AccessOIDCConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2183,10 +2183,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOktaConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2231,10 +2231,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOneloginConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2279,10 +2279,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessPingoneConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2325,12 +2325,12 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: identity_provider_create_params.AccessSamlConfig,
+        config: identity_provider_create_params.AccessSAMLConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2375,10 +2375,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2423,10 +2423,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: object,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2484,22 +2484,22 @@ class AsyncIdentityProviders(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: identity_provider_create_params.AzureAdConfig
+        config: identity_provider_create_params.AzureADConfig
         | identity_provider_create_params.AccessCentrifyConfig
         | GenericOAuthConfigParam
         | identity_provider_create_params.AccessGoogleConfig
         | identity_provider_create_params.AccessGoogleAppsConfig
-        | identity_provider_create_params.AccessOidcConfig
+        | identity_provider_create_params.AccessOIDCConfig
         | identity_provider_create_params.AccessOktaConfig
         | identity_provider_create_params.AccessOneloginConfig
         | identity_provider_create_params.AccessPingoneConfig
-        | identity_provider_create_params.AccessSamlConfig
+        | identity_provider_create_params.AccessSAMLConfig
         | object,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2553,12 +2553,12 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AzureAdConfig,
+        config: identity_provider_update_params.AzureADConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2606,10 +2606,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessCentrifyConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2657,10 +2657,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2708,10 +2708,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2759,10 +2759,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2810,10 +2810,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleAppsConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2861,10 +2861,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2910,12 +2910,12 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessOidcConfig,
+        config: identity_provider_update_params.AccessOIDCConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2963,10 +2963,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3014,10 +3014,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOneloginConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3065,10 +3065,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessPingoneConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3114,12 +3114,12 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AccessSamlConfig,
+        config: identity_provider_update_params.AccessSAMLConfig,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3167,10 +3167,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3218,10 +3218,10 @@ class AsyncIdentityProviders(AsyncAPIResource):
         *,
         config: object,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3282,22 +3282,22 @@ class AsyncIdentityProviders(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        config: identity_provider_update_params.AzureAdConfig
+        config: identity_provider_update_params.AzureADConfig
         | identity_provider_update_params.AccessCentrifyConfig
         | GenericOAuthConfigParam
         | identity_provider_update_params.AccessGoogleConfig
         | identity_provider_update_params.AccessGoogleAppsConfig
-        | identity_provider_update_params.AccessOidcConfig
+        | identity_provider_update_params.AccessOIDCConfig
         | identity_provider_update_params.AccessOktaConfig
         | identity_provider_update_params.AccessOneloginConfig
         | identity_provider_update_params.AccessPingoneConfig
-        | identity_provider_update_params.AccessSamlConfig
+        | identity_provider_update_params.AccessSAMLConfig
         | object,
         name: str,
-        type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
+        type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param | NotGiven = NOT_GIVEN,
+        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

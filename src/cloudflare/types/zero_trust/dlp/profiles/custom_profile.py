@@ -3,10 +3,10 @@
 from typing import List, Optional
 from datetime import datetime
 
+from . import custom_profile
 from .pattern import Pattern
 from ....._models import BaseModel
 from ..context_awareness import ContextAwareness
-from ..unnamed_schema_ref_c105db122868c71badeac3b4822ad6b1 import UnnamedSchemaRefC105db122868c71badeac3b4822ad6b1
 
 __all__ = ["CustomProfile", "Entry"]
 
@@ -59,7 +59,7 @@ class CustomProfile(BaseModel):
     ocr_enabled: Optional[bool] = None
     """If true, scan images via OCR to determine if any text present matches filters."""
 
-    type: Optional[UnnamedSchemaRefC105db122868c71badeac3b4822ad6b1] = None
+    type: Optional[custom_profile.CustomProfile] = None
     """The type of the profile."""
 
     updated_at: Optional[datetime] = None

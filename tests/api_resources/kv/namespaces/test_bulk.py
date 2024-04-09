@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from cloudflare.types.kv.namespaces import (
+    BulkDeleteResponse,
+    BulkUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +28,7 @@ class TestBulk:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=[{}, {}, {}],
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+        assert_matches_type(BulkUpdateResponse, bulk, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +42,7 @@ class TestBulk:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk = response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+        assert_matches_type(BulkUpdateResponse, bulk, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +56,7 @@ class TestBulk:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bulk = response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+            assert_matches_type(BulkUpdateResponse, bulk, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,7 +85,7 @@ class TestBulk:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=["My-Key", "My-Key", "My-Key"],
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+        assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -96,7 +99,7 @@ class TestBulk:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk = response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+        assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -110,7 +113,7 @@ class TestBulk:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bulk = response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+            assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -143,7 +146,7 @@ class TestAsyncBulk:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=[{}, {}, {}],
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+        assert_matches_type(BulkUpdateResponse, bulk, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -157,7 +160,7 @@ class TestAsyncBulk:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk = await response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+        assert_matches_type(BulkUpdateResponse, bulk, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +174,7 @@ class TestAsyncBulk:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bulk = await response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+            assert_matches_type(BulkUpdateResponse, bulk, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -200,7 +203,7 @@ class TestAsyncBulk:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=["My-Key", "My-Key", "My-Key"],
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+        assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -214,7 +217,7 @@ class TestAsyncBulk:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk = await response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+        assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -228,7 +231,7 @@ class TestAsyncBulk:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bulk = await response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, bulk, path=["response"])
+            assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

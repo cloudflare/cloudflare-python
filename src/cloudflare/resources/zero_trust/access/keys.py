@@ -23,8 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
-from ....types.zero_trust.access import key_update_params
+from ....types.zero_trust.access import KeyGetResponse, KeyRotateResponse, KeyUpdateResponse, key_update_params
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -49,7 +48,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
+    ) -> KeyUpdateResponse:
         """
         Updates the Access key rotation settings for an account.
 
@@ -69,7 +68,7 @@ class Keys(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
+            KeyUpdateResponse,
             self._put(
                 f"/accounts/{identifier}/access/keys",
                 body=maybe_transform(
@@ -83,7 +82,7 @@ class Keys(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
+                    Any, ResultWrapper[KeyUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -98,7 +97,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
+    ) -> KeyGetResponse:
         """
         Gets the Access key rotation settings for an account.
 
@@ -116,7 +115,7 @@ class Keys(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
+            KeyGetResponse,
             self._get(
                 f"/accounts/{identifier}/access/keys",
                 options=make_request_options(
@@ -127,7 +126,7 @@ class Keys(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
+                    Any, ResultWrapper[KeyGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -142,7 +141,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
+    ) -> KeyRotateResponse:
         """
         Perfoms a key rotation for an account.
 
@@ -160,7 +159,7 @@ class Keys(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
+            KeyRotateResponse,
             self._post(
                 f"/accounts/{identifier}/access/keys/rotate",
                 options=make_request_options(
@@ -171,7 +170,7 @@ class Keys(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
+                    Any, ResultWrapper[KeyRotateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -197,7 +196,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
+    ) -> KeyUpdateResponse:
         """
         Updates the Access key rotation settings for an account.
 
@@ -217,7 +216,7 @@ class AsyncKeys(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
+            KeyUpdateResponse,
             await self._put(
                 f"/accounts/{identifier}/access/keys",
                 body=await async_maybe_transform(
@@ -231,7 +230,7 @@ class AsyncKeys(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
+                    Any, ResultWrapper[KeyUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -246,7 +245,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
+    ) -> KeyGetResponse:
         """
         Gets the Access key rotation settings for an account.
 
@@ -264,7 +263,7 @@ class AsyncKeys(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
+            KeyGetResponse,
             await self._get(
                 f"/accounts/{identifier}/access/keys",
                 options=make_request_options(
@@ -275,7 +274,7 @@ class AsyncKeys(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
+                    Any, ResultWrapper[KeyGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -290,7 +289,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f:
+    ) -> KeyRotateResponse:
         """
         Perfoms a key rotation for an account.
 
@@ -308,7 +307,7 @@ class AsyncKeys(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f,
+            KeyRotateResponse,
             await self._post(
                 f"/accounts/{identifier}/access/keys/rotate",
                 options=make_request_options(
@@ -319,7 +318,7 @@ class AsyncKeys(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f]
+                    Any, ResultWrapper[KeyRotateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

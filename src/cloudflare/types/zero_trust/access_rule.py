@@ -11,7 +11,7 @@ from .ip_list_rule import IPListRule
 from .everyone_rule import EveryoneRule
 from .email_list_rule import EmailListRule
 from .okta_group_rule import OktaGroupRule
-from .saml_group_rule import SamlGroupRule
+from .saml_group_rule import SAMLGroupRule
 from .azure_group_rule import AzureGroupRule
 from .certificate_rule import CertificateRule
 from .gsuite_group_rule import GsuiteGroupRule
@@ -37,7 +37,7 @@ AccessRule = Union[
     GitHubOrganizationRule,
     GsuiteGroupRule,
     OktaGroupRule,
-    SamlGroupRule,
+    SAMLGroupRule,
     ServiceTokenRule,
     AnyValidServiceTokenRule,
     ExternalEvaluationRule,

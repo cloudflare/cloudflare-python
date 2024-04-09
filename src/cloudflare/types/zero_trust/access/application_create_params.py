@@ -5,18 +5,18 @@ from __future__ import annotations
 from typing import List, Union
 from typing_extensions import Literal, Required, TypedDict
 
-from .allowed_idps_item import AllowedIDPsItem
-from .custom_pages_item import CustomPagesItem
+from .allowed_idpsh import AllowedIdpsh
+from .custom_pagesh import CustomPagesh
 from .cors_headers_param import CorsHeadersParam
-from .saml_saas_app_param import SamlSaasAppParam
-from .self_hosted_domains_item import SelfHostedDomainsItem
+from .saml_saas_app_param import SAMLSaasAppParam
+from .self_hosted_domainsh import SelfHostedDomainsh
 
 __all__ = [
     "ApplicationCreateParams",
     "SelfHostedApplication",
     "SaaSApplication",
     "SaaSApplicationSaasApp",
-    "SaaSApplicationSaasAppAccessOidcSaasApp",
+    "SaaSApplicationSaasAppAccessOIDCSaasApp",
     "BrowserSSHApplication",
     "BrowserVncApplication",
     "AppLauncherApplication",
@@ -51,7 +51,7 @@ class SelfHostedApplication(TypedDict, total=False):
     authentication.
     """
 
-    allowed_idps: List[AllowedIDPsItem]
+    allowed_idps: List[AllowedIdpsh]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -88,7 +88,7 @@ class SelfHostedApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[CustomPagesItem]
+    custom_pages: List[CustomPagesh]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -121,7 +121,7 @@ class SelfHostedApplication(TypedDict, total=False):
     attacks.
     """
 
-    self_hosted_domains: List[SelfHostedDomainsItem]
+    self_hosted_domains: List[SelfHostedDomainsh]
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: bool
@@ -151,7 +151,7 @@ class SaaSApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIDPsItem]
+    allowed_idps: List[AllowedIdpsh]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -168,7 +168,7 @@ class SaaSApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    custom_pages: List[CustomPagesItem]
+    custom_pages: List[CustomPagesh]
     """The custom pages that will be displayed when applicable for this application"""
 
     logo_url: str
@@ -189,7 +189,7 @@ class SaaSApplication(TypedDict, total=False):
     """The application type."""
 
 
-class SaaSApplicationSaasAppAccessOidcSaasApp(TypedDict, total=False):
+class SaaSApplicationSaasAppAccessOIDCSaasApp(TypedDict, total=False):
     app_launcher_url: str
     """The URL where this applications tile redirects users"""
 
@@ -224,7 +224,7 @@ class SaaSApplicationSaasAppAccessOidcSaasApp(TypedDict, total=False):
     """Define the user information shared with access"""
 
 
-SaaSApplicationSaasApp = Union[SamlSaasAppParam, SaaSApplicationSaasAppAccessOidcSaasApp]
+SaaSApplicationSaasApp = Union[SAMLSaasAppParam, SaaSApplicationSaasAppAccessOIDCSaasApp]
 
 
 class BrowserSSHApplication(TypedDict, total=False):
@@ -252,7 +252,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     authentication.
     """
 
-    allowed_idps: List[AllowedIDPsItem]
+    allowed_idps: List[AllowedIdpsh]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -289,7 +289,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[CustomPagesItem]
+    custom_pages: List[CustomPagesh]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -322,7 +322,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     attacks.
     """
 
-    self_hosted_domains: List[SelfHostedDomainsItem]
+    self_hosted_domains: List[SelfHostedDomainsh]
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: bool
@@ -370,7 +370,7 @@ class BrowserVncApplication(TypedDict, total=False):
     authentication.
     """
 
-    allowed_idps: List[AllowedIDPsItem]
+    allowed_idps: List[AllowedIdpsh]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -407,7 +407,7 @@ class BrowserVncApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[CustomPagesItem]
+    custom_pages: List[CustomPagesh]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -440,7 +440,7 @@ class BrowserVncApplication(TypedDict, total=False):
     attacks.
     """
 
-    self_hosted_domains: List[SelfHostedDomainsItem]
+    self_hosted_domains: List[SelfHostedDomainsh]
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: bool
@@ -473,7 +473,7 @@ class AppLauncherApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIDPsItem]
+    allowed_idps: List[AllowedIdpsh]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -505,7 +505,7 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIDPsItem]
+    allowed_idps: List[AllowedIdpsh]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -537,7 +537,7 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIDPsItem]
+    allowed_idps: List[AllowedIdpsh]
     """The identity providers your users can select when connecting to this
     application.
 
