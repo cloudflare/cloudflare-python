@@ -5,7 +5,7 @@ from datetime import datetime
 
 from ..._models import BaseModel
 from .psk_metadata import PSKMetadata
-from ..unnamed_schema_ref_3b1a76a5e4a139b72ed7d93834773d39 import UnnamedSchemaRef3b1a76a5e4a139b72ed7d93834773d39
+from ..health_check_type import HealthCheckType
 from ..unnamed_schema_ref_eebdc868ce7f7ae92e23438caa84e7b5 import UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5
 
 __all__ = ["IPSECTunnelCreateResponse", "IPSECTunnel", "IPSECTunnelTunnelHealthCheck"]
@@ -26,7 +26,7 @@ class IPSECTunnelTunnelHealthCheck(BaseModel):
     `customer_gre_endpoint address`.
     """
 
-    type: Optional[UnnamedSchemaRef3b1a76a5e4a139b72ed7d93834773d39] = None
+    type: Optional[HealthCheckType] = None
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 

@@ -11,3 +11,5 @@ from .message_create_params import MessageCreateParams as MessageCreateParams
 from .message_update_params import MessageUpdateParams as MessageUpdateParams
 from .priority_create_params import PriorityCreateParams as PriorityCreateParams
 from .priority_update_params import PriorityUpdateParams as PriorityUpdateParams
+from .message_delete_response import MessageDeleteResponse as MessageDeleteResponse
+from .priority_delete_response import PriorityDeleteResponse as PriorityDeleteResponse

@@ -25,11 +25,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import (
-    UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
-    UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
-)
-from ...types.stream import Watermaks, watermark_create_params, watermark_delete_params
+from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
+from ...types.stream import Watermaks, WatermarkDeleteResponse, watermark_create_params, watermark_delete_params
 
 __all__ = ["Watermarks", "AsyncWatermarks"]
 
@@ -174,7 +171,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
+    ) -> WatermarkDeleteResponse:
         """
         Deletes a watermark profile.
 
@@ -196,7 +193,7 @@ class Watermarks(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
+            WatermarkDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/stream/watermarks/{identifier}",
                 body=maybe_transform(body, watermark_delete_params.WatermarkDeleteParams),
@@ -208,7 +205,7 @@ class Watermarks(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
+                    Any, ResultWrapper[WatermarkDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -403,7 +400,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0:
+    ) -> WatermarkDeleteResponse:
         """
         Deletes a watermark profile.
 
@@ -425,7 +422,7 @@ class AsyncWatermarks(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
+            WatermarkDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/stream/watermarks/{identifier}",
                 body=await async_maybe_transform(body, watermark_delete_params.WatermarkDeleteParams),
@@ -437,7 +434,7 @@ class AsyncWatermarks(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0]
+                    Any, ResultWrapper[WatermarkDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

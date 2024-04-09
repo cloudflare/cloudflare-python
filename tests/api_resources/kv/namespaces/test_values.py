@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from cloudflare.types.kv.namespaces import (
+    ValueDeleteResponse,
+    ValueUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +30,7 @@ class TestValues:
             metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+        assert_matches_type(ValueUpdateResponse, value, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +46,7 @@ class TestValues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+        assert_matches_type(ValueUpdateResponse, value, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -59,7 +62,7 @@ class TestValues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+            assert_matches_type(ValueUpdateResponse, value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -102,7 +105,7 @@ class TestValues:
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             body={},
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+        assert_matches_type(ValueDeleteResponse, value, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +120,7 @@ class TestValues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+        assert_matches_type(ValueDeleteResponse, value, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -132,7 +135,7 @@ class TestValues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+            assert_matches_type(ValueDeleteResponse, value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -241,7 +244,7 @@ class TestAsyncValues:
             metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+        assert_matches_type(ValueUpdateResponse, value, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -257,7 +260,7 @@ class TestAsyncValues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = await response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+        assert_matches_type(ValueUpdateResponse, value, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -273,7 +276,7 @@ class TestAsyncValues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = await response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+            assert_matches_type(ValueUpdateResponse, value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -316,7 +319,7 @@ class TestAsyncValues:
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             body={},
         )
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+        assert_matches_type(ValueDeleteResponse, value, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -331,7 +334,7 @@ class TestAsyncValues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = await response.parse()
-        assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+        assert_matches_type(ValueDeleteResponse, value, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -346,7 +349,7 @@ class TestAsyncValues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = await response.parse()
-            assert_matches_type(UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f, value, path=["response"])
+            assert_matches_type(ValueDeleteResponse, value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

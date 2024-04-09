@@ -7,3 +7,5 @@ from .namespace_list_params import NamespaceListParams as NamespaceListParams
 from .namespace_create_params import NamespaceCreateParams as NamespaceCreateParams
 from .namespace_delete_params import NamespaceDeleteParams as NamespaceDeleteParams
 from .namespace_update_params import NamespaceUpdateParams as NamespaceUpdateParams
+from .namespace_delete_response import NamespaceDeleteResponse as NamespaceDeleteResponse
+from .namespace_update_response import NamespaceUpdateResponse as NamespaceUpdateResponse

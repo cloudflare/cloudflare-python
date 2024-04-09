@@ -4,10 +4,10 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .unnamed_schema_ref_9ab84e842cdf571c8f3898648bcdabcb import UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
-from .unnamed_schema_ref_dd86d8b7ea73283da7b160ed3f86cae1 import UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1
+from .scim_config import ScimConfig
+from .identity_provider_type import IdentityProviderType
 
-__all__ = ["AzureAd", "Config"]
+__all__ = ["AzureAD", "Config"]
 
 
 class Config(BaseModel):
@@ -46,7 +46,7 @@ class Config(BaseModel):
     """Should Cloudflare try to load groups from your account"""
 
 
-class AzureAd(BaseModel):
+class AzureAD(BaseModel):
     config: Config
     """The configuration parameters for the identity provider.
 
@@ -57,7 +57,7 @@ class AzureAd(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb
+    type: IdentityProviderType
     """The type of identity provider.
 
     To determine the value for a specific provider, refer to our
@@ -67,7 +67,7 @@ class AzureAd(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1] = None
+    scim_config: Optional[ScimConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.

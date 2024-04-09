@@ -2,7 +2,7 @@
 
 from typing import List
 
-from ..user.load_balancers import Pool
+from ..load_balancers import Pool
 
 __all__ = ["UnnamedSchemaRefB0ec5cc02c98b665099a5707a2db4ea6"]
 

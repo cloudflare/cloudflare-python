@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .unnamed_schema_ref_3b1a76a5e4a139b72ed7d93834773d39 import UnnamedSchemaRef3b1a76a5e4a139b72ed7d93834773d39
+from .health_check_type import HealthCheckType
 from .unnamed_schema_ref_eebdc868ce7f7ae92e23438caa84e7b5 import UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5
 
 __all__ = ["HealthCheckParam"]
@@ -37,5 +37,5 @@ class HealthCheckParam(TypedDict, total=False):
     the tunnel) is used as the target.
     """
 
-    type: UnnamedSchemaRef3b1a76a5e4a139b72ed7d93834773d39
+    type: HealthCheckType
     """The type of healthcheck to run, reply or request. The default value is `reply`."""

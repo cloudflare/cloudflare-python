@@ -9,8 +9,12 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
-from cloudflare.types.alerting.destinations import PagerdutyGetResponse, PagerdutyLinkResponse, PagerdutyCreateResponse
+from cloudflare.types.alerting.destinations import (
+    PagerdutyGetResponse,
+    PagerdutyLinkResponse,
+    PagerdutyCreateResponse,
+    PagerdutyDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -66,7 +70,7 @@ class TestPagerduty:
         pagerduty = client.alerting.destinations.pagerduty.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], pagerduty, path=["response"])
+        assert_matches_type(Optional[PagerdutyDeleteResponse], pagerduty, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -78,7 +82,7 @@ class TestPagerduty:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerduty = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], pagerduty, path=["response"])
+        assert_matches_type(Optional[PagerdutyDeleteResponse], pagerduty, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -90,9 +94,7 @@ class TestPagerduty:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerduty = response.parse()
-            assert_matches_type(
-                Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], pagerduty, path=["response"]
-            )
+            assert_matches_type(Optional[PagerdutyDeleteResponse], pagerduty, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -250,7 +252,7 @@ class TestAsyncPagerduty:
         pagerduty = await async_client.alerting.destinations.pagerduty.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], pagerduty, path=["response"])
+        assert_matches_type(Optional[PagerdutyDeleteResponse], pagerduty, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -262,7 +264,7 @@ class TestAsyncPagerduty:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerduty = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], pagerduty, path=["response"])
+        assert_matches_type(Optional[PagerdutyDeleteResponse], pagerduty, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -274,9 +276,7 @@ class TestAsyncPagerduty:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerduty = await response.parse()
-            assert_matches_type(
-                Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], pagerduty, path=["response"]
-            )
+            assert_matches_type(Optional[PagerdutyDeleteResponse], pagerduty, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

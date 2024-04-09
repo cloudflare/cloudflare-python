@@ -43,13 +43,13 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846
 from ....types.cloudforce_one import (
     Item,
     Quota,
     ListItem,
     RequestTypes,
     RequestConstants,
+    RequestDeleteResponse,
     request_list_params,
     request_create_params,
     request_update_params,
@@ -306,7 +306,7 @@ class Requests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846:
+    ) -> RequestDeleteResponse:
         """
         Delete a Request
 
@@ -328,7 +328,7 @@ class Requests(SyncAPIResource):
         if not request_identifier:
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
         return cast(
-            UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846,
+            RequestDeleteResponse,
             self._delete(
                 f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}",
                 options=make_request_options(
@@ -339,7 +339,7 @@ class Requests(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846]
+                    Any, ResultWrapper[RequestDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -754,7 +754,7 @@ class AsyncRequests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846:
+    ) -> RequestDeleteResponse:
         """
         Delete a Request
 
@@ -776,7 +776,7 @@ class AsyncRequests(AsyncAPIResource):
         if not request_identifier:
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
         return cast(
-            UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846,
+            RequestDeleteResponse,
             await self._delete(
                 f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}",
                 options=make_request_options(
@@ -787,7 +787,7 @@ class AsyncRequests(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846]
+                    Any, ResultWrapper[RequestDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

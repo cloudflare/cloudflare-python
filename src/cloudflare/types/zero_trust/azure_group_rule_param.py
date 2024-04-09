@@ -6,10 +6,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["AzureGroupRuleParam", "AzureAd"]
+__all__ = ["AzureGroupRuleParam", "AzureAD"]
 
 
-class AzureAd(TypedDict, total=False):
+class AzureAD(TypedDict, total=False):
     id: Required[str]
     """The ID of an Azure group."""
 
@@ -18,4 +18,4 @@ class AzureAd(TypedDict, total=False):
 
 
 class AzureGroupRuleParam(TypedDict, total=False):
-    azure_ad: Required[Annotated[AzureAd, PropertyInfo(alias="azureAD")]]
+    azure_ad: Required[Annotated[AzureAD, PropertyInfo(alias="azureAD")]]

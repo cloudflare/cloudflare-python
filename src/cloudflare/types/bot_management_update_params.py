@@ -9,7 +9,7 @@ __all__ = [
     "BotManagementUpdateParams",
     "BotFightModeConfiguration",
     "SuperBotFightModeDefinitelyConfiguration",
-    "SuperBotFightModeLikelyConfig",
+    "SuperBotFightModeLikelyConfiguration",
     "SubscriptionConfiguration",
 ]
 
@@ -55,7 +55,7 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     """Super Bot Fight Mode (SBFM) action to take on verified bots requests."""
 
 
-class SuperBotFightModeLikelyConfig(TypedDict, total=False):
+class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -112,6 +112,6 @@ class SubscriptionConfiguration(TypedDict, total=False):
 BotManagementUpdateParams = Union[
     BotFightModeConfiguration,
     SuperBotFightModeDefinitelyConfiguration,
-    SuperBotFightModeLikelyConfig,
+    SuperBotFightModeLikelyConfiguration,
     SubscriptionConfiguration,
 ]

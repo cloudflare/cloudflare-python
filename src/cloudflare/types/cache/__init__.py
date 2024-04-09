@@ -5,6 +5,7 @@ from __future__ import annotations
 from .cache_variants import CacheVariants as CacheVariants
 from .variant_edit_params import VariantEditParams as VariantEditParams
 from .variant_get_response import VariantGetResponse as VariantGetResponse
+from .regional_tiered_cache import RegionalTieredCache as RegionalTieredCache
 from .variant_delete_params import VariantDeleteParams as VariantDeleteParams
 from .variant_edit_response import VariantEditResponse as VariantEditResponse
 from .cache_reserve_edit_params import CacheReserveEditParams as CacheReserveEditParams
@@ -26,7 +27,4 @@ from .unnamed_schema_ref_37c385b4ebac5c7a6475b3f81ef9a7ad import (
 )
 from .unnamed_schema_ref_669bfbb16c0913af7077c3c194fbfcd0 import (
     UnnamedSchemaRef669bfbb16c0913af7077c3c194fbfcd0 as UnnamedSchemaRef669bfbb16c0913af7077c3c194fbfcd0,
-)
-from .unnamed_schema_ref_6535d2df7d4d089d21166bd140651307 import (
-    UnnamedSchemaRef6535d2df7d4d089d21166bd140651307 as UnnamedSchemaRef6535d2df7d4d089d21166bd140651307,
 )

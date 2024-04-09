@@ -7,6 +7,7 @@ from .peer import Peer as Peer
 from .tsig import TSIG as TSIG
 from .force_axfr import ForceAXFR as ForceAXFR
 from .enable_transfer import EnableTransfer as EnableTransfer
+from .outgoing_status import OutgoingStatus as OutgoingStatus
 from .disable_transfer import DisableTransfer as DisableTransfer
 from .acl_create_params import ACLCreateParams as ACLCreateParams
 from .acl_delete_params import ACLDeleteParams as ACLDeleteParams
@@ -39,6 +40,3 @@ from .outgoing_delete_response import OutgoingDeleteResponse as OutgoingDeleteRe
 from .outgoing_update_response import OutgoingUpdateResponse as OutgoingUpdateResponse
 from .outgoing_force_notify_params import OutgoingForceNotifyParams as OutgoingForceNotifyParams
 from .outgoing_force_notify_response import OutgoingForceNotifyResponse as OutgoingForceNotifyResponse
-from .unnamed_schema_ref_bf34e74a34c9a2f63d85505dc69d4adc import (
-    UnnamedSchemaRefBf34e74a34c9a2f63d85505dc69d4adc as UnnamedSchemaRefBf34e74a34c9a2f63d85505dc69d4adc,
-)

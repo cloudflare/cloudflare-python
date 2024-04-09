@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["SamlSaasAppParam", "CustomAttributes", "CustomAttributesSource"]
+__all__ = ["SAMLSaasAppParam", "CustomAttributes", "CustomAttributesSource"]
 
 
 class CustomAttributesSource(TypedDict, total=False):
@@ -26,7 +26,7 @@ class CustomAttributes(TypedDict, total=False):
     source: CustomAttributesSource
 
 
-class SamlSaasAppParam(TypedDict, total=False):
+class SAMLSaasAppParam(TypedDict, total=False):
     auth_type: Literal["saml", "oidc"]
     """Optional identifier indicating the authentication protocol used for the saas
     app.

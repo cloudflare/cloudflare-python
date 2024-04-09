@@ -6,22 +6,23 @@ from .seat import Seat as Seat
 from .device import Device as Device
 from .tunnel import Tunnel as Tunnel
 from .ip_rule import IPRule as IPRule
-from .azure_ad import AzureAd as AzureAd
+from .azure_ad import AzureAD as AzureAD
 from .email_rule import EmailRule as EmailRule
 from .group_rule import GroupRule as GroupRule
 from .access_rule import AccessRule as AccessRule
 from .domain_rule import DomainRule as DomainRule
 from .percentiles import Percentiles as Percentiles
+from .scim_config import ScimConfig as ScimConfig
 from .country_rule import CountryRule as CountryRule
 from .ip_list_rule import IPListRule as IPListRule
 from .login_design import LoginDesign as LoginDesign
+from .organization import Organization as Organization
 from .tunnel_param import TunnelParam as TunnelParam
 from .everyone_rule import EveryoneRule as EveryoneRule
 from .ip_rule_param import IPRuleParam as IPRuleParam
-from .organizations import Organizations as Organizations
 from .email_list_rule import EmailListRule as EmailListRule
 from .okta_group_rule import OktaGroupRule as OktaGroupRule
-from .saml_group_rule import SamlGroupRule as SamlGroupRule
+from .saml_group_rule import SAMLGroupRule as SAMLGroupRule
 from .azure_group_rule import AzureGroupRule as AzureGroupRule
 from .certificate_rule import CertificateRule as CertificateRule
 from .email_rule_param import EmailRuleParam as EmailRuleParam
@@ -31,6 +32,7 @@ from .access_rule_param import AccessRuleParam as AccessRuleParam
 from .domain_rule_param import DomainRuleParam as DomainRuleParam
 from .gsuite_group_rule import GsuiteGroupRule as GsuiteGroupRule
 from .identity_provider import IdentityProvider as IdentityProvider
+from .scim_config_param import ScimConfigParam as ScimConfigParam
 from .country_rule_param import CountryRuleParam as CountryRuleParam
 from .ip_list_rule_param import IPListRuleParam as IPListRuleParam
 from .login_design_param import LoginDesignParam as LoginDesignParam
@@ -45,10 +47,11 @@ from .tunnel_delete_params import TunnelDeleteParams as TunnelDeleteParams
 from .email_list_rule_param import EmailListRuleParam as EmailListRuleParam
 from .gateway_list_response import GatewayListResponse as GatewayListResponse
 from .okta_group_rule_param import OktaGroupRuleParam as OktaGroupRuleParam
-from .saml_group_rule_param import SamlGroupRuleParam as SamlGroupRuleParam
+from .saml_group_rule_param import SAMLGroupRuleParam as SAMLGroupRuleParam
 from .warp_connector_tunnel import WARPConnectorTunnel as WARPConnectorTunnel
 from .azure_group_rule_param import AzureGroupRuleParam as AzureGroupRuleParam
 from .certificate_rule_param import CertificateRuleParam as CertificateRuleParam
+from .identity_provider_type import IdentityProviderType as IdentityProviderType
 from .gateway_create_response import GatewayCreateResponse as GatewayCreateResponse
 from .gsuite_group_rule_param import GsuiteGroupRuleParam as GsuiteGroupRuleParam
 from .external_evaluation_rule import ExternalEvaluationRule as ExternalEvaluationRule
@@ -74,15 +77,6 @@ from .identity_provider_delete_response import IdentityProviderDeleteResponse as
 from .any_valid_service_token_rule_param import AnyValidServiceTokenRuleParam as AnyValidServiceTokenRuleParam
 from .connectivity_setting_edit_response import ConnectivitySettingEditResponse as ConnectivitySettingEditResponse
 from .organization_revoke_users_response import OrganizationRevokeUsersResponse as OrganizationRevokeUsersResponse
-from .unnamed_schema_ref_9ab84e842cdf571c8f3898648bcdabcb import (
-    UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb as UnnamedSchemaRef9ab84e842cdf571c8f3898648bcdabcb,
-)
 from .unnamed_schema_ref_bf9e2abcf1b78a6cab8e6e29e2228a11 import (
     UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11 as UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11,
-)
-from .unnamed_schema_ref_dd86d8b7ea73283da7b160ed3f86cae1 import (
-    UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1 as UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1,
-)
-from .unnamed_schema_ref_dd86d8b7ea73283da7b160ed3f86cae1_param import (
-    UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param as UnnamedSchemaRefDd86d8b7ea73283da7b160ed3f86cae1Param,
 )

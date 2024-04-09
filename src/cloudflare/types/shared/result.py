@@ -8,7 +8,6 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 from .response_info import ResponseInfo
-from .unnamed_schema_ref_ec4d85c3d1bcc6b3b7e99c199ae99846 import UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846
 
 __all__ = [
     "Result",
@@ -106,7 +105,7 @@ class AaaAPIResponseCommon(BaseModel):
 
     messages: List[ResponseInfo]
 
-    result: UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846
+    result: Union[List[object], str, object]
 
     success: Literal[True]
     """Whether the API call was successful"""

@@ -50,12 +50,12 @@ from .smart_tiered_cache import (
     AsyncSmartTieredCacheWithStreamingResponse,
 )
 from .regional_tiered_cache import (
-    RegionalTieredCache,
-    AsyncRegionalTieredCache,
-    RegionalTieredCacheWithRawResponse,
-    AsyncRegionalTieredCacheWithRawResponse,
-    RegionalTieredCacheWithStreamingResponse,
-    AsyncRegionalTieredCacheWithStreamingResponse,
+    RegionalTieredCacheResource,
+    AsyncRegionalTieredCacheResource,
+    RegionalTieredCacheResourceWithRawResponse,
+    AsyncRegionalTieredCacheResourceWithRawResponse,
+    RegionalTieredCacheResourceWithStreamingResponse,
+    AsyncRegionalTieredCacheResourceWithStreamingResponse,
 )
 
 __all__ = ["Cache", "AsyncCache"]
@@ -75,8 +75,8 @@ class Cache(SyncAPIResource):
         return Variants(self._client)
 
     @cached_property
-    def regional_tiered_cache(self) -> RegionalTieredCache:
-        return RegionalTieredCache(self._client)
+    def regional_tiered_cache(self) -> RegionalTieredCacheResource:
+        return RegionalTieredCacheResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CacheWithRawResponse:
@@ -427,8 +427,8 @@ class AsyncCache(AsyncAPIResource):
         return AsyncVariants(self._client)
 
     @cached_property
-    def regional_tiered_cache(self) -> AsyncRegionalTieredCache:
-        return AsyncRegionalTieredCache(self._client)
+    def regional_tiered_cache(self) -> AsyncRegionalTieredCacheResource:
+        return AsyncRegionalTieredCacheResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCacheWithRawResponse:
@@ -786,8 +786,8 @@ class CacheWithRawResponse:
         return VariantsWithRawResponse(self._cache.variants)
 
     @cached_property
-    def regional_tiered_cache(self) -> RegionalTieredCacheWithRawResponse:
-        return RegionalTieredCacheWithRawResponse(self._cache.regional_tiered_cache)
+    def regional_tiered_cache(self) -> RegionalTieredCacheResourceWithRawResponse:
+        return RegionalTieredCacheResourceWithRawResponse(self._cache.regional_tiered_cache)
 
 
 class AsyncCacheWithRawResponse:
@@ -811,8 +811,8 @@ class AsyncCacheWithRawResponse:
         return AsyncVariantsWithRawResponse(self._cache.variants)
 
     @cached_property
-    def regional_tiered_cache(self) -> AsyncRegionalTieredCacheWithRawResponse:
-        return AsyncRegionalTieredCacheWithRawResponse(self._cache.regional_tiered_cache)
+    def regional_tiered_cache(self) -> AsyncRegionalTieredCacheResourceWithRawResponse:
+        return AsyncRegionalTieredCacheResourceWithRawResponse(self._cache.regional_tiered_cache)
 
 
 class CacheWithStreamingResponse:
@@ -836,8 +836,8 @@ class CacheWithStreamingResponse:
         return VariantsWithStreamingResponse(self._cache.variants)
 
     @cached_property
-    def regional_tiered_cache(self) -> RegionalTieredCacheWithStreamingResponse:
-        return RegionalTieredCacheWithStreamingResponse(self._cache.regional_tiered_cache)
+    def regional_tiered_cache(self) -> RegionalTieredCacheResourceWithStreamingResponse:
+        return RegionalTieredCacheResourceWithStreamingResponse(self._cache.regional_tiered_cache)
 
 
 class AsyncCacheWithStreamingResponse:
@@ -861,5 +861,5 @@ class AsyncCacheWithStreamingResponse:
         return AsyncVariantsWithStreamingResponse(self._cache.variants)
 
     @cached_property
-    def regional_tiered_cache(self) -> AsyncRegionalTieredCacheWithStreamingResponse:
-        return AsyncRegionalTieredCacheWithStreamingResponse(self._cache.regional_tiered_cache)
+    def regional_tiered_cache(self) -> AsyncRegionalTieredCacheResourceWithStreamingResponse:
+        return AsyncRegionalTieredCacheResourceWithStreamingResponse(self._cache.regional_tiered_cache)

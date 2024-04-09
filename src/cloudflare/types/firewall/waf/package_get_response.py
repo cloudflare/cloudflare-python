@@ -3,7 +3,7 @@
 from typing import List, Union, Optional
 from typing_extensions import Literal
 
-from ...shared import ResponseInfo, UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+from ...shared import ResponseInfo
 from ...._models import BaseModel
 
 __all__ = ["PackageGetResponse", "FirewallAPIResponseSingle", "Result"]
@@ -14,7 +14,7 @@ class FirewallAPIResponseSingle(BaseModel):
 
     messages: List[ResponseInfo]
 
-    result: UnnamedSchemaRef8d6a37a1e4190f86652802244d29525f
+    result: Union[Optional[str], Optional[object]]
 
     success: Literal[True]
     """Whether the API call was successful"""

@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
-from cloudflare.types.addressing import Prefix
+from cloudflare.types.addressing import (
+    Prefix,
+    PrefixDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -123,7 +125,7 @@ class TestPrefixes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], prefix, path=["response"])
+        assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -137,7 +139,7 @@ class TestPrefixes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         prefix = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], prefix, path=["response"])
+        assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -151,7 +153,7 @@ class TestPrefixes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             prefix = response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], prefix, path=["response"])
+            assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -389,7 +391,7 @@ class TestAsyncPrefixes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], prefix, path=["response"])
+        assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -403,7 +405,7 @@ class TestAsyncPrefixes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         prefix = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], prefix, path=["response"])
+        assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -417,7 +419,7 @@ class TestAsyncPrefixes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             prefix = await response.parse()
-            assert_matches_type(Optional[UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151], prefix, path=["response"])
+            assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

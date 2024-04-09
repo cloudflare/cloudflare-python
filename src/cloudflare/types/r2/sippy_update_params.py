@@ -6,7 +6,7 @@ from typing import Union
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .unnamed_schema_ref_6430970563db310f19d39aafe3debd27 import UnnamedSchemaRef6430970563db310f19d39aafe3debd27
+from .provider import Provider
 
 __all__ = [
     "SippyUpdateParams",
@@ -41,7 +41,7 @@ class R2EnableSippyAwsDestination(TypedDict, total=False):
     this token to the bucket you're enabling Sippy for.
     """
 
-    provider: UnnamedSchemaRef6430970563db310f19d39aafe3debd27
+    provider: Provider
 
     secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
     """
@@ -92,7 +92,7 @@ class R2EnableSippyGcsDestination(TypedDict, total=False):
     this token to the bucket you're enabling Sippy for.
     """
 
-    provider: UnnamedSchemaRef6430970563db310f19d39aafe3debd27
+    provider: Provider
 
     secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
     """

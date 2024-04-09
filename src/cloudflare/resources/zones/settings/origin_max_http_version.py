@@ -30,17 +30,17 @@ from ....types.zones.settings import (
     origin_max_http_version_edit_params,
 )
 
-__all__ = ["OriginMaxHTTPVersion", "AsyncOriginMaxHTTPVersion"]
+__all__ = ["OriginMaxHTTPVersionResource", "AsyncOriginMaxHTTPVersionResource"]
 
 
-class OriginMaxHTTPVersion(SyncAPIResource):
+class OriginMaxHTTPVersionResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OriginMaxHTTPVersionWithRawResponse:
-        return OriginMaxHTTPVersionWithRawResponse(self)
+    def with_raw_response(self) -> OriginMaxHTTPVersionResourceWithRawResponse:
+        return OriginMaxHTTPVersionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OriginMaxHTTPVersionWithStreamingResponse:
-        return OriginMaxHTTPVersionWithStreamingResponse(self)
+    def with_streaming_response(self) -> OriginMaxHTTPVersionResourceWithStreamingResponse:
+        return OriginMaxHTTPVersionResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -135,14 +135,14 @@ class OriginMaxHTTPVersion(SyncAPIResource):
         )
 
 
-class AsyncOriginMaxHTTPVersion(AsyncAPIResource):
+class AsyncOriginMaxHTTPVersionResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOriginMaxHTTPVersionWithRawResponse:
-        return AsyncOriginMaxHTTPVersionWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOriginMaxHTTPVersionResourceWithRawResponse:
+        return AsyncOriginMaxHTTPVersionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOriginMaxHTTPVersionWithStreamingResponse:
-        return AsyncOriginMaxHTTPVersionWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOriginMaxHTTPVersionResourceWithStreamingResponse:
+        return AsyncOriginMaxHTTPVersionResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -239,8 +239,8 @@ class AsyncOriginMaxHTTPVersion(AsyncAPIResource):
         )
 
 
-class OriginMaxHTTPVersionWithRawResponse:
-    def __init__(self, origin_max_http_version: OriginMaxHTTPVersion) -> None:
+class OriginMaxHTTPVersionResourceWithRawResponse:
+    def __init__(self, origin_max_http_version: OriginMaxHTTPVersionResource) -> None:
         self._origin_max_http_version = origin_max_http_version
 
         self.edit = to_raw_response_wrapper(
@@ -251,8 +251,8 @@ class OriginMaxHTTPVersionWithRawResponse:
         )
 
 
-class AsyncOriginMaxHTTPVersionWithRawResponse:
-    def __init__(self, origin_max_http_version: AsyncOriginMaxHTTPVersion) -> None:
+class AsyncOriginMaxHTTPVersionResourceWithRawResponse:
+    def __init__(self, origin_max_http_version: AsyncOriginMaxHTTPVersionResource) -> None:
         self._origin_max_http_version = origin_max_http_version
 
         self.edit = async_to_raw_response_wrapper(
@@ -263,8 +263,8 @@ class AsyncOriginMaxHTTPVersionWithRawResponse:
         )
 
 
-class OriginMaxHTTPVersionWithStreamingResponse:
-    def __init__(self, origin_max_http_version: OriginMaxHTTPVersion) -> None:
+class OriginMaxHTTPVersionResourceWithStreamingResponse:
+    def __init__(self, origin_max_http_version: OriginMaxHTTPVersionResource) -> None:
         self._origin_max_http_version = origin_max_http_version
 
         self.edit = to_streamed_response_wrapper(
@@ -275,8 +275,8 @@ class OriginMaxHTTPVersionWithStreamingResponse:
         )
 
 
-class AsyncOriginMaxHTTPVersionWithStreamingResponse:
-    def __init__(self, origin_max_http_version: AsyncOriginMaxHTTPVersion) -> None:
+class AsyncOriginMaxHTTPVersionResourceWithStreamingResponse:
+    def __init__(self, origin_max_http_version: AsyncOriginMaxHTTPVersionResource) -> None:
         self._origin_max_http_version = origin_max_http_version
 
         self.edit = async_to_streamed_response_wrapper(
