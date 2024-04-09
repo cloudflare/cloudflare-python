@@ -3,4 +3,5 @@
 from __future__ import annotations
 
 from .content_list import ContentList as ContentList
+from .content_list_param import ContentListParam as ContentListParam
 from .content_list_update_params import ContentListUpdateParams as ContentListUpdateParams

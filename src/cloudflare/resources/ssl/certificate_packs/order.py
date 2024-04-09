@@ -21,7 +21,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.ssl import HostItem
+from ....types.ssl import Host
 from ...._base_client import (
     make_request_options,
 )
@@ -44,7 +44,7 @@ class Order(SyncAPIResource):
         *,
         zone_id: str,
         certificate_authority: Literal["google", "lets_encrypt"],
-        hosts: List[HostItem],
+        hosts: List[Host],
         type: Literal["advanced"],
         validation_method: Literal["txt", "http", "email"],
         validity_days: Literal[14, 30, 90, 365],
@@ -126,7 +126,7 @@ class AsyncOrder(AsyncAPIResource):
         *,
         zone_id: str,
         certificate_authority: Literal["google", "lets_encrypt"],
-        hosts: List[HostItem],
+        hosts: List[Host],
         type: Literal["advanced"],
         validation_method: Literal["txt", "http", "email"],
         validity_days: Literal[14, 30, 90, 365],

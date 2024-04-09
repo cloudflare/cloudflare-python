@@ -3,9 +3,35 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from ..user.tokens import Permission
+from .permission_grant import PermissionGrant
 
-__all__ = ["MemberWithInviteCode", "Role", "User"]
+__all__ = ["MemberWithInviteCode", "Role", "RolePermissions", "User"]
+
+
+class RolePermissions(BaseModel):
+    analytics: Optional[PermissionGrant] = None
+
+    billing: Optional[PermissionGrant] = None
+
+    cache_purge: Optional[PermissionGrant] = None
+
+    dns: Optional[PermissionGrant] = None
+
+    dns_records: Optional[PermissionGrant] = None
+
+    lb: Optional[PermissionGrant] = None
+
+    logs: Optional[PermissionGrant] = None
+
+    organization: Optional[PermissionGrant] = None
+
+    ssl: Optional[PermissionGrant] = None
+
+    waf: Optional[PermissionGrant] = None
+
+    zone_settings: Optional[PermissionGrant] = None
+
+    zones: Optional[PermissionGrant] = None
 
 
 class Role(BaseModel):
@@ -18,7 +44,7 @@ class Role(BaseModel):
     name: str
     """Role name."""
 
-    permissions: Permission
+    permissions: RolePermissions
 
 
 class User(BaseModel):

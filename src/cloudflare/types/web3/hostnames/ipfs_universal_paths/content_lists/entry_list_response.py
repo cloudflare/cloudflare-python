@@ -3,11 +3,11 @@
 from typing import List, Optional
 
 from ......_models import BaseModel
-from .content_list_item import ContentListItem
+from .content_list import ContentList
 
 __all__ = ["EntryListResponse"]
 
 
 class EntryListResponse(BaseModel):
-    entries: Optional[List[ContentListItem]] = None
+    entries: Optional[List[ContentList]] = None
     """Content list entries."""

@@ -35,7 +35,7 @@ from ....._base_client import (
 )
 from .....types.zero_trust.access import (
     Certificate,
-    AssociatedHostnamesItem,
+    AssociatedHostnames,
     CertificateDeleteResponse,
     certificate_create_params,
     certificate_update_params,
@@ -64,7 +64,7 @@ class Certificates(SyncAPIResource):
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        associated_hostnames: List[AssociatedHostnamesItem] | NotGiven = NOT_GIVEN,
+        associated_hostnames: List[AssociatedHostnames] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -133,7 +133,7 @@ class Certificates(SyncAPIResource):
         self,
         uuid: str,
         *,
-        associated_hostnames: List[AssociatedHostnamesItem],
+        associated_hostnames: List[AssociatedHostnames],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -395,7 +395,7 @@ class AsyncCertificates(AsyncAPIResource):
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        associated_hostnames: List[AssociatedHostnamesItem] | NotGiven = NOT_GIVEN,
+        associated_hostnames: List[AssociatedHostnames] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -464,7 +464,7 @@ class AsyncCertificates(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        associated_hostnames: List[AssociatedHostnamesItem],
+        associated_hostnames: List[AssociatedHostnames],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,

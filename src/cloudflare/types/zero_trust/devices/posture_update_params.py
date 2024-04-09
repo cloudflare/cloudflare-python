@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .input_param import InputParam
-from .match_item_param import MatchItemParam
+from .match_param import MatchParam
 
 __all__ = ["PostureUpdateParams"]
 
@@ -55,7 +55,7 @@ class PostureUpdateParams(TypedDict, total=False):
     input: InputParam
     """The value to be checked against."""
 
-    match: Iterable[MatchItemParam]
+    match: Iterable[MatchParam]
     """The conditions that the client must match to run the rule."""
 
     schedule: str

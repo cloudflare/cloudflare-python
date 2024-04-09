@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from .scripts import ConsumerScriptItemParam
+from .scripts import ConsumerScriptParam
 from ..._types import FileTypes
 from ..._utils import PropertyInfo
 from ..stepped_migration_param import SteppedMigrationParam
@@ -87,7 +87,7 @@ class Variant0Metadata(TypedDict, total=False):
     tags: List[str]
     """List of strings to use as tags for this Worker"""
 
-    tail_consumers: Iterable[ConsumerScriptItemParam]
+    tail_consumers: Iterable[ConsumerScriptParam]
     """List of Workers that will consume logs from the attached Worker."""
 
     usage_model: Literal["bundled", "unbound"]

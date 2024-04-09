@@ -43,7 +43,7 @@ from .....types.zero_trust.gateway import (
     list_delete_params,
     list_update_params,
 )
-from .....types.zero_trust.gateway.lists import ListsItemParam
+from .....types.zero_trust.gateway.lists import ListsParam
 
 __all__ = ["Lists", "AsyncLists"]
 
@@ -68,7 +68,7 @@ class Lists(SyncAPIResource):
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"],
         description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[ListsItemParam] | NotGiven = NOT_GIVEN,
+        items: Iterable[ListsParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,7 +262,7 @@ class Lists(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        append: Iterable[ListsItemParam] | NotGiven = NOT_GIVEN,
+        append: Iterable[ListsParam] | NotGiven = NOT_GIVEN,
         remove: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -375,7 +375,7 @@ class AsyncLists(AsyncAPIResource):
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"],
         description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[ListsItemParam] | NotGiven = NOT_GIVEN,
+        items: Iterable[ListsParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -569,7 +569,7 @@ class AsyncLists(AsyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        append: Iterable[ListsItemParam] | NotGiven = NOT_GIVEN,
+        append: Iterable[ListsParam] | NotGiven = NOT_GIVEN,
         remove: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

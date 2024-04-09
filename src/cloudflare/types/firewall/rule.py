@@ -4,8 +4,8 @@ from typing import List, Union, Optional
 
 from . import filter
 from ..action import Action
+from .products import Products
 from ..._models import BaseModel
-from .products_item import ProductsItem
 from .deleted_filter import DeletedFilter
 
 __all__ = ["Rule", "Filter"]
@@ -39,7 +39,7 @@ class Rule(BaseModel):
     processed before rules without a priority.
     """
 
-    products: Optional[List[ProductsItem]] = None
+    products: Optional[List[Products]] = None
 
     ref: Optional[str] = None
     """A short reference tag. Allows you to select related firewall rules."""

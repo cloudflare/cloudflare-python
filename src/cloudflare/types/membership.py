@@ -5,10 +5,35 @@ from typing_extensions import Literal
 
 from .account import Account
 from .._models import BaseModel
-from .accounts import MemberRoles
-from .user.tokens import Permission
+from .accounts import MemberRoles, PermissionGrant
 
-__all__ = ["Membership"]
+__all__ = ["Membership", "Permissions"]
+
+
+class Permissions(BaseModel):
+    analytics: Optional[PermissionGrant] = None
+
+    billing: Optional[PermissionGrant] = None
+
+    cache_purge: Optional[PermissionGrant] = None
+
+    dns: Optional[PermissionGrant] = None
+
+    dns_records: Optional[PermissionGrant] = None
+
+    lb: Optional[PermissionGrant] = None
+
+    logs: Optional[PermissionGrant] = None
+
+    organization: Optional[PermissionGrant] = None
+
+    ssl: Optional[PermissionGrant] = None
+
+    waf: Optional[PermissionGrant] = None
+
+    zone_settings: Optional[PermissionGrant] = None
+
+    zones: Optional[PermissionGrant] = None
 
 
 class Membership(BaseModel):
@@ -27,7 +52,7 @@ class Membership(BaseModel):
     code: Optional[str] = None
     """The unique activation code for the account membership."""
 
-    permissions: Optional[Permission] = None
+    permissions: Optional[Permissions] = None
     """All access permissions for the user at the account."""
 
     roles: Optional[MemberRoles] = None

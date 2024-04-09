@@ -4,14 +4,14 @@ from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
+from .host import Host
 from .._models import BaseModel
-from .host_item import HostItem
 
 __all__ = ["Header"]
 
 
 class Header(BaseModel):
-    host: Optional[List[HostItem]] = FieldInfo(alias="Host", default=None)
+    host: Optional[List[Host]] = FieldInfo(alias="Host", default=None)
     """The 'Host' header allows to override the hostname set in the HTTP request.
 
     Current support is 1 'Host' header override per origin.

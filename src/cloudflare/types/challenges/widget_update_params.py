@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-from .widget_domain_item import WidgetDomainItem
+from .widget_domain import WidgetDomain
 
 __all__ = ["WidgetUpdateParams"]
 
@@ -14,7 +14,7 @@ class WidgetUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    domains: Required[List[WidgetDomainItem]]
+    domains: Required[List[WidgetDomain]]
 
     mode: Required[Literal["non-interactive", "invisible", "managed"]]
     """Widget Mode"""
