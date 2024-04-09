@@ -42,12 +42,15 @@ from .setting import Setting as Setting
 from .snippet import Snippet as Snippet
 from .edge_ips import EdgeIPs as EdgeIPs
 from .hostname import Hostname as Hostname
+from .log_rule import LogRule as LogRule
 from .settings import Settings as Settings
 from .calls_app import CallsApp as CallsApp
 from .component import Component as Component
 from .dns_param import DNSParam as DNSParam
 from .page_rule import PageRule as PageRule
 from .rate_plan import RatePlan as RatePlan
+from .skip_rule import SkipRule as SkipRule
+from .block_rule import BlockRule as BlockRule
 from .d1_binding import D1Binding as D1Binding
 from .hyperdrive import Hyperdrive as Hyperdrive
 from .membership import Membership as Membership
@@ -61,6 +64,7 @@ from .pcap_filter import PCAPFilter as PCAPFilter
 from .route_param import RouteParam as RouteParam
 from .rules_param import RulesParam as RulesParam
 from .check_region import CheckRegion as CheckRegion
+from .execute_rule import ExecuteRule as ExecuteRule
 from .header_param import HeaderParam as HeaderParam
 from .health_check import HealthCheck as HealthCheck
 from .origin_param import OriginParam as OriginParam
@@ -77,6 +81,7 @@ from .filter_options import FilterOptions as FilterOptions
 from .hostname_param import HostnameParam as HostnameParam
 from .ip_list_params import IPListParams as IPListParams
 from .labeled_region import LabeledRegion as LabeledRegion
+from .log_rule_param import LogRuleParam as LogRuleParam
 from .warp_connector import WARPConnector as WARPConnector
 from .allowed_origins import AllowedOrigins as AllowedOrigins
 from .custom_hostname import CustomHostname as CustomHostname
@@ -84,7 +89,9 @@ from .firewall_filter import FirewallFilter as FirewallFilter
 from .origin_steering import OriginSteering as OriginSteering
 from .random_steering import RandomSteering as RandomSteering
 from .service_binding import ServiceBinding as ServiceBinding
+from .skip_rule_param import SkipRuleParam as SkipRuleParam
 from .adaptive_routing import AdaptiveRouting as AdaptiveRouting
+from .block_rule_param import BlockRuleParam as BlockRuleParam
 from .geo_restrictions import GeoRestrictions as GeoRestrictions
 from .ip_list_response import IPListResponse as IPListResponse
 from .mtls_certificate import MTLSCertificate as MTLSCertificate
@@ -109,6 +116,7 @@ from .call_update_params import CallUpdateParams as CallUpdateParams
 from .client_certificate import ClientCertificate as ClientCertificate
 from .custom_certificate import CustomCertificate as CustomCertificate
 from .dnssec_edit_params import DNSSECEditParams as DNSSECEditParams
+from .execute_rule_param import ExecuteRuleParam as ExecuteRuleParam
 from .filter_list_params import FilterListParams as FilterListParams
 from .health_check_param import HealthCheckParam as HealthCheckParam
 from .http_configuration import HTTPConfiguration as HTTPConfiguration
