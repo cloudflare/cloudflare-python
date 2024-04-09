@@ -5,8 +5,8 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ..shared import UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9
 from ..._models import BaseModel
+from ..radar.http import Browser
 from .unnamed_schema_ref_6d7a78acccfc753a8e931b1c4e72b6a6 import UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6
 
 __all__ = [
@@ -239,7 +239,7 @@ class ScanPage(BaseModel):
 
     domain: str
 
-    headers: List[UnnamedSchemaRef2173d81a0b2d332c9e2ac46900fe8bb9]
+    headers: List[Browser]
 
     ip: str
 

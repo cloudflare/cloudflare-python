@@ -24,9 +24,9 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.workers.scripts import (
+    DeploymentParam,
     DeploymentGetResponse,
     DeploymentCreateResponse,
-    UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8Param,
     deployment_create_params,
 )
 
@@ -47,7 +47,7 @@ class Deployments(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        annotations: UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8Param | NotGiven = NOT_GIVEN,
+        annotations: DeploymentParam | NotGiven = NOT_GIVEN,
         strategy: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -159,7 +159,7 @@ class AsyncDeployments(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        annotations: UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8Param | NotGiven = NOT_GIVEN,
+        annotations: DeploymentParam | NotGiven = NOT_GIVEN,
         strategy: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

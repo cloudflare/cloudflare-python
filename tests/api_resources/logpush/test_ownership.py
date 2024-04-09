@@ -9,8 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854
-from cloudflare.types.logpush import OwnershipCreateResponse
+from cloudflare.types.logpush import (
+    OwnershipValidation,
+    OwnershipCreateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -94,7 +96,7 @@ class TestOwnership:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -105,7 +107,7 @@ class TestOwnership:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +122,7 @@ class TestOwnership:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ownership = response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -135,9 +137,7 @@ class TestOwnership:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ownership = response.parse()
-            assert_matches_type(
-                Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], ownership, path=["response"]
-            )
+            assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +240,7 @@ class TestAsyncOwnership:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -251,7 +251,7 @@ class TestAsyncOwnership:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -266,7 +266,7 @@ class TestAsyncOwnership:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ownership = await response.parse()
-        assert_matches_type(Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -281,9 +281,7 @@ class TestAsyncOwnership:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ownership = await response.parse()
-            assert_matches_type(
-                Optional[UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854], ownership, path=["response"]
-            )
+            assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

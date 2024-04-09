@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
+from . import deployment
 from ...._models import BaseModel
-from .unnamed_schema_ref_fda1c6f6758e763ae3b2964521f2fdd8 import UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8
 
 __all__ = ["DeploymentGetResponse", "Deployment"]
 
@@ -11,7 +11,7 @@ __all__ = ["DeploymentGetResponse", "Deployment"]
 class Deployment(BaseModel):
     id: Optional[str] = None
 
-    annotations: Optional[UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8] = None
+    annotations: Optional[deployment.Deployment] = None
 
     author_email: Optional[str] = None
 

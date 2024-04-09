@@ -4,8 +4,8 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854"]
+__all__ = ["OwnershipValidation"]
 
 
-class UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854(BaseModel):
+class OwnershipValidation(BaseModel):
     valid: Optional[bool] = None

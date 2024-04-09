@@ -6,9 +6,9 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8"]
+__all__ = ["Deployment"]
 
 
-class UnnamedSchemaRefFda1c6f6758e763ae3b2964521f2fdd8(BaseModel):
+class Deployment(BaseModel):
     workers_message: Optional[str] = FieldInfo(alias="workers/message", default=None)
     """Human-readable message about the deployment."""
