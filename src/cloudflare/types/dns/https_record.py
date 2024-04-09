@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from .ttl import TTL
 from ..._models import BaseModel
+from .record_tags_item import RecordTagsItem
 from .unnamed_schema_ref_1391721bdb8938d5420a8bc738a44deb import UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb
 
 __all__ = ["HTTPSRecord", "Data"]
@@ -62,7 +63,7 @@ class HTTPSRecord(BaseModel):
     proxiable: Optional[bool] = None
     """Whether the record can be proxied by Cloudflare or not."""
 
-    tags: Optional[List[str]] = None
+    tags: Optional[List[RecordTagsItem]] = None
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
     ttl: Optional[TTL] = None

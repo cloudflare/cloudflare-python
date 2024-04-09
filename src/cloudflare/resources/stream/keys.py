@@ -24,7 +24,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.shared import UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0
-from ...types.stream import StreamKeys, KeyGetResponse, key_create_params, key_delete_params
+from ...types.stream import KeyGetResponse, keys, key_create_params, key_delete_params
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -49,7 +49,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamKeys:
+    ) -> keys.Keys:
         """Creates an RSA private key in PEM and JWK formats.
 
         Key files are only displayed
@@ -79,7 +79,7 @@ class Keys(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamKeys], ResultWrapper[StreamKeys]),
+            cast_to=cast(Type[keys.Keys], ResultWrapper[keys.Keys]),
         )
 
     def delete(
@@ -193,7 +193,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamKeys:
+    ) -> keys.Keys:
         """Creates an RSA private key in PEM and JWK formats.
 
         Key files are only displayed
@@ -223,7 +223,7 @@ class AsyncKeys(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamKeys], ResultWrapper[StreamKeys]),
+            cast_to=cast(Type[keys.Keys], ResultWrapper[keys.Keys]),
         )
 
     async def delete(

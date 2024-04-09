@@ -11,12 +11,12 @@ from .pools import (
     AsyncPoolsWithStreamingResponse,
 )
 from .preview import (
-    Preview,
-    AsyncPreview,
-    PreviewWithRawResponse,
-    AsyncPreviewWithRawResponse,
-    PreviewWithStreamingResponse,
-    AsyncPreviewWithStreamingResponse,
+    PreviewResource,
+    AsyncPreviewResource,
+    PreviewResourceWithRawResponse,
+    AsyncPreviewResourceWithRawResponse,
+    PreviewResourceWithStreamingResponse,
+    AsyncPreviewResourceWithStreamingResponse,
 )
 from .monitors import (
     Monitors,
@@ -51,8 +51,8 @@ class LoadBalancers(SyncAPIResource):
         return Pools(self._client)
 
     @cached_property
-    def preview(self) -> Preview:
-        return Preview(self._client)
+    def preview(self) -> PreviewResource:
+        return PreviewResource(self._client)
 
     @cached_property
     def analytics(self) -> Analytics:
@@ -77,8 +77,8 @@ class AsyncLoadBalancers(AsyncAPIResource):
         return AsyncPools(self._client)
 
     @cached_property
-    def preview(self) -> AsyncPreview:
-        return AsyncPreview(self._client)
+    def preview(self) -> AsyncPreviewResource:
+        return AsyncPreviewResource(self._client)
 
     @cached_property
     def analytics(self) -> AsyncAnalytics:
@@ -106,8 +106,8 @@ class LoadBalancersWithRawResponse:
         return PoolsWithRawResponse(self._load_balancers.pools)
 
     @cached_property
-    def preview(self) -> PreviewWithRawResponse:
-        return PreviewWithRawResponse(self._load_balancers.preview)
+    def preview(self) -> PreviewResourceWithRawResponse:
+        return PreviewResourceWithRawResponse(self._load_balancers.preview)
 
     @cached_property
     def analytics(self) -> AnalyticsWithRawResponse:
@@ -127,8 +127,8 @@ class AsyncLoadBalancersWithRawResponse:
         return AsyncPoolsWithRawResponse(self._load_balancers.pools)
 
     @cached_property
-    def preview(self) -> AsyncPreviewWithRawResponse:
-        return AsyncPreviewWithRawResponse(self._load_balancers.preview)
+    def preview(self) -> AsyncPreviewResourceWithRawResponse:
+        return AsyncPreviewResourceWithRawResponse(self._load_balancers.preview)
 
     @cached_property
     def analytics(self) -> AsyncAnalyticsWithRawResponse:
@@ -148,8 +148,8 @@ class LoadBalancersWithStreamingResponse:
         return PoolsWithStreamingResponse(self._load_balancers.pools)
 
     @cached_property
-    def preview(self) -> PreviewWithStreamingResponse:
-        return PreviewWithStreamingResponse(self._load_balancers.preview)
+    def preview(self) -> PreviewResourceWithStreamingResponse:
+        return PreviewResourceWithStreamingResponse(self._load_balancers.preview)
 
     @cached_property
     def analytics(self) -> AnalyticsWithStreamingResponse:
@@ -169,8 +169,8 @@ class AsyncLoadBalancersWithStreamingResponse:
         return AsyncPoolsWithStreamingResponse(self._load_balancers.pools)
 
     @cached_property
-    def preview(self) -> AsyncPreviewWithStreamingResponse:
-        return AsyncPreviewWithStreamingResponse(self._load_balancers.preview)
+    def preview(self) -> AsyncPreviewResourceWithStreamingResponse:
+        return AsyncPreviewResourceWithStreamingResponse(self._load_balancers.preview)
 
     @cached_property
     def analytics(self) -> AsyncAnalyticsWithStreamingResponse:

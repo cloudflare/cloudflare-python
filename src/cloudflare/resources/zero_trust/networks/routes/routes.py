@@ -42,13 +42,7 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.networks import (
-    TunnelRoute,
-    TunnelTeamnet,
-    route_edit_params,
-    route_list_params,
-    route_create_params,
-)
+from .....types.zero_trust.networks import Route, Teamnet, route_edit_params, route_list_params, route_create_params
 
 __all__ = ["Routes", "AsyncRoutes"]
 
@@ -83,7 +77,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """
         Routes a private network through a Cloudflare Tunnel.
 
@@ -125,7 +119,7 @@ class Routes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
     def list(
@@ -149,7 +143,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[TunnelTeamnet]:
+    ) -> SyncV4PagePaginationArray[Teamnet]:
         """
         Lists and filters private network routes in an account.
 
@@ -194,7 +188,7 @@ class Routes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/teamnet/routes",
-            page=SyncV4PagePaginationArray[TunnelTeamnet],
+            page=SyncV4PagePaginationArray[Teamnet],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -217,7 +211,7 @@ class Routes(SyncAPIResource):
                     route_list_params.RouteListParams,
                 ),
             ),
-            model=TunnelTeamnet,
+            model=Teamnet,
         )
 
     def delete(
@@ -231,7 +225,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """
         Deletes a private network route from an account.
 
@@ -261,7 +255,7 @@ class Routes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
     def edit(
@@ -280,7 +274,7 @@ class Routes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """Updates an existing private network route in an account.
 
         The fields that are
@@ -334,7 +328,7 @@ class Routes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
 
@@ -368,7 +362,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """
         Routes a private network through a Cloudflare Tunnel.
 
@@ -410,7 +404,7 @@ class AsyncRoutes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
     def list(
@@ -434,7 +428,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[TunnelTeamnet, AsyncV4PagePaginationArray[TunnelTeamnet]]:
+    ) -> AsyncPaginator[Teamnet, AsyncV4PagePaginationArray[Teamnet]]:
         """
         Lists and filters private network routes in an account.
 
@@ -479,7 +473,7 @@ class AsyncRoutes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/teamnet/routes",
-            page=AsyncV4PagePaginationArray[TunnelTeamnet],
+            page=AsyncV4PagePaginationArray[Teamnet],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -502,7 +496,7 @@ class AsyncRoutes(AsyncAPIResource):
                     route_list_params.RouteListParams,
                 ),
             ),
-            model=TunnelTeamnet,
+            model=Teamnet,
         )
 
     async def delete(
@@ -516,7 +510,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """
         Deletes a private network route from an account.
 
@@ -546,7 +540,7 @@ class AsyncRoutes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
     async def edit(
@@ -565,7 +559,7 @@ class AsyncRoutes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """Updates an existing private network route in an account.
 
         The fields that are
@@ -619,7 +613,7 @@ class AsyncRoutes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
 

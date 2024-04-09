@@ -27,7 +27,7 @@ from ...._base_client import (
 )
 from ....types.addressing.prefixes import (
     DelegationDeleteResponse,
-    AddressingIpamDelegations,
+    delegations,
     delegation_create_params,
     delegation_delete_params,
 )
@@ -57,7 +57,7 @@ class Delegations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamDelegations:
+    ) -> delegations.Delegations:
         """
         Create a new account delegation for a given IP prefix.
 
@@ -98,7 +98,7 @@ class Delegations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamDelegations], ResultWrapper[AddressingIpamDelegations]),
+            cast_to=cast(Type[delegations.Delegations], ResultWrapper[delegations.Delegations]),
         )
 
     def list(
@@ -112,7 +112,7 @@ class Delegations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[AddressingIpamDelegations]:
+    ) -> SyncSinglePage[delegations.Delegations]:
         """
         List all delegations for a given account IP prefix.
 
@@ -135,11 +135,11 @@ class Delegations(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
-            page=SyncSinglePage[AddressingIpamDelegations],
+            page=SyncSinglePage[delegations.Delegations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AddressingIpamDelegations,
+            model=delegations.Delegations,
         )
 
     def delete(
@@ -216,7 +216,7 @@ class AsyncDelegations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamDelegations:
+    ) -> delegations.Delegations:
         """
         Create a new account delegation for a given IP prefix.
 
@@ -257,7 +257,7 @@ class AsyncDelegations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamDelegations], ResultWrapper[AddressingIpamDelegations]),
+            cast_to=cast(Type[delegations.Delegations], ResultWrapper[delegations.Delegations]),
         )
 
     def list(
@@ -271,7 +271,7 @@ class AsyncDelegations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AddressingIpamDelegations, AsyncSinglePage[AddressingIpamDelegations]]:
+    ) -> AsyncPaginator[delegations.Delegations, AsyncSinglePage[delegations.Delegations]]:
         """
         List all delegations for a given account IP prefix.
 
@@ -294,11 +294,11 @@ class AsyncDelegations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
-            page=AsyncSinglePage[AddressingIpamDelegations],
+            page=AsyncSinglePage[delegations.Delegations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AddressingIpamDelegations,
+            model=delegations.Delegations,
         )
 
     async def delete(

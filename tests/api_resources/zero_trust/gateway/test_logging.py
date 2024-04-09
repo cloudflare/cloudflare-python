@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.gateway import (
-    ZeroTrustGatewayGatewayAccountLoggingSettings,
+    LoggingSetting,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -25,7 +25,7 @@ class TestLogging:
         logging = client.zero_trust.gateway.logging.update(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+        assert_matches_type(LoggingSetting, logging, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestLogging:
                 "l4": {},
             },
         )
-        assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+        assert_matches_type(LoggingSetting, logging, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -51,7 +51,7 @@ class TestLogging:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         logging = response.parse()
-        assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+        assert_matches_type(LoggingSetting, logging, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestLogging:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             logging = response.parse()
-            assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+            assert_matches_type(LoggingSetting, logging, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -81,7 +81,7 @@ class TestLogging:
         logging = client.zero_trust.gateway.logging.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+        assert_matches_type(LoggingSetting, logging, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestLogging:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         logging = response.parse()
-        assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+        assert_matches_type(LoggingSetting, logging, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -105,7 +105,7 @@ class TestLogging:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             logging = response.parse()
-            assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+            assert_matches_type(LoggingSetting, logging, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -127,7 +127,7 @@ class TestAsyncLogging:
         logging = await async_client.zero_trust.gateway.logging.update(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+        assert_matches_type(LoggingSetting, logging, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -141,7 +141,7 @@ class TestAsyncLogging:
                 "l4": {},
             },
         )
-        assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+        assert_matches_type(LoggingSetting, logging, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -153,7 +153,7 @@ class TestAsyncLogging:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         logging = await response.parse()
-        assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+        assert_matches_type(LoggingSetting, logging, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -165,7 +165,7 @@ class TestAsyncLogging:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             logging = await response.parse()
-            assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+            assert_matches_type(LoggingSetting, logging, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -183,7 +183,7 @@ class TestAsyncLogging:
         logging = await async_client.zero_trust.gateway.logging.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+        assert_matches_type(LoggingSetting, logging, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -195,7 +195,7 @@ class TestAsyncLogging:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         logging = await response.parse()
-        assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+        assert_matches_type(LoggingSetting, logging, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -207,7 +207,7 @@ class TestAsyncLogging:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             logging = await response.parse()
-            assert_matches_type(ZeroTrustGatewayGatewayAccountLoggingSettings, logging, path=["response"])
+            assert_matches_type(LoggingSetting, logging, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

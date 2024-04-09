@@ -7,7 +7,7 @@ from datetime import datetime
 
 import httpx
 
-from ...types import StreamVideos
+from ...types import Video, AllowedOriginsItem
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -25,7 +25,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import AllowedOriginsItem, copy_create_params
+from ...types.stream import copy_create_params
 
 __all__ = ["Copy", "AsyncCopy"]
 
@@ -57,7 +57,7 @@ class Copy(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamVideos:
+    ) -> Video:
         """
         Uploads a video to Stream from a provided URL.
 
@@ -121,7 +121,7 @@ class Copy(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamVideos], ResultWrapper[StreamVideos]),
+            cast_to=cast(Type[Video], ResultWrapper[Video]),
         )
 
 
@@ -152,7 +152,7 @@ class AsyncCopy(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamVideos:
+    ) -> Video:
         """
         Uploads a video to Stream from a provided URL.
 
@@ -216,7 +216,7 @@ class AsyncCopy(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamVideos], ResultWrapper[StreamVideos]),
+            cast_to=cast(Type[Video], ResultWrapper[Video]),
         )
 
 

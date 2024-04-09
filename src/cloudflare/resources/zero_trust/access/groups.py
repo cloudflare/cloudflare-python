@@ -25,7 +25,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust import ExcludeItemParam, IncludeItemParam, RequireItemParam
+from ....types.zero_trust import AccessRuleParam
 from ....types.zero_trust.access import ZeroTrustGroup, GroupDeleteResponse, group_create_params, group_update_params
 
 __all__ = ["Groups", "AsyncGroups"]
@@ -43,13 +43,13 @@ class Groups(SyncAPIResource):
     def create(
         self,
         *,
-        include: Iterable[IncludeItemParam],
+        include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
+        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -127,13 +127,13 @@ class Groups(SyncAPIResource):
         self,
         uuid: str,
         *,
-        include: Iterable[IncludeItemParam],
+        include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
+        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -396,13 +396,13 @@ class AsyncGroups(AsyncAPIResource):
     async def create(
         self,
         *,
-        include: Iterable[IncludeItemParam],
+        include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
+        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -480,13 +480,13 @@ class AsyncGroups(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        include: Iterable[IncludeItemParam],
+        include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        exclude: Iterable[ExcludeItemParam] | NotGiven = NOT_GIVEN,
+        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[RequireItemParam] | NotGiven = NOT_GIVEN,
+        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

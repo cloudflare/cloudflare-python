@@ -7,8 +7,9 @@ from typing import Type, cast
 import httpx
 
 from ..types import (
+    Hostname,
     TunnelParam,
-    KeylessCertificateHostname,
+    KeylessCertificate,
     UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1,
     keyless_certificate_edit_params,
     keyless_certificate_create_params,
@@ -63,7 +64,7 @@ class KeylessCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificateHostname:
+    ) -> Hostname:
         """
         Create Keyless SSL Configuration
 
@@ -116,7 +117,7 @@ class KeylessCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificateHostname], ResultWrapper[KeylessCertificateHostname]),
+            cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
 
     def list(
@@ -129,7 +130,7 @@ class KeylessCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[KeylessCertificateHostname]:
+    ) -> SyncSinglePage[KeylessCertificate]:
         """
         List all Keyless SSL configurations for a given zone.
 
@@ -148,11 +149,11 @@ class KeylessCertificates(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/keyless_certificates",
-            page=SyncSinglePage[KeylessCertificateHostname],
+            page=SyncSinglePage[KeylessCertificate],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=KeylessCertificateHostname,
+            model=KeylessCertificate,
         )
 
     def delete(
@@ -222,7 +223,7 @@ class KeylessCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificateHostname:
+    ) -> Hostname:
         """This will update attributes of a Keyless SSL.
 
         Consists of one or more of the
@@ -277,7 +278,7 @@ class KeylessCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificateHostname], ResultWrapper[KeylessCertificateHostname]),
+            cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
 
     def get(
@@ -291,7 +292,7 @@ class KeylessCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificateHostname:
+    ) -> Hostname:
         """
         Get details for one Keyless SSL configuration.
 
@@ -323,7 +324,7 @@ class KeylessCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificateHostname], ResultWrapper[KeylessCertificateHostname]),
+            cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
 
 
@@ -352,7 +353,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificateHostname:
+    ) -> Hostname:
         """
         Create Keyless SSL Configuration
 
@@ -405,7 +406,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificateHostname], ResultWrapper[KeylessCertificateHostname]),
+            cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
 
     def list(
@@ -418,7 +419,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[KeylessCertificateHostname, AsyncSinglePage[KeylessCertificateHostname]]:
+    ) -> AsyncPaginator[KeylessCertificate, AsyncSinglePage[KeylessCertificate]]:
         """
         List all Keyless SSL configurations for a given zone.
 
@@ -437,11 +438,11 @@ class AsyncKeylessCertificates(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/keyless_certificates",
-            page=AsyncSinglePage[KeylessCertificateHostname],
+            page=AsyncSinglePage[KeylessCertificate],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=KeylessCertificateHostname,
+            model=KeylessCertificate,
         )
 
     async def delete(
@@ -511,7 +512,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificateHostname:
+    ) -> Hostname:
         """This will update attributes of a Keyless SSL.
 
         Consists of one or more of the
@@ -566,7 +567,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificateHostname], ResultWrapper[KeylessCertificateHostname]),
+            cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
 
     async def get(
@@ -580,7 +581,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificateHostname:
+    ) -> Hostname:
         """
         Get details for one Keyless SSL configuration.
 
@@ -612,7 +613,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificateHostname], ResultWrapper[KeylessCertificateHostname]),
+            cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
 
 

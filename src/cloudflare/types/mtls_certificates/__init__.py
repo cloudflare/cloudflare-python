@@ -3,4 +3,4 @@
 from __future__ import annotations
 
 from .association_get_response import AssociationGetResponse as AssociationGetResponse
-from .mtls_certificate_asssociation import MTLSCertificateAsssociation as MTLSCertificateAsssociation
+from .certificate_asssociation import CertificateAsssociation as CertificateAsssociation

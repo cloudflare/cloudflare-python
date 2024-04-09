@@ -7,7 +7,7 @@ from typing import Any, cast
 import httpx
 
 from ...types import (
-    OriginTLSClientAuthListResponse,
+    ZoneAuthenticatedOriginPull,
     origin_tls_client_auth_create_params,
     origin_tls_client_auth_delete_params,
 )
@@ -140,7 +140,7 @@ class OriginTLSClientAuth(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[OriginTLSClientAuthListResponse]:
+    ) -> SyncSinglePage[ZoneAuthenticatedOriginPull]:
         """
         List Certificates
 
@@ -159,11 +159,11 @@ class OriginTLSClientAuth(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/origin_tls_client_auth",
-            page=SyncSinglePage[OriginTLSClientAuthListResponse],
+            page=SyncSinglePage[ZoneAuthenticatedOriginPull],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=OriginTLSClientAuthListResponse,
+            model=ZoneAuthenticatedOriginPull,
         )
 
     def delete(
@@ -355,7 +355,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[OriginTLSClientAuthListResponse, AsyncSinglePage[OriginTLSClientAuthListResponse]]:
+    ) -> AsyncPaginator[ZoneAuthenticatedOriginPull, AsyncSinglePage[ZoneAuthenticatedOriginPull]]:
         """
         List Certificates
 
@@ -374,11 +374,11 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/origin_tls_client_auth",
-            page=AsyncSinglePage[OriginTLSClientAuthListResponse],
+            page=AsyncSinglePage[ZoneAuthenticatedOriginPull],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=OriginTLSClientAuthListResponse,
+            model=ZoneAuthenticatedOriginPull,
         )
 
     async def delete(

@@ -51,7 +51,7 @@ from ...._base_client import (
 )
 from ....types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
 from ....types.addressing import (
-    AddressingAddressMaps,
+    AddressMap,
     AddressMapGetResponse,
     AddressMapCreateResponse,
     address_map_edit_params,
@@ -147,7 +147,7 @@ class AddressMaps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[AddressingAddressMaps]:
+    ) -> SyncSinglePage[AddressMap]:
         """
         List all address maps owned by the account.
 
@@ -166,11 +166,11 @@ class AddressMaps(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/address_maps",
-            page=SyncSinglePage[AddressingAddressMaps],
+            page=SyncSinglePage[AddressMap],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AddressingAddressMaps,
+            model=AddressMap,
         )
 
     def delete(
@@ -240,7 +240,7 @@ class AddressMaps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingAddressMaps:
+    ) -> AddressMap:
         """
         Modify properties of an address map owned by the account.
 
@@ -290,7 +290,7 @@ class AddressMaps(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingAddressMaps], ResultWrapper[AddressingAddressMaps]),
+            cast_to=cast(Type[AddressMap], ResultWrapper[AddressMap]),
         )
 
     def get(
@@ -423,7 +423,7 @@ class AsyncAddressMaps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AddressingAddressMaps, AsyncSinglePage[AddressingAddressMaps]]:
+    ) -> AsyncPaginator[AddressMap, AsyncSinglePage[AddressMap]]:
         """
         List all address maps owned by the account.
 
@@ -442,11 +442,11 @@ class AsyncAddressMaps(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/address_maps",
-            page=AsyncSinglePage[AddressingAddressMaps],
+            page=AsyncSinglePage[AddressMap],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AddressingAddressMaps,
+            model=AddressMap,
         )
 
     async def delete(
@@ -516,7 +516,7 @@ class AsyncAddressMaps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingAddressMaps:
+    ) -> AddressMap:
         """
         Modify properties of an address map owned by the account.
 
@@ -566,7 +566,7 @@ class AsyncAddressMaps(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingAddressMaps], ResultWrapper[AddressingAddressMaps]),
+            cast_to=cast(Type[AddressMap], ResultWrapper[AddressMap]),
         )
 
     async def get(

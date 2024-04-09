@@ -1,34 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
+from typing import List
 
-from ..._models import BaseModel
+from .event import Event
 
-__all__ = ["RuleDeleteResponse", "RuleDeleteResponseItem"]
+__all__ = ["RuleDeleteResponse"]
 
-
-class RuleDeleteResponseItem(BaseModel):
-    id: Optional[str] = None
-    """The ID of the rule."""
-
-    action: Optional[Literal["bypass_waiting_room"]] = None
-    """The action to take when the expression matches."""
-
-    description: Optional[str] = None
-    """The description of the rule."""
-
-    enabled: Optional[bool] = None
-    """When set to true, the rule is enabled."""
-
-    expression: Optional[str] = None
-    """Criteria defining when there is a match for the current rule."""
-
-    last_updated: Optional[datetime] = None
-
-    version: Optional[str] = None
-    """The version of the rule."""
-
-
-RuleDeleteResponse = List[RuleDeleteResponseItem]
+RuleDeleteResponse = List[Event]

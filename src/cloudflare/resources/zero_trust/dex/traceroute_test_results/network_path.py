@@ -19,19 +19,19 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dex.traceroute_test_results import TracerouteTestResultNetworkPath
+from .....types.zero_trust.dex.traceroute_test_results import NetworkPath
 
-__all__ = ["NetworkPath", "AsyncNetworkPath"]
+__all__ = ["NetworkPathResource", "AsyncNetworkPathResource"]
 
 
-class NetworkPath(SyncAPIResource):
+class NetworkPathResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> NetworkPathWithRawResponse:
-        return NetworkPathWithRawResponse(self)
+    def with_raw_response(self) -> NetworkPathResourceWithRawResponse:
+        return NetworkPathResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> NetworkPathWithStreamingResponse:
-        return NetworkPathWithStreamingResponse(self)
+    def with_streaming_response(self) -> NetworkPathResourceWithStreamingResponse:
+        return NetworkPathResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -44,7 +44,7 @@ class NetworkPath(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TracerouteTestResultNetworkPath:
+    ) -> NetworkPath:
         """
         Get a breakdown of hops and performance metrics for a specific traceroute test
         run
@@ -73,18 +73,18 @@ class NetworkPath(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TracerouteTestResultNetworkPath], ResultWrapper[TracerouteTestResultNetworkPath]),
+            cast_to=cast(Type[NetworkPath], ResultWrapper[NetworkPath]),
         )
 
 
-class AsyncNetworkPath(AsyncAPIResource):
+class AsyncNetworkPathResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncNetworkPathWithRawResponse:
-        return AsyncNetworkPathWithRawResponse(self)
+    def with_raw_response(self) -> AsyncNetworkPathResourceWithRawResponse:
+        return AsyncNetworkPathResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncNetworkPathWithStreamingResponse:
-        return AsyncNetworkPathWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncNetworkPathResourceWithStreamingResponse:
+        return AsyncNetworkPathResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -97,7 +97,7 @@ class AsyncNetworkPath(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TracerouteTestResultNetworkPath:
+    ) -> NetworkPath:
         """
         Get a breakdown of hops and performance metrics for a specific traceroute test
         run
@@ -126,12 +126,12 @@ class AsyncNetworkPath(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TracerouteTestResultNetworkPath], ResultWrapper[TracerouteTestResultNetworkPath]),
+            cast_to=cast(Type[NetworkPath], ResultWrapper[NetworkPath]),
         )
 
 
-class NetworkPathWithRawResponse:
-    def __init__(self, network_path: NetworkPath) -> None:
+class NetworkPathResourceWithRawResponse:
+    def __init__(self, network_path: NetworkPathResource) -> None:
         self._network_path = network_path
 
         self.get = to_raw_response_wrapper(
@@ -139,8 +139,8 @@ class NetworkPathWithRawResponse:
         )
 
 
-class AsyncNetworkPathWithRawResponse:
-    def __init__(self, network_path: AsyncNetworkPath) -> None:
+class AsyncNetworkPathResourceWithRawResponse:
+    def __init__(self, network_path: AsyncNetworkPathResource) -> None:
         self._network_path = network_path
 
         self.get = async_to_raw_response_wrapper(
@@ -148,8 +148,8 @@ class AsyncNetworkPathWithRawResponse:
         )
 
 
-class NetworkPathWithStreamingResponse:
-    def __init__(self, network_path: NetworkPath) -> None:
+class NetworkPathResourceWithStreamingResponse:
+    def __init__(self, network_path: NetworkPathResource) -> None:
         self._network_path = network_path
 
         self.get = to_streamed_response_wrapper(
@@ -157,8 +157,8 @@ class NetworkPathWithStreamingResponse:
         )
 
 
-class AsyncNetworkPathWithStreamingResponse:
-    def __init__(self, network_path: AsyncNetworkPath) -> None:
+class AsyncNetworkPathResourceWithStreamingResponse:
+    def __init__(self, network_path: AsyncNetworkPathResource) -> None:
         self._network_path = network_path
 
         self.get = async_to_streamed_response_wrapper(

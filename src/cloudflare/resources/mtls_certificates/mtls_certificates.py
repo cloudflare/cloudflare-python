@@ -8,7 +8,7 @@ import httpx
 
 from ...types import (
     MTLSCertificate,
-    MTLSCertificateUpdate,
+    MTLSCertificateCreateResponse,
     mtls_certificate_create_params,
     mtls_certificate_delete_params,
 )
@@ -70,7 +70,7 @@ class MTLSCertificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MTLSCertificateUpdate:
+    ) -> MTLSCertificateCreateResponse:
         """
         Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
 
@@ -113,7 +113,7 @@ class MTLSCertificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MTLSCertificateUpdate], ResultWrapper[MTLSCertificateUpdate]),
+            cast_to=cast(Type[MTLSCertificateCreateResponse], ResultWrapper[MTLSCertificateCreateResponse]),
         )
 
     def list(
@@ -275,7 +275,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MTLSCertificateUpdate:
+    ) -> MTLSCertificateCreateResponse:
         """
         Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
 
@@ -318,7 +318,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MTLSCertificateUpdate], ResultWrapper[MTLSCertificateUpdate]),
+            cast_to=cast(Type[MTLSCertificateCreateResponse], ResultWrapper[MTLSCertificateCreateResponse]),
         )
 
     def list(

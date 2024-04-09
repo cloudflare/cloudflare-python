@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.devices import ZeroTrustAccountDeviceSettings
+from cloudflare.types.zero_trust.devices import DeviceSettings
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestSettings:
         setting = client.zero_trust.devices.settings.update(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestSettings:
             root_certificate_installation_enabled=True,
             use_zt_virtual_ip=True,
         )
-        assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -59,7 +59,7 @@ class TestSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+            assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -77,7 +77,7 @@ class TestSettings:
         setting = client.zero_trust.devices.settings.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -89,7 +89,7 @@ class TestSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -101,7 +101,7 @@ class TestSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+            assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -123,7 +123,7 @@ class TestAsyncSettings:
         setting = await async_client.zero_trust.devices.settings.update(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -135,7 +135,7 @@ class TestAsyncSettings:
             root_certificate_installation_enabled=True,
             use_zt_virtual_ip=True,
         )
-        assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -147,7 +147,7 @@ class TestAsyncSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -159,7 +159,7 @@ class TestAsyncSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+            assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -177,7 +177,7 @@ class TestAsyncSettings:
         setting = await async_client.zero_trust.devices.settings.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -189,7 +189,7 @@ class TestAsyncSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +201,7 @@ class TestAsyncSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert_matches_type(Optional[ZeroTrustAccountDeviceSettings], setting, path=["response"])
+            assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

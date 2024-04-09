@@ -13,7 +13,7 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from ...types.r2 import R2Sippy, SippyDeleteResponse, sippy_update_params
+from ...types.r2 import Sippy, SippyDeleteResponse, sippy_update_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -26,17 +26,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["Sippy", "AsyncSippy"]
+__all__ = ["SippyResource", "AsyncSippyResource"]
 
 
-class Sippy(SyncAPIResource):
+class SippyResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SippyWithRawResponse:
-        return SippyWithRawResponse(self)
+    def with_raw_response(self) -> SippyResourceWithRawResponse:
+        return SippyResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SippyWithStreamingResponse:
-        return SippyWithStreamingResponse(self)
+    def with_streaming_response(self) -> SippyResourceWithStreamingResponse:
+        return SippyResourceWithStreamingResponse(self)
 
     @overload
     def update(
@@ -52,7 +52,7 @@ class Sippy(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
 
@@ -89,7 +89,7 @@ class Sippy(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
 
@@ -128,7 +128,7 @@ class Sippy(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> Sippy:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -149,7 +149,7 @@ class Sippy(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Sippy], ResultWrapper[R2Sippy]),
+            cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
 
     def delete(
@@ -207,7 +207,7 @@ class Sippy(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> Sippy:
         """
         Gets configuration for Sippy for an existing R2 bucket.
 
@@ -237,18 +237,18 @@ class Sippy(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Sippy], ResultWrapper[R2Sippy]),
+            cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
 
 
-class AsyncSippy(AsyncAPIResource):
+class AsyncSippyResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSippyWithRawResponse:
-        return AsyncSippyWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSippyResourceWithRawResponse:
+        return AsyncSippyResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSippyWithStreamingResponse:
-        return AsyncSippyWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSippyResourceWithStreamingResponse:
+        return AsyncSippyResourceWithStreamingResponse(self)
 
     @overload
     async def update(
@@ -264,7 +264,7 @@ class AsyncSippy(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
 
@@ -301,7 +301,7 @@ class AsyncSippy(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
 
@@ -340,7 +340,7 @@ class AsyncSippy(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> Sippy:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
@@ -361,7 +361,7 @@ class AsyncSippy(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Sippy], ResultWrapper[R2Sippy]),
+            cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
 
     async def delete(
@@ -419,7 +419,7 @@ class AsyncSippy(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> R2Sippy:
+    ) -> Sippy:
         """
         Gets configuration for Sippy for an existing R2 bucket.
 
@@ -449,12 +449,12 @@ class AsyncSippy(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[R2Sippy], ResultWrapper[R2Sippy]),
+            cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
 
 
-class SippyWithRawResponse:
-    def __init__(self, sippy: Sippy) -> None:
+class SippyResourceWithRawResponse:
+    def __init__(self, sippy: SippyResource) -> None:
         self._sippy = sippy
 
         self.update = to_raw_response_wrapper(
@@ -468,8 +468,8 @@ class SippyWithRawResponse:
         )
 
 
-class AsyncSippyWithRawResponse:
-    def __init__(self, sippy: AsyncSippy) -> None:
+class AsyncSippyResourceWithRawResponse:
+    def __init__(self, sippy: AsyncSippyResource) -> None:
         self._sippy = sippy
 
         self.update = async_to_raw_response_wrapper(
@@ -483,8 +483,8 @@ class AsyncSippyWithRawResponse:
         )
 
 
-class SippyWithStreamingResponse:
-    def __init__(self, sippy: Sippy) -> None:
+class SippyResourceWithStreamingResponse:
+    def __init__(self, sippy: SippyResource) -> None:
         self._sippy = sippy
 
         self.update = to_streamed_response_wrapper(
@@ -498,8 +498,8 @@ class SippyWithStreamingResponse:
         )
 
 
-class AsyncSippyWithStreamingResponse:
-    def __init__(self, sippy: AsyncSippy) -> None:
+class AsyncSippyResourceWithStreamingResponse:
+    def __init__(self, sippy: AsyncSippyResource) -> None:
         self._sippy = sippy
 
         self.update = async_to_streamed_response_wrapper(

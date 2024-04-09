@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .magic_visibility_pcaps_ownership import MagicVisibilityPCAPsOwnership
+from .ownership import Ownership
 
 __all__ = ["OwnershipGetResponse"]
 
-OwnershipGetResponse = List[MagicVisibilityPCAPsOwnership]
+OwnershipGetResponse = List[Ownership]

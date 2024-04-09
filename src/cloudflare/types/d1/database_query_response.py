@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .d1_query_result import D1QueryResult
+from .query_result import QueryResult
 
 __all__ = ["DatabaseQueryResponse"]
 
-DatabaseQueryResponse = List[D1QueryResult]
+DatabaseQueryResponse = List[QueryResult]

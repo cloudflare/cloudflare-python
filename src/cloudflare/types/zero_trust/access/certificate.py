@@ -4,6 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
+from .associated_hostnames_item import AssociatedHostnamesItem
 
 __all__ = ["Certificate"]
 
@@ -12,7 +13,7 @@ class Certificate(BaseModel):
     id: Optional[str] = None
     """The ID of the application that will use this certificate."""
 
-    associated_hostnames: Optional[List[str]] = None
+    associated_hostnames: Optional[List[AssociatedHostnamesItem]] = None
     """The hostnames of the applications that will use this certificate."""
 
     created_at: Optional[datetime] = None

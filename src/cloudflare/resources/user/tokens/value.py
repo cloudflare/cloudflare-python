@@ -25,17 +25,17 @@ from ...._base_client import (
 )
 from ....types.user.tokens import value_update_params
 
-__all__ = ["Value", "AsyncValue"]
+__all__ = ["ValueResource", "AsyncValueResource"]
 
 
-class Value(SyncAPIResource):
+class ValueResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ValueWithRawResponse:
-        return ValueWithRawResponse(self)
+    def with_raw_response(self) -> ValueResourceWithRawResponse:
+        return ValueResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ValueWithStreamingResponse:
-        return ValueWithStreamingResponse(self)
+    def with_streaming_response(self) -> ValueResourceWithStreamingResponse:
+        return ValueResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -75,14 +75,14 @@ class Value(SyncAPIResource):
         )
 
 
-class AsyncValue(AsyncAPIResource):
+class AsyncValueResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncValueWithRawResponse:
-        return AsyncValueWithRawResponse(self)
+    def with_raw_response(self) -> AsyncValueResourceWithRawResponse:
+        return AsyncValueResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncValueWithStreamingResponse:
-        return AsyncValueWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncValueResourceWithStreamingResponse:
+        return AsyncValueResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -122,8 +122,8 @@ class AsyncValue(AsyncAPIResource):
         )
 
 
-class ValueWithRawResponse:
-    def __init__(self, value: Value) -> None:
+class ValueResourceWithRawResponse:
+    def __init__(self, value: ValueResource) -> None:
         self._value = value
 
         self.update = to_raw_response_wrapper(
@@ -131,8 +131,8 @@ class ValueWithRawResponse:
         )
 
 
-class AsyncValueWithRawResponse:
-    def __init__(self, value: AsyncValue) -> None:
+class AsyncValueResourceWithRawResponse:
+    def __init__(self, value: AsyncValueResource) -> None:
         self._value = value
 
         self.update = async_to_raw_response_wrapper(
@@ -140,8 +140,8 @@ class AsyncValueWithRawResponse:
         )
 
 
-class ValueWithStreamingResponse:
-    def __init__(self, value: Value) -> None:
+class ValueResourceWithStreamingResponse:
+    def __init__(self, value: ValueResource) -> None:
         self._value = value
 
         self.update = to_streamed_response_wrapper(
@@ -149,8 +149,8 @@ class ValueWithStreamingResponse:
         )
 
 
-class AsyncValueWithStreamingResponse:
-    def __init__(self, value: AsyncValue) -> None:
+class AsyncValueResourceWithStreamingResponse:
+    def __init__(self, value: AsyncValueResource) -> None:
         self._value = value
 
         self.update = async_to_streamed_response_wrapper(

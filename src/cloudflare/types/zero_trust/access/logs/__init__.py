@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .zero_trust_access_requests import ZeroTrustAccessRequests as ZeroTrustAccessRequests
+from .access_requests import AccessRequests as AccessRequests
 from .access_request_list_response import AccessRequestListResponse as AccessRequestListResponse

@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .stream_audio import StreamAudio
+from .audio import Audio
 
 __all__ = ["AudioTrackGetResponse"]
 
-AudioTrackGetResponse = List[StreamAudio]
+AudioTrackGetResponse = List[Audio]

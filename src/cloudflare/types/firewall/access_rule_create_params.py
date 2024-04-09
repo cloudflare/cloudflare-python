@@ -8,11 +8,11 @@ from typing_extensions import Literal, Required, TypedDict
 __all__ = [
     "AccessRuleCreateParams",
     "Configuration",
-    "ConfigurationLegacyJhsIPConfiguration",
-    "ConfigurationLegacyJhsIPV6Configuration",
-    "ConfigurationLegacyJhsCIDRConfiguration",
-    "ConfigurationLegacyJhsASNConfiguration",
-    "ConfigurationLegacyJhsCountryConfiguration",
+    "ConfigurationFirewallIPConfiguration",
+    "ConfigurationFirewallIPV6Configuration",
+    "ConfigurationFirewallCIDRConfiguration",
+    "ConfigurationFirewallASNConfiguration",
+    "ConfigurationFirewallCountryConfiguration",
 ]
 
 
@@ -35,7 +35,7 @@ class AccessRuleCreateParams(TypedDict, total=False):
     """
 
 
-class ConfigurationLegacyJhsIPConfiguration(TypedDict, total=False):
+class ConfigurationFirewallIPConfiguration(TypedDict, total=False):
     target: Literal["ip"]
     """The configuration target.
 
@@ -49,7 +49,7 @@ class ConfigurationLegacyJhsIPConfiguration(TypedDict, total=False):
     """
 
 
-class ConfigurationLegacyJhsIPV6Configuration(TypedDict, total=False):
+class ConfigurationFirewallIPV6Configuration(TypedDict, total=False):
     target: Literal["ip6"]
     """The configuration target.
 
@@ -60,7 +60,7 @@ class ConfigurationLegacyJhsIPV6Configuration(TypedDict, total=False):
     """The IPv6 address to match."""
 
 
-class ConfigurationLegacyJhsCIDRConfiguration(TypedDict, total=False):
+class ConfigurationFirewallCIDRConfiguration(TypedDict, total=False):
     target: Literal["ip_range"]
     """The configuration target.
 
@@ -76,7 +76,7 @@ class ConfigurationLegacyJhsCIDRConfiguration(TypedDict, total=False):
     """
 
 
-class ConfigurationLegacyJhsASNConfiguration(TypedDict, total=False):
+class ConfigurationFirewallASNConfiguration(TypedDict, total=False):
     target: Literal["asn"]
     """The configuration target.
 
@@ -88,7 +88,7 @@ class ConfigurationLegacyJhsASNConfiguration(TypedDict, total=False):
     """The AS number to match."""
 
 
-class ConfigurationLegacyJhsCountryConfiguration(TypedDict, total=False):
+class ConfigurationFirewallCountryConfiguration(TypedDict, total=False):
     target: Literal["country"]
     """The configuration target.
 
@@ -104,9 +104,9 @@ class ConfigurationLegacyJhsCountryConfiguration(TypedDict, total=False):
 
 
 Configuration = Union[
-    ConfigurationLegacyJhsIPConfiguration,
-    ConfigurationLegacyJhsIPV6Configuration,
-    ConfigurationLegacyJhsCIDRConfiguration,
-    ConfigurationLegacyJhsASNConfiguration,
-    ConfigurationLegacyJhsCountryConfiguration,
+    ConfigurationFirewallIPConfiguration,
+    ConfigurationFirewallIPV6Configuration,
+    ConfigurationFirewallCIDRConfiguration,
+    ConfigurationFirewallASNConfiguration,
+    ConfigurationFirewallCountryConfiguration,
 ]

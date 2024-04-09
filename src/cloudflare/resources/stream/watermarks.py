@@ -29,7 +29,7 @@ from ...types.shared import (
     UnnamedSchemaRef602dd5f63eab958d53da61434dec08f0,
     UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
 )
-from ...types.stream import StreamWatermarks, watermark_create_params, watermark_delete_params
+from ...types.stream import Watermaks, watermark_create_params, watermark_delete_params
 
 __all__ = ["Watermarks", "AsyncWatermarks"]
 
@@ -136,7 +136,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[StreamWatermarks]:
+    ) -> SyncSinglePage[Watermaks]:
         """
         Lists all watermark profiles for an account.
 
@@ -155,11 +155,11 @@ class Watermarks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/stream/watermarks",
-            page=SyncSinglePage[StreamWatermarks],
+            page=SyncSinglePage[Watermaks],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=StreamWatermarks,
+            model=Watermaks,
         )
 
     def delete(
@@ -365,7 +365,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[StreamWatermarks, AsyncSinglePage[StreamWatermarks]]:
+    ) -> AsyncPaginator[Watermaks, AsyncSinglePage[Watermaks]]:
         """
         Lists all watermark profiles for an account.
 
@@ -384,11 +384,11 @@ class AsyncWatermarks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/stream/watermarks",
-            page=AsyncSinglePage[StreamWatermarks],
+            page=AsyncSinglePage[Watermaks],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=StreamWatermarks,
+            model=Watermaks,
         )
 
     async def delete(

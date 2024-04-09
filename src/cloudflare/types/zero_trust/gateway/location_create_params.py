@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .network_item_param import NetworkItemParam
+from .location_network_param import LocationNetworkParam
 
 __all__ = ["LocationCreateParams"]
 
@@ -22,5 +22,5 @@ class LocationCreateParams(TypedDict, total=False):
     ecs_support: bool
     """True if the location needs to resolve EDNS queries."""
 
-    networks: Iterable[NetworkItemParam]
+    networks: Iterable[LocationNetworkParam]
     """A list of network ranges that requests from this location would originate from."""

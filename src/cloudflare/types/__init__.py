@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
+from .d1 import D1 as D1
 from .dns import DNS as DNS
 from .ips import IPs as IPs
-from .ssl import SSL as SSL
+from .info import Info as Info
 from .pcap import PCAP as PCAP
 from .zone import Zone as Zone
-from .action import Action as Action
+from .route import Route as Route
+from .trend import Trend as Trend
+from .video import Video as Video
 from .dnssec import DNSSEC as DNSSEC
 from .filter import Filter as Filter
 from .header import Header as Header
@@ -34,59 +37,64 @@ from .shared import (
     UnnamedSchemaRefB92f86eb861cd3dee83c40884802fda6 as UnnamedSchemaRefB92f86eb861cd3dee83c40884802fda6,
     UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854 as UnnamedSchemaRefCc2ac1a037e5d6702fc77b3bcb527854,
     UnnamedSchemaRefD8600eb4758b3ae35607a0327bcd691b as UnnamedSchemaRefD8600eb4758b3ae35607a0327bcd691b,
-    UnnamedSchemaRefDfef9380cb53cc7d4bda9f75e109d7a2 as UnnamedSchemaRefDfef9380cb53cc7d4bda9f75e109d7a2,
     UnnamedSchemaRefE7c61ebe06ebfc3861ae8b9db4ba152b as UnnamedSchemaRefE7c61ebe06ebfc3861ae8b9db4ba152b,
     UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846 as UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846,
     UnnamedSchemaRefEe1e79edcb234d14c4dd266880f2fd24 as UnnamedSchemaRefEe1e79edcb234d14c4dd266880f2fd24,
-    UnnamedSchemaRefFb1dc8bb871d835b75bd0c2f50bd8572 as UnnamedSchemaRefFb1dc8bb871d835b75bd0c2f50bd8572,
 )
+from .submit import Submit as Submit
+from .targes import Targes as Targes
 from .tunnel import Tunnel as Tunnel
 from .account import Account as Account
 from .binding import Binding as Binding
 from .ruleset import Ruleset as Ruleset
+from .setting import Setting as Setting
 from .snippet import Snippet as Snippet
 from .edge_ips import EdgeIPs as EdgeIPs
+from .hostname import Hostname as Hostname
 from .log_rule import LogRule as LogRule
+from .settings import Settings as Settings
 from .calls_app import CallsApp as CallsApp
 from .component import Component as Component
 from .dns_param import DNSParam as DNSParam
 from .host_item import HostItem as HostItem
 from .page_rule import PageRule as PageRule
+from .rate_plan import RatePlan as RatePlan
 from .skip_rule import SkipRule as SkipRule
 from .block_rule import BlockRule as BlockRule
 from .d1_binding import D1Binding as D1Binding
+from .hyperdrive import Hyperdrive as Hyperdrive
 from .membership import Membership as Membership
 from .origin_dns import OriginDNS as OriginDNS
 from .r2_binding import R2Binding as R2Binding
 from .rules_item import RulesItem as RulesItem
-from .url_target import URLTarget as URLTarget
-from .action_item import ActionItem as ActionItem
 from .healthcheck import Healthcheck as Healthcheck
 from .jdcloud_ips import JDCloudIPs as JDCloudIPs
-from .origin_item import OriginItem as OriginItem
 from .origin_port import OriginPort as OriginPort
-from .action_param import ActionParam as ActionParam
+from .route_param import RouteParam as RouteParam
 from .check_region import CheckRegion as CheckRegion
 from .execute_rule import ExecuteRule as ExecuteRule
 from .filter_param import FilterParam as FilterParam
 from .header_param import HeaderParam as HeaderParam
 from .health_check import HealthCheck as HealthCheck
-from .methods_item import MethodsItem as MethodsItem
 from .origin_param import OriginParam as OriginParam
 from .request_rule import RequestRule as RequestRule
+from .targes_param import TargesParam as TargesParam
 from .tunnel_param import TunnelParam as TunnelParam
 from .waiting_room import WaitingRoom as WaitingRoom
+from .binding_param import BindingParam as BindingParam
+from .configuration import Configuration as Configuration
 from .load_balancer import LoadBalancer as LoadBalancer
 from .load_shedding import LoadShedding as LoadShedding
-from .stream_videos import StreamVideos as StreamVideos
+from .request_model import RequestModel as RequestModel
 from .edge_ips_param import EdgeIPsParam as EdgeIPsParam
-from .email_settings import EmailSettings as EmailSettings
 from .filter_options import FilterOptions as FilterOptions
+from .hostname_param import HostnameParam as HostnameParam
 from .ip_list_params import IPListParams as IPListParams
 from .labeled_region import LabeledRegion as LabeledRegion
 from .log_rule_param import LogRuleParam as LogRuleParam
 from .migration_step import MigrationStep as MigrationStep
-from .firewall_filter import FirewallFilter as FirewallFilter
+from .settings_param import SettingsParam as SettingsParam
+from .custom_hostname import CustomHostname as CustomHostname
 from .origin_steering import OriginSteering as OriginSteering
 from .random_steering import RandomSteering as RandomSteering
 from .service_binding import ServiceBinding as ServiceBinding
@@ -103,21 +111,15 @@ from .rules_item_param import RulesItemParam as RulesItemParam
 from .user_edit_params import UserEditParams as UserEditParams
 from .zone_edit_params import ZoneEditParams as ZoneEditParams
 from .zone_list_params import ZoneListParams as ZoneListParams
-from .action_item_param import ActionItemParam as ActionItemParam
-from .check_region_item import CheckRegionItem as CheckRegionItem
 from .cookie_attributes import CookieAttributes as CookieAttributes
 from .custom_nameserver import CustomNameserver as CustomNameserver
 from .lighthouse_report import LighthouseReport as LighthouseReport
 from .location_strategy import LocationStrategy as LocationStrategy
 from .mtls_cert_binding import MTLSCERTBinding as MTLSCERTBinding
-from .observatory_trend import ObservatoryTrend as ObservatoryTrend
-from .origin_item_param import OriginItemParam as OriginItemParam
 from .origin_port_param import OriginPortParam as OriginPortParam
 from .pcap_get_response import PCAPGetResponse as PCAPGetResponse
-from .request_list_item import RequestListItem as RequestListItem
 from .stepped_migration import SteppedMigration as SteppedMigration
-from .targes_item_param import TargesItemParam as TargesItemParam
-from .tcp_configuration import TcpConfiguration as TcpConfiguration
+from .tcp_configuration import TCPConfiguration as TCPConfiguration
 from .cache_purge_params import CachePurgeParams as CachePurgeParams
 from .call_create_params import CallCreateParams as CallCreateParams
 from .call_update_params import CallUpdateParams as CallUpdateParams
@@ -137,24 +139,27 @@ from .stream_list_params import StreamListParams as StreamListParams
 from .zone_create_params import ZoneCreateParams as ZoneCreateParams
 from .account_list_params import AccountListParams as AccountListParams
 from .available_rate_plan import AvailableRatePlan as AvailableRatePlan
+from .configuration_param import ConfigurationParam as ConfigurationParam
+from .filter_get_response import FilterGetResponse as FilterGetResponse
+from .keyless_certificate import KeylessCertificate as KeylessCertificate
 from .load_shedding_param import LoadSheddingParam as LoadSheddingParam
 from .notification_filter import NotificationFilter as NotificationFilter
-from .page_shield_setting import PageShieldSetting as PageShieldSetting
 from .queue_create_params import QueueCreateParams as QueueCreateParams
 from .queue_delete_params import QueueDeleteParams as QueueDeleteParams
 from .queue_list_response import QueueListResponse as QueueListResponse
 from .queue_update_params import QueueUpdateParams as QueueUpdateParams
+from .request_model_param import RequestModelParam as RequestModelParam
 from .speed_delete_params import SpeedDeleteParams as SpeedDeleteParams
 from .allowed_origins_item import AllowedOriginsItem as AllowedOriginsItem
 from .cache_purge_response import CachePurgeResponse as CachePurgeResponse
 from .dnssec_delete_params import DNSSECDeleteParams as DNSSECDeleteParams
 from .filter_create_params import FilterCreateParams as FilterCreateParams
 from .filter_delete_params import FilterDeleteParams as FilterDeleteParams
+from .filter_list_response import FilterListResponse as FilterListResponse
 from .filter_options_param import FilterOptionsParam as FilterOptionsParam
 from .filter_update_params import FilterUpdateParams as FilterUpdateParams
 from .kv_namespace_binding import KVNamespaceBinding as KVNamespaceBinding
 from .migration_step_param import MigrationStepParam as MigrationStepParam
-from .observatory_schedule import ObservatorySchedule as ObservatorySchedule
 from .pagerule_edit_params import PageruleEditParams as PageruleEditParams
 from .pagerule_list_params import PageruleListParams as PageruleListParams
 from .pcap_create_response import PCAPCreateResponse as PCAPCreateResponse
@@ -180,6 +185,8 @@ from .adaptive_routing_param import AdaptiveRoutingParam as AdaptiveRoutingParam
 from .additional_routes_item import AdditionalRoutesItem as AdditionalRoutesItem
 from .durable_object_binding import DurableObjectBinding as DurableObjectBinding
 from .filter_create_response import FilterCreateResponse as FilterCreateResponse
+from .filter_delete_response import FilterDeleteResponse as FilterDeleteResponse
+from .filter_update_response import FilterUpdateResponse as FilterUpdateResponse
 from .geo_restrictions_param import GeoRestrictionsParam as GeoRestrictionsParam
 from .membership_list_params import MembershipListParams as MembershipListParams
 from .pagerule_create_params import PageruleCreateParams as PageruleCreateParams
@@ -192,16 +199,13 @@ from .rate_plan_get_response import RatePlanGetResponse as RatePlanGetResponse
 from .audit_log_list_response import AuditLogListResponse as AuditLogListResponse
 from .cookie_attributes_param import CookieAttributesParam as CookieAttributesParam
 from .healthcheck_edit_params import HealthcheckEditParams as HealthcheckEditParams
-from .intel_phishing_url_info import IntelPhishingURLInfo as IntelPhishingURLInfo
 from .location_strategy_param import LocationStrategyParam as LocationStrategyParam
 from .mtls_cert_binding_param import MTLSCERTBindingParam as MTLSCERTBindingParam
-from .mtls_certificate_update import MTLSCertificateUpdate as MTLSCertificateUpdate
 from .placement_configuration import PlacementConfiguration as PlacementConfiguration
-from .request_list_item_param import RequestListItemParam as RequestListItemParam
 from .ruleset_create_response import RulesetCreateResponse as RulesetCreateResponse
 from .ruleset_update_response import RulesetUpdateResponse as RulesetUpdateResponse
 from .stepped_migration_param import SteppedMigrationParam as SteppedMigrationParam
-from .tcp_configuration_param import TcpConfigurationParam as TcpConfigurationParam
+from .tcp_configuration_param import TCPConfigurationParam as TCPConfigurationParam
 from .url_scanner_scan_params import URLScannerScanParams as URLScannerScanParams
 from .http_configuration_param import HTTPConfigurationParam as HTTPConfigurationParam
 from .membership_delete_params import MembershipDeleteParams as MembershipDeleteParams
@@ -215,7 +219,6 @@ from .waiting_room_edit_params import WaitingRoomEditParams as WaitingRoomEditPa
 from .healthcheck_create_params import HealthcheckCreateParams as HealthcheckCreateParams
 from .healthcheck_delete_params import HealthcheckDeleteParams as HealthcheckDeleteParams
 from .healthcheck_update_params import HealthcheckUpdateParams as HealthcheckUpdateParams
-from .intel_phishing_url_submit import IntelPhishingURLSubmit as IntelPhishingURLSubmit
 from .load_balancer_edit_params import LoadBalancerEditParams as LoadBalancerEditParams
 from .notification_filter_param import NotificationFilterParam as NotificationFilterParam
 from .page_shield_update_params import PageShieldUpdateParams as PageShieldUpdateParams
@@ -229,7 +232,6 @@ from .rate_limit_delete_response import RateLimitDeleteResponse as RateLimitDele
 from .subscription_configuration import SubscriptionConfiguration as SubscriptionConfiguration
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_delete_params import SubscriptionDeleteParams as SubscriptionDeleteParams
-from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse
 from .subscription_update_params import SubscriptionUpdateParams as SubscriptionUpdateParams
 from .waiting_room_create_params import WaitingRoomCreateParams as WaitingRoomCreateParams
 from .waiting_room_delete_params import WaitingRoomDeleteParams as WaitingRoomDeleteParams
@@ -250,10 +252,8 @@ from .single_step_migration_param import SingleStepMigrationParam as SingleStepM
 from .additional_routes_item_param import AdditionalRoutesItemParam as AdditionalRoutesItemParam
 from .bot_fight_mode_configuration import BotFightModeConfiguration as BotFightModeConfiguration
 from .bot_management_update_params import BotManagementUpdateParams as BotManagementUpdateParams
-from .custom_hostname_get_response import CustomHostnameGetResponse as CustomHostnameGetResponse
 from .durable_object_binding_param import DurableObjectBindingParam as DurableObjectBindingParam
 from .email_routing_disable_params import EmailRoutingDisableParams as EmailRoutingDisableParams
-from .keyless_certificate_hostname import KeylessCertificateHostname as KeylessCertificateHostname
 from .managed_header_edit_response import ManagedHeaderEditResponse as ManagedHeaderEditResponse
 from .managed_header_list_response import ManagedHeaderListResponse as ManagedHeaderListResponse
 from .subscription_delete_response import SubscriptionDeleteResponse as SubscriptionDeleteResponse
@@ -262,8 +262,6 @@ from .warp_connector_create_params import WARPConnectorCreateParams as WARPConne
 from .warp_connector_delete_params import WARPConnectorDeleteParams as WARPConnectorDeleteParams
 from .custom_hostname_create_params import CustomHostnameCreateParams as CustomHostnameCreateParams
 from .custom_hostname_delete_params import CustomHostnameDeleteParams as CustomHostnameDeleteParams
-from .custom_hostname_edit_response import CustomHostnameEditResponse as CustomHostnameEditResponse
-from .custom_hostname_list_response import CustomHostnameListResponse as CustomHostnameListResponse
 from .load_balancer_delete_response import LoadBalancerDeleteResponse as LoadBalancerDeleteResponse
 from .placement_configuration_param import PlacementConfigurationParam as PlacementConfigurationParam
 from .warp_connector_token_response import WARPConnectorTokenResponse as WARPConnectorTokenResponse
@@ -276,7 +274,7 @@ from .custom_nameserver_get_response import CustomNameserverGetResponse as Custo
 from .mtls_certificate_create_params import MTLSCertificateCreateParams as MTLSCertificateCreateParams
 from .mtls_certificate_delete_params import MTLSCertificateDeleteParams as MTLSCertificateDeleteParams
 from .url_normalization_get_response import URLNormalizationGetResponse as URLNormalizationGetResponse
-from .custom_hostname_create_response import CustomHostnameCreateResponse as CustomHostnameCreateResponse
+from .zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull as ZoneAuthenticatedOriginPull
 from .custom_nameserver_create_params import CustomNameserverCreateParams as CustomNameserverCreateParams
 from .custom_nameserver_delete_params import CustomNameserverDeleteParams as CustomNameserverDeleteParams
 from .custom_nameserver_verify_params import CustomNameserverVerifyParams as CustomNameserverVerifyParams
@@ -287,6 +285,7 @@ from .client_certificate_create_params import ClientCertificateCreateParams as C
 from .custom_certificate_create_params import CustomCertificateCreateParams as CustomCertificateCreateParams
 from .custom_certificate_delete_params import CustomCertificateDeleteParams as CustomCertificateDeleteParams
 from .dispatch_namespace_binding_param import DispatchNamespaceBindingParam as DispatchNamespaceBindingParam
+from .mtls_certificate_create_response import MTLSCertificateCreateResponse as MTLSCertificateCreateResponse
 from .custom_nameserver_verify_response import CustomNameserverVerifyResponse as CustomNameserverVerifyResponse
 from .keyless_certificate_create_params import KeylessCertificateCreateParams as KeylessCertificateCreateParams
 from .keyless_certificate_delete_params import KeylessCertificateDeleteParams as KeylessCertificateDeleteParams
@@ -298,7 +297,6 @@ from .origin_ca_certificate_create_params import OriginCACertificateCreateParams
 from .origin_ca_certificate_delete_params import OriginCACertificateDeleteParams as OriginCACertificateDeleteParams
 from .origin_tls_client_auth_create_params import OriginTLSClientAuthCreateParams as OriginTLSClientAuthCreateParams
 from .origin_tls_client_auth_delete_params import OriginTLSClientAuthDeleteParams as OriginTLSClientAuthDeleteParams
-from .origin_tls_client_auth_list_response import OriginTLSClientAuthListResponse as OriginTLSClientAuthListResponse
 from .custom_nameserver_availabilty_response import (
     CustomNameserverAvailabiltyResponse as CustomNameserverAvailabiltyResponse,
 )

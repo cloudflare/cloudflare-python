@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.page_shield import PageShieldPolicy
+from cloudflare.types.page_shield import Policy
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestPolicies:
         policy = client.page_shield.policies.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestPolicies:
             expression='ends_with(http.request.uri.path, "/checkout")',
             value="script-src 'none';",
         )
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -49,7 +49,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -61,7 +61,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(PageShieldPolicy, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -80,7 +80,7 @@ class TestPolicies:
             "c9ef84a6bf5e47138c75d95e2f933e8f",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -94,7 +94,7 @@ class TestPolicies:
             expression='ends_with(http.request.uri.path, "/checkout")',
             value="script-src 'none';",
         )
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -107,7 +107,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +120,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(PageShieldPolicy, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -145,7 +145,7 @@ class TestPolicies:
         policy = client.page_shield.policies.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[PageShieldPolicy], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -157,7 +157,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(SyncSinglePage[PageShieldPolicy], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -169,7 +169,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(SyncSinglePage[PageShieldPolicy], policy, path=["response"])
+            assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +240,7 @@ class TestPolicies:
             "c9ef84a6bf5e47138c75d95e2f933e8f",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -253,7 +253,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -266,7 +266,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(PageShieldPolicy, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -295,7 +295,7 @@ class TestAsyncPolicies:
         policy = await async_client.page_shield.policies.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -308,7 +308,7 @@ class TestAsyncPolicies:
             expression='ends_with(http.request.uri.path, "/checkout")',
             value="script-src 'none';",
         )
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -320,7 +320,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -332,7 +332,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(PageShieldPolicy, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -351,7 +351,7 @@ class TestAsyncPolicies:
             "c9ef84a6bf5e47138c75d95e2f933e8f",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -365,7 +365,7 @@ class TestAsyncPolicies:
             expression='ends_with(http.request.uri.path, "/checkout")',
             value="script-src 'none';",
         )
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -378,7 +378,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -391,7 +391,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(PageShieldPolicy, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -416,7 +416,7 @@ class TestAsyncPolicies:
         policy = await async_client.page_shield.policies.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[PageShieldPolicy], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -428,7 +428,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(AsyncSinglePage[PageShieldPolicy], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -440,7 +440,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(AsyncSinglePage[PageShieldPolicy], policy, path=["response"])
+            assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -511,7 +511,7 @@ class TestAsyncPolicies:
             "c9ef84a6bf5e47138c75d95e2f933e8f",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -524,7 +524,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(PageShieldPolicy, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -537,7 +537,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(PageShieldPolicy, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

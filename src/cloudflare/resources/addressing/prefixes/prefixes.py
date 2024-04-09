@@ -43,7 +43,7 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.shared import UnnamedSchemaRef67bbb1ccdd42c3e2937b9fd19f791151
-from ....types.addressing import AddressingIpamPrefixes, prefix_edit_params, prefix_create_params, prefix_delete_params
+from ....types.addressing import Prefix, prefix_edit_params, prefix_create_params, prefix_delete_params
 
 __all__ = ["Prefixes", "AsyncPrefixes"]
 
@@ -78,7 +78,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> Prefix:
         """
         Add a new prefix under the account.
 
@@ -118,7 +118,7 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
 
     def list(
@@ -131,7 +131,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[AddressingIpamPrefixes]:
+    ) -> SyncSinglePage[Prefix]:
         """
         List all prefixes owned by the account.
 
@@ -150,11 +150,11 @@ class Prefixes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes",
-            page=SyncSinglePage[AddressingIpamPrefixes],
+            page=SyncSinglePage[Prefix],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AddressingIpamPrefixes,
+            model=Prefix,
         )
 
     def delete(
@@ -220,7 +220,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> Prefix:
         """
         Modify the description for a prefix owned by the account.
 
@@ -253,7 +253,7 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
 
     def get(
@@ -267,7 +267,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> Prefix:
         """
         List a particular prefix owned by the account.
 
@@ -297,7 +297,7 @@ class Prefixes(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
 
 
@@ -331,7 +331,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> Prefix:
         """
         Add a new prefix under the account.
 
@@ -371,7 +371,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
 
     def list(
@@ -384,7 +384,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AddressingIpamPrefixes, AsyncSinglePage[AddressingIpamPrefixes]]:
+    ) -> AsyncPaginator[Prefix, AsyncSinglePage[Prefix]]:
         """
         List all prefixes owned by the account.
 
@@ -403,11 +403,11 @@ class AsyncPrefixes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes",
-            page=AsyncSinglePage[AddressingIpamPrefixes],
+            page=AsyncSinglePage[Prefix],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AddressingIpamPrefixes,
+            model=Prefix,
         )
 
     async def delete(
@@ -473,7 +473,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> Prefix:
         """
         Modify the description for a prefix owned by the account.
 
@@ -506,7 +506,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
 
     async def get(
@@ -520,7 +520,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingIpamPrefixes:
+    ) -> Prefix:
         """
         List a particular prefix owned by the account.
 
@@ -550,7 +550,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingIpamPrefixes], ResultWrapper[AddressingIpamPrefixes]),
+            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
 
 

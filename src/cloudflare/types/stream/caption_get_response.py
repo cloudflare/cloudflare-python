@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .stream_captions import StreamCaptions
+from .caption import Caption
 
 __all__ = ["CaptionGetResponse"]
 
-CaptionGetResponse = List[StreamCaptions]
+CaptionGetResponse = List[Caption]

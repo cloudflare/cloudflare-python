@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.alerting import AlertingHistory
+from cloudflare.types.alerting import History
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +25,7 @@ class TestHistory:
         history = client.alerting.history.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[AlertingHistory], history, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[History], history, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestHistory:
             per_page=5,
             since=parse_datetime("2022-05-19T20:29:58.679897Z"),
         )
-        assert_matches_type(SyncV4PagePaginationArray[AlertingHistory], history, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[History], history, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -49,7 +49,7 @@ class TestHistory:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         history = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[AlertingHistory], history, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[History], history, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -61,7 +61,7 @@ class TestHistory:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             history = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[AlertingHistory], history, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[History], history, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -83,7 +83,7 @@ class TestAsyncHistory:
         history = await async_client.alerting.history.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[AlertingHistory], history, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[History], history, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -95,7 +95,7 @@ class TestAsyncHistory:
             per_page=5,
             since=parse_datetime("2022-05-19T20:29:58.679897Z"),
         )
-        assert_matches_type(AsyncV4PagePaginationArray[AlertingHistory], history, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[History], history, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -107,7 +107,7 @@ class TestAsyncHistory:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         history = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[AlertingHistory], history, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[History], history, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -119,7 +119,7 @@ class TestAsyncHistory:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             history = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[AlertingHistory], history, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[History], history, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

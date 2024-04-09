@@ -25,7 +25,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.access import ZeroTrustTag, TagDeleteResponse, tag_create_params, tag_update_params
+from ....types.zero_trust.access import Tag, TagDeleteResponse, tag_create_params, tag_update_params
 
 __all__ = ["Tags", "AsyncTags"]
 
@@ -50,7 +50,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustTag:
+    ) -> Tag:
         """
         Create a tag
 
@@ -79,7 +79,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
+            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
         )
 
     def update(
@@ -94,7 +94,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustTag:
+    ) -> Tag:
         """
         Update a tag
 
@@ -127,7 +127,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
+            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
         )
 
     def list(
@@ -140,7 +140,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustTag]:
+    ) -> SyncSinglePage[Tag]:
         """
         List tags
 
@@ -159,11 +159,11 @@ class Tags(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get_api_list(
             f"/accounts/{identifier}/access/tags",
-            page=SyncSinglePage[ZeroTrustTag],
+            page=SyncSinglePage[Tag],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustTag,
+            model=Tag,
         )
 
     def delete(
@@ -221,7 +221,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustTag:
+    ) -> Tag:
         """
         Get a tag
 
@@ -251,7 +251,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
+            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
         )
 
 
@@ -275,7 +275,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustTag:
+    ) -> Tag:
         """
         Create a tag
 
@@ -304,7 +304,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
+            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
         )
 
     async def update(
@@ -319,7 +319,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustTag:
+    ) -> Tag:
         """
         Update a tag
 
@@ -352,7 +352,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
+            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
         )
 
     def list(
@@ -365,7 +365,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustTag, AsyncSinglePage[ZeroTrustTag]]:
+    ) -> AsyncPaginator[Tag, AsyncSinglePage[Tag]]:
         """
         List tags
 
@@ -384,11 +384,11 @@ class AsyncTags(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get_api_list(
             f"/accounts/{identifier}/access/tags",
-            page=AsyncSinglePage[ZeroTrustTag],
+            page=AsyncSinglePage[Tag],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZeroTrustTag,
+            model=Tag,
         )
 
     async def delete(
@@ -446,7 +446,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustTag:
+    ) -> Tag:
         """
         Get a tag
 
@@ -476,7 +476,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustTag], ResultWrapper[ZeroTrustTag]),
+            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
         )
 
 

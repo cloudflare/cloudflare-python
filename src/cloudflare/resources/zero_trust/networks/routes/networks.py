@@ -24,7 +24,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.networks import TunnelRoute
+from .....types.zero_trust.networks import Route
 from .....types.zero_trust.networks.routes import network_create_params, network_delete_params
 
 __all__ = ["Networks", "AsyncNetworks"]
@@ -52,7 +52,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """Routes a private network through a Cloudflare Tunnel.
 
         The CIDR in
@@ -97,7 +97,7 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
     def delete(
@@ -114,7 +114,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """Deletes a private network route from an account.
 
         The CIDR in
@@ -165,7 +165,7 @@ class Networks(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
     def edit(
@@ -179,7 +179,7 @@ class Networks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """Updates an existing private network route in an account.
 
         The CIDR in
@@ -211,7 +211,7 @@ class Networks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
 
@@ -237,7 +237,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """Routes a private network through a Cloudflare Tunnel.
 
         The CIDR in
@@ -282,7 +282,7 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
     async def delete(
@@ -299,7 +299,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """Deletes a private network route from an account.
 
         The CIDR in
@@ -350,7 +350,7 @@ class AsyncNetworks(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
     async def edit(
@@ -364,7 +364,7 @@ class AsyncNetworks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelRoute:
+    ) -> Route:
         """Updates an existing private network route in an account.
 
         The CIDR in
@@ -396,7 +396,7 @@ class AsyncNetworks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TunnelRoute], ResultWrapper[TunnelRoute]),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
 

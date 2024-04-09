@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -54,6 +54,8 @@ class DEXTests(SyncAPIResource):
         interval: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
+        target_policies: Iterable[dex_test_create_params.TargetPolicy] | NotGiven = NOT_GIVEN,
+        targeted: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,6 +78,8 @@ class DEXTests(SyncAPIResource):
 
           description: Additional details about the test.
 
+          target_policies: Device settings profiles targeted by this test
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -95,6 +99,8 @@ class DEXTests(SyncAPIResource):
                     "interval": interval,
                     "name": name,
                     "description": description,
+                    "target_policies": target_policies,
+                    "targeted": targeted,
                 },
                 dex_test_create_params.DEXTestCreateParams,
             ),
@@ -118,6 +124,8 @@ class DEXTests(SyncAPIResource):
         interval: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
+        target_policies: Iterable[dex_test_update_params.TargetPolicy] | NotGiven = NOT_GIVEN,
+        targeted: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,6 +150,8 @@ class DEXTests(SyncAPIResource):
 
           description: Additional details about the test.
 
+          target_policies: Device settings profiles targeted by this test
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -163,6 +173,8 @@ class DEXTests(SyncAPIResource):
                     "interval": interval,
                     "name": name,
                     "description": description,
+                    "target_policies": target_policies,
+                    "targeted": targeted,
                 },
                 dex_test_update_params.DEXTestUpdateParams,
             ),
@@ -315,6 +327,8 @@ class AsyncDEXTests(AsyncAPIResource):
         interval: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
+        target_policies: Iterable[dex_test_create_params.TargetPolicy] | NotGiven = NOT_GIVEN,
+        targeted: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -337,6 +351,8 @@ class AsyncDEXTests(AsyncAPIResource):
 
           description: Additional details about the test.
 
+          target_policies: Device settings profiles targeted by this test
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -356,6 +372,8 @@ class AsyncDEXTests(AsyncAPIResource):
                     "interval": interval,
                     "name": name,
                     "description": description,
+                    "target_policies": target_policies,
+                    "targeted": targeted,
                 },
                 dex_test_create_params.DEXTestCreateParams,
             ),
@@ -379,6 +397,8 @@ class AsyncDEXTests(AsyncAPIResource):
         interval: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
+        target_policies: Iterable[dex_test_update_params.TargetPolicy] | NotGiven = NOT_GIVEN,
+        targeted: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -403,6 +423,8 @@ class AsyncDEXTests(AsyncAPIResource):
 
           description: Additional details about the test.
 
+          target_policies: Device settings profiles targeted by this test
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -424,6 +446,8 @@ class AsyncDEXTests(AsyncAPIResource):
                     "interval": interval,
                     "name": name,
                     "description": description,
+                    "target_policies": target_policies,
+                    "targeted": targeted,
                 },
                 dex_test_update_params.DEXTestUpdateParams,
             ),

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -128,7 +128,7 @@ class TestRateLimits:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[RateLimitDeleteResponse], rate_limit, path=["response"])
+        assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = response.parse()
-        assert_matches_type(Optional[RateLimitDeleteResponse], rate_limit, path=["response"])
+        assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +156,7 @@ class TestRateLimits:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rate_limit = response.parse()
-            assert_matches_type(Optional[RateLimitDeleteResponse], rate_limit, path=["response"])
+            assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -396,7 +396,7 @@ class TestAsyncRateLimits:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[RateLimitDeleteResponse], rate_limit, path=["response"])
+        assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -410,7 +410,7 @@ class TestAsyncRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = await response.parse()
-        assert_matches_type(Optional[RateLimitDeleteResponse], rate_limit, path=["response"])
+        assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -424,7 +424,7 @@ class TestAsyncRateLimits:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rate_limit = await response.parse()
-            assert_matches_type(Optional[RateLimitDeleteResponse], rate_limit, path=["response"])
+            assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -3,9 +3,8 @@
 from typing import List, Optional
 
 from ....._models import BaseModel
-from .unnamed_schema_ref_6a02fe18089d53b52b2cd3949b717919 import UnnamedSchemaRef6a02fe18089d53b52b2cd3949b717919
 
-__all__ = ["UserPolicyCheckListResponse", "AppState", "UserIdentity"]
+__all__ = ["UserPolicyCheckListResponse", "AppState", "UserIdentity", "UserIdentityGeo"]
 
 
 class AppState(BaseModel):
@@ -23,6 +22,10 @@ class AppState(BaseModel):
     status: Optional[str] = None
 
 
+class UserIdentityGeo(BaseModel):
+    country: Optional[str] = None
+
+
 class UserIdentity(BaseModel):
     id: Optional[str] = None
 
@@ -32,7 +35,7 @@ class UserIdentity(BaseModel):
 
     email: Optional[str] = None
 
-    geo: Optional[UnnamedSchemaRef6a02fe18089d53b52b2cd3949b717919] = None
+    geo: Optional[UserIdentityGeo] = None
 
     iat: Optional[int] = None
 

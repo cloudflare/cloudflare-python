@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["TcpConfiguration"]
+__all__ = ["TCPConfiguration"]
 
 
-class TcpConfiguration(BaseModel):
+class TCPConfiguration(BaseModel):
     method: Optional[Literal["connection_established"]] = None
     """The TCP connection method to use for the health check."""
 

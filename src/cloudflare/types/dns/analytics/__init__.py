@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
+from .report import Report as Report
 from .report_get_params import ReportGetParams as ReportGetParams
-from .dns_analytics_report import DNSAnalyticsReport as DNSAnalyticsReport

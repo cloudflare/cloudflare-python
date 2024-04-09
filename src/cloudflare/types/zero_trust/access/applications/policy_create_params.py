@@ -5,10 +5,8 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from ...exclude_item_param import ExcludeItemParam
-from ...include_item_param import IncludeItemParam
-from ...require_item_param import RequireItemParam
-from .approval_group_item_param import ApprovalGroupItemParam
+from ...access_rule_param import AccessRuleParam
+from .approval_group_param import ApprovalGroupParam
 
 __all__ = ["PolicyCreateParams"]
 
@@ -17,7 +15,7 @@ class PolicyCreateParams(TypedDict, total=False):
     decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
     """The action Access will take if a user matches this policy."""
 
-    include: Required[Iterable[IncludeItemParam]]
+    include: Required[Iterable[AccessRuleParam]]
     """Rules evaluated with an OR logical operator.
 
     A user needs to meet only one of the Include rules.
@@ -32,7 +30,7 @@ class PolicyCreateParams(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    approval_groups: Iterable[ApprovalGroupItemParam]
+    approval_groups: Iterable[ApprovalGroupParam]
     """Administrators who can approve a temporary authentication request."""
 
     approval_required: bool
@@ -41,7 +39,7 @@ class PolicyCreateParams(TypedDict, total=False):
     session.
     """
 
-    exclude: Iterable[ExcludeItemParam]
+    exclude: Iterable[AccessRuleParam]
     """Rules evaluated with a NOT logical operator.
 
     To match the policy, a user cannot meet any of the Exclude rules.
@@ -63,7 +61,7 @@ class PolicyCreateParams(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    require: Iterable[RequireItemParam]
+    require: Iterable[AccessRuleParam]
     """Rules evaluated with an AND logical operator.
 
     To match the policy, a user must meet all of the Require rules.

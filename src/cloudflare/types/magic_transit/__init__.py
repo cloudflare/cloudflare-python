@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from .site import Site as Site
 from .scope import Scope as Scope
+from .colo_name import ColoName as ColoName
+from .colo_region import ColoRegion as ColoRegion
 from .scope_param import ScopeParam as ScopeParam
 from .psk_metadata import PSKMetadata as PSKMetadata
 from .site_location import SiteLocation as SiteLocation
-from .colo_names_item import ColoNamesItem as ColoNamesItem
 from .site_list_params import SiteListParams as SiteListParams
-from .colo_regions_item import ColoRegionsItem as ColoRegionsItem
 from .site_get_response import SiteGetResponse as SiteGetResponse
 from .route_empty_params import RouteEmptyParams as RouteEmptyParams
 from .route_get_response import RouteGetResponse as RouteGetResponse

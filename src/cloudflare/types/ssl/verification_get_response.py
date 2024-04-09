@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .tls_verification_setting import TLSVerificationSetting
+from .verification import Verification
 
 __all__ = ["VerificationGetResponse"]
 
-VerificationGetResponse = List[TLSVerificationSetting]
+VerificationGetResponse = List[Verification]

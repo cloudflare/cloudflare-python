@@ -3,7 +3,7 @@
 from typing import Optional
 
 from ...._models import BaseModel
-from .static_addressing import StaticAddressing
+from .wan_static_addressing import WANStaticAddressing
 
 __all__ = ["WAN"]
 
@@ -22,7 +22,7 @@ class WAN(BaseModel):
     site_id: Optional[str] = None
     """Identifier"""
 
-    static_addressing: Optional[StaticAddressing] = None
+    static_addressing: Optional[WANStaticAddressing] = None
     """(optional) if omitted, use DHCP.
 
     Submit secondary_address when site is in high availability mode.

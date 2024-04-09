@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .mtls_certificate_asssociation import MTLSCertificateAsssociation
+from .certificate_asssociation import CertificateAsssociation
 
 __all__ = ["AssociationGetResponse"]
 
-AssociationGetResponse = List[MTLSCertificateAsssociation]
+AssociationGetResponse = List[CertificateAsssociation]

@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .intel_ip_list import IntelIPList
+from .ip_list import IPList
 
 __all__ = ["IPListGetResponse"]
 
-IPListGetResponse = List[IntelIPList]
+IPListGetResponse = List[IPList]

@@ -11,8 +11,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.addressing.prefixes import (
+    Delegations,
     DelegationDeleteResponse,
-    AddressingIpamDelegations,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,7 +30,7 @@ class TestDelegations:
             cidr="192.0.2.0/24",
             delegated_account_id="b1946ac92492d2347c6235b4d2611184",
         )
-        assert_matches_type(AddressingIpamDelegations, delegation, path=["response"])
+        assert_matches_type(Delegations, delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestDelegations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         delegation = response.parse()
-        assert_matches_type(AddressingIpamDelegations, delegation, path=["response"])
+        assert_matches_type(Delegations, delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +60,7 @@ class TestDelegations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             delegation = response.parse()
-            assert_matches_type(AddressingIpamDelegations, delegation, path=["response"])
+            assert_matches_type(Delegations, delegation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -90,7 +90,7 @@ class TestDelegations:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
+        assert_matches_type(SyncSinglePage[Delegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -103,7 +103,7 @@ class TestDelegations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         delegation = response.parse()
-        assert_matches_type(SyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
+        assert_matches_type(SyncSinglePage[Delegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -116,7 +116,7 @@ class TestDelegations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             delegation = response.parse()
-            assert_matches_type(SyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
+            assert_matches_type(SyncSinglePage[Delegations], delegation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -218,7 +218,7 @@ class TestAsyncDelegations:
             cidr="192.0.2.0/24",
             delegated_account_id="b1946ac92492d2347c6235b4d2611184",
         )
-        assert_matches_type(AddressingIpamDelegations, delegation, path=["response"])
+        assert_matches_type(Delegations, delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -233,7 +233,7 @@ class TestAsyncDelegations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         delegation = await response.parse()
-        assert_matches_type(AddressingIpamDelegations, delegation, path=["response"])
+        assert_matches_type(Delegations, delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -248,7 +248,7 @@ class TestAsyncDelegations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             delegation = await response.parse()
-            assert_matches_type(AddressingIpamDelegations, delegation, path=["response"])
+            assert_matches_type(Delegations, delegation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -278,7 +278,7 @@ class TestAsyncDelegations:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
+        assert_matches_type(AsyncSinglePage[Delegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -291,7 +291,7 @@ class TestAsyncDelegations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         delegation = await response.parse()
-        assert_matches_type(AsyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
+        assert_matches_type(AsyncSinglePage[Delegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -304,7 +304,7 @@ class TestAsyncDelegations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             delegation = await response.parse()
-            assert_matches_type(AsyncSinglePage[AddressingIpamDelegations], delegation, path=["response"])
+            assert_matches_type(AsyncSinglePage[Delegations], delegation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

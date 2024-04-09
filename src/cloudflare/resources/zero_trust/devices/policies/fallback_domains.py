@@ -26,9 +26,9 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.devices.policies import (
-    DevicesFallbackDomain,
+    FallbackDomain,
+    FallbackDomainParam,
     FallbackDomainGetResponse,
-    DevicesFallbackDomainParam,
     FallbackDomainUpdateResponse,
     fallback_domain_update_params,
 )
@@ -50,7 +50,7 @@ class FallbackDomains(SyncAPIResource):
         policy_id: str,
         *,
         account_id: str,
-        body: Iterable[DevicesFallbackDomainParam],
+        body: Iterable[FallbackDomainParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -102,7 +102,7 @@ class FallbackDomains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DevicesFallbackDomain]:
+    ) -> SyncSinglePage[FallbackDomain]:
         """Fetches a list of domains to bypass Gateway DNS resolution.
 
         These domains will
@@ -121,11 +121,11 @@ class FallbackDomains(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/fallback_domains",
-            page=SyncSinglePage[DevicesFallbackDomain],
+            page=SyncSinglePage[FallbackDomain],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DevicesFallbackDomain,
+            model=FallbackDomain,
         )
 
     def get(
@@ -187,7 +187,7 @@ class AsyncFallbackDomains(AsyncAPIResource):
         policy_id: str,
         *,
         account_id: str,
-        body: Iterable[DevicesFallbackDomainParam],
+        body: Iterable[FallbackDomainParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,7 +239,7 @@ class AsyncFallbackDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DevicesFallbackDomain, AsyncSinglePage[DevicesFallbackDomain]]:
+    ) -> AsyncPaginator[FallbackDomain, AsyncSinglePage[FallbackDomain]]:
         """Fetches a list of domains to bypass Gateway DNS resolution.
 
         These domains will
@@ -258,11 +258,11 @@ class AsyncFallbackDomains(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/fallback_domains",
-            page=AsyncSinglePage[DevicesFallbackDomain],
+            page=AsyncSinglePage[FallbackDomain],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DevicesFallbackDomain,
+            model=FallbackDomain,
         )
 
     async def get(

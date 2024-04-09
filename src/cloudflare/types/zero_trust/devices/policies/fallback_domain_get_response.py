@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .devices_fallback_domain import DevicesFallbackDomain
+from .fallback_domain import FallbackDomain
 
 __all__ = ["FallbackDomainGetResponse"]
 
-FallbackDomainGetResponse = List[DevicesFallbackDomain]
+FallbackDomainGetResponse = List[FallbackDomain]

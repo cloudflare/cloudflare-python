@@ -6,6 +6,7 @@ from typing import List, Type, cast
 
 import httpx
 
+from ...types import AllowedOriginsItem
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -23,19 +24,19 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import StreamClipping, AllowedOriginsItem, clip_create_params
+from ...types.stream import Clip, clip_create_params
 
-__all__ = ["Clip", "AsyncClip"]
+__all__ = ["ClipResource", "AsyncClipResource"]
 
 
-class Clip(SyncAPIResource):
+class ClipResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ClipWithRawResponse:
-        return ClipWithRawResponse(self)
+    def with_raw_response(self) -> ClipResourceWithRawResponse:
+        return ClipResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ClipWithStreamingResponse:
-        return ClipWithStreamingResponse(self)
+    def with_streaming_response(self) -> ClipResourceWithStreamingResponse:
+        return ClipResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -56,7 +57,7 @@ class Clip(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamClipping:
+    ) -> Clip:
         """
         Clips a video based on the specified start and end times provided in seconds.
 
@@ -121,18 +122,18 @@ class Clip(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamClipping], ResultWrapper[StreamClipping]),
+            cast_to=cast(Type[Clip], ResultWrapper[Clip]),
         )
 
 
-class AsyncClip(AsyncAPIResource):
+class AsyncClipResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncClipWithRawResponse:
-        return AsyncClipWithRawResponse(self)
+    def with_raw_response(self) -> AsyncClipResourceWithRawResponse:
+        return AsyncClipResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncClipWithStreamingResponse:
-        return AsyncClipWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncClipResourceWithStreamingResponse:
+        return AsyncClipResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -153,7 +154,7 @@ class AsyncClip(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StreamClipping:
+    ) -> Clip:
         """
         Clips a video based on the specified start and end times provided in seconds.
 
@@ -218,12 +219,12 @@ class AsyncClip(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[StreamClipping], ResultWrapper[StreamClipping]),
+            cast_to=cast(Type[Clip], ResultWrapper[Clip]),
         )
 
 
-class ClipWithRawResponse:
-    def __init__(self, clip: Clip) -> None:
+class ClipResourceWithRawResponse:
+    def __init__(self, clip: ClipResource) -> None:
         self._clip = clip
 
         self.create = to_raw_response_wrapper(
@@ -231,8 +232,8 @@ class ClipWithRawResponse:
         )
 
 
-class AsyncClipWithRawResponse:
-    def __init__(self, clip: AsyncClip) -> None:
+class AsyncClipResourceWithRawResponse:
+    def __init__(self, clip: AsyncClipResource) -> None:
         self._clip = clip
 
         self.create = async_to_raw_response_wrapper(
@@ -240,8 +241,8 @@ class AsyncClipWithRawResponse:
         )
 
 
-class ClipWithStreamingResponse:
-    def __init__(self, clip: Clip) -> None:
+class ClipResourceWithStreamingResponse:
+    def __init__(self, clip: ClipResource) -> None:
         self._clip = clip
 
         self.create = to_streamed_response_wrapper(
@@ -249,8 +250,8 @@ class ClipWithStreamingResponse:
         )
 
 
-class AsyncClipWithStreamingResponse:
-    def __init__(self, clip: AsyncClip) -> None:
+class AsyncClipResourceWithStreamingResponse:
+    def __init__(self, clip: AsyncClipResource) -> None:
         self._clip = clip
 
         self.create = async_to_streamed_response_wrapper(

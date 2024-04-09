@@ -2,8 +2,8 @@
 
 from typing import List
 
-from .devices_device_settings_policy import DevicesDeviceSettingsPolicy
+from .settings_policy import SettingsPolicy
 
 __all__ = ["PolicyDeleteResponse"]
 
-PolicyDeleteResponse = List[DevicesDeviceSettingsPolicy]
+PolicyDeleteResponse = List[SettingsPolicy]

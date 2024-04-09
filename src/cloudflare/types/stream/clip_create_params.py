@@ -6,7 +6,7 @@ from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .allowed_origins_item import AllowedOriginsItem
+from ..allowed_origins_item import AllowedOriginsItem
 
 __all__ = ["ClipCreateParams", "Watermark"]
 

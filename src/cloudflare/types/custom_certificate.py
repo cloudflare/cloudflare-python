@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .geo_restrictions import GeoRestrictions
-from .keyless_certificate_hostname import KeylessCertificateHostname
+from .keyless_certificate import KeylessCertificate
 from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
 
 __all__ = ["CustomCertificate"]
@@ -66,7 +66,7 @@ class CustomCertificate(BaseModel):
     for optimal performance.
     """
 
-    keyless_server: Optional[KeylessCertificateHostname] = None
+    keyless_server: Optional[KeylessCertificate] = None
 
     policy: Optional[str] = None
     """

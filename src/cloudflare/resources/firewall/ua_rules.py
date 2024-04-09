@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Type, cast
 
 import httpx
 
@@ -223,7 +223,7 @@ class UARules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UARuleDeleteResponse]:
+    ) -> UARuleDeleteResponse:
         """
         Deletes an existing User Agent Blocking rule.
 
@@ -254,7 +254,7 @@ class UARules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[UARuleDeleteResponse]], ResultWrapper[UARuleDeleteResponse]),
+            cast_to=cast(Type[UARuleDeleteResponse], ResultWrapper[UARuleDeleteResponse]),
         )
 
     def get(
@@ -492,7 +492,7 @@ class AsyncUARules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UARuleDeleteResponse]:
+    ) -> UARuleDeleteResponse:
         """
         Deletes an existing User Agent Blocking rule.
 
@@ -523,7 +523,7 @@ class AsyncUARules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[UARuleDeleteResponse]], ResultWrapper[UARuleDeleteResponse]),
+            cast_to=cast(Type[UARuleDeleteResponse], ResultWrapper[UARuleDeleteResponse]),
         )
 
     async def get(

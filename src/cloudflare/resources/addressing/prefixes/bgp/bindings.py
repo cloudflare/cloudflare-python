@@ -26,7 +26,7 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.shared import UnnamedSchemaRefEc4d85c3d1bcc6b3b7e99c199ae99846
-from .....types.addressing.prefixes.bgp import AddressingServiceBinding, binding_create_params
+from .....types.addressing.prefixes.bgp import ServiceBinding, binding_create_params
 
 __all__ = ["Bindings", "AsyncBindings"]
 
@@ -53,7 +53,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingServiceBinding:
+    ) -> ServiceBinding:
         """
         Creates a new Service Binding, routing traffic to IPs within the given CIDR to a
         service running on Cloudflare's network. **Note:** This API may only be used on
@@ -97,7 +97,7 @@ class Bindings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingServiceBinding], ResultWrapper[AddressingServiceBinding]),
+            cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
         )
 
     def list(
@@ -111,7 +111,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[AddressingServiceBinding]:
+    ) -> SyncSinglePage[ServiceBinding]:
         """List the Cloudflare services this prefix is currently bound to.
 
         Traffic sent to
@@ -140,11 +140,11 @@ class Bindings(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bindings",
-            page=SyncSinglePage[AddressingServiceBinding],
+            page=SyncSinglePage[ServiceBinding],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AddressingServiceBinding,
+            model=ServiceBinding,
         )
 
     def delete(
@@ -213,7 +213,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingServiceBinding:
+    ) -> ServiceBinding:
         """
         Fetch a single Service Binding
 
@@ -247,7 +247,7 @@ class Bindings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingServiceBinding], ResultWrapper[AddressingServiceBinding]),
+            cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
         )
 
 
@@ -273,7 +273,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingServiceBinding:
+    ) -> ServiceBinding:
         """
         Creates a new Service Binding, routing traffic to IPs within the given CIDR to a
         service running on Cloudflare's network. **Note:** This API may only be used on
@@ -317,7 +317,7 @@ class AsyncBindings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingServiceBinding], ResultWrapper[AddressingServiceBinding]),
+            cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
         )
 
     def list(
@@ -331,7 +331,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AddressingServiceBinding, AsyncSinglePage[AddressingServiceBinding]]:
+    ) -> AsyncPaginator[ServiceBinding, AsyncSinglePage[ServiceBinding]]:
         """List the Cloudflare services this prefix is currently bound to.
 
         Traffic sent to
@@ -360,11 +360,11 @@ class AsyncBindings(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bindings",
-            page=AsyncSinglePage[AddressingServiceBinding],
+            page=AsyncSinglePage[ServiceBinding],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AddressingServiceBinding,
+            model=ServiceBinding,
         )
 
     async def delete(
@@ -433,7 +433,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressingServiceBinding:
+    ) -> ServiceBinding:
         """
         Fetch a single Service Binding
 
@@ -467,7 +467,7 @@ class AsyncBindings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AddressingServiceBinding], ResultWrapper[AddressingServiceBinding]),
+            cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
         )
 
 
