@@ -103,7 +103,6 @@ class Cloudflare(SyncAPIClient):
     pages: resources.Pages
     pcaps: resources.PCAPs
     registrar: resources.Registrar
-    request_tracers: resources.RequestTracers
     rules: resources.Rules
     storage: resources.Storage
     stream: resources.Stream
@@ -258,7 +257,6 @@ class Cloudflare(SyncAPIClient):
         self.pages = resources.Pages(self)
         self.pcaps = resources.PCAPs(self)
         self.registrar = resources.Registrar(self)
-        self.request_tracers = resources.RequestTracers(self)
         self.rules = resources.Rules(self)
         self.storage = resources.Storage(self)
         self.stream = resources.Stream(self)
@@ -516,7 +514,6 @@ class AsyncCloudflare(AsyncAPIClient):
     pages: resources.AsyncPages
     pcaps: resources.AsyncPCAPs
     registrar: resources.AsyncRegistrar
-    request_tracers: resources.AsyncRequestTracers
     rules: resources.AsyncRules
     storage: resources.AsyncStorage
     stream: resources.AsyncStream
@@ -671,7 +668,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.pages = resources.AsyncPages(self)
         self.pcaps = resources.AsyncPCAPs(self)
         self.registrar = resources.AsyncRegistrar(self)
-        self.request_tracers = resources.AsyncRequestTracers(self)
         self.rules = resources.AsyncRules(self)
         self.storage = resources.AsyncStorage(self)
         self.stream = resources.AsyncStream(self)
@@ -930,7 +926,6 @@ class CloudflareWithRawResponse:
         self.pages = resources.PagesWithRawResponse(client.pages)
         self.pcaps = resources.PCAPsWithRawResponse(client.pcaps)
         self.registrar = resources.RegistrarWithRawResponse(client.registrar)
-        self.request_tracers = resources.RequestTracersWithRawResponse(client.request_tracers)
         self.rules = resources.RulesWithRawResponse(client.rules)
         self.storage = resources.StorageWithRawResponse(client.storage)
         self.stream = resources.StreamWithRawResponse(client.stream)
@@ -1020,7 +1015,6 @@ class AsyncCloudflareWithRawResponse:
         self.pages = resources.AsyncPagesWithRawResponse(client.pages)
         self.pcaps = resources.AsyncPCAPsWithRawResponse(client.pcaps)
         self.registrar = resources.AsyncRegistrarWithRawResponse(client.registrar)
-        self.request_tracers = resources.AsyncRequestTracersWithRawResponse(client.request_tracers)
         self.rules = resources.AsyncRulesWithRawResponse(client.rules)
         self.storage = resources.AsyncStorageWithRawResponse(client.storage)
         self.stream = resources.AsyncStreamWithRawResponse(client.stream)
@@ -1110,7 +1104,6 @@ class CloudflareWithStreamedResponse:
         self.pages = resources.PagesWithStreamingResponse(client.pages)
         self.pcaps = resources.PCAPsWithStreamingResponse(client.pcaps)
         self.registrar = resources.RegistrarWithStreamingResponse(client.registrar)
-        self.request_tracers = resources.RequestTracersWithStreamingResponse(client.request_tracers)
         self.rules = resources.RulesWithStreamingResponse(client.rules)
         self.storage = resources.StorageWithStreamingResponse(client.storage)
         self.stream = resources.StreamWithStreamingResponse(client.stream)
@@ -1204,7 +1197,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.pages = resources.AsyncPagesWithStreamingResponse(client.pages)
         self.pcaps = resources.AsyncPCAPsWithStreamingResponse(client.pcaps)
         self.registrar = resources.AsyncRegistrarWithStreamingResponse(client.registrar)
-        self.request_tracers = resources.AsyncRequestTracersWithStreamingResponse(client.request_tracers)
         self.rules = resources.AsyncRulesWithStreamingResponse(client.rules)
         self.storage = resources.AsyncStorageWithStreamingResponse(client.storage)
         self.stream = resources.AsyncStreamWithStreamingResponse(client.stream)
