@@ -4904,7 +4904,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import AccessRule, OktaGroupRule
+from cloudflare.types.zero_trust import AccessRule
 ```
 
 ### Applications
