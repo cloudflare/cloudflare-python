@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-from .lists import Lists as Lists
 from .app_type import AppType as AppType
 from .category import Category as Category
 from .location import Location as Location
 from .schedule import Schedule as Schedule
 from .gateway_ips import GatewayIPs as GatewayIPs
-from .lists_param import ListsParam as ListsParam
+from .gateway_list import GatewayList as GatewayList
 from .gateway_rule import GatewayRule as GatewayRule
 from .rule_setting import RuleSetting as RuleSetting
 from .tls_settings import TLSSettings as TLSSettings
@@ -21,6 +20,7 @@ from .gateway_settings import GatewaySettings as GatewaySettings
 from .list_edit_params import ListEditParams as ListEditParams
 from .location_network import LocationNetwork as LocationNetwork
 from .list_get_response import ListGetResponse as ListGetResponse
+from .gateway_list_param import GatewayListParam as GatewayListParam
 from .list_create_params import ListCreateParams as ListCreateParams
 from .list_delete_params import ListDeleteParams as ListDeleteParams
 from .list_edit_response import ListEditResponse as ListEditResponse
