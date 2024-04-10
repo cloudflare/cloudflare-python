@@ -49,5 +49,8 @@ class RouteTimeseriesParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
     """Format results are returned in."""
 
+    include_delay: Annotated[bool, PropertyInfo(alias="includeDelay")]
+    """Include data delay meta information"""
+
     location: str
     """Location Alpha2 code."""
