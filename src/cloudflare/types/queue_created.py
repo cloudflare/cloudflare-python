@@ -4,10 +4,10 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["QueueCreateResponse"]
+__all__ = ["QueueCreated"]
 
 
-class QueueCreateResponse(BaseModel):
+class QueueCreated(BaseModel):
     created_on: Optional[object] = None
 
     modified_on: Optional[object] = None

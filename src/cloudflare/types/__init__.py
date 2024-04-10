@@ -9,6 +9,7 @@ from .host import Host as Host
 from .info import Info as Info
 from .pcap import PCAP as PCAP
 from .zone import Zone as Zone
+from .queue import Queue as Queue
 from .route import Route as Route
 from .rules import Rules as Rules
 from .trend import Trend as Trend
@@ -69,6 +70,8 @@ from .configuration import Configuration as Configuration
 from .default_pools import DefaultPools as DefaultPools
 from .load_balancer import LoadBalancer as LoadBalancer
 from .load_shedding import LoadShedding as LoadShedding
+from .queue_created import QueueCreated as QueueCreated
+from .queue_updated import QueueUpdated as QueueUpdated
 from .request_model import RequestModel as RequestModel
 from .edge_ips_param import EdgeIPsParam as EdgeIPsParam
 from .filter_options import FilterOptions as FilterOptions
@@ -113,7 +116,6 @@ from .health_check_param import HealthCheckParam as HealthCheckParam
 from .http_configuration import HTTPConfiguration as HTTPConfiguration
 from .pcap_create_params import PCAPCreateParams as PCAPCreateParams
 from .pcap_list_response import PCAPListResponse as PCAPListResponse
-from .queue_get_response import QueueGetResponse as QueueGetResponse
 from .stream_list_params import StreamListParams as StreamListParams
 from .user_edit_response import UserEditResponse as UserEditResponse
 from .zone_create_params import ZoneCreateParams as ZoneCreateParams
@@ -126,7 +128,6 @@ from .load_shedding_param import LoadSheddingParam as LoadSheddingParam
 from .notification_filter import NotificationFilter as NotificationFilter
 from .queue_create_params import QueueCreateParams as QueueCreateParams
 from .queue_delete_params import QueueDeleteParams as QueueDeleteParams
-from .queue_list_response import QueueListResponse as QueueListResponse
 from .queue_update_params import QueueUpdateParams as QueueUpdateParams
 from .request_model_param import RequestModelParam as RequestModelParam
 from .speed_delete_params import SpeedDeleteParams as SpeedDeleteParams
@@ -152,9 +153,7 @@ from .calls_app_with_secret import CallsAppWithSecret as CallsAppWithSecret
 from .origin_ca_certificate import OriginCACertificate as OriginCACertificate
 from .origin_steering_param import OriginSteeringParam as OriginSteeringParam
 from .pagerule_get_response import PageruleGetResponse as PageruleGetResponse
-from .queue_create_response import QueueCreateResponse as QueueCreateResponse
 from .queue_delete_response import QueueDeleteResponse as QueueDeleteResponse
-from .queue_update_response import QueueUpdateResponse as QueueUpdateResponse
 from .random_steering_param import RandomSteeringParam as RandomSteeringParam
 from .ruleset_create_params import RulesetCreateParams as RulesetCreateParams
 from .ruleset_update_params import RulesetUpdateParams as RulesetUpdateParams

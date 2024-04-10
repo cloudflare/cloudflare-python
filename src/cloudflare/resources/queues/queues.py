@@ -7,11 +7,10 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ...types import (
-    QueueGetResponse,
-    QueueListResponse,
-    QueueCreateResponse,
+    Queue,
+    QueueCreated,
+    QueueUpdated,
     QueueDeleteResponse,
-    QueueUpdateResponse,
     queue_create_params,
     queue_delete_params,
     queue_update_params,
@@ -83,7 +82,7 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueCreateResponse]:
+    ) -> Optional[QueueCreated]:
         """
         Creates a new queue.
 
@@ -110,7 +109,7 @@ class Queues(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[QueueCreateResponse]], ResultWrapper[QueueCreateResponse]),
+            cast_to=cast(Type[Optional[QueueCreated]], ResultWrapper[QueueCreated]),
         )
 
     def update(
@@ -125,7 +124,7 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueUpdateResponse]:
+    ) -> Optional[QueueUpdated]:
         """
         Updates a queue.
 
@@ -156,7 +155,7 @@ class Queues(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[QueueUpdateResponse]], ResultWrapper[QueueUpdateResponse]),
+            cast_to=cast(Type[Optional[QueueUpdated]], ResultWrapper[QueueUpdated]),
         )
 
     def list(
@@ -169,7 +168,7 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[QueueListResponse]:
+    ) -> SyncSinglePage[Queue]:
         """
         Returns the queues owned by an account.
 
@@ -188,11 +187,11 @@ class Queues(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/queues",
-            page=SyncSinglePage[QueueListResponse],
+            page=SyncSinglePage[Queue],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=QueueListResponse,
+            model=Queue,
         )
 
     def delete(
@@ -257,7 +256,7 @@ class Queues(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueGetResponse]:
+    ) -> Optional[Queue]:
         """
         Get information about a specific queue.
 
@@ -287,7 +286,7 @@ class Queues(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[QueueGetResponse]], ResultWrapper[QueueGetResponse]),
+            cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
 
 
@@ -319,7 +318,7 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueCreateResponse]:
+    ) -> Optional[QueueCreated]:
         """
         Creates a new queue.
 
@@ -346,7 +345,7 @@ class AsyncQueues(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[QueueCreateResponse]], ResultWrapper[QueueCreateResponse]),
+            cast_to=cast(Type[Optional[QueueCreated]], ResultWrapper[QueueCreated]),
         )
 
     async def update(
@@ -361,7 +360,7 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueUpdateResponse]:
+    ) -> Optional[QueueUpdated]:
         """
         Updates a queue.
 
@@ -392,7 +391,7 @@ class AsyncQueues(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[QueueUpdateResponse]], ResultWrapper[QueueUpdateResponse]),
+            cast_to=cast(Type[Optional[QueueUpdated]], ResultWrapper[QueueUpdated]),
         )
 
     def list(
@@ -405,7 +404,7 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[QueueListResponse, AsyncSinglePage[QueueListResponse]]:
+    ) -> AsyncPaginator[Queue, AsyncSinglePage[Queue]]:
         """
         Returns the queues owned by an account.
 
@@ -424,11 +423,11 @@ class AsyncQueues(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/queues",
-            page=AsyncSinglePage[QueueListResponse],
+            page=AsyncSinglePage[Queue],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=QueueListResponse,
+            model=Queue,
         )
 
     async def delete(
@@ -493,7 +492,7 @@ class AsyncQueues(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueGetResponse]:
+    ) -> Optional[Queue]:
         """
         Get information about a specific queue.
 
@@ -523,7 +522,7 @@ class AsyncQueues(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[QueueGetResponse]], ResultWrapper[QueueGetResponse]),
+            cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
 
 
