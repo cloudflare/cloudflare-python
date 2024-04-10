@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
+from ..health_check_rate import HealthCheckRate
 from ..health_check_type import HealthCheckType
-from ..unnamed_schema_ref_eebdc868ce7f7ae92e23438caa84e7b5 import UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5
 
 __all__ = ["CfInterconnectUpdateParams", "GRE", "HealthCheck"]
 
@@ -48,7 +48,7 @@ class HealthCheck(TypedDict, total=False):
     enabled: bool
     """Determines whether to run healthchecks for a tunnel."""
 
-    rate: UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5
+    rate: HealthCheckRate
     """How frequent the health check is run. The default value is `mid`."""
 
     target: str

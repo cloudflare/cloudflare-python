@@ -6,8 +6,6 @@ from typing import List, Union
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
-from .unnamed_schema_ref_34ef0ad73a63c3f76ed170adca181930 import UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930
-from .unnamed_schema_ref_41885dd46b9e0294254c49305a273681 import UnnamedSchemaRef41885dd46b9e0294254c49305a273681
 
 __all__ = [
     "DeviceInputParam",
@@ -31,7 +29,7 @@ __all__ = [
 
 
 class TeamsDevicesFileInputRequest(TypedDict, total=False):
-    operating_system: Required[UnnamedSchemaRef41885dd46b9e0294254c49305a273681]
+    operating_system: Required[Literal["windows", "linux", "mac"]]
     """Operating system"""
 
     path: Required[str]
@@ -67,7 +65,7 @@ class TeamsDevicesOSVersionInputRequest(TypedDict, total=False):
     operating_system: Required[Literal["windows"]]
     """Operating System"""
 
-    operator: Required[UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930]
+    operator: Required[Literal["<", "<=", ">", ">=", "=="]]
     """operator"""
 
     version: Required[str]
@@ -96,7 +94,7 @@ class TeamsDevicesFirewallInputRequest(TypedDict, total=False):
 
 
 class TeamsDevicesSentineloneInputRequest(TypedDict, total=False):
-    operating_system: Required[UnnamedSchemaRef41885dd46b9e0294254c49305a273681]
+    operating_system: Required[Literal["windows", "linux", "mac"]]
     """Operating system"""
 
     path: Required[str]
@@ -110,7 +108,7 @@ class TeamsDevicesSentineloneInputRequest(TypedDict, total=False):
 
 
 class TeamsDevicesCarbonblackInputRequest(TypedDict, total=False):
-    operating_system: Required[UnnamedSchemaRef41885dd46b9e0294254c49305a273681]
+    operating_system: Required[Literal["windows", "linux", "mac"]]
     """Operating system"""
 
     path: Required[str]
@@ -132,7 +130,7 @@ class TeamsDevicesDiskEncryptionInputRequest(TypedDict, total=False):
 
 
 class TeamsDevicesApplicationInputRequest(TypedDict, total=False):
-    operating_system: Required[UnnamedSchemaRef41885dd46b9e0294254c49305a273681]
+    operating_system: Required[Literal["windows", "linux", "mac"]]
     """Operating system"""
 
     path: Required[str]
@@ -168,7 +166,7 @@ class TeamsDevicesCrowdstrikeInputRequest(TypedDict, total=False):
     last_seen: str
     """For more details on last seen, please refer to the Crowdstrike documentation."""
 
-    operator: UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930
+    operator: Literal["<", "<=", ">", ">=", "=="]
     """operator"""
 
     os: str
@@ -247,7 +245,7 @@ class TeamsDevicesSentineloneS2sInputRequest(TypedDict, total=False):
     network_status: Literal["connected", "disconnected", "disconnecting", "connecting"]
     """Network status of device."""
 
-    operator: UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930
+    operator: Literal["<", "<=", ">", ">=", "=="]
     """operator"""
 
 

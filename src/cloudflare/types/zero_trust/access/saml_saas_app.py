@@ -5,29 +5,21 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
+from .saas_app_source import SaasAppSource
+from .saas_app_name_format import SaasAppNameFormat
+from .saas_app_name_id_format import SaasAppNameIDFormat
 
-__all__ = ["SAMLSaasApp", "CustomAttributes", "CustomAttributesSource"]
-
-
-class CustomAttributesSource(BaseModel):
-    name: Optional[str] = None
-    """The name of the IdP attribute."""
+__all__ = ["SAMLSaasApp", "CustomAttributes"]
 
 
 class CustomAttributes(BaseModel):
     name: Optional[str] = None
     """The name of the attribute."""
 
-    name_format: Optional[
-        Literal[
-            "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-            "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
-            "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
-        ]
-    ] = None
+    name_format: Optional[SaasAppNameFormat] = None
     """A globally unique name for an identity or service provider."""
 
-    source: Optional[CustomAttributesSource] = None
+    source: Optional[SaasAppSource] = None
 
 
 class SAMLSaasApp(BaseModel):
@@ -57,7 +49,7 @@ class SAMLSaasApp(BaseModel):
     idp_entity_id: Optional[str] = None
     """The unique identifier for your SaaS application."""
 
-    name_id_format: Optional[Literal["id", "email"]] = None
+    name_id_format: Optional[SaasAppNameIDFormat] = None
     """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: Optional[str] = None

@@ -4,8 +4,8 @@ from typing import Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
-from .unnamed_schema_ref_eebdc868ce7f7ae92e23438caa84e7b5 import UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5
 
 __all__ = ["HealthCheck"]
 
@@ -24,7 +24,7 @@ class HealthCheck(BaseModel):
     enabled: Optional[bool] = None
     """Determines whether to run healthchecks for a tunnel."""
 
-    rate: Optional[UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5] = None
+    rate: Optional[HealthCheckRate] = None
     """How frequent the health check is run. The default value is `mid`."""
 
     target: Optional[str] = None
