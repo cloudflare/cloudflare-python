@@ -2,10 +2,10 @@
 
 from ..._models import BaseModel
 
-__all__ = ["UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11"]
+__all__ = ["DeviceExperienceMonitor"]
 
 
-class UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11(BaseModel):
+class DeviceExperienceMonitor(BaseModel):
     id: str
 
     default: bool
