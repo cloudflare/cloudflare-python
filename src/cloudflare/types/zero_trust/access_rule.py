@@ -3,6 +3,7 @@
 from typing import Union
 
 from .ip_rule import IPRule
+from ..._models import BaseModel
 from .email_rule import EmailRule
 from .group_rule import GroupRule
 from .domain_rule import DomainRule
@@ -18,11 +19,20 @@ from .gsuite_group_rule import GSuiteGroupRule
 from .service_token_rule import ServiceTokenRule
 from .external_evaluation_rule import ExternalEvaluationRule
 from .github_organization_rule import GitHubOrganizationRule
-from .access_device_posture_rule import AccessDevicePostureRule
 from .authentication_method_rule import AuthenticationMethodRule
 from .any_valid_service_token_rule import AnyValidServiceTokenRule
 
-__all__ = ["AccessRule"]
+__all__ = ["AccessRule", "AccessDevicePostureRule", "AccessDevicePostureRuleDevicePosture"]
+
+
+class AccessDevicePostureRuleDevicePosture(BaseModel):
+    integration_uid: str
+    """The ID of a device posture integration."""
+
+
+class AccessDevicePostureRule(BaseModel):
+    device_posture: AccessDevicePostureRuleDevicePosture
+
 
 AccessRule = Union[
     EmailRule,
