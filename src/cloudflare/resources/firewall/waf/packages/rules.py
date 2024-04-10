@@ -26,8 +26,13 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from .....types.firewall.waf.packages import RuleEditResponse, RuleListResponse, rule_edit_params, rule_list_params
+from .....types.firewall.waf.packages import (
+    RuleGetResponse,
+    RuleEditResponse,
+    RuleListResponse,
+    rule_edit_params,
+    rule_list_params,
+)
 
 __all__ = ["Rules", "AsyncRules"]
 
@@ -205,7 +210,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RuleGetResponse:
         """
         Fetches the details of a WAF rule in a WAF package.
 
@@ -234,7 +239,7 @@ class Rules(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RuleGetResponse,
             self._get(
                 f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
                 options=make_request_options(
@@ -245,7 +250,7 @@ class Rules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RuleGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -424,7 +429,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RuleGetResponse:
         """
         Fetches the details of a WAF rule in a WAF package.
 
@@ -453,7 +458,7 @@ class AsyncRules(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RuleGetResponse,
             await self._get(
                 f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
                 options=make_request_options(
@@ -464,7 +469,7 @@ class AsyncRules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RuleGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

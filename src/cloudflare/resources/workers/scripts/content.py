@@ -6,7 +6,7 @@ from typing import List, Type, Mapping, cast
 
 import httpx
 
-from ....types import shared_params
+from ....types import WorkerMetadataParam
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ...._utils import (
     extract_files,
@@ -55,7 +55,7 @@ class Content(SyncAPIResource):
         *,
         account_id: str,
         any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: shared_params.UnnamedSchemaRefEe1e79edcb234d14c4dd266880f2fd24 | NotGiven = NOT_GIVEN,
+        metadata: WorkerMetadataParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -174,7 +174,7 @@ class AsyncContent(AsyncAPIResource):
         *,
         account_id: str,
         any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: shared_params.UnnamedSchemaRefEe1e79edcb234d14c4dd266880f2fd24 | NotGiven = NOT_GIVEN,
+        metadata: WorkerMetadataParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

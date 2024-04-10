@@ -33,8 +33,10 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....types.user import (
     PolicyParam,
+    TokenGetResponse,
     TokenCreateResponse,
     TokenDeleteResponse,
+    TokenUpdateResponse,
     TokenVerifyResponse,
     token_list_params,
     token_create_params,
@@ -45,7 +47,6 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from .permission_groups import (
     PermissionGroups,
     AsyncPermissionGroups,
@@ -149,7 +150,7 @@ class Tokens(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> TokenUpdateResponse:
         """
         Update an existing token.
 
@@ -174,7 +175,7 @@ class Tokens(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            TokenUpdateResponse,
             self._put(
                 f"/user/tokens/{token_id}",
                 body=maybe_transform(
@@ -196,7 +197,7 @@ class Tokens(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[TokenUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -299,7 +300,7 @@ class Tokens(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> TokenGetResponse:
         """
         Get information about a specific token.
 
@@ -313,7 +314,7 @@ class Tokens(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            TokenGetResponse,
             self._get(
                 f"/user/tokens/{token_id}",
                 options=make_request_options(
@@ -324,7 +325,7 @@ class Tokens(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[TokenGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -444,7 +445,7 @@ class AsyncTokens(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> TokenUpdateResponse:
         """
         Update an existing token.
 
@@ -469,7 +470,7 @@ class AsyncTokens(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            TokenUpdateResponse,
             await self._put(
                 f"/user/tokens/{token_id}",
                 body=await async_maybe_transform(
@@ -491,7 +492,7 @@ class AsyncTokens(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[TokenUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -594,7 +595,7 @@ class AsyncTokens(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> TokenGetResponse:
         """
         Get information about a specific token.
 
@@ -608,7 +609,7 @@ class AsyncTokens(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            TokenGetResponse,
             await self._get(
                 f"/user/tokens/{token_id}",
                 options=make_request_options(
@@ -619,7 +620,7 @@ class AsyncTokens(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[TokenGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

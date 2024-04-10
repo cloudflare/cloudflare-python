@@ -21,11 +21,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.argo import smart_routing_edit_params
+from ...types.argo import SmartRoutingGetResponse, SmartRoutingEditResponse, smart_routing_edit_params
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["SmartRouting", "AsyncSmartRouting"]
 
@@ -50,7 +49,7 @@ class SmartRouting(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> SmartRoutingEditResponse:
         """
         Updates enablement of Argo Smart Routing.
 
@@ -70,7 +69,7 @@ class SmartRouting(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            SmartRoutingEditResponse,
             self._patch(
                 f"/zones/{zone_id}/argo/smart_routing",
                 body=maybe_transform({"value": value}, smart_routing_edit_params.SmartRoutingEditParams),
@@ -82,7 +81,7 @@ class SmartRouting(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[SmartRoutingEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -97,7 +96,7 @@ class SmartRouting(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> SmartRoutingGetResponse:
         """
         Get Argo Smart Routing setting
 
@@ -115,7 +114,7 @@ class SmartRouting(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            SmartRoutingGetResponse,
             self._get(
                 f"/zones/{zone_id}/argo/smart_routing",
                 options=make_request_options(
@@ -126,7 +125,7 @@ class SmartRouting(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[SmartRoutingGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -152,7 +151,7 @@ class AsyncSmartRouting(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> SmartRoutingEditResponse:
         """
         Updates enablement of Argo Smart Routing.
 
@@ -172,7 +171,7 @@ class AsyncSmartRouting(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            SmartRoutingEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/argo/smart_routing",
                 body=await async_maybe_transform({"value": value}, smart_routing_edit_params.SmartRoutingEditParams),
@@ -184,7 +183,7 @@ class AsyncSmartRouting(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[SmartRoutingEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -199,7 +198,7 @@ class AsyncSmartRouting(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> SmartRoutingGetResponse:
         """
         Get Argo Smart Routing setting
 
@@ -217,7 +216,7 @@ class AsyncSmartRouting(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            SmartRoutingGetResponse,
             await self._get(
                 f"/zones/{zone_id}/argo/smart_routing",
                 options=make_request_options(
@@ -228,7 +227,7 @@ class AsyncSmartRouting(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[SmartRoutingGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

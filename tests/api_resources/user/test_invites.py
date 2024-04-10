@@ -10,8 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.user import Invite
-from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
+from cloudflare.types.user import Invite, InviteGetResponse, InviteEditResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -54,7 +53,7 @@ class TestInvites:
             "4f5f0c14a2a41d5063dd301b2f829f04",
             status="accepted",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+        assert_matches_type(InviteEditResponse, invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -67,7 +66,7 @@ class TestInvites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invite = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+        assert_matches_type(InviteEditResponse, invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -80,7 +79,7 @@ class TestInvites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invite = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+            assert_matches_type(InviteEditResponse, invite, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -99,7 +98,7 @@ class TestInvites:
         invite = client.user.invites.get(
             "4f5f0c14a2a41d5063dd301b2f829f04",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+        assert_matches_type(InviteGetResponse, invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +110,7 @@ class TestInvites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invite = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+        assert_matches_type(InviteGetResponse, invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -123,7 +122,7 @@ class TestInvites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invite = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+            assert_matches_type(InviteGetResponse, invite, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -174,7 +173,7 @@ class TestAsyncInvites:
             "4f5f0c14a2a41d5063dd301b2f829f04",
             status="accepted",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+        assert_matches_type(InviteEditResponse, invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +186,7 @@ class TestAsyncInvites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invite = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+        assert_matches_type(InviteEditResponse, invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -200,7 +199,7 @@ class TestAsyncInvites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invite = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+            assert_matches_type(InviteEditResponse, invite, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -219,7 +218,7 @@ class TestAsyncInvites:
         invite = await async_client.user.invites.get(
             "4f5f0c14a2a41d5063dd301b2f829f04",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+        assert_matches_type(InviteGetResponse, invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -231,7 +230,7 @@ class TestAsyncInvites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invite = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+        assert_matches_type(InviteGetResponse, invite, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -243,7 +242,7 @@ class TestAsyncInvites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invite = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, invite, path=["response"])
+            assert_matches_type(InviteGetResponse, invite, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

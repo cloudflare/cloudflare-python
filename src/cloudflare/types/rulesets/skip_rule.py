@@ -4,7 +4,7 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..shared import UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
+from .logging import Logging
 from ..._models import BaseModel
 
 __all__ = ["SkipRule", "ActionParameters"]
@@ -97,7 +97,7 @@ class SkipRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c] = None
+    logging: Optional[Logging] = None
     """An object configuring the rule's logging behavior."""
 
     ref: Optional[str] = None

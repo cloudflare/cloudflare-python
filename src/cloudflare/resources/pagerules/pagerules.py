@@ -10,8 +10,12 @@ import httpx
 from ...types import (
     RouteParam,
     TargesParam,
+    PageruleGetResponse,
+    PageruleEditResponse,
     PageruleListResponse,
+    PageruleCreateResponse,
     PageruleDeleteResponse,
+    PageruleUpdateResponse,
     pagerule_edit_params,
     pagerule_list_params,
     pagerule_create_params,
@@ -43,7 +47,6 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["Pagerules", "AsyncPagerules"]
 
@@ -75,7 +78,7 @@ class Pagerules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> PageruleCreateResponse:
         """
         Creates a new Page Rule.
 
@@ -106,7 +109,7 @@ class Pagerules(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            PageruleCreateResponse,
             self._post(
                 f"/zones/{zone_id}/pagerules",
                 body=maybe_transform(
@@ -126,7 +129,7 @@ class Pagerules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[PageruleCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -146,7 +149,7 @@ class Pagerules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> PageruleUpdateResponse:
         """Replaces the configuration of an existing Page Rule.
 
         The configuration of the
@@ -183,7 +186,7 @@ class Pagerules(SyncAPIResource):
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            PageruleUpdateResponse,
             self._put(
                 f"/zones/{zone_id}/pagerules/{pagerule_id}",
                 body=maybe_transform(
@@ -203,7 +206,7 @@ class Pagerules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[PageruleUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -330,7 +333,7 @@ class Pagerules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> PageruleEditResponse:
         """
         Updates one or more fields of an existing Page Rule.
 
@@ -365,7 +368,7 @@ class Pagerules(SyncAPIResource):
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            PageruleEditResponse,
             self._patch(
                 f"/zones/{zone_id}/pagerules/{pagerule_id}",
                 body=maybe_transform(
@@ -385,7 +388,7 @@ class Pagerules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[PageruleEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -401,7 +404,7 @@ class Pagerules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> PageruleGetResponse:
         """
         Fetches the details of a Page Rule.
 
@@ -423,7 +426,7 @@ class Pagerules(SyncAPIResource):
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            PageruleGetResponse,
             self._get(
                 f"/zones/{zone_id}/pagerules/{pagerule_id}",
                 options=make_request_options(
@@ -434,7 +437,7 @@ class Pagerules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[PageruleGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -467,7 +470,7 @@ class AsyncPagerules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> PageruleCreateResponse:
         """
         Creates a new Page Rule.
 
@@ -498,7 +501,7 @@ class AsyncPagerules(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            PageruleCreateResponse,
             await self._post(
                 f"/zones/{zone_id}/pagerules",
                 body=await async_maybe_transform(
@@ -518,7 +521,7 @@ class AsyncPagerules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[PageruleCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -538,7 +541,7 @@ class AsyncPagerules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> PageruleUpdateResponse:
         """Replaces the configuration of an existing Page Rule.
 
         The configuration of the
@@ -575,7 +578,7 @@ class AsyncPagerules(AsyncAPIResource):
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            PageruleUpdateResponse,
             await self._put(
                 f"/zones/{zone_id}/pagerules/{pagerule_id}",
                 body=await async_maybe_transform(
@@ -595,7 +598,7 @@ class AsyncPagerules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[PageruleUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -722,7 +725,7 @@ class AsyncPagerules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> PageruleEditResponse:
         """
         Updates one or more fields of an existing Page Rule.
 
@@ -757,7 +760,7 @@ class AsyncPagerules(AsyncAPIResource):
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            PageruleEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/pagerules/{pagerule_id}",
                 body=await async_maybe_transform(
@@ -777,7 +780,7 @@ class AsyncPagerules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[PageruleEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -793,7 +796,7 @@ class AsyncPagerules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> PageruleGetResponse:
         """
         Fetches the details of a Page Rule.
 
@@ -815,7 +818,7 @@ class AsyncPagerules(AsyncAPIResource):
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            PageruleGetResponse,
             await self._get(
                 f"/zones/{zone_id}/pagerules/{pagerule_id}",
                 options=make_request_options(
@@ -826,7 +829,7 @@ class AsyncPagerules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[PageruleGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

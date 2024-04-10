@@ -11,6 +11,7 @@ from .index_create_params import IndexCreateParams as IndexCreateParams
 from .index_insert_params import IndexInsertParams as IndexInsertParams
 from .index_update_params import IndexUpdateParams as IndexUpdateParams
 from .index_upsert_params import IndexUpsertParams as IndexUpsertParams
+from .index_delete_response import IndexDeleteResponse as IndexDeleteResponse
 from .index_get_by_ids_params import IndexGetByIDsParams as IndexGetByIDsParams
 from .index_delete_by_ids_params import IndexDeleteByIDsParams as IndexDeleteByIDsParams
 from .index_delete_vectors_by_id import IndexDeleteVectorsByID as IndexDeleteVectorsByID

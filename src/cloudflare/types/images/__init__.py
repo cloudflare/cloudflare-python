@@ -10,3 +10,4 @@ from .v1_create_params import V1CreateParams as V1CreateParams
 from .v1_delete_params import V1DeleteParams as V1DeleteParams
 from .v1_list_response import V1ListResponse as V1ListResponse
 from .v2_list_response import V2ListResponse as V2ListResponse
+from .v1_delete_response import V1DeleteResponse as V1DeleteResponse

@@ -25,10 +25,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ....types.zero_trust.gateway import (
     Location,
     LocationNetworkParam,
+    LocationDeleteResponse,
     location_create_params,
     location_delete_params,
     location_update_params,
@@ -211,7 +211,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> LocationDeleteResponse:
         """
         Deletes a configured Zero Trust Gateway location.
 
@@ -229,7 +229,7 @@ class Locations(SyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            LocationDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/gateway/locations/{location_id}",
                 body=maybe_transform(body, location_delete_params.LocationDeleteParams),
@@ -241,7 +241,7 @@ class Locations(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[LocationDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -461,7 +461,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> LocationDeleteResponse:
         """
         Deletes a configured Zero Trust Gateway location.
 
@@ -479,7 +479,7 @@ class AsyncLocations(AsyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            LocationDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/gateway/locations/{location_id}",
                 body=await async_maybe_transform(body, location_delete_params.LocationDeleteParams),
@@ -491,7 +491,7 @@ class AsyncLocations(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[LocationDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

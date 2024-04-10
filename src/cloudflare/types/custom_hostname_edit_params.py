@@ -5,9 +5,9 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-from .unnamed_schema_ref_9a9935a9a770967bb604ae41a81e42e1 import UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1
-from .unnamed_schema_ref_16aca57bde2963201c7e6e895436c1c1 import UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
-from .unnamed_schema_ref_78adb375f06c6d462dd92b99e2ecf510 import UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510
+from .dcv_method import DCVMethod
+from .bundle_method import BundleMethod
+from .domain_validation_type import DomainValidationType
 
 __all__ = ["CustomHostnameEditParams", "CustomMetadata", "SSL", "SSLSettings"]
 
@@ -64,7 +64,7 @@ class SSLSettings(TypedDict, total=False):
 
 
 class SSL(TypedDict, total=False):
-    bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1
+    bundle_method: BundleMethod
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
     even by clients using outdated or unusual trust stores. An optimal bundle uses
@@ -81,13 +81,13 @@ class SSL(TypedDict, total=False):
     custom_key: str
     """The key for a custom uploaded certificate."""
 
-    method: UnnamedSchemaRef78adb375f06c6d462dd92b99e2ecf510
+    method: DCVMethod
     """Domain control validation (DCV) method used for this hostname."""
 
     settings: SSLSettings
     """SSL specific settings."""
 
-    type: UnnamedSchemaRef9a9935a9a770967bb604ae41a81e42e1
+    type: DomainValidationType
     """Level of validation to be used for this hostname.
 
     Domain validation (dv) must be used.

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from ...types import shared_params
+from .logging_param import LoggingParam
 
 __all__ = ["LogRuleParam"]
 
@@ -28,7 +28,7 @@ class LogRuleParam(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: shared_params.UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
+    logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
     ref: str
