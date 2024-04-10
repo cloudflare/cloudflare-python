@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Required, TypedDict
 
-from .lists_param import ListsParam
+from .gateway_list_param import GatewayListParam
 
 __all__ = ["ListEditParams"]
 
@@ -13,7 +13,7 @@ __all__ = ["ListEditParams"]
 class ListEditParams(TypedDict, total=False):
     account_id: Required[str]
 
-    append: Iterable[ListsParam]
+    append: Iterable[GatewayListParam]
     """The items in the list."""
 
     remove: List[str]
