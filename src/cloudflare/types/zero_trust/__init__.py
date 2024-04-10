@@ -13,6 +13,7 @@ from .login_design import LoginDesign as LoginDesign
 from .network_path import NetworkPath as NetworkPath
 from .organization import Organization as Organization
 from .tunnel_param import TunnelParam as TunnelParam
+from .okta_group_rule import OktaGroupRule as OktaGroupRule
 from .seat_edit_params import SeatEditParams as SeatEditParams
 from .access_rule_param import AccessRuleParam as AccessRuleParam
 from .identity_provider import IdentityProvider as IdentityProvider
@@ -25,6 +26,7 @@ from .generic_oauth_config import GenericOAuthConfig as GenericOAuthConfig
 from .tunnel_create_params import TunnelCreateParams as TunnelCreateParams
 from .tunnel_delete_params import TunnelDeleteParams as TunnelDeleteParams
 from .gateway_list_response import GatewayListResponse as GatewayListResponse
+from .okta_group_rule_param import OktaGroupRuleParam as OktaGroupRuleParam
 from .identity_provider_type import IdentityProviderType as IdentityProviderType
 from .gateway_create_response import GatewayCreateResponse as GatewayCreateResponse
 from .generic_oauth_config_param import GenericOAuthConfigParam as GenericOAuthConfigParam
