@@ -4,9 +4,13 @@ from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from .unnamed_schema_ref_608bee5065f7314d6fa572b89a1910f7 import UnnamedSchemaRef608bee5065f7314d6fa572b89a1910f7
 
-__all__ = ["Schema", "Query"]
+__all__ = ["Schema", "Data", "Query"]
+
+
+class Data(BaseModel):
+    metrics: List[object]
+    """List of metrics returned by the query."""
 
 
 class Query(BaseModel):
@@ -53,7 +57,7 @@ class Query(BaseModel):
 
 
 class Schema(BaseModel):
-    data: Optional[List[UnnamedSchemaRef608bee5065f7314d6fa572b89a1910f7]] = None
+    data: Optional[List[Data]] = None
 
     data_lag: float
     """Number of seconds between current time and last processed event, i.e.
