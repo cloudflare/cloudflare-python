@@ -239,6 +239,7 @@ class Routes(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        include_delay: bool | NotGiven = NOT_GIVEN,
         location: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -262,6 +263,8 @@ class Routes(SyncAPIResource):
           date_start: Start of the date range (inclusive).
 
           format: Format results are returned in.
+
+          include_delay: Include data delay meta information
 
           location: Location Alpha2 code.
 
@@ -287,6 +290,7 @@ class Routes(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "include_delay": include_delay,
                         "location": location,
                     },
                     route_timeseries_params.RouteTimeseriesParams,
@@ -497,6 +501,7 @@ class AsyncRoutes(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        include_delay: bool | NotGiven = NOT_GIVEN,
         location: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -520,6 +525,8 @@ class AsyncRoutes(AsyncAPIResource):
           date_start: Start of the date range (inclusive).
 
           format: Format results are returned in.
+
+          include_delay: Include data delay meta information
 
           location: Location Alpha2 code.
 
@@ -545,6 +552,7 @@ class AsyncRoutes(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "include_delay": include_delay,
                         "location": location,
                     },
                     route_timeseries_params.RouteTimeseriesParams,
