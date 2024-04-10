@@ -19,11 +19,12 @@ from .gsuite_group_rule import GSuiteGroupRule
 from .service_token_rule import ServiceTokenRule
 from .external_evaluation_rule import ExternalEvaluationRule
 from .github_organization_rule import GitHubOrganizationRule
-from .authentication_method_rule import AuthenticationMethodRule
 
 __all__ = [
     "AccessRule",
     "AccessAnyValidServiceTokenRule",
+    "AccessAuthenticationMethodRule",
+    "AccessAuthenticationMethodRuleAuthMethod",
     "AccessDevicePostureRule",
     "AccessDevicePostureRuleDevicePosture",
 ]
@@ -32,6 +33,17 @@ __all__ = [
 class AccessAnyValidServiceTokenRule(BaseModel):
     any_valid_service_token: object
     """An empty object which matches on all service tokens."""
+
+
+class AccessAuthenticationMethodRuleAuthMethod(BaseModel):
+    auth_method: str
+    """
+    The type of authentication method https://datatracker.ietf.org/doc/html/rfc8176.
+    """
+
+
+class AccessAuthenticationMethodRule(BaseModel):
+    auth_method: AccessAuthenticationMethodRuleAuthMethod
 
 
 class AccessDevicePostureRuleDevicePosture(BaseModel):
@@ -61,6 +73,6 @@ AccessRule = Union[
     AccessAnyValidServiceTokenRule,
     ExternalEvaluationRule,
     CountryRule,
-    AuthenticationMethodRule,
+    AccessAuthenticationMethodRule,
     AccessDevicePostureRule,
 ]
