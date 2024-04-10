@@ -4,11 +4,11 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from .log_rule import LogRule
 from ..._models import BaseModel
-from ..log_rule import LogRule
-from ..skip_rule import SkipRule
-from ..block_rule import BlockRule
-from ..execute_rule import ExecuteRule
+from .skip_rule import SkipRule
+from .block_rule import BlockRule
+from .execute_rule import ExecuteRule
 
 __all__ = ["VersionGetResponse", "Rule"]
 

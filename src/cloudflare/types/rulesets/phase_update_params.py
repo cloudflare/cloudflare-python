@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from ..log_rule_param import LogRuleParam
-from ..skip_rule_param import SkipRuleParam
-from ..block_rule_param import BlockRuleParam
-from ..execute_rule_param import ExecuteRuleParam
+from .log_rule_param import LogRuleParam
+from .skip_rule_param import SkipRuleParam
+from .block_rule_param import BlockRuleParam
+from .execute_rule_param import ExecuteRuleParam
 
 __all__ = ["PhaseUpdateParams", "Rule"]
 

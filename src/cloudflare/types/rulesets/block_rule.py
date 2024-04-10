@@ -4,13 +4,29 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .shared import UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
-from .._models import BaseModel
+from ..shared import UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
+from ..._models import BaseModel
 
-__all__ = ["LogRule"]
+__all__ = ["BlockRule", "ActionParameters", "ActionParametersResponse"]
 
 
-class LogRule(BaseModel):
+class ActionParametersResponse(BaseModel):
+    content: str
+    """The content to return."""
+
+    content_type: str
+    """The type of the content to return."""
+
+    status_code: int
+    """The status code to return."""
+
+
+class ActionParameters(BaseModel):
+    response: Optional[ActionParametersResponse] = None
+    """The response to show when the block is applied."""
+
+
+class BlockRule(BaseModel):
     last_updated: datetime
     """The timestamp of when the rule was last modified."""
 
@@ -20,10 +36,10 @@ class LogRule(BaseModel):
     id: Optional[str] = None
     """The unique ID of the rule."""
 
-    action: Optional[Literal["log"]] = None
+    action: Optional[Literal["block"]] = None
     """The action to perform when the rule matches."""
 
-    action_parameters: Optional[object] = None
+    action_parameters: Optional[ActionParameters] = None
     """The parameters configuring the rule's action."""
 
     categories: Optional[List[str]] = None

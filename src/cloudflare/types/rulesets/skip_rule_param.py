@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, List
 from typing_extensions import Literal, TypedDict
 
-from ..types import shared_params
+from ...types import shared_params
 
 __all__ = ["SkipRuleParam", "ActionParameters"]
 
