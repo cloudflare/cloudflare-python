@@ -6,7 +6,6 @@ from typing import Union
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .okta_group_rule_param import OktaGroupRuleParam
 
 __all__ = [
     "AccessRuleParam",
@@ -30,6 +29,8 @@ __all__ = [
     "AccessGitHubOrganizationRuleGitHubOrganization",
     "AccessGSuiteGroupRule",
     "AccessGSuiteGroupRuleGSuite",
+    "AccessOktaGroupRule",
+    "AccessOktaGroupRuleOkta",
     "AccessSAMLGroupRule",
     "AccessSAMLGroupRuleSAML",
     "AccessServiceTokenRule",
@@ -147,6 +148,18 @@ class AccessGSuiteGroupRule(TypedDict, total=False):
     gsuite: Required[AccessGSuiteGroupRuleGSuite]
 
 
+class AccessOktaGroupRuleOkta(TypedDict, total=False):
+    connection_id: Required[str]
+    """The ID of your Okta identity provider."""
+
+    email: Required[str]
+    """The email of the Okta group."""
+
+
+class AccessOktaGroupRule(TypedDict, total=False):
+    okta: Required[AccessOktaGroupRuleOkta]
+
+
 class AccessSAMLGroupRuleSAML(TypedDict, total=False):
     attribute_name: Required[str]
     """The name of the SAML attribute."""
@@ -229,7 +242,7 @@ AccessRuleParam = Union[
     AccessAzureGroupRule,
     AccessGitHubOrganizationRule,
     AccessGSuiteGroupRule,
-    OktaGroupRuleParam,
+    AccessOktaGroupRule,
     AccessSAMLGroupRule,
     AccessServiceTokenRule,
     AccessAnyValidServiceTokenRule,
