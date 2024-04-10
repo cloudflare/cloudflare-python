@@ -4,8 +4,8 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .shared import UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
-from .._models import BaseModel
+from ..shared import UnnamedSchemaRef70f2c6ccd8a405358ac7ef8fc3d6751c
+from ..._models import BaseModel
 
 __all__ = [
     "ExecuteRule",

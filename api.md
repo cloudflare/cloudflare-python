@@ -2932,11 +2932,7 @@ Types:
 
 ```python
 from cloudflare.types import (
-    BlockRule,
-    ExecuteRule,
-    LogRule,
     Ruleset,
-    SkipRule,
     RulesetCreateResponse,
     RulesetUpdateResponse,
     RulesetGetResponse,
@@ -2982,7 +2978,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rulesets import RuleCreateResponse, RuleDeleteResponse, RuleEditResponse
+from cloudflare.types.rulesets import (
+    BlockRule,
+    ExecuteRule,
+    LogRule,
+    RulesetRule,
+    SkipRule,
+    RuleCreateResponse,
+    RuleDeleteResponse,
+    RuleEditResponse,
+)
 ```
 
 Methods:
