@@ -2,8 +2,8 @@
 
 from typing import List
 
-from cloudflare.types.zero_trust.gateway import Lists
+from ..gateway_list import GatewayList
 
 __all__ = ["ItemListResponse"]
 
-ItemListResponse = List[Lists]
+ItemListResponse = List[GatewayList]

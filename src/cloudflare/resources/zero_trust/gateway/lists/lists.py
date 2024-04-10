@@ -35,8 +35,8 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.gateway import (
-    ListsParam,
     ListGetResponse,
+    GatewayListParam,
     ListEditResponse,
     ListListResponse,
     ListCreateResponse,
@@ -71,7 +71,7 @@ class Lists(SyncAPIResource):
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"],
         description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[ListsParam] | NotGiven = NOT_GIVEN,
+        items: Iterable[GatewayListParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -265,7 +265,7 @@ class Lists(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        append: Iterable[ListsParam] | NotGiven = NOT_GIVEN,
+        append: Iterable[GatewayListParam] | NotGiven = NOT_GIVEN,
         remove: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -378,7 +378,7 @@ class AsyncLists(AsyncAPIResource):
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"],
         description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[ListsParam] | NotGiven = NOT_GIVEN,
+        items: Iterable[GatewayListParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -572,7 +572,7 @@ class AsyncLists(AsyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        append: Iterable[ListsParam] | NotGiven = NOT_GIVEN,
+        append: Iterable[GatewayListParam] | NotGiven = NOT_GIVEN,
         remove: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

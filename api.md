@@ -5676,7 +5676,7 @@ Types:
 
 ```python
 from cloudflare.types.zero_trust.gateway import (
-    Lists,
+    GatewayList,
     ListCreateResponse,
     ListUpdateResponse,
     ListListResponse,
