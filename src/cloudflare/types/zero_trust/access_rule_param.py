@@ -21,11 +21,12 @@ from .gsuite_group_rule_param import GSuiteGroupRuleParam
 from .service_token_rule_param import ServiceTokenRuleParam
 from .external_evaluation_rule_param import ExternalEvaluationRuleParam
 from .github_organization_rule_param import GitHubOrganizationRuleParam
-from .authentication_method_rule_param import AuthenticationMethodRuleParam
 
 __all__ = [
     "AccessRuleParam",
     "AccessAnyValidServiceTokenRule",
+    "AccessAuthenticationMethodRule",
+    "AccessAuthenticationMethodRuleAuthMethod",
     "AccessDevicePostureRule",
     "AccessDevicePostureRuleDevicePosture",
 ]
@@ -34,6 +35,17 @@ __all__ = [
 class AccessAnyValidServiceTokenRule(TypedDict, total=False):
     any_valid_service_token: Required[object]
     """An empty object which matches on all service tokens."""
+
+
+class AccessAuthenticationMethodRuleAuthMethod(TypedDict, total=False):
+    auth_method: Required[str]
+    """
+    The type of authentication method https://datatracker.ietf.org/doc/html/rfc8176.
+    """
+
+
+class AccessAuthenticationMethodRule(TypedDict, total=False):
+    auth_method: Required[AccessAuthenticationMethodRuleAuthMethod]
 
 
 class AccessDevicePostureRuleDevicePosture(TypedDict, total=False):
@@ -63,6 +75,6 @@ AccessRuleParam = Union[
     AccessAnyValidServiceTokenRule,
     ExternalEvaluationRuleParam,
     CountryRuleParam,
-    AuthenticationMethodRuleParam,
+    AccessAuthenticationMethodRule,
     AccessDevicePostureRule,
 ]
