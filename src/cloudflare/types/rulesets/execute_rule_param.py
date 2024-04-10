@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from ..types import shared_params
+from ...types import shared_params
 
 __all__ = [
     "ExecuteRuleParam",
