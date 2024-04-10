@@ -1,11 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-
-
 from ...._models import BaseModel
-from ...unnamed_schema_ref_c5858f1f916a921846e0b6159af470a7 import UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7
 
-__all__ = ["RouteStatsResponse", "Stats"]
+__all__ = ["RouteStatsResponse", "Meta", "Stats"]
+
+
+class Meta(BaseModel):
+    data_time: str
+
+    query_time: str
+
+    total_peers: int
 
 
 class Stats(BaseModel):
@@ -47,6 +52,6 @@ class Stats(BaseModel):
 
 
 class RouteStatsResponse(BaseModel):
-    meta: UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7
+    meta: Meta
 
     stats: Stats
