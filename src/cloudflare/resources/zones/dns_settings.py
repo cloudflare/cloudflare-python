@@ -41,7 +41,10 @@ class DNSSettings(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        foundation_dns: bool | NotGiven = NOT_GIVEN,
+        multi_provider: bool | NotGiven = NOT_GIVEN,
         nameservers: NameserverParam | NotGiven = NOT_GIVEN,
+        secondary_overrides: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -55,7 +58,16 @@ class DNSSettings(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          foundation_dns: Whether to enable Foundation DNS Advanced Nameservers on the zone.
+
+          multi_provider: Whether to enable multi-provider DNS, which causes Cloudflare to activate the
+              zone even when non-Cloudflare NS records exist, and to respect NS records at the
+              zone apex during outbound zone transfers.
+
           nameservers: Settings determining the nameservers through which the zone should be available.
+
+          secondary_overrides: Allows a Secondary DNS zone to use (proxied) override records and CNAME
+              flattening at the zone apex.
 
           extra_headers: Send extra headers
 
@@ -69,7 +81,15 @@ class DNSSettings(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/dns_settings",
-            body=maybe_transform({"nameservers": nameservers}, dns_setting_edit_params.DNSSettingEditParams),
+            body=maybe_transform(
+                {
+                    "foundation_dns": foundation_dns,
+                    "multi_provider": multi_provider,
+                    "nameservers": nameservers,
+                    "secondary_overrides": secondary_overrides,
+                },
+                dns_setting_edit_params.DNSSettingEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -133,7 +153,10 @@ class AsyncDNSSettings(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        foundation_dns: bool | NotGiven = NOT_GIVEN,
+        multi_provider: bool | NotGiven = NOT_GIVEN,
         nameservers: NameserverParam | NotGiven = NOT_GIVEN,
+        secondary_overrides: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,7 +170,16 @@ class AsyncDNSSettings(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          foundation_dns: Whether to enable Foundation DNS Advanced Nameservers on the zone.
+
+          multi_provider: Whether to enable multi-provider DNS, which causes Cloudflare to activate the
+              zone even when non-Cloudflare NS records exist, and to respect NS records at the
+              zone apex during outbound zone transfers.
+
           nameservers: Settings determining the nameservers through which the zone should be available.
+
+          secondary_overrides: Allows a Secondary DNS zone to use (proxied) override records and CNAME
+              flattening at the zone apex.
 
           extra_headers: Send extra headers
 
@@ -162,7 +194,13 @@ class AsyncDNSSettings(AsyncAPIResource):
         return await self._patch(
             f"/zones/{zone_id}/dns_settings",
             body=await async_maybe_transform(
-                {"nameservers": nameservers}, dns_setting_edit_params.DNSSettingEditParams
+                {
+                    "foundation_dns": foundation_dns,
+                    "multi_provider": multi_provider,
+                    "nameservers": nameservers,
+                    "secondary_overrides": secondary_overrides,
+                },
+                dns_setting_edit_params.DNSSettingEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,

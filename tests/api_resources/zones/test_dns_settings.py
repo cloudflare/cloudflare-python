@@ -30,7 +30,10 @@ class TestDNSSettings:
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         dns_setting = client.zones.dns_settings.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            foundation_dns=False,
+            multi_provider=False,
             nameservers={"type": "cloudflare.standard"},
+            secondary_overrides=False,
         )
         assert_matches_type(DNSSetting, dns_setting, path=["response"])
 
@@ -127,7 +130,10 @@ class TestAsyncDNSSettings:
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dns_setting = await async_client.zones.dns_settings.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            foundation_dns=False,
+            multi_provider=False,
             nameservers={"type": "cloudflare.standard"},
+            secondary_overrides=False,
         )
         assert_matches_type(DNSSetting, dns_setting, path=["response"])
 
