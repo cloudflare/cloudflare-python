@@ -20,9 +20,18 @@ from .service_token_rule import ServiceTokenRule
 from .external_evaluation_rule import ExternalEvaluationRule
 from .github_organization_rule import GitHubOrganizationRule
 from .authentication_method_rule import AuthenticationMethodRule
-from .any_valid_service_token_rule import AnyValidServiceTokenRule
 
-__all__ = ["AccessRule", "AccessDevicePostureRule", "AccessDevicePostureRuleDevicePosture"]
+__all__ = [
+    "AccessRule",
+    "AccessAnyValidServiceTokenRule",
+    "AccessDevicePostureRule",
+    "AccessDevicePostureRuleDevicePosture",
+]
+
+
+class AccessAnyValidServiceTokenRule(BaseModel):
+    any_valid_service_token: object
+    """An empty object which matches on all service tokens."""
 
 
 class AccessDevicePostureRuleDevicePosture(BaseModel):
@@ -49,7 +58,7 @@ AccessRule = Union[
     OktaGroupRule,
     SAMLGroupRule,
     ServiceTokenRule,
-    AnyValidServiceTokenRule,
+    AccessAnyValidServiceTokenRule,
     ExternalEvaluationRule,
     CountryRule,
     AuthenticationMethodRule,
