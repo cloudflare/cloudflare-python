@@ -4,10 +4,10 @@ from typing import Optional
 
 from ....._models import BaseModel
 
-__all__ = ["UnnamedSchemaRef532d8b97684c9032dd36bae8acddebf5"]
+__all__ = ["WAFRuleGroup"]
 
 
-class UnnamedSchemaRef532d8b97684c9032dd36bae8acddebf5(BaseModel):
+class WAFRuleGroup(BaseModel):
     id: Optional[str] = None
     """The unique identifier of the rule group."""
 

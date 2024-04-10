@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, TypedDict
 
+from .allowed_protocol import AllowedProtocol
 from .acl_configuration_param import ACLConfigurationParam
-from .unnamed_schema_ref_87fa9e5fe9f6b8d607be1df57340d916 import UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916
 
 __all__ = ["ACLCreateParams", "ACL"]
 
@@ -37,4 +37,4 @@ class ACL(TypedDict, total=False):
     not included in request, will default to false.
     """
 
-    protocols: List[UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916]
+    protocols: List[AllowedProtocol]

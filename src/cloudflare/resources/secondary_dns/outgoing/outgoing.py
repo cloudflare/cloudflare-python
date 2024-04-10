@@ -44,21 +44,21 @@ from ....types.secondary_dns import (
     outgoing_force_notify_params,
 )
 
-__all__ = ["Outgoing", "AsyncOutgoing"]
+__all__ = ["OutgoingResource", "AsyncOutgoingResource"]
 
 
-class Outgoing(SyncAPIResource):
+class OutgoingResource(SyncAPIResource):
     @cached_property
     def status(self) -> Status:
         return Status(self._client)
 
     @cached_property
-    def with_raw_response(self) -> OutgoingWithRawResponse:
-        return OutgoingWithRawResponse(self)
+    def with_raw_response(self) -> OutgoingResourceWithRawResponse:
+        return OutgoingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OutgoingWithStreamingResponse:
-        return OutgoingWithStreamingResponse(self)
+    def with_streaming_response(self) -> OutgoingResourceWithStreamingResponse:
+        return OutgoingResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -355,18 +355,18 @@ class Outgoing(SyncAPIResource):
         )
 
 
-class AsyncOutgoing(AsyncAPIResource):
+class AsyncOutgoingResource(AsyncAPIResource):
     @cached_property
     def status(self) -> AsyncStatus:
         return AsyncStatus(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncOutgoingWithRawResponse:
-        return AsyncOutgoingWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOutgoingResourceWithRawResponse:
+        return AsyncOutgoingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOutgoingWithStreamingResponse:
-        return AsyncOutgoingWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOutgoingResourceWithStreamingResponse:
+        return AsyncOutgoingResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -663,8 +663,8 @@ class AsyncOutgoing(AsyncAPIResource):
         )
 
 
-class OutgoingWithRawResponse:
-    def __init__(self, outgoing: Outgoing) -> None:
+class OutgoingResourceWithRawResponse:
+    def __init__(self, outgoing: OutgoingResource) -> None:
         self._outgoing = outgoing
 
         self.create = to_raw_response_wrapper(
@@ -694,8 +694,8 @@ class OutgoingWithRawResponse:
         return StatusWithRawResponse(self._outgoing.status)
 
 
-class AsyncOutgoingWithRawResponse:
-    def __init__(self, outgoing: AsyncOutgoing) -> None:
+class AsyncOutgoingResourceWithRawResponse:
+    def __init__(self, outgoing: AsyncOutgoingResource) -> None:
         self._outgoing = outgoing
 
         self.create = async_to_raw_response_wrapper(
@@ -725,8 +725,8 @@ class AsyncOutgoingWithRawResponse:
         return AsyncStatusWithRawResponse(self._outgoing.status)
 
 
-class OutgoingWithStreamingResponse:
-    def __init__(self, outgoing: Outgoing) -> None:
+class OutgoingResourceWithStreamingResponse:
+    def __init__(self, outgoing: OutgoingResource) -> None:
         self._outgoing = outgoing
 
         self.create = to_streamed_response_wrapper(
@@ -756,8 +756,8 @@ class OutgoingWithStreamingResponse:
         return StatusWithStreamingResponse(self._outgoing.status)
 
 
-class AsyncOutgoingWithStreamingResponse:
-    def __init__(self, outgoing: AsyncOutgoing) -> None:
+class AsyncOutgoingResourceWithStreamingResponse:
+    def __init__(self, outgoing: AsyncOutgoingResource) -> None:
         self._outgoing = outgoing
 
         self.create = async_to_streamed_response_wrapper(

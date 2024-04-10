@@ -13,6 +13,7 @@ from .dhcp_server import DHCPServer as DHCPServer
 from .subnet_param import SubnetParam as SubnetParam
 from .routed_subnet import RoutedSubnet as RoutedSubnet
 from .acl_get_response import ACLGetResponse as ACLGetResponse
+from .allowed_protocol import AllowedProtocol as AllowedProtocol
 from .dhcp_relay_param import DHCPRelayParam as DHCPRelayParam
 from .lan_get_response import LANGetResponse as LANGetResponse
 from .wan_get_response import WANGetResponse as WANGetResponse
@@ -45,6 +46,3 @@ from .wan_static_addressing import WANStaticAddressing as WANStaticAddressing
 from .acl_configuration_param import ACLConfigurationParam as ACLConfigurationParam
 from .lan_static_addressing_param import LANStaticAddressingParam as LANStaticAddressingParam
 from .wan_static_addressing_param import WANStaticAddressingParam as WANStaticAddressingParam
-from .unnamed_schema_ref_87fa9e5fe9f6b8d607be1df57340d916 import (
-    UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916 as UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916,
-)
