@@ -5047,7 +5047,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.applications import UserPolicyCheckListResponse
+from cloudflare.types.zero_trust.access.applications import (
+    UserPolicyCheckGeo,
+    UserPolicyCheckListResponse,
+)
 ```
 
 Methods:
@@ -5285,11 +5288,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import (
-    NetworkPath,
-    Percentiles,
-    UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11,
-)
+from cloudflare.types.zero_trust import DeviceExperienceMonitor, NetworkPath, Percentiles
 ```
 
 ### Colos
@@ -5665,10 +5664,10 @@ from cloudflare.types.zero_trust.gateway import (
     CustomCertificateSettings,
     ExtendedEmailMatching,
     FipsSettings,
+    GatewayConfigurationSettings,
     NotificationSettings,
     ProtocolDetection,
     TLSSettings,
-    UnnamedSchemaRef055aaf3918bf29f81c09d394a864182e,
     ConfigurationUpdateResponse,
     ConfigurationEditResponse,
     ConfigurationGetResponse,
@@ -5723,12 +5722,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import (
-    Location,
-    LocationNetwork,
-    UnnamedSchemaRef1b37523fdb0ae5806cd8e062492aab66,
-    LocationDeleteResponse,
-)
+from cloudflare.types.zero_trust.gateway import Location, LocationNetwork, LocationDeleteResponse
 ```
 
 Methods:
@@ -5744,10 +5738,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import (
-    LoggingSetting,
-    UnnamedSchemaRefE86eeb84b7e922c35cfb0031a6309f7b,
-)
+from cloudflare.types.zero_trust.gateway import LoggingSetting
 ```
 
 Methods:
@@ -5763,7 +5754,6 @@ Types:
 from cloudflare.types.zero_trust.gateway import (
     GatewayIPs,
     ProxyEndpoint,
-    UnnamedSchemaRef4753ee81779d0e57189420079abab61e,
     ProxyEndpointDeleteResponse,
 )
 ```
@@ -5807,11 +5797,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.networks import (
-    Route,
-    Teamnet,
-    UnnamedSchemaRefC125d35cbb7f93aab989cd19bd764ed6,
-)
+from cloudflare.types.zero_trust.networks import NetworkRoute, Route, Teamnet
 ```
 
 Methods:
@@ -5982,8 +5968,8 @@ Types:
 
 ```python
 from cloudflare.types.url_scanner import (
-    UnnamedSchemaRef3750739f772bbdf0bb00d6634ccc0631,
-    UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6,
+    URLScannerDomain,
+    URLScannerTask,
     ScanCreateResponse,
     ScanGetResponse,
     ScanHarResponse,

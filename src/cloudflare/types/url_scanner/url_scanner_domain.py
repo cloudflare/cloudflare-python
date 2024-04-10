@@ -4,10 +4,10 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6"]
+__all__ = ["URLScannerDomain"]
 
 
-class UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6(BaseModel):
+class URLScannerDomain(BaseModel):
     id: int
 
     name: str
