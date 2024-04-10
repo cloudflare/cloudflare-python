@@ -4,9 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .unnamed_schema_ref_055aaf3918bf29f81c09d394a864182e_param import (
-    UnnamedSchemaRef055aaf3918bf29f81c09d394a864182eParam,
-)
+from .gateway_configuration_settings_param import GatewayConfigurationSettingsParam
 
 __all__ = ["ConfigurationUpdateParams"]
 
@@ -14,5 +12,5 @@ __all__ = ["ConfigurationUpdateParams"]
 class ConfigurationUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    settings: UnnamedSchemaRef055aaf3918bf29f81c09d394a864182eParam
+    settings: GatewayConfigurationSettingsParam
     """account settings."""

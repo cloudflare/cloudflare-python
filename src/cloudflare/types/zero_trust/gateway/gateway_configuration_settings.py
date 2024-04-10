@@ -14,10 +14,10 @@ from .extended_email_matching import ExtendedEmailMatching
 from .browser_isolation_settings import BrowserIsolationSettings
 from .custom_certificate_settings import CustomCertificateSettings
 
-__all__ = ["UnnamedSchemaRef055aaf3918bf29f81c09d394a864182e"]
+__all__ = ["GatewayConfigurationSettings"]
 
 
-class UnnamedSchemaRef055aaf3918bf29f81c09d394a864182e(BaseModel):
+class GatewayConfigurationSettings(BaseModel):
     activity_log: Optional[ActivityLogSettings] = None
     """Activity log settings."""
 

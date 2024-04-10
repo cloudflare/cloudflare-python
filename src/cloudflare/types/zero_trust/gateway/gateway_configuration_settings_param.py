@@ -15,10 +15,10 @@ from .extended_email_matching_param import ExtendedEmailMatchingParam
 from .browser_isolation_settings_param import BrowserIsolationSettingsParam
 from .custom_certificate_settings_param import CustomCertificateSettingsParam
 
-__all__ = ["UnnamedSchemaRef055aaf3918bf29f81c09d394a864182eParam"]
+__all__ = ["GatewayConfigurationSettingsParam"]
 
 
-class UnnamedSchemaRef055aaf3918bf29f81c09d394a864182eParam(TypedDict, total=False):
+class GatewayConfigurationSettingsParam(TypedDict, total=False):
     activity_log: ActivityLogSettingsParam
     """Activity log settings."""
 
