@@ -4901,7 +4901,6 @@ Types:
 ```python
 from cloudflare.types.zero_trust import (
     AccessRule,
-    AnyValidServiceTokenRule,
     AuthenticationMethodRule,
     AzureGroupRule,
     CertificateRule,
