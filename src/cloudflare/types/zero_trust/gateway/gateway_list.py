@@ -3,12 +3,12 @@
 from typing import Optional
 from datetime import datetime
 
-from ....._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["Lists"]
+__all__ = ["GatewayList"]
 
 
-class Lists(BaseModel):
+class GatewayList(BaseModel):
     created_at: Optional[datetime] = None
 
     value: Optional[str] = None
