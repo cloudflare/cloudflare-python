@@ -6,7 +6,6 @@ from .seat import Seat as Seat
 from .device import Device as Device
 from .tunnel import Tunnel as Tunnel
 from .azure_ad import AzureAD as AzureAD
-from .group_rule import GroupRule as GroupRule
 from .access_rule import AccessRule as AccessRule
 from .percentiles import Percentiles as Percentiles
 from .scim_config import ScimConfig as ScimConfig
@@ -14,7 +13,6 @@ from .login_design import LoginDesign as LoginDesign
 from .network_path import NetworkPath as NetworkPath
 from .organization import Organization as Organization
 from .tunnel_param import TunnelParam as TunnelParam
-from .group_rule_param import GroupRuleParam as GroupRuleParam
 from .seat_edit_params import SeatEditParams as SeatEditParams
 from .access_rule_param import AccessRuleParam as AccessRuleParam
 from .identity_provider import IdentityProvider as IdentityProvider
