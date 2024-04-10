@@ -5,10 +5,17 @@ from typing import List
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
-from ...unnamed_schema_ref_83a14d589e799bc901b9ccc870251d09 import UnnamedSchemaRef83a14d589e799bc901b9ccc870251d09
 
-__all__ = ["LocationGetResponse"]
+__all__ = ["LocationGetResponse", "TrafficAnomaly"]
+
+
+class TrafficAnomaly(BaseModel):
+    client_country_alpha2: str = FieldInfo(alias="clientCountryAlpha2")
+
+    client_country_name: str = FieldInfo(alias="clientCountryName")
+
+    value: str
 
 
 class LocationGetResponse(BaseModel):
-    traffic_anomalies: List[UnnamedSchemaRef83a14d589e799bc901b9ccc870251d09] = FieldInfo(alias="trafficAnomalies")
+    traffic_anomalies: List[TrafficAnomaly] = FieldInfo(alias="trafficAnomalies")

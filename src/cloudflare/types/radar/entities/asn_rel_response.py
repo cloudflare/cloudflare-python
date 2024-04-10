@@ -3,9 +3,16 @@
 from typing import List
 
 from ...._models import BaseModel
-from ...unnamed_schema_ref_c5858f1f916a921846e0b6159af470a7 import UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7
 
-__all__ = ["ASNRelResponse", "Rel"]
+__all__ = ["ASNRelResponse", "Meta", "Rel"]
+
+
+class Meta(BaseModel):
+    data_time: str
+
+    query_time: str
+
+    total_peers: int
 
 
 class Rel(BaseModel):
@@ -25,6 +32,6 @@ class Rel(BaseModel):
 
 
 class ASNRelResponse(BaseModel):
-    meta: UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7
+    meta: Meta
 
     rels: List[Rel]

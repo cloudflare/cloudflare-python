@@ -3,9 +3,8 @@
 from typing import List
 
 from ....._models import BaseModel
-from ....unnamed_schema_ref_c5858f1f916a921846e0b6159af470a7 import UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7
 
-__all__ = ["AsePrefixesResponse", "ASN"]
+__all__ = ["AsePrefixesResponse", "ASN", "Meta"]
 
 
 class ASN(BaseModel):
@@ -18,7 +17,15 @@ class ASN(BaseModel):
     pfxs_count: int
 
 
+class Meta(BaseModel):
+    data_time: str
+
+    query_time: str
+
+    total_peers: int
+
+
 class AsePrefixesResponse(BaseModel):
     asns: List[ASN]
 
-    meta: UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7
+    meta: Meta

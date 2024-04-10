@@ -5,9 +5,20 @@ from typing import List, Optional
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..unnamed_schema_ref_16e559c45a31db5480e21fbe904b2e42 import UnnamedSchemaRef16e559c45a31db5480e21fbe904b2e42
 
-__all__ = ["TrafficAnomalyGetResponse", "TrafficAnomaly", "TrafficAnomalyASNDetails"]
+__all__ = [
+    "TrafficAnomalyGetResponse",
+    "TrafficAnomaly",
+    "TrafficAnomalyASNDetails",
+    "TrafficAnomalyASNDetailsLocations",
+    "TrafficAnomalyLocationDetails",
+]
+
+
+class TrafficAnomalyASNDetailsLocations(BaseModel):
+    code: str
+
+    name: str
 
 
 class TrafficAnomalyASNDetails(BaseModel):
@@ -15,7 +26,13 @@ class TrafficAnomalyASNDetails(BaseModel):
 
     name: str
 
-    locations: Optional[UnnamedSchemaRef16e559c45a31db5480e21fbe904b2e42] = None
+    locations: Optional[TrafficAnomalyASNDetailsLocations] = None
+
+
+class TrafficAnomalyLocationDetails(BaseModel):
+    code: str
+
+    name: str
 
 
 class TrafficAnomaly(BaseModel):
@@ -31,9 +48,7 @@ class TrafficAnomaly(BaseModel):
 
     end_date: Optional[str] = FieldInfo(alias="endDate", default=None)
 
-    location_details: Optional[UnnamedSchemaRef16e559c45a31db5480e21fbe904b2e42] = FieldInfo(
-        alias="locationDetails", default=None
-    )
+    location_details: Optional[TrafficAnomalyLocationDetails] = FieldInfo(alias="locationDetails", default=None)
 
     visible_in_data_sources: Optional[List[str]] = FieldInfo(alias="visibleInDataSources", default=None)
 
