@@ -3759,11 +3759,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import (
-    HealthCheck,
-    HealthCheckType,
-    UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5,
-)
+from cloudflare.types import HealthCheck, HealthCheckRate, HealthCheckType
 ```
 
 ## CfInterconnects
@@ -3967,10 +3963,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_network_monitoring import (
-    Configuration,
-    UnnamedSchemaRef621ca3f6ea9a96427c902b0d14279ff8,
-)
+from cloudflare.types.magic_network_monitoring import Configuration
 ```
 
 Methods:
@@ -3992,10 +3985,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_network_monitoring import (
-    MagicNetworkMonitoringRule,
-    UnnamedSchemaRef99ba74ba6027c3c87ca03d4e81cfc16d,
-)
+from cloudflare.types.magic_network_monitoring import MagicNetworkMonitoringRule
 ```
 
 Methods:
@@ -4198,13 +4188,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rules import (
-    Hostname,
-    List,
-    Redirect,
-    UnnamedSchemaRefE706d5e8367564544e2991af82ebb07a,
-    ListDeleteResponse,
-)
+from cloudflare.types.rules import Hostname, List, Redirect, ListDeleteResponse
 ```
 
 Methods:
@@ -4220,10 +4204,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rules.lists import (
-    UnnamedSchemaRefCc279fb99baf6a166db5c4e790a8c6cd,
-    BulkOperationGetResponse,
-)
+from cloudflare.types.rules.lists import OperationStatus, BulkOperationGetResponse
 ```
 
 Methods:
@@ -4236,8 +4217,8 @@ Types:
 
 ```python
 from cloudflare.types.rules.lists import (
-    UnnamedSchemaRef34bb6e31800bc0207c083affa12d2775,
-    UnnamedSchemaRef46621d4d5b6644caae5c9167b8e28865,
+    ListCursor,
+    ListItem,
     ItemCreateResponse,
     ItemUpdateResponse,
     ItemListResponse,
@@ -4261,11 +4242,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.storage import (
-    Components,
-    Schema,
-    UnnamedSchemaRef608bee5065f7314d6fa572b89a1910f7,
-)
+from cloudflare.types.storage import Components, Schema
 ```
 
 Methods:
@@ -4490,7 +4467,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import UnnamedSchemaRefD6e23adacaca017802aaa484a8b3f405
+from cloudflare.types import Alert
 ```
 
 ## AvailableAlerts
@@ -4753,9 +4730,9 @@ Types:
 
 ```python
 from cloudflare.types.zero_trust.devices import (
+    DEXTest,
     SchemaData,
     SchemaHTTP,
-    UnnamedSchemaRef15fd6ef0641450fd873ffb71715170c9,
     DEXTestDeleteResponse,
 )
 ```
@@ -4773,11 +4750,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices import (
-    DeviceNetwork,
-    UnnamedSchemaRefD2b048663faf5e0cd5c90501b71171de,
-    NetworkDeleteResponse,
-)
+from cloudflare.types.zero_trust.devices import DeviceNetwork, NetworkDeleteResponse
 ```
 
 Methods:
@@ -4793,11 +4766,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices import (
-    SettingsPolicy,
-    UnnamedSchemaRefF636ff9f2cb41ff4b715cf8ed8515581,
-    PolicyDeleteResponse,
-)
+from cloudflare.types.zero_trust.devices import SettingsPolicy, PolicyDeleteResponse
 ```
 
 Methods:
@@ -4827,7 +4796,6 @@ Types:
 ```python
 from cloudflare.types.zero_trust.devices.policies import (
     SplitTunnelExclude,
-    UnnamedSchemaRef0462afe1a32ee90b1999d4277af59fa8,
     ExcludeUpdateResponse,
     ExcludeGetResponse,
 )
@@ -4846,7 +4814,7 @@ Types:
 ```python
 from cloudflare.types.zero_trust.devices.policies import (
     FallbackDomain,
-    UnnamedSchemaRef1fbf91ecd61792c751fead58dc8005e6,
+    FallbackDomainPolicy,
     FallbackDomainUpdateResponse,
     FallbackDomainGetResponse,
 )
@@ -4865,7 +4833,6 @@ Types:
 ```python
 from cloudflare.types.zero_trust.devices.policies import (
     SplitTunnelInclude,
-    UnnamedSchemaRef5e0c6134a624678286f4a424b001870a,
     IncludeUpdateResponse,
     IncludeGetResponse,
 )
@@ -4886,9 +4853,6 @@ from cloudflare.types.zero_trust.devices import (
     DeviceInput,
     DeviceMatch,
     DevicePostureRule,
-    UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930,
-    UnnamedSchemaRef41885dd46b9e0294254c49305a273681,
-    UnnamedSchemaRef9e35ef84511131488ae286ce78ac4b27,
     PostureDeleteResponse,
 )
 ```
@@ -4906,11 +4870,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices.posture import (
-    Integration,
-    UnnamedSchemaRefB84b377dfc9454d455b646d4bc9ab507,
-    IntegrationDeleteResponse,
-)
+from cloudflare.types.zero_trust.devices.posture import Integration, IntegrationDeleteResponse
 ```
 
 Methods:
@@ -5043,6 +5003,9 @@ from cloudflare.types.zero_trust.access import (
     Application,
     CorsHeaders,
     CustomPagesh,
+    SaasAppNameFormat,
+    SaasAppNameIDFormat,
+    SaasAppSource,
     SAMLSaasApp,
     SelfHostedDomainsh,
     ApplicationDeleteResponse,

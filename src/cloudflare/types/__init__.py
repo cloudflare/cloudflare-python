@@ -92,6 +92,7 @@ from .zone_list_params import ZoneListParams as ZoneListParams
 from .additional_routes import AdditionalRoutes as AdditionalRoutes
 from .cookie_attributes import CookieAttributes as CookieAttributes
 from .custom_nameserver import CustomNameserver as CustomNameserver
+from .health_check_rate import HealthCheckRate as HealthCheckRate
 from .health_check_type import HealthCheckType as HealthCheckType
 from .lighthouse_report import LighthouseReport as LighthouseReport
 from .location_strategy import LocationStrategy as LocationStrategy
@@ -355,7 +356,4 @@ from .unnamed_schema_ref_baac9d7da12de53e99142f8ecd3982e5 import (
 )
 from .unnamed_schema_ref_c5858f1f916a921846e0b6159af470a7 import (
     UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7 as UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7,
-)
-from .unnamed_schema_ref_eebdc868ce7f7ae92e23438caa84e7b5 import (
-    UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5 as UnnamedSchemaRefEebdc868ce7f7ae92e23438caa84e7b5,
 )
