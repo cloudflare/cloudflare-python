@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from .list import List as List
 from .hostname import Hostname as Hostname
 from .redirect import Redirect as Redirect
+from .rule_list import RuleList as RuleList
 from .hostname_param import HostnameParam as HostnameParam
 from .redirect_param import RedirectParam as RedirectParam
 from .list_create_params import ListCreateParams as ListCreateParams
