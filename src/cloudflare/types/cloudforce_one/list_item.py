@@ -1,15 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["List"]
+__all__ = ["ListItem"]
 
 
-class List(BaseModel):
+class ListItem(BaseModel):
     id: str
     """UUID"""
 
