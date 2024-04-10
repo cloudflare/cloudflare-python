@@ -50,10 +50,13 @@ class Advertisements(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Advertisement]:
-        """
-        Update advertisement for rule.
+        """Update advertisement for rule.
 
         Args:
+          rule_id: The id of the rule.
+
+        Must be unique.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -102,10 +105,13 @@ class AsyncAdvertisements(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Advertisement]:
-        """
-        Update advertisement for rule.
+        """Update advertisement for rule.
 
         Args:
+          rule_id: The id of the rule.
+
+        Must be unique.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
