@@ -33,17 +33,17 @@ from ...types.secondary_dns import (
     incoming_update_params,
 )
 
-__all__ = ["Incoming", "AsyncIncoming"]
+__all__ = ["IncomingResource", "AsyncIncomingResource"]
 
 
-class Incoming(SyncAPIResource):
+class IncomingResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IncomingWithRawResponse:
-        return IncomingWithRawResponse(self)
+    def with_raw_response(self) -> IncomingResourceWithRawResponse:
+        return IncomingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IncomingWithStreamingResponse:
-        return IncomingWithStreamingResponse(self)
+    def with_streaming_response(self) -> IncomingResourceWithStreamingResponse:
+        return IncomingResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -232,14 +232,14 @@ class Incoming(SyncAPIResource):
         )
 
 
-class AsyncIncoming(AsyncAPIResource):
+class AsyncIncomingResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIncomingWithRawResponse:
-        return AsyncIncomingWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIncomingResourceWithRawResponse:
+        return AsyncIncomingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIncomingWithStreamingResponse:
-        return AsyncIncomingWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIncomingResourceWithStreamingResponse:
+        return AsyncIncomingResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -428,8 +428,8 @@ class AsyncIncoming(AsyncAPIResource):
         )
 
 
-class IncomingWithRawResponse:
-    def __init__(self, incoming: Incoming) -> None:
+class IncomingResourceWithRawResponse:
+    def __init__(self, incoming: IncomingResource) -> None:
         self._incoming = incoming
 
         self.create = to_raw_response_wrapper(
@@ -446,8 +446,8 @@ class IncomingWithRawResponse:
         )
 
 
-class AsyncIncomingWithRawResponse:
-    def __init__(self, incoming: AsyncIncoming) -> None:
+class AsyncIncomingResourceWithRawResponse:
+    def __init__(self, incoming: AsyncIncomingResource) -> None:
         self._incoming = incoming
 
         self.create = async_to_raw_response_wrapper(
@@ -464,8 +464,8 @@ class AsyncIncomingWithRawResponse:
         )
 
 
-class IncomingWithStreamingResponse:
-    def __init__(self, incoming: Incoming) -> None:
+class IncomingResourceWithStreamingResponse:
+    def __init__(self, incoming: IncomingResource) -> None:
         self._incoming = incoming
 
         self.create = to_streamed_response_wrapper(
@@ -482,8 +482,8 @@ class IncomingWithStreamingResponse:
         )
 
 
-class AsyncIncomingWithStreamingResponse:
-    def __init__(self, incoming: AsyncIncoming) -> None:
+class AsyncIncomingResourceWithStreamingResponse:
+    def __init__(self, incoming: AsyncIncomingResource) -> None:
         self._incoming = incoming
 
         self.create = async_to_streamed_response_wrapper(

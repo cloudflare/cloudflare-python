@@ -4,10 +4,10 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["UnnamedSchemaRefC8302c265937f9d6f96fd69644e56b26"]
+__all__ = ["Schedule"]
 
 
-class UnnamedSchemaRefC8302c265937f9d6f96fd69644e56b26(BaseModel):
+class Schedule(BaseModel):
     created_on: Optional[object] = None
 
     cron: Optional[object] = None
