@@ -6,8 +6,6 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
-from .unnamed_schema_ref_34ef0ad73a63c3f76ed170adca181930 import UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930
-from .unnamed_schema_ref_41885dd46b9e0294254c49305a273681 import UnnamedSchemaRef41885dd46b9e0294254c49305a273681
 
 __all__ = [
     "DeviceInput",
@@ -31,7 +29,7 @@ __all__ = [
 
 
 class TeamsDevicesFileInputRequest(BaseModel):
-    operating_system: UnnamedSchemaRef41885dd46b9e0294254c49305a273681
+    operating_system: Literal["windows", "linux", "mac"]
     """Operating system"""
 
     path: str
@@ -67,7 +65,7 @@ class TeamsDevicesOSVersionInputRequest(BaseModel):
     operating_system: Literal["windows"]
     """Operating System"""
 
-    operator: UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930
+    operator: Literal["<", "<=", ">", ">=", "=="]
     """operator"""
 
     version: str
@@ -96,7 +94,7 @@ class TeamsDevicesFirewallInputRequest(BaseModel):
 
 
 class TeamsDevicesSentineloneInputRequest(BaseModel):
-    operating_system: UnnamedSchemaRef41885dd46b9e0294254c49305a273681
+    operating_system: Literal["windows", "linux", "mac"]
     """Operating system"""
 
     path: str
@@ -110,7 +108,7 @@ class TeamsDevicesSentineloneInputRequest(BaseModel):
 
 
 class TeamsDevicesCarbonblackInputRequest(BaseModel):
-    operating_system: UnnamedSchemaRef41885dd46b9e0294254c49305a273681
+    operating_system: Literal["windows", "linux", "mac"]
     """Operating system"""
 
     path: str
@@ -132,7 +130,7 @@ class TeamsDevicesDiskEncryptionInputRequest(BaseModel):
 
 
 class TeamsDevicesApplicationInputRequest(BaseModel):
-    operating_system: UnnamedSchemaRef41885dd46b9e0294254c49305a273681
+    operating_system: Literal["windows", "linux", "mac"]
     """Operating system"""
 
     path: str
@@ -168,7 +166,7 @@ class TeamsDevicesCrowdstrikeInputRequest(BaseModel):
     last_seen: Optional[str] = None
     """For more details on last seen, please refer to the Crowdstrike documentation."""
 
-    operator: Optional[UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930] = None
+    operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = None
     """operator"""
 
     os: Optional[str] = None
@@ -245,7 +243,7 @@ class TeamsDevicesSentineloneS2sInputRequest(BaseModel):
     network_status: Optional[Literal["connected", "disconnected", "disconnecting", "connecting"]] = None
     """Network status of device."""
 
-    operator: Optional[UnnamedSchemaRef34ef0ad73a63c3f76ed170adca181930] = None
+    operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = None
     """operator"""
 
 

@@ -14,6 +14,7 @@ from .allowed_idpsh import AllowedIdpsh as AllowedIdpsh
 from .custom_pagesh import CustomPagesh as CustomPagesh
 from .saml_saas_app import SAMLSaasApp as SAMLSaasApp
 from .service_token import ServiceToken as ServiceToken
+from .saas_app_source import SaasAppSource as SaasAppSource
 from .allowed_headersh import AllowedHeadersh as AllowedHeadersh
 from .allowed_methodsh import AllowedMethodsh as AllowedMethodsh
 from .allowed_originsh import AllowedOriginsh as AllowedOriginsh
@@ -30,11 +31,14 @@ from .key_update_response import KeyUpdateResponse as KeyUpdateResponse
 from .saml_saas_app_param import SAMLSaasAppParam as SAMLSaasAppParam
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
 from .associated_hostnames import AssociatedHostnames as AssociatedHostnames
+from .saas_app_name_format import SaasAppNameFormat as SaasAppNameFormat
 from .self_hosted_domainsh import SelfHostedDomainsh as SelfHostedDomainsh
 from .group_delete_response import GroupDeleteResponse as GroupDeleteResponse
+from .saas_app_source_param import SaasAppSourceParam as SaasAppSourceParam
 from .bookmark_create_params import BookmarkCreateParams as BookmarkCreateParams
 from .bookmark_delete_params import BookmarkDeleteParams as BookmarkDeleteParams
 from .bookmark_update_params import BookmarkUpdateParams as BookmarkUpdateParams
+from .saas_app_name_id_format import SaasAppNameIDFormat as SaasAppNameIDFormat
 from .bookmark_delete_response import BookmarkDeleteResponse as BookmarkDeleteResponse
 from .custom_page_without_html import CustomPageWithoutHTML as CustomPageWithoutHTML
 from .application_create_params import ApplicationCreateParams as ApplicationCreateParams

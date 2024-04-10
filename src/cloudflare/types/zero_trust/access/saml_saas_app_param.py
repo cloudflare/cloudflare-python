@@ -4,26 +4,21 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["SAMLSaasAppParam", "CustomAttributes", "CustomAttributesSource"]
+from .saas_app_name_format import SaasAppNameFormat
+from .saas_app_source_param import SaasAppSourceParam
+from .saas_app_name_id_format import SaasAppNameIDFormat
 
-
-class CustomAttributesSource(TypedDict, total=False):
-    name: str
-    """The name of the IdP attribute."""
+__all__ = ["SAMLSaasAppParam", "CustomAttributes"]
 
 
 class CustomAttributes(TypedDict, total=False):
     name: str
     """The name of the attribute."""
 
-    name_format: Literal[
-        "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-        "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
-        "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
-    ]
+    name_format: SaasAppNameFormat
     """A globally unique name for an identity or service provider."""
 
-    source: CustomAttributesSource
+    source: SaasAppSourceParam
 
 
 class SAMLSaasAppParam(TypedDict, total=False):
@@ -51,7 +46,7 @@ class SAMLSaasAppParam(TypedDict, total=False):
     idp_entity_id: str
     """The unique identifier for your SaaS application."""
 
-    name_id_format: Literal["id", "email"]
+    name_id_format: SaasAppNameIDFormat
     """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: str
