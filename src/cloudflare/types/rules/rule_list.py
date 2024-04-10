@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["List"]
+__all__ = ["RuleList"]
 
 
-class List(BaseModel):
+class RuleList(BaseModel):
     id: Optional[str] = None
     """The unique ID of the list."""
 

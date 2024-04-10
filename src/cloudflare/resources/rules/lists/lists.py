@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -30,7 +30,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ....types.rules import List, ListDeleteResponse, list_create_params, list_delete_params, list_update_params
+from ....types.rules import RuleList, ListDeleteResponse, list_create_params, list_delete_params, list_update_params
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -77,7 +77,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[List]:
+    ) -> Optional[RuleList]:
         """
         Creates a new list of the specified type.
 
@@ -118,7 +118,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[List]], ResultWrapper[List]),
+            cast_to=cast(Type[Optional[RuleList]], ResultWrapper[RuleList]),
         )
 
     def update(
@@ -133,7 +133,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[List]:
+    ) -> Optional[RuleList]:
         """
         Updates the description of a list.
 
@@ -166,7 +166,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[List]], ResultWrapper[List]),
+            cast_to=cast(Type[Optional[RuleList]], ResultWrapper[RuleList]),
         )
 
     def list(
@@ -179,7 +179,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[List]:
+    ) -> SyncSinglePage[RuleList]:
         """
         Fetches all lists in the account.
 
@@ -198,11 +198,11 @@ class Lists(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/rules/lists",
-            page=SyncSinglePage[List],
+            page=SyncSinglePage[RuleList],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=List,
+            model=RuleList,
         )
 
     def delete(
@@ -262,7 +262,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[List]:
+    ) -> Optional[RuleList]:
         """
         Fetches the details of a list.
 
@@ -292,7 +292,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[List]], ResultWrapper[List]),
+            cast_to=cast(Type[Optional[RuleList]], ResultWrapper[RuleList]),
         )
 
 
@@ -326,7 +326,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[List]:
+    ) -> Optional[RuleList]:
         """
         Creates a new list of the specified type.
 
@@ -367,7 +367,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[List]], ResultWrapper[List]),
+            cast_to=cast(Type[Optional[RuleList]], ResultWrapper[RuleList]),
         )
 
     async def update(
@@ -382,7 +382,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[List]:
+    ) -> Optional[RuleList]:
         """
         Updates the description of a list.
 
@@ -415,7 +415,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[List]], ResultWrapper[List]),
+            cast_to=cast(Type[Optional[RuleList]], ResultWrapper[RuleList]),
         )
 
     def list(
@@ -428,7 +428,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[List, AsyncSinglePage[List]]:
+    ) -> AsyncPaginator[RuleList, AsyncSinglePage[RuleList]]:
         """
         Fetches all lists in the account.
 
@@ -447,11 +447,11 @@ class AsyncLists(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/rules/lists",
-            page=AsyncSinglePage[List],
+            page=AsyncSinglePage[RuleList],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=List,
+            model=RuleList,
         )
 
     async def delete(
@@ -511,7 +511,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[List]:
+    ) -> Optional[RuleList]:
         """
         Fetches the details of a list.
 
@@ -541,7 +541,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[List]], ResultWrapper[List]),
+            cast_to=cast(Type[Optional[RuleList]], ResultWrapper[RuleList]),
         )
 
 
