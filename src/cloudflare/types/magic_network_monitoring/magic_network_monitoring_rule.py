@@ -35,7 +35,6 @@ class MagicNetworkMonitoringRule(BaseModel):
     prefixes: List[str]
 
     id: Optional[str] = None
-    """The id of the rule. Must be unique."""
 
     bandwidth_threshold: Optional[float] = None
     """The number of bits per second for the rule.
