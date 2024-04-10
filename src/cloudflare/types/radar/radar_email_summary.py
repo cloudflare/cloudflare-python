@@ -4,10 +4,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["UnnamedSchemaRef853c157ad369010995e35be614e0343f"]
+__all__ = ["RadarEmailSummary"]
 
 
-class UnnamedSchemaRef853c157ad369010995e35be614e0343f(BaseModel):
+class RadarEmailSummary(BaseModel):
     fail: str = FieldInfo(alias="FAIL")
 
     none: str = FieldInfo(alias="NONE")

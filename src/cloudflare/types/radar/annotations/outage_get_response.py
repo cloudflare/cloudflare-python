@@ -5,9 +5,21 @@ from typing import List, Optional
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
-from ...unnamed_schema_ref_16e559c45a31db5480e21fbe904b2e42 import UnnamedSchemaRef16e559c45a31db5480e21fbe904b2e42
 
-__all__ = ["OutageGetResponse", "Annotation", "AnnotationASNsDetail", "AnnotationOutage"]
+__all__ = [
+    "OutageGetResponse",
+    "Annotation",
+    "AnnotationASNsDetail",
+    "AnnotationASNsDetailLocations",
+    "AnnotationLocationsDetail",
+    "AnnotationOutage",
+]
+
+
+class AnnotationASNsDetailLocations(BaseModel):
+    code: str
+
+    name: str
 
 
 class AnnotationASNsDetail(BaseModel):
@@ -15,7 +27,13 @@ class AnnotationASNsDetail(BaseModel):
 
     name: str
 
-    locations: Optional[UnnamedSchemaRef16e559c45a31db5480e21fbe904b2e42] = None
+    locations: Optional[AnnotationASNsDetailLocations] = None
+
+
+class AnnotationLocationsDetail(BaseModel):
+    code: str
+
+    name: str
 
 
 class AnnotationOutage(BaseModel):
@@ -37,7 +55,7 @@ class Annotation(BaseModel):
 
     locations: List[str]
 
-    locations_details: List[UnnamedSchemaRef16e559c45a31db5480e21fbe904b2e42] = FieldInfo(alias="locationsDetails")
+    locations_details: List[AnnotationLocationsDetail] = FieldInfo(alias="locationsDetails")
 
     outage: AnnotationOutage
 
