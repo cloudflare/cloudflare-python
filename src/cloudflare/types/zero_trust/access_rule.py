@@ -5,7 +5,6 @@ from typing import Union
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from .group_rule import GroupRule
 
 __all__ = [
     "AccessRule",
@@ -21,6 +20,8 @@ __all__ = [
     "AccessIPListRule",
     "AccessIPListRuleIPList",
     "AccessCertificateRule",
+    "AccessAccessGroupRule",
+    "AccessAccessGroupRuleGroup",
     "AccessAzureGroupRule",
     "AccessAzureGroupRuleAzureAD",
     "AccessGitHubOrganizationRule",
@@ -97,6 +98,15 @@ class AccessIPListRule(BaseModel):
 
 class AccessCertificateRule(BaseModel):
     certificate: object
+
+
+class AccessAccessGroupRuleGroup(BaseModel):
+    id: str
+    """The ID of a previously created Access group."""
+
+
+class AccessAccessGroupRule(BaseModel):
+    group: AccessAccessGroupRuleGroup
 
 
 class AccessAzureGroupRuleAzureAD(BaseModel):
@@ -225,7 +235,7 @@ AccessRule = Union[
     AccessIPRule,
     AccessIPListRule,
     AccessCertificateRule,
-    GroupRule,
+    AccessAccessGroupRule,
     AccessAzureGroupRule,
     AccessGitHubOrganizationRule,
     AccessGSuiteGroupRule,

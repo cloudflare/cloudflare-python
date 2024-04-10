@@ -4899,7 +4899,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import AccessRule, GroupRule
+from cloudflare.types.zero_trust import AccessRule
 ```
 
 ### Applications

@@ -6,7 +6,6 @@ from typing import Union
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .group_rule_param import GroupRuleParam
 
 __all__ = [
     "AccessRuleParam",
@@ -22,6 +21,8 @@ __all__ = [
     "AccessIPListRule",
     "AccessIPListRuleIPList",
     "AccessCertificateRule",
+    "AccessAccessGroupRule",
+    "AccessAccessGroupRuleGroup",
     "AccessAzureGroupRule",
     "AccessAzureGroupRuleAzureAD",
     "AccessGitHubOrganizationRule",
@@ -98,6 +99,15 @@ class AccessIPListRule(TypedDict, total=False):
 
 class AccessCertificateRule(TypedDict, total=False):
     certificate: Required[object]
+
+
+class AccessAccessGroupRuleGroup(TypedDict, total=False):
+    id: Required[str]
+    """The ID of a previously created Access group."""
+
+
+class AccessAccessGroupRule(TypedDict, total=False):
+    group: Required[AccessAccessGroupRuleGroup]
 
 
 class AccessAzureGroupRuleAzureAD(TypedDict, total=False):
@@ -228,7 +238,7 @@ AccessRuleParam = Union[
     AccessIPRule,
     AccessIPListRule,
     AccessCertificateRule,
-    GroupRuleParam,
+    AccessAccessGroupRule,
     AccessAzureGroupRule,
     AccessGitHubOrganizationRule,
     AccessGSuiteGroupRule,
