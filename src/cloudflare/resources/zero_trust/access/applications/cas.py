@@ -21,8 +21,7 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from .....types.zero_trust.access.applications import CA, CADeleteResponse
+from .....types.zero_trust.access.applications import CA, CAGetResponse, CACreateResponse, CADeleteResponse
 
 __all__ = ["CAs", "AsyncCAs"]
 
@@ -48,7 +47,7 @@ class CAs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> CACreateResponse:
         """
         Generates a new short-lived certificate CA and public key.
 
@@ -85,7 +84,7 @@ class CAs(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            CACreateResponse,
             self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
                 options=make_request_options(
@@ -96,7 +95,7 @@ class CAs(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[CACreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -225,7 +224,7 @@ class CAs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> CAGetResponse:
         """
         Fetches a short-lived certificate CA and its public key.
 
@@ -262,7 +261,7 @@ class CAs(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            CAGetResponse,
             self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
                 options=make_request_options(
@@ -273,7 +272,7 @@ class CAs(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[CAGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -300,7 +299,7 @@ class AsyncCAs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> CACreateResponse:
         """
         Generates a new short-lived certificate CA and public key.
 
@@ -337,7 +336,7 @@ class AsyncCAs(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            CACreateResponse,
             await self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
                 options=make_request_options(
@@ -348,7 +347,7 @@ class AsyncCAs(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[CACreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -477,7 +476,7 @@ class AsyncCAs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> CAGetResponse:
         """
         Fetches a short-lived certificate CA and its public key.
 
@@ -514,7 +513,7 @@ class AsyncCAs(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            CAGetResponse,
             await self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
                 options=make_request_options(
@@ -525,7 +524,7 @@ class AsyncCAs(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[CAGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

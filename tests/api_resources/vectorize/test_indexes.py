@@ -10,12 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from cloudflare.types.vectorize import (
     IndexQuery,
     CreateIndex,
     IndexInsert,
     IndexUpsert,
+    IndexDeleteResponse,
     IndexDeleteVectorsByID,
 )
 
@@ -192,7 +192,7 @@ class TestIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, index, path=["response"])
+        assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -205,7 +205,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, index, path=["response"])
+        assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -218,7 +218,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, index, path=["response"])
+            assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -763,7 +763,7 @@ class TestAsyncIndexes:
             "example-index",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, index, path=["response"])
+        assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -776,7 +776,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, index, path=["response"])
+        assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -789,7 +789,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, index, path=["response"])
+            assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

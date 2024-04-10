@@ -8,6 +8,9 @@ import httpx
 
 from ..types import (
     RateLimit,
+    RateLimitGetResponse,
+    RateLimitEditResponse,
+    RateLimitCreateResponse,
     RateLimitDeleteResponse,
     rate_limit_edit_params,
     rate_limit_list_params,
@@ -33,7 +36,6 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["RateLimits", "AsyncRateLimits"]
 
@@ -58,7 +60,7 @@ class RateLimits(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RateLimitCreateResponse:
         """Creates a new rate limit for a zone.
 
         Refer to the object definition for a list
@@ -78,7 +80,7 @@ class RateLimits(SyncAPIResource):
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RateLimitCreateResponse,
             self._post(
                 f"/zones/{zone_identifier}/rate_limits",
                 body=maybe_transform(body, rate_limit_create_params.RateLimitCreateParams),
@@ -90,7 +92,7 @@ class RateLimits(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RateLimitCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -206,7 +208,7 @@ class RateLimits(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RateLimitEditResponse:
         """
         Updates an existing rate limit.
 
@@ -228,7 +230,7 @@ class RateLimits(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RateLimitEditResponse,
             self._put(
                 f"/zones/{zone_identifier}/rate_limits/{id}",
                 body=maybe_transform(body, rate_limit_edit_params.RateLimitEditParams),
@@ -240,7 +242,7 @@ class RateLimits(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RateLimitEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -256,7 +258,7 @@ class RateLimits(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RateLimitGetResponse:
         """
         Fetches the details of a rate limit.
 
@@ -278,7 +280,7 @@ class RateLimits(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RateLimitGetResponse,
             self._get(
                 f"/zones/{zone_identifier}/rate_limits/{id}",
                 options=make_request_options(
@@ -289,7 +291,7 @@ class RateLimits(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RateLimitGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -315,7 +317,7 @@ class AsyncRateLimits(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RateLimitCreateResponse:
         """Creates a new rate limit for a zone.
 
         Refer to the object definition for a list
@@ -335,7 +337,7 @@ class AsyncRateLimits(AsyncAPIResource):
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RateLimitCreateResponse,
             await self._post(
                 f"/zones/{zone_identifier}/rate_limits",
                 body=await async_maybe_transform(body, rate_limit_create_params.RateLimitCreateParams),
@@ -347,7 +349,7 @@ class AsyncRateLimits(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RateLimitCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -463,7 +465,7 @@ class AsyncRateLimits(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RateLimitEditResponse:
         """
         Updates an existing rate limit.
 
@@ -485,7 +487,7 @@ class AsyncRateLimits(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RateLimitEditResponse,
             await self._put(
                 f"/zones/{zone_identifier}/rate_limits/{id}",
                 body=await async_maybe_transform(body, rate_limit_edit_params.RateLimitEditParams),
@@ -497,7 +499,7 @@ class AsyncRateLimits(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RateLimitEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -513,7 +515,7 @@ class AsyncRateLimits(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RateLimitGetResponse:
         """
         Fetches the details of a rate limit.
 
@@ -535,7 +537,7 @@ class AsyncRateLimits(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RateLimitGetResponse,
             await self._get(
                 f"/zones/{zone_identifier}/rate_limits/{id}",
                 options=make_request_options(
@@ -546,7 +548,7 @@ class AsyncRateLimits(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RateLimitGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

@@ -6,3 +6,4 @@ from .hyperdrive import Hyperdrive as Hyperdrive
 from .config_edit_params import ConfigEditParams as ConfigEditParams
 from .config_create_params import ConfigCreateParams as ConfigCreateParams
 from .config_update_params import ConfigUpdateParams as ConfigUpdateParams
+from .config_delete_response import ConfigDeleteResponse as ConfigDeleteResponse

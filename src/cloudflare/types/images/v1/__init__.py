@@ -11,3 +11,4 @@ from .variant_create_params import VariantCreateParams as VariantCreateParams
 from .variant_delete_params import VariantDeleteParams as VariantDeleteParams
 from .variant_edit_response import VariantEditResponse as VariantEditResponse
 from .variant_create_response import VariantCreateResponse as VariantCreateResponse
+from .variant_delete_response import VariantDeleteResponse as VariantDeleteResponse

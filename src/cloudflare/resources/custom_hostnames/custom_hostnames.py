@@ -8,7 +8,10 @@ from typing_extensions import Literal
 import httpx
 
 from ...types import (
-    CustomHostname,
+    CustomHostnameGetResponse,
+    CustomHostnameEditResponse,
+    CustomHostnameListResponse,
+    CustomHostnameCreateResponse,
     CustomHostnameDeleteResponse,
     custom_hostname_edit_params,
     custom_hostname_list_params,
@@ -72,7 +75,7 @@ class CustomHostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomHostname:
+    ) -> CustomHostnameCreateResponse:
         """
         Add a new custom hostname and request that an SSL certificate be issued for it.
         One of three validation methods—http, txt, email—should be used, with 'http'
@@ -118,7 +121,7 @@ class CustomHostnames(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomHostname], ResultWrapper[CustomHostname]),
+            cast_to=cast(Type[CustomHostnameCreateResponse], ResultWrapper[CustomHostnameCreateResponse]),
         )
 
     def list(
@@ -138,7 +141,7 @@ class CustomHostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[CustomHostname]:
+    ) -> SyncV4PagePaginationArray[CustomHostnameListResponse]:
         """
         List, search, sort, and filter all of your custom hostnames.
 
@@ -174,7 +177,7 @@ class CustomHostnames(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/custom_hostnames",
-            page=SyncV4PagePaginationArray[CustomHostname],
+            page=SyncV4PagePaginationArray[CustomHostnameListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -193,7 +196,7 @@ class CustomHostnames(SyncAPIResource):
                     custom_hostname_list_params.CustomHostnameListParams,
                 ),
             ),
-            model=CustomHostname,
+            model=CustomHostnameListResponse,
         )
 
     def delete(
@@ -253,7 +256,7 @@ class CustomHostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomHostname:
+    ) -> CustomHostnameEditResponse:
         """Modify SSL configuration for a custom hostname.
 
         When sent with SSL config that
@@ -309,7 +312,7 @@ class CustomHostnames(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomHostname], ResultWrapper[CustomHostname]),
+            cast_to=cast(Type[CustomHostnameEditResponse], ResultWrapper[CustomHostnameEditResponse]),
         )
 
     def get(
@@ -323,7 +326,7 @@ class CustomHostnames(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomHostname:
+    ) -> CustomHostnameGetResponse:
         """
         Custom Hostname Details
 
@@ -353,7 +356,7 @@ class CustomHostnames(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomHostname], ResultWrapper[CustomHostname]),
+            cast_to=cast(Type[CustomHostnameGetResponse], ResultWrapper[CustomHostnameGetResponse]),
         )
 
 
@@ -383,7 +386,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomHostname:
+    ) -> CustomHostnameCreateResponse:
         """
         Add a new custom hostname and request that an SSL certificate be issued for it.
         One of three validation methods—http, txt, email—should be used, with 'http'
@@ -429,7 +432,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomHostname], ResultWrapper[CustomHostname]),
+            cast_to=cast(Type[CustomHostnameCreateResponse], ResultWrapper[CustomHostnameCreateResponse]),
         )
 
     def list(
@@ -449,7 +452,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[CustomHostname, AsyncV4PagePaginationArray[CustomHostname]]:
+    ) -> AsyncPaginator[CustomHostnameListResponse, AsyncV4PagePaginationArray[CustomHostnameListResponse]]:
         """
         List, search, sort, and filter all of your custom hostnames.
 
@@ -485,7 +488,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/custom_hostnames",
-            page=AsyncV4PagePaginationArray[CustomHostname],
+            page=AsyncV4PagePaginationArray[CustomHostnameListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -504,7 +507,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
                     custom_hostname_list_params.CustomHostnameListParams,
                 ),
             ),
-            model=CustomHostname,
+            model=CustomHostnameListResponse,
         )
 
     async def delete(
@@ -564,7 +567,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomHostname:
+    ) -> CustomHostnameEditResponse:
         """Modify SSL configuration for a custom hostname.
 
         When sent with SSL config that
@@ -620,7 +623,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomHostname], ResultWrapper[CustomHostname]),
+            cast_to=cast(Type[CustomHostnameEditResponse], ResultWrapper[CustomHostnameEditResponse]),
         )
 
     async def get(
@@ -634,7 +637,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomHostname:
+    ) -> CustomHostnameGetResponse:
         """
         Custom Hostname Details
 
@@ -664,7 +667,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomHostname], ResultWrapper[CustomHostname]),
+            cast_to=cast(Type[CustomHostnameGetResponse], ResultWrapper[CustomHostnameGetResponse]),
         )
 
 

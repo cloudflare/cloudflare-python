@@ -22,12 +22,11 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ...types.user import Invite, invite_edit_params
+from ...types.user import Invite, InviteGetResponse, InviteEditResponse, invite_edit_params
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["Invites", "AsyncInvites"]
 
@@ -72,7 +71,7 @@ class Invites(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> InviteEditResponse:
         """
         Responds to an invitation.
 
@@ -92,7 +91,7 @@ class Invites(SyncAPIResource):
         if not invite_id:
             raise ValueError(f"Expected a non-empty value for `invite_id` but received {invite_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            InviteEditResponse,
             self._patch(
                 f"/user/invites/{invite_id}",
                 body=maybe_transform({"status": status}, invite_edit_params.InviteEditParams),
@@ -104,7 +103,7 @@ class Invites(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[InviteEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -119,7 +118,7 @@ class Invites(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> InviteGetResponse:
         """
         Gets the details of an invitation.
 
@@ -137,7 +136,7 @@ class Invites(SyncAPIResource):
         if not invite_id:
             raise ValueError(f"Expected a non-empty value for `invite_id` but received {invite_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            InviteGetResponse,
             self._get(
                 f"/user/invites/{invite_id}",
                 options=make_request_options(
@@ -148,7 +147,7 @@ class Invites(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[InviteGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -194,7 +193,7 @@ class AsyncInvites(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> InviteEditResponse:
         """
         Responds to an invitation.
 
@@ -214,7 +213,7 @@ class AsyncInvites(AsyncAPIResource):
         if not invite_id:
             raise ValueError(f"Expected a non-empty value for `invite_id` but received {invite_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            InviteEditResponse,
             await self._patch(
                 f"/user/invites/{invite_id}",
                 body=await async_maybe_transform({"status": status}, invite_edit_params.InviteEditParams),
@@ -226,7 +225,7 @@ class AsyncInvites(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[InviteEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -241,7 +240,7 @@ class AsyncInvites(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> InviteGetResponse:
         """
         Gets the details of an invitation.
 
@@ -259,7 +258,7 @@ class AsyncInvites(AsyncAPIResource):
         if not invite_id:
             raise ValueError(f"Expected a non-empty value for `invite_id` but received {invite_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            InviteGetResponse,
             await self._get(
                 f"/user/invites/{invite_id}",
                 options=make_request_options(
@@ -270,7 +269,7 @@ class AsyncInvites(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[InviteGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

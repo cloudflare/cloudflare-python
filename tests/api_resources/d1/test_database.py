@@ -14,9 +14,9 @@ from cloudflare.types.d1 import (
     DatabaseListResponse,
     DatabaseQueryResponse,
     DatabaseCreateResponse,
+    DatabaseDeleteResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -130,7 +130,7 @@ class TestDatabase:
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, database, path=["response"])
+        assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -143,7 +143,7 @@ class TestDatabase:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         database = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, database, path=["response"])
+        assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -156,7 +156,7 @@ class TestDatabase:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             database = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, database, path=["response"])
+            assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -405,7 +405,7 @@ class TestAsyncDatabase:
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, database, path=["response"])
+        assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -418,7 +418,7 @@ class TestAsyncDatabase:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         database = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, database, path=["response"])
+        assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -431,7 +431,7 @@ class TestAsyncDatabase:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             database = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, database, path=["response"])
+            assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

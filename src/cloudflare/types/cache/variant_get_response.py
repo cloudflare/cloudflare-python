@@ -4,7 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from .unnamed_schema_ref_669bfbb16c0913af7077c3c194fbfcd0 import UnnamedSchemaRef669bfbb16c0913af7077c3c194fbfcd0
+from .cache_variant_identifier import CacheVariantIdentifier
 
 __all__ = ["VariantGetResponse", "Value"]
 
@@ -78,7 +78,7 @@ class Value(BaseModel):
 
 
 class VariantGetResponse(BaseModel):
-    id: UnnamedSchemaRef669bfbb16c0913af7077c3c194fbfcd0
+    id: CacheVariantIdentifier
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None

@@ -12,11 +12,12 @@ from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.user import (
+    TokenGetResponse,
     TokenCreateResponse,
     TokenDeleteResponse,
+    TokenUpdateResponse,
     TokenVerifyResponse,
 )
-from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -212,7 +213,7 @@ class TestTokens:
             ],
             status="active",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+        assert_matches_type(TokenUpdateResponse, token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -256,7 +257,7 @@ class TestTokens:
             expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+        assert_matches_type(TokenUpdateResponse, token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -296,7 +297,7 @@ class TestTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+        assert_matches_type(TokenUpdateResponse, token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -336,7 +337,7 @@ class TestTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+            assert_matches_type(TokenUpdateResponse, token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -421,7 +422,7 @@ class TestTokens:
         token = client.user.tokens.get(
             {},
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+        assert_matches_type(TokenGetResponse, token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -433,7 +434,7 @@ class TestTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+        assert_matches_type(TokenGetResponse, token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -445,7 +446,7 @@ class TestTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+            assert_matches_type(TokenGetResponse, token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -669,7 +670,7 @@ class TestAsyncTokens:
             ],
             status="active",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+        assert_matches_type(TokenUpdateResponse, token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -713,7 +714,7 @@ class TestAsyncTokens:
             expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+        assert_matches_type(TokenUpdateResponse, token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -753,7 +754,7 @@ class TestAsyncTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+        assert_matches_type(TokenUpdateResponse, token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -793,7 +794,7 @@ class TestAsyncTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+            assert_matches_type(TokenUpdateResponse, token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -878,7 +879,7 @@ class TestAsyncTokens:
         token = await async_client.user.tokens.get(
             {},
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+        assert_matches_type(TokenGetResponse, token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -890,7 +891,7 @@ class TestAsyncTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+        assert_matches_type(TokenGetResponse, token, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -902,7 +903,7 @@ class TestAsyncTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, token, path=["response"])
+            assert_matches_type(TokenGetResponse, token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
