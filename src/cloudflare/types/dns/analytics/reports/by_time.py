@@ -4,8 +4,8 @@ from typing import List
 from datetime import datetime
 
 from ....._models import BaseModel
-from ....unnamed_schema_ref_65be9614de145bf4a58d0fddf46df7ca import UnnamedSchemaRef65be9614de145bf4a58d0fddf46df7ca
-from ....unnamed_schema_ref_85b45d163202bbab7456da6b346d9fe2 import UnnamedSchemaRef85b45d163202bbab7456da6b346d9fe2
+from ....dns_analytics_query import DNSAnalyticsQuery
+from ....dns_analytics_nominal_metric import DNSAnalyticsNominalMetric
 
 __all__ = ["ByTime", "Data"]
 
@@ -17,7 +17,7 @@ class Data(BaseModel):
     corresponding to this row.
     """
 
-    metrics: List[UnnamedSchemaRef65be9614de145bf4a58d0fddf46df7ca]
+    metrics: List[DNSAnalyticsNominalMetric]
     """Array with one item per requested metric.
 
     Each item is an array of values, broken down by time interval.
@@ -46,7 +46,7 @@ class ByTime(BaseModel):
     Currently always an empty object.
     """
 
-    query: UnnamedSchemaRef85b45d163202bbab7456da6b346d9fe2
+    query: DNSAnalyticsQuery
 
     rows: float
     """Total number of rows in the result."""

@@ -26,8 +26,10 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ...types.firewall import (
+    AccessRuleGetResponse,
+    AccessRuleEditResponse,
+    AccessRuleCreateResponse,
     AccessRuleDeleteResponse,
     access_rule_edit_params,
     access_rule_list_params,
@@ -61,7 +63,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> AccessRuleCreateResponse:
         """Creates a new IP Access rule for an account or zone.
 
         The rule will apply to all
@@ -105,7 +107,7 @@ class AccessRules(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            AccessRuleCreateResponse,
             self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
                 body=maybe_transform(
@@ -124,7 +126,7 @@ class AccessRules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[AccessRuleCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -287,7 +289,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> AccessRuleEditResponse:
         """
         Updates an IP Access rule defined.
 
@@ -328,7 +330,7 @@ class AccessRules(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            AccessRuleEditResponse,
             self._patch(
                 f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
                 body=maybe_transform(
@@ -347,7 +349,7 @@ class AccessRules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[AccessRuleEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -364,7 +366,7 @@ class AccessRules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> AccessRuleGetResponse:
         """
         Fetches the details of an IP Access rule defined.
 
@@ -397,7 +399,7 @@ class AccessRules(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            AccessRuleGetResponse,
             self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
                 options=make_request_options(
@@ -408,7 +410,7 @@ class AccessRules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[AccessRuleGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -437,7 +439,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> AccessRuleCreateResponse:
         """Creates a new IP Access rule for an account or zone.
 
         The rule will apply to all
@@ -481,7 +483,7 @@ class AsyncAccessRules(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            AccessRuleCreateResponse,
             await self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
                 body=await async_maybe_transform(
@@ -500,7 +502,7 @@ class AsyncAccessRules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[AccessRuleCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -663,7 +665,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> AccessRuleEditResponse:
         """
         Updates an IP Access rule defined.
 
@@ -704,7 +706,7 @@ class AsyncAccessRules(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            AccessRuleEditResponse,
             await self._patch(
                 f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
                 body=await async_maybe_transform(
@@ -723,7 +725,7 @@ class AsyncAccessRules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[AccessRuleEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -740,7 +742,7 @@ class AsyncAccessRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> AccessRuleGetResponse:
         """
         Fetches the details of an IP Access rule defined.
 
@@ -773,7 +775,7 @@ class AsyncAccessRules(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            AccessRuleGetResponse,
             await self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
                 options=make_request_options(
@@ -784,7 +786,7 @@ class AsyncAccessRules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[AccessRuleGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

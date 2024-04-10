@@ -5,13 +5,13 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .unnamed_schema_ref_2b5e755404a4bfd7892291ce97c4968d import UnnamedSchemaRef2b5e755404a4bfd7892291ce97c4968d
+from .cache_reserve_clear import CacheReserveClear
 
 __all__ = ["CacheReserveClearResponse"]
 
 
 class CacheReserveClearResponse(BaseModel):
-    id: UnnamedSchemaRef2b5e755404a4bfd7892291ce97c4968d
+    id: CacheReserveClear
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None

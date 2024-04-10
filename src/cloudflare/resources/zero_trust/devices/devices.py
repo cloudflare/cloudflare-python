@@ -85,10 +85,9 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from .posture.posture import Posture, AsyncPosture
 from .policies.policies import Policies, AsyncPolicies
-from ....types.zero_trust import Device
+from ....types.zero_trust import Device, DeviceGetResponse
 
 __all__ = ["Devices", "AsyncDevices"]
 
@@ -179,7 +178,7 @@ class Devices(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> DeviceGetResponse:
         """
         Fetches details for a single device.
 
@@ -199,7 +198,7 @@ class Devices(SyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            DeviceGetResponse,
             self._get(
                 f"/accounts/{account_id}/devices/{device_id}",
                 options=make_request_options(
@@ -210,7 +209,7 @@ class Devices(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[DeviceGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -302,7 +301,7 @@ class AsyncDevices(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> DeviceGetResponse:
         """
         Fetches details for a single device.
 
@@ -322,7 +321,7 @@ class AsyncDevices(AsyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            DeviceGetResponse,
             await self._get(
                 f"/accounts/{account_id}/devices/{device_id}",
                 options=make_request_options(
@@ -333,7 +332,7 @@ class AsyncDevices(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[DeviceGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

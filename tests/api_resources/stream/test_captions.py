@@ -9,10 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from cloudflare.types.stream import (
     CaptionGetResponse,
     CaptionDeleteResponse,
+    CaptionUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,7 +30,7 @@ class TestCaptions:
             identifier="ea95132c15732412d22c1476fa83f27a",
             file="@/Users/kyle/Desktop/tr.vtt",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, caption, path=["response"])
+        assert_matches_type(CaptionUpdateResponse, caption, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestCaptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         caption = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, caption, path=["response"])
+        assert_matches_type(CaptionUpdateResponse, caption, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +60,7 @@ class TestCaptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             caption = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, caption, path=["response"])
+            assert_matches_type(CaptionUpdateResponse, caption, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -226,7 +226,7 @@ class TestAsyncCaptions:
             identifier="ea95132c15732412d22c1476fa83f27a",
             file="@/Users/kyle/Desktop/tr.vtt",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, caption, path=["response"])
+        assert_matches_type(CaptionUpdateResponse, caption, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -241,7 +241,7 @@ class TestAsyncCaptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         caption = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, caption, path=["response"])
+        assert_matches_type(CaptionUpdateResponse, caption, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -256,7 +256,7 @@ class TestAsyncCaptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             caption = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, caption, path=["response"])
+            assert_matches_type(CaptionUpdateResponse, caption, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

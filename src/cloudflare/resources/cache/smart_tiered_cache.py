@@ -21,11 +21,16 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import smart_tiered_cache_edit_params, smart_tiered_cache_delete_params
+from ...types.cache import (
+    SmartTieredCacheGetResponse,
+    SmartTieredCacheEditResponse,
+    SmartTieredCacheDeleteResponse,
+    smart_tiered_cache_edit_params,
+    smart_tiered_cache_delete_params,
+)
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["SmartTieredCache", "AsyncSmartTieredCache"]
 
@@ -50,7 +55,7 @@ class SmartTieredCache(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> SmartTieredCacheDeleteResponse:
         """
         Remvoves enablement of Smart Tiered Cache
 
@@ -68,7 +73,7 @@ class SmartTieredCache(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            SmartTieredCacheDeleteResponse,
             self._delete(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 body=maybe_transform(body, smart_tiered_cache_delete_params.SmartTieredCacheDeleteParams),
@@ -80,7 +85,7 @@ class SmartTieredCache(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[SmartTieredCacheDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -96,7 +101,7 @@ class SmartTieredCache(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> SmartTieredCacheEditResponse:
         """
         Updates enablement of Tiered Cache
 
@@ -116,7 +121,7 @@ class SmartTieredCache(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            SmartTieredCacheEditResponse,
             self._patch(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 body=maybe_transform({"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams),
@@ -128,7 +133,7 @@ class SmartTieredCache(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[SmartTieredCacheEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -143,7 +148,7 @@ class SmartTieredCache(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> SmartTieredCacheGetResponse:
         """
         Get Smart Tiered Cache setting
 
@@ -161,7 +166,7 @@ class SmartTieredCache(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            SmartTieredCacheGetResponse,
             self._get(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 options=make_request_options(
@@ -172,7 +177,7 @@ class SmartTieredCache(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[SmartTieredCacheGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -198,7 +203,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> SmartTieredCacheDeleteResponse:
         """
         Remvoves enablement of Smart Tiered Cache
 
@@ -216,7 +221,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            SmartTieredCacheDeleteResponse,
             await self._delete(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 body=await async_maybe_transform(body, smart_tiered_cache_delete_params.SmartTieredCacheDeleteParams),
@@ -228,7 +233,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[SmartTieredCacheDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -244,7 +249,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> SmartTieredCacheEditResponse:
         """
         Updates enablement of Tiered Cache
 
@@ -264,7 +269,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            SmartTieredCacheEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 body=await async_maybe_transform(
@@ -278,7 +283,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[SmartTieredCacheEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -293,7 +298,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> SmartTieredCacheGetResponse:
         """
         Get Smart Tiered Cache setting
 
@@ -311,7 +316,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            SmartTieredCacheGetResponse,
             await self._get(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
                 options=make_request_options(
@@ -322,7 +327,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[SmartTieredCacheGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

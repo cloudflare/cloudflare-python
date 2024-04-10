@@ -23,8 +23,13 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from ...types.custom_hostnames import fallback_origin_delete_params, fallback_origin_update_params
+from ...types.custom_hostnames import (
+    FallbackOriginGetResponse,
+    FallbackOriginDeleteResponse,
+    FallbackOriginUpdateResponse,
+    fallback_origin_delete_params,
+    fallback_origin_update_params,
+)
 
 __all__ = ["FallbackOrigin", "AsyncFallbackOrigin"]
 
@@ -49,7 +54,7 @@ class FallbackOrigin(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> FallbackOriginUpdateResponse:
         """
         Update Fallback Origin for Custom Hostnames
 
@@ -69,7 +74,7 @@ class FallbackOrigin(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            FallbackOriginUpdateResponse,
             self._put(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 body=maybe_transform({"origin": origin}, fallback_origin_update_params.FallbackOriginUpdateParams),
@@ -81,7 +86,7 @@ class FallbackOrigin(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[FallbackOriginUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -97,7 +102,7 @@ class FallbackOrigin(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> FallbackOriginDeleteResponse:
         """
         Delete Fallback Origin for Custom Hostnames
 
@@ -115,7 +120,7 @@ class FallbackOrigin(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            FallbackOriginDeleteResponse,
             self._delete(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 body=maybe_transform(body, fallback_origin_delete_params.FallbackOriginDeleteParams),
@@ -127,7 +132,7 @@ class FallbackOrigin(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[FallbackOriginDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -142,7 +147,7 @@ class FallbackOrigin(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> FallbackOriginGetResponse:
         """
         Get Fallback Origin for Custom Hostnames
 
@@ -160,7 +165,7 @@ class FallbackOrigin(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            FallbackOriginGetResponse,
             self._get(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 options=make_request_options(
@@ -171,7 +176,7 @@ class FallbackOrigin(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[FallbackOriginGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -197,7 +202,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> FallbackOriginUpdateResponse:
         """
         Update Fallback Origin for Custom Hostnames
 
@@ -217,7 +222,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            FallbackOriginUpdateResponse,
             await self._put(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 body=await async_maybe_transform(
@@ -231,7 +236,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[FallbackOriginUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -247,7 +252,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> FallbackOriginDeleteResponse:
         """
         Delete Fallback Origin for Custom Hostnames
 
@@ -265,7 +270,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            FallbackOriginDeleteResponse,
             await self._delete(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 body=await async_maybe_transform(body, fallback_origin_delete_params.FallbackOriginDeleteParams),
@@ -277,7 +282,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[FallbackOriginDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -292,7 +297,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> FallbackOriginGetResponse:
         """
         Get Fallback Origin for Custom Hostnames
 
@@ -310,7 +315,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            FallbackOriginGetResponse,
             await self._get(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 options=make_request_options(
@@ -321,7 +326,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[FallbackOriginGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

@@ -9,7 +9,9 @@ import httpx
 
 from ..types import (
     Membership,
+    MembershipGetResponse,
     MembershipDeleteResponse,
+    MembershipUpdateResponse,
     membership_list_params,
     membership_delete_params,
     membership_update_params,
@@ -33,7 +35,6 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["Memberships", "AsyncMemberships"]
 
@@ -58,7 +59,7 @@ class Memberships(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> MembershipUpdateResponse:
         """
         Accept or reject this account invitation.
 
@@ -78,7 +79,7 @@ class Memberships(SyncAPIResource):
         if not membership_id:
             raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            MembershipUpdateResponse,
             self._put(
                 f"/memberships/{membership_id}",
                 body=maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
@@ -90,7 +91,7 @@ class Memberships(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[MembershipUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -211,7 +212,7 @@ class Memberships(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> MembershipGetResponse:
         """
         Get a specific membership.
 
@@ -229,7 +230,7 @@ class Memberships(SyncAPIResource):
         if not membership_id:
             raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            MembershipGetResponse,
             self._get(
                 f"/memberships/{membership_id}",
                 options=make_request_options(
@@ -240,7 +241,7 @@ class Memberships(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[MembershipGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -266,7 +267,7 @@ class AsyncMemberships(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> MembershipUpdateResponse:
         """
         Accept or reject this account invitation.
 
@@ -286,7 +287,7 @@ class AsyncMemberships(AsyncAPIResource):
         if not membership_id:
             raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            MembershipUpdateResponse,
             await self._put(
                 f"/memberships/{membership_id}",
                 body=await async_maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
@@ -298,7 +299,7 @@ class AsyncMemberships(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[MembershipUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -419,7 +420,7 @@ class AsyncMemberships(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> MembershipGetResponse:
         """
         Get a specific membership.
 
@@ -437,7 +438,7 @@ class AsyncMemberships(AsyncAPIResource):
         if not membership_id:
             raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            MembershipGetResponse,
             await self._get(
                 f"/memberships/{membership_id}",
                 options=make_request_options(
@@ -448,7 +449,7 @@ class AsyncMemberships(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[MembershipGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

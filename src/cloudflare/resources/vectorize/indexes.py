@@ -25,12 +25,12 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ...types.vectorize import (
     IndexQuery,
     CreateIndex,
     IndexInsert,
     IndexUpsert,
+    IndexDeleteResponse,
     IndexDeleteVectorsByID,
     index_query_params,
     index_create_params,
@@ -200,7 +200,7 @@ class Indexes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> IndexDeleteResponse:
         """
         Deletes the specified Vectorize Index.
 
@@ -220,7 +220,7 @@ class Indexes(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            IndexDeleteResponse,
             self._delete(
                 f"/accounts/{account_identifier}/vectorize/indexes/{index_name}",
                 options=make_request_options(
@@ -231,7 +231,7 @@ class Indexes(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[IndexDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -680,7 +680,7 @@ class AsyncIndexes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> IndexDeleteResponse:
         """
         Deletes the specified Vectorize Index.
 
@@ -700,7 +700,7 @@ class AsyncIndexes(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            IndexDeleteResponse,
             await self._delete(
                 f"/accounts/{account_identifier}/vectorize/indexes/{index_name}",
                 options=make_request_options(
@@ -711,7 +711,7 @@ class AsyncIndexes(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[IndexDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

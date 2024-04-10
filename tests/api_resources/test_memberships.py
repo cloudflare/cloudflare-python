@@ -11,10 +11,11 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types import (
     Membership,
+    MembershipGetResponse,
     MembershipDeleteResponse,
+    MembershipUpdateResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +30,7 @@ class TestMemberships:
             "4536bcfad5faccb111b47003c79917fa",
             status="accepted",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+        assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -42,7 +43,7 @@ class TestMemberships:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         membership = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+        assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +56,7 @@ class TestMemberships:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             membership = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+            assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -162,7 +163,7 @@ class TestMemberships:
         membership = client.memberships.get(
             "4536bcfad5faccb111b47003c79917fa",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+        assert_matches_type(MembershipGetResponse, membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -174,7 +175,7 @@ class TestMemberships:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         membership = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+        assert_matches_type(MembershipGetResponse, membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -186,7 +187,7 @@ class TestMemberships:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             membership = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+            assert_matches_type(MembershipGetResponse, membership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -209,7 +210,7 @@ class TestAsyncMemberships:
             "4536bcfad5faccb111b47003c79917fa",
             status="accepted",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+        assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -222,7 +223,7 @@ class TestAsyncMemberships:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         membership = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+        assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -235,7 +236,7 @@ class TestAsyncMemberships:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             membership = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+            assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -342,7 +343,7 @@ class TestAsyncMemberships:
         membership = await async_client.memberships.get(
             "4536bcfad5faccb111b47003c79917fa",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+        assert_matches_type(MembershipGetResponse, membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -354,7 +355,7 @@ class TestAsyncMemberships:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         membership = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+        assert_matches_type(MembershipGetResponse, membership, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -366,7 +367,7 @@ class TestAsyncMemberships:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             membership = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, membership, path=["response"])
+            assert_matches_type(MembershipGetResponse, membership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

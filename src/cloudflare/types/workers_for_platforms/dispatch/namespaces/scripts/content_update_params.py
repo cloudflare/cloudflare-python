@@ -5,9 +5,9 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
-from ......types import shared_params
 from ......_types import FileTypes
 from ......_utils import PropertyInfo
+from .....worker_metadata_param import WorkerMetadataParam
 
 __all__ = ["ContentUpdateParams"]
 
@@ -29,5 +29,5 @@ class ContentUpdateParams(TypedDict, total=False):
     part name.
     """
 
-    metadata: shared_params.UnnamedSchemaRefEe1e79edcb234d14c4dd266880f2fd24
+    metadata: WorkerMetadataParam
     """JSON encoded metadata about the uploaded parts and Worker configuration."""

@@ -9,9 +9,9 @@ import httpx
 from ..types import (
     Hostname,
     TunnelParam,
+    BundleMethod,
     KeylessCertificate,
     KeylessCertificateDeleteResponse,
-    UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1,
     keyless_certificate_edit_params,
     keyless_certificate_create_params,
     keyless_certificate_delete_params,
@@ -55,7 +55,7 @@ class KeylessCertificates(SyncAPIResource):
         certificate: str,
         host: str,
         port: float,
-        bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         tunnel: TunnelParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -341,7 +341,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         certificate: str,
         host: str,
         port: float,
-        bundle_method: UnnamedSchemaRef16aca57bde2963201c7e6e895436c1c1 | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         tunnel: TunnelParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

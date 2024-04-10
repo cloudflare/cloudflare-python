@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from cloudflare.types.firewall import (
+    AccessRuleGetResponse,
+    AccessRuleEditResponse,
+    AccessRuleCreateResponse,
     AccessRuleDeleteResponse,
 )
 
@@ -30,7 +32,7 @@ class TestAccessRules:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +47,7 @@ class TestAccessRules:
             zone_id="string",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +62,7 @@ class TestAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -75,7 +77,7 @@ class TestAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+            assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -259,7 +261,7 @@ class TestAccessRules:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -275,7 +277,7 @@ class TestAccessRules:
             zone_id="string",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -291,7 +293,7 @@ class TestAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -307,7 +309,7 @@ class TestAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+            assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -340,7 +342,7 @@ class TestAccessRules:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -350,7 +352,7 @@ class TestAccessRules:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -364,7 +366,7 @@ class TestAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -378,7 +380,7 @@ class TestAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+            assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -412,7 +414,7 @@ class TestAsyncAccessRules:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -427,7 +429,7 @@ class TestAsyncAccessRules:
             zone_id="string",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -442,7 +444,7 @@ class TestAsyncAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -457,7 +459,7 @@ class TestAsyncAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+            assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -641,7 +643,7 @@ class TestAsyncAccessRules:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -657,7 +659,7 @@ class TestAsyncAccessRules:
             zone_id="string",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -673,7 +675,7 @@ class TestAsyncAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -689,7 +691,7 @@ class TestAsyncAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+            assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -722,7 +724,7 @@ class TestAsyncAccessRules:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -732,7 +734,7 @@ class TestAsyncAccessRules:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -746,7 +748,7 @@ class TestAsyncAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+        assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -760,7 +762,7 @@ class TestAsyncAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, access_rule, path=["response"])
+            assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -16,6 +16,7 @@ from .search_get_response import SearchGetResponse as SearchGetResponse
 from .monitor_get_response import MonitorGetResponse as MonitorGetResponse
 from .pool_delete_response import PoolDeleteResponse as PoolDeleteResponse
 from .preview_get_response import PreviewGetResponse as PreviewGetResponse
+from .region_list_response import RegionListResponse as RegionListResponse
 from .monitor_create_params import MonitorCreateParams as MonitorCreateParams
 from .monitor_delete_params import MonitorDeleteParams as MonitorDeleteParams
 from .monitor_edit_response import MonitorEditResponse as MonitorEditResponse

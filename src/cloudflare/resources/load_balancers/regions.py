@@ -24,8 +24,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from ...types.load_balancers import RegionGetResponse, region_list_params
+from ...types.load_balancers import RegionGetResponse, RegionListResponse, region_list_params
 
 __all__ = ["Regions", "AsyncRegions"]
 
@@ -52,7 +51,7 @@ class Regions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RegionListResponse:
         """
         List all region mappings.
 
@@ -76,7 +75,7 @@ class Regions(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RegionListResponse,
             self._get(
                 f"/accounts/{account_id}/load_balancers/regions",
                 options=make_request_options(
@@ -95,7 +94,7 @@ class Regions(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RegionListResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -178,7 +177,7 @@ class AsyncRegions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RegionListResponse:
         """
         List all region mappings.
 
@@ -202,7 +201,7 @@ class AsyncRegions(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RegionListResponse,
             await self._get(
                 f"/accounts/{account_id}/load_balancers/regions",
                 options=make_request_options(
@@ -221,7 +220,7 @@ class AsyncRegions(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RegionListResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
