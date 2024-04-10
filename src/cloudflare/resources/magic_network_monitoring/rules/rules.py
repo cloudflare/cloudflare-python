@@ -188,8 +188,6 @@ class Rules(SyncAPIResource):
         Delete a network monitoring rule for account.
 
         Args:
-          rule_id: The id of the rule. Must be unique.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -232,8 +230,6 @@ class Rules(SyncAPIResource):
         Update a network monitoring rule for account.
 
         Args:
-          rule_id: The id of the rule. Must be unique.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -275,8 +271,6 @@ class Rules(SyncAPIResource):
         List a single network monitoring rule for account.
 
         Args:
-          rule_id: The id of the rule. Must be unique.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -446,8 +440,6 @@ class AsyncRules(AsyncAPIResource):
         Delete a network monitoring rule for account.
 
         Args:
-          rule_id: The id of the rule. Must be unique.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -490,8 +482,6 @@ class AsyncRules(AsyncAPIResource):
         Update a network monitoring rule for account.
 
         Args:
-          rule_id: The id of the rule. Must be unique.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -533,8 +523,6 @@ class AsyncRules(AsyncAPIResource):
         List a single network monitoring rule for account.
 
         Args:
-          rule_id: The id of the rule. Must be unique.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
