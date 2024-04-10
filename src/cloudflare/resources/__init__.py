@@ -520,6 +520,14 @@ from .managed_headers import (
     ManagedHeadersWithStreamingResponse,
     AsyncManagedHeadersWithStreamingResponse,
 )
+from .request_tracers import (
+    RequestTracers,
+    AsyncRequestTracers,
+    RequestTracersWithRawResponse,
+    AsyncRequestTracersWithRawResponse,
+    RequestTracersWithStreamingResponse,
+    AsyncRequestTracersWithStreamingResponse,
+)
 from .brand_protection import (
     BrandProtection,
     AsyncBrandProtection,
@@ -970,6 +978,12 @@ __all__ = [
     "AsyncRegistrarWithRawResponse",
     "RegistrarWithStreamingResponse",
     "AsyncRegistrarWithStreamingResponse",
+    "RequestTracers",
+    "AsyncRequestTracers",
+    "RequestTracersWithRawResponse",
+    "AsyncRequestTracersWithRawResponse",
+    "RequestTracersWithStreamingResponse",
+    "AsyncRequestTracersWithStreamingResponse",
     "Rules",
     "AsyncRules",
     "RulesWithRawResponse",
