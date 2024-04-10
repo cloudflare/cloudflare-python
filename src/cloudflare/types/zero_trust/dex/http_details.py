@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 from .http_tests import TestStatOverTime
-from ..unnamed_schema_ref_bf9e2abcf1b78a6cab8e6e29e2228a11 import UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11
+from ..device_experience_monitor import DeviceExperienceMonitor
 
 __all__ = [
     "HTTPDetails",
@@ -135,6 +135,6 @@ class HTTPDetails(BaseModel):
     name: Optional[str] = None
     """The name of the HTTP synthetic application test"""
 
-    target_policies: Optional[List[UnnamedSchemaRefBf9e2abcf1b78a6cab8e6e29e2228a11]] = None
+    target_policies: Optional[List[DeviceExperienceMonitor]] = None
 
     targeted: Optional[bool] = None

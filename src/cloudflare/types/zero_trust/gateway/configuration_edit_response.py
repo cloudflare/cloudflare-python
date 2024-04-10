@@ -4,7 +4,7 @@ from typing import Optional
 from datetime import datetime
 
 from ...._models import BaseModel
-from .unnamed_schema_ref_055aaf3918bf29f81c09d394a864182e import UnnamedSchemaRef055aaf3918bf29f81c09d394a864182e
+from .gateway_configuration_settings import GatewayConfigurationSettings
 
 __all__ = ["ConfigurationEditResponse"]
 
@@ -12,7 +12,7 @@ __all__ = ["ConfigurationEditResponse"]
 class ConfigurationEditResponse(BaseModel):
     created_at: Optional[datetime] = None
 
-    settings: Optional[UnnamedSchemaRef055aaf3918bf29f81c09d394a864182e] = None
+    settings: Optional[GatewayConfigurationSettings] = None
     """account settings."""
 
     updated_at: Optional[datetime] = None

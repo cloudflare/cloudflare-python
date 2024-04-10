@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 from ..radar.http import Browser
-from .unnamed_schema_ref_6d7a78acccfc753a8e931b1c4e72b6a6 import UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6
+from .url_scanner_domain import URLScannerDomain
 
 __all__ = [
     "ScanGetResponse",
@@ -78,7 +78,7 @@ class ScanMetaProcessorsCategoriesRisk(BaseModel):
 
 
 class ScanMetaProcessorsCategories(BaseModel):
-    content: List[UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6]
+    content: List[URLScannerDomain]
 
     risks: List[ScanMetaProcessorsCategoriesRisk]
 
@@ -401,19 +401,19 @@ class ScanASNs(BaseModel):
 
 
 class ScanDomainsExampleComCategoriesInherited(BaseModel):
-    content: Optional[List[UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6]] = None
+    content: Optional[List[URLScannerDomain]] = None
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
 
-    risks: Optional[List[UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6]] = None
+    risks: Optional[List[URLScannerDomain]] = None
 
 
 class ScanDomainsExampleComCategories(BaseModel):
     inherited: ScanDomainsExampleComCategoriesInherited
 
-    content: Optional[List[UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6]] = None
+    content: Optional[List[URLScannerDomain]] = None
 
-    risks: Optional[List[UnnamedSchemaRef6d7a78acccfc753a8e931b1c4e72b6a6]] = None
+    risks: Optional[List[URLScannerDomain]] = None
 
 
 class ScanDomainsExampleComDNS(BaseModel):

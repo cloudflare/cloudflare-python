@@ -4,11 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .unnamed_schema_ref_e86eeb84b7e922c35cfb0031a6309f7b_param import (
-    UnnamedSchemaRefE86eeb84b7e922c35cfb0031a6309f7bParam,
-)
-
-__all__ = ["LoggingUpdateParams"]
+__all__ = ["LoggingUpdateParams", "SettingsByRuleType"]
 
 
 class LoggingUpdateParams(TypedDict, total=False):
@@ -20,5 +16,16 @@ class LoggingUpdateParams(TypedDict, total=False):
     are: source IP, user email, user ID, device ID, URL, referrer, user agent).
     """
 
-    settings_by_rule_type: UnnamedSchemaRefE86eeb84b7e922c35cfb0031a6309f7bParam
+    settings_by_rule_type: SettingsByRuleType
     """Logging settings by rule type."""
+
+
+class SettingsByRuleType(TypedDict, total=False):
+    dns: object
+    """Logging settings for DNS firewall."""
+
+    http: object
+    """Logging settings for HTTP/HTTPS firewall."""
+
+    l4: object
+    """Logging settings for Network firewall."""
