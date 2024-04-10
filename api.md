@@ -220,6 +220,7 @@ Types:
 from cloudflare.types.user import (
     CIDRList,
     Policy,
+    Token,
     TokenCreateResponse,
     TokenUpdateResponse,
     TokenListResponse,
