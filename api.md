@@ -4899,25 +4899,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import (
-    AccessRule,
-    AzureGroupRule,
-    CertificateRule,
-    CountryRule,
-    DomainRule,
-    EmailListRule,
-    EmailRule,
-    EveryoneRule,
-    ExternalEvaluationRule,
-    GitHubOrganizationRule,
-    GroupRule,
-    GSuiteGroupRule,
-    IPListRule,
-    IPRule,
-    OktaGroupRule,
-    SAMLGroupRule,
-    ServiceTokenRule,
-)
+from cloudflare.types.zero_trust import AccessRule, GroupRule
 ```
 
 ### Applications
