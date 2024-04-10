@@ -13,8 +13,8 @@ from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.cloudforce_one import (
     Item,
-    List,
     Quota,
+    ListItem,
     RequestTypes,
     RequestConstants,
     RequestDeleteResponse,
@@ -155,7 +155,7 @@ class TestRequests:
             page=0,
             per_page=10,
         )
-        assert_matches_type(SyncV4PagePaginationArray[List], request, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +173,7 @@ class TestRequests:
             sort_order="asc",
             status="open",
         )
-        assert_matches_type(SyncV4PagePaginationArray[List], request, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +187,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[List], request, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +201,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[List], request, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -578,7 +578,7 @@ class TestAsyncRequests:
             page=0,
             per_page=10,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[List], request, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -596,7 +596,7 @@ class TestAsyncRequests:
             sort_order="asc",
             status="open",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[List], request, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -610,7 +610,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[List], request, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -624,7 +624,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[List], request, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
