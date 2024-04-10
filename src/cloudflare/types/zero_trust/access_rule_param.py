@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
+from typing_extensions import Required, TypedDict
 
 from .ip_rule_param import IPRuleParam
 from .email_rule_param import EmailRuleParam
@@ -20,11 +21,20 @@ from .gsuite_group_rule_param import GSuiteGroupRuleParam
 from .service_token_rule_param import ServiceTokenRuleParam
 from .external_evaluation_rule_param import ExternalEvaluationRuleParam
 from .github_organization_rule_param import GitHubOrganizationRuleParam
-from .access_device_posture_rule_param import AccessDevicePostureRuleParam
 from .authentication_method_rule_param import AuthenticationMethodRuleParam
 from .any_valid_service_token_rule_param import AnyValidServiceTokenRuleParam
 
-__all__ = ["AccessRuleParam"]
+__all__ = ["AccessRuleParam", "AccessDevicePostureRule", "AccessDevicePostureRuleDevicePosture"]
+
+
+class AccessDevicePostureRuleDevicePosture(TypedDict, total=False):
+    integration_uid: Required[str]
+    """The ID of a device posture integration."""
+
+
+class AccessDevicePostureRule(TypedDict, total=False):
+    device_posture: Required[AccessDevicePostureRuleDevicePosture]
+
 
 AccessRuleParam = Union[
     EmailRuleParam,
@@ -45,5 +55,5 @@ AccessRuleParam = Union[
     ExternalEvaluationRuleParam,
     CountryRuleParam,
     AuthenticationMethodRuleParam,
-    AccessDevicePostureRuleParam,
+    AccessDevicePostureRule,
 ]

@@ -37,11 +37,8 @@ from ....._base_client import (
 from .....types.zero_trust.devices import (
     DeviceInputParam,
     DeviceMatchParam,
-    PostureGetResponse,
-    PostureListResponse,
-    PostureCreateResponse,
+    DevicePostureRule,
     PostureDeleteResponse,
-    PostureUpdateResponse,
     posture_create_params,
     posture_delete_params,
     posture_update_params,
@@ -100,7 +97,7 @@ class Posture(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PostureCreateResponse]:
+    ) -> Optional[DevicePostureRule]:
         """
         Creates a new device posture rule.
 
@@ -152,7 +149,7 @@ class Posture(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PostureCreateResponse]], ResultWrapper[PostureCreateResponse]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
     def update(
@@ -193,7 +190,7 @@ class Posture(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PostureUpdateResponse]:
+    ) -> Optional[DevicePostureRule]:
         """
         Updates a device posture rule.
 
@@ -249,7 +246,7 @@ class Posture(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PostureUpdateResponse]], ResultWrapper[PostureUpdateResponse]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
     def list(
@@ -262,7 +259,7 @@ class Posture(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PostureListResponse]:
+    ) -> SyncSinglePage[DevicePostureRule]:
         """
         Fetches device posture rules for a Zero Trust account.
 
@@ -279,11 +276,11 @@ class Posture(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/posture",
-            page=SyncSinglePage[PostureListResponse],
+            page=SyncSinglePage[DevicePostureRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=PostureListResponse,
+            model=DevicePostureRule,
         )
 
     def delete(
@@ -341,7 +338,7 @@ class Posture(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PostureGetResponse]:
+    ) -> Optional[DevicePostureRule]:
         """
         Fetches a single device posture rule.
 
@@ -369,7 +366,7 @@ class Posture(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PostureGetResponse]], ResultWrapper[PostureGetResponse]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
 
@@ -423,7 +420,7 @@ class AsyncPosture(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PostureCreateResponse]:
+    ) -> Optional[DevicePostureRule]:
         """
         Creates a new device posture rule.
 
@@ -475,7 +472,7 @@ class AsyncPosture(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PostureCreateResponse]], ResultWrapper[PostureCreateResponse]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
     async def update(
@@ -516,7 +513,7 @@ class AsyncPosture(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PostureUpdateResponse]:
+    ) -> Optional[DevicePostureRule]:
         """
         Updates a device posture rule.
 
@@ -572,7 +569,7 @@ class AsyncPosture(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PostureUpdateResponse]], ResultWrapper[PostureUpdateResponse]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
     def list(
@@ -585,7 +582,7 @@ class AsyncPosture(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PostureListResponse, AsyncSinglePage[PostureListResponse]]:
+    ) -> AsyncPaginator[DevicePostureRule, AsyncSinglePage[DevicePostureRule]]:
         """
         Fetches device posture rules for a Zero Trust account.
 
@@ -602,11 +599,11 @@ class AsyncPosture(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/posture",
-            page=AsyncSinglePage[PostureListResponse],
+            page=AsyncSinglePage[DevicePostureRule],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=PostureListResponse,
+            model=DevicePostureRule,
         )
 
     async def delete(
@@ -664,7 +661,7 @@ class AsyncPosture(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PostureGetResponse]:
+    ) -> Optional[DevicePostureRule]:
         """
         Fetches a single device posture rule.
 
@@ -692,7 +689,7 @@ class AsyncPosture(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PostureGetResponse]], ResultWrapper[PostureGetResponse]),
+            cast_to=cast(Type[Optional[DevicePostureRule]], ResultWrapper[DevicePostureRule]),
         )
 
 

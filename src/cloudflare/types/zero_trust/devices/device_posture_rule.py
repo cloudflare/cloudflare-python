@@ -7,10 +7,10 @@ from ...._models import BaseModel
 from .device_input import DeviceInput
 from .device_match import DeviceMatch
 
-__all__ = ["PostureListResponse"]
+__all__ = ["DevicePostureRule"]
 
 
-class PostureListResponse(BaseModel):
+class DevicePostureRule(BaseModel):
     id: Optional[str] = None
     """API UUID."""
 
