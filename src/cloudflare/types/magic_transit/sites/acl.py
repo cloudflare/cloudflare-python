@@ -3,8 +3,8 @@
 from typing import List, Optional
 
 from ...._models import BaseModel
+from .allowed_protocol import AllowedProtocol
 from .acl_configuration import ACLConfiguration
-from .unnamed_schema_ref_87fa9e5fe9f6b8d607be1df57340d916 import UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916
 
 __all__ = ["ACL"]
 
@@ -31,4 +31,4 @@ class ACL(BaseModel):
     name: Optional[str] = None
     """The name of the ACL."""
 
-    protocols: Optional[List[UnnamedSchemaRef87fa9e5fe9f6b8d607be1df57340d916]] = None
+    protocols: Optional[List[AllowedProtocol]] = None

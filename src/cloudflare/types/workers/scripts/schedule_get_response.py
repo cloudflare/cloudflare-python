@@ -2,11 +2,11 @@
 
 from typing import List, Optional
 
+from .schedule import Schedule
 from ...._models import BaseModel
-from .unnamed_schema_ref_c8302c265937f9d6f96fd69644e56b26 import UnnamedSchemaRefC8302c265937f9d6f96fd69644e56b26
 
 __all__ = ["ScheduleGetResponse"]
 
 
 class ScheduleGetResponse(BaseModel):
-    schedules: Optional[List[UnnamedSchemaRefC8302c265937f9d6f96fd69644e56b26]] = None
+    schedules: Optional[List[Schedule]] = None

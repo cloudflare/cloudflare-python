@@ -4,13 +4,13 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 from .output_options import OutputOptions
 
-__all__ = ["Job"]
+__all__ = ["JobListResponse"]
 
 
-class Job(BaseModel):
+class JobListResponse(BaseModel):
     id: Optional[int] = None
     """Unique id of the job."""
 

@@ -4,10 +4,10 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["UnnamedSchemaRef3e10ea08deb8102a27500f986488c1e8"]
+__all__ = ["RuleMatch"]
 
 
-class UnnamedSchemaRef3e10ea08deb8102a27500f986488c1e8(BaseModel):
+class RuleMatch(BaseModel):
     banning: Optional[bool] = None
     """For internal use."""
 
