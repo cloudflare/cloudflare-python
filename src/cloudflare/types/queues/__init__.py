@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .consumer import Consumer as Consumer
 from .message_ack_params import MessageAckParams as MessageAckParams
 from .message_pull_params import MessagePullParams as MessagePullParams
 from .message_ack_response import MessageAckResponse as MessageAckResponse
