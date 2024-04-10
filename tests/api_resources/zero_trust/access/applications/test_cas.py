@@ -10,8 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from cloudflare.types.zero_trust.access.applications import CA, CADeleteResponse
+from cloudflare.types.zero_trust.access.applications import CA, CAGetResponse, CACreateResponse, CADeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +26,7 @@ class TestCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +36,7 @@ class TestCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -51,7 +50,7 @@ class TestCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -65,7 +64,7 @@ class TestCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+            assert_matches_type(CACreateResponse, ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -236,7 +235,7 @@ class TestCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -246,7 +245,7 @@ class TestCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -260,7 +259,7 @@ class TestCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -274,7 +273,7 @@ class TestCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+            assert_matches_type(CAGetResponse, ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -314,7 +313,7 @@ class TestAsyncCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -324,7 +323,7 @@ class TestAsyncCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -338,7 +337,7 @@ class TestAsyncCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -352,7 +351,7 @@ class TestAsyncCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+            assert_matches_type(CACreateResponse, ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -523,7 +522,7 @@ class TestAsyncCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -533,7 +532,7 @@ class TestAsyncCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -547,7 +546,7 @@ class TestAsyncCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = await response.parse()
-        assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -561,7 +560,7 @@ class TestAsyncCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = await response.parse()
-            assert_matches_type(UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a, ca, path=["response"])
+            assert_matches_type(CAGetResponse, ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

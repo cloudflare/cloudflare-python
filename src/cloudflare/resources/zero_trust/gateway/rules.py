@@ -26,12 +26,12 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ....types.zero_trust.gateway import (
     GatewayRule,
     GatewayFilter,
     ScheduleParam,
     RuleSettingParam,
+    RuleDeleteResponse,
     rule_create_params,
     rule_delete_params,
     rule_update_params,
@@ -314,7 +314,7 @@ class Rules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RuleDeleteResponse:
         """
         Deletes a Zero Trust Gateway rule.
 
@@ -334,7 +334,7 @@ class Rules(SyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RuleDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/gateway/rules/{rule_id}",
                 body=maybe_transform(body, rule_delete_params.RuleDeleteParams),
@@ -346,7 +346,7 @@ class Rules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RuleDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -668,7 +668,7 @@ class AsyncRules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> RuleDeleteResponse:
         """
         Deletes a Zero Trust Gateway rule.
 
@@ -688,7 +688,7 @@ class AsyncRules(AsyncAPIResource):
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            RuleDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/gateway/rules/{rule_id}",
                 body=await async_maybe_transform(body, rule_delete_params.RuleDeleteParams),
@@ -700,7 +700,7 @@ class AsyncRules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[RuleDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

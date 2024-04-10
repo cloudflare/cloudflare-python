@@ -32,8 +32,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ...types.spectrum import (
+    AppGetResponse,
     AppCreateResponse,
     AppDeleteResponse,
     AppUpdateResponse,
@@ -377,7 +377,7 @@ class Apps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> AppGetResponse:
         """
         Gets the application configuration of a specific application inside a zone.
 
@@ -399,7 +399,7 @@ class Apps(SyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            AppGetResponse,
             self._get(
                 f"/zones/{zone}/spectrum/apps/{app_id}",
                 options=make_request_options(
@@ -410,7 +410,7 @@ class Apps(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[AppGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -747,7 +747,7 @@ class AsyncApps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> AppGetResponse:
         """
         Gets the application configuration of a specific application inside a zone.
 
@@ -769,7 +769,7 @@ class AsyncApps(AsyncAPIResource):
         if not app_id:
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            AppGetResponse,
             await self._get(
                 f"/zones/{zone}/spectrum/apps/{app_id}",
                 options=make_request_options(
@@ -780,7 +780,7 @@ class AsyncApps(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[AppGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

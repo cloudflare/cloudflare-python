@@ -8,6 +8,9 @@ import httpx
 
 from ...types import (
     ZoneAuthenticatedOriginPull,
+    OriginTLSClientAuthGetResponse,
+    OriginTLSClientAuthCreateResponse,
+    OriginTLSClientAuthDeleteResponse,
     origin_tls_client_auth_create_params,
     origin_tls_client_auth_delete_params,
 )
@@ -46,7 +49,6 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from .hostnames.hostnames import Hostnames, AsyncHostnames
 
 __all__ = ["OriginTLSClientAuth", "AsyncOriginTLSClientAuth"]
@@ -81,7 +83,7 @@ class OriginTLSClientAuth(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> OriginTLSClientAuthCreateResponse:
         """
         Upload your own certificate you want Cloudflare to use for edge-to-origin
         communication to override the shared certificate. Please note that it is
@@ -107,7 +109,7 @@ class OriginTLSClientAuth(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            OriginTLSClientAuthCreateResponse,
             self._post(
                 f"/zones/{zone_id}/origin_tls_client_auth",
                 body=maybe_transform(
@@ -125,7 +127,7 @@ class OriginTLSClientAuth(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[OriginTLSClientAuthCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -178,7 +180,7 @@ class OriginTLSClientAuth(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> OriginTLSClientAuthDeleteResponse:
         """
         Delete Certificate
 
@@ -200,7 +202,7 @@ class OriginTLSClientAuth(SyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            OriginTLSClientAuthDeleteResponse,
             self._delete(
                 f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
                 body=maybe_transform(body, origin_tls_client_auth_delete_params.OriginTLSClientAuthDeleteParams),
@@ -212,7 +214,7 @@ class OriginTLSClientAuth(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[OriginTLSClientAuthDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -228,7 +230,7 @@ class OriginTLSClientAuth(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> OriginTLSClientAuthGetResponse:
         """
         Get Certificate Details
 
@@ -250,7 +252,7 @@ class OriginTLSClientAuth(SyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            OriginTLSClientAuthGetResponse,
             self._get(
                 f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
                 options=make_request_options(
@@ -261,7 +263,7 @@ class OriginTLSClientAuth(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[OriginTLSClientAuthGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -296,7 +298,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> OriginTLSClientAuthCreateResponse:
         """
         Upload your own certificate you want Cloudflare to use for edge-to-origin
         communication to override the shared certificate. Please note that it is
@@ -322,7 +324,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            OriginTLSClientAuthCreateResponse,
             await self._post(
                 f"/zones/{zone_id}/origin_tls_client_auth",
                 body=await async_maybe_transform(
@@ -340,7 +342,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[OriginTLSClientAuthCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -393,7 +395,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> OriginTLSClientAuthDeleteResponse:
         """
         Delete Certificate
 
@@ -415,7 +417,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            OriginTLSClientAuthDeleteResponse,
             await self._delete(
                 f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
                 body=await async_maybe_transform(
@@ -429,7 +431,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[OriginTLSClientAuthDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -445,7 +447,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> OriginTLSClientAuthGetResponse:
         """
         Get Certificate Details
 
@@ -467,7 +469,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            OriginTLSClientAuthGetResponse,
             await self._get(
                 f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
                 options=make_request_options(
@@ -478,7 +480,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[OriginTLSClientAuthGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

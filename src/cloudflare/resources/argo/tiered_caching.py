@@ -21,11 +21,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.argo import tiered_caching_edit_params
+from ...types.argo import TieredCachingGetResponse, TieredCachingEditResponse, tiered_caching_edit_params
 from ..._base_client import (
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 
 __all__ = ["TieredCaching", "AsyncTieredCaching"]
 
@@ -50,7 +49,7 @@ class TieredCaching(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> TieredCachingEditResponse:
         """
         Updates enablement of Tiered Caching
 
@@ -70,7 +69,7 @@ class TieredCaching(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            TieredCachingEditResponse,
             self._patch(
                 f"/zones/{zone_id}/argo/tiered_caching",
                 body=maybe_transform({"value": value}, tiered_caching_edit_params.TieredCachingEditParams),
@@ -82,7 +81,7 @@ class TieredCaching(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[TieredCachingEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -97,7 +96,7 @@ class TieredCaching(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> TieredCachingGetResponse:
         """
         Get Tiered Caching setting
 
@@ -115,7 +114,7 @@ class TieredCaching(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            TieredCachingGetResponse,
             self._get(
                 f"/zones/{zone_id}/argo/tiered_caching",
                 options=make_request_options(
@@ -126,7 +125,7 @@ class TieredCaching(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[TieredCachingGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -152,7 +151,7 @@ class AsyncTieredCaching(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> TieredCachingEditResponse:
         """
         Updates enablement of Tiered Caching
 
@@ -172,7 +171,7 @@ class AsyncTieredCaching(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            TieredCachingEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/argo/tiered_caching",
                 body=await async_maybe_transform({"value": value}, tiered_caching_edit_params.TieredCachingEditParams),
@@ -184,7 +183,7 @@ class AsyncTieredCaching(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[TieredCachingEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -199,7 +198,7 @@ class AsyncTieredCaching(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> TieredCachingGetResponse:
         """
         Get Tiered Caching setting
 
@@ -217,7 +216,7 @@ class AsyncTieredCaching(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            TieredCachingGetResponse,
             await self._get(
                 f"/zones/{zone_id}/argo/tiered_caching",
                 options=make_request_options(
@@ -228,7 +227,7 @@ class AsyncTieredCaching(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[TieredCachingGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

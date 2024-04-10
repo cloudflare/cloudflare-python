@@ -26,9 +26,9 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from .....types.zero_trust.devices.posture import (
     Integration,
+    IntegrationDeleteResponse,
     integration_edit_params,
     integration_create_params,
     integration_delete_params,
@@ -151,7 +151,7 @@ class Integrations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> IntegrationDeleteResponse:
         """
         Delete a configured device posture integration.
 
@@ -171,7 +171,7 @@ class Integrations(SyncAPIResource):
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            IntegrationDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
                 body=maybe_transform(body, integration_delete_params.IntegrationDeleteParams),
@@ -183,7 +183,7 @@ class Integrations(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[IntegrationDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -410,7 +410,7 @@ class AsyncIntegrations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> IntegrationDeleteResponse:
         """
         Delete a configured device posture integration.
 
@@ -430,7 +430,7 @@ class AsyncIntegrations(AsyncAPIResource):
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            IntegrationDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
                 body=await async_maybe_transform(body, integration_delete_params.IntegrationDeleteParams),
@@ -442,7 +442,7 @@ class AsyncIntegrations(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[IntegrationDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

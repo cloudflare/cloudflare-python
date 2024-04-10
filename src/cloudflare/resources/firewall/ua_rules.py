@@ -25,10 +25,12 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ...types.firewall import (
+    UARuleGetResponse,
     UARuleListResponse,
+    UARuleCreateResponse,
     UARuleDeleteResponse,
+    UARuleUpdateResponse,
     ua_rule_list_params,
     ua_rule_create_params,
     ua_rule_delete_params,
@@ -58,7 +60,7 @@ class UARules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> UARuleCreateResponse:
         """
         Creates a new User Agent Blocking rule in a zone.
 
@@ -76,7 +78,7 @@ class UARules(SyncAPIResource):
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            UARuleCreateResponse,
             self._post(
                 f"/zones/{zone_identifier}/firewall/ua_rules",
                 body=maybe_transform(body, ua_rule_create_params.UARuleCreateParams),
@@ -88,7 +90,7 @@ class UARules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[UARuleCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -105,7 +107,7 @@ class UARules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> UARuleUpdateResponse:
         """
         Updates an existing User Agent Blocking rule.
 
@@ -127,7 +129,7 @@ class UARules(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            UARuleUpdateResponse,
             self._put(
                 f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
                 body=maybe_transform(body, ua_rule_update_params.UARuleUpdateParams),
@@ -139,7 +141,7 @@ class UARules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[UARuleUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -268,7 +270,7 @@ class UARules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> UARuleGetResponse:
         """
         Fetches the details of a User Agent Blocking rule.
 
@@ -290,7 +292,7 @@ class UARules(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            UARuleGetResponse,
             self._get(
                 f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
                 options=make_request_options(
@@ -301,7 +303,7 @@ class UARules(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[UARuleGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -327,7 +329,7 @@ class AsyncUARules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> UARuleCreateResponse:
         """
         Creates a new User Agent Blocking rule in a zone.
 
@@ -345,7 +347,7 @@ class AsyncUARules(AsyncAPIResource):
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            UARuleCreateResponse,
             await self._post(
                 f"/zones/{zone_identifier}/firewall/ua_rules",
                 body=await async_maybe_transform(body, ua_rule_create_params.UARuleCreateParams),
@@ -357,7 +359,7 @@ class AsyncUARules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[UARuleCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -374,7 +376,7 @@ class AsyncUARules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> UARuleUpdateResponse:
         """
         Updates an existing User Agent Blocking rule.
 
@@ -396,7 +398,7 @@ class AsyncUARules(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            UARuleUpdateResponse,
             await self._put(
                 f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
                 body=await async_maybe_transform(body, ua_rule_update_params.UARuleUpdateParams),
@@ -408,7 +410,7 @@ class AsyncUARules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[UARuleUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -537,7 +539,7 @@ class AsyncUARules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> UARuleGetResponse:
         """
         Fetches the details of a User Agent Blocking rule.
 
@@ -559,7 +561,7 @@ class AsyncUARules(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            UARuleGetResponse,
             await self._get(
                 f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
                 options=make_request_options(
@@ -570,7 +572,7 @@ class AsyncUARules(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[UARuleGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

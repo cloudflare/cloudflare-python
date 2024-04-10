@@ -23,12 +23,12 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
 from ....types.images.v1 import (
     Variant,
     VariantGetResponse,
     VariantEditResponse,
     VariantCreateResponse,
+    VariantDeleteResponse,
     variant_edit_params,
     variant_create_params,
     variant_delete_params,
@@ -152,7 +152,7 @@ class Variants(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> VariantDeleteResponse:
         """
         Deleting a variant purges the cache for all images associated with the variant.
 
@@ -172,7 +172,7 @@ class Variants(SyncAPIResource):
         if not variant_id:
             raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            VariantDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/images/v1/variants/{variant_id}",
                 body=maybe_transform(body, variant_delete_params.VariantDeleteParams),
@@ -184,7 +184,7 @@ class Variants(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[VariantDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -403,7 +403,7 @@ class AsyncVariants(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> VariantDeleteResponse:
         """
         Deleting a variant purges the cache for all images associated with the variant.
 
@@ -423,7 +423,7 @@ class AsyncVariants(AsyncAPIResource):
         if not variant_id:
             raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            VariantDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/images/v1/variants/{variant_id}",
                 body=await async_maybe_transform(body, variant_delete_params.VariantDeleteParams),
@@ -435,7 +435,7 @@ class AsyncVariants(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[VariantDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

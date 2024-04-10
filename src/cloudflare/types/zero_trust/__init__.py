@@ -21,6 +21,7 @@ from .login_design_param import LoginDesignParam as LoginDesignParam
 from .seat_edit_response import SeatEditResponse as SeatEditResponse
 from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
 from .tunnel_list_params import TunnelListParams as TunnelListParams
+from .device_get_response import DeviceGetResponse as DeviceGetResponse
 from .generic_oauth_config import GenericOAuthConfig as GenericOAuthConfig
 from .tunnel_create_params import TunnelCreateParams as TunnelCreateParams
 from .tunnel_delete_params import TunnelDeleteParams as TunnelDeleteParams

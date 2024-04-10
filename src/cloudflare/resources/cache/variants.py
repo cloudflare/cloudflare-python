@@ -21,7 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.cache import (
-    CacheVariants,
+    CacheVariant,
     VariantGetResponse,
     VariantEditResponse,
     variant_edit_params,
@@ -54,7 +54,7 @@ class Variants(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CacheVariants:
+    ) -> CacheVariant:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -85,7 +85,7 @@ class Variants(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CacheVariants], ResultWrapper[CacheVariants]),
+            cast_to=cast(Type[CacheVariant], ResultWrapper[CacheVariant]),
         )
 
     def edit(
@@ -199,7 +199,7 @@ class AsyncVariants(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CacheVariants:
+    ) -> CacheVariant:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -230,7 +230,7 @@ class AsyncVariants(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CacheVariants], ResultWrapper[CacheVariants]),
+            cast_to=cast(Type[CacheVariant], ResultWrapper[CacheVariant]),
         )
 
     async def edit(

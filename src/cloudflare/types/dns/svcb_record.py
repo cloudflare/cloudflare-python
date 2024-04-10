@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from .ttl import TTL
 from ..._models import BaseModel
 from .record_tags import RecordTags
-from .unnamed_schema_ref_1391721bdb8938d5420a8bc738a44deb import UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb
+from .record_metadata import RecordMetadata
 
 __all__ = ["SVCBRecord", "Data"]
 
@@ -54,7 +54,7 @@ class SVCBRecord(BaseModel):
     Cloudflare).
     """
 
-    meta: Optional[UnnamedSchemaRef1391721bdb8938d5420a8bc738a44deb] = None
+    meta: Optional[RecordMetadata] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None

@@ -26,8 +26,13 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.shared import UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a
-from .....types.firewall.waf.packages import Group, group_edit_params, group_list_params
+from .....types.firewall.waf.packages import (
+    Group,
+    GroupGetResponse,
+    GroupEditResponse,
+    group_edit_params,
+    group_list_params,
+)
 
 __all__ = ["Groups", "AsyncGroups"]
 
@@ -140,7 +145,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> GroupEditResponse:
         """Updates a WAF rule group.
 
         You can update the state (`mode` parameter) of a rule
@@ -174,7 +179,7 @@ class Groups(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            GroupEditResponse,
             self._patch(
                 f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
                 body=maybe_transform({"mode": mode}, group_edit_params.GroupEditParams),
@@ -186,7 +191,7 @@ class Groups(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[GroupEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -203,7 +208,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> GroupGetResponse:
         """
         Fetches the details of a WAF rule group.
 
@@ -232,7 +237,7 @@ class Groups(SyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            GroupGetResponse,
             self._get(
                 f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
                 options=make_request_options(
@@ -243,7 +248,7 @@ class Groups(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[GroupGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -357,7 +362,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> GroupEditResponse:
         """Updates a WAF rule group.
 
         You can update the state (`mode` parameter) of a rule
@@ -391,7 +396,7 @@ class AsyncGroups(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            GroupEditResponse,
             await self._patch(
                 f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
                 body=await async_maybe_transform({"mode": mode}, group_edit_params.GroupEditParams),
@@ -403,7 +408,7 @@ class AsyncGroups(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[GroupEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -420,7 +425,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a:
+    ) -> GroupGetResponse:
         """
         Fetches the details of a WAF rule group.
 
@@ -449,7 +454,7 @@ class AsyncGroups(AsyncAPIResource):
         if not group_id:
             raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         return cast(
-            UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a,
+            GroupGetResponse,
             await self._get(
                 f"/zones/{zone_id}/firewall/waf/packages/{package_id}/groups/{group_id}",
                 options=make_request_options(
@@ -460,7 +465,7 @@ class AsyncGroups(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[UnnamedSchemaRef9444735ca60712dbcf8afd832eb5716a]
+                    Any, ResultWrapper[GroupGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
