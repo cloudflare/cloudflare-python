@@ -13,16 +13,15 @@ from .schema_data_param import SchemaDataParam as SchemaDataParam
 from .device_input_param import DeviceInputParam as DeviceInputParam
 from .device_match_param import DeviceMatchParam as DeviceMatchParam
 from .policy_edit_params import PolicyEditParams as PolicyEditParams
+from .device_posture_rule import DevicePostureRule as DevicePostureRule
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_delete_params import PolicyDeleteParams as PolicyDeleteParams
-from .posture_get_response import PostureGetResponse as PostureGetResponse
 from .revoke_create_params import RevokeCreateParams as RevokeCreateParams
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_delete_params import NetworkDeleteParams as NetworkDeleteParams
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .posture_create_params import PostureCreateParams as PostureCreateParams
 from .posture_delete_params import PostureDeleteParams as PostureDeleteParams
-from .posture_list_response import PostureListResponse as PostureListResponse
 from .posture_update_params import PostureUpdateParams as PostureUpdateParams
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
 from .dex_test_create_params import DEXTestCreateParams as DEXTestCreateParams
@@ -30,9 +29,7 @@ from .dex_test_update_params import DEXTestUpdateParams as DEXTestUpdateParams
 from .policy_delete_response import PolicyDeleteResponse as PolicyDeleteResponse
 from .unrevoke_create_params import UnrevokeCreateParams as UnrevokeCreateParams
 from .network_delete_response import NetworkDeleteResponse as NetworkDeleteResponse
-from .posture_create_response import PostureCreateResponse as PostureCreateResponse
 from .posture_delete_response import PostureDeleteResponse as PostureDeleteResponse
-from .posture_update_response import PostureUpdateResponse as PostureUpdateResponse
 from .dex_test_delete_response import DEXTestDeleteResponse as DEXTestDeleteResponse
 from .override_code_list_response import OverrideCodeListResponse as OverrideCodeListResponse
 from .unnamed_schema_ref_34ef0ad73a63c3f76ed170adca181930 import (
