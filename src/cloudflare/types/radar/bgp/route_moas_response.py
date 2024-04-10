@@ -3,9 +3,16 @@
 from typing import List
 
 from ...._models import BaseModel
-from ...unnamed_schema_ref_c5858f1f916a921846e0b6159af470a7 import UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7
 
-__all__ = ["RouteMoasResponse", "Moa", "MoaOrigin"]
+__all__ = ["RouteMoasResponse", "Meta", "Moa", "MoaOrigin"]
+
+
+class Meta(BaseModel):
+    data_time: str
+
+    query_time: str
+
+    total_peers: int
 
 
 class MoaOrigin(BaseModel):
@@ -23,6 +30,6 @@ class Moa(BaseModel):
 
 
 class RouteMoasResponse(BaseModel):
-    meta: UnnamedSchemaRefC5858f1f916a921846e0b6159af470a7
+    meta: Meta
 
     moas: List[Moa]

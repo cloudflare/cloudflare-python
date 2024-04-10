@@ -6,15 +6,43 @@ from datetime import datetime
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..unnamed_schema_ref_75bae70cf28e6bcef364b9840db3bdeb import UnnamedSchemaRef75bae70cf28e6bcef364b9840db3bdeb
-from ..unnamed_schema_ref_b5f3bd1840490bc487ffef84567807b1 import UnnamedSchemaRefB5f3bd1840490bc487ffef84567807b1
-from ..unnamed_schema_ref_baac9d7da12de53e99142f8ecd3982e5 import UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5
 
-__all__ = ["NetflowTimeseriesResponse", "Meta", "MetaConfidenceInfo"]
+__all__ = [
+    "NetflowTimeseriesResponse",
+    "Meta",
+    "MetaDateRange",
+    "MetaConfidenceInfo",
+    "MetaConfidenceInfoAnnotation",
+    "Serie0",
+]
+
+
+class MetaDateRange(BaseModel):
+    end_time: datetime = FieldInfo(alias="endTime")
+    """Adjusted end of date range."""
+
+    start_time: datetime = FieldInfo(alias="startTime")
+    """Adjusted start of date range."""
+
+
+class MetaConfidenceInfoAnnotation(BaseModel):
+    data_source: str = FieldInfo(alias="dataSource")
+
+    description: str
+
+    event_type: str = FieldInfo(alias="eventType")
+
+    is_instantaneous: object = FieldInfo(alias="isInstantaneous")
+
+    end_time: Optional[datetime] = FieldInfo(alias="endTime", default=None)
+
+    linked_url: Optional[str] = FieldInfo(alias="linkedUrl", default=None)
+
+    start_time: Optional[datetime] = FieldInfo(alias="startTime", default=None)
 
 
 class MetaConfidenceInfo(BaseModel):
-    annotations: Optional[List[UnnamedSchemaRefB5f3bd1840490bc487ffef84567807b1]] = None
+    annotations: Optional[List[MetaConfidenceInfoAnnotation]] = None
 
     level: Optional[int] = None
 
@@ -22,14 +50,20 @@ class MetaConfidenceInfo(BaseModel):
 class Meta(BaseModel):
     agg_interval: str = FieldInfo(alias="aggInterval")
 
-    date_range: List[UnnamedSchemaRefBaac9d7da12de53e99142f8ecd3982e5] = FieldInfo(alias="dateRange")
+    date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
 
     last_updated: datetime = FieldInfo(alias="lastUpdated")
 
     confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias="confidenceInfo", default=None)
 
 
+class Serie0(BaseModel):
+    timestamps: List[datetime]
+
+    values: List[str]
+
+
 class NetflowTimeseriesResponse(BaseModel):
     meta: Meta
 
-    serie_0: UnnamedSchemaRef75bae70cf28e6bcef364b9840db3bdeb
+    serie_0: Serie0

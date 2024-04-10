@@ -3,7 +3,7 @@
 
 
 from ....._models import BaseModel
-from ...unnamed_schema_ref_67c73d4742566cab0909f71b1822e88c import UnnamedSchemaRef67c73d4742566cab0909f71b1822e88c
+from ...radar_email_series import RadarEmailSeries
 
 __all__ = ["TimeseriesGroupARCResponse"]
 
@@ -11,4 +11,4 @@ __all__ = ["TimeseriesGroupARCResponse"]
 class TimeseriesGroupARCResponse(BaseModel):
     meta: object
 
-    serie_0: UnnamedSchemaRef67c73d4742566cab0909f71b1822e88c
+    serie_0: RadarEmailSeries
