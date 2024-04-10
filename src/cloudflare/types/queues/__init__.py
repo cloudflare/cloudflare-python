@@ -13,6 +13,3 @@ from .consumer_update_params import ConsumerUpdateParams as ConsumerUpdateParams
 from .consumer_create_response import ConsumerCreateResponse as ConsumerCreateResponse
 from .consumer_delete_response import ConsumerDeleteResponse as ConsumerDeleteResponse
 from .consumer_update_response import ConsumerUpdateResponse as ConsumerUpdateResponse
-from .unnamed_schema_ref_fbd3a4642487e41594e9af0ccb9a5ca5 import (
-    UnnamedSchemaRefFbd3a4642487e41594e9af0ccb9a5ca5 as UnnamedSchemaRefFbd3a4642487e41594e9af0ccb9a5ca5,
-)

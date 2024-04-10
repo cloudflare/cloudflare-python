@@ -1,16 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ...._models import BaseModel
-from ..output_options import OutputOptions
+from ..._models import BaseModel
+from .output_options import OutputOptions
 
-__all__ = ["JobGetResponse", "JobGetResponseItem"]
+__all__ = ["JobCreateResponse"]
 
 
-class JobGetResponseItem(BaseModel):
+class JobCreateResponse(BaseModel):
     id: Optional[int] = None
     """Unique id of the job."""
 
@@ -80,6 +80,3 @@ class JobGetResponseItem(BaseModel):
 
     When including this field, the `logpull_option` field will be ignored.
     """
-
-
-JobGetResponse = List[Optional[JobGetResponseItem]]

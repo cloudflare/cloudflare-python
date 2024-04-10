@@ -49,12 +49,14 @@ from .membership import Membership as Membership
 from .origin_dns import OriginDNS as OriginDNS
 from .r2_binding import R2Binding as R2Binding
 from .rate_limit import RateLimit as RateLimit
+from .rule_match import RuleMatch as RuleMatch
 from .healthcheck import Healthcheck as Healthcheck
 from .jdcloud_ips import JDCloudIPs as JDCloudIPs
 from .origin_port import OriginPort as OriginPort
 from .pcap_filter import PCAPFilter as PCAPFilter
 from .route_param import RouteParam as RouteParam
 from .rules_param import RulesParam as RulesParam
+from .scan_status import ScanStatus as ScanStatus
 from .check_region import CheckRegion as CheckRegion
 from .header_param import HeaderParam as HeaderParam
 from .health_check import HealthCheck as HealthCheck
@@ -173,6 +175,7 @@ from .pagerule_update_params import PageruleUpdateParams as PageruleUpdateParams
 from .rate_limit_edit_params import RateLimitEditParams as RateLimitEditParams
 from .rate_limit_list_params import RateLimitListParams as RateLimitListParams
 from .rate_plan_get_response import RatePlanGetResponse as RatePlanGetResponse
+from .url_info_model_results import URLInfoModelResults as URLInfoModelResults
 from .account_update_response import AccountUpdateResponse as AccountUpdateResponse
 from .additional_routes_param import AdditionalRoutesParam as AdditionalRoutesParam
 from .audit_log_list_response import AuditLogListResponse as AuditLogListResponse
@@ -323,20 +326,11 @@ from .super_bot_fight_mode_definitely_configuration import (
 from .origin_post_quantum_encryption_update_response import (
     OriginPostQuantumEncryptionUpdateResponse as OriginPostQuantumEncryptionUpdateResponse,
 )
-from .unnamed_schema_ref_3e10ea08deb8102a27500f986488c1e8 import (
-    UnnamedSchemaRef3e10ea08deb8102a27500f986488c1e8 as UnnamedSchemaRef3e10ea08deb8102a27500f986488c1e8,
-)
 from .unnamed_schema_ref_8b383e904d9fb02521257ef9cc77d297 import (
     UnnamedSchemaRef8b383e904d9fb02521257ef9cc77d297 as UnnamedSchemaRef8b383e904d9fb02521257ef9cc77d297,
 )
-from .unnamed_schema_ref_9b4c9779a35b172cb69c71389ebc7014 import (
-    UnnamedSchemaRef9b4c9779a35b172cb69c71389ebc7014 as UnnamedSchemaRef9b4c9779a35b172cb69c71389ebc7014,
-)
 from .unnamed_schema_ref_16e559c45a31db5480e21fbe904b2e42 import (
     UnnamedSchemaRef16e559c45a31db5480e21fbe904b2e42 as UnnamedSchemaRef16e559c45a31db5480e21fbe904b2e42,
-)
-from .unnamed_schema_ref_44e66100b948bfe723054c56b6144766 import (
-    UnnamedSchemaRef44e66100b948bfe723054c56b6144766 as UnnamedSchemaRef44e66100b948bfe723054c56b6144766,
 )
 from .unnamed_schema_ref_75bae70cf28e6bcef364b9840db3bdeb import (
     UnnamedSchemaRef75bae70cf28e6bcef364b9840db3bdeb as UnnamedSchemaRef75bae70cf28e6bcef364b9840db3bdeb,
@@ -344,26 +338,14 @@ from .unnamed_schema_ref_75bae70cf28e6bcef364b9840db3bdeb import (
 from .unnamed_schema_ref_83a14d589e799bc901b9ccc870251d09 import (
     UnnamedSchemaRef83a14d589e799bc901b9ccc870251d09 as UnnamedSchemaRef83a14d589e799bc901b9ccc870251d09,
 )
-from .unnamed_schema_ref_209db30ed499548152d6f3bccf720b54 import (
-    UnnamedSchemaRef209db30ed499548152d6f3bccf720b54 as UnnamedSchemaRef209db30ed499548152d6f3bccf720b54,
-)
-from .unnamed_schema_ref_767c0981cf47f45f0c766253dbd18669 import (
-    UnnamedSchemaRef767c0981cf47f45f0c766253dbd18669 as UnnamedSchemaRef767c0981cf47f45f0c766253dbd18669,
-)
 from .unnamed_schema_ref_4124a22436f90127c7fa2c4543219752 import (
     UnnamedSchemaRef4124a22436f90127c7fa2c4543219752 as UnnamedSchemaRef4124a22436f90127c7fa2c4543219752,
-)
-from .unnamed_schema_ref_39419d70e2399b28b15cd660afd342fb import (
-    UnnamedSchemaRef39419d70e2399b28b15cd660afd342fb as UnnamedSchemaRef39419d70e2399b28b15cd660afd342fb,
 )
 from .unnamed_schema_ref_7826220e105d84352ba1108d9ed88e55 import (
     UnnamedSchemaRef7826220e105d84352ba1108d9ed88e55 as UnnamedSchemaRef7826220e105d84352ba1108d9ed88e55,
 )
 from .unnamed_schema_ref_9002274ed7cb7f3dc567421e31529a3a import (
     UnnamedSchemaRef9002274ed7cb7f3dc567421e31529a3a as UnnamedSchemaRef9002274ed7cb7f3dc567421e31529a3a,
-)
-from .unnamed_schema_ref_a64e2a18a86750b6bd72cdf37ecfd869 import (
-    UnnamedSchemaRefA64e2a18a86750b6bd72cdf37ecfd869 as UnnamedSchemaRefA64e2a18a86750b6bd72cdf37ecfd869,
 )
 from .unnamed_schema_ref_b5f3bd1840490bc487ffef84567807b1 import (
     UnnamedSchemaRefB5f3bd1840490bc487ffef84567807b1 as UnnamedSchemaRefB5f3bd1840490bc487ffef84567807b1,

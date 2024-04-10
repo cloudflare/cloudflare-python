@@ -6,10 +6,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["UnnamedSchemaRef9b4c9779a35b172cb69c71389ebc7014"]
+__all__ = ["URLInfoModelResults"]
 
 
-class UnnamedSchemaRef9b4c9779a35b172cb69c71389ebc7014(BaseModel):
+class URLInfoModelResults(BaseModel):
     ai_model_name: Optional[str] = FieldInfo(alias="model_name", default=None)
     """Name of the model."""
 

@@ -4,10 +4,10 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["UnnamedSchemaRefA64e2a18a86750b6bd72cdf37ecfd869"]
+__all__ = ["ScanStatus"]
 
 
-class UnnamedSchemaRefA64e2a18a86750b6bd72cdf37ecfd869(BaseModel):
+class ScanStatus(BaseModel):
     last_processed: Optional[str] = None
     """Timestamp of when the submission was processed."""
 

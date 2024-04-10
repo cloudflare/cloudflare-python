@@ -9,12 +9,12 @@ from .status import (
     AsyncStatusWithStreamingResponse,
 )
 from .outgoing import (
-    Outgoing,
-    AsyncOutgoing,
-    OutgoingWithRawResponse,
-    AsyncOutgoingWithRawResponse,
-    OutgoingWithStreamingResponse,
-    AsyncOutgoingWithStreamingResponse,
+    OutgoingResource,
+    AsyncOutgoingResource,
+    OutgoingResourceWithRawResponse,
+    AsyncOutgoingResourceWithRawResponse,
+    OutgoingResourceWithStreamingResponse,
+    AsyncOutgoingResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncStatusWithRawResponse",
     "StatusWithStreamingResponse",
     "AsyncStatusWithStreamingResponse",
-    "Outgoing",
-    "AsyncOutgoing",
-    "OutgoingWithRawResponse",
-    "AsyncOutgoingWithRawResponse",
-    "OutgoingWithStreamingResponse",
-    "AsyncOutgoingWithStreamingResponse",
+    "OutgoingResource",
+    "AsyncOutgoingResource",
+    "OutgoingResourceWithRawResponse",
+    "AsyncOutgoingResourceWithRawResponse",
+    "OutgoingResourceWithStreamingResponse",
+    "AsyncOutgoingResourceWithStreamingResponse",
 ]

@@ -27,20 +27,20 @@ from .tsigs import (
     AsyncTSIGsWithStreamingResponse,
 )
 from .incoming import (
-    Incoming,
-    AsyncIncoming,
-    IncomingWithRawResponse,
-    AsyncIncomingWithRawResponse,
-    IncomingWithStreamingResponse,
-    AsyncIncomingWithStreamingResponse,
+    IncomingResource,
+    AsyncIncomingResource,
+    IncomingResourceWithRawResponse,
+    AsyncIncomingResourceWithRawResponse,
+    IncomingResourceWithStreamingResponse,
+    AsyncIncomingResourceWithStreamingResponse,
 )
 from .outgoing import (
-    Outgoing,
-    AsyncOutgoing,
-    OutgoingWithRawResponse,
-    AsyncOutgoingWithRawResponse,
-    OutgoingWithStreamingResponse,
-    AsyncOutgoingWithStreamingResponse,
+    OutgoingResource,
+    AsyncOutgoingResource,
+    OutgoingResourceWithRawResponse,
+    AsyncOutgoingResourceWithRawResponse,
+    OutgoingResourceWithStreamingResponse,
+    AsyncOutgoingResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .force_axfr import (
@@ -52,7 +52,7 @@ from .force_axfr import (
     AsyncForceAXFRResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .outgoing.outgoing import Outgoing, AsyncOutgoing
+from .outgoing.outgoing import OutgoingResource, AsyncOutgoingResource
 
 __all__ = ["SecondaryDNS", "AsyncSecondaryDNS"]
 
@@ -63,12 +63,12 @@ class SecondaryDNS(SyncAPIResource):
         return ForceAXFRResource(self._client)
 
     @cached_property
-    def incoming(self) -> Incoming:
-        return Incoming(self._client)
+    def incoming(self) -> IncomingResource:
+        return IncomingResource(self._client)
 
     @cached_property
-    def outgoing(self) -> Outgoing:
-        return Outgoing(self._client)
+    def outgoing(self) -> OutgoingResource:
+        return OutgoingResource(self._client)
 
     @cached_property
     def acls(self) -> ACLs:
@@ -97,12 +97,12 @@ class AsyncSecondaryDNS(AsyncAPIResource):
         return AsyncForceAXFRResource(self._client)
 
     @cached_property
-    def incoming(self) -> AsyncIncoming:
-        return AsyncIncoming(self._client)
+    def incoming(self) -> AsyncIncomingResource:
+        return AsyncIncomingResource(self._client)
 
     @cached_property
-    def outgoing(self) -> AsyncOutgoing:
-        return AsyncOutgoing(self._client)
+    def outgoing(self) -> AsyncOutgoingResource:
+        return AsyncOutgoingResource(self._client)
 
     @cached_property
     def acls(self) -> AsyncACLs:
@@ -134,12 +134,12 @@ class SecondaryDNSWithRawResponse:
         return ForceAXFRResourceWithRawResponse(self._secondary_dns.force_axfr)
 
     @cached_property
-    def incoming(self) -> IncomingWithRawResponse:
-        return IncomingWithRawResponse(self._secondary_dns.incoming)
+    def incoming(self) -> IncomingResourceWithRawResponse:
+        return IncomingResourceWithRawResponse(self._secondary_dns.incoming)
 
     @cached_property
-    def outgoing(self) -> OutgoingWithRawResponse:
-        return OutgoingWithRawResponse(self._secondary_dns.outgoing)
+    def outgoing(self) -> OutgoingResourceWithRawResponse:
+        return OutgoingResourceWithRawResponse(self._secondary_dns.outgoing)
 
     @cached_property
     def acls(self) -> ACLsWithRawResponse:
@@ -163,12 +163,12 @@ class AsyncSecondaryDNSWithRawResponse:
         return AsyncForceAXFRResourceWithRawResponse(self._secondary_dns.force_axfr)
 
     @cached_property
-    def incoming(self) -> AsyncIncomingWithRawResponse:
-        return AsyncIncomingWithRawResponse(self._secondary_dns.incoming)
+    def incoming(self) -> AsyncIncomingResourceWithRawResponse:
+        return AsyncIncomingResourceWithRawResponse(self._secondary_dns.incoming)
 
     @cached_property
-    def outgoing(self) -> AsyncOutgoingWithRawResponse:
-        return AsyncOutgoingWithRawResponse(self._secondary_dns.outgoing)
+    def outgoing(self) -> AsyncOutgoingResourceWithRawResponse:
+        return AsyncOutgoingResourceWithRawResponse(self._secondary_dns.outgoing)
 
     @cached_property
     def acls(self) -> AsyncACLsWithRawResponse:
@@ -192,12 +192,12 @@ class SecondaryDNSWithStreamingResponse:
         return ForceAXFRResourceWithStreamingResponse(self._secondary_dns.force_axfr)
 
     @cached_property
-    def incoming(self) -> IncomingWithStreamingResponse:
-        return IncomingWithStreamingResponse(self._secondary_dns.incoming)
+    def incoming(self) -> IncomingResourceWithStreamingResponse:
+        return IncomingResourceWithStreamingResponse(self._secondary_dns.incoming)
 
     @cached_property
-    def outgoing(self) -> OutgoingWithStreamingResponse:
-        return OutgoingWithStreamingResponse(self._secondary_dns.outgoing)
+    def outgoing(self) -> OutgoingResourceWithStreamingResponse:
+        return OutgoingResourceWithStreamingResponse(self._secondary_dns.outgoing)
 
     @cached_property
     def acls(self) -> ACLsWithStreamingResponse:
@@ -221,12 +221,12 @@ class AsyncSecondaryDNSWithStreamingResponse:
         return AsyncForceAXFRResourceWithStreamingResponse(self._secondary_dns.force_axfr)
 
     @cached_property
-    def incoming(self) -> AsyncIncomingWithStreamingResponse:
-        return AsyncIncomingWithStreamingResponse(self._secondary_dns.incoming)
+    def incoming(self) -> AsyncIncomingResourceWithStreamingResponse:
+        return AsyncIncomingResourceWithStreamingResponse(self._secondary_dns.incoming)
 
     @cached_property
-    def outgoing(self) -> AsyncOutgoingWithStreamingResponse:
-        return AsyncOutgoingWithStreamingResponse(self._secondary_dns.outgoing)
+    def outgoing(self) -> AsyncOutgoingResourceWithStreamingResponse:
+        return AsyncOutgoingResourceWithStreamingResponse(self._secondary_dns.outgoing)
 
     @cached_property
     def acls(self) -> AsyncACLsWithStreamingResponse:

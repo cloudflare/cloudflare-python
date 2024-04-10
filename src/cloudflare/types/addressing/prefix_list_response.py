@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["Prefix"]
+__all__ = ["PrefixListResponse"]
 
 
-class Prefix(BaseModel):
+class PrefixListResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
