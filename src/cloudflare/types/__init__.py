@@ -62,7 +62,6 @@ from .check_region import CheckRegion as CheckRegion
 from .header_param import HeaderParam as HeaderParam
 from .health_check import HealthCheck as HealthCheck
 from .origin_param import OriginParam as OriginParam
-from .respone_rule import ResponeRule as ResponeRule
 from .target_param import TargetParam as TargetParam
 from .tunnel_param import TunnelParam as TunnelParam
 from .waiting_room import WaitingRoom as WaitingRoom
@@ -74,6 +73,7 @@ from .load_shedding import LoadShedding as LoadShedding
 from .queue_created import QueueCreated as QueueCreated
 from .queue_updated import QueueUpdated as QueueUpdated
 from .request_model import RequestModel as RequestModel
+from .response_rule import ResponseRule as ResponseRule
 from .edge_ips_param import EdgeIPsParam as EdgeIPsParam
 from .filter_options import FilterOptions as FilterOptions
 from .hostname_param import HostnameParam as HostnameParam
