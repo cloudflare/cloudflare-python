@@ -43,12 +43,8 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.load_balancers import (
-    MonitorGetResponse,
-    MonitorEditResponse,
-    MonitorListResponse,
-    MonitorCreateResponse,
+    Monitor,
     MonitorDeleteResponse,
-    MonitorUpdateResponse,
     monitor_edit_params,
     monitor_create_params,
     monitor_delete_params,
@@ -101,7 +97,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorCreateResponse:
+    ) -> Monitor:
         """
         Create a configured monitor.
 
@@ -197,7 +193,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorCreateResponse], ResultWrapper[MonitorCreateResponse]),
+            cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
     def update(
@@ -227,7 +223,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorUpdateResponse:
+    ) -> Monitor:
         """
         Modify a configured monitor.
 
@@ -325,7 +321,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorUpdateResponse], ResultWrapper[MonitorUpdateResponse]),
+            cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
     def list(
@@ -338,7 +334,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[MonitorListResponse]:
+    ) -> SyncSinglePage[Monitor]:
         """
         List configured monitors for an account.
 
@@ -357,11 +353,11 @@ class Monitors(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/load_balancers/monitors",
-            page=SyncSinglePage[MonitorListResponse],
+            page=SyncSinglePage[Monitor],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=MonitorListResponse,
+            model=Monitor,
         )
 
     def delete(
@@ -435,7 +431,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorEditResponse:
+    ) -> Monitor:
         """
         Apply changes to an existing monitor, overwriting the supplied properties.
 
@@ -533,7 +529,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorEditResponse], ResultWrapper[MonitorEditResponse]),
+            cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
     def get(
@@ -547,7 +543,7 @@ class Monitors(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorGetResponse:
+    ) -> Monitor:
         """
         List a single configured monitor for an account.
 
@@ -575,7 +571,7 @@ class Monitors(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorGetResponse], ResultWrapper[MonitorGetResponse]),
+            cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
 
@@ -622,7 +618,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorCreateResponse:
+    ) -> Monitor:
         """
         Create a configured monitor.
 
@@ -718,7 +714,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorCreateResponse], ResultWrapper[MonitorCreateResponse]),
+            cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
     async def update(
@@ -748,7 +744,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorUpdateResponse:
+    ) -> Monitor:
         """
         Modify a configured monitor.
 
@@ -846,7 +842,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorUpdateResponse], ResultWrapper[MonitorUpdateResponse]),
+            cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
     def list(
@@ -859,7 +855,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MonitorListResponse, AsyncSinglePage[MonitorListResponse]]:
+    ) -> AsyncPaginator[Monitor, AsyncSinglePage[Monitor]]:
         """
         List configured monitors for an account.
 
@@ -878,11 +874,11 @@ class AsyncMonitors(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/load_balancers/monitors",
-            page=AsyncSinglePage[MonitorListResponse],
+            page=AsyncSinglePage[Monitor],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=MonitorListResponse,
+            model=Monitor,
         )
 
     async def delete(
@@ -956,7 +952,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorEditResponse:
+    ) -> Monitor:
         """
         Apply changes to an existing monitor, overwriting the supplied properties.
 
@@ -1054,7 +1050,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorEditResponse], ResultWrapper[MonitorEditResponse]),
+            cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
     async def get(
@@ -1068,7 +1064,7 @@ class AsyncMonitors(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorGetResponse:
+    ) -> Monitor:
         """
         List a single configured monitor for an account.
 
@@ -1096,7 +1092,7 @@ class AsyncMonitors(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MonitorGetResponse], ResultWrapper[MonitorGetResponse]),
+            cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
 
