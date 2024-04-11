@@ -2995,8 +2995,6 @@ Types:
 
 ```python
 from cloudflare.types import (
-    RequestRule,
-    ResponseRule,
     Ruleset,
     RulesetCreateResponse,
     RulesetUpdateResponse,
