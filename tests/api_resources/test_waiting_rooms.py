@@ -246,6 +246,16 @@ class TestWaitingRooms:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        waiting_room = client.waiting_rooms.list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page={},
+            per_page={},
+        )
+        assert_matches_type(SyncSinglePage[WaitingRoom], waiting_room, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.waiting_rooms.with_raw_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -726,6 +736,16 @@ class TestAsyncWaitingRooms:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[WaitingRoom], waiting_room, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        waiting_room = await async_client.waiting_rooms.list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page={},
+            per_page={},
         )
         assert_matches_type(AsyncSinglePage[WaitingRoom], waiting_room, path=["response"])
 

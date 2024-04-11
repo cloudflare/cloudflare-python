@@ -6,6 +6,7 @@ from .event import Event as Event
 from .setting import Setting as Setting
 from .rule_edit_params import RuleEditParams as RuleEditParams
 from .event_edit_params import EventEditParams as EventEditParams
+from .event_list_params import EventListParams as EventListParams
 from .waiting_room_rule import WaitingRoomRule as WaitingRoomRule
 from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_delete_params import RuleDeleteParams as RuleDeleteParams
