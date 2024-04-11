@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -79,7 +79,7 @@ class Phases(SyncAPIResource):
             "magic_transit_managed",
         ],
         *,
-        rules: Iterable[RequestRuleParam],
+        rules: RequestRuleParam,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -312,7 +312,7 @@ class AsyncPhases(AsyncAPIResource):
             "magic_transit_managed",
         ],
         *,
-        rules: Iterable[RequestRuleParam],
+        rules: RequestRuleParam,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,

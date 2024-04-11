@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -50,7 +50,7 @@ class RulesetCreateResponse(BaseModel):
     ]
     """The phase of the ruleset."""
 
-    rules: List[ResponeRule]
+    rules: ResponeRule
     """The list of rules in the ruleset."""
 
     version: str
