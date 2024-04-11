@@ -73,7 +73,6 @@ from .load_shedding import LoadShedding as LoadShedding
 from .queue_created import QueueCreated as QueueCreated
 from .queue_updated import QueueUpdated as QueueUpdated
 from .request_model import RequestModel as RequestModel
-from .response_rule import ResponseRule as ResponseRule
 from .edge_ips_param import EdgeIPsParam as EdgeIPsParam
 from .filter_options import FilterOptions as FilterOptions
 from .hostname_param import HostnameParam as HostnameParam
@@ -117,7 +116,6 @@ from .health_check_param import HealthCheckParam as HealthCheckParam
 from .http_configuration import HTTPConfiguration as HTTPConfiguration
 from .pcap_create_params import PCAPCreateParams as PCAPCreateParams
 from .pcap_list_response import PCAPListResponse as PCAPListResponse
-from .request_rule_param import RequestRuleParam as RequestRuleParam
 from .stream_list_params import StreamListParams as StreamListParams
 from .user_edit_response import UserEditResponse as UserEditResponse
 from .zone_create_params import ZoneCreateParams as ZoneCreateParams

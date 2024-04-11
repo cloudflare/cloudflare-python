@@ -2,15 +2,16 @@
 
 from __future__ import annotations
 
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .request_rule_param import RequestRuleParam
+from .rulesets import LogRuleParam, SkipRuleParam, BlockRuleParam, ExecuteRuleParam
 
-__all__ = ["RulesetUpdateParams"]
+__all__ = ["RulesetUpdateParams", "Rule"]
 
 
 class RulesetUpdateParams(TypedDict, total=False):
-    rules: Required[RequestRuleParam]
+    rules: Required[Iterable[Rule]]
     """The list of rules in the ruleset."""
 
     account_id: str
@@ -54,3 +55,6 @@ class RulesetUpdateParams(TypedDict, total=False):
         "magic_transit_managed",
     ]
     """The phase of the ruleset."""
+
+
+Rule = Union[BlockRuleParam, ExecuteRuleParam, LogRuleParam, SkipRuleParam]
