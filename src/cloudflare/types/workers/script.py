@@ -25,9 +25,6 @@ class Script(BaseModel):
     modified_on: Optional[datetime] = None
     """When the script was last modified."""
 
-    pipeline_hash: Optional[str] = None
-    """Deprecated. Deployment metadata for internal usage."""
-
     placement_mode: Optional[str] = None
     """Specifies the placement mode for the Worker (e.g. 'smart')."""
 

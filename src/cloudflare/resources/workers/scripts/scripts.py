@@ -151,6 +151,8 @@ class Scripts(SyncAPIResource):
           any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
               may be provided as separate named parts, but at least one module must be present
               and referenced in the metadata as `main_module` or `body_part` by part name.
+              Source maps may also be included using the `application/source-map` content
+              type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -443,6 +445,8 @@ class AsyncScripts(AsyncAPIResource):
           any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
               may be provided as separate named parts, but at least one module must be present
               and referenced in the metadata as `main_module` or `body_part` by part name.
+              Source maps may also be included using the `application/source-map` content
+              type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
