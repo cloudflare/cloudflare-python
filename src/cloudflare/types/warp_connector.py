@@ -5,7 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .zero_trust import TunnelConnection
+from .zero_trust import Connection
 
 __all__ = ["WARPConnector", "TunnelCfdTunnel", "TunnelWARPConnectorTunnel"]
 
@@ -17,7 +17,7 @@ class TunnelCfdTunnel(BaseModel):
     account_tag: Optional[str] = None
     """Cloudflare account ID"""
 
-    connections: Optional[List[TunnelConnection]] = None
+    connections: Optional[List[Connection]] = None
     """The Cloudflare Tunnel connections between your origin and Cloudflare's edge."""
 
     conns_active_at: Optional[datetime] = None
@@ -73,7 +73,7 @@ class TunnelWARPConnectorTunnel(BaseModel):
     account_tag: Optional[str] = None
     """Cloudflare account ID"""
 
-    connections: Optional[List[TunnelConnection]] = None
+    connections: Optional[List[Connection]] = None
     """The Cloudflare Tunnel connections between your origin and Cloudflare's edge."""
 
     conns_active_at: Optional[datetime] = None
