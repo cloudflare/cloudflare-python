@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
+from .issue_type import IssueType
 from .product_param import ProductParam
 from .subject_param import SubjectParam
 from .issue_class_param import IssueClassParam
@@ -24,28 +25,9 @@ class IssueListParams(TypedDict, total=False):
 
     issue_class_neq: Annotated[IssueClassParam, PropertyInfo(alias="issue_class~neq")]
 
-    issue_type: List[
-        Literal[
-            "compliance_violation",
-            "email_security",
-            "exposed_infrastructure",
-            "insecure_configuration",
-            "weak_authentication",
-        ]
-    ]
+    issue_type: List[IssueType]
 
-    issue_type_neq: Annotated[
-        List[
-            Literal[
-                "compliance_violation",
-                "email_security",
-                "exposed_infrastructure",
-                "insecure_configuration",
-                "weak_authentication",
-            ]
-        ],
-        PropertyInfo(alias="issue_type~neq"),
-    ]
+    issue_type_neq: Annotated[List[IssueType], PropertyInfo(alias="issue_type~neq")]
 
     page: int
     """Current page within paginated list of results"""
