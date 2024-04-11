@@ -2,14 +2,23 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ConfigurationParam"]
 
 
 class ConfigurationParam(TypedDict, total=False):
-    password: Required[str]
-    """The password required to access your origin database.
+    database: Required[str]
+    """The name of your origin database."""
 
-    This value is write-only and never returned by the API.
-    """
+    host: Required[str]
+    """The host (hostname or IP) of your origin database."""
+
+    port: Required[int]
+    """The port (default: 5432 for Postgres) of your origin database."""
+
+    scheme: Required[Literal["postgres", "postgresql", "mysql"]]
+    """Specifies the URL scheme used to connect to your origin database."""
+
+    user: Required[str]
+    """The user of your origin database."""

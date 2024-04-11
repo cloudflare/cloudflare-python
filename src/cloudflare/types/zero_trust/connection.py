@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["Connection"]
+__all__ = ["Connection", "ConnectionItem"]
 
 
-class Connection(BaseModel):
+class ConnectionItem(BaseModel):
     id: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
 
@@ -37,3 +37,6 @@ class Connection(BaseModel):
 
     uuid: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
+
+
+Connection = List[ConnectionItem]

@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 
 from .rulesets import LogRuleParam, SkipRuleParam, BlockRuleParam, ExecuteRuleParam
 
-__all__ = ["RequestRuleParam"]
+__all__ = ["RequestRuleParamItem"]
 
-RequestRuleParam = Union[BlockRuleParam, ExecuteRuleParam, LogRuleParam, SkipRuleParam]
+RequestRuleParamItem = Union[BlockRuleParam, ExecuteRuleParam, LogRuleParam, SkipRuleParam]
+
+RequestRuleParam = List[RequestRuleParamItem]
