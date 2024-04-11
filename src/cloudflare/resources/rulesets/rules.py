@@ -114,8 +114,188 @@ class Rules(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
+        action: Literal["challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsCompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         action: Literal["execute"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["js_challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -234,8 +414,488 @@ class Rules(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
+        action: Literal["managed_challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["redirect"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsRedirectRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsRewriteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["route"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsRouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["score"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsScoreRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["set_config"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsSetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsSetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -293,11 +953,34 @@ class Rules(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
-        action: Literal["block"] | Literal["execute"] | Literal["log"] | Literal["skip"] | NotGiven = NOT_GIVEN,
+        action: Literal["block"]
+        | Literal["challenge"]
+        | Literal["compress_response"]
+        | Literal["execute"]
+        | Literal["js_challenge"]
+        | Literal["log"]
+        | Literal["managed_challenge"]
+        | Literal["redirect"]
+        | Literal["rewrite"]
+        | Literal["route"]
+        | Literal["score"]
+        | Literal["serve_error"]
+        | Literal["set_config"]
+        | Literal["skip"]
+        | Literal["set_cache_settings"]
+        | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.BlockRuleActionParameters
-        | rule_create_params.ExecuteRuleActionParameters
         | object
+        | rule_create_params.RulesetsCompressResponseRuleActionParameters
+        | rule_create_params.ExecuteRuleActionParameters
+        | rule_create_params.RulesetsRedirectRuleActionParameters
+        | rule_create_params.RulesetsRewriteRuleActionParameters
+        | rule_create_params.RulesetsRouteRuleActionParameters
+        | rule_create_params.RulesetsScoreRuleActionParameters
+        | rule_create_params.RulesetsServeErrorRuleActionParameters
+        | rule_create_params.RulesetsSetConfigRuleActionParameters
         | rule_create_params.SkipRuleActionParameters
+        | rule_create_params.RulesetsSetCacheSettingsRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -488,8 +1171,191 @@ class Rules(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
+        action: Literal["challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsCompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         action: Literal["execute"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["js_challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -610,6 +1476,433 @@ class Rules(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
+        action: Literal["managed_challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["redirect"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsRedirectRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsRewriteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["route"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsRouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["score"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsScoreRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["set_config"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsSetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -662,7 +1955,7 @@ class Rules(SyncAPIResource):
         """
         ...
 
-    @required_args(["ruleset_id"], ["ruleset_id"], ["ruleset_id"], ["ruleset_id"])
+    @overload
     def edit(
         self,
         rule_id: str,
@@ -671,11 +1964,111 @@ class Rules(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
-        action: Literal["block"] | Literal["execute"] | Literal["log"] | Literal["skip"] | NotGiven = NOT_GIVEN,
+        action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsSetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+    )
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["block"]
+        | Literal["challenge"]
+        | Literal["compress_response"]
+        | Literal["execute"]
+        | Literal["js_challenge"]
+        | Literal["log"]
+        | Literal["managed_challenge"]
+        | Literal["redirect"]
+        | Literal["rewrite"]
+        | Literal["route"]
+        | Literal["score"]
+        | Literal["serve_error"]
+        | Literal["set_config"]
+        | Literal["skip"]
+        | Literal["set_cache_settings"]
+        | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.BlockRuleActionParameters
-        | rule_edit_params.ExecuteRuleActionParameters
         | object
+        | rule_edit_params.RulesetsCompressResponseRuleActionParameters
+        | rule_edit_params.ExecuteRuleActionParameters
+        | rule_edit_params.RulesetsRedirectRuleActionParameters
+        | rule_edit_params.RulesetsRewriteRuleActionParameters
+        | rule_edit_params.RulesetsRouteRuleActionParameters
+        | rule_edit_params.RulesetsScoreRuleActionParameters
+        | rule_edit_params.RulesetsServeErrorRuleActionParameters
+        | rule_edit_params.RulesetsSetConfigRuleActionParameters
         | rule_edit_params.SkipRuleActionParameters
+        | rule_edit_params.RulesetsSetCacheSettingsRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -811,8 +2204,188 @@ class AsyncRules(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
+        action: Literal["challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsCompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         action: Literal["execute"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["js_challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -931,8 +2504,488 @@ class AsyncRules(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
+        action: Literal["managed_challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["redirect"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsRedirectRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsRewriteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["route"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsRouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["score"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsScoreRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["set_config"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsSetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleCreateResponse:
+        """Adds a new rule to an account or zone ruleset.
+
+        The rule will be added to the end
+        of the existing list of rules in the ruleset by default.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RulesetsSetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -990,11 +3043,34 @@ class AsyncRules(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
-        action: Literal["block"] | Literal["execute"] | Literal["log"] | Literal["skip"] | NotGiven = NOT_GIVEN,
+        action: Literal["block"]
+        | Literal["challenge"]
+        | Literal["compress_response"]
+        | Literal["execute"]
+        | Literal["js_challenge"]
+        | Literal["log"]
+        | Literal["managed_challenge"]
+        | Literal["redirect"]
+        | Literal["rewrite"]
+        | Literal["route"]
+        | Literal["score"]
+        | Literal["serve_error"]
+        | Literal["set_config"]
+        | Literal["skip"]
+        | Literal["set_cache_settings"]
+        | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.BlockRuleActionParameters
-        | rule_create_params.ExecuteRuleActionParameters
         | object
+        | rule_create_params.RulesetsCompressResponseRuleActionParameters
+        | rule_create_params.ExecuteRuleActionParameters
+        | rule_create_params.RulesetsRedirectRuleActionParameters
+        | rule_create_params.RulesetsRewriteRuleActionParameters
+        | rule_create_params.RulesetsRouteRuleActionParameters
+        | rule_create_params.RulesetsScoreRuleActionParameters
+        | rule_create_params.RulesetsServeErrorRuleActionParameters
+        | rule_create_params.RulesetsSetConfigRuleActionParameters
         | rule_create_params.SkipRuleActionParameters
+        | rule_create_params.RulesetsSetCacheSettingsRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -1185,8 +3261,191 @@ class AsyncRules(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
+        action: Literal["challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsCompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         action: Literal["execute"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.ExecuteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["js_challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1307,6 +3566,433 @@ class AsyncRules(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
+        action: Literal["managed_challenge"] | NotGiven = NOT_GIVEN,
+        action_parameters: object | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["redirect"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsRedirectRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsRewriteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["route"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsRouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["score"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsScoreRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["set_config"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsSetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -1359,7 +4045,7 @@ class AsyncRules(AsyncAPIResource):
         """
         ...
 
-    @required_args(["ruleset_id"], ["ruleset_id"], ["ruleset_id"], ["ruleset_id"])
+    @overload
     async def edit(
         self,
         rule_id: str,
@@ -1368,11 +4054,111 @@ class AsyncRules(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
-        action: Literal["block"] | Literal["execute"] | Literal["log"] | Literal["skip"] | NotGiven = NOT_GIVEN,
+        action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RulesetsSetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        ref: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
+        """
+        Updates an existing rule in an account or zone ruleset.
+
+        Args:
+          ruleset_id: The unique ID of the ruleset.
+
+          rule_id: The unique ID of the rule.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          id: The unique ID of the rule.
+
+          action: The action to perform when the rule matches.
+
+          action_parameters: The parameters configuring the rule's action.
+
+          description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
+
+          expression: The expression defining which traffic will match the rule.
+
+          logging: An object configuring the rule's logging behavior.
+
+          ref: The reference of the rule (the rule ID by default).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+        ["ruleset_id"],
+    )
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        ruleset_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        action: Literal["block"]
+        | Literal["challenge"]
+        | Literal["compress_response"]
+        | Literal["execute"]
+        | Literal["js_challenge"]
+        | Literal["log"]
+        | Literal["managed_challenge"]
+        | Literal["redirect"]
+        | Literal["rewrite"]
+        | Literal["route"]
+        | Literal["score"]
+        | Literal["serve_error"]
+        | Literal["set_config"]
+        | Literal["skip"]
+        | Literal["set_cache_settings"]
+        | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.BlockRuleActionParameters
-        | rule_edit_params.ExecuteRuleActionParameters
         | object
+        | rule_edit_params.RulesetsCompressResponseRuleActionParameters
+        | rule_edit_params.ExecuteRuleActionParameters
+        | rule_edit_params.RulesetsRedirectRuleActionParameters
+        | rule_edit_params.RulesetsRewriteRuleActionParameters
+        | rule_edit_params.RulesetsRouteRuleActionParameters
+        | rule_edit_params.RulesetsScoreRuleActionParameters
+        | rule_edit_params.RulesetsServeErrorRuleActionParameters
+        | rule_edit_params.RulesetsSetConfigRuleActionParameters
         | rule_edit_params.SkipRuleActionParameters
+        | rule_edit_params.RulesetsSetCacheSettingsRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
