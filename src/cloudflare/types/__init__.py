@@ -200,6 +200,7 @@ from .rate_limit_delete_params import RateLimitDeleteParams as RateLimitDeletePa
 from .rate_limit_edit_response import RateLimitEditResponse as RateLimitEditResponse
 from .speed_trends_list_params import SpeedTrendsListParams as SpeedTrendsListParams
 from .waiting_room_edit_params import WaitingRoomEditParams as WaitingRoomEditParams
+from .waiting_room_list_params import WaitingRoomListParams as WaitingRoomListParams
 from .healthcheck_create_params import HealthcheckCreateParams as HealthcheckCreateParams
 from .healthcheck_delete_params import HealthcheckDeleteParams as HealthcheckDeleteParams
 from .healthcheck_update_params import HealthcheckUpdateParams as HealthcheckUpdateParams

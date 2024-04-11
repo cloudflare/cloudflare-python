@@ -37,6 +37,7 @@ from ....types.waiting_rooms import (
     Event,
     EventDeleteResponse,
     event_edit_params,
+    event_list_params,
     event_create_params,
     event_delete_params,
     event_update_params,
@@ -308,6 +309,8 @@ class Events(SyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
+        page: object | NotGiven = NOT_GIVEN,
+        per_page: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -320,6 +323,10 @@ class Events(SyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page. Must be a multiple of 5.
 
           extra_headers: Send extra headers
 
@@ -337,7 +344,17 @@ class Events(SyncAPIResource):
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
             page=SyncSinglePage[Event],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    event_list_params.EventListParams,
+                ),
             ),
             model=Event,
         )
@@ -819,6 +836,8 @@ class AsyncEvents(AsyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
+        page: object | NotGiven = NOT_GIVEN,
+        per_page: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -831,6 +850,10 @@ class AsyncEvents(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page. Must be a multiple of 5.
 
           extra_headers: Send extra headers
 
@@ -848,7 +871,17 @@ class AsyncEvents(AsyncAPIResource):
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
             page=AsyncSinglePage[Event],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    event_list_params.EventListParams,
+                ),
             ),
             model=Event,
         )
