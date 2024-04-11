@@ -226,6 +226,17 @@ class TestEvents:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        event = client.waiting_rooms.events.list(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page={},
+            per_page={},
+        )
+        assert_matches_type(SyncSinglePage[Event], event, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.waiting_rooms.events.with_raw_response.list(
             "699d98642c564d2e855e9661899b7252",
@@ -710,6 +721,17 @@ class TestAsyncEvents:
         event = await async_client.waiting_rooms.events.list(
             "699d98642c564d2e855e9661899b7252",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[Event], event, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        event = await async_client.waiting_rooms.events.list(
+            "699d98642c564d2e855e9661899b7252",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page={},
+            per_page={},
         )
         assert_matches_type(AsyncSinglePage[Event], event, path=["response"])
 
