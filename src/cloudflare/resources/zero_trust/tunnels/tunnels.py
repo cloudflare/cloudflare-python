@@ -15,7 +15,6 @@ from .token import (
     TokenWithStreamingResponse,
     AsyncTokenWithStreamingResponse,
 )
-from ....types import WARPConnector
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -69,6 +68,8 @@ from ...._base_client import (
 )
 from ....types.zero_trust import (
     Tunnel,
+    TunnelEditResponse,
+    TunnelListResponse,
     tunnel_edit_params,
     tunnel_list_params,
     tunnel_create_params,
@@ -181,7 +182,7 @@ class Tunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[WARPConnector]:
+    ) -> SyncV4PagePaginationArray[TunnelListResponse]:
         """
         Lists and filters all types of Tunnels in an account.
 
@@ -216,7 +217,7 @@ class Tunnels(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/tunnels",
-            page=SyncV4PagePaginationArray[WARPConnector],
+            page=SyncV4PagePaginationArray[TunnelListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +240,7 @@ class Tunnels(SyncAPIResource):
                     tunnel_list_params.TunnelListParams,
                 ),
             ),
-            model=cast(Any, WARPConnector),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, TunnelListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -301,7 +302,7 @@ class Tunnels(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnector:
+    ) -> TunnelEditResponse:
         """
         Updates an existing Cloudflare Tunnel.
 
@@ -328,7 +329,7 @@ class Tunnels(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WARPConnector,
+            TunnelEditResponse,
             self._patch(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
                 body=maybe_transform(
@@ -346,7 +347,7 @@ class Tunnels(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WARPConnector]
+                    Any, ResultWrapper[TunnelEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -499,7 +500,7 @@ class AsyncTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WARPConnector, AsyncV4PagePaginationArray[WARPConnector]]:
+    ) -> AsyncPaginator[TunnelListResponse, AsyncV4PagePaginationArray[TunnelListResponse]]:
         """
         Lists and filters all types of Tunnels in an account.
 
@@ -534,7 +535,7 @@ class AsyncTunnels(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/tunnels",
-            page=AsyncV4PagePaginationArray[WARPConnector],
+            page=AsyncV4PagePaginationArray[TunnelListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -557,7 +558,7 @@ class AsyncTunnels(AsyncAPIResource):
                     tunnel_list_params.TunnelListParams,
                 ),
             ),
-            model=cast(Any, WARPConnector),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, TunnelListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -619,7 +620,7 @@ class AsyncTunnels(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnector:
+    ) -> TunnelEditResponse:
         """
         Updates an existing Cloudflare Tunnel.
 
@@ -646,7 +647,7 @@ class AsyncTunnels(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WARPConnector,
+            TunnelEditResponse,
             await self._patch(
                 f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
                 body=await async_maybe_transform(
@@ -664,7 +665,7 @@ class AsyncTunnels(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WARPConnector]
+                    Any, ResultWrapper[TunnelEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
