@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, cast
 
 import httpx
 
-from ......types import Binding
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
@@ -16,9 +15,11 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
+from ......types.workers_for_platforms.dispatch.namespaces.scripts import BindingGetResponse
 
 __all__ = ["Bindings", "AsyncBindings"]
 
@@ -44,7 +45,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Binding:
+    ) -> BindingGetResponse:
         """
         Fetch script bindings from a script uploaded to a Workers for Platforms
         namespace.
@@ -70,15 +71,16 @@ class Bindings(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return cast(
-            Binding,
-            self._get(
-                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(Any, Binding),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
             ),
+            cast_to=cast(Type[BindingGetResponse], ResultWrapper[BindingGetResponse]),
         )
 
 
@@ -103,7 +105,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Binding:
+    ) -> BindingGetResponse:
         """
         Fetch script bindings from a script uploaded to a Workers for Platforms
         namespace.
@@ -129,15 +131,16 @@ class AsyncBindings(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return cast(
-            Binding,
-            await self._get(
-                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(Any, Binding),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
             ),
+            cast_to=cast(Type[BindingGetResponse], ResultWrapper[BindingGetResponse]),
         )
 
 
