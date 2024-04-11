@@ -5430,7 +5430,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import Tunnel, TunnelConnection, WARPConnectorTunnel
+from cloudflare.types.zero_trust import Connection, Tunnel, WARPConnectorTunnel
 ```
 
 Methods:
