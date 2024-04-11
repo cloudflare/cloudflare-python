@@ -19,11 +19,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...types.user import AuditLogListResponse, audit_log_list_params
+from ...types.user import audit_log_list_params
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import AuditLog
 
 __all__ = ["AuditLogs", "AsyncAuditLogs"]
 
@@ -57,7 +58,7 @@ class AuditLogs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[AuditLogListResponse]:
+    ) -> SyncV4PagePaginationArray[AuditLog]:
         """Gets a list of audit logs for a user account.
 
         Can be filtered by who made the
@@ -92,7 +93,7 @@ class AuditLogs(SyncAPIResource):
         """
         return self._get_api_list(
             "/user/audit_logs",
-            page=SyncV4PagePaginationArray[AuditLogListResponse],
+            page=SyncV4PagePaginationArray[AuditLog],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -115,7 +116,7 @@ class AuditLogs(SyncAPIResource):
                     audit_log_list_params.AuditLogListParams,
                 ),
             ),
-            model=AuditLogListResponse,
+            model=AuditLog,
         )
 
 
@@ -148,7 +149,7 @@ class AsyncAuditLogs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AuditLogListResponse, AsyncV4PagePaginationArray[AuditLogListResponse]]:
+    ) -> AsyncPaginator[AuditLog, AsyncV4PagePaginationArray[AuditLog]]:
         """Gets a list of audit logs for a user account.
 
         Can be filtered by who made the
@@ -183,7 +184,7 @@ class AsyncAuditLogs(AsyncAPIResource):
         """
         return self._get_api_list(
             "/user/audit_logs",
-            page=AsyncV4PagePaginationArray[AuditLogListResponse],
+            page=AsyncV4PagePaginationArray[AuditLog],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -206,7 +207,7 @@ class AsyncAuditLogs(AsyncAPIResource):
                     audit_log_list_params.AuditLogListParams,
                 ),
             ),
-            model=AuditLogListResponse,
+            model=AuditLog,
         )
 
 

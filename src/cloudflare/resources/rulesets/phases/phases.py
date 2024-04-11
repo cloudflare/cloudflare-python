@@ -7,6 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from ....types import RequestRuleParam
 from .versions import (
     Versions,
     AsyncVersions,
@@ -78,7 +79,7 @@ class Phases(SyncAPIResource):
             "magic_transit_managed",
         ],
         *,
-        rules: Iterable[phase_update_params.Rule],
+        rules: Iterable[RequestRuleParam],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -311,7 +312,7 @@ class AsyncPhases(AsyncAPIResource):
             "magic_transit_managed",
         ],
         *,
-        rules: Iterable[phase_update_params.Rule],
+        rules: Iterable[RequestRuleParam],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,

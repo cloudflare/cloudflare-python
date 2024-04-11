@@ -4,24 +4,10 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .tokens import Permission
+from ..shared import IamRole
 from ..._models import BaseModel
 
-__all__ = ["Invite", "Role"]
-
-
-class Role(BaseModel):
-    id: str
-    """Role identifier tag."""
-
-    description: str
-    """Description of role's permissions."""
-
-    name: str
-    """Role Name."""
-
-    permissions: List[Permission]
-    """Access permissions for this User."""
+__all__ = ["Invite"]
 
 
 class Invite(BaseModel):
@@ -49,7 +35,7 @@ class Invite(BaseModel):
     organization_name: Optional[str] = None
     """Organization name."""
 
-    roles: Optional[List[Role]] = None
+    roles: Optional[List[IamRole]] = None
     """Roles to be assigned to this user."""
 
     status: Optional[Literal["pending", "accepted", "rejected", "expired"]] = None
