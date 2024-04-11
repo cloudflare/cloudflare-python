@@ -5,6 +5,7 @@ from typing import Union
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from .okta_group_rule import OktaGroupRule
 
 __all__ = [
     "AccessRule",
@@ -28,8 +29,6 @@ __all__ = [
     "AccessGitHubOrganizationRuleGitHubOrganization",
     "AccessGSuiteGroupRule",
     "AccessGSuiteGroupRuleGSuite",
-    "AccessOktaGroupRule",
-    "AccessOktaGroupRuleOkta",
     "AccessSAMLGroupRule",
     "AccessSAMLGroupRuleSAML",
     "AccessServiceTokenRule",
@@ -145,18 +144,6 @@ class AccessGSuiteGroupRule(BaseModel):
     gsuite: AccessGSuiteGroupRuleGSuite
 
 
-class AccessOktaGroupRuleOkta(BaseModel):
-    connection_id: str
-    """The ID of your Okta identity provider."""
-
-    email: str
-    """The email of the Okta group."""
-
-
-class AccessOktaGroupRule(BaseModel):
-    okta: AccessOktaGroupRuleOkta
-
-
 class AccessSAMLGroupRuleSAML(BaseModel):
     attribute_name: str
     """The name of the SAML attribute."""
@@ -239,7 +226,7 @@ AccessRule = Union[
     AccessAzureGroupRule,
     AccessGitHubOrganizationRule,
     AccessGSuiteGroupRule,
-    AccessOktaGroupRule,
+    OktaGroupRule,
     AccessSAMLGroupRule,
     AccessServiceTokenRule,
     AccessAnyValidServiceTokenRule,
