@@ -25,16 +25,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.secondary_dns import (
-    PeerGetResponse,
-    PeerListResponse,
-    PeerCreateResponse,
-    PeerDeleteResponse,
-    PeerUpdateResponse,
-    peer_create_params,
-    peer_delete_params,
-    peer_update_params,
-)
+from ...types.secondary_dns import Peer, PeerDeleteResponse, peer_create_params, peer_delete_params, peer_update_params
 
 __all__ = ["Peers", "AsyncPeers"]
 
@@ -59,7 +50,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PeerCreateResponse:
+    ) -> Peer:
         """
         Create Peer.
 
@@ -84,7 +75,7 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PeerCreateResponse], ResultWrapper[PeerCreateResponse]),
+            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
         )
 
     def update(
@@ -103,7 +94,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PeerUpdateResponse:
+    ) -> Peer:
         """
         Modify Peer.
 
@@ -155,7 +146,7 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PeerUpdateResponse], ResultWrapper[PeerUpdateResponse]),
+            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
         )
 
     def list(
@@ -168,7 +159,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PeerListResponse]:
+    ) -> SyncSinglePage[Peer]:
         """
         List Peers.
 
@@ -185,11 +176,11 @@ class Peers(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/secondary_dns/peers",
-            page=SyncSinglePage[PeerListResponse],
+            page=SyncSinglePage[Peer],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=PeerListResponse,
+            model=Peer,
         )
 
     def delete(
@@ -245,7 +236,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PeerGetResponse:
+    ) -> Peer:
         """
         Get Peer.
 
@@ -271,7 +262,7 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PeerGetResponse], ResultWrapper[PeerGetResponse]),
+            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
         )
 
 
@@ -295,7 +286,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PeerCreateResponse:
+    ) -> Peer:
         """
         Create Peer.
 
@@ -320,7 +311,7 @@ class AsyncPeers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PeerCreateResponse], ResultWrapper[PeerCreateResponse]),
+            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
         )
 
     async def update(
@@ -339,7 +330,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PeerUpdateResponse:
+    ) -> Peer:
         """
         Modify Peer.
 
@@ -391,7 +382,7 @@ class AsyncPeers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PeerUpdateResponse], ResultWrapper[PeerUpdateResponse]),
+            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
         )
 
     def list(
@@ -404,7 +395,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PeerListResponse, AsyncSinglePage[PeerListResponse]]:
+    ) -> AsyncPaginator[Peer, AsyncSinglePage[Peer]]:
         """
         List Peers.
 
@@ -421,11 +412,11 @@ class AsyncPeers(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/secondary_dns/peers",
-            page=AsyncSinglePage[PeerListResponse],
+            page=AsyncSinglePage[Peer],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=PeerListResponse,
+            model=Peer,
         )
 
     async def delete(
@@ -481,7 +472,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PeerGetResponse:
+    ) -> Peer:
         """
         Get Peer.
 
@@ -507,7 +498,7 @@ class AsyncPeers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PeerGetResponse], ResultWrapper[PeerGetResponse]),
+            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
         )
 
 

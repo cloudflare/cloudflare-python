@@ -3,11 +3,17 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
-from .component import Component
+__all__ = ["RatePlanParam", "Component"]
 
-__all__ = ["RatePlanParam"]
+
+class Component(TypedDict, total=False):
+    default: float
+    """The default amount allocated."""
+
+    name: Literal["zones", "page_rules", "dedicated_certificates", "dedicated_certificates_custom"]
+    """The unique component."""
 
 
 class RatePlanParam(TypedDict, total=False):

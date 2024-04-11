@@ -4,10 +4,10 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["PeerUpdateResponse"]
+__all__ = ["Peer"]
 
 
-class PeerUpdateResponse(BaseModel):
+class Peer(BaseModel):
     id: str
 
     name: str

@@ -2,8 +2,8 @@
 
 from typing import List
 
-from ..gateway_list import GatewayList
+from ..gateway_item import GatewayItem
 
 __all__ = ["ItemListResponse"]
 
-ItemListResponse = List[GatewayList]
+ItemListResponse = List[GatewayItem]
