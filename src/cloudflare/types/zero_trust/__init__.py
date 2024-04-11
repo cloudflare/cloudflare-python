@@ -44,6 +44,7 @@ from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
 from .tunnel_list_params import TunnelListParams as TunnelListParams
 from .device_get_response import DeviceGetResponse as DeviceGetResponse
 from .everyone_rule_param import EveryoneRuleParam as EveryoneRuleParam
+from .tunnel_get_response import TunnelGetResponse as TunnelGetResponse
 from .generic_oauth_config import GenericOAuthConfig as GenericOAuthConfig
 from .tunnel_create_params import TunnelCreateParams as TunnelCreateParams
 from .tunnel_delete_params import TunnelDeleteParams as TunnelDeleteParams
@@ -56,6 +57,8 @@ from .saml_group_rule_param import SAMLGroupRuleParam as SAMLGroupRuleParam
 from .azure_group_rule_param import AzureGroupRuleParam as AzureGroupRuleParam
 from .certificate_rule_param import CertificateRuleParam as CertificateRuleParam
 from .identity_provider_type import IdentityProviderType as IdentityProviderType
+from .tunnel_create_response import TunnelCreateResponse as TunnelCreateResponse
+from .tunnel_delete_response import TunnelDeleteResponse as TunnelDeleteResponse
 from .gateway_create_response import GatewayCreateResponse as GatewayCreateResponse
 from .gsuite_group_rule_param import GSuiteGroupRuleParam as GSuiteGroupRuleParam
 from .external_evaluation_rule import ExternalEvaluationRule as ExternalEvaluationRule
