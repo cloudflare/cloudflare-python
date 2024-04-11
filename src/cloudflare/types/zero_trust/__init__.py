@@ -34,6 +34,7 @@ from .domain_rule_param import DomainRuleParam as DomainRuleParam
 from .gsuite_group_rule import GSuiteGroupRule as GSuiteGroupRule
 from .identity_provider import IdentityProvider as IdentityProvider
 from .scim_config_param import ScimConfigParam as ScimConfigParam
+from .tunnel_connection import TunnelConnection as TunnelConnection
 from .country_rule_param import CountryRuleParam as CountryRuleParam
 from .ip_list_rule_param import IPListRuleParam as IPListRuleParam
 from .login_design_param import LoginDesignParam as LoginDesignParam

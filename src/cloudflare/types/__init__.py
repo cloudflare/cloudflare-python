@@ -20,6 +20,8 @@ from .header import Header as Header
 from .origin import Origin as Origin
 from .shared import (
     Result as Result,
+    IamRole as IamRole,
+    AuditLog as AuditLog,
     ErrorData as ErrorData,
     Identifier as Identifier,
     ResponseInfo as ResponseInfo,
@@ -62,6 +64,7 @@ from .check_region import CheckRegion as CheckRegion
 from .header_param import HeaderParam as HeaderParam
 from .health_check import HealthCheck as HealthCheck
 from .origin_param import OriginParam as OriginParam
+from .respone_rule import ResponeRule as ResponeRule
 from .targes_param import TargesParam as TargesParam
 from .tunnel_param import TunnelParam as TunnelParam
 from .waiting_room import WaitingRoom as WaitingRoom
@@ -83,6 +86,7 @@ from .allowed_origins import AllowedOrigins as AllowedOrigins
 from .firewall_filter import FirewallFilter as FirewallFilter
 from .origin_steering import OriginSteering as OriginSteering
 from .random_steering import RandomSteering as RandomSteering
+from .rate_plan_param import RatePlanParam as RatePlanParam
 from .service_binding import ServiceBinding as ServiceBinding
 from .adaptive_routing import AdaptiveRouting as AdaptiveRouting
 from .geo_restrictions import GeoRestrictions as GeoRestrictions
@@ -116,6 +120,7 @@ from .health_check_param import HealthCheckParam as HealthCheckParam
 from .http_configuration import HTTPConfiguration as HTTPConfiguration
 from .pcap_create_params import PCAPCreateParams as PCAPCreateParams
 from .pcap_list_response import PCAPListResponse as PCAPListResponse
+from .request_rule_param import RequestRuleParam as RequestRuleParam
 from .stream_list_params import StreamListParams as StreamListParams
 from .user_edit_response import UserEditResponse as UserEditResponse
 from .zone_create_params import ZoneCreateParams as ZoneCreateParams
@@ -178,7 +183,6 @@ from .rate_plan_get_response import RatePlanGetResponse as RatePlanGetResponse
 from .url_info_model_results import URLInfoModelResults as URLInfoModelResults
 from .account_update_response import AccountUpdateResponse as AccountUpdateResponse
 from .additional_routes_param import AdditionalRoutesParam as AdditionalRoutesParam
-from .audit_log_list_response import AuditLogListResponse as AuditLogListResponse
 from .cookie_attributes_param import CookieAttributesParam as CookieAttributesParam
 from .healthcheck_edit_params import HealthcheckEditParams as HealthcheckEditParams
 from .location_strategy_param import LocationStrategyParam as LocationStrategyParam

@@ -22,7 +22,12 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ...types.user import Subscription
+from ...types.user import (
+    Subscription,
+    RatePlanParam,
+    SubscriptionZoneParam,
+    SubscriptionComponentParam,
+)
 from ...types.zones import SubscriptionGetResponse, SubscriptionCreateResponse, subscription_create_params
 from ..._base_client import (
     AsyncPaginator,
@@ -46,10 +51,10 @@ class Subscriptions(SyncAPIResource):
         identifier: str,
         *,
         app: subscription_create_params.App | NotGiven = NOT_GIVEN,
-        component_values: Iterable[subscription_create_params.ComponentValue] | NotGiven = NOT_GIVEN,
+        component_values: Iterable[SubscriptionComponentParam] | NotGiven = NOT_GIVEN,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: subscription_create_params.RatePlan | NotGiven = NOT_GIVEN,
-        zone: subscription_create_params.Zone | NotGiven = NOT_GIVEN,
+        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
+        zone: SubscriptionZoneParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,10 +208,10 @@ class AsyncSubscriptions(AsyncAPIResource):
         identifier: str,
         *,
         app: subscription_create_params.App | NotGiven = NOT_GIVEN,
-        component_values: Iterable[subscription_create_params.ComponentValue] | NotGiven = NOT_GIVEN,
+        component_values: Iterable[SubscriptionComponentParam] | NotGiven = NOT_GIVEN,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: subscription_create_params.RatePlan | NotGiven = NOT_GIVEN,
-        zone: subscription_create_params.Zone | NotGiven = NOT_GIVEN,
+        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
+        zone: SubscriptionZoneParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
