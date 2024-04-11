@@ -4840,9 +4840,24 @@ Types:
 
 ```python
 from cloudflare.types.zero_trust.devices import (
+    CarbonblackInput,
+    ClientCertificateInput,
+    CrowdstrikeInput,
     DeviceInput,
     DeviceMatch,
     DevicePostureRule,
+    DiskEncryptionInput,
+    DomainJoinedInput,
+    FileInput,
+    FirewallInput,
+    IntuneInput,
+    KolideInput,
+    OSVersionInput,
+    SentineloneInput,
+    SentineloneS2sInput,
+    TaniumInput,
+    UniqueClientIDInput,
+    WorkspaceOneInput,
     PostureDeleteResponse,
 )
 ```

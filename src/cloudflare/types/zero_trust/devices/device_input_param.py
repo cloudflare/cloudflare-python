@@ -2,109 +2,25 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Union
+from typing_extensions import Literal, Required, TypedDict
 
-from ...._utils import PropertyInfo
+from .file_input_param import FileInputParam
+from .intune_input_param import IntuneInputParam
+from .kolide_input_param import KolideInputParam
+from .tanium_input_param import TaniumInputParam
+from .firewall_input_param import FirewallInputParam
+from .os_version_input_param import OSVersionInputParam
+from .crowdstrike_input_param import CrowdstrikeInputParam
+from .sentinelone_input_param import SentineloneInputParam
+from .domain_joined_input_param import DomainJoinedInputParam
+from .workspace_one_input_param import WorkspaceOneInputParam
+from .disk_encryption_input_param import DiskEncryptionInputParam
+from .sentinelone_s2s_input_param import SentineloneS2sInputParam
+from .unique_client_id_input_param import UniqueClientIDInputParam
+from .client_certificate_input_param import ClientCertificateInputParam
 
-__all__ = [
-    "DeviceInputParam",
-    "TeamsDevicesFileInputRequest",
-    "TeamsDevicesUniqueClientIDInputRequest",
-    "TeamsDevicesDomainJoinedInputRequest",
-    "TeamsDevicesOSVersionInputRequest",
-    "TeamsDevicesFirewallInputRequest",
-    "TeamsDevicesSentineloneInputRequest",
-    "TeamsDevicesCarbonblackInputRequest",
-    "TeamsDevicesDiskEncryptionInputRequest",
-    "TeamsDevicesApplicationInputRequest",
-    "TeamsDevicesClientCertificateInputRequest",
-    "TeamsDevicesWorkspaceOneInputRequest",
-    "TeamsDevicesCrowdstrikeInputRequest",
-    "TeamsDevicesIntuneInputRequest",
-    "TeamsDevicesKolideInputRequest",
-    "TeamsDevicesTaniumInputRequest",
-    "TeamsDevicesSentineloneS2sInputRequest",
-]
-
-
-class TeamsDevicesFileInputRequest(TypedDict, total=False):
-    operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
-
-    path: Required[str]
-    """File path."""
-
-    exists: bool
-    """Whether or not file exists"""
-
-    sha256: str
-    """SHA-256."""
-
-    thumbprint: str
-    """Signing certificate thumbprint."""
-
-
-class TeamsDevicesUniqueClientIDInputRequest(TypedDict, total=False):
-    id: Required[str]
-    """List ID."""
-
-    operating_system: Required[Literal["android", "ios", "chromeos"]]
-    """Operating System"""
-
-
-class TeamsDevicesDomainJoinedInputRequest(TypedDict, total=False):
-    operating_system: Required[Literal["windows"]]
-    """Operating System"""
-
-    domain: str
-    """Domain"""
-
-
-class TeamsDevicesOSVersionInputRequest(TypedDict, total=False):
-    operating_system: Required[Literal["windows"]]
-    """Operating System"""
-
-    operator: Required[Literal["<", "<=", ">", ">=", "=="]]
-    """operator"""
-
-    version: Required[str]
-    """Version of OS"""
-
-    os_distro_name: str
-    """Operating System Distribution Name (linux only)"""
-
-    os_distro_revision: str
-    """Version of OS Distribution (linux only)"""
-
-    os_version_extra: str
-    """Additional version data.
-
-    For Mac or iOS, the Product Verison Extra. For Linux, the kernel release
-    version. (Mac, iOS, and Linux only)
-    """
-
-
-class TeamsDevicesFirewallInputRequest(TypedDict, total=False):
-    enabled: Required[bool]
-    """Enabled"""
-
-    operating_system: Required[Literal["windows", "mac"]]
-    """Operating System"""
-
-
-class TeamsDevicesSentineloneInputRequest(TypedDict, total=False):
-    operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
-
-    path: Required[str]
-    """File path."""
-
-    sha256: str
-    """SHA-256."""
-
-    thumbprint: str
-    """Signing certificate thumbprint."""
+__all__ = ["DeviceInputParam", "TeamsDevicesCarbonblackInputRequest", "TeamsDevicesApplicationInputRequest"]
 
 
 class TeamsDevicesCarbonblackInputRequest(TypedDict, total=False):
@@ -121,14 +37,6 @@ class TeamsDevicesCarbonblackInputRequest(TypedDict, total=False):
     """Signing certificate thumbprint."""
 
 
-class TeamsDevicesDiskEncryptionInputRequest(TypedDict, total=False):
-    check_disks: Annotated[List[str], PropertyInfo(alias="checkDisks")]
-    """List of volume names to be checked for encryption."""
-
-    require_all: Annotated[bool, PropertyInfo(alias="requireAll")]
-    """Whether to check all disks for encryption."""
-
-
 class TeamsDevicesApplicationInputRequest(TypedDict, total=False):
     operating_system: Required[Literal["windows", "linux", "mac"]]
     """Operating system"""
@@ -143,127 +51,21 @@ class TeamsDevicesApplicationInputRequest(TypedDict, total=False):
     """Signing certificate thumbprint."""
 
 
-class TeamsDevicesClientCertificateInputRequest(TypedDict, total=False):
-    certificate_id: Required[str]
-    """UUID of Cloudflare managed certificate."""
-
-    cn: Required[str]
-    """Common Name that is protected by the certificate"""
-
-
-class TeamsDevicesWorkspaceOneInputRequest(TypedDict, total=False):
-    compliance_status: Required[Literal["compliant", "noncompliant", "unknown"]]
-    """Compliance Status"""
-
-    connection_id: Required[str]
-    """Posture Integration ID."""
-
-
-class TeamsDevicesCrowdstrikeInputRequest(TypedDict, total=False):
-    connection_id: Required[str]
-    """Posture Integration ID."""
-
-    last_seen: str
-    """For more details on last seen, please refer to the Crowdstrike documentation."""
-
-    operator: Literal["<", "<=", ">", ">=", "=="]
-    """operator"""
-
-    os: str
-    """Os Version"""
-
-    overall: str
-    """overall"""
-
-    sensor_config: str
-    """SensorConfig"""
-
-    state: Literal["online", "offline", "unknown"]
-    """For more details on state, please refer to the Crowdstrike documentation."""
-
-    version: str
-    """Version"""
-
-    version_operator: Annotated[Literal["<", "<=", ">", ">=", "=="], PropertyInfo(alias="versionOperator")]
-    """Version Operator"""
-
-
-class TeamsDevicesIntuneInputRequest(TypedDict, total=False):
-    compliance_status: Required[
-        Literal["compliant", "noncompliant", "unknown", "notapplicable", "ingraceperiod", "error"]
-    ]
-    """Compliance Status"""
-
-    connection_id: Required[str]
-    """Posture Integration ID."""
-
-
-class TeamsDevicesKolideInputRequest(TypedDict, total=False):
-    connection_id: Required[str]
-    """Posture Integration ID."""
-
-    count_operator: Required[Annotated[Literal["<", "<=", ">", ">=", "=="], PropertyInfo(alias="countOperator")]]
-    """Count Operator"""
-
-    issue_count: Required[str]
-    """The Number of Issues."""
-
-
-class TeamsDevicesTaniumInputRequest(TypedDict, total=False):
-    connection_id: Required[str]
-    """Posture Integration ID."""
-
-    eid_last_seen: str
-    """For more details on eid last seen, refer to the Tanium documentation."""
-
-    operator: Literal["<", "<=", ">", ">=", "=="]
-    """Operator to evaluate risk_level or eid_last_seen."""
-
-    risk_level: Literal["low", "medium", "high", "critical"]
-    """For more details on risk level, refer to the Tanium documentation."""
-
-    score_operator: Annotated[Literal["<", "<=", ">", ">=", "=="], PropertyInfo(alias="scoreOperator")]
-    """Score Operator"""
-
-    total_score: float
-    """For more details on total score, refer to the Tanium documentation."""
-
-
-class TeamsDevicesSentineloneS2sInputRequest(TypedDict, total=False):
-    connection_id: Required[str]
-    """Posture Integration ID."""
-
-    active_threats: float
-    """The Number of active threats."""
-
-    infected: bool
-    """Whether device is infected."""
-
-    is_active: bool
-    """Whether device is active."""
-
-    network_status: Literal["connected", "disconnected", "disconnecting", "connecting"]
-    """Network status of device."""
-
-    operator: Literal["<", "<=", ">", ">=", "=="]
-    """operator"""
-
-
 DeviceInputParam = Union[
-    TeamsDevicesFileInputRequest,
-    TeamsDevicesUniqueClientIDInputRequest,
-    TeamsDevicesDomainJoinedInputRequest,
-    TeamsDevicesOSVersionInputRequest,
-    TeamsDevicesFirewallInputRequest,
-    TeamsDevicesSentineloneInputRequest,
+    FileInputParam,
+    UniqueClientIDInputParam,
+    DomainJoinedInputParam,
+    OSVersionInputParam,
+    FirewallInputParam,
+    SentineloneInputParam,
     TeamsDevicesCarbonblackInputRequest,
-    TeamsDevicesDiskEncryptionInputRequest,
+    DiskEncryptionInputParam,
     TeamsDevicesApplicationInputRequest,
-    TeamsDevicesClientCertificateInputRequest,
-    TeamsDevicesWorkspaceOneInputRequest,
-    TeamsDevicesCrowdstrikeInputRequest,
-    TeamsDevicesIntuneInputRequest,
-    TeamsDevicesKolideInputRequest,
-    TeamsDevicesTaniumInputRequest,
-    TeamsDevicesSentineloneS2sInputRequest,
+    ClientCertificateInputParam,
+    WorkspaceOneInputParam,
+    CrowdstrikeInputParam,
+    IntuneInputParam,
+    KolideInputParam,
+    TaniumInputParam,
+    SentineloneS2sInputParam,
 ]
