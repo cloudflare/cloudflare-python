@@ -20,7 +20,6 @@ from .header import Header as Header
 from .origin import Origin as Origin
 from .shared import (
     Result as Result,
-    IamRole as IamRole,
     AuditLog as AuditLog,
     ErrorData as ErrorData,
     Identifier as Identifier,

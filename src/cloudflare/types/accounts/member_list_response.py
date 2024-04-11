@@ -3,10 +3,24 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ..shared import IamRole
 from ..._models import BaseModel
+from ..user.tokens import Permission
 
-__all__ = ["MemberListResponse"]
+__all__ = ["MemberListResponse", "Role"]
+
+
+class Role(BaseModel):
+    id: str
+    """Role identifier tag."""
+
+    description: str
+    """Description of role's permissions."""
+
+    name: str
+    """Role Name."""
+
+    permissions: List[Permission]
+    """Access permissions for this User."""
 
 
 class MemberListResponse(BaseModel):
@@ -19,7 +33,7 @@ class MemberListResponse(BaseModel):
     name: Optional[str] = None
     """Member Name."""
 
-    roles: List[IamRole]
+    roles: List[Role]
     """Roles assigned to this Member."""
 
     status: Literal["accepted", "invited"]

@@ -21,8 +21,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import IamRole
-from ...types.accounts import RoleGetResponse
+from ...types.accounts import RoleGetResponse, RoleListResponse
 
 __all__ = ["Roles", "AsyncRoles"]
 
@@ -46,7 +45,7 @@ class Roles(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[IamRole]:
+    ) -> SyncSinglePage[RoleListResponse]:
         """
         Get all available roles for an account.
 
@@ -61,11 +60,11 @@ class Roles(SyncAPIResource):
         """
         return self._get_api_list(
             f"/accounts/{account_id}/roles",
-            page=SyncSinglePage[IamRole],
+            page=SyncSinglePage[RoleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=IamRole,
+            model=RoleListResponse,
         )
 
     def get(
@@ -129,7 +128,7 @@ class AsyncRoles(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[IamRole, AsyncSinglePage[IamRole]]:
+    ) -> AsyncPaginator[RoleListResponse, AsyncSinglePage[RoleListResponse]]:
         """
         Get all available roles for an account.
 
@@ -144,11 +143,11 @@ class AsyncRoles(AsyncAPIResource):
         """
         return self._get_api_list(
             f"/accounts/{account_id}/roles",
-            page=AsyncSinglePage[IamRole],
+            page=AsyncSinglePage[RoleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=IamRole,
+            model=RoleListResponse,
         )
 
     async def get(
