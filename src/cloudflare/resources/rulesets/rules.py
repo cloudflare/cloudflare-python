@@ -175,7 +175,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsCompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.CompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -475,7 +475,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["redirect"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsRedirectRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RedirectRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -535,7 +535,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsRewriteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RewriteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -595,7 +595,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsRouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RouteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -655,7 +655,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["score"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsScoreRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -715,7 +715,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -775,7 +775,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["set_config"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsSetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -895,7 +895,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsSetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -971,16 +971,16 @@ class Rules(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.BlockRuleActionParameters
         | object
-        | rule_create_params.RulesetsCompressResponseRuleActionParameters
+        | rule_create_params.CompressResponseRuleActionParameters
         | rule_create_params.ExecuteRuleActionParameters
-        | rule_create_params.RulesetsRedirectRuleActionParameters
-        | rule_create_params.RulesetsRewriteRuleActionParameters
-        | rule_create_params.RulesetsRouteRuleActionParameters
-        | rule_create_params.RulesetsScoreRuleActionParameters
-        | rule_create_params.RulesetsServeErrorRuleActionParameters
-        | rule_create_params.RulesetsSetConfigRuleActionParameters
+        | rule_create_params.RedirectRuleActionParameters
+        | rule_create_params.RewriteRuleActionParameters
+        | rule_create_params.RouteRuleActionParameters
+        | rule_create_params.ScoreRuleActionParameters
+        | rule_create_params.ServeErrorRuleActionParameters
+        | rule_create_params.SetConfigRuleActionParameters
         | rule_create_params.SkipRuleActionParameters
-        | rule_create_params.RulesetsSetCacheSettingsRuleActionParameters
+        | rule_create_params.SetCacheSettingsRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -1233,7 +1233,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsCompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.CompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1538,7 +1538,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["redirect"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsRedirectRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RedirectRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1599,7 +1599,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsRewriteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RewriteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1660,7 +1660,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsRouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RouteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1721,7 +1721,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["score"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsScoreRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1782,7 +1782,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1843,7 +1843,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["set_config"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsSetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1965,7 +1965,7 @@ class Rules(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsSetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -2059,16 +2059,16 @@ class Rules(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.BlockRuleActionParameters
         | object
-        | rule_edit_params.RulesetsCompressResponseRuleActionParameters
+        | rule_edit_params.CompressResponseRuleActionParameters
         | rule_edit_params.ExecuteRuleActionParameters
-        | rule_edit_params.RulesetsRedirectRuleActionParameters
-        | rule_edit_params.RulesetsRewriteRuleActionParameters
-        | rule_edit_params.RulesetsRouteRuleActionParameters
-        | rule_edit_params.RulesetsScoreRuleActionParameters
-        | rule_edit_params.RulesetsServeErrorRuleActionParameters
-        | rule_edit_params.RulesetsSetConfigRuleActionParameters
+        | rule_edit_params.RedirectRuleActionParameters
+        | rule_edit_params.RewriteRuleActionParameters
+        | rule_edit_params.RouteRuleActionParameters
+        | rule_edit_params.ScoreRuleActionParameters
+        | rule_edit_params.ServeErrorRuleActionParameters
+        | rule_edit_params.SetConfigRuleActionParameters
         | rule_edit_params.SkipRuleActionParameters
-        | rule_edit_params.RulesetsSetCacheSettingsRuleActionParameters
+        | rule_edit_params.SetCacheSettingsRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -2265,7 +2265,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsCompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.CompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -2565,7 +2565,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["redirect"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsRedirectRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RedirectRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -2625,7 +2625,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsRewriteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RewriteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -2685,7 +2685,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsRouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.RouteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -2745,7 +2745,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["score"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsScoreRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -2805,7 +2805,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -2865,7 +2865,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["set_config"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsSetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -2985,7 +2985,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsSetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -3061,16 +3061,16 @@ class AsyncRules(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.BlockRuleActionParameters
         | object
-        | rule_create_params.RulesetsCompressResponseRuleActionParameters
+        | rule_create_params.CompressResponseRuleActionParameters
         | rule_create_params.ExecuteRuleActionParameters
-        | rule_create_params.RulesetsRedirectRuleActionParameters
-        | rule_create_params.RulesetsRewriteRuleActionParameters
-        | rule_create_params.RulesetsRouteRuleActionParameters
-        | rule_create_params.RulesetsScoreRuleActionParameters
-        | rule_create_params.RulesetsServeErrorRuleActionParameters
-        | rule_create_params.RulesetsSetConfigRuleActionParameters
+        | rule_create_params.RedirectRuleActionParameters
+        | rule_create_params.RewriteRuleActionParameters
+        | rule_create_params.RouteRuleActionParameters
+        | rule_create_params.ScoreRuleActionParameters
+        | rule_create_params.ServeErrorRuleActionParameters
+        | rule_create_params.SetConfigRuleActionParameters
         | rule_create_params.SkipRuleActionParameters
-        | rule_create_params.RulesetsSetCacheSettingsRuleActionParameters
+        | rule_create_params.SetCacheSettingsRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -3323,7 +3323,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsCompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.CompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -3628,7 +3628,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["redirect"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsRedirectRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RedirectRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -3689,7 +3689,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["rewrite"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsRewriteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RewriteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -3750,7 +3750,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsRouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.RouteRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -3811,7 +3811,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["score"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsScoreRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -3872,7 +3872,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -3933,7 +3933,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["set_config"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsSetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -4055,7 +4055,7 @@ class AsyncRules(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsSetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -4149,16 +4149,16 @@ class AsyncRules(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.BlockRuleActionParameters
         | object
-        | rule_edit_params.RulesetsCompressResponseRuleActionParameters
+        | rule_edit_params.CompressResponseRuleActionParameters
         | rule_edit_params.ExecuteRuleActionParameters
-        | rule_edit_params.RulesetsRedirectRuleActionParameters
-        | rule_edit_params.RulesetsRewriteRuleActionParameters
-        | rule_edit_params.RulesetsRouteRuleActionParameters
-        | rule_edit_params.RulesetsScoreRuleActionParameters
-        | rule_edit_params.RulesetsServeErrorRuleActionParameters
-        | rule_edit_params.RulesetsSetConfigRuleActionParameters
+        | rule_edit_params.RedirectRuleActionParameters
+        | rule_edit_params.RewriteRuleActionParameters
+        | rule_edit_params.RouteRuleActionParameters
+        | rule_edit_params.ScoreRuleActionParameters
+        | rule_edit_params.ServeErrorRuleActionParameters
+        | rule_edit_params.SetConfigRuleActionParameters
         | rule_edit_params.SkipRuleActionParameters
-        | rule_edit_params.RulesetsSetCacheSettingsRuleActionParameters
+        | rule_edit_params.SetCacheSettingsRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
