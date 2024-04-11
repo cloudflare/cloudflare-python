@@ -7,6 +7,7 @@ from .category import Category as Category
 from .location import Location as Location
 from .schedule import Schedule as Schedule
 from .gateway_ips import GatewayIPs as GatewayIPs
+from .gateway_item import GatewayItem as GatewayItem
 from .gateway_list import GatewayList as GatewayList
 from .gateway_rule import GatewayRule as GatewayRule
 from .rule_setting import RuleSetting as RuleSetting
@@ -19,12 +20,9 @@ from .logging_setting import LoggingSetting as LoggingSetting
 from .gateway_settings import GatewaySettings as GatewaySettings
 from .list_edit_params import ListEditParams as ListEditParams
 from .location_network import LocationNetwork as LocationNetwork
-from .list_get_response import ListGetResponse as ListGetResponse
-from .gateway_list_param import GatewayListParam as GatewayListParam
+from .gateway_item_param import GatewayItemParam as GatewayItemParam
 from .list_create_params import ListCreateParams as ListCreateParams
 from .list_delete_params import ListDeleteParams as ListDeleteParams
-from .list_edit_response import ListEditResponse as ListEditResponse
-from .list_list_response import ListListResponse as ListListResponse
 from .list_update_params import ListUpdateParams as ListUpdateParams
 from .protocol_detection import ProtocolDetection as ProtocolDetection
 from .rule_create_params import RuleCreateParams as RuleCreateParams
@@ -37,7 +35,6 @@ from .block_page_settings import BlockPageSettings as BlockPageSettings
 from .fips_settings_param import FipsSettingsParam as FipsSettingsParam
 from .list_create_response import ListCreateResponse as ListCreateResponse
 from .list_delete_response import ListDeleteResponse as ListDeleteResponse
-from .list_update_response import ListUpdateResponse as ListUpdateResponse
 from .rule_delete_response import RuleDeleteResponse as RuleDeleteResponse
 from .activity_log_settings import ActivityLogSettings as ActivityLogSettings
 from .logging_update_params import LoggingUpdateParams as LoggingUpdateParams

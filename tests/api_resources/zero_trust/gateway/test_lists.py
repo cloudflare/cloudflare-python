@@ -11,12 +11,9 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.gateway import (
-    ListGetResponse,
-    ListEditResponse,
-    ListListResponse,
+    GatewayList,
     ListCreateResponse,
     ListDeleteResponse,
-    ListUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -95,7 +92,7 @@ class TestLists:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
         )
-        assert_matches_type(ListUpdateResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +103,7 @@ class TestLists:
             name="Admin Serial Numbers",
             description="The serial numbers for administrators",
         )
-        assert_matches_type(ListUpdateResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +117,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list = response.parse()
-        assert_matches_type(ListUpdateResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +131,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list = response.parse()
-            assert_matches_type(ListUpdateResponse, list, path=["response"])
+            assert_matches_type(GatewayList, list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +158,7 @@ class TestLists:
         list = client.zero_trust.gateway.lists.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncSinglePage[ListListResponse], list, path=["response"])
+        assert_matches_type(SyncSinglePage[GatewayList], list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +170,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list = response.parse()
-        assert_matches_type(SyncSinglePage[ListListResponse], list, path=["response"])
+        assert_matches_type(SyncSinglePage[GatewayList], list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +182,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list = response.parse()
-            assert_matches_type(SyncSinglePage[ListListResponse], list, path=["response"])
+            assert_matches_type(SyncSinglePage[GatewayList], list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -261,7 +258,7 @@ class TestLists:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ListEditResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -272,7 +269,7 @@ class TestLists:
             append=[{"value": "8GE8721REF"}, {"value": "8GE8721REF"}, {"value": "8GE8721REF"}],
             remove=["8GE8721REF", "8GE8721REF", "8GE8721REF"],
         )
-        assert_matches_type(ListEditResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -285,7 +282,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list = response.parse()
-        assert_matches_type(ListEditResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -298,7 +295,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list = response.parse()
-            assert_matches_type(ListEditResponse, list, path=["response"])
+            assert_matches_type(GatewayList, list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -324,7 +321,7 @@ class TestLists:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ListGetResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -337,7 +334,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list = response.parse()
-        assert_matches_type(ListGetResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -350,7 +347,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list = response.parse()
-            assert_matches_type(ListGetResponse, list, path=["response"])
+            assert_matches_type(GatewayList, list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -443,7 +440,7 @@ class TestAsyncLists:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
         )
-        assert_matches_type(ListUpdateResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -454,7 +451,7 @@ class TestAsyncLists:
             name="Admin Serial Numbers",
             description="The serial numbers for administrators",
         )
-        assert_matches_type(ListUpdateResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -468,7 +465,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list = await response.parse()
-        assert_matches_type(ListUpdateResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -482,7 +479,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list = await response.parse()
-            assert_matches_type(ListUpdateResponse, list, path=["response"])
+            assert_matches_type(GatewayList, list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -509,7 +506,7 @@ class TestAsyncLists:
         list = await async_client.zero_trust.gateway.lists.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncSinglePage[ListListResponse], list, path=["response"])
+        assert_matches_type(AsyncSinglePage[GatewayList], list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -521,7 +518,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list = await response.parse()
-        assert_matches_type(AsyncSinglePage[ListListResponse], list, path=["response"])
+        assert_matches_type(AsyncSinglePage[GatewayList], list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -533,7 +530,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list = await response.parse()
-            assert_matches_type(AsyncSinglePage[ListListResponse], list, path=["response"])
+            assert_matches_type(AsyncSinglePage[GatewayList], list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -609,7 +606,7 @@ class TestAsyncLists:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ListEditResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -620,7 +617,7 @@ class TestAsyncLists:
             append=[{"value": "8GE8721REF"}, {"value": "8GE8721REF"}, {"value": "8GE8721REF"}],
             remove=["8GE8721REF", "8GE8721REF", "8GE8721REF"],
         )
-        assert_matches_type(ListEditResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -633,7 +630,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list = await response.parse()
-        assert_matches_type(ListEditResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -646,7 +643,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list = await response.parse()
-            assert_matches_type(ListEditResponse, list, path=["response"])
+            assert_matches_type(GatewayList, list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -672,7 +669,7 @@ class TestAsyncLists:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ListGetResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -685,7 +682,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list = await response.parse()
-        assert_matches_type(ListGetResponse, list, path=["response"])
+        assert_matches_type(GatewayList, list, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -698,7 +695,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list = await response.parse()
-            assert_matches_type(ListGetResponse, list, path=["response"])
+            assert_matches_type(GatewayList, list, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

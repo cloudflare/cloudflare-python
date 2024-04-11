@@ -31,7 +31,7 @@ class WAFManagedRulesAnomalyRule(BaseModel):
     group: WAFRuleGroup
     """The rule group to which the current WAF rule belongs."""
 
-    mode: Literal["on", "off"]
+    mode: AllowedModesAnomaly
     """When set to `on`, the current WAF rule will be used when evaluating the request.
 
     Applies to anomaly detection WAF rules.
