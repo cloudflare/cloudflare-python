@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -116,7 +116,7 @@ class Rulesets(SyncAPIResource):
             "magic_transit_ids_managed",
             "magic_transit_managed",
         ],
-        rules: Iterable[RequestRuleParam],
+        rules: RequestRuleParam,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -194,7 +194,7 @@ class Rulesets(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        rules: Iterable[RequestRuleParam],
+        rules: RequestRuleParam,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -521,7 +521,7 @@ class AsyncRulesets(AsyncAPIResource):
             "magic_transit_ids_managed",
             "magic_transit_managed",
         ],
-        rules: Iterable[RequestRuleParam],
+        rules: RequestRuleParam,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -599,7 +599,7 @@ class AsyncRulesets(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        rules: Iterable[RequestRuleParam],
+        rules: RequestRuleParam,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,

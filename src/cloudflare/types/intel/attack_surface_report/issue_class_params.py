@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
-from .product import Product
-from .subject import Subject
 from ...._utils import PropertyInfo
-from .issue_type import IssueType
-from .issue_class import IssueClass
+from .product_param import ProductParam
+from .subject_param import SubjectParam
+from .issue_type_param import IssueTypeParam
+from .issue_class_param import IssueClassParam
 from .severity_query_param import SeverityQueryParam
 
 __all__ = ["IssueClassParams"]
@@ -21,22 +21,22 @@ class IssueClassParams(TypedDict, total=False):
 
     dismissed: bool
 
-    issue_class: List[IssueClass]
+    issue_class: IssueClassParam
 
-    issue_class_neq: Annotated[List[IssueClass], PropertyInfo(alias="issue_class~neq")]
+    issue_class_neq: Annotated[IssueClassParam, PropertyInfo(alias="issue_class~neq")]
 
-    issue_type: List[IssueType]
+    issue_type: IssueTypeParam
 
-    issue_type_neq: Annotated[List[IssueType], PropertyInfo(alias="issue_type~neq")]
+    issue_type_neq: Annotated[IssueTypeParam, PropertyInfo(alias="issue_type~neq")]
 
-    product: List[Product]
+    product: ProductParam
 
-    product_neq: Annotated[List[Product], PropertyInfo(alias="product~neq")]
+    product_neq: Annotated[ProductParam, PropertyInfo(alias="product~neq")]
 
     severity: List[SeverityQueryParam]
 
     severity_neq: Annotated[List[SeverityQueryParam], PropertyInfo(alias="severity~neq")]
 
-    subject: List[Subject]
+    subject: SubjectParam
 
-    subject_neq: Annotated[List[Subject], PropertyInfo(alias="subject~neq")]
+    subject_neq: Annotated[SubjectParam, PropertyInfo(alias="subject~neq")]

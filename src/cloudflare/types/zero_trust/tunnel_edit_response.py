@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -17,7 +17,7 @@ class TunnelCfdTunnel(BaseModel):
     account_tag: Optional[str] = None
     """Cloudflare account ID"""
 
-    connections: Optional[List[Connection]] = None
+    connections: Optional[Connection] = None
     """The Cloudflare Tunnel connections between your origin and Cloudflare's edge."""
 
     conns_active_at: Optional[datetime] = None
@@ -73,7 +73,7 @@ class TunnelWARPConnectorTunnel(BaseModel):
     account_tag: Optional[str] = None
     """Cloudflare account ID"""
 
-    connections: Optional[List[Connection]] = None
+    connections: Optional[Connection] = None
     """The Cloudflare Tunnel connections between your origin and Cloudflare's edge."""
 
     conns_active_at: Optional[datetime] = None
