@@ -22,7 +22,7 @@ class Client(BaseModel):
     Used internally to sync cloudflared with the Zero Trust dashboard.
     """
 
-    conns: Optional[List[Connection]] = None
+    conns: Optional[Connection] = None
     """The Cloudflare Tunnel connections between your origin and Cloudflare's edge."""
 
     features: Optional[List[str]] = None

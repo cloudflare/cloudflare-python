@@ -9,7 +9,9 @@ from .colo_region import ColoRegion as ColoRegion
 from .scope_param import ScopeParam as ScopeParam
 from .psk_metadata import PSKMetadata as PSKMetadata
 from .site_location import SiteLocation as SiteLocation
+from .colo_name_param import ColoNameParam as ColoNameParam
 from .site_list_params import SiteListParams as SiteListParams
+from .colo_region_param import ColoRegionParam as ColoRegionParam
 from .site_get_response import SiteGetResponse as SiteGetResponse
 from .route_empty_params import RouteEmptyParams as RouteEmptyParams
 from .route_get_response import RouteGetResponse as RouteGetResponse

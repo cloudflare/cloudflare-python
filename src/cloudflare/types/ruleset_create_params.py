@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .request_rule_param import RequestRuleParam
@@ -46,7 +45,7 @@ class RulesetCreateParams(TypedDict, total=False):
     ]
     """The phase of the ruleset."""
 
-    rules: Required[Iterable[RequestRuleParam]]
+    rules: Required[RequestRuleParam]
     """The list of rules in the ruleset."""
 
     account_id: str
