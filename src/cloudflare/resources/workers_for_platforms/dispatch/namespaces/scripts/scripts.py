@@ -6,6 +6,14 @@ from typing import List, Type, cast, overload
 
 import httpx
 
+from .tags import (
+    Tags,
+    AsyncTags,
+    TagsWithRawResponse,
+    AsyncTagsWithRawResponse,
+    TagsWithStreamingResponse,
+    AsyncTagsWithStreamingResponse,
+)
 from .content import (
     Content,
     AsyncContent,
@@ -13,6 +21,14 @@ from .content import (
     AsyncContentWithRawResponse,
     ContentWithStreamingResponse,
     AsyncContentWithStreamingResponse,
+)
+from .secrets import (
+    Secrets,
+    AsyncSecrets,
+    SecretsWithRawResponse,
+    AsyncSecretsWithRawResponse,
+    SecretsWithStreamingResponse,
+    AsyncSecretsWithStreamingResponse,
 )
 from .bindings import (
     Bindings,
@@ -66,6 +82,14 @@ class Scripts(SyncAPIResource):
     @cached_property
     def bindings(self) -> Bindings:
         return Bindings(self._client)
+
+    @cached_property
+    def secrets(self) -> Secrets:
+        return Secrets(self._client)
+
+    @cached_property
+    def tags(self) -> Tags:
+        return Tags(self._client)
 
     @cached_property
     def with_raw_response(self) -> ScriptsWithRawResponse:
@@ -327,6 +351,14 @@ class AsyncScripts(AsyncAPIResource):
     @cached_property
     def bindings(self) -> AsyncBindings:
         return AsyncBindings(self._client)
+
+    @cached_property
+    def secrets(self) -> AsyncSecrets:
+        return AsyncSecrets(self._client)
+
+    @cached_property
+    def tags(self) -> AsyncTags:
+        return AsyncTags(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncScriptsWithRawResponse:
@@ -602,6 +634,14 @@ class ScriptsWithRawResponse:
     def bindings(self) -> BindingsWithRawResponse:
         return BindingsWithRawResponse(self._scripts.bindings)
 
+    @cached_property
+    def secrets(self) -> SecretsWithRawResponse:
+        return SecretsWithRawResponse(self._scripts.secrets)
+
+    @cached_property
+    def tags(self) -> TagsWithRawResponse:
+        return TagsWithRawResponse(self._scripts.tags)
+
 
 class AsyncScriptsWithRawResponse:
     def __init__(self, scripts: AsyncScripts) -> None:
@@ -628,6 +668,14 @@ class AsyncScriptsWithRawResponse:
     @cached_property
     def bindings(self) -> AsyncBindingsWithRawResponse:
         return AsyncBindingsWithRawResponse(self._scripts.bindings)
+
+    @cached_property
+    def secrets(self) -> AsyncSecretsWithRawResponse:
+        return AsyncSecretsWithRawResponse(self._scripts.secrets)
+
+    @cached_property
+    def tags(self) -> AsyncTagsWithRawResponse:
+        return AsyncTagsWithRawResponse(self._scripts.tags)
 
 
 class ScriptsWithStreamingResponse:
@@ -656,6 +704,14 @@ class ScriptsWithStreamingResponse:
     def bindings(self) -> BindingsWithStreamingResponse:
         return BindingsWithStreamingResponse(self._scripts.bindings)
 
+    @cached_property
+    def secrets(self) -> SecretsWithStreamingResponse:
+        return SecretsWithStreamingResponse(self._scripts.secrets)
+
+    @cached_property
+    def tags(self) -> TagsWithStreamingResponse:
+        return TagsWithStreamingResponse(self._scripts.tags)
+
 
 class AsyncScriptsWithStreamingResponse:
     def __init__(self, scripts: AsyncScripts) -> None:
@@ -682,3 +738,11 @@ class AsyncScriptsWithStreamingResponse:
     @cached_property
     def bindings(self) -> AsyncBindingsWithStreamingResponse:
         return AsyncBindingsWithStreamingResponse(self._scripts.bindings)
+
+    @cached_property
+    def secrets(self) -> AsyncSecretsWithStreamingResponse:
+        return AsyncSecretsWithStreamingResponse(self._scripts.secrets)
+
+    @cached_property
+    def tags(self) -> AsyncTagsWithStreamingResponse:
+        return AsyncTagsWithStreamingResponse(self._scripts.tags)
