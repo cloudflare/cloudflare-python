@@ -5,7 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .respone_rule import ResponeRule
+from .response_rule import ResponseRule
 
 __all__ = ["RulesetUpdateResponse"]
 
@@ -50,7 +50,7 @@ class RulesetUpdateResponse(BaseModel):
     ]
     """The phase of the ruleset."""
 
-    rules: ResponeRule
+    rules: ResponseRule
     """The list of rules in the ruleset."""
 
     version: str
