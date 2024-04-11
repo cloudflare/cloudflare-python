@@ -37,6 +37,7 @@ from ...types import (
     CookieAttributesParam,
     WaitingRoomDeleteResponse,
     waiting_room_edit_params,
+    waiting_room_list_params,
     waiting_room_create_params,
     waiting_room_delete_params,
     waiting_room_update_params,
@@ -827,6 +828,8 @@ class WaitingRooms(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        page: object | NotGiven = NOT_GIVEN,
+        per_page: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -839,6 +842,10 @@ class WaitingRooms(SyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page. Must be a multiple of 5.
 
           extra_headers: Send extra headers
 
@@ -854,7 +861,17 @@ class WaitingRooms(SyncAPIResource):
             f"/zones/{zone_id}/waiting_rooms",
             page=SyncSinglePage[WaitingRoom],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    waiting_room_list_params.WaitingRoomListParams,
+                ),
             ),
             model=WaitingRoom,
         )
@@ -2050,6 +2067,8 @@ class AsyncWaitingRooms(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        page: object | NotGiven = NOT_GIVEN,
+        per_page: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2062,6 +2081,10 @@ class AsyncWaitingRooms(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          page: Page number of paginated results.
+
+          per_page: Maximum number of results per page. Must be a multiple of 5.
 
           extra_headers: Send extra headers
 
@@ -2077,7 +2100,17 @@ class AsyncWaitingRooms(AsyncAPIResource):
             f"/zones/{zone_id}/waiting_rooms",
             page=AsyncSinglePage[WaitingRoom],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    waiting_room_list_params.WaitingRoomListParams,
+                ),
             ),
             model=WaitingRoom,
         )
