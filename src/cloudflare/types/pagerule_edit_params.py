@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .route_param import RouteParam
-from .targes_param import TargesParam
+from .target_param import TargetParam
 
 __all__ = ["PageruleEditParams"]
 
@@ -33,5 +33,5 @@ class PageruleEditParams(TypedDict, total=False):
     status: Literal["active", "disabled"]
     """The status of the Page Rule."""
 
-    targets: Iterable[TargesParam]
+    targets: Iterable[TargetParam]
     """The rule targets to evaluate on each request."""

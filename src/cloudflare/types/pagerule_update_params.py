@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .route_param import RouteParam
-from .targes_param import TargesParam
+from .target_param import TargetParam
 
 __all__ = ["PageruleUpdateParams"]
 
@@ -21,7 +21,7 @@ class PageruleUpdateParams(TypedDict, total=False):
     Actions can redirect to another URL or override settings, but not both.
     """
 
-    targets: Required[Iterable[TargesParam]]
+    targets: Required[Iterable[TargetParam]]
     """The rule targets to evaluate on each request."""
 
     priority: int

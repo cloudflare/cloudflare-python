@@ -4,7 +4,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["Targes", "Constraint"]
+__all__ = ["Target", "Constraint"]
 
 
 class Constraint(BaseModel):
@@ -20,7 +20,7 @@ class Constraint(BaseModel):
     """
 
 
-class Targes(BaseModel):
+class Target(BaseModel):
     constraint: Constraint
     """String constraint."""
 

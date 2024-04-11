@@ -28,7 +28,7 @@ from .shared import (
     LoadBalancerPreview as LoadBalancerPreview,
 )
 from .submit import Submit as Submit
-from .targes import Targes as Targes
+from .target import Target as Target
 from .tunnel import Tunnel as Tunnel
 from .account import Account as Account
 from .binding import Binding as Binding
@@ -40,7 +40,6 @@ from .edge_ips import EdgeIPs as EdgeIPs
 from .hostname import Hostname as Hostname
 from .settings import Settings as Settings
 from .calls_app import CallsApp as CallsApp
-from .component import Component as Component
 from .dns_param import DNSParam as DNSParam
 from .page_rule import PageRule as PageRule
 from .rate_plan import RatePlan as RatePlan
@@ -64,7 +63,7 @@ from .header_param import HeaderParam as HeaderParam
 from .health_check import HealthCheck as HealthCheck
 from .origin_param import OriginParam as OriginParam
 from .respone_rule import ResponeRule as ResponeRule
-from .targes_param import TargesParam as TargesParam
+from .target_param import TargetParam as TargetParam
 from .tunnel_param import TunnelParam as TunnelParam
 from .waiting_room import WaitingRoom as WaitingRoom
 from .bundle_method import BundleMethod as BundleMethod

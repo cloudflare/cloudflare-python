@@ -7,10 +7,10 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .output_options import OutputOptions
 
-__all__ = ["JobListResponse"]
+__all__ = ["LogpushJob"]
 
 
-class JobListResponse(BaseModel):
+class LogpushJob(BaseModel):
     id: Optional[int] = None
     """Unique id of the job."""
 
