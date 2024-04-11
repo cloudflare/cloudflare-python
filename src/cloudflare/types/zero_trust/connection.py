@@ -1,23 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
+from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["Connection", "ConnectionItem"]
+__all__ = ["Connection"]
 
 
-class ConnectionItem(BaseModel):
-    id: Optional[str] = None
-    """UUID of the Cloudflare Tunnel connection."""
-
-    client_id: Optional[object] = None
-    """UUID of the cloudflared instance."""
-
-    client_version: Optional[str] = None
-    """The cloudflared version used to establish this connection."""
-
+class Connection(BaseModel):
     colo_name: Optional[str] = None
     """The Cloudflare data center used for this connection."""
 
@@ -29,14 +19,5 @@ class ConnectionItem(BaseModel):
     tracked. If `false`, the connection is actively serving traffic.
     """
 
-    opened_at: Optional[datetime] = None
-    """Timestamp of when the connection was established."""
-
-    origin_ip: Optional[str] = None
-    """The public IP address of the host running cloudflared."""
-
     uuid: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
-
-
-Connection = List[ConnectionItem]

@@ -37,7 +37,6 @@ from .ruleset import Ruleset as Ruleset
 from .setting import Setting as Setting
 from .snippet import Snippet as Snippet
 from .edge_ips import EdgeIPs as EdgeIPs
-from .hostname import Hostname as Hostname
 from .settings import Settings as Settings
 from .calls_app import CallsApp as CallsApp
 from .dns_param import DNSParam as DNSParam
@@ -76,7 +75,6 @@ from .queue_updated import QueueUpdated as QueueUpdated
 from .request_model import RequestModel as RequestModel
 from .edge_ips_param import EdgeIPsParam as EdgeIPsParam
 from .filter_options import FilterOptions as FilterOptions
-from .hostname_param import HostnameParam as HostnameParam
 from .ip_list_params import IPListParams as IPListParams
 from .labeled_region import LabeledRegion as LabeledRegion
 from .migration_step import MigrationStep as MigrationStep
