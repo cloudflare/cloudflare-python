@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers import ScriptSetting
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
+    SettingGetResponse,
+    SettingEditResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,38 +27,8 @@ class TestSettings:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            errors=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            messages=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            result={},
-            success=True,
         )
-        assert_matches_type(ScriptSetting, setting, path=["response"])
+        assert_matches_type(SettingEditResponse, setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -64,36 +37,55 @@ class TestSettings:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            errors=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            messages=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            result={
+            settings={
+                "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
+                "compatibility_date": "2022-04-05",
+                "compatibility_flags": [
+                    "formdata_parser_supports_files",
+                    "formdata_parser_supports_files",
+                    "formdata_parser_supports_files",
+                ],
+                "limits": {"cpu_ms": 50},
                 "logpush": False,
+                "migrations": {
+                    "new_tag": "v2",
+                    "old_tag": "v1",
+                    "deleted_classes": ["string", "string", "string"],
+                    "new_classes": ["string", "string", "string"],
+                    "renamed_classes": [
+                        {
+                            "from": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "to": "string",
+                        },
+                    ],
+                    "transferred_classes": [
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                    ],
+                },
+                "placement": {"mode": "smart"},
+                "tags": ["my-tag", "my-tag", "my-tag"],
                 "tail_consumers": [
                     {
                         "environment": "production",
@@ -111,10 +103,10 @@ class TestSettings:
                         "service": "my-log-consumer",
                     },
                 ],
+                "usage_model": "unbound",
             },
-            success=True,
         )
-        assert_matches_type(ScriptSetting, setting, path=["response"])
+        assert_matches_type(SettingEditResponse, setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -123,42 +115,12 @@ class TestSettings:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            errors=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            messages=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            result={},
-            success=True,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert_matches_type(ScriptSetting, setting, path=["response"])
+        assert_matches_type(SettingEditResponse, setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -167,42 +129,12 @@ class TestSettings:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            errors=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            messages=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            result={},
-            success=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert_matches_type(ScriptSetting, setting, path=["response"])
+            assert_matches_type(SettingEditResponse, setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -214,36 +146,6 @@ class TestSettings:
                 "this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
-                errors=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                messages=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                result={},
-                success=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -251,36 +153,6 @@ class TestSettings:
                 "this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
-                errors=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                messages=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                result={},
-                success=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -288,36 +160,6 @@ class TestSettings:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                errors=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                messages=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                result={},
-                success=True,
             )
 
     @pytest.mark.skip()
@@ -328,7 +170,7 @@ class TestSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(ScriptSetting, setting, path=["response"])
+        assert_matches_type(SettingGetResponse, setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -342,7 +184,7 @@ class TestSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert_matches_type(ScriptSetting, setting, path=["response"])
+        assert_matches_type(SettingGetResponse, setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -356,7 +198,7 @@ class TestSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert_matches_type(ScriptSetting, setting, path=["response"])
+            assert_matches_type(SettingGetResponse, setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -395,38 +237,8 @@ class TestAsyncSettings:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            errors=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            messages=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            result={},
-            success=True,
         )
-        assert_matches_type(ScriptSetting, setting, path=["response"])
+        assert_matches_type(SettingEditResponse, setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -435,36 +247,55 @@ class TestAsyncSettings:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            errors=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            messages=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            result={
+            settings={
+                "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
+                "compatibility_date": "2022-04-05",
+                "compatibility_flags": [
+                    "formdata_parser_supports_files",
+                    "formdata_parser_supports_files",
+                    "formdata_parser_supports_files",
+                ],
+                "limits": {"cpu_ms": 50},
                 "logpush": False,
+                "migrations": {
+                    "new_tag": "v2",
+                    "old_tag": "v1",
+                    "deleted_classes": ["string", "string", "string"],
+                    "new_classes": ["string", "string", "string"],
+                    "renamed_classes": [
+                        {
+                            "from": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "to": "string",
+                        },
+                    ],
+                    "transferred_classes": [
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                        {
+                            "from": "string",
+                            "from_script": "string",
+                            "to": "string",
+                        },
+                    ],
+                },
+                "placement": {"mode": "smart"},
+                "tags": ["my-tag", "my-tag", "my-tag"],
                 "tail_consumers": [
                     {
                         "environment": "production",
@@ -482,10 +313,10 @@ class TestAsyncSettings:
                         "service": "my-log-consumer",
                     },
                 ],
+                "usage_model": "unbound",
             },
-            success=True,
         )
-        assert_matches_type(ScriptSetting, setting, path=["response"])
+        assert_matches_type(SettingEditResponse, setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -494,42 +325,12 @@ class TestAsyncSettings:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            errors=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            messages=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            result={},
-            success=True,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert_matches_type(ScriptSetting, setting, path=["response"])
+        assert_matches_type(SettingEditResponse, setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -538,42 +339,12 @@ class TestAsyncSettings:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            errors=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            messages=[
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-                {
-                    "code": 1000,
-                    "message": "string",
-                },
-            ],
-            result={},
-            success=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert_matches_type(ScriptSetting, setting, path=["response"])
+            assert_matches_type(SettingEditResponse, setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -585,36 +356,6 @@ class TestAsyncSettings:
                 "this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
-                errors=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                messages=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                result={},
-                success=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -622,36 +363,6 @@ class TestAsyncSettings:
                 "this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
-                errors=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                messages=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                result={},
-                success=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -659,36 +370,6 @@ class TestAsyncSettings:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                errors=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                messages=[
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                    {
-                        "code": 1000,
-                        "message": "string",
-                    },
-                ],
-                result={},
-                success=True,
             )
 
     @pytest.mark.skip()
@@ -699,7 +380,7 @@ class TestAsyncSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(ScriptSetting, setting, path=["response"])
+        assert_matches_type(SettingGetResponse, setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -713,7 +394,7 @@ class TestAsyncSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert_matches_type(ScriptSetting, setting, path=["response"])
+        assert_matches_type(SettingGetResponse, setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -727,7 +408,7 @@ class TestAsyncSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert_matches_type(ScriptSetting, setting, path=["response"])
+            assert_matches_type(SettingGetResponse, setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

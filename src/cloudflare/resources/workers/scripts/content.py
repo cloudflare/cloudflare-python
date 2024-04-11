@@ -75,7 +75,8 @@ class Content(SyncAPIResource):
               may be provided as separate named parts, but at least one module must be
               present. This should be referenced either in the metadata as `main_module`
               (esm)/`body_part` (service worker) or as a header `CF-WORKER-MAIN-MODULE-PART`
-              (esm) /`CF-WORKER-BODY-PART` (service worker) by part name.
+              (esm) /`CF-WORKER-BODY-PART` (service worker) by part name. Source maps may also
+              be included using the `application/source-map` content type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -194,7 +195,8 @@ class AsyncContent(AsyncAPIResource):
               may be provided as separate named parts, but at least one module must be
               present. This should be referenced either in the metadata as `main_module`
               (esm)/`body_part` (service worker) or as a header `CF-WORKER-MAIN-MODULE-PART`
-              (esm) /`CF-WORKER-BODY-PART` (service worker) by part name.
+              (esm) /`CF-WORKER-BODY-PART` (service worker) by part name. Source maps may also
+              be included using the `application/source-map` content type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 

@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
-from typing_extensions import Literal
+from typing import Type, cast
 
 import httpx
 
-from ......types import shared_params
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ......_utils import (
     maybe_transform,
@@ -25,8 +23,11 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.workers import ScriptSetting, ScriptSettingParam
-from ......types.workers_for_platforms.dispatch.namespaces.scripts import setting_edit_params
+from ......types.workers_for_platforms.dispatch.namespaces.scripts import (
+    SettingGetResponse,
+    SettingEditResponse,
+    setting_edit_params,
+)
 
 __all__ = ["Settings", "AsyncSettings"]
 
@@ -46,17 +47,14 @@ class Settings(SyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        errors: Iterable[shared_params.ResponseInfo],
-        messages: Iterable[shared_params.ResponseInfo],
-        result: ScriptSettingParam,
-        success: Literal[True],
+        settings: setting_edit_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptSetting:
+    ) -> SettingEditResponse:
         """
         Patch script metadata, such as bindings
 
@@ -66,8 +64,6 @@ class Settings(SyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
-
-          success: Whether the API call was successful
 
           extra_headers: Send extra headers
 
@@ -85,15 +81,7 @@ class Settings(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._patch(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings",
-            body=maybe_transform(
-                {
-                    "errors": errors,
-                    "messages": messages,
-                    "result": result,
-                    "success": success,
-                },
-                setting_edit_params.SettingEditParams,
-            ),
+            body=maybe_transform({"settings": settings}, setting_edit_params.SettingEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -101,7 +89,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
         )
 
     def get(
@@ -116,7 +104,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptSetting:
+    ) -> SettingGetResponse:
         """
         Get script settings from a script uploaded to a Workers for Platforms namespace.
 
@@ -150,7 +138,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
         )
 
 
@@ -169,17 +157,14 @@ class AsyncSettings(AsyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        errors: Iterable[shared_params.ResponseInfo],
-        messages: Iterable[shared_params.ResponseInfo],
-        result: ScriptSettingParam,
-        success: Literal[True],
+        settings: setting_edit_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptSetting:
+    ) -> SettingEditResponse:
         """
         Patch script metadata, such as bindings
 
@@ -189,8 +174,6 @@ class AsyncSettings(AsyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
-
-          success: Whether the API call was successful
 
           extra_headers: Send extra headers
 
@@ -208,15 +191,7 @@ class AsyncSettings(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._patch(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings",
-            body=await async_maybe_transform(
-                {
-                    "errors": errors,
-                    "messages": messages,
-                    "result": result,
-                    "success": success,
-                },
-                setting_edit_params.SettingEditParams,
-            ),
+            body=await async_maybe_transform({"settings": settings}, setting_edit_params.SettingEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -224,7 +199,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
         )
 
     async def get(
@@ -239,7 +214,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptSetting:
+    ) -> SettingGetResponse:
         """
         Get script settings from a script uploaded to a Workers for Platforms namespace.
 
@@ -273,7 +248,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
         )
 
 

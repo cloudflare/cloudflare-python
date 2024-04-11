@@ -11,7 +11,6 @@ from .domain_list_params import DomainListParams as DomainListParams
 from .domain_delete_params import DomainDeleteParams as DomainDeleteParams
 from .domain_update_params import DomainUpdateParams as DomainUpdateParams
 from .script_delete_params import ScriptDeleteParams as ScriptDeleteParams
-from .script_setting_param import ScriptSettingParam as ScriptSettingParam
 from .script_update_params import ScriptUpdateParams as ScriptUpdateParams
 from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse
 from .subdomain_update_params import SubdomainUpdateParams as SubdomainUpdateParams

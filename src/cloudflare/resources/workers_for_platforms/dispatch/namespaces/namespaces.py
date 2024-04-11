@@ -193,7 +193,7 @@ class Namespaces(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> NamespaceGetResponse:
         """
-        Fetch a Workers for Platforms namespace.
+        Get a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
@@ -374,7 +374,7 @@ class AsyncNamespaces(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> NamespaceGetResponse:
         """
-        Fetch a Workers for Platforms namespace.
+        Get a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
