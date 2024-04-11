@@ -9,9 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import AuditLogListResponse
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.shared import AuditLog
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +25,7 @@ class TestAuditLogs:
         audit_log = client.audit_logs.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[AuditLogListResponse], audit_log, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestAuditLogs:
             since=parse_datetime("2019-04-30T01:12:20Z"),
             zone={"name": "example.com"},
         )
-        assert_matches_type(SyncV4PagePaginationArray[AuditLogListResponse], audit_log, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -59,7 +59,7 @@ class TestAuditLogs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audit_log = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[AuditLogListResponse], audit_log, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -71,7 +71,7 @@ class TestAuditLogs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audit_log = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[AuditLogListResponse], audit_log, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -93,7 +93,7 @@ class TestAsyncAuditLogs:
         audit_log = await async_client.audit_logs.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[AuditLogListResponse], audit_log, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -115,7 +115,7 @@ class TestAsyncAuditLogs:
             since=parse_datetime("2019-04-30T01:12:20Z"),
             zone={"name": "example.com"},
         )
-        assert_matches_type(AsyncV4PagePaginationArray[AuditLogListResponse], audit_log, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -127,7 +127,7 @@ class TestAsyncAuditLogs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         audit_log = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[AuditLogListResponse], audit_log, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -139,7 +139,7 @@ class TestAsyncAuditLogs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             audit_log = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[AuditLogListResponse], audit_log, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

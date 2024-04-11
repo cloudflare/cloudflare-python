@@ -22,8 +22,11 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.user import (
+    RatePlanParam,
+    SubscriptionZoneParam,
     SubscriptionGetResponse,
     SubscriptionEditResponse,
+    SubscriptionComponentParam,
     SubscriptionDeleteResponse,
     SubscriptionUpdateResponse,
     subscription_edit_params,
@@ -51,10 +54,10 @@ class Subscriptions(SyncAPIResource):
         identifier: str,
         *,
         app: subscription_update_params.App | NotGiven = NOT_GIVEN,
-        component_values: Iterable[subscription_update_params.ComponentValue] | NotGiven = NOT_GIVEN,
+        component_values: Iterable[SubscriptionComponentParam] | NotGiven = NOT_GIVEN,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: subscription_update_params.RatePlan | NotGiven = NOT_GIVEN,
-        zone: subscription_update_params.Zone | NotGiven = NOT_GIVEN,
+        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
+        zone: SubscriptionZoneParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -155,10 +158,10 @@ class Subscriptions(SyncAPIResource):
         identifier: str,
         *,
         app: subscription_edit_params.App | NotGiven = NOT_GIVEN,
-        component_values: Iterable[subscription_edit_params.ComponentValue] | NotGiven = NOT_GIVEN,
+        component_values: Iterable[SubscriptionComponentParam] | NotGiven = NOT_GIVEN,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: subscription_edit_params.RatePlan | NotGiven = NOT_GIVEN,
-        zone: subscription_edit_params.Zone | NotGiven = NOT_GIVEN,
+        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
+        zone: SubscriptionZoneParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -255,10 +258,10 @@ class AsyncSubscriptions(AsyncAPIResource):
         identifier: str,
         *,
         app: subscription_update_params.App | NotGiven = NOT_GIVEN,
-        component_values: Iterable[subscription_update_params.ComponentValue] | NotGiven = NOT_GIVEN,
+        component_values: Iterable[SubscriptionComponentParam] | NotGiven = NOT_GIVEN,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: subscription_update_params.RatePlan | NotGiven = NOT_GIVEN,
-        zone: subscription_update_params.Zone | NotGiven = NOT_GIVEN,
+        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
+        zone: SubscriptionZoneParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -359,10 +362,10 @@ class AsyncSubscriptions(AsyncAPIResource):
         identifier: str,
         *,
         app: subscription_edit_params.App | NotGiven = NOT_GIVEN,
-        component_values: Iterable[subscription_edit_params.ComponentValue] | NotGiven = NOT_GIVEN,
+        component_values: Iterable[SubscriptionComponentParam] | NotGiven = NOT_GIVEN,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: subscription_edit_params.RatePlan | NotGiven = NOT_GIVEN,
-        zone: subscription_edit_params.Zone | NotGiven = NOT_GIVEN,
+        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
+        zone: SubscriptionZoneParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

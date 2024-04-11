@@ -1,11 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from .account import Account
 from .._models import BaseModel
-from .accounts import MemberRole, PermissionGrant
+from .accounts import PermissionGrant
 
 __all__ = ["Membership", "Permissions"]
 
@@ -55,7 +55,7 @@ class Membership(BaseModel):
     permissions: Optional[Permissions] = None
     """All access permissions for the user at the account."""
 
-    roles: Optional[MemberRole] = None
+    roles: Optional[List[str]] = None
     """List of role names for the user at the account."""
 
     status: Optional[Literal["accepted", "pending", "rejected"]] = None

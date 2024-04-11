@@ -1,6 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .result import Result as Result
+from .iam_role import IamRole as IamRole
+from .audit_log import AuditLog as AuditLog
 from .error_data import ErrorData as ErrorData
 from .identifier import Identifier as Identifier
 from .response_info import ResponseInfo as ResponseInfo

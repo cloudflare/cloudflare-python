@@ -3,48 +3,9 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from .permission_grant import PermissionGrant
+from .member_role import MemberRole
 
-__all__ = ["MemberWithInviteCode", "Role", "RolePermissions", "User"]
-
-
-class RolePermissions(BaseModel):
-    analytics: Optional[PermissionGrant] = None
-
-    billing: Optional[PermissionGrant] = None
-
-    cache_purge: Optional[PermissionGrant] = None
-
-    dns: Optional[PermissionGrant] = None
-
-    dns_records: Optional[PermissionGrant] = None
-
-    lb: Optional[PermissionGrant] = None
-
-    logs: Optional[PermissionGrant] = None
-
-    organization: Optional[PermissionGrant] = None
-
-    ssl: Optional[PermissionGrant] = None
-
-    waf: Optional[PermissionGrant] = None
-
-    zone_settings: Optional[PermissionGrant] = None
-
-    zones: Optional[PermissionGrant] = None
-
-
-class Role(BaseModel):
-    id: str
-    """Role identifier tag."""
-
-    description: str
-    """Description of role's permissions."""
-
-    name: str
-    """Role name."""
-
-    permissions: RolePermissions
+__all__ = ["MemberWithInviteCode", "User"]
 
 
 class User(BaseModel):
@@ -71,7 +32,7 @@ class MemberWithInviteCode(BaseModel):
     id: str
     """Membership identifier tag."""
 
-    roles: List[Role]
+    roles: List[MemberRole]
     """Roles assigned to this member."""
 
     status: object

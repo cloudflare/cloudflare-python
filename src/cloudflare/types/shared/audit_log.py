@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["AuditLogListResponse", "Action", "Actor", "Owner", "Resource"]
+__all__ = ["AuditLog", "Action", "Actor", "Owner", "Resource"]
 
 
 class Action(BaseModel):
@@ -49,7 +49,7 @@ class Resource(BaseModel):
     """A short string that describes the resource that was affected by the action."""
 
 
-class AuditLogListResponse(BaseModel):
+class AuditLog(BaseModel):
     id: Optional[str] = None
     """A string that uniquely identifies the audit log."""
 

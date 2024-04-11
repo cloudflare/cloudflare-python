@@ -2,7 +2,9 @@
 
 ```python
 from cloudflare.types import (
+    AuditLog,
     ErrorData,
+    IamRole,
     Identifier,
     LoadBalancerPreview,
     PaginationInfo,
@@ -52,12 +54,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.accounts import PermissionGrant, RoleListResponse, RoleGetResponse
+from cloudflare.types.accounts import PermissionGrant, RoleGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role_list_response.py">SyncSinglePage[RoleListResponse]</a></code>
+- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/shared/iam_role.py">SyncSinglePage[IamRole]</a></code>
 - <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/role_get_response.py">RoleGetResponse</a></code>
 
 # OriginCACertificates
@@ -127,15 +129,9 @@ Methods:
 
 ## AuditLogs
 
-Types:
-
-```python
-from cloudflare.types.user import AuditLogListResponse
-```
-
 Methods:
 
-- <code title="get /user/audit_logs">client.user.audit_logs.<a href="./src/cloudflare/resources/user/audit_logs.py">list</a>(\*\*<a href="src/cloudflare/types/user/audit_log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/audit_log_list_response.py">SyncV4PagePaginationArray[AuditLogListResponse]</a></code>
+- <code title="get /user/audit_logs">client.user.audit_logs.<a href="./src/cloudflare/resources/user/audit_logs.py">list</a>(\*\*<a href="src/cloudflare/types/user/audit_log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/audit_log.py">SyncV4PagePaginationArray[AuditLog]</a></code>
 
 ## Billing
 
@@ -197,7 +193,11 @@ Types:
 
 ```python
 from cloudflare.types.user import (
+    RatePlan,
     Subscription,
+    SubscriptionComponent,
+    SubscriptionComponentValue,
+    SubscriptionZone,
     SubscriptionUpdateResponse,
     SubscriptionDeleteResponse,
     SubscriptionEditResponse,
@@ -3019,6 +3019,8 @@ Types:
 
 ```python
 from cloudflare.types import (
+    RequestRule,
+    ResponeRule,
     Ruleset,
     RulesetCreateResponse,
     RulesetUpdateResponse,
@@ -3382,15 +3384,9 @@ Methods:
 
 # AuditLogs
 
-Types:
-
-```python
-from cloudflare.types import AuditLogListResponse
-```
-
 Methods:
 
-- <code title="get /accounts/{account_id}/audit_logs">client.audit_logs.<a href="./src/cloudflare/resources/audit_logs.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/audit_log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/audit_log_list_response.py">SyncV4PagePaginationArray[AuditLogListResponse]</a></code>
+- <code title="get /accounts/{account_id}/audit_logs">client.audit_logs.<a href="./src/cloudflare/resources/audit_logs.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/audit_log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/audit_log.py">SyncV4PagePaginationArray[AuditLog]</a></code>
 
 # Billing
 
@@ -5435,7 +5431,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import Tunnel, WARPConnectorTunnel
+from cloudflare.types.zero_trust import Tunnel, TunnelConnection, WARPConnectorTunnel
 ```
 
 Methods:
