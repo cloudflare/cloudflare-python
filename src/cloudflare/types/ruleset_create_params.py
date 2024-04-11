@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .request_rule_param import RequestRuleParam
+from .rulesets import LogRuleParam, SkipRuleParam, BlockRuleParam, ExecuteRuleParam
 
-__all__ = ["RulesetCreateParams"]
+__all__ = ["RulesetCreateParams", "Rule"]
 
 
 class RulesetCreateParams(TypedDict, total=False):
@@ -45,7 +46,7 @@ class RulesetCreateParams(TypedDict, total=False):
     ]
     """The phase of the ruleset."""
 
-    rules: Required[RequestRuleParam]
+    rules: Required[Iterable[Rule]]
     """The list of rules in the ruleset."""
 
     account_id: str
@@ -56,3 +57,6 @@ class RulesetCreateParams(TypedDict, total=False):
 
     description: str
     """An informative description of the ruleset."""
+
+
+Rule = Union[BlockRuleParam, ExecuteRuleParam, LogRuleParam, SkipRuleParam]

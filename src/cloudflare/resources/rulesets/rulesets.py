@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -25,7 +25,6 @@ from .phases import (
 )
 from ...types import (
     Ruleset,
-    RequestRuleParam,
     RulesetGetResponse,
     RulesetCreateResponse,
     RulesetUpdateResponse,
@@ -116,7 +115,7 @@ class Rulesets(SyncAPIResource):
             "magic_transit_ids_managed",
             "magic_transit_managed",
         ],
-        rules: RequestRuleParam,
+        rules: Iterable[ruleset_create_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -194,7 +193,7 @@ class Rulesets(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        rules: RequestRuleParam,
+        rules: Iterable[ruleset_update_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -521,7 +520,7 @@ class AsyncRulesets(AsyncAPIResource):
             "magic_transit_ids_managed",
             "magic_transit_managed",
         ],
-        rules: RequestRuleParam,
+        rules: Iterable[ruleset_create_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -599,7 +598,7 @@ class AsyncRulesets(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        rules: RequestRuleParam,
+        rules: Iterable[ruleset_update_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
