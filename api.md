@@ -4976,7 +4976,28 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import AccessRule, OktaGroupRule
+from cloudflare.types.zero_trust import (
+    AccessDevicePostureRule,
+    AccessRule,
+    AnyValidServiceTokenRule,
+    AuthenticationMethodRule,
+    AzureGroupRule,
+    CertificateRule,
+    CountryRule,
+    DomainRule,
+    EmailListRule,
+    EmailRule,
+    EveryoneRule,
+    ExternalEvaluationRule,
+    GitHubOrganizationRule,
+    GroupRule,
+    GSuiteGroupRule,
+    IPListRule,
+    IPRule,
+    OktaGroupRule,
+    SAMLGroupRule,
+    ServiceTokenRule,
+)
 ```
 
 ### Applications
