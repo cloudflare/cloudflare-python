@@ -4,8 +4,8 @@ from typing import List, Union
 
 from .rulesets import LogRule, SkipRule, BlockRule, ExecuteRule
 
-__all__ = ["ResponeRule", "ResponeRuleItem"]
+__all__ = ["ResponseRule", "ResponseRuleItem"]
 
-ResponeRuleItem = Union[BlockRule, ExecuteRule, LogRule, SkipRule]
+ResponseRuleItem = Union[BlockRule, ExecuteRule, LogRule, SkipRule]
 
-ResponeRule = List[ResponeRuleItem]
+ResponseRule = List[ResponseRuleItem]
