@@ -4,7 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
-from ..tunnel_connection import TunnelConnection
+from ..connection import Connection
 
 __all__ = ["Client"]
 
@@ -22,7 +22,7 @@ class Client(BaseModel):
     Used internally to sync cloudflared with the Zero Trust dashboard.
     """
 
-    conns: Optional[List[TunnelConnection]] = None
+    conns: Optional[List[Connection]] = None
     """The Cloudflare Tunnel connections between your origin and Cloudflare's edge."""
 
     features: Optional[List[str]] = None
