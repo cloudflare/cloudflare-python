@@ -27,7 +27,8 @@ class Variant0(TypedDict, total=False):
 
     Multiple modules may be provided as separate named parts, but at least one
     module must be present and referenced in the metadata as `main_module` or
-    `body_part` by part name.
+    `body_part` by part name. Source maps may also be included using the
+    `application/source-map` content type.
     """
 
     metadata: Variant0Metadata

@@ -91,8 +91,11 @@ class Scripts(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Script:
-        """
-        Upload a worker module to a Workers for Platforms namespace.
+        """Upload a worker module to a Workers for Platforms namespace.
+
+        You can find an
+        example of the metadata on our docs:
+        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
 
         Args:
           account_id: Identifier
@@ -104,6 +107,8 @@ class Scripts(SyncAPIResource):
           any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
               may be provided as separate named parts, but at least one module must be present
               and referenced in the metadata as `main_module` or `body_part` by part name.
+              Source maps may also be included using the `application/source-map` content
+              type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -132,8 +137,11 @@ class Scripts(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Script:
-        """
-        Upload a worker module to a Workers for Platforms namespace.
+        """Upload a worker module to a Workers for Platforms namespace.
+
+        You can find an
+        example of the metadata on our docs:
+        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
 
         Args:
           account_id: Identifier
@@ -344,8 +352,11 @@ class AsyncScripts(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Script:
-        """
-        Upload a worker module to a Workers for Platforms namespace.
+        """Upload a worker module to a Workers for Platforms namespace.
+
+        You can find an
+        example of the metadata on our docs:
+        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
 
         Args:
           account_id: Identifier
@@ -357,6 +368,8 @@ class AsyncScripts(AsyncAPIResource):
           any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
               may be provided as separate named parts, but at least one module must be present
               and referenced in the metadata as `main_module` or `body_part` by part name.
+              Source maps may also be included using the `application/source-map` content
+              type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -385,8 +398,11 @@ class AsyncScripts(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Script:
-        """
-        Upload a worker module to a Workers for Platforms namespace.
+        """Upload a worker module to a Workers for Platforms namespace.
+
+        You can find an
+        example of the metadata on our docs:
+        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
 
         Args:
           account_id: Identifier
