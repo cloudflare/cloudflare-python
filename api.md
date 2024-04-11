@@ -2014,7 +2014,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import Hostname, KeylessCertificate, Tunnel, KeylessCertificateDeleteResponse
+from cloudflare.types import KeylessCertificate, Tunnel, KeylessCertificateDeleteResponse
 ```
 
 Methods:
@@ -2204,11 +2204,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.origin_tls_client_auth import (
-    AuthenticatedOriginPull,
-    ID,
-    HostnameUpdateResponse,
-)
+from cloudflare.types.origin_tls_client_auth import AuthenticatedOriginPull, HostnameUpdateResponse
 ```
 
 Methods:
@@ -3043,10 +3039,22 @@ Types:
 ```python
 from cloudflare.types.rulesets import (
     BlockRule,
+    ChallengeRule,
+    CompressResponseRule,
     ExecuteRule,
+    JsChallengeRule,
     LogRule,
     Logging,
+    ManagedChallengeRule,
+    RedirectRule,
+    RewriteRule,
+    RewriteURIPart,
+    RouteRule,
     RulesetRule,
+    ScoreRule,
+    ServeErrorRule,
+    SetCacheSettingsRule,
+    SetConfigRule,
     SkipRule,
     RuleCreateResponse,
     RuleDeleteResponse,
@@ -4683,6 +4691,40 @@ from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import B
 Methods:
 
 - <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings">client.workers_for_platforms.dispatch.namespaces.scripts.bindings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/bindings.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/binding_get_response.py">BindingGetResponse</a></code>
+
+##### Secrets
+
+Types:
+
+```python
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
+    SecretUpdateResponse,
+    SecretListResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets">client.workers_for_platforms.dispatch.namespaces.scripts.secrets.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/secrets.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/secret_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/secret_update_response.py">SecretUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets">client.workers_for_platforms.dispatch.namespaces.scripts.secrets.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/secrets.py">list</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/secret_list_response.py">SyncSinglePage[SecretListResponse]</a></code>
+
+##### Tags
+
+Types:
+
+```python
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
+    TagUpdateResponse,
+    TagListResponse,
+    TagDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags">client.workers_for_platforms.dispatch.namespaces.scripts.tags.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/tags.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/tag_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/tag_update_response.py">TagUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags">client.workers_for_platforms.dispatch.namespaces.scripts.tags.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/tags.py">list</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/tag_list_response.py">SyncSinglePage[TagListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags/{tag}">client.workers_for_platforms.dispatch.namespaces.scripts.tags.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/tags.py">delete</a>(tag, \*, account_id, dispatch_namespace, script_name) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/tag_delete_response.py">object</a></code>
 
 # ZeroTrust
 
