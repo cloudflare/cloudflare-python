@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["TunnelConnection"]
+__all__ = ["Connection"]
 
 
-class TunnelConnection(BaseModel):
+class Connection(BaseModel):
     id: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
 
