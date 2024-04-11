@@ -80,7 +80,6 @@ from .filter_options import FilterOptions as FilterOptions
 from .hostname_param import HostnameParam as HostnameParam
 from .ip_list_params import IPListParams as IPListParams
 from .labeled_region import LabeledRegion as LabeledRegion
-from .warp_connector import WARPConnector as WARPConnector
 from .allowed_origins import AllowedOrigins as AllowedOrigins
 from .firewall_filter import FirewallFilter as FirewallFilter
 from .origin_steering import OriginSteering as OriginSteering
@@ -239,6 +238,7 @@ from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalance
 from .page_shield_update_response import PageShieldUpdateResponse as PageShieldUpdateResponse
 from .session_affinity_attributes import SessionAffinityAttributes as SessionAffinityAttributes
 from .single_step_migration_param import SingleStepMigrationParam as SingleStepMigrationParam
+from .warp_connector_get_response import WARPConnectorGetResponse as WARPConnectorGetResponse
 from .bot_fight_mode_configuration import BotFightModeConfiguration as BotFightModeConfiguration
 from .bot_management_update_params import BotManagementUpdateParams as BotManagementUpdateParams
 from .custom_hostname_get_response import CustomHostnameGetResponse as CustomHostnameGetResponse
@@ -252,6 +252,8 @@ from .subscription_update_response import SubscriptionUpdateResponse as Subscrip
 from .waiting_room_delete_response import WaitingRoomDeleteResponse as WaitingRoomDeleteResponse
 from .warp_connector_create_params import WARPConnectorCreateParams as WARPConnectorCreateParams
 from .warp_connector_delete_params import WARPConnectorDeleteParams as WARPConnectorDeleteParams
+from .warp_connector_edit_response import WARPConnectorEditResponse as WARPConnectorEditResponse
+from .warp_connector_list_response import WARPConnectorListResponse as WARPConnectorListResponse
 from .custom_hostname_create_params import CustomHostnameCreateParams as CustomHostnameCreateParams
 from .custom_hostname_delete_params import CustomHostnameDeleteParams as CustomHostnameDeleteParams
 from .custom_hostname_edit_response import CustomHostnameEditResponse as CustomHostnameEditResponse
@@ -268,6 +270,8 @@ from .custom_nameserver_get_response import CustomNameserverGetResponse as Custo
 from .mtls_certificate_create_params import MTLSCertificateCreateParams as MTLSCertificateCreateParams
 from .mtls_certificate_delete_params import MTLSCertificateDeleteParams as MTLSCertificateDeleteParams
 from .url_normalization_get_response import URLNormalizationGetResponse as URLNormalizationGetResponse
+from .warp_connector_create_response import WARPConnectorCreateResponse as WARPConnectorCreateResponse
+from .warp_connector_delete_response import WARPConnectorDeleteResponse as WARPConnectorDeleteResponse
 from .zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull as ZoneAuthenticatedOriginPull
 from .custom_certificate_get_response import CustomCertificateGetResponse as CustomCertificateGetResponse
 from .custom_hostname_create_response import CustomHostnameCreateResponse as CustomHostnameCreateResponse

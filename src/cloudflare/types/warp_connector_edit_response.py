@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .zero_trust import Connection
 
-__all__ = ["WARPConnector", "TunnelCfdTunnel", "TunnelWARPConnectorTunnel"]
+__all__ = ["WARPConnectorEditResponse", "TunnelCfdTunnel", "TunnelWARPConnectorTunnel"]
 
 
 class TunnelCfdTunnel(BaseModel):
@@ -116,4 +116,4 @@ class TunnelWARPConnectorTunnel(BaseModel):
     """The type of tunnel."""
 
 
-WARPConnector = Union[TunnelCfdTunnel, TunnelWARPConnectorTunnel]
+WARPConnectorEditResponse = Union[TunnelCfdTunnel, TunnelWARPConnectorTunnel]

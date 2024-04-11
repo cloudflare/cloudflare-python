@@ -8,8 +8,12 @@ from datetime import datetime
 import httpx
 
 from ..types import (
-    WARPConnector,
+    WARPConnectorGetResponse,
+    WARPConnectorEditResponse,
+    WARPConnectorListResponse,
     WARPConnectorTokenResponse,
+    WARPConnectorCreateResponse,
+    WARPConnectorDeleteResponse,
     warp_connector_edit_params,
     warp_connector_list_params,
     warp_connector_create_params,
@@ -35,17 +39,17 @@ from .._base_client import (
     make_request_options,
 )
 
-__all__ = ["WARPConnectorResource", "AsyncWARPConnectorResource"]
+__all__ = ["WARPConnector", "AsyncWARPConnector"]
 
 
-class WARPConnectorResource(SyncAPIResource):
+class WARPConnector(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WARPConnectorResourceWithRawResponse:
-        return WARPConnectorResourceWithRawResponse(self)
+    def with_raw_response(self) -> WARPConnectorWithRawResponse:
+        return WARPConnectorWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WARPConnectorResourceWithStreamingResponse:
-        return WARPConnectorResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> WARPConnectorWithStreamingResponse:
+        return WARPConnectorWithStreamingResponse(self)
 
     def create(
         self,
@@ -58,7 +62,7 @@ class WARPConnectorResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnector:
+    ) -> WARPConnectorCreateResponse:
         """
         Creates a new Warp Connector Tunnel in an account.
 
@@ -78,7 +82,7 @@ class WARPConnectorResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WARPConnector,
+            WARPConnectorCreateResponse,
             self._post(
                 f"/accounts/{account_id}/warp_connector",
                 body=maybe_transform({"name": name}, warp_connector_create_params.WARPConnectorCreateParams),
@@ -90,7 +94,7 @@ class WARPConnectorResource(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WARPConnector]
+                    Any, ResultWrapper[WARPConnectorCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -115,7 +119,7 @@ class WARPConnectorResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[WARPConnector]:
+    ) -> SyncV4PagePaginationArray[WARPConnectorListResponse]:
         """
         Lists and filters Warp Connector Tunnels in an account.
 
@@ -148,7 +152,7 @@ class WARPConnectorResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/warp_connector",
-            page=SyncV4PagePaginationArray[WARPConnector],
+            page=SyncV4PagePaginationArray[WARPConnectorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -170,7 +174,9 @@ class WARPConnectorResource(SyncAPIResource):
                     warp_connector_list_params.WARPConnectorListParams,
                 ),
             ),
-            model=cast(Any, WARPConnector),  # Union types cannot be passed in as arguments in the type system
+            model=cast(
+                Any, WARPConnectorListResponse
+            ),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -185,7 +191,7 @@ class WARPConnectorResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnector:
+    ) -> WARPConnectorDeleteResponse:
         """
         Deletes a Warp Connector Tunnel from an account.
 
@@ -207,7 +213,7 @@ class WARPConnectorResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WARPConnector,
+            WARPConnectorDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 body=maybe_transform(body, warp_connector_delete_params.WARPConnectorDeleteParams),
@@ -219,7 +225,7 @@ class WARPConnectorResource(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WARPConnector]
+                    Any, ResultWrapper[WARPConnectorDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -237,7 +243,7 @@ class WARPConnectorResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnector:
+    ) -> WARPConnectorEditResponse:
         """
         Updates an existing Warp Connector Tunnel.
 
@@ -264,7 +270,7 @@ class WARPConnectorResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WARPConnector,
+            WARPConnectorEditResponse,
             self._patch(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 body=maybe_transform(
@@ -282,7 +288,7 @@ class WARPConnectorResource(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WARPConnector]
+                    Any, ResultWrapper[WARPConnectorEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -298,7 +304,7 @@ class WARPConnectorResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnector:
+    ) -> WARPConnectorGetResponse:
         """
         Fetches a single Warp Connector Tunnel.
 
@@ -320,7 +326,7 @@ class WARPConnectorResource(SyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WARPConnector,
+            WARPConnectorGetResponse,
             self._get(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 options=make_request_options(
@@ -331,7 +337,7 @@ class WARPConnectorResource(SyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WARPConnector]
+                    Any, ResultWrapper[WARPConnectorGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -387,14 +393,14 @@ class WARPConnectorResource(SyncAPIResource):
         )
 
 
-class AsyncWARPConnectorResource(AsyncAPIResource):
+class AsyncWARPConnector(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncWARPConnectorResourceWithRawResponse:
-        return AsyncWARPConnectorResourceWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWARPConnectorWithRawResponse:
+        return AsyncWARPConnectorWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWARPConnectorResourceWithStreamingResponse:
-        return AsyncWARPConnectorResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWARPConnectorWithStreamingResponse:
+        return AsyncWARPConnectorWithStreamingResponse(self)
 
     async def create(
         self,
@@ -407,7 +413,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnector:
+    ) -> WARPConnectorCreateResponse:
         """
         Creates a new Warp Connector Tunnel in an account.
 
@@ -427,7 +433,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WARPConnector,
+            WARPConnectorCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/warp_connector",
                 body=await async_maybe_transform(
@@ -441,7 +447,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WARPConnector]
+                    Any, ResultWrapper[WARPConnectorCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -466,7 +472,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WARPConnector, AsyncV4PagePaginationArray[WARPConnector]]:
+    ) -> AsyncPaginator[WARPConnectorListResponse, AsyncV4PagePaginationArray[WARPConnectorListResponse]]:
         """
         Lists and filters Warp Connector Tunnels in an account.
 
@@ -499,7 +505,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/warp_connector",
-            page=AsyncV4PagePaginationArray[WARPConnector],
+            page=AsyncV4PagePaginationArray[WARPConnectorListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -521,7 +527,9 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
                     warp_connector_list_params.WARPConnectorListParams,
                 ),
             ),
-            model=cast(Any, WARPConnector),  # Union types cannot be passed in as arguments in the type system
+            model=cast(
+                Any, WARPConnectorListResponse
+            ),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -536,7 +544,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnector:
+    ) -> WARPConnectorDeleteResponse:
         """
         Deletes a Warp Connector Tunnel from an account.
 
@@ -558,7 +566,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WARPConnector,
+            WARPConnectorDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 body=await async_maybe_transform(body, warp_connector_delete_params.WARPConnectorDeleteParams),
@@ -570,7 +578,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WARPConnector]
+                    Any, ResultWrapper[WARPConnectorDeleteResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -588,7 +596,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnector:
+    ) -> WARPConnectorEditResponse:
         """
         Updates an existing Warp Connector Tunnel.
 
@@ -615,7 +623,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WARPConnector,
+            WARPConnectorEditResponse,
             await self._patch(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 body=await async_maybe_transform(
@@ -633,7 +641,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WARPConnector]
+                    Any, ResultWrapper[WARPConnectorEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -649,7 +657,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnector:
+    ) -> WARPConnectorGetResponse:
         """
         Fetches a single Warp Connector Tunnel.
 
@@ -671,7 +679,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return cast(
-            WARPConnector,
+            WARPConnectorGetResponse,
             await self._get(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
                 options=make_request_options(
@@ -682,7 +690,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
                     post_parser=ResultWrapper._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[WARPConnector]
+                    Any, ResultWrapper[WARPConnectorGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -738,8 +746,8 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         )
 
 
-class WARPConnectorResourceWithRawResponse:
-    def __init__(self, warp_connector: WARPConnectorResource) -> None:
+class WARPConnectorWithRawResponse:
+    def __init__(self, warp_connector: WARPConnector) -> None:
         self._warp_connector = warp_connector
 
         self.create = to_raw_response_wrapper(
@@ -762,8 +770,8 @@ class WARPConnectorResourceWithRawResponse:
         )
 
 
-class AsyncWARPConnectorResourceWithRawResponse:
-    def __init__(self, warp_connector: AsyncWARPConnectorResource) -> None:
+class AsyncWARPConnectorWithRawResponse:
+    def __init__(self, warp_connector: AsyncWARPConnector) -> None:
         self._warp_connector = warp_connector
 
         self.create = async_to_raw_response_wrapper(
@@ -786,8 +794,8 @@ class AsyncWARPConnectorResourceWithRawResponse:
         )
 
 
-class WARPConnectorResourceWithStreamingResponse:
-    def __init__(self, warp_connector: WARPConnectorResource) -> None:
+class WARPConnectorWithStreamingResponse:
+    def __init__(self, warp_connector: WARPConnector) -> None:
         self._warp_connector = warp_connector
 
         self.create = to_streamed_response_wrapper(
@@ -810,8 +818,8 @@ class WARPConnectorResourceWithStreamingResponse:
         )
 
 
-class AsyncWARPConnectorResourceWithStreamingResponse:
-    def __init__(self, warp_connector: AsyncWARPConnectorResource) -> None:
+class AsyncWARPConnectorWithStreamingResponse:
+    def __init__(self, warp_connector: AsyncWARPConnector) -> None:
         self._warp_connector = warp_connector
 
         self.create = async_to_streamed_response_wrapper(
