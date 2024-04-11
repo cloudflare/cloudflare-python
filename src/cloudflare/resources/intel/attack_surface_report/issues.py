@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Any, List, Type, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -28,7 +29,6 @@ from ...._base_client import (
 from ....types.intel.attack_surface_report import (
     ProductParam,
     SubjectParam,
-    IssueTypeParam,
     IssueClassParam,
     IssueListResponse,
     IssueTypeResponse,
@@ -62,8 +62,26 @@ class Issues(SyncAPIResource):
         dismissed: bool | NotGiven = NOT_GIVEN,
         issue_class: IssueClassParam | NotGiven = NOT_GIVEN,
         issue_class_neq: IssueClassParam | NotGiven = NOT_GIVEN,
-        issue_type: IssueTypeParam | NotGiven = NOT_GIVEN,
-        issue_type_neq: IssueTypeParam | NotGiven = NOT_GIVEN,
+        issue_type: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         product: ProductParam | NotGiven = NOT_GIVEN,
@@ -136,8 +154,26 @@ class Issues(SyncAPIResource):
         dismissed: bool | NotGiven = NOT_GIVEN,
         issue_class: IssueClassParam | NotGiven = NOT_GIVEN,
         issue_class_neq: IssueClassParam | NotGiven = NOT_GIVEN,
-        issue_type: IssueTypeParam | NotGiven = NOT_GIVEN,
-        issue_type_neq: IssueTypeParam | NotGiven = NOT_GIVEN,
+        issue_type: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         product: ProductParam | NotGiven = NOT_GIVEN,
         product_neq: ProductParam | NotGiven = NOT_GIVEN,
         severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
@@ -251,8 +287,26 @@ class Issues(SyncAPIResource):
         dismissed: bool | NotGiven = NOT_GIVEN,
         issue_class: IssueClassParam | NotGiven = NOT_GIVEN,
         issue_class_neq: IssueClassParam | NotGiven = NOT_GIVEN,
-        issue_type: IssueTypeParam | NotGiven = NOT_GIVEN,
-        issue_type_neq: IssueTypeParam | NotGiven = NOT_GIVEN,
+        issue_type: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         product: ProductParam | NotGiven = NOT_GIVEN,
         product_neq: ProductParam | NotGiven = NOT_GIVEN,
         severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
@@ -317,8 +371,26 @@ class Issues(SyncAPIResource):
         dismissed: bool | NotGiven = NOT_GIVEN,
         issue_class: IssueClassParam | NotGiven = NOT_GIVEN,
         issue_class_neq: IssueClassParam | NotGiven = NOT_GIVEN,
-        issue_type: IssueTypeParam | NotGiven = NOT_GIVEN,
-        issue_type_neq: IssueTypeParam | NotGiven = NOT_GIVEN,
+        issue_type: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         product: ProductParam | NotGiven = NOT_GIVEN,
         product_neq: ProductParam | NotGiven = NOT_GIVEN,
         severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
@@ -393,8 +465,26 @@ class AsyncIssues(AsyncAPIResource):
         dismissed: bool | NotGiven = NOT_GIVEN,
         issue_class: IssueClassParam | NotGiven = NOT_GIVEN,
         issue_class_neq: IssueClassParam | NotGiven = NOT_GIVEN,
-        issue_type: IssueTypeParam | NotGiven = NOT_GIVEN,
-        issue_type_neq: IssueTypeParam | NotGiven = NOT_GIVEN,
+        issue_type: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         product: ProductParam | NotGiven = NOT_GIVEN,
@@ -467,8 +557,26 @@ class AsyncIssues(AsyncAPIResource):
         dismissed: bool | NotGiven = NOT_GIVEN,
         issue_class: IssueClassParam | NotGiven = NOT_GIVEN,
         issue_class_neq: IssueClassParam | NotGiven = NOT_GIVEN,
-        issue_type: IssueTypeParam | NotGiven = NOT_GIVEN,
-        issue_type_neq: IssueTypeParam | NotGiven = NOT_GIVEN,
+        issue_type: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         product: ProductParam | NotGiven = NOT_GIVEN,
         product_neq: ProductParam | NotGiven = NOT_GIVEN,
         severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
@@ -582,8 +690,26 @@ class AsyncIssues(AsyncAPIResource):
         dismissed: bool | NotGiven = NOT_GIVEN,
         issue_class: IssueClassParam | NotGiven = NOT_GIVEN,
         issue_class_neq: IssueClassParam | NotGiven = NOT_GIVEN,
-        issue_type: IssueTypeParam | NotGiven = NOT_GIVEN,
-        issue_type_neq: IssueTypeParam | NotGiven = NOT_GIVEN,
+        issue_type: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         product: ProductParam | NotGiven = NOT_GIVEN,
         product_neq: ProductParam | NotGiven = NOT_GIVEN,
         severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
@@ -648,8 +774,26 @@ class AsyncIssues(AsyncAPIResource):
         dismissed: bool | NotGiven = NOT_GIVEN,
         issue_class: IssueClassParam | NotGiven = NOT_GIVEN,
         issue_class_neq: IssueClassParam | NotGiven = NOT_GIVEN,
-        issue_type: IssueTypeParam | NotGiven = NOT_GIVEN,
-        issue_type_neq: IssueTypeParam | NotGiven = NOT_GIVEN,
+        issue_type: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[
+            Literal[
+                "compliance_violation",
+                "email_security",
+                "exposed_infrastructure",
+                "insecure_configuration",
+                "weak_authentication",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         product: ProductParam | NotGiven = NOT_GIVEN,
         product_neq: ProductParam | NotGiven = NOT_GIVEN,
         severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,

@@ -2996,7 +2996,7 @@ Types:
 ```python
 from cloudflare.types import (
     RequestRule,
-    ResponeRule,
+    ResponseRule,
     Ruleset,
     RulesetCreateResponse,
     RulesetUpdateResponse,
@@ -3689,7 +3689,6 @@ Types:
 ```python
 from cloudflare.types.intel.attack_surface_report import (
     IssueClass,
-    IssueType,
     Product,
     SeverityQueryParam,
     Subject,
