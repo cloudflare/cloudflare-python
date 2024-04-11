@@ -1,15 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .rulesets import LogRule, SkipRule, BlockRule, ExecuteRule
+from .respone_rule import ResponeRule
 
-__all__ = ["RulesetCreateResponse", "Rule"]
-
-Rule = Union[BlockRule, ExecuteRule, LogRule, SkipRule]
+__all__ = ["RulesetCreateResponse"]
 
 
 class RulesetCreateResponse(BaseModel):
@@ -52,7 +50,7 @@ class RulesetCreateResponse(BaseModel):
     ]
     """The phase of the ruleset."""
 
-    rules: List[Rule]
+    rules: List[ResponeRule]
     """The list of rules in the ruleset."""
 
     version: str

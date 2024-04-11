@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import AuditLogListResponse, audit_log_list_params
+from ..types import audit_log_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
@@ -24,6 +24,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.shared import AuditLog
 
 __all__ = ["AuditLogs", "AsyncAuditLogs"]
 
@@ -58,7 +59,7 @@ class AuditLogs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[AuditLogListResponse]:
+    ) -> SyncV4PagePaginationArray[AuditLog]:
         """Gets a list of audit logs for an account.
 
         Can be filtered by who made the
@@ -97,7 +98,7 @@ class AuditLogs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/audit_logs",
-            page=SyncV4PagePaginationArray[AuditLogListResponse],
+            page=SyncV4PagePaginationArray[AuditLog],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -120,7 +121,7 @@ class AuditLogs(SyncAPIResource):
                     audit_log_list_params.AuditLogListParams,
                 ),
             ),
-            model=AuditLogListResponse,
+            model=AuditLog,
         )
 
 
@@ -154,7 +155,7 @@ class AsyncAuditLogs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AuditLogListResponse, AsyncV4PagePaginationArray[AuditLogListResponse]]:
+    ) -> AsyncPaginator[AuditLog, AsyncV4PagePaginationArray[AuditLog]]:
         """Gets a list of audit logs for an account.
 
         Can be filtered by who made the
@@ -193,7 +194,7 @@ class AsyncAuditLogs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/audit_logs",
-            page=AsyncV4PagePaginationArray[AuditLogListResponse],
+            page=AsyncV4PagePaginationArray[AuditLog],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -216,7 +217,7 @@ class AsyncAuditLogs(AsyncAPIResource):
                     audit_log_list_params.AuditLogListParams,
                 ),
             ),
-            model=AuditLogListResponse,
+            model=AuditLog,
         )
 
 
