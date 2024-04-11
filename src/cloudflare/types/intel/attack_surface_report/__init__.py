@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .issue_type import IssueType as IssueType
 from .product_param import ProductParam as ProductParam
 from .subject_param import SubjectParam as SubjectParam
 from .issue_class_param import IssueClassParam as IssueClassParam
