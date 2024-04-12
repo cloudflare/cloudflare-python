@@ -7,6 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from ...types import User
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -26,12 +27,10 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import User
 from ...types.accounts import (
-    MemberRoleParam,
     MemberListResponse,
+    UserWithInviteCode,
     MemberDeleteResponse,
-    MemberWithInviteCode,
     member_list_params,
     member_create_params,
     member_delete_params,
@@ -63,7 +62,7 @@ class Members(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MemberWithInviteCode:
+    ) -> UserWithInviteCode:
         """
         Add a user to the list of members for this account.
 
@@ -97,7 +96,7 @@ class Members(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MemberWithInviteCode], ResultWrapper[MemberWithInviteCode]),
+            cast_to=cast(Type[UserWithInviteCode], ResultWrapper[UserWithInviteCode]),
         )
 
     def update(
@@ -105,7 +104,7 @@ class Members(SyncAPIResource):
         member_id: str,
         *,
         account_id: object,
-        roles: Iterable[MemberRoleParam],
+        roles: Iterable[member_update_params.Role],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -309,7 +308,7 @@ class AsyncMembers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MemberWithInviteCode:
+    ) -> UserWithInviteCode:
         """
         Add a user to the list of members for this account.
 
@@ -343,7 +342,7 @@ class AsyncMembers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[MemberWithInviteCode], ResultWrapper[MemberWithInviteCode]),
+            cast_to=cast(Type[UserWithInviteCode], ResultWrapper[UserWithInviteCode]),
         )
 
     async def update(
@@ -351,7 +350,7 @@ class AsyncMembers(AsyncAPIResource):
         member_id: str,
         *,
         account_id: object,
-        roles: Iterable[MemberRoleParam],
+        roles: Iterable[member_update_params.Role],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
