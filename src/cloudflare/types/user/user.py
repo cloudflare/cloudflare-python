@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from .._models import BaseModel
-from .accounts import PermissionGrant
+from ..._models import BaseModel
+from ..accounts import PermissionGrant
 
 __all__ = ["User", "Role", "RolePermissions"]
 

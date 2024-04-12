@@ -3,7 +3,7 @@
 from typing import List
 
 from .._models import BaseModel
-from .user.tokens import Permission
+from .permission import Permission
 
 __all__ = ["Role"]
 
