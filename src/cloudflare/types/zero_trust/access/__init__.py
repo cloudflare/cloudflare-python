@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from .tag import Tag as Tag
-from .user import User as User
 from .bookmark import Bookmark as Bookmark
+from .access_user import AccessUser as AccessUser
 from .application import Application as Application
 from .certificate import Certificate as Certificate
 from .custom_page import CustomPage as CustomPage
