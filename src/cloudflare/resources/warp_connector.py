@@ -39,17 +39,17 @@ from .._base_client import (
     make_request_options,
 )
 
-__all__ = ["WARPConnector", "AsyncWARPConnector"]
+__all__ = ["WARPConnectorResource", "AsyncWARPConnectorResource"]
 
 
-class WARPConnector(SyncAPIResource):
+class WARPConnectorResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WARPConnectorWithRawResponse:
-        return WARPConnectorWithRawResponse(self)
+    def with_raw_response(self) -> WARPConnectorResourceWithRawResponse:
+        return WARPConnectorResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WARPConnectorWithStreamingResponse:
-        return WARPConnectorWithStreamingResponse(self)
+    def with_streaming_response(self) -> WARPConnectorResourceWithStreamingResponse:
+        return WARPConnectorResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -393,14 +393,14 @@ class WARPConnector(SyncAPIResource):
         )
 
 
-class AsyncWARPConnector(AsyncAPIResource):
+class AsyncWARPConnectorResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncWARPConnectorWithRawResponse:
-        return AsyncWARPConnectorWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWARPConnectorResourceWithRawResponse:
+        return AsyncWARPConnectorResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWARPConnectorWithStreamingResponse:
-        return AsyncWARPConnectorWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWARPConnectorResourceWithStreamingResponse:
+        return AsyncWARPConnectorResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -746,8 +746,8 @@ class AsyncWARPConnector(AsyncAPIResource):
         )
 
 
-class WARPConnectorWithRawResponse:
-    def __init__(self, warp_connector: WARPConnector) -> None:
+class WARPConnectorResourceWithRawResponse:
+    def __init__(self, warp_connector: WARPConnectorResource) -> None:
         self._warp_connector = warp_connector
 
         self.create = to_raw_response_wrapper(
@@ -770,8 +770,8 @@ class WARPConnectorWithRawResponse:
         )
 
 
-class AsyncWARPConnectorWithRawResponse:
-    def __init__(self, warp_connector: AsyncWARPConnector) -> None:
+class AsyncWARPConnectorResourceWithRawResponse:
+    def __init__(self, warp_connector: AsyncWARPConnectorResource) -> None:
         self._warp_connector = warp_connector
 
         self.create = async_to_raw_response_wrapper(
@@ -794,8 +794,8 @@ class AsyncWARPConnectorWithRawResponse:
         )
 
 
-class WARPConnectorWithStreamingResponse:
-    def __init__(self, warp_connector: WARPConnector) -> None:
+class WARPConnectorResourceWithStreamingResponse:
+    def __init__(self, warp_connector: WARPConnectorResource) -> None:
         self._warp_connector = warp_connector
 
         self.create = to_streamed_response_wrapper(
@@ -818,8 +818,8 @@ class WARPConnectorWithStreamingResponse:
         )
 
 
-class AsyncWARPConnectorWithStreamingResponse:
-    def __init__(self, warp_connector: AsyncWARPConnector) -> None:
+class AsyncWARPConnectorResourceWithStreamingResponse:
+    def __init__(self, warp_connector: AsyncWARPConnectorResource) -> None:
         self._warp_connector = warp_connector
 
         self.create = async_to_streamed_response_wrapper(
