@@ -6,10 +6,10 @@ from typing_extensions import Literal, TypedDict
 
 from .logging_param import LoggingParam
 
-__all__ = ["JsChallengeRuleParam"]
+__all__ = ["JSChallengeRuleParam"]
 
 
-class JsChallengeRuleParam(TypedDict, total=False):
+class JSChallengeRuleParam(TypedDict, total=False):
     id: str
     """The unique ID of the rule."""
 

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .seat import Seat as Seat
 from .device import Device as Device
-from .tunnel import Tunnel as Tunnel
 from .ip_rule import IPRule as IPRule
 from .azure_ad import AzureAD as AzureAD
 from .connection import Connection as Connection
@@ -19,7 +18,6 @@ from .ip_list_rule import IPListRule as IPListRule
 from .login_design import LoginDesign as LoginDesign
 from .network_path import NetworkPath as NetworkPath
 from .organization import Organization as Organization
-from .tunnel_param import TunnelParam as TunnelParam
 from .everyone_rule import EveryoneRule as EveryoneRule
 from .ip_rule_param import IPRuleParam as IPRuleParam
 from .email_list_rule import EmailListRule as EmailListRule

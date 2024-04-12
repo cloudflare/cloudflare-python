@@ -1,28 +1,27 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from __future__ import annotations
+
+from typing import Union, Iterable
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, Annotated, TypedDict
 
-from .._models import BaseModel
+from ..._utils import PropertyInfo
 
-__all__ = ["WARPConnector", "Connection"]
+__all__ = ["Tunnel", "Connection"]
 
 
-class Connection(BaseModel):
-    id: Optional[str] = None
-    """UUID of the Cloudflare Tunnel connection."""
-
-    client_id: Optional[object] = None
+class Connection(TypedDict, total=False):
+    client_id: object
     """UUID of the cloudflared instance."""
 
-    client_version: Optional[str] = None
+    client_version: str
     """The cloudflared version used to establish this connection."""
 
-    colo_name: Optional[str] = None
+    colo_name: str
     """The Cloudflare data center used for this connection."""
 
-    is_pending_reconnect: Optional[bool] = None
+    is_pending_reconnect: bool
     """
     Cloudflare continues to track connections for several minutes after they
     disconnect. This is an optimization to improve latency and reliability of
@@ -30,54 +29,54 @@ class Connection(BaseModel):
     tracked. If `false`, the connection is actively serving traffic.
     """
 
-    opened_at: Optional[datetime] = None
+    opened_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Timestamp of when the connection was established."""
 
-    origin_ip: Optional[str] = None
+    origin_ip: str
     """The public IP address of the host running cloudflared."""
 
-    uuid: Optional[str] = None
-    """UUID of the Cloudflare Tunnel connection."""
 
-
-class WARPConnector(BaseModel):
-    id: Optional[str] = None
-    """UUID of the tunnel."""
-
-    account_tag: Optional[str] = None
+class Tunnel(TypedDict, total=False):
+    account_tag: str
     """Cloudflare account ID"""
 
-    connections: Optional[List[Connection]] = None
+    connections: Iterable[Connection]
     """The Cloudflare Tunnel connections between your origin and Cloudflare's edge."""
 
-    conns_active_at: Optional[datetime] = None
+    conns_active_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """
     Timestamp of when the tunnel established at least one connection to Cloudflare's
     edge. If `null`, the tunnel is inactive.
     """
 
-    conns_inactive_at: Optional[datetime] = None
+    conns_inactive_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """
     Timestamp of when the tunnel became inactive (no connections to Cloudflare's
     edge). If `null`, the tunnel is active.
     """
 
-    created_at: Optional[datetime] = None
+    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Timestamp of when the tunnel was created."""
 
-    deleted_at: Optional[datetime] = None
+    deleted_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """Timestamp of when the tunnel was deleted.
 
     If `null`, the tunnel has not been deleted.
     """
 
-    metadata: Optional[object] = None
+    metadata: object
     """Metadata associated with the tunnel."""
 
-    name: Optional[str] = None
+    name: str
     """A user-friendly name for the tunnel."""
 
-    status: Optional[str] = None
+    remote_config: bool
+    """If `true`, the tunnel can be configured remotely from the Zero Trust dashboard.
+
+    If `false`, the tunnel must be configured locally on the origin machine.
+    """
+
+    status: str
     """The status of the tunnel.
 
     Valid values are `inactive` (tunnel has never been run), `degraded` (tunnel is
@@ -86,5 +85,5 @@ class WARPConnector(BaseModel):
     it has no connections to the Cloudflare Edge).
     """
 
-    tun_type: Optional[Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"]] = None
+    tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"]
     """The type of tunnel."""
