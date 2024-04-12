@@ -26,8 +26,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import User
 from ...types.accounts import (
-    Member,
     MemberRoleParam,
     MemberListResponse,
     MemberDeleteResponse,
@@ -112,7 +112,7 @@ class Members(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Member:
+    ) -> User:
         """
         Modify an account member.
 
@@ -141,7 +141,7 @@ class Members(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Member], ResultWrapper[Member]),
+            cast_to=cast(Type[User], ResultWrapper[User]),
         )
 
     def list(
@@ -257,7 +257,7 @@ class Members(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Member:
+    ) -> User:
         """
         Get information about a specific member of an account.
 
@@ -283,7 +283,7 @@ class Members(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Member], ResultWrapper[Member]),
+            cast_to=cast(Type[User], ResultWrapper[User]),
         )
 
 
@@ -358,7 +358,7 @@ class AsyncMembers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Member:
+    ) -> User:
         """
         Modify an account member.
 
@@ -387,7 +387,7 @@ class AsyncMembers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Member], ResultWrapper[Member]),
+            cast_to=cast(Type[User], ResultWrapper[User]),
         )
 
     def list(
@@ -503,7 +503,7 @@ class AsyncMembers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Member:
+    ) -> User:
         """
         Get information about a specific member of an account.
 
@@ -529,7 +529,7 @@ class AsyncMembers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Member], ResultWrapper[Member]),
+            cast_to=cast(Type[User], ResultWrapper[User]),
         )
 
 

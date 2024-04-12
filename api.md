@@ -10,6 +10,7 @@ from cloudflare.types import (
     PaginationInfo,
     ResponseInfo,
     Result,
+    User,
 )
 ```
 
@@ -33,7 +34,6 @@ Types:
 
 ```python
 from cloudflare.types.accounts import (
-    Member,
     MemberRole,
     MemberWithInviteCode,
     MemberListResponse,
@@ -44,10 +44,10 @@ from cloudflare.types.accounts import (
 Methods:
 
 - <code title="post /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_with_invite_code.py">MemberWithInviteCode</a></code>
-- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member.py">Member</a></code>
+- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/user.py">User</a></code>
 - <code title="get /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_list_response.py">SyncV4PagePaginationArray[MemberListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">delete</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/member.py">Member</a></code>
+- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/shared/user.py">User</a></code>
 
 ## Roles
 
