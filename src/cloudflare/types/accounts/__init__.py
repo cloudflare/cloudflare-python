@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .member import Member as Member
 from .member_role import MemberRole as MemberRole
 from .permission_grant import PermissionGrant as PermissionGrant
 from .member_role_param import MemberRoleParam as MemberRoleParam

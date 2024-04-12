@@ -19,6 +19,7 @@ from .dnssec import DNSSEC as DNSSEC
 from .header import Header as Header
 from .origin import Origin as Origin
 from .shared import (
+    User as User,
     Result as Result,
     AuditLog as AuditLog,
     ErrorData as ErrorData,
