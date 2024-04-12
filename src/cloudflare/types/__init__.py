@@ -50,6 +50,7 @@ from .dcv_method import DCVMethod as DCVMethod
 from .hyperdrive import Hyperdrive as Hyperdrive
 from .membership import Membership as Membership
 from .origin_dns import OriginDNS as OriginDNS
+from .permission import Permission as Permission
 from .r2_binding import R2Binding as R2Binding
 from .rate_limit import RateLimit as RateLimit
 from .rule_match import RuleMatch as RuleMatch
