@@ -3,9 +3,9 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
+from .shared import PermissionGrant
 from .account import Account
 from .._models import BaseModel
-from .accounts import PermissionGrant
 
 __all__ = ["Membership", "Permissions"]
 
