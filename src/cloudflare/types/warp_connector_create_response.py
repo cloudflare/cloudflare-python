@@ -4,7 +4,7 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .shared import Tunnel
+from .shared import CloudflareTunnel
 from .._models import BaseModel
 
 __all__ = ["WARPConnectorCreateResponse", "TunnelWARPConnectorTunnel", "TunnelWARPConnectorTunnelConnection"]
@@ -91,4 +91,4 @@ class TunnelWARPConnectorTunnel(BaseModel):
     """The type of tunnel."""
 
 
-WARPConnectorCreateResponse = Union[Tunnel, TunnelWARPConnectorTunnel]
+WARPConnectorCreateResponse = Union[CloudflareTunnel, TunnelWARPConnectorTunnel]

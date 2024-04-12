@@ -20,12 +20,12 @@ from .header import Header as Header
 from .origin import Origin as Origin
 from .shared import (
     Result as Result,
-    Tunnel as Tunnel,
     AuditLog as AuditLog,
     ErrorData as ErrorData,
     Identifier as Identifier,
     ResponseInfo as ResponseInfo,
     PaginationInfo as PaginationInfo,
+    CloudflareTunnel as CloudflareTunnel,
     LoadBalancerPreview as LoadBalancerPreview,
 )
 from .submit import Submit as Submit
