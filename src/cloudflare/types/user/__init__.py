@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .user import User as User
 from .invite import Invite as Invite
 from .policy import Policy as Policy
 from .cidr_list import CIDRList as CIDRList
