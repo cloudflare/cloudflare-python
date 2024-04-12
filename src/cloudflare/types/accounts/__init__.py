@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .permission_grant import PermissionGrant as PermissionGrant
 from .role_get_response import RoleGetResponse as RoleGetResponse
 from .member_list_params import MemberListParams as MemberListParams
 from .member_create_params import MemberCreateParams as MemberCreateParams
@@ -11,4 +10,3 @@ from .member_list_response import MemberListResponse as MemberListResponse
 from .member_update_params import MemberUpdateParams as MemberUpdateParams
 from .user_with_invite_code import UserWithInviteCode as UserWithInviteCode
 from .member_delete_response import MemberDeleteResponse as MemberDeleteResponse
-from .permission_grant_param import PermissionGrantParam as PermissionGrantParam

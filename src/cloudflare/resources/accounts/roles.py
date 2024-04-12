@@ -6,7 +6,6 @@ from typing import Any, cast
 
 import httpx
 
-from ...types import Role
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -22,6 +21,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import Role
 from ...types.accounts import RoleGetResponse
 
 __all__ = ["Roles", "AsyncRoles"]
