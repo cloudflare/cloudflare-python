@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["User"]
+__all__ = ["AccessUser"]
 
 
-class User(BaseModel):
+class AccessUser(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
