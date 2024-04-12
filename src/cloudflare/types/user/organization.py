@@ -3,8 +3,8 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
+from ..shared import Permission
 from ..._models import BaseModel
-from ..permission import Permission
 
 __all__ = ["Organization"]
 

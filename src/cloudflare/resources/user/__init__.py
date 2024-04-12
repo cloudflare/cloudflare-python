@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .user import (
-    UserResource,
-    AsyncUserResource,
-    UserResourceWithRawResponse,
-    AsyncUserResourceWithRawResponse,
-    UserResourceWithStreamingResponse,
-    AsyncUserResourceWithStreamingResponse,
+    User,
+    AsyncUser,
+    UserWithRawResponse,
+    AsyncUserWithRawResponse,
+    UserWithStreamingResponse,
+    AsyncUserWithStreamingResponse,
 )
 from .tokens import (
     Tokens,
@@ -94,10 +94,10 @@ __all__ = [
     "AsyncTokensWithRawResponse",
     "TokensWithStreamingResponse",
     "AsyncTokensWithStreamingResponse",
-    "UserResource",
-    "AsyncUserResource",
-    "UserResourceWithRawResponse",
-    "AsyncUserResourceWithRawResponse",
-    "UserResourceWithStreamingResponse",
-    "AsyncUserResourceWithStreamingResponse",
+    "User",
+    "AsyncUser",
+    "UserWithRawResponse",
+    "AsyncUserWithRawResponse",
+    "UserWithStreamingResponse",
+    "AsyncUserWithStreamingResponse",
 ]

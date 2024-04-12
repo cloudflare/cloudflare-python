@@ -7,7 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import User
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -27,6 +26,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.shared import User
 from ...types.accounts import (
     MemberListResponse,
     UserWithInviteCode,

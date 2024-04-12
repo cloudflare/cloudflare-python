@@ -8,8 +8,6 @@ from .ips import IPs as IPs
 from .host import Host as Host
 from .info import Info as Info
 from .pcap import PCAP as PCAP
-from .role import Role as Role
-from .user import User as User
 from .zone import Zone as Zone
 from .queue import Queue as Queue
 from .route import Route as Route
@@ -21,12 +19,16 @@ from .dnssec import DNSSEC as DNSSEC
 from .header import Header as Header
 from .origin import Origin as Origin
 from .shared import (
+    Role as Role,
+    User as User,
     Result as Result,
     AuditLog as AuditLog,
     ErrorData as ErrorData,
     Identifier as Identifier,
+    Permission as Permission,
     ResponseInfo as ResponseInfo,
     PaginationInfo as PaginationInfo,
+    PermissionGrant as PermissionGrant,
     CloudflareTunnel as CloudflareTunnel,
     LoadBalancerPreview as LoadBalancerPreview,
 )
@@ -50,7 +52,6 @@ from .dcv_method import DCVMethod as DCVMethod
 from .hyperdrive import Hyperdrive as Hyperdrive
 from .membership import Membership as Membership
 from .origin_dns import OriginDNS as OriginDNS
-from .permission import Permission as Permission
 from .r2_binding import R2Binding as R2Binding
 from .rate_limit import RateLimit as RateLimit
 from .rule_match import RuleMatch as RuleMatch
