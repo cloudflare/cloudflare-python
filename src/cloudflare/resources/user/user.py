@@ -75,10 +75,10 @@ from ..._base_client import (
 )
 from .billing.billing import Billing, AsyncBilling
 
-__all__ = ["User", "AsyncUser"]
+__all__ = ["UserResource", "AsyncUserResource"]
 
 
-class User(SyncAPIResource):
+class UserResource(SyncAPIResource):
     @cached_property
     def audit_logs(self) -> AuditLogs:
         return AuditLogs(self._client)
@@ -104,12 +104,12 @@ class User(SyncAPIResource):
         return Tokens(self._client)
 
     @cached_property
-    def with_raw_response(self) -> UserWithRawResponse:
-        return UserWithRawResponse(self)
+    def with_raw_response(self) -> UserResourceWithRawResponse:
+        return UserResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> UserWithStreamingResponse:
-        return UserWithStreamingResponse(self)
+    def with_streaming_response(self) -> UserResourceWithStreamingResponse:
+        return UserResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -204,7 +204,7 @@ class User(SyncAPIResource):
         )
 
 
-class AsyncUser(AsyncAPIResource):
+class AsyncUserResource(AsyncAPIResource):
     @cached_property
     def audit_logs(self) -> AsyncAuditLogs:
         return AsyncAuditLogs(self._client)
@@ -230,12 +230,12 @@ class AsyncUser(AsyncAPIResource):
         return AsyncTokens(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncUserWithRawResponse:
-        return AsyncUserWithRawResponse(self)
+    def with_raw_response(self) -> AsyncUserResourceWithRawResponse:
+        return AsyncUserResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUserWithStreamingResponse:
-        return AsyncUserWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncUserResourceWithStreamingResponse:
+        return AsyncUserResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -330,8 +330,8 @@ class AsyncUser(AsyncAPIResource):
         )
 
 
-class UserWithRawResponse:
-    def __init__(self, user: User) -> None:
+class UserResourceWithRawResponse:
+    def __init__(self, user: UserResource) -> None:
         self._user = user
 
         self.edit = to_raw_response_wrapper(
@@ -366,8 +366,8 @@ class UserWithRawResponse:
         return TokensWithRawResponse(self._user.tokens)
 
 
-class AsyncUserWithRawResponse:
-    def __init__(self, user: AsyncUser) -> None:
+class AsyncUserResourceWithRawResponse:
+    def __init__(self, user: AsyncUserResource) -> None:
         self._user = user
 
         self.edit = async_to_raw_response_wrapper(
@@ -402,8 +402,8 @@ class AsyncUserWithRawResponse:
         return AsyncTokensWithRawResponse(self._user.tokens)
 
 
-class UserWithStreamingResponse:
-    def __init__(self, user: User) -> None:
+class UserResourceWithStreamingResponse:
+    def __init__(self, user: UserResource) -> None:
         self._user = user
 
         self.edit = to_streamed_response_wrapper(
@@ -438,8 +438,8 @@ class UserWithStreamingResponse:
         return TokensWithStreamingResponse(self._user.tokens)
 
 
-class AsyncUserWithStreamingResponse:
-    def __init__(self, user: AsyncUser) -> None:
+class AsyncUserResourceWithStreamingResponse:
+    def __init__(self, user: AsyncUserResource) -> None:
         self._user = user
 
         self.edit = async_to_streamed_response_wrapper(

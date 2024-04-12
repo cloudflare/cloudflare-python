@@ -51,7 +51,7 @@ class Cloudflare(SyncAPIClient):
     origin_ca_certificates: resources.OriginCACertificates
     ips: resources.IPs
     memberships: resources.Memberships
-    user: resources.User
+    user: resources.UserResource
     zones: resources.Zones
     load_balancers: resources.LoadBalancers
     cache: resources.Cache
@@ -206,7 +206,7 @@ class Cloudflare(SyncAPIClient):
         self.origin_ca_certificates = resources.OriginCACertificates(self)
         self.ips = resources.IPs(self)
         self.memberships = resources.Memberships(self)
-        self.user = resources.User(self)
+        self.user = resources.UserResource(self)
         self.zones = resources.Zones(self)
         self.load_balancers = resources.LoadBalancers(self)
         self.cache = resources.Cache(self)
@@ -464,7 +464,7 @@ class AsyncCloudflare(AsyncAPIClient):
     origin_ca_certificates: resources.AsyncOriginCACertificates
     ips: resources.AsyncIPs
     memberships: resources.AsyncMemberships
-    user: resources.AsyncUser
+    user: resources.AsyncUserResource
     zones: resources.AsyncZones
     load_balancers: resources.AsyncLoadBalancers
     cache: resources.AsyncCache
@@ -619,7 +619,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.origin_ca_certificates = resources.AsyncOriginCACertificates(self)
         self.ips = resources.AsyncIPs(self)
         self.memberships = resources.AsyncMemberships(self)
-        self.user = resources.AsyncUser(self)
+        self.user = resources.AsyncUserResource(self)
         self.zones = resources.AsyncZones(self)
         self.load_balancers = resources.AsyncLoadBalancers(self)
         self.cache = resources.AsyncCache(self)
@@ -878,7 +878,7 @@ class CloudflareWithRawResponse:
         self.origin_ca_certificates = resources.OriginCACertificatesWithRawResponse(client.origin_ca_certificates)
         self.ips = resources.IPsWithRawResponse(client.ips)
         self.memberships = resources.MembershipsWithRawResponse(client.memberships)
-        self.user = resources.UserWithRawResponse(client.user)
+        self.user = resources.UserResourceWithRawResponse(client.user)
         self.zones = resources.ZonesWithRawResponse(client.zones)
         self.load_balancers = resources.LoadBalancersWithRawResponse(client.load_balancers)
         self.cache = resources.CacheWithRawResponse(client.cache)
@@ -964,7 +964,7 @@ class AsyncCloudflareWithRawResponse:
         self.origin_ca_certificates = resources.AsyncOriginCACertificatesWithRawResponse(client.origin_ca_certificates)
         self.ips = resources.AsyncIPsWithRawResponse(client.ips)
         self.memberships = resources.AsyncMembershipsWithRawResponse(client.memberships)
-        self.user = resources.AsyncUserWithRawResponse(client.user)
+        self.user = resources.AsyncUserResourceWithRawResponse(client.user)
         self.zones = resources.AsyncZonesWithRawResponse(client.zones)
         self.load_balancers = resources.AsyncLoadBalancersWithRawResponse(client.load_balancers)
         self.cache = resources.AsyncCacheWithRawResponse(client.cache)
@@ -1054,7 +1054,7 @@ class CloudflareWithStreamedResponse:
         self.origin_ca_certificates = resources.OriginCACertificatesWithStreamingResponse(client.origin_ca_certificates)
         self.ips = resources.IPsWithStreamingResponse(client.ips)
         self.memberships = resources.MembershipsWithStreamingResponse(client.memberships)
-        self.user = resources.UserWithStreamingResponse(client.user)
+        self.user = resources.UserResourceWithStreamingResponse(client.user)
         self.zones = resources.ZonesWithStreamingResponse(client.zones)
         self.load_balancers = resources.LoadBalancersWithStreamingResponse(client.load_balancers)
         self.cache = resources.CacheWithStreamingResponse(client.cache)
@@ -1146,7 +1146,7 @@ class AsyncCloudflareWithStreamedResponse:
         )
         self.ips = resources.AsyncIPsWithStreamingResponse(client.ips)
         self.memberships = resources.AsyncMembershipsWithStreamingResponse(client.memberships)
-        self.user = resources.AsyncUserWithStreamingResponse(client.user)
+        self.user = resources.AsyncUserResourceWithStreamingResponse(client.user)
         self.zones = resources.AsyncZonesWithStreamingResponse(client.zones)
         self.load_balancers = resources.AsyncLoadBalancersWithStreamingResponse(client.load_balancers)
         self.cache = resources.AsyncCacheWithStreamingResponse(client.cache)
