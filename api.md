@@ -5252,12 +5252,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import User
+from cloudflare.types.zero_trust.access import AccessUser
 ```
 
 Methods:
 
-- <code title="get /accounts/{identifier}/access/users">client.zero_trust.access.users.<a href="./src/cloudflare/resources/zero_trust/access/users/users.py">list</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/user.py">SyncSinglePage[User]</a></code>
+- <code title="get /accounts/{identifier}/access/users">client.zero_trust.access.users.<a href="./src/cloudflare/resources/zero_trust/access/users/users.py">list</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/access_user.py">SyncSinglePage[AccessUser]</a></code>
 
 #### ActiveSessions
 
