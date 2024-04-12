@@ -22,7 +22,7 @@ from .route_rule_param import RouteRuleParam as RouteRuleParam
 from .rule_edit_params import RuleEditParams as RuleEditParams
 from .score_rule_param import ScoreRuleParam as ScoreRuleParam
 from .serve_error_rule import ServeErrorRule as ServeErrorRule
-from .js_challenge_rule import JsChallengeRule as JsChallengeRule
+from .js_challenge_rule import JSChallengeRule as JSChallengeRule
 from .execute_rule_param import ExecuteRuleParam as ExecuteRuleParam
 from .phase_get_response import PhaseGetResponse as PhaseGetResponse
 from .rewrite_rule_param import RewriteRuleParam as RewriteRuleParam
@@ -40,7 +40,7 @@ from .compress_response_rule import CompressResponseRule as CompressResponseRule
 from .managed_challenge_rule import ManagedChallengeRule as ManagedChallengeRule
 from .rewrite_uri_part_param import RewriteURIPartParam as RewriteURIPartParam
 from .serve_error_rule_param import ServeErrorRuleParam as ServeErrorRuleParam
-from .js_challenge_rule_param import JsChallengeRuleParam as JsChallengeRuleParam
+from .js_challenge_rule_param import JSChallengeRuleParam as JSChallengeRuleParam
 from .set_cache_settings_rule import SetCacheSettingsRule as SetCacheSettingsRule
 from .compress_response_rule_param import CompressResponseRuleParam as CompressResponseRuleParam
 from .managed_challenge_rule_param import ManagedChallengeRuleParam as ManagedChallengeRuleParam

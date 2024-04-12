@@ -16,7 +16,7 @@ from .redirect_rule import RedirectRule
 from .challenge_rule import ChallengeRule
 from .set_config_rule import SetConfigRule
 from .serve_error_rule import ServeErrorRule
-from .js_challenge_rule import JsChallengeRule
+from .js_challenge_rule import JSChallengeRule
 from .compress_response_rule import CompressResponseRule
 from .managed_challenge_rule import ManagedChallengeRule
 from .set_cache_settings_rule import SetCacheSettingsRule
@@ -28,7 +28,7 @@ Rule = Union[
     ChallengeRule,
     CompressResponseRule,
     ExecuteRule,
-    JsChallengeRule,
+    JSChallengeRule,
     LogRule,
     ManagedChallengeRule,
     RedirectRule,

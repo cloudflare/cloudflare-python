@@ -26,8 +26,8 @@ __all__ = [
     "ScanPage",
     "ScanPageConsole",
     "ScanPageCooky",
-    "ScanPageJs",
-    "ScanPageJsVariable",
+    "ScanPageJS",
+    "ScanPageJSVariable",
     "ScanPageSecurityViolation",
     "ScanPerformance",
     "ScanTask",
@@ -204,14 +204,14 @@ class ScanPageCooky(BaseModel):
     priority: Optional[str] = None
 
 
-class ScanPageJsVariable(BaseModel):
+class ScanPageJSVariable(BaseModel):
     name: str
 
     type: str
 
 
-class ScanPageJs(BaseModel):
-    variables: List[ScanPageJsVariable]
+class ScanPageJS(BaseModel):
+    variables: List[ScanPageJSVariable]
 
 
 class ScanPageSecurityViolation(BaseModel):
@@ -243,7 +243,7 @@ class ScanPage(BaseModel):
 
     ip: str
 
-    js: ScanPageJs
+    js: ScanPageJS
 
     security_violations: List[ScanPageSecurityViolation] = FieldInfo(alias="securityViolations")
 
