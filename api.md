@@ -18,14 +18,7 @@ from cloudflare.types import (
 Types:
 
 ```python
-from cloudflare.types import (
-    Account,
-    Role,
-    User,
-    AccountUpdateResponse,
-    AccountListResponse,
-    AccountGetResponse,
-)
+from cloudflare.types import Account, AccountUpdateResponse, AccountListResponse, AccountGetResponse
 ```
 
 Methods:
@@ -115,12 +108,12 @@ Methods:
 - <code title="delete /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">delete</a>(membership_id, \*\*<a href="src/cloudflare/types/membership_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/membership_delete_response.py">MembershipDeleteResponse</a></code>
 - <code title="get /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">get</a>(membership_id) -> <a href="./src/cloudflare/types/membership_get_response.py">MembershipGetResponse</a></code>
 
-# User
+# UserResource
 
 Types:
 
 ```python
-from cloudflare.types import UserEditResponse, UserGetResponse
+from cloudflare.types import Permission, Role, User, UserEditResponse, UserGetResponse
 ```
 
 Methods:
@@ -244,7 +237,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.user.tokens import Permission, PermissionGroupListResponse
+from cloudflare.types.user.tokens import PermissionGroupListResponse
 ```
 
 Methods:
