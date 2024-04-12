@@ -9,6 +9,7 @@ from cloudflare.types import (
     PaginationInfo,
     ResponseInfo,
     Result,
+    Tunnel,
 )
 ```
 
@@ -3042,7 +3043,7 @@ from cloudflare.types.rulesets import (
     ChallengeRule,
     CompressResponseRule,
     ExecuteRule,
-    JsChallengeRule,
+    JSChallengeRule,
     LogRule,
     Logging,
     ManagedChallengeRule,
@@ -4595,13 +4596,12 @@ Methods:
 - <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.sippy.<a href="./src/cloudflare/resources/r2/sippy.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/sippy_delete_response.py">SippyDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.sippy.<a href="./src/cloudflare/resources/r2/sippy.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/sippy.py">Sippy</a></code>
 
-# WARPConnectorResource
+# WARPConnector
 
 Types:
 
 ```python
 from cloudflare.types import (
-    WARPConnector,
     WARPConnectorCreateResponse,
     WARPConnectorListResponse,
     WARPConnectorDeleteResponse,
@@ -5465,7 +5465,6 @@ Types:
 ```python
 from cloudflare.types.zero_trust import (
     Connection,
-    Tunnel,
     TunnelCreateResponse,
     TunnelListResponse,
     TunnelDeleteResponse,

@@ -23,7 +23,7 @@ __all__ = [
     "ExecuteRuleActionParametersOverrides",
     "ExecuteRuleActionParametersOverridesCategory",
     "ExecuteRuleActionParametersOverridesRule",
-    "JsChallengeRule",
+    "JSChallengeRule",
     "LogRule",
     "ManagedChallengeRule",
     "RedirectRule",
@@ -316,7 +316,7 @@ class ExecuteRuleActionParameters(TypedDict, total=False):
     """A set of overrides to apply to the target ruleset."""
 
 
-class JsChallengeRule(TypedDict, total=False):
+class JSChallengeRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
 
@@ -1211,7 +1211,7 @@ RuleEditParams = Union[
     ChallengeRule,
     CompressResponseRule,
     ExecuteRule,
-    JsChallengeRule,
+    JSChallengeRule,
     LogRule,
     ManagedChallengeRule,
     RedirectRule,

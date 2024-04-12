@@ -7,10 +7,10 @@ from typing_extensions import Literal
 from .logging import Logging
 from ..._models import BaseModel
 
-__all__ = ["JsChallengeRule"]
+__all__ = ["JSChallengeRule"]
 
 
-class JsChallengeRule(BaseModel):
+class JSChallengeRule(BaseModel):
     last_updated: datetime
     """The timestamp of when the rule was last modified."""
 
