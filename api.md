@@ -3,13 +3,13 @@
 ```python
 from cloudflare.types import (
     AuditLog,
+    CloudflareTunnel,
     ErrorData,
     Identifier,
     LoadBalancerPreview,
     PaginationInfo,
     ResponseInfo,
     Result,
-    Tunnel,
 )
 ```
 
