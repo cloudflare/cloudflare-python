@@ -4,24 +4,10 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .tokens import Permission
+from ..role import Role
 from ..._models import BaseModel
 
-__all__ = ["Invite", "Role"]
-
-
-class Role(BaseModel):
-    id: str
-    """Role identifier tag."""
-
-    description: str
-    """Description of role's permissions."""
-
-    name: str
-    """Role Name."""
-
-    permissions: List[Permission]
-    """Access permissions for this User."""
+__all__ = ["Invite"]
 
 
 class Invite(BaseModel):

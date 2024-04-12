@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 
-from ..._models import BaseModel
-from .permission_grant import PermissionGrant
+from .._models import BaseModel
+from .accounts import PermissionGrant
 
-__all__ = ["MemberRole", "Permissions"]
+__all__ = ["User", "Role", "RolePermissions"]
 
 
-class Permissions(BaseModel):
+class RolePermissions(BaseModel):
     analytics: Optional[PermissionGrant] = None
 
     billing: Optional[PermissionGrant] = None
@@ -34,7 +34,7 @@ class Permissions(BaseModel):
     zones: Optional[PermissionGrant] = None
 
 
-class MemberRole(BaseModel):
+class Role(BaseModel):
     id: str
     """Role identifier tag."""
 
@@ -44,4 +44,16 @@ class MemberRole(BaseModel):
     name: str
     """Role name."""
 
-    permissions: Permissions
+    permissions: RolePermissions
+
+
+class User(BaseModel):
+    id: str
+    """Membership identifier tag."""
+
+    roles: List[Role]
+    """Roles assigned to this member."""
+
+    status: object
+
+    user: User

@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .user import User as User
 from .result import Result as Result
 from .audit_log import AuditLog as AuditLog
 from .error_data import ErrorData as ErrorData

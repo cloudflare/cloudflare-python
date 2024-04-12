@@ -8,6 +8,8 @@ from .ips import IPs as IPs
 from .host import Host as Host
 from .info import Info as Info
 from .pcap import PCAP as PCAP
+from .role import Role as Role
+from .user import User as User
 from .zone import Zone as Zone
 from .queue import Queue as Queue
 from .route import Route as Route
@@ -19,7 +21,6 @@ from .dnssec import DNSSEC as DNSSEC
 from .header import Header as Header
 from .origin import Origin as Origin
 from .shared import (
-    User as User,
     Result as Result,
     AuditLog as AuditLog,
     ErrorData as ErrorData,

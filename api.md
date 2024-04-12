@@ -10,7 +10,6 @@ from cloudflare.types import (
     PaginationInfo,
     ResponseInfo,
     Result,
-    User,
 )
 ```
 
@@ -19,7 +18,14 @@ from cloudflare.types import (
 Types:
 
 ```python
-from cloudflare.types import Account, AccountUpdateResponse, AccountListResponse, AccountGetResponse
+from cloudflare.types import (
+    Account,
+    Role,
+    User,
+    AccountUpdateResponse,
+    AccountListResponse,
+    AccountGetResponse,
+)
 ```
 
 Methods:
@@ -33,33 +39,28 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.accounts import (
-    MemberRole,
-    MemberWithInviteCode,
-    MemberListResponse,
-    MemberDeleteResponse,
-)
+from cloudflare.types.accounts import UserWithInviteCode, MemberListResponse, MemberDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_with_invite_code.py">MemberWithInviteCode</a></code>
-- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/user.py">User</a></code>
+- <code title="post /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/user_with_invite_code.py">UserWithInviteCode</a></code>
+- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user.py">User</a></code>
 - <code title="get /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_list_response.py">SyncV4PagePaginationArray[MemberListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">delete</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/shared/user.py">User</a></code>
+- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/user.py">User</a></code>
 
 ## Roles
 
 Types:
 
 ```python
-from cloudflare.types.accounts import PermissionGrant, RoleListResponse, RoleGetResponse
+from cloudflare.types.accounts import PermissionGrant, RoleGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role_list_response.py">SyncSinglePage[RoleListResponse]</a></code>
+- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/role.py">SyncSinglePage[Role]</a></code>
 - <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/role_get_response.py">RoleGetResponse</a></code>
 
 # OriginCACertificates
