@@ -4595,12 +4595,13 @@ Methods:
 - <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.sippy.<a href="./src/cloudflare/resources/r2/sippy.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/sippy_delete_response.py">SippyDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.sippy.<a href="./src/cloudflare/resources/r2/sippy.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/sippy.py">Sippy</a></code>
 
-# WARPConnector
+# WARPConnectorResource
 
 Types:
 
 ```python
 from cloudflare.types import (
+    WARPConnector,
     WARPConnectorCreateResponse,
     WARPConnectorListResponse,
     WARPConnectorDeleteResponse,

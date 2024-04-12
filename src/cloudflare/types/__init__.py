@@ -78,6 +78,7 @@ from .filter_options import FilterOptions as FilterOptions
 from .ip_list_params import IPListParams as IPListParams
 from .labeled_region import LabeledRegion as LabeledRegion
 from .migration_step import MigrationStep as MigrationStep
+from .warp_connector import WARPConnector as WARPConnector
 from .allowed_origins import AllowedOrigins as AllowedOrigins
 from .firewall_filter import FirewallFilter as FirewallFilter
 from .origin_steering import OriginSteering as OriginSteering
