@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Type, cast
+from typing import Dict, Type, Optional, cast
 
 import httpx
 
@@ -55,7 +55,7 @@ class Traces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TraceCreateResponse:
+    ) -> Optional[TraceCreateResponse]:
         """
         Request Trace
 
@@ -108,7 +108,7 @@ class Traces(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TraceCreateResponse], ResultWrapper[TraceCreateResponse]),
+            cast_to=cast(Type[Optional[TraceCreateResponse]], ResultWrapper[TraceCreateResponse]),
         )
 
 
@@ -139,7 +139,7 @@ class AsyncTraces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TraceCreateResponse:
+    ) -> Optional[TraceCreateResponse]:
         """
         Request Trace
 
@@ -192,7 +192,7 @@ class AsyncTraces(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TraceCreateResponse], ResultWrapper[TraceCreateResponse]),
+            cast_to=cast(Type[Optional[TraceCreateResponse]], ResultWrapper[TraceCreateResponse]),
         )
 
 
