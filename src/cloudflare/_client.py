@@ -127,6 +127,7 @@ class Cloudflare(SyncAPIClient):
     snippets: resources.Snippets
     calls: resources.Calls
     cloudforce_one: resources.CloudforceOne
+    event_notifications: resources.EventNotifications
     with_raw_response: CloudflareWithRawResponse
     with_streaming_response: CloudflareWithStreamedResponse
 
@@ -282,6 +283,7 @@ class Cloudflare(SyncAPIClient):
         self.snippets = resources.Snippets(self)
         self.calls = resources.Calls(self)
         self.cloudforce_one = resources.CloudforceOne(self)
+        self.event_notifications = resources.EventNotifications(self)
         self.with_raw_response = CloudflareWithRawResponse(self)
         self.with_streaming_response = CloudflareWithStreamedResponse(self)
 
@@ -540,6 +542,7 @@ class AsyncCloudflare(AsyncAPIClient):
     snippets: resources.AsyncSnippets
     calls: resources.AsyncCalls
     cloudforce_one: resources.AsyncCloudforceOne
+    event_notifications: resources.AsyncEventNotifications
     with_raw_response: AsyncCloudflareWithRawResponse
     with_streaming_response: AsyncCloudflareWithStreamedResponse
 
@@ -695,6 +698,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.snippets = resources.AsyncSnippets(self)
         self.calls = resources.AsyncCalls(self)
         self.cloudforce_one = resources.AsyncCloudforceOne(self)
+        self.event_notifications = resources.AsyncEventNotifications(self)
         self.with_raw_response = AsyncCloudflareWithRawResponse(self)
         self.with_streaming_response = AsyncCloudflareWithStreamedResponse(self)
 
@@ -956,6 +960,7 @@ class CloudflareWithRawResponse:
         self.snippets = resources.SnippetsWithRawResponse(client.snippets)
         self.calls = resources.CallsWithRawResponse(client.calls)
         self.cloudforce_one = resources.CloudforceOneWithRawResponse(client.cloudforce_one)
+        self.event_notifications = resources.EventNotificationsWithRawResponse(client.event_notifications)
 
 
 class AsyncCloudflareWithRawResponse:
@@ -1046,6 +1051,7 @@ class AsyncCloudflareWithRawResponse:
         self.snippets = resources.AsyncSnippetsWithRawResponse(client.snippets)
         self.calls = resources.AsyncCallsWithRawResponse(client.calls)
         self.cloudforce_one = resources.AsyncCloudforceOneWithRawResponse(client.cloudforce_one)
+        self.event_notifications = resources.AsyncEventNotificationsWithRawResponse(client.event_notifications)
 
 
 class CloudflareWithStreamedResponse:
@@ -1136,6 +1142,7 @@ class CloudflareWithStreamedResponse:
         self.snippets = resources.SnippetsWithStreamingResponse(client.snippets)
         self.calls = resources.CallsWithStreamingResponse(client.calls)
         self.cloudforce_one = resources.CloudforceOneWithStreamingResponse(client.cloudforce_one)
+        self.event_notifications = resources.EventNotificationsWithStreamingResponse(client.event_notifications)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -1232,6 +1239,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.snippets = resources.AsyncSnippetsWithStreamingResponse(client.snippets)
         self.calls = resources.AsyncCallsWithStreamingResponse(client.calls)
         self.cloudforce_one = resources.AsyncCloudforceOneWithStreamingResponse(client.cloudforce_one)
+        self.event_notifications = resources.AsyncEventNotificationsWithStreamingResponse(client.event_notifications)
 
 
 Client = Cloudflare
