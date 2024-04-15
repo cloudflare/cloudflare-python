@@ -15,6 +15,13 @@ class DirectUploadCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
+    id: str
+    """Optional Image Custom ID.
+
+    Up to 1024 chars. Can include any number of subpaths, and utf8 characters.
+    Cannot start nor end with a / (forward slash). Cannot be a UUID.
+    """
+
     expiry: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The date after which the upload will not be accepted.
 
