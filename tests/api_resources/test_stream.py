@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -187,7 +187,7 @@ class TestStream:
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Video, stream, path=["response"])
+        assert_matches_type(Optional[Video], stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -200,7 +200,7 @@ class TestStream:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stream = response.parse()
-        assert_matches_type(Video, stream, path=["response"])
+        assert_matches_type(Optional[Video], stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -213,7 +213,7 @@ class TestStream:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stream = response.parse()
-            assert_matches_type(Video, stream, path=["response"])
+            assert_matches_type(Optional[Video], stream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -404,7 +404,7 @@ class TestAsyncStream:
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Video, stream, path=["response"])
+        assert_matches_type(Optional[Video], stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -417,7 +417,7 @@ class TestAsyncStream:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         stream = await response.parse()
-        assert_matches_type(Video, stream, path=["response"])
+        assert_matches_type(Optional[Video], stream, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -430,7 +430,7 @@ class TestAsyncStream:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             stream = await response.parse()
-            assert_matches_type(Video, stream, path=["response"])
+            assert_matches_type(Optional[Video], stream, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

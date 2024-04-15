@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Any, Type, Optional, cast
 
 import httpx
 
@@ -48,7 +48,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> keys.Keys:
+    ) -> Optional[keys.Keys]:
         """Creates an RSA private key in PEM and JWK formats.
 
         Key files are only displayed
@@ -78,7 +78,7 @@ class Keys(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[keys.Keys], ResultWrapper[keys.Keys]),
+            cast_to=cast(Type[Optional[keys.Keys]], ResultWrapper[keys.Keys]),
         )
 
     def delete(
@@ -93,7 +93,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyDeleteResponse:
+    ) -> Optional[KeyDeleteResponse]:
         """
         Deletes signing keys and revokes all signed URLs generated with the key.
 
@@ -115,7 +115,7 @@ class Keys(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            KeyDeleteResponse,
+            Optional[KeyDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/stream/keys/{identifier}",
                 body=maybe_transform(body, key_delete_params.KeyDeleteParams),
@@ -142,7 +142,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyGetResponse:
+    ) -> Optional[KeyGetResponse]:
         """
         Lists the video ID and creation date and time when a signing key was created.
 
@@ -168,7 +168,7 @@ class Keys(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[KeyGetResponse], ResultWrapper[KeyGetResponse]),
+            cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
         )
 
 
@@ -192,7 +192,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> keys.Keys:
+    ) -> Optional[keys.Keys]:
         """Creates an RSA private key in PEM and JWK formats.
 
         Key files are only displayed
@@ -222,7 +222,7 @@ class AsyncKeys(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[keys.Keys], ResultWrapper[keys.Keys]),
+            cast_to=cast(Type[Optional[keys.Keys]], ResultWrapper[keys.Keys]),
         )
 
     async def delete(
@@ -237,7 +237,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyDeleteResponse:
+    ) -> Optional[KeyDeleteResponse]:
         """
         Deletes signing keys and revokes all signed URLs generated with the key.
 
@@ -259,7 +259,7 @@ class AsyncKeys(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            KeyDeleteResponse,
+            Optional[KeyDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/stream/keys/{identifier}",
                 body=await async_maybe_transform(body, key_delete_params.KeyDeleteParams),
@@ -286,7 +286,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyGetResponse:
+    ) -> Optional[KeyGetResponse]:
         """
         Lists the video ID and creation date and time when a signing key was created.
 
@@ -312,7 +312,7 @@ class AsyncKeys(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[KeyGetResponse], ResultWrapper[KeyGetResponse]),
+            cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
         )
 
 

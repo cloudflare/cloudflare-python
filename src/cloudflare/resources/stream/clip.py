@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -57,7 +57,7 @@ class ClipResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Clip:
+    ) -> Optional[Clip]:
         """
         Clips a video based on the specified start and end times provided in seconds.
 
@@ -122,7 +122,7 @@ class ClipResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Clip], ResultWrapper[Clip]),
+            cast_to=cast(Type[Optional[Clip]], ResultWrapper[Clip]),
         )
 
 
@@ -154,7 +154,7 @@ class AsyncClipResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Clip:
+    ) -> Optional[Clip]:
         """
         Clips a video based on the specified start and end times provided in seconds.
 
@@ -219,7 +219,7 @@ class AsyncClipResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Clip], ResultWrapper[Clip]),
+            cast_to=cast(Type[Optional[Clip]], ResultWrapper[Clip]),
         )
 
 

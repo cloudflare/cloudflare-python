@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestDirectUpload:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             max_duration_seconds=1,
         )
-        assert_matches_type(DirectUploadCreateResponse, direct_upload, path=["response"])
+        assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -42,7 +42,7 @@ class TestDirectUpload:
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
         )
-        assert_matches_type(DirectUploadCreateResponse, direct_upload, path=["response"])
+        assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +55,7 @@ class TestDirectUpload:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         direct_upload = response.parse()
-        assert_matches_type(DirectUploadCreateResponse, direct_upload, path=["response"])
+        assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -68,7 +68,7 @@ class TestDirectUpload:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             direct_upload = response.parse()
-            assert_matches_type(DirectUploadCreateResponse, direct_upload, path=["response"])
+            assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -92,7 +92,7 @@ class TestAsyncDirectUpload:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             max_duration_seconds=1,
         )
-        assert_matches_type(DirectUploadCreateResponse, direct_upload, path=["response"])
+        assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -109,7 +109,7 @@ class TestAsyncDirectUpload:
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
         )
-        assert_matches_type(DirectUploadCreateResponse, direct_upload, path=["response"])
+        assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -122,7 +122,7 @@ class TestAsyncDirectUpload:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         direct_upload = await response.parse()
-        assert_matches_type(DirectUploadCreateResponse, direct_upload, path=["response"])
+        assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -135,7 +135,7 @@ class TestAsyncDirectUpload:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             direct_upload = await response.parse()
-            assert_matches_type(DirectUploadCreateResponse, direct_upload, path=["response"])
+            assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

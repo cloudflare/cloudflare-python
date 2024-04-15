@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Any, Type, Optional, cast
 
 import httpx
 
@@ -55,7 +55,7 @@ class AudioTracks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AudioTrackDeleteResponse:
+    ) -> Optional[AudioTrackDeleteResponse]:
         """Deletes additional audio tracks on a video.
 
         Deleting a default audio track is
@@ -83,7 +83,7 @@ class AudioTracks(SyncAPIResource):
         if not audio_identifier:
             raise ValueError(f"Expected a non-empty value for `audio_identifier` but received {audio_identifier!r}")
         return cast(
-            AudioTrackDeleteResponse,
+            Optional[AudioTrackDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
                 options=make_request_options(
@@ -112,7 +112,7 @@ class AudioTracks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Audio:
+    ) -> Optional[Audio]:
         """
         Adds an additional audio track to a video using the provided audio track URL.
 
@@ -156,7 +156,7 @@ class AudioTracks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Audio], ResultWrapper[Audio]),
+            cast_to=cast(Type[Optional[Audio]], ResultWrapper[Audio]),
         )
 
     def edit(
@@ -173,7 +173,7 @@ class AudioTracks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Audio:
+    ) -> Optional[Audio]:
         """Edits additional audio tracks on a video.
 
         Editing the default status of an audio
@@ -222,7 +222,7 @@ class AudioTracks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Audio], ResultWrapper[Audio]),
+            cast_to=cast(Type[Optional[Audio]], ResultWrapper[Audio]),
         )
 
     def get(
@@ -236,7 +236,7 @@ class AudioTracks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AudioTrackGetResponse:
+    ) -> Optional[AudioTrackGetResponse]:
         """Lists additional audio tracks on a video.
 
         Note this API will not return
@@ -268,7 +268,7 @@ class AudioTracks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AudioTrackGetResponse], ResultWrapper[AudioTrackGetResponse]),
+            cast_to=cast(Type[Optional[AudioTrackGetResponse]], ResultWrapper[AudioTrackGetResponse]),
         )
 
 
@@ -293,7 +293,7 @@ class AsyncAudioTracks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AudioTrackDeleteResponse:
+    ) -> Optional[AudioTrackDeleteResponse]:
         """Deletes additional audio tracks on a video.
 
         Deleting a default audio track is
@@ -321,7 +321,7 @@ class AsyncAudioTracks(AsyncAPIResource):
         if not audio_identifier:
             raise ValueError(f"Expected a non-empty value for `audio_identifier` but received {audio_identifier!r}")
         return cast(
-            AudioTrackDeleteResponse,
+            Optional[AudioTrackDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
                 options=make_request_options(
@@ -350,7 +350,7 @@ class AsyncAudioTracks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Audio:
+    ) -> Optional[Audio]:
         """
         Adds an additional audio track to a video using the provided audio track URL.
 
@@ -394,7 +394,7 @@ class AsyncAudioTracks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Audio], ResultWrapper[Audio]),
+            cast_to=cast(Type[Optional[Audio]], ResultWrapper[Audio]),
         )
 
     async def edit(
@@ -411,7 +411,7 @@ class AsyncAudioTracks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Audio:
+    ) -> Optional[Audio]:
         """Edits additional audio tracks on a video.
 
         Editing the default status of an audio
@@ -460,7 +460,7 @@ class AsyncAudioTracks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Audio], ResultWrapper[Audio]),
+            cast_to=cast(Type[Optional[Audio]], ResultWrapper[Audio]),
         )
 
     async def get(
@@ -474,7 +474,7 @@ class AsyncAudioTracks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AudioTrackGetResponse:
+    ) -> Optional[AudioTrackGetResponse]:
         """Lists additional audio tracks on a video.
 
         Note this API will not return
@@ -506,7 +506,7 @@ class AsyncAudioTracks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AudioTrackGetResponse], ResultWrapper[AudioTrackGetResponse]),
+            cast_to=cast(Type[Optional[AudioTrackGetResponse]], ResultWrapper[AudioTrackGetResponse]),
         )
 
 

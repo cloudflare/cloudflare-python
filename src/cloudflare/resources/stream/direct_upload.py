@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
+from typing import List, Type, Union, Optional, cast
 from datetime import datetime
 
 import httpx
@@ -58,7 +58,7 @@ class DirectUpload(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DirectUploadCreateResponse:
+    ) -> Optional[DirectUploadCreateResponse]:
         """
         Creates a direct upload that allows video uploads without an API key.
 
@@ -126,7 +126,7 @@ class DirectUpload(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DirectUploadCreateResponse], ResultWrapper[DirectUploadCreateResponse]),
+            cast_to=cast(Type[Optional[DirectUploadCreateResponse]], ResultWrapper[DirectUploadCreateResponse]),
         )
 
 
@@ -158,7 +158,7 @@ class AsyncDirectUpload(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DirectUploadCreateResponse:
+    ) -> Optional[DirectUploadCreateResponse]:
         """
         Creates a direct upload that allows video uploads without an API key.
 
@@ -226,7 +226,7 @@ class AsyncDirectUpload(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DirectUploadCreateResponse], ResultWrapper[DirectUploadCreateResponse]),
+            cast_to=cast(Type[Optional[DirectUploadCreateResponse]], ResultWrapper[DirectUploadCreateResponse]),
         )
 
 

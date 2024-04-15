@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -26,7 +26,7 @@ class TestLiveInputs:
         live_input = client.stream.live_inputs.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +43,7 @@ class TestLiveInputs:
                 "timeout_seconds": 0,
             },
         )
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -55,7 +55,7 @@ class TestLiveInputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         live_input = response.parse()
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -67,7 +67,7 @@ class TestLiveInputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             live_input = response.parse()
-            assert_matches_type(LiveInput, live_input, path=["response"])
+            assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -86,7 +86,7 @@ class TestLiveInputs:
             "66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +104,7 @@ class TestLiveInputs:
                 "timeout_seconds": 0,
             },
         )
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +117,7 @@ class TestLiveInputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         live_input = response.parse()
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -130,7 +130,7 @@ class TestLiveInputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             live_input = response.parse()
-            assert_matches_type(LiveInput, live_input, path=["response"])
+            assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestLiveInputs:
         live_input = client.stream.live_inputs.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -164,7 +164,7 @@ class TestLiveInputs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             include_counts=True,
         )
-        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +176,7 @@ class TestLiveInputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         live_input = response.parse()
-        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +188,7 @@ class TestLiveInputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             live_input = response.parse()
-            assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+            assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -264,7 +264,7 @@ class TestLiveInputs:
             "66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -277,7 +277,7 @@ class TestLiveInputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         live_input = response.parse()
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -290,7 +290,7 @@ class TestLiveInputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             live_input = response.parse()
-            assert_matches_type(LiveInput, live_input, path=["response"])
+            assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -319,7 +319,7 @@ class TestAsyncLiveInputs:
         live_input = await async_client.stream.live_inputs.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -336,7 +336,7 @@ class TestAsyncLiveInputs:
                 "timeout_seconds": 0,
             },
         )
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -348,7 +348,7 @@ class TestAsyncLiveInputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         live_input = await response.parse()
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -360,7 +360,7 @@ class TestAsyncLiveInputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             live_input = await response.parse()
-            assert_matches_type(LiveInput, live_input, path=["response"])
+            assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -379,7 +379,7 @@ class TestAsyncLiveInputs:
             "66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -397,7 +397,7 @@ class TestAsyncLiveInputs:
                 "timeout_seconds": 0,
             },
         )
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -410,7 +410,7 @@ class TestAsyncLiveInputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         live_input = await response.parse()
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -423,7 +423,7 @@ class TestAsyncLiveInputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             live_input = await response.parse()
-            assert_matches_type(LiveInput, live_input, path=["response"])
+            assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -448,7 +448,7 @@ class TestAsyncLiveInputs:
         live_input = await async_client.stream.live_inputs.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -457,7 +457,7 @@ class TestAsyncLiveInputs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             include_counts=True,
         )
-        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -469,7 +469,7 @@ class TestAsyncLiveInputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         live_input = await response.parse()
-        assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -481,7 +481,7 @@ class TestAsyncLiveInputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             live_input = await response.parse()
-            assert_matches_type(LiveInputListResponse, live_input, path=["response"])
+            assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -557,7 +557,7 @@ class TestAsyncLiveInputs:
             "66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -570,7 +570,7 @@ class TestAsyncLiveInputs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         live_input = await response.parse()
-        assert_matches_type(LiveInput, live_input, path=["response"])
+        assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -583,7 +583,7 @@ class TestAsyncLiveInputs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             live_input = await response.parse()
-            assert_matches_type(LiveInput, live_input, path=["response"])
+            assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

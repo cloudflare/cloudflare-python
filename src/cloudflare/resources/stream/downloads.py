@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -49,7 +49,7 @@ class Downloads(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadCreateResponse:
+    ) -> Optional[DownloadCreateResponse]:
         """
         Creates a download for a video when a video is ready to view.
 
@@ -71,7 +71,7 @@ class Downloads(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadCreateResponse,
+            Optional[DownloadCreateResponse],
             self._post(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 body=maybe_transform(body, download_create_params.DownloadCreateParams),
@@ -99,7 +99,7 @@ class Downloads(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadDeleteResponse:
+    ) -> Optional[DownloadDeleteResponse]:
         """
         Delete the downloads for a video.
 
@@ -121,7 +121,7 @@ class Downloads(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadDeleteResponse,
+            Optional[DownloadDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 options=make_request_options(
@@ -148,7 +148,7 @@ class Downloads(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadGetResponse:
+    ) -> Optional[DownloadGetResponse]:
         """
         Lists the downloads created for a video.
 
@@ -170,7 +170,7 @@ class Downloads(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadGetResponse,
+            Optional[DownloadGetResponse],
             self._get(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 options=make_request_options(
@@ -208,7 +208,7 @@ class AsyncDownloads(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadCreateResponse:
+    ) -> Optional[DownloadCreateResponse]:
         """
         Creates a download for a video when a video is ready to view.
 
@@ -230,7 +230,7 @@ class AsyncDownloads(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadCreateResponse,
+            Optional[DownloadCreateResponse],
             await self._post(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 body=await async_maybe_transform(body, download_create_params.DownloadCreateParams),
@@ -258,7 +258,7 @@ class AsyncDownloads(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadDeleteResponse:
+    ) -> Optional[DownloadDeleteResponse]:
         """
         Delete the downloads for a video.
 
@@ -280,7 +280,7 @@ class AsyncDownloads(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadDeleteResponse,
+            Optional[DownloadDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 options=make_request_options(
@@ -307,7 +307,7 @@ class AsyncDownloads(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DownloadGetResponse:
+    ) -> Optional[DownloadGetResponse]:
         """
         Lists the downloads created for a video.
 
@@ -329,7 +329,7 @@ class AsyncDownloads(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            DownloadGetResponse,
+            Optional[DownloadGetResponse],
             await self._get(
                 f"/accounts/{account_id}/stream/{identifier}/downloads",
                 options=make_request_options(

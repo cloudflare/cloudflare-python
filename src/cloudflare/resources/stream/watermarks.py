@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -62,7 +62,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WatermarkCreateResponse:
+    ) -> Optional[WatermarkCreateResponse]:
         """
         Creates watermark profiles using a single `HTTP POST multipart/form-data`
         request.
@@ -102,7 +102,7 @@ class Watermarks(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WatermarkCreateResponse,
+            Optional[WatermarkCreateResponse],
             self._post(
                 f"/accounts/{account_id}/stream/watermarks",
                 body=maybe_transform(
@@ -177,7 +177,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WatermarkDeleteResponse:
+    ) -> Optional[WatermarkDeleteResponse]:
         """
         Deletes a watermark profile.
 
@@ -199,7 +199,7 @@ class Watermarks(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            WatermarkDeleteResponse,
+            Optional[WatermarkDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/stream/watermarks/{identifier}",
                 body=maybe_transform(body, watermark_delete_params.WatermarkDeleteParams),
@@ -227,7 +227,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WatermarkGetResponse:
+    ) -> Optional[WatermarkGetResponse]:
         """
         Retrieves details for a single watermark profile.
 
@@ -249,7 +249,7 @@ class Watermarks(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            WatermarkGetResponse,
+            Optional[WatermarkGetResponse],
             self._get(
                 f"/accounts/{account_id}/stream/watermarks/{identifier}",
                 options=make_request_options(
@@ -291,7 +291,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WatermarkCreateResponse:
+    ) -> Optional[WatermarkCreateResponse]:
         """
         Creates watermark profiles using a single `HTTP POST multipart/form-data`
         request.
@@ -331,7 +331,7 @@ class AsyncWatermarks(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WatermarkCreateResponse,
+            Optional[WatermarkCreateResponse],
             await self._post(
                 f"/accounts/{account_id}/stream/watermarks",
                 body=await async_maybe_transform(
@@ -406,7 +406,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WatermarkDeleteResponse:
+    ) -> Optional[WatermarkDeleteResponse]:
         """
         Deletes a watermark profile.
 
@@ -428,7 +428,7 @@ class AsyncWatermarks(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            WatermarkDeleteResponse,
+            Optional[WatermarkDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/stream/watermarks/{identifier}",
                 body=await async_maybe_transform(body, watermark_delete_params.WatermarkDeleteParams),
@@ -456,7 +456,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WatermarkGetResponse:
+    ) -> Optional[WatermarkGetResponse]:
         """
         Retrieves details for a single watermark profile.
 
@@ -478,7 +478,7 @@ class AsyncWatermarks(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            WatermarkGetResponse,
+            Optional[WatermarkGetResponse],
             await self._get(
                 f"/accounts/{account_id}/stream/watermarks/{identifier}",
                 options=make_request_options(
