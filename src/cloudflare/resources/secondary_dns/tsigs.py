@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -52,7 +52,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIG:
+    ) -> Optional[TSIG]:
         """
         Create TSIG.
 
@@ -90,7 +90,7 @@ class TSIGs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
+            cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
 
     def update(
@@ -107,7 +107,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIG:
+    ) -> Optional[TSIG]:
         """
         Modify TSIG.
 
@@ -147,7 +147,7 @@ class TSIGs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
+            cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
 
     def list(
@@ -196,7 +196,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIGDeleteResponse:
+    ) -> Optional[TSIGDeleteResponse]:
         """
         Delete TSIG.
 
@@ -223,7 +223,7 @@ class TSIGs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIGDeleteResponse], ResultWrapper[TSIGDeleteResponse]),
+            cast_to=cast(Type[Optional[TSIGDeleteResponse]], ResultWrapper[TSIGDeleteResponse]),
         )
 
     def get(
@@ -237,7 +237,7 @@ class TSIGs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIG:
+    ) -> Optional[TSIG]:
         """
         Get TSIG.
 
@@ -263,7 +263,7 @@ class TSIGs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
+            cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
 
 
@@ -289,7 +289,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIG:
+    ) -> Optional[TSIG]:
         """
         Create TSIG.
 
@@ -327,7 +327,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
+            cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
 
     async def update(
@@ -344,7 +344,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIG:
+    ) -> Optional[TSIG]:
         """
         Modify TSIG.
 
@@ -384,7 +384,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
+            cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
 
     def list(
@@ -433,7 +433,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIGDeleteResponse:
+    ) -> Optional[TSIGDeleteResponse]:
         """
         Delete TSIG.
 
@@ -460,7 +460,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIGDeleteResponse], ResultWrapper[TSIGDeleteResponse]),
+            cast_to=cast(Type[Optional[TSIGDeleteResponse]], ResultWrapper[TSIGDeleteResponse]),
         )
 
     async def get(
@@ -474,7 +474,7 @@ class AsyncTSIGs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TSIG:
+    ) -> Optional[TSIG]:
         """
         Get TSIG.
 
@@ -500,7 +500,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TSIG], ResultWrapper[TSIG]),
+            cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
 
 
