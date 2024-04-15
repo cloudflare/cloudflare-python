@@ -25,7 +25,7 @@ __all__ = [
     "ScanMetaProcessorsTechEvidencePattern",
     "ScanPage",
     "ScanPageConsole",
-    "ScanPageCooky",
+    "ScanPageCookie",
     "ScanPageJS",
     "ScanPageJSVariable",
     "ScanPageSecurityViolation",
@@ -176,7 +176,7 @@ class ScanPageConsole(BaseModel):
     url: Optional[str] = None
 
 
-class ScanPageCooky(BaseModel):
+class ScanPageCookie(BaseModel):
     domain: str
 
     expires: float
@@ -231,7 +231,7 @@ class ScanPage(BaseModel):
 
     console: List[ScanPageConsole]
 
-    cookies: List[ScanPageCooky]
+    cookies: List[ScanPageCookie]
 
     country: str
 
