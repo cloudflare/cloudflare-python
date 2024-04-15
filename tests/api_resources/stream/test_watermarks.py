@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -30,7 +30,7 @@ class TestWatermarks:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="@/Users/rchen/Downloads/watermark.png",
         )
-        assert_matches_type(WatermarkCreateResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkCreateResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -44,7 +44,7 @@ class TestWatermarks:
             position="center",
             scale=0.1,
         )
-        assert_matches_type(WatermarkCreateResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkCreateResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestWatermarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         watermark = response.parse()
-        assert_matches_type(WatermarkCreateResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkCreateResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -70,7 +70,7 @@ class TestWatermarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             watermark = response.parse()
-            assert_matches_type(WatermarkCreateResponse, watermark, path=["response"])
+            assert_matches_type(Optional[WatermarkCreateResponse], watermark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -133,7 +133,7 @@ class TestWatermarks:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(WatermarkDeleteResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkDeleteResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -147,7 +147,7 @@ class TestWatermarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         watermark = response.parse()
-        assert_matches_type(WatermarkDeleteResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkDeleteResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -161,7 +161,7 @@ class TestWatermarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             watermark = response.parse()
-            assert_matches_type(WatermarkDeleteResponse, watermark, path=["response"])
+            assert_matches_type(Optional[WatermarkDeleteResponse], watermark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -189,7 +189,7 @@ class TestWatermarks:
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WatermarkGetResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkGetResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -202,7 +202,7 @@ class TestWatermarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         watermark = response.parse()
-        assert_matches_type(WatermarkGetResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkGetResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -215,7 +215,7 @@ class TestWatermarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             watermark = response.parse()
-            assert_matches_type(WatermarkGetResponse, watermark, path=["response"])
+            assert_matches_type(Optional[WatermarkGetResponse], watermark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -245,7 +245,7 @@ class TestAsyncWatermarks:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="@/Users/rchen/Downloads/watermark.png",
         )
-        assert_matches_type(WatermarkCreateResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkCreateResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -259,7 +259,7 @@ class TestAsyncWatermarks:
             position="center",
             scale=0.1,
         )
-        assert_matches_type(WatermarkCreateResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkCreateResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -272,7 +272,7 @@ class TestAsyncWatermarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         watermark = await response.parse()
-        assert_matches_type(WatermarkCreateResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkCreateResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -285,7 +285,7 @@ class TestAsyncWatermarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             watermark = await response.parse()
-            assert_matches_type(WatermarkCreateResponse, watermark, path=["response"])
+            assert_matches_type(Optional[WatermarkCreateResponse], watermark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -348,7 +348,7 @@ class TestAsyncWatermarks:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(WatermarkDeleteResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkDeleteResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -362,7 +362,7 @@ class TestAsyncWatermarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         watermark = await response.parse()
-        assert_matches_type(WatermarkDeleteResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkDeleteResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -376,7 +376,7 @@ class TestAsyncWatermarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             watermark = await response.parse()
-            assert_matches_type(WatermarkDeleteResponse, watermark, path=["response"])
+            assert_matches_type(Optional[WatermarkDeleteResponse], watermark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -404,7 +404,7 @@ class TestAsyncWatermarks:
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(WatermarkGetResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkGetResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -417,7 +417,7 @@ class TestAsyncWatermarks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         watermark = await response.parse()
-        assert_matches_type(WatermarkGetResponse, watermark, path=["response"])
+        assert_matches_type(Optional[WatermarkGetResponse], watermark, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -430,7 +430,7 @@ class TestAsyncWatermarks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             watermark = await response.parse()
-            assert_matches_type(WatermarkGetResponse, watermark, path=["response"])
+            assert_matches_type(Optional[WatermarkGetResponse], watermark, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

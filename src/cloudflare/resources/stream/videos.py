@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -48,7 +48,7 @@ class Videos(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VideoStorageUsageResponse:
+    ) -> Optional[VideoStorageUsageResponse]:
         """
         Returns information about an account's storage use.
 
@@ -77,7 +77,7 @@ class Videos(SyncAPIResource):
                 query=maybe_transform({"creator": creator}, video_storage_usage_params.VideoStorageUsageParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[VideoStorageUsageResponse], ResultWrapper[VideoStorageUsageResponse]),
+            cast_to=cast(Type[Optional[VideoStorageUsageResponse]], ResultWrapper[VideoStorageUsageResponse]),
         )
 
 
@@ -101,7 +101,7 @@ class AsyncVideos(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VideoStorageUsageResponse:
+    ) -> Optional[VideoStorageUsageResponse]:
         """
         Returns information about an account's storage use.
 
@@ -132,7 +132,7 @@ class AsyncVideos(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[VideoStorageUsageResponse], ResultWrapper[VideoStorageUsageResponse]),
+            cast_to=cast(Type[Optional[VideoStorageUsageResponse]], ResultWrapper[VideoStorageUsageResponse]),
         )
 
 
