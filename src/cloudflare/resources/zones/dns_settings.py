@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -51,7 +51,7 @@ class DNSSettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSetting:
+    ) -> Optional[DNSSetting]:
         """
         Update DNS settings for a zone
 
@@ -97,7 +97,7 @@ class DNSSettings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSetting], ResultWrapper[DNSSetting]),
+            cast_to=cast(Type[Optional[DNSSetting]], ResultWrapper[DNSSetting]),
         )
 
     def get(
@@ -110,7 +110,7 @@ class DNSSettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSetting:
+    ) -> Optional[DNSSetting]:
         """
         Show DNS settings for a zone
 
@@ -136,7 +136,7 @@ class DNSSettings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSetting], ResultWrapper[DNSSetting]),
+            cast_to=cast(Type[Optional[DNSSetting]], ResultWrapper[DNSSetting]),
         )
 
 
@@ -163,7 +163,7 @@ class AsyncDNSSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSetting:
+    ) -> Optional[DNSSetting]:
         """
         Update DNS settings for a zone
 
@@ -209,7 +209,7 @@ class AsyncDNSSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSetting], ResultWrapper[DNSSetting]),
+            cast_to=cast(Type[Optional[DNSSetting]], ResultWrapper[DNSSetting]),
         )
 
     async def get(
@@ -222,7 +222,7 @@ class AsyncDNSSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSetting:
+    ) -> Optional[DNSSetting]:
         """
         Show DNS settings for a zone
 
@@ -248,7 +248,7 @@ class AsyncDNSSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DNSSetting], ResultWrapper[DNSSetting]),
+            cast_to=cast(Type[Optional[DNSSetting]], ResultWrapper[DNSSetting]),
         )
 
 
