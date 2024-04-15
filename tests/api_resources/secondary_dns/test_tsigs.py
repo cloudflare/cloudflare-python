@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -30,7 +30,7 @@ class TestTSIGs:
             name="tsig.customer.cf.",
             secret="caf79a7804b04337c9c66ccd7bef9190a1e1679b5dd03d8aa10f7ad45e1a9dab92b417896c15d4d007c7c14194538d2a5d0feffdecc5a7f0e1c570cfa700837c",
         )
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestTSIGs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tsig = response.parse()
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +60,7 @@ class TestTSIGs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tsig = response.parse()
-            assert_matches_type(TSIG, tsig, path=["response"])
+            assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +85,7 @@ class TestTSIGs:
             name="tsig.customer.cf.",
             secret="caf79a7804b04337c9c66ccd7bef9190a1e1679b5dd03d8aa10f7ad45e1a9dab92b417896c15d4d007c7c14194538d2a5d0feffdecc5a7f0e1c570cfa700837c",
         )
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -101,7 +101,7 @@ class TestTSIGs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tsig = response.parse()
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -117,7 +117,7 @@ class TestTSIGs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tsig = response.parse()
-            assert_matches_type(TSIG, tsig, path=["response"])
+            assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -192,7 +192,7 @@ class TestTSIGs:
             account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
-        assert_matches_type(TSIGDeleteResponse, tsig, path=["response"])
+        assert_matches_type(Optional[TSIGDeleteResponse], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +206,7 @@ class TestTSIGs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tsig = response.parse()
-        assert_matches_type(TSIGDeleteResponse, tsig, path=["response"])
+        assert_matches_type(Optional[TSIGDeleteResponse], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -220,7 +220,7 @@ class TestTSIGs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tsig = response.parse()
-            assert_matches_type(TSIGDeleteResponse, tsig, path=["response"])
+            assert_matches_type(Optional[TSIGDeleteResponse], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -248,7 +248,7 @@ class TestTSIGs:
             "69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -261,7 +261,7 @@ class TestTSIGs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tsig = response.parse()
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -274,7 +274,7 @@ class TestTSIGs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tsig = response.parse()
-            assert_matches_type(TSIG, tsig, path=["response"])
+            assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -306,7 +306,7 @@ class TestAsyncTSIGs:
             name="tsig.customer.cf.",
             secret="caf79a7804b04337c9c66ccd7bef9190a1e1679b5dd03d8aa10f7ad45e1a9dab92b417896c15d4d007c7c14194538d2a5d0feffdecc5a7f0e1c570cfa700837c",
         )
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -321,7 +321,7 @@ class TestAsyncTSIGs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tsig = await response.parse()
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -336,7 +336,7 @@ class TestAsyncTSIGs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tsig = await response.parse()
-            assert_matches_type(TSIG, tsig, path=["response"])
+            assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -361,7 +361,7 @@ class TestAsyncTSIGs:
             name="tsig.customer.cf.",
             secret="caf79a7804b04337c9c66ccd7bef9190a1e1679b5dd03d8aa10f7ad45e1a9dab92b417896c15d4d007c7c14194538d2a5d0feffdecc5a7f0e1c570cfa700837c",
         )
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -377,7 +377,7 @@ class TestAsyncTSIGs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tsig = await response.parse()
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -393,7 +393,7 @@ class TestAsyncTSIGs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tsig = await response.parse()
-            assert_matches_type(TSIG, tsig, path=["response"])
+            assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -468,7 +468,7 @@ class TestAsyncTSIGs:
             account_id="01a7362d577a6c3019a474fd6f485823",
             body={},
         )
-        assert_matches_type(TSIGDeleteResponse, tsig, path=["response"])
+        assert_matches_type(Optional[TSIGDeleteResponse], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -482,7 +482,7 @@ class TestAsyncTSIGs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tsig = await response.parse()
-        assert_matches_type(TSIGDeleteResponse, tsig, path=["response"])
+        assert_matches_type(Optional[TSIGDeleteResponse], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -496,7 +496,7 @@ class TestAsyncTSIGs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tsig = await response.parse()
-            assert_matches_type(TSIGDeleteResponse, tsig, path=["response"])
+            assert_matches_type(Optional[TSIGDeleteResponse], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -524,7 +524,7 @@ class TestAsyncTSIGs:
             "69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -537,7 +537,7 @@ class TestAsyncTSIGs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tsig = await response.parse()
-        assert_matches_type(TSIG, tsig, path=["response"])
+        assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -550,7 +550,7 @@ class TestAsyncTSIGs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tsig = await response.parse()
-            assert_matches_type(TSIG, tsig, path=["response"])
+            assert_matches_type(Optional[TSIG], tsig, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

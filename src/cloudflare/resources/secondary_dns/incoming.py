@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -58,7 +58,7 @@ class IncomingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IncomingCreateResponse:
+    ) -> Optional[IncomingCreateResponse]:
         """
         Create secondary zone configuration for incoming zone transfers.
 
@@ -97,7 +97,7 @@ class IncomingResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IncomingCreateResponse], ResultWrapper[IncomingCreateResponse]),
+            cast_to=cast(Type[Optional[IncomingCreateResponse]], ResultWrapper[IncomingCreateResponse]),
         )
 
     def update(
@@ -113,7 +113,7 @@ class IncomingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IncomingUpdateResponse:
+    ) -> Optional[IncomingUpdateResponse]:
         """
         Update secondary zone configuration for incoming zone transfers.
 
@@ -152,7 +152,7 @@ class IncomingResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IncomingUpdateResponse], ResultWrapper[IncomingUpdateResponse]),
+            cast_to=cast(Type[Optional[IncomingUpdateResponse]], ResultWrapper[IncomingUpdateResponse]),
         )
 
     def delete(
@@ -166,7 +166,7 @@ class IncomingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IncomingDeleteResponse:
+    ) -> Optional[IncomingDeleteResponse]:
         """
         Delete secondary zone configuration for incoming zone transfers.
 
@@ -191,7 +191,7 @@ class IncomingResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IncomingDeleteResponse], ResultWrapper[IncomingDeleteResponse]),
+            cast_to=cast(Type[Optional[IncomingDeleteResponse]], ResultWrapper[IncomingDeleteResponse]),
         )
 
     def get(
@@ -204,7 +204,7 @@ class IncomingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IncomingGetResponse:
+    ) -> Optional[IncomingGetResponse]:
         """
         Get secondary zone configuration for incoming zone transfers.
 
@@ -228,7 +228,7 @@ class IncomingResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IncomingGetResponse], ResultWrapper[IncomingGetResponse]),
+            cast_to=cast(Type[Optional[IncomingGetResponse]], ResultWrapper[IncomingGetResponse]),
         )
 
 
@@ -254,7 +254,7 @@ class AsyncIncomingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IncomingCreateResponse:
+    ) -> Optional[IncomingCreateResponse]:
         """
         Create secondary zone configuration for incoming zone transfers.
 
@@ -293,7 +293,7 @@ class AsyncIncomingResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IncomingCreateResponse], ResultWrapper[IncomingCreateResponse]),
+            cast_to=cast(Type[Optional[IncomingCreateResponse]], ResultWrapper[IncomingCreateResponse]),
         )
 
     async def update(
@@ -309,7 +309,7 @@ class AsyncIncomingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IncomingUpdateResponse:
+    ) -> Optional[IncomingUpdateResponse]:
         """
         Update secondary zone configuration for incoming zone transfers.
 
@@ -348,7 +348,7 @@ class AsyncIncomingResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IncomingUpdateResponse], ResultWrapper[IncomingUpdateResponse]),
+            cast_to=cast(Type[Optional[IncomingUpdateResponse]], ResultWrapper[IncomingUpdateResponse]),
         )
 
     async def delete(
@@ -362,7 +362,7 @@ class AsyncIncomingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IncomingDeleteResponse:
+    ) -> Optional[IncomingDeleteResponse]:
         """
         Delete secondary zone configuration for incoming zone transfers.
 
@@ -387,7 +387,7 @@ class AsyncIncomingResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IncomingDeleteResponse], ResultWrapper[IncomingDeleteResponse]),
+            cast_to=cast(Type[Optional[IncomingDeleteResponse]], ResultWrapper[IncomingDeleteResponse]),
         )
 
     async def get(
@@ -400,7 +400,7 @@ class AsyncIncomingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IncomingGetResponse:
+    ) -> Optional[IncomingGetResponse]:
         """
         Get secondary zone configuration for incoming zone transfers.
 
@@ -424,7 +424,7 @@ class AsyncIncomingResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[IncomingGetResponse], ResultWrapper[IncomingGetResponse]),
+            cast_to=cast(Type[Optional[IncomingGetResponse]], ResultWrapper[IncomingGetResponse]),
         )
 
 
