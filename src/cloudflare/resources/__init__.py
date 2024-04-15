@@ -584,6 +584,14 @@ from .custom_certificates import (
     CustomCertificatesWithStreamingResponse,
     AsyncCustomCertificatesWithStreamingResponse,
 )
+from .event_notifications import (
+    EventNotifications,
+    AsyncEventNotifications,
+    EventNotificationsWithRawResponse,
+    AsyncEventNotificationsWithRawResponse,
+    EventNotificationsWithStreamingResponse,
+    AsyncEventNotificationsWithStreamingResponse,
+)
 from .keyless_certificates import (
     KeylessCertificates,
     AsyncKeylessCertificates,
@@ -1122,4 +1130,10 @@ __all__ = [
     "AsyncCloudforceOneWithRawResponse",
     "CloudforceOneWithStreamingResponse",
     "AsyncCloudforceOneWithStreamingResponse",
+    "EventNotifications",
+    "AsyncEventNotifications",
+    "EventNotificationsWithRawResponse",
+    "AsyncEventNotificationsWithRawResponse",
+    "EventNotificationsWithStreamingResponse",
+    "AsyncEventNotificationsWithStreamingResponse",
 ]
