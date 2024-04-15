@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 
 import httpx
@@ -67,7 +67,7 @@ class Reports(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Report:
+    ) -> Optional[Report]:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -124,7 +124,7 @@ class Reports(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Report], ResultWrapper[Report]),
+            cast_to=cast(Type[Optional[Report]], ResultWrapper[Report]),
         )
 
 
@@ -158,7 +158,7 @@ class AsyncReports(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Report:
+    ) -> Optional[Report]:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -215,7 +215,7 @@ class AsyncReports(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Report], ResultWrapper[Report]),
+            cast_to=cast(Type[Optional[Report]], ResultWrapper[Report]),
         )
 
 
