@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestReports:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Report, report, path=["response"])
+        assert_matches_type(Optional[Report], report, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +41,7 @@ class TestReports:
             sort="+responseCode,-queryName",
             until=parse_datetime("2023-11-11T13:00:00Z"),
         )
-        assert_matches_type(Report, report, path=["response"])
+        assert_matches_type(Optional[Report], report, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -54,7 +54,7 @@ class TestReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         report = response.parse()
-        assert_matches_type(Report, report, path=["response"])
+        assert_matches_type(Optional[Report], report, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -67,7 +67,7 @@ class TestReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             report = response.parse()
-            assert_matches_type(Report, report, path=["response"])
+            assert_matches_type(Optional[Report], report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -97,7 +97,7 @@ class TestAsyncReports:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Report, report, path=["response"])
+        assert_matches_type(Optional[Report], report, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -113,7 +113,7 @@ class TestAsyncReports:
             sort="+responseCode,-queryName",
             until=parse_datetime("2023-11-11T13:00:00Z"),
         )
-        assert_matches_type(Report, report, path=["response"])
+        assert_matches_type(Optional[Report], report, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -126,7 +126,7 @@ class TestAsyncReports:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         report = await response.parse()
-        assert_matches_type(Report, report, path=["response"])
+        assert_matches_type(Optional[Report], report, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -139,7 +139,7 @@ class TestAsyncReports:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             report = await response.parse()
-            assert_matches_type(Report, report, path=["response"])
+            assert_matches_type(Optional[Report], report, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
