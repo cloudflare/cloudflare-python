@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -375,7 +375,7 @@ class Stream(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Video:
+    ) -> Optional[Video]:
         """
         Fetches details for a single video.
 
@@ -405,7 +405,7 @@ class Stream(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Video], ResultWrapper[Video]),
+            cast_to=cast(Type[Optional[Video]], ResultWrapper[Video]),
         )
 
 
@@ -647,7 +647,7 @@ class AsyncStream(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Video:
+    ) -> Optional[Video]:
         """
         Fetches details for a single video.
 
@@ -677,7 +677,7 @@ class AsyncStream(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Video], ResultWrapper[Video]),
+            cast_to=cast(Type[Optional[Video]], ResultWrapper[Video]),
         )
 
 

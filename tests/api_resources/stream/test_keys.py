@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -24,7 +24,7 @@ class TestKeys:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Keys, key, path=["response"])
+        assert_matches_type(Optional[Keys], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = response.parse()
-        assert_matches_type(Keys, key, path=["response"])
+        assert_matches_type(Optional[Keys], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = response.parse()
-            assert_matches_type(Keys, key, path=["response"])
+            assert_matches_type(Optional[Keys], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -71,7 +71,7 @@ class TestKeys:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(KeyDeleteResponse, key, path=["response"])
+        assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -85,7 +85,7 @@ class TestKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = response.parse()
-        assert_matches_type(KeyDeleteResponse, key, path=["response"])
+        assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,7 +99,7 @@ class TestKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = response.parse()
-            assert_matches_type(KeyDeleteResponse, key, path=["response"])
+            assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -126,7 +126,7 @@ class TestKeys:
         key = client.stream.keys.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(KeyGetResponse, key, path=["response"])
+        assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -138,7 +138,7 @@ class TestKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = response.parse()
-        assert_matches_type(KeyGetResponse, key, path=["response"])
+        assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -150,7 +150,7 @@ class TestKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = response.parse()
-            assert_matches_type(KeyGetResponse, key, path=["response"])
+            assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -173,7 +173,7 @@ class TestAsyncKeys:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Keys, key, path=["response"])
+        assert_matches_type(Optional[Keys], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -186,7 +186,7 @@ class TestAsyncKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = await response.parse()
-        assert_matches_type(Keys, key, path=["response"])
+        assert_matches_type(Optional[Keys], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -199,7 +199,7 @@ class TestAsyncKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = await response.parse()
-            assert_matches_type(Keys, key, path=["response"])
+            assert_matches_type(Optional[Keys], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -220,7 +220,7 @@ class TestAsyncKeys:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(KeyDeleteResponse, key, path=["response"])
+        assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -234,7 +234,7 @@ class TestAsyncKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = await response.parse()
-        assert_matches_type(KeyDeleteResponse, key, path=["response"])
+        assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -248,7 +248,7 @@ class TestAsyncKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = await response.parse()
-            assert_matches_type(KeyDeleteResponse, key, path=["response"])
+            assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -275,7 +275,7 @@ class TestAsyncKeys:
         key = await async_client.stream.keys.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(KeyGetResponse, key, path=["response"])
+        assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -287,7 +287,7 @@ class TestAsyncKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = await response.parse()
-        assert_matches_type(KeyGetResponse, key, path=["response"])
+        assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -299,7 +299,7 @@ class TestAsyncKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = await response.parse()
-            assert_matches_type(KeyGetResponse, key, path=["response"])
+            assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

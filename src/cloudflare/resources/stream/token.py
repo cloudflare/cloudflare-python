@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -54,7 +54,7 @@ class Token(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenCreateResponse:
+    ) -> Optional[TokenCreateResponse]:
         """Creates a signed URL token for a video.
 
         If a body is not provided in the
@@ -118,7 +118,7 @@ class Token(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TokenCreateResponse], ResultWrapper[TokenCreateResponse]),
+            cast_to=cast(Type[Optional[TokenCreateResponse]], ResultWrapper[TokenCreateResponse]),
         )
 
 
@@ -148,7 +148,7 @@ class AsyncToken(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenCreateResponse:
+    ) -> Optional[TokenCreateResponse]:
         """Creates a signed URL token for a video.
 
         If a body is not provided in the
@@ -212,7 +212,7 @@ class AsyncToken(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TokenCreateResponse], ResultWrapper[TokenCreateResponse]),
+            cast_to=cast(Type[Optional[TokenCreateResponse]], ResultWrapper[TokenCreateResponse]),
         )
 
 

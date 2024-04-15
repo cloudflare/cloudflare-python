@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -54,7 +54,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookUpdateResponse:
+    ) -> Optional[WebhookUpdateResponse]:
         """
         Creates a webhook notification.
 
@@ -74,7 +74,7 @@ class Webhooks(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookUpdateResponse,
+            Optional[WebhookUpdateResponse],
             self._put(
                 f"/accounts/{account_id}/stream/webhook",
                 body=maybe_transform({"notification_url": notification_url}, webhook_update_params.WebhookUpdateParams),
@@ -102,7 +102,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookDeleteResponse:
+    ) -> Optional[WebhookDeleteResponse]:
         """
         Deletes a webhook.
 
@@ -120,7 +120,7 @@ class Webhooks(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookDeleteResponse,
+            Optional[WebhookDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/stream/webhook",
                 body=maybe_transform(body, webhook_delete_params.WebhookDeleteParams),
@@ -147,7 +147,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookGetResponse:
+    ) -> Optional[WebhookGetResponse]:
         """
         Retrieves a list of webhooks.
 
@@ -165,7 +165,7 @@ class Webhooks(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookGetResponse,
+            Optional[WebhookGetResponse],
             self._get(
                 f"/accounts/{account_id}/stream/webhook",
                 options=make_request_options(
@@ -202,7 +202,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookUpdateResponse:
+    ) -> Optional[WebhookUpdateResponse]:
         """
         Creates a webhook notification.
 
@@ -222,7 +222,7 @@ class AsyncWebhooks(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookUpdateResponse,
+            Optional[WebhookUpdateResponse],
             await self._put(
                 f"/accounts/{account_id}/stream/webhook",
                 body=await async_maybe_transform(
@@ -252,7 +252,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookDeleteResponse:
+    ) -> Optional[WebhookDeleteResponse]:
         """
         Deletes a webhook.
 
@@ -270,7 +270,7 @@ class AsyncWebhooks(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookDeleteResponse,
+            Optional[WebhookDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/stream/webhook",
                 body=await async_maybe_transform(body, webhook_delete_params.WebhookDeleteParams),
@@ -297,7 +297,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookGetResponse:
+    ) -> Optional[WebhookGetResponse]:
         """
         Retrieves a list of webhooks.
 
@@ -315,7 +315,7 @@ class AsyncWebhooks(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            WebhookGetResponse,
+            Optional[WebhookGetResponse],
             await self._get(
                 f"/accounts/{account_id}/stream/webhook",
                 options=make_request_options(

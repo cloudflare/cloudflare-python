@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
+from typing import List, Type, Union, Optional, cast
 from datetime import datetime
 
 import httpx
@@ -57,7 +57,7 @@ class Copy(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Video:
+    ) -> Optional[Video]:
         """
         Uploads a video to Stream from a provided URL.
 
@@ -121,7 +121,7 @@ class Copy(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Video], ResultWrapper[Video]),
+            cast_to=cast(Type[Optional[Video]], ResultWrapper[Video]),
         )
 
 
@@ -152,7 +152,7 @@ class AsyncCopy(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Video:
+    ) -> Optional[Video]:
         """
         Uploads a video to Stream from a provided URL.
 
@@ -216,7 +216,7 @@ class AsyncCopy(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Video], ResultWrapper[Video]),
+            cast_to=cast(Type[Optional[Video]], ResultWrapper[Video]),
         )
 
 
