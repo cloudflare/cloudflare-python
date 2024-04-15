@@ -73,7 +73,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -133,7 +133,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -192,7 +192,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -248,7 +248,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -305,7 +305,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -364,7 +364,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -420,7 +420,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -476,7 +476,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -532,7 +532,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -589,7 +589,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -648,7 +648,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -704,7 +704,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -760,7 +760,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -816,7 +816,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -872,7 +872,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -930,7 +930,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -986,7 +986,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -1042,7 +1042,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -1098,7 +1098,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -1155,7 +1155,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -1268,11 +1268,11 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            Record,
+            Optional[Record],
             self._post(
                 f"/zones/{zone_id}/dns_records",
                 body=maybe_transform(
@@ -1321,7 +1321,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1383,7 +1383,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1444,7 +1444,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1502,7 +1502,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1561,7 +1561,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1622,7 +1622,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1680,7 +1680,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1738,7 +1738,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1796,7 +1796,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1855,7 +1855,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1916,7 +1916,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -1974,7 +1974,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -2032,7 +2032,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -2090,7 +2090,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -2148,7 +2148,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -2208,7 +2208,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -2266,7 +2266,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -2324,7 +2324,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -2382,7 +2382,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -2441,7 +2441,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -2556,13 +2556,13 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Record,
+            Optional[Record],
             self._put(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
@@ -2782,7 +2782,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -2844,7 +2844,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -2905,7 +2905,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -2963,7 +2963,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3022,7 +3022,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3083,7 +3083,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3141,7 +3141,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3199,7 +3199,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3257,7 +3257,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3316,7 +3316,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3377,7 +3377,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3435,7 +3435,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3493,7 +3493,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3551,7 +3551,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3609,7 +3609,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3669,7 +3669,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3727,7 +3727,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3785,7 +3785,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3843,7 +3843,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -3902,7 +3902,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -4017,13 +4017,13 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Record,
+            Optional[Record],
             self._patch(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
@@ -4106,7 +4106,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         DNS Record Details
 
@@ -4128,7 +4128,7 @@ class Records(SyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Record,
+            Optional[Record],
             self._get(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 options=make_request_options(
@@ -4156,7 +4156,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordImportResponse:
+    ) -> Optional[RecordImportResponse]:
         """
         You can upload your
         [BIND config](https://en.wikipedia.org/wiki/Zone_file "Zone file") through this
@@ -4206,7 +4206,7 @@ class Records(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RecordImportResponse], ResultWrapper[RecordImportResponse]),
+            cast_to=cast(Type[Optional[RecordImportResponse]], ResultWrapper[RecordImportResponse]),
         )
 
     def scan(
@@ -4220,7 +4220,7 @@ class Records(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordScanResponse:
+    ) -> Optional[RecordScanResponse]:
         """
         Scan for common DNS records on your domain and automatically add them to your
         zone. Useful if you haven't updated your nameservers yet.
@@ -4248,7 +4248,7 @@ class Records(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RecordScanResponse], ResultWrapper[RecordScanResponse]),
+            cast_to=cast(Type[Optional[RecordScanResponse]], ResultWrapper[RecordScanResponse]),
         )
 
 
@@ -4279,7 +4279,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4339,7 +4339,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4398,7 +4398,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4454,7 +4454,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4511,7 +4511,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4570,7 +4570,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4626,7 +4626,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4682,7 +4682,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4738,7 +4738,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4795,7 +4795,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4854,7 +4854,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4910,7 +4910,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -4966,7 +4966,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -5022,7 +5022,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -5078,7 +5078,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -5136,7 +5136,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -5192,7 +5192,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -5248,7 +5248,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -5304,7 +5304,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -5361,7 +5361,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         Create a new DNS record for a zone.
 
@@ -5474,11 +5474,11 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            Record,
+            Optional[Record],
             await self._post(
                 f"/zones/{zone_id}/dns_records",
                 body=await async_maybe_transform(
@@ -5527,7 +5527,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -5589,7 +5589,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -5650,7 +5650,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -5708,7 +5708,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -5767,7 +5767,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -5828,7 +5828,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -5886,7 +5886,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -5944,7 +5944,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6002,7 +6002,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6061,7 +6061,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6122,7 +6122,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6180,7 +6180,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6238,7 +6238,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6296,7 +6296,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6354,7 +6354,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6414,7 +6414,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6472,7 +6472,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6530,7 +6530,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6588,7 +6588,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6647,7 +6647,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Overwrite an existing DNS record.
 
         Notes:
@@ -6762,13 +6762,13 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Record,
+            Optional[Record],
             await self._put(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
@@ -6988,7 +6988,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7050,7 +7050,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7111,7 +7111,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7169,7 +7169,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7228,7 +7228,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7289,7 +7289,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7347,7 +7347,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7405,7 +7405,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7463,7 +7463,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7522,7 +7522,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7583,7 +7583,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7641,7 +7641,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7699,7 +7699,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7757,7 +7757,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7815,7 +7815,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7875,7 +7875,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7933,7 +7933,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -7991,7 +7991,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -8049,7 +8049,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -8108,7 +8108,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """Update an existing DNS record.
 
         Notes:
@@ -8223,13 +8223,13 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Record,
+            Optional[Record],
             await self._patch(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
@@ -8312,7 +8312,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Record:
+    ) -> Optional[Record]:
         """
         DNS Record Details
 
@@ -8334,7 +8334,7 @@ class AsyncRecords(AsyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Record,
+            Optional[Record],
             await self._get(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 options=make_request_options(
@@ -8362,7 +8362,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordImportResponse:
+    ) -> Optional[RecordImportResponse]:
         """
         You can upload your
         [BIND config](https://en.wikipedia.org/wiki/Zone_file "Zone file") through this
@@ -8412,7 +8412,7 @@ class AsyncRecords(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RecordImportResponse], ResultWrapper[RecordImportResponse]),
+            cast_to=cast(Type[Optional[RecordImportResponse]], ResultWrapper[RecordImportResponse]),
         )
 
     async def scan(
@@ -8426,7 +8426,7 @@ class AsyncRecords(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RecordScanResponse:
+    ) -> Optional[RecordScanResponse]:
         """
         Scan for common DNS records on your domain and automatically add them to your
         zone. Useful if you haven't updated your nameservers yet.
@@ -8454,7 +8454,7 @@ class AsyncRecords(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[RecordScanResponse], ResultWrapper[RecordScanResponse]),
+            cast_to=cast(Type[Optional[RecordScanResponse]], ResultWrapper[RecordScanResponse]),
         )
 
 
