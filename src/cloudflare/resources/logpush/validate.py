@@ -75,12 +75,6 @@ class Validate(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -88,6 +82,9 @@ class Validate(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
@@ -140,12 +137,6 @@ class Validate(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -153,6 +144,9 @@ class Validate(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
@@ -211,12 +205,6 @@ class AsyncValidate(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -224,6 +212,9 @@ class AsyncValidate(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
@@ -276,12 +267,6 @@ class AsyncValidate(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -289,6 +274,9 @@ class AsyncValidate(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(

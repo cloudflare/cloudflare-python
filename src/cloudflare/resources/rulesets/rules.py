@@ -996,12 +996,6 @@ class Rules(SyncAPIResource):
     ) -> RuleCreateResponse:
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1009,6 +1003,9 @@ class Rules(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
@@ -1074,12 +1071,6 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1087,6 +1078,9 @@ class Rules(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
@@ -2086,12 +2080,6 @@ class Rules(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -2099,6 +2087,9 @@ class Rules(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._patch(
@@ -3086,12 +3077,6 @@ class AsyncRules(AsyncAPIResource):
     ) -> RuleCreateResponse:
         if not ruleset_id:
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3099,6 +3084,9 @@ class AsyncRules(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
@@ -3164,12 +3152,6 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3177,6 +3159,9 @@ class AsyncRules(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
@@ -4176,12 +4161,6 @@ class AsyncRules(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -4189,6 +4168,9 @@ class AsyncRules(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._patch(
