@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -50,7 +50,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACL:
+    ) -> Optional[ACL]:
         """
         Create ACL.
 
@@ -75,7 +75,7 @@ class ACLs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
+            cast_to=cast(Type[Optional[ACL]], ResultWrapper[ACL]),
         )
 
     def update(
@@ -91,7 +91,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACL:
+    ) -> Optional[ACL]:
         """
         Modify ACL.
 
@@ -132,7 +132,7 @@ class ACLs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
+            cast_to=cast(Type[Optional[ACL]], ResultWrapper[ACL]),
         )
 
     def list(
@@ -181,7 +181,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLDeleteResponse:
+    ) -> Optional[ACLDeleteResponse]:
         """
         Delete ACL.
 
@@ -208,7 +208,7 @@ class ACLs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACLDeleteResponse], ResultWrapper[ACLDeleteResponse]),
+            cast_to=cast(Type[Optional[ACLDeleteResponse]], ResultWrapper[ACLDeleteResponse]),
         )
 
     def get(
@@ -222,7 +222,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACL:
+    ) -> Optional[ACL]:
         """
         Get ACL.
 
@@ -248,7 +248,7 @@ class ACLs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
+            cast_to=cast(Type[Optional[ACL]], ResultWrapper[ACL]),
         )
 
 
@@ -272,7 +272,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACL:
+    ) -> Optional[ACL]:
         """
         Create ACL.
 
@@ -297,7 +297,7 @@ class AsyncACLs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
+            cast_to=cast(Type[Optional[ACL]], ResultWrapper[ACL]),
         )
 
     async def update(
@@ -313,7 +313,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACL:
+    ) -> Optional[ACL]:
         """
         Modify ACL.
 
@@ -354,7 +354,7 @@ class AsyncACLs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
+            cast_to=cast(Type[Optional[ACL]], ResultWrapper[ACL]),
         )
 
     def list(
@@ -403,7 +403,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLDeleteResponse:
+    ) -> Optional[ACLDeleteResponse]:
         """
         Delete ACL.
 
@@ -430,7 +430,7 @@ class AsyncACLs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACLDeleteResponse], ResultWrapper[ACLDeleteResponse]),
+            cast_to=cast(Type[Optional[ACLDeleteResponse]], ResultWrapper[ACLDeleteResponse]),
         )
 
     async def get(
@@ -444,7 +444,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACL:
+    ) -> Optional[ACL]:
         """
         Get ACL.
 
@@ -470,7 +470,7 @@ class AsyncACLs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
+            cast_to=cast(Type[Optional[ACL]], ResultWrapper[ACL]),
         )
 
 
