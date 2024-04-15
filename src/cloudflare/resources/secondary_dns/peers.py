@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -50,7 +50,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Peer:
+    ) -> Optional[Peer]:
         """
         Create Peer.
 
@@ -75,7 +75,7 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
+            cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
 
     def update(
@@ -94,7 +94,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Peer:
+    ) -> Optional[Peer]:
         """
         Modify Peer.
 
@@ -146,7 +146,7 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
+            cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
 
     def list(
@@ -195,7 +195,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PeerDeleteResponse:
+    ) -> Optional[PeerDeleteResponse]:
         """
         Delete Peer.
 
@@ -222,7 +222,7 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PeerDeleteResponse], ResultWrapper[PeerDeleteResponse]),
+            cast_to=cast(Type[Optional[PeerDeleteResponse]], ResultWrapper[PeerDeleteResponse]),
         )
 
     def get(
@@ -236,7 +236,7 @@ class Peers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Peer:
+    ) -> Optional[Peer]:
         """
         Get Peer.
 
@@ -262,7 +262,7 @@ class Peers(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
+            cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
 
 
@@ -286,7 +286,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Peer:
+    ) -> Optional[Peer]:
         """
         Create Peer.
 
@@ -311,7 +311,7 @@ class AsyncPeers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
+            cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
 
     async def update(
@@ -330,7 +330,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Peer:
+    ) -> Optional[Peer]:
         """
         Modify Peer.
 
@@ -382,7 +382,7 @@ class AsyncPeers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
+            cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
 
     def list(
@@ -431,7 +431,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PeerDeleteResponse:
+    ) -> Optional[PeerDeleteResponse]:
         """
         Delete Peer.
 
@@ -458,7 +458,7 @@ class AsyncPeers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[PeerDeleteResponse], ResultWrapper[PeerDeleteResponse]),
+            cast_to=cast(Type[Optional[PeerDeleteResponse]], ResultWrapper[PeerDeleteResponse]),
         )
 
     async def get(
@@ -472,7 +472,7 @@ class AsyncPeers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Peer:
+    ) -> Optional[Peer]:
         """
         Get Peer.
 
@@ -498,7 +498,7 @@ class AsyncPeers(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Peer], ResultWrapper[Peer]),
+            cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
 
 

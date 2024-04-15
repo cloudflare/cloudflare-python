@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -31,7 +31,7 @@ class TestIncoming:
             name="www.example.com.",
             peers=["23ff594956f20c2a721606e94745a8aa", "00920f38ce07c2e2f4df50b1f61d4194"],
         )
-        assert_matches_type(IncomingCreateResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingCreateResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -46,7 +46,7 @@ class TestIncoming:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         incoming = response.parse()
-        assert_matches_type(IncomingCreateResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingCreateResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -61,7 +61,7 @@ class TestIncoming:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             incoming = response.parse()
-            assert_matches_type(IncomingCreateResponse, incoming, path=["response"])
+            assert_matches_type(Optional[IncomingCreateResponse], incoming, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +85,7 @@ class TestIncoming:
             name="www.example.com.",
             peers=["23ff594956f20c2a721606e94745a8aa", "00920f38ce07c2e2f4df50b1f61d4194"],
         )
-        assert_matches_type(IncomingUpdateResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingUpdateResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +100,7 @@ class TestIncoming:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         incoming = response.parse()
-        assert_matches_type(IncomingUpdateResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingUpdateResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -115,7 +115,7 @@ class TestIncoming:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             incoming = response.parse()
-            assert_matches_type(IncomingUpdateResponse, incoming, path=["response"])
+            assert_matches_type(Optional[IncomingUpdateResponse], incoming, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -137,7 +137,7 @@ class TestIncoming:
             zone_id="269d8f4853475ca241c4e730be286b20",
             body={},
         )
-        assert_matches_type(IncomingDeleteResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingDeleteResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -150,7 +150,7 @@ class TestIncoming:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         incoming = response.parse()
-        assert_matches_type(IncomingDeleteResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingDeleteResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -163,7 +163,7 @@ class TestIncoming:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             incoming = response.parse()
-            assert_matches_type(IncomingDeleteResponse, incoming, path=["response"])
+            assert_matches_type(Optional[IncomingDeleteResponse], incoming, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -182,7 +182,7 @@ class TestIncoming:
         incoming = client.secondary_dns.incoming.get(
             zone_id="269d8f4853475ca241c4e730be286b20",
         )
-        assert_matches_type(IncomingGetResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingGetResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -194,7 +194,7 @@ class TestIncoming:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         incoming = response.parse()
-        assert_matches_type(IncomingGetResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingGetResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +206,7 @@ class TestIncoming:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             incoming = response.parse()
-            assert_matches_type(IncomingGetResponse, incoming, path=["response"])
+            assert_matches_type(Optional[IncomingGetResponse], incoming, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -231,7 +231,7 @@ class TestAsyncIncoming:
             name="www.example.com.",
             peers=["23ff594956f20c2a721606e94745a8aa", "00920f38ce07c2e2f4df50b1f61d4194"],
         )
-        assert_matches_type(IncomingCreateResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingCreateResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -246,7 +246,7 @@ class TestAsyncIncoming:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         incoming = await response.parse()
-        assert_matches_type(IncomingCreateResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingCreateResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -261,7 +261,7 @@ class TestAsyncIncoming:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             incoming = await response.parse()
-            assert_matches_type(IncomingCreateResponse, incoming, path=["response"])
+            assert_matches_type(Optional[IncomingCreateResponse], incoming, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -285,7 +285,7 @@ class TestAsyncIncoming:
             name="www.example.com.",
             peers=["23ff594956f20c2a721606e94745a8aa", "00920f38ce07c2e2f4df50b1f61d4194"],
         )
-        assert_matches_type(IncomingUpdateResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingUpdateResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -300,7 +300,7 @@ class TestAsyncIncoming:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         incoming = await response.parse()
-        assert_matches_type(IncomingUpdateResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingUpdateResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -315,7 +315,7 @@ class TestAsyncIncoming:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             incoming = await response.parse()
-            assert_matches_type(IncomingUpdateResponse, incoming, path=["response"])
+            assert_matches_type(Optional[IncomingUpdateResponse], incoming, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -337,7 +337,7 @@ class TestAsyncIncoming:
             zone_id="269d8f4853475ca241c4e730be286b20",
             body={},
         )
-        assert_matches_type(IncomingDeleteResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingDeleteResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -350,7 +350,7 @@ class TestAsyncIncoming:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         incoming = await response.parse()
-        assert_matches_type(IncomingDeleteResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingDeleteResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -363,7 +363,7 @@ class TestAsyncIncoming:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             incoming = await response.parse()
-            assert_matches_type(IncomingDeleteResponse, incoming, path=["response"])
+            assert_matches_type(Optional[IncomingDeleteResponse], incoming, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -382,7 +382,7 @@ class TestAsyncIncoming:
         incoming = await async_client.secondary_dns.incoming.get(
             zone_id="269d8f4853475ca241c4e730be286b20",
         )
-        assert_matches_type(IncomingGetResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingGetResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -394,7 +394,7 @@ class TestAsyncIncoming:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         incoming = await response.parse()
-        assert_matches_type(IncomingGetResponse, incoming, path=["response"])
+        assert_matches_type(Optional[IncomingGetResponse], incoming, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -406,7 +406,7 @@ class TestAsyncIncoming:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             incoming = await response.parse()
-            assert_matches_type(IncomingGetResponse, incoming, path=["response"])
+            assert_matches_type(Optional[IncomingGetResponse], incoming, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -72,7 +72,7 @@ class OutgoingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutgoingCreateResponse:
+    ) -> Optional[OutgoingCreateResponse]:
         """
         Create primary zone configuration for outgoing zone transfers.
 
@@ -107,7 +107,7 @@ class OutgoingResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutgoingCreateResponse], ResultWrapper[OutgoingCreateResponse]),
+            cast_to=cast(Type[Optional[OutgoingCreateResponse]], ResultWrapper[OutgoingCreateResponse]),
         )
 
     def update(
@@ -122,7 +122,7 @@ class OutgoingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutgoingUpdateResponse:
+    ) -> Optional[OutgoingUpdateResponse]:
         """
         Update primary zone configuration for outgoing zone transfers.
 
@@ -157,7 +157,7 @@ class OutgoingResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutgoingUpdateResponse], ResultWrapper[OutgoingUpdateResponse]),
+            cast_to=cast(Type[Optional[OutgoingUpdateResponse]], ResultWrapper[OutgoingUpdateResponse]),
         )
 
     def delete(
@@ -171,7 +171,7 @@ class OutgoingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutgoingDeleteResponse:
+    ) -> Optional[OutgoingDeleteResponse]:
         """
         Delete primary zone configuration for outgoing zone transfers.
 
@@ -196,7 +196,7 @@ class OutgoingResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutgoingDeleteResponse], ResultWrapper[OutgoingDeleteResponse]),
+            cast_to=cast(Type[Optional[OutgoingDeleteResponse]], ResultWrapper[OutgoingDeleteResponse]),
         )
 
     def disable(
@@ -327,7 +327,7 @@ class OutgoingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutgoingGetResponse:
+    ) -> Optional[OutgoingGetResponse]:
         """
         Get primary zone configuration for outgoing zone transfers.
 
@@ -351,7 +351,7 @@ class OutgoingResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutgoingGetResponse], ResultWrapper[OutgoingGetResponse]),
+            cast_to=cast(Type[Optional[OutgoingGetResponse]], ResultWrapper[OutgoingGetResponse]),
         )
 
 
@@ -380,7 +380,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutgoingCreateResponse:
+    ) -> Optional[OutgoingCreateResponse]:
         """
         Create primary zone configuration for outgoing zone transfers.
 
@@ -415,7 +415,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutgoingCreateResponse], ResultWrapper[OutgoingCreateResponse]),
+            cast_to=cast(Type[Optional[OutgoingCreateResponse]], ResultWrapper[OutgoingCreateResponse]),
         )
 
     async def update(
@@ -430,7 +430,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutgoingUpdateResponse:
+    ) -> Optional[OutgoingUpdateResponse]:
         """
         Update primary zone configuration for outgoing zone transfers.
 
@@ -465,7 +465,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutgoingUpdateResponse], ResultWrapper[OutgoingUpdateResponse]),
+            cast_to=cast(Type[Optional[OutgoingUpdateResponse]], ResultWrapper[OutgoingUpdateResponse]),
         )
 
     async def delete(
@@ -479,7 +479,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutgoingDeleteResponse:
+    ) -> Optional[OutgoingDeleteResponse]:
         """
         Delete primary zone configuration for outgoing zone transfers.
 
@@ -504,7 +504,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutgoingDeleteResponse], ResultWrapper[OutgoingDeleteResponse]),
+            cast_to=cast(Type[Optional[OutgoingDeleteResponse]], ResultWrapper[OutgoingDeleteResponse]),
         )
 
     async def disable(
@@ -635,7 +635,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OutgoingGetResponse:
+    ) -> Optional[OutgoingGetResponse]:
         """
         Get primary zone configuration for outgoing zone transfers.
 
@@ -659,7 +659,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[OutgoingGetResponse], ResultWrapper[OutgoingGetResponse]),
+            cast_to=cast(Type[Optional[OutgoingGetResponse]], ResultWrapper[OutgoingGetResponse]),
         )
 
 
