@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -24,7 +24,7 @@ class TestCalls:
         call = client.calls.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CallsAppWithSecret], call, path=["response"])
+        assert_matches_type(CallsAppWithSecret, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -33,7 +33,7 @@ class TestCalls:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="production-realtime-app",
         )
-        assert_matches_type(Optional[CallsAppWithSecret], call, path=["response"])
+        assert_matches_type(CallsAppWithSecret, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = response.parse()
-        assert_matches_type(Optional[CallsAppWithSecret], call, path=["response"])
+        assert_matches_type(CallsAppWithSecret, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = response.parse()
-            assert_matches_type(Optional[CallsAppWithSecret], call, path=["response"])
+            assert_matches_type(CallsAppWithSecret, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -76,7 +76,7 @@ class TestCalls:
             "2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -86,7 +86,7 @@ class TestCalls:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="production-realtime-app",
         )
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,7 +99,7 @@ class TestCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = response.parse()
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -112,7 +112,7 @@ class TestCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = response.parse()
-            assert_matches_type(Optional[CallsApp], call, path=["response"])
+            assert_matches_type(CallsApp, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -180,7 +180,7 @@ class TestCalls:
             "2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -193,7 +193,7 @@ class TestCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = response.parse()
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +206,7 @@ class TestCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = response.parse()
-            assert_matches_type(Optional[CallsApp], call, path=["response"])
+            assert_matches_type(CallsApp, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -232,7 +232,7 @@ class TestCalls:
             "2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -245,7 +245,7 @@ class TestCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = response.parse()
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -258,7 +258,7 @@ class TestCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = response.parse()
-            assert_matches_type(Optional[CallsApp], call, path=["response"])
+            assert_matches_type(CallsApp, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -287,7 +287,7 @@ class TestAsyncCalls:
         call = await async_client.calls.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CallsAppWithSecret], call, path=["response"])
+        assert_matches_type(CallsAppWithSecret, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -296,7 +296,7 @@ class TestAsyncCalls:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="production-realtime-app",
         )
-        assert_matches_type(Optional[CallsAppWithSecret], call, path=["response"])
+        assert_matches_type(CallsAppWithSecret, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -308,7 +308,7 @@ class TestAsyncCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = await response.parse()
-        assert_matches_type(Optional[CallsAppWithSecret], call, path=["response"])
+        assert_matches_type(CallsAppWithSecret, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -320,7 +320,7 @@ class TestAsyncCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = await response.parse()
-            assert_matches_type(Optional[CallsAppWithSecret], call, path=["response"])
+            assert_matches_type(CallsAppWithSecret, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -339,7 +339,7 @@ class TestAsyncCalls:
             "2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -349,7 +349,7 @@ class TestAsyncCalls:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="production-realtime-app",
         )
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -362,7 +362,7 @@ class TestAsyncCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = await response.parse()
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -375,7 +375,7 @@ class TestAsyncCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = await response.parse()
-            assert_matches_type(Optional[CallsApp], call, path=["response"])
+            assert_matches_type(CallsApp, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -443,7 +443,7 @@ class TestAsyncCalls:
             "2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -456,7 +456,7 @@ class TestAsyncCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = await response.parse()
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -469,7 +469,7 @@ class TestAsyncCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = await response.parse()
-            assert_matches_type(Optional[CallsApp], call, path=["response"])
+            assert_matches_type(CallsApp, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -495,7 +495,7 @@ class TestAsyncCalls:
             "2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -508,7 +508,7 @@ class TestAsyncCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = await response.parse()
-        assert_matches_type(Optional[CallsApp], call, path=["response"])
+        assert_matches_type(CallsApp, call, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -521,7 +521,7 @@ class TestAsyncCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = await response.parse()
-            assert_matches_type(Optional[CallsApp], call, path=["response"])
+            assert_matches_type(CallsApp, call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
