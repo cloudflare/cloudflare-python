@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestTraces:
             method="PUT",
             url="https://some.zone/some_path",
         )
-        assert_matches_type(TraceCreateResponse, trace, path=["response"])
+        assert_matches_type(Optional[TraceCreateResponse], trace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -67,7 +67,7 @@ class TestTraces:
             protocol="HTTP/1.1",
             skip_response=True,
         )
-        assert_matches_type(TraceCreateResponse, trace, path=["response"])
+        assert_matches_type(Optional[TraceCreateResponse], trace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestTraces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trace = response.parse()
-        assert_matches_type(TraceCreateResponse, trace, path=["response"])
+        assert_matches_type(Optional[TraceCreateResponse], trace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -95,7 +95,7 @@ class TestTraces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trace = response.parse()
-            assert_matches_type(TraceCreateResponse, trace, path=["response"])
+            assert_matches_type(Optional[TraceCreateResponse], trace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -121,7 +121,7 @@ class TestAsyncTraces:
             method="PUT",
             url="https://some.zone/some_path",
         )
-        assert_matches_type(TraceCreateResponse, trace, path=["response"])
+        assert_matches_type(Optional[TraceCreateResponse], trace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -163,7 +163,7 @@ class TestAsyncTraces:
             protocol="HTTP/1.1",
             skip_response=True,
         )
-        assert_matches_type(TraceCreateResponse, trace, path=["response"])
+        assert_matches_type(Optional[TraceCreateResponse], trace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -177,7 +177,7 @@ class TestAsyncTraces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         trace = await response.parse()
-        assert_matches_type(TraceCreateResponse, trace, path=["response"])
+        assert_matches_type(Optional[TraceCreateResponse], trace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -191,7 +191,7 @@ class TestAsyncTraces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             trace = await response.parse()
-            assert_matches_type(TraceCreateResponse, trace, path=["response"])
+            assert_matches_type(Optional[TraceCreateResponse], trace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
