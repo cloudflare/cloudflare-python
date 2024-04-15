@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -29,7 +29,7 @@ class TestDownloads:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(DownloadCreateResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadCreateResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +43,7 @@ class TestDownloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         download = response.parse()
-        assert_matches_type(DownloadCreateResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadCreateResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestDownloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             download = response.parse()
-            assert_matches_type(DownloadCreateResponse, download, path=["response"])
+            assert_matches_type(Optional[DownloadCreateResponse], download, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +85,7 @@ class TestDownloads:
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DownloadDeleteResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadDeleteResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -98,7 +98,7 @@ class TestDownloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         download = response.parse()
-        assert_matches_type(DownloadDeleteResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadDeleteResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -111,7 +111,7 @@ class TestDownloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             download = response.parse()
-            assert_matches_type(DownloadDeleteResponse, download, path=["response"])
+            assert_matches_type(Optional[DownloadDeleteResponse], download, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -137,7 +137,7 @@ class TestDownloads:
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DownloadGetResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadGetResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -150,7 +150,7 @@ class TestDownloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         download = response.parse()
-        assert_matches_type(DownloadGetResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadGetResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -163,7 +163,7 @@ class TestDownloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             download = response.parse()
-            assert_matches_type(DownloadGetResponse, download, path=["response"])
+            assert_matches_type(Optional[DownloadGetResponse], download, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -194,7 +194,7 @@ class TestAsyncDownloads:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(DownloadCreateResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadCreateResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -208,7 +208,7 @@ class TestAsyncDownloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         download = await response.parse()
-        assert_matches_type(DownloadCreateResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadCreateResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -222,7 +222,7 @@ class TestAsyncDownloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             download = await response.parse()
-            assert_matches_type(DownloadCreateResponse, download, path=["response"])
+            assert_matches_type(Optional[DownloadCreateResponse], download, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -250,7 +250,7 @@ class TestAsyncDownloads:
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DownloadDeleteResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadDeleteResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -263,7 +263,7 @@ class TestAsyncDownloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         download = await response.parse()
-        assert_matches_type(DownloadDeleteResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadDeleteResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -276,7 +276,7 @@ class TestAsyncDownloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             download = await response.parse()
-            assert_matches_type(DownloadDeleteResponse, download, path=["response"])
+            assert_matches_type(Optional[DownloadDeleteResponse], download, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -302,7 +302,7 @@ class TestAsyncDownloads:
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DownloadGetResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadGetResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -315,7 +315,7 @@ class TestAsyncDownloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         download = await response.parse()
-        assert_matches_type(DownloadGetResponse, download, path=["response"])
+        assert_matches_type(Optional[DownloadGetResponse], download, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -328,7 +328,7 @@ class TestAsyncDownloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             download = await response.parse()
-            assert_matches_type(DownloadGetResponse, download, path=["response"])
+            assert_matches_type(Optional[DownloadGetResponse], download, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

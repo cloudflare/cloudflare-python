@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestCopy:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
         )
-        assert_matches_type(Video, copy, path=["response"])
+        assert_matches_type(Optional[Video], copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +41,7 @@ class TestCopy:
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
         )
-        assert_matches_type(Video, copy, path=["response"])
+        assert_matches_type(Optional[Video], copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -54,7 +54,7 @@ class TestCopy:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         copy = response.parse()
-        assert_matches_type(Video, copy, path=["response"])
+        assert_matches_type(Optional[Video], copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -67,7 +67,7 @@ class TestCopy:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             copy = response.parse()
-            assert_matches_type(Video, copy, path=["response"])
+            assert_matches_type(Optional[Video], copy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,7 +91,7 @@ class TestAsyncCopy:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://example.com/myvideo.mp4",
         )
-        assert_matches_type(Video, copy, path=["response"])
+        assert_matches_type(Optional[Video], copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -107,7 +107,7 @@ class TestAsyncCopy:
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
         )
-        assert_matches_type(Video, copy, path=["response"])
+        assert_matches_type(Optional[Video], copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +120,7 @@ class TestAsyncCopy:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         copy = await response.parse()
-        assert_matches_type(Video, copy, path=["response"])
+        assert_matches_type(Optional[Video], copy, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -133,7 +133,7 @@ class TestAsyncCopy:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             copy = await response.parse()
-            assert_matches_type(Video, copy, path=["response"])
+            assert_matches_type(Optional[Video], copy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

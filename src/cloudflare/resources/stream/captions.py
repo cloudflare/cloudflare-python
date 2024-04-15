@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Any, Type, Optional, cast
 
 import httpx
 
@@ -25,7 +25,6 @@ from ..._base_client import (
 )
 from ...types.stream import (
     CaptionGetResponse,
-    CaptionDeleteResponse,
     CaptionUpdateResponse,
     caption_delete_params,
     caption_update_params,
@@ -56,7 +55,7 @@ class Captions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CaptionUpdateResponse:
+    ) -> Optional[CaptionUpdateResponse]:
         """
         Uploads the caption or subtitle file to the endpoint for a specific BCP47
         language. One caption or subtitle file per language is allowed.
@@ -85,7 +84,7 @@ class Captions(SyncAPIResource):
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return cast(
-            CaptionUpdateResponse,
+            Optional[CaptionUpdateResponse],
             self._put(
                 f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
                 body=maybe_transform({"file": file}, caption_update_params.CaptionUpdateParams),
@@ -115,7 +114,7 @@ class Captions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CaptionDeleteResponse:
+    ) -> str:
         """
         Removes the captions or subtitles from a video.
 
@@ -140,22 +139,17 @@ class Captions(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
-        return cast(
-            CaptionDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-                body=maybe_transform(body, caption_delete_params.CaptionDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CaptionDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
+            body=maybe_transform(body, caption_delete_params.CaptionDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     def get(
@@ -169,7 +163,7 @@ class Captions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CaptionGetResponse:
+    ) -> Optional[CaptionGetResponse]:
         """
         Lists the available captions or subtitles for a specific video.
 
@@ -199,7 +193,7 @@ class Captions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CaptionGetResponse], ResultWrapper[CaptionGetResponse]),
+            cast_to=cast(Type[Optional[CaptionGetResponse]], ResultWrapper[CaptionGetResponse]),
         )
 
 
@@ -225,7 +219,7 @@ class AsyncCaptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CaptionUpdateResponse:
+    ) -> Optional[CaptionUpdateResponse]:
         """
         Uploads the caption or subtitle file to the endpoint for a specific BCP47
         language. One caption or subtitle file per language is allowed.
@@ -254,7 +248,7 @@ class AsyncCaptions(AsyncAPIResource):
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return cast(
-            CaptionUpdateResponse,
+            Optional[CaptionUpdateResponse],
             await self._put(
                 f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
                 body=await async_maybe_transform({"file": file}, caption_update_params.CaptionUpdateParams),
@@ -284,7 +278,7 @@ class AsyncCaptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CaptionDeleteResponse:
+    ) -> str:
         """
         Removes the captions or subtitles from a video.
 
@@ -309,22 +303,17 @@ class AsyncCaptions(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
-        return cast(
-            CaptionDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-                body=await async_maybe_transform(body, caption_delete_params.CaptionDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CaptionDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
+            body=await async_maybe_transform(body, caption_delete_params.CaptionDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     async def get(
@@ -338,7 +327,7 @@ class AsyncCaptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CaptionGetResponse:
+    ) -> Optional[CaptionGetResponse]:
         """
         Lists the available captions or subtitles for a specific video.
 
@@ -368,7 +357,7 @@ class AsyncCaptions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CaptionGetResponse], ResultWrapper[CaptionGetResponse]),
+            cast_to=cast(Type[Optional[CaptionGetResponse]], ResultWrapper[CaptionGetResponse]),
         )
 
 
