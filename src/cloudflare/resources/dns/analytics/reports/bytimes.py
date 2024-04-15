@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -58,7 +58,7 @@ class Bytimes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ByTime:
+    ) -> Optional[ByTime]:
         """
         Retrieves a list of aggregate metrics grouped by time interval.
 
@@ -118,7 +118,7 @@ class Bytimes(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ByTime], ResultWrapper[ByTime]),
+            cast_to=cast(Type[Optional[ByTime]], ResultWrapper[ByTime]),
         )
 
 
@@ -150,7 +150,7 @@ class AsyncBytimes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ByTime:
+    ) -> Optional[ByTime]:
         """
         Retrieves a list of aggregate metrics grouped by time interval.
 
@@ -210,7 +210,7 @@ class AsyncBytimes(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ByTime], ResultWrapper[ByTime]),
+            cast_to=cast(Type[Optional[ByTime]], ResultWrapper[ByTime]),
         )
 
 
