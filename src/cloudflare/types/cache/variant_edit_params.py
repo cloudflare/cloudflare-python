@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List
 from typing_extensions import Required, TypedDict
 
 __all__ = ["VariantEditParams", "Value"]
@@ -17,67 +17,67 @@ class VariantEditParams(TypedDict, total=False):
 
 
 class Value(TypedDict, total=False):
-    avif: Iterable[object]
+    avif: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for avif.
     """
 
-    bmp: Iterable[object]
+    bmp: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for bmp.
     """
 
-    gif: Iterable[object]
+    gif: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for gif.
     """
 
-    jp2: Iterable[object]
+    jp2: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for jp2.
     """
 
-    jpeg: Iterable[object]
+    jpeg: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for jpeg.
     """
 
-    jpg: Iterable[object]
+    jpg: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for jpg.
     """
 
-    jpg2: Iterable[object]
+    jpg2: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for jpg2.
     """
 
-    png: Iterable[object]
+    png: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for png.
     """
 
-    tif: Iterable[object]
+    tif: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for tif.
     """
 
-    tiff: Iterable[object]
+    tiff: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for tiff.
     """
 
-    webp: Iterable[object]
+    webp: List[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for webp.
