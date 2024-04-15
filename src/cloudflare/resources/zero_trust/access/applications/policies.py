@@ -124,12 +124,6 @@ class Policies(SyncAPIResource):
         """
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -137,6 +131,9 @@ class Policies(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
@@ -250,12 +247,6 @@ class Policies(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -263,6 +254,9 @@ class Policies(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
@@ -327,12 +321,6 @@ class Policies(SyncAPIResource):
         """
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -340,6 +328,9 @@ class Policies(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
@@ -389,12 +380,6 @@ class Policies(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -402,6 +387,9 @@ class Policies(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
@@ -454,12 +442,6 @@ class Policies(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -467,6 +449,9 @@ class Policies(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
@@ -568,12 +553,6 @@ class AsyncPolicies(AsyncAPIResource):
         """
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -581,6 +560,9 @@ class AsyncPolicies(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
@@ -694,12 +676,6 @@ class AsyncPolicies(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -707,6 +683,9 @@ class AsyncPolicies(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
@@ -771,12 +750,6 @@ class AsyncPolicies(AsyncAPIResource):
         """
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -784,6 +757,9 @@ class AsyncPolicies(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
@@ -833,12 +809,6 @@ class AsyncPolicies(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -846,6 +816,9 @@ class AsyncPolicies(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
@@ -898,12 +871,6 @@ class AsyncPolicies(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -911,6 +878,9 @@ class AsyncPolicies(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(

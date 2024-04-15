@@ -147,12 +147,6 @@ class Phases(SyncAPIResource):
         """
         if not ruleset_phase:
             raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -160,6 +154,9 @@ class Phases(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
@@ -242,12 +239,6 @@ class Phases(SyncAPIResource):
         """
         if not ruleset_phase:
             raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -255,6 +246,9 @@ class Phases(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
@@ -380,12 +374,6 @@ class AsyncPhases(AsyncAPIResource):
         """
         if not ruleset_phase:
             raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -393,6 +381,9 @@ class AsyncPhases(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
@@ -475,12 +466,6 @@ class AsyncPhases(AsyncAPIResource):
         """
         if not ruleset_phase:
             raise ValueError(f"Expected a non-empty value for `ruleset_phase` but received {ruleset_phase!r}")
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -488,6 +473,9 @@ class AsyncPhases(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(

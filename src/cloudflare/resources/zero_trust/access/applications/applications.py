@@ -706,12 +706,6 @@ class Applications(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Application:
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -719,6 +713,9 @@ class Applications(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
@@ -1411,12 +1408,6 @@ class Applications(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Application:
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1424,6 +1415,9 @@ class Applications(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
@@ -1499,12 +1493,6 @@ class Applications(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1512,6 +1500,9 @@ class Applications(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
@@ -1554,12 +1545,6 @@ class Applications(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1567,6 +1552,9 @@ class Applications(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
@@ -1612,12 +1600,6 @@ class Applications(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1625,6 +1607,9 @@ class Applications(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
@@ -1675,12 +1660,6 @@ class Applications(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1688,6 +1667,9 @@ class Applications(SyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
@@ -2344,12 +2326,6 @@ class AsyncApplications(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Application:
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -2357,6 +2333,9 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
@@ -3049,12 +3028,6 @@ class AsyncApplications(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Application:
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3062,6 +3035,9 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
@@ -3137,12 +3113,6 @@ class AsyncApplications(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3150,6 +3120,9 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
@@ -3192,12 +3165,6 @@ class AsyncApplications(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3205,6 +3172,9 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
@@ -3250,12 +3220,6 @@ class AsyncApplications(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3263,6 +3227,9 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
@@ -3313,12 +3280,6 @@ class AsyncApplications(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not account_id and not zone_id:
-            raise ValueError("You must provide either account_id or zone_id")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3326,6 +3287,9 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "accounts"
             account_or_zone_id = account_id
         else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
