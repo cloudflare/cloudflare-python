@@ -10,67 +10,67 @@ __all__ = ["VariantEditResponse", "Value"]
 
 
 class Value(BaseModel):
-    avif: Optional[List[object]] = None
+    avif: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for avif.
     """
 
-    bmp: Optional[List[object]] = None
+    bmp: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for bmp.
     """
 
-    gif: Optional[List[object]] = None
+    gif: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for gif.
     """
 
-    jp2: Optional[List[object]] = None
+    jp2: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for jp2.
     """
 
-    jpeg: Optional[List[object]] = None
+    jpeg: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for jpeg.
     """
 
-    jpg: Optional[List[object]] = None
+    jpg: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for jpg.
     """
 
-    jpg2: Optional[List[object]] = None
+    jpg2: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for jpg2.
     """
 
-    png: Optional[List[object]] = None
+    png: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for png.
     """
 
-    tif: Optional[List[object]] = None
+    tif: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for tif.
     """
 
-    tiff: Optional[List[object]] = None
+    tiff: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for tiff.
     """
 
-    webp: Optional[List[object]] = None
+    webp: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served
     for webp.
