@@ -8,5 +8,5 @@ __all__ = ["Nameserver"]
 
 
 class Nameserver(BaseModel):
-    type: Literal["cloudflare.standard", "cloudflare.foundation_dns"]
+    type: Literal["cloudflare.standard"]
     """Nameserver type"""

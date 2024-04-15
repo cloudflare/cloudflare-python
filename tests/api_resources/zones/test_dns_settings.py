@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -23,7 +23,7 @@ class TestDNSSettings:
         dns_setting = client.zones.dns_settings.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSSetting, dns_setting, path=["response"])
+        assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestDNSSettings:
             nameservers={"type": "cloudflare.standard"},
             secondary_overrides=False,
         )
-        assert_matches_type(DNSSetting, dns_setting, path=["response"])
+        assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestDNSSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dns_setting = response.parse()
-        assert_matches_type(DNSSetting, dns_setting, path=["response"])
+        assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -59,7 +59,7 @@ class TestDNSSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dns_setting = response.parse()
-            assert_matches_type(DNSSetting, dns_setting, path=["response"])
+            assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -77,7 +77,7 @@ class TestDNSSettings:
         dns_setting = client.zones.dns_settings.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSSetting, dns_setting, path=["response"])
+        assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -89,7 +89,7 @@ class TestDNSSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dns_setting = response.parse()
-        assert_matches_type(DNSSetting, dns_setting, path=["response"])
+        assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -101,7 +101,7 @@ class TestDNSSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dns_setting = response.parse()
-            assert_matches_type(DNSSetting, dns_setting, path=["response"])
+            assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -123,7 +123,7 @@ class TestAsyncDNSSettings:
         dns_setting = await async_client.zones.dns_settings.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSSetting, dns_setting, path=["response"])
+        assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -135,7 +135,7 @@ class TestAsyncDNSSettings:
             nameservers={"type": "cloudflare.standard"},
             secondary_overrides=False,
         )
-        assert_matches_type(DNSSetting, dns_setting, path=["response"])
+        assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -147,7 +147,7 @@ class TestAsyncDNSSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dns_setting = await response.parse()
-        assert_matches_type(DNSSetting, dns_setting, path=["response"])
+        assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -159,7 +159,7 @@ class TestAsyncDNSSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dns_setting = await response.parse()
-            assert_matches_type(DNSSetting, dns_setting, path=["response"])
+            assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -177,7 +177,7 @@ class TestAsyncDNSSettings:
         dns_setting = await async_client.zones.dns_settings.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSSetting, dns_setting, path=["response"])
+        assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -189,7 +189,7 @@ class TestAsyncDNSSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dns_setting = await response.parse()
-        assert_matches_type(DNSSetting, dns_setting, path=["response"])
+        assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +201,7 @@ class TestAsyncDNSSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dns_setting = await response.parse()
-            assert_matches_type(DNSSetting, dns_setting, path=["response"])
+            assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
