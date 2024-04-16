@@ -320,14 +320,6 @@ from .registrar import (
     RegistrarWithStreamingResponse,
     AsyncRegistrarWithStreamingResponse,
 )
-from .vectorize import (
-    Vectorize,
-    AsyncVectorize,
-    VectorizeWithRawResponse,
-    AsyncVectorizeWithRawResponse,
-    VectorizeWithStreamingResponse,
-    AsyncVectorizeWithStreamingResponse,
-)
 from .addressing import (
     Addressing,
     AsyncAddressing,
@@ -1064,12 +1056,6 @@ __all__ = [
     "AsyncRUMWithRawResponse",
     "RUMWithStreamingResponse",
     "AsyncRUMWithStreamingResponse",
-    "Vectorize",
-    "AsyncVectorize",
-    "VectorizeWithRawResponse",
-    "AsyncVectorizeWithRawResponse",
-    "VectorizeWithStreamingResponse",
-    "AsyncVectorizeWithStreamingResponse",
     "URLScanner",
     "AsyncURLScanner",
     "URLScannerWithRawResponse",
