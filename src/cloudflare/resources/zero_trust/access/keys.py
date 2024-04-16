@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import httpx
 
@@ -48,7 +48,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyUpdateResponse]:
+    ) -> KeyUpdateResponse:
         """
         Updates the Access key rotation settings for an account.
 
@@ -68,7 +68,7 @@ class Keys(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            Optional[KeyUpdateResponse],
+            KeyUpdateResponse,
             self._put(
                 f"/accounts/{identifier}/access/keys",
                 body=maybe_transform(
@@ -97,7 +97,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyGetResponse]:
+    ) -> KeyGetResponse:
         """
         Gets the Access key rotation settings for an account.
 
@@ -115,7 +115,7 @@ class Keys(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            Optional[KeyGetResponse],
+            KeyGetResponse,
             self._get(
                 f"/accounts/{identifier}/access/keys",
                 options=make_request_options(
@@ -141,7 +141,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyRotateResponse]:
+    ) -> KeyRotateResponse:
         """
         Perfoms a key rotation for an account.
 
@@ -159,7 +159,7 @@ class Keys(SyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            Optional[KeyRotateResponse],
+            KeyRotateResponse,
             self._post(
                 f"/accounts/{identifier}/access/keys/rotate",
                 options=make_request_options(
@@ -196,7 +196,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyUpdateResponse]:
+    ) -> KeyUpdateResponse:
         """
         Updates the Access key rotation settings for an account.
 
@@ -216,7 +216,7 @@ class AsyncKeys(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            Optional[KeyUpdateResponse],
+            KeyUpdateResponse,
             await self._put(
                 f"/accounts/{identifier}/access/keys",
                 body=await async_maybe_transform(
@@ -245,7 +245,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyGetResponse]:
+    ) -> KeyGetResponse:
         """
         Gets the Access key rotation settings for an account.
 
@@ -263,7 +263,7 @@ class AsyncKeys(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            Optional[KeyGetResponse],
+            KeyGetResponse,
             await self._get(
                 f"/accounts/{identifier}/access/keys",
                 options=make_request_options(
@@ -289,7 +289,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyRotateResponse]:
+    ) -> KeyRotateResponse:
         """
         Perfoms a key rotation for an account.
 
@@ -307,7 +307,7 @@ class AsyncKeys(AsyncAPIResource):
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return cast(
-            Optional[KeyRotateResponse],
+            KeyRotateResponse,
             await self._post(
                 f"/accounts/{identifier}/access/keys/rotate",
                 options=make_request_options(
