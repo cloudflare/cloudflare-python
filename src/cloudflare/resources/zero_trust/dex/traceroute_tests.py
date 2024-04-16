@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -61,7 +61,7 @@ class TracerouteTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Traceroute]:
+    ) -> Traceroute:
         """
         Get test details and aggregate performance metrics for an traceroute test for a
         given time period between 1 hour and 7 days.
@@ -112,7 +112,7 @@ class TracerouteTests(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Traceroute]], ResultWrapper[Traceroute]),
+            cast_to=cast(Type[Traceroute], ResultWrapper[Traceroute]),
         )
 
     def network_path(
@@ -130,7 +130,7 @@ class TracerouteTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkPath]:
+    ) -> NetworkPath:
         """
         Get a breakdown of metrics by hop for individual traceroute test runs
 
@@ -175,7 +175,7 @@ class TracerouteTests(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkPath]], ResultWrapper[NetworkPath]),
+            cast_to=cast(Type[NetworkPath], ResultWrapper[NetworkPath]),
         )
 
     def percentiles(
@@ -193,7 +193,7 @@ class TracerouteTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TracerouteTestPercentilesResponse]:
+    ) -> TracerouteTestPercentilesResponse:
         """
         Get percentiles for a traceroute test for a given time period between 1 hour and
         7 days.
@@ -241,9 +241,7 @@ class TracerouteTests(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TracerouteTestPercentilesResponse]], ResultWrapper[TracerouteTestPercentilesResponse]
-            ),
+            cast_to=cast(Type[TracerouteTestPercentilesResponse], ResultWrapper[TracerouteTestPercentilesResponse]),
         )
 
 
@@ -272,7 +270,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Traceroute]:
+    ) -> Traceroute:
         """
         Get test details and aggregate performance metrics for an traceroute test for a
         given time period between 1 hour and 7 days.
@@ -323,7 +321,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Traceroute]], ResultWrapper[Traceroute]),
+            cast_to=cast(Type[Traceroute], ResultWrapper[Traceroute]),
         )
 
     async def network_path(
@@ -341,7 +339,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkPath]:
+    ) -> NetworkPath:
         """
         Get a breakdown of metrics by hop for individual traceroute test runs
 
@@ -386,7 +384,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkPath]], ResultWrapper[NetworkPath]),
+            cast_to=cast(Type[NetworkPath], ResultWrapper[NetworkPath]),
         )
 
     async def percentiles(
@@ -404,7 +402,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TracerouteTestPercentilesResponse]:
+    ) -> TracerouteTestPercentilesResponse:
         """
         Get percentiles for a traceroute test for a given time period between 1 hour and
         7 days.
@@ -452,9 +450,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[TracerouteTestPercentilesResponse]], ResultWrapper[TracerouteTestPercentilesResponse]
-            ),
+            cast_to=cast(Type[TracerouteTestPercentilesResponse], ResultWrapper[TracerouteTestPercentilesResponse]),
         )
 
 
