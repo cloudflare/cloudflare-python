@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -26,7 +26,7 @@ class TestFleetStatus:
             account_id="01a7362d577a6c3019a474fd6f485823",
             since_minutes=10,
         )
-        assert_matches_type(Optional[FleetStatusLiveResponse], fleet_status, path=["response"])
+        assert_matches_type(FleetStatusLiveResponse, fleet_status, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestFleetStatus:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fleet_status = response.parse()
-        assert_matches_type(Optional[FleetStatusLiveResponse], fleet_status, path=["response"])
+        assert_matches_type(FleetStatusLiveResponse, fleet_status, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -52,7 +52,7 @@ class TestFleetStatus:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fleet_status = response.parse()
-            assert_matches_type(Optional[FleetStatusLiveResponse], fleet_status, path=["response"])
+            assert_matches_type(FleetStatusLiveResponse, fleet_status, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -138,7 +138,7 @@ class TestAsyncFleetStatus:
             account_id="01a7362d577a6c3019a474fd6f485823",
             since_minutes=10,
         )
-        assert_matches_type(Optional[FleetStatusLiveResponse], fleet_status, path=["response"])
+        assert_matches_type(FleetStatusLiveResponse, fleet_status, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -151,7 +151,7 @@ class TestAsyncFleetStatus:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fleet_status = await response.parse()
-        assert_matches_type(Optional[FleetStatusLiveResponse], fleet_status, path=["response"])
+        assert_matches_type(FleetStatusLiveResponse, fleet_status, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -164,7 +164,7 @@ class TestAsyncFleetStatus:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fleet_status = await response.parse()
-            assert_matches_type(Optional[FleetStatusLiveResponse], fleet_status, path=["response"])
+            assert_matches_type(FleetStatusLiveResponse, fleet_status, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
