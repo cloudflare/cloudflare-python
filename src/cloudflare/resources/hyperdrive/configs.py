@@ -6,7 +6,6 @@ from typing import Any, Type, Optional, cast
 
 import httpx
 
-from ...types import Hyperdrive, ConfigurationParam
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -26,7 +25,14 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.hyperdrive import ConfigDeleteResponse, config_edit_params, config_create_params, config_update_params
+from ...types.hyperdrive import (
+    Hyperdrive,
+    ConfigurationParam,
+    ConfigDeleteResponse,
+    config_edit_params,
+    config_create_params,
+    config_update_params,
+)
 
 __all__ = ["Configs", "AsyncConfigs"]
 

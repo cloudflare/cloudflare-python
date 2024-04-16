@@ -6,7 +6,6 @@ from typing import List, Type, Optional, cast
 
 import httpx
 
-from ...types import AllowedOrigins
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -24,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import Clip, clip_create_params
+from ...types.stream import Clip, AllowedOrigins, clip_create_params
 
 __all__ = ["ClipResource", "AsyncClipResource"]
 

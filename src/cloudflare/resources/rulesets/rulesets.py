@@ -23,14 +23,6 @@ from .phases import (
     PhasesWithStreamingResponse,
     AsyncPhasesWithStreamingResponse,
 )
-from ...types import (
-    Ruleset,
-    RulesetGetResponse,
-    RulesetCreateResponse,
-    RulesetUpdateResponse,
-    ruleset_create_params,
-    ruleset_update_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -58,6 +50,14 @@ from .phases.phases import Phases, AsyncPhases
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ...types.rulesets import (
+    Ruleset,
+    RulesetGetResponse,
+    RulesetCreateResponse,
+    RulesetUpdateResponse,
+    ruleset_create_params,
+    ruleset_update_params,
 )
 from .versions.versions import Versions, AsyncVersions
 

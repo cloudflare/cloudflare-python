@@ -14,13 +14,6 @@ from .health import (
     HealthWithStreamingResponse,
     AsyncHealthWithStreamingResponse,
 )
-from ....types import (
-    CheckRegion,
-    OriginParam,
-    LoadSheddingParam,
-    OriginSteeringParam,
-    NotificationFilterParam,
-)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -50,7 +43,12 @@ from ...._base_client import (
 )
 from ....types.load_balancers import (
     Pool,
+    CheckRegion,
+    OriginParam,
+    LoadSheddingParam,
     PoolDeleteResponse,
+    OriginSteeringParam,
+    NotificationFilterParam,
     pool_edit_params,
     pool_list_params,
     pool_create_params,

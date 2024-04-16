@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from ..health_check_rate import HealthCheckRate
-from ..health_check_type import HealthCheckType
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
 __all__ = ["CfInterconnectUpdateParams", "GRE", "HealthCheck"]
 

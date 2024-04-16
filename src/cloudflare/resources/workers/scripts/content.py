@@ -6,7 +6,6 @@ from typing import List, Type, Mapping, Optional, cast
 
 import httpx
 
-from ....types import WorkerMetadataParam
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ...._utils import (
     extract_files,
@@ -34,7 +33,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers import Script
+from ....types.workers import Script, WorkerMetadataParam
 from ....types.workers.scripts import content_update_params
 
 __all__ = ["Content", "AsyncContent"]

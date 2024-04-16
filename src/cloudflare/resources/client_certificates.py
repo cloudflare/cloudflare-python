@@ -7,7 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import ClientCertificate, client_certificate_list_params, client_certificate_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -26,6 +25,11 @@ from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ..types.client_certificates import (
+    ClientCertificate,
+    client_certificate_list_params,
+    client_certificate_create_params,
 )
 
 __all__ = ["ClientCertificates", "AsyncClientCertificates"]

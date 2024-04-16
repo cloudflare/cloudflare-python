@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from ..configuration_param import ConfigurationParam
+from .configuration_param import ConfigurationParam
 
 __all__ = ["ConfigUpdateParams", "Caching"]
 

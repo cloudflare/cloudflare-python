@@ -4,7 +4,10 @@ from __future__ import annotations
 
 from .event import Event as Event
 from .setting import Setting as Setting
+from .waiting_room import WaitingRoom as WaitingRoom
 from .rule_edit_params import RuleEditParams as RuleEditParams
+from .additional_routes import AdditionalRoutes as AdditionalRoutes
+from .cookie_attributes import CookieAttributes as CookieAttributes
 from .event_edit_params import EventEditParams as EventEditParams
 from .event_list_params import EventListParams as EventListParams
 from .waiting_room_rule import WaitingRoomRule as WaitingRoomRule
@@ -26,4 +29,12 @@ from .event_delete_response import EventDeleteResponse as EventDeleteResponse
 from .page_preview_response import PagePreviewResponse as PagePreviewResponse
 from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
+from .additional_routes_param import AdditionalRoutesParam as AdditionalRoutesParam
+from .cookie_attributes_param import CookieAttributesParam as CookieAttributesParam
 from .setting_update_response import SettingUpdateResponse as SettingUpdateResponse
+from .waiting_room_edit_params import WaitingRoomEditParams as WaitingRoomEditParams
+from .waiting_room_list_params import WaitingRoomListParams as WaitingRoomListParams
+from .waiting_room_create_params import WaitingRoomCreateParams as WaitingRoomCreateParams
+from .waiting_room_delete_params import WaitingRoomDeleteParams as WaitingRoomDeleteParams
+from .waiting_room_update_params import WaitingRoomUpdateParams as WaitingRoomUpdateParams
+from .waiting_room_delete_response import WaitingRoomDeleteResponse as WaitingRoomDeleteResponse

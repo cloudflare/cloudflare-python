@@ -6,7 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from ...types import Setting, PageShieldUpdateResponse, page_shield_update_params
 from .scripts import (
     Scripts,
     AsyncScripts,
@@ -48,6 +47,7 @@ from .connections import (
 from ..._base_client import (
     make_request_options,
 )
+from ...types.page_shield import Setting, PageShieldUpdateResponse, page_shield_update_params
 
 __all__ = ["PageShield", "AsyncPageShield"]
 

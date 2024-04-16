@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from ..health_check_param import HealthCheckParam
+from .health_check_param import HealthCheckParam
 
 __all__ = ["IPSECTunnelCreateParams"]
 

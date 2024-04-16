@@ -6,7 +6,6 @@ from typing import Any, cast
 
 import httpx
 
-from ...types import BundleMethod
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -25,6 +24,7 @@ from ...types.ssl import AnalyzeCreateResponse, analyze_create_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.custom_hostnames import BundleMethod
 
 __all__ = ["Analyze", "AsyncAnalyze"]
 

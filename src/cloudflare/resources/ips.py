@@ -6,7 +6,6 @@ from typing import Any, cast
 
 import httpx
 
-from ..types import IPListResponse, ip_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -21,6 +20,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
+from ..types.ips import IPListResponse, ip_list_params
 from .._base_client import (
     make_request_options,
 )

@@ -7,7 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import BotManagementGetResponse, BotManagementUpdateResponse, bot_management_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     required_args,
@@ -26,6 +25,7 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
+from ..types.bot_management import BotManagementGetResponse, BotManagementUpdateResponse, bot_management_update_params
 
 __all__ = ["BotManagement", "AsyncBotManagement"]
 

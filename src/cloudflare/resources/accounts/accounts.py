@@ -15,12 +15,6 @@ from .roles import (
     RolesWithStreamingResponse,
     AsyncRolesWithStreamingResponse,
 )
-from ...types import (
-    AccountGetResponse,
-    AccountUpdateResponse,
-    account_list_params,
-    account_update_params,
-)
 from .members import (
     Members,
     AsyncMembers,
@@ -48,6 +42,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.accounts import AccountGetResponse, AccountUpdateResponse, account_list_params, account_update_params
 
 __all__ = ["Accounts", "AsyncAccounts"]
 

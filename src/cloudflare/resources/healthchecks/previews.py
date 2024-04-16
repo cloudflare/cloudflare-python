@@ -6,12 +6,6 @@ from typing import List, Type, Optional, cast
 
 import httpx
 
-from ...types import (
-    CheckRegion,
-    Healthcheck,
-    TCPConfigurationParam,
-    HTTPConfigurationParam,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -29,7 +23,15 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.healthchecks import PreviewDeleteResponse, preview_create_params, preview_delete_params
+from ...types.healthchecks import (
+    CheckRegion,
+    Healthcheck,
+    PreviewDeleteResponse,
+    TCPConfigurationParam,
+    HTTPConfigurationParam,
+    preview_create_params,
+    preview_delete_params,
+)
 
 __all__ = ["Previews", "AsyncPreviews"]
 

@@ -7,7 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import DNSSEC, DNSSECDeleteResponse, dnssec_edit_params, dnssec_delete_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -25,6 +24,7 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
+from ..types.dnssec import DNSSEC, DNSSECDeleteResponse, dnssec_edit_params, dnssec_delete_params
 
 __all__ = ["DNSSECResource", "AsyncDNSSECResource"]
 

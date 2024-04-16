@@ -6,14 +6,6 @@ from typing import Any, cast
 
 import httpx
 
-from ...types import (
-    ZoneAuthenticatedOriginPull,
-    OriginTLSClientAuthGetResponse,
-    OriginTLSClientAuthCreateResponse,
-    OriginTLSClientAuthDeleteResponse,
-    origin_tls_client_auth_create_params,
-    origin_tls_client_auth_delete_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -50,6 +42,14 @@ from ..._base_client import (
     make_request_options,
 )
 from .hostnames.hostnames import Hostnames, AsyncHostnames
+from ...types.origin_tls_client_auth import (
+    ZoneAuthenticatedOriginPull,
+    OriginTLSClientAuthGetResponse,
+    OriginTLSClientAuthCreateResponse,
+    OriginTLSClientAuthDeleteResponse,
+    origin_tls_client_auth_create_params,
+    origin_tls_client_auth_delete_params,
+)
 
 __all__ = ["OriginTLSClientAuth", "AsyncOriginTLSClientAuth"]
 
