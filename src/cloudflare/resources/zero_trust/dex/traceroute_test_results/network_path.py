@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -44,7 +44,7 @@ class NetworkPath(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkPathGetResponse]:
+    ) -> NetworkPathGetResponse:
         """
         Get a breakdown of hops and performance metrics for a specific traceroute test
         run
@@ -73,7 +73,7 @@ class NetworkPath(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkPathGetResponse]], ResultWrapper[NetworkPathGetResponse]),
+            cast_to=cast(Type[NetworkPathGetResponse], ResultWrapper[NetworkPathGetResponse]),
         )
 
 
@@ -97,7 +97,7 @@ class AsyncNetworkPath(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkPathGetResponse]:
+    ) -> NetworkPathGetResponse:
         """
         Get a breakdown of hops and performance metrics for a specific traceroute test
         run
@@ -126,7 +126,7 @@ class AsyncNetworkPath(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkPathGetResponse]], ResultWrapper[NetworkPathGetResponse]),
+            cast_to=cast(Type[NetworkPathGetResponse], ResultWrapper[NetworkPathGetResponse]),
         )
 
 
