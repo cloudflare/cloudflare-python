@@ -9,7 +9,16 @@ from .dcv_method import DCVMethod
 from .bundle_method import BundleMethod
 from .domain_validation_type import DomainValidationType
 
-__all__ = ["CustomHostnameCreateResponse", "SSL", "SSLSettings", "SSLValidationError", "SSLValidationRecord"]
+__all__ = [
+    "CustomHostnameCreateResponse",
+    "SSL",
+    "SSLSettings",
+    "SSLValidationError",
+    "SSLValidationRecord",
+    "CustomMetadata",
+    "OwnershipVerification",
+    "OwnershipVerificationHTTP",
+]
 
 
 class SSLSettings(BaseModel):
@@ -159,6 +168,33 @@ class SSL(BaseModel):
     """Indicates whether the certificate covers a wildcard."""
 
 
+class CustomMetadata(BaseModel):
+    key: Optional[str] = None
+    """Unique metadata for this hostname."""
+
+
+class OwnershipVerification(BaseModel):
+    name: Optional[str] = None
+    """DNS Name for record."""
+
+    type: Optional[Literal["txt"]] = None
+    """DNS Record type."""
+
+    value: Optional[str] = None
+    """Content for the record."""
+
+
+class OwnershipVerificationHTTP(BaseModel):
+    http_body: Optional[str] = None
+    """Token to be served."""
+
+    http_url: Optional[str] = None
+    """
+    The HTTP URL that will be checked during custom hostname verification and where
+    the customer should host the token.
+    """
+
+
 class CustomHostnameCreateResponse(BaseModel):
     id: str
     """Identifier"""
@@ -168,3 +204,58 @@ class CustomHostnameCreateResponse(BaseModel):
 
     ssl: SSL
     """SSL properties for the custom hostname."""
+
+    created_at: Optional[datetime] = None
+    """This is the time the hostname was created."""
+
+    custom_metadata: Optional[CustomMetadata] = None
+    """These are per-hostname (customer) settings."""
+
+    custom_origin_server: Optional[str] = None
+    """
+    a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME
+    record.
+    """
+
+    custom_origin_sni: Optional[str] = None
+    """
+    A hostname that will be sent to your custom origin server as SNI for TLS
+    handshake. This can be a valid subdomain of the zone or custom origin server
+    name or the string ':request_host_header:' which will cause the host header in
+    the request to be used as SNI. Not configurable with default/fallback origin
+    server.
+    """
+
+    ownership_verification: Optional[OwnershipVerification] = None
+    """This is a record which can be placed to activate a hostname."""
+
+    ownership_verification_http: Optional[OwnershipVerificationHTTP] = None
+    """
+    This presents the token to be served by the given http url to activate a
+    hostname.
+    """
+
+    status: Optional[
+        Literal[
+            "active",
+            "pending",
+            "active_redeploying",
+            "moved",
+            "pending_deletion",
+            "deleted",
+            "pending_blocked",
+            "pending_migration",
+            "pending_provisioned",
+            "test_pending",
+            "test_active",
+            "test_active_apex",
+            "test_blocked",
+            "test_failed",
+            "provisioned",
+            "blocked",
+        ]
+    ] = None
+    """Status of the hostname's activation."""
+
+    verification_errors: Optional[List[object]] = None
+    """These are errors that were encountered while trying to activate a hostname."""

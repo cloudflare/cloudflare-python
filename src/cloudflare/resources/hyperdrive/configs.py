@@ -44,8 +44,9 @@ class Configs(SyncAPIResource):
         self,
         *,
         account_id: str,
-        name: object,
+        name: str,
         origin: ConfigurationParam,
+        caching: config_create_params.Caching | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -75,6 +76,7 @@ class Configs(SyncAPIResource):
                 {
                     "name": name,
                     "origin": origin,
+                    "caching": caching,
                 },
                 config_create_params.ConfigCreateParams,
             ),
@@ -93,8 +95,9 @@ class Configs(SyncAPIResource):
         hyperdrive_id: str,
         *,
         account_id: str,
-        name: object,
+        name: str,
         origin: ConfigurationParam,
+        caching: config_update_params.Caching | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -128,6 +131,7 @@ class Configs(SyncAPIResource):
                 {
                     "name": name,
                     "origin": origin,
+                    "caching": caching,
                 },
                 config_update_params.ConfigUpdateParams,
             ),
@@ -231,6 +235,8 @@ class Configs(SyncAPIResource):
         hyperdrive_id: str,
         *,
         account_id: str,
+        caching: config_edit_params.Caching | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         origin: ConfigurationParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -263,7 +269,14 @@ class Configs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return self._patch(
             f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-            body=maybe_transform({"origin": origin}, config_edit_params.ConfigEditParams),
+            body=maybe_transform(
+                {
+                    "caching": caching,
+                    "name": name,
+                    "origin": origin,
+                },
+                config_edit_params.ConfigEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -332,8 +345,9 @@ class AsyncConfigs(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        name: object,
+        name: str,
         origin: ConfigurationParam,
+        caching: config_create_params.Caching | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -363,6 +377,7 @@ class AsyncConfigs(AsyncAPIResource):
                 {
                     "name": name,
                     "origin": origin,
+                    "caching": caching,
                 },
                 config_create_params.ConfigCreateParams,
             ),
@@ -381,8 +396,9 @@ class AsyncConfigs(AsyncAPIResource):
         hyperdrive_id: str,
         *,
         account_id: str,
-        name: object,
+        name: str,
         origin: ConfigurationParam,
+        caching: config_update_params.Caching | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -416,6 +432,7 @@ class AsyncConfigs(AsyncAPIResource):
                 {
                     "name": name,
                     "origin": origin,
+                    "caching": caching,
                 },
                 config_update_params.ConfigUpdateParams,
             ),
@@ -519,6 +536,8 @@ class AsyncConfigs(AsyncAPIResource):
         hyperdrive_id: str,
         *,
         account_id: str,
+        caching: config_edit_params.Caching | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         origin: ConfigurationParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -551,7 +570,14 @@ class AsyncConfigs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-            body=await async_maybe_transform({"origin": origin}, config_edit_params.ConfigEditParams),
+            body=await async_maybe_transform(
+                {
+                    "caching": caching,
+                    "name": name,
+                    "origin": origin,
+                },
+                config_edit_params.ConfigEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
