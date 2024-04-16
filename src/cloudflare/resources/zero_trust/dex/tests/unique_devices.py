@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -49,7 +49,7 @@ class UniqueDevices(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> unique_devices.UniqueDevices:
+    ) -> Optional[unique_devices.UniqueDevices]:
         """
         Returns unique count of devices that have run synthetic application monitoring
         tests in the past 7 days.
@@ -86,7 +86,7 @@ class UniqueDevices(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[unique_devices.UniqueDevices], ResultWrapper[unique_devices.UniqueDevices]),
+            cast_to=cast(Type[Optional[unique_devices.UniqueDevices]], ResultWrapper[unique_devices.UniqueDevices]),
         )
 
 
@@ -111,7 +111,7 @@ class AsyncUniqueDevices(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> unique_devices.UniqueDevices:
+    ) -> Optional[unique_devices.UniqueDevices]:
         """
         Returns unique count of devices that have run synthetic application monitoring
         tests in the past 7 days.
@@ -148,7 +148,7 @@ class AsyncUniqueDevices(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[unique_devices.UniqueDevices], ResultWrapper[unique_devices.UniqueDevices]),
+            cast_to=cast(Type[Optional[unique_devices.UniqueDevices]], ResultWrapper[unique_devices.UniqueDevices]),
         )
 
 
