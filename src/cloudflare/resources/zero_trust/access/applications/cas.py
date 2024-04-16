@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Any, Type, Optional, cast
 
 import httpx
 
@@ -47,7 +47,7 @@ class CAs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CACreateResponse:
+    ) -> Optional[CACreateResponse]:
         """
         Generates a new short-lived certificate CA and public key.
 
@@ -81,7 +81,7 @@ class CAs(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            CACreateResponse,
+            Optional[CACreateResponse],
             self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
                 options=make_request_options(
@@ -158,7 +158,7 @@ class CAs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CADeleteResponse:
+    ) -> Optional[CADeleteResponse]:
         """
         Deletes a short-lived certificate CA.
 
@@ -200,7 +200,7 @@ class CAs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CADeleteResponse], ResultWrapper[CADeleteResponse]),
+            cast_to=cast(Type[Optional[CADeleteResponse]], ResultWrapper[CADeleteResponse]),
         )
 
     def get(
@@ -215,7 +215,7 @@ class CAs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CAGetResponse:
+    ) -> Optional[CAGetResponse]:
         """
         Fetches a short-lived certificate CA and its public key.
 
@@ -249,7 +249,7 @@ class CAs(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            CAGetResponse,
+            Optional[CAGetResponse],
             self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
                 options=make_request_options(
@@ -287,7 +287,7 @@ class AsyncCAs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CACreateResponse:
+    ) -> Optional[CACreateResponse]:
         """
         Generates a new short-lived certificate CA and public key.
 
@@ -321,7 +321,7 @@ class AsyncCAs(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            CACreateResponse,
+            Optional[CACreateResponse],
             await self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
                 options=make_request_options(
@@ -398,7 +398,7 @@ class AsyncCAs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CADeleteResponse:
+    ) -> Optional[CADeleteResponse]:
         """
         Deletes a short-lived certificate CA.
 
@@ -440,7 +440,7 @@ class AsyncCAs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CADeleteResponse], ResultWrapper[CADeleteResponse]),
+            cast_to=cast(Type[Optional[CADeleteResponse]], ResultWrapper[CADeleteResponse]),
         )
 
     async def get(
@@ -455,7 +455,7 @@ class AsyncCAs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CAGetResponse:
+    ) -> Optional[CAGetResponse]:
         """
         Fetches a short-lived certificate CA and its public key.
 
@@ -489,7 +489,7 @@ class AsyncCAs(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            CAGetResponse,
+            Optional[CAGetResponse],
             await self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
                 options=make_request_options(
