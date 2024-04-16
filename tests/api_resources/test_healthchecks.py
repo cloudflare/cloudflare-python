@@ -216,6 +216,16 @@ class TestHealthchecks:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        healthcheck = client.healthchecks.list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page={},
+            per_page={},
+        )
+        assert_matches_type(SyncSinglePage[Healthcheck], healthcheck, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.healthchecks.with_raw_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -650,6 +660,16 @@ class TestAsyncHealthchecks:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         healthcheck = await async_client.healthchecks.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[Healthcheck], healthcheck, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        healthcheck = await async_client.healthchecks.list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page={},
+            per_page={},
         )
         assert_matches_type(AsyncSinglePage[Healthcheck], healthcheck, path=["response"])
 
