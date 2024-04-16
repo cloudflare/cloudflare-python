@@ -6,17 +6,6 @@ from typing import List, Type, Optional, cast
 
 import httpx
 
-from ...types import (
-    CheckRegion,
-    Healthcheck,
-    TCPConfigurationParam,
-    HTTPConfigurationParam,
-    HealthcheckDeleteResponse,
-    healthcheck_edit_params,
-    healthcheck_create_params,
-    healthcheck_delete_params,
-    healthcheck_update_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -43,6 +32,17 @@ from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ...types.healthchecks import (
+    CheckRegion,
+    Healthcheck,
+    TCPConfigurationParam,
+    HTTPConfigurationParam,
+    HealthcheckDeleteResponse,
+    healthcheck_edit_params,
+    healthcheck_create_params,
+    healthcheck_delete_params,
+    healthcheck_update_params,
 )
 
 __all__ = ["Healthchecks", "AsyncHealthchecks"]

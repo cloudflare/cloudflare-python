@@ -4,8 +4,8 @@ from typing import List
 from datetime import datetime
 
 from ....._models import BaseModel
-from ....dns_analytics_query import DNSAnalyticsQuery
-from ....dns_analytics_nominal_metric import DNSAnalyticsNominalMetric
+from ...dns_analytics_query import DNSAnalyticsQuery
+from ...dns_analytics_nominal_metric import DNSAnalyticsNominalMetric
 
 __all__ = ["ByTime", "Data"]
 

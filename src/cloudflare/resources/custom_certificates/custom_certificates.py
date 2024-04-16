@@ -7,19 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import (
-    BundleMethod,
-    CustomCertificate,
-    GeoRestrictionsParam,
-    CustomCertificateGetResponse,
-    CustomCertificateEditResponse,
-    CustomCertificateCreateResponse,
-    CustomCertificateDeleteResponse,
-    custom_certificate_edit_params,
-    custom_certificate_list_params,
-    custom_certificate_create_params,
-    custom_certificate_delete_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -46,6 +33,19 @@ from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ...types.custom_hostnames import BundleMethod
+from ...types.custom_certificates import (
+    CustomCertificate,
+    GeoRestrictionsParam,
+    CustomCertificateGetResponse,
+    CustomCertificateEditResponse,
+    CustomCertificateCreateResponse,
+    CustomCertificateDeleteResponse,
+    custom_certificate_edit_params,
+    custom_certificate_list_params,
+    custom_certificate_create_params,
+    custom_certificate_delete_params,
 )
 
 __all__ = ["CustomCertificates", "AsyncCustomCertificates"]

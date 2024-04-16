@@ -7,15 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import (
-    SubscriptionGetResponse,
-    SubscriptionCreateResponse,
-    SubscriptionDeleteResponse,
-    SubscriptionUpdateResponse,
-    subscription_create_params,
-    subscription_delete_params,
-    subscription_update_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -40,6 +31,15 @@ from ..types.user import (
 from .._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ..types.subscriptions import (
+    SubscriptionGetResponse,
+    SubscriptionCreateResponse,
+    SubscriptionDeleteResponse,
+    SubscriptionUpdateResponse,
+    subscription_create_params,
+    subscription_delete_params,
+    subscription_update_params,
 )
 
 __all__ = ["Subscriptions", "AsyncSubscriptions"]

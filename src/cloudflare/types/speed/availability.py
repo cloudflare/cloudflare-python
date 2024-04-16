@@ -5,7 +5,7 @@ from typing import Dict, List, Optional
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..labeled_region import LabeledRegion
+from .labeled_region import LabeledRegion
 
 __all__ = ["Availability", "Quota"]
 

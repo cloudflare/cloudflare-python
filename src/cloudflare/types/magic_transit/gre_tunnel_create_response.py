@@ -4,7 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from ..health_check import HealthCheck
+from .health_check import HealthCheck
 
 __all__ = ["GRETunnelCreateResponse", "GRETunnel"]
 

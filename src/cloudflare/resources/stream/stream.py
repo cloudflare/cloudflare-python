@@ -56,7 +56,6 @@ from .videos import (
     VideosWithStreamingResponse,
     AsyncVideosWithStreamingResponse,
 )
-from ...types import Video, stream_list_params, stream_create_params, stream_delete_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -132,6 +131,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.stream import Video, stream_list_params, stream_create_params, stream_delete_params
 from .live_inputs.live_inputs import LiveInputs, AsyncLiveInputs
 
 __all__ = ["Stream", "AsyncStream"]

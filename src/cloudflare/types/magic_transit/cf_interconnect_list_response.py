@@ -4,8 +4,8 @@ from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from ..health_check_rate import HealthCheckRate
-from ..health_check_type import HealthCheckType
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
 __all__ = ["CfInterconnectListResponse", "Interconnect", "InterconnectGRE", "InterconnectHealthCheck"]
 

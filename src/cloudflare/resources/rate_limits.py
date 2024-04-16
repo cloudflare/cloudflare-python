@@ -6,17 +6,6 @@ from typing import Any, Type, cast
 
 import httpx
 
-from ..types import (
-    RateLimit,
-    RateLimitGetResponse,
-    RateLimitEditResponse,
-    RateLimitCreateResponse,
-    RateLimitDeleteResponse,
-    rate_limit_edit_params,
-    rate_limit_list_params,
-    rate_limit_create_params,
-    rate_limit_delete_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -35,6 +24,17 @@ from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ..types.rate_limits import (
+    RateLimit,
+    RateLimitGetResponse,
+    RateLimitEditResponse,
+    RateLimitCreateResponse,
+    RateLimitDeleteResponse,
+    rate_limit_edit_params,
+    rate_limit_list_params,
+    rate_limit_create_params,
+    rate_limit_delete_params,
 )
 
 __all__ = ["RateLimits", "AsyncRateLimits"]

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..allowed_origins import AllowedOrigins
+from .allowed_origins import AllowedOrigins
 
 __all__ = ["Clip", "Playback", "Watermark"]
 

@@ -6,7 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from ..types import Info, Submit, brand_protection_submit_params, brand_protection_url_info_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -24,6 +23,7 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
+from ..types.brand_protection import Info, Submit, brand_protection_submit_params, brand_protection_url_info_params
 
 __all__ = ["BrandProtection", "AsyncBrandProtection"]
 

@@ -6,7 +6,6 @@ from typing import List, Type, Optional, cast, overload
 
 import httpx
 
-from ...types import CachePurgeResponse, cache_purge_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     required_args,
@@ -30,6 +29,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...types.cache import CachePurgeResponse, cache_purge_params
 from .cache_reserve import (
     CacheReserveResource,
     AsyncCacheReserveResource,

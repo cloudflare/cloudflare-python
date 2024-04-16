@@ -7,15 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import (
-    Membership,
-    MembershipGetResponse,
-    MembershipDeleteResponse,
-    MembershipUpdateResponse,
-    membership_list_params,
-    membership_delete_params,
-    membership_update_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -34,6 +25,15 @@ from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ..types.memberships import (
+    Membership,
+    MembershipGetResponse,
+    MembershipDeleteResponse,
+    MembershipUpdateResponse,
+    membership_list_params,
+    membership_delete_params,
+    membership_update_params,
 )
 
 __all__ = ["Memberships", "AsyncMemberships"]

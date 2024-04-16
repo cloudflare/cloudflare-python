@@ -7,12 +7,16 @@ from .scope import Scope as Scope
 from .colo_name import ColoName as ColoName
 from .colo_region import ColoRegion as ColoRegion
 from .scope_param import ScopeParam as ScopeParam
+from .health_check import HealthCheck as HealthCheck
 from .psk_metadata import PSKMetadata as PSKMetadata
 from .site_location import SiteLocation as SiteLocation
 from .colo_name_param import ColoNameParam as ColoNameParam
 from .site_list_params import SiteListParams as SiteListParams
 from .colo_region_param import ColoRegionParam as ColoRegionParam
+from .health_check_rate import HealthCheckRate as HealthCheckRate
+from .health_check_type import HealthCheckType as HealthCheckType
 from .site_get_response import SiteGetResponse as SiteGetResponse
+from .health_check_param import HealthCheckParam as HealthCheckParam
 from .route_empty_params import RouteEmptyParams as RouteEmptyParams
 from .route_get_response import RouteGetResponse as RouteGetResponse
 from .site_create_params import SiteCreateParams as SiteCreateParams

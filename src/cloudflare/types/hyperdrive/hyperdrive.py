@@ -3,7 +3,7 @@
 from typing import Optional
 
 from ..._models import BaseModel
-from ..configuration import Configuration
+from .configuration import Configuration
 
 __all__ = ["Hyperdrive", "Caching"]
 

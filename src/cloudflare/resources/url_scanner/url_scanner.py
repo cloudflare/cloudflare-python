@@ -15,7 +15,6 @@ from .scans import (
     ScansWithStreamingResponse,
     AsyncScansWithStreamingResponse,
 )
-from ...types import URLScannerScanResponse, url_scanner_scan_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -33,6 +32,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
+from ...types.url_scanner import URLScannerScanResponse, url_scanner_scan_params
 
 __all__ = ["URLScanner", "AsyncURLScanner"]
 

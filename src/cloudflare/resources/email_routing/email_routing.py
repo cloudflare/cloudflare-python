@@ -22,7 +22,6 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from ...types import Settings, email_routing_enable_params, email_routing_disable_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -49,6 +48,7 @@ from .rules.rules import Rules, AsyncRules
 from ..._base_client import (
     make_request_options,
 )
+from ...types.email_routing import Settings, email_routing_enable_params, email_routing_disable_params
 
 __all__ = ["EmailRouting", "AsyncEmailRouting"]
 

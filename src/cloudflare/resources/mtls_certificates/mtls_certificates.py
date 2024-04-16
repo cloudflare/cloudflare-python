@@ -6,12 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from ...types import (
-    MTLSCertificate,
-    MTLSCertificateCreateResponse,
-    mtls_certificate_create_params,
-    mtls_certificate_delete_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -38,6 +32,12 @@ from .associations import (
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ...types.mtls_certificates import (
+    MTLSCertificate,
+    MTLSCertificateCreateResponse,
+    mtls_certificate_create_params,
+    mtls_certificate_delete_params,
 )
 
 __all__ = ["MTLSCertificates", "AsyncMTLSCertificates"]

@@ -6,7 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from ..types import AvailableRatePlan
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -18,6 +17,7 @@ from .._response import (
 )
 from .._wrappers import ResultWrapper
 from ..pagination import SyncSinglePage, AsyncSinglePage
+from ..types.plans import AvailableRatePlan
 from .._base_client import (
     AsyncPaginator,
     make_request_options,

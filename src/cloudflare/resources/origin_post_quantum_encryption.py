@@ -7,11 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import (
-    OriginPostQuantumEncryptionGetResponse,
-    OriginPostQuantumEncryptionUpdateResponse,
-    origin_post_quantum_encryption_update_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -28,6 +23,11 @@ from .._response import (
 from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
+)
+from ..types.origin_post_quantum_encryption import (
+    OriginPostQuantumEncryptionGetResponse,
+    OriginPostQuantumEncryptionUpdateResponse,
+    origin_post_quantum_encryption_update_params,
 )
 
 __all__ = ["OriginPostQuantumEncryption", "AsyncOriginPostQuantumEncryption"]

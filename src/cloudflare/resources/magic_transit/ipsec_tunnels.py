@@ -6,7 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from ...types import HealthCheckParam
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -25,6 +24,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.magic_transit import (
+    HealthCheckParam,
     IPSECTunnelGetResponse,
     IPSECTunnelListResponse,
     IPSECTunnelCreateResponse,
