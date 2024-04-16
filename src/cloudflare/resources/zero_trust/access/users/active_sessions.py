@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -88,7 +88,7 @@ class ActiveSessions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ActiveSessionGetResponse:
+    ) -> Optional[ActiveSessionGetResponse]:
         """
         Get an active session for a single user.
 
@@ -120,7 +120,7 @@ class ActiveSessions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ActiveSessionGetResponse], ResultWrapper[ActiveSessionGetResponse]),
+            cast_to=cast(Type[Optional[ActiveSessionGetResponse]], ResultWrapper[ActiveSessionGetResponse]),
         )
 
 
@@ -186,7 +186,7 @@ class AsyncActiveSessions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ActiveSessionGetResponse:
+    ) -> Optional[ActiveSessionGetResponse]:
         """
         Get an active session for a single user.
 
@@ -218,7 +218,7 @@ class AsyncActiveSessions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ActiveSessionGetResponse], ResultWrapper[ActiveSessionGetResponse]),
+            cast_to=cast(Type[Optional[ActiveSessionGetResponse]], ResultWrapper[ActiveSessionGetResponse]),
         )
 
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -46,7 +46,7 @@ class UserPolicyChecks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserPolicyCheckListResponse:
+    ) -> Optional[UserPolicyCheckListResponse]:
         """
         Tests if a specific user has permission to access an application.
 
@@ -86,7 +86,7 @@ class UserPolicyChecks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[UserPolicyCheckListResponse], ResultWrapper[UserPolicyCheckListResponse]),
+            cast_to=cast(Type[Optional[UserPolicyCheckListResponse]], ResultWrapper[UserPolicyCheckListResponse]),
         )
 
 
@@ -111,7 +111,7 @@ class AsyncUserPolicyChecks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserPolicyCheckListResponse:
+    ) -> Optional[UserPolicyCheckListResponse]:
         """
         Tests if a specific user has permission to access an application.
 
@@ -151,7 +151,7 @@ class AsyncUserPolicyChecks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[UserPolicyCheckListResponse], ResultWrapper[UserPolicyCheckListResponse]),
+            cast_to=cast(Type[Optional[UserPolicyCheckListResponse]], ResultWrapper[UserPolicyCheckListResponse]),
         )
 
 
