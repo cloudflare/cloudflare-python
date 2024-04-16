@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -27,7 +27,7 @@ class TestHTTPTests:
             time_end="string",
             time_start="string",
         )
-        assert_matches_type(HTTPDetails, http_test, path=["response"])
+        assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -41,7 +41,7 @@ class TestHTTPTests:
             colo="string",
             device_id=["string", "string", "string"],
         )
-        assert_matches_type(HTTPDetails, http_test, path=["response"])
+        assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestHTTPTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         http_test = response.parse()
-        assert_matches_type(HTTPDetails, http_test, path=["response"])
+        assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -73,7 +73,7 @@ class TestHTTPTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             http_test = response.parse()
-            assert_matches_type(HTTPDetails, http_test, path=["response"])
+            assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -112,7 +112,7 @@ class TestAsyncHTTPTests:
             time_end="string",
             time_start="string",
         )
-        assert_matches_type(HTTPDetails, http_test, path=["response"])
+        assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -126,7 +126,7 @@ class TestAsyncHTTPTests:
             colo="string",
             device_id=["string", "string", "string"],
         )
-        assert_matches_type(HTTPDetails, http_test, path=["response"])
+        assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestAsyncHTTPTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         http_test = await response.parse()
-        assert_matches_type(HTTPDetails, http_test, path=["response"])
+        assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -158,7 +158,7 @@ class TestAsyncHTTPTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             http_test = await response.parse()
-            assert_matches_type(HTTPDetails, http_test, path=["response"])
+            assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
