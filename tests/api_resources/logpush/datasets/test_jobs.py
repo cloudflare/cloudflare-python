@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(JobGetResponse, job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(JobGetResponse, job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -49,7 +49,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(JobGetResponse, job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+            assert_matches_type(JobGetResponse, job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -103,7 +103,7 @@ class TestAsyncJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(JobGetResponse, job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -113,7 +113,7 @@ class TestAsyncJobs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(JobGetResponse, job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -127,7 +127,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(JobGetResponse, job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -141,7 +141,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+            assert_matches_type(JobGetResponse, job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

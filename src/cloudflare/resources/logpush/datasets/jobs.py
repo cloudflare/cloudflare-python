@@ -45,7 +45,7 @@ class Jobs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[JobGetResponse]:
+    ) -> JobGetResponse:
         """
         Lists Logpush jobs for an account or zone for a dataset.
 
@@ -87,7 +87,7 @@ class Jobs(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[JobGetResponse]], ResultWrapper[JobGetResponse]),
+            cast_to=cast(Type[JobGetResponse], ResultWrapper[JobGetResponse]),
         )
 
 
@@ -112,7 +112,7 @@ class AsyncJobs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[JobGetResponse]:
+    ) -> JobGetResponse:
         """
         Lists Logpush jobs for an account or zone for a dataset.
 
@@ -154,7 +154,7 @@ class AsyncJobs(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[JobGetResponse]], ResultWrapper[JobGetResponse]),
+            cast_to=cast(Type[JobGetResponse], ResultWrapper[JobGetResponse]),
         )
 
 

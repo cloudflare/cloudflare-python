@@ -105,7 +105,7 @@ class Edge(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EdgeGetResponse]:
+    ) -> EdgeGetResponse:
         """
         Lists Instant Logs jobs for a zone.
 
@@ -131,7 +131,7 @@ class Edge(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[EdgeGetResponse]], ResultWrapper[EdgeGetResponse]),
+            cast_to=cast(Type[EdgeGetResponse], ResultWrapper[EdgeGetResponse]),
         )
 
 
@@ -212,7 +212,7 @@ class AsyncEdge(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EdgeGetResponse]:
+    ) -> EdgeGetResponse:
         """
         Lists Instant Logs jobs for a zone.
 
@@ -238,7 +238,7 @@ class AsyncEdge(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[EdgeGetResponse]], ResultWrapper[EdgeGetResponse]),
+            cast_to=cast(Type[EdgeGetResponse], ResultWrapper[EdgeGetResponse]),
         )
 
 
