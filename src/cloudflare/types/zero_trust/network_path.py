@@ -1,29 +1,46 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["NetworkPath"]
+__all__ = ["NetworkPath", "Slot", "Sampling"]
 
 
-class NetworkPath(BaseModel):
+class Slot(BaseModel):
     id: str
     """API Resource UUID tag."""
 
-    device_name: Optional[str] = FieldInfo(alias="deviceName", default=None)
+    client_to_app_rtt_ms: Optional[int] = FieldInfo(alias="clientToAppRttMs", default=None)
+    """Round trip time in ms of the client to app mile"""
 
-    interval: Optional[str] = None
-    """The interval at which the Traceroute synthetic application test is set to run."""
+    client_to_cf_egress_rtt_ms: Optional[int] = FieldInfo(alias="clientToCfEgressRttMs", default=None)
+    """Round trip time in ms of the client to Cloudflare egress mile"""
 
-    kind: Optional[Literal["traceroute"]] = None
+    client_to_cf_ingress_rtt_ms: Optional[int] = FieldInfo(alias="clientToCfIngressRttMs", default=None)
+    """Round trip time in ms of the client to Cloudflare ingress mile"""
 
-    name: Optional[str] = None
+    timestamp: str
 
-    network_path: Optional[NetworkPath] = FieldInfo(alias="networkPath", default=None)
+    client_to_isp_rtt_ms: Optional[int] = FieldInfo(alias="clientToIspRttMs", default=None)
+    """Round trip time in ms of the client to ISP mile"""
 
-    url: Optional[str] = None
-    """The host of the Traceroute synthetic application test"""
+
+class Sampling(BaseModel):
+    unit: Literal["hours"]
+
+    value: int
+
+
+class NetworkPath(BaseModel):
+    slots: List[Slot]
+
+    sampling: Optional[Sampling] = None
+    """Specifies the sampling applied, if any, to the slots response.
+
+    When sampled, results shown represent the first test run to the start of each
+    sampling interval.
+    """

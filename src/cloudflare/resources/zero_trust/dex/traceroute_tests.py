@@ -24,7 +24,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust import NetworkPath
+from ....types.zero_trust import NetworkPathResponse
 from ....types.zero_trust.dex import (
     Traceroute,
     TracerouteTestPercentilesResponse,
@@ -130,7 +130,7 @@ class TracerouteTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkPath]:
+    ) -> Optional[NetworkPathResponse]:
         """
         Get a breakdown of metrics by hop for individual traceroute test runs
 
@@ -175,7 +175,7 @@ class TracerouteTests(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkPath]], ResultWrapper[NetworkPath]),
+            cast_to=cast(Type[Optional[NetworkPathResponse]], ResultWrapper[NetworkPathResponse]),
         )
 
     def percentiles(
@@ -341,7 +341,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkPath]:
+    ) -> Optional[NetworkPathResponse]:
         """
         Get a breakdown of metrics by hop for individual traceroute test runs
 
@@ -386,7 +386,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NetworkPath]], ResultWrapper[NetworkPath]),
+            cast_to=cast(Type[Optional[NetworkPathResponse]], ResultWrapper[NetworkPathResponse]),
         )
 
     async def percentiles(
