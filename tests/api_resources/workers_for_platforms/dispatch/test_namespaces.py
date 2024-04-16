@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -28,7 +28,7 @@ class TestNamespaces:
         namespace = client.workers_for_platforms.dispatch.namespaces.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceCreateResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestNamespaces:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my-dispatch-namespace",
         )
-        assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceCreateResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -49,7 +49,7 @@ class TestNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = response.parse()
-        assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceCreateResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -61,7 +61,7 @@ class TestNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = response.parse()
-            assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+            assert_matches_type(Optional[NamespaceCreateResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -174,7 +174,7 @@ class TestNamespaces:
             "my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(NamespaceGetResponse, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceGetResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +187,7 @@ class TestNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = response.parse()
-        assert_matches_type(NamespaceGetResponse, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceGetResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -200,7 +200,7 @@ class TestNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = response.parse()
-            assert_matches_type(NamespaceGetResponse, namespace, path=["response"])
+            assert_matches_type(Optional[NamespaceGetResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -229,7 +229,7 @@ class TestAsyncNamespaces:
         namespace = await async_client.workers_for_platforms.dispatch.namespaces.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceCreateResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -238,7 +238,7 @@ class TestAsyncNamespaces:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my-dispatch-namespace",
         )
-        assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceCreateResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -250,7 +250,7 @@ class TestAsyncNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = await response.parse()
-        assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceCreateResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -262,7 +262,7 @@ class TestAsyncNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = await response.parse()
-            assert_matches_type(NamespaceCreateResponse, namespace, path=["response"])
+            assert_matches_type(Optional[NamespaceCreateResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -375,7 +375,7 @@ class TestAsyncNamespaces:
             "my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(NamespaceGetResponse, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceGetResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -388,7 +388,7 @@ class TestAsyncNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = await response.parse()
-        assert_matches_type(NamespaceGetResponse, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceGetResponse], namespace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -401,7 +401,7 @@ class TestAsyncNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = await response.parse()
-            assert_matches_type(NamespaceGetResponse, namespace, path=["response"])
+            assert_matches_type(Optional[NamespaceGetResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

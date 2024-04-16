@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -53,7 +53,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Domain:
+    ) -> Optional[Domain]:
         """
         Attaches a Worker to a zone and hostname.
 
@@ -94,7 +94,7 @@ class Domains(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Domain], ResultWrapper[Domain]),
+            cast_to=cast(Type[Optional[Domain]], ResultWrapper[Domain]),
         )
 
     def list(
@@ -211,7 +211,7 @@ class Domains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Domain:
+    ) -> Optional[Domain]:
         """
         Gets a Worker domain.
 
@@ -239,7 +239,7 @@ class Domains(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Domain], ResultWrapper[Domain]),
+            cast_to=cast(Type[Optional[Domain]], ResultWrapper[Domain]),
         )
 
 
@@ -266,7 +266,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Domain:
+    ) -> Optional[Domain]:
         """
         Attaches a Worker to a zone and hostname.
 
@@ -307,7 +307,7 @@ class AsyncDomains(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Domain], ResultWrapper[Domain]),
+            cast_to=cast(Type[Optional[Domain]], ResultWrapper[Domain]),
         )
 
     def list(
@@ -424,7 +424,7 @@ class AsyncDomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Domain:
+    ) -> Optional[Domain]:
         """
         Gets a Worker domain.
 
@@ -452,7 +452,7 @@ class AsyncDomains(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Domain], ResultWrapper[Domain]),
+            cast_to=cast(Type[Optional[Domain]], ResultWrapper[Domain]),
         )
 
 

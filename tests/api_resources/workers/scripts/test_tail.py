@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -29,7 +29,7 @@ class TestTail:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(TailCreateResponse, tail, path=["response"])
+        assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +43,7 @@ class TestTail:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tail = response.parse()
-        assert_matches_type(TailCreateResponse, tail, path=["response"])
+        assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestTail:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tail = response.parse()
-            assert_matches_type(TailCreateResponse, tail, path=["response"])
+            assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestTail:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TailGetResponse, tail, path=["response"])
+        assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -168,7 +168,7 @@ class TestTail:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tail = response.parse()
-        assert_matches_type(TailGetResponse, tail, path=["response"])
+        assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -181,7 +181,7 @@ class TestTail:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tail = response.parse()
-            assert_matches_type(TailGetResponse, tail, path=["response"])
+            assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -212,7 +212,7 @@ class TestAsyncTail:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(TailCreateResponse, tail, path=["response"])
+        assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -226,7 +226,7 @@ class TestAsyncTail:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tail = await response.parse()
-        assert_matches_type(TailCreateResponse, tail, path=["response"])
+        assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -240,7 +240,7 @@ class TestAsyncTail:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tail = await response.parse()
-            assert_matches_type(TailCreateResponse, tail, path=["response"])
+            assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -338,7 +338,7 @@ class TestAsyncTail:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TailGetResponse, tail, path=["response"])
+        assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -351,7 +351,7 @@ class TestAsyncTail:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tail = await response.parse()
-        assert_matches_type(TailGetResponse, tail, path=["response"])
+        assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -364,7 +364,7 @@ class TestAsyncTail:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tail = await response.parse()
-            assert_matches_type(TailGetResponse, tail, path=["response"])
+            assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

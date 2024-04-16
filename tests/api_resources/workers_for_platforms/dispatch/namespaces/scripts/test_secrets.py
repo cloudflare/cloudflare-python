@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -29,7 +29,7 @@ class TestSecrets:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
+        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -42,7 +42,7 @@ class TestSecrets:
             text="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
             type="secret_text",
         )
-        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
+        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +56,7 @@ class TestSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = response.parse()
-        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
+        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -70,7 +70,7 @@ class TestSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = response.parse()
-            assert_matches_type(SecretUpdateResponse, secret, path=["response"])
+            assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -174,7 +174,7 @@ class TestAsyncSecrets:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
+        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -187,7 +187,7 @@ class TestAsyncSecrets:
             text="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
             type="secret_text",
         )
-        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
+        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -203,7 +203,7 @@ class TestAsyncSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = await response.parse()
-        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
+        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -217,7 +217,7 @@ class TestAsyncSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = await response.parse()
-            assert_matches_type(SecretUpdateResponse, secret, path=["response"])
+            assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

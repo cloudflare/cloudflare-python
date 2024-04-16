@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -51,7 +51,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptSetting:
+    ) -> Optional[ScriptSetting]:
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -94,7 +94,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
 
     def get(
@@ -108,7 +108,7 @@ class Settings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptSetting:
+    ) -> Optional[ScriptSetting]:
         """
         Get script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -140,7 +140,7 @@ class Settings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
 
 
@@ -166,7 +166,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptSetting:
+    ) -> Optional[ScriptSetting]:
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -209,7 +209,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
 
     async def get(
@@ -223,7 +223,7 @@ class AsyncSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptSetting:
+    ) -> Optional[ScriptSetting]:
         """
         Get script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -255,7 +255,7 @@ class AsyncSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
 
 

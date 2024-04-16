@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -27,7 +27,7 @@ class TestAccountSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         )
-        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
+        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -40,7 +40,7 @@ class TestAccountSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = response.parse()
-        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
+        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +53,7 @@ class TestAccountSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = response.parse()
-            assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
+            assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,7 +72,7 @@ class TestAccountSettings:
         account_setting = client.workers.account_settings.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
+        assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -84,7 +84,7 @@ class TestAccountSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = response.parse()
-        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
+        assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -96,7 +96,7 @@ class TestAccountSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = response.parse()
-            assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
+            assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -119,7 +119,7 @@ class TestAsyncAccountSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'default_usage_model': 'unbound'}",
         )
-        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
+        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -132,7 +132,7 @@ class TestAsyncAccountSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = await response.parse()
-        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
+        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -145,7 +145,7 @@ class TestAsyncAccountSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = await response.parse()
-            assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
+            assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -164,7 +164,7 @@ class TestAsyncAccountSettings:
         account_setting = await async_client.workers.account_settings.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
+        assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -176,7 +176,7 @@ class TestAsyncAccountSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = await response.parse()
-        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
+        assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +188,7 @@ class TestAsyncAccountSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = await response.parse()
-            assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
+            assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -45,7 +45,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BindingGetResponse:
+    ) -> Optional[BindingGetResponse]:
         """
         Fetch script bindings from a script uploaded to a Workers for Platforms
         namespace.
@@ -80,7 +80,7 @@ class Bindings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[BindingGetResponse], ResultWrapper[BindingGetResponse]),
+            cast_to=cast(Type[Optional[BindingGetResponse]], ResultWrapper[BindingGetResponse]),
         )
 
 
@@ -105,7 +105,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BindingGetResponse:
+    ) -> Optional[BindingGetResponse]:
         """
         Fetch script bindings from a script uploaded to a Workers for Platforms
         namespace.
@@ -140,7 +140,7 @@ class AsyncBindings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[BindingGetResponse], ResultWrapper[BindingGetResponse]),
+            cast_to=cast(Type[Optional[BindingGetResponse]], ResultWrapper[BindingGetResponse]),
         )
 
 

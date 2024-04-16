@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -28,7 +28,7 @@ class TestVersions:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(VersionCreateResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -56,7 +56,7 @@ class TestVersions:
                 "usage_model": "standard",
             },
         )
-        assert_matches_type(VersionCreateResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -69,7 +69,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(VersionCreateResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -82,7 +82,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(VersionCreateResponse, version, path=["response"])
+            assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -108,7 +108,7 @@ class TestVersions:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(VersionListResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionListResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -121,7 +121,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(VersionListResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionListResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +134,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(VersionListResponse, version, path=["response"])
+            assert_matches_type(Optional[VersionListResponse], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +161,7 @@ class TestVersions:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
-        assert_matches_type(VersionGetResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionGetResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -175,7 +175,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(VersionGetResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionGetResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -189,7 +189,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(VersionGetResponse, version, path=["response"])
+            assert_matches_type(Optional[VersionGetResponse], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -228,7 +228,7 @@ class TestAsyncVersions:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(VersionCreateResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -256,7 +256,7 @@ class TestAsyncVersions:
                 "usage_model": "standard",
             },
         )
-        assert_matches_type(VersionCreateResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -269,7 +269,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(VersionCreateResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -282,7 +282,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(VersionCreateResponse, version, path=["response"])
+            assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -308,7 +308,7 @@ class TestAsyncVersions:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(VersionListResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionListResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -321,7 +321,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(VersionListResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionListResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -334,7 +334,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(VersionListResponse, version, path=["response"])
+            assert_matches_type(Optional[VersionListResponse], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -361,7 +361,7 @@ class TestAsyncVersions:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
-        assert_matches_type(VersionGetResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionGetResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -375,7 +375,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(VersionGetResponse, version, path=["response"])
+        assert_matches_type(Optional[VersionGetResponse], version, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -389,7 +389,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(VersionGetResponse, version, path=["response"])
+            assert_matches_type(Optional[VersionGetResponse], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

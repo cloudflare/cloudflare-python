@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -48,7 +48,7 @@ class Subdomains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubdomainUpdateResponse:
+    ) -> Optional[SubdomainUpdateResponse]:
         """
         Creates a Workers subdomain for an account.
 
@@ -75,7 +75,7 @@ class Subdomains(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SubdomainUpdateResponse], ResultWrapper[SubdomainUpdateResponse]),
+            cast_to=cast(Type[Optional[SubdomainUpdateResponse]], ResultWrapper[SubdomainUpdateResponse]),
         )
 
     def get(
@@ -88,7 +88,7 @@ class Subdomains(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubdomainGetResponse:
+    ) -> Optional[SubdomainGetResponse]:
         """
         Returns a Workers subdomain for an account.
 
@@ -114,7 +114,7 @@ class Subdomains(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SubdomainGetResponse], ResultWrapper[SubdomainGetResponse]),
+            cast_to=cast(Type[Optional[SubdomainGetResponse]], ResultWrapper[SubdomainGetResponse]),
         )
 
 
@@ -138,7 +138,7 @@ class AsyncSubdomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubdomainUpdateResponse:
+    ) -> Optional[SubdomainUpdateResponse]:
         """
         Creates a Workers subdomain for an account.
 
@@ -165,7 +165,7 @@ class AsyncSubdomains(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SubdomainUpdateResponse], ResultWrapper[SubdomainUpdateResponse]),
+            cast_to=cast(Type[Optional[SubdomainUpdateResponse]], ResultWrapper[SubdomainUpdateResponse]),
         )
 
     async def get(
@@ -178,7 +178,7 @@ class AsyncSubdomains(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubdomainGetResponse:
+    ) -> Optional[SubdomainGetResponse]:
         """
         Returns a Workers subdomain for an account.
 
@@ -204,7 +204,7 @@ class AsyncSubdomains(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SubdomainGetResponse], ResultWrapper[SubdomainGetResponse]),
+            cast_to=cast(Type[Optional[SubdomainGetResponse]], ResultWrapper[SubdomainGetResponse]),
         )
 
 

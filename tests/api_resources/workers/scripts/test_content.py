@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 import pytest
@@ -32,7 +32,7 @@ class TestContent:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Script, content, path=["response"])
+        assert_matches_type(Optional[Script], content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -46,7 +46,7 @@ class TestContent:
                 "main_module": "worker.js",
             },
         )
-        assert_matches_type(Script, content, path=["response"])
+        assert_matches_type(Optional[Script], content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -59,7 +59,7 @@ class TestContent:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         content = response.parse()
-        assert_matches_type(Script, content, path=["response"])
+        assert_matches_type(Optional[Script], content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -72,7 +72,7 @@ class TestContent:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             content = response.parse()
-            assert_matches_type(Script, content, path=["response"])
+            assert_matches_type(Optional[Script], content, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -172,7 +172,7 @@ class TestAsyncContent:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Script, content, path=["response"])
+        assert_matches_type(Optional[Script], content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -186,7 +186,7 @@ class TestAsyncContent:
                 "main_module": "worker.js",
             },
         )
-        assert_matches_type(Script, content, path=["response"])
+        assert_matches_type(Optional[Script], content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -199,7 +199,7 @@ class TestAsyncContent:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         content = await response.parse()
-        assert_matches_type(Script, content, path=["response"])
+        assert_matches_type(Optional[Script], content, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -212,7 +212,7 @@ class TestAsyncContent:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             content = await response.parse()
-            assert_matches_type(Script, content, path=["response"])
+            assert_matches_type(Optional[Script], content, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

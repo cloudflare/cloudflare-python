@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -48,7 +48,7 @@ class AccountSettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountSettingUpdateResponse:
+    ) -> Optional[AccountSettingUpdateResponse]:
         """
         Creates Worker account settings for an account.
 
@@ -75,7 +75,7 @@ class AccountSettings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccountSettingUpdateResponse], ResultWrapper[AccountSettingUpdateResponse]),
+            cast_to=cast(Type[Optional[AccountSettingUpdateResponse]], ResultWrapper[AccountSettingUpdateResponse]),
         )
 
     def get(
@@ -88,7 +88,7 @@ class AccountSettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountSettingGetResponse:
+    ) -> Optional[AccountSettingGetResponse]:
         """
         Fetches Worker account settings for an account.
 
@@ -114,7 +114,7 @@ class AccountSettings(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccountSettingGetResponse], ResultWrapper[AccountSettingGetResponse]),
+            cast_to=cast(Type[Optional[AccountSettingGetResponse]], ResultWrapper[AccountSettingGetResponse]),
         )
 
 
@@ -138,7 +138,7 @@ class AsyncAccountSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountSettingUpdateResponse:
+    ) -> Optional[AccountSettingUpdateResponse]:
         """
         Creates Worker account settings for an account.
 
@@ -165,7 +165,7 @@ class AsyncAccountSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccountSettingUpdateResponse], ResultWrapper[AccountSettingUpdateResponse]),
+            cast_to=cast(Type[Optional[AccountSettingUpdateResponse]], ResultWrapper[AccountSettingUpdateResponse]),
         )
 
     async def get(
@@ -178,7 +178,7 @@ class AsyncAccountSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountSettingGetResponse:
+    ) -> Optional[AccountSettingGetResponse]:
         """
         Fetches Worker account settings for an account.
 
@@ -204,7 +204,7 @@ class AsyncAccountSettings(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[AccountSettingGetResponse], ResultWrapper[AccountSettingGetResponse]),
+            cast_to=cast(Type[Optional[AccountSettingGetResponse]], ResultWrapper[AccountSettingGetResponse]),
         )
 
 
