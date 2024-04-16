@@ -9,8 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import D1
 from cloudflare.types.d1 import (
+    D1,
     DatabaseListResponse,
     DatabaseQueryResponse,
     DatabaseCreateResponse,

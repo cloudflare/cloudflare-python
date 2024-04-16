@@ -6,7 +6,6 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..types import CallsApp, CallsAppWithSecret, call_create_params, call_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -22,6 +21,7 @@ from .._response import (
 )
 from .._wrappers import ResultWrapper
 from ..pagination import SyncSinglePage, AsyncSinglePage
+from ..types.calls import CallsApp, CallsAppWithSecret, call_create_params, call_update_params
 from .._base_client import (
     AsyncPaginator,
     make_request_options,

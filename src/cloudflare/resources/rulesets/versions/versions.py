@@ -14,7 +14,6 @@ from .by_tag import (
     ByTagWithStreamingResponse,
     AsyncByTagWithStreamingResponse,
 )
-from ....types import Ruleset
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -30,7 +29,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.rulesets import VersionGetResponse
+from ....types.rulesets import Ruleset, VersionGetResponse
 
 __all__ = ["Versions", "AsyncVersions"]
 

@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from .test import Test
 from ..._models import BaseModel
-from ..labeled_region import LabeledRegion
+from .labeled_region import LabeledRegion
 
 __all__ = ["PageListResponse"]
 

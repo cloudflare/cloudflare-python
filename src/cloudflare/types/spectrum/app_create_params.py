@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-from ..dns_param import DNSParam
-from ..edge_ips_param import EdgeIPsParam
-from ..origin_dns_param import OriginDNSParam
-from ..origin_port_param import OriginPortParam
+from .dns_param import DNSParam
+from .edge_ips_param import EdgeIPsParam
+from .origin_dns_param import OriginDNSParam
+from .origin_port_param import OriginPortParam
 
 __all__ = ["AppCreateParams"]
 

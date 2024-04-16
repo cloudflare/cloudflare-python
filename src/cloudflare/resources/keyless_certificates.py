@@ -6,15 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from ..types import (
-    TunnelParam,
-    BundleMethod,
-    KeylessCertificate,
-    KeylessCertificateDeleteResponse,
-    keyless_certificate_edit_params,
-    keyless_certificate_create_params,
-    keyless_certificate_delete_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -33,6 +24,15 @@ from ..pagination import SyncSinglePage, AsyncSinglePage
 from .._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ..types.custom_hostnames import BundleMethod
+from ..types.keyless_certificates import (
+    TunnelParam,
+    KeylessCertificate,
+    KeylessCertificateDeleteResponse,
+    keyless_certificate_edit_params,
+    keyless_certificate_create_params,
+    keyless_certificate_delete_params,
 )
 
 __all__ = ["KeylessCertificates", "AsyncKeylessCertificates"]

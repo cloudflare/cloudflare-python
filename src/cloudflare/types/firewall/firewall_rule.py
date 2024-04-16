@@ -2,11 +2,11 @@
 
 from typing import List, Union, Optional
 
-from ..action import Action
+from ..filters import FirewallFilter
 from .products import Products
 from ..._models import BaseModel
+from ..rate_limits import Action
 from .deleted_filter import DeletedFilter
-from ..firewall_filter import FirewallFilter
 
 __all__ = ["FirewallRule", "Filter"]
 

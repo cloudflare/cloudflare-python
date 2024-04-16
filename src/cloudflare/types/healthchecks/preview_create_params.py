@@ -6,9 +6,9 @@ from typing import List, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from ..check_region import CheckRegion
-from ..tcp_configuration_param import TCPConfigurationParam
-from ..http_configuration_param import HTTPConfigurationParam
+from .check_region import CheckRegion
+from .tcp_configuration_param import TCPConfigurationParam
+from .http_configuration_param import HTTPConfigurationParam
 
 __all__ = ["PreviewCreateParams"]
 

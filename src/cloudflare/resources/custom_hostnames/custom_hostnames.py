@@ -7,17 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import (
-    CustomHostnameGetResponse,
-    CustomHostnameEditResponse,
-    CustomHostnameListResponse,
-    CustomHostnameCreateResponse,
-    CustomHostnameDeleteResponse,
-    custom_hostname_edit_params,
-    custom_hostname_list_params,
-    custom_hostname_create_params,
-    custom_hostname_delete_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -44,6 +33,17 @@ from .fallback_origin import (
     AsyncFallbackOriginWithRawResponse,
     FallbackOriginWithStreamingResponse,
     AsyncFallbackOriginWithStreamingResponse,
+)
+from ...types.custom_hostnames import (
+    CustomHostnameGetResponse,
+    CustomHostnameEditResponse,
+    CustomHostnameListResponse,
+    CustomHostnameCreateResponse,
+    CustomHostnameDeleteResponse,
+    custom_hostname_edit_params,
+    custom_hostname_list_params,
+    custom_hostname_create_params,
+    custom_hostname_delete_params,
 )
 
 __all__ = ["CustomHostnames", "AsyncCustomHostnames"]

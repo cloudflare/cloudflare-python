@@ -6,14 +6,6 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..types import (
-    FirewallFilter,
-    FilterCreateResponse,
-    filter_list_params,
-    filter_create_params,
-    filter_delete_params,
-    filter_update_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -32,6 +24,14 @@ from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ..types.filters import (
+    FirewallFilter,
+    FilterCreateResponse,
+    filter_list_params,
+    filter_create_params,
+    filter_delete_params,
+    filter_update_params,
 )
 
 __all__ = ["Filters", "AsyncFilters"]

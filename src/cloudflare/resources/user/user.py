@@ -14,7 +14,6 @@ from .tokens import (
     TokensWithStreamingResponse,
     AsyncTokensWithStreamingResponse,
 )
-from ...types import UserGetResponse, UserEditResponse, user_edit_params
 from .billing import (
     Billing,
     AsyncBilling,
@@ -53,6 +52,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...types.user import UserGetResponse, UserEditResponse, user_edit_params
 from .organizations import (
     Organizations,
     AsyncOrganizations,

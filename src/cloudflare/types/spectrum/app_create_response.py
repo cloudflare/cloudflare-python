@@ -4,11 +4,11 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..dns import DNS
+from .dns import DNS
+from .edge_ips import EdgeIPs
 from ..._models import BaseModel
-from ..edge_ips import EdgeIPs
-from ..origin_dns import OriginDNS
-from ..origin_port import OriginPort
+from .origin_dns import OriginDNS
+from .origin_port import OriginPort
 
 __all__ = ["AppCreateResponse"]
 

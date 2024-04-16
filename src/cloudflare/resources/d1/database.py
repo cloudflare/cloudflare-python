@@ -6,7 +6,6 @@ from typing import Any, List, Type, cast
 
 import httpx
 
-from ...types import D1
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -14,6 +13,7 @@ from ..._utils import (
 )
 from ..._compat import cached_property
 from ...types.d1 import (
+    D1,
     DatabaseListResponse,
     DatabaseQueryResponse,
     DatabaseCreateResponse,

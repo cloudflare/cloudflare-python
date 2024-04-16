@@ -2,7 +2,7 @@
 
 from typing import List
 
-from ..custom_certificate import CustomCertificate
+from .custom_certificate import CustomCertificate
 
 __all__ = ["PrioritizeUpdateResponse"]
 

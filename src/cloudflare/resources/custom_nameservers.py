@@ -6,16 +6,6 @@ from typing import Any, Type, Optional, cast
 
 import httpx
 
-from ..types import (
-    CustomNameserver,
-    CustomNameserverGetResponse,
-    CustomNameserverDeleteResponse,
-    CustomNameserverVerifyResponse,
-    CustomNameserverAvailabiltyResponse,
-    custom_nameserver_create_params,
-    custom_nameserver_delete_params,
-    custom_nameserver_verify_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -32,6 +22,16 @@ from .._response import (
 from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
+)
+from ..types.custom_nameservers import (
+    CustomNameserver,
+    CustomNameserverGetResponse,
+    CustomNameserverDeleteResponse,
+    CustomNameserverVerifyResponse,
+    CustomNameserverAvailabiltyResponse,
+    custom_nameserver_create_params,
+    custom_nameserver_delete_params,
+    custom_nameserver_verify_params,
 )
 
 __all__ = ["CustomNameservers", "AsyncCustomNameservers"]

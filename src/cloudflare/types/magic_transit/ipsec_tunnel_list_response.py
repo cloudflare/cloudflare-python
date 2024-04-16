@@ -5,8 +5,8 @@ from datetime import datetime
 
 from ..._models import BaseModel
 from .psk_metadata import PSKMetadata
-from ..health_check_rate import HealthCheckRate
-from ..health_check_type import HealthCheckType
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
 __all__ = ["IPSECTunnelListResponse", "IPSECTunnel", "IPSECTunnelTunnelHealthCheck"]
 

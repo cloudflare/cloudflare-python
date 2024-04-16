@@ -7,13 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import (
-    PCAPFilterParam,
-    PCAPGetResponse,
-    PCAPListResponse,
-    PCAPCreateResponse,
-    pcap_create_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     required_args,
@@ -46,6 +39,13 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
+from ...types.pcaps import (
+    PCAPFilterParam,
+    PCAPGetResponse,
+    PCAPListResponse,
+    PCAPCreateResponse,
+    pcap_create_params,
+)
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,

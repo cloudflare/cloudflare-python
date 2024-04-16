@@ -7,10 +7,8 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._types import FileTypes
 from ....._utils import PropertyInfo
+from ....workers import SteppedMigrationParam, SingleStepMigrationParam, PlacementConfigurationParam
 from ....workers.scripts import ConsumerScriptParam
-from ....stepped_migration_param import SteppedMigrationParam
-from ....single_step_migration_param import SingleStepMigrationParam
-from ....placement_configuration_param import PlacementConfigurationParam
 
 __all__ = ["ScriptUpdateParams", "Variant0", "Variant0Metadata", "Variant0MetadataMigrations", "Variant1"]
 
