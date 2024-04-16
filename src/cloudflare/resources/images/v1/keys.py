@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.images.v1 import Key
+from ....types.images.v1 import KeyListResponse, KeyDeleteResponse, KeyUpdateResponse
 
 __all__ = ["Keys", "AsyncKeys"]
 
@@ -44,7 +44,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Key:
+    ) -> KeyUpdateResponse:
         """Create a new signing key with specified name.
 
         Returns all keys available.
@@ -73,7 +73,7 @@ class Keys(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Key], ResultWrapper[Key]),
+            cast_to=cast(Type[KeyUpdateResponse], ResultWrapper[KeyUpdateResponse]),
         )
 
     def list(
@@ -86,7 +86,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Key:
+    ) -> KeyListResponse:
         """Lists your signing keys.
 
         These can be found on your Cloudflare Images dashboard.
@@ -113,7 +113,7 @@ class Keys(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Key], ResultWrapper[Key]),
+            cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
         )
 
     def delete(
@@ -127,7 +127,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Key:
+    ) -> KeyDeleteResponse:
         """Delete signing key with specified name.
 
         Returns all keys available. When last
@@ -157,7 +157,7 @@ class Keys(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Key], ResultWrapper[Key]),
+            cast_to=cast(Type[KeyDeleteResponse], ResultWrapper[KeyDeleteResponse]),
         )
 
 
@@ -181,7 +181,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Key:
+    ) -> KeyUpdateResponse:
         """Create a new signing key with specified name.
 
         Returns all keys available.
@@ -210,7 +210,7 @@ class AsyncKeys(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Key], ResultWrapper[Key]),
+            cast_to=cast(Type[KeyUpdateResponse], ResultWrapper[KeyUpdateResponse]),
         )
 
     async def list(
@@ -223,7 +223,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Key:
+    ) -> KeyListResponse:
         """Lists your signing keys.
 
         These can be found on your Cloudflare Images dashboard.
@@ -250,7 +250,7 @@ class AsyncKeys(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Key], ResultWrapper[Key]),
+            cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
         )
 
     async def delete(
@@ -264,7 +264,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Key:
+    ) -> KeyDeleteResponse:
         """Delete signing key with specified name.
 
         Returns all keys available. When last
@@ -294,7 +294,7 @@ class AsyncKeys(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Key], ResultWrapper[Key]),
+            cast_to=cast(Type[KeyDeleteResponse], ResultWrapper[KeyDeleteResponse]),
         )
 
 
