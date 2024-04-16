@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -30,7 +30,7 @@ class TestTags:
             dispatch_namespace="my-dispatch-namespace",
             body=["my-tag", "my-tag", "my-tag"],
         )
-        assert_matches_type(TagUpdateResponse, tag, path=["response"])
+        assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(TagUpdateResponse, tag, path=["response"])
+        assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +60,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(TagUpdateResponse, tag, path=["response"])
+            assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -246,7 +246,7 @@ class TestAsyncTags:
             dispatch_namespace="my-dispatch-namespace",
             body=["my-tag", "my-tag", "my-tag"],
         )
-        assert_matches_type(TagUpdateResponse, tag, path=["response"])
+        assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -261,7 +261,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(TagUpdateResponse, tag, path=["response"])
+        assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -276,7 +276,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(TagUpdateResponse, tag, path=["response"])
+            assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

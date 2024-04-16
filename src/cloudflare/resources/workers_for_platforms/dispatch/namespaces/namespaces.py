@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -68,7 +68,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceCreateResponse:
+    ) -> Optional[NamespaceCreateResponse]:
         """
         Create a new Workers for Platforms namespace.
 
@@ -97,7 +97,7 @@ class Namespaces(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[NamespaceCreateResponse], ResultWrapper[NamespaceCreateResponse]),
+            cast_to=cast(Type[Optional[NamespaceCreateResponse]], ResultWrapper[NamespaceCreateResponse]),
         )
 
     def list(
@@ -191,7 +191,7 @@ class Namespaces(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceGetResponse:
+    ) -> Optional[NamespaceGetResponse]:
         """
         Get a Workers for Platforms namespace.
 
@@ -221,7 +221,7 @@ class Namespaces(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[NamespaceGetResponse], ResultWrapper[NamespaceGetResponse]),
+            cast_to=cast(Type[Optional[NamespaceGetResponse]], ResultWrapper[NamespaceGetResponse]),
         )
 
 
@@ -249,7 +249,7 @@ class AsyncNamespaces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceCreateResponse:
+    ) -> Optional[NamespaceCreateResponse]:
         """
         Create a new Workers for Platforms namespace.
 
@@ -278,7 +278,7 @@ class AsyncNamespaces(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[NamespaceCreateResponse], ResultWrapper[NamespaceCreateResponse]),
+            cast_to=cast(Type[Optional[NamespaceCreateResponse]], ResultWrapper[NamespaceCreateResponse]),
         )
 
     def list(
@@ -372,7 +372,7 @@ class AsyncNamespaces(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceGetResponse:
+    ) -> Optional[NamespaceGetResponse]:
         """
         Get a Workers for Platforms namespace.
 
@@ -402,7 +402,7 @@ class AsyncNamespaces(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[NamespaceGetResponse], ResultWrapper[NamespaceGetResponse]),
+            cast_to=cast(Type[Optional[NamespaceGetResponse]], ResultWrapper[NamespaceGetResponse]),
         )
 
 

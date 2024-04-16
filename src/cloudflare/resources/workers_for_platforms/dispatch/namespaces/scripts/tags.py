@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -56,7 +56,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TagUpdateResponse:
+    ) -> Optional[TagUpdateResponse]:
         """
         Put script tags for a script uploaded to a Workers for Platforms namespace.
 
@@ -93,7 +93,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TagUpdateResponse], ResultWrapper[TagUpdateResponse]),
+            cast_to=cast(Type[Optional[TagUpdateResponse]], ResultWrapper[TagUpdateResponse]),
         )
 
     def list(
@@ -219,7 +219,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TagUpdateResponse:
+    ) -> Optional[TagUpdateResponse]:
         """
         Put script tags for a script uploaded to a Workers for Platforms namespace.
 
@@ -256,7 +256,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TagUpdateResponse], ResultWrapper[TagUpdateResponse]),
+            cast_to=cast(Type[Optional[TagUpdateResponse]], ResultWrapper[TagUpdateResponse]),
         )
 
     def list(
