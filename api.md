@@ -2641,7 +2641,7 @@ from cloudflare.types.workers import Script, ScriptSetting
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/script_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">Script</a></code>
+- <code title="put /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/script_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/workers/scripts">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/script.py">SyncSinglePage[Script]</a></code>
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">delete</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/script_delete_params.py">params</a>) -> None</code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">get</a>(script_name, \*, account_id) -> BinaryAPIResponse</code>
@@ -2656,8 +2656,8 @@ from cloudflare.types.workers.scripts import Schedule, ScheduleUpdateResponse, S
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/scripts/{script_name}/schedules">client.workers.scripts.schedules.<a href="./src/cloudflare/resources/workers/scripts/schedules.py">update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/schedule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/schedule_update_response.py">ScheduleUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/schedules">client.workers.scripts.schedules.<a href="./src/cloudflare/resources/workers/scripts/schedules.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/schedule_get_response.py">ScheduleGetResponse</a></code>
+- <code title="put /accounts/{account_id}/workers/scripts/{script_name}/schedules">client.workers.scripts.schedules.<a href="./src/cloudflare/resources/workers/scripts/schedules.py">update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/schedule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/schedule_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/schedules">client.workers.scripts.schedules.<a href="./src/cloudflare/resources/workers/scripts/schedules.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/schedule_get_response.py">Optional</a></code>
 
 ### Tail
 
@@ -2674,23 +2674,23 @@ from cloudflare.types.workers.scripts import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/tails">client.workers.scripts.tail.<a href="./src/cloudflare/resources/workers/scripts/tail.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/tail_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/tail_create_response.py">TailCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/tails">client.workers.scripts.tail.<a href="./src/cloudflare/resources/workers/scripts/tail.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/tail_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/tail_create_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}/tails/{id}">client.workers.scripts.tail.<a href="./src/cloudflare/resources/workers/scripts/tail.py">delete</a>(id, \*, account_id, script_name, \*\*<a href="src/cloudflare/types/workers/scripts/tail_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/tail_delete_response.py">TailDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/tails">client.workers.scripts.tail.<a href="./src/cloudflare/resources/workers/scripts/tail.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/tail_get_response.py">TailGetResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/tails">client.workers.scripts.tail.<a href="./src/cloudflare/resources/workers/scripts/tail.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/tail_get_response.py">Optional</a></code>
 
 ### Content
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/scripts/{script_name}/content">client.workers.scripts.content.<a href="./src/cloudflare/resources/workers/scripts/content.py">update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/content_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">Script</a></code>
+- <code title="put /accounts/{account_id}/workers/scripts/{script_name}/content">client.workers.scripts.content.<a href="./src/cloudflare/resources/workers/scripts/content.py">update</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/content_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}/content/v2">client.workers.scripts.content.<a href="./src/cloudflare/resources/workers/scripts/content.py">get</a>(script_name, \*, account_id) -> BinaryAPIResponse</code>
 
 ### Settings
 
 Methods:
 
-- <code title="patch /accounts/{account_id}/workers/scripts/{script_name}/script-settings">client.workers.scripts.settings.<a href="./src/cloudflare/resources/workers/scripts/settings.py">edit</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script_setting.py">ScriptSetting</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/script-settings">client.workers.scripts.settings.<a href="./src/cloudflare/resources/workers/scripts/settings.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/script_setting.py">ScriptSetting</a></code>
+- <code title="patch /accounts/{account_id}/workers/scripts/{script_name}/script-settings">client.workers.scripts.settings.<a href="./src/cloudflare/resources/workers/scripts/settings.py">edit</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script_setting.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/script-settings">client.workers.scripts.settings.<a href="./src/cloudflare/resources/workers/scripts/settings.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/script_setting.py">Optional</a></code>
 
 ### Deployments
 
@@ -2706,8 +2706,8 @@ from cloudflare.types.workers.scripts import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/deployment_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/deployment_create_response.py">DeploymentCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/deployment_get_response.py">DeploymentGetResponse</a></code>
+- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/deployment_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/deployment_create_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/deployment_get_response.py">Optional</a></code>
 
 ### Versions
 
@@ -2723,9 +2723,9 @@ from cloudflare.types.workers.scripts import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/version_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/version_create_response.py">VersionCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">list</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/version_list_response.py">VersionListResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions/{version_id}">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">get</a>(version_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/version_get_response.py">VersionGetResponse</a></code>
+- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/version_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/version_create_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">list</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/version_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions/{version_id}">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">get</a>(version_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/version_get_response.py">Optional</a></code>
 
 ## AccountSettings
 
@@ -2737,8 +2737,8 @@ from cloudflare.types.workers import AccountSettingUpdateResponse, AccountSettin
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/account-settings">client.workers.account_settings.<a href="./src/cloudflare/resources/workers/account_settings.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/account_setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/account_setting_update_response.py">AccountSettingUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/account-settings">client.workers.account_settings.<a href="./src/cloudflare/resources/workers/account_settings.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/account_setting_get_response.py">AccountSettingGetResponse</a></code>
+- <code title="put /accounts/{account_id}/workers/account-settings">client.workers.account_settings.<a href="./src/cloudflare/resources/workers/account_settings.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/account_setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/account_setting_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/account-settings">client.workers.account_settings.<a href="./src/cloudflare/resources/workers/account_settings.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/account_setting_get_response.py">Optional</a></code>
 
 ## Domains
 
@@ -2750,10 +2750,10 @@ from cloudflare.types.workers import Domain
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain.py">Domain</a></code>
+- <code title="put /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/workers/domains">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/domain_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/domain.py">SyncSinglePage[Domain]</a></code>
 - <code title="delete /accounts/{account_id}/workers/domains/{domain_id}">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">delete</a>(domain_id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/domain_delete_params.py">params</a>) -> None</code>
-- <code title="get /accounts/{account_id}/workers/domains/{domain_id}">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">get</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/domain.py">Domain</a></code>
+- <code title="get /accounts/{account_id}/workers/domains/{domain_id}">client.workers.domains.<a href="./src/cloudflare/resources/workers/domains.py">get</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/domain.py">Optional</a></code>
 
 ## Subdomains
 
@@ -2765,8 +2765,8 @@ from cloudflare.types.workers import SubdomainUpdateResponse, SubdomainGetRespon
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/subdomain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/subdomain_update_response.py">SubdomainUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/subdomain_get_response.py">SubdomainGetResponse</a></code>
+- <code title="put /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/subdomain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/subdomain_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/subdomain_get_response.py">Optional</a></code>
 
 # KV
 
@@ -4637,10 +4637,10 @@ from cloudflare.types.workers_for_platforms.dispatch import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/workers/dispatch/namespaces">client.workers_for_platforms.dispatch.namespaces.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/namespaces.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespace_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespace_create_response.py">NamespaceCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/workers/dispatch/namespaces">client.workers_for_platforms.dispatch.namespaces.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/namespaces.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespace_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespace_create_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/workers/dispatch/namespaces">client.workers_for_platforms.dispatch.namespaces.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/namespaces.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespace_list_response.py">SyncSinglePage[NamespaceListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}">client.workers_for_platforms.dispatch.namespaces.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/namespaces.py">delete</a>(dispatch_namespace, \*, account_id) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespace_delete_response.py">object</a></code>
-- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}">client.workers_for_platforms.dispatch.namespaces.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/namespaces.py">get</a>(dispatch_namespace, \*, account_id) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespace_get_response.py">NamespaceGetResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}">client.workers_for_platforms.dispatch.namespaces.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/namespaces.py">get</a>(dispatch_namespace, \*, account_id) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespace_get_response.py">Optional</a></code>
 
 #### Scripts
 
@@ -4652,15 +4652,15 @@ from cloudflare.types.workers_for_platforms.dispatch.namespaces import Script
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers_for_platforms.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/scripts.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/script_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">Script</a></code>
+- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers_for_platforms.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/scripts.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/script_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers_for_platforms.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/scripts.py">delete</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/script_delete_params.py">params</a>) -> None</code>
-- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers_for_platforms.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/scripts.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/script.py">Script</a></code>
+- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}">client.workers_for_platforms.dispatch.namespaces.scripts.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/scripts.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/script.py">Optional</a></code>
 
 ##### Content
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content">client.workers_for_platforms.dispatch.namespaces.scripts.content.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/content_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">Script</a></code>
+- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content">client.workers_for_platforms.dispatch.namespaces.scripts.content.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/content_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content">client.workers_for_platforms.dispatch.namespaces.scripts.content.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/content.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> BinaryAPIResponse</code>
 
 ##### Settings
@@ -4676,8 +4676,8 @@ from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
 
 Methods:
 
-- <code title="patch /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings">client.workers_for_platforms.dispatch.namespaces.scripts.settings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/settings.py">edit</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/setting_edit_response.py">SettingEditResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings">client.workers_for_platforms.dispatch.namespaces.scripts.settings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/settings.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/setting_get_response.py">SettingGetResponse</a></code>
+- <code title="patch /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings">client.workers_for_platforms.dispatch.namespaces.scripts.settings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/settings.py">edit</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/setting_edit_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings">client.workers_for_platforms.dispatch.namespaces.scripts.settings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/settings.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/setting_get_response.py">Optional</a></code>
 
 ##### Bindings
 
@@ -4689,7 +4689,7 @@ from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import B
 
 Methods:
 
-- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings">client.workers_for_platforms.dispatch.namespaces.scripts.bindings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/bindings.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/binding_get_response.py">BindingGetResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings">client.workers_for_platforms.dispatch.namespaces.scripts.bindings.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/bindings.py">get</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/binding_get_response.py">Optional</a></code>
 
 ##### Secrets
 
@@ -4704,7 +4704,7 @@ from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets">client.workers_for_platforms.dispatch.namespaces.scripts.secrets.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/secrets.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/secret_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/secret_update_response.py">SecretUpdateResponse</a></code>
+- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets">client.workers_for_platforms.dispatch.namespaces.scripts.secrets.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/secrets.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/secret_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/secret_update_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets">client.workers_for_platforms.dispatch.namespaces.scripts.secrets.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/secrets.py">list</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/secret_list_response.py">SyncSinglePage[SecretListResponse]</a></code>
 
 ##### Tags
@@ -4721,7 +4721,7 @@ from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags">client.workers_for_platforms.dispatch.namespaces.scripts.tags.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/tags.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/tag_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/tag_update_response.py">TagUpdateResponse</a></code>
+- <code title="put /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags">client.workers_for_platforms.dispatch.namespaces.scripts.tags.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/tags.py">update</a>(script_name, \*, account_id, dispatch_namespace, \*\*<a href="src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/tag_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/tag_update_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags">client.workers_for_platforms.dispatch.namespaces.scripts.tags.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/tags.py">list</a>(script_name, \*, account_id, dispatch_namespace) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/tag_list_response.py">SyncSinglePage[TagListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags/{tag}">client.workers_for_platforms.dispatch.namespaces.scripts.tags.<a href="./src/cloudflare/resources/workers_for_platforms/dispatch/namespaces/scripts/tags.py">delete</a>(tag, \*, account_id, dispatch_namespace, script_name) -> <a href="./src/cloudflare/types/workers_for_platforms/dispatch/namespaces/scripts/tag_delete_response.py">object</a></code>
 

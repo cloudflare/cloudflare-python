@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -55,7 +55,7 @@ class Tail(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TailCreateResponse:
+    ) -> Optional[TailCreateResponse]:
         """
         Starts a tail that receives logs and exception from a Worker.
 
@@ -86,7 +86,7 @@ class Tail(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TailCreateResponse], ResultWrapper[TailCreateResponse]),
+            cast_to=cast(Type[Optional[TailCreateResponse]], ResultWrapper[TailCreateResponse]),
         )
 
     def delete(
@@ -127,22 +127,13 @@ class Tail(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            TailDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/workers/scripts/{script_name}/tails/{id}",
-                body=maybe_transform(body, tail_delete_params.TailDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TailDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/tails/{id}",
+            body=maybe_transform(body, tail_delete_params.TailDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=TailDeleteResponse,
         )
 
     def get(
@@ -156,7 +147,7 @@ class Tail(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TailGetResponse:
+    ) -> Optional[TailGetResponse]:
         """
         Get list of tails currently deployed on a Worker.
 
@@ -186,7 +177,7 @@ class Tail(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TailGetResponse], ResultWrapper[TailGetResponse]),
+            cast_to=cast(Type[Optional[TailGetResponse]], ResultWrapper[TailGetResponse]),
         )
 
 
@@ -211,7 +202,7 @@ class AsyncTail(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TailCreateResponse:
+    ) -> Optional[TailCreateResponse]:
         """
         Starts a tail that receives logs and exception from a Worker.
 
@@ -242,7 +233,7 @@ class AsyncTail(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TailCreateResponse], ResultWrapper[TailCreateResponse]),
+            cast_to=cast(Type[Optional[TailCreateResponse]], ResultWrapper[TailCreateResponse]),
         )
 
     async def delete(
@@ -283,22 +274,13 @@ class AsyncTail(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            TailDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/workers/scripts/{script_name}/tails/{id}",
-                body=await async_maybe_transform(body, tail_delete_params.TailDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TailDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/tails/{id}",
+            body=await async_maybe_transform(body, tail_delete_params.TailDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=TailDeleteResponse,
         )
 
     async def get(
@@ -312,7 +294,7 @@ class AsyncTail(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TailGetResponse:
+    ) -> Optional[TailGetResponse]:
         """
         Get list of tails currently deployed on a Worker.
 
@@ -342,7 +324,7 @@ class AsyncTail(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TailGetResponse], ResultWrapper[TailGetResponse]),
+            cast_to=cast(Type[Optional[TailGetResponse]], ResultWrapper[TailGetResponse]),
         )
 
 

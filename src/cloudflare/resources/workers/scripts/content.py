@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Mapping, cast
+from typing import List, Type, Mapping, Optional, cast
 
 import httpx
 
@@ -62,7 +62,7 @@ class Content(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Script:
+    ) -> Optional[Script]:
         """
         Put script content without touching config or metadata
 
@@ -115,7 +115,7 @@ class Content(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Script], ResultWrapper[Script]),
+            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
         )
 
     def get(
@@ -182,7 +182,7 @@ class AsyncContent(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Script:
+    ) -> Optional[Script]:
         """
         Put script content without touching config or metadata
 
@@ -235,7 +235,7 @@ class AsyncContent(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Script], ResultWrapper[Script]),
+            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
         )
 
     async def get(

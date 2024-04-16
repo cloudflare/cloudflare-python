@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -55,7 +55,7 @@ class Deployments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeploymentCreateResponse:
+    ) -> Optional[DeploymentCreateResponse]:
         """
         Deployments configure how
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
@@ -95,7 +95,7 @@ class Deployments(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
+            cast_to=cast(Type[Optional[DeploymentCreateResponse]], ResultWrapper[DeploymentCreateResponse]),
         )
 
     def get(
@@ -109,7 +109,7 @@ class Deployments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeploymentGetResponse:
+    ) -> Optional[DeploymentGetResponse]:
         """List of Worker Deployments.
 
         The first deployment in the list is the latest
@@ -141,7 +141,7 @@ class Deployments(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
+            cast_to=cast(Type[Optional[DeploymentGetResponse]], ResultWrapper[DeploymentGetResponse]),
         )
 
 
@@ -167,7 +167,7 @@ class AsyncDeployments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeploymentCreateResponse:
+    ) -> Optional[DeploymentCreateResponse]:
         """
         Deployments configure how
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
@@ -207,7 +207,7 @@ class AsyncDeployments(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
+            cast_to=cast(Type[Optional[DeploymentCreateResponse]], ResultWrapper[DeploymentCreateResponse]),
         )
 
     async def get(
@@ -221,7 +221,7 @@ class AsyncDeployments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeploymentGetResponse:
+    ) -> Optional[DeploymentGetResponse]:
         """List of Worker Deployments.
 
         The first deployment in the list is the latest
@@ -253,7 +253,7 @@ class AsyncDeployments(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
+            cast_to=cast(Type[Optional[DeploymentGetResponse]], ResultWrapper[DeploymentGetResponse]),
         )
 
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Mapping, cast
+from typing import List, Type, Mapping, Optional, cast
 
 import httpx
 
@@ -57,7 +57,7 @@ class Versions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VersionCreateResponse:
+    ) -> Optional[VersionCreateResponse]:
         """
         Upload a Worker Version without deploying to Cloudflare's network.
 
@@ -107,7 +107,7 @@ class Versions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[VersionCreateResponse], ResultWrapper[VersionCreateResponse]),
+            cast_to=cast(Type[Optional[VersionCreateResponse]], ResultWrapper[VersionCreateResponse]),
         )
 
     def list(
@@ -121,7 +121,7 @@ class Versions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VersionListResponse:
+    ) -> Optional[VersionListResponse]:
         """List of Worker Versions.
 
         The first version in the list is the latest version.
@@ -152,7 +152,7 @@ class Versions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[VersionListResponse], ResultWrapper[VersionListResponse]),
+            cast_to=cast(Type[Optional[VersionListResponse]], ResultWrapper[VersionListResponse]),
         )
 
     def get(
@@ -167,7 +167,7 @@ class Versions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VersionGetResponse:
+    ) -> Optional[VersionGetResponse]:
         """
         Get Version Detail
 
@@ -199,7 +199,7 @@ class Versions(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
+            cast_to=cast(Type[Optional[VersionGetResponse]], ResultWrapper[VersionGetResponse]),
         )
 
 
@@ -225,7 +225,7 @@ class AsyncVersions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VersionCreateResponse:
+    ) -> Optional[VersionCreateResponse]:
         """
         Upload a Worker Version without deploying to Cloudflare's network.
 
@@ -275,7 +275,7 @@ class AsyncVersions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[VersionCreateResponse], ResultWrapper[VersionCreateResponse]),
+            cast_to=cast(Type[Optional[VersionCreateResponse]], ResultWrapper[VersionCreateResponse]),
         )
 
     async def list(
@@ -289,7 +289,7 @@ class AsyncVersions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VersionListResponse:
+    ) -> Optional[VersionListResponse]:
         """List of Worker Versions.
 
         The first version in the list is the latest version.
@@ -320,7 +320,7 @@ class AsyncVersions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[VersionListResponse], ResultWrapper[VersionListResponse]),
+            cast_to=cast(Type[Optional[VersionListResponse]], ResultWrapper[VersionListResponse]),
         )
 
     async def get(
@@ -335,7 +335,7 @@ class AsyncVersions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VersionGetResponse:
+    ) -> Optional[VersionGetResponse]:
         """
         Get Version Detail
 
@@ -367,7 +367,7 @@ class AsyncVersions(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
+            cast_to=cast(Type[Optional[VersionGetResponse]], ResultWrapper[VersionGetResponse]),
         )
 
 

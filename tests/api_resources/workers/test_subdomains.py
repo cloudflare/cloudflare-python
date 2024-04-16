@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -24,7 +24,7 @@ class TestSubdomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'subdomain': 'example-subdomain'}",
         )
-        assert_matches_type(SubdomainUpdateResponse, subdomain, path=["response"])
+        assert_matches_type(Optional[SubdomainUpdateResponse], subdomain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestSubdomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subdomain = response.parse()
-        assert_matches_type(SubdomainUpdateResponse, subdomain, path=["response"])
+        assert_matches_type(Optional[SubdomainUpdateResponse], subdomain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestSubdomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subdomain = response.parse()
-            assert_matches_type(SubdomainUpdateResponse, subdomain, path=["response"])
+            assert_matches_type(Optional[SubdomainUpdateResponse], subdomain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestSubdomains:
         subdomain = client.workers.subdomains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SubdomainGetResponse, subdomain, path=["response"])
+        assert_matches_type(Optional[SubdomainGetResponse], subdomain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestSubdomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subdomain = response.parse()
-        assert_matches_type(SubdomainGetResponse, subdomain, path=["response"])
+        assert_matches_type(Optional[SubdomainGetResponse], subdomain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestSubdomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subdomain = response.parse()
-            assert_matches_type(SubdomainGetResponse, subdomain, path=["response"])
+            assert_matches_type(Optional[SubdomainGetResponse], subdomain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +116,7 @@ class TestAsyncSubdomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{'subdomain': 'example-subdomain'}",
         )
-        assert_matches_type(SubdomainUpdateResponse, subdomain, path=["response"])
+        assert_matches_type(Optional[SubdomainUpdateResponse], subdomain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -129,7 +129,7 @@ class TestAsyncSubdomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subdomain = await response.parse()
-        assert_matches_type(SubdomainUpdateResponse, subdomain, path=["response"])
+        assert_matches_type(Optional[SubdomainUpdateResponse], subdomain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -142,7 +142,7 @@ class TestAsyncSubdomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subdomain = await response.parse()
-            assert_matches_type(SubdomainUpdateResponse, subdomain, path=["response"])
+            assert_matches_type(Optional[SubdomainUpdateResponse], subdomain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +161,7 @@ class TestAsyncSubdomains:
         subdomain = await async_client.workers.subdomains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SubdomainGetResponse, subdomain, path=["response"])
+        assert_matches_type(Optional[SubdomainGetResponse], subdomain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -173,7 +173,7 @@ class TestAsyncSubdomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subdomain = await response.parse()
-        assert_matches_type(SubdomainGetResponse, subdomain, path=["response"])
+        assert_matches_type(Optional[SubdomainGetResponse], subdomain, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +185,7 @@ class TestAsyncSubdomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subdomain = await response.parse()
-            assert_matches_type(SubdomainGetResponse, subdomain, path=["response"])
+            assert_matches_type(Optional[SubdomainGetResponse], subdomain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

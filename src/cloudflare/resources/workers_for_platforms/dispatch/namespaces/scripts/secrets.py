@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -59,7 +59,7 @@ class Secrets(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecretUpdateResponse:
+    ) -> Optional[SecretUpdateResponse]:
         """
         Put secrets to a script uploaded to a Workers for Platforms namespace.
 
@@ -107,7 +107,7 @@ class Secrets(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecretUpdateResponse], ResultWrapper[SecretUpdateResponse]),
+            cast_to=cast(Type[Optional[SecretUpdateResponse]], ResultWrapper[SecretUpdateResponse]),
         )
 
     def list(
@@ -181,7 +181,7 @@ class AsyncSecrets(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecretUpdateResponse:
+    ) -> Optional[SecretUpdateResponse]:
         """
         Put secrets to a script uploaded to a Workers for Platforms namespace.
 
@@ -229,7 +229,7 @@ class AsyncSecrets(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[SecretUpdateResponse], ResultWrapper[SecretUpdateResponse]),
+            cast_to=cast(Type[Optional[SecretUpdateResponse]], ResultWrapper[SecretUpdateResponse]),
         )
 
     def list(
