@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -60,7 +60,7 @@ class FleetStatus(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FleetStatusLiveResponse:
+    ) -> Optional[FleetStatusLiveResponse]:
         """
         List details for live (up to 60 minutes) devices using WARP
 
@@ -87,7 +87,7 @@ class FleetStatus(SyncAPIResource):
                 query=maybe_transform({"since_minutes": since_minutes}, fleet_status_live_params.FleetStatusLiveParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[FleetStatusLiveResponse], ResultWrapper[FleetStatusLiveResponse]),
+            cast_to=cast(Type[Optional[FleetStatusLiveResponse]], ResultWrapper[FleetStatusLiveResponse]),
         )
 
     def over_time(
@@ -173,7 +173,7 @@ class AsyncFleetStatus(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FleetStatusLiveResponse:
+    ) -> Optional[FleetStatusLiveResponse]:
         """
         List details for live (up to 60 minutes) devices using WARP
 
@@ -202,7 +202,7 @@ class AsyncFleetStatus(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[FleetStatusLiveResponse], ResultWrapper[FleetStatusLiveResponse]),
+            cast_to=cast(Type[Optional[FleetStatusLiveResponse]], ResultWrapper[FleetStatusLiveResponse]),
         )
 
     async def over_time(
