@@ -30,9 +30,9 @@ class TestListResponse(BaseModel):
 
     messages: List[ResponseInfo]
 
-    result: Tests
-
     success: Literal[True]
     """Whether the API call was successful"""
+
+    result: Optional[Tests] = None
 
     result_info: Optional[ResultInfo] = None

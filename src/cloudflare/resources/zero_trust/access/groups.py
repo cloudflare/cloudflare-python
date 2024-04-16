@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -56,7 +56,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroup:
+    ) -> Optional[ZeroTrustGroup]:
         """
         Creates a new Access group.
 
@@ -117,7 +117,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
 
     def update(
@@ -137,7 +137,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroup:
+    ) -> Optional[ZeroTrustGroup]:
         """
         Updates a configured Access group.
 
@@ -202,7 +202,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
 
     def list(
@@ -266,7 +266,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GroupDeleteResponse:
+    ) -> Optional[GroupDeleteResponse]:
         """
         Deletes an Access group.
 
@@ -308,7 +308,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GroupDeleteResponse], ResultWrapper[GroupDeleteResponse]),
+            cast_to=cast(Type[Optional[GroupDeleteResponse]], ResultWrapper[GroupDeleteResponse]),
         )
 
     def get(
@@ -323,7 +323,7 @@ class Groups(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroup:
+    ) -> Optional[ZeroTrustGroup]:
         """
         Fetches a single Access group.
 
@@ -365,7 +365,7 @@ class Groups(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
 
 
@@ -394,7 +394,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroup:
+    ) -> Optional[ZeroTrustGroup]:
         """
         Creates a new Access group.
 
@@ -455,7 +455,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
 
     async def update(
@@ -475,7 +475,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroup:
+    ) -> Optional[ZeroTrustGroup]:
         """
         Updates a configured Access group.
 
@@ -540,7 +540,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
 
     def list(
@@ -604,7 +604,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GroupDeleteResponse:
+    ) -> Optional[GroupDeleteResponse]:
         """
         Deletes an Access group.
 
@@ -646,7 +646,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GroupDeleteResponse], ResultWrapper[GroupDeleteResponse]),
+            cast_to=cast(Type[Optional[GroupDeleteResponse]], ResultWrapper[GroupDeleteResponse]),
         )
 
     async def get(
@@ -661,7 +661,7 @@ class AsyncGroups(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZeroTrustGroup:
+    ) -> Optional[ZeroTrustGroup]:
         """
         Fetches a single Access group.
 
@@ -703,7 +703,7 @@ class AsyncGroups(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ZeroTrustGroup], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
 
 

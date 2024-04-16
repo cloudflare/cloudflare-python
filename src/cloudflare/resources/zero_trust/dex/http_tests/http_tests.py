@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -66,7 +66,7 @@ class HTTPTests(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HTTPDetails:
+    ) -> Optional[HTTPDetails]:
         """
         Get test details and aggregate performance metrics for an http test for a given
         time period between 1 hour and 7 days.
@@ -117,7 +117,7 @@ class HTTPTests(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HTTPDetails], ResultWrapper[HTTPDetails]),
+            cast_to=cast(Type[Optional[HTTPDetails]], ResultWrapper[HTTPDetails]),
         )
 
 
@@ -150,7 +150,7 @@ class AsyncHTTPTests(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HTTPDetails:
+    ) -> Optional[HTTPDetails]:
         """
         Get test details and aggregate performance metrics for an http test for a given
         time period between 1 hour and 7 days.
@@ -201,7 +201,7 @@ class AsyncHTTPTests(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HTTPDetails], ResultWrapper[HTTPDetails]),
+            cast_to=cast(Type[Optional[HTTPDetails]], ResultWrapper[HTTPDetails]),
         )
 
 

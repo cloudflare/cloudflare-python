@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -32,7 +32,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +60,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -76,7 +76,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -92,7 +92,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -127,7 +127,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -153,7 +153,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -169,7 +169,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +185,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -220,7 +220,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -242,7 +242,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -258,7 +258,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -274,7 +274,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -309,7 +309,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -331,7 +331,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -347,7 +347,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -363,7 +363,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -398,7 +398,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -422,7 +422,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -438,7 +438,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -454,7 +454,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -489,7 +489,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -514,7 +514,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -530,7 +530,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -546,7 +546,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -581,7 +581,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -603,7 +603,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -619,7 +619,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -635,7 +635,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -670,7 +670,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -698,7 +698,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -714,7 +714,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -730,7 +730,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -765,7 +765,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -791,7 +791,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -807,7 +807,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -823,7 +823,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -858,7 +858,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -883,7 +883,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -899,7 +899,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -915,7 +915,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -950,7 +950,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -975,7 +975,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -991,7 +991,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1007,7 +1007,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1042,7 +1042,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1082,7 +1082,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1098,7 +1098,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1114,7 +1114,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1149,7 +1149,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1171,7 +1171,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1187,7 +1187,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1203,7 +1203,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1238,7 +1238,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1257,7 +1257,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1273,7 +1273,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1289,7 +1289,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1325,7 +1325,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1354,7 +1354,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1371,7 +1371,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1388,7 +1388,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1436,7 +1436,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1463,7 +1463,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1480,7 +1480,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1497,7 +1497,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1545,7 +1545,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1568,7 +1568,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1585,7 +1585,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1602,7 +1602,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1650,7 +1650,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1673,7 +1673,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1690,7 +1690,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1707,7 +1707,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1755,7 +1755,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1780,7 +1780,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1797,7 +1797,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1814,7 +1814,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1862,7 +1862,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1888,7 +1888,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1905,7 +1905,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1922,7 +1922,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1970,7 +1970,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1993,7 +1993,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2010,7 +2010,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2027,7 +2027,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2075,7 +2075,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2104,7 +2104,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2121,7 +2121,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2138,7 +2138,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2186,7 +2186,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2213,7 +2213,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2230,7 +2230,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2247,7 +2247,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2295,7 +2295,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2321,7 +2321,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2338,7 +2338,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2355,7 +2355,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2403,7 +2403,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2429,7 +2429,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2446,7 +2446,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2463,7 +2463,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2511,7 +2511,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2552,7 +2552,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2569,7 +2569,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2586,7 +2586,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2634,7 +2634,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2657,7 +2657,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2674,7 +2674,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2691,7 +2691,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2739,7 +2739,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2759,7 +2759,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2776,7 +2776,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2793,7 +2793,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2899,7 +2899,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2909,7 +2909,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2923,7 +2923,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2937,7 +2937,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2973,7 +2973,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2983,7 +2983,7 @@ class TestIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2997,7 +2997,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3011,7 +3011,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3053,7 +3053,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3081,7 +3081,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3097,7 +3097,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3113,7 +3113,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3148,7 +3148,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3174,7 +3174,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3190,7 +3190,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3206,7 +3206,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3241,7 +3241,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3263,7 +3263,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3279,7 +3279,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3295,7 +3295,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3330,7 +3330,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3352,7 +3352,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3368,7 +3368,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3384,7 +3384,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3419,7 +3419,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3443,7 +3443,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3459,7 +3459,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3475,7 +3475,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3510,7 +3510,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3535,7 +3535,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3551,7 +3551,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3567,7 +3567,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3602,7 +3602,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3624,7 +3624,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3640,7 +3640,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3656,7 +3656,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3691,7 +3691,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3719,7 +3719,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3735,7 +3735,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3751,7 +3751,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3786,7 +3786,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3812,7 +3812,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3828,7 +3828,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3844,7 +3844,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3879,7 +3879,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3904,7 +3904,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3920,7 +3920,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3936,7 +3936,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3971,7 +3971,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3996,7 +3996,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4012,7 +4012,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4028,7 +4028,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4063,7 +4063,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4103,7 +4103,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4119,7 +4119,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4135,7 +4135,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4170,7 +4170,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4192,7 +4192,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4208,7 +4208,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4224,7 +4224,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4259,7 +4259,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4278,7 +4278,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4294,7 +4294,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4310,7 +4310,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4346,7 +4346,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4375,7 +4375,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4392,7 +4392,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4409,7 +4409,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4457,7 +4457,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4484,7 +4484,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4501,7 +4501,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4518,7 +4518,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4566,7 +4566,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4589,7 +4589,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4606,7 +4606,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4623,7 +4623,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4671,7 +4671,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4694,7 +4694,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4711,7 +4711,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4728,7 +4728,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4776,7 +4776,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4801,7 +4801,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4818,7 +4818,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4835,7 +4835,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4883,7 +4883,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4909,7 +4909,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4926,7 +4926,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -4943,7 +4943,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4991,7 +4991,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5014,7 +5014,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5031,7 +5031,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5048,7 +5048,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5096,7 +5096,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5125,7 +5125,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5142,7 +5142,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5159,7 +5159,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5207,7 +5207,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5234,7 +5234,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5251,7 +5251,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5268,7 +5268,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5316,7 +5316,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5342,7 +5342,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5359,7 +5359,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5376,7 +5376,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5424,7 +5424,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5450,7 +5450,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5467,7 +5467,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5484,7 +5484,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5532,7 +5532,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5573,7 +5573,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5590,7 +5590,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5607,7 +5607,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5655,7 +5655,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5678,7 +5678,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5695,7 +5695,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5712,7 +5712,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5760,7 +5760,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5780,7 +5780,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5797,7 +5797,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5814,7 +5814,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5920,7 +5920,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5930,7 +5930,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5944,7 +5944,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -5958,7 +5958,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProviderDeleteResponse, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5994,7 +5994,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -6004,7 +6004,7 @@ class TestAsyncIdentityProviders:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -6018,7 +6018,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -6032,7 +6032,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(IdentityProvider, identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
