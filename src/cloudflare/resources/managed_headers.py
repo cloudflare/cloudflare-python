@@ -6,12 +6,6 @@ from typing import Iterable
 
 import httpx
 
-from ..types import (
-    RequestModelParam,
-    ManagedHeaderEditResponse,
-    ManagedHeaderListResponse,
-    managed_header_edit_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -27,6 +21,12 @@ from .._response import (
 )
 from .._base_client import (
     make_request_options,
+)
+from ..types.managed_headers import (
+    RequestModelParam,
+    ManagedHeaderEditResponse,
+    ManagedHeaderListResponse,
+    managed_header_edit_params,
 )
 
 __all__ = ["ManagedHeaders", "AsyncManagedHeaders"]

@@ -4,11 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import (
-    URLNormalizationGetResponse,
-    URLNormalizationUpdateResponse,
-    url_normalization_update_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -24,6 +19,11 @@ from .._response import (
 )
 from .._base_client import (
     make_request_options,
+)
+from ..types.url_normalization import (
+    URLNormalizationGetResponse,
+    URLNormalizationUpdateResponse,
+    url_normalization_update_params,
 )
 
 __all__ = ["URLNormalization", "AsyncURLNormalization"]

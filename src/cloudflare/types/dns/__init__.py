@@ -36,6 +36,7 @@ from .record_edit_params import RecordEditParams as RecordEditParams
 from .record_list_params import RecordListParams as RecordListParams
 from .record_scan_params import RecordScanParams as RecordScanParams
 from .upstream_ips_param import UpstreamIPsParam as UpstreamIPsParam
+from .dns_analytics_query import DNSAnalyticsQuery as DNSAnalyticsQuery
 from .firewall_edit_params import FirewallEditParams as FirewallEditParams
 from .firewall_list_params import FirewallListParams as FirewallListParams
 from .record_create_params import RecordCreateParams as RecordCreateParams
@@ -51,3 +52,4 @@ from .record_export_response import RecordExportResponse as RecordExportResponse
 from .record_import_response import RecordImportResponse as RecordImportResponse
 from .attack_mitigation_param import AttackMitigationParam as AttackMitigationParam
 from .firewall_delete_response import FirewallDeleteResponse as FirewallDeleteResponse
+from .dns_analytics_nominal_metric import DNSAnalyticsNominalMetric as DNSAnalyticsNominalMetric

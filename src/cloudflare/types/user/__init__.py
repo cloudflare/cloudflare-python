@@ -10,10 +10,13 @@ from .organization import Organization as Organization
 from .policy_param import PolicyParam as PolicyParam
 from .subscription import Subscription as Subscription
 from .rate_plan_param import RatePlanParam as RatePlanParam
+from .user_edit_params import UserEditParams as UserEditParams
 from .subscription_zone import SubscriptionZone as SubscriptionZone
 from .token_list_params import TokenListParams as TokenListParams
+from .user_get_response import UserGetResponse as UserGetResponse
 from .invite_edit_params import InviteEditParams as InviteEditParams
 from .token_get_response import TokenGetResponse as TokenGetResponse
+from .user_edit_response import UserEditResponse as UserEditResponse
 from .invite_get_response import InviteGetResponse as InviteGetResponse
 from .token_create_params import TokenCreateParams as TokenCreateParams
 from .token_delete_params import TokenDeleteParams as TokenDeleteParams

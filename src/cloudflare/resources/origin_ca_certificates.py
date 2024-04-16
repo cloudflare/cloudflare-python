@@ -7,15 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import (
-    OriginCACertificate,
-    OriginCACertificateGetResponse,
-    OriginCACertificateCreateResponse,
-    OriginCACertificateDeleteResponse,
-    origin_ca_certificate_list_params,
-    origin_ca_certificate_create_params,
-    origin_ca_certificate_delete_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -34,6 +25,15 @@ from ..pagination import SyncSinglePage, AsyncSinglePage
 from .._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ..types.origin_ca_certificates import (
+    OriginCACertificate,
+    OriginCACertificateGetResponse,
+    OriginCACertificateCreateResponse,
+    OriginCACertificateDeleteResponse,
+    origin_ca_certificate_list_params,
+    origin_ca_certificate_create_params,
+    origin_ca_certificate_delete_params,
 )
 
 __all__ = ["OriginCACertificates", "AsyncOriginCACertificates"]

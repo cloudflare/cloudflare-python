@@ -24,13 +24,6 @@ from .tests import (
     TestsWithStreamingResponse,
     AsyncTestsWithStreamingResponse,
 )
-from ...types import (
-    Trend,
-    SpeedDeleteResponse,
-    speed_delete_params,
-    speed_trends_list_params,
-    speed_schedule_get_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -53,7 +46,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.speed import Schedule
+from ...types.speed import (
+    Trend,
+    Schedule,
+    SpeedDeleteResponse,
+    speed_delete_params,
+    speed_trends_list_params,
+    speed_schedule_get_params,
+)
 from ..._base_client import (
     make_request_options,
 )

@@ -6,15 +6,6 @@ from typing import Any, Type, Optional, cast
 
 import httpx
 
-from ...types import (
-    Queue,
-    QueueCreated,
-    QueueUpdated,
-    QueueDeleteResponse,
-    queue_create_params,
-    queue_delete_params,
-    queue_update_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -49,6 +40,15 @@ from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ...types.queues import (
+    Queue,
+    QueueCreated,
+    QueueUpdated,
+    QueueDeleteResponse,
+    queue_create_params,
+    queue_delete_params,
+    queue_update_params,
 )
 
 __all__ = ["Queues", "AsyncQueues"]

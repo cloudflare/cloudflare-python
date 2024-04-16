@@ -31,17 +31,6 @@ from .events import (
     EventsWithStreamingResponse,
     AsyncEventsWithStreamingResponse,
 )
-from ...types import (
-    WaitingRoom,
-    AdditionalRoutesParam,
-    CookieAttributesParam,
-    WaitingRoomDeleteResponse,
-    waiting_room_edit_params,
-    waiting_room_list_params,
-    waiting_room_create_params,
-    waiting_room_delete_params,
-    waiting_room_update_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -77,6 +66,17 @@ from .events.events import Events, AsyncEvents
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ...types.waiting_rooms import (
+    WaitingRoom,
+    AdditionalRoutesParam,
+    CookieAttributesParam,
+    WaitingRoomDeleteResponse,
+    waiting_room_edit_params,
+    waiting_room_list_params,
+    waiting_room_create_params,
+    waiting_room_delete_params,
+    waiting_room_update_params,
 )
 
 __all__ = ["WaitingRooms", "AsyncWaitingRooms"]

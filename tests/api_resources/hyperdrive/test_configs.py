@@ -9,9 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import Hyperdrive
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.hyperdrive import (
+    Hyperdrive,
     ConfigDeleteResponse,
 )
 

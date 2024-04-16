@@ -14,7 +14,6 @@ from .rules import (
     RulesWithStreamingResponse,
     AsyncRulesWithStreamingResponse,
 )
-from ...types import Snippet, SnippetDeleteResponse, snippet_update_params
 from .content import (
     Content,
     AsyncContent,
@@ -42,6 +41,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.snippets import Snippet, SnippetDeleteResponse, snippet_update_params
 
 __all__ = ["Snippets", "AsyncSnippets"]
 

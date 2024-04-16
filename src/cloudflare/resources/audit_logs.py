@@ -8,7 +8,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import audit_log_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
@@ -25,6 +24,7 @@ from .._base_client import (
     make_request_options,
 )
 from ..types.shared import AuditLog
+from ..types.audit_logs import audit_log_list_params
 
 __all__ = ["AuditLogs", "AsyncAuditLogs"]
 

@@ -4,8 +4,10 @@ from __future__ import annotations
 
 from .cache_reserve import CacheReserve as CacheReserve
 from .cache_variant import CacheVariant as CacheVariant
+from .cache_purge_params import CachePurgeParams as CachePurgeParams
 from .cache_reserve_clear import CacheReserveClear as CacheReserveClear
 from .variant_edit_params import VariantEditParams as VariantEditParams
+from .cache_purge_response import CachePurgeResponse as CachePurgeResponse
 from .variant_get_response import VariantGetResponse as VariantGetResponse
 from .regional_tiered_cache import RegionalTieredCache as RegionalTieredCache
 from .variant_delete_params import VariantDeleteParams as VariantDeleteParams

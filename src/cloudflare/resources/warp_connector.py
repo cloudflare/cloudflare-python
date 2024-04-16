@@ -7,18 +7,6 @@ from datetime import datetime
 
 import httpx
 
-from ..types import (
-    WARPConnectorGetResponse,
-    WARPConnectorEditResponse,
-    WARPConnectorListResponse,
-    WARPConnectorTokenResponse,
-    WARPConnectorCreateResponse,
-    WARPConnectorDeleteResponse,
-    warp_connector_edit_params,
-    warp_connector_list_params,
-    warp_connector_create_params,
-    warp_connector_delete_params,
-)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -37,6 +25,18 @@ from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import (
     AsyncPaginator,
     make_request_options,
+)
+from ..types.warp_connector import (
+    WARPConnectorGetResponse,
+    WARPConnectorEditResponse,
+    WARPConnectorListResponse,
+    WARPConnectorTokenResponse,
+    WARPConnectorCreateResponse,
+    WARPConnectorDeleteResponse,
+    warp_connector_edit_params,
+    warp_connector_list_params,
+    warp_connector_create_params,
+    warp_connector_delete_params,
 )
 
 __all__ = ["WARPConnector", "AsyncWARPConnector"]

@@ -15,20 +15,6 @@ from .pools import (
     PoolsWithStreamingResponse,
     AsyncPoolsWithStreamingResponse,
 )
-from ...types import (
-    RulesParam,
-    DefaultPools,
-    LoadBalancer,
-    RandomSteeringParam,
-    AdaptiveRoutingParam,
-    LocationStrategyParam,
-    LoadBalancerDeleteResponse,
-    SessionAffinityAttributesParam,
-    load_balancer_edit_params,
-    load_balancer_create_params,
-    load_balancer_delete_params,
-    load_balancer_update_params,
-)
 from .regions import (
     Regions,
     AsyncRegions,
@@ -82,6 +68,20 @@ from ..._base_client import (
     make_request_options,
 )
 from .monitors.monitors import Monitors, AsyncMonitors
+from ...types.load_balancers import (
+    RulesParam,
+    DefaultPools,
+    LoadBalancer,
+    RandomSteeringParam,
+    AdaptiveRoutingParam,
+    LocationStrategyParam,
+    LoadBalancerDeleteResponse,
+    SessionAffinityAttributesParam,
+    load_balancer_edit_params,
+    load_balancer_create_params,
+    load_balancer_delete_params,
+    load_balancer_update_params,
+)
 
 __all__ = ["LoadBalancers", "AsyncLoadBalancers"]
 

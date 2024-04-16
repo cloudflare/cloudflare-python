@@ -7,8 +7,8 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..labeled_region import LabeledRegion
-from ..lighthouse_report import LighthouseReport
+from .labeled_region import LabeledRegion
+from .lighthouse_report import LighthouseReport
 
 __all__ = ["Test"]
 

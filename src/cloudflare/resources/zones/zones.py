@@ -15,7 +15,6 @@ from .holds import (
     HoldsWithStreamingResponse,
     AsyncHoldsWithStreamingResponse,
 )
-from ...types import Zone, ZoneDeleteResponse, zone_edit_params, zone_list_params, zone_create_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -47,6 +46,7 @@ from .dns_settings import (
     DNSSettingsWithStreamingResponse,
     AsyncDNSSettingsWithStreamingResponse,
 )
+from ...types.zones import Zone, ZoneDeleteResponse, zone_edit_params, zone_list_params, zone_create_params
 from .subscriptions import (
     Subscriptions,
     AsyncSubscriptions,
