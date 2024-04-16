@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -60,7 +60,7 @@ class CustomPages(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPageWithoutHTML:
+    ) -> Optional[CustomPageWithoutHTML]:
         """
         Create a custom page
 
@@ -103,7 +103,7 @@ class CustomPages(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomPageWithoutHTML], ResultWrapper[CustomPageWithoutHTML]),
+            cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
 
     def update(
@@ -121,7 +121,7 @@ class CustomPages(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPageWithoutHTML:
+    ) -> Optional[CustomPageWithoutHTML]:
         """
         Update a custom page
 
@@ -168,7 +168,7 @@ class CustomPages(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomPageWithoutHTML], ResultWrapper[CustomPageWithoutHTML]),
+            cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
 
     def list(
@@ -218,7 +218,7 @@ class CustomPages(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPageDeleteResponse:
+    ) -> Optional[CustomPageDeleteResponse]:
         """
         Delete a custom page
 
@@ -248,7 +248,7 @@ class CustomPages(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomPageDeleteResponse], ResultWrapper[CustomPageDeleteResponse]),
+            cast_to=cast(Type[Optional[CustomPageDeleteResponse]], ResultWrapper[CustomPageDeleteResponse]),
         )
 
     def get(
@@ -262,7 +262,7 @@ class CustomPages(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPage:
+    ) -> Optional[CustomPage]:
         """
         Fetches a custom page and also returns its HTML.
 
@@ -292,7 +292,7 @@ class CustomPages(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomPage], ResultWrapper[CustomPage]),
+            cast_to=cast(Type[Optional[CustomPage]], ResultWrapper[CustomPage]),
         )
 
 
@@ -319,7 +319,7 @@ class AsyncCustomPages(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPageWithoutHTML:
+    ) -> Optional[CustomPageWithoutHTML]:
         """
         Create a custom page
 
@@ -362,7 +362,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomPageWithoutHTML], ResultWrapper[CustomPageWithoutHTML]),
+            cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
 
     async def update(
@@ -380,7 +380,7 @@ class AsyncCustomPages(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPageWithoutHTML:
+    ) -> Optional[CustomPageWithoutHTML]:
         """
         Update a custom page
 
@@ -427,7 +427,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomPageWithoutHTML], ResultWrapper[CustomPageWithoutHTML]),
+            cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
 
     def list(
@@ -477,7 +477,7 @@ class AsyncCustomPages(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPageDeleteResponse:
+    ) -> Optional[CustomPageDeleteResponse]:
         """
         Delete a custom page
 
@@ -507,7 +507,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomPageDeleteResponse], ResultWrapper[CustomPageDeleteResponse]),
+            cast_to=cast(Type[Optional[CustomPageDeleteResponse]], ResultWrapper[CustomPageDeleteResponse]),
         )
 
     async def get(
@@ -521,7 +521,7 @@ class AsyncCustomPages(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomPage:
+    ) -> Optional[CustomPage]:
         """
         Fetches a custom page and also returns its HTML.
 
@@ -551,7 +551,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CustomPage], ResultWrapper[CustomPage]),
+            cast_to=cast(Type[Optional[CustomPage]], ResultWrapper[CustomPage]),
         )
 
 
