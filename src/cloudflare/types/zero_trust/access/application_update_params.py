@@ -109,6 +109,12 @@ class SelfHostedApplication(TypedDict, total=False):
     name: str
     """The name of the application."""
 
+    options_preflight_bypass: bool
+    """
+    Allows options preflight requests to bypass Access authentication and go
+    directly to the origin. Cannot turn on if cors_headers is set.
+    """
+
     path_cookie_attribute: bool
     """Enables cookie paths to scope an application's JWT to the application path.
 
@@ -310,6 +316,12 @@ class BrowserSSHApplication(TypedDict, total=False):
     name: str
     """The name of the application."""
 
+    options_preflight_bypass: bool
+    """
+    Allows options preflight requests to bypass Access authentication and go
+    directly to the origin. Cannot turn on if cors_headers is set.
+    """
+
     path_cookie_attribute: bool
     """Enables cookie paths to scope an application's JWT to the application path.
 
@@ -427,6 +439,12 @@ class BrowserVncApplication(TypedDict, total=False):
 
     name: str
     """The name of the application."""
+
+    options_preflight_bypass: bool
+    """
+    Allows options preflight requests to bypass Access authentication and go
+    directly to the origin. Cannot turn on if cors_headers is set.
+    """
 
     path_cookie_attribute: bool
     """Enables cookie paths to scope an application's JWT to the application path.

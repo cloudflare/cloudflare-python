@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -50,7 +50,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Tag:
+    ) -> Optional[Tag]:
         """
         Create a tag
 
@@ -79,7 +79,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
+            cast_to=cast(Type[Optional[Tag]], ResultWrapper[Tag]),
         )
 
     def update(
@@ -94,7 +94,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Tag:
+    ) -> Optional[Tag]:
         """
         Update a tag
 
@@ -127,7 +127,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
+            cast_to=cast(Type[Optional[Tag]], ResultWrapper[Tag]),
         )
 
     def list(
@@ -177,7 +177,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TagDeleteResponse:
+    ) -> Optional[TagDeleteResponse]:
         """
         Delete a tag
 
@@ -207,7 +207,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TagDeleteResponse], ResultWrapper[TagDeleteResponse]),
+            cast_to=cast(Type[Optional[TagDeleteResponse]], ResultWrapper[TagDeleteResponse]),
         )
 
     def get(
@@ -221,7 +221,7 @@ class Tags(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Tag:
+    ) -> Optional[Tag]:
         """
         Get a tag
 
@@ -251,7 +251,7 @@ class Tags(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
+            cast_to=cast(Type[Optional[Tag]], ResultWrapper[Tag]),
         )
 
 
@@ -275,7 +275,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Tag:
+    ) -> Optional[Tag]:
         """
         Create a tag
 
@@ -304,7 +304,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
+            cast_to=cast(Type[Optional[Tag]], ResultWrapper[Tag]),
         )
 
     async def update(
@@ -319,7 +319,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Tag:
+    ) -> Optional[Tag]:
         """
         Update a tag
 
@@ -352,7 +352,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
+            cast_to=cast(Type[Optional[Tag]], ResultWrapper[Tag]),
         )
 
     def list(
@@ -402,7 +402,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TagDeleteResponse:
+    ) -> Optional[TagDeleteResponse]:
         """
         Delete a tag
 
@@ -432,7 +432,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[TagDeleteResponse], ResultWrapper[TagDeleteResponse]),
+            cast_to=cast(Type[Optional[TagDeleteResponse]], ResultWrapper[TagDeleteResponse]),
         )
 
     async def get(
@@ -446,7 +446,7 @@ class AsyncTags(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Tag:
+    ) -> Optional[Tag]:
         """
         Get a tag
 
@@ -476,7 +476,7 @@ class AsyncTags(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Tag], ResultWrapper[Tag]),
+            cast_to=cast(Type[Optional[Tag]], ResultWrapper[Tag]),
         )
 
 

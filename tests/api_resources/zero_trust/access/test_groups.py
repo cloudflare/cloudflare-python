@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -34,7 +34,7 @@ class TestGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +60,7 @@ class TestGroups:
                 {"email": {"email": "test@example.com"}},
             ],
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -79,7 +79,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -98,7 +98,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(ZeroTrustGroup, group, path=["response"])
+            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -143,7 +143,7 @@ class TestGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -170,7 +170,7 @@ class TestGroups:
                 {"email": {"email": "test@example.com"}},
             ],
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -190,7 +190,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -210,7 +210,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(ZeroTrustGroup, group, path=["response"])
+            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -325,7 +325,7 @@ class TestGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(GroupDeleteResponse, group, path=["response"])
+        assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -335,7 +335,7 @@ class TestGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(GroupDeleteResponse, group, path=["response"])
+        assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -349,7 +349,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(GroupDeleteResponse, group, path=["response"])
+        assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -363,7 +363,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(GroupDeleteResponse, group, path=["response"])
+            assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -399,7 +399,7 @@ class TestGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -409,7 +409,7 @@ class TestGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -423,7 +423,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -437,7 +437,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(ZeroTrustGroup, group, path=["response"])
+            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -482,7 +482,7 @@ class TestAsyncGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -508,7 +508,7 @@ class TestAsyncGroups:
                 {"email": {"email": "test@example.com"}},
             ],
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -527,7 +527,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -546,7 +546,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(ZeroTrustGroup, group, path=["response"])
+            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -591,7 +591,7 @@ class TestAsyncGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -618,7 +618,7 @@ class TestAsyncGroups:
                 {"email": {"email": "test@example.com"}},
             ],
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -638,7 +638,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -658,7 +658,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(ZeroTrustGroup, group, path=["response"])
+            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -773,7 +773,7 @@ class TestAsyncGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(GroupDeleteResponse, group, path=["response"])
+        assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -783,7 +783,7 @@ class TestAsyncGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(GroupDeleteResponse, group, path=["response"])
+        assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -797,7 +797,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(GroupDeleteResponse, group, path=["response"])
+        assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -811,7 +811,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(GroupDeleteResponse, group, path=["response"])
+            assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -847,7 +847,7 @@ class TestAsyncGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -857,7 +857,7 @@ class TestAsyncGroups:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -871,7 +871,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(ZeroTrustGroup, group, path=["response"])
+        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -885,7 +885,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(ZeroTrustGroup, group, path=["response"])
+            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

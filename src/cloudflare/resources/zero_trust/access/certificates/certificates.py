@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -71,7 +71,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Certificate:
+    ) -> Optional[Certificate]:
         """
         Adds a new mTLS root certificate to Access.
 
@@ -123,7 +123,7 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
+            cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
         )
 
     def update(
@@ -140,7 +140,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Certificate:
+    ) -> Optional[Certificate]:
         """
         Updates a configured mTLS certificate.
 
@@ -193,7 +193,7 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
+            cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
         )
 
     def list(
@@ -257,7 +257,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateDeleteResponse:
+    ) -> Optional[CertificateDeleteResponse]:
         """
         Deletes an mTLS certificate.
 
@@ -299,7 +299,7 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificateDeleteResponse], ResultWrapper[CertificateDeleteResponse]),
+            cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
         )
 
     def get(
@@ -314,7 +314,7 @@ class Certificates(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Certificate:
+    ) -> Optional[Certificate]:
         """
         Fetches a single mTLS certificate.
 
@@ -356,7 +356,7 @@ class Certificates(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
+            cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
         )
 
 
@@ -387,7 +387,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Certificate:
+    ) -> Optional[Certificate]:
         """
         Adds a new mTLS root certificate to Access.
 
@@ -439,7 +439,7 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
+            cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
         )
 
     async def update(
@@ -456,7 +456,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Certificate:
+    ) -> Optional[Certificate]:
         """
         Updates a configured mTLS certificate.
 
@@ -509,7 +509,7 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
+            cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
         )
 
     def list(
@@ -573,7 +573,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateDeleteResponse:
+    ) -> Optional[CertificateDeleteResponse]:
         """
         Deletes an mTLS certificate.
 
@@ -615,7 +615,7 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[CertificateDeleteResponse], ResultWrapper[CertificateDeleteResponse]),
+            cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
         )
 
     async def get(
@@ -630,7 +630,7 @@ class AsyncCertificates(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Certificate:
+    ) -> Optional[Certificate]:
         """
         Fetches a single mTLS certificate.
 
@@ -672,7 +672,7 @@ class AsyncCertificates(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Certificate], ResultWrapper[Certificate]),
+            cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
         )
 
 
