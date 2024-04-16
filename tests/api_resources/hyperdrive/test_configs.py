@@ -26,8 +26,35 @@ class TestConfigs:
     def test_method_create(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
+        )
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        config = client.hyperdrive.configs.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
+            caching={
+                "disabled": False,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
@@ -36,8 +63,14 @@ class TestConfigs:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.hyperdrive.configs.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
         )
 
         assert response.is_closed is True
@@ -50,8 +83,14 @@ class TestConfigs:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.hyperdrive.configs.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,8 +106,14 @@ class TestConfigs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.hyperdrive.configs.with_raw_response.create(
                 account_id="",
-                name={},
-                origin={"password": "password1234!"},
+                name="example-hyperdrive",
+                origin={
+                    "database": "postgres",
+                    "host": "database.example.com",
+                    "port": 0,
+                    "scheme": "postgres",
+                    "user": "postgres",
+                },
             )
 
     @pytest.mark.skip()
@@ -77,8 +122,36 @@ class TestConfigs:
         config = client.hyperdrive.configs.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
+        )
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        config = client.hyperdrive.configs.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
+            caching={
+                "disabled": False,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
@@ -88,8 +161,14 @@ class TestConfigs:
         response = client.hyperdrive.configs.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
         )
 
         assert response.is_closed is True
@@ -103,8 +182,14 @@ class TestConfigs:
         with client.hyperdrive.configs.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -121,16 +206,28 @@ class TestConfigs:
             client.hyperdrive.configs.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                name={},
-                origin={"password": "password1234!"},
+                name="example-hyperdrive",
+                origin={
+                    "database": "postgres",
+                    "host": "database.example.com",
+                    "port": 0,
+                    "scheme": "postgres",
+                    "user": "postgres",
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `hyperdrive_id` but received ''"):
             client.hyperdrive.configs.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                name={},
-                origin={"password": "password1234!"},
+                name="example-hyperdrive",
+                origin={
+                    "database": "postgres",
+                    "host": "database.example.com",
+                    "port": 0,
+                    "scheme": "postgres",
+                    "user": "postgres",
+                },
             )
 
     @pytest.mark.skip()
@@ -242,7 +339,19 @@ class TestConfigs:
         config = client.hyperdrive.configs.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            origin={"password": "password1234!"},
+            caching={
+                "disabled": False,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
@@ -350,8 +459,35 @@ class TestAsyncConfigs:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
+        )
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        config = await async_client.hyperdrive.configs.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
+            caching={
+                "disabled": False,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
@@ -360,8 +496,14 @@ class TestAsyncConfigs:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.hyperdrive.configs.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
         )
 
         assert response.is_closed is True
@@ -374,8 +516,14 @@ class TestAsyncConfigs:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.hyperdrive.configs.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -391,8 +539,14 @@ class TestAsyncConfigs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.hyperdrive.configs.with_raw_response.create(
                 account_id="",
-                name={},
-                origin={"password": "password1234!"},
+                name="example-hyperdrive",
+                origin={
+                    "database": "postgres",
+                    "host": "database.example.com",
+                    "port": 0,
+                    "scheme": "postgres",
+                    "user": "postgres",
+                },
             )
 
     @pytest.mark.skip()
@@ -401,8 +555,36 @@ class TestAsyncConfigs:
         config = await async_client.hyperdrive.configs.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
+        )
+        assert_matches_type(Optional[Hyperdrive], config, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        config = await async_client.hyperdrive.configs.update(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
+            caching={
+                "disabled": False,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
@@ -412,8 +594,14 @@ class TestAsyncConfigs:
         response = await async_client.hyperdrive.configs.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
         )
 
         assert response.is_closed is True
@@ -427,8 +615,14 @@ class TestAsyncConfigs:
         async with async_client.hyperdrive.configs.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name={},
-            origin={"password": "password1234!"},
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -445,16 +639,28 @@ class TestAsyncConfigs:
             await async_client.hyperdrive.configs.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                name={},
-                origin={"password": "password1234!"},
+                name="example-hyperdrive",
+                origin={
+                    "database": "postgres",
+                    "host": "database.example.com",
+                    "port": 0,
+                    "scheme": "postgres",
+                    "user": "postgres",
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `hyperdrive_id` but received ''"):
             await async_client.hyperdrive.configs.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                name={},
-                origin={"password": "password1234!"},
+                name="example-hyperdrive",
+                origin={
+                    "database": "postgres",
+                    "host": "database.example.com",
+                    "port": 0,
+                    "scheme": "postgres",
+                    "user": "postgres",
+                },
             )
 
     @pytest.mark.skip()
@@ -566,7 +772,19 @@ class TestAsyncConfigs:
         config = await async_client.hyperdrive.configs.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            origin={"password": "password1234!"},
+            caching={
+                "disabled": False,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
+            name="example-hyperdrive",
+            origin={
+                "database": "postgres",
+                "host": "database.example.com",
+                "port": 0,
+                "scheme": "postgres",
+                "user": "postgres",
+            },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
