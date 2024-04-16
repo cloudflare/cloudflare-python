@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -52,7 +52,7 @@ class Percentiles(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HTTPDetailsPercentiles:
+    ) -> Optional[HTTPDetailsPercentiles]:
         """
         Get percentiles for an http test for a given time period between 1 hour and 7
         days.
@@ -100,7 +100,7 @@ class Percentiles(SyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HTTPDetailsPercentiles], ResultWrapper[HTTPDetailsPercentiles]),
+            cast_to=cast(Type[Optional[HTTPDetailsPercentiles]], ResultWrapper[HTTPDetailsPercentiles]),
         )
 
 
@@ -128,7 +128,7 @@ class AsyncPercentiles(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HTTPDetailsPercentiles:
+    ) -> Optional[HTTPDetailsPercentiles]:
         """
         Get percentiles for an http test for a given time period between 1 hour and 7
         days.
@@ -176,7 +176,7 @@ class AsyncPercentiles(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[HTTPDetailsPercentiles], ResultWrapper[HTTPDetailsPercentiles]),
+            cast_to=cast(Type[Optional[HTTPDetailsPercentiles]], ResultWrapper[HTTPDetailsPercentiles]),
         )
 
 
