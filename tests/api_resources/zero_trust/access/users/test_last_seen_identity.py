@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -24,7 +24,7 @@ class TestLastSeenIdentity:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Identity], last_seen_identity, path=["response"])
+        assert_matches_type(Identity, last_seen_identity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestLastSeenIdentity:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         last_seen_identity = response.parse()
-        assert_matches_type(Optional[Identity], last_seen_identity, path=["response"])
+        assert_matches_type(Identity, last_seen_identity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestLastSeenIdentity:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             last_seen_identity = response.parse()
-            assert_matches_type(Optional[Identity], last_seen_identity, path=["response"])
+            assert_matches_type(Identity, last_seen_identity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -80,7 +80,7 @@ class TestAsyncLastSeenIdentity:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Identity], last_seen_identity, path=["response"])
+        assert_matches_type(Identity, last_seen_identity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestAsyncLastSeenIdentity:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         last_seen_identity = await response.parse()
-        assert_matches_type(Optional[Identity], last_seen_identity, path=["response"])
+        assert_matches_type(Identity, last_seen_identity, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +106,7 @@ class TestAsyncLastSeenIdentity:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             last_seen_identity = await response.parse()
-            assert_matches_type(Optional[Identity], last_seen_identity, path=["response"])
+            assert_matches_type(Identity, last_seen_identity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

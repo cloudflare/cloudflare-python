@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast, overload
+from typing import Any, Type, cast, overload
 
 import httpx
 
@@ -65,7 +65,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -113,7 +113,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -161,7 +161,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -209,7 +209,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -257,7 +257,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -305,7 +305,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -353,7 +353,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -401,7 +401,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -449,7 +449,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -497,7 +497,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -545,7 +545,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -593,7 +593,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -641,7 +641,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -689,7 +689,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -762,7 +762,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -776,7 +776,7 @@ class IdentityProviders(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[IdentityProvider],
+            IdentityProvider,
             self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
                 body=maybe_transform(
@@ -818,7 +818,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -869,7 +869,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -920,7 +920,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -971,7 +971,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1022,7 +1022,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1073,7 +1073,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1124,7 +1124,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1175,7 +1175,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1226,7 +1226,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1277,7 +1277,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1328,7 +1328,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1379,7 +1379,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1430,7 +1430,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1481,7 +1481,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -1557,7 +1557,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if account_id and zone_id:
@@ -1573,7 +1573,7 @@ class IdentityProviders(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[IdentityProvider],
+            IdentityProvider,
             self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 body=maybe_transform(
@@ -1661,7 +1661,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProviderDeleteResponse]:
+    ) -> IdentityProviderDeleteResponse:
         """
         Deletes an identity provider from Access.
 
@@ -1703,7 +1703,7 @@ class IdentityProviders(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IdentityProviderDeleteResponse]], ResultWrapper[IdentityProviderDeleteResponse]),
+            cast_to=cast(Type[IdentityProviderDeleteResponse], ResultWrapper[IdentityProviderDeleteResponse]),
         )
 
     def get(
@@ -1718,7 +1718,7 @@ class IdentityProviders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Fetches a configured identity provider.
 
@@ -1752,7 +1752,7 @@ class IdentityProviders(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[IdentityProvider],
+            IdentityProvider,
             self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 options=make_request_options(
@@ -1794,7 +1794,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -1842,7 +1842,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -1890,7 +1890,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -1938,7 +1938,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -1986,7 +1986,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -2034,7 +2034,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -2082,7 +2082,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -2130,7 +2130,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -2178,7 +2178,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -2226,7 +2226,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -2274,7 +2274,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -2322,7 +2322,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -2370,7 +2370,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -2418,7 +2418,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Adds a new identity provider to Access.
 
@@ -2491,7 +2491,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -2505,7 +2505,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[IdentityProvider],
+            IdentityProvider,
             await self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
                 body=await async_maybe_transform(
@@ -2547,7 +2547,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -2598,7 +2598,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -2649,7 +2649,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -2700,7 +2700,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -2751,7 +2751,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -2802,7 +2802,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -2853,7 +2853,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -2904,7 +2904,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -2955,7 +2955,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -3006,7 +3006,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -3057,7 +3057,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -3108,7 +3108,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -3159,7 +3159,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -3210,7 +3210,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Updates a configured identity provider.
 
@@ -3286,7 +3286,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         if account_id and zone_id:
@@ -3302,7 +3302,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[IdentityProvider],
+            IdentityProvider,
             await self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 body=await async_maybe_transform(
@@ -3390,7 +3390,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProviderDeleteResponse]:
+    ) -> IdentityProviderDeleteResponse:
         """
         Deletes an identity provider from Access.
 
@@ -3432,7 +3432,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IdentityProviderDeleteResponse]], ResultWrapper[IdentityProviderDeleteResponse]),
+            cast_to=cast(Type[IdentityProviderDeleteResponse], ResultWrapper[IdentityProviderDeleteResponse]),
         )
 
     async def get(
@@ -3447,7 +3447,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    ) -> IdentityProvider:
         """
         Fetches a configured identity provider.
 
@@ -3481,7 +3481,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[IdentityProvider],
+            IdentityProvider,
             await self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
                 options=make_request_options(

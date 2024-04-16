@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -26,7 +26,7 @@ class TestCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -36,7 +36,7 @@ class TestCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = response.parse()
-        assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -64,7 +64,7 @@ class TestCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = response.parse()
-            assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
+            assert_matches_type(CACreateResponse, ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +161,7 @@ class TestCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
+        assert_matches_type(CADeleteResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +171,7 @@ class TestCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
+        assert_matches_type(CADeleteResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -185,7 +185,7 @@ class TestCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = response.parse()
-        assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
+        assert_matches_type(CADeleteResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -199,7 +199,7 @@ class TestCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = response.parse()
-            assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
+            assert_matches_type(CADeleteResponse, ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -235,7 +235,7 @@ class TestCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -245,7 +245,7 @@ class TestCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -259,7 +259,7 @@ class TestCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = response.parse()
-        assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -273,7 +273,7 @@ class TestCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = response.parse()
-            assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
+            assert_matches_type(CAGetResponse, ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -313,7 +313,7 @@ class TestAsyncCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -323,7 +323,7 @@ class TestAsyncCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -337,7 +337,7 @@ class TestAsyncCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = await response.parse()
-        assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
+        assert_matches_type(CACreateResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -351,7 +351,7 @@ class TestAsyncCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = await response.parse()
-            assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
+            assert_matches_type(CACreateResponse, ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -448,7 +448,7 @@ class TestAsyncCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
+        assert_matches_type(CADeleteResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -458,7 +458,7 @@ class TestAsyncCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
+        assert_matches_type(CADeleteResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -472,7 +472,7 @@ class TestAsyncCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = await response.parse()
-        assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
+        assert_matches_type(CADeleteResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -486,7 +486,7 @@ class TestAsyncCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = await response.parse()
-            assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
+            assert_matches_type(CADeleteResponse, ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -522,7 +522,7 @@ class TestAsyncCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -532,7 +532,7 @@ class TestAsyncCAs:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -546,7 +546,7 @@ class TestAsyncCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = await response.parse()
-        assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
+        assert_matches_type(CAGetResponse, ca, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -560,7 +560,7 @@ class TestAsyncCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = await response.parse()
-            assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
+            assert_matches_type(CAGetResponse, ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

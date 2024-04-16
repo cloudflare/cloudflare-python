@@ -111,12 +111,6 @@ class SelfHostedApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    options_preflight_bypass: Optional[bool] = None
-    """
-    Allows options preflight requests to bypass Access authentication and go
-    directly to the origin. Cannot turn on if cors_headers is set.
-    """
-
     path_cookie_attribute: Optional[bool] = None
     """Enables cookie paths to scope an application's JWT to the application path.
 
@@ -330,12 +324,6 @@ class BrowserSSHApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    options_preflight_bypass: Optional[bool] = None
-    """
-    Allows options preflight requests to bypass Access authentication and go
-    directly to the origin. Cannot turn on if cors_headers is set.
-    """
-
     path_cookie_attribute: Optional[bool] = None
     """Enables cookie paths to scope an application's JWT to the application path.
 
@@ -457,12 +445,6 @@ class BrowserVncApplication(BaseModel):
 
     name: Optional[str] = None
     """The name of the application."""
-
-    options_preflight_bypass: Optional[bool] = None
-    """
-    Allows options preflight requests to bypass Access authentication and go
-    directly to the origin. Cannot turn on if cors_headers is set.
-    """
 
     path_cookie_attribute: Optional[bool] = None
     """Enables cookie paths to scope an application's JWT to the application path.
