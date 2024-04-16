@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -28,7 +28,7 @@ class TestSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(SettingEditResponse, setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +106,7 @@ class TestSettings:
                 "usage_model": "unbound",
             },
         )
-        assert_matches_type(SettingEditResponse, setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +120,7 @@ class TestSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert_matches_type(SettingEditResponse, setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +134,7 @@ class TestSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert_matches_type(SettingEditResponse, setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -170,7 +170,7 @@ class TestSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(SettingGetResponse, setting, path=["response"])
+        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -184,7 +184,7 @@ class TestSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert_matches_type(SettingGetResponse, setting, path=["response"])
+        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -198,7 +198,7 @@ class TestSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert_matches_type(SettingGetResponse, setting, path=["response"])
+            assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -238,7 +238,7 @@ class TestAsyncSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(SettingEditResponse, setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -316,7 +316,7 @@ class TestAsyncSettings:
                 "usage_model": "unbound",
             },
         )
-        assert_matches_type(SettingEditResponse, setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -330,7 +330,7 @@ class TestAsyncSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert_matches_type(SettingEditResponse, setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -344,7 +344,7 @@ class TestAsyncSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert_matches_type(SettingEditResponse, setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -380,7 +380,7 @@ class TestAsyncSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(SettingGetResponse, setting, path=["response"])
+        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -394,7 +394,7 @@ class TestAsyncSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert_matches_type(SettingGetResponse, setting, path=["response"])
+        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -408,7 +408,7 @@ class TestAsyncSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert_matches_type(SettingGetResponse, setting, path=["response"])
+            assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

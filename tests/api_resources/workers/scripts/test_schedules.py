@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestSchedules:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
         )
-        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
+        assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestSchedules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = response.parse()
-        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
+        assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -53,7 +53,7 @@ class TestSchedules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = response.parse()
-            assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
+            assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -81,7 +81,7 @@ class TestSchedules:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
+        assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -94,7 +94,7 @@ class TestSchedules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = response.parse()
-        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
+        assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -107,7 +107,7 @@ class TestSchedules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = response.parse()
-            assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
+            assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -138,7 +138,7 @@ class TestAsyncSchedules:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
         )
-        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
+        assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -152,7 +152,7 @@ class TestAsyncSchedules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = await response.parse()
-        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
+        assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -166,7 +166,7 @@ class TestAsyncSchedules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = await response.parse()
-            assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
+            assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -194,7 +194,7 @@ class TestAsyncSchedules:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
+        assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -207,7 +207,7 @@ class TestAsyncSchedules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = await response.parse()
-        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
+        assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -220,7 +220,7 @@ class TestAsyncSchedules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = await response.parse()
-            assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
+            assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

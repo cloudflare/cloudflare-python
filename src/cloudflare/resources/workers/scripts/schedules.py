@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -49,7 +49,7 @@ class Schedules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScheduleUpdateResponse:
+    ) -> Optional[ScheduleUpdateResponse]:
         """
         Updates Cron Triggers for a Worker.
 
@@ -80,7 +80,7 @@ class Schedules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScheduleUpdateResponse], ResultWrapper[ScheduleUpdateResponse]),
+            cast_to=cast(Type[Optional[ScheduleUpdateResponse]], ResultWrapper[ScheduleUpdateResponse]),
         )
 
     def get(
@@ -94,7 +94,7 @@ class Schedules(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScheduleGetResponse:
+    ) -> Optional[ScheduleGetResponse]:
         """
         Fetches Cron Triggers for a Worker.
 
@@ -124,7 +124,7 @@ class Schedules(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScheduleGetResponse], ResultWrapper[ScheduleGetResponse]),
+            cast_to=cast(Type[Optional[ScheduleGetResponse]], ResultWrapper[ScheduleGetResponse]),
         )
 
 
@@ -149,7 +149,7 @@ class AsyncSchedules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScheduleUpdateResponse:
+    ) -> Optional[ScheduleUpdateResponse]:
         """
         Updates Cron Triggers for a Worker.
 
@@ -180,7 +180,7 @@ class AsyncSchedules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScheduleUpdateResponse], ResultWrapper[ScheduleUpdateResponse]),
+            cast_to=cast(Type[Optional[ScheduleUpdateResponse]], ResultWrapper[ScheduleUpdateResponse]),
         )
 
     async def get(
@@ -194,7 +194,7 @@ class AsyncSchedules(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScheduleGetResponse:
+    ) -> Optional[ScheduleGetResponse]:
         """
         Fetches Cron Triggers for a Worker.
 
@@ -224,7 +224,7 @@ class AsyncSchedules(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ScheduleGetResponse], ResultWrapper[ScheduleGetResponse]),
+            cast_to=cast(Type[Optional[ScheduleGetResponse]], ResultWrapper[ScheduleGetResponse]),
         )
 
 

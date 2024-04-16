@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast, overload
+from typing import List, Type, Optional, cast, overload
 
 import httpx
 
@@ -135,7 +135,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Script:
+    ) -> Optional[Script]:
         """
         Upload a worker module.
 
@@ -180,7 +180,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Script:
+    ) -> Optional[Script]:
         """
         Upload a worker module.
 
@@ -222,7 +222,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Script:
+    ) -> Optional[Script]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -245,7 +245,7 @@ class Scripts(SyncAPIResource):
                 query=maybe_transform({"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Script], ResultWrapper[Script]),
+            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
         )
 
     def list(
@@ -429,7 +429,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Script:
+    ) -> Optional[Script]:
         """
         Upload a worker module.
 
@@ -474,7 +474,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Script:
+    ) -> Optional[Script]:
         """
         Upload a worker module.
 
@@ -516,7 +516,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Script:
+    ) -> Optional[Script]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -541,7 +541,7 @@ class AsyncScripts(AsyncAPIResource):
                 ),
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Script], ResultWrapper[Script]),
+            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
         )
 
     def list(
