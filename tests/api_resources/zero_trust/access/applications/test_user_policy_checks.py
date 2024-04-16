@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestUserPolicyChecks:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestUserPolicyChecks:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -49,7 +49,7 @@ class TestUserPolicyChecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_policy_check = response.parse()
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestUserPolicyChecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_policy_check = response.parse()
-            assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+            assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -96,7 +96,7 @@ class TestAsyncUserPolicyChecks:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -106,7 +106,7 @@ class TestAsyncUserPolicyChecks:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +120,7 @@ class TestAsyncUserPolicyChecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_policy_check = await response.parse()
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +134,7 @@ class TestAsyncUserPolicyChecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_policy_check = await response.parse()
-            assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+            assert_matches_type(UserPolicyCheckListResponse, user_policy_check, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

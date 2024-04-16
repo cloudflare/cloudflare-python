@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -44,7 +44,7 @@ class LastSeenIdentity(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Identity]:
+    ) -> Identity:
         """
         Get last seen identity for a single user.
 
@@ -74,7 +74,7 @@ class LastSeenIdentity(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Identity]], ResultWrapper[Identity]),
+            cast_to=cast(Type[Identity], ResultWrapper[Identity]),
         )
 
 
@@ -98,7 +98,7 @@ class AsyncLastSeenIdentity(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Identity]:
+    ) -> Identity:
         """
         Get last seen identity for a single user.
 
@@ -128,7 +128,7 @@ class AsyncLastSeenIdentity(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Identity]], ResultWrapper[Identity]),
+            cast_to=cast(Type[Identity], ResultWrapper[Identity]),
         )
 
 

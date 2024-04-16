@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -71,7 +71,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Policy:
         """
         Create a new Access policy for an application.
 
@@ -162,7 +162,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
     def update(
@@ -190,7 +190,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Policy:
         """
         Update a configured Access policy.
 
@@ -285,7 +285,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
     def list(
@@ -355,7 +355,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDeleteResponse]:
+    ) -> PolicyDeleteResponse:
         """
         Delete an Access policy.
 
@@ -401,7 +401,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolicyDeleteResponse]], ResultWrapper[PolicyDeleteResponse]),
+            cast_to=cast(Type[PolicyDeleteResponse], ResultWrapper[PolicyDeleteResponse]),
         )
 
     def get(
@@ -417,7 +417,7 @@ class Policies(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Policy:
         """
         Fetches a single Access policy.
 
@@ -463,7 +463,7 @@ class Policies(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
 
@@ -500,7 +500,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Policy:
         """
         Create a new Access policy for an application.
 
@@ -591,7 +591,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
     async def update(
@@ -619,7 +619,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Policy:
         """
         Update a configured Access policy.
 
@@ -714,7 +714,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
     def list(
@@ -784,7 +784,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDeleteResponse]:
+    ) -> PolicyDeleteResponse:
         """
         Delete an Access policy.
 
@@ -830,7 +830,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolicyDeleteResponse]], ResultWrapper[PolicyDeleteResponse]),
+            cast_to=cast(Type[PolicyDeleteResponse], ResultWrapper[PolicyDeleteResponse]),
         )
 
     async def get(
@@ -846,7 +846,7 @@ class AsyncPolicies(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Policy:
         """
         Fetches a single Access policy.
 
@@ -892,7 +892,7 @@ class AsyncPolicies(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
 
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -30,7 +30,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -70,7 +70,6 @@ class TestApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -79,7 +78,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -94,7 +93,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -109,7 +108,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -139,7 +138,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -181,7 +180,7 @@ class TestApplications:
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -194,7 +193,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -207,7 +206,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -235,7 +234,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -275,7 +274,6 @@ class TestApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -284,7 +282,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -299,7 +297,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -314,7 +312,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -346,7 +344,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -386,7 +384,6 @@ class TestApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -395,7 +392,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -410,7 +407,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -425,7 +422,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -456,7 +453,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -473,7 +470,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -487,7 +484,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -501,7 +498,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -530,7 +527,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -547,7 +544,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -561,7 +558,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -575,7 +572,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -604,7 +601,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -621,7 +618,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -635,7 +632,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -649,7 +646,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -677,7 +674,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -692,7 +689,7 @@ class TestApplications:
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -705,7 +702,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -718,7 +715,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -747,7 +744,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -788,7 +785,6 @@ class TestApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -797,7 +793,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -813,7 +809,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -829,7 +825,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -862,7 +858,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -905,7 +901,7 @@ class TestApplications:
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -919,7 +915,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -933,7 +929,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -964,7 +960,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1005,7 +1001,6 @@ class TestApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -1014,7 +1009,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1030,7 +1025,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1046,7 +1041,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1081,7 +1076,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1122,7 +1117,6 @@ class TestApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -1131,7 +1125,7 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1147,7 +1141,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1163,7 +1157,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1197,7 +1191,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1215,7 +1209,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1230,7 +1224,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1245,7 +1239,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1277,7 +1271,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1295,7 +1289,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1310,7 +1304,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1325,7 +1319,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1357,7 +1351,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1375,7 +1369,7 @@ class TestApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1390,7 +1384,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1405,7 +1399,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1436,7 +1430,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1452,7 +1446,7 @@ class TestApplications:
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1466,7 +1460,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1480,7 +1474,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1570,7 +1564,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
+        assert_matches_type(ApplicationDeleteResponse, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1580,7 +1574,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
+        assert_matches_type(ApplicationDeleteResponse, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1594,7 +1588,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
+        assert_matches_type(ApplicationDeleteResponse, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1608,7 +1602,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
+            assert_matches_type(ApplicationDeleteResponse, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1637,7 +1631,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1647,7 +1641,7 @@ class TestApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1661,7 +1655,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1675,7 +1669,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1776,7 +1770,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1816,7 +1810,6 @@ class TestAsyncApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -1825,7 +1818,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1840,7 +1833,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1855,7 +1848,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1885,7 +1878,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1927,7 +1920,7 @@ class TestAsyncApplications:
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1940,7 +1933,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -1953,7 +1946,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1981,7 +1974,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2021,7 +2014,6 @@ class TestAsyncApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -2030,7 +2022,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2045,7 +2037,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2060,7 +2052,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2092,7 +2084,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2132,7 +2124,6 @@ class TestAsyncApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -2141,7 +2132,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2156,7 +2147,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2171,7 +2162,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2202,7 +2193,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2219,7 +2210,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2233,7 +2224,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2247,7 +2238,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2276,7 +2267,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2293,7 +2284,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2307,7 +2298,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2321,7 +2312,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2350,7 +2341,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2367,7 +2358,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2381,7 +2372,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2395,7 +2386,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2423,7 +2414,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2438,7 +2429,7 @@ class TestAsyncApplications:
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2451,7 +2442,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2464,7 +2455,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2493,7 +2484,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2534,7 +2525,6 @@ class TestAsyncApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -2543,7 +2533,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2559,7 +2549,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2575,7 +2565,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2608,7 +2598,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2651,7 +2641,7 @@ class TestAsyncApplications:
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2665,7 +2655,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2679,7 +2669,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2710,7 +2700,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2751,7 +2741,6 @@ class TestAsyncApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -2760,7 +2749,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2776,7 +2765,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2792,7 +2781,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2827,7 +2816,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2868,7 +2857,6 @@ class TestAsyncApplications:
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            options_preflight_bypass=True,
             path_cookie_attribute=True,
             same_site_cookie_attribute="strict",
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
@@ -2877,7 +2865,7 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2893,7 +2881,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2909,7 +2897,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2943,7 +2931,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2961,7 +2949,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2976,7 +2964,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -2991,7 +2979,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3023,7 +3011,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3041,7 +3029,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3056,7 +3044,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3071,7 +3059,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3103,7 +3091,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3121,7 +3109,7 @@ class TestAsyncApplications:
             auto_redirect_to_identity=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3136,7 +3124,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3151,7 +3139,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3182,7 +3170,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3198,7 +3186,7 @@ class TestAsyncApplications:
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3212,7 +3200,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3226,7 +3214,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3316,7 +3304,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
+        assert_matches_type(ApplicationDeleteResponse, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3326,7 +3314,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
+        assert_matches_type(ApplicationDeleteResponse, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3340,7 +3328,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
+        assert_matches_type(ApplicationDeleteResponse, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3354,7 +3342,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
+            assert_matches_type(ApplicationDeleteResponse, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3383,7 +3371,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3393,7 +3381,7 @@ class TestAsyncApplications:
             account_id="string",
             zone_id="string",
         )
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3407,7 +3395,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[Application], application, path=["response"])
+        assert_matches_type(Application, application, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -3421,7 +3409,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[Application], application, path=["response"])
+            assert_matches_type(Application, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

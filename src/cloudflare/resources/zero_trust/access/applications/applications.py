@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast, overload
+from typing import Any, List, Type, cast, overload
 from typing_extensions import Literal
 
 import httpx
@@ -107,7 +107,6 @@ class Applications(SyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -121,7 +120,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -168,9 +167,6 @@ class Applications(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
 
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
@@ -222,7 +218,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -281,7 +277,6 @@ class Applications(SyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -295,7 +290,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -342,9 +337,6 @@ class Applications(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
 
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
@@ -396,7 +388,6 @@ class Applications(SyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -410,7 +401,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -458,9 +449,6 @@ class Applications(SyncAPIResource):
 
           name: The name of the application.
 
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
-
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
@@ -506,7 +494,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -553,7 +541,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -600,7 +588,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -649,7 +637,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -703,7 +691,6 @@ class Applications(SyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -718,7 +705,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -732,7 +719,7 @@ class Applications(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Application,
             self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=maybe_transform(
@@ -752,7 +739,6 @@ class Applications(SyncAPIResource):
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
                         "name": name,
-                        "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "self_hosted_domains": self_hosted_domains,
@@ -799,7 +785,6 @@ class Applications(SyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -813,7 +798,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -862,9 +847,6 @@ class Applications(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
 
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
@@ -917,7 +899,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -979,7 +961,6 @@ class Applications(SyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -993,7 +974,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1042,9 +1023,6 @@ class Applications(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
 
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
@@ -1097,7 +1075,6 @@ class Applications(SyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -1111,7 +1088,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1161,9 +1138,6 @@ class Applications(SyncAPIResource):
 
           name: The name of the application.
 
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
-
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
@@ -1210,7 +1184,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1260,7 +1234,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1310,7 +1284,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1362,7 +1336,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -1419,7 +1393,6 @@ class Applications(SyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -1434,7 +1407,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1448,7 +1421,7 @@ class Applications(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Application,
             self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=maybe_transform(
@@ -1468,7 +1441,6 @@ class Applications(SyncAPIResource):
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
                         "name": name,
-                        "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "self_hosted_domains": self_hosted_domains,
@@ -1554,7 +1526,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ApplicationDeleteResponse]:
+    ) -> ApplicationDeleteResponse:
         """
         Deletes an application from Access.
 
@@ -1594,7 +1566,7 @@ class Applications(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ApplicationDeleteResponse]], ResultWrapper[ApplicationDeleteResponse]),
+            cast_to=cast(Type[ApplicationDeleteResponse], ResultWrapper[ApplicationDeleteResponse]),
         )
 
     def get(
@@ -1609,7 +1581,7 @@ class Applications(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Fetches information about an Access application.
 
@@ -1641,7 +1613,7 @@ class Applications(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Application,
             self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 options=make_request_options(
@@ -1755,7 +1727,6 @@ class AsyncApplications(AsyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -1769,7 +1740,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -1816,9 +1787,6 @@ class AsyncApplications(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
 
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
@@ -1870,7 +1838,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -1929,7 +1897,6 @@ class AsyncApplications(AsyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -1943,7 +1910,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -1990,9 +1957,6 @@ class AsyncApplications(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
 
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
@@ -2044,7 +2008,6 @@ class AsyncApplications(AsyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -2058,7 +2021,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2106,9 +2069,6 @@ class AsyncApplications(AsyncAPIResource):
 
           name: The name of the application.
 
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
-
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
@@ -2154,7 +2114,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2201,7 +2161,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2248,7 +2208,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2297,7 +2257,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Adds a new application to Access.
 
@@ -2351,7 +2311,6 @@ class AsyncApplications(AsyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -2366,7 +2325,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -2380,7 +2339,7 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Application,
             await self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=await async_maybe_transform(
@@ -2400,7 +2359,6 @@ class AsyncApplications(AsyncAPIResource):
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
                         "name": name,
-                        "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "self_hosted_domains": self_hosted_domains,
@@ -2447,7 +2405,6 @@ class AsyncApplications(AsyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -2461,7 +2418,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2510,9 +2467,6 @@ class AsyncApplications(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
 
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
@@ -2565,7 +2519,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2627,7 +2581,6 @@ class AsyncApplications(AsyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -2641,7 +2594,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2690,9 +2643,6 @@ class AsyncApplications(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
 
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
@@ -2745,7 +2695,6 @@ class AsyncApplications(AsyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -2759,7 +2708,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2809,9 +2758,6 @@ class AsyncApplications(AsyncAPIResource):
 
           name: The name of the application.
 
-          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
-              directly to the origin. Cannot turn on if cors_headers is set.
-
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
@@ -2858,7 +2804,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2908,7 +2854,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -2958,7 +2904,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -3010,7 +2956,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Updates an Access application.
 
@@ -3067,7 +3013,6 @@ class AsyncApplications(AsyncAPIResource):
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomainsh] | NotGiven = NOT_GIVEN,
@@ -3082,7 +3027,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3096,7 +3041,7 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Application,
             await self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=await async_maybe_transform(
@@ -3116,7 +3061,6 @@ class AsyncApplications(AsyncAPIResource):
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
                         "name": name,
-                        "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "self_hosted_domains": self_hosted_domains,
@@ -3202,7 +3146,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ApplicationDeleteResponse]:
+    ) -> ApplicationDeleteResponse:
         """
         Deletes an application from Access.
 
@@ -3242,7 +3186,7 @@ class AsyncApplications(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ApplicationDeleteResponse]], ResultWrapper[ApplicationDeleteResponse]),
+            cast_to=cast(Type[ApplicationDeleteResponse], ResultWrapper[ApplicationDeleteResponse]),
         )
 
     async def get(
@@ -3257,7 +3201,7 @@ class AsyncApplications(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Application:
         """
         Fetches information about an Access application.
 
@@ -3289,7 +3233,7 @@ class AsyncApplications(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Application,
             await self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 options=make_request_options(
