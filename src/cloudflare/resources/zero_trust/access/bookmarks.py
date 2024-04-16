@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -57,7 +57,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Bookmark]:
+    ) -> Bookmark:
         """
         Create a new Bookmark application.
 
@@ -86,7 +86,7 @@ class Bookmarks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
+            cast_to=cast(Type[Bookmark], ResultWrapper[Bookmark]),
         )
 
     def update(
@@ -101,7 +101,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Bookmark]:
+    ) -> Bookmark:
         """
         Updates a configured Bookmark application.
 
@@ -130,7 +130,7 @@ class Bookmarks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
+            cast_to=cast(Type[Bookmark], ResultWrapper[Bookmark]),
         )
 
     def list(
@@ -179,7 +179,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BookmarkDeleteResponse]:
+    ) -> BookmarkDeleteResponse:
         """
         Deletes a Bookmark application.
 
@@ -208,7 +208,7 @@ class Bookmarks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BookmarkDeleteResponse]], ResultWrapper[BookmarkDeleteResponse]),
+            cast_to=cast(Type[BookmarkDeleteResponse], ResultWrapper[BookmarkDeleteResponse]),
         )
 
     def get(
@@ -222,7 +222,7 @@ class Bookmarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Bookmark]:
+    ) -> Bookmark:
         """
         Fetches a single Bookmark application.
 
@@ -250,7 +250,7 @@ class Bookmarks(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
+            cast_to=cast(Type[Bookmark], ResultWrapper[Bookmark]),
         )
 
 
@@ -275,7 +275,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Bookmark]:
+    ) -> Bookmark:
         """
         Create a new Bookmark application.
 
@@ -304,7 +304,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
+            cast_to=cast(Type[Bookmark], ResultWrapper[Bookmark]),
         )
 
     async def update(
@@ -319,7 +319,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Bookmark]:
+    ) -> Bookmark:
         """
         Updates a configured Bookmark application.
 
@@ -348,7 +348,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
+            cast_to=cast(Type[Bookmark], ResultWrapper[Bookmark]),
         )
 
     def list(
@@ -397,7 +397,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BookmarkDeleteResponse]:
+    ) -> BookmarkDeleteResponse:
         """
         Deletes a Bookmark application.
 
@@ -426,7 +426,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BookmarkDeleteResponse]], ResultWrapper[BookmarkDeleteResponse]),
+            cast_to=cast(Type[BookmarkDeleteResponse], ResultWrapper[BookmarkDeleteResponse]),
         )
 
     async def get(
@@ -440,7 +440,7 @@ class AsyncBookmarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Bookmark]:
+    ) -> Bookmark:
         """
         Fetches a single Bookmark application.
 
@@ -468,7 +468,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
+            cast_to=cast(Type[Bookmark], ResultWrapper[Bookmark]),
         )
 
 
