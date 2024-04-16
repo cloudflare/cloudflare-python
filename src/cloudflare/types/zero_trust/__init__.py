@@ -50,6 +50,7 @@ from .tunnel_edit_response import TunnelEditResponse as TunnelEditResponse
 from .tunnel_list_response import TunnelListResponse as TunnelListResponse
 from .email_list_rule_param import EmailListRuleParam as EmailListRuleParam
 from .gateway_list_response import GatewayListResponse as GatewayListResponse
+from .network_path_response import NetworkPathResponse as NetworkPathResponse
 from .okta_group_rule_param import OktaGroupRuleParam as OktaGroupRuleParam
 from .saml_group_rule_param import SAMLGroupRuleParam as SAMLGroupRuleParam
 from .azure_group_rule_param import AzureGroupRuleParam as AzureGroupRuleParam

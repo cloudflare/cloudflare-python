@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.shared import User
+from cloudflare.types.shared import IamMember
 from cloudflare.types.accounts import (
     MemberListResponse,
     UserWithInviteCode,
@@ -102,7 +102,7 @@ class TestMembers:
                 {"id": "3536bcfad5faccb999b47003c79917fb"},
             ],
         )
-        assert_matches_type(User, member, path=["response"])
+        assert_matches_type(IamMember, member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -120,7 +120,7 @@ class TestMembers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         member = response.parse()
-        assert_matches_type(User, member, path=["response"])
+        assert_matches_type(IamMember, member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -138,7 +138,7 @@ class TestMembers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             member = response.parse()
-            assert_matches_type(User, member, path=["response"])
+            assert_matches_type(IamMember, member, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -260,7 +260,7 @@ class TestMembers:
             "4536bcfad5faccb111b47003c79917fa",
             account_id={},
         )
-        assert_matches_type(User, member, path=["response"])
+        assert_matches_type(IamMember, member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -273,7 +273,7 @@ class TestMembers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         member = response.parse()
-        assert_matches_type(User, member, path=["response"])
+        assert_matches_type(IamMember, member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -286,7 +286,7 @@ class TestMembers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             member = response.parse()
-            assert_matches_type(User, member, path=["response"])
+            assert_matches_type(IamMember, member, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -382,7 +382,7 @@ class TestAsyncMembers:
                 {"id": "3536bcfad5faccb999b47003c79917fb"},
             ],
         )
-        assert_matches_type(User, member, path=["response"])
+        assert_matches_type(IamMember, member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -400,7 +400,7 @@ class TestAsyncMembers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         member = await response.parse()
-        assert_matches_type(User, member, path=["response"])
+        assert_matches_type(IamMember, member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -418,7 +418,7 @@ class TestAsyncMembers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             member = await response.parse()
-            assert_matches_type(User, member, path=["response"])
+            assert_matches_type(IamMember, member, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -540,7 +540,7 @@ class TestAsyncMembers:
             "4536bcfad5faccb111b47003c79917fa",
             account_id={},
         )
-        assert_matches_type(User, member, path=["response"])
+        assert_matches_type(IamMember, member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -553,7 +553,7 @@ class TestAsyncMembers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         member = await response.parse()
-        assert_matches_type(User, member, path=["response"])
+        assert_matches_type(IamMember, member, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -566,7 +566,7 @@ class TestAsyncMembers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             member = await response.parse()
-            assert_matches_type(User, member, path=["response"])
+            assert_matches_type(IamMember, member, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

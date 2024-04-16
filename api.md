@@ -5,6 +5,7 @@ from cloudflare.types import (
     AuditLog,
     CloudflareTunnel,
     ErrorData,
+    IamMember,
     Identifier,
     LoadBalancerPreview,
     PaginationInfo,
@@ -13,7 +14,6 @@ from cloudflare.types import (
     ResponseInfo,
     Result,
     Role,
-    User,
 )
 ```
 
@@ -47,10 +47,10 @@ from cloudflare.types.accounts import UserWithInviteCode, MemberListResponse, Me
 Methods:
 
 - <code title="post /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/user_with_invite_code.py">UserWithInviteCode</a></code>
-- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/user.py">User</a></code>
+- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/iam_member.py">IamMember</a></code>
 - <code title="get /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_list_response.py">SyncV4PagePaginationArray[MemberListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">delete</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/shared/user.py">User</a></code>
+- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/shared/iam_member.py">IamMember</a></code>
 
 ## Roles
 
@@ -3448,14 +3448,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.images.v1 import Key
+from cloudflare.types.images.v1 import Key, KeyUpdateResponse, KeyListResponse, KeyDeleteResponse
 ```
 
 Methods:
 
-- <code title="put /accounts/{account_id}/images/v1/keys/{signing_key_name}">client.images.v1.keys.<a href="./src/cloudflare/resources/images/v1/keys.py">update</a>(signing_key_name, \*, account_id) -> <a href="./src/cloudflare/types/images/v1/key.py">Key</a></code>
-- <code title="get /accounts/{account_id}/images/v1/keys">client.images.v1.keys.<a href="./src/cloudflare/resources/images/v1/keys.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/images/v1/key.py">Key</a></code>
-- <code title="delete /accounts/{account_id}/images/v1/keys/{signing_key_name}">client.images.v1.keys.<a href="./src/cloudflare/resources/images/v1/keys.py">delete</a>(signing_key_name, \*, account_id) -> <a href="./src/cloudflare/types/images/v1/key.py">Key</a></code>
+- <code title="put /accounts/{account_id}/images/v1/keys/{signing_key_name}">client.images.v1.keys.<a href="./src/cloudflare/resources/images/v1/keys.py">update</a>(signing_key_name, \*, account_id) -> <a href="./src/cloudflare/types/images/v1/key_update_response.py">KeyUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/images/v1/keys">client.images.v1.keys.<a href="./src/cloudflare/resources/images/v1/keys.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/images/v1/key_list_response.py">KeyListResponse</a></code>
+- <code title="delete /accounts/{account_id}/images/v1/keys/{signing_key_name}">client.images.v1.keys.<a href="./src/cloudflare/resources/images/v1/keys.py">delete</a>(signing_key_name, \*, account_id) -> <a href="./src/cloudflare/types/images/v1/key_delete_response.py">KeyDeleteResponse</a></code>
 
 ### Stats
 
@@ -5368,7 +5368,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import DeviceExperienceMonitor, NetworkPath, Percentiles
+from cloudflare.types.zero_trust import (
+    DeviceExperienceMonitor,
+    NetworkPath,
+    NetworkPathResponse,
+    Percentiles,
+)
 ```
 
 ### Colos
@@ -5481,7 +5486,7 @@ from cloudflare.types.zero_trust.dex import Traceroute, TracerouteTestPercentile
 Methods:
 
 - <code title="get /accounts/{account_id}/dex/traceroute-tests/{test_id}">client.zero_trust.dex.traceroute_tests.<a href="./src/cloudflare/resources/zero_trust/dex/traceroute_tests.py">get</a>(test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/traceroute_test_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/traceroute.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/dex/traceroute-tests/{test_id}/network-path">client.zero_trust.dex.traceroute_tests.<a href="./src/cloudflare/resources/zero_trust/dex/traceroute_tests.py">network_path</a>(test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/traceroute_test_network_path_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/network_path.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/dex/traceroute-tests/{test_id}/network-path">client.zero_trust.dex.traceroute_tests.<a href="./src/cloudflare/resources/zero_trust/dex/traceroute_tests.py">network_path</a>(test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/traceroute_test_network_path_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/network_path_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/dex/traceroute-tests/{test_id}/percentiles">client.zero_trust.dex.traceroute_tests.<a href="./src/cloudflare/resources/zero_trust/dex/traceroute_tests.py">percentiles</a>(test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/traceroute_test_percentiles_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/traceroute_test_percentiles_response.py">Optional</a></code>
 
 ## Tunnels

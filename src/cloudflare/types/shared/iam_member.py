@@ -5,7 +5,7 @@ from typing import List, Optional
 from ..._models import BaseModel
 from .permission_grant import PermissionGrant
 
-__all__ = ["User", "Role", "RolePermissions"]
+__all__ = ["IamMember", "Role", "RolePermissions", "User"]
 
 
 class RolePermissions(BaseModel):
@@ -48,6 +48,26 @@ class Role(BaseModel):
 
 
 class User(BaseModel):
+    email: str
+    """The contact email address of the user."""
+
+    id: Optional[str] = None
+    """Identifier"""
+
+    first_name: Optional[str] = None
+    """User's first name"""
+
+    last_name: Optional[str] = None
+    """User's last name"""
+
+    two_factor_authentication_enabled: Optional[bool] = None
+    """Indicates whether two-factor authentication is enabled for the user account.
+
+    Does not apply to API authentication.
+    """
+
+
+class IamMember(BaseModel):
     id: str
     """Membership identifier tag."""
 
