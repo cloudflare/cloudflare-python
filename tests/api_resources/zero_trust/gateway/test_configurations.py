@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -27,7 +27,7 @@ class TestConfigurations:
         configuration = client.zero_trust.gateway.configurations.update(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -72,7 +72,7 @@ class TestConfigurations:
                 "tls_decrypt": {"enabled": True},
             },
         )
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -84,7 +84,7 @@ class TestConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = response.parse()
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -96,7 +96,7 @@ class TestConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = response.parse()
-            assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+            assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -114,7 +114,7 @@ class TestConfigurations:
         configuration = client.zero_trust.gateway.configurations.edit(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ConfigurationEditResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationEditResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -159,7 +159,7 @@ class TestConfigurations:
                 "tls_decrypt": {"enabled": True},
             },
         )
-        assert_matches_type(ConfigurationEditResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationEditResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -171,7 +171,7 @@ class TestConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = response.parse()
-        assert_matches_type(ConfigurationEditResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationEditResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -183,7 +183,7 @@ class TestConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = response.parse()
-            assert_matches_type(ConfigurationEditResponse, configuration, path=["response"])
+            assert_matches_type(Optional[ConfigurationEditResponse], configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -201,7 +201,7 @@ class TestConfigurations:
         configuration = client.zero_trust.gateway.configurations.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationGetResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -213,7 +213,7 @@ class TestConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = response.parse()
-        assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationGetResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -225,7 +225,7 @@ class TestConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = response.parse()
-            assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+            assert_matches_type(Optional[ConfigurationGetResponse], configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -247,7 +247,7 @@ class TestAsyncConfigurations:
         configuration = await async_client.zero_trust.gateway.configurations.update(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -292,7 +292,7 @@ class TestAsyncConfigurations:
                 "tls_decrypt": {"enabled": True},
             },
         )
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -304,7 +304,7 @@ class TestAsyncConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = await response.parse()
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -316,7 +316,7 @@ class TestAsyncConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = await response.parse()
-            assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+            assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -334,7 +334,7 @@ class TestAsyncConfigurations:
         configuration = await async_client.zero_trust.gateway.configurations.edit(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ConfigurationEditResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationEditResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -379,7 +379,7 @@ class TestAsyncConfigurations:
                 "tls_decrypt": {"enabled": True},
             },
         )
-        assert_matches_type(ConfigurationEditResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationEditResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -391,7 +391,7 @@ class TestAsyncConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = await response.parse()
-        assert_matches_type(ConfigurationEditResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationEditResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -403,7 +403,7 @@ class TestAsyncConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = await response.parse()
-            assert_matches_type(ConfigurationEditResponse, configuration, path=["response"])
+            assert_matches_type(Optional[ConfigurationEditResponse], configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -421,7 +421,7 @@ class TestAsyncConfigurations:
         configuration = await async_client.zero_trust.gateway.configurations.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationGetResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -433,7 +433,7 @@ class TestAsyncConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = await response.parse()
-        assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+        assert_matches_type(Optional[ConfigurationGetResponse], configuration, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -445,7 +445,7 @@ class TestAsyncConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = await response.parse()
-            assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
+            assert_matches_type(Optional[ConfigurationGetResponse], configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
