@@ -116,6 +116,7 @@ class Cloudflare(SyncAPIClient):
     challenges: resources.Challenges
     hyperdrive: resources.HyperdriveResource
     rum: resources.RUM
+    vectorize: resources.Vectorize
     url_scanner: resources.URLScanner
     radar: resources.Radar
     bot_management: resources.BotManagement
@@ -271,6 +272,7 @@ class Cloudflare(SyncAPIClient):
         self.challenges = resources.Challenges(self)
         self.hyperdrive = resources.HyperdriveResource(self)
         self.rum = resources.RUM(self)
+        self.vectorize = resources.Vectorize(self)
         self.url_scanner = resources.URLScanner(self)
         self.radar = resources.Radar(self)
         self.bot_management = resources.BotManagement(self)
@@ -529,6 +531,7 @@ class AsyncCloudflare(AsyncAPIClient):
     challenges: resources.AsyncChallenges
     hyperdrive: resources.AsyncHyperdriveResource
     rum: resources.AsyncRUM
+    vectorize: resources.AsyncVectorize
     url_scanner: resources.AsyncURLScanner
     radar: resources.AsyncRadar
     bot_management: resources.AsyncBotManagement
@@ -684,6 +687,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.challenges = resources.AsyncChallenges(self)
         self.hyperdrive = resources.AsyncHyperdriveResource(self)
         self.rum = resources.AsyncRUM(self)
+        self.vectorize = resources.AsyncVectorize(self)
         self.url_scanner = resources.AsyncURLScanner(self)
         self.radar = resources.AsyncRadar(self)
         self.bot_management = resources.AsyncBotManagement(self)
@@ -943,6 +947,7 @@ class CloudflareWithRawResponse:
         self.challenges = resources.ChallengesWithRawResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveResourceWithRawResponse(client.hyperdrive)
         self.rum = resources.RUMWithRawResponse(client.rum)
+        self.vectorize = resources.VectorizeWithRawResponse(client.vectorize)
         self.url_scanner = resources.URLScannerWithRawResponse(client.url_scanner)
         self.radar = resources.RadarWithRawResponse(client.radar)
         self.bot_management = resources.BotManagementWithRawResponse(client.bot_management)
@@ -1033,6 +1038,7 @@ class AsyncCloudflareWithRawResponse:
         self.challenges = resources.AsyncChallengesWithRawResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveResourceWithRawResponse(client.hyperdrive)
         self.rum = resources.AsyncRUMWithRawResponse(client.rum)
+        self.vectorize = resources.AsyncVectorizeWithRawResponse(client.vectorize)
         self.url_scanner = resources.AsyncURLScannerWithRawResponse(client.url_scanner)
         self.radar = resources.AsyncRadarWithRawResponse(client.radar)
         self.bot_management = resources.AsyncBotManagementWithRawResponse(client.bot_management)
@@ -1123,6 +1129,7 @@ class CloudflareWithStreamedResponse:
         self.challenges = resources.ChallengesWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveResourceWithStreamingResponse(client.hyperdrive)
         self.rum = resources.RUMWithStreamingResponse(client.rum)
+        self.vectorize = resources.VectorizeWithStreamingResponse(client.vectorize)
         self.url_scanner = resources.URLScannerWithStreamingResponse(client.url_scanner)
         self.radar = resources.RadarWithStreamingResponse(client.radar)
         self.bot_management = resources.BotManagementWithStreamingResponse(client.bot_management)
@@ -1219,6 +1226,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.challenges = resources.AsyncChallengesWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveResourceWithStreamingResponse(client.hyperdrive)
         self.rum = resources.AsyncRUMWithStreamingResponse(client.rum)
+        self.vectorize = resources.AsyncVectorizeWithStreamingResponse(client.vectorize)
         self.url_scanner = resources.AsyncURLScannerWithStreamingResponse(client.url_scanner)
         self.radar = resources.AsyncRadarWithStreamingResponse(client.radar)
         self.bot_management = resources.AsyncBotManagementWithStreamingResponse(client.bot_management)
