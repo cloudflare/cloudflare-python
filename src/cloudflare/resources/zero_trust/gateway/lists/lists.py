@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, cast
+from typing import Any, List, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -75,7 +75,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListCreateResponse:
+    ) -> Optional[ListCreateResponse]:
         """
         Creates a new Zero Trust list.
 
@@ -116,7 +116,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ListCreateResponse], ResultWrapper[ListCreateResponse]),
+            cast_to=cast(Type[Optional[ListCreateResponse]], ResultWrapper[ListCreateResponse]),
         )
 
     def update(
@@ -132,7 +132,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayList:
+    ) -> Optional[GatewayList]:
         """
         Updates a configured Zero Trust list.
 
@@ -171,7 +171,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GatewayList], ResultWrapper[GatewayList]),
+            cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
 
     def list(
@@ -220,7 +220,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListDeleteResponse:
+    ) -> Optional[ListDeleteResponse]:
         """
         Deletes a Zero Trust list.
 
@@ -240,7 +240,7 @@ class Lists(SyncAPIResource):
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return cast(
-            ListDeleteResponse,
+            Optional[ListDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/gateway/lists/{list_id}",
                 body=maybe_transform(body, list_delete_params.ListDeleteParams),
@@ -270,7 +270,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayList:
+    ) -> Optional[GatewayList]:
         """
         Appends or removes an item from a configured Zero Trust list.
 
@@ -309,7 +309,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GatewayList], ResultWrapper[GatewayList]),
+            cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
 
     def get(
@@ -323,7 +323,7 @@ class Lists(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayList:
+    ) -> Optional[GatewayList]:
         """
         Fetches a single Zero Trust list.
 
@@ -351,7 +351,7 @@ class Lists(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GatewayList], ResultWrapper[GatewayList]),
+            cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
 
 
@@ -382,7 +382,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListCreateResponse:
+    ) -> Optional[ListCreateResponse]:
         """
         Creates a new Zero Trust list.
 
@@ -423,7 +423,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ListCreateResponse], ResultWrapper[ListCreateResponse]),
+            cast_to=cast(Type[Optional[ListCreateResponse]], ResultWrapper[ListCreateResponse]),
         )
 
     async def update(
@@ -439,7 +439,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayList:
+    ) -> Optional[GatewayList]:
         """
         Updates a configured Zero Trust list.
 
@@ -478,7 +478,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GatewayList], ResultWrapper[GatewayList]),
+            cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
 
     def list(
@@ -527,7 +527,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListDeleteResponse:
+    ) -> Optional[ListDeleteResponse]:
         """
         Deletes a Zero Trust list.
 
@@ -547,7 +547,7 @@ class AsyncLists(AsyncAPIResource):
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return cast(
-            ListDeleteResponse,
+            Optional[ListDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/gateway/lists/{list_id}",
                 body=await async_maybe_transform(body, list_delete_params.ListDeleteParams),
@@ -577,7 +577,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayList:
+    ) -> Optional[GatewayList]:
         """
         Appends or removes an item from a configured Zero Trust list.
 
@@ -616,7 +616,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GatewayList], ResultWrapper[GatewayList]),
+            cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
 
     async def get(
@@ -630,7 +630,7 @@ class AsyncLists(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayList:
+    ) -> Optional[GatewayList]:
         """
         Fetches a single Zero Trust list.
 
@@ -658,7 +658,7 @@ class AsyncLists(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GatewayList], ResultWrapper[GatewayList]),
+            cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
 
 

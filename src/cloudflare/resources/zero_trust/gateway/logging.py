@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -49,7 +49,7 @@ class Logging(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoggingSetting:
+    ) -> Optional[LoggingSetting]:
         """
         Updates logging settings for the current Zero Trust account.
 
@@ -85,7 +85,7 @@ class Logging(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoggingSetting], ResultWrapper[LoggingSetting]),
+            cast_to=cast(Type[Optional[LoggingSetting]], ResultWrapper[LoggingSetting]),
         )
 
     def get(
@@ -98,7 +98,7 @@ class Logging(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoggingSetting:
+    ) -> Optional[LoggingSetting]:
         """
         Fetches the current logging settings for Zero Trust account.
 
@@ -122,7 +122,7 @@ class Logging(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoggingSetting], ResultWrapper[LoggingSetting]),
+            cast_to=cast(Type[Optional[LoggingSetting]], ResultWrapper[LoggingSetting]),
         )
 
 
@@ -147,7 +147,7 @@ class AsyncLogging(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoggingSetting:
+    ) -> Optional[LoggingSetting]:
         """
         Updates logging settings for the current Zero Trust account.
 
@@ -183,7 +183,7 @@ class AsyncLogging(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoggingSetting], ResultWrapper[LoggingSetting]),
+            cast_to=cast(Type[Optional[LoggingSetting]], ResultWrapper[LoggingSetting]),
         )
 
     async def get(
@@ -196,7 +196,7 @@ class AsyncLogging(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LoggingSetting:
+    ) -> Optional[LoggingSetting]:
         """
         Fetches the current logging settings for Zero Trust account.
 
@@ -220,7 +220,7 @@ class AsyncLogging(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[LoggingSetting], ResultWrapper[LoggingSetting]),
+            cast_to=cast(Type[Optional[LoggingSetting]], ResultWrapper[LoggingSetting]),
         )
 
 
