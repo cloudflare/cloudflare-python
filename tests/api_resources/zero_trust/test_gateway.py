@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -23,7 +23,7 @@ class TestGateway:
         gateway = client.zero_trust.gateway.create(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(GatewayCreateResponse, gateway, path=["response"])
+        assert_matches_type(Optional[GatewayCreateResponse], gateway, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestGateway:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gateway = response.parse()
-        assert_matches_type(GatewayCreateResponse, gateway, path=["response"])
+        assert_matches_type(Optional[GatewayCreateResponse], gateway, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestGateway:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gateway = response.parse()
-            assert_matches_type(GatewayCreateResponse, gateway, path=["response"])
+            assert_matches_type(Optional[GatewayCreateResponse], gateway, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -65,7 +65,7 @@ class TestGateway:
         gateway = client.zero_trust.gateway.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(GatewayListResponse, gateway, path=["response"])
+        assert_matches_type(Optional[GatewayListResponse], gateway, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -77,7 +77,7 @@ class TestGateway:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gateway = response.parse()
-        assert_matches_type(GatewayListResponse, gateway, path=["response"])
+        assert_matches_type(Optional[GatewayListResponse], gateway, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -89,7 +89,7 @@ class TestGateway:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gateway = response.parse()
-            assert_matches_type(GatewayListResponse, gateway, path=["response"])
+            assert_matches_type(Optional[GatewayListResponse], gateway, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -111,7 +111,7 @@ class TestAsyncGateway:
         gateway = await async_client.zero_trust.gateway.create(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(GatewayCreateResponse, gateway, path=["response"])
+        assert_matches_type(Optional[GatewayCreateResponse], gateway, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -123,7 +123,7 @@ class TestAsyncGateway:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gateway = await response.parse()
-        assert_matches_type(GatewayCreateResponse, gateway, path=["response"])
+        assert_matches_type(Optional[GatewayCreateResponse], gateway, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -135,7 +135,7 @@ class TestAsyncGateway:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gateway = await response.parse()
-            assert_matches_type(GatewayCreateResponse, gateway, path=["response"])
+            assert_matches_type(Optional[GatewayCreateResponse], gateway, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -153,7 +153,7 @@ class TestAsyncGateway:
         gateway = await async_client.zero_trust.gateway.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(GatewayListResponse, gateway, path=["response"])
+        assert_matches_type(Optional[GatewayListResponse], gateway, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -165,7 +165,7 @@ class TestAsyncGateway:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         gateway = await response.parse()
-        assert_matches_type(GatewayListResponse, gateway, path=["response"])
+        assert_matches_type(Optional[GatewayListResponse], gateway, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -177,7 +177,7 @@ class TestAsyncGateway:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             gateway = await response.parse()
-            assert_matches_type(GatewayListResponse, gateway, path=["response"])
+            assert_matches_type(Optional[GatewayListResponse], gateway, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

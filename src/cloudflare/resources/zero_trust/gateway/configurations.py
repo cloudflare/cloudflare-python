@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -55,7 +55,7 @@ class Configurations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationUpdateResponse:
+    ) -> Optional[ConfigurationUpdateResponse]:
         """
         Updates the current Zero Trust account configuration.
 
@@ -82,7 +82,7 @@ class Configurations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ConfigurationUpdateResponse], ResultWrapper[ConfigurationUpdateResponse]),
+            cast_to=cast(Type[Optional[ConfigurationUpdateResponse]], ResultWrapper[ConfigurationUpdateResponse]),
         )
 
     def edit(
@@ -96,7 +96,7 @@ class Configurations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationEditResponse:
+    ) -> Optional[ConfigurationEditResponse]:
         """Patches the current Zero Trust account configuration.
 
         This endpoint can update a
@@ -128,7 +128,7 @@ class Configurations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ConfigurationEditResponse], ResultWrapper[ConfigurationEditResponse]),
+            cast_to=cast(Type[Optional[ConfigurationEditResponse]], ResultWrapper[ConfigurationEditResponse]),
         )
 
     def get(
@@ -141,7 +141,7 @@ class Configurations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationGetResponse:
+    ) -> Optional[ConfigurationGetResponse]:
         """
         Fetches the current Zero Trust account configuration.
 
@@ -165,7 +165,7 @@ class Configurations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ConfigurationGetResponse], ResultWrapper[ConfigurationGetResponse]),
+            cast_to=cast(Type[Optional[ConfigurationGetResponse]], ResultWrapper[ConfigurationGetResponse]),
         )
 
 
@@ -189,7 +189,7 @@ class AsyncConfigurations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationUpdateResponse:
+    ) -> Optional[ConfigurationUpdateResponse]:
         """
         Updates the current Zero Trust account configuration.
 
@@ -218,7 +218,7 @@ class AsyncConfigurations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ConfigurationUpdateResponse], ResultWrapper[ConfigurationUpdateResponse]),
+            cast_to=cast(Type[Optional[ConfigurationUpdateResponse]], ResultWrapper[ConfigurationUpdateResponse]),
         )
 
     async def edit(
@@ -232,7 +232,7 @@ class AsyncConfigurations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationEditResponse:
+    ) -> Optional[ConfigurationEditResponse]:
         """Patches the current Zero Trust account configuration.
 
         This endpoint can update a
@@ -264,7 +264,7 @@ class AsyncConfigurations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ConfigurationEditResponse], ResultWrapper[ConfigurationEditResponse]),
+            cast_to=cast(Type[Optional[ConfigurationEditResponse]], ResultWrapper[ConfigurationEditResponse]),
         )
 
     async def get(
@@ -277,7 +277,7 @@ class AsyncConfigurations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationGetResponse:
+    ) -> Optional[ConfigurationGetResponse]:
         """
         Fetches the current Zero Trust account configuration.
 
@@ -301,7 +301,7 @@ class AsyncConfigurations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[ConfigurationGetResponse], ResultWrapper[ConfigurationGetResponse]),
+            cast_to=cast(Type[Optional[ConfigurationGetResponse]], ResultWrapper[ConfigurationGetResponse]),
         )
 
 

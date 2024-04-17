@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -152,7 +152,7 @@ class Gateway(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayCreateResponse:
+    ) -> Optional[GatewayCreateResponse]:
         """
         Creates a Zero Trust account with an existing Cloudflare account.
 
@@ -176,7 +176,7 @@ class Gateway(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GatewayCreateResponse], ResultWrapper[GatewayCreateResponse]),
+            cast_to=cast(Type[Optional[GatewayCreateResponse]], ResultWrapper[GatewayCreateResponse]),
         )
 
     def list(
@@ -189,7 +189,7 @@ class Gateway(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayListResponse:
+    ) -> Optional[GatewayListResponse]:
         """
         Gets information about the current Zero Trust account.
 
@@ -213,7 +213,7 @@ class Gateway(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GatewayListResponse], ResultWrapper[GatewayListResponse]),
+            cast_to=cast(Type[Optional[GatewayListResponse]], ResultWrapper[GatewayListResponse]),
         )
 
 
@@ -272,7 +272,7 @@ class AsyncGateway(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayCreateResponse:
+    ) -> Optional[GatewayCreateResponse]:
         """
         Creates a Zero Trust account with an existing Cloudflare account.
 
@@ -296,7 +296,7 @@ class AsyncGateway(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GatewayCreateResponse], ResultWrapper[GatewayCreateResponse]),
+            cast_to=cast(Type[Optional[GatewayCreateResponse]], ResultWrapper[GatewayCreateResponse]),
         )
 
     async def list(
@@ -309,7 +309,7 @@ class AsyncGateway(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GatewayListResponse:
+    ) -> Optional[GatewayListResponse]:
         """
         Gets information about the current Zero Trust account.
 
@@ -333,7 +333,7 @@ class AsyncGateway(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[GatewayListResponse], ResultWrapper[GatewayListResponse]),
+            cast_to=cast(Type[Optional[GatewayListResponse]], ResultWrapper[GatewayListResponse]),
         )
 
 

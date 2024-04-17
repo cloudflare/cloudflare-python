@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -29,7 +29,7 @@ class TestProxyEndpoints:
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
         )
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -43,7 +43,7 @@ class TestProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = response.parse()
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -57,7 +57,7 @@ class TestProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = response.parse()
-            assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -121,7 +121,7 @@ class TestProxyEndpoints:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(ProxyEndpointDeleteResponse, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -135,7 +135,7 @@ class TestProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = response.parse()
-        assert_matches_type(ProxyEndpointDeleteResponse, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -149,7 +149,7 @@ class TestProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = response.parse()
-            assert_matches_type(ProxyEndpointDeleteResponse, proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -177,7 +177,7 @@ class TestProxyEndpoints:
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -188,7 +188,7 @@ class TestProxyEndpoints:
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
         )
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -201,7 +201,7 @@ class TestProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = response.parse()
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -214,7 +214,7 @@ class TestProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = response.parse()
-            assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +240,7 @@ class TestProxyEndpoints:
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -253,7 +253,7 @@ class TestProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = response.parse()
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -266,7 +266,7 @@ class TestProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = response.parse()
-            assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -297,7 +297,7 @@ class TestAsyncProxyEndpoints:
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
         )
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -311,7 +311,7 @@ class TestAsyncProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = await response.parse()
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -325,7 +325,7 @@ class TestAsyncProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = await response.parse()
-            assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -389,7 +389,7 @@ class TestAsyncProxyEndpoints:
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
-        assert_matches_type(ProxyEndpointDeleteResponse, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -403,7 +403,7 @@ class TestAsyncProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = await response.parse()
-        assert_matches_type(ProxyEndpointDeleteResponse, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -417,7 +417,7 @@ class TestAsyncProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = await response.parse()
-            assert_matches_type(ProxyEndpointDeleteResponse, proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -445,7 +445,7 @@ class TestAsyncProxyEndpoints:
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -456,7 +456,7 @@ class TestAsyncProxyEndpoints:
             ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
             name="Devops team",
         )
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -469,7 +469,7 @@ class TestAsyncProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = await response.parse()
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -482,7 +482,7 @@ class TestAsyncProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = await response.parse()
-            assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -508,7 +508,7 @@ class TestAsyncProxyEndpoints:
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -521,7 +521,7 @@ class TestAsyncProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = await response.parse()
-        assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -534,7 +534,7 @@ class TestAsyncProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = await response.parse()
-            assert_matches_type(ProxyEndpoint, proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
