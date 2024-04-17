@@ -131,17 +131,17 @@ class Cloudflare(SyncAPIClient):
     with_streaming_response: CloudflareWithStreamedResponse
 
     # client options
+    api_token: str | None
     api_key: str | None
     api_email: str | None
-    api_token: str | None
     user_service_key: str | None
 
     def __init__(
         self,
         *,
+        api_token: str | None = None,
         api_key: str | None = None,
         api_email: str | None = None,
-        api_token: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -165,11 +165,15 @@ class Cloudflare(SyncAPIClient):
         """Construct a new synchronous cloudflare client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `api_token` from `CLOUDFLARE_API_TOKEN`
         - `api_key` from `CLOUDFLARE_API_KEY`
         - `api_email` from `CLOUDFLARE_EMAIL`
-        - `api_token` from `CLOUDFLARE_API_TOKEN`
         - `user_service_key` from `CLOUDFLARE_API_USER_SERVICE_KEY`
         """
+        if api_token is None:
+            api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
+        self.api_token = api_token
+
         if api_key is None:
             api_key = os.environ.get("CLOUDFLARE_API_KEY")
         self.api_key = api_key
@@ -177,10 +181,6 @@ class Cloudflare(SyncAPIClient):
         if api_email is None:
             api_email = os.environ.get("CLOUDFLARE_EMAIL")
         self.api_email = api_email
-
-        if api_token is None:
-            api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
-        self.api_token = api_token
 
         if user_service_key is None:
             user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
@@ -371,9 +371,9 @@ class Cloudflare(SyncAPIClient):
     def copy(
         self,
         *,
+        api_token: str | None = None,
         api_key: str | None = None,
         api_email: str | None = None,
-        api_token: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -408,9 +408,9 @@ class Cloudflare(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
+            api_token=api_token or self.api_token,
             api_key=api_key or self.api_key,
             api_email=api_email or self.api_email,
-            api_token=api_token or self.api_token,
             user_service_key=user_service_key or self.user_service_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -544,17 +544,17 @@ class AsyncCloudflare(AsyncAPIClient):
     with_streaming_response: AsyncCloudflareWithStreamedResponse
 
     # client options
+    api_token: str | None
     api_key: str | None
     api_email: str | None
-    api_token: str | None
     user_service_key: str | None
 
     def __init__(
         self,
         *,
+        api_token: str | None = None,
         api_key: str | None = None,
         api_email: str | None = None,
-        api_token: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -578,11 +578,15 @@ class AsyncCloudflare(AsyncAPIClient):
         """Construct a new async cloudflare client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `api_token` from `CLOUDFLARE_API_TOKEN`
         - `api_key` from `CLOUDFLARE_API_KEY`
         - `api_email` from `CLOUDFLARE_EMAIL`
-        - `api_token` from `CLOUDFLARE_API_TOKEN`
         - `user_service_key` from `CLOUDFLARE_API_USER_SERVICE_KEY`
         """
+        if api_token is None:
+            api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
+        self.api_token = api_token
+
         if api_key is None:
             api_key = os.environ.get("CLOUDFLARE_API_KEY")
         self.api_key = api_key
@@ -590,10 +594,6 @@ class AsyncCloudflare(AsyncAPIClient):
         if api_email is None:
             api_email = os.environ.get("CLOUDFLARE_EMAIL")
         self.api_email = api_email
-
-        if api_token is None:
-            api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
-        self.api_token = api_token
 
         if user_service_key is None:
             user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
@@ -784,9 +784,9 @@ class AsyncCloudflare(AsyncAPIClient):
     def copy(
         self,
         *,
+        api_token: str | None = None,
         api_key: str | None = None,
         api_email: str | None = None,
-        api_token: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -821,9 +821,9 @@ class AsyncCloudflare(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
+            api_token=api_token or self.api_token,
             api_key=api_key or self.api_key,
             api_email=api_email or self.api_email,
-            api_token=api_token or self.api_token,
             user_service_key=user_service_key or self.user_service_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
