@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, cast
+from typing import Any, Type, Iterable, Optional, cast
 
 import httpx
 
@@ -60,7 +60,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Location:
+    ) -> Optional[Location]:
         """
         Creates a new Zero Trust Gateway location.
 
@@ -101,7 +101,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Location], ResultWrapper[Location]),
+            cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
 
     def update(
@@ -119,7 +119,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Location:
+    ) -> Optional[Location]:
         """
         Updates a configured Zero Trust Gateway location.
 
@@ -162,7 +162,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Location], ResultWrapper[Location]),
+            cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
 
     def list(
@@ -211,7 +211,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LocationDeleteResponse:
+    ) -> Optional[LocationDeleteResponse]:
         """
         Deletes a configured Zero Trust Gateway location.
 
@@ -229,7 +229,7 @@ class Locations(SyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return cast(
-            LocationDeleteResponse,
+            Optional[LocationDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/gateway/locations/{location_id}",
                 body=maybe_transform(body, location_delete_params.LocationDeleteParams),
@@ -257,7 +257,7 @@ class Locations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Location:
+    ) -> Optional[Location]:
         """
         Fetches a single Zero Trust Gateway location.
 
@@ -283,7 +283,7 @@ class Locations(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Location], ResultWrapper[Location]),
+            cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
 
 
@@ -310,7 +310,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Location:
+    ) -> Optional[Location]:
         """
         Creates a new Zero Trust Gateway location.
 
@@ -351,7 +351,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Location], ResultWrapper[Location]),
+            cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
 
     async def update(
@@ -369,7 +369,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Location:
+    ) -> Optional[Location]:
         """
         Updates a configured Zero Trust Gateway location.
 
@@ -412,7 +412,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Location], ResultWrapper[Location]),
+            cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
 
     def list(
@@ -461,7 +461,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LocationDeleteResponse:
+    ) -> Optional[LocationDeleteResponse]:
         """
         Deletes a configured Zero Trust Gateway location.
 
@@ -479,7 +479,7 @@ class AsyncLocations(AsyncAPIResource):
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
         return cast(
-            LocationDeleteResponse,
+            Optional[LocationDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/gateway/locations/{location_id}",
                 body=await async_maybe_transform(body, location_delete_params.LocationDeleteParams),
@@ -507,7 +507,7 @@ class AsyncLocations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Location:
+    ) -> Optional[Location]:
         """
         Fetches a single Zero Trust Gateway location.
 
@@ -533,7 +533,7 @@ class AsyncLocations(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper._unwrapper,
             ),
-            cast_to=cast(Type[Location], ResultWrapper[Location]),
+            cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
 
 
