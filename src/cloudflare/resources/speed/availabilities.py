@@ -67,7 +67,7 @@ class Availabilities(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Availability]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Availability]], ResultWrapper[Availability]),
         )
@@ -116,7 +116,7 @@ class AsyncAvailabilities(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Availability]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Availability]], ResultWrapper[Availability]),
         )

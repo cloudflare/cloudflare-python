@@ -120,7 +120,7 @@ class AccessRules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AccessRuleCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AccessRuleCreateResponse]
@@ -260,7 +260,7 @@ class AccessRules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AccessRuleDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AccessRuleDeleteResponse]], ResultWrapper[AccessRuleDeleteResponse]),
         )
@@ -334,7 +334,7 @@ class AccessRules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AccessRuleEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AccessRuleEditResponse]
@@ -392,7 +392,7 @@ class AccessRules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AccessRuleGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AccessRuleGetResponse]
@@ -481,7 +481,7 @@ class AsyncAccessRules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AccessRuleCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AccessRuleCreateResponse]
@@ -621,7 +621,7 @@ class AsyncAccessRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AccessRuleDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AccessRuleDeleteResponse]], ResultWrapper[AccessRuleDeleteResponse]),
         )
@@ -695,7 +695,7 @@ class AsyncAccessRules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AccessRuleEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AccessRuleEditResponse]
@@ -753,7 +753,7 @@ class AsyncAccessRules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AccessRuleGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AccessRuleGetResponse]

@@ -110,7 +110,7 @@ class Hostnames(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Hostname]._unwrapper,
             ),
             cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
@@ -192,7 +192,7 @@ class Hostnames(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HostnameDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HostnameDeleteResponse]], ResultWrapper[HostnameDeleteResponse]),
         )
@@ -249,7 +249,7 @@ class Hostnames(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Hostname]._unwrapper,
             ),
             cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
@@ -293,7 +293,7 @@ class Hostnames(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Hostname]._unwrapper,
             ),
             cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
@@ -363,7 +363,7 @@ class AsyncHostnames(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Hostname]._unwrapper,
             ),
             cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
@@ -445,7 +445,7 @@ class AsyncHostnames(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HostnameDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HostnameDeleteResponse]], ResultWrapper[HostnameDeleteResponse]),
         )
@@ -502,7 +502,7 @@ class AsyncHostnames(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Hostname]._unwrapper,
             ),
             cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )
@@ -546,7 +546,7 @@ class AsyncHostnames(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Hostname]._unwrapper,
             ),
             cast_to=cast(Type[Hostname], ResultWrapper[Hostname]),
         )

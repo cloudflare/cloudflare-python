@@ -75,7 +75,7 @@ class Ciphers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ciphers.Ciphers]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
         )
@@ -114,7 +114,7 @@ class Ciphers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ciphers.Ciphers]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
         )
@@ -167,7 +167,7 @@ class AsyncCiphers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ciphers.Ciphers]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
         )
@@ -206,7 +206,7 @@ class AsyncCiphers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ciphers.Ciphers]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
         )

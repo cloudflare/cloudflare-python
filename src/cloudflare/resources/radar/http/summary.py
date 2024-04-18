@@ -175,7 +175,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_bot_class_params.SummaryBotClassParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryBotClassResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryBotClassResponse], ResultWrapper[SummaryBotClassResponse]),
         )
@@ -300,7 +300,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_device_type_params.SummaryDeviceTypeParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryDeviceTypeResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryDeviceTypeResponse], ResultWrapper[SummaryDeviceTypeResponse]),
         )
@@ -424,7 +424,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_http_protocol_params.SummaryHTTPProtocolParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryHTTPProtocolResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryHTTPProtocolResponse], ResultWrapper[SummaryHTTPProtocolResponse]),
         )
@@ -549,7 +549,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_http_version_params.SummaryHTTPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryHTTPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
         )
@@ -674,7 +674,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_ip_version_params.SummaryIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
@@ -798,7 +798,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_os_params.SummaryOSParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryOSResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryOSResponse], ResultWrapper[SummaryOSResponse]),
         )
@@ -923,7 +923,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_tls_version_params.SummaryTLSVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryTLSVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryTLSVersionResponse], ResultWrapper[SummaryTLSVersionResponse]),
         )
@@ -1059,7 +1059,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_bot_class_params.SummaryBotClassParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryBotClassResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryBotClassResponse], ResultWrapper[SummaryBotClassResponse]),
         )
@@ -1184,7 +1184,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_device_type_params.SummaryDeviceTypeParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryDeviceTypeResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryDeviceTypeResponse], ResultWrapper[SummaryDeviceTypeResponse]),
         )
@@ -1308,7 +1308,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_http_protocol_params.SummaryHTTPProtocolParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryHTTPProtocolResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryHTTPProtocolResponse], ResultWrapper[SummaryHTTPProtocolResponse]),
         )
@@ -1433,7 +1433,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_http_version_params.SummaryHTTPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryHTTPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
         )
@@ -1558,7 +1558,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_ip_version_params.SummaryIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
@@ -1682,7 +1682,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_os_params.SummaryOSParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryOSResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryOSResponse], ResultWrapper[SummaryOSResponse]),
         )
@@ -1807,7 +1807,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_tls_version_params.SummaryTLSVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryTLSVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryTLSVersionResponse], ResultWrapper[SummaryTLSVersionResponse]),
         )

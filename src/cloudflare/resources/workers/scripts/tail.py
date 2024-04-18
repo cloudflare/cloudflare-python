@@ -84,7 +84,7 @@ class Tail(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TailCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TailCreateResponse]], ResultWrapper[TailCreateResponse]),
         )
@@ -175,7 +175,7 @@ class Tail(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TailGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TailGetResponse]], ResultWrapper[TailGetResponse]),
         )
@@ -231,7 +231,7 @@ class AsyncTail(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TailCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TailCreateResponse]], ResultWrapper[TailCreateResponse]),
         )
@@ -322,7 +322,7 @@ class AsyncTail(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TailGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TailGetResponse]], ResultWrapper[TailGetResponse]),
         )

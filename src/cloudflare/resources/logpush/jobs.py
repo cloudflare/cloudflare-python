@@ -141,7 +141,7 @@ class Jobs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
@@ -234,7 +234,7 @@ class Jobs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
@@ -340,7 +340,7 @@ class Jobs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -395,7 +395,7 @@ class Jobs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
@@ -505,7 +505,7 @@ class AsyncJobs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
@@ -598,7 +598,7 @@ class AsyncJobs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
@@ -704,7 +704,7 @@ class AsyncJobs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -759,7 +759,7 @@ class AsyncJobs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )

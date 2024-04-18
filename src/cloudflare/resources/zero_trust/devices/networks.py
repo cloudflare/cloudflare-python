@@ -96,7 +96,7 @@ class Networks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
@@ -156,7 +156,7 @@ class Networks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
@@ -235,7 +235,7 @@ class Networks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[NetworkDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NetworkDeleteResponse]], ResultWrapper[NetworkDeleteResponse]),
         )
@@ -277,7 +277,7 @@ class Networks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
@@ -342,7 +342,7 @@ class AsyncNetworks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
@@ -402,7 +402,7 @@ class AsyncNetworks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
@@ -481,7 +481,7 @@ class AsyncNetworks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[NetworkDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NetworkDeleteResponse]], ResultWrapper[NetworkDeleteResponse]),
         )
@@ -523,7 +523,7 @@ class AsyncNetworks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )

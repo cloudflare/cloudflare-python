@@ -87,7 +87,7 @@ class FallbackDomains(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[FallbackDomainUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[FallbackDomainUpdateResponse]], ResultWrapper[FallbackDomainUpdateResponse]),
         )
@@ -167,7 +167,7 @@ class FallbackDomains(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[FallbackDomainGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[FallbackDomainGetResponse]], ResultWrapper[FallbackDomainGetResponse]),
         )
@@ -224,7 +224,7 @@ class AsyncFallbackDomains(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[FallbackDomainUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[FallbackDomainUpdateResponse]], ResultWrapper[FallbackDomainUpdateResponse]),
         )
@@ -304,7 +304,7 @@ class AsyncFallbackDomains(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[FallbackDomainGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[FallbackDomainGetResponse]], ResultWrapper[FallbackDomainGetResponse]),
         )

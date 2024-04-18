@@ -292,7 +292,7 @@ class BotManagement(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[BotManagementUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[BotManagementUpdateResponse]
@@ -336,7 +336,7 @@ class BotManagement(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[BotManagementGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[BotManagementGetResponse]
@@ -607,7 +607,7 @@ class AsyncBotManagement(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[BotManagementUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[BotManagementUpdateResponse]
@@ -651,7 +651,7 @@ class AsyncBotManagement(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[BotManagementGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[BotManagementGetResponse]

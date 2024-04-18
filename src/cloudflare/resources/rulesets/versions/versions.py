@@ -217,7 +217,7 @@ class Versions(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VersionGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
         )
@@ -406,7 +406,7 @@ class AsyncVersions(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VersionGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
         )

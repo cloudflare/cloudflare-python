@@ -89,7 +89,7 @@ class Domains(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DomainCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DomainCreateResponse]
@@ -233,7 +233,7 @@ class Domains(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DomainEditResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DomainEditResponse]
@@ -287,7 +287,7 @@ class Domains(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DomainGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DomainGetResponse]
@@ -348,7 +348,7 @@ class AsyncDomains(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DomainCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DomainCreateResponse]
@@ -492,7 +492,7 @@ class AsyncDomains(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DomainEditResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DomainEditResponse]
@@ -546,7 +546,7 @@ class AsyncDomains(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DomainGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DomainGetResponse]

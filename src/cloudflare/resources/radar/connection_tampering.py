@@ -137,7 +137,7 @@ class ConnectionTampering(SyncAPIResource):
                     },
                     connection_tampering_summary_params.ConnectionTamperingSummaryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ConnectionTamperingSummaryResponse]._unwrapper,
             ),
             cast_to=cast(Type[ConnectionTamperingSummaryResponse], ResultWrapper[ConnectionTamperingSummaryResponse]),
         )
@@ -241,7 +241,7 @@ class ConnectionTampering(SyncAPIResource):
                     },
                     connection_tampering_timeseries_groups_params.ConnectionTamperingTimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ConnectionTamperingTimeseriesGroupsResponse]._unwrapper,
             ),
             cast_to=cast(
                 Type[ConnectionTamperingTimeseriesGroupsResponse],
@@ -352,7 +352,7 @@ class AsyncConnectionTampering(AsyncAPIResource):
                     },
                     connection_tampering_summary_params.ConnectionTamperingSummaryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ConnectionTamperingSummaryResponse]._unwrapper,
             ),
             cast_to=cast(Type[ConnectionTamperingSummaryResponse], ResultWrapper[ConnectionTamperingSummaryResponse]),
         )
@@ -456,7 +456,7 @@ class AsyncConnectionTampering(AsyncAPIResource):
                     },
                     connection_tampering_timeseries_groups_params.ConnectionTamperingTimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ConnectionTamperingTimeseriesGroupsResponse]._unwrapper,
             ),
             cast_to=cast(
                 Type[ConnectionTamperingTimeseriesGroupsResponse],

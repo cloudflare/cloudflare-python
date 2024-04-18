@@ -76,7 +76,7 @@ class Keys(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[keys.Keys]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[keys.Keys]], ResultWrapper[keys.Keys]),
         )
@@ -124,7 +124,7 @@ class Keys(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[KeyDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[KeyDeleteResponse]
@@ -166,7 +166,7 @@ class Keys(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
         )
@@ -220,7 +220,7 @@ class AsyncKeys(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[keys.Keys]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[keys.Keys]], ResultWrapper[keys.Keys]),
         )
@@ -268,7 +268,7 @@ class AsyncKeys(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[KeyDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[KeyDeleteResponse]
@@ -310,7 +310,7 @@ class AsyncKeys(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
         )

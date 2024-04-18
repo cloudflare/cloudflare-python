@@ -95,7 +95,7 @@ class Namespaces(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[NamespaceCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NamespaceCreateResponse]], ResultWrapper[NamespaceCreateResponse]),
         )
@@ -175,7 +175,7 @@ class Namespaces(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -219,7 +219,7 @@ class Namespaces(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[NamespaceGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NamespaceGetResponse]], ResultWrapper[NamespaceGetResponse]),
         )
@@ -276,7 +276,7 @@ class AsyncNamespaces(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[NamespaceCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NamespaceCreateResponse]], ResultWrapper[NamespaceCreateResponse]),
         )
@@ -356,7 +356,7 @@ class AsyncNamespaces(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -400,7 +400,7 @@ class AsyncNamespaces(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[NamespaceGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NamespaceGetResponse]], ResultWrapper[NamespaceGetResponse]),
         )

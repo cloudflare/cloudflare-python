@@ -83,7 +83,7 @@ class Variants(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CacheVariant]._unwrapper,
             ),
             cast_to=cast(Type[CacheVariant], ResultWrapper[CacheVariant]),
         )
@@ -130,7 +130,7 @@ class Variants(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VariantEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
         )
@@ -173,7 +173,7 @@ class Variants(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VariantGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
         )
@@ -228,7 +228,7 @@ class AsyncVariants(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CacheVariant]._unwrapper,
             ),
             cast_to=cast(Type[CacheVariant], ResultWrapper[CacheVariant]),
         )
@@ -275,7 +275,7 @@ class AsyncVariants(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VariantEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
         )
@@ -318,7 +318,7 @@ class AsyncVariants(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VariantGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
         )

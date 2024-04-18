@@ -76,7 +76,7 @@ class ZeroRTTResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZeroRTT]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZeroRTT]], ResultWrapper[ZeroRTT]),
         )
@@ -115,7 +115,7 @@ class ZeroRTTResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZeroRTT]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZeroRTT]], ResultWrapper[ZeroRTT]),
         )
@@ -168,7 +168,7 @@ class AsyncZeroRTTResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZeroRTT]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZeroRTT]], ResultWrapper[ZeroRTT]),
         )
@@ -207,7 +207,7 @@ class AsyncZeroRTTResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZeroRTT]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZeroRTT]], ResultWrapper[ZeroRTT]),
         )

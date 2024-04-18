@@ -113,7 +113,7 @@ class Snippets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Snippet]._unwrapper,
             ),
             cast_to=cast(Type[Snippet], ResultWrapper[Snippet]),
         )
@@ -195,7 +195,7 @@ class Snippets(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SnippetDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SnippetDeleteResponse]
@@ -242,7 +242,7 @@ class Snippets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Snippet]._unwrapper,
             ),
             cast_to=cast(Type[Snippet], ResultWrapper[Snippet]),
         )
@@ -315,7 +315,7 @@ class AsyncSnippets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Snippet]._unwrapper,
             ),
             cast_to=cast(Type[Snippet], ResultWrapper[Snippet]),
         )
@@ -397,7 +397,7 @@ class AsyncSnippets(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SnippetDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SnippetDeleteResponse]
@@ -444,7 +444,7 @@ class AsyncSnippets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Snippet]._unwrapper,
             ),
             cast_to=cast(Type[Snippet], ResultWrapper[Snippet]),
         )

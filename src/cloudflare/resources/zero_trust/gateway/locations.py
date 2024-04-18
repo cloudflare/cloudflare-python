@@ -99,7 +99,7 @@ class Locations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
@@ -160,7 +160,7 @@ class Locations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
@@ -238,7 +238,7 @@ class Locations(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[LocationDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[LocationDeleteResponse]
@@ -281,7 +281,7 @@ class Locations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
@@ -349,7 +349,7 @@ class AsyncLocations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
@@ -410,7 +410,7 @@ class AsyncLocations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
@@ -488,7 +488,7 @@ class AsyncLocations(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[LocationDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[LocationDeleteResponse]
@@ -531,7 +531,7 @@ class AsyncLocations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )

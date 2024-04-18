@@ -73,7 +73,7 @@ class Whois(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"domain": domain}, whois_get_params.WhoisGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[whois.Whois]._unwrapper,
             ),
             cast_to=cast(Type[whois.Whois], ResultWrapper[whois.Whois]),
         )
@@ -124,7 +124,7 @@ class AsyncWhois(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"domain": domain}, whois_get_params.WhoisGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[whois.Whois]._unwrapper,
             ),
             cast_to=cast(Type[whois.Whois], ResultWrapper[whois.Whois]),
         )

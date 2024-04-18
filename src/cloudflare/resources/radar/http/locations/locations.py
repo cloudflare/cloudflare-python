@@ -252,7 +252,7 @@ class Locations(SyncAPIResource):
                     },
                     location_get_params.LocationGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LocationGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[LocationGetResponse], ResultWrapper[LocationGetResponse]),
         )
@@ -424,7 +424,7 @@ class AsyncLocations(AsyncAPIResource):
                     },
                     location_get_params.LocationGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LocationGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[LocationGetResponse], ResultWrapper[LocationGetResponse]),
         )

@@ -77,7 +77,7 @@ class TLS1_3Resource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TLS1_3]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TLS1_3]], ResultWrapper[TLS1_3]),
         )
@@ -116,7 +116,7 @@ class TLS1_3Resource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TLS1_3]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TLS1_3]], ResultWrapper[TLS1_3]),
         )
@@ -170,7 +170,7 @@ class AsyncTLS1_3Resource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TLS1_3]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TLS1_3]], ResultWrapper[TLS1_3]),
         )
@@ -209,7 +209,7 @@ class AsyncTLS1_3Resource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TLS1_3]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TLS1_3]], ResultWrapper[TLS1_3]),
         )

@@ -84,7 +84,7 @@ class Bookmarks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Bookmark]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
         )
@@ -128,7 +128,7 @@ class Bookmarks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Bookmark]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
         )
@@ -206,7 +206,7 @@ class Bookmarks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[BookmarkDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BookmarkDeleteResponse]], ResultWrapper[BookmarkDeleteResponse]),
         )
@@ -248,7 +248,7 @@ class Bookmarks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Bookmark]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
         )
@@ -302,7 +302,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Bookmark]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
         )
@@ -346,7 +346,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Bookmark]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
         )
@@ -424,7 +424,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[BookmarkDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BookmarkDeleteResponse]], ResultWrapper[BookmarkDeleteResponse]),
         )
@@ -466,7 +466,7 @@ class AsyncBookmarks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Bookmark]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
         )

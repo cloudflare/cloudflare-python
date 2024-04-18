@@ -115,7 +115,7 @@ class Groups(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
@@ -200,7 +200,7 @@ class Groups(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
@@ -306,7 +306,7 @@ class Groups(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GroupDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GroupDeleteResponse]], ResultWrapper[GroupDeleteResponse]),
         )
@@ -363,7 +363,7 @@ class Groups(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
@@ -453,7 +453,7 @@ class AsyncGroups(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
@@ -538,7 +538,7 @@ class AsyncGroups(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )
@@ -644,7 +644,7 @@ class AsyncGroups(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GroupDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GroupDeleteResponse]], ResultWrapper[GroupDeleteResponse]),
         )
@@ -701,7 +701,7 @@ class AsyncGroups(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
         )

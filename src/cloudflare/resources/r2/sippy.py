@@ -147,7 +147,7 @@ class SippyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Sippy]._unwrapper,
             ),
             cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
@@ -191,7 +191,7 @@ class SippyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SippyDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[SippyDeleteResponse], ResultWrapper[SippyDeleteResponse]),
         )
@@ -235,7 +235,7 @@ class SippyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Sippy]._unwrapper,
             ),
             cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
@@ -359,7 +359,7 @@ class AsyncSippyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Sippy]._unwrapper,
             ),
             cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
@@ -403,7 +403,7 @@ class AsyncSippyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SippyDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[SippyDeleteResponse], ResultWrapper[SippyDeleteResponse]),
         )
@@ -447,7 +447,7 @@ class AsyncSippyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Sippy]._unwrapper,
             ),
             cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )

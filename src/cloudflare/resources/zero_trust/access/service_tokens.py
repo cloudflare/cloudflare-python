@@ -110,7 +110,7 @@ class ServiceTokens(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceTokenCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ServiceTokenCreateResponse]], ResultWrapper[ServiceTokenCreateResponse]),
         )
@@ -182,7 +182,7 @@ class ServiceTokens(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
@@ -288,7 +288,7 @@ class ServiceTokens(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
@@ -332,7 +332,7 @@ class ServiceTokens(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
@@ -376,7 +376,7 @@ class ServiceTokens(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceTokenRotateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ServiceTokenRotateResponse]], ResultWrapper[ServiceTokenRotateResponse]),
         )
@@ -456,7 +456,7 @@ class AsyncServiceTokens(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceTokenCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ServiceTokenCreateResponse]], ResultWrapper[ServiceTokenCreateResponse]),
         )
@@ -528,7 +528,7 @@ class AsyncServiceTokens(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
@@ -634,7 +634,7 @@ class AsyncServiceTokens(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
@@ -678,7 +678,7 @@ class AsyncServiceTokens(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
@@ -722,7 +722,7 @@ class AsyncServiceTokens(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceTokenRotateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ServiceTokenRotateResponse]], ResultWrapper[ServiceTokenRotateResponse]),
         )

@@ -109,7 +109,7 @@ class DEXTests(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
@@ -183,7 +183,7 @@ class DEXTests(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
@@ -261,7 +261,7 @@ class DEXTests(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DEXTestDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DEXTestDeleteResponse]], ResultWrapper[DEXTestDeleteResponse]),
         )
@@ -303,7 +303,7 @@ class DEXTests(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
@@ -382,7 +382,7 @@ class AsyncDEXTests(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
@@ -456,7 +456,7 @@ class AsyncDEXTests(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )
@@ -534,7 +534,7 @@ class AsyncDEXTests(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DEXTestDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DEXTestDeleteResponse]], ResultWrapper[DEXTestDeleteResponse]),
         )
@@ -576,7 +576,7 @@ class AsyncDEXTests(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SchemaHTTP]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SchemaHTTP]], ResultWrapper[SchemaHTTP]),
         )

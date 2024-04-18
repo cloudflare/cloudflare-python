@@ -104,7 +104,7 @@ class Entities(SyncAPIResource):
                     },
                     entity_get_params.EntityGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EntityGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[EntityGetResponse], ResultWrapper[EntityGetResponse]),
         )
@@ -169,7 +169,7 @@ class AsyncEntities(AsyncAPIResource):
                     },
                     entity_get_params.EntityGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EntityGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[EntityGetResponse], ResultWrapper[EntityGetResponse]),
         )

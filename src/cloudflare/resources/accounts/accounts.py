@@ -109,7 +109,7 @@ class Accounts(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AccountUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AccountUpdateResponse]
@@ -204,7 +204,7 @@ class Accounts(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AccountGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AccountGetResponse]
@@ -275,7 +275,7 @@ class AsyncAccounts(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AccountUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AccountUpdateResponse]
@@ -370,7 +370,7 @@ class AsyncAccounts(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AccountGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AccountGetResponse]

@@ -120,7 +120,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EmailRoutingRule]._unwrapper,
             ),
             cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
@@ -189,7 +189,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EmailRoutingRule]._unwrapper,
             ),
             cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
@@ -289,7 +289,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EmailRoutingRule]._unwrapper,
             ),
             cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
@@ -333,7 +333,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EmailRoutingRule]._unwrapper,
             ),
             cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
@@ -413,7 +413,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EmailRoutingRule]._unwrapper,
             ),
             cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
@@ -482,7 +482,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EmailRoutingRule]._unwrapper,
             ),
             cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
@@ -582,7 +582,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EmailRoutingRule]._unwrapper,
             ),
             cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )
@@ -626,7 +626,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EmailRoutingRule]._unwrapper,
             ),
             cast_to=cast(Type[EmailRoutingRule], ResultWrapper[EmailRoutingRule]),
         )

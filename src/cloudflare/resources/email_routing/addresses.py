@@ -80,7 +80,7 @@ class Addresses(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Address]._unwrapper,
             ),
             cast_to=cast(Type[Address], ResultWrapper[Address]),
         )
@@ -186,7 +186,7 @@ class Addresses(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Address]._unwrapper,
             ),
             cast_to=cast(Type[Address], ResultWrapper[Address]),
         )
@@ -232,7 +232,7 @@ class Addresses(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Address]._unwrapper,
             ),
             cast_to=cast(Type[Address], ResultWrapper[Address]),
         )
@@ -287,7 +287,7 @@ class AsyncAddresses(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Address]._unwrapper,
             ),
             cast_to=cast(Type[Address], ResultWrapper[Address]),
         )
@@ -393,7 +393,7 @@ class AsyncAddresses(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Address]._unwrapper,
             ),
             cast_to=cast(Type[Address], ResultWrapper[Address]),
         )
@@ -439,7 +439,7 @@ class AsyncAddresses(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Address]._unwrapper,
             ),
             cast_to=cast(Type[Address], ResultWrapper[Address]),
         )

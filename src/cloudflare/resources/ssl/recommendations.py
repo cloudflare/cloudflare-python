@@ -67,7 +67,7 @@ class Recommendations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RecommendationGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecommendationGetResponse]], ResultWrapper[RecommendationGetResponse]),
         )
@@ -116,7 +116,7 @@ class AsyncRecommendations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RecommendationGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecommendationGetResponse]], ResultWrapper[RecommendationGetResponse]),
         )

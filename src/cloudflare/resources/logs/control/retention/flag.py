@@ -75,7 +75,7 @@ class Flag(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FlagCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[FlagCreateResponse], ResultWrapper[FlagCreateResponse]),
         )
@@ -114,7 +114,7 @@ class Flag(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FlagGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[FlagGetResponse], ResultWrapper[FlagGetResponse]),
         )
@@ -167,7 +167,7 @@ class AsyncFlag(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FlagCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[FlagCreateResponse], ResultWrapper[FlagCreateResponse]),
         )
@@ -206,7 +206,7 @@ class AsyncFlag(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FlagGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[FlagGetResponse], ResultWrapper[FlagGetResponse]),
         )

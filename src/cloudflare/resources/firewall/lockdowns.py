@@ -83,7 +83,7 @@ class Lockdowns(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
             ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
@@ -129,7 +129,7 @@ class Lockdowns(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
             ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
@@ -268,7 +268,7 @@ class Lockdowns(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LockdownDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LockdownDeleteResponse]], ResultWrapper[LockdownDeleteResponse]),
         )
@@ -312,7 +312,7 @@ class Lockdowns(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
             ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
@@ -363,7 +363,7 @@ class AsyncLockdowns(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
             ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
@@ -409,7 +409,7 @@ class AsyncLockdowns(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
             ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
@@ -548,7 +548,7 @@ class AsyncLockdowns(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LockdownDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LockdownDeleteResponse]], ResultWrapper[LockdownDeleteResponse]),
         )
@@ -592,7 +592,7 @@ class AsyncLockdowns(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
             ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )

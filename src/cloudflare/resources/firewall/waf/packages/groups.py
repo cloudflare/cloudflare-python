@@ -188,7 +188,7 @@ class Groups(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[GroupEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[GroupEditResponse]
@@ -245,7 +245,7 @@ class Groups(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[GroupGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[GroupGetResponse]
@@ -405,7 +405,7 @@ class AsyncGroups(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[GroupEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[GroupEditResponse]
@@ -462,7 +462,7 @@ class AsyncGroups(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[GroupGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[GroupGetResponse]

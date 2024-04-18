@@ -82,7 +82,7 @@ class Filters(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[FilterCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[FilterCreateResponse]], ResultWrapper[FilterCreateResponse]),
         )
@@ -128,7 +128,7 @@ class Filters(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallFilter]._unwrapper,
             ),
             cast_to=cast(Type[FirewallFilter], ResultWrapper[FirewallFilter]),
         )
@@ -248,7 +248,7 @@ class Filters(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallFilter]._unwrapper,
             ),
             cast_to=cast(Type[FirewallFilter], ResultWrapper[FirewallFilter]),
         )
@@ -292,7 +292,7 @@ class Filters(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallFilter]._unwrapper,
             ),
             cast_to=cast(Type[FirewallFilter], ResultWrapper[FirewallFilter]),
         )
@@ -343,7 +343,7 @@ class AsyncFilters(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[FilterCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[FilterCreateResponse]], ResultWrapper[FilterCreateResponse]),
         )
@@ -389,7 +389,7 @@ class AsyncFilters(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallFilter]._unwrapper,
             ),
             cast_to=cast(Type[FirewallFilter], ResultWrapper[FirewallFilter]),
         )
@@ -509,7 +509,7 @@ class AsyncFilters(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallFilter]._unwrapper,
             ),
             cast_to=cast(Type[FirewallFilter], ResultWrapper[FirewallFilter]),
         )
@@ -553,7 +553,7 @@ class AsyncFilters(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallFilter]._unwrapper,
             ),
             cast_to=cast(Type[FirewallFilter], ResultWrapper[FirewallFilter]),
         )

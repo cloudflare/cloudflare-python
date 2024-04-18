@@ -82,7 +82,7 @@ class HotlinkProtectionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HotlinkProtection]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HotlinkProtection]], ResultWrapper[HotlinkProtection]),
         )
@@ -127,7 +127,7 @@ class HotlinkProtectionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HotlinkProtection]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HotlinkProtection]], ResultWrapper[HotlinkProtection]),
         )
@@ -188,7 +188,7 @@ class AsyncHotlinkProtectionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HotlinkProtection]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HotlinkProtection]], ResultWrapper[HotlinkProtection]),
         )
@@ -233,7 +233,7 @@ class AsyncHotlinkProtectionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HotlinkProtection]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HotlinkProtection]], ResultWrapper[HotlinkProtection]),
         )

@@ -218,7 +218,7 @@ class PCAPs(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PCAPCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PCAPCreateResponse]
@@ -303,7 +303,7 @@ class PCAPs(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PCAPGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PCAPGetResponse]
@@ -476,7 +476,7 @@ class AsyncPCAPs(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PCAPCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PCAPCreateResponse]
@@ -561,7 +561,7 @@ class AsyncPCAPs(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PCAPGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PCAPGetResponse]

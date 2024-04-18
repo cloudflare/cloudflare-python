@@ -102,7 +102,7 @@ class ContentLists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ContentList]._unwrapper,
             ),
             cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
@@ -146,7 +146,7 @@ class ContentLists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ContentList]._unwrapper,
             ),
             cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
@@ -217,7 +217,7 @@ class AsyncContentLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ContentList]._unwrapper,
             ),
             cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
@@ -261,7 +261,7 @@ class AsyncContentLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ContentList]._unwrapper,
             ),
             cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )

@@ -125,7 +125,7 @@ class IPSECTunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelCreateResponse], ResultWrapper[IPSECTunnelCreateResponse]),
         )
@@ -211,7 +211,7 @@ class IPSECTunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelUpdateResponse], ResultWrapper[IPSECTunnelUpdateResponse]),
         )
@@ -250,7 +250,7 @@ class IPSECTunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelListResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelListResponse], ResultWrapper[IPSECTunnelListResponse]),
         )
@@ -298,7 +298,7 @@ class IPSECTunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelDeleteResponse], ResultWrapper[IPSECTunnelDeleteResponse]),
         )
@@ -342,7 +342,7 @@ class IPSECTunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelGetResponse], ResultWrapper[IPSECTunnelGetResponse]),
         )
@@ -392,7 +392,7 @@ class IPSECTunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelPSKGenerateResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelPSKGenerateResponse], ResultWrapper[IPSECTunnelPSKGenerateResponse]),
         )
@@ -483,7 +483,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelCreateResponse], ResultWrapper[IPSECTunnelCreateResponse]),
         )
@@ -569,7 +569,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelUpdateResponse], ResultWrapper[IPSECTunnelUpdateResponse]),
         )
@@ -608,7 +608,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelListResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelListResponse], ResultWrapper[IPSECTunnelListResponse]),
         )
@@ -656,7 +656,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelDeleteResponse], ResultWrapper[IPSECTunnelDeleteResponse]),
         )
@@ -700,7 +700,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelGetResponse], ResultWrapper[IPSECTunnelGetResponse]),
         )
@@ -750,7 +750,7 @@ class AsyncIPSECTunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPSECTunnelPSKGenerateResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelPSKGenerateResponse], ResultWrapper[IPSECTunnelPSKGenerateResponse]),
         )

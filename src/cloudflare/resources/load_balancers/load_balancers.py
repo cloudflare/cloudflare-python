@@ -308,7 +308,7 @@ class LoadBalancers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
             ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
@@ -513,7 +513,7 @@ class LoadBalancers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
             ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
@@ -589,7 +589,7 @@ class LoadBalancers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LoadBalancerDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[LoadBalancerDeleteResponse], ResultWrapper[LoadBalancerDeleteResponse]),
         )
@@ -794,7 +794,7 @@ class LoadBalancers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
             ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
@@ -834,7 +834,7 @@ class LoadBalancers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
             ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
@@ -1062,7 +1062,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
             ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
@@ -1267,7 +1267,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
             ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
@@ -1343,7 +1343,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LoadBalancerDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[LoadBalancerDeleteResponse], ResultWrapper[LoadBalancerDeleteResponse]),
         )
@@ -1548,7 +1548,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
             ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
@@ -1588,7 +1588,7 @@ class AsyncLoadBalancers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
             ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )

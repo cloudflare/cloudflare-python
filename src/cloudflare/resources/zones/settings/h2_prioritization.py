@@ -77,7 +77,7 @@ class H2PrioritizationResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[H2Prioritization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[H2Prioritization]], ResultWrapper[H2Prioritization]),
         )
@@ -116,7 +116,7 @@ class H2PrioritizationResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[H2Prioritization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[H2Prioritization]], ResultWrapper[H2Prioritization]),
         )
@@ -173,7 +173,7 @@ class AsyncH2PrioritizationResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[H2Prioritization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[H2Prioritization]], ResultWrapper[H2Prioritization]),
         )
@@ -212,7 +212,7 @@ class AsyncH2PrioritizationResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[H2Prioritization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[H2Prioritization]], ResultWrapper[H2Prioritization]),
         )

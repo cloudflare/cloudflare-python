@@ -134,7 +134,7 @@ class Ases(SyncAPIResource):
                     },
                     ase_get_params.AseGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AseGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[AseGetResponse], ResultWrapper[AseGetResponse]),
         )
@@ -187,7 +187,7 @@ class Ases(SyncAPIResource):
                     },
                     ase_prefixes_params.AsePrefixesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AsePrefixesResponse]._unwrapper,
             ),
             cast_to=cast(Type[AsePrefixesResponse], ResultWrapper[AsePrefixesResponse]),
         )
@@ -297,7 +297,7 @@ class AsyncAses(AsyncAPIResource):
                     },
                     ase_get_params.AseGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AseGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[AseGetResponse], ResultWrapper[AseGetResponse]),
         )
@@ -350,7 +350,7 @@ class AsyncAses(AsyncAPIResource):
                     },
                     ase_prefixes_params.AsePrefixesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AsePrefixesResponse]._unwrapper,
             ),
             cast_to=cast(Type[AsePrefixesResponse], ResultWrapper[AsePrefixesResponse]),
         )

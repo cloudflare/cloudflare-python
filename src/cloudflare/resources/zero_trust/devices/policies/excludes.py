@@ -79,7 +79,7 @@ class Excludes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ExcludeUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ExcludeUpdateResponse]], ResultWrapper[ExcludeUpdateResponse]),
         )
@@ -156,7 +156,7 @@ class Excludes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ExcludeGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ExcludeGetResponse]], ResultWrapper[ExcludeGetResponse]),
         )
@@ -205,7 +205,7 @@ class AsyncExcludes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ExcludeUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ExcludeUpdateResponse]], ResultWrapper[ExcludeUpdateResponse]),
         )
@@ -282,7 +282,7 @@ class AsyncExcludes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ExcludeGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ExcludeGetResponse]], ResultWrapper[ExcludeGetResponse]),
         )

@@ -93,7 +93,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RUMRule]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RUMRule]], ResultWrapper[RUMRule]),
         )
@@ -159,7 +159,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RUMRule]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RUMRule]], ResultWrapper[RUMRule]),
         )
@@ -203,7 +203,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleListResponse]], ResultWrapper[RuleListResponse]),
         )
@@ -252,7 +252,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
         )
@@ -323,7 +323,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RUMRule]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RUMRule]], ResultWrapper[RUMRule]),
         )
@@ -389,7 +389,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RUMRule]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RUMRule]], ResultWrapper[RUMRule]),
         )
@@ -433,7 +433,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleListResponse]], ResultWrapper[RuleListResponse]),
         )
@@ -482,7 +482,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
         )

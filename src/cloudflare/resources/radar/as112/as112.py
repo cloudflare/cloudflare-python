@@ -174,7 +174,7 @@ class AS112(SyncAPIResource):
                     },
                     as112_timeseries_params.AS112TimeseriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AS112TimeseriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[AS112TimeseriesResponse], ResultWrapper[AS112TimeseriesResponse]),
         )
@@ -300,7 +300,7 @@ class AsyncAS112(AsyncAPIResource):
                     },
                     as112_timeseries_params.AS112TimeseriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AS112TimeseriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[AS112TimeseriesResponse], ResultWrapper[AS112TimeseriesResponse]),
         )

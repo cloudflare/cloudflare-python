@@ -173,7 +173,7 @@ class Top(SyncAPIResource):
                     },
                     top_browser_families_params.TopBrowserFamiliesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopBrowserFamiliesResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopBrowserFamiliesResponse], ResultWrapper[TopBrowserFamiliesResponse]),
         )
@@ -307,7 +307,7 @@ class Top(SyncAPIResource):
                     },
                     top_browsers_params.TopBrowsersParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopBrowsersResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopBrowsersResponse], ResultWrapper[TopBrowsersResponse]),
         )
@@ -451,7 +451,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_browser_families_params.TopBrowserFamiliesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopBrowserFamiliesResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopBrowserFamiliesResponse], ResultWrapper[TopBrowserFamiliesResponse]),
         )
@@ -585,7 +585,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_browsers_params.TopBrowsersParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopBrowsersResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopBrowsersResponse], ResultWrapper[TopBrowsersResponse]),
         )

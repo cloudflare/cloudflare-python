@@ -90,7 +90,7 @@ class Edge(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[InstantLogpushJob]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[InstantLogpushJob]], ResultWrapper[InstantLogpushJob]),
         )
@@ -129,7 +129,7 @@ class Edge(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[EdgeGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[EdgeGetResponse]], ResultWrapper[EdgeGetResponse]),
         )
@@ -197,7 +197,7 @@ class AsyncEdge(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[InstantLogpushJob]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[InstantLogpushJob]], ResultWrapper[InstantLogpushJob]),
         )
@@ -236,7 +236,7 @@ class AsyncEdge(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[EdgeGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[EdgeGetResponse]], ResultWrapper[EdgeGetResponse]),
         )

@@ -243,7 +243,7 @@ class Scripts(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
         )
@@ -539,7 +539,7 @@ class AsyncScripts(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
         )

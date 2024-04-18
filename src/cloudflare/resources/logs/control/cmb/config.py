@@ -75,7 +75,7 @@ class Config(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CmbConfig]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CmbConfig]], ResultWrapper[CmbConfig]),
         )
@@ -116,7 +116,7 @@ class Config(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -155,7 +155,7 @@ class Config(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CmbConfig]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CmbConfig]], ResultWrapper[CmbConfig]),
         )
@@ -208,7 +208,7 @@ class AsyncConfig(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CmbConfig]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CmbConfig]], ResultWrapper[CmbConfig]),
         )
@@ -249,7 +249,7 @@ class AsyncConfig(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -288,7 +288,7 @@ class AsyncConfig(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CmbConfig]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CmbConfig]], ResultWrapper[CmbConfig]),
         )

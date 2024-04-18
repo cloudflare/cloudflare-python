@@ -73,7 +73,7 @@ class AccountSettings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AccountSettingUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AccountSettingUpdateResponse]], ResultWrapper[AccountSettingUpdateResponse]),
         )
@@ -112,7 +112,7 @@ class AccountSettings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AccountSettingGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AccountSettingGetResponse]], ResultWrapper[AccountSettingGetResponse]),
         )
@@ -163,7 +163,7 @@ class AsyncAccountSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AccountSettingUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AccountSettingUpdateResponse]], ResultWrapper[AccountSettingUpdateResponse]),
         )
@@ -202,7 +202,7 @@ class AsyncAccountSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AccountSettingGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AccountSettingGetResponse]], ResultWrapper[AccountSettingGetResponse]),
         )

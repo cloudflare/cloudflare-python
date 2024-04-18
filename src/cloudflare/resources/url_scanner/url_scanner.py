@@ -167,7 +167,7 @@ class URLScanner(SyncAPIResource):
                     },
                     url_scanner_scan_params.URLScannerScanParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[URLScannerScanResponse]._unwrapper,
             ),
             cast_to=cast(Type[URLScannerScanResponse], ResultWrapper[URLScannerScanResponse]),
         )
@@ -303,7 +303,7 @@ class AsyncURLScanner(AsyncAPIResource):
                     },
                     url_scanner_scan_params.URLScannerScanParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[URLScannerScanResponse]._unwrapper,
             ),
             cast_to=cast(Type[URLScannerScanResponse], ResultWrapper[URLScannerScanResponse]),
         )

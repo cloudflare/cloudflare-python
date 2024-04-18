@@ -115,7 +115,7 @@ class HTTPTests(SyncAPIResource):
                     },
                     http_test_get_params.HTTPTestGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HTTPDetails]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HTTPDetails]], ResultWrapper[HTTPDetails]),
         )
@@ -199,7 +199,7 @@ class AsyncHTTPTests(AsyncAPIResource):
                     },
                     http_test_get_params.HTTPTestGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HTTPDetails]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HTTPDetails]], ResultWrapper[HTTPDetails]),
         )

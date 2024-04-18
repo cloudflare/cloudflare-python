@@ -75,7 +75,7 @@ class BrandProtection(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Submit]._unwrapper,
             ),
             cast_to=cast(Type[Submit], ResultWrapper[Submit]),
         )
@@ -123,7 +123,7 @@ class BrandProtection(SyncAPIResource):
                     },
                     brand_protection_url_info_params.BrandProtectionURLInfoParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Info]._unwrapper,
             ),
             cast_to=cast(Type[Info], ResultWrapper[Info]),
         )
@@ -176,7 +176,7 @@ class AsyncBrandProtection(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Submit]._unwrapper,
             ),
             cast_to=cast(Type[Submit], ResultWrapper[Submit]),
         )
@@ -224,7 +224,7 @@ class AsyncBrandProtection(AsyncAPIResource):
                     },
                     brand_protection_url_info_params.BrandProtectionURLInfoParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Info]._unwrapper,
             ),
             cast_to=cast(Type[Info], ResultWrapper[Info]),
         )

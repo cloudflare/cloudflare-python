@@ -113,7 +113,7 @@ class Tests(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Test]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Test]], ResultWrapper[Test]),
         )
@@ -265,7 +265,7 @@ class Tests(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"region": region}, test_delete_params.TestDeleteParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TestDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TestDeleteResponse]], ResultWrapper[TestDeleteResponse]),
         )
@@ -312,7 +312,7 @@ class Tests(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Test]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Test]], ResultWrapper[Test]),
         )
@@ -393,7 +393,7 @@ class AsyncTests(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Test]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Test]], ResultWrapper[Test]),
         )
@@ -545,7 +545,7 @@ class AsyncTests(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"region": region}, test_delete_params.TestDeleteParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TestDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TestDeleteResponse]], ResultWrapper[TestDeleteResponse]),
         )
@@ -592,7 +592,7 @@ class AsyncTests(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Test]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Test]], ResultWrapper[Test]),
         )

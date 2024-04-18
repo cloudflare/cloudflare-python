@@ -94,7 +94,7 @@ class Bindings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ServiceBinding]._unwrapper,
             ),
             cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
         )
@@ -192,7 +192,7 @@ class Bindings(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[BindingDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[BindingDeleteResponse]
@@ -244,7 +244,7 @@ class Bindings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ServiceBinding]._unwrapper,
             ),
             cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
         )
@@ -314,7 +314,7 @@ class AsyncBindings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ServiceBinding]._unwrapper,
             ),
             cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
         )
@@ -412,7 +412,7 @@ class AsyncBindings(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[BindingDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[BindingDeleteResponse]
@@ -464,7 +464,7 @@ class AsyncBindings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ServiceBinding]._unwrapper,
             ),
             cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
         )

@@ -126,7 +126,7 @@ class Pagerules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PageruleCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PageruleCreateResponse]
@@ -203,7 +203,7 @@ class Pagerules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PageruleUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PageruleUpdateResponse]
@@ -267,7 +267,7 @@ class Pagerules(SyncAPIResource):
                     },
                     pagerule_list_params.PageruleListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PageruleListResponse]._unwrapper,
             ),
             cast_to=cast(Type[PageruleListResponse], ResultWrapper[PageruleListResponse]),
         )
@@ -313,7 +313,7 @@ class Pagerules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PageruleDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PageruleDeleteResponse]], ResultWrapper[PageruleDeleteResponse]),
         )
@@ -385,7 +385,7 @@ class Pagerules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PageruleEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PageruleEditResponse]
@@ -434,7 +434,7 @@ class Pagerules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PageruleGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PageruleGetResponse]
@@ -518,7 +518,7 @@ class AsyncPagerules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PageruleCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PageruleCreateResponse]
@@ -595,7 +595,7 @@ class AsyncPagerules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PageruleUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PageruleUpdateResponse]
@@ -659,7 +659,7 @@ class AsyncPagerules(AsyncAPIResource):
                     },
                     pagerule_list_params.PageruleListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PageruleListResponse]._unwrapper,
             ),
             cast_to=cast(Type[PageruleListResponse], ResultWrapper[PageruleListResponse]),
         )
@@ -705,7 +705,7 @@ class AsyncPagerules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PageruleDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PageruleDeleteResponse]], ResultWrapper[PageruleDeleteResponse]),
         )
@@ -777,7 +777,7 @@ class AsyncPagerules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PageruleEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PageruleEditResponse]
@@ -826,7 +826,7 @@ class AsyncPagerules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PageruleGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PageruleGetResponse]

@@ -84,7 +84,7 @@ class CacheReserveResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CacheReserveClearResponse]._unwrapper,
             ),
             cast_to=cast(Type[CacheReserveClearResponse], ResultWrapper[CacheReserveClearResponse]),
         )
@@ -132,7 +132,7 @@ class CacheReserveResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CacheReserveEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[CacheReserveEditResponse], ResultWrapper[CacheReserveEditResponse]),
         )
@@ -176,7 +176,7 @@ class CacheReserveResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CacheReserveGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[CacheReserveGetResponse], ResultWrapper[CacheReserveGetResponse]),
         )
@@ -218,7 +218,7 @@ class CacheReserveResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CacheReserveStatusResponse]._unwrapper,
             ),
             cast_to=cast(Type[CacheReserveStatusResponse], ResultWrapper[CacheReserveStatusResponse]),
         )
@@ -272,7 +272,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CacheReserveClearResponse]._unwrapper,
             ),
             cast_to=cast(Type[CacheReserveClearResponse], ResultWrapper[CacheReserveClearResponse]),
         )
@@ -320,7 +320,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CacheReserveEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[CacheReserveEditResponse], ResultWrapper[CacheReserveEditResponse]),
         )
@@ -364,7 +364,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CacheReserveGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[CacheReserveGetResponse], ResultWrapper[CacheReserveGetResponse]),
         )
@@ -406,7 +406,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CacheReserveStatusResponse]._unwrapper,
             ),
             cast_to=cast(Type[CacheReserveStatusResponse], ResultWrapper[CacheReserveStatusResponse]),
         )

@@ -75,7 +75,7 @@ class PayloadLogs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PayloadLogUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PayloadLogUpdateResponse], ResultWrapper[PayloadLogUpdateResponse]),
         )
@@ -114,7 +114,7 @@ class PayloadLogs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PayloadLogGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[PayloadLogGetResponse], ResultWrapper[PayloadLogGetResponse]),
         )
@@ -169,7 +169,7 @@ class AsyncPayloadLogs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PayloadLogUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PayloadLogUpdateResponse], ResultWrapper[PayloadLogUpdateResponse]),
         )
@@ -208,7 +208,7 @@ class AsyncPayloadLogs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PayloadLogGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[PayloadLogGetResponse], ResultWrapper[PayloadLogGetResponse]),
         )

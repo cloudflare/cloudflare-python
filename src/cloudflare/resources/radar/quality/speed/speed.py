@@ -129,7 +129,7 @@ class Speed(SyncAPIResource):
                     },
                     speed_histogram_params.SpeedHistogramParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SpeedHistogramResponse]._unwrapper,
             ),
             cast_to=cast(Type[SpeedHistogramResponse], ResultWrapper[SpeedHistogramResponse]),
         )
@@ -199,7 +199,7 @@ class Speed(SyncAPIResource):
                     },
                     speed_summary_params.SpeedSummaryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SpeedSummaryResponse]._unwrapper,
             ),
             cast_to=cast(Type[SpeedSummaryResponse], ResultWrapper[SpeedSummaryResponse]),
         )
@@ -291,7 +291,7 @@ class AsyncSpeed(AsyncAPIResource):
                     },
                     speed_histogram_params.SpeedHistogramParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SpeedHistogramResponse]._unwrapper,
             ),
             cast_to=cast(Type[SpeedHistogramResponse], ResultWrapper[SpeedHistogramResponse]),
         )
@@ -361,7 +361,7 @@ class AsyncSpeed(AsyncAPIResource):
                     },
                     speed_summary_params.SpeedSummaryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SpeedSummaryResponse]._unwrapper,
             ),
             cast_to=cast(Type[SpeedSummaryResponse], ResultWrapper[SpeedSummaryResponse]),
         )

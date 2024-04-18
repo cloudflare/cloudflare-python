@@ -252,7 +252,7 @@ class Ases(SyncAPIResource):
                     },
                     ase_get_params.AseGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AseGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[AseGetResponse], ResultWrapper[AseGetResponse]),
         )
@@ -424,7 +424,7 @@ class AsyncAses(AsyncAPIResource):
                     },
                     ase_get_params.AseGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AseGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[AseGetResponse], ResultWrapper[AseGetResponse]),
         )

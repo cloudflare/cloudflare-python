@@ -138,7 +138,7 @@ class Widgets(SyncAPIResource):
                     },
                     widget_create_params.WidgetCreateParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Widget]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Widget]], ResultWrapper[Widget]),
         )
@@ -213,7 +213,7 @@ class Widgets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Widget]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Widget]], ResultWrapper[Widget]),
         )
@@ -317,7 +317,7 @@ class Widgets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Widget]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Widget]], ResultWrapper[Widget]),
         )
@@ -361,7 +361,7 @@ class Widgets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Widget]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Widget]], ResultWrapper[Widget]),
         )
@@ -417,7 +417,7 @@ class Widgets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Widget]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Widget]], ResultWrapper[Widget]),
         )
@@ -522,7 +522,7 @@ class AsyncWidgets(AsyncAPIResource):
                     },
                     widget_create_params.WidgetCreateParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Widget]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Widget]], ResultWrapper[Widget]),
         )
@@ -597,7 +597,7 @@ class AsyncWidgets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Widget]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Widget]], ResultWrapper[Widget]),
         )
@@ -701,7 +701,7 @@ class AsyncWidgets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Widget]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Widget]], ResultWrapper[Widget]),
         )
@@ -745,7 +745,7 @@ class AsyncWidgets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Widget]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Widget]], ResultWrapper[Widget]),
         )
@@ -801,7 +801,7 @@ class AsyncWidgets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Widget]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Widget]], ResultWrapper[Widget]),
         )

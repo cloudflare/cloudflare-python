@@ -75,7 +75,7 @@ class Analytics(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"query": query}, analytics_list_params.AnalyticsListParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Schema]._unwrapper,
             ),
             cast_to=cast(Type[Schema], ResultWrapper[Schema]),
         )
@@ -118,7 +118,7 @@ class Analytics(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"query": query}, analytics_stored_params.AnalyticsStoredParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Components]._unwrapper,
             ),
             cast_to=cast(Type[Components], ResultWrapper[Components]),
         )
@@ -171,7 +171,7 @@ class AsyncAnalytics(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"query": query}, analytics_list_params.AnalyticsListParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Schema]._unwrapper,
             ),
             cast_to=cast(Type[Schema], ResultWrapper[Schema]),
         )
@@ -214,7 +214,7 @@ class AsyncAnalytics(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"query": query}, analytics_stored_params.AnalyticsStoredParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Components]._unwrapper,
             ),
             cast_to=cast(Type[Components], ResultWrapper[Components]),
         )

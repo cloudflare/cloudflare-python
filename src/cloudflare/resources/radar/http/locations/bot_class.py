@@ -170,7 +170,7 @@ class BotClass(SyncAPIResource):
                     },
                     bot_class_get_params.BotClassGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[BotClassGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[BotClassGetResponse], ResultWrapper[BotClassGetResponse]),
         )
@@ -316,7 +316,7 @@ class AsyncBotClass(AsyncAPIResource):
                     },
                     bot_class_get_params.BotClassGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[BotClassGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[BotClassGetResponse], ResultWrapper[BotClassGetResponse]),
         )

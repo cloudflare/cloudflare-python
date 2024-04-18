@@ -96,7 +96,7 @@ class Delegations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[delegations.Delegations]._unwrapper,
             ),
             cast_to=cast(Type[delegations.Delegations], ResultWrapper[delegations.Delegations]),
         )
@@ -188,7 +188,7 @@ class Delegations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DelegationDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[DelegationDeleteResponse], ResultWrapper[DelegationDeleteResponse]),
         )
@@ -255,7 +255,7 @@ class AsyncDelegations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[delegations.Delegations]._unwrapper,
             ),
             cast_to=cast(Type[delegations.Delegations], ResultWrapper[delegations.Delegations]),
         )
@@ -347,7 +347,7 @@ class AsyncDelegations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DelegationDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[DelegationDeleteResponse], ResultWrapper[DelegationDeleteResponse]),
         )

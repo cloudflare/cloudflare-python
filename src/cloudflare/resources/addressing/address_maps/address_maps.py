@@ -132,7 +132,7 @@ class AddressMaps(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AddressMapCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[AddressMapCreateResponse], ResultWrapper[AddressMapCreateResponse]),
         )
@@ -218,7 +218,7 @@ class AddressMaps(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[AddressMapDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AddressMapDeleteResponse]
@@ -288,7 +288,7 @@ class AddressMaps(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AddressMap]._unwrapper,
             ),
             cast_to=cast(Type[AddressMap], ResultWrapper[AddressMap]),
         )
@@ -332,7 +332,7 @@ class AddressMaps(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AddressMapGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[AddressMapGetResponse], ResultWrapper[AddressMapGetResponse]),
         )
@@ -408,7 +408,7 @@ class AsyncAddressMaps(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AddressMapCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[AddressMapCreateResponse], ResultWrapper[AddressMapCreateResponse]),
         )
@@ -494,7 +494,7 @@ class AsyncAddressMaps(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[AddressMapDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AddressMapDeleteResponse]
@@ -564,7 +564,7 @@ class AsyncAddressMaps(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AddressMap]._unwrapper,
             ),
             cast_to=cast(Type[AddressMap], ResultWrapper[AddressMap]),
         )
@@ -608,7 +608,7 @@ class AsyncAddressMaps(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AddressMapGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[AddressMapGetResponse], ResultWrapper[AddressMapGetResponse]),
         )

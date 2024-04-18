@@ -104,7 +104,7 @@ class ScheduleResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"region": region}, schedule_create_params.ScheduleCreateParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ScheduleCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScheduleCreateResponse]], ResultWrapper[ScheduleCreateResponse]),
         )
@@ -185,7 +185,7 @@ class AsyncScheduleResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"region": region}, schedule_create_params.ScheduleCreateParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ScheduleCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScheduleCreateResponse]], ResultWrapper[ScheduleCreateResponse]),
         )

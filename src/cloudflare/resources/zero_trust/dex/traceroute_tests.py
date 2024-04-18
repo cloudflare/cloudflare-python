@@ -110,7 +110,7 @@ class TracerouteTests(SyncAPIResource):
                     },
                     traceroute_test_get_params.TracerouteTestGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Traceroute]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Traceroute]], ResultWrapper[Traceroute]),
         )
@@ -173,7 +173,7 @@ class TracerouteTests(SyncAPIResource):
                     },
                     traceroute_test_network_path_params.TracerouteTestNetworkPathParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[NetworkPathResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NetworkPathResponse]], ResultWrapper[NetworkPathResponse]),
         )
@@ -239,7 +239,7 @@ class TracerouteTests(SyncAPIResource):
                     },
                     traceroute_test_percentiles_params.TracerouteTestPercentilesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TracerouteTestPercentilesResponse]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[TracerouteTestPercentilesResponse]], ResultWrapper[TracerouteTestPercentilesResponse]
@@ -321,7 +321,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
                     },
                     traceroute_test_get_params.TracerouteTestGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Traceroute]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Traceroute]], ResultWrapper[Traceroute]),
         )
@@ -384,7 +384,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
                     },
                     traceroute_test_network_path_params.TracerouteTestNetworkPathParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[NetworkPathResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NetworkPathResponse]], ResultWrapper[NetworkPathResponse]),
         )
@@ -450,7 +450,7 @@ class AsyncTracerouteTests(AsyncAPIResource):
                     },
                     traceroute_test_percentiles_params.TracerouteTestPercentilesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TracerouteTestPercentilesResponse]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[TracerouteTestPercentilesResponse]], ResultWrapper[TracerouteTestPercentilesResponse]

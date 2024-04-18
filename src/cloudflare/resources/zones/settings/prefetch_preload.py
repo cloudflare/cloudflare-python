@@ -77,7 +77,7 @@ class PrefetchPreloadResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PrefetchPreload]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PrefetchPreload]], ResultWrapper[PrefetchPreload]),
         )
@@ -117,7 +117,7 @@ class PrefetchPreloadResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PrefetchPreload]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PrefetchPreload]], ResultWrapper[PrefetchPreload]),
         )
@@ -171,7 +171,7 @@ class AsyncPrefetchPreloadResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PrefetchPreload]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PrefetchPreload]], ResultWrapper[PrefetchPreload]),
         )
@@ -211,7 +211,7 @@ class AsyncPrefetchPreloadResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PrefetchPreload]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PrefetchPreload]], ResultWrapper[PrefetchPreload]),
         )

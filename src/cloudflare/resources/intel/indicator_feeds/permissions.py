@@ -90,7 +90,7 @@ class Permissions(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PermissionCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PermissionCreateResponse], ResultWrapper[PermissionCreateResponse]),
         )
@@ -129,7 +129,7 @@ class Permissions(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PermissionListResponse]._unwrapper,
             ),
             cast_to=cast(Type[PermissionListResponse], ResultWrapper[PermissionListResponse]),
         )
@@ -181,7 +181,7 @@ class Permissions(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PermissionDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[PermissionDeleteResponse], ResultWrapper[PermissionDeleteResponse]),
         )
@@ -243,7 +243,7 @@ class AsyncPermissions(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PermissionCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PermissionCreateResponse], ResultWrapper[PermissionCreateResponse]),
         )
@@ -282,7 +282,7 @@ class AsyncPermissions(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PermissionListResponse]._unwrapper,
             ),
             cast_to=cast(Type[PermissionListResponse], ResultWrapper[PermissionListResponse]),
         )
@@ -334,7 +334,7 @@ class AsyncPermissions(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PermissionDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[PermissionDeleteResponse], ResultWrapper[PermissionDeleteResponse]),
         )

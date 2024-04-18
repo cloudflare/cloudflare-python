@@ -80,7 +80,7 @@ class IPs(SyncAPIResource):
                     },
                     ip_get_params.IPGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IPGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IPGetResponse]], ResultWrapper[IPGetResponse]),
         )
@@ -138,7 +138,7 @@ class AsyncIPs(AsyncAPIResource):
                     },
                     ip_get_params.IPGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IPGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IPGetResponse]], ResultWrapper[IPGetResponse]),
         )

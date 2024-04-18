@@ -77,7 +77,7 @@ class Connectors(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Client]._unwrapper,
             ),
             cast_to=cast(Type[Client], ResultWrapper[Client]),
         )
@@ -136,7 +136,7 @@ class AsyncConnectors(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Client]._unwrapper,
             ),
             cast_to=cast(Type[Client], ResultWrapper[Client]),
         )

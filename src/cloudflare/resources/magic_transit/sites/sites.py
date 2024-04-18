@@ -119,7 +119,7 @@ class Sites(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SiteCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[SiteCreateResponse], ResultWrapper[SiteCreateResponse]),
         )
@@ -165,7 +165,7 @@ class Sites(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SiteUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[SiteUpdateResponse], ResultWrapper[SiteUpdateResponse]),
         )
@@ -211,7 +211,7 @@ class Sites(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"connector_identifier": connector_identifier}, site_list_params.SiteListParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SiteListResponse]._unwrapper,
             ),
             cast_to=cast(Type[SiteListResponse], ResultWrapper[SiteListResponse]),
         )
@@ -257,7 +257,7 @@ class Sites(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SiteDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[SiteDeleteResponse], ResultWrapper[SiteDeleteResponse]),
         )
@@ -301,7 +301,7 @@ class Sites(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SiteGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[SiteGetResponse], ResultWrapper[SiteGetResponse]),
         )
@@ -364,7 +364,7 @@ class AsyncSites(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SiteCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[SiteCreateResponse], ResultWrapper[SiteCreateResponse]),
         )
@@ -410,7 +410,7 @@ class AsyncSites(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SiteUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[SiteUpdateResponse], ResultWrapper[SiteUpdateResponse]),
         )
@@ -458,7 +458,7 @@ class AsyncSites(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"connector_identifier": connector_identifier}, site_list_params.SiteListParams
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SiteListResponse]._unwrapper,
             ),
             cast_to=cast(Type[SiteListResponse], ResultWrapper[SiteListResponse]),
         )
@@ -504,7 +504,7 @@ class AsyncSites(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SiteDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[SiteDeleteResponse], ResultWrapper[SiteDeleteResponse]),
         )
@@ -548,7 +548,7 @@ class AsyncSites(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SiteGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[SiteGetResponse], ResultWrapper[SiteGetResponse]),
         )
