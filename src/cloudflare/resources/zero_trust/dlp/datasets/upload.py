@@ -73,7 +73,7 @@ class Upload(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[NewVersion]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NewVersion]], ResultWrapper[NewVersion]),
         )
@@ -116,7 +116,7 @@ class Upload(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
@@ -166,7 +166,7 @@ class AsyncUpload(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[NewVersion]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NewVersion]], ResultWrapper[NewVersion]),
         )
@@ -209,7 +209,7 @@ class AsyncUpload(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )

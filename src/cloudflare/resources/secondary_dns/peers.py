@@ -73,7 +73,7 @@ class Peers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
@@ -144,7 +144,7 @@ class Peers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
@@ -220,7 +220,7 @@ class Peers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PeerDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PeerDeleteResponse]], ResultWrapper[PeerDeleteResponse]),
         )
@@ -260,7 +260,7 @@ class Peers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
@@ -309,7 +309,7 @@ class AsyncPeers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
@@ -380,7 +380,7 @@ class AsyncPeers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
@@ -456,7 +456,7 @@ class AsyncPeers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PeerDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PeerDeleteResponse]], ResultWrapper[PeerDeleteResponse]),
         )
@@ -496,7 +496,7 @@ class AsyncPeers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )

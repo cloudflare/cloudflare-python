@@ -79,7 +79,7 @@ class Keys(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[KeyUpdateResponse]
@@ -123,7 +123,7 @@ class Keys(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[KeyGetResponse]
@@ -167,7 +167,7 @@ class Keys(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[KeyRotateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[KeyRotateResponse]
@@ -227,7 +227,7 @@ class AsyncKeys(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[KeyUpdateResponse]
@@ -271,7 +271,7 @@ class AsyncKeys(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[KeyGetResponse]
@@ -315,7 +315,7 @@ class AsyncKeys(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[KeyRotateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[KeyRotateResponse]

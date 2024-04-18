@@ -181,7 +181,7 @@ class Rulesets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RulesetCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[RulesetCreateResponse], ResultWrapper[RulesetCreateResponse]),
         )
@@ -288,7 +288,7 @@ class Rulesets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RulesetUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[RulesetUpdateResponse], ResultWrapper[RulesetUpdateResponse]),
         )
@@ -448,7 +448,7 @@ class Rulesets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RulesetGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[RulesetGetResponse], ResultWrapper[RulesetGetResponse]),
         )
@@ -571,7 +571,7 @@ class AsyncRulesets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RulesetCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[RulesetCreateResponse], ResultWrapper[RulesetCreateResponse]),
         )
@@ -678,7 +678,7 @@ class AsyncRulesets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RulesetUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[RulesetUpdateResponse], ResultWrapper[RulesetUpdateResponse]),
         )
@@ -838,7 +838,7 @@ class AsyncRulesets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RulesetGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[RulesetGetResponse], ResultWrapper[RulesetGetResponse]),
         )

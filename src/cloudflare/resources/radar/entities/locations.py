@@ -93,7 +93,7 @@ class Locations(SyncAPIResource):
                     },
                     location_list_params.LocationListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LocationListResponse]._unwrapper,
             ),
             cast_to=cast(Type[LocationListResponse], ResultWrapper[LocationListResponse]),
         )
@@ -139,7 +139,7 @@ class Locations(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"format": format}, location_get_params.LocationGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LocationGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[LocationGetResponse], ResultWrapper[LocationGetResponse]),
         )
@@ -204,7 +204,7 @@ class AsyncLocations(AsyncAPIResource):
                     },
                     location_list_params.LocationListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LocationListResponse]._unwrapper,
             ),
             cast_to=cast(Type[LocationListResponse], ResultWrapper[LocationListResponse]),
         )
@@ -250,7 +250,7 @@ class AsyncLocations(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"format": format}, location_get_params.LocationGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LocationGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[LocationGetResponse], ResultWrapper[LocationGetResponse]),
         )

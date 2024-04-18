@@ -87,7 +87,7 @@ class Buckets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Bucket]._unwrapper,
             ),
             cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
         )
@@ -201,7 +201,7 @@ class Buckets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -245,7 +245,7 @@ class Buckets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Bucket]._unwrapper,
             ),
             cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
         )
@@ -307,7 +307,7 @@ class AsyncBuckets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Bucket]._unwrapper,
             ),
             cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
         )
@@ -421,7 +421,7 @@ class AsyncBuckets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -465,7 +465,7 @@ class AsyncBuckets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Bucket]._unwrapper,
             ),
             cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
         )

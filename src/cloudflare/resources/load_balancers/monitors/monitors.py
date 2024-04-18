@@ -191,7 +191,7 @@ class Monitors(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Monitor]._unwrapper,
             ),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
@@ -319,7 +319,7 @@ class Monitors(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Monitor]._unwrapper,
             ),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
@@ -399,7 +399,7 @@ class Monitors(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MonitorDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[MonitorDeleteResponse], ResultWrapper[MonitorDeleteResponse]),
         )
@@ -527,7 +527,7 @@ class Monitors(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Monitor]._unwrapper,
             ),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
@@ -569,7 +569,7 @@ class Monitors(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Monitor]._unwrapper,
             ),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
@@ -712,7 +712,7 @@ class AsyncMonitors(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Monitor]._unwrapper,
             ),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
@@ -840,7 +840,7 @@ class AsyncMonitors(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Monitor]._unwrapper,
             ),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
@@ -920,7 +920,7 @@ class AsyncMonitors(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MonitorDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[MonitorDeleteResponse], ResultWrapper[MonitorDeleteResponse]),
         )
@@ -1048,7 +1048,7 @@ class AsyncMonitors(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Monitor]._unwrapper,
             ),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
@@ -1090,7 +1090,7 @@ class AsyncMonitors(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Monitor]._unwrapper,
             ),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )

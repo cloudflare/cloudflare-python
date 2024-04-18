@@ -103,7 +103,7 @@ class Entries(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EntryCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[EntryCreateResponse], ResultWrapper[EntryCreateResponse]),
         )
@@ -171,7 +171,7 @@ class Entries(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EntryUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[EntryUpdateResponse], ResultWrapper[EntryUpdateResponse]),
         )
@@ -215,7 +215,7 @@ class Entries(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[EntryListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[EntryListResponse]], ResultWrapper[EntryListResponse]),
         )
@@ -268,7 +268,7 @@ class Entries(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[EntryDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[EntryDeleteResponse]], ResultWrapper[EntryDeleteResponse]),
         )
@@ -319,7 +319,7 @@ class Entries(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EntryGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[EntryGetResponse], ResultWrapper[EntryGetResponse]),
         )
@@ -390,7 +390,7 @@ class AsyncEntries(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EntryCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[EntryCreateResponse], ResultWrapper[EntryCreateResponse]),
         )
@@ -458,7 +458,7 @@ class AsyncEntries(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EntryUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[EntryUpdateResponse], ResultWrapper[EntryUpdateResponse]),
         )
@@ -502,7 +502,7 @@ class AsyncEntries(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[EntryListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[EntryListResponse]], ResultWrapper[EntryListResponse]),
         )
@@ -555,7 +555,7 @@ class AsyncEntries(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[EntryDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[EntryDeleteResponse]], ResultWrapper[EntryDeleteResponse]),
         )
@@ -606,7 +606,7 @@ class AsyncEntries(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EntryGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[EntryGetResponse], ResultWrapper[EntryGetResponse]),
         )

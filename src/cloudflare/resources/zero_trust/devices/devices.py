@@ -206,7 +206,7 @@ class Devices(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[DeviceGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DeviceGetResponse]
@@ -329,7 +329,7 @@ class AsyncDevices(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[DeviceGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DeviceGetResponse]

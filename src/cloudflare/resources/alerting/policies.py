@@ -173,7 +173,7 @@ class Policies(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PolicyCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PolicyCreateResponse], ResultWrapper[PolicyCreateResponse]),
         )
@@ -308,7 +308,7 @@ class Policies(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PolicyUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PolicyUpdateResponse], ResultWrapper[PolicyUpdateResponse]),
         )
@@ -390,7 +390,7 @@ class Policies(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PolicyDeleteResponse]
@@ -437,7 +437,7 @@ class Policies(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Policy]._unwrapper,
             ),
             cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )
@@ -576,7 +576,7 @@ class AsyncPolicies(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PolicyCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PolicyCreateResponse], ResultWrapper[PolicyCreateResponse]),
         )
@@ -711,7 +711,7 @@ class AsyncPolicies(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PolicyUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PolicyUpdateResponse], ResultWrapper[PolicyUpdateResponse]),
         )
@@ -793,7 +793,7 @@ class AsyncPolicies(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PolicyDeleteResponse]
@@ -840,7 +840,7 @@ class AsyncPolicies(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Policy]._unwrapper,
             ),
             cast_to=cast(Type[Policy], ResultWrapper[Policy]),
         )

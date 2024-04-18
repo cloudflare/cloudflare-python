@@ -89,7 +89,7 @@ class Configs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
@@ -129,7 +129,7 @@ class Configs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
@@ -168,7 +168,7 @@ class Configs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
@@ -207,7 +207,7 @@ class Configs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
@@ -244,7 +244,7 @@ class Configs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
@@ -297,7 +297,7 @@ class AsyncConfigs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
@@ -337,7 +337,7 @@ class AsyncConfigs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
@@ -376,7 +376,7 @@ class AsyncConfigs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
@@ -415,7 +415,7 @@ class AsyncConfigs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
@@ -452,7 +452,7 @@ class AsyncConfigs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )

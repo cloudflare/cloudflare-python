@@ -142,7 +142,7 @@ class Top(SyncAPIResource):
                     },
                     top_prefixes_params.TopPrefixesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopPrefixesResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopPrefixesResponse], ResultWrapper[TopPrefixesResponse]),
         )
@@ -252,7 +252,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_prefixes_params.TopPrefixesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopPrefixesResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopPrefixesResponse], ResultWrapper[TopPrefixesResponse]),
         )

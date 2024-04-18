@@ -86,7 +86,7 @@ class TotalTLS(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TotalTLSCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[TotalTLSCreateResponse], ResultWrapper[TotalTLSCreateResponse]),
         )
@@ -125,7 +125,7 @@ class TotalTLS(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TotalTLSGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TotalTLSGetResponse], ResultWrapper[TotalTLSGetResponse]),
         )
@@ -188,7 +188,7 @@ class AsyncTotalTLS(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TotalTLSCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[TotalTLSCreateResponse], ResultWrapper[TotalTLSCreateResponse]),
         )
@@ -227,7 +227,7 @@ class AsyncTotalTLS(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TotalTLSGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TotalTLSGetResponse], ResultWrapper[TotalTLSGetResponse]),
         )

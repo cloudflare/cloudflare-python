@@ -178,7 +178,7 @@ class Pools(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Pool]._unwrapper,
             ),
             cast_to=cast(Type[Pool], ResultWrapper[Pool]),
         )
@@ -293,7 +293,7 @@ class Pools(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Pool]._unwrapper,
             ),
             cast_to=cast(Type[Pool], ResultWrapper[Pool]),
         )
@@ -381,7 +381,7 @@ class Pools(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PoolDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[PoolDeleteResponse], ResultWrapper[PoolDeleteResponse]),
         )
@@ -496,7 +496,7 @@ class Pools(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Pool]._unwrapper,
             ),
             cast_to=cast(Type[Pool], ResultWrapper[Pool]),
         )
@@ -538,7 +538,7 @@ class Pools(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Pool]._unwrapper,
             ),
             cast_to=cast(Type[Pool], ResultWrapper[Pool]),
         )
@@ -663,7 +663,7 @@ class AsyncPools(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Pool]._unwrapper,
             ),
             cast_to=cast(Type[Pool], ResultWrapper[Pool]),
         )
@@ -778,7 +778,7 @@ class AsyncPools(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Pool]._unwrapper,
             ),
             cast_to=cast(Type[Pool], ResultWrapper[Pool]),
         )
@@ -866,7 +866,7 @@ class AsyncPools(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PoolDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[PoolDeleteResponse], ResultWrapper[PoolDeleteResponse]),
         )
@@ -981,7 +981,7 @@ class AsyncPools(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Pool]._unwrapper,
             ),
             cast_to=cast(Type[Pool], ResultWrapper[Pool]),
         )
@@ -1023,7 +1023,7 @@ class AsyncPools(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Pool]._unwrapper,
             ),
             cast_to=cast(Type[Pool], ResultWrapper[Pool]),
         )

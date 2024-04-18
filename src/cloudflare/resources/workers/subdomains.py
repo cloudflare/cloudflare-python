@@ -73,7 +73,7 @@ class Subdomains(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SubdomainUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SubdomainUpdateResponse]], ResultWrapper[SubdomainUpdateResponse]),
         )
@@ -112,7 +112,7 @@ class Subdomains(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SubdomainGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SubdomainGetResponse]], ResultWrapper[SubdomainGetResponse]),
         )
@@ -163,7 +163,7 @@ class AsyncSubdomains(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SubdomainUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SubdomainUpdateResponse]], ResultWrapper[SubdomainUpdateResponse]),
         )
@@ -202,7 +202,7 @@ class AsyncSubdomains(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SubdomainGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SubdomainGetResponse]], ResultWrapper[SubdomainGetResponse]),
         )

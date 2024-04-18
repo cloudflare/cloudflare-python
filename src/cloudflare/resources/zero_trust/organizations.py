@@ -143,7 +143,7 @@ class Organizations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Organization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Organization]], ResultWrapper[Organization]),
         )
@@ -249,7 +249,7 @@ class Organizations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Organization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Organization]], ResultWrapper[Organization]),
         )
@@ -301,7 +301,7 @@ class Organizations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Organization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Organization]], ResultWrapper[Organization]),
         )
@@ -357,7 +357,7 @@ class Organizations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OrganizationRevokeUsersResponse]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[OrganizationRevokeUsersResponse]], ResultWrapper[OrganizationRevokeUsersResponse]
@@ -473,7 +473,7 @@ class AsyncOrganizations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Organization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Organization]], ResultWrapper[Organization]),
         )
@@ -579,7 +579,7 @@ class AsyncOrganizations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Organization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Organization]], ResultWrapper[Organization]),
         )
@@ -631,7 +631,7 @@ class AsyncOrganizations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Organization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Organization]], ResultWrapper[Organization]),
         )
@@ -689,7 +689,7 @@ class AsyncOrganizations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OrganizationRevokeUsersResponse]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[OrganizationRevokeUsersResponse]], ResultWrapper[OrganizationRevokeUsersResponse]

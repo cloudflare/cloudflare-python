@@ -150,7 +150,7 @@ class Top(SyncAPIResource):
                     },
                     top_dnssec_params.TopDNSSECParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopDNSSECResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopDNSSECResponse], ResultWrapper[TopDNSSECResponse]),
         )
@@ -257,7 +257,7 @@ class Top(SyncAPIResource):
                     },
                     top_edns_params.TopEdnsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopEdnsResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopEdnsResponse], ResultWrapper[TopEdnsResponse]),
         )
@@ -364,7 +364,7 @@ class Top(SyncAPIResource):
                     },
                     top_ip_version_params.TopIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopIPVersionResponse], ResultWrapper[TopIPVersionResponse]),
         )
@@ -468,7 +468,7 @@ class Top(SyncAPIResource):
                     },
                     top_locations_params.TopLocationsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopLocationsResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopLocationsResponse], ResultWrapper[TopLocationsResponse]),
         )
@@ -585,7 +585,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_dnssec_params.TopDNSSECParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopDNSSECResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopDNSSECResponse], ResultWrapper[TopDNSSECResponse]),
         )
@@ -692,7 +692,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_edns_params.TopEdnsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopEdnsResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopEdnsResponse], ResultWrapper[TopEdnsResponse]),
         )
@@ -799,7 +799,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_ip_version_params.TopIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopIPVersionResponse], ResultWrapper[TopIPVersionResponse]),
         )
@@ -903,7 +903,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_locations_params.TopLocationsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopLocationsResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopLocationsResponse], ResultWrapper[TopLocationsResponse]),
         )

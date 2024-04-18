@@ -85,7 +85,7 @@ class FleetStatus(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"since_minutes": since_minutes}, fleet_status_live_params.FleetStatusLiveParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[FleetStatusLiveResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[FleetStatusLiveResponse]], ResultWrapper[FleetStatusLiveResponse]),
         )
@@ -200,7 +200,7 @@ class AsyncFleetStatus(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"since_minutes": since_minutes}, fleet_status_live_params.FleetStatusLiveParams
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[FleetStatusLiveResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[FleetStatusLiveResponse]], ResultWrapper[FleetStatusLiveResponse]),
         )

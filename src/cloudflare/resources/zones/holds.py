@@ -79,7 +79,7 @@ class Holds(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"include_subdomains": include_subdomains}, hold_create_params.HoldCreateParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ZoneHold]._unwrapper,
             ),
             cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
@@ -125,7 +125,7 @@ class Holds(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZoneHold]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZoneHold]], ResultWrapper[ZoneHold]),
         )
@@ -165,7 +165,7 @@ class Holds(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ZoneHold]._unwrapper,
             ),
             cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
@@ -224,7 +224,7 @@ class AsyncHolds(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"include_subdomains": include_subdomains}, hold_create_params.HoldCreateParams
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ZoneHold]._unwrapper,
             ),
             cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
@@ -270,7 +270,7 @@ class AsyncHolds(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZoneHold]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZoneHold]], ResultWrapper[ZoneHold]),
         )
@@ -310,7 +310,7 @@ class AsyncHolds(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ZoneHold]._unwrapper,
             ),
             cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )

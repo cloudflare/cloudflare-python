@@ -99,7 +99,7 @@ class Datasets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DatasetCreation]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DatasetCreation]], ResultWrapper[DatasetCreation]),
         )
@@ -148,7 +148,7 @@ class Datasets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
@@ -261,7 +261,7 @@ class Datasets(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
@@ -328,7 +328,7 @@ class AsyncDatasets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DatasetCreation]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DatasetCreation]], ResultWrapper[DatasetCreation]),
         )
@@ -377,7 +377,7 @@ class AsyncDatasets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
@@ -490,7 +490,7 @@ class AsyncDatasets(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )

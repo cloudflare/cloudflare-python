@@ -116,7 +116,7 @@ class Lists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
         )
@@ -164,7 +164,7 @@ class Lists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
         )
@@ -246,7 +246,7 @@ class Lists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ListDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ListDeleteResponse]], ResultWrapper[ListDeleteResponse]),
         )
@@ -290,7 +290,7 @@ class Lists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
         )
@@ -365,7 +365,7 @@ class AsyncLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
         )
@@ -413,7 +413,7 @@ class AsyncLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
         )
@@ -495,7 +495,7 @@ class AsyncLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ListDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ListDeleteResponse]], ResultWrapper[ListDeleteResponse]),
         )
@@ -539,7 +539,7 @@ class AsyncLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
         )

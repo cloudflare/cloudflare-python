@@ -100,7 +100,7 @@ class Invites(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[InviteEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[InviteEditResponse]
@@ -144,7 +144,7 @@ class Invites(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[InviteGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[InviteGetResponse]
@@ -222,7 +222,7 @@ class AsyncInvites(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[InviteEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[InviteEditResponse]
@@ -266,7 +266,7 @@ class AsyncInvites(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[InviteGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[InviteGetResponse]

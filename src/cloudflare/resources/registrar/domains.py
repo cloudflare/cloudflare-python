@@ -98,7 +98,7 @@ class Domains(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DomainUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DomainUpdateResponse]
@@ -183,7 +183,7 @@ class Domains(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DomainGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DomainGetResponse]
@@ -260,7 +260,7 @@ class AsyncDomains(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DomainUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DomainUpdateResponse]
@@ -345,7 +345,7 @@ class AsyncDomains(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DomainGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DomainGetResponse]

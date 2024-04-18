@@ -102,7 +102,7 @@ class Indexes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CreateIndex]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CreateIndex]], ResultWrapper[CreateIndex]),
         )
@@ -148,7 +148,7 @@ class Indexes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CreateIndex]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CreateIndex]], ResultWrapper[CreateIndex]),
         )
@@ -228,7 +228,7 @@ class Indexes(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[IndexDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IndexDeleteResponse]
@@ -277,7 +277,7 @@ class Indexes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexDeleteVectorsByID]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexDeleteVectorsByID]], ResultWrapper[IndexDeleteVectorsByID]),
         )
@@ -319,7 +319,7 @@ class Indexes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CreateIndex]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CreateIndex]], ResultWrapper[CreateIndex]),
         )
@@ -365,7 +365,7 @@ class Indexes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -410,7 +410,7 @@ class Indexes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexInsert]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexInsert]], ResultWrapper[IndexInsert]),
         )
@@ -477,7 +477,7 @@ class Indexes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexQuery]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexQuery]], ResultWrapper[IndexQuery]),
         )
@@ -522,7 +522,7 @@ class Indexes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexUpsert]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexUpsert]], ResultWrapper[IndexUpsert]),
         )
@@ -586,7 +586,7 @@ class AsyncIndexes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CreateIndex]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CreateIndex]], ResultWrapper[CreateIndex]),
         )
@@ -632,7 +632,7 @@ class AsyncIndexes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CreateIndex]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CreateIndex]], ResultWrapper[CreateIndex]),
         )
@@ -712,7 +712,7 @@ class AsyncIndexes(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[IndexDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IndexDeleteResponse]
@@ -761,7 +761,7 @@ class AsyncIndexes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexDeleteVectorsByID]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexDeleteVectorsByID]], ResultWrapper[IndexDeleteVectorsByID]),
         )
@@ -803,7 +803,7 @@ class AsyncIndexes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CreateIndex]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CreateIndex]], ResultWrapper[CreateIndex]),
         )
@@ -849,7 +849,7 @@ class AsyncIndexes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -894,7 +894,7 @@ class AsyncIndexes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexInsert]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexInsert]], ResultWrapper[IndexInsert]),
         )
@@ -961,7 +961,7 @@ class AsyncIndexes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexQuery]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexQuery]], ResultWrapper[IndexQuery]),
         )
@@ -1006,7 +1006,7 @@ class AsyncIndexes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexUpsert]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexUpsert]], ResultWrapper[IndexUpsert]),
         )

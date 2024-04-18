@@ -97,7 +97,7 @@ class Validate(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ValidateDestinationResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ValidateDestinationResponse]], ResultWrapper[ValidateDestinationResponse]),
         )
@@ -157,7 +157,7 @@ class Validate(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ValidateOriginResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ValidateOriginResponse]], ResultWrapper[ValidateOriginResponse]),
         )
@@ -227,7 +227,7 @@ class AsyncValidate(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ValidateDestinationResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ValidateDestinationResponse]], ResultWrapper[ValidateDestinationResponse]),
         )
@@ -289,7 +289,7 @@ class AsyncValidate(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ValidateOriginResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ValidateOriginResponse]], ResultWrapper[ValidateOriginResponse]),
         )

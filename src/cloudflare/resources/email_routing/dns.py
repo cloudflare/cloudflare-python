@@ -67,7 +67,7 @@ class DNS(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DNSGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DNSGetResponse]], ResultWrapper[DNSGetResponse]),
         )
@@ -116,7 +116,7 @@ class AsyncDNS(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DNSGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DNSGetResponse]], ResultWrapper[DNSGetResponse]),
         )

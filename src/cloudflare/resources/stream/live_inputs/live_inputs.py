@@ -119,7 +119,7 @@ class LiveInputs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
@@ -193,7 +193,7 @@ class LiveInputs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
@@ -239,7 +239,7 @@ class LiveInputs(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"include_counts": include_counts}, live_input_list_params.LiveInputListParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LiveInputListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LiveInputListResponse]], ResultWrapper[LiveInputListResponse]),
         )
@@ -331,7 +331,7 @@ class LiveInputs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
@@ -413,7 +413,7 @@ class AsyncLiveInputs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
@@ -487,7 +487,7 @@ class AsyncLiveInputs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
@@ -535,7 +535,7 @@ class AsyncLiveInputs(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"include_counts": include_counts}, live_input_list_params.LiveInputListParams
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LiveInputListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LiveInputListResponse]], ResultWrapper[LiveInputListResponse]),
         )
@@ -627,7 +627,7 @@ class AsyncLiveInputs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )

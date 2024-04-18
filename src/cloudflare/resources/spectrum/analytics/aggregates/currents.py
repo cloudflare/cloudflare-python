@@ -91,7 +91,7 @@ class Currents(SyncAPIResource):
                     },
                     current_get_params.CurrentGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CurrentGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[CurrentGetResponse], ResultWrapper[CurrentGetResponse]),
         )
@@ -160,7 +160,7 @@ class AsyncCurrents(AsyncAPIResource):
                     },
                     current_get_params.CurrentGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CurrentGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[CurrentGetResponse], ResultWrapper[CurrentGetResponse]),
         )

@@ -75,7 +75,7 @@ class IPs(SyncAPIResource):
                     extra_body=extra_body,
                     timeout=timeout,
                     query=maybe_transform({"networks": networks}, ip_list_params.IPListParams),
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[IPListResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IPListResponse]
@@ -131,7 +131,7 @@ class AsyncIPs(AsyncAPIResource):
                     extra_body=extra_body,
                     timeout=timeout,
                     query=await async_maybe_transform({"networks": networks}, ip_list_params.IPListParams),
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[IPListResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IPListResponse]

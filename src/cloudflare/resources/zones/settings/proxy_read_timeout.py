@@ -75,7 +75,7 @@ class ProxyReadTimeoutResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ProxyReadTimeout]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ProxyReadTimeout]], ResultWrapper[ProxyReadTimeout]),
         )
@@ -114,7 +114,7 @@ class ProxyReadTimeoutResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ProxyReadTimeout]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ProxyReadTimeout]], ResultWrapper[ProxyReadTimeout]),
         )
@@ -169,7 +169,7 @@ class AsyncProxyReadTimeoutResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ProxyReadTimeout]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ProxyReadTimeout]], ResultWrapper[ProxyReadTimeout]),
         )
@@ -208,7 +208,7 @@ class AsyncProxyReadTimeoutResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ProxyReadTimeout]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ProxyReadTimeout]], ResultWrapper[ProxyReadTimeout]),
         )

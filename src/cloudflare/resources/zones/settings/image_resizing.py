@@ -81,7 +81,7 @@ class ImageResizingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ImageResizing]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ImageResizing]], ResultWrapper[ImageResizing]),
         )
@@ -123,7 +123,7 @@ class ImageResizingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ImageResizing]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ImageResizing]], ResultWrapper[ImageResizing]),
         )
@@ -182,7 +182,7 @@ class AsyncImageResizingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ImageResizing]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ImageResizing]], ResultWrapper[ImageResizing]),
         )
@@ -224,7 +224,7 @@ class AsyncImageResizingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ImageResizing]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ImageResizing]], ResultWrapper[ImageResizing]),
         )

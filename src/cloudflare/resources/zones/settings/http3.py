@@ -76,7 +76,7 @@ class HTTP3Resource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HTTP3]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HTTP3]], ResultWrapper[HTTP3]),
         )
@@ -115,7 +115,7 @@ class HTTP3Resource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HTTP3]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HTTP3]], ResultWrapper[HTTP3]),
         )
@@ -168,7 +168,7 @@ class AsyncHTTP3Resource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HTTP3]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HTTP3]], ResultWrapper[HTTP3]),
         )
@@ -207,7 +207,7 @@ class AsyncHTTP3Resource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HTTP3]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HTTP3]], ResultWrapper[HTTP3]),
         )

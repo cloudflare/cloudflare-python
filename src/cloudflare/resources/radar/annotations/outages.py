@@ -128,7 +128,7 @@ class Outages(SyncAPIResource):
                     },
                     outage_get_params.OutageGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OutageGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[OutageGetResponse], ResultWrapper[OutageGetResponse]),
         )
@@ -205,7 +205,7 @@ class Outages(SyncAPIResource):
                     },
                     outage_locations_params.OutageLocationsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OutageLocationsResponse]._unwrapper,
             ),
             cast_to=cast(Type[OutageLocationsResponse], ResultWrapper[OutageLocationsResponse]),
         )
@@ -304,7 +304,7 @@ class AsyncOutages(AsyncAPIResource):
                     },
                     outage_get_params.OutageGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OutageGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[OutageGetResponse], ResultWrapper[OutageGetResponse]),
         )
@@ -381,7 +381,7 @@ class AsyncOutages(AsyncAPIResource):
                     },
                     outage_locations_params.OutageLocationsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OutageLocationsResponse]._unwrapper,
             ),
             cast_to=cast(Type[OutageLocationsResponse], ResultWrapper[OutageLocationsResponse]),
         )

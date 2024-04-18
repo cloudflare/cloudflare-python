@@ -78,7 +78,7 @@ class SmartRouting(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SmartRoutingEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SmartRoutingEditResponse]
@@ -122,7 +122,7 @@ class SmartRouting(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SmartRoutingGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SmartRoutingGetResponse]
@@ -180,7 +180,7 @@ class AsyncSmartRouting(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SmartRoutingEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SmartRoutingEditResponse]
@@ -224,7 +224,7 @@ class AsyncSmartRouting(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SmartRoutingGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SmartRoutingGetResponse]

@@ -101,7 +101,7 @@ class CustomPages(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
@@ -166,7 +166,7 @@ class CustomPages(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
@@ -246,7 +246,7 @@ class CustomPages(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomPageDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CustomPageDeleteResponse]], ResultWrapper[CustomPageDeleteResponse]),
         )
@@ -290,7 +290,7 @@ class CustomPages(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomPage]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CustomPage]], ResultWrapper[CustomPage]),
         )
@@ -360,7 +360,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
@@ -425,7 +425,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
@@ -505,7 +505,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomPageDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CustomPageDeleteResponse]], ResultWrapper[CustomPageDeleteResponse]),
         )
@@ -549,7 +549,7 @@ class AsyncCustomPages(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomPage]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CustomPage]], ResultWrapper[CustomPage]),
         )

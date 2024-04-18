@@ -91,7 +91,7 @@ class Tags(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TagUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TagUpdateResponse]], ResultWrapper[TagUpdateResponse]),
         )
@@ -191,7 +191,7 @@ class Tags(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -254,7 +254,7 @@ class AsyncTags(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TagUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TagUpdateResponse]], ResultWrapper[TagUpdateResponse]),
         )
@@ -354,7 +354,7 @@ class AsyncTags(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )

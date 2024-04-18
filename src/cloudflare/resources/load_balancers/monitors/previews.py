@@ -163,7 +163,7 @@ class Previews(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PreviewCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
         )
@@ -303,7 +303,7 @@ class AsyncPreviews(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PreviewCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PreviewCreateResponse], ResultWrapper[PreviewCreateResponse]),
         )

@@ -793,7 +793,7 @@ class IdentityProviders(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IdentityProvider]
@@ -1590,7 +1590,7 @@ class IdentityProviders(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IdentityProvider]
@@ -1701,7 +1701,7 @@ class IdentityProviders(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IdentityProviderDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IdentityProviderDeleteResponse]], ResultWrapper[IdentityProviderDeleteResponse]),
         )
@@ -1760,7 +1760,7 @@ class IdentityProviders(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IdentityProvider]
@@ -2522,7 +2522,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IdentityProvider]
@@ -3319,7 +3319,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IdentityProvider]
@@ -3430,7 +3430,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IdentityProviderDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IdentityProviderDeleteResponse]], ResultWrapper[IdentityProviderDeleteResponse]),
         )
@@ -3489,7 +3489,7 @@ class AsyncIdentityProviders(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IdentityProvider]

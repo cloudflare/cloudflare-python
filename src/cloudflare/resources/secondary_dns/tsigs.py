@@ -88,7 +88,7 @@ class TSIGs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
@@ -145,7 +145,7 @@ class TSIGs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
@@ -221,7 +221,7 @@ class TSIGs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TSIGDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TSIGDeleteResponse]], ResultWrapper[TSIGDeleteResponse]),
         )
@@ -261,7 +261,7 @@ class TSIGs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
@@ -325,7 +325,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
@@ -382,7 +382,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
@@ -458,7 +458,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TSIGDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TSIGDeleteResponse]], ResultWrapper[TSIGDeleteResponse]),
         )
@@ -498,7 +498,7 @@ class AsyncTSIGs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )

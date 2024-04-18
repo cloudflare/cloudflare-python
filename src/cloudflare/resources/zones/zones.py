@@ -158,7 +158,7 @@ class Zones(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
@@ -276,7 +276,7 @@ class Zones(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
         )
@@ -339,7 +339,7 @@ class Zones(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
@@ -378,7 +378,7 @@ class Zones(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
@@ -462,7 +462,7 @@ class AsyncZones(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
@@ -580,7 +580,7 @@ class AsyncZones(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
         )
@@ -643,7 +643,7 @@ class AsyncZones(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )
@@ -682,7 +682,7 @@ class AsyncZones(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
         )

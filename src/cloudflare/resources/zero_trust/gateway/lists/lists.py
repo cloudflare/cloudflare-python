@@ -114,7 +114,7 @@ class Lists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ListCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ListCreateResponse]], ResultWrapper[ListCreateResponse]),
         )
@@ -169,7 +169,7 @@ class Lists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewayList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
@@ -249,7 +249,7 @@ class Lists(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[ListDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ListDeleteResponse]
@@ -307,7 +307,7 @@ class Lists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewayList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
@@ -349,7 +349,7 @@ class Lists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewayList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
@@ -421,7 +421,7 @@ class AsyncLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ListCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ListCreateResponse]], ResultWrapper[ListCreateResponse]),
         )
@@ -476,7 +476,7 @@ class AsyncLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewayList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
@@ -556,7 +556,7 @@ class AsyncLists(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[ListDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ListDeleteResponse]
@@ -614,7 +614,7 @@ class AsyncLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewayList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )
@@ -656,7 +656,7 @@ class AsyncLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewayList]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewayList]], ResultWrapper[GatewayList]),
         )

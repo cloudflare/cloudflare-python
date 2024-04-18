@@ -78,7 +78,7 @@ class WebPResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[WebP]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[WebP]], ResultWrapper[WebP]),
         )
@@ -119,7 +119,7 @@ class WebPResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[WebP]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[WebP]], ResultWrapper[WebP]),
         )
@@ -174,7 +174,7 @@ class AsyncWebPResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[WebP]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[WebP]], ResultWrapper[WebP]),
         )
@@ -215,7 +215,7 @@ class AsyncWebPResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[WebP]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[WebP]], ResultWrapper[WebP]),
         )

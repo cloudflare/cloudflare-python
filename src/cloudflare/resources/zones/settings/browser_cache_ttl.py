@@ -109,7 +109,7 @@ class BrowserCacheTTLResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[BrowserCacheTTL]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BrowserCacheTTL]], ResultWrapper[BrowserCacheTTL]),
         )
@@ -151,7 +151,7 @@ class BrowserCacheTTLResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[BrowserCacheTTL]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BrowserCacheTTL]], ResultWrapper[BrowserCacheTTL]),
         )
@@ -237,7 +237,7 @@ class AsyncBrowserCacheTTLResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[BrowserCacheTTL]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BrowserCacheTTL]], ResultWrapper[BrowserCacheTTL]),
         )
@@ -279,7 +279,7 @@ class AsyncBrowserCacheTTLResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[BrowserCacheTTL]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BrowserCacheTTL]], ResultWrapper[BrowserCacheTTL]),
         )

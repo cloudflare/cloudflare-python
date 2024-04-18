@@ -80,7 +80,7 @@ class Statuses(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[StatusEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[StatusEditResponse], ResultWrapper[StatusEditResponse]),
         )
@@ -124,7 +124,7 @@ class Statuses(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[StatusGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[StatusGetResponse], ResultWrapper[StatusGetResponse]),
         )
@@ -182,7 +182,7 @@ class AsyncStatuses(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[StatusEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[StatusEditResponse], ResultWrapper[StatusEditResponse]),
         )
@@ -226,7 +226,7 @@ class AsyncStatuses(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[StatusGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[StatusGetResponse], ResultWrapper[StatusGetResponse]),
         )

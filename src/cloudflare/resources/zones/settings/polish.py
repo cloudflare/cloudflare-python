@@ -82,7 +82,7 @@ class PolishResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Polish]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Polish]], ResultWrapper[Polish]),
         )
@@ -123,7 +123,7 @@ class PolishResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Polish]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Polish]], ResultWrapper[Polish]),
         )
@@ -183,7 +183,7 @@ class AsyncPolishResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Polish]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Polish]], ResultWrapper[Polish]),
         )
@@ -224,7 +224,7 @@ class AsyncPolishResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Polish]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Polish]], ResultWrapper[Polish]),
         )

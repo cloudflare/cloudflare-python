@@ -128,7 +128,7 @@ class Reports(SyncAPIResource):
                     },
                     report_get_params.ReportGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Report]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Report]], ResultWrapper[Report]),
         )
@@ -224,7 +224,7 @@ class AsyncReports(AsyncAPIResource):
                     },
                     report_get_params.ReportGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Report]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Report]], ResultWrapper[Report]),
         )

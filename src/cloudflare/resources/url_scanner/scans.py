@@ -112,7 +112,7 @@ class Scans(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ScanCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[ScanCreateResponse], ResultWrapper[ScanCreateResponse]),
         )
@@ -156,7 +156,7 @@ class Scans(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ScanGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[ScanGetResponse], ResultWrapper[ScanGetResponse]),
         )
@@ -202,7 +202,7 @@ class Scans(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ScanHarResponse]._unwrapper,
             ),
             cast_to=cast(Type[ScanHarResponse], ResultWrapper[ScanHarResponse]),
         )
@@ -325,7 +325,7 @@ class AsyncScans(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ScanCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[ScanCreateResponse], ResultWrapper[ScanCreateResponse]),
         )
@@ -369,7 +369,7 @@ class AsyncScans(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ScanGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[ScanGetResponse], ResultWrapper[ScanGetResponse]),
         )
@@ -415,7 +415,7 @@ class AsyncScans(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ScanHarResponse]._unwrapper,
             ),
             cast_to=cast(Type[ScanHarResponse], ResultWrapper[ScanHarResponse]),
         )

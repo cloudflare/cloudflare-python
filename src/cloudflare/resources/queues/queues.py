@@ -107,7 +107,7 @@ class Queues(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[QueueCreated]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[QueueCreated]], ResultWrapper[QueueCreated]),
         )
@@ -153,7 +153,7 @@ class Queues(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[QueueUpdated]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[QueueUpdated]], ResultWrapper[QueueUpdated]),
         )
@@ -237,7 +237,7 @@ class Queues(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[QueueDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[QueueDeleteResponse]
@@ -284,7 +284,7 @@ class Queues(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Queue]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
@@ -343,7 +343,7 @@ class AsyncQueues(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[QueueCreated]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[QueueCreated]], ResultWrapper[QueueCreated]),
         )
@@ -389,7 +389,7 @@ class AsyncQueues(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[QueueUpdated]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[QueueUpdated]], ResultWrapper[QueueUpdated]),
         )
@@ -473,7 +473,7 @@ class AsyncQueues(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[QueueDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[QueueDeleteResponse]
@@ -520,7 +520,7 @@ class AsyncQueues(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Queue]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )

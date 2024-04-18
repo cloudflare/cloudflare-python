@@ -461,7 +461,7 @@ class WaitingRooms(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
@@ -819,7 +819,7 @@ class WaitingRooms(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
@@ -915,7 +915,7 @@ class WaitingRooms(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WaitingRoomDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoomDeleteResponse], ResultWrapper[WaitingRoomDeleteResponse]),
         )
@@ -1273,7 +1273,7 @@ class WaitingRooms(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
@@ -1315,7 +1315,7 @@ class WaitingRooms(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
@@ -1700,7 +1700,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
@@ -2058,7 +2058,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
@@ -2154,7 +2154,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WaitingRoomDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoomDeleteResponse], ResultWrapper[WaitingRoomDeleteResponse]),
         )
@@ -2512,7 +2512,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
@@ -2554,7 +2554,7 @@ class AsyncWaitingRooms(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )

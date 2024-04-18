@@ -152,7 +152,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_bitrate_params.SummaryBitrateParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryBitrateResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryBitrateResponse], ResultWrapper[SummaryBitrateResponse]),
         )
@@ -257,7 +257,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_duration_params.SummaryDurationParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryDurationResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryDurationResponse], ResultWrapper[SummaryDurationResponse]),
         )
@@ -356,7 +356,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_get_params.SummaryGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryGetResponse], ResultWrapper[SummaryGetResponse]),
         )
@@ -457,7 +457,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_ip_version_params.SummaryIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
@@ -558,7 +558,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_protocol_params.SummaryProtocolParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryProtocolResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
@@ -663,7 +663,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_vector_params.SummaryVectorParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryVectorResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryVectorResponse], ResultWrapper[SummaryVectorResponse]),
         )
@@ -778,7 +778,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_bitrate_params.SummaryBitrateParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryBitrateResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryBitrateResponse], ResultWrapper[SummaryBitrateResponse]),
         )
@@ -883,7 +883,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_duration_params.SummaryDurationParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryDurationResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryDurationResponse], ResultWrapper[SummaryDurationResponse]),
         )
@@ -982,7 +982,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_get_params.SummaryGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryGetResponse], ResultWrapper[SummaryGetResponse]),
         )
@@ -1083,7 +1083,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_ip_version_params.SummaryIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
@@ -1184,7 +1184,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_protocol_params.SummaryProtocolParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryProtocolResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
@@ -1289,7 +1289,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_vector_params.SummaryVectorParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryVectorResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryVectorResponse], ResultWrapper[SummaryVectorResponse]),
         )

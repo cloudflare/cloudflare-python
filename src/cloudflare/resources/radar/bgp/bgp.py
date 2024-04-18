@@ -188,7 +188,7 @@ class BGP(SyncAPIResource):
                     },
                     bgp_timeseries_params.BGPTimeseriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[BGPTimeseriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[BGPTimeseriesResponse], ResultWrapper[BGPTimeseriesResponse]),
         )
@@ -317,7 +317,7 @@ class AsyncBGP(AsyncAPIResource):
                     },
                     bgp_timeseries_params.BGPTimeseriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[BGPTimeseriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[BGPTimeseriesResponse], ResultWrapper[BGPTimeseriesResponse]),
         )

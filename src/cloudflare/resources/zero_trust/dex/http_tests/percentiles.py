@@ -98,7 +98,7 @@ class Percentiles(SyncAPIResource):
                     },
                     percentile_get_params.PercentileGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HTTPDetailsPercentiles]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HTTPDetailsPercentiles]], ResultWrapper[HTTPDetailsPercentiles]),
         )
@@ -174,7 +174,7 @@ class AsyncPercentiles(AsyncAPIResource):
                     },
                     percentile_get_params.PercentileGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[HTTPDetailsPercentiles]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[HTTPDetailsPercentiles]], ResultWrapper[HTTPDetailsPercentiles]),
         )

@@ -147,7 +147,7 @@ class Spoof(SyncAPIResource):
                     },
                     spoof_get_params.SpoofGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SpoofGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[SpoofGetResponse], ResultWrapper[SpoofGetResponse]),
         )
@@ -270,7 +270,7 @@ class AsyncSpoof(AsyncAPIResource):
                     },
                     spoof_get_params.SpoofGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SpoofGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[SpoofGetResponse], ResultWrapper[SpoofGetResponse]),
         )

@@ -75,7 +75,7 @@ class Bulks(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"domain": domain}, bulk_get_params.BulkGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[BulkGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BulkGetResponse]], ResultWrapper[BulkGetResponse]),
         )
@@ -128,7 +128,7 @@ class AsyncBulks(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"domain": domain}, bulk_get_params.BulkGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[BulkGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BulkGetResponse]], ResultWrapper[BulkGetResponse]),
         )

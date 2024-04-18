@@ -156,7 +156,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_get_params.TimeseriesGroupGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupGetResponse], ResultWrapper[TimeseriesGroupGetResponse]),
         )
@@ -282,7 +282,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_http_method_params.TimeseriesGroupHTTPMethodParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupHTTPMethodResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupHTTPMethodResponse], ResultWrapper[TimeseriesGroupHTTPMethodResponse]),
         )
@@ -458,7 +458,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_http_version_params.TimeseriesGroupHTTPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupHTTPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
@@ -643,7 +643,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_industry_params.TimeseriesGroupIndustryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupIndustryResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupIndustryResponse], ResultWrapper[TimeseriesGroupIndustryResponse]),
         )
@@ -819,7 +819,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_ip_version_params.TimeseriesGroupIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
@@ -999,7 +999,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_managed_rules_params.TimeseriesGroupManagedRulesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupManagedRulesResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupManagedRulesResponse], ResultWrapper[TimeseriesGroupManagedRulesResponse]),
         )
@@ -1170,7 +1170,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_mitigation_product_params.TimeseriesGroupMitigationProductParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupMitigationProductResponse]._unwrapper,
             ),
             cast_to=cast(
                 Type[TimeseriesGroupMitigationProductResponse], ResultWrapper[TimeseriesGroupMitigationProductResponse]
@@ -1357,7 +1357,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_vertical_params.TimeseriesGroupVerticalParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupVerticalResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupVerticalResponse], ResultWrapper[TimeseriesGroupVerticalResponse]),
         )
@@ -1472,7 +1472,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_get_params.TimeseriesGroupGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupGetResponse], ResultWrapper[TimeseriesGroupGetResponse]),
         )
@@ -1598,7 +1598,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_http_method_params.TimeseriesGroupHTTPMethodParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupHTTPMethodResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupHTTPMethodResponse], ResultWrapper[TimeseriesGroupHTTPMethodResponse]),
         )
@@ -1774,7 +1774,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_http_version_params.TimeseriesGroupHTTPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupHTTPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
@@ -1959,7 +1959,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_industry_params.TimeseriesGroupIndustryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupIndustryResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupIndustryResponse], ResultWrapper[TimeseriesGroupIndustryResponse]),
         )
@@ -2135,7 +2135,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_ip_version_params.TimeseriesGroupIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
@@ -2315,7 +2315,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_managed_rules_params.TimeseriesGroupManagedRulesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupManagedRulesResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupManagedRulesResponse], ResultWrapper[TimeseriesGroupManagedRulesResponse]),
         )
@@ -2486,7 +2486,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_mitigation_product_params.TimeseriesGroupMitigationProductParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupMitigationProductResponse]._unwrapper,
             ),
             cast_to=cast(
                 Type[TimeseriesGroupMitigationProductResponse], ResultWrapper[TimeseriesGroupMitigationProductResponse]
@@ -2673,7 +2673,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_vertical_params.TimeseriesGroupVerticalParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupVerticalResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupVerticalResponse], ResultWrapper[TimeseriesGroupVerticalResponse]),
         )

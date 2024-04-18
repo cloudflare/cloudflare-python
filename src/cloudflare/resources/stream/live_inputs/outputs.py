@@ -103,7 +103,7 @@ class Outputs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Output]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Output]], ResultWrapper[Output]),
         )
@@ -162,7 +162,7 @@ class Outputs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Output]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Output]], ResultWrapper[Output]),
         )
@@ -334,7 +334,7 @@ class AsyncOutputs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Output]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Output]], ResultWrapper[Output]),
         )
@@ -393,7 +393,7 @@ class AsyncOutputs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Output]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Output]], ResultWrapper[Output]),
         )

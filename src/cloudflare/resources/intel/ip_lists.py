@@ -67,7 +67,7 @@ class IPLists(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IPListGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IPListGetResponse]], ResultWrapper[IPListGetResponse]),
         )
@@ -116,7 +116,7 @@ class AsyncIPLists(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IPListGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IPListGetResponse]], ResultWrapper[IPListGetResponse]),
         )

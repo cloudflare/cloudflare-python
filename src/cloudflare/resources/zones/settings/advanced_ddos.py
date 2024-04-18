@@ -69,7 +69,7 @@ class AdvancedDDoS(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[advanced_ddos.AdvancedDDoS]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[advanced_ddos.AdvancedDDoS]], ResultWrapper[advanced_ddos.AdvancedDDoS]),
         )
@@ -120,7 +120,7 @@ class AsyncAdvancedDDoS(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[advanced_ddos.AdvancedDDoS]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[advanced_ddos.AdvancedDDoS]], ResultWrapper[advanced_ddos.AdvancedDDoS]),
         )

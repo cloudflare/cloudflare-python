@@ -144,7 +144,7 @@ class Previews(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
@@ -190,7 +190,7 @@ class Previews(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PreviewDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[PreviewDeleteResponse], ResultWrapper[PreviewDeleteResponse]),
         )
@@ -234,7 +234,7 @@ class Previews(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
@@ -348,7 +348,7 @@ class AsyncPreviews(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
@@ -394,7 +394,7 @@ class AsyncPreviews(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PreviewDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[PreviewDeleteResponse], ResultWrapper[PreviewDeleteResponse]),
         )
@@ -438,7 +438,7 @@ class AsyncPreviews(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )

@@ -112,7 +112,7 @@ class EmailRouting(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Settings]._unwrapper,
             ),
             cast_to=cast(Type[Settings], ResultWrapper[Settings]),
         )
@@ -154,7 +154,7 @@ class EmailRouting(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Settings]._unwrapper,
             ),
             cast_to=cast(Type[Settings], ResultWrapper[Settings]),
         )
@@ -193,7 +193,7 @@ class EmailRouting(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Settings]._unwrapper,
             ),
             cast_to=cast(Type[Settings], ResultWrapper[Settings]),
         )
@@ -258,7 +258,7 @@ class AsyncEmailRouting(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Settings]._unwrapper,
             ),
             cast_to=cast(Type[Settings], ResultWrapper[Settings]),
         )
@@ -300,7 +300,7 @@ class AsyncEmailRouting(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Settings]._unwrapper,
             ),
             cast_to=cast(Type[Settings], ResultWrapper[Settings]),
         )
@@ -339,7 +339,7 @@ class AsyncEmailRouting(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Settings]._unwrapper,
             ),
             cast_to=cast(Type[Settings], ResultWrapper[Settings]),
         )

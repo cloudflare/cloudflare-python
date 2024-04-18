@@ -121,7 +121,7 @@ class Prefixes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Prefix]._unwrapper,
             ),
             cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
@@ -205,7 +205,7 @@ class Prefixes(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PrefixDeleteResponse]
@@ -256,7 +256,7 @@ class Prefixes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Prefix]._unwrapper,
             ),
             cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
@@ -300,7 +300,7 @@ class Prefixes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Prefix]._unwrapper,
             ),
             cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
@@ -374,7 +374,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Prefix]._unwrapper,
             ),
             cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
@@ -458,7 +458,7 @@ class AsyncPrefixes(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PrefixDeleteResponse]
@@ -509,7 +509,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Prefix]._unwrapper,
             ),
             cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )
@@ -553,7 +553,7 @@ class AsyncPrefixes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Prefix]._unwrapper,
             ),
             cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
         )

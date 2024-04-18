@@ -146,7 +146,7 @@ class Summaries(SyncAPIResource):
                         },
                         summary_get_params.SummaryGetParams,
                     ),
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[SummaryGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SummaryGetResponse]
@@ -270,7 +270,7 @@ class AsyncSummaries(AsyncAPIResource):
                         },
                         summary_get_params.SummaryGetParams,
                     ),
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[SummaryGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SummaryGetResponse]

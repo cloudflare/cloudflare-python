@@ -86,7 +86,7 @@ class Consumers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConsumerCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConsumerCreateResponse]], ResultWrapper[ConsumerCreateResponse]),
         )
@@ -137,7 +137,7 @@ class Consumers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConsumerUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConsumerUpdateResponse]], ResultWrapper[ConsumerUpdateResponse]),
         )
@@ -190,7 +190,7 @@ class Consumers(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[ConsumerDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ConsumerDeleteResponse]
@@ -237,7 +237,7 @@ class Consumers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConsumerGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConsumerGetResponse]], ResultWrapper[ConsumerGetResponse]),
         )
@@ -293,7 +293,7 @@ class AsyncConsumers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConsumerCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConsumerCreateResponse]], ResultWrapper[ConsumerCreateResponse]),
         )
@@ -344,7 +344,7 @@ class AsyncConsumers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConsumerUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConsumerUpdateResponse]], ResultWrapper[ConsumerUpdateResponse]),
         )
@@ -397,7 +397,7 @@ class AsyncConsumers(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[ConsumerDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ConsumerDeleteResponse]
@@ -444,7 +444,7 @@ class AsyncConsumers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConsumerGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConsumerGetResponse]], ResultWrapper[ConsumerGetResponse]),
         )

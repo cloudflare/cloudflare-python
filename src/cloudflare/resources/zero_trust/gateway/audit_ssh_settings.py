@@ -82,7 +82,7 @@ class AuditSSHSettings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewaySettings]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
         )
@@ -119,7 +119,7 @@ class AuditSSHSettings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewaySettings]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
         )
@@ -179,7 +179,7 @@ class AsyncAuditSSHSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewaySettings]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
         )
@@ -216,7 +216,7 @@ class AsyncAuditSSHSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewaySettings]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
         )

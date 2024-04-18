@@ -78,7 +78,7 @@ class TieredCaching(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[TieredCachingEditResponse]
@@ -122,7 +122,7 @@ class TieredCaching(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[TieredCachingGetResponse]
@@ -180,7 +180,7 @@ class AsyncTieredCaching(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[TieredCachingEditResponse]
@@ -224,7 +224,7 @@ class AsyncTieredCaching(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[TieredCachingGetResponse]

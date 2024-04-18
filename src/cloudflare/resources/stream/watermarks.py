@@ -121,7 +121,7 @@ class Watermarks(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[WatermarkCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WatermarkCreateResponse]
@@ -208,7 +208,7 @@ class Watermarks(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[WatermarkDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WatermarkDeleteResponse]
@@ -257,7 +257,7 @@ class Watermarks(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[WatermarkGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WatermarkGetResponse]
@@ -350,7 +350,7 @@ class AsyncWatermarks(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[WatermarkCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WatermarkCreateResponse]
@@ -437,7 +437,7 @@ class AsyncWatermarks(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[WatermarkDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WatermarkDeleteResponse]
@@ -486,7 +486,7 @@ class AsyncWatermarks(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[WatermarkGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WatermarkGetResponse]
