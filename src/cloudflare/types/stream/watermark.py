@@ -7,10 +7,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["Watermaks"]
+__all__ = ["Watermark"]
 
 
-class Watermaks(BaseModel):
+class Watermark(BaseModel):
     created: Optional[datetime] = None
     """The date and a time a watermark profile was created."""
 

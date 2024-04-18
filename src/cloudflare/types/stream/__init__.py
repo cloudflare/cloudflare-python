@@ -7,7 +7,7 @@ from .keys import Keys as Keys
 from .audio import Audio as Audio
 from .video import Video as Video
 from .caption import Caption as Caption
-from .watermaks import Watermaks as Watermaks
+from .watermark import Watermark as Watermark
 from .live_input import LiveInput as LiveInput
 from .allowed_origins import AllowedOrigins as AllowedOrigins
 from .key_get_response import KeyGetResponse as KeyGetResponse
