@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from .shared import (
     Role as Role,
+    Member as Member,
     Result as Result,
     AuditLog as AuditLog,
     ErrorData as ErrorData,
-    IamMember as IamMember,
     Identifier as Identifier,
     Permission as Permission,
     ResponseInfo as ResponseInfo,
