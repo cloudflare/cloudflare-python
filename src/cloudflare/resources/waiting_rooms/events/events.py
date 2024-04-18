@@ -178,7 +178,7 @@ class Events(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Event]._unwrapper,
             ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
@@ -299,7 +299,7 @@ class Events(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Event]._unwrapper,
             ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
@@ -401,7 +401,7 @@ class Events(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EventDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[EventDeleteResponse], ResultWrapper[EventDeleteResponse]),
         )
@@ -522,7 +522,7 @@ class Events(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Event]._unwrapper,
             ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
@@ -567,7 +567,7 @@ class Events(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Event]._unwrapper,
             ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
@@ -705,7 +705,7 @@ class AsyncEvents(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Event]._unwrapper,
             ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
@@ -826,7 +826,7 @@ class AsyncEvents(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Event]._unwrapper,
             ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
@@ -928,7 +928,7 @@ class AsyncEvents(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[EventDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[EventDeleteResponse], ResultWrapper[EventDeleteResponse]),
         )
@@ -1049,7 +1049,7 @@ class AsyncEvents(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Event]._unwrapper,
             ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
@@ -1094,7 +1094,7 @@ class AsyncEvents(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Event]._unwrapper,
             ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )

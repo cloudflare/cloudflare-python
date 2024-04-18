@@ -85,7 +85,7 @@ class Traceroutes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TracerouteCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TracerouteCreateResponse]], ResultWrapper[TracerouteCreateResponse]),
         )
@@ -148,7 +148,7 @@ class AsyncTraceroutes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TracerouteCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TracerouteCreateResponse]], ResultWrapper[TracerouteCreateResponse]),
         )

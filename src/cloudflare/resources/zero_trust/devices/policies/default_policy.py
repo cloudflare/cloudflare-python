@@ -65,7 +65,7 @@ class DefaultPolicy(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DefaultPolicyGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DefaultPolicyGetResponse]], ResultWrapper[DefaultPolicyGetResponse]),
         )
@@ -112,7 +112,7 @@ class AsyncDefaultPolicy(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DefaultPolicyGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DefaultPolicyGetResponse]], ResultWrapper[DefaultPolicyGetResponse]),
         )

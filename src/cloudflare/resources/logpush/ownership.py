@@ -95,7 +95,7 @@ class Ownership(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OwnershipCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OwnershipCreateResponse]], ResultWrapper[OwnershipCreateResponse]),
         )
@@ -162,7 +162,7 @@ class Ownership(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OwnershipValidation]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OwnershipValidation]], ResultWrapper[OwnershipValidation]),
         )
@@ -232,7 +232,7 @@ class AsyncOwnership(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OwnershipCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OwnershipCreateResponse]], ResultWrapper[OwnershipCreateResponse]),
         )
@@ -299,7 +299,7 @@ class AsyncOwnership(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OwnershipValidation]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OwnershipValidation]], ResultWrapper[OwnershipValidation]),
         )

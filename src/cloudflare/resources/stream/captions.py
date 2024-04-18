@@ -25,6 +25,7 @@ from ..._base_client import (
 )
 from ...types.stream import (
     CaptionGetResponse,
+    CaptionDeleteResponse,
     CaptionUpdateResponse,
     caption_delete_params,
     caption_update_params,
@@ -93,7 +94,7 @@ class Captions(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[CaptionUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CaptionUpdateResponse]
@@ -147,7 +148,7 @@ class Captions(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CaptionDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
@@ -191,7 +192,7 @@ class Captions(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CaptionGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CaptionGetResponse]], ResultWrapper[CaptionGetResponse]),
         )
@@ -257,7 +258,7 @@ class AsyncCaptions(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[CaptionUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CaptionUpdateResponse]
@@ -311,7 +312,7 @@ class AsyncCaptions(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CaptionDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
@@ -355,7 +356,7 @@ class AsyncCaptions(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CaptionGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CaptionGetResponse]], ResultWrapper[CaptionGetResponse]),
         )

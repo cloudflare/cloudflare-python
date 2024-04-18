@@ -94,7 +94,7 @@ class Members(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[UserWithInviteCode]._unwrapper,
             ),
             cast_to=cast(Type[UserWithInviteCode], ResultWrapper[UserWithInviteCode]),
         )
@@ -138,7 +138,7 @@ class Members(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Member]._unwrapper,
             ),
             cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
@@ -240,7 +240,7 @@ class Members(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MemberDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MemberDeleteResponse]], ResultWrapper[MemberDeleteResponse]),
         )
@@ -280,7 +280,7 @@ class Members(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Member]._unwrapper,
             ),
             cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
@@ -340,7 +340,7 @@ class AsyncMembers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[UserWithInviteCode]._unwrapper,
             ),
             cast_to=cast(Type[UserWithInviteCode], ResultWrapper[UserWithInviteCode]),
         )
@@ -384,7 +384,7 @@ class AsyncMembers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Member]._unwrapper,
             ),
             cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
@@ -486,7 +486,7 @@ class AsyncMembers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MemberDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MemberDeleteResponse]], ResultWrapper[MemberDeleteResponse]),
         )
@@ -526,7 +526,7 @@ class AsyncMembers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Member]._unwrapper,
             ),
             cast_to=cast(Type[Member], ResultWrapper[Member]),
         )

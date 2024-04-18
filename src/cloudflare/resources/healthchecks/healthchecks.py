@@ -161,7 +161,7 @@ class Healthchecks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
@@ -270,7 +270,7 @@ class Healthchecks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
@@ -368,7 +368,7 @@ class Healthchecks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[HealthcheckDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[HealthcheckDeleteResponse], ResultWrapper[HealthcheckDeleteResponse]),
         )
@@ -477,7 +477,7 @@ class Healthchecks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
@@ -521,7 +521,7 @@ class Healthchecks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
@@ -639,7 +639,7 @@ class AsyncHealthchecks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
@@ -748,7 +748,7 @@ class AsyncHealthchecks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
@@ -846,7 +846,7 @@ class AsyncHealthchecks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[HealthcheckDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[HealthcheckDeleteResponse], ResultWrapper[HealthcheckDeleteResponse]),
         )
@@ -955,7 +955,7 @@ class AsyncHealthchecks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
@@ -999,7 +999,7 @@ class AsyncHealthchecks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
             ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )

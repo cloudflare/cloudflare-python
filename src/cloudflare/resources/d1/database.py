@@ -84,7 +84,7 @@ class Database(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DatabaseCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[DatabaseCreateResponse], ResultWrapper[DatabaseCreateResponse]),
         )
@@ -186,7 +186,7 @@ class Database(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[DatabaseDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DatabaseDeleteResponse]
@@ -233,7 +233,7 @@ class Database(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[D1]._unwrapper,
             ),
             cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
@@ -286,7 +286,7 @@ class Database(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper,
             ),
             cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
         )
@@ -337,7 +337,7 @@ class AsyncDatabase(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DatabaseCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[DatabaseCreateResponse], ResultWrapper[DatabaseCreateResponse]),
         )
@@ -439,7 +439,7 @@ class AsyncDatabase(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[DatabaseDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DatabaseDeleteResponse]
@@ -486,7 +486,7 @@ class AsyncDatabase(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[D1]._unwrapper,
             ),
             cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
@@ -539,7 +539,7 @@ class AsyncDatabase(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper,
             ),
             cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
         )

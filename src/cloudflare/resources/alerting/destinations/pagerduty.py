@@ -72,7 +72,7 @@ class PagerdutyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PagerdutyCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PagerdutyCreateResponse], ResultWrapper[PagerdutyCreateResponse]),
         )
@@ -113,7 +113,7 @@ class PagerdutyResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[PagerdutyDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PagerdutyDeleteResponse]
@@ -155,7 +155,7 @@ class PagerdutyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PagerdutyGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PagerdutyGetResponse]], ResultWrapper[PagerdutyGetResponse]),
         )
@@ -199,7 +199,7 @@ class PagerdutyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PagerdutyLinkResponse]._unwrapper,
             ),
             cast_to=cast(Type[PagerdutyLinkResponse], ResultWrapper[PagerdutyLinkResponse]),
         )
@@ -248,7 +248,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PagerdutyCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PagerdutyCreateResponse], ResultWrapper[PagerdutyCreateResponse]),
         )
@@ -289,7 +289,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[PagerdutyDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PagerdutyDeleteResponse]
@@ -331,7 +331,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PagerdutyGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PagerdutyGetResponse]], ResultWrapper[PagerdutyGetResponse]),
         )
@@ -375,7 +375,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PagerdutyLinkResponse]._unwrapper,
             ),
             cast_to=cast(Type[PagerdutyLinkResponse], ResultWrapper[PagerdutyLinkResponse]),
         )

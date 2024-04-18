@@ -147,7 +147,7 @@ class CustomCertificates(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[CustomCertificateCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateCreateResponse]
@@ -261,7 +261,7 @@ class CustomCertificates(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CustomCertificateDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[CustomCertificateDeleteResponse], ResultWrapper[CustomCertificateDeleteResponse]),
         )
@@ -354,7 +354,7 @@ class CustomCertificates(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[CustomCertificateEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateEditResponse]
@@ -405,7 +405,7 @@ class CustomCertificates(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[CustomCertificateGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateGetResponse]
@@ -510,7 +510,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[CustomCertificateCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateCreateResponse]
@@ -624,7 +624,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CustomCertificateDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[CustomCertificateDeleteResponse], ResultWrapper[CustomCertificateDeleteResponse]),
         )
@@ -717,7 +717,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[CustomCertificateEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateEditResponse]
@@ -768,7 +768,7 @@ class AsyncCustomCertificates(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[CustomCertificateGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateGetResponse]

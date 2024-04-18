@@ -74,7 +74,7 @@ class Seats(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SeatEditResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SeatEditResponse]], ResultWrapper[SeatEditResponse]),
         )
@@ -126,7 +126,7 @@ class AsyncSeats(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SeatEditResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SeatEditResponse]], ResultWrapper[SeatEditResponse]),
         )

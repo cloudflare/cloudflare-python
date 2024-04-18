@@ -77,7 +77,7 @@ class AutomaticHTTPSRewrites(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[automatic_https_rewrites.AutomaticHTTPSRewrites]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[automatic_https_rewrites.AutomaticHTTPSRewrites]],
@@ -119,7 +119,7 @@ class AutomaticHTTPSRewrites(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[automatic_https_rewrites.AutomaticHTTPSRewrites]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[automatic_https_rewrites.AutomaticHTTPSRewrites]],
@@ -178,7 +178,7 @@ class AsyncAutomaticHTTPSRewrites(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[automatic_https_rewrites.AutomaticHTTPSRewrites]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[automatic_https_rewrites.AutomaticHTTPSRewrites]],
@@ -220,7 +220,7 @@ class AsyncAutomaticHTTPSRewrites(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[automatic_https_rewrites.AutomaticHTTPSRewrites]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[automatic_https_rewrites.AutomaticHTTPSRewrites]],

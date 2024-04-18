@@ -79,7 +79,7 @@ class FontSettings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[font_settings.FontSettings]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[font_settings.FontSettings]], ResultWrapper[font_settings.FontSettings]),
         )
@@ -121,7 +121,7 @@ class FontSettings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[font_settings.FontSettings]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[font_settings.FontSettings]], ResultWrapper[font_settings.FontSettings]),
         )
@@ -177,7 +177,7 @@ class AsyncFontSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[font_settings.FontSettings]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[font_settings.FontSettings]], ResultWrapper[font_settings.FontSettings]),
         )
@@ -219,7 +219,7 @@ class AsyncFontSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[font_settings.FontSettings]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[font_settings.FontSettings]], ResultWrapper[font_settings.FontSettings]),
         )

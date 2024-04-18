@@ -91,7 +91,7 @@ class WARPConnector(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[WARPConnectorCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WARPConnectorCreateResponse]
@@ -222,7 +222,7 @@ class WARPConnector(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[WARPConnectorDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WARPConnectorDeleteResponse]
@@ -285,7 +285,7 @@ class WARPConnector(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[WARPConnectorEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WARPConnectorEditResponse]
@@ -334,7 +334,7 @@ class WARPConnector(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[WARPConnectorGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WARPConnectorGetResponse]
@@ -384,7 +384,7 @@ class WARPConnector(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WARPConnectorTokenResponse]
@@ -444,7 +444,7 @@ class AsyncWARPConnector(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[WARPConnectorCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WARPConnectorCreateResponse]
@@ -575,7 +575,7 @@ class AsyncWARPConnector(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[WARPConnectorDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WARPConnectorDeleteResponse]
@@ -638,7 +638,7 @@ class AsyncWARPConnector(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[WARPConnectorEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WARPConnectorEditResponse]
@@ -687,7 +687,7 @@ class AsyncWARPConnector(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[WARPConnectorGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WARPConnectorGetResponse]
@@ -737,7 +737,7 @@ class AsyncWARPConnector(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WARPConnectorTokenResponse]

@@ -70,7 +70,7 @@ class References(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ReferenceGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ReferenceGetResponse]], ResultWrapper[ReferenceGetResponse]),
         )
@@ -122,7 +122,7 @@ class AsyncReferences(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ReferenceGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ReferenceGetResponse]], ResultWrapper[ReferenceGetResponse]),
         )

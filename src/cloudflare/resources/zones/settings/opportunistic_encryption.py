@@ -79,7 +79,7 @@ class OpportunisticEncryptionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OpportunisticEncryption]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OpportunisticEncryption]], ResultWrapper[OpportunisticEncryption]),
         )
@@ -118,7 +118,7 @@ class OpportunisticEncryptionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OpportunisticEncryption]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OpportunisticEncryption]], ResultWrapper[OpportunisticEncryption]),
         )
@@ -174,7 +174,7 @@ class AsyncOpportunisticEncryptionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OpportunisticEncryption]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OpportunisticEncryption]], ResultWrapper[OpportunisticEncryption]),
         )
@@ -213,7 +213,7 @@ class AsyncOpportunisticEncryptionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OpportunisticEncryption]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OpportunisticEncryption]], ResultWrapper[OpportunisticEncryption]),
         )

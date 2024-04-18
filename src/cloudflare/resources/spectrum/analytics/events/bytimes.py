@@ -151,7 +151,7 @@ class Bytimes(SyncAPIResource):
                         },
                         bytime_get_params.BytimeGetParams,
                     ),
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[BytimeGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[BytimeGetResponse]
@@ -280,7 +280,7 @@ class AsyncBytimes(AsyncAPIResource):
                         },
                         bytime_get_params.BytimeGetParams,
                     ),
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[BytimeGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[BytimeGetResponse]

@@ -79,7 +79,7 @@ class EarlyHints(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[early_hints.EarlyHints]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[early_hints.EarlyHints]], ResultWrapper[early_hints.EarlyHints]),
         )
@@ -121,7 +121,7 @@ class EarlyHints(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[early_hints.EarlyHints]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[early_hints.EarlyHints]], ResultWrapper[early_hints.EarlyHints]),
         )
@@ -177,7 +177,7 @@ class AsyncEarlyHints(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[early_hints.EarlyHints]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[early_hints.EarlyHints]], ResultWrapper[early_hints.EarlyHints]),
         )
@@ -219,7 +219,7 @@ class AsyncEarlyHints(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[early_hints.EarlyHints]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[early_hints.EarlyHints]], ResultWrapper[early_hints.EarlyHints]),
         )

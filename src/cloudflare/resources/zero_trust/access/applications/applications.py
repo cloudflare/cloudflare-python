@@ -769,7 +769,7 @@ class Applications(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Application]
@@ -1485,7 +1485,7 @@ class Applications(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Application]
@@ -1592,7 +1592,7 @@ class Applications(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ApplicationDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ApplicationDeleteResponse]], ResultWrapper[ApplicationDeleteResponse]),
         )
@@ -1649,7 +1649,7 @@ class Applications(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Application]
@@ -1707,7 +1707,7 @@ class Applications(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
@@ -2417,7 +2417,7 @@ class AsyncApplications(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Application]
@@ -3133,7 +3133,7 @@ class AsyncApplications(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Application]
@@ -3240,7 +3240,7 @@ class AsyncApplications(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ApplicationDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ApplicationDeleteResponse]], ResultWrapper[ApplicationDeleteResponse]),
         )
@@ -3297,7 +3297,7 @@ class AsyncApplications(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Application]
@@ -3355,7 +3355,7 @@ class AsyncApplications(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )

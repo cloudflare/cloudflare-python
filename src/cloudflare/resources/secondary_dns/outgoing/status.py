@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -19,6 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
+from ....types.secondary_dns import EnableTransfer
 
 __all__ = ["Status", "AsyncStatus"]
 
@@ -64,7 +65,7 @@ class Status(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[EnableTransfer]]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
@@ -111,7 +112,7 @@ class AsyncStatus(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[EnableTransfer]]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )

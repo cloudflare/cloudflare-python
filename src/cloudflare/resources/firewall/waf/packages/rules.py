@@ -190,7 +190,7 @@ class Rules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RuleEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RuleEditResponse]
@@ -247,7 +247,7 @@ class Rules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RuleGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RuleGetResponse]
@@ -409,7 +409,7 @@ class AsyncRules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RuleEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RuleEditResponse]
@@ -466,7 +466,7 @@ class AsyncRules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RuleGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RuleGetResponse]

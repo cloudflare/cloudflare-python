@@ -164,7 +164,7 @@ class HTTPProtocol(SyncAPIResource):
                     },
                     http_protocol_get_params.HTTPProtocolGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[HTTPProtocolGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[HTTPProtocolGetResponse], ResultWrapper[HTTPProtocolGetResponse]),
         )
@@ -304,7 +304,7 @@ class AsyncHTTPProtocol(AsyncAPIResource):
                     },
                     http_protocol_get_params.HTTPProtocolGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[HTTPProtocolGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[HTTPProtocolGetResponse], ResultWrapper[HTTPProtocolGetResponse]),
         )

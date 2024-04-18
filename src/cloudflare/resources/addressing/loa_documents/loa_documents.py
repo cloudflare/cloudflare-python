@@ -87,7 +87,7 @@ class LOADocuments(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LOADocumentCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[LOADocumentCreateResponse], ResultWrapper[LOADocumentCreateResponse]),
         )
@@ -146,7 +146,7 @@ class AsyncLOADocuments(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LOADocumentCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[LOADocumentCreateResponse], ResultWrapper[LOADocumentCreateResponse]),
         )

@@ -129,7 +129,7 @@ class Tokens(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TokenCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[TokenCreateResponse], ResultWrapper[TokenCreateResponse]),
         )
@@ -194,7 +194,7 @@ class Tokens(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[TokenUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[TokenUpdateResponse]
@@ -285,7 +285,7 @@ class Tokens(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TokenDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TokenDeleteResponse]], ResultWrapper[TokenDeleteResponse]),
         )
@@ -322,7 +322,7 @@ class Tokens(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[TokenGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[TokenGetResponse]
@@ -348,7 +348,7 @@ class Tokens(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TokenVerifyResponse]._unwrapper,
             ),
             cast_to=cast(Type[TokenVerifyResponse], ResultWrapper[TokenVerifyResponse]),
         )
@@ -424,7 +424,7 @@ class AsyncTokens(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TokenCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[TokenCreateResponse], ResultWrapper[TokenCreateResponse]),
         )
@@ -489,7 +489,7 @@ class AsyncTokens(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[TokenUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[TokenUpdateResponse]
@@ -580,7 +580,7 @@ class AsyncTokens(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TokenDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TokenDeleteResponse]], ResultWrapper[TokenDeleteResponse]),
         )
@@ -617,7 +617,7 @@ class AsyncTokens(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[TokenGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[TokenGetResponse]
@@ -643,7 +643,7 @@ class AsyncTokens(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TokenVerifyResponse]._unwrapper,
             ),
             cast_to=cast(Type[TokenVerifyResponse], ResultWrapper[TokenVerifyResponse]),
         )

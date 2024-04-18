@@ -139,7 +139,7 @@ class TrafficAnomalies(SyncAPIResource):
                     },
                     traffic_anomaly_get_params.TrafficAnomalyGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TrafficAnomalyGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TrafficAnomalyGetResponse], ResultWrapper[TrafficAnomalyGetResponse]),
         )
@@ -246,7 +246,7 @@ class AsyncTrafficAnomalies(AsyncAPIResource):
                     },
                     traffic_anomaly_get_params.TrafficAnomalyGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TrafficAnomalyGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TrafficAnomalyGetResponse], ResultWrapper[TrafficAnomalyGetResponse]),
         )

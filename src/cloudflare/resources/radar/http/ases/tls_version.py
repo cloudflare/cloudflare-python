@@ -168,7 +168,7 @@ class TLSVersion(SyncAPIResource):
                     },
                     tls_version_get_params.TLSVersionGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TLSVersionGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TLSVersionGetResponse], ResultWrapper[TLSVersionGetResponse]),
         )
@@ -312,7 +312,7 @@ class AsyncTLSVersion(AsyncAPIResource):
                     },
                     tls_version_get_params.TLSVersionGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TLSVersionGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TLSVersionGetResponse], ResultWrapper[TLSVersionGetResponse]),
         )

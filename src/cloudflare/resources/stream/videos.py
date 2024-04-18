@@ -75,7 +75,7 @@ class Videos(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"creator": creator}, video_storage_usage_params.VideoStorageUsageParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[VideoStorageUsageResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[VideoStorageUsageResponse]], ResultWrapper[VideoStorageUsageResponse]),
         )
@@ -130,7 +130,7 @@ class AsyncVideos(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"creator": creator}, video_storage_usage_params.VideoStorageUsageParams
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[VideoStorageUsageResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[VideoStorageUsageResponse]], ResultWrapper[VideoStorageUsageResponse]),
         )

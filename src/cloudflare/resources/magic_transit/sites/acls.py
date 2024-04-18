@@ -87,7 +87,7 @@ class ACLs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ACLCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[ACLCreateResponse], ResultWrapper[ACLCreateResponse]),
         )
@@ -138,7 +138,7 @@ class ACLs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ACLUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[ACLUpdateResponse], ResultWrapper[ACLUpdateResponse]),
         )
@@ -182,7 +182,7 @@ class ACLs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ACLListResponse]._unwrapper,
             ),
             cast_to=cast(Type[ACLListResponse], ResultWrapper[ACLListResponse]),
         )
@@ -233,7 +233,7 @@ class ACLs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ACLDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[ACLDeleteResponse], ResultWrapper[ACLDeleteResponse]),
         )
@@ -282,7 +282,7 @@ class ACLs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ACLGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[ACLGetResponse], ResultWrapper[ACLGetResponse]),
         )
@@ -338,7 +338,7 @@ class AsyncACLs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ACLCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[ACLCreateResponse], ResultWrapper[ACLCreateResponse]),
         )
@@ -389,7 +389,7 @@ class AsyncACLs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ACLUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[ACLUpdateResponse], ResultWrapper[ACLUpdateResponse]),
         )
@@ -433,7 +433,7 @@ class AsyncACLs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ACLListResponse]._unwrapper,
             ),
             cast_to=cast(Type[ACLListResponse], ResultWrapper[ACLListResponse]),
         )
@@ -484,7 +484,7 @@ class AsyncACLs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ACLDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[ACLDeleteResponse], ResultWrapper[ACLDeleteResponse]),
         )
@@ -533,7 +533,7 @@ class AsyncACLs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ACLGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[ACLGetResponse], ResultWrapper[ACLGetResponse]),
         )

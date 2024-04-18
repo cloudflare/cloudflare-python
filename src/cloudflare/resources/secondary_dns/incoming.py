@@ -95,7 +95,7 @@ class IncomingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IncomingCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IncomingCreateResponse]], ResultWrapper[IncomingCreateResponse]),
         )
@@ -150,7 +150,7 @@ class IncomingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IncomingUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IncomingUpdateResponse]], ResultWrapper[IncomingUpdateResponse]),
         )
@@ -189,7 +189,7 @@ class IncomingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IncomingDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IncomingDeleteResponse]], ResultWrapper[IncomingDeleteResponse]),
         )
@@ -226,7 +226,7 @@ class IncomingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IncomingGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IncomingGetResponse]], ResultWrapper[IncomingGetResponse]),
         )
@@ -291,7 +291,7 @@ class AsyncIncomingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IncomingCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IncomingCreateResponse]], ResultWrapper[IncomingCreateResponse]),
         )
@@ -346,7 +346,7 @@ class AsyncIncomingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IncomingUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IncomingUpdateResponse]], ResultWrapper[IncomingUpdateResponse]),
         )
@@ -385,7 +385,7 @@ class AsyncIncomingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IncomingDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IncomingDeleteResponse]], ResultWrapper[IncomingDeleteResponse]),
         )
@@ -422,7 +422,7 @@ class AsyncIncomingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IncomingGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IncomingGetResponse]], ResultWrapper[IncomingGetResponse]),
         )

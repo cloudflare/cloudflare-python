@@ -80,7 +80,7 @@ class AlwaysOnlineResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AlwaysOnline]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AlwaysOnline]], ResultWrapper[AlwaysOnline]),
         )
@@ -123,7 +123,7 @@ class AlwaysOnlineResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AlwaysOnline]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AlwaysOnline]], ResultWrapper[AlwaysOnline]),
         )
@@ -180,7 +180,7 @@ class AsyncAlwaysOnlineResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AlwaysOnline]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AlwaysOnline]], ResultWrapper[AlwaysOnline]),
         )
@@ -223,7 +223,7 @@ class AsyncAlwaysOnlineResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AlwaysOnline]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AlwaysOnline]], ResultWrapper[AlwaysOnline]),
         )

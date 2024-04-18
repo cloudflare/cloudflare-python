@@ -158,7 +158,7 @@ class Tunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[TunnelCreateResponse], ResultWrapper[TunnelCreateResponse]),
         )
@@ -286,7 +286,7 @@ class Tunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[TunnelDeleteResponse], ResultWrapper[TunnelDeleteResponse]),
         )
@@ -346,7 +346,7 @@ class Tunnels(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[TunnelEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[TunnelEditResponse]
@@ -393,7 +393,7 @@ class Tunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TunnelGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TunnelGetResponse], ResultWrapper[TunnelGetResponse]),
         )
@@ -476,7 +476,7 @@ class AsyncTunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[TunnelCreateResponse], ResultWrapper[TunnelCreateResponse]),
         )
@@ -604,7 +604,7 @@ class AsyncTunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[TunnelDeleteResponse], ResultWrapper[TunnelDeleteResponse]),
         )
@@ -664,7 +664,7 @@ class AsyncTunnels(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[TunnelEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[TunnelEditResponse]
@@ -711,7 +711,7 @@ class AsyncTunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TunnelGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TunnelGetResponse], ResultWrapper[TunnelGetResponse]),
         )

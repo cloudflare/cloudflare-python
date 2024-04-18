@@ -88,7 +88,7 @@ class Memberships(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[MembershipUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[MembershipUpdateResponse]
@@ -197,7 +197,7 @@ class Memberships(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MembershipDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[MembershipDeleteResponse], ResultWrapper[MembershipDeleteResponse]),
         )
@@ -238,7 +238,7 @@ class Memberships(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[MembershipGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[MembershipGetResponse]
@@ -296,7 +296,7 @@ class AsyncMemberships(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[MembershipUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[MembershipUpdateResponse]
@@ -405,7 +405,7 @@ class AsyncMemberships(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MembershipDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[MembershipDeleteResponse], ResultWrapper[MembershipDeleteResponse]),
         )
@@ -446,7 +446,7 @@ class AsyncMemberships(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[MembershipGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[MembershipGetResponse]

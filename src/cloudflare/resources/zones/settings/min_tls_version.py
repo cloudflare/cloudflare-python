@@ -76,7 +76,7 @@ class MinTLSVersionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MinTLSVersion]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MinTLSVersion]], ResultWrapper[MinTLSVersion]),
         )
@@ -115,7 +115,7 @@ class MinTLSVersionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MinTLSVersion]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MinTLSVersion]], ResultWrapper[MinTLSVersion]),
         )
@@ -168,7 +168,7 @@ class AsyncMinTLSVersionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MinTLSVersion]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MinTLSVersion]], ResultWrapper[MinTLSVersion]),
         )
@@ -207,7 +207,7 @@ class AsyncMinTLSVersionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MinTLSVersion]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MinTLSVersion]], ResultWrapper[MinTLSVersion]),
         )

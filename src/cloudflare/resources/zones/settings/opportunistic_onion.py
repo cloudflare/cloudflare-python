@@ -78,7 +78,7 @@ class OpportunisticOnionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OpportunisticOnion]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OpportunisticOnion]], ResultWrapper[OpportunisticOnion]),
         )
@@ -118,7 +118,7 @@ class OpportunisticOnionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OpportunisticOnion]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OpportunisticOnion]], ResultWrapper[OpportunisticOnion]),
         )
@@ -175,7 +175,7 @@ class AsyncOpportunisticOnionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OpportunisticOnion]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OpportunisticOnion]], ResultWrapper[OpportunisticOnion]),
         )
@@ -215,7 +215,7 @@ class AsyncOpportunisticOnionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OpportunisticOnion]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OpportunisticOnion]], ResultWrapper[OpportunisticOnion]),
         )

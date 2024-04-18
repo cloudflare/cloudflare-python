@@ -84,7 +84,7 @@ class UniqueDevices(SyncAPIResource):
                     },
                     unique_device_list_params.UniqueDeviceListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[unique_devices.UniqueDevices]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[unique_devices.UniqueDevices]], ResultWrapper[unique_devices.UniqueDevices]),
         )
@@ -146,7 +146,7 @@ class AsyncUniqueDevices(AsyncAPIResource):
                     },
                     unique_device_list_params.UniqueDeviceListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[unique_devices.UniqueDevices]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[unique_devices.UniqueDevices]], ResultWrapper[unique_devices.UniqueDevices]),
         )

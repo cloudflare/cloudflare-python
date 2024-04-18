@@ -143,7 +143,7 @@ class Locations(SyncAPIResource):
                     },
                     location_origin_params.LocationOriginParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LocationOriginResponse]._unwrapper,
             ),
             cast_to=cast(Type[LocationOriginResponse], ResultWrapper[LocationOriginResponse]),
         )
@@ -247,7 +247,7 @@ class Locations(SyncAPIResource):
                     },
                     location_target_params.LocationTargetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LocationTargetResponse]._unwrapper,
             ),
             cast_to=cast(Type[LocationTargetResponse], ResultWrapper[LocationTargetResponse]),
         )
@@ -361,7 +361,7 @@ class AsyncLocations(AsyncAPIResource):
                     },
                     location_origin_params.LocationOriginParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LocationOriginResponse]._unwrapper,
             ),
             cast_to=cast(Type[LocationOriginResponse], ResultWrapper[LocationOriginResponse]),
         )
@@ -465,7 +465,7 @@ class AsyncLocations(AsyncAPIResource):
                     },
                     location_target_params.LocationTargetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LocationTargetResponse]._unwrapper,
             ),
             cast_to=cast(Type[LocationTargetResponse], ResultWrapper[LocationTargetResponse]),
         )

@@ -107,7 +107,7 @@ class Miscategorizations(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[MiscategorizationCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[MiscategorizationCreateResponse]
@@ -194,7 +194,7 @@ class AsyncMiscategorizations(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[MiscategorizationCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[MiscategorizationCreateResponse]

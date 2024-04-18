@@ -91,7 +91,7 @@ class AudioTracks(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[AudioTrackDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AudioTrackDeleteResponse]
@@ -154,7 +154,7 @@ class AudioTracks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Audio]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Audio]], ResultWrapper[Audio]),
         )
@@ -220,7 +220,7 @@ class AudioTracks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Audio]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Audio]], ResultWrapper[Audio]),
         )
@@ -266,7 +266,7 @@ class AudioTracks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AudioTrackGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AudioTrackGetResponse]], ResultWrapper[AudioTrackGetResponse]),
         )
@@ -329,7 +329,7 @@ class AsyncAudioTracks(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[AudioTrackDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AudioTrackDeleteResponse]
@@ -392,7 +392,7 @@ class AsyncAudioTracks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Audio]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Audio]], ResultWrapper[Audio]),
         )
@@ -458,7 +458,7 @@ class AsyncAudioTracks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Audio]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Audio]], ResultWrapper[Audio]),
         )
@@ -504,7 +504,7 @@ class AsyncAudioTracks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AudioTrackGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AudioTrackGetResponse]], ResultWrapper[AudioTrackGetResponse]),
         )

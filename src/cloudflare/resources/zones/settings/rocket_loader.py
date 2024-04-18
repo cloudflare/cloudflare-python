@@ -93,7 +93,7 @@ class RocketLoaderResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RocketLoader]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RocketLoader]], ResultWrapper[RocketLoader]),
         )
@@ -141,7 +141,7 @@ class RocketLoaderResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RocketLoader]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RocketLoader]], ResultWrapper[RocketLoader]),
         )
@@ -212,7 +212,7 @@ class AsyncRocketLoaderResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RocketLoader]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RocketLoader]], ResultWrapper[RocketLoader]),
         )
@@ -260,7 +260,7 @@ class AsyncRocketLoaderResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RocketLoader]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RocketLoader]], ResultWrapper[RocketLoader]),
         )

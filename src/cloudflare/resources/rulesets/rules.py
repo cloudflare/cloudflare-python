@@ -1028,7 +1028,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RuleCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[RuleCreateResponse], ResultWrapper[RuleCreateResponse]),
         )
@@ -1090,7 +1090,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RuleDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[RuleDeleteResponse], ResultWrapper[RuleDeleteResponse]),
         )
@@ -2112,7 +2112,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RuleEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[RuleEditResponse], ResultWrapper[RuleEditResponse]),
         )
@@ -3109,7 +3109,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RuleCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[RuleCreateResponse], ResultWrapper[RuleCreateResponse]),
         )
@@ -3171,7 +3171,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RuleDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[RuleDeleteResponse], ResultWrapper[RuleDeleteResponse]),
         )
@@ -4193,7 +4193,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RuleEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[RuleEditResponse], ResultWrapper[RuleEditResponse]),
         )

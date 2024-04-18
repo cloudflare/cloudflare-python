@@ -89,7 +89,7 @@ class LANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LANCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[LANCreateResponse], ResultWrapper[LANCreateResponse]),
         )
@@ -140,7 +140,7 @@ class LANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LANUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[LANUpdateResponse], ResultWrapper[LANUpdateResponse]),
         )
@@ -184,7 +184,7 @@ class LANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LANListResponse]._unwrapper,
             ),
             cast_to=cast(Type[LANListResponse], ResultWrapper[LANListResponse]),
         )
@@ -235,7 +235,7 @@ class LANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LANDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[LANDeleteResponse], ResultWrapper[LANDeleteResponse]),
         )
@@ -284,7 +284,7 @@ class LANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LANGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[LANGetResponse], ResultWrapper[LANGetResponse]),
         )
@@ -342,7 +342,7 @@ class AsyncLANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LANCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[LANCreateResponse], ResultWrapper[LANCreateResponse]),
         )
@@ -393,7 +393,7 @@ class AsyncLANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LANUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[LANUpdateResponse], ResultWrapper[LANUpdateResponse]),
         )
@@ -437,7 +437,7 @@ class AsyncLANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LANListResponse]._unwrapper,
             ),
             cast_to=cast(Type[LANListResponse], ResultWrapper[LANListResponse]),
         )
@@ -488,7 +488,7 @@ class AsyncLANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LANDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[LANDeleteResponse], ResultWrapper[LANDeleteResponse]),
         )
@@ -537,7 +537,7 @@ class AsyncLANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[LANGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[LANGetResponse], ResultWrapper[LANGetResponse]),
         )

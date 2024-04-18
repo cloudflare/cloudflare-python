@@ -82,7 +82,7 @@ class SmartTieredCache(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SmartTieredCacheDeleteResponse]
@@ -130,7 +130,7 @@ class SmartTieredCache(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SmartTieredCacheEditResponse]
@@ -174,7 +174,7 @@ class SmartTieredCache(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SmartTieredCacheGetResponse]
@@ -230,7 +230,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SmartTieredCacheDeleteResponse]
@@ -280,7 +280,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SmartTieredCacheEditResponse]
@@ -324,7 +324,7 @@ class AsyncSmartTieredCache(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SmartTieredCacheGetResponse]

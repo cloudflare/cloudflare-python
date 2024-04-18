@@ -91,7 +91,7 @@ class MessageResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Message]._unwrapper,
             ),
             cast_to=cast(Type[Message], ResultWrapper[Message]),
         )
@@ -161,7 +161,7 @@ class MessageResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Message]._unwrapper,
             ),
             cast_to=cast(Type[Message], ResultWrapper[Message]),
         )
@@ -208,7 +208,7 @@ class MessageResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[MessageDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[MessageDeleteResponse]
@@ -284,7 +284,7 @@ class MessageResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MessageGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[MessageGetResponse], ResultWrapper[MessageGetResponse]),
         )
@@ -344,7 +344,7 @@ class AsyncMessageResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Message]._unwrapper,
             ),
             cast_to=cast(Type[Message], ResultWrapper[Message]),
         )
@@ -414,7 +414,7 @@ class AsyncMessageResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Message]._unwrapper,
             ),
             cast_to=cast(Type[Message], ResultWrapper[Message]),
         )
@@ -461,7 +461,7 @@ class AsyncMessageResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[MessageDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[MessageDeleteResponse]
@@ -537,7 +537,7 @@ class AsyncMessageResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MessageGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[MessageGetResponse], ResultWrapper[MessageGetResponse]),
         )

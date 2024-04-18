@@ -80,7 +80,7 @@ class Configurations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConfigurationUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConfigurationUpdateResponse]], ResultWrapper[ConfigurationUpdateResponse]),
         )
@@ -126,7 +126,7 @@ class Configurations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConfigurationEditResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConfigurationEditResponse]], ResultWrapper[ConfigurationEditResponse]),
         )
@@ -163,7 +163,7 @@ class Configurations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConfigurationGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConfigurationGetResponse]], ResultWrapper[ConfigurationGetResponse]),
         )
@@ -216,7 +216,7 @@ class AsyncConfigurations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConfigurationUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConfigurationUpdateResponse]], ResultWrapper[ConfigurationUpdateResponse]),
         )
@@ -262,7 +262,7 @@ class AsyncConfigurations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConfigurationEditResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConfigurationEditResponse]], ResultWrapper[ConfigurationEditResponse]),
         )
@@ -299,7 +299,7 @@ class AsyncConfigurations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ConfigurationGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ConfigurationGetResponse]], ResultWrapper[ConfigurationGetResponse]),
         )

@@ -96,7 +96,7 @@ class Variants(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VariantCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[VariantCreateResponse], ResultWrapper[VariantCreateResponse]),
         )
@@ -135,7 +135,7 @@ class Variants(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Variant]._unwrapper,
             ),
             cast_to=cast(Type[Variant], ResultWrapper[Variant]),
         )
@@ -181,7 +181,7 @@ class Variants(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[VariantDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[VariantDeleteResponse]
@@ -240,7 +240,7 @@ class Variants(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VariantEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
         )
@@ -282,7 +282,7 @@ class Variants(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VariantGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
         )
@@ -347,7 +347,7 @@ class AsyncVariants(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VariantCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[VariantCreateResponse], ResultWrapper[VariantCreateResponse]),
         )
@@ -386,7 +386,7 @@ class AsyncVariants(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Variant]._unwrapper,
             ),
             cast_to=cast(Type[Variant], ResultWrapper[Variant]),
         )
@@ -432,7 +432,7 @@ class AsyncVariants(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[VariantDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[VariantDeleteResponse]
@@ -491,7 +491,7 @@ class AsyncVariants(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VariantEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
         )
@@ -533,7 +533,7 @@ class AsyncVariants(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VariantGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
         )

@@ -89,7 +89,7 @@ class RateLimits(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RateLimitCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RateLimitCreateResponse]
@@ -191,7 +191,7 @@ class RateLimits(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RateLimitDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[RateLimitDeleteResponse], ResultWrapper[RateLimitDeleteResponse]),
         )
@@ -239,7 +239,7 @@ class RateLimits(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RateLimitEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RateLimitEditResponse]
@@ -288,7 +288,7 @@ class RateLimits(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RateLimitGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RateLimitGetResponse]
@@ -346,7 +346,7 @@ class AsyncRateLimits(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RateLimitCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RateLimitCreateResponse]
@@ -448,7 +448,7 @@ class AsyncRateLimits(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RateLimitDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[RateLimitDeleteResponse], ResultWrapper[RateLimitDeleteResponse]),
         )
@@ -496,7 +496,7 @@ class AsyncRateLimits(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RateLimitEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RateLimitEditResponse]
@@ -545,7 +545,7 @@ class AsyncRateLimits(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RateLimitGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RateLimitGetResponse]

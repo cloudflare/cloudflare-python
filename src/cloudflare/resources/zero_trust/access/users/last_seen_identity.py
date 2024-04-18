@@ -72,7 +72,7 @@ class LastSeenIdentity(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Identity]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Identity]], ResultWrapper[Identity]),
         )
@@ -126,7 +126,7 @@ class AsyncLastSeenIdentity(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Identity]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Identity]], ResultWrapper[Identity]),
         )

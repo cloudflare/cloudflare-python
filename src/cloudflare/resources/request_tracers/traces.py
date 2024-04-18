@@ -106,7 +106,7 @@ class Traces(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TraceCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TraceCreateResponse]], ResultWrapper[TraceCreateResponse]),
         )
@@ -190,7 +190,7 @@ class AsyncTraces(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TraceCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TraceCreateResponse]], ResultWrapper[TraceCreateResponse]),
         )

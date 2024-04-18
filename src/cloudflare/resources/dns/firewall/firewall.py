@@ -141,7 +141,7 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Firewall]._unwrapper,
             ),
             cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
@@ -239,7 +239,7 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[FirewallDeleteResponse], ResultWrapper[FirewallDeleteResponse]),
         )
@@ -330,7 +330,7 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Firewall]._unwrapper,
             ),
             cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
@@ -374,7 +374,7 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Firewall]._unwrapper,
             ),
             cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
@@ -472,7 +472,7 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Firewall]._unwrapper,
             ),
             cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
@@ -570,7 +570,7 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[FirewallDeleteResponse], ResultWrapper[FirewallDeleteResponse]),
         )
@@ -661,7 +661,7 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Firewall]._unwrapper,
             ),
             cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )
@@ -705,7 +705,7 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Firewall]._unwrapper,
             ),
             cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
         )

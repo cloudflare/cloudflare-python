@@ -80,7 +80,7 @@ class Downloads(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DownloadCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DownloadCreateResponse]
@@ -129,7 +129,7 @@ class Downloads(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DownloadDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DownloadDeleteResponse]
@@ -178,7 +178,7 @@ class Downloads(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DownloadGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DownloadGetResponse]
@@ -239,7 +239,7 @@ class AsyncDownloads(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DownloadCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DownloadCreateResponse]
@@ -288,7 +288,7 @@ class AsyncDownloads(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DownloadDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DownloadDeleteResponse]
@@ -337,7 +337,7 @@ class AsyncDownloads(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[DownloadGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DownloadGetResponse]

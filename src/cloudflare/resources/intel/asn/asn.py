@@ -80,7 +80,7 @@ class ASNResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ASN]._unwrapper,
             ),
             cast_to=cast(Type[ASN], ResultWrapper[int]),
         )
@@ -134,7 +134,7 @@ class AsyncASNResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ASN]._unwrapper,
             ),
             cast_to=cast(Type[ASN], ResultWrapper[int]),
         )

@@ -125,7 +125,7 @@ class PageShield(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PageShieldUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PageShieldUpdateResponse], ResultWrapper[PageShieldUpdateResponse]),
         )
@@ -164,7 +164,7 @@ class PageShield(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Setting]._unwrapper,
             ),
             cast_to=cast(Type[Setting], ResultWrapper[Setting]),
         )
@@ -243,7 +243,7 @@ class AsyncPageShield(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PageShieldUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PageShieldUpdateResponse], ResultWrapper[PageShieldUpdateResponse]),
         )
@@ -282,7 +282,7 @@ class AsyncPageShield(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Setting]._unwrapper,
             ),
             cast_to=cast(Type[Setting], ResultWrapper[Setting]),
         )

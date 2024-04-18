@@ -100,7 +100,7 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Priority]._unwrapper,
             ),
             cast_to=cast(Type[Priority], ResultWrapper[Priority]),
         )
@@ -165,7 +165,7 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Item]._unwrapper,
             ),
             cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
@@ -211,7 +211,7 @@ class PriorityResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PriorityDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PriorityDeleteResponse]
@@ -258,7 +258,7 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Item]._unwrapper,
             ),
             cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
@@ -297,7 +297,7 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Quota]._unwrapper,
             ),
             cast_to=cast(Type[Quota], ResultWrapper[Quota]),
         )
@@ -367,7 +367,7 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Priority]._unwrapper,
             ),
             cast_to=cast(Type[Priority], ResultWrapper[Priority]),
         )
@@ -432,7 +432,7 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Item]._unwrapper,
             ),
             cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
@@ -478,7 +478,7 @@ class AsyncPriorityResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[PriorityDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[PriorityDeleteResponse]
@@ -525,7 +525,7 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Item]._unwrapper,
             ),
             cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
@@ -564,7 +564,7 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Quota]._unwrapper,
             ),
             cast_to=cast(Type[Quota], ResultWrapper[Quota]),
         )

@@ -110,7 +110,7 @@ class Plans(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AvailableRatePlan]._unwrapper,
             ),
             cast_to=cast(Type[AvailableRatePlan], ResultWrapper[AvailableRatePlan]),
         )
@@ -200,7 +200,7 @@ class AsyncPlans(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[AvailableRatePlan]._unwrapper,
             ),
             cast_to=cast(Type[AvailableRatePlan], ResultWrapper[AvailableRatePlan]),
         )

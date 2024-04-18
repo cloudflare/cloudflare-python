@@ -100,7 +100,7 @@ class Webhooks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WebhookCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[WebhookCreateResponse], ResultWrapper[WebhookCreateResponse]),
         )
@@ -164,7 +164,7 @@ class Webhooks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WebhookUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[WebhookUpdateResponse], ResultWrapper[WebhookUpdateResponse]),
         )
@@ -246,7 +246,7 @@ class Webhooks(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[WebhookDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WebhookDeleteResponse]
@@ -293,7 +293,7 @@ class Webhooks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[webhooks.Webhooks]._unwrapper,
             ),
             cast_to=cast(Type[webhooks.Webhooks], ResultWrapper[webhooks.Webhooks]),
         )
@@ -362,7 +362,7 @@ class AsyncWebhooks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WebhookCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[WebhookCreateResponse], ResultWrapper[WebhookCreateResponse]),
         )
@@ -426,7 +426,7 @@ class AsyncWebhooks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WebhookUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[WebhookUpdateResponse], ResultWrapper[WebhookUpdateResponse]),
         )
@@ -508,7 +508,7 @@ class AsyncWebhooks(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[WebhookDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[WebhookDeleteResponse]
@@ -555,7 +555,7 @@ class AsyncWebhooks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[webhooks.Webhooks]._unwrapper,
             ),
             cast_to=cast(Type[webhooks.Webhooks], ResultWrapper[webhooks.Webhooks]),
         )

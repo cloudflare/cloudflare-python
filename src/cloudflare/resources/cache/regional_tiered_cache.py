@@ -82,7 +82,7 @@ class RegionalTieredCacheResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RegionalTieredCacheEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[RegionalTieredCacheEditResponse], ResultWrapper[RegionalTieredCacheEditResponse]),
         )
@@ -123,7 +123,7 @@ class RegionalTieredCacheResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RegionalTieredCacheGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[RegionalTieredCacheGetResponse], ResultWrapper[RegionalTieredCacheGetResponse]),
         )
@@ -180,7 +180,7 @@ class AsyncRegionalTieredCacheResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RegionalTieredCacheEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[RegionalTieredCacheEditResponse], ResultWrapper[RegionalTieredCacheEditResponse]),
         )
@@ -221,7 +221,7 @@ class AsyncRegionalTieredCacheResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RegionalTieredCacheGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[RegionalTieredCacheGetResponse], ResultWrapper[RegionalTieredCacheGetResponse]),
         )

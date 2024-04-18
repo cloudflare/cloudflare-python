@@ -111,7 +111,7 @@ class MTLSCertificates(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MTLSCertificateCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[MTLSCertificateCreateResponse], ResultWrapper[MTLSCertificateCreateResponse]),
         )
@@ -196,7 +196,7 @@ class MTLSCertificates(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MTLSCertificate]._unwrapper,
             ),
             cast_to=cast(Type[MTLSCertificate], ResultWrapper[MTLSCertificate]),
         )
@@ -242,7 +242,7 @@ class MTLSCertificates(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MTLSCertificate]._unwrapper,
             ),
             cast_to=cast(Type[MTLSCertificate], ResultWrapper[MTLSCertificate]),
         )
@@ -316,7 +316,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MTLSCertificateCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[MTLSCertificateCreateResponse], ResultWrapper[MTLSCertificateCreateResponse]),
         )
@@ -401,7 +401,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MTLSCertificate]._unwrapper,
             ),
             cast_to=cast(Type[MTLSCertificate], ResultWrapper[MTLSCertificate]),
         )
@@ -447,7 +447,7 @@ class AsyncMTLSCertificates(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MTLSCertificate]._unwrapper,
             ),
             cast_to=cast(Type[MTLSCertificate], ResultWrapper[MTLSCertificate]),
         )

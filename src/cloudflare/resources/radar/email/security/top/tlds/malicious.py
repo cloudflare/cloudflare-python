@@ -147,7 +147,7 @@ class Malicious(SyncAPIResource):
                     },
                     malicious_get_params.MaliciousGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MaliciousGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[MaliciousGetResponse], ResultWrapper[MaliciousGetResponse]),
         )
@@ -270,7 +270,7 @@ class AsyncMalicious(AsyncAPIResource):
                     },
                     malicious_get_params.MaliciousGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[MaliciousGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[MaliciousGetResponse], ResultWrapper[MaliciousGetResponse]),
         )

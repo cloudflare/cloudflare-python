@@ -104,7 +104,7 @@ class DirectUploads(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DirectUploadCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[DirectUploadCreateResponse], ResultWrapper[DirectUploadCreateResponse]),
         )
@@ -185,7 +185,7 @@ class AsyncDirectUploads(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DirectUploadCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[DirectUploadCreateResponse], ResultWrapper[DirectUploadCreateResponse]),
         )

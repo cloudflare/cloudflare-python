@@ -104,7 +104,7 @@ class V2(SyncAPIResource):
                     },
                     v2_list_params.V2ListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[V2ListResponse]._unwrapper,
             ),
             cast_to=cast(Type[V2ListResponse], ResultWrapper[V2ListResponse]),
         )
@@ -177,7 +177,7 @@ class AsyncV2(AsyncAPIResource):
                     },
                     v2_list_params.V2ListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[V2ListResponse]._unwrapper,
             ),
             cast_to=cast(Type[V2ListResponse], ResultWrapper[V2ListResponse]),
         )

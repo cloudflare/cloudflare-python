@@ -142,7 +142,7 @@ class IQI(SyncAPIResource):
                     },
                     iqi_summary_params.IQISummaryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IQISummaryResponse]._unwrapper,
             ),
             cast_to=cast(Type[IQISummaryResponse], ResultWrapper[IQISummaryResponse]),
         )
@@ -255,7 +255,7 @@ class IQI(SyncAPIResource):
                     },
                     iqi_timeseries_groups_params.IQITimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IQITimeseriesGroupsResponse]._unwrapper,
             ),
             cast_to=cast(Type[IQITimeseriesGroupsResponse], ResultWrapper[IQITimeseriesGroupsResponse]),
         )
@@ -368,7 +368,7 @@ class AsyncIQI(AsyncAPIResource):
                     },
                     iqi_summary_params.IQISummaryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IQISummaryResponse]._unwrapper,
             ),
             cast_to=cast(Type[IQISummaryResponse], ResultWrapper[IQISummaryResponse]),
         )
@@ -481,7 +481,7 @@ class AsyncIQI(AsyncAPIResource):
                     },
                     iqi_timeseries_groups_params.IQITimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IQITimeseriesGroupsResponse]._unwrapper,
             ),
             cast_to=cast(Type[IQITimeseriesGroupsResponse], ResultWrapper[IQITimeseriesGroupsResponse]),
         )

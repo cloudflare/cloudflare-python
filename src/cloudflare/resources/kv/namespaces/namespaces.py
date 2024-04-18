@@ -137,7 +137,7 @@ class Namespaces(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Namespace]._unwrapper,
             ),
             cast_to=cast(Type[Namespace], ResultWrapper[Namespace]),
         )
@@ -187,7 +187,7 @@ class Namespaces(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[NamespaceUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[NamespaceUpdateResponse]
@@ -298,7 +298,7 @@ class Namespaces(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[NamespaceDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[NamespaceDeleteResponse]
@@ -373,7 +373,7 @@ class AsyncNamespaces(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Namespace]._unwrapper,
             ),
             cast_to=cast(Type[Namespace], ResultWrapper[Namespace]),
         )
@@ -423,7 +423,7 @@ class AsyncNamespaces(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[NamespaceUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[NamespaceUpdateResponse]
@@ -534,7 +534,7 @@ class AsyncNamespaces(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[NamespaceDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[NamespaceDeleteResponse]

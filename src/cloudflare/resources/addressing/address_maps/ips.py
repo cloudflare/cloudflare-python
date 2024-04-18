@@ -85,7 +85,7 @@ class IPs(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[IPUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IPUpdateResponse]
@@ -141,7 +141,7 @@ class IPs(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[IPDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IPDeleteResponse]
@@ -207,7 +207,7 @@ class AsyncIPs(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[IPUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IPUpdateResponse]
@@ -263,7 +263,7 @@ class AsyncIPs(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[IPDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IPDeleteResponse]

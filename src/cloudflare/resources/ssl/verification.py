@@ -94,7 +94,7 @@ class VerificationResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VerificationEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[VerificationEditResponse], ResultWrapper[VerificationEditResponse]),
         )
@@ -137,7 +137,7 @@ class VerificationResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"retry": retry}, verification_get_params.VerificationGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[VerificationGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[VerificationGetResponse]], ResultWrapper[VerificationGetResponse]),
         )
@@ -203,7 +203,7 @@ class AsyncVerificationResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[VerificationEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[VerificationEditResponse], ResultWrapper[VerificationEditResponse]),
         )
@@ -246,7 +246,7 @@ class AsyncVerificationResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"retry": retry}, verification_get_params.VerificationGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[VerificationGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[VerificationGetResponse]], ResultWrapper[VerificationGetResponse]),
         )

@@ -79,7 +79,7 @@ class WebsocketResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Websocket]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Websocket]], ResultWrapper[Websocket]),
         )
@@ -120,7 +120,7 @@ class WebsocketResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Websocket]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Websocket]], ResultWrapper[Websocket]),
         )
@@ -176,7 +176,7 @@ class AsyncWebsocketResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Websocket]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Websocket]], ResultWrapper[Websocket]),
         )
@@ -217,7 +217,7 @@ class AsyncWebsocketResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Websocket]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Websocket]], ResultWrapper[Websocket]),
         )

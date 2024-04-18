@@ -76,7 +76,7 @@ class PseudoIPV4Resource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PseudoIPV4]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PseudoIPV4]], ResultWrapper[PseudoIPV4]),
         )
@@ -115,7 +115,7 @@ class PseudoIPV4Resource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PseudoIPV4]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PseudoIPV4]], ResultWrapper[PseudoIPV4]),
         )
@@ -168,7 +168,7 @@ class AsyncPseudoIPV4Resource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PseudoIPV4]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PseudoIPV4]], ResultWrapper[PseudoIPV4]),
         )
@@ -207,7 +207,7 @@ class AsyncPseudoIPV4Resource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[PseudoIPV4]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PseudoIPV4]], ResultWrapper[PseudoIPV4]),
         )

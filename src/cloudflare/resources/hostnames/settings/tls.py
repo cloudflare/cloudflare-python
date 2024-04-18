@@ -92,7 +92,7 @@ class TLS(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Setting]._unwrapper,
             ),
             cast_to=cast(Type[Setting], ResultWrapper[Setting]),
         )
@@ -141,7 +141,7 @@ class TLS(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TLSDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[TLSDeleteResponse], ResultWrapper[TLSDeleteResponse]),
         )
@@ -185,7 +185,7 @@ class TLS(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TLSGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TLSGetResponse]], ResultWrapper[TLSGetResponse]),
         )
@@ -248,7 +248,7 @@ class AsyncTLS(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Setting]._unwrapper,
             ),
             cast_to=cast(Type[Setting], ResultWrapper[Setting]),
         )
@@ -297,7 +297,7 @@ class AsyncTLS(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TLSDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[TLSDeleteResponse], ResultWrapper[TLSDeleteResponse]),
         )
@@ -341,7 +341,7 @@ class AsyncTLS(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[TLSGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[TLSGetResponse]], ResultWrapper[TLSGetResponse]),
         )

@@ -99,7 +99,7 @@ class Domain(SyncAPIResource):
                     },
                     domain_get_params.DomainGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DomainGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
         )
@@ -175,7 +175,7 @@ class AsyncDomain(AsyncAPIResource):
                     },
                     domain_get_params.DomainGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DomainGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
         )

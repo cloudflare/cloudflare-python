@@ -80,7 +80,7 @@ class ResponseBufferingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ResponseBuffering]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ResponseBuffering]], ResultWrapper[ResponseBuffering]),
         )
@@ -123,7 +123,7 @@ class ResponseBufferingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ResponseBuffering]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ResponseBuffering]], ResultWrapper[ResponseBuffering]),
         )
@@ -182,7 +182,7 @@ class AsyncResponseBufferingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ResponseBuffering]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ResponseBuffering]], ResultWrapper[ResponseBuffering]),
         )
@@ -225,7 +225,7 @@ class AsyncResponseBufferingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ResponseBuffering]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ResponseBuffering]], ResultWrapper[ResponseBuffering]),
         )

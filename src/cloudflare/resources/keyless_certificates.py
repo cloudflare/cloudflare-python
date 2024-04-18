@@ -114,7 +114,7 @@ class KeylessCertificates(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
             ),
             cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
         )
@@ -198,7 +198,7 @@ class KeylessCertificates(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[KeylessCertificateDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[KeylessCertificateDeleteResponse], ResultWrapper[KeylessCertificateDeleteResponse]),
         )
@@ -272,7 +272,7 @@ class KeylessCertificates(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
             ),
             cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
         )
@@ -318,7 +318,7 @@ class KeylessCertificates(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
             ),
             cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
         )
@@ -400,7 +400,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
             ),
             cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
         )
@@ -484,7 +484,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[KeylessCertificateDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[KeylessCertificateDeleteResponse], ResultWrapper[KeylessCertificateDeleteResponse]),
         )
@@ -558,7 +558,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
             ),
             cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
         )
@@ -604,7 +604,7 @@ class AsyncKeylessCertificates(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
             ),
             cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
         )

@@ -78,7 +78,7 @@ class MinifyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Minify]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Minify]], ResultWrapper[Minify]),
         )
@@ -120,7 +120,7 @@ class MinifyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Minify]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Minify]], ResultWrapper[Minify]),
         )
@@ -176,7 +176,7 @@ class AsyncMinifyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Minify]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Minify]], ResultWrapper[Minify]),
         )
@@ -218,7 +218,7 @@ class AsyncMinifyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Minify]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Minify]], ResultWrapper[Minify]),
         )

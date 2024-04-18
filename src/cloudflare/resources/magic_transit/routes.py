@@ -87,7 +87,7 @@ class Routes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteCreateResponse], ResultWrapper[RouteCreateResponse]),
         )
@@ -162,7 +162,7 @@ class Routes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
         )
@@ -201,7 +201,7 @@ class Routes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteListResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteListResponse], ResultWrapper[RouteListResponse]),
         )
@@ -247,7 +247,7 @@ class Routes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
         )
@@ -288,7 +288,7 @@ class Routes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteEmptyResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteEmptyResponse], ResultWrapper[RouteEmptyResponse]),
         )
@@ -332,7 +332,7 @@ class Routes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )
@@ -385,7 +385,7 @@ class AsyncRoutes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteCreateResponse], ResultWrapper[RouteCreateResponse]),
         )
@@ -460,7 +460,7 @@ class AsyncRoutes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
         )
@@ -499,7 +499,7 @@ class AsyncRoutes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteListResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteListResponse], ResultWrapper[RouteListResponse]),
         )
@@ -545,7 +545,7 @@ class AsyncRoutes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
         )
@@ -586,7 +586,7 @@ class AsyncRoutes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteEmptyResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteEmptyResponse], ResultWrapper[RouteEmptyResponse]),
         )
@@ -630,7 +630,7 @@ class AsyncRoutes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )

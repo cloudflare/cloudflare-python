@@ -168,7 +168,7 @@ class DeviceType(SyncAPIResource):
                     },
                     device_type_get_params.DeviceTypeGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DeviceTypeGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[DeviceTypeGetResponse], ResultWrapper[DeviceTypeGetResponse]),
         )
@@ -312,7 +312,7 @@ class AsyncDeviceType(AsyncAPIResource):
                     },
                     device_type_get_params.DeviceTypeGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DeviceTypeGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[DeviceTypeGetResponse], ResultWrapper[DeviceTypeGetResponse]),
         )

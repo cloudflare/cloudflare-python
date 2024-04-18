@@ -136,7 +136,7 @@ class Top(SyncAPIResource):
                     },
                     top_bots_params.TopBotsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopBotsResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopBotsResponse], ResultWrapper[TopBotsResponse]),
         )
@@ -239,7 +239,7 @@ class Top(SyncAPIResource):
                     },
                     top_categories_params.TopCategoriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopCategoriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopCategoriesResponse], ResultWrapper[TopCategoriesResponse]),
         )
@@ -351,7 +351,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_bots_params.TopBotsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopBotsResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopBotsResponse], ResultWrapper[TopBotsResponse]),
         )
@@ -454,7 +454,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_categories_params.TopCategoriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopCategoriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopCategoriesResponse], ResultWrapper[TopCategoriesResponse]),
         )
