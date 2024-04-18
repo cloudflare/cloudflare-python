@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from .watermaks import Watermaks
+from .watermark import Watermark
 from .allowed_origins import AllowedOrigins
 
 __all__ = ["Video", "Input", "Playback", "Status"]
@@ -177,4 +177,4 @@ class Video(BaseModel):
     uploads.
     """
 
-    watermark: Optional[Watermaks] = None
+    watermark: Optional[Watermark] = None

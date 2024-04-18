@@ -25,7 +25,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.stream import Watermaks, WatermarkDeleteResponse, watermark_create_params, watermark_delete_params
+from ...types.stream import Watermark, WatermarkDeleteResponse, watermark_create_params, watermark_delete_params
 
 __all__ = ["Watermarks", "AsyncWatermarks"]
 
@@ -55,7 +55,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Watermaks]:
+    ) -> Optional[Watermark]:
         """
         Creates watermark profiles using a single `HTTP POST multipart/form-data`
         request.
@@ -112,9 +112,9 @@ class Watermarks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Watermaks]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Watermark]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Watermaks]], ResultWrapper[Watermaks]),
+            cast_to=cast(Type[Optional[Watermark]], ResultWrapper[Watermark]),
         )
 
     def list(
@@ -127,7 +127,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Watermaks]:
+    ) -> SyncSinglePage[Watermark]:
         """
         Lists all watermark profiles for an account.
 
@@ -146,11 +146,11 @@ class Watermarks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/stream/watermarks",
-            page=SyncSinglePage[Watermaks],
+            page=SyncSinglePage[Watermark],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Watermaks,
+            model=Watermark,
         )
 
     def delete(
@@ -215,7 +215,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Watermaks]:
+    ) -> Optional[Watermark]:
         """
         Retrieves details for a single watermark profile.
 
@@ -243,9 +243,9 @@ class Watermarks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Watermaks]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Watermark]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Watermaks]], ResultWrapper[Watermaks]),
+            cast_to=cast(Type[Optional[Watermark]], ResultWrapper[Watermark]),
         )
 
 
@@ -274,7 +274,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Watermaks]:
+    ) -> Optional[Watermark]:
         """
         Creates watermark profiles using a single `HTTP POST multipart/form-data`
         request.
@@ -331,9 +331,9 @@ class AsyncWatermarks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Watermaks]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Watermark]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Watermaks]], ResultWrapper[Watermaks]),
+            cast_to=cast(Type[Optional[Watermark]], ResultWrapper[Watermark]),
         )
 
     def list(
@@ -346,7 +346,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Watermaks, AsyncSinglePage[Watermaks]]:
+    ) -> AsyncPaginator[Watermark, AsyncSinglePage[Watermark]]:
         """
         Lists all watermark profiles for an account.
 
@@ -365,11 +365,11 @@ class AsyncWatermarks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/stream/watermarks",
-            page=AsyncSinglePage[Watermaks],
+            page=AsyncSinglePage[Watermark],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Watermaks,
+            model=Watermark,
         )
 
     async def delete(
@@ -434,7 +434,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Watermaks]:
+    ) -> Optional[Watermark]:
         """
         Retrieves details for a single watermark profile.
 
@@ -462,9 +462,9 @@ class AsyncWatermarks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Watermaks]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Watermark]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Watermaks]], ResultWrapper[Watermaks]),
+            cast_to=cast(Type[Optional[Watermark]], ResultWrapper[Watermark]),
         )
 
 
