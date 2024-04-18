@@ -91,7 +91,7 @@ class Configs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
         )
@@ -146,7 +146,7 @@ class Configs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
         )
@@ -228,7 +228,7 @@ class Configs(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[ConfigDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ConfigDeleteResponse]
@@ -288,7 +288,7 @@ class Configs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
         )
@@ -332,7 +332,7 @@ class Configs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
         )
@@ -392,7 +392,7 @@ class AsyncConfigs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
         )
@@ -447,7 +447,7 @@ class AsyncConfigs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
         )
@@ -529,7 +529,7 @@ class AsyncConfigs(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[ConfigDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ConfigDeleteResponse]
@@ -589,7 +589,7 @@ class AsyncConfigs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
         )
@@ -633,7 +633,7 @@ class AsyncConfigs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
         )

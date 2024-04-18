@@ -85,7 +85,7 @@ class OriginMaxHTTPVersionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OriginMaxHTTPVersionEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[OriginMaxHTTPVersionEditResponse], ResultWrapper[OriginMaxHTTPVersionEditResponse]),
         )
@@ -129,7 +129,7 @@ class OriginMaxHTTPVersionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OriginMaxHTTPVersionGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[OriginMaxHTTPVersionGetResponse], ResultWrapper[OriginMaxHTTPVersionGetResponse]),
         )
@@ -189,7 +189,7 @@ class AsyncOriginMaxHTTPVersionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OriginMaxHTTPVersionEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[OriginMaxHTTPVersionEditResponse], ResultWrapper[OriginMaxHTTPVersionEditResponse]),
         )
@@ -233,7 +233,7 @@ class AsyncOriginMaxHTTPVersionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OriginMaxHTTPVersionGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[OriginMaxHTTPVersionGetResponse], ResultWrapper[OriginMaxHTTPVersionGetResponse]),
         )

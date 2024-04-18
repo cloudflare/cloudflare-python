@@ -148,7 +148,7 @@ class Ranking(SyncAPIResource):
                     },
                     ranking_timeseries_groups_params.RankingTimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RankingTimeseriesGroupsResponse]._unwrapper,
             ),
             cast_to=cast(Type[RankingTimeseriesGroupsResponse], ResultWrapper[RankingTimeseriesGroupsResponse]),
         )
@@ -215,7 +215,7 @@ class Ranking(SyncAPIResource):
                     },
                     ranking_top_params.RankingTopParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RankingTopResponse]._unwrapper,
             ),
             cast_to=cast(Type[RankingTopResponse], ResultWrapper[RankingTopResponse]),
         )
@@ -326,7 +326,7 @@ class AsyncRanking(AsyncAPIResource):
                     },
                     ranking_timeseries_groups_params.RankingTimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RankingTimeseriesGroupsResponse]._unwrapper,
             ),
             cast_to=cast(Type[RankingTimeseriesGroupsResponse], ResultWrapper[RankingTimeseriesGroupsResponse]),
         )
@@ -393,7 +393,7 @@ class AsyncRanking(AsyncAPIResource):
                     },
                     ranking_top_params.RankingTopParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RankingTopResponse]._unwrapper,
             ),
             cast_to=cast(Type[RankingTopResponse], ResultWrapper[RankingTopResponse]),
         )

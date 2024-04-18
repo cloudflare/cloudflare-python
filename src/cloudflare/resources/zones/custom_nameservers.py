@@ -90,7 +90,7 @@ class CustomNameservers(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[CustomNameserverUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomNameserverUpdateResponse]
@@ -134,7 +134,7 @@ class CustomNameservers(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomNameserverGetResponse]
@@ -205,7 +205,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[CustomNameserverUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomNameserverUpdateResponse]
@@ -249,7 +249,7 @@ class AsyncCustomNameservers(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomNameserverGetResponse]

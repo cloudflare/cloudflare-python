@@ -145,7 +145,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_get_params.SummaryGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryGetResponse], ResultWrapper[SummaryGetResponse]),
         )
@@ -260,7 +260,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_http_method_params.SummaryHTTPMethodParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryHTTPMethodResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryHTTPMethodResponse], ResultWrapper[SummaryHTTPMethodResponse]),
         )
@@ -425,7 +425,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_http_version_params.SummaryHTTPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryHTTPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
         )
@@ -590,7 +590,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_ip_version_params.SummaryIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
@@ -759,7 +759,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_managed_rules_params.SummaryManagedRulesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryManagedRulesResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryManagedRulesResponse], ResultWrapper[SummaryManagedRulesResponse]),
         )
@@ -919,7 +919,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_mitigation_product_params.SummaryMitigationProductParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryMitigationProductResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryMitigationProductResponse], ResultWrapper[SummaryMitigationProductResponse]),
         )
@@ -1027,7 +1027,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_get_params.SummaryGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryGetResponse], ResultWrapper[SummaryGetResponse]),
         )
@@ -1142,7 +1142,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_http_method_params.SummaryHTTPMethodParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryHTTPMethodResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryHTTPMethodResponse], ResultWrapper[SummaryHTTPMethodResponse]),
         )
@@ -1307,7 +1307,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_http_version_params.SummaryHTTPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryHTTPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
         )
@@ -1472,7 +1472,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_ip_version_params.SummaryIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
@@ -1641,7 +1641,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_managed_rules_params.SummaryManagedRulesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryManagedRulesResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryManagedRulesResponse], ResultWrapper[SummaryManagedRulesResponse]),
         )
@@ -1801,7 +1801,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_mitigation_product_params.SummaryMitigationProductParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryMitigationProductResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryMitigationProductResponse], ResultWrapper[SummaryMitigationProductResponse]),
         )

@@ -76,7 +76,7 @@ class BulkOperations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[BulkOperationGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BulkOperationGetResponse]], ResultWrapper[BulkOperationGetResponse]),
         )
@@ -134,7 +134,7 @@ class AsyncBulkOperations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[BulkOperationGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[BulkOperationGetResponse]], ResultWrapper[BulkOperationGetResponse]),
         )

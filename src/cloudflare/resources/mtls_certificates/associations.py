@@ -74,7 +74,7 @@ class Associations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AssociationGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AssociationGetResponse]], ResultWrapper[AssociationGetResponse]),
         )
@@ -130,7 +130,7 @@ class AsyncAssociations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AssociationGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AssociationGetResponse]], ResultWrapper[AssociationGetResponse]),
         )

@@ -167,7 +167,7 @@ class User(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[UserEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UserEditResponse]
@@ -195,7 +195,7 @@ class User(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[UserGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UserGetResponse]
@@ -293,7 +293,7 @@ class AsyncUser(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[UserEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UserEditResponse]
@@ -321,7 +321,7 @@ class AsyncUser(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[UserGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UserGetResponse]

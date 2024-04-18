@@ -92,7 +92,7 @@ class Settings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
@@ -138,7 +138,7 @@ class Settings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
@@ -207,7 +207,7 @@ class AsyncSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
@@ -253,7 +253,7 @@ class AsyncSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )

@@ -79,7 +79,7 @@ class Calls(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CallsAppWithSecret]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CallsAppWithSecret]], ResultWrapper[CallsAppWithSecret]),
         )
@@ -127,7 +127,7 @@ class Calls(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
         )
@@ -207,7 +207,7 @@ class Calls(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
         )
@@ -251,7 +251,7 @@ class Calls(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
         )
@@ -306,7 +306,7 @@ class AsyncCalls(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CallsAppWithSecret]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CallsAppWithSecret]], ResultWrapper[CallsAppWithSecret]),
         )
@@ -354,7 +354,7 @@ class AsyncCalls(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
         )
@@ -434,7 +434,7 @@ class AsyncCalls(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
         )
@@ -478,7 +478,7 @@ class AsyncCalls(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
         )

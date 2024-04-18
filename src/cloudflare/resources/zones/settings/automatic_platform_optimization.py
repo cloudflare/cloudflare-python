@@ -81,7 +81,7 @@ class AutomaticPlatformOptimizationResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AutomaticPlatformOptimization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AutomaticPlatformOptimization]], ResultWrapper[AutomaticPlatformOptimization]),
         )
@@ -122,7 +122,7 @@ class AutomaticPlatformOptimizationResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AutomaticPlatformOptimization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AutomaticPlatformOptimization]], ResultWrapper[AutomaticPlatformOptimization]),
         )
@@ -177,7 +177,7 @@ class AsyncAutomaticPlatformOptimizationResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AutomaticPlatformOptimization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AutomaticPlatformOptimization]], ResultWrapper[AutomaticPlatformOptimization]),
         )
@@ -218,7 +218,7 @@ class AsyncAutomaticPlatformOptimizationResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AutomaticPlatformOptimization]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AutomaticPlatformOptimization]], ResultWrapper[AutomaticPlatformOptimization]),
         )

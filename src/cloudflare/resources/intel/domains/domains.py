@@ -85,7 +85,7 @@ class Domains(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"domain": domain}, domain_get_params.DomainGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Domain]._unwrapper,
             ),
             cast_to=cast(Type[Domain], ResultWrapper[Domain]),
         )
@@ -140,7 +140,7 @@ class AsyncDomains(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"domain": domain}, domain_get_params.DomainGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Domain]._unwrapper,
             ),
             cast_to=cast(Type[Domain], ResultWrapper[Domain]),
         )

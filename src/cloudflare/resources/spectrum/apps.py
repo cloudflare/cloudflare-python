@@ -147,7 +147,7 @@ class Apps(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AppCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AppCreateResponse]], ResultWrapper[AppCreateResponse]),
         )
@@ -251,7 +251,7 @@ class Apps(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AppUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AppUpdateResponse]], ResultWrapper[AppUpdateResponse]),
         )
@@ -359,7 +359,7 @@ class Apps(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AppDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AppDeleteResponse]], ResultWrapper[AppDeleteResponse]),
         )
@@ -405,7 +405,7 @@ class Apps(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AppGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AppGetResponse]
@@ -517,7 +517,7 @@ class AsyncApps(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AppCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AppCreateResponse]], ResultWrapper[AppCreateResponse]),
         )
@@ -621,7 +621,7 @@ class AsyncApps(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AppUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AppUpdateResponse]], ResultWrapper[AppUpdateResponse]),
         )
@@ -729,7 +729,7 @@ class AsyncApps(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[AppDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AppDeleteResponse]], ResultWrapper[AppDeleteResponse]),
         )
@@ -775,7 +775,7 @@ class AsyncApps(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[AppGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AppGetResponse]

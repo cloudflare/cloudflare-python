@@ -72,7 +72,7 @@ class OverrideCodes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OverrideCodeListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OverrideCodeListResponse]], ResultWrapper[OverrideCodeListResponse]),
         )
@@ -126,7 +126,7 @@ class AsyncOverrideCodes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OverrideCodeListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OverrideCodeListResponse]], ResultWrapper[OverrideCodeListResponse]),
         )

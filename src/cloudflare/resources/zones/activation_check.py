@@ -69,7 +69,7 @@ class ActivationCheck(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ActivationCheckTriggerResponse]._unwrapper,
             ),
             cast_to=cast(Type[ActivationCheckTriggerResponse], ResultWrapper[ActivationCheckTriggerResponse]),
         )
@@ -120,7 +120,7 @@ class AsyncActivationCheck(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ActivationCheckTriggerResponse]._unwrapper,
             ),
             cast_to=cast(Type[ActivationCheckTriggerResponse], ResultWrapper[ActivationCheckTriggerResponse]),
         )

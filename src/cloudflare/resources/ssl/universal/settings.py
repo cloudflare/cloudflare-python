@@ -99,7 +99,7 @@ class Settings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[UniversalSSLSettings]._unwrapper,
             ),
             cast_to=cast(Type[UniversalSSLSettings], ResultWrapper[UniversalSSLSettings]),
         )
@@ -138,7 +138,7 @@ class Settings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[UniversalSSLSettings]._unwrapper,
             ),
             cast_to=cast(Type[UniversalSSLSettings], ResultWrapper[UniversalSSLSettings]),
         )
@@ -215,7 +215,7 @@ class AsyncSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[UniversalSSLSettings]._unwrapper,
             ),
             cast_to=cast(Type[UniversalSSLSettings], ResultWrapper[UniversalSSLSettings]),
         )
@@ -254,7 +254,7 @@ class AsyncSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[UniversalSSLSettings]._unwrapper,
             ),
             cast_to=cast(Type[UniversalSSLSettings], ResultWrapper[UniversalSSLSettings]),
         )

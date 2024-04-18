@@ -53,7 +53,7 @@ class Profile(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ProfileGetResponse]
@@ -91,7 +91,7 @@ class AsyncProfile(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ProfileGetResponse]

@@ -91,7 +91,7 @@ class Regions(SyncAPIResource):
                         },
                         region_list_params.RegionListParams,
                     ),
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RegionListResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RegionListResponse]
@@ -146,7 +146,7 @@ class Regions(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RegionGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RegionGetResponse]
@@ -217,7 +217,7 @@ class AsyncRegions(AsyncAPIResource):
                         },
                         region_list_params.RegionListParams,
                     ),
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RegionListResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RegionListResponse]
@@ -272,7 +272,7 @@ class AsyncRegions(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[RegionGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[RegionGetResponse]

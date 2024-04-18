@@ -105,7 +105,7 @@ class ASNs(SyncAPIResource):
                     },
                     asn_list_params.ASNListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ASNListResponse]._unwrapper,
             ),
             cast_to=cast(Type[ASNListResponse], ResultWrapper[ASNListResponse]),
         )
@@ -150,7 +150,7 @@ class ASNs(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"format": format}, asn_get_params.ASNGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ASNGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[ASNGetResponse], ResultWrapper[ASNGetResponse]),
         )
@@ -199,7 +199,7 @@ class ASNs(SyncAPIResource):
                     },
                     asn_ip_params.ASNIPParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ASNIPResponse]._unwrapper,
             ),
             cast_to=cast(Type[ASNIPResponse], ResultWrapper[ASNIPResponse]),
         )
@@ -249,7 +249,7 @@ class ASNs(SyncAPIResource):
                     },
                     asn_rel_params.ASNRelParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ASNRelResponse]._unwrapper,
             ),
             cast_to=cast(Type[ASNRelResponse], ResultWrapper[ASNRelResponse]),
         )
@@ -322,7 +322,7 @@ class AsyncASNs(AsyncAPIResource):
                     },
                     asn_list_params.ASNListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ASNListResponse]._unwrapper,
             ),
             cast_to=cast(Type[ASNListResponse], ResultWrapper[ASNListResponse]),
         )
@@ -367,7 +367,7 @@ class AsyncASNs(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"format": format}, asn_get_params.ASNGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ASNGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[ASNGetResponse], ResultWrapper[ASNGetResponse]),
         )
@@ -416,7 +416,7 @@ class AsyncASNs(AsyncAPIResource):
                     },
                     asn_ip_params.ASNIPParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ASNIPResponse]._unwrapper,
             ),
             cast_to=cast(Type[ASNIPResponse], ResultWrapper[ASNIPResponse]),
         )
@@ -466,7 +466,7 @@ class AsyncASNs(AsyncAPIResource):
                     },
                     asn_rel_params.ASNRelParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ASNRelResponse]._unwrapper,
             ),
             cast_to=cast(Type[ASNRelResponse], ResultWrapper[ASNRelResponse]),
         )

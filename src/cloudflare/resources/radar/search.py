@@ -96,7 +96,7 @@ class Search(SyncAPIResource):
                     },
                     search_global_params.SearchGlobalParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SearchGlobalResponse]._unwrapper,
             ),
             cast_to=cast(Type[SearchGlobalResponse], ResultWrapper[SearchGlobalResponse]),
         )
@@ -169,7 +169,7 @@ class AsyncSearch(AsyncAPIResource):
                     },
                     search_global_params.SearchGlobalParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SearchGlobalResponse]._unwrapper,
             ),
             cast_to=cast(Type[SearchGlobalResponse], ResultWrapper[SearchGlobalResponse]),
         )

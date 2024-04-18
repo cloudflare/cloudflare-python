@@ -174,7 +174,7 @@ class Gateway(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewayCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewayCreateResponse]], ResultWrapper[GatewayCreateResponse]),
         )
@@ -211,7 +211,7 @@ class Gateway(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewayListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewayListResponse]], ResultWrapper[GatewayListResponse]),
         )
@@ -294,7 +294,7 @@ class AsyncGateway(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewayCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewayCreateResponse]], ResultWrapper[GatewayCreateResponse]),
         )
@@ -331,7 +331,7 @@ class AsyncGateway(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[GatewayListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[GatewayListResponse]], ResultWrapper[GatewayListResponse]),
         )

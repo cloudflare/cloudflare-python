@@ -77,7 +77,7 @@ class IPV6Resource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IPV6]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IPV6]], ResultWrapper[IPV6]),
         )
@@ -117,7 +117,7 @@ class IPV6Resource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IPV6]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IPV6]], ResultWrapper[IPV6]),
         )
@@ -171,7 +171,7 @@ class AsyncIPV6Resource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IPV6]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IPV6]], ResultWrapper[IPV6]),
         )
@@ -211,7 +211,7 @@ class AsyncIPV6Resource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[IPV6]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IPV6]], ResultWrapper[IPV6]),
         )

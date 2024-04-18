@@ -149,7 +149,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_arc_params.SummaryARCParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryARCResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryARCResponse], ResultWrapper[SummaryARCResponse]),
         )
@@ -245,7 +245,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_dkim_params.SummaryDKIMParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryDKIMResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryDKIMResponse], ResultWrapper[SummaryDKIMResponse]),
         )
@@ -341,7 +341,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_dmarc_params.SummaryDMARCParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryDMARCResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryDMARCResponse], ResultWrapper[SummaryDMARCResponse]),
         )
@@ -441,7 +441,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_malicious_params.SummaryMaliciousParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryMaliciousResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryMaliciousResponse], ResultWrapper[SummaryMaliciousResponse]),
         )
@@ -541,7 +541,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_spam_params.SummarySpamParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummarySpamResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummarySpamResponse], ResultWrapper[SummarySpamResponse]),
         )
@@ -637,7 +637,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_spf_params.SummarySPFParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummarySPFResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummarySPFResponse], ResultWrapper[SummarySPFResponse]),
         )
@@ -737,7 +737,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_spoof_params.SummarySpoofParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummarySpoofResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummarySpoofResponse], ResultWrapper[SummarySpoofResponse]),
         )
@@ -837,7 +837,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_threat_category_params.SummaryThreatCategoryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryThreatCategoryResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryThreatCategoryResponse], ResultWrapper[SummaryThreatCategoryResponse]),
         )
@@ -933,7 +933,7 @@ class Summary(SyncAPIResource):
                     },
                     summary_tls_version_params.SummaryTLSVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryTLSVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryTLSVersionResponse], ResultWrapper[SummaryTLSVersionResponse]),
         )
@@ -1039,7 +1039,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_arc_params.SummaryARCParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryARCResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryARCResponse], ResultWrapper[SummaryARCResponse]),
         )
@@ -1135,7 +1135,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_dkim_params.SummaryDKIMParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryDKIMResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryDKIMResponse], ResultWrapper[SummaryDKIMResponse]),
         )
@@ -1231,7 +1231,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_dmarc_params.SummaryDMARCParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryDMARCResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryDMARCResponse], ResultWrapper[SummaryDMARCResponse]),
         )
@@ -1331,7 +1331,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_malicious_params.SummaryMaliciousParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryMaliciousResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryMaliciousResponse], ResultWrapper[SummaryMaliciousResponse]),
         )
@@ -1431,7 +1431,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_spam_params.SummarySpamParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummarySpamResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummarySpamResponse], ResultWrapper[SummarySpamResponse]),
         )
@@ -1527,7 +1527,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_spf_params.SummarySPFParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummarySPFResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummarySPFResponse], ResultWrapper[SummarySPFResponse]),
         )
@@ -1627,7 +1627,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_spoof_params.SummarySpoofParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummarySpoofResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummarySpoofResponse], ResultWrapper[SummarySpoofResponse]),
         )
@@ -1727,7 +1727,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_threat_category_params.SummaryThreatCategoryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryThreatCategoryResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryThreatCategoryResponse], ResultWrapper[SummaryThreatCategoryResponse]),
         )
@@ -1823,7 +1823,7 @@ class AsyncSummary(AsyncAPIResource):
                     },
                     summary_tls_version_params.SummaryTLSVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SummaryTLSVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryTLSVersionResponse], ResultWrapper[SummaryTLSVersionResponse]),
         )

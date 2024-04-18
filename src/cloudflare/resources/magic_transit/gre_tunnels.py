@@ -85,7 +85,7 @@ class GRETunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[GRETunnelCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelCreateResponse], ResultWrapper[GRETunnelCreateResponse]),
         )
@@ -170,7 +170,7 @@ class GRETunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[GRETunnelUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelUpdateResponse], ResultWrapper[GRETunnelUpdateResponse]),
         )
@@ -209,7 +209,7 @@ class GRETunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[GRETunnelListResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelListResponse], ResultWrapper[GRETunnelListResponse]),
         )
@@ -257,7 +257,7 @@ class GRETunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[GRETunnelDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelDeleteResponse], ResultWrapper[GRETunnelDeleteResponse]),
         )
@@ -301,7 +301,7 @@ class GRETunnels(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[GRETunnelGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelGetResponse], ResultWrapper[GRETunnelGetResponse]),
         )
@@ -354,7 +354,7 @@ class AsyncGRETunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[GRETunnelCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelCreateResponse], ResultWrapper[GRETunnelCreateResponse]),
         )
@@ -439,7 +439,7 @@ class AsyncGRETunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[GRETunnelUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelUpdateResponse], ResultWrapper[GRETunnelUpdateResponse]),
         )
@@ -478,7 +478,7 @@ class AsyncGRETunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[GRETunnelListResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelListResponse], ResultWrapper[GRETunnelListResponse]),
         )
@@ -526,7 +526,7 @@ class AsyncGRETunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[GRETunnelDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelDeleteResponse], ResultWrapper[GRETunnelDeleteResponse]),
         )
@@ -570,7 +570,7 @@ class AsyncGRETunnels(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[GRETunnelGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelGetResponse], ResultWrapper[GRETunnelGetResponse]),
         )

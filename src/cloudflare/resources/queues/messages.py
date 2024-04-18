@@ -85,7 +85,7 @@ class Messages(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MessageAckResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MessageAckResponse]], ResultWrapper[MessageAckResponse]),
         )
@@ -143,7 +143,7 @@ class Messages(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MessagePullResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MessagePullResponse]], ResultWrapper[MessagePullResponse]),
         )
@@ -206,7 +206,7 @@ class AsyncMessages(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MessageAckResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MessageAckResponse]], ResultWrapper[MessageAckResponse]),
         )
@@ -264,7 +264,7 @@ class AsyncMessages(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MessagePullResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MessagePullResponse]], ResultWrapper[MessagePullResponse]),
         )

@@ -79,7 +79,7 @@ class SecurityLevelResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SecurityLevel]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SecurityLevel]], ResultWrapper[SecurityLevel]),
         )
@@ -121,7 +121,7 @@ class SecurityLevelResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SecurityLevel]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SecurityLevel]], ResultWrapper[SecurityLevel]),
         )
@@ -177,7 +177,7 @@ class AsyncSecurityLevelResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SecurityLevel]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SecurityLevel]], ResultWrapper[SecurityLevel]),
         )
@@ -219,7 +219,7 @@ class AsyncSecurityLevelResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SecurityLevel]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SecurityLevel]], ResultWrapper[SecurityLevel]),
         )

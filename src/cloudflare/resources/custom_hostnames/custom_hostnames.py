@@ -119,7 +119,7 @@ class CustomHostnames(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CustomHostnameCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[CustomHostnameCreateResponse], ResultWrapper[CustomHostnameCreateResponse]),
         )
@@ -310,7 +310,7 @@ class CustomHostnames(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CustomHostnameEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[CustomHostnameEditResponse], ResultWrapper[CustomHostnameEditResponse]),
         )
@@ -354,7 +354,7 @@ class CustomHostnames(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CustomHostnameGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[CustomHostnameGetResponse], ResultWrapper[CustomHostnameGetResponse]),
         )
@@ -430,7 +430,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CustomHostnameCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[CustomHostnameCreateResponse], ResultWrapper[CustomHostnameCreateResponse]),
         )
@@ -621,7 +621,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CustomHostnameEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[CustomHostnameEditResponse], ResultWrapper[CustomHostnameEditResponse]),
         )
@@ -665,7 +665,7 @@ class AsyncCustomHostnames(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CustomHostnameGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[CustomHostnameGetResponse], ResultWrapper[CustomHostnameGetResponse]),
         )

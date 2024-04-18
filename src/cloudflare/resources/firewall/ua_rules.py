@@ -87,7 +87,7 @@ class UARules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[UARuleCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UARuleCreateResponse]
@@ -138,7 +138,7 @@ class UARules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[UARuleUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UARuleUpdateResponse]
@@ -254,7 +254,7 @@ class UARules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[UARuleDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[UARuleDeleteResponse], ResultWrapper[UARuleDeleteResponse]),
         )
@@ -300,7 +300,7 @@ class UARules(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[UARuleGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UARuleGetResponse]
@@ -356,7 +356,7 @@ class AsyncUARules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[UARuleCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UARuleCreateResponse]
@@ -407,7 +407,7 @@ class AsyncUARules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[UARuleUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UARuleUpdateResponse]
@@ -523,7 +523,7 @@ class AsyncUARules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[UARuleDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[UARuleDeleteResponse], ResultWrapper[UARuleDeleteResponse]),
         )
@@ -569,7 +569,7 @@ class AsyncUARules(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[UARuleGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UARuleGetResponse]

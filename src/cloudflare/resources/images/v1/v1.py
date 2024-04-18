@@ -154,7 +154,7 @@ class V1(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Image]._unwrapper,
             ),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
@@ -258,7 +258,7 @@ class V1(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[V1DeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[V1DeleteResponse]
@@ -323,7 +323,7 @@ class V1(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Image]._unwrapper,
             ),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
@@ -367,7 +367,7 @@ class V1(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Image]._unwrapper,
             ),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
@@ -457,7 +457,7 @@ class AsyncV1(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Image]._unwrapper,
             ),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
@@ -561,7 +561,7 @@ class AsyncV1(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[V1DeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[V1DeleteResponse]
@@ -626,7 +626,7 @@ class AsyncV1(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Image]._unwrapper,
             ),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
@@ -670,7 +670,7 @@ class AsyncV1(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Image]._unwrapper,
             ),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )

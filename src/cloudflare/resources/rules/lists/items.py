@@ -94,7 +94,7 @@ class Items(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ItemCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ItemCreateResponse]], ResultWrapper[ItemCreateResponse]),
         )
@@ -145,7 +145,7 @@ class Items(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ItemUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ItemUpdateResponse]], ResultWrapper[ItemUpdateResponse]),
         )
@@ -264,7 +264,7 @@ class Items(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ItemDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ItemDeleteResponse]], ResultWrapper[ItemDeleteResponse]),
         )
@@ -315,7 +315,7 @@ class Items(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[ItemGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ItemGetResponse]
@@ -379,7 +379,7 @@ class AsyncItems(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ItemCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ItemCreateResponse]], ResultWrapper[ItemCreateResponse]),
         )
@@ -430,7 +430,7 @@ class AsyncItems(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ItemUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ItemUpdateResponse]], ResultWrapper[ItemUpdateResponse]),
         )
@@ -549,7 +549,7 @@ class AsyncItems(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[ItemDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ItemDeleteResponse]], ResultWrapper[ItemDeleteResponse]),
         )
@@ -600,7 +600,7 @@ class AsyncItems(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[ItemGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ItemGetResponse]

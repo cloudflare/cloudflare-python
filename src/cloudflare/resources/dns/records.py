@@ -1294,7 +1294,7 @@ class Records(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Record]
@@ -2584,7 +2584,7 @@ class Records(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Record]
@@ -2758,7 +2758,7 @@ class Records(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RecordDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecordDeleteResponse]], ResultWrapper[RecordDeleteResponse]),
         )
@@ -4045,7 +4045,7 @@ class Records(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Record]
@@ -4136,7 +4136,7 @@ class Records(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Record]
@@ -4204,7 +4204,7 @@ class Records(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RecordImportResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecordImportResponse]], ResultWrapper[RecordImportResponse]),
         )
@@ -4246,7 +4246,7 @@ class Records(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RecordScanResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecordScanResponse]], ResultWrapper[RecordScanResponse]),
         )
@@ -5500,7 +5500,7 @@ class AsyncRecords(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Record]
@@ -6790,7 +6790,7 @@ class AsyncRecords(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Record]
@@ -6964,7 +6964,7 @@ class AsyncRecords(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RecordDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecordDeleteResponse]], ResultWrapper[RecordDeleteResponse]),
         )
@@ -8251,7 +8251,7 @@ class AsyncRecords(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Record]
@@ -8342,7 +8342,7 @@ class AsyncRecords(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[Record]
@@ -8410,7 +8410,7 @@ class AsyncRecords(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RecordImportResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecordImportResponse]], ResultWrapper[RecordImportResponse]),
         )
@@ -8452,7 +8452,7 @@ class AsyncRecords(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RecordScanResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecordScanResponse]], ResultWrapper[RecordScanResponse]),
         )

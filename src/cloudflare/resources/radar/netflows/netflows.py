@@ -161,7 +161,7 @@ class Netflows(SyncAPIResource):
                     },
                     netflow_timeseries_params.NetflowTimeseriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[NetflowTimeseriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[NetflowTimeseriesResponse], ResultWrapper[NetflowTimeseriesResponse]),
         )
@@ -290,7 +290,7 @@ class AsyncNetflows(AsyncAPIResource):
                     },
                     netflow_timeseries_params.NetflowTimeseriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[NetflowTimeseriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[NetflowTimeseriesResponse], ResultWrapper[NetflowTimeseriesResponse]),
         )

@@ -98,7 +98,7 @@ class Routes(SyncAPIResource):
                     },
                     route_moas_params.RouteMoasParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteMoasResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteMoasResponse], ResultWrapper[RouteMoasResponse]),
         )
@@ -158,7 +158,7 @@ class Routes(SyncAPIResource):
                     },
                     route_pfx2as_params.RoutePfx2asParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RoutePfx2asResponse]._unwrapper,
             ),
             cast_to=cast(Type[RoutePfx2asResponse], ResultWrapper[RoutePfx2asResponse]),
         )
@@ -209,7 +209,7 @@ class Routes(SyncAPIResource):
                     },
                     route_stats_params.RouteStatsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteStatsResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteStatsResponse], ResultWrapper[RouteStatsResponse]),
         )
@@ -295,7 +295,7 @@ class Routes(SyncAPIResource):
                     },
                     route_timeseries_params.RouteTimeseriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteTimeseriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteTimeseriesResponse], ResultWrapper[RouteTimeseriesResponse]),
         )
@@ -360,7 +360,7 @@ class AsyncRoutes(AsyncAPIResource):
                     },
                     route_moas_params.RouteMoasParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteMoasResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteMoasResponse], ResultWrapper[RouteMoasResponse]),
         )
@@ -420,7 +420,7 @@ class AsyncRoutes(AsyncAPIResource):
                     },
                     route_pfx2as_params.RoutePfx2asParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RoutePfx2asResponse]._unwrapper,
             ),
             cast_to=cast(Type[RoutePfx2asResponse], ResultWrapper[RoutePfx2asResponse]),
         )
@@ -471,7 +471,7 @@ class AsyncRoutes(AsyncAPIResource):
                     },
                     route_stats_params.RouteStatsParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteStatsResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteStatsResponse], ResultWrapper[RouteStatsResponse]),
         )
@@ -557,7 +557,7 @@ class AsyncRoutes(AsyncAPIResource):
                     },
                     route_timeseries_params.RouteTimeseriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[RouteTimeseriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteTimeseriesResponse], ResultWrapper[RouteTimeseriesResponse]),
         )

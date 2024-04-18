@@ -83,7 +83,7 @@ class FallbackOrigin(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[FallbackOriginUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginUpdateResponse]
@@ -129,7 +129,7 @@ class FallbackOrigin(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[FallbackOriginDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginDeleteResponse]
@@ -173,7 +173,7 @@ class FallbackOrigin(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[FallbackOriginGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginGetResponse]
@@ -233,7 +233,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[FallbackOriginUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginUpdateResponse]
@@ -279,7 +279,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[FallbackOriginDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginDeleteResponse]
@@ -323,7 +323,7 @@ class AsyncFallbackOrigin(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[FallbackOriginGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginGetResponse]

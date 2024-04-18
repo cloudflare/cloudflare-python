@@ -147,7 +147,7 @@ class Spam(SyncAPIResource):
                     },
                     spam_get_params.SpamGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SpamGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[SpamGetResponse], ResultWrapper[SpamGetResponse]),
         )
@@ -270,7 +270,7 @@ class AsyncSpam(AsyncAPIResource):
                     },
                     spam_get_params.SpamGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[SpamGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[SpamGetResponse], ResultWrapper[SpamGetResponse]),
         )

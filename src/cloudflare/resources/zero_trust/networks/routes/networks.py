@@ -95,7 +95,7 @@ class Networks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Route]._unwrapper,
             ),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
@@ -163,7 +163,7 @@ class Networks(SyncAPIResource):
                     },
                     network_delete_params.NetworkDeleteParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Route]._unwrapper,
             ),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
@@ -209,7 +209,7 @@ class Networks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Route]._unwrapper,
             ),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
@@ -280,7 +280,7 @@ class AsyncNetworks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Route]._unwrapper,
             ),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
@@ -348,7 +348,7 @@ class AsyncNetworks(AsyncAPIResource):
                     },
                     network_delete_params.NetworkDeleteParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Route]._unwrapper,
             ),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
@@ -394,7 +394,7 @@ class AsyncNetworks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Route]._unwrapper,
             ),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )

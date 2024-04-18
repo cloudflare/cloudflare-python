@@ -85,7 +85,7 @@ class Overrides(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Override]._unwrapper,
             ),
             cast_to=cast(Type[Override], ResultWrapper[Override]),
         )
@@ -134,7 +134,7 @@ class Overrides(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Override]._unwrapper,
             ),
             cast_to=cast(Type[Override], ResultWrapper[Override]),
         )
@@ -238,7 +238,7 @@ class Overrides(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OverrideDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OverrideDeleteResponse]], ResultWrapper[OverrideDeleteResponse]),
         )
@@ -285,7 +285,7 @@ class Overrides(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Override]._unwrapper,
             ),
             cast_to=cast(Type[Override], ResultWrapper[Override]),
         )
@@ -339,7 +339,7 @@ class AsyncOverrides(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Override]._unwrapper,
             ),
             cast_to=cast(Type[Override], ResultWrapper[Override]),
         )
@@ -388,7 +388,7 @@ class AsyncOverrides(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Override]._unwrapper,
             ),
             cast_to=cast(Type[Override], ResultWrapper[Override]),
         )
@@ -492,7 +492,7 @@ class AsyncOverrides(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[OverrideDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OverrideDeleteResponse]], ResultWrapper[OverrideDeleteResponse]),
         )
@@ -539,7 +539,7 @@ class AsyncOverrides(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Override]._unwrapper,
             ),
             cast_to=cast(Type[Override], ResultWrapper[Override]),
         )

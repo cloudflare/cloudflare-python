@@ -98,7 +98,7 @@ class SiteInfo(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Site]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Site]], ResultWrapper[Site]),
         )
@@ -160,7 +160,7 @@ class SiteInfo(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Site]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Site]], ResultWrapper[Site]),
         )
@@ -260,7 +260,7 @@ class SiteInfo(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SiteInfoDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SiteInfoDeleteResponse]], ResultWrapper[SiteInfoDeleteResponse]),
         )
@@ -304,7 +304,7 @@ class SiteInfo(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Site]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Site]], ResultWrapper[Site]),
         )
@@ -371,7 +371,7 @@ class AsyncSiteInfo(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Site]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Site]], ResultWrapper[Site]),
         )
@@ -433,7 +433,7 @@ class AsyncSiteInfo(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Site]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Site]], ResultWrapper[Site]),
         )
@@ -533,7 +533,7 @@ class AsyncSiteInfo(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SiteInfoDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SiteInfoDeleteResponse]], ResultWrapper[SiteInfoDeleteResponse]),
         )
@@ -577,7 +577,7 @@ class AsyncSiteInfo(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Site]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Site]], ResultWrapper[Site]),
         )

@@ -168,7 +168,7 @@ class IPVersion(SyncAPIResource):
                     },
                     ip_version_get_params.IPVersionGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPVersionGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPVersionGetResponse], ResultWrapper[IPVersionGetResponse]),
         )
@@ -312,7 +312,7 @@ class AsyncIPVersion(AsyncAPIResource):
                     },
                     ip_version_get_params.IPVersionGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IPVersionGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPVersionGetResponse], ResultWrapper[IPVersionGetResponse]),
         )

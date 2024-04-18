@@ -85,7 +85,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
         )
@@ -131,7 +131,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallRule]._unwrapper,
             ),
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
@@ -252,7 +252,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallRule]._unwrapper,
             ),
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
@@ -298,7 +298,7 @@ class Rules(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleEditResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
         )
@@ -346,7 +346,7 @@ class Rules(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"id": query_id}, rule_get_params.RuleGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallRule]._unwrapper,
             ),
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
@@ -397,7 +397,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
         )
@@ -443,7 +443,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallRule]._unwrapper,
             ),
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
@@ -564,7 +564,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallRule]._unwrapper,
             ),
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
@@ -610,7 +610,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleEditResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
         )
@@ -658,7 +658,7 @@ class AsyncRules(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"id": query_id}, rule_get_params.RuleGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[FirewallRule]._unwrapper,
             ),
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )

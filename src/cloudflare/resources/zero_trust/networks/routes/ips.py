@@ -81,7 +81,7 @@ class IPs(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"virtual_network_id": virtual_network_id}, ip_get_params.IPGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Teamnet]._unwrapper,
             ),
             cast_to=cast(Type[Teamnet], ResultWrapper[Teamnet]),
         )
@@ -141,7 +141,7 @@ class AsyncIPs(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"virtual_network_id": virtual_network_id}, ip_get_params.IPGetParams
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Teamnet]._unwrapper,
             ),
             cast_to=cast(Type[Teamnet], ResultWrapper[Teamnet]),
         )

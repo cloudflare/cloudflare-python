@@ -169,7 +169,7 @@ class HTTPMethod(SyncAPIResource):
                     },
                     http_method_get_params.HTTPMethodGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[HTTPMethodGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[HTTPMethodGetResponse], ResultWrapper[HTTPMethodGetResponse]),
         )
@@ -314,7 +314,7 @@ class AsyncHTTPMethod(AsyncAPIResource):
                     },
                     http_method_get_params.HTTPMethodGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[HTTPMethodGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[HTTPMethodGetResponse], ResultWrapper[HTTPMethodGetResponse]),
         )

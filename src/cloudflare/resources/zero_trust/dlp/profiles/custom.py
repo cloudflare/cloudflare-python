@@ -81,7 +81,7 @@ class Custom(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CustomCreateResponse]], ResultWrapper[CustomCreateResponse]),
         )
@@ -206,7 +206,7 @@ class Custom(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[CustomDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomDeleteResponse]
@@ -253,7 +253,7 @@ class Custom(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CustomProfile]._unwrapper,
             ),
             cast_to=cast(Type[CustomProfile], ResultWrapper[CustomProfile]),
         )
@@ -304,7 +304,7 @@ class AsyncCustom(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CustomCreateResponse]], ResultWrapper[CustomCreateResponse]),
         )
@@ -429,7 +429,7 @@ class AsyncCustom(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[CustomDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomDeleteResponse]
@@ -476,7 +476,7 @@ class AsyncCustom(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CustomProfile]._unwrapper,
             ),
             cast_to=cast(Type[CustomProfile], ResultWrapper[CustomProfile]),
         )

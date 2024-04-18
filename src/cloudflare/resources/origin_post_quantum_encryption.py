@@ -90,7 +90,7 @@ class OriginPostQuantumEncryption(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginPostQuantumEncryptionUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginPostQuantumEncryptionUpdateResponse]
@@ -139,7 +139,7 @@ class OriginPostQuantumEncryption(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginPostQuantumEncryptionGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginPostQuantumEncryptionGetResponse]
@@ -205,7 +205,7 @@ class AsyncOriginPostQuantumEncryption(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginPostQuantumEncryptionUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginPostQuantumEncryptionUpdateResponse]
@@ -254,7 +254,7 @@ class AsyncOriginPostQuantumEncryption(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginPostQuantumEncryptionGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginPostQuantumEncryptionGetResponse]

@@ -105,7 +105,7 @@ class IndicatorFeeds(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IndicatorFeedCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[IndicatorFeedCreateResponse], ResultWrapper[IndicatorFeedCreateResponse]),
         )
@@ -151,7 +151,7 @@ class IndicatorFeeds(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IndicatorFeedUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[IndicatorFeedUpdateResponse], ResultWrapper[IndicatorFeedUpdateResponse]),
         )
@@ -268,7 +268,7 @@ class IndicatorFeeds(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IndicatorFeedGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[IndicatorFeedGetResponse], ResultWrapper[IndicatorFeedGetResponse]),
         )
@@ -334,7 +334,7 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IndicatorFeedCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[IndicatorFeedCreateResponse], ResultWrapper[IndicatorFeedCreateResponse]),
         )
@@ -382,7 +382,7 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IndicatorFeedUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[IndicatorFeedUpdateResponse], ResultWrapper[IndicatorFeedUpdateResponse]),
         )
@@ -499,7 +499,7 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IndicatorFeedGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[IndicatorFeedGetResponse], ResultWrapper[IndicatorFeedGetResponse]),
         )

@@ -104,7 +104,7 @@ class OriginCACertificates(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginCACertificateCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginCACertificateCreateResponse]
@@ -194,7 +194,7 @@ class OriginCACertificates(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OriginCACertificateDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[OriginCACertificateDeleteResponse], ResultWrapper[OriginCACertificateDeleteResponse]),
         )
@@ -238,7 +238,7 @@ class OriginCACertificates(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginCACertificateGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginCACertificateGetResponse]
@@ -312,7 +312,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginCACertificateCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginCACertificateCreateResponse]
@@ -402,7 +402,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OriginCACertificateDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[OriginCACertificateDeleteResponse], ResultWrapper[OriginCACertificateDeleteResponse]),
         )
@@ -446,7 +446,7 @@ class AsyncOriginCACertificates(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginCACertificateGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginCACertificateGetResponse]

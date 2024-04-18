@@ -180,7 +180,7 @@ class Tlds(SyncAPIResource):
                     },
                     tld_get_params.TldGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TldGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TldGetResponse], ResultWrapper[TldGetResponse]),
         )
@@ -312,7 +312,7 @@ class AsyncTlds(AsyncAPIResource):
                     },
                     tld_get_params.TldGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TldGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[TldGetResponse], ResultWrapper[TldGetResponse]),
         )

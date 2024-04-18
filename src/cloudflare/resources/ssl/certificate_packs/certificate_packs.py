@@ -157,7 +157,7 @@ class CertificatePacks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CertificatePackDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[CertificatePackDeleteResponse], ResultWrapper[CertificatePackDeleteResponse]),
         )
@@ -208,7 +208,7 @@ class CertificatePacks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CertificatePackEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[CertificatePackEditResponse], ResultWrapper[CertificatePackEditResponse]),
         )
@@ -256,7 +256,7 @@ class CertificatePacks(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[CertificatePackGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CertificatePackGetResponse]
@@ -368,7 +368,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CertificatePackDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[CertificatePackDeleteResponse], ResultWrapper[CertificatePackDeleteResponse]),
         )
@@ -419,7 +419,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[CertificatePackEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[CertificatePackEditResponse], ResultWrapper[CertificatePackEditResponse]),
         )
@@ -467,7 +467,7 @@ class AsyncCertificatePacks(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[CertificatePackGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CertificatePackGetResponse]

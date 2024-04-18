@@ -167,7 +167,7 @@ class OS(SyncAPIResource):
                     },
                     os_get_params.OSGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OSGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[OSGetResponse], ResultWrapper[OSGetResponse]),
         )
@@ -310,7 +310,7 @@ class AsyncOS(AsyncAPIResource):
                     },
                     os_get_params.OSGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OSGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[OSGetResponse], ResultWrapper[OSGetResponse]),
         )

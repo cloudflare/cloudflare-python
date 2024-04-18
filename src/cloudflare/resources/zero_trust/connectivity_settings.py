@@ -88,7 +88,7 @@ class ConnectivitySettings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ConnectivitySettingEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[ConnectivitySettingEditResponse], ResultWrapper[ConnectivitySettingEditResponse]),
         )
@@ -127,7 +127,7 @@ class ConnectivitySettings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ConnectivitySettingGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[ConnectivitySettingGetResponse], ResultWrapper[ConnectivitySettingGetResponse]),
         )
@@ -189,7 +189,7 @@ class AsyncConnectivitySettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ConnectivitySettingEditResponse]._unwrapper,
             ),
             cast_to=cast(Type[ConnectivitySettingEditResponse], ResultWrapper[ConnectivitySettingEditResponse]),
         )
@@ -228,7 +228,7 @@ class AsyncConnectivitySettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[ConnectivitySettingGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[ConnectivitySettingGetResponse], ResultWrapper[ConnectivitySettingGetResponse]),
         )

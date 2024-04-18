@@ -79,7 +79,7 @@ class MirageResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Mirage]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Mirage]], ResultWrapper[Mirage]),
         )
@@ -121,7 +121,7 @@ class MirageResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Mirage]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Mirage]], ResultWrapper[Mirage]),
         )
@@ -177,7 +177,7 @@ class AsyncMirageResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Mirage]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Mirage]], ResultWrapper[Mirage]),
         )
@@ -219,7 +219,7 @@ class AsyncMirageResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Mirage]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Mirage]], ResultWrapper[Mirage]),
         )

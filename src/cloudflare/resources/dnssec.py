@@ -76,7 +76,7 @@ class DNSSECResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[DNSSECDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DNSSECDeleteResponse]
@@ -148,7 +148,7 @@ class DNSSECResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DNSSEC]._unwrapper,
             ),
             cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
         )
@@ -187,7 +187,7 @@ class DNSSECResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DNSSEC]._unwrapper,
             ),
             cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
         )
@@ -240,7 +240,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[DNSSECDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DNSSECDeleteResponse]
@@ -312,7 +312,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DNSSEC]._unwrapper,
             ),
             cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
         )
@@ -351,7 +351,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DNSSEC]._unwrapper,
             ),
             cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
         )

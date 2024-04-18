@@ -90,7 +90,7 @@ class HostnameAssociations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[HostnameAssociationUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[HostnameAssociationUpdateResponse], ResultWrapper[HostnameAssociationUpdateResponse]),
         )
@@ -138,7 +138,7 @@ class HostnameAssociations(SyncAPIResource):
                     {"mtls_certificate_id": mtls_certificate_id},
                     hostname_association_get_params.HostnameAssociationGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[HostnameAssociationGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[HostnameAssociationGetResponse], ResultWrapper[HostnameAssociationGetResponse]),
         )
@@ -200,7 +200,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[HostnameAssociationUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[HostnameAssociationUpdateResponse], ResultWrapper[HostnameAssociationUpdateResponse]),
         )
@@ -248,7 +248,7 @@ class AsyncHostnameAssociations(AsyncAPIResource):
                     {"mtls_certificate_id": mtls_certificate_id},
                     hostname_association_get_params.HostnameAssociationGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[HostnameAssociationGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[HostnameAssociationGetResponse], ResultWrapper[HostnameAssociationGetResponse]),
         )

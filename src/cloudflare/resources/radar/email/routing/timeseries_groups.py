@@ -153,7 +153,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_arc_params.TimeseriesGroupARCParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupARCResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupARCResponse], ResultWrapper[TimeseriesGroupARCResponse]),
         )
@@ -259,7 +259,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_dkim_params.TimeseriesGroupDKIMParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupDKIMResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
@@ -365,7 +365,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_dmarc_params.TimeseriesGroupDMARCParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupDMARCResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
         )
@@ -471,7 +471,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_encrypted_params.TimeseriesGroupEncryptedParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupEncryptedResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupEncryptedResponse], ResultWrapper[TimeseriesGroupEncryptedResponse]),
         )
@@ -577,7 +577,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_ip_version_params.TimeseriesGroupIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
@@ -683,7 +683,7 @@ class TimeseriesGroups(SyncAPIResource):
                     },
                     timeseries_group_spf_params.TimeseriesGroupSPFParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupSPFResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupSPFResponse], ResultWrapper[TimeseriesGroupSPFResponse]),
         )
@@ -799,7 +799,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_arc_params.TimeseriesGroupARCParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupARCResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupARCResponse], ResultWrapper[TimeseriesGroupARCResponse]),
         )
@@ -905,7 +905,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_dkim_params.TimeseriesGroupDKIMParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupDKIMResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
@@ -1011,7 +1011,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_dmarc_params.TimeseriesGroupDMARCParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupDMARCResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
         )
@@ -1117,7 +1117,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_encrypted_params.TimeseriesGroupEncryptedParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupEncryptedResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupEncryptedResponse], ResultWrapper[TimeseriesGroupEncryptedResponse]),
         )
@@ -1223,7 +1223,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_ip_version_params.TimeseriesGroupIPVersionParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupIPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
@@ -1329,7 +1329,7 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
                     },
                     timeseries_group_spf_params.TimeseriesGroupSPFParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TimeseriesGroupSPFResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupSPFResponse], ResultWrapper[TimeseriesGroupSPFResponse]),
         )

@@ -73,7 +73,7 @@ class DomainHistoryResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"domain": domain}, domain_history_get_params.DomainHistoryGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DomainHistoryGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DomainHistoryGetResponse]], ResultWrapper[DomainHistoryGetResponse]),
         )
@@ -124,7 +124,7 @@ class AsyncDomainHistoryResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"domain": domain}, domain_history_get_params.DomainHistoryGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[DomainHistoryGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DomainHistoryGetResponse]], ResultWrapper[DomainHistoryGetResponse]),
         )

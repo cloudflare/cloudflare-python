@@ -87,7 +87,7 @@ class WANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WANCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[WANCreateResponse], ResultWrapper[WANCreateResponse]),
         )
@@ -138,7 +138,7 @@ class WANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WANUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[WANUpdateResponse], ResultWrapper[WANUpdateResponse]),
         )
@@ -182,7 +182,7 @@ class WANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WANListResponse]._unwrapper,
             ),
             cast_to=cast(Type[WANListResponse], ResultWrapper[WANListResponse]),
         )
@@ -233,7 +233,7 @@ class WANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WANDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[WANDeleteResponse], ResultWrapper[WANDeleteResponse]),
         )
@@ -282,7 +282,7 @@ class WANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WANGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[WANGetResponse], ResultWrapper[WANGetResponse]),
         )
@@ -338,7 +338,7 @@ class AsyncWANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WANCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[WANCreateResponse], ResultWrapper[WANCreateResponse]),
         )
@@ -389,7 +389,7 @@ class AsyncWANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WANUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[WANUpdateResponse], ResultWrapper[WANUpdateResponse]),
         )
@@ -433,7 +433,7 @@ class AsyncWANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WANListResponse]._unwrapper,
             ),
             cast_to=cast(Type[WANListResponse], ResultWrapper[WANListResponse]),
         )
@@ -484,7 +484,7 @@ class AsyncWANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WANDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[WANDeleteResponse], ResultWrapper[WANDeleteResponse]),
         )
@@ -533,7 +533,7 @@ class AsyncWANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[WANGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[WANGetResponse], ResultWrapper[WANGetResponse]),
         )

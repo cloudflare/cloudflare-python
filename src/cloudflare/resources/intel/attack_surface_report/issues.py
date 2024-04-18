@@ -190,7 +190,7 @@ class Issues(SyncAPIResource):
                     },
                     issue_class_params.IssueClassParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IssueClassResponse]._unwrapper,
             ),
             cast_to=cast(Type[IssueClassResponse], ResultWrapper[IssueClassResponse]),
         )
@@ -236,7 +236,7 @@ class Issues(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[IssueDismissResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IssueDismissResponse]
@@ -305,7 +305,7 @@ class Issues(SyncAPIResource):
                     },
                     issue_severity_params.IssueSeverityParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IssueSeverityResponse]._unwrapper,
             ),
             cast_to=cast(Type[IssueSeverityResponse], ResultWrapper[IssueSeverityResponse]),
         )
@@ -371,7 +371,7 @@ class Issues(SyncAPIResource):
                     },
                     issue_type_params.IssueTypeParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IssueTypeResponse]._unwrapper,
             ),
             cast_to=cast(Type[IssueTypeResponse], ResultWrapper[IssueTypeResponse]),
         )
@@ -521,7 +521,7 @@ class AsyncIssues(AsyncAPIResource):
                     },
                     issue_class_params.IssueClassParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IssueClassResponse]._unwrapper,
             ),
             cast_to=cast(Type[IssueClassResponse], ResultWrapper[IssueClassResponse]),
         )
@@ -567,7 +567,7 @@ class AsyncIssues(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[IssueDismissResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IssueDismissResponse]
@@ -636,7 +636,7 @@ class AsyncIssues(AsyncAPIResource):
                     },
                     issue_severity_params.IssueSeverityParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IssueSeverityResponse]._unwrapper,
             ),
             cast_to=cast(Type[IssueSeverityResponse], ResultWrapper[IssueSeverityResponse]),
         )
@@ -702,7 +702,7 @@ class AsyncIssues(AsyncAPIResource):
                     },
                     issue_type_params.IssueTypeParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IssueTypeResponse]._unwrapper,
             ),
             cast_to=cast(Type[IssueTypeResponse], ResultWrapper[IssueTypeResponse]),
         )

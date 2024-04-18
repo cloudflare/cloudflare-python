@@ -108,7 +108,7 @@ class Subscriptions(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SubscriptionUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SubscriptionUpdateResponse]
@@ -212,7 +212,7 @@ class Subscriptions(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SubscriptionEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SubscriptionEditResponse]
@@ -238,7 +238,7 @@ class Subscriptions(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SubscriptionGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SubscriptionGetResponse]], ResultWrapper[SubscriptionGetResponse]),
         )
@@ -312,7 +312,7 @@ class AsyncSubscriptions(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SubscriptionUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SubscriptionUpdateResponse]
@@ -416,7 +416,7 @@ class AsyncSubscriptions(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[SubscriptionEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SubscriptionEditResponse]
@@ -442,7 +442,7 @@ class AsyncSubscriptions(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SubscriptionGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SubscriptionGetResponse]], ResultWrapper[SubscriptionGetResponse]),
         )

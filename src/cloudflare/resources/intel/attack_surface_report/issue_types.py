@@ -67,7 +67,7 @@ class IssueTypes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IssueTypeGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[IssueTypeGetResponse], ResultWrapper[IssueTypeGetResponse]),
         )
@@ -116,7 +116,7 @@ class AsyncIssueTypes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[IssueTypeGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[IssueTypeGetResponse], ResultWrapper[IssueTypeGetResponse]),
         )

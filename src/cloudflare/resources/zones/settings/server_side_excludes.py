@@ -86,7 +86,7 @@ class ServerSideExcludes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[server_side_excludes.ServerSideExcludes]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[server_side_excludes.ServerSideExcludes]],
@@ -138,7 +138,7 @@ class ServerSideExcludes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[server_side_excludes.ServerSideExcludes]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[server_side_excludes.ServerSideExcludes]],
@@ -206,7 +206,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[server_side_excludes.ServerSideExcludes]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[server_side_excludes.ServerSideExcludes]],
@@ -258,7 +258,7 @@ class AsyncServerSideExcludes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[server_side_excludes.ServerSideExcludes]]._unwrapper,
             ),
             cast_to=cast(
                 Type[Optional[server_side_excludes.ServerSideExcludes]],

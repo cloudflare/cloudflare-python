@@ -188,7 +188,7 @@ class Top(SyncAPIResource):
                     },
                     top_attacks_params.TopAttacksParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopAttacksResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopAttacksResponse], ResultWrapper[TopAttacksResponse]),
         )
@@ -290,7 +290,7 @@ class Top(SyncAPIResource):
                     },
                     top_industry_params.TopIndustryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopIndustryResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopIndustryResponse], ResultWrapper[TopIndustryResponse]),
         )
@@ -392,7 +392,7 @@ class Top(SyncAPIResource):
                     },
                     top_vertical_params.TopVerticalParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopVerticalResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopVerticalResponse], ResultWrapper[TopVerticalResponse]),
         )
@@ -533,7 +533,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_attacks_params.TopAttacksParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopAttacksResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopAttacksResponse], ResultWrapper[TopAttacksResponse]),
         )
@@ -635,7 +635,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_industry_params.TopIndustryParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopIndustryResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopIndustryResponse], ResultWrapper[TopIndustryResponse]),
         )
@@ -737,7 +737,7 @@ class AsyncTop(AsyncAPIResource):
                     },
                     top_vertical_params.TopVerticalParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[TopVerticalResponse]._unwrapper,
             ),
             cast_to=cast(Type[TopVerticalResponse], ResultWrapper[TopVerticalResponse]),
         )

@@ -78,7 +78,7 @@ class MobileRedirectResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MobileRedirect]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MobileRedirect]], ResultWrapper[MobileRedirect]),
         )
@@ -120,7 +120,7 @@ class MobileRedirectResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MobileRedirect]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MobileRedirect]], ResultWrapper[MobileRedirect]),
         )
@@ -176,7 +176,7 @@ class AsyncMobileRedirectResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MobileRedirect]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MobileRedirect]], ResultWrapper[MobileRedirect]),
         )
@@ -218,7 +218,7 @@ class AsyncMobileRedirectResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[MobileRedirect]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MobileRedirect]], ResultWrapper[MobileRedirect]),
         )

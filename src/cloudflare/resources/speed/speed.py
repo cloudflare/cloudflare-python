@@ -160,7 +160,7 @@ class Speed(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"region": region}, speed_delete_params.SpeedDeleteParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SpeedDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SpeedDeleteResponse]], ResultWrapper[SpeedDeleteResponse]),
         )
@@ -231,7 +231,7 @@ class Speed(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"region": region}, speed_schedule_get_params.SpeedScheduleGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Schedule]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Schedule]], ResultWrapper[Schedule]),
         )
@@ -322,7 +322,7 @@ class Speed(SyncAPIResource):
                     },
                     speed_trends_list_params.SpeedTrendsListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Trend]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Trend]], ResultWrapper[Trend]),
         )
@@ -419,7 +419,7 @@ class AsyncSpeed(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"region": region}, speed_delete_params.SpeedDeleteParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SpeedDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SpeedDeleteResponse]], ResultWrapper[SpeedDeleteResponse]),
         )
@@ -490,7 +490,7 @@ class AsyncSpeed(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"region": region}, speed_schedule_get_params.SpeedScheduleGetParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Schedule]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Schedule]], ResultWrapper[Schedule]),
         )
@@ -581,7 +581,7 @@ class AsyncSpeed(AsyncAPIResource):
                     },
                     speed_trends_list_params.SpeedTrendsListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[Trend]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[Trend]], ResultWrapper[Trend]),
         )

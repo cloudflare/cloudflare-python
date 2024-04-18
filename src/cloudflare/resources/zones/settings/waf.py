@@ -86,7 +86,7 @@ class WAFResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[WAF]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[WAF]], ResultWrapper[WAF]),
         )
@@ -135,7 +135,7 @@ class WAFResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[WAF]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[WAF]], ResultWrapper[WAF]),
         )
@@ -198,7 +198,7 @@ class AsyncWAFResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[WAF]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[WAF]], ResultWrapper[WAF]),
         )
@@ -247,7 +247,7 @@ class AsyncWAFResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[WAF]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[WAF]], ResultWrapper[WAF]),
         )

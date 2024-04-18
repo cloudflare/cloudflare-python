@@ -134,7 +134,7 @@ class Projects(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[ProjectCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ProjectCreateResponse]
@@ -265,7 +265,7 @@ class Projects(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[ProjectEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ProjectEditResponse]
@@ -312,7 +312,7 @@ class Projects(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
             cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
@@ -436,7 +436,7 @@ class AsyncProjects(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[ProjectCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ProjectCreateResponse]
@@ -567,7 +567,7 @@ class AsyncProjects(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[ProjectEditResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ProjectEditResponse]
@@ -614,7 +614,7 @@ class AsyncProjects(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
             cast_to=cast(Type[Project], ResultWrapper[Project]),
         )

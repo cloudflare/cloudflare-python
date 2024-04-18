@@ -94,7 +94,7 @@ class Datasets(SyncAPIResource):
                     },
                     dataset_list_params.DatasetListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DatasetListResponse]._unwrapper,
             ),
             cast_to=cast(Type[DatasetListResponse], ResultWrapper[DatasetListResponse]),
         )
@@ -134,7 +134,7 @@ class Datasets(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"format": format}, dataset_download_params.DatasetDownloadParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DatasetDownloadResponse]._unwrapper,
             ),
             cast_to=cast(Type[DatasetDownloadResponse], ResultWrapper[DatasetDownloadResponse]),
         )
@@ -245,7 +245,7 @@ class AsyncDatasets(AsyncAPIResource):
                     },
                     dataset_list_params.DatasetListParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DatasetListResponse]._unwrapper,
             ),
             cast_to=cast(Type[DatasetListResponse], ResultWrapper[DatasetListResponse]),
         )
@@ -285,7 +285,7 @@ class AsyncDatasets(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"format": format}, dataset_download_params.DatasetDownloadParams),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[DatasetDownloadResponse]._unwrapper,
             ),
             cast_to=cast(Type[DatasetDownloadResponse], ResultWrapper[DatasetDownloadResponse]),
         )

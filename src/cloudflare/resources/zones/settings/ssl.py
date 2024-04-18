@@ -91,7 +91,7 @@ class SSLResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SSL]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SSL]], ResultWrapper[SSL]),
         )
@@ -145,7 +145,7 @@ class SSLResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SSL]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SSL]], ResultWrapper[SSL]),
         )
@@ -213,7 +213,7 @@ class AsyncSSLResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SSL]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SSL]], ResultWrapper[SSL]),
         )
@@ -267,7 +267,7 @@ class AsyncSSLResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SSL]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SSL]], ResultWrapper[SSL]),
         )

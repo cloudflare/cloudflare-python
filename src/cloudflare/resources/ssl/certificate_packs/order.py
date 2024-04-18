@@ -106,7 +106,7 @@ class Order(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OrderCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[OrderCreateResponse], ResultWrapper[OrderCreateResponse]),
         )
@@ -188,7 +188,7 @@ class AsyncOrder(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[OrderCreateResponse]._unwrapper,
             ),
             cast_to=cast(Type[OrderCreateResponse], ResultWrapper[OrderCreateResponse]),
         )

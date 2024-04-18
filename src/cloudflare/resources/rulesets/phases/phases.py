@@ -176,7 +176,7 @@ class Phases(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PhaseUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PhaseUpdateResponse], ResultWrapper[PhaseUpdateResponse]),
         )
@@ -258,7 +258,7 @@ class Phases(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PhaseGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[PhaseGetResponse], ResultWrapper[PhaseGetResponse]),
         )
@@ -403,7 +403,7 @@ class AsyncPhases(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PhaseUpdateResponse]._unwrapper,
             ),
             cast_to=cast(Type[PhaseUpdateResponse], ResultWrapper[PhaseUpdateResponse]),
         )
@@ -485,7 +485,7 @@ class AsyncPhases(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[PhaseGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[PhaseGetResponse], ResultWrapper[PhaseGetResponse]),
         )

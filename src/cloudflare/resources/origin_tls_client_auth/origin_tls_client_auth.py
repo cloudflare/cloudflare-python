@@ -124,7 +124,7 @@ class OriginTLSClientAuth(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginTLSClientAuthCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthCreateResponse]
@@ -211,7 +211,7 @@ class OriginTLSClientAuth(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginTLSClientAuthDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthDeleteResponse]
@@ -260,7 +260,7 @@ class OriginTLSClientAuth(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginTLSClientAuthGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthGetResponse]
@@ -339,7 +339,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginTLSClientAuthCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthCreateResponse]
@@ -428,7 +428,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginTLSClientAuthDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthDeleteResponse]
@@ -477,7 +477,7 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper._unwrapper,
+                    post_parser=ResultWrapper[OriginTLSClientAuthGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthGetResponse]

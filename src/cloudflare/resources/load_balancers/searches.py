@@ -82,7 +82,7 @@ class Searches(SyncAPIResource):
                     },
                     search_get_params.SearchGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SearchGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SearchGetResponse]], ResultWrapper[SearchGetResponse]),
         )
@@ -142,7 +142,7 @@ class AsyncSearches(AsyncAPIResource):
                     },
                     search_get_params.SearchGetParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[SearchGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[SearchGetResponse]], ResultWrapper[SearchGetResponse]),
         )

@@ -197,7 +197,7 @@ class Layer3(SyncAPIResource):
                     },
                     layer3_timeseries_params.Layer3TimeseriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Layer3TimeseriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[Layer3TimeseriesResponse], ResultWrapper[Layer3TimeseriesResponse]),
         )
@@ -345,7 +345,7 @@ class AsyncLayer3(AsyncAPIResource):
                     },
                     layer3_timeseries_params.Layer3TimeseriesParams,
                 ),
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Layer3TimeseriesResponse]._unwrapper,
             ),
             cast_to=cast(Type[Layer3TimeseriesResponse], ResultWrapper[Layer3TimeseriesResponse]),
         )

@@ -105,7 +105,7 @@ class Versions(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[VersionCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[VersionCreateResponse]], ResultWrapper[VersionCreateResponse]),
         )
@@ -150,7 +150,7 @@ class Versions(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[VersionListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[VersionListResponse]], ResultWrapper[VersionListResponse]),
         )
@@ -197,7 +197,7 @@ class Versions(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[VersionGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[VersionGetResponse]], ResultWrapper[VersionGetResponse]),
         )
@@ -273,7 +273,7 @@ class AsyncVersions(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[VersionCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[VersionCreateResponse]], ResultWrapper[VersionCreateResponse]),
         )
@@ -318,7 +318,7 @@ class AsyncVersions(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[VersionListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[VersionListResponse]], ResultWrapper[VersionListResponse]),
         )
@@ -365,7 +365,7 @@ class AsyncVersions(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper._unwrapper,
+                post_parser=ResultWrapper[Optional[VersionGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[VersionGetResponse]], ResultWrapper[VersionGetResponse]),
         )
