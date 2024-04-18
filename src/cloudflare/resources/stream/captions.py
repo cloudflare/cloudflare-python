@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -24,9 +24,9 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.stream import (
+    Caption,
     CaptionGetResponse,
     CaptionDeleteResponse,
-    CaptionUpdateResponse,
     caption_delete_params,
     caption_update_params,
 )
@@ -56,7 +56,7 @@ class Captions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CaptionUpdateResponse]:
+    ) -> Optional[Caption]:
         """
         Uploads the caption or subtitle file to the endpoint for a specific BCP47
         language. One caption or subtitle file per language is allowed.
@@ -84,22 +84,17 @@ class Captions(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
-        return cast(
-            Optional[CaptionUpdateResponse],
-            self._put(
-                f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-                body=maybe_transform({"file": file}, caption_update_params.CaptionUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CaptionUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CaptionUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
+            body=maybe_transform({"file": file}, caption_update_params.CaptionUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Caption]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[Caption]], ResultWrapper[Caption]),
         )
 
     def delete(
@@ -220,7 +215,7 @@ class AsyncCaptions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CaptionUpdateResponse]:
+    ) -> Optional[Caption]:
         """
         Uploads the caption or subtitle file to the endpoint for a specific BCP47
         language. One caption or subtitle file per language is allowed.
@@ -248,22 +243,17 @@ class AsyncCaptions(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
-        return cast(
-            Optional[CaptionUpdateResponse],
-            await self._put(
-                f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-                body=await async_maybe_transform({"file": file}, caption_update_params.CaptionUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CaptionUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CaptionUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
+            body=await async_maybe_transform({"file": file}, caption_update_params.CaptionUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Caption]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[Caption]], ResultWrapper[Caption]),
         )
 
     async def delete(
