@@ -5,7 +5,7 @@ from typing import List, Optional
 from ..._models import BaseModel
 from .permission_grant import PermissionGrant
 
-__all__ = ["IamMember", "Role", "RolePermissions", "User"]
+__all__ = ["Member", "Role", "RolePermissions", "User"]
 
 
 class RolePermissions(BaseModel):
@@ -67,7 +67,7 @@ class User(BaseModel):
     """
 
 
-class IamMember(BaseModel):
+class Member(BaseModel):
     id: str
     """Membership identifier tag."""
 
