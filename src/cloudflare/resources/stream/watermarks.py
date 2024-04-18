@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Any, Type, Optional, cast
 
 import httpx
 
@@ -25,14 +25,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.stream import (
-    Watermaks,
-    WatermarkGetResponse,
-    WatermarkCreateResponse,
-    WatermarkDeleteResponse,
-    watermark_create_params,
-    watermark_delete_params,
-)
+from ...types.stream import Watermaks, WatermarkDeleteResponse, watermark_create_params, watermark_delete_params
 
 __all__ = ["Watermarks", "AsyncWatermarks"]
 
@@ -62,7 +55,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WatermarkCreateResponse]:
+    ) -> Optional[Watermaks]:
         """
         Creates watermark profiles using a single `HTTP POST multipart/form-data`
         request.
@@ -101,32 +94,27 @@ class Watermarks(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[WatermarkCreateResponse],
-            self._post(
-                f"/accounts/{account_id}/stream/watermarks",
-                body=maybe_transform(
-                    {
-                        "file": file,
-                        "name": name,
-                        "opacity": opacity,
-                        "padding": padding,
-                        "position": position,
-                        "scale": scale,
-                    },
-                    watermark_create_params.WatermarkCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[WatermarkCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WatermarkCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/accounts/{account_id}/stream/watermarks",
+            body=maybe_transform(
+                {
+                    "file": file,
+                    "name": name,
+                    "opacity": opacity,
+                    "padding": padding,
+                    "position": position,
+                    "scale": scale,
+                },
+                watermark_create_params.WatermarkCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Watermaks]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Watermaks]], ResultWrapper[Watermaks]),
         )
 
     def list(
@@ -227,7 +215,7 @@ class Watermarks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WatermarkGetResponse]:
+    ) -> Optional[Watermaks]:
         """
         Retrieves details for a single watermark profile.
 
@@ -248,21 +236,16 @@ class Watermarks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return cast(
-            Optional[WatermarkGetResponse],
-            self._get(
-                f"/accounts/{account_id}/stream/watermarks/{identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[WatermarkGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WatermarkGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/stream/watermarks/{identifier}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Watermaks]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[Watermaks]], ResultWrapper[Watermaks]),
         )
 
 
@@ -291,7 +274,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WatermarkCreateResponse]:
+    ) -> Optional[Watermaks]:
         """
         Creates watermark profiles using a single `HTTP POST multipart/form-data`
         request.
@@ -330,32 +313,27 @@ class AsyncWatermarks(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[WatermarkCreateResponse],
-            await self._post(
-                f"/accounts/{account_id}/stream/watermarks",
-                body=await async_maybe_transform(
-                    {
-                        "file": file,
-                        "name": name,
-                        "opacity": opacity,
-                        "padding": padding,
-                        "position": position,
-                        "scale": scale,
-                    },
-                    watermark_create_params.WatermarkCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[WatermarkCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WatermarkCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/accounts/{account_id}/stream/watermarks",
+            body=await async_maybe_transform(
+                {
+                    "file": file,
+                    "name": name,
+                    "opacity": opacity,
+                    "padding": padding,
+                    "position": position,
+                    "scale": scale,
+                },
+                watermark_create_params.WatermarkCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Watermaks]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Watermaks]], ResultWrapper[Watermaks]),
         )
 
     def list(
@@ -456,7 +434,7 @@ class AsyncWatermarks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WatermarkGetResponse]:
+    ) -> Optional[Watermaks]:
         """
         Retrieves details for a single watermark profile.
 
@@ -477,21 +455,16 @@ class AsyncWatermarks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return cast(
-            Optional[WatermarkGetResponse],
-            await self._get(
-                f"/accounts/{account_id}/stream/watermarks/{identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[WatermarkGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WatermarkGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/stream/watermarks/{identifier}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Watermaks]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[Watermaks]], ResultWrapper[Watermaks]),
         )
 
 
