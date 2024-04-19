@@ -4,15 +4,14 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["CaptionUpdateParams"]
+__all__ = ["VttGetParams"]
 
 
-class CaptionUpdateParams(TypedDict, total=False):
+class VttGetParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
     identifier: Required[str]
     """A Cloudflare-generated unique identifier for a media item."""
 
-    file: Required[str]
-    """The WebVTT file containing the caption or subtitle content."""
+    body: Required[object]

@@ -132,6 +132,7 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.stream import Video, stream_list_params, stream_create_params, stream_delete_params
+from .captions.captions import Captions, AsyncCaptions
 from .live_inputs.live_inputs import LiveInputs, AsyncLiveInputs
 
 __all__ = ["Stream", "AsyncStream"]

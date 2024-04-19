@@ -4389,14 +4389,38 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.stream import Caption, CaptionDeleteResponse, CaptionGetResponse
+from cloudflare.types.stream import Caption, CaptionGetResponse
 ```
 
 Methods:
 
-- <code title="put /accounts/{account_id}/stream/{identifier}/captions/{language}">client.stream.captions.<a href="./src/cloudflare/resources/stream/captions.py">update</a>(language, \*, account_id, identifier, \*\*<a href="src/cloudflare/types/stream/caption_update_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/caption.py">Optional</a></code>
-- <code title="delete /accounts/{account_id}/stream/{identifier}/captions/{language}">client.stream.captions.<a href="./src/cloudflare/resources/stream/captions.py">delete</a>(language, \*, account_id, identifier, \*\*<a href="src/cloudflare/types/stream/caption_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/caption_delete_response.py">str</a></code>
-- <code title="get /accounts/{account_id}/stream/{identifier}/captions">client.stream.captions.<a href="./src/cloudflare/resources/stream/captions.py">get</a>(identifier, \*, account_id) -> <a href="./src/cloudflare/types/stream/caption_get_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/stream/{identifier}/captions">client.stream.captions.<a href="./src/cloudflare/resources/stream/captions/captions.py">get</a>(identifier, \*, account_id) -> <a href="./src/cloudflare/types/stream/caption_get_response.py">Optional</a></code>
+
+### Language
+
+Types:
+
+```python
+from cloudflare.types.stream.captions import LanguageDeleteResponse
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/stream/{identifier}/captions/{language}">client.stream.captions.language.<a href="./src/cloudflare/resources/stream/captions/language/language.py">update</a>(language, \*, account_id, identifier, \*\*<a href="src/cloudflare/types/stream/captions/language_update_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/caption.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/stream/{identifier}/captions/{language}">client.stream.captions.language.<a href="./src/cloudflare/resources/stream/captions/language/language.py">delete</a>(language, \*, account_id, identifier, \*\*<a href="src/cloudflare/types/stream/captions/language_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/captions/language_delete_response.py">str</a></code>
+- <code title="get /accounts/{account_id}/stream/{identifier}/captions/{language}">client.stream.captions.language.<a href="./src/cloudflare/resources/stream/captions/language/language.py">get</a>(language, \*, account_id, identifier) -> <a href="./src/cloudflare/types/stream/caption.py">Optional</a></code>
+
+#### Vtt
+
+Types:
+
+```python
+from cloudflare.types.stream.captions.language import VttGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/stream/{identifier}/captions/{language}/vtt">client.stream.captions.language.vtt.<a href="./src/cloudflare/resources/stream/captions/language/vtt.py">get</a>(language, \*, account_id, identifier, \*\*<a href="src/cloudflare/types/stream/captions/language/vtt_get_params.py">params</a>) -> str</code>
 
 ## Downloads
 
@@ -5919,6 +5943,44 @@ Methods:
 - <code title="get /accounts/{account_id}/teamnet/virtual_networks">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/virtual_network_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network.py">SyncSinglePage[VirtualNetwork]</a></code>
 - <code title="delete /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">delete</a>(virtual_network_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/virtual_network_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network_delete_response.py">VirtualNetworkDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">edit</a>(virtual_network_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/virtual_network_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network_edit_response.py">VirtualNetworkEditResponse</a></code>
+
+## RiskScoring
+
+Types:
+
+```python
+from cloudflare.types.zero_trust import RiskScoringGetResponse, RiskScoringResetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_identifier}/zt_risk_scoring/{user_id}">client.zero_trust.risk_scoring.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/risk_scoring.py">get</a>(user_id, \*, account_identifier, \*\*<a href="src/cloudflare/types/zero_trust/risk_scoring_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring_get_response.py">RiskScoringGetResponse</a></code>
+- <code title="post /accounts/{account_identifier}/zt_risk_scoring/{user_id}/reset">client.zero_trust.risk_scoring.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/risk_scoring.py">reset</a>(user_id, \*, account_identifier) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring_reset_response.py">RiskScoringResetResponse</a></code>
+
+### Behaviours
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.risk_scoring import BehaviourUpdateResponse, BehaviourGetResponse
+```
+
+Methods:
+
+- <code title="put /accounts/{account_identifier}/zt_risk_scoring/behaviors">client.zero_trust.risk_scoring.behaviours.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/behaviours.py">update</a>(account_identifier, \*\*<a href="src/cloudflare/types/zero_trust/risk_scoring/behaviour_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/behaviour_update_response.py">BehaviourUpdateResponse</a></code>
+- <code title="get /accounts/{account_identifier}/zt_risk_scoring/behaviors">client.zero_trust.risk_scoring.behaviours.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/behaviours.py">get</a>(account_identifier) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/behaviour_get_response.py">BehaviourGetResponse</a></code>
+
+### Summary
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.risk_scoring import SummaryGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_identifier}/zt_risk_scoring/summary">client.zero_trust.risk_scoring.summary.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/summary.py">get</a>(account_identifier, \*\*<a href="src/cloudflare/types/zero_trust/risk_scoring/summary_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/summary_get_response.py">SummaryGetResponse</a></code>
 
 # Challenges
 
