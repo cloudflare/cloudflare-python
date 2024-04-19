@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSettings:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         setting = client.ssl.universal.settings.edit(
@@ -25,7 +24,6 @@ class TestSettings:
         )
         assert_matches_type(UniversalSSLSettings, setting, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         setting = client.ssl.universal.settings.edit(
@@ -34,7 +32,6 @@ class TestSettings:
         )
         assert_matches_type(UniversalSSLSettings, setting, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.ssl.universal.settings.with_raw_response.edit(
@@ -46,7 +43,6 @@ class TestSettings:
         setting = response.parse()
         assert_matches_type(UniversalSSLSettings, setting, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.ssl.universal.settings.with_streaming_response.edit(
@@ -60,7 +56,6 @@ class TestSettings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -68,7 +63,6 @@ class TestSettings:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         setting = client.ssl.universal.settings.get(
@@ -76,7 +70,6 @@ class TestSettings:
         )
         assert_matches_type(UniversalSSLSettings, setting, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.ssl.universal.settings.with_raw_response.get(
@@ -88,7 +81,6 @@ class TestSettings:
         setting = response.parse()
         assert_matches_type(UniversalSSLSettings, setting, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.ssl.universal.settings.with_streaming_response.get(
@@ -102,7 +94,6 @@ class TestSettings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -114,7 +105,6 @@ class TestSettings:
 class TestAsyncSettings:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.ssl.universal.settings.edit(
@@ -122,7 +112,6 @@ class TestAsyncSettings:
         )
         assert_matches_type(UniversalSSLSettings, setting, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.ssl.universal.settings.edit(
@@ -131,7 +120,6 @@ class TestAsyncSettings:
         )
         assert_matches_type(UniversalSSLSettings, setting, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.universal.settings.with_raw_response.edit(
@@ -143,7 +131,6 @@ class TestAsyncSettings:
         setting = await response.parse()
         assert_matches_type(UniversalSSLSettings, setting, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.universal.settings.with_streaming_response.edit(
@@ -157,7 +144,6 @@ class TestAsyncSettings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -165,7 +151,6 @@ class TestAsyncSettings:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.ssl.universal.settings.get(
@@ -173,7 +158,6 @@ class TestAsyncSettings:
         )
         assert_matches_type(UniversalSSLSettings, setting, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.universal.settings.with_raw_response.get(
@@ -185,7 +169,6 @@ class TestAsyncSettings:
         setting = await response.parse()
         assert_matches_type(UniversalSSLSettings, setting, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.universal.settings.with_streaming_response.get(
@@ -199,7 +182,6 @@ class TestAsyncSettings:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

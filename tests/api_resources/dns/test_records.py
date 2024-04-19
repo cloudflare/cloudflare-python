@@ -23,7 +23,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRecords:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -34,7 +33,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -49,7 +47,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -64,7 +61,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -81,7 +77,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -92,7 +87,6 @@ class TestRecords:
                 type="A",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -103,7 +97,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -118,7 +111,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -133,7 +125,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -150,7 +141,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -161,7 +151,6 @@ class TestRecords:
                 type="AAAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -172,7 +161,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -190,7 +178,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_3(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -205,7 +192,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_3(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -222,7 +208,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -233,7 +218,6 @@ class TestRecords:
                 type="CAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -244,7 +228,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -263,7 +246,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_4(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -278,7 +260,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_4(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -295,7 +276,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -306,7 +286,6 @@ class TestRecords:
                 type="CERT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -317,7 +296,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -332,7 +310,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -347,7 +324,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_5(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -364,7 +340,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -375,7 +350,6 @@ class TestRecords:
                 type="CNAME",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -386,7 +360,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -405,7 +378,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -420,7 +392,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_6(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -437,7 +408,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -448,7 +418,6 @@ class TestRecords:
                 type="DNSKEY",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -459,7 +428,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -478,7 +446,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -493,7 +460,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_7(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -510,7 +476,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -521,7 +486,6 @@ class TestRecords:
                 type="DS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -532,7 +496,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -550,7 +513,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -565,7 +527,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_8(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -582,7 +543,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -593,7 +553,6 @@ class TestRecords:
                 type="HTTPS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -604,7 +563,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -631,7 +589,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_9(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -646,7 +603,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_9(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -663,7 +619,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -674,7 +629,6 @@ class TestRecords:
                 type="LOC",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -686,7 +640,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -701,7 +654,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_10(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -717,7 +669,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_10(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -735,7 +686,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -747,7 +697,6 @@ class TestRecords:
                 type="MX",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -758,7 +707,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -779,7 +727,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_11(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -794,7 +741,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_11(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -811,7 +757,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -822,7 +767,6 @@ class TestRecords:
                 type="NAPTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -833,7 +777,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -847,7 +790,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_12(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -862,7 +804,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_12(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -879,7 +820,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -890,7 +830,6 @@ class TestRecords:
                 type="NS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -901,7 +840,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -915,7 +853,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_13(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -930,7 +867,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_13(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -947,7 +883,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -958,7 +893,6 @@ class TestRecords:
                 type="PTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -969,7 +903,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -988,7 +921,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_14(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -1003,7 +935,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_14(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -1020,7 +951,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1031,7 +961,6 @@ class TestRecords:
                 type="SMIMEA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1042,7 +971,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1064,7 +992,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_15(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -1079,7 +1006,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_15(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -1096,7 +1022,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_15(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1107,7 +1032,6 @@ class TestRecords:
                 type="SRV",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1118,7 +1042,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1136,7 +1059,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_16(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -1151,7 +1073,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_16(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -1168,7 +1089,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_16(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1179,7 +1099,6 @@ class TestRecords:
                 type="SSHFP",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1190,7 +1109,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1208,7 +1126,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_17(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -1223,7 +1140,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_17(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -1240,7 +1156,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_17(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1251,7 +1166,6 @@ class TestRecords:
                 type="SVCB",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1262,7 +1176,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1281,7 +1194,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_18(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -1296,7 +1208,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_18(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -1313,7 +1224,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_18(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1324,7 +1234,6 @@ class TestRecords:
                 type="TLSA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1335,7 +1244,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1349,7 +1257,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_19(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -1364,7 +1271,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_19(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -1381,7 +1287,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_19(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1392,7 +1297,6 @@ class TestRecords:
                 type="TXT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1404,7 +1308,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
@@ -1422,7 +1325,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_20(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
@@ -1438,7 +1340,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_20(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
@@ -1456,7 +1357,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_20(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1468,7 +1368,6 @@ class TestRecords:
                 type="URI",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1480,7 +1379,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1496,7 +1394,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -1512,7 +1409,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -1530,7 +1426,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1551,7 +1446,6 @@ class TestRecords:
                 type="A",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1563,7 +1457,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1579,7 +1472,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -1595,7 +1487,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -1613,7 +1504,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1634,7 +1524,6 @@ class TestRecords:
                 type="AAAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1646,7 +1535,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1665,7 +1553,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -1681,7 +1568,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_3(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -1699,7 +1585,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1720,7 +1605,6 @@ class TestRecords:
                 type="CAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1732,7 +1616,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1752,7 +1635,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -1768,7 +1650,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_4(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -1786,7 +1667,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1807,7 +1687,6 @@ class TestRecords:
                 type="CERT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1819,7 +1698,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1835,7 +1713,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_5(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -1851,7 +1728,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_5(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -1869,7 +1745,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1890,7 +1765,6 @@ class TestRecords:
                 type="CNAME",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1902,7 +1776,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1922,7 +1795,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_6(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -1938,7 +1810,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_6(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -1956,7 +1827,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1977,7 +1847,6 @@ class TestRecords:
                 type="DNSKEY",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -1989,7 +1858,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2009,7 +1877,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_7(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2025,7 +1892,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_7(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2043,7 +1909,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2064,7 +1929,6 @@ class TestRecords:
                 type="DS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2076,7 +1940,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2095,7 +1958,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_8(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2111,7 +1973,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_8(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2129,7 +1990,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2150,7 +2010,6 @@ class TestRecords:
                 type="HTTPS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2162,7 +2021,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2190,7 +2048,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_9(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2206,7 +2063,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_9(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2224,7 +2080,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2245,7 +2100,6 @@ class TestRecords:
                 type="LOC",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2258,7 +2112,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2274,7 +2127,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_10(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2291,7 +2143,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_10(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2310,7 +2161,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2333,7 +2183,6 @@ class TestRecords:
                 type="MX",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2345,7 +2194,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2367,7 +2215,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_11(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2383,7 +2230,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_11(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2401,7 +2247,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2422,7 +2267,6 @@ class TestRecords:
                 type="NAPTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2434,7 +2278,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2449,7 +2292,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_12(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2465,7 +2307,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_12(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2483,7 +2324,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2504,7 +2344,6 @@ class TestRecords:
                 type="NS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2516,7 +2355,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2531,7 +2369,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_13(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2547,7 +2384,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_13(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2565,7 +2401,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2586,7 +2421,6 @@ class TestRecords:
                 type="PTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2598,7 +2432,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2618,7 +2451,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_14(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2634,7 +2466,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_14(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2652,7 +2483,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2673,7 +2503,6 @@ class TestRecords:
                 type="SMIMEA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2685,7 +2514,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2708,7 +2536,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_15(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2724,7 +2551,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_15(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2742,7 +2568,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_15(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2763,7 +2588,6 @@ class TestRecords:
                 type="SRV",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2775,7 +2599,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2794,7 +2617,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_16(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2810,7 +2632,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_16(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2828,7 +2649,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_16(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2849,7 +2669,6 @@ class TestRecords:
                 type="SSHFP",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2861,7 +2680,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2880,7 +2698,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_17(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2896,7 +2713,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_17(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -2914,7 +2730,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_17(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2935,7 +2750,6 @@ class TestRecords:
                 type="SVCB",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2947,7 +2761,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -2967,7 +2780,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_18(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -2983,7 +2795,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_18(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -3001,7 +2812,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_18(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3022,7 +2832,6 @@ class TestRecords:
                 type="TLSA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -3034,7 +2843,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -3049,7 +2857,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_19(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -3065,7 +2872,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_19(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -3083,7 +2889,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_19(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3104,7 +2909,6 @@ class TestRecords:
                 type="TXT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -3117,7 +2921,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
@@ -3136,7 +2939,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_20(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
@@ -3153,7 +2955,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_20(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
@@ -3172,7 +2973,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_20(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3195,7 +2995,6 @@ class TestRecords:
                 type="URI",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         record = client.dns.records.list(
@@ -3203,7 +3002,6 @@ class TestRecords:
         )
         assert_matches_type(SyncV4PagePaginationArray[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         record = client.dns.records.list(
@@ -3238,7 +3036,6 @@ class TestRecords:
         )
         assert_matches_type(SyncV4PagePaginationArray[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.list(
@@ -3250,7 +3047,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.list(
@@ -3264,7 +3060,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3272,7 +3067,6 @@ class TestRecords:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         record = client.dns.records.delete(
@@ -3282,7 +3076,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.delete(
@@ -3296,7 +3089,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.delete(
@@ -3312,7 +3104,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3329,7 +3120,6 @@ class TestRecords:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3341,7 +3131,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3357,7 +3146,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_1(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -3373,7 +3161,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_1(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -3391,7 +3178,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3412,7 +3198,6 @@ class TestRecords:
                 type="A",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3424,7 +3209,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3440,7 +3224,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_2(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -3456,7 +3239,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_2(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -3474,7 +3256,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3495,7 +3276,6 @@ class TestRecords:
                 type="AAAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3507,7 +3287,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3526,7 +3305,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_3(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -3542,7 +3320,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_3(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -3560,7 +3337,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3581,7 +3357,6 @@ class TestRecords:
                 type="CAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3593,7 +3368,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3613,7 +3387,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_4(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -3629,7 +3402,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_4(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -3647,7 +3419,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3668,7 +3439,6 @@ class TestRecords:
                 type="CERT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3680,7 +3450,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3696,7 +3465,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_5(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -3712,7 +3480,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_5(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -3730,7 +3497,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3751,7 +3517,6 @@ class TestRecords:
                 type="CNAME",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3763,7 +3528,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3783,7 +3547,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_6(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -3799,7 +3562,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_6(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -3817,7 +3579,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3838,7 +3599,6 @@ class TestRecords:
                 type="DNSKEY",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3850,7 +3610,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3870,7 +3629,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_7(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -3886,7 +3644,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_7(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -3904,7 +3661,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3925,7 +3681,6 @@ class TestRecords:
                 type="DS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3937,7 +3692,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -3956,7 +3710,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_8(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -3972,7 +3725,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_8(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -3990,7 +3742,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4011,7 +3762,6 @@ class TestRecords:
                 type="HTTPS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4023,7 +3773,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4051,7 +3800,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_9(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4067,7 +3815,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_9(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4085,7 +3832,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4106,7 +3852,6 @@ class TestRecords:
                 type="LOC",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4119,7 +3864,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4135,7 +3879,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_10(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4152,7 +3895,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_10(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4171,7 +3913,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4194,7 +3935,6 @@ class TestRecords:
                 type="MX",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4206,7 +3946,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4228,7 +3967,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_11(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4244,7 +3982,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_11(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4262,7 +3999,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4283,7 +4019,6 @@ class TestRecords:
                 type="NAPTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4295,7 +4030,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4310,7 +4044,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_12(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4326,7 +4059,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_12(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4344,7 +4076,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4365,7 +4096,6 @@ class TestRecords:
                 type="NS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4377,7 +4107,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4392,7 +4121,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_13(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4408,7 +4136,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_13(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4426,7 +4153,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4447,7 +4173,6 @@ class TestRecords:
                 type="PTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4459,7 +4184,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4479,7 +4203,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_14(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4495,7 +4218,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_14(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4513,7 +4235,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4534,7 +4255,6 @@ class TestRecords:
                 type="SMIMEA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4546,7 +4266,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4569,7 +4288,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_15(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4585,7 +4303,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_15(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4603,7 +4320,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_15(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4624,7 +4340,6 @@ class TestRecords:
                 type="SRV",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4636,7 +4351,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4655,7 +4369,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_16(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4671,7 +4384,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_16(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4689,7 +4401,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_16(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4710,7 +4421,6 @@ class TestRecords:
                 type="SSHFP",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4722,7 +4432,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4741,7 +4450,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_17(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4757,7 +4465,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_17(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4775,7 +4482,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_17(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4796,7 +4502,6 @@ class TestRecords:
                 type="SVCB",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4808,7 +4513,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4828,7 +4532,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_18(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4844,7 +4547,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_18(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4862,7 +4564,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_18(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4883,7 +4584,6 @@ class TestRecords:
                 type="TLSA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4895,7 +4595,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4910,7 +4609,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_19(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -4926,7 +4624,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_19(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -4944,7 +4641,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_19(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4965,7 +4661,6 @@ class TestRecords:
                 type="TXT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4978,7 +4673,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
@@ -4997,7 +4691,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit_overload_20(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
@@ -5014,7 +4707,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit_overload_20(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
@@ -5033,7 +4725,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit_overload_20(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5056,7 +4747,6 @@ class TestRecords:
                 type="URI",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_export(self, client: Cloudflare) -> None:
         record = client.dns.records.export(
@@ -5064,7 +4754,6 @@ class TestRecords:
         )
         assert_matches_type(str, record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_export(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.export(
@@ -5076,7 +4765,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(str, record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_export(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.export(
@@ -5090,7 +4778,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_export(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5098,7 +4785,6 @@ class TestRecords:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         record = client.dns.records.get(
@@ -5107,7 +4793,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.get(
@@ -5120,7 +4805,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.get(
@@ -5135,7 +4819,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5150,7 +4833,6 @@ class TestRecords:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_import(self, client: Cloudflare) -> None:
         record = client.dns.records.import_(
@@ -5159,7 +4841,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_import_with_all_params(self, client: Cloudflare) -> None:
         record = client.dns.records.import_(
@@ -5169,7 +4850,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_import(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.import_(
@@ -5182,7 +4862,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_import(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.import_(
@@ -5197,7 +4876,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_import(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5206,7 +4884,6 @@ class TestRecords:
                 file="www.example.com. 300 IN  A 127.0.0.1",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_scan(self, client: Cloudflare) -> None:
         record = client.dns.records.scan(
@@ -5215,7 +4892,6 @@ class TestRecords:
         )
         assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_scan(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.scan(
@@ -5228,7 +4904,6 @@ class TestRecords:
         record = response.parse()
         assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_scan(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.scan(
@@ -5243,7 +4918,6 @@ class TestRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_scan(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5256,7 +4930,6 @@ class TestRecords:
 class TestAsyncRecords:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5267,7 +4940,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5282,7 +4954,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -5297,7 +4968,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -5314,7 +4984,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5325,7 +4994,6 @@ class TestAsyncRecords:
                 type="A",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5336,7 +5004,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5351,7 +5018,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -5366,7 +5032,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -5383,7 +5048,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5394,7 +5058,6 @@ class TestAsyncRecords:
                 type="AAAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5405,7 +5068,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5423,7 +5085,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -5438,7 +5099,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -5455,7 +5115,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5466,7 +5125,6 @@ class TestAsyncRecords:
                 type="CAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5477,7 +5135,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5496,7 +5153,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -5511,7 +5167,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -5528,7 +5183,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5539,7 +5193,6 @@ class TestAsyncRecords:
                 type="CERT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5550,7 +5203,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5565,7 +5217,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -5580,7 +5231,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -5597,7 +5247,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5608,7 +5257,6 @@ class TestAsyncRecords:
                 type="CNAME",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5619,7 +5267,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5638,7 +5285,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -5653,7 +5299,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -5670,7 +5315,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5681,7 +5325,6 @@ class TestAsyncRecords:
                 type="DNSKEY",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5692,7 +5335,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5711,7 +5353,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -5726,7 +5367,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -5743,7 +5383,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5754,7 +5393,6 @@ class TestAsyncRecords:
                 type="DS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5765,7 +5403,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5783,7 +5420,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -5798,7 +5434,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -5815,7 +5450,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5826,7 +5460,6 @@ class TestAsyncRecords:
                 type="HTTPS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5837,7 +5470,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5864,7 +5496,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -5879,7 +5510,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -5896,7 +5526,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5907,7 +5536,6 @@ class TestAsyncRecords:
                 type="LOC",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5919,7 +5547,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5934,7 +5561,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -5950,7 +5576,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -5968,7 +5593,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5980,7 +5604,6 @@ class TestAsyncRecords:
                 type="MX",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -5991,7 +5614,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6012,7 +5634,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -6027,7 +5648,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -6044,7 +5664,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6055,7 +5674,6 @@ class TestAsyncRecords:
                 type="NAPTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6066,7 +5684,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6080,7 +5697,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -6095,7 +5711,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -6112,7 +5727,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6123,7 +5737,6 @@ class TestAsyncRecords:
                 type="NS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6134,7 +5747,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6148,7 +5760,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -6163,7 +5774,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -6180,7 +5790,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6191,7 +5800,6 @@ class TestAsyncRecords:
                 type="PTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6202,7 +5810,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6221,7 +5828,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -6236,7 +5842,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -6253,7 +5858,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6264,7 +5868,6 @@ class TestAsyncRecords:
                 type="SMIMEA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6275,7 +5878,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6297,7 +5899,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -6312,7 +5913,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -6329,7 +5929,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6340,7 +5939,6 @@ class TestAsyncRecords:
                 type="SRV",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6351,7 +5949,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6369,7 +5966,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -6384,7 +5980,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -6401,7 +5996,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6412,7 +6006,6 @@ class TestAsyncRecords:
                 type="SSHFP",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6423,7 +6016,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6441,7 +6033,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -6456,7 +6047,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -6473,7 +6063,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6484,7 +6073,6 @@ class TestAsyncRecords:
                 type="SVCB",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6495,7 +6083,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6514,7 +6101,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -6529,7 +6115,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -6546,7 +6131,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6557,7 +6141,6 @@ class TestAsyncRecords:
                 type="TLSA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6568,7 +6151,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6582,7 +6164,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -6597,7 +6178,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -6614,7 +6194,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6625,7 +6204,6 @@ class TestAsyncRecords:
                 type="TXT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6637,7 +6215,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
@@ -6655,7 +6232,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
@@ -6671,7 +6247,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
@@ -6689,7 +6264,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6701,7 +6275,6 @@ class TestAsyncRecords:
                 type="URI",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -6713,7 +6286,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -6729,7 +6301,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -6745,7 +6316,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -6763,7 +6333,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6784,7 +6353,6 @@ class TestAsyncRecords:
                 type="A",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -6796,7 +6364,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -6812,7 +6379,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -6828,7 +6394,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -6846,7 +6411,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6867,7 +6431,6 @@ class TestAsyncRecords:
                 type="AAAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -6879,7 +6442,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -6898,7 +6460,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -6914,7 +6475,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -6932,7 +6492,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6953,7 +6512,6 @@ class TestAsyncRecords:
                 type="CAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -6965,7 +6523,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -6985,7 +6542,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7001,7 +6557,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7019,7 +6574,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7040,7 +6594,6 @@ class TestAsyncRecords:
                 type="CERT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7052,7 +6605,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7068,7 +6620,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7084,7 +6635,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7102,7 +6652,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7123,7 +6672,6 @@ class TestAsyncRecords:
                 type="CNAME",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7135,7 +6683,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7155,7 +6702,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7171,7 +6717,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7189,7 +6734,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7210,7 +6754,6 @@ class TestAsyncRecords:
                 type="DNSKEY",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7222,7 +6765,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7242,7 +6784,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7258,7 +6799,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7276,7 +6816,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7297,7 +6836,6 @@ class TestAsyncRecords:
                 type="DS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7309,7 +6847,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7328,7 +6865,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7344,7 +6880,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7362,7 +6897,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7383,7 +6917,6 @@ class TestAsyncRecords:
                 type="HTTPS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7395,7 +6928,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7423,7 +6955,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7439,7 +6970,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7457,7 +6987,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7478,7 +7007,6 @@ class TestAsyncRecords:
                 type="LOC",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7491,7 +7019,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7507,7 +7034,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7524,7 +7050,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7543,7 +7068,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7566,7 +7090,6 @@ class TestAsyncRecords:
                 type="MX",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7578,7 +7101,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7600,7 +7122,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7616,7 +7137,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7634,7 +7154,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7655,7 +7174,6 @@ class TestAsyncRecords:
                 type="NAPTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7667,7 +7185,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7682,7 +7199,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7698,7 +7214,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7716,7 +7231,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7737,7 +7251,6 @@ class TestAsyncRecords:
                 type="NS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7749,7 +7262,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7764,7 +7276,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7780,7 +7291,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7798,7 +7308,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7819,7 +7328,6 @@ class TestAsyncRecords:
                 type="PTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7831,7 +7339,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7851,7 +7358,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7867,7 +7373,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7885,7 +7390,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7906,7 +7410,6 @@ class TestAsyncRecords:
                 type="SMIMEA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7918,7 +7421,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -7941,7 +7443,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_15(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -7957,7 +7458,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_15(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -7975,7 +7475,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_15(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -7996,7 +7495,6 @@ class TestAsyncRecords:
                 type="SRV",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -8008,7 +7506,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -8027,7 +7524,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_16(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -8043,7 +7539,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_16(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -8061,7 +7556,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_16(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8082,7 +7576,6 @@ class TestAsyncRecords:
                 type="SSHFP",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -8094,7 +7587,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -8113,7 +7605,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_17(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -8129,7 +7620,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_17(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -8147,7 +7637,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_17(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8168,7 +7657,6 @@ class TestAsyncRecords:
                 type="SVCB",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -8180,7 +7668,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -8200,7 +7687,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_18(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -8216,7 +7702,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_18(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -8234,7 +7719,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_18(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8255,7 +7739,6 @@ class TestAsyncRecords:
                 type="TLSA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -8267,7 +7750,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -8282,7 +7764,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_19(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -8298,7 +7779,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_19(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -8316,7 +7796,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_19(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8337,7 +7816,6 @@ class TestAsyncRecords:
                 type="TXT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -8350,7 +7828,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
@@ -8369,7 +7846,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_20(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
@@ -8386,7 +7862,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_20(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
@@ -8405,7 +7880,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_20(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8428,7 +7902,6 @@ class TestAsyncRecords:
                 type="URI",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.list(
@@ -8436,7 +7909,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.list(
@@ -8471,7 +7943,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.list(
@@ -8483,7 +7954,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.list(
@@ -8497,7 +7967,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8505,7 +7974,6 @@ class TestAsyncRecords:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.delete(
@@ -8515,7 +7983,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.delete(
@@ -8529,7 +7996,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.delete(
@@ -8545,7 +8011,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8562,7 +8027,6 @@ class TestAsyncRecords:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8574,7 +8038,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8590,7 +8053,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -8606,7 +8068,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -8624,7 +8085,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8645,7 +8105,6 @@ class TestAsyncRecords:
                 type="A",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8657,7 +8116,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8673,7 +8131,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -8689,7 +8146,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -8707,7 +8163,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8728,7 +8183,6 @@ class TestAsyncRecords:
                 type="AAAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8740,7 +8194,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8759,7 +8212,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -8775,7 +8227,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -8793,7 +8244,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8814,7 +8264,6 @@ class TestAsyncRecords:
                 type="CAA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8826,7 +8275,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8846,7 +8294,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -8862,7 +8309,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -8880,7 +8326,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8901,7 +8346,6 @@ class TestAsyncRecords:
                 type="CERT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8913,7 +8357,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8929,7 +8372,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -8945,7 +8387,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -8963,7 +8404,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -8984,7 +8424,6 @@ class TestAsyncRecords:
                 type="CNAME",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -8996,7 +8435,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9016,7 +8454,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9032,7 +8469,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9050,7 +8486,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9071,7 +8506,6 @@ class TestAsyncRecords:
                 type="DNSKEY",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9083,7 +8517,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9103,7 +8536,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9119,7 +8551,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9137,7 +8568,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9158,7 +8588,6 @@ class TestAsyncRecords:
                 type="DS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9170,7 +8599,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9189,7 +8617,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9205,7 +8632,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9223,7 +8649,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9244,7 +8669,6 @@ class TestAsyncRecords:
                 type="HTTPS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9256,7 +8680,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9284,7 +8707,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9300,7 +8722,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9318,7 +8739,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9339,7 +8759,6 @@ class TestAsyncRecords:
                 type="LOC",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9352,7 +8771,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9368,7 +8786,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9385,7 +8802,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9404,7 +8820,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9427,7 +8842,6 @@ class TestAsyncRecords:
                 type="MX",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9439,7 +8853,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9461,7 +8874,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9477,7 +8889,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9495,7 +8906,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9516,7 +8926,6 @@ class TestAsyncRecords:
                 type="NAPTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9528,7 +8937,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9543,7 +8951,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9559,7 +8966,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9577,7 +8983,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9598,7 +9003,6 @@ class TestAsyncRecords:
                 type="NS",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9610,7 +9014,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9625,7 +9028,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9641,7 +9043,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9659,7 +9060,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9680,7 +9080,6 @@ class TestAsyncRecords:
                 type="PTR",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9692,7 +9091,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9712,7 +9110,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9728,7 +9125,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9746,7 +9142,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9767,7 +9162,6 @@ class TestAsyncRecords:
                 type="SMIMEA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9779,7 +9173,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9802,7 +9195,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9818,7 +9210,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9836,7 +9227,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9857,7 +9247,6 @@ class TestAsyncRecords:
                 type="SRV",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9869,7 +9258,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9888,7 +9276,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9904,7 +9291,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -9922,7 +9308,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -9943,7 +9328,6 @@ class TestAsyncRecords:
                 type="SSHFP",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9955,7 +9339,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -9974,7 +9357,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -9990,7 +9372,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -10008,7 +9389,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -10029,7 +9409,6 @@ class TestAsyncRecords:
                 type="SVCB",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -10041,7 +9420,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -10061,7 +9439,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -10077,7 +9454,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -10095,7 +9471,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -10116,7 +9491,6 @@ class TestAsyncRecords:
                 type="TLSA",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -10128,7 +9502,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -10143,7 +9516,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -10159,7 +9531,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -10177,7 +9548,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -10198,7 +9568,6 @@ class TestAsyncRecords:
                 type="TXT",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -10211,7 +9580,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
@@ -10230,7 +9598,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
@@ -10247,7 +9614,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
@@ -10266,7 +9632,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -10289,7 +9654,6 @@ class TestAsyncRecords:
                 type="URI",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_export(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.export(
@@ -10297,7 +9661,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(str, record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_export(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.export(
@@ -10309,7 +9672,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(str, record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_export(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.export(
@@ -10323,7 +9685,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_export(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -10331,7 +9692,6 @@ class TestAsyncRecords:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.get(
@@ -10340,7 +9700,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.get(
@@ -10353,7 +9712,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[Record], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.get(
@@ -10368,7 +9726,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -10383,7 +9740,6 @@ class TestAsyncRecords:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_import(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.import_(
@@ -10392,7 +9748,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_import_with_all_params(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.import_(
@@ -10402,7 +9757,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_import(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.import_(
@@ -10415,7 +9769,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_import(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.import_(
@@ -10430,7 +9783,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_import(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -10439,7 +9791,6 @@ class TestAsyncRecords:
                 file="www.example.com. 300 IN  A 127.0.0.1",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_scan(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.scan(
@@ -10448,7 +9799,6 @@ class TestAsyncRecords:
         )
         assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_scan(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.scan(
@@ -10461,7 +9811,6 @@ class TestAsyncRecords:
         record = await response.parse()
         assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_scan(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.scan(
@@ -10476,7 +9825,6 @@ class TestAsyncRecords:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_scan(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

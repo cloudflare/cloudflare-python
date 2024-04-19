@@ -20,7 +20,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAccounts:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         account = client.addressing.address_maps.accounts.update(
@@ -30,7 +29,6 @@ class TestAccounts:
         )
         assert_matches_type(Optional[AccountUpdateResponse], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.accounts.with_raw_response.update(
@@ -44,7 +42,6 @@ class TestAccounts:
         account = response.parse()
         assert_matches_type(Optional[AccountUpdateResponse], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.accounts.with_streaming_response.update(
@@ -60,7 +57,6 @@ class TestAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -77,7 +73,6 @@ class TestAccounts:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         account = client.addressing.address_maps.accounts.delete(
@@ -87,7 +82,6 @@ class TestAccounts:
         )
         assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.accounts.with_raw_response.delete(
@@ -101,7 +95,6 @@ class TestAccounts:
         account = response.parse()
         assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.accounts.with_streaming_response.delete(
@@ -117,7 +110,6 @@ class TestAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -138,7 +130,6 @@ class TestAccounts:
 class TestAsyncAccounts:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.addressing.address_maps.accounts.update(
@@ -148,7 +139,6 @@ class TestAsyncAccounts:
         )
         assert_matches_type(Optional[AccountUpdateResponse], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.accounts.with_raw_response.update(
@@ -162,7 +152,6 @@ class TestAsyncAccounts:
         account = await response.parse()
         assert_matches_type(Optional[AccountUpdateResponse], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.accounts.with_streaming_response.update(
@@ -178,7 +167,6 @@ class TestAsyncAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -195,7 +183,6 @@ class TestAsyncAccounts:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.addressing.address_maps.accounts.delete(
@@ -205,7 +192,6 @@ class TestAsyncAccounts:
         )
         assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.accounts.with_raw_response.delete(
@@ -219,7 +205,6 @@ class TestAsyncAccounts:
         account = await response.parse()
         assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.accounts.with_streaming_response.delete(
@@ -235,7 +220,6 @@ class TestAsyncAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

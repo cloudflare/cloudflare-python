@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestIQI:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_summary(self, client: Cloudflare) -> None:
         iqi = client.radar.quality.iqi.summary(
@@ -29,7 +28,6 @@ class TestIQI:
         )
         assert_matches_type(IQISummaryResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_summary_with_all_params(self, client: Cloudflare) -> None:
         iqi = client.radar.quality.iqi.summary(
@@ -53,7 +51,6 @@ class TestIQI:
         )
         assert_matches_type(IQISummaryResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_summary(self, client: Cloudflare) -> None:
         response = client.radar.quality.iqi.with_raw_response.summary(
@@ -65,7 +62,6 @@ class TestIQI:
         iqi = response.parse()
         assert_matches_type(IQISummaryResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_summary(self, client: Cloudflare) -> None:
         with client.radar.quality.iqi.with_streaming_response.summary(
@@ -79,7 +75,6 @@ class TestIQI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_timeseries_groups(self, client: Cloudflare) -> None:
         iqi = client.radar.quality.iqi.timeseries_groups(
@@ -87,7 +82,6 @@ class TestIQI:
         )
         assert_matches_type(IQITimeseriesGroupsResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_timeseries_groups_with_all_params(self, client: Cloudflare) -> None:
         iqi = client.radar.quality.iqi.timeseries_groups(
@@ -113,7 +107,6 @@ class TestIQI:
         )
         assert_matches_type(IQITimeseriesGroupsResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_timeseries_groups(self, client: Cloudflare) -> None:
         response = client.radar.quality.iqi.with_raw_response.timeseries_groups(
@@ -125,7 +118,6 @@ class TestIQI:
         iqi = response.parse()
         assert_matches_type(IQITimeseriesGroupsResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_timeseries_groups(self, client: Cloudflare) -> None:
         with client.radar.quality.iqi.with_streaming_response.timeseries_groups(
@@ -143,7 +135,6 @@ class TestIQI:
 class TestAsyncIQI:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_summary(self, async_client: AsyncCloudflare) -> None:
         iqi = await async_client.radar.quality.iqi.summary(
@@ -151,7 +142,6 @@ class TestAsyncIQI:
         )
         assert_matches_type(IQISummaryResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_summary_with_all_params(self, async_client: AsyncCloudflare) -> None:
         iqi = await async_client.radar.quality.iqi.summary(
@@ -175,7 +165,6 @@ class TestAsyncIQI:
         )
         assert_matches_type(IQISummaryResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_summary(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.quality.iqi.with_raw_response.summary(
@@ -187,7 +176,6 @@ class TestAsyncIQI:
         iqi = await response.parse()
         assert_matches_type(IQISummaryResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_summary(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.quality.iqi.with_streaming_response.summary(
@@ -201,7 +189,6 @@ class TestAsyncIQI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
         iqi = await async_client.radar.quality.iqi.timeseries_groups(
@@ -209,7 +196,6 @@ class TestAsyncIQI:
         )
         assert_matches_type(IQITimeseriesGroupsResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries_groups_with_all_params(self, async_client: AsyncCloudflare) -> None:
         iqi = await async_client.radar.quality.iqi.timeseries_groups(
@@ -235,7 +221,6 @@ class TestAsyncIQI:
         )
         assert_matches_type(IQITimeseriesGroupsResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.quality.iqi.with_raw_response.timeseries_groups(
@@ -247,7 +232,6 @@ class TestAsyncIQI:
         iqi = await response.parse()
         assert_matches_type(IQITimeseriesGroupsResponse, iqi, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.quality.iqi.with_streaming_response.timeseries_groups(

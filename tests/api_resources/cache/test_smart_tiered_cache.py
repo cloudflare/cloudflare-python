@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSmartTieredCache:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         smart_tiered_cache = client.cache.smart_tiered_cache.delete(
@@ -30,7 +29,6 @@ class TestSmartTieredCache:
         )
         assert_matches_type(SmartTieredCacheDeleteResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.cache.smart_tiered_cache.with_raw_response.delete(
@@ -43,7 +41,6 @@ class TestSmartTieredCache:
         smart_tiered_cache = response.parse()
         assert_matches_type(SmartTieredCacheDeleteResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.cache.smart_tiered_cache.with_streaming_response.delete(
@@ -58,7 +55,6 @@ class TestSmartTieredCache:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -67,7 +63,6 @@ class TestSmartTieredCache:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         smart_tiered_cache = client.cache.smart_tiered_cache.edit(
@@ -76,7 +71,6 @@ class TestSmartTieredCache:
         )
         assert_matches_type(SmartTieredCacheEditResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.cache.smart_tiered_cache.with_raw_response.edit(
@@ -89,7 +83,6 @@ class TestSmartTieredCache:
         smart_tiered_cache = response.parse()
         assert_matches_type(SmartTieredCacheEditResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.cache.smart_tiered_cache.with_streaming_response.edit(
@@ -104,7 +97,6 @@ class TestSmartTieredCache:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -113,7 +105,6 @@ class TestSmartTieredCache:
                 value="on",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         smart_tiered_cache = client.cache.smart_tiered_cache.get(
@@ -121,7 +112,6 @@ class TestSmartTieredCache:
         )
         assert_matches_type(SmartTieredCacheGetResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cache.smart_tiered_cache.with_raw_response.get(
@@ -133,7 +123,6 @@ class TestSmartTieredCache:
         smart_tiered_cache = response.parse()
         assert_matches_type(SmartTieredCacheGetResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cache.smart_tiered_cache.with_streaming_response.get(
@@ -147,7 +136,6 @@ class TestSmartTieredCache:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -159,7 +147,6 @@ class TestSmartTieredCache:
 class TestAsyncSmartTieredCache:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         smart_tiered_cache = await async_client.cache.smart_tiered_cache.delete(
@@ -168,7 +155,6 @@ class TestAsyncSmartTieredCache:
         )
         assert_matches_type(SmartTieredCacheDeleteResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.smart_tiered_cache.with_raw_response.delete(
@@ -181,7 +167,6 @@ class TestAsyncSmartTieredCache:
         smart_tiered_cache = await response.parse()
         assert_matches_type(SmartTieredCacheDeleteResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.smart_tiered_cache.with_streaming_response.delete(
@@ -196,7 +181,6 @@ class TestAsyncSmartTieredCache:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -205,7 +189,6 @@ class TestAsyncSmartTieredCache:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         smart_tiered_cache = await async_client.cache.smart_tiered_cache.edit(
@@ -214,7 +197,6 @@ class TestAsyncSmartTieredCache:
         )
         assert_matches_type(SmartTieredCacheEditResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.smart_tiered_cache.with_raw_response.edit(
@@ -227,7 +209,6 @@ class TestAsyncSmartTieredCache:
         smart_tiered_cache = await response.parse()
         assert_matches_type(SmartTieredCacheEditResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.smart_tiered_cache.with_streaming_response.edit(
@@ -242,7 +223,6 @@ class TestAsyncSmartTieredCache:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -251,7 +231,6 @@ class TestAsyncSmartTieredCache:
                 value="on",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         smart_tiered_cache = await async_client.cache.smart_tiered_cache.get(
@@ -259,7 +238,6 @@ class TestAsyncSmartTieredCache:
         )
         assert_matches_type(SmartTieredCacheGetResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.smart_tiered_cache.with_raw_response.get(
@@ -271,7 +249,6 @@ class TestAsyncSmartTieredCache:
         smart_tiered_cache = await response.parse()
         assert_matches_type(SmartTieredCacheGetResponse, smart_tiered_cache, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.smart_tiered_cache.with_streaming_response.get(
@@ -285,7 +262,6 @@ class TestAsyncSmartTieredCache:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

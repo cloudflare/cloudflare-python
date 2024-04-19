@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPermissions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         permission = client.intel.indicator_feeds.permissions.create(
@@ -29,7 +28,6 @@ class TestPermissions:
         )
         assert_matches_type(PermissionCreateResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         permission = client.intel.indicator_feeds.permissions.create(
@@ -39,7 +37,6 @@ class TestPermissions:
         )
         assert_matches_type(PermissionCreateResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.intel.indicator_feeds.permissions.with_raw_response.create(
@@ -51,7 +48,6 @@ class TestPermissions:
         permission = response.parse()
         assert_matches_type(PermissionCreateResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.intel.indicator_feeds.permissions.with_streaming_response.create(
@@ -65,7 +61,6 @@ class TestPermissions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -73,7 +68,6 @@ class TestPermissions:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         permission = client.intel.indicator_feeds.permissions.list(
@@ -81,7 +75,6 @@ class TestPermissions:
         )
         assert_matches_type(PermissionListResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.intel.indicator_feeds.permissions.with_raw_response.list(
@@ -93,7 +86,6 @@ class TestPermissions:
         permission = response.parse()
         assert_matches_type(PermissionListResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.intel.indicator_feeds.permissions.with_streaming_response.list(
@@ -107,7 +99,6 @@ class TestPermissions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -115,7 +106,6 @@ class TestPermissions:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         permission = client.intel.indicator_feeds.permissions.delete(
@@ -123,7 +113,6 @@ class TestPermissions:
         )
         assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         permission = client.intel.indicator_feeds.permissions.delete(
@@ -133,7 +122,6 @@ class TestPermissions:
         )
         assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.intel.indicator_feeds.permissions.with_raw_response.delete(
@@ -145,7 +133,6 @@ class TestPermissions:
         permission = response.parse()
         assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.intel.indicator_feeds.permissions.with_streaming_response.delete(
@@ -159,7 +146,6 @@ class TestPermissions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -171,7 +157,6 @@ class TestPermissions:
 class TestAsyncPermissions:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         permission = await async_client.intel.indicator_feeds.permissions.create(
@@ -179,7 +164,6 @@ class TestAsyncPermissions:
         )
         assert_matches_type(PermissionCreateResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         permission = await async_client.intel.indicator_feeds.permissions.create(
@@ -189,7 +173,6 @@ class TestAsyncPermissions:
         )
         assert_matches_type(PermissionCreateResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.indicator_feeds.permissions.with_raw_response.create(
@@ -201,7 +184,6 @@ class TestAsyncPermissions:
         permission = await response.parse()
         assert_matches_type(PermissionCreateResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.indicator_feeds.permissions.with_streaming_response.create(
@@ -215,7 +197,6 @@ class TestAsyncPermissions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -223,7 +204,6 @@ class TestAsyncPermissions:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         permission = await async_client.intel.indicator_feeds.permissions.list(
@@ -231,7 +211,6 @@ class TestAsyncPermissions:
         )
         assert_matches_type(PermissionListResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.indicator_feeds.permissions.with_raw_response.list(
@@ -243,7 +222,6 @@ class TestAsyncPermissions:
         permission = await response.parse()
         assert_matches_type(PermissionListResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.indicator_feeds.permissions.with_streaming_response.list(
@@ -257,7 +235,6 @@ class TestAsyncPermissions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -265,7 +242,6 @@ class TestAsyncPermissions:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         permission = await async_client.intel.indicator_feeds.permissions.delete(
@@ -273,7 +249,6 @@ class TestAsyncPermissions:
         )
         assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         permission = await async_client.intel.indicator_feeds.permissions.delete(
@@ -283,7 +258,6 @@ class TestAsyncPermissions:
         )
         assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.indicator_feeds.permissions.with_raw_response.delete(
@@ -295,7 +269,6 @@ class TestAsyncPermissions:
         permission = await response.parse()
         assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.indicator_feeds.permissions.with_streaming_response.delete(
@@ -309,7 +282,6 @@ class TestAsyncPermissions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
