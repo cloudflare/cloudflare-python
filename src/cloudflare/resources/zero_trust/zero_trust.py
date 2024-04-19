@@ -70,6 +70,14 @@ from .networks import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .risk_scoring import (
+    RiskScoring,
+    AsyncRiskScoring,
+    RiskScoringWithRawResponse,
+    AsyncRiskScoringWithRawResponse,
+    RiskScoringWithStreamingResponse,
+    AsyncRiskScoringWithStreamingResponse,
+)
 from .access.access import Access, AsyncAccess
 from .organizations import (
     Organizations,
@@ -99,6 +107,7 @@ from .connectivity_settings import (
     ConnectivitySettingsWithStreamingResponse,
     AsyncConnectivitySettingsWithStreamingResponse,
 )
+from .risk_scoring.risk_scoring import RiskScoring, AsyncRiskScoring
 
 __all__ = ["ZeroTrust", "AsyncZeroTrust"]
 
@@ -147,6 +156,10 @@ class ZeroTrust(SyncAPIResource):
     @cached_property
     def networks(self) -> Networks:
         return Networks(self._client)
+
+    @cached_property
+    def risk_scoring(self) -> RiskScoring:
+        return RiskScoring(self._client)
 
     @cached_property
     def with_raw_response(self) -> ZeroTrustWithRawResponse:
@@ -201,6 +214,10 @@ class AsyncZeroTrust(AsyncAPIResource):
     @cached_property
     def networks(self) -> AsyncNetworks:
         return AsyncNetworks(self._client)
+
+    @cached_property
+    def risk_scoring(self) -> AsyncRiskScoring:
+        return AsyncRiskScoring(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncZeroTrustWithRawResponse:
@@ -259,6 +276,10 @@ class ZeroTrustWithRawResponse:
     def networks(self) -> NetworksWithRawResponse:
         return NetworksWithRawResponse(self._zero_trust.networks)
 
+    @cached_property
+    def risk_scoring(self) -> RiskScoringWithRawResponse:
+        return RiskScoringWithRawResponse(self._zero_trust.risk_scoring)
+
 
 class AsyncZeroTrustWithRawResponse:
     def __init__(self, zero_trust: AsyncZeroTrust) -> None:
@@ -307,6 +328,10 @@ class AsyncZeroTrustWithRawResponse:
     @cached_property
     def networks(self) -> AsyncNetworksWithRawResponse:
         return AsyncNetworksWithRawResponse(self._zero_trust.networks)
+
+    @cached_property
+    def risk_scoring(self) -> AsyncRiskScoringWithRawResponse:
+        return AsyncRiskScoringWithRawResponse(self._zero_trust.risk_scoring)
 
 
 class ZeroTrustWithStreamingResponse:
@@ -357,6 +382,10 @@ class ZeroTrustWithStreamingResponse:
     def networks(self) -> NetworksWithStreamingResponse:
         return NetworksWithStreamingResponse(self._zero_trust.networks)
 
+    @cached_property
+    def risk_scoring(self) -> RiskScoringWithStreamingResponse:
+        return RiskScoringWithStreamingResponse(self._zero_trust.risk_scoring)
+
 
 class AsyncZeroTrustWithStreamingResponse:
     def __init__(self, zero_trust: AsyncZeroTrust) -> None:
@@ -405,3 +434,7 @@ class AsyncZeroTrustWithStreamingResponse:
     @cached_property
     def networks(self) -> AsyncNetworksWithStreamingResponse:
         return AsyncNetworksWithStreamingResponse(self._zero_trust.networks)
+
+    @cached_property
+    def risk_scoring(self) -> AsyncRiskScoringWithStreamingResponse:
+        return AsyncRiskScoringWithStreamingResponse(self._zero_trust.risk_scoring)
