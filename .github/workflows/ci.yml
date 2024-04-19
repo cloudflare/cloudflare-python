@@ -40,4 +40,28 @@ jobs:
         run: |
           rye run python -c 'import cloudflare'
 
-  
+  examples:
+    name: examples
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rye
+        run: |
+          curl -sSf https://rye-up.com/get | bash
+          echo "$HOME/.rye/shims" >> $GITHUB_PATH
+        env:
+          RYE_VERSION: 0.24.0
+          RYE_INSTALL_OPTION: "--yes"
+      - name: Install dependencies
+        run: |
+          rye sync --all-features
+
+      - env: 
+          CLOUDFLARE_ACCOUNT_ID: f037e56e89293a057740de681ac9abbe
+          CLOUDFLARE_EMAIL: terraform-acceptance-test@cfapi.net
+          CLOUDFLARE_ZONE_ID: 0da42c8d2132a9ddaf714f9e7c92011
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+        run: |
+            rye run python ./examples/workers/ai/demo.py
