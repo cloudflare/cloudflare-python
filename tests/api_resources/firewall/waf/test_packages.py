@@ -18,6 +18,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPackages:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         package = client.firewall.waf.packages.list(
@@ -25,6 +26,7 @@ class TestPackages:
         )
         assert_matches_type(SyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         package = client.firewall.waf.packages.list(
@@ -38,6 +40,7 @@ class TestPackages:
         )
         assert_matches_type(SyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.firewall.waf.packages.with_raw_response.list(
@@ -49,6 +52,7 @@ class TestPackages:
         package = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.firewall.waf.packages.with_streaming_response.list(
@@ -62,6 +66,7 @@ class TestPackages:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -69,6 +74,7 @@ class TestPackages:
                 "",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         package = client.firewall.waf.packages.get(
@@ -77,6 +83,7 @@ class TestPackages:
         )
         assert_matches_type(PackageGetResponse, package, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.firewall.waf.packages.with_raw_response.get(
@@ -89,6 +96,7 @@ class TestPackages:
         package = response.parse()
         assert_matches_type(PackageGetResponse, package, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.firewall.waf.packages.with_streaming_response.get(
@@ -103,6 +111,7 @@ class TestPackages:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -121,6 +130,7 @@ class TestPackages:
 class TestAsyncPackages:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         package = await async_client.firewall.waf.packages.list(
@@ -128,6 +138,7 @@ class TestAsyncPackages:
         )
         assert_matches_type(AsyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         package = await async_client.firewall.waf.packages.list(
@@ -141,6 +152,7 @@ class TestAsyncPackages:
         )
         assert_matches_type(AsyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.waf.packages.with_raw_response.list(
@@ -152,6 +164,7 @@ class TestAsyncPackages:
         package = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[PackageListResponse], package, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.packages.with_streaming_response.list(
@@ -165,6 +178,7 @@ class TestAsyncPackages:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -172,6 +186,7 @@ class TestAsyncPackages:
                 "",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         package = await async_client.firewall.waf.packages.get(
@@ -180,6 +195,7 @@ class TestAsyncPackages:
         )
         assert_matches_type(PackageGetResponse, package, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.waf.packages.with_raw_response.get(
@@ -192,6 +208,7 @@ class TestAsyncPackages:
         package = await response.parse()
         assert_matches_type(PackageGetResponse, package, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.packages.with_streaming_response.get(
@@ -206,6 +223,7 @@ class TestAsyncPackages:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):

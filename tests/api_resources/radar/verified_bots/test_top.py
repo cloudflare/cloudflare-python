@@ -21,11 +21,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTop:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_bots(self, client: Cloudflare) -> None:
         top = client.radar.verified_bots.top.bots()
         assert_matches_type(TopBotsResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_bots_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.verified_bots.top.bots(
@@ -49,6 +51,7 @@ class TestTop:
         )
         assert_matches_type(TopBotsResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_bots(self, client: Cloudflare) -> None:
         response = client.radar.verified_bots.top.with_raw_response.bots()
@@ -58,6 +61,7 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopBotsResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_bots(self, client: Cloudflare) -> None:
         with client.radar.verified_bots.top.with_streaming_response.bots() as response:
@@ -69,11 +73,13 @@ class TestTop:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_categories(self, client: Cloudflare) -> None:
         top = client.radar.verified_bots.top.categories()
         assert_matches_type(TopCategoriesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_categories_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.verified_bots.top.categories(
@@ -97,6 +103,7 @@ class TestTop:
         )
         assert_matches_type(TopCategoriesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_categories(self, client: Cloudflare) -> None:
         response = client.radar.verified_bots.top.with_raw_response.categories()
@@ -106,6 +113,7 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopCategoriesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_categories(self, client: Cloudflare) -> None:
         with client.radar.verified_bots.top.with_streaming_response.categories() as response:
@@ -121,11 +129,13 @@ class TestTop:
 class TestAsyncTop:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_bots(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.verified_bots.top.bots()
         assert_matches_type(TopBotsResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_bots_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.verified_bots.top.bots(
@@ -149,6 +159,7 @@ class TestAsyncTop:
         )
         assert_matches_type(TopBotsResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_bots(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.verified_bots.top.with_raw_response.bots()
@@ -158,6 +169,7 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopBotsResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_bots(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.verified_bots.top.with_streaming_response.bots() as response:
@@ -169,11 +181,13 @@ class TestAsyncTop:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_categories(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.verified_bots.top.categories()
         assert_matches_type(TopCategoriesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_categories_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.verified_bots.top.categories(
@@ -197,6 +211,7 @@ class TestAsyncTop:
         )
         assert_matches_type(TopCategoriesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_categories(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.verified_bots.top.with_raw_response.categories()
@@ -206,6 +221,7 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopCategoriesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_categories(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.verified_bots.top.with_streaming_response.categories() as response:

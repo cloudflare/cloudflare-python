@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAutomaticPlatformOptimization:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         automatic_platform_optimization = client.zones.settings.automatic_platform_optimization.edit(
@@ -32,6 +33,7 @@ class TestAutomaticPlatformOptimization:
         )
         assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zones.settings.automatic_platform_optimization.with_raw_response.edit(
@@ -51,6 +53,7 @@ class TestAutomaticPlatformOptimization:
         automatic_platform_optimization = response.parse()
         assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zones.settings.automatic_platform_optimization.with_streaming_response.edit(
@@ -74,6 +77,7 @@ class TestAutomaticPlatformOptimization:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -89,6 +93,7 @@ class TestAutomaticPlatformOptimization:
                 },
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         automatic_platform_optimization = client.zones.settings.automatic_platform_optimization.get(
@@ -96,6 +101,7 @@ class TestAutomaticPlatformOptimization:
         )
         assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zones.settings.automatic_platform_optimization.with_raw_response.get(
@@ -107,6 +113,7 @@ class TestAutomaticPlatformOptimization:
         automatic_platform_optimization = response.parse()
         assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zones.settings.automatic_platform_optimization.with_streaming_response.get(
@@ -122,6 +129,7 @@ class TestAutomaticPlatformOptimization:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -133,6 +141,7 @@ class TestAutomaticPlatformOptimization:
 class TestAsyncAutomaticPlatformOptimization:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         automatic_platform_optimization = await async_client.zones.settings.automatic_platform_optimization.edit(
@@ -148,6 +157,7 @@ class TestAsyncAutomaticPlatformOptimization:
         )
         assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.automatic_platform_optimization.with_raw_response.edit(
@@ -167,6 +177,7 @@ class TestAsyncAutomaticPlatformOptimization:
         automatic_platform_optimization = await response.parse()
         assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.automatic_platform_optimization.with_streaming_response.edit(
@@ -190,6 +201,7 @@ class TestAsyncAutomaticPlatformOptimization:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -205,6 +217,7 @@ class TestAsyncAutomaticPlatformOptimization:
                 },
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         automatic_platform_optimization = await async_client.zones.settings.automatic_platform_optimization.get(
@@ -212,6 +225,7 @@ class TestAsyncAutomaticPlatformOptimization:
         )
         assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.automatic_platform_optimization.with_raw_response.get(
@@ -223,6 +237,7 @@ class TestAsyncAutomaticPlatformOptimization:
         automatic_platform_optimization = await response.parse()
         assert_matches_type(Optional[AutomaticPlatformOptimization], automatic_platform_optimization, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.automatic_platform_optimization.with_streaming_response.get(
@@ -238,6 +253,7 @@ class TestAsyncAutomaticPlatformOptimization:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

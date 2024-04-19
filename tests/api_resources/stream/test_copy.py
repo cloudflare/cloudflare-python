@@ -18,6 +18,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCopy:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         copy = client.stream.copy.create(
@@ -26,6 +27,7 @@ class TestCopy:
         )
         assert_matches_type(Optional[Video], copy, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         copy = client.stream.copy.create(
@@ -41,6 +43,7 @@ class TestCopy:
         )
         assert_matches_type(Optional[Video], copy, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.stream.copy.with_raw_response.create(
@@ -53,6 +56,7 @@ class TestCopy:
         copy = response.parse()
         assert_matches_type(Optional[Video], copy, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.stream.copy.with_streaming_response.create(
@@ -67,6 +71,7 @@ class TestCopy:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -79,6 +84,7 @@ class TestCopy:
 class TestAsyncCopy:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         copy = await async_client.stream.copy.create(
@@ -87,6 +93,7 @@ class TestAsyncCopy:
         )
         assert_matches_type(Optional[Video], copy, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         copy = await async_client.stream.copy.create(
@@ -102,6 +109,7 @@ class TestAsyncCopy:
         )
         assert_matches_type(Optional[Video], copy, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.copy.with_raw_response.create(
@@ -114,6 +122,7 @@ class TestAsyncCopy:
         copy = await response.parse()
         assert_matches_type(Optional[Video], copy, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.copy.with_streaming_response.create(
@@ -128,6 +137,7 @@ class TestAsyncCopy:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

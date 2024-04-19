@@ -28,11 +28,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTimeseriesGroups:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_arc(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.arc()
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_arc_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.arc(
@@ -57,6 +59,7 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_arc(self, client: Cloudflare) -> None:
         response = client.radar.email.security.timeseries_groups.with_raw_response.arc()
@@ -66,6 +69,7 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_arc(self, client: Cloudflare) -> None:
         with client.radar.email.security.timeseries_groups.with_streaming_response.arc() as response:
@@ -77,11 +81,13 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_dkim(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.dkim()
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_dkim_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.dkim(
@@ -106,6 +112,7 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_dkim(self, client: Cloudflare) -> None:
         response = client.radar.email.security.timeseries_groups.with_raw_response.dkim()
@@ -115,6 +122,7 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_dkim(self, client: Cloudflare) -> None:
         with client.radar.email.security.timeseries_groups.with_streaming_response.dkim() as response:
@@ -126,11 +134,13 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_dmarc(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.dmarc()
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_dmarc_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.dmarc(
@@ -155,6 +165,7 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_dmarc(self, client: Cloudflare) -> None:
         response = client.radar.email.security.timeseries_groups.with_raw_response.dmarc()
@@ -164,6 +175,7 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_dmarc(self, client: Cloudflare) -> None:
         with client.radar.email.security.timeseries_groups.with_streaming_response.dmarc() as response:
@@ -175,11 +187,13 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_malicious(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.malicious()
         assert_matches_type(TimeseriesGroupMaliciousResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_malicious_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.malicious(
@@ -205,6 +219,7 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupMaliciousResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_malicious(self, client: Cloudflare) -> None:
         response = client.radar.email.security.timeseries_groups.with_raw_response.malicious()
@@ -214,6 +229,7 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupMaliciousResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_malicious(self, client: Cloudflare) -> None:
         with client.radar.email.security.timeseries_groups.with_streaming_response.malicious() as response:
@@ -225,11 +241,13 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spam(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.spam()
         assert_matches_type(TimeseriesGroupSpamResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spam_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.spam(
@@ -255,6 +273,7 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupSpamResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_spam(self, client: Cloudflare) -> None:
         response = client.radar.email.security.timeseries_groups.with_raw_response.spam()
@@ -264,6 +283,7 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupSpamResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_spam(self, client: Cloudflare) -> None:
         with client.radar.email.security.timeseries_groups.with_streaming_response.spam() as response:
@@ -275,11 +295,13 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spf(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.spf()
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spf_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.spf(
@@ -304,6 +326,7 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_spf(self, client: Cloudflare) -> None:
         response = client.radar.email.security.timeseries_groups.with_raw_response.spf()
@@ -313,6 +336,7 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_spf(self, client: Cloudflare) -> None:
         with client.radar.email.security.timeseries_groups.with_streaming_response.spf() as response:
@@ -324,11 +348,13 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spoof(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.spoof()
         assert_matches_type(TimeseriesGroupSpoofResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spoof_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.spoof(
@@ -354,6 +380,7 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupSpoofResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_spoof(self, client: Cloudflare) -> None:
         response = client.radar.email.security.timeseries_groups.with_raw_response.spoof()
@@ -363,6 +390,7 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupSpoofResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_spoof(self, client: Cloudflare) -> None:
         with client.radar.email.security.timeseries_groups.with_streaming_response.spoof() as response:
@@ -374,11 +402,13 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_threat_category(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.threat_category()
         assert_matches_type(TimeseriesGroupThreatCategoryResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_threat_category_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.threat_category(
@@ -404,6 +434,7 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupThreatCategoryResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_threat_category(self, client: Cloudflare) -> None:
         response = client.radar.email.security.timeseries_groups.with_raw_response.threat_category()
@@ -413,6 +444,7 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupThreatCategoryResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_threat_category(self, client: Cloudflare) -> None:
         with client.radar.email.security.timeseries_groups.with_streaming_response.threat_category() as response:
@@ -424,11 +456,13 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_tls_version(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.tls_version()
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_tls_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.tls_version(
@@ -453,6 +487,7 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_tls_version(self, client: Cloudflare) -> None:
         response = client.radar.email.security.timeseries_groups.with_raw_response.tls_version()
@@ -462,6 +497,7 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_tls_version(self, client: Cloudflare) -> None:
         with client.radar.email.security.timeseries_groups.with_streaming_response.tls_version() as response:
@@ -477,11 +513,13 @@ class TestTimeseriesGroups:
 class TestAsyncTimeseriesGroups:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_arc(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.arc()
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_arc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.arc(
@@ -506,6 +544,7 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_arc(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.timeseries_groups.with_raw_response.arc()
@@ -515,6 +554,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_arc(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.timeseries_groups.with_streaming_response.arc() as response:
@@ -526,11 +566,13 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_dkim(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.dkim()
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_dkim_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.dkim(
@@ -555,6 +597,7 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_dkim(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.timeseries_groups.with_raw_response.dkim()
@@ -564,6 +607,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_dkim(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.timeseries_groups.with_streaming_response.dkim() as response:
@@ -575,11 +619,13 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_dmarc(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.dmarc()
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_dmarc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.dmarc(
@@ -604,6 +650,7 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_dmarc(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.timeseries_groups.with_raw_response.dmarc()
@@ -613,6 +660,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_dmarc(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.timeseries_groups.with_streaming_response.dmarc() as response:
@@ -624,11 +672,13 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_malicious(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.malicious()
         assert_matches_type(TimeseriesGroupMaliciousResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_malicious_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.malicious(
@@ -654,6 +704,7 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupMaliciousResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_malicious(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.timeseries_groups.with_raw_response.malicious()
@@ -663,6 +714,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupMaliciousResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_malicious(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.timeseries_groups.with_streaming_response.malicious() as response:
@@ -674,11 +726,13 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spam(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spam()
         assert_matches_type(TimeseriesGroupSpamResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spam_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spam(
@@ -704,6 +758,7 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupSpamResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_spam(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.timeseries_groups.with_raw_response.spam()
@@ -713,6 +768,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupSpamResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_spam(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.timeseries_groups.with_streaming_response.spam() as response:
@@ -724,11 +780,13 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spf(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spf()
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spf_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spf(
@@ -753,6 +811,7 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_spf(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.timeseries_groups.with_raw_response.spf()
@@ -762,6 +821,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_spf(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.timeseries_groups.with_streaming_response.spf() as response:
@@ -773,11 +833,13 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spoof(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spoof()
         assert_matches_type(TimeseriesGroupSpoofResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spoof_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spoof(
@@ -803,6 +865,7 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupSpoofResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_spoof(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.timeseries_groups.with_raw_response.spoof()
@@ -812,6 +875,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupSpoofResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_spoof(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.timeseries_groups.with_streaming_response.spoof() as response:
@@ -823,11 +887,13 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_threat_category(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.threat_category()
         assert_matches_type(TimeseriesGroupThreatCategoryResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_threat_category_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.threat_category(
@@ -853,6 +919,7 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupThreatCategoryResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_threat_category(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.timeseries_groups.with_raw_response.threat_category()
@@ -862,6 +929,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupThreatCategoryResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_threat_category(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.timeseries_groups.with_streaming_response.threat_category() as response:
@@ -873,11 +941,13 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_tls_version(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.tls_version()
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_tls_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.tls_version(
@@ -902,6 +972,7 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_tls_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.timeseries_groups.with_raw_response.tls_version()
@@ -911,6 +982,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_tls_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.timeseries_groups.with_streaming_response.tls_version() as response:

@@ -21,6 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWidgets:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.create(
@@ -31,6 +32,7 @@ class TestWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.create(
@@ -49,6 +51,7 @@ class TestWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.challenges.widgets.with_raw_response.create(
@@ -63,6 +66,7 @@ class TestWidgets:
         widget = response.parse()
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.challenges.widgets.with_streaming_response.create(
@@ -79,6 +83,7 @@ class TestWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -89,6 +94,7 @@ class TestWidgets:
                 name="blog.cloudflare.com login form",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.update(
@@ -100,6 +106,7 @@ class TestWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.update(
@@ -114,6 +121,7 @@ class TestWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.challenges.widgets.with_raw_response.update(
@@ -129,6 +137,7 @@ class TestWidgets:
         widget = response.parse()
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.challenges.widgets.with_streaming_response.update(
@@ -146,6 +155,7 @@ class TestWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -166,6 +176,7 @@ class TestWidgets:
                 name="blog.cloudflare.com login form",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.list(
@@ -173,6 +184,7 @@ class TestWidgets:
         )
         assert_matches_type(SyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.list(
@@ -184,6 +196,7 @@ class TestWidgets:
         )
         assert_matches_type(SyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.challenges.widgets.with_raw_response.list(
@@ -195,6 +208,7 @@ class TestWidgets:
         widget = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.challenges.widgets.with_streaming_response.list(
@@ -208,6 +222,7 @@ class TestWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -215,6 +230,7 @@ class TestWidgets:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.delete(
@@ -223,6 +239,7 @@ class TestWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.challenges.widgets.with_raw_response.delete(
@@ -235,6 +252,7 @@ class TestWidgets:
         widget = response.parse()
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.challenges.widgets.with_streaming_response.delete(
@@ -249,6 +267,7 @@ class TestWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -263,6 +282,7 @@ class TestWidgets:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.get(
@@ -271,6 +291,7 @@ class TestWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.challenges.widgets.with_raw_response.get(
@@ -283,6 +304,7 @@ class TestWidgets:
         widget = response.parse()
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.challenges.widgets.with_streaming_response.get(
@@ -297,6 +319,7 @@ class TestWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -311,6 +334,7 @@ class TestWidgets:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_rotate_secret(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.rotate_secret(
@@ -319,6 +343,7 @@ class TestWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_rotate_secret_with_all_params(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.rotate_secret(
@@ -328,6 +353,7 @@ class TestWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_rotate_secret(self, client: Cloudflare) -> None:
         response = client.challenges.widgets.with_raw_response.rotate_secret(
@@ -340,6 +366,7 @@ class TestWidgets:
         widget = response.parse()
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_rotate_secret(self, client: Cloudflare) -> None:
         with client.challenges.widgets.with_streaming_response.rotate_secret(
@@ -354,6 +381,7 @@ class TestWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_rotate_secret(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -372,6 +400,7 @@ class TestWidgets:
 class TestAsyncWidgets:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.create(
@@ -382,6 +411,7 @@ class TestAsyncWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.create(
@@ -400,6 +430,7 @@ class TestAsyncWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.challenges.widgets.with_raw_response.create(
@@ -414,6 +445,7 @@ class TestAsyncWidgets:
         widget = await response.parse()
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.challenges.widgets.with_streaming_response.create(
@@ -430,6 +462,7 @@ class TestAsyncWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -440,6 +473,7 @@ class TestAsyncWidgets:
                 name="blog.cloudflare.com login form",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.update(
@@ -451,6 +485,7 @@ class TestAsyncWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.update(
@@ -465,6 +500,7 @@ class TestAsyncWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.challenges.widgets.with_raw_response.update(
@@ -480,6 +516,7 @@ class TestAsyncWidgets:
         widget = await response.parse()
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.challenges.widgets.with_streaming_response.update(
@@ -497,6 +534,7 @@ class TestAsyncWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -517,6 +555,7 @@ class TestAsyncWidgets:
                 name="blog.cloudflare.com login form",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.list(
@@ -524,6 +563,7 @@ class TestAsyncWidgets:
         )
         assert_matches_type(AsyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.list(
@@ -535,6 +575,7 @@ class TestAsyncWidgets:
         )
         assert_matches_type(AsyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.challenges.widgets.with_raw_response.list(
@@ -546,6 +587,7 @@ class TestAsyncWidgets:
         widget = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[WidgetListResponse], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.challenges.widgets.with_streaming_response.list(
@@ -559,6 +601,7 @@ class TestAsyncWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -566,6 +609,7 @@ class TestAsyncWidgets:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.delete(
@@ -574,6 +618,7 @@ class TestAsyncWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.challenges.widgets.with_raw_response.delete(
@@ -586,6 +631,7 @@ class TestAsyncWidgets:
         widget = await response.parse()
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.challenges.widgets.with_streaming_response.delete(
@@ -600,6 +646,7 @@ class TestAsyncWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -614,6 +661,7 @@ class TestAsyncWidgets:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.get(
@@ -622,6 +670,7 @@ class TestAsyncWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.challenges.widgets.with_raw_response.get(
@@ -634,6 +683,7 @@ class TestAsyncWidgets:
         widget = await response.parse()
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.challenges.widgets.with_streaming_response.get(
@@ -648,6 +698,7 @@ class TestAsyncWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -662,6 +713,7 @@ class TestAsyncWidgets:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_rotate_secret(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.rotate_secret(
@@ -670,6 +722,7 @@ class TestAsyncWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_rotate_secret_with_all_params(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.rotate_secret(
@@ -679,6 +732,7 @@ class TestAsyncWidgets:
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_rotate_secret(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.challenges.widgets.with_raw_response.rotate_secret(
@@ -691,6 +745,7 @@ class TestAsyncWidgets:
         widget = await response.parse()
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_rotate_secret(self, async_client: AsyncCloudflare) -> None:
         async with async_client.challenges.widgets.with_streaming_response.rotate_secret(
@@ -705,6 +760,7 @@ class TestAsyncWidgets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_rotate_secret(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

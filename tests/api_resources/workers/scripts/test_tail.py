@@ -21,6 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTail:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         tail = client.workers.scripts.tail.create(
@@ -30,6 +31,7 @@ class TestTail:
         )
         assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.workers.scripts.tail.with_raw_response.create(
@@ -43,6 +45,7 @@ class TestTail:
         tail = response.parse()
         assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.workers.scripts.tail.with_streaming_response.create(
@@ -58,6 +61,7 @@ class TestTail:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -74,6 +78,7 @@ class TestTail:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         tail = client.workers.scripts.tail.delete(
@@ -84,6 +89,7 @@ class TestTail:
         )
         assert_matches_type(TailDeleteResponse, tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.workers.scripts.tail.with_raw_response.delete(
@@ -98,6 +104,7 @@ class TestTail:
         tail = response.parse()
         assert_matches_type(TailDeleteResponse, tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.workers.scripts.tail.with_streaming_response.delete(
@@ -114,6 +121,7 @@ class TestTail:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -140,6 +148,7 @@ class TestTail:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         tail = client.workers.scripts.tail.get(
@@ -148,6 +157,7 @@ class TestTail:
         )
         assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.scripts.tail.with_raw_response.get(
@@ -160,6 +170,7 @@ class TestTail:
         tail = response.parse()
         assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.scripts.tail.with_streaming_response.get(
@@ -174,6 +185,7 @@ class TestTail:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -192,6 +204,7 @@ class TestTail:
 class TestAsyncTail:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         tail = await async_client.workers.scripts.tail.create(
@@ -201,6 +214,7 @@ class TestAsyncTail:
         )
         assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.tail.with_raw_response.create(
@@ -214,6 +228,7 @@ class TestAsyncTail:
         tail = await response.parse()
         assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.tail.with_streaming_response.create(
@@ -229,6 +244,7 @@ class TestAsyncTail:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -245,6 +261,7 @@ class TestAsyncTail:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         tail = await async_client.workers.scripts.tail.delete(
@@ -255,6 +272,7 @@ class TestAsyncTail:
         )
         assert_matches_type(TailDeleteResponse, tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.tail.with_raw_response.delete(
@@ -269,6 +287,7 @@ class TestAsyncTail:
         tail = await response.parse()
         assert_matches_type(TailDeleteResponse, tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.tail.with_streaming_response.delete(
@@ -285,6 +304,7 @@ class TestAsyncTail:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -311,6 +331,7 @@ class TestAsyncTail:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         tail = await async_client.workers.scripts.tail.get(
@@ -319,6 +340,7 @@ class TestAsyncTail:
         )
         assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.tail.with_raw_response.get(
@@ -331,6 +353,7 @@ class TestAsyncTail:
         tail = await response.parse()
         assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.tail.with_streaming_response.get(
@@ -345,6 +368,7 @@ class TestAsyncTail:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

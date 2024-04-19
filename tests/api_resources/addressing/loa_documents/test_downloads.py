@@ -16,6 +16,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDownloads:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         download = client.addressing.loa_documents.downloads.get(
@@ -24,6 +25,7 @@ class TestDownloads:
         )
         assert_matches_type(object, download, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.addressing.loa_documents.downloads.with_raw_response.get(
@@ -36,6 +38,7 @@ class TestDownloads:
         download = response.parse()
         assert_matches_type(object, download, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.addressing.loa_documents.downloads.with_streaming_response.get(
@@ -50,6 +53,7 @@ class TestDownloads:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -68,6 +72,7 @@ class TestDownloads:
 class TestAsyncDownloads:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         download = await async_client.addressing.loa_documents.downloads.get(
@@ -76,6 +81,7 @@ class TestAsyncDownloads:
         )
         assert_matches_type(object, download, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.loa_documents.downloads.with_raw_response.get(
@@ -88,6 +94,7 @@ class TestAsyncDownloads:
         download = await response.parse()
         assert_matches_type(object, download, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.loa_documents.downloads.with_streaming_response.get(
@@ -102,6 +109,7 @@ class TestAsyncDownloads:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

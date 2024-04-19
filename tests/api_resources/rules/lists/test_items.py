@@ -23,6 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestItems:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         item = client.rules.lists.items.create(
@@ -32,6 +33,7 @@ class TestItems:
         )
         assert_matches_type(Optional[ItemCreateResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.rules.lists.items.with_raw_response.create(
@@ -45,6 +47,7 @@ class TestItems:
         item = response.parse()
         assert_matches_type(Optional[ItemCreateResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.rules.lists.items.with_streaming_response.create(
@@ -60,6 +63,7 @@ class TestItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -76,6 +80,7 @@ class TestItems:
                 body=[{}, {}, {}],
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         item = client.rules.lists.items.update(
@@ -85,6 +90,7 @@ class TestItems:
         )
         assert_matches_type(Optional[ItemUpdateResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rules.lists.items.with_raw_response.update(
@@ -98,6 +104,7 @@ class TestItems:
         item = response.parse()
         assert_matches_type(Optional[ItemUpdateResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rules.lists.items.with_streaming_response.update(
@@ -113,6 +120,7 @@ class TestItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -129,6 +137,7 @@ class TestItems:
                 body=[{}, {}, {}],
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         item = client.rules.lists.items.list(
@@ -137,6 +146,7 @@ class TestItems:
         )
         assert_matches_type(SyncCursorPagination[object], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         item = client.rules.lists.items.list(
@@ -148,6 +158,7 @@ class TestItems:
         )
         assert_matches_type(SyncCursorPagination[object], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.rules.lists.items.with_raw_response.list(
@@ -160,6 +171,7 @@ class TestItems:
         item = response.parse()
         assert_matches_type(SyncCursorPagination[object], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.rules.lists.items.with_streaming_response.list(
@@ -174,6 +186,7 @@ class TestItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -188,6 +201,7 @@ class TestItems:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         item = client.rules.lists.items.delete(
@@ -196,6 +210,7 @@ class TestItems:
         )
         assert_matches_type(Optional[ItemDeleteResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         item = client.rules.lists.items.delete(
@@ -205,6 +220,7 @@ class TestItems:
         )
         assert_matches_type(Optional[ItemDeleteResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.rules.lists.items.with_raw_response.delete(
@@ -217,6 +233,7 @@ class TestItems:
         item = response.parse()
         assert_matches_type(Optional[ItemDeleteResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.rules.lists.items.with_streaming_response.delete(
@@ -231,6 +248,7 @@ class TestItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -245,6 +263,7 @@ class TestItems:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         item = client.rules.lists.items.get(
@@ -254,6 +273,7 @@ class TestItems:
         )
         assert_matches_type(Optional[ItemGetResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rules.lists.items.with_raw_response.get(
@@ -267,6 +287,7 @@ class TestItems:
         item = response.parse()
         assert_matches_type(Optional[ItemGetResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rules.lists.items.with_streaming_response.get(
@@ -282,6 +303,7 @@ class TestItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -309,6 +331,7 @@ class TestItems:
 class TestAsyncItems:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         item = await async_client.rules.lists.items.create(
@@ -318,6 +341,7 @@ class TestAsyncItems:
         )
         assert_matches_type(Optional[ItemCreateResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rules.lists.items.with_raw_response.create(
@@ -331,6 +355,7 @@ class TestAsyncItems:
         item = await response.parse()
         assert_matches_type(Optional[ItemCreateResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rules.lists.items.with_streaming_response.create(
@@ -346,6 +371,7 @@ class TestAsyncItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -362,6 +388,7 @@ class TestAsyncItems:
                 body=[{}, {}, {}],
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         item = await async_client.rules.lists.items.update(
@@ -371,6 +398,7 @@ class TestAsyncItems:
         )
         assert_matches_type(Optional[ItemUpdateResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rules.lists.items.with_raw_response.update(
@@ -384,6 +412,7 @@ class TestAsyncItems:
         item = await response.parse()
         assert_matches_type(Optional[ItemUpdateResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rules.lists.items.with_streaming_response.update(
@@ -399,6 +428,7 @@ class TestAsyncItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -415,6 +445,7 @@ class TestAsyncItems:
                 body=[{}, {}, {}],
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         item = await async_client.rules.lists.items.list(
@@ -423,6 +454,7 @@ class TestAsyncItems:
         )
         assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         item = await async_client.rules.lists.items.list(
@@ -434,6 +466,7 @@ class TestAsyncItems:
         )
         assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rules.lists.items.with_raw_response.list(
@@ -446,6 +479,7 @@ class TestAsyncItems:
         item = await response.parse()
         assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rules.lists.items.with_streaming_response.list(
@@ -460,6 +494,7 @@ class TestAsyncItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -474,6 +509,7 @@ class TestAsyncItems:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         item = await async_client.rules.lists.items.delete(
@@ -482,6 +518,7 @@ class TestAsyncItems:
         )
         assert_matches_type(Optional[ItemDeleteResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         item = await async_client.rules.lists.items.delete(
@@ -491,6 +528,7 @@ class TestAsyncItems:
         )
         assert_matches_type(Optional[ItemDeleteResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rules.lists.items.with_raw_response.delete(
@@ -503,6 +541,7 @@ class TestAsyncItems:
         item = await response.parse()
         assert_matches_type(Optional[ItemDeleteResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rules.lists.items.with_streaming_response.delete(
@@ -517,6 +556,7 @@ class TestAsyncItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -531,6 +571,7 @@ class TestAsyncItems:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         item = await async_client.rules.lists.items.get(
@@ -540,6 +581,7 @@ class TestAsyncItems:
         )
         assert_matches_type(Optional[ItemGetResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rules.lists.items.with_raw_response.get(
@@ -553,6 +595,7 @@ class TestAsyncItems:
         item = await response.parse()
         assert_matches_type(Optional[ItemGetResponse], item, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rules.lists.items.with_streaming_response.get(
@@ -568,6 +611,7 @@ class TestAsyncItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):

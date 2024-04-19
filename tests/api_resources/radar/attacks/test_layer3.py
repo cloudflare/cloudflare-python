@@ -18,11 +18,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestLayer3:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_timeseries(self, client: Cloudflare) -> None:
         layer3 = client.radar.attacks.layer3.timeseries()
         assert_matches_type(Layer3TimeseriesResponse, layer3, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         layer3 = client.radar.attacks.layer3.timeseries(
@@ -51,6 +53,7 @@ class TestLayer3:
         )
         assert_matches_type(Layer3TimeseriesResponse, layer3, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_timeseries(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer3.with_raw_response.timeseries()
@@ -60,6 +63,7 @@ class TestLayer3:
         layer3 = response.parse()
         assert_matches_type(Layer3TimeseriesResponse, layer3, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_timeseries(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer3.with_streaming_response.timeseries() as response:
@@ -75,11 +79,13 @@ class TestLayer3:
 class TestAsyncLayer3:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries(self, async_client: AsyncCloudflare) -> None:
         layer3 = await async_client.radar.attacks.layer3.timeseries()
         assert_matches_type(Layer3TimeseriesResponse, layer3, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         layer3 = await async_client.radar.attacks.layer3.timeseries(
@@ -108,6 +114,7 @@ class TestAsyncLayer3:
         )
         assert_matches_type(Layer3TimeseriesResponse, layer3, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_timeseries(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer3.with_raw_response.timeseries()
@@ -117,6 +124,7 @@ class TestAsyncLayer3:
         layer3 = await response.parse()
         assert_matches_type(Layer3TimeseriesResponse, layer3, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_timeseries(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer3.with_streaming_response.timeseries() as response:

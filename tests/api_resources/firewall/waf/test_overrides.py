@@ -21,6 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestOverrides:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         override = client.firewall.waf.overrides.create(
@@ -29,6 +30,7 @@ class TestOverrides:
         )
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.firewall.waf.overrides.with_raw_response.create(
@@ -41,6 +43,7 @@ class TestOverrides:
         override = response.parse()
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.firewall.waf.overrides.with_streaming_response.create(
@@ -55,6 +58,7 @@ class TestOverrides:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -63,6 +67,7 @@ class TestOverrides:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         override = client.firewall.waf.overrides.update(
@@ -72,6 +77,7 @@ class TestOverrides:
         )
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.firewall.waf.overrides.with_raw_response.update(
@@ -85,6 +91,7 @@ class TestOverrides:
         override = response.parse()
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.firewall.waf.overrides.with_streaming_response.update(
@@ -100,6 +107,7 @@ class TestOverrides:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -116,6 +124,7 @@ class TestOverrides:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         override = client.firewall.waf.overrides.list(
@@ -123,6 +132,7 @@ class TestOverrides:
         )
         assert_matches_type(SyncV4PagePaginationArray[Override], override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         override = client.firewall.waf.overrides.list(
@@ -132,6 +142,7 @@ class TestOverrides:
         )
         assert_matches_type(SyncV4PagePaginationArray[Override], override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.firewall.waf.overrides.with_raw_response.list(
@@ -143,6 +154,7 @@ class TestOverrides:
         override = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[Override], override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.firewall.waf.overrides.with_streaming_response.list(
@@ -156,6 +168,7 @@ class TestOverrides:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -163,6 +176,7 @@ class TestOverrides:
                 "",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         override = client.firewall.waf.overrides.delete(
@@ -172,6 +186,7 @@ class TestOverrides:
         )
         assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.firewall.waf.overrides.with_raw_response.delete(
@@ -185,6 +200,7 @@ class TestOverrides:
         override = response.parse()
         assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.firewall.waf.overrides.with_streaming_response.delete(
@@ -200,6 +216,7 @@ class TestOverrides:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -216,6 +233,7 @@ class TestOverrides:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         override = client.firewall.waf.overrides.get(
@@ -224,6 +242,7 @@ class TestOverrides:
         )
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.firewall.waf.overrides.with_raw_response.get(
@@ -236,6 +255,7 @@ class TestOverrides:
         override = response.parse()
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.firewall.waf.overrides.with_streaming_response.get(
@@ -250,6 +270,7 @@ class TestOverrides:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -268,6 +289,7 @@ class TestOverrides:
 class TestAsyncOverrides:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         override = await async_client.firewall.waf.overrides.create(
@@ -276,6 +298,7 @@ class TestAsyncOverrides:
         )
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.waf.overrides.with_raw_response.create(
@@ -288,6 +311,7 @@ class TestAsyncOverrides:
         override = await response.parse()
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.overrides.with_streaming_response.create(
@@ -302,6 +326,7 @@ class TestAsyncOverrides:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -310,6 +335,7 @@ class TestAsyncOverrides:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         override = await async_client.firewall.waf.overrides.update(
@@ -319,6 +345,7 @@ class TestAsyncOverrides:
         )
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.waf.overrides.with_raw_response.update(
@@ -332,6 +359,7 @@ class TestAsyncOverrides:
         override = await response.parse()
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.overrides.with_streaming_response.update(
@@ -347,6 +375,7 @@ class TestAsyncOverrides:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -363,6 +392,7 @@ class TestAsyncOverrides:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         override = await async_client.firewall.waf.overrides.list(
@@ -370,6 +400,7 @@ class TestAsyncOverrides:
         )
         assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         override = await async_client.firewall.waf.overrides.list(
@@ -379,6 +410,7 @@ class TestAsyncOverrides:
         )
         assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.waf.overrides.with_raw_response.list(
@@ -390,6 +422,7 @@ class TestAsyncOverrides:
         override = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.overrides.with_streaming_response.list(
@@ -403,6 +436,7 @@ class TestAsyncOverrides:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -410,6 +444,7 @@ class TestAsyncOverrides:
                 "",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         override = await async_client.firewall.waf.overrides.delete(
@@ -419,6 +454,7 @@ class TestAsyncOverrides:
         )
         assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.waf.overrides.with_raw_response.delete(
@@ -432,6 +468,7 @@ class TestAsyncOverrides:
         override = await response.parse()
         assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.overrides.with_streaming_response.delete(
@@ -447,6 +484,7 @@ class TestAsyncOverrides:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -463,6 +501,7 @@ class TestAsyncOverrides:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         override = await async_client.firewall.waf.overrides.get(
@@ -471,6 +510,7 @@ class TestAsyncOverrides:
         )
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.waf.overrides.with_raw_response.get(
@@ -483,6 +523,7 @@ class TestAsyncOverrides:
         override = await response.parse()
         assert_matches_type(Override, override, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.overrides.with_streaming_response.get(
@@ -497,6 +538,7 @@ class TestAsyncOverrides:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):

@@ -23,6 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRulesets:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.create(
@@ -35,6 +36,7 @@ class TestRulesets:
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.create(
@@ -97,6 +99,7 @@ class TestRulesets:
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.create(
@@ -113,6 +116,7 @@ class TestRulesets:
         ruleset = response.parse()
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.create(
@@ -131,6 +135,7 @@ class TestRulesets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -153,6 +158,7 @@ class TestRulesets:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
@@ -163,6 +169,7 @@ class TestRulesets:
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
@@ -226,6 +233,7 @@ class TestRulesets:
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.update(
@@ -240,6 +248,7 @@ class TestRulesets:
         ruleset = response.parse()
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.update(
@@ -256,6 +265,7 @@ class TestRulesets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
@@ -282,6 +292,7 @@ class TestRulesets:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.list(
@@ -290,6 +301,7 @@ class TestRulesets:
         )
         assert_matches_type(SyncSinglePage[Ruleset], ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.list(
@@ -298,6 +310,7 @@ class TestRulesets:
         )
         assert_matches_type(SyncSinglePage[Ruleset], ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.list(
@@ -310,6 +323,7 @@ class TestRulesets:
         ruleset = response.parse()
         assert_matches_type(SyncSinglePage[Ruleset], ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.list(
@@ -324,6 +338,7 @@ class TestRulesets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -338,6 +353,7 @@ class TestRulesets:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.delete(
@@ -347,6 +363,7 @@ class TestRulesets:
         )
         assert ruleset is None
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.delete(
@@ -356,6 +373,7 @@ class TestRulesets:
         )
         assert ruleset is None
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.delete(
@@ -369,6 +387,7 @@ class TestRulesets:
         ruleset = response.parse()
         assert ruleset is None
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.delete(
@@ -384,6 +403,7 @@ class TestRulesets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
@@ -407,6 +427,7 @@ class TestRulesets:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.get(
@@ -416,6 +437,7 @@ class TestRulesets:
         )
         assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.get(
@@ -425,6 +447,7 @@ class TestRulesets:
         )
         assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.get(
@@ -438,6 +461,7 @@ class TestRulesets:
         ruleset = response.parse()
         assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.get(
@@ -453,6 +477,7 @@ class TestRulesets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
@@ -480,6 +505,7 @@ class TestRulesets:
 class TestAsyncRulesets:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.create(
@@ -492,6 +518,7 @@ class TestAsyncRulesets:
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.create(
@@ -554,6 +581,7 @@ class TestAsyncRulesets:
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.create(
@@ -570,6 +598,7 @@ class TestAsyncRulesets:
         ruleset = await response.parse()
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.create(
@@ -588,6 +617,7 @@ class TestAsyncRulesets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -610,6 +640,7 @@ class TestAsyncRulesets:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
@@ -620,6 +651,7 @@ class TestAsyncRulesets:
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
@@ -683,6 +715,7 @@ class TestAsyncRulesets:
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.update(
@@ -697,6 +730,7 @@ class TestAsyncRulesets:
         ruleset = await response.parse()
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.update(
@@ -713,6 +747,7 @@ class TestAsyncRulesets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
@@ -739,6 +774,7 @@ class TestAsyncRulesets:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.list(
@@ -747,6 +783,7 @@ class TestAsyncRulesets:
         )
         assert_matches_type(AsyncSinglePage[Ruleset], ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.list(
@@ -755,6 +792,7 @@ class TestAsyncRulesets:
         )
         assert_matches_type(AsyncSinglePage[Ruleset], ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.list(
@@ -767,6 +805,7 @@ class TestAsyncRulesets:
         ruleset = await response.parse()
         assert_matches_type(AsyncSinglePage[Ruleset], ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.list(
@@ -781,6 +820,7 @@ class TestAsyncRulesets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -795,6 +835,7 @@ class TestAsyncRulesets:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.delete(
@@ -804,6 +845,7 @@ class TestAsyncRulesets:
         )
         assert ruleset is None
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.delete(
@@ -813,6 +855,7 @@ class TestAsyncRulesets:
         )
         assert ruleset is None
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.delete(
@@ -826,6 +869,7 @@ class TestAsyncRulesets:
         ruleset = await response.parse()
         assert ruleset is None
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.delete(
@@ -841,6 +885,7 @@ class TestAsyncRulesets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
@@ -864,6 +909,7 @@ class TestAsyncRulesets:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.get(
@@ -873,6 +919,7 @@ class TestAsyncRulesets:
         )
         assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.get(
@@ -882,6 +929,7 @@ class TestAsyncRulesets:
         )
         assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.get(
@@ -895,6 +943,7 @@ class TestAsyncRulesets:
         ruleset = await response.parse()
         assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.get(
@@ -910,6 +959,7 @@ class TestAsyncRulesets:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):

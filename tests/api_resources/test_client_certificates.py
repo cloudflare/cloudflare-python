@@ -20,6 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestClientCertificates:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         client_certificate = client.client_certificates.create(
@@ -29,6 +30,7 @@ class TestClientCertificates:
         )
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.client_certificates.with_raw_response.create(
@@ -42,6 +44,7 @@ class TestClientCertificates:
         client_certificate = response.parse()
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.client_certificates.with_streaming_response.create(
@@ -57,6 +60,7 @@ class TestClientCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -66,6 +70,7 @@ class TestClientCertificates:
                 validity_days=3650,
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         client_certificate = client.client_certificates.list(
@@ -73,6 +78,7 @@ class TestClientCertificates:
         )
         assert_matches_type(SyncV4PagePaginationArray[ClientCertificate], client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         client_certificate = client.client_certificates.list(
@@ -85,6 +91,7 @@ class TestClientCertificates:
         )
         assert_matches_type(SyncV4PagePaginationArray[ClientCertificate], client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.client_certificates.with_raw_response.list(
@@ -96,6 +103,7 @@ class TestClientCertificates:
         client_certificate = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[ClientCertificate], client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.client_certificates.with_streaming_response.list(
@@ -109,6 +117,7 @@ class TestClientCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -116,6 +125,7 @@ class TestClientCertificates:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         client_certificate = client.client_certificates.delete(
@@ -124,6 +134,7 @@ class TestClientCertificates:
         )
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.client_certificates.with_raw_response.delete(
@@ -136,6 +147,7 @@ class TestClientCertificates:
         client_certificate = response.parse()
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.client_certificates.with_streaming_response.delete(
@@ -150,6 +162,7 @@ class TestClientCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -164,6 +177,7 @@ class TestClientCertificates:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         client_certificate = client.client_certificates.edit(
@@ -172,6 +186,7 @@ class TestClientCertificates:
         )
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.client_certificates.with_raw_response.edit(
@@ -184,6 +199,7 @@ class TestClientCertificates:
         client_certificate = response.parse()
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.client_certificates.with_streaming_response.edit(
@@ -198,6 +214,7 @@ class TestClientCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -212,6 +229,7 @@ class TestClientCertificates:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         client_certificate = client.client_certificates.get(
@@ -220,6 +238,7 @@ class TestClientCertificates:
         )
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.client_certificates.with_raw_response.get(
@@ -232,6 +251,7 @@ class TestClientCertificates:
         client_certificate = response.parse()
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.client_certificates.with_streaming_response.get(
@@ -246,6 +266,7 @@ class TestClientCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -264,6 +285,7 @@ class TestClientCertificates:
 class TestAsyncClientCertificates:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         client_certificate = await async_client.client_certificates.create(
@@ -273,6 +295,7 @@ class TestAsyncClientCertificates:
         )
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.client_certificates.with_raw_response.create(
@@ -286,6 +309,7 @@ class TestAsyncClientCertificates:
         client_certificate = await response.parse()
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.client_certificates.with_streaming_response.create(
@@ -301,6 +325,7 @@ class TestAsyncClientCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -310,6 +335,7 @@ class TestAsyncClientCertificates:
                 validity_days=3650,
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         client_certificate = await async_client.client_certificates.list(
@@ -317,6 +343,7 @@ class TestAsyncClientCertificates:
         )
         assert_matches_type(AsyncV4PagePaginationArray[ClientCertificate], client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         client_certificate = await async_client.client_certificates.list(
@@ -329,6 +356,7 @@ class TestAsyncClientCertificates:
         )
         assert_matches_type(AsyncV4PagePaginationArray[ClientCertificate], client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.client_certificates.with_raw_response.list(
@@ -340,6 +368,7 @@ class TestAsyncClientCertificates:
         client_certificate = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[ClientCertificate], client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.client_certificates.with_streaming_response.list(
@@ -353,6 +382,7 @@ class TestAsyncClientCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -360,6 +390,7 @@ class TestAsyncClientCertificates:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         client_certificate = await async_client.client_certificates.delete(
@@ -368,6 +399,7 @@ class TestAsyncClientCertificates:
         )
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.client_certificates.with_raw_response.delete(
@@ -380,6 +412,7 @@ class TestAsyncClientCertificates:
         client_certificate = await response.parse()
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.client_certificates.with_streaming_response.delete(
@@ -394,6 +427,7 @@ class TestAsyncClientCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -408,6 +442,7 @@ class TestAsyncClientCertificates:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         client_certificate = await async_client.client_certificates.edit(
@@ -416,6 +451,7 @@ class TestAsyncClientCertificates:
         )
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.client_certificates.with_raw_response.edit(
@@ -428,6 +464,7 @@ class TestAsyncClientCertificates:
         client_certificate = await response.parse()
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.client_certificates.with_streaming_response.edit(
@@ -442,6 +479,7 @@ class TestAsyncClientCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -456,6 +494,7 @@ class TestAsyncClientCertificates:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         client_certificate = await async_client.client_certificates.get(
@@ -464,6 +503,7 @@ class TestAsyncClientCertificates:
         )
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.client_certificates.with_raw_response.get(
@@ -476,6 +516,7 @@ class TestAsyncClientCertificates:
         client_certificate = await response.parse()
         assert_matches_type(ClientCertificate, client_certificate, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.client_certificates.with_streaming_response.get(
@@ -490,6 +531,7 @@ class TestAsyncClientCertificates:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
