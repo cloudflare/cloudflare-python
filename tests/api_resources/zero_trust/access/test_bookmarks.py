@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBookmarks:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         bookmark = client.zero_trust.access.bookmarks.create(
@@ -31,7 +30,6 @@ class TestBookmarks:
         )
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.bookmarks.with_raw_response.create(
@@ -45,7 +43,6 @@ class TestBookmarks:
         bookmark = response.parse()
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.access.bookmarks.with_streaming_response.create(
@@ -61,7 +58,6 @@ class TestBookmarks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -78,7 +74,6 @@ class TestBookmarks:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         bookmark = client.zero_trust.access.bookmarks.update(
@@ -88,7 +83,6 @@ class TestBookmarks:
         )
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.bookmarks.with_raw_response.update(
@@ -102,7 +96,6 @@ class TestBookmarks:
         bookmark = response.parse()
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.access.bookmarks.with_streaming_response.update(
@@ -118,7 +111,6 @@ class TestBookmarks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -135,7 +127,6 @@ class TestBookmarks:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         bookmark = client.zero_trust.access.bookmarks.list(
@@ -143,7 +134,6 @@ class TestBookmarks:
         )
         assert_matches_type(SyncSinglePage[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.bookmarks.with_raw_response.list(
@@ -155,7 +145,6 @@ class TestBookmarks:
         bookmark = response.parse()
         assert_matches_type(SyncSinglePage[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.access.bookmarks.with_streaming_response.list(
@@ -169,7 +158,6 @@ class TestBookmarks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -177,7 +165,6 @@ class TestBookmarks:
                 "",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         bookmark = client.zero_trust.access.bookmarks.delete(
@@ -187,7 +174,6 @@ class TestBookmarks:
         )
         assert_matches_type(Optional[BookmarkDeleteResponse], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.bookmarks.with_raw_response.delete(
@@ -201,7 +187,6 @@ class TestBookmarks:
         bookmark = response.parse()
         assert_matches_type(Optional[BookmarkDeleteResponse], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.access.bookmarks.with_streaming_response.delete(
@@ -217,7 +202,6 @@ class TestBookmarks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -234,7 +218,6 @@ class TestBookmarks:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         bookmark = client.zero_trust.access.bookmarks.get(
@@ -243,7 +226,6 @@ class TestBookmarks:
         )
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.bookmarks.with_raw_response.get(
@@ -256,7 +238,6 @@ class TestBookmarks:
         bookmark = response.parse()
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.access.bookmarks.with_streaming_response.get(
@@ -271,7 +252,6 @@ class TestBookmarks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -290,7 +270,6 @@ class TestBookmarks:
 class TestAsyncBookmarks:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         bookmark = await async_client.zero_trust.access.bookmarks.create(
@@ -300,7 +279,6 @@ class TestAsyncBookmarks:
         )
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.bookmarks.with_raw_response.create(
@@ -314,7 +292,6 @@ class TestAsyncBookmarks:
         bookmark = await response.parse()
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.bookmarks.with_streaming_response.create(
@@ -330,7 +307,6 @@ class TestAsyncBookmarks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -347,7 +323,6 @@ class TestAsyncBookmarks:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         bookmark = await async_client.zero_trust.access.bookmarks.update(
@@ -357,7 +332,6 @@ class TestAsyncBookmarks:
         )
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.bookmarks.with_raw_response.update(
@@ -371,7 +345,6 @@ class TestAsyncBookmarks:
         bookmark = await response.parse()
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.bookmarks.with_streaming_response.update(
@@ -387,7 +360,6 @@ class TestAsyncBookmarks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -404,7 +376,6 @@ class TestAsyncBookmarks:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         bookmark = await async_client.zero_trust.access.bookmarks.list(
@@ -412,7 +383,6 @@ class TestAsyncBookmarks:
         )
         assert_matches_type(AsyncSinglePage[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.bookmarks.with_raw_response.list(
@@ -424,7 +394,6 @@ class TestAsyncBookmarks:
         bookmark = await response.parse()
         assert_matches_type(AsyncSinglePage[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.bookmarks.with_streaming_response.list(
@@ -438,7 +407,6 @@ class TestAsyncBookmarks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -446,7 +414,6 @@ class TestAsyncBookmarks:
                 "",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         bookmark = await async_client.zero_trust.access.bookmarks.delete(
@@ -456,7 +423,6 @@ class TestAsyncBookmarks:
         )
         assert_matches_type(Optional[BookmarkDeleteResponse], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.bookmarks.with_raw_response.delete(
@@ -470,7 +436,6 @@ class TestAsyncBookmarks:
         bookmark = await response.parse()
         assert_matches_type(Optional[BookmarkDeleteResponse], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.bookmarks.with_streaming_response.delete(
@@ -486,7 +451,6 @@ class TestAsyncBookmarks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -503,7 +467,6 @@ class TestAsyncBookmarks:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         bookmark = await async_client.zero_trust.access.bookmarks.get(
@@ -512,7 +475,6 @@ class TestAsyncBookmarks:
         )
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.bookmarks.with_raw_response.get(
@@ -525,7 +487,6 @@ class TestAsyncBookmarks:
         bookmark = await response.parse()
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.bookmarks.with_streaming_response.get(
@@ -540,7 +501,6 @@ class TestAsyncBookmarks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):

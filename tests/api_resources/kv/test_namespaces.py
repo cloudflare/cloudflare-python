@@ -22,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNamespaces:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         namespace = client.kv.namespaces.create(
@@ -31,7 +30,6 @@ class TestNamespaces:
         )
         assert_matches_type(Namespace, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.with_raw_response.create(
@@ -44,7 +42,6 @@ class TestNamespaces:
         namespace = response.parse()
         assert_matches_type(Namespace, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.kv.namespaces.with_streaming_response.create(
@@ -59,7 +56,6 @@ class TestNamespaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -68,7 +64,6 @@ class TestNamespaces:
                 title="My Own Namespace",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         namespace = client.kv.namespaces.update(
@@ -78,7 +73,6 @@ class TestNamespaces:
         )
         assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.with_raw_response.update(
@@ -92,7 +86,6 @@ class TestNamespaces:
         namespace = response.parse()
         assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.kv.namespaces.with_streaming_response.update(
@@ -108,7 +101,6 @@ class TestNamespaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -125,7 +117,6 @@ class TestNamespaces:
                 title="My Own Namespace",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         namespace = client.kv.namespaces.list(
@@ -133,7 +124,6 @@ class TestNamespaces:
         )
         assert_matches_type(SyncV4PagePaginationArray[Namespace], namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         namespace = client.kv.namespaces.list(
@@ -145,7 +135,6 @@ class TestNamespaces:
         )
         assert_matches_type(SyncV4PagePaginationArray[Namespace], namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.with_raw_response.list(
@@ -157,7 +146,6 @@ class TestNamespaces:
         namespace = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[Namespace], namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.kv.namespaces.with_streaming_response.list(
@@ -171,7 +159,6 @@ class TestNamespaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -179,7 +166,6 @@ class TestNamespaces:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         namespace = client.kv.namespaces.delete(
@@ -189,7 +175,6 @@ class TestNamespaces:
         )
         assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.with_raw_response.delete(
@@ -203,7 +188,6 @@ class TestNamespaces:
         namespace = response.parse()
         assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.kv.namespaces.with_streaming_response.delete(
@@ -219,7 +203,6 @@ class TestNamespaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -240,7 +223,6 @@ class TestNamespaces:
 class TestAsyncNamespaces:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.kv.namespaces.create(
@@ -249,7 +231,6 @@ class TestAsyncNamespaces:
         )
         assert_matches_type(Namespace, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.with_raw_response.create(
@@ -262,7 +243,6 @@ class TestAsyncNamespaces:
         namespace = await response.parse()
         assert_matches_type(Namespace, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.with_streaming_response.create(
@@ -277,7 +257,6 @@ class TestAsyncNamespaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -286,7 +265,6 @@ class TestAsyncNamespaces:
                 title="My Own Namespace",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.kv.namespaces.update(
@@ -296,7 +274,6 @@ class TestAsyncNamespaces:
         )
         assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.with_raw_response.update(
@@ -310,7 +287,6 @@ class TestAsyncNamespaces:
         namespace = await response.parse()
         assert_matches_type(NamespaceUpdateResponse, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.with_streaming_response.update(
@@ -326,7 +302,6 @@ class TestAsyncNamespaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -343,7 +318,6 @@ class TestAsyncNamespaces:
                 title="My Own Namespace",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.kv.namespaces.list(
@@ -351,7 +325,6 @@ class TestAsyncNamespaces:
         )
         assert_matches_type(AsyncV4PagePaginationArray[Namespace], namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.kv.namespaces.list(
@@ -363,7 +336,6 @@ class TestAsyncNamespaces:
         )
         assert_matches_type(AsyncV4PagePaginationArray[Namespace], namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.with_raw_response.list(
@@ -375,7 +347,6 @@ class TestAsyncNamespaces:
         namespace = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[Namespace], namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.with_streaming_response.list(
@@ -389,7 +360,6 @@ class TestAsyncNamespaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -397,7 +367,6 @@ class TestAsyncNamespaces:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.kv.namespaces.delete(
@@ -407,7 +376,6 @@ class TestAsyncNamespaces:
         )
         assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.with_raw_response.delete(
@@ -421,7 +389,6 @@ class TestAsyncNamespaces:
         namespace = await response.parse()
         assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.with_streaming_response.delete(
@@ -437,7 +404,6 @@ class TestAsyncNamespaces:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

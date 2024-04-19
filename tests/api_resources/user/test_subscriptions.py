@@ -22,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSubscriptions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.update(
@@ -30,7 +29,6 @@ class TestSubscriptions:
         )
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.update(
@@ -70,7 +68,6 @@ class TestSubscriptions:
         )
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.user.subscriptions.with_raw_response.update(
@@ -82,7 +79,6 @@ class TestSubscriptions:
         subscription = response.parse()
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.user.subscriptions.with_streaming_response.update(
@@ -96,7 +92,6 @@ class TestSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -104,7 +99,6 @@ class TestSubscriptions:
                 "",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.delete(
@@ -113,7 +107,6 @@ class TestSubscriptions:
         )
         assert_matches_type(SubscriptionDeleteResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.user.subscriptions.with_raw_response.delete(
@@ -126,7 +119,6 @@ class TestSubscriptions:
         subscription = response.parse()
         assert_matches_type(SubscriptionDeleteResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.user.subscriptions.with_streaming_response.delete(
@@ -141,7 +133,6 @@ class TestSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -150,7 +141,6 @@ class TestSubscriptions:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.edit(
@@ -158,7 +148,6 @@ class TestSubscriptions:
         )
         assert_matches_type(SubscriptionEditResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.edit(
@@ -198,7 +187,6 @@ class TestSubscriptions:
         )
         assert_matches_type(SubscriptionEditResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.user.subscriptions.with_raw_response.edit(
@@ -210,7 +198,6 @@ class TestSubscriptions:
         subscription = response.parse()
         assert_matches_type(SubscriptionEditResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.user.subscriptions.with_streaming_response.edit(
@@ -224,7 +211,6 @@ class TestSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -232,13 +218,11 @@ class TestSubscriptions:
                 "",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.get()
         assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.user.subscriptions.with_raw_response.get()
@@ -248,7 +232,6 @@ class TestSubscriptions:
         subscription = response.parse()
         assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.user.subscriptions.with_streaming_response.get() as response:
@@ -264,7 +247,6 @@ class TestSubscriptions:
 class TestAsyncSubscriptions:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.update(
@@ -272,7 +254,6 @@ class TestAsyncSubscriptions:
         )
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.update(
@@ -312,7 +293,6 @@ class TestAsyncSubscriptions:
         )
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.subscriptions.with_raw_response.update(
@@ -324,7 +304,6 @@ class TestAsyncSubscriptions:
         subscription = await response.parse()
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.subscriptions.with_streaming_response.update(
@@ -338,7 +317,6 @@ class TestAsyncSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -346,7 +324,6 @@ class TestAsyncSubscriptions:
                 "",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.delete(
@@ -355,7 +332,6 @@ class TestAsyncSubscriptions:
         )
         assert_matches_type(SubscriptionDeleteResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.subscriptions.with_raw_response.delete(
@@ -368,7 +344,6 @@ class TestAsyncSubscriptions:
         subscription = await response.parse()
         assert_matches_type(SubscriptionDeleteResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.subscriptions.with_streaming_response.delete(
@@ -383,7 +358,6 @@ class TestAsyncSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -392,7 +366,6 @@ class TestAsyncSubscriptions:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.edit(
@@ -400,7 +373,6 @@ class TestAsyncSubscriptions:
         )
         assert_matches_type(SubscriptionEditResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.edit(
@@ -440,7 +412,6 @@ class TestAsyncSubscriptions:
         )
         assert_matches_type(SubscriptionEditResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.subscriptions.with_raw_response.edit(
@@ -452,7 +423,6 @@ class TestAsyncSubscriptions:
         subscription = await response.parse()
         assert_matches_type(SubscriptionEditResponse, subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.subscriptions.with_streaming_response.edit(
@@ -466,7 +436,6 @@ class TestAsyncSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -474,13 +443,11 @@ class TestAsyncSubscriptions:
                 "",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.get()
         assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.subscriptions.with_raw_response.get()
@@ -490,7 +457,6 @@ class TestAsyncSubscriptions:
         subscription = await response.parse()
         assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.subscriptions.with_streaming_response.get() as response:
