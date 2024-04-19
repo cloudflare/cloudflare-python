@@ -23,8 +23,6 @@ from .caption_get_response import CaptionGetResponse as CaptionGetResponse
 from .stream_create_params import StreamCreateParams as StreamCreateParams
 from .stream_delete_params import StreamDeleteParams as StreamDeleteParams
 from .webhook_get_response import WebhookGetResponse as WebhookGetResponse
-from .caption_delete_params import CaptionDeleteParams as CaptionDeleteParams
-from .caption_update_params import CaptionUpdateParams as CaptionUpdateParams
 from .download_get_response import DownloadGetResponse as DownloadGetResponse
 from .token_create_response import TokenCreateResponse as TokenCreateResponse
 from .webhook_delete_params import WebhookDeleteParams as WebhookDeleteParams
@@ -33,7 +31,6 @@ from .download_create_params import DownloadCreateParams as DownloadCreateParams
 from .live_input_list_params import LiveInputListParams as LiveInputListParams
 from .audio_track_copy_params import AudioTrackCopyParams as AudioTrackCopyParams
 from .audio_track_edit_params import AudioTrackEditParams as AudioTrackEditParams
-from .caption_delete_response import CaptionDeleteResponse as CaptionDeleteResponse
 from .watermark_create_params import WatermarkCreateParams as WatermarkCreateParams
 from .watermark_delete_params import WatermarkDeleteParams as WatermarkDeleteParams
 from .webhook_delete_response import WebhookDeleteResponse as WebhookDeleteResponse

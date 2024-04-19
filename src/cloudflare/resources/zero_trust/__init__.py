@@ -72,6 +72,14 @@ from .zero_trust import (
     ZeroTrustWithStreamingResponse,
     AsyncZeroTrustWithStreamingResponse,
 )
+from .risk_scoring import (
+    RiskScoring,
+    AsyncRiskScoring,
+    RiskScoringWithRawResponse,
+    AsyncRiskScoringWithRawResponse,
+    RiskScoringWithStreamingResponse,
+    AsyncRiskScoringWithStreamingResponse,
+)
 from .organizations import (
     Organizations,
     AsyncOrganizations,
@@ -164,6 +172,12 @@ __all__ = [
     "AsyncNetworksWithRawResponse",
     "NetworksWithStreamingResponse",
     "AsyncNetworksWithStreamingResponse",
+    "RiskScoring",
+    "AsyncRiskScoring",
+    "RiskScoringWithRawResponse",
+    "AsyncRiskScoringWithRawResponse",
+    "RiskScoringWithStreamingResponse",
+    "AsyncRiskScoringWithStreamingResponse",
     "ZeroTrust",
     "AsyncZeroTrust",
     "ZeroTrustWithRawResponse",
