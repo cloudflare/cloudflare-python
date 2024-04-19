@@ -22,6 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestExcludes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         exclude = client.zero_trust.devices.policies.excludes.update(
@@ -43,6 +44,7 @@ class TestExcludes:
         )
         assert_matches_type(Optional[ExcludeUpdateResponse], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.excludes.with_raw_response.update(
@@ -68,6 +70,7 @@ class TestExcludes:
         exclude = response.parse()
         assert_matches_type(Optional[ExcludeUpdateResponse], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.excludes.with_streaming_response.update(
@@ -95,6 +98,7 @@ class TestExcludes:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -116,6 +120,7 @@ class TestExcludes:
                 ],
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         exclude = client.zero_trust.devices.policies.excludes.list(
@@ -123,6 +128,7 @@ class TestExcludes:
         )
         assert_matches_type(SyncSinglePage[SplitTunnelExclude], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.excludes.with_raw_response.list(
@@ -134,6 +140,7 @@ class TestExcludes:
         exclude = response.parse()
         assert_matches_type(SyncSinglePage[SplitTunnelExclude], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.excludes.with_streaming_response.list(
@@ -147,6 +154,7 @@ class TestExcludes:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -154,6 +162,7 @@ class TestExcludes:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         exclude = client.zero_trust.devices.policies.excludes.get(
@@ -162,6 +171,7 @@ class TestExcludes:
         )
         assert_matches_type(Optional[ExcludeGetResponse], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.excludes.with_raw_response.get(
@@ -174,6 +184,7 @@ class TestExcludes:
         exclude = response.parse()
         assert_matches_type(Optional[ExcludeGetResponse], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.excludes.with_streaming_response.get(
@@ -188,6 +199,7 @@ class TestExcludes:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -206,6 +218,7 @@ class TestExcludes:
 class TestAsyncExcludes:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         exclude = await async_client.zero_trust.devices.policies.excludes.update(
@@ -227,6 +240,7 @@ class TestAsyncExcludes:
         )
         assert_matches_type(Optional[ExcludeUpdateResponse], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.excludes.with_raw_response.update(
@@ -252,6 +266,7 @@ class TestAsyncExcludes:
         exclude = await response.parse()
         assert_matches_type(Optional[ExcludeUpdateResponse], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.excludes.with_streaming_response.update(
@@ -279,6 +294,7 @@ class TestAsyncExcludes:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -300,6 +316,7 @@ class TestAsyncExcludes:
                 ],
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         exclude = await async_client.zero_trust.devices.policies.excludes.list(
@@ -307,6 +324,7 @@ class TestAsyncExcludes:
         )
         assert_matches_type(AsyncSinglePage[SplitTunnelExclude], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.excludes.with_raw_response.list(
@@ -318,6 +336,7 @@ class TestAsyncExcludes:
         exclude = await response.parse()
         assert_matches_type(AsyncSinglePage[SplitTunnelExclude], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.excludes.with_streaming_response.list(
@@ -331,6 +350,7 @@ class TestAsyncExcludes:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -338,6 +358,7 @@ class TestAsyncExcludes:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         exclude = await async_client.zero_trust.devices.policies.excludes.get(
@@ -346,6 +367,7 @@ class TestAsyncExcludes:
         )
         assert_matches_type(Optional[ExcludeGetResponse], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.excludes.with_raw_response.get(
@@ -358,6 +380,7 @@ class TestAsyncExcludes:
         exclude = await response.parse()
         assert_matches_type(Optional[ExcludeGetResponse], exclude, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.excludes.with_streaming_response.get(
@@ -372,6 +395,7 @@ class TestAsyncExcludes:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

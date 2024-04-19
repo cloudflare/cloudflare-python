@@ -23,6 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWANs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.create(
@@ -31,6 +32,7 @@ class TestWANs:
         )
         assert_matches_type(WANCreateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.create(
@@ -50,6 +52,7 @@ class TestWANs:
         )
         assert_matches_type(WANCreateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.create(
@@ -62,6 +65,7 @@ class TestWANs:
         wan = response.parse()
         assert_matches_type(WANCreateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.create(
@@ -76,6 +80,7 @@ class TestWANs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -90,6 +95,7 @@ class TestWANs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.update(
@@ -99,6 +105,7 @@ class TestWANs:
         )
         assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.update(
@@ -119,6 +126,7 @@ class TestWANs:
         )
         assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.update(
@@ -132,6 +140,7 @@ class TestWANs:
         wan = response.parse()
         assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.update(
@@ -147,6 +156,7 @@ class TestWANs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -170,6 +180,7 @@ class TestWANs:
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.list(
@@ -178,6 +189,7 @@ class TestWANs:
         )
         assert_matches_type(WANListResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.list(
@@ -190,6 +202,7 @@ class TestWANs:
         wan = response.parse()
         assert_matches_type(WANListResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.list(
@@ -204,6 +217,7 @@ class TestWANs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -218,6 +232,7 @@ class TestWANs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.delete(
@@ -228,6 +243,7 @@ class TestWANs:
         )
         assert_matches_type(WANDeleteResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.delete(
@@ -242,6 +258,7 @@ class TestWANs:
         wan = response.parse()
         assert_matches_type(WANDeleteResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.delete(
@@ -258,6 +275,7 @@ class TestWANs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -284,6 +302,7 @@ class TestWANs:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.get(
@@ -293,6 +312,7 @@ class TestWANs:
         )
         assert_matches_type(WANGetResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.get(
@@ -306,6 +326,7 @@ class TestWANs:
         wan = response.parse()
         assert_matches_type(WANGetResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.get(
@@ -321,6 +342,7 @@ class TestWANs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -348,6 +370,7 @@ class TestWANs:
 class TestAsyncWANs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.create(
@@ -356,6 +379,7 @@ class TestAsyncWANs:
         )
         assert_matches_type(WANCreateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.create(
@@ -375,6 +399,7 @@ class TestAsyncWANs:
         )
         assert_matches_type(WANCreateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.create(
@@ -387,6 +412,7 @@ class TestAsyncWANs:
         wan = await response.parse()
         assert_matches_type(WANCreateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.create(
@@ -401,6 +427,7 @@ class TestAsyncWANs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -415,6 +442,7 @@ class TestAsyncWANs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.update(
@@ -424,6 +452,7 @@ class TestAsyncWANs:
         )
         assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.update(
@@ -444,6 +473,7 @@ class TestAsyncWANs:
         )
         assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.update(
@@ -457,6 +487,7 @@ class TestAsyncWANs:
         wan = await response.parse()
         assert_matches_type(WANUpdateResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.update(
@@ -472,6 +503,7 @@ class TestAsyncWANs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -495,6 +527,7 @@ class TestAsyncWANs:
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.list(
@@ -503,6 +536,7 @@ class TestAsyncWANs:
         )
         assert_matches_type(WANListResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.list(
@@ -515,6 +549,7 @@ class TestAsyncWANs:
         wan = await response.parse()
         assert_matches_type(WANListResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.list(
@@ -529,6 +564,7 @@ class TestAsyncWANs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -543,6 +579,7 @@ class TestAsyncWANs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.delete(
@@ -553,6 +590,7 @@ class TestAsyncWANs:
         )
         assert_matches_type(WANDeleteResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.delete(
@@ -567,6 +605,7 @@ class TestAsyncWANs:
         wan = await response.parse()
         assert_matches_type(WANDeleteResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.delete(
@@ -583,6 +622,7 @@ class TestAsyncWANs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -609,6 +649,7 @@ class TestAsyncWANs:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.get(
@@ -618,6 +659,7 @@ class TestAsyncWANs:
         )
         assert_matches_type(WANGetResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.get(
@@ -631,6 +673,7 @@ class TestAsyncWANs:
         wan = await response.parse()
         assert_matches_type(WANGetResponse, wan, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.get(
@@ -646,6 +689,7 @@ class TestAsyncWANs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

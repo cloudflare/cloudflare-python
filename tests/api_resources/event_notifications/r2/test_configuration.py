@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestConfiguration:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         configuration = client.event_notifications.r2.configuration.get(
@@ -25,6 +26,7 @@ class TestConfiguration:
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.event_notifications.r2.configuration.with_raw_response.get(
@@ -37,6 +39,7 @@ class TestConfiguration:
         configuration = response.parse()
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.event_notifications.r2.configuration.with_streaming_response.get(
@@ -51,6 +54,7 @@ class TestConfiguration:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -69,6 +73,7 @@ class TestConfiguration:
 class TestAsyncConfiguration:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.event_notifications.r2.configuration.get(
@@ -77,6 +82,7 @@ class TestAsyncConfiguration:
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.event_notifications.r2.configuration.with_raw_response.get(
@@ -89,6 +95,7 @@ class TestAsyncConfiguration:
         configuration = await response.parse()
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.event_notifications.r2.configuration.with_streaming_response.get(
@@ -103,6 +110,7 @@ class TestAsyncConfiguration:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

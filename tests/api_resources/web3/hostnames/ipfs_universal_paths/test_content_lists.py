@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestContentLists:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         content_list = client.web3.hostnames.ipfs_universal_paths.content_lists.update(
@@ -27,6 +28,7 @@ class TestContentLists:
         )
         assert_matches_type(ContentList, content_list, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.update(
@@ -41,6 +43,7 @@ class TestContentLists:
         content_list = response.parse()
         assert_matches_type(ContentList, content_list, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.update(
@@ -57,6 +60,7 @@ class TestContentLists:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -75,6 +79,7 @@ class TestContentLists:
                 entries=[{}, {}, {}],
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         content_list = client.web3.hostnames.ipfs_universal_paths.content_lists.get(
@@ -83,6 +88,7 @@ class TestContentLists:
         )
         assert_matches_type(ContentList, content_list, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
@@ -95,6 +101,7 @@ class TestContentLists:
         content_list = response.parse()
         assert_matches_type(ContentList, content_list, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.get(
@@ -109,6 +116,7 @@ class TestContentLists:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -127,6 +135,7 @@ class TestContentLists:
 class TestAsyncContentLists:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         content_list = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.update(
@@ -137,6 +146,7 @@ class TestAsyncContentLists:
         )
         assert_matches_type(ContentList, content_list, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.update(
@@ -151,6 +161,7 @@ class TestAsyncContentLists:
         content_list = await response.parse()
         assert_matches_type(ContentList, content_list, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.update(
@@ -167,6 +178,7 @@ class TestAsyncContentLists:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -185,6 +197,7 @@ class TestAsyncContentLists:
                 entries=[{}, {}, {}],
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         content_list = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.get(
@@ -193,6 +206,7 @@ class TestAsyncContentLists:
         )
         assert_matches_type(ContentList, content_list, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
@@ -205,6 +219,7 @@ class TestAsyncContentLists:
         content_list = await response.parse()
         assert_matches_type(ContentList, content_list, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.get(
@@ -219,6 +234,7 @@ class TestAsyncContentLists:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):

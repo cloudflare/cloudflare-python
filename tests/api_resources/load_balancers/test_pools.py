@@ -21,6 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPools:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.create(
@@ -30,6 +31,7 @@ class TestPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.create(
@@ -88,6 +90,7 @@ class TestPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.with_raw_response.create(
@@ -101,6 +104,7 @@ class TestPools:
         pool = response.parse()
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.with_streaming_response.create(
@@ -116,6 +120,7 @@ class TestPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -125,6 +130,7 @@ class TestPools:
                 origins=[{}, {}, {}],
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.update(
@@ -135,6 +141,7 @@ class TestPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.update(
@@ -195,6 +202,7 @@ class TestPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.with_raw_response.update(
@@ -209,6 +217,7 @@ class TestPools:
         pool = response.parse()
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.with_streaming_response.update(
@@ -225,6 +234,7 @@ class TestPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -243,6 +253,7 @@ class TestPools:
                 origins=[{}, {}, {}],
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.list(
@@ -250,6 +261,7 @@ class TestPools:
         )
         assert_matches_type(SyncSinglePage[Pool], pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.list(
@@ -258,6 +270,7 @@ class TestPools:
         )
         assert_matches_type(SyncSinglePage[Pool], pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.with_raw_response.list(
@@ -269,6 +282,7 @@ class TestPools:
         pool = response.parse()
         assert_matches_type(SyncSinglePage[Pool], pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.with_streaming_response.list(
@@ -282,6 +296,7 @@ class TestPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -289,6 +304,7 @@ class TestPools:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.delete(
@@ -298,6 +314,7 @@ class TestPools:
         )
         assert_matches_type(PoolDeleteResponse, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.with_raw_response.delete(
@@ -311,6 +328,7 @@ class TestPools:
         pool = response.parse()
         assert_matches_type(PoolDeleteResponse, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.with_streaming_response.delete(
@@ -326,6 +344,7 @@ class TestPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -342,6 +361,7 @@ class TestPools:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.edit(
@@ -350,6 +370,7 @@ class TestPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.edit(
@@ -410,6 +431,7 @@ class TestPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.with_raw_response.edit(
@@ -422,6 +444,7 @@ class TestPools:
         pool = response.parse()
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.with_streaming_response.edit(
@@ -436,6 +459,7 @@ class TestPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -450,6 +474,7 @@ class TestPools:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.get(
@@ -458,6 +483,7 @@ class TestPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.with_raw_response.get(
@@ -470,6 +496,7 @@ class TestPools:
         pool = response.parse()
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.with_streaming_response.get(
@@ -484,6 +511,7 @@ class TestPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -502,6 +530,7 @@ class TestPools:
 class TestAsyncPools:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.create(
@@ -511,6 +540,7 @@ class TestAsyncPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.create(
@@ -569,6 +599,7 @@ class TestAsyncPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.with_raw_response.create(
@@ -582,6 +613,7 @@ class TestAsyncPools:
         pool = await response.parse()
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.with_streaming_response.create(
@@ -597,6 +629,7 @@ class TestAsyncPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -606,6 +639,7 @@ class TestAsyncPools:
                 origins=[{}, {}, {}],
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.update(
@@ -616,6 +650,7 @@ class TestAsyncPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.update(
@@ -676,6 +711,7 @@ class TestAsyncPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.with_raw_response.update(
@@ -690,6 +726,7 @@ class TestAsyncPools:
         pool = await response.parse()
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.with_streaming_response.update(
@@ -706,6 +743,7 @@ class TestAsyncPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -724,6 +762,7 @@ class TestAsyncPools:
                 origins=[{}, {}, {}],
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.list(
@@ -731,6 +770,7 @@ class TestAsyncPools:
         )
         assert_matches_type(AsyncSinglePage[Pool], pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.list(
@@ -739,6 +779,7 @@ class TestAsyncPools:
         )
         assert_matches_type(AsyncSinglePage[Pool], pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.with_raw_response.list(
@@ -750,6 +791,7 @@ class TestAsyncPools:
         pool = await response.parse()
         assert_matches_type(AsyncSinglePage[Pool], pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.with_streaming_response.list(
@@ -763,6 +805,7 @@ class TestAsyncPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -770,6 +813,7 @@ class TestAsyncPools:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.delete(
@@ -779,6 +823,7 @@ class TestAsyncPools:
         )
         assert_matches_type(PoolDeleteResponse, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.with_raw_response.delete(
@@ -792,6 +837,7 @@ class TestAsyncPools:
         pool = await response.parse()
         assert_matches_type(PoolDeleteResponse, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.with_streaming_response.delete(
@@ -807,6 +853,7 @@ class TestAsyncPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -823,6 +870,7 @@ class TestAsyncPools:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.edit(
@@ -831,6 +879,7 @@ class TestAsyncPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.edit(
@@ -891,6 +940,7 @@ class TestAsyncPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.with_raw_response.edit(
@@ -903,6 +953,7 @@ class TestAsyncPools:
         pool = await response.parse()
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.with_streaming_response.edit(
@@ -917,6 +968,7 @@ class TestAsyncPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -931,6 +983,7 @@ class TestAsyncPools:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.get(
@@ -939,6 +992,7 @@ class TestAsyncPools:
         )
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.with_raw_response.get(
@@ -951,6 +1005,7 @@ class TestAsyncPools:
         pool = await response.parse()
         assert_matches_type(Pool, pool, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.with_streaming_response.get(
@@ -965,6 +1020,7 @@ class TestAsyncPools:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

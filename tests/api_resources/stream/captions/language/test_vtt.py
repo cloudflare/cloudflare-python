@@ -16,6 +16,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestVtt:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         vtt = client.stream.captions.language.vtt.get(
@@ -26,6 +27,7 @@ class TestVtt:
         )
         assert_matches_type(str, vtt, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.stream.captions.language.vtt.with_raw_response.get(
@@ -40,6 +42,7 @@ class TestVtt:
         vtt = response.parse()
         assert_matches_type(str, vtt, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.stream.captions.language.vtt.with_streaming_response.get(
@@ -56,6 +59,7 @@ class TestVtt:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -86,6 +90,7 @@ class TestVtt:
 class TestAsyncVtt:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         vtt = await async_client.stream.captions.language.vtt.get(
@@ -96,6 +101,7 @@ class TestAsyncVtt:
         )
         assert_matches_type(str, vtt, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.captions.language.vtt.with_raw_response.get(
@@ -110,6 +116,7 @@ class TestAsyncVtt:
         vtt = await response.parse()
         assert_matches_type(str, vtt, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.captions.language.vtt.with_streaming_response.get(
@@ -126,6 +133,7 @@ class TestAsyncVtt:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

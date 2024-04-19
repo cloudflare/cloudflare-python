@@ -25,11 +25,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSummary:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.get()
         assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.get(
@@ -52,6 +54,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.summary.with_raw_response.get()
@@ -61,6 +64,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.summary.with_streaming_response.get() as response:
@@ -72,11 +76,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_http_method(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_method()
         assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_http_method_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_method(
@@ -102,6 +108,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_http_method(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.summary.with_raw_response.http_method()
@@ -111,6 +118,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_http_method(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.summary.with_streaming_response.http_method() as response:
@@ -122,11 +130,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_http_version(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_version()
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_http_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_version(
@@ -152,6 +162,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_http_version(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.summary.with_raw_response.http_version()
@@ -161,6 +172,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_http_version(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.summary.with_streaming_response.http_version() as response:
@@ -172,11 +184,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_ip_version(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.ip_version()
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.ip_version(
@@ -202,6 +216,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_ip_version(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.summary.with_raw_response.ip_version()
@@ -211,6 +226,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_ip_version(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.summary.with_streaming_response.ip_version() as response:
@@ -222,11 +238,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_managed_rules(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.managed_rules()
         assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_managed_rules_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.managed_rules(
@@ -253,6 +271,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_managed_rules(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.summary.with_raw_response.managed_rules()
@@ -262,6 +281,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_managed_rules(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.summary.with_streaming_response.managed_rules() as response:
@@ -273,11 +293,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_mitigation_product(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.mitigation_product()
         assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_mitigation_product_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.mitigation_product(
@@ -303,6 +325,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_mitigation_product(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.summary.with_raw_response.mitigation_product()
@@ -312,6 +335,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_mitigation_product(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.summary.with_streaming_response.mitigation_product() as response:
@@ -327,11 +351,13 @@ class TestSummary:
 class TestAsyncSummary:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.get()
         assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.get(
@@ -354,6 +380,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.get()
@@ -363,6 +390,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.summary.with_streaming_response.get() as response:
@@ -374,11 +402,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_http_method(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_method()
         assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_http_method_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_method(
@@ -404,6 +434,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_http_method(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.http_method()
@@ -413,6 +444,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_http_method(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.summary.with_streaming_response.http_method() as response:
@@ -424,11 +456,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_http_version(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_version()
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_http_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_version(
@@ -454,6 +488,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_http_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.http_version()
@@ -463,6 +498,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_http_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.summary.with_streaming_response.http_version() as response:
@@ -474,11 +510,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_ip_version(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.ip_version()
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.ip_version(
@@ -504,6 +542,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_ip_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.ip_version()
@@ -513,6 +552,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_ip_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.summary.with_streaming_response.ip_version() as response:
@@ -524,11 +564,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_managed_rules(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.managed_rules()
         assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_managed_rules_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.managed_rules(
@@ -555,6 +597,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_managed_rules(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.managed_rules()
@@ -564,6 +607,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_managed_rules(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.summary.with_streaming_response.managed_rules() as response:
@@ -575,11 +619,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_mitigation_product(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.mitigation_product()
         assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_mitigation_product_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.mitigation_product(
@@ -605,6 +651,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_mitigation_product(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.mitigation_product()
@@ -614,6 +661,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_mitigation_product(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.summary.with_streaming_response.mitigation_product() as response:

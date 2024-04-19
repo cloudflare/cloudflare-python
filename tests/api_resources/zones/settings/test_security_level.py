@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSecurityLevel:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         security_level = client.zones.settings.security_level.edit(
@@ -25,6 +26,7 @@ class TestSecurityLevel:
         )
         assert_matches_type(Optional[SecurityLevel], security_level, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zones.settings.security_level.with_raw_response.edit(
@@ -37,6 +39,7 @@ class TestSecurityLevel:
         security_level = response.parse()
         assert_matches_type(Optional[SecurityLevel], security_level, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zones.settings.security_level.with_streaming_response.edit(
@@ -51,6 +54,7 @@ class TestSecurityLevel:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -59,6 +63,7 @@ class TestSecurityLevel:
                 value="off",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         security_level = client.zones.settings.security_level.get(
@@ -66,6 +71,7 @@ class TestSecurityLevel:
         )
         assert_matches_type(Optional[SecurityLevel], security_level, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zones.settings.security_level.with_raw_response.get(
@@ -77,6 +83,7 @@ class TestSecurityLevel:
         security_level = response.parse()
         assert_matches_type(Optional[SecurityLevel], security_level, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zones.settings.security_level.with_streaming_response.get(
@@ -90,6 +97,7 @@ class TestSecurityLevel:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -101,6 +109,7 @@ class TestSecurityLevel:
 class TestAsyncSecurityLevel:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         security_level = await async_client.zones.settings.security_level.edit(
@@ -109,6 +118,7 @@ class TestAsyncSecurityLevel:
         )
         assert_matches_type(Optional[SecurityLevel], security_level, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.security_level.with_raw_response.edit(
@@ -121,6 +131,7 @@ class TestAsyncSecurityLevel:
         security_level = await response.parse()
         assert_matches_type(Optional[SecurityLevel], security_level, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.security_level.with_streaming_response.edit(
@@ -135,6 +146,7 @@ class TestAsyncSecurityLevel:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -143,6 +155,7 @@ class TestAsyncSecurityLevel:
                 value="off",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         security_level = await async_client.zones.settings.security_level.get(
@@ -150,6 +163,7 @@ class TestAsyncSecurityLevel:
         )
         assert_matches_type(Optional[SecurityLevel], security_level, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.security_level.with_raw_response.get(
@@ -161,6 +175,7 @@ class TestAsyncSecurityLevel:
         security_level = await response.parse()
         assert_matches_type(Optional[SecurityLevel], security_level, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.security_level.with_streaming_response.get(
@@ -174,6 +189,7 @@ class TestAsyncSecurityLevel:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

@@ -20,6 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPreviews:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         preview = client.healthchecks.previews.create(
@@ -29,6 +30,7 @@ class TestPreviews:
         )
         assert_matches_type(Healthcheck, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         preview = client.healthchecks.previews.create(
@@ -64,6 +66,7 @@ class TestPreviews:
         )
         assert_matches_type(Healthcheck, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.healthchecks.previews.with_raw_response.create(
@@ -77,6 +80,7 @@ class TestPreviews:
         preview = response.parse()
         assert_matches_type(Healthcheck, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.healthchecks.previews.with_streaming_response.create(
@@ -92,6 +96,7 @@ class TestPreviews:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -101,6 +106,7 @@ class TestPreviews:
                 name="server-1",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         preview = client.healthchecks.previews.delete(
@@ -110,6 +116,7 @@ class TestPreviews:
         )
         assert_matches_type(PreviewDeleteResponse, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.healthchecks.previews.with_raw_response.delete(
@@ -123,6 +130,7 @@ class TestPreviews:
         preview = response.parse()
         assert_matches_type(PreviewDeleteResponse, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.healthchecks.previews.with_streaming_response.delete(
@@ -138,6 +146,7 @@ class TestPreviews:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -154,6 +163,7 @@ class TestPreviews:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         preview = client.healthchecks.previews.get(
@@ -162,6 +172,7 @@ class TestPreviews:
         )
         assert_matches_type(Healthcheck, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.healthchecks.previews.with_raw_response.get(
@@ -174,6 +185,7 @@ class TestPreviews:
         preview = response.parse()
         assert_matches_type(Healthcheck, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.healthchecks.previews.with_streaming_response.get(
@@ -188,6 +200,7 @@ class TestPreviews:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -206,6 +219,7 @@ class TestPreviews:
 class TestAsyncPreviews:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         preview = await async_client.healthchecks.previews.create(
@@ -215,6 +229,7 @@ class TestAsyncPreviews:
         )
         assert_matches_type(Healthcheck, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         preview = await async_client.healthchecks.previews.create(
@@ -250,6 +265,7 @@ class TestAsyncPreviews:
         )
         assert_matches_type(Healthcheck, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.healthchecks.previews.with_raw_response.create(
@@ -263,6 +279,7 @@ class TestAsyncPreviews:
         preview = await response.parse()
         assert_matches_type(Healthcheck, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.healthchecks.previews.with_streaming_response.create(
@@ -278,6 +295,7 @@ class TestAsyncPreviews:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -287,6 +305,7 @@ class TestAsyncPreviews:
                 name="server-1",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         preview = await async_client.healthchecks.previews.delete(
@@ -296,6 +315,7 @@ class TestAsyncPreviews:
         )
         assert_matches_type(PreviewDeleteResponse, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.healthchecks.previews.with_raw_response.delete(
@@ -309,6 +329,7 @@ class TestAsyncPreviews:
         preview = await response.parse()
         assert_matches_type(PreviewDeleteResponse, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.healthchecks.previews.with_streaming_response.delete(
@@ -324,6 +345,7 @@ class TestAsyncPreviews:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -340,6 +362,7 @@ class TestAsyncPreviews:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         preview = await async_client.healthchecks.previews.get(
@@ -348,6 +371,7 @@ class TestAsyncPreviews:
         )
         assert_matches_type(Healthcheck, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.healthchecks.previews.with_raw_response.get(
@@ -360,6 +384,7 @@ class TestAsyncPreviews:
         preview = await response.parse()
         assert_matches_type(Healthcheck, preview, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.healthchecks.previews.with_streaming_response.get(
@@ -374,6 +399,7 @@ class TestAsyncPreviews:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

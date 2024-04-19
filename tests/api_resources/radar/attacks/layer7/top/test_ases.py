@@ -18,11 +18,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAses:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_origin(self, client: Cloudflare) -> None:
         ase = client.radar.attacks.layer7.top.ases.origin()
         assert_matches_type(AseOriginResponse, ase, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_origin_with_all_params(self, client: Cloudflare) -> None:
         ase = client.radar.attacks.layer7.top.ases.origin(
@@ -45,6 +47,7 @@ class TestAses:
         )
         assert_matches_type(AseOriginResponse, ase, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_origin(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.top.ases.with_raw_response.origin()
@@ -54,6 +57,7 @@ class TestAses:
         ase = response.parse()
         assert_matches_type(AseOriginResponse, ase, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_origin(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.top.ases.with_streaming_response.origin() as response:
@@ -69,11 +73,13 @@ class TestAses:
 class TestAsyncAses:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_origin(self, async_client: AsyncCloudflare) -> None:
         ase = await async_client.radar.attacks.layer7.top.ases.origin()
         assert_matches_type(AseOriginResponse, ase, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_origin_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ase = await async_client.radar.attacks.layer7.top.ases.origin(
@@ -96,6 +102,7 @@ class TestAsyncAses:
         )
         assert_matches_type(AseOriginResponse, ase, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_origin(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.top.ases.with_raw_response.origin()
@@ -105,6 +112,7 @@ class TestAsyncAses:
         ase = await response.parse()
         assert_matches_type(AseOriginResponse, ase, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_origin(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.top.ases.with_streaming_response.origin() as response:

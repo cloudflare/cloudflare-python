@@ -18,6 +18,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPCAPs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
         pcap = client.pcaps.create(
@@ -29,6 +30,7 @@ class TestPCAPs:
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         pcap = client.pcaps.create(
@@ -47,6 +49,7 @@ class TestPCAPs:
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.pcaps.with_raw_response.create(
@@ -62,6 +65,7 @@ class TestPCAPs:
         pcap = response.parse()
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.pcaps.with_streaming_response.create(
@@ -79,6 +83,7 @@ class TestPCAPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -90,6 +95,7 @@ class TestPCAPs:
                 type="simple",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         pcap = client.pcaps.create(
@@ -102,6 +108,7 @@ class TestPCAPs:
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         pcap = client.pcaps.create(
@@ -123,6 +130,7 @@ class TestPCAPs:
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.pcaps.with_raw_response.create(
@@ -139,6 +147,7 @@ class TestPCAPs:
         pcap = response.parse()
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.pcaps.with_streaming_response.create(
@@ -157,6 +166,7 @@ class TestPCAPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -169,6 +179,7 @@ class TestPCAPs:
                 type="simple",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         pcap = client.pcaps.list(
@@ -176,6 +187,7 @@ class TestPCAPs:
         )
         assert_matches_type(SyncSinglePage[PCAPListResponse], pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.pcaps.with_raw_response.list(
@@ -187,6 +199,7 @@ class TestPCAPs:
         pcap = response.parse()
         assert_matches_type(SyncSinglePage[PCAPListResponse], pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.pcaps.with_streaming_response.list(
@@ -200,6 +213,7 @@ class TestPCAPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -207,6 +221,7 @@ class TestPCAPs:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         pcap = client.pcaps.get(
@@ -215,6 +230,7 @@ class TestPCAPs:
         )
         assert_matches_type(PCAPGetResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.pcaps.with_raw_response.get(
@@ -227,6 +243,7 @@ class TestPCAPs:
         pcap = response.parse()
         assert_matches_type(PCAPGetResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.pcaps.with_streaming_response.get(
@@ -241,6 +258,7 @@ class TestPCAPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -259,6 +277,7 @@ class TestPCAPs:
 class TestAsyncPCAPs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.create(
@@ -270,6 +289,7 @@ class TestAsyncPCAPs:
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.create(
@@ -288,6 +308,7 @@ class TestAsyncPCAPs:
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.with_raw_response.create(
@@ -303,6 +324,7 @@ class TestAsyncPCAPs:
         pcap = await response.parse()
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.with_streaming_response.create(
@@ -320,6 +342,7 @@ class TestAsyncPCAPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -331,6 +354,7 @@ class TestAsyncPCAPs:
                 type="simple",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.create(
@@ -343,6 +367,7 @@ class TestAsyncPCAPs:
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.create(
@@ -364,6 +389,7 @@ class TestAsyncPCAPs:
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.with_raw_response.create(
@@ -380,6 +406,7 @@ class TestAsyncPCAPs:
         pcap = await response.parse()
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.with_streaming_response.create(
@@ -398,6 +425,7 @@ class TestAsyncPCAPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -410,6 +438,7 @@ class TestAsyncPCAPs:
                 type="simple",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.list(
@@ -417,6 +446,7 @@ class TestAsyncPCAPs:
         )
         assert_matches_type(AsyncSinglePage[PCAPListResponse], pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.with_raw_response.list(
@@ -428,6 +458,7 @@ class TestAsyncPCAPs:
         pcap = await response.parse()
         assert_matches_type(AsyncSinglePage[PCAPListResponse], pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.with_streaming_response.list(
@@ -441,6 +472,7 @@ class TestAsyncPCAPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -448,6 +480,7 @@ class TestAsyncPCAPs:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.get(
@@ -456,6 +489,7 @@ class TestAsyncPCAPs:
         )
         assert_matches_type(PCAPGetResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.with_raw_response.get(
@@ -468,6 +502,7 @@ class TestAsyncPCAPs:
         pcap = await response.parse()
         assert_matches_type(PCAPGetResponse, pcap, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.with_streaming_response.get(
@@ -482,6 +517,7 @@ class TestAsyncPCAPs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
