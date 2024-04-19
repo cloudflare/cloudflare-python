@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAudioTracks:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.delete(
@@ -31,7 +30,6 @@ class TestAudioTracks:
         )
         assert_matches_type(Optional[AudioTrackDeleteResponse], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.stream.audio_tracks.with_raw_response.delete(
@@ -45,7 +43,6 @@ class TestAudioTracks:
         audio_track = response.parse()
         assert_matches_type(Optional[AudioTrackDeleteResponse], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.stream.audio_tracks.with_streaming_response.delete(
@@ -61,7 +58,6 @@ class TestAudioTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -85,7 +81,6 @@ class TestAudioTracks:
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_copy(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.copy(
@@ -95,7 +90,6 @@ class TestAudioTracks:
         )
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_copy_with_all_params(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.copy(
@@ -106,7 +100,6 @@ class TestAudioTracks:
         )
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_copy(self, client: Cloudflare) -> None:
         response = client.stream.audio_tracks.with_raw_response.copy(
@@ -120,7 +113,6 @@ class TestAudioTracks:
         audio_track = response.parse()
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_copy(self, client: Cloudflare) -> None:
         with client.stream.audio_tracks.with_streaming_response.copy(
@@ -136,7 +128,6 @@ class TestAudioTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_copy(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -153,7 +144,6 @@ class TestAudioTracks:
                 label="director commentary",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.edit(
@@ -163,7 +153,6 @@ class TestAudioTracks:
         )
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.edit(
@@ -175,7 +164,6 @@ class TestAudioTracks:
         )
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.stream.audio_tracks.with_raw_response.edit(
@@ -189,7 +177,6 @@ class TestAudioTracks:
         audio_track = response.parse()
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.stream.audio_tracks.with_streaming_response.edit(
@@ -205,7 +192,6 @@ class TestAudioTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -229,7 +215,6 @@ class TestAudioTracks:
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.get(
@@ -238,7 +223,6 @@ class TestAudioTracks:
         )
         assert_matches_type(Optional[AudioTrackGetResponse], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.stream.audio_tracks.with_raw_response.get(
@@ -251,7 +235,6 @@ class TestAudioTracks:
         audio_track = response.parse()
         assert_matches_type(Optional[AudioTrackGetResponse], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.stream.audio_tracks.with_streaming_response.get(
@@ -266,7 +249,6 @@ class TestAudioTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -285,7 +267,6 @@ class TestAudioTracks:
 class TestAsyncAudioTracks:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.delete(
@@ -295,7 +276,6 @@ class TestAsyncAudioTracks:
         )
         assert_matches_type(Optional[AudioTrackDeleteResponse], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.audio_tracks.with_raw_response.delete(
@@ -309,7 +289,6 @@ class TestAsyncAudioTracks:
         audio_track = await response.parse()
         assert_matches_type(Optional[AudioTrackDeleteResponse], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.audio_tracks.with_streaming_response.delete(
@@ -325,7 +304,6 @@ class TestAsyncAudioTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -349,7 +327,6 @@ class TestAsyncAudioTracks:
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_copy(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.copy(
@@ -359,7 +336,6 @@ class TestAsyncAudioTracks:
         )
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_copy_with_all_params(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.copy(
@@ -370,7 +346,6 @@ class TestAsyncAudioTracks:
         )
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_copy(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.audio_tracks.with_raw_response.copy(
@@ -384,7 +359,6 @@ class TestAsyncAudioTracks:
         audio_track = await response.parse()
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_copy(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.audio_tracks.with_streaming_response.copy(
@@ -400,7 +374,6 @@ class TestAsyncAudioTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_copy(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -417,7 +390,6 @@ class TestAsyncAudioTracks:
                 label="director commentary",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.edit(
@@ -427,7 +399,6 @@ class TestAsyncAudioTracks:
         )
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.edit(
@@ -439,7 +410,6 @@ class TestAsyncAudioTracks:
         )
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.audio_tracks.with_raw_response.edit(
@@ -453,7 +423,6 @@ class TestAsyncAudioTracks:
         audio_track = await response.parse()
         assert_matches_type(Optional[Audio], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.audio_tracks.with_streaming_response.edit(
@@ -469,7 +438,6 @@ class TestAsyncAudioTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -493,7 +461,6 @@ class TestAsyncAudioTracks:
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.get(
@@ -502,7 +469,6 @@ class TestAsyncAudioTracks:
         )
         assert_matches_type(Optional[AudioTrackGetResponse], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.audio_tracks.with_raw_response.get(
@@ -515,7 +481,6 @@ class TestAsyncAudioTracks:
         audio_track = await response.parse()
         assert_matches_type(Optional[AudioTrackGetResponse], audio_track, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.audio_tracks.with_streaming_response.get(
@@ -530,7 +495,6 @@ class TestAsyncAudioTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

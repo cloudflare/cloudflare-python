@@ -23,7 +23,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTop:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_dnssec(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.dnssec(
@@ -31,7 +30,6 @@ class TestTop:
         )
         assert_matches_type(TopDNSSECResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_dnssec_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.dnssec(
@@ -56,7 +54,6 @@ class TestTop:
         )
         assert_matches_type(TopDNSSECResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_dnssec(self, client: Cloudflare) -> None:
         response = client.radar.as112.top.with_raw_response.dnssec(
@@ -68,7 +65,6 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopDNSSECResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_dnssec(self, client: Cloudflare) -> None:
         with client.radar.as112.top.with_streaming_response.dnssec(
@@ -82,7 +78,6 @@ class TestTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edns(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.edns(
@@ -90,7 +85,6 @@ class TestTop:
         )
         assert_matches_type(TopEdnsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edns_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.edns(
@@ -115,7 +109,6 @@ class TestTop:
         )
         assert_matches_type(TopEdnsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edns(self, client: Cloudflare) -> None:
         response = client.radar.as112.top.with_raw_response.edns(
@@ -127,7 +120,6 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopEdnsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edns(self, client: Cloudflare) -> None:
         with client.radar.as112.top.with_streaming_response.edns(
@@ -141,7 +133,6 @@ class TestTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_ip_version(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.ip_version(
@@ -149,7 +140,6 @@ class TestTop:
         )
         assert_matches_type(TopIPVersionResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.ip_version(
@@ -174,7 +164,6 @@ class TestTop:
         )
         assert_matches_type(TopIPVersionResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_ip_version(self, client: Cloudflare) -> None:
         response = client.radar.as112.top.with_raw_response.ip_version(
@@ -186,7 +175,6 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopIPVersionResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_ip_version(self, client: Cloudflare) -> None:
         with client.radar.as112.top.with_streaming_response.ip_version(
@@ -200,13 +188,11 @@ class TestTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_locations(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.locations()
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_locations_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.locations(
@@ -230,7 +216,6 @@ class TestTop:
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_locations(self, client: Cloudflare) -> None:
         response = client.radar.as112.top.with_raw_response.locations()
@@ -240,7 +225,6 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_locations(self, client: Cloudflare) -> None:
         with client.radar.as112.top.with_streaming_response.locations() as response:
@@ -256,7 +240,6 @@ class TestTop:
 class TestAsyncTop:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_dnssec(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.dnssec(
@@ -264,7 +247,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopDNSSECResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_dnssec_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.dnssec(
@@ -289,7 +271,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopDNSSECResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_dnssec(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.as112.top.with_raw_response.dnssec(
@@ -301,7 +282,6 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopDNSSECResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_dnssec(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.as112.top.with_streaming_response.dnssec(
@@ -315,7 +295,6 @@ class TestAsyncTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edns(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.edns(
@@ -323,7 +302,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopEdnsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edns_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.edns(
@@ -348,7 +326,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopEdnsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edns(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.as112.top.with_raw_response.edns(
@@ -360,7 +337,6 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopEdnsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edns(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.as112.top.with_streaming_response.edns(
@@ -374,7 +350,6 @@ class TestAsyncTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_ip_version(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.ip_version(
@@ -382,7 +357,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopIPVersionResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.ip_version(
@@ -407,7 +381,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopIPVersionResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_ip_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.as112.top.with_raw_response.ip_version(
@@ -419,7 +392,6 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopIPVersionResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_ip_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.as112.top.with_streaming_response.ip_version(
@@ -433,13 +405,11 @@ class TestAsyncTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_locations(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.locations()
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_locations_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.locations(
@@ -463,7 +433,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_locations(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.as112.top.with_raw_response.locations()
@@ -473,7 +442,6 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_locations(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.as112.top.with_streaming_response.locations() as response:

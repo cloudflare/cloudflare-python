@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestProxyEndpoints:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.create(
@@ -31,7 +30,6 @@ class TestProxyEndpoints:
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.proxy_endpoints.with_raw_response.create(
@@ -45,7 +43,6 @@ class TestProxyEndpoints:
         proxy_endpoint = response.parse()
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.proxy_endpoints.with_streaming_response.create(
@@ -61,7 +58,6 @@ class TestProxyEndpoints:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -71,7 +67,6 @@ class TestProxyEndpoints:
                 name="Devops team",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.list(
@@ -79,7 +74,6 @@ class TestProxyEndpoints:
         )
         assert_matches_type(SyncSinglePage[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.proxy_endpoints.with_raw_response.list(
@@ -91,7 +85,6 @@ class TestProxyEndpoints:
         proxy_endpoint = response.parse()
         assert_matches_type(SyncSinglePage[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.proxy_endpoints.with_streaming_response.list(
@@ -105,7 +98,6 @@ class TestProxyEndpoints:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -113,7 +105,6 @@ class TestProxyEndpoints:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.delete(
@@ -123,7 +114,6 @@ class TestProxyEndpoints:
         )
         assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
@@ -137,7 +127,6 @@ class TestProxyEndpoints:
         proxy_endpoint = response.parse()
         assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.proxy_endpoints.with_streaming_response.delete(
@@ -153,7 +142,6 @@ class TestProxyEndpoints:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -170,7 +158,6 @@ class TestProxyEndpoints:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.edit(
@@ -179,7 +166,6 @@ class TestProxyEndpoints:
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.edit(
@@ -190,7 +176,6 @@ class TestProxyEndpoints:
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.proxy_endpoints.with_raw_response.edit(
@@ -203,7 +188,6 @@ class TestProxyEndpoints:
         proxy_endpoint = response.parse()
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.proxy_endpoints.with_streaming_response.edit(
@@ -218,7 +202,6 @@ class TestProxyEndpoints:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -233,7 +216,6 @@ class TestProxyEndpoints:
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.get(
@@ -242,7 +224,6 @@ class TestProxyEndpoints:
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.proxy_endpoints.with_raw_response.get(
@@ -255,7 +236,6 @@ class TestProxyEndpoints:
         proxy_endpoint = response.parse()
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.proxy_endpoints.with_streaming_response.get(
@@ -270,7 +250,6 @@ class TestProxyEndpoints:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -289,7 +268,6 @@ class TestProxyEndpoints:
 class TestAsyncProxyEndpoints:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.create(
@@ -299,7 +277,6 @@ class TestAsyncProxyEndpoints:
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.create(
@@ -313,7 +290,6 @@ class TestAsyncProxyEndpoints:
         proxy_endpoint = await response.parse()
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.proxy_endpoints.with_streaming_response.create(
@@ -329,7 +305,6 @@ class TestAsyncProxyEndpoints:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -339,7 +314,6 @@ class TestAsyncProxyEndpoints:
                 name="Devops team",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.list(
@@ -347,7 +321,6 @@ class TestAsyncProxyEndpoints:
         )
         assert_matches_type(AsyncSinglePage[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.list(
@@ -359,7 +332,6 @@ class TestAsyncProxyEndpoints:
         proxy_endpoint = await response.parse()
         assert_matches_type(AsyncSinglePage[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.proxy_endpoints.with_streaming_response.list(
@@ -373,7 +345,6 @@ class TestAsyncProxyEndpoints:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -381,7 +352,6 @@ class TestAsyncProxyEndpoints:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.delete(
@@ -391,7 +361,6 @@ class TestAsyncProxyEndpoints:
         )
         assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
@@ -405,7 +374,6 @@ class TestAsyncProxyEndpoints:
         proxy_endpoint = await response.parse()
         assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.proxy_endpoints.with_streaming_response.delete(
@@ -421,7 +389,6 @@ class TestAsyncProxyEndpoints:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -438,7 +405,6 @@ class TestAsyncProxyEndpoints:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.edit(
@@ -447,7 +413,6 @@ class TestAsyncProxyEndpoints:
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.edit(
@@ -458,7 +423,6 @@ class TestAsyncProxyEndpoints:
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.edit(
@@ -471,7 +435,6 @@ class TestAsyncProxyEndpoints:
         proxy_endpoint = await response.parse()
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.proxy_endpoints.with_streaming_response.edit(
@@ -486,7 +449,6 @@ class TestAsyncProxyEndpoints:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -501,7 +463,6 @@ class TestAsyncProxyEndpoints:
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.get(
@@ -510,7 +471,6 @@ class TestAsyncProxyEndpoints:
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.get(
@@ -523,7 +483,6 @@ class TestAsyncProxyEndpoints:
         proxy_endpoint = await response.parse()
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.proxy_endpoints.with_streaming_response.get(
@@ -538,7 +497,6 @@ class TestAsyncProxyEndpoints:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

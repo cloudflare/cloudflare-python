@@ -22,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestOutgoing:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         outgoing = client.secondary_dns.outgoing.create(
@@ -32,7 +31,6 @@ class TestOutgoing:
         )
         assert_matches_type(Optional[OutgoingCreateResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.secondary_dns.outgoing.with_raw_response.create(
@@ -46,7 +44,6 @@ class TestOutgoing:
         outgoing = response.parse()
         assert_matches_type(Optional[OutgoingCreateResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.secondary_dns.outgoing.with_streaming_response.create(
@@ -62,7 +59,6 @@ class TestOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -72,7 +68,6 @@ class TestOutgoing:
                 peers=["23ff594956f20c2a721606e94745a8aa", "00920f38ce07c2e2f4df50b1f61d4194"],
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         outgoing = client.secondary_dns.outgoing.update(
@@ -82,7 +77,6 @@ class TestOutgoing:
         )
         assert_matches_type(Optional[OutgoingUpdateResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.secondary_dns.outgoing.with_raw_response.update(
@@ -96,7 +90,6 @@ class TestOutgoing:
         outgoing = response.parse()
         assert_matches_type(Optional[OutgoingUpdateResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.secondary_dns.outgoing.with_streaming_response.update(
@@ -112,7 +105,6 @@ class TestOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -122,7 +114,6 @@ class TestOutgoing:
                 peers=["23ff594956f20c2a721606e94745a8aa", "00920f38ce07c2e2f4df50b1f61d4194"],
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         outgoing = client.secondary_dns.outgoing.delete(
@@ -131,7 +122,6 @@ class TestOutgoing:
         )
         assert_matches_type(Optional[OutgoingDeleteResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.secondary_dns.outgoing.with_raw_response.delete(
@@ -144,7 +134,6 @@ class TestOutgoing:
         outgoing = response.parse()
         assert_matches_type(Optional[OutgoingDeleteResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.secondary_dns.outgoing.with_streaming_response.delete(
@@ -159,7 +148,6 @@ class TestOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -168,7 +156,6 @@ class TestOutgoing:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_disable(self, client: Cloudflare) -> None:
         outgoing = client.secondary_dns.outgoing.disable(
@@ -177,7 +164,6 @@ class TestOutgoing:
         )
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_disable(self, client: Cloudflare) -> None:
         response = client.secondary_dns.outgoing.with_raw_response.disable(
@@ -190,7 +176,6 @@ class TestOutgoing:
         outgoing = response.parse()
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_disable(self, client: Cloudflare) -> None:
         with client.secondary_dns.outgoing.with_streaming_response.disable(
@@ -205,7 +190,6 @@ class TestOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_disable(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -214,7 +198,6 @@ class TestOutgoing:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_enable(self, client: Cloudflare) -> None:
         outgoing = client.secondary_dns.outgoing.enable(
@@ -223,7 +206,6 @@ class TestOutgoing:
         )
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_enable(self, client: Cloudflare) -> None:
         response = client.secondary_dns.outgoing.with_raw_response.enable(
@@ -236,7 +218,6 @@ class TestOutgoing:
         outgoing = response.parse()
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_enable(self, client: Cloudflare) -> None:
         with client.secondary_dns.outgoing.with_streaming_response.enable(
@@ -251,7 +232,6 @@ class TestOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_enable(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -260,7 +240,6 @@ class TestOutgoing:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_force_notify(self, client: Cloudflare) -> None:
         outgoing = client.secondary_dns.outgoing.force_notify(
@@ -269,7 +248,6 @@ class TestOutgoing:
         )
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_force_notify(self, client: Cloudflare) -> None:
         response = client.secondary_dns.outgoing.with_raw_response.force_notify(
@@ -282,7 +260,6 @@ class TestOutgoing:
         outgoing = response.parse()
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_force_notify(self, client: Cloudflare) -> None:
         with client.secondary_dns.outgoing.with_streaming_response.force_notify(
@@ -297,7 +274,6 @@ class TestOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_force_notify(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -306,7 +282,6 @@ class TestOutgoing:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         outgoing = client.secondary_dns.outgoing.get(
@@ -314,7 +289,6 @@ class TestOutgoing:
         )
         assert_matches_type(Optional[OutgoingGetResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.secondary_dns.outgoing.with_raw_response.get(
@@ -326,7 +300,6 @@ class TestOutgoing:
         outgoing = response.parse()
         assert_matches_type(Optional[OutgoingGetResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.secondary_dns.outgoing.with_streaming_response.get(
@@ -340,7 +313,6 @@ class TestOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -352,7 +324,6 @@ class TestOutgoing:
 class TestAsyncOutgoing:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         outgoing = await async_client.secondary_dns.outgoing.create(
@@ -362,7 +333,6 @@ class TestAsyncOutgoing:
         )
         assert_matches_type(Optional[OutgoingCreateResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.outgoing.with_raw_response.create(
@@ -376,7 +346,6 @@ class TestAsyncOutgoing:
         outgoing = await response.parse()
         assert_matches_type(Optional[OutgoingCreateResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.outgoing.with_streaming_response.create(
@@ -392,7 +361,6 @@ class TestAsyncOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -402,7 +370,6 @@ class TestAsyncOutgoing:
                 peers=["23ff594956f20c2a721606e94745a8aa", "00920f38ce07c2e2f4df50b1f61d4194"],
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         outgoing = await async_client.secondary_dns.outgoing.update(
@@ -412,7 +379,6 @@ class TestAsyncOutgoing:
         )
         assert_matches_type(Optional[OutgoingUpdateResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.outgoing.with_raw_response.update(
@@ -426,7 +392,6 @@ class TestAsyncOutgoing:
         outgoing = await response.parse()
         assert_matches_type(Optional[OutgoingUpdateResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.outgoing.with_streaming_response.update(
@@ -442,7 +407,6 @@ class TestAsyncOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -452,7 +416,6 @@ class TestAsyncOutgoing:
                 peers=["23ff594956f20c2a721606e94745a8aa", "00920f38ce07c2e2f4df50b1f61d4194"],
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         outgoing = await async_client.secondary_dns.outgoing.delete(
@@ -461,7 +424,6 @@ class TestAsyncOutgoing:
         )
         assert_matches_type(Optional[OutgoingDeleteResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.outgoing.with_raw_response.delete(
@@ -474,7 +436,6 @@ class TestAsyncOutgoing:
         outgoing = await response.parse()
         assert_matches_type(Optional[OutgoingDeleteResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.outgoing.with_streaming_response.delete(
@@ -489,7 +450,6 @@ class TestAsyncOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -498,7 +458,6 @@ class TestAsyncOutgoing:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_disable(self, async_client: AsyncCloudflare) -> None:
         outgoing = await async_client.secondary_dns.outgoing.disable(
@@ -507,7 +466,6 @@ class TestAsyncOutgoing:
         )
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_disable(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.outgoing.with_raw_response.disable(
@@ -520,7 +478,6 @@ class TestAsyncOutgoing:
         outgoing = await response.parse()
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_disable(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.outgoing.with_streaming_response.disable(
@@ -535,7 +492,6 @@ class TestAsyncOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_disable(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -544,7 +500,6 @@ class TestAsyncOutgoing:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_enable(self, async_client: AsyncCloudflare) -> None:
         outgoing = await async_client.secondary_dns.outgoing.enable(
@@ -553,7 +508,6 @@ class TestAsyncOutgoing:
         )
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_enable(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.outgoing.with_raw_response.enable(
@@ -566,7 +520,6 @@ class TestAsyncOutgoing:
         outgoing = await response.parse()
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_enable(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.outgoing.with_streaming_response.enable(
@@ -581,7 +534,6 @@ class TestAsyncOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_enable(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -590,7 +542,6 @@ class TestAsyncOutgoing:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_force_notify(self, async_client: AsyncCloudflare) -> None:
         outgoing = await async_client.secondary_dns.outgoing.force_notify(
@@ -599,7 +550,6 @@ class TestAsyncOutgoing:
         )
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_force_notify(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.outgoing.with_raw_response.force_notify(
@@ -612,7 +562,6 @@ class TestAsyncOutgoing:
         outgoing = await response.parse()
         assert_matches_type(str, outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_force_notify(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.outgoing.with_streaming_response.force_notify(
@@ -627,7 +576,6 @@ class TestAsyncOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_force_notify(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -636,7 +584,6 @@ class TestAsyncOutgoing:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         outgoing = await async_client.secondary_dns.outgoing.get(
@@ -644,7 +591,6 @@ class TestAsyncOutgoing:
         )
         assert_matches_type(Optional[OutgoingGetResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.outgoing.with_raw_response.get(
@@ -656,7 +602,6 @@ class TestAsyncOutgoing:
         outgoing = await response.parse()
         assert_matches_type(Optional[OutgoingGetResponse], outgoing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.outgoing.with_streaming_response.get(
@@ -670,7 +615,6 @@ class TestAsyncOutgoing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

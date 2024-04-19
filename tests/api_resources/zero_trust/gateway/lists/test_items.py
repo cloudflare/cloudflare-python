@@ -18,7 +18,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestItems:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         item = client.zero_trust.gateway.lists.items.list(
@@ -27,7 +26,6 @@ class TestItems:
         )
         assert_matches_type(SyncSinglePage[ItemListResponse], item, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.lists.items.with_raw_response.list(
@@ -40,7 +38,6 @@ class TestItems:
         item = response.parse()
         assert_matches_type(SyncSinglePage[ItemListResponse], item, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.lists.items.with_streaming_response.list(
@@ -55,7 +52,6 @@ class TestItems:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -74,7 +70,6 @@ class TestItems:
 class TestAsyncItems:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         item = await async_client.zero_trust.gateway.lists.items.list(
@@ -83,7 +78,6 @@ class TestAsyncItems:
         )
         assert_matches_type(AsyncSinglePage[ItemListResponse], item, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.lists.items.with_raw_response.list(
@@ -96,7 +90,6 @@ class TestAsyncItems:
         item = await response.parse()
         assert_matches_type(AsyncSinglePage[ItemListResponse], item, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.lists.items.with_streaming_response.list(
@@ -111,7 +104,6 @@ class TestAsyncItems:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
