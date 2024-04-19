@@ -20,7 +20,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestVerification:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         verification = client.ssl.verification.edit(
@@ -30,7 +29,6 @@ class TestVerification:
         )
         assert_matches_type(VerificationEditResponse, verification, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.ssl.verification.with_raw_response.edit(
@@ -44,7 +42,6 @@ class TestVerification:
         verification = response.parse()
         assert_matches_type(VerificationEditResponse, verification, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.ssl.verification.with_streaming_response.edit(
@@ -60,7 +57,6 @@ class TestVerification:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -77,7 +73,6 @@ class TestVerification:
                 validation_method="txt",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         verification = client.ssl.verification.get(
@@ -85,7 +80,6 @@ class TestVerification:
         )
         assert_matches_type(Optional[VerificationGetResponse], verification, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         verification = client.ssl.verification.get(
@@ -94,7 +88,6 @@ class TestVerification:
         )
         assert_matches_type(Optional[VerificationGetResponse], verification, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.ssl.verification.with_raw_response.get(
@@ -106,7 +99,6 @@ class TestVerification:
         verification = response.parse()
         assert_matches_type(Optional[VerificationGetResponse], verification, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.ssl.verification.with_streaming_response.get(
@@ -120,7 +112,6 @@ class TestVerification:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -132,7 +123,6 @@ class TestVerification:
 class TestAsyncVerification:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         verification = await async_client.ssl.verification.edit(
@@ -142,7 +132,6 @@ class TestAsyncVerification:
         )
         assert_matches_type(VerificationEditResponse, verification, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.verification.with_raw_response.edit(
@@ -156,7 +145,6 @@ class TestAsyncVerification:
         verification = await response.parse()
         assert_matches_type(VerificationEditResponse, verification, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.verification.with_streaming_response.edit(
@@ -172,7 +160,6 @@ class TestAsyncVerification:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -189,7 +176,6 @@ class TestAsyncVerification:
                 validation_method="txt",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         verification = await async_client.ssl.verification.get(
@@ -197,7 +183,6 @@ class TestAsyncVerification:
         )
         assert_matches_type(Optional[VerificationGetResponse], verification, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         verification = await async_client.ssl.verification.get(
@@ -206,7 +191,6 @@ class TestAsyncVerification:
         )
         assert_matches_type(Optional[VerificationGetResponse], verification, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.verification.with_raw_response.get(
@@ -218,7 +202,6 @@ class TestAsyncVerification:
         verification = await response.parse()
         assert_matches_type(Optional[VerificationGetResponse], verification, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.verification.with_streaming_response.get(
@@ -232,7 +215,6 @@ class TestAsyncVerification:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

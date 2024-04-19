@@ -22,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMessage:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         message = client.cloudforce_one.requests.message.create(
@@ -31,7 +30,6 @@ class TestMessage:
         )
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         message = client.cloudforce_one.requests.message.create(
@@ -41,7 +39,6 @@ class TestMessage:
         )
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.message.with_raw_response.create(
@@ -54,7 +51,6 @@ class TestMessage:
         message = response.parse()
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.message.with_streaming_response.create(
@@ -69,7 +65,6 @@ class TestMessage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -84,7 +79,6 @@ class TestMessage:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         message = client.cloudforce_one.requests.message.update(
@@ -94,7 +88,6 @@ class TestMessage:
         )
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         message = client.cloudforce_one.requests.message.update(
@@ -109,7 +102,6 @@ class TestMessage:
         )
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.message.with_raw_response.update(
@@ -123,7 +115,6 @@ class TestMessage:
         message = response.parse()
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.message.with_streaming_response.update(
@@ -139,7 +130,6 @@ class TestMessage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -156,7 +146,6 @@ class TestMessage:
                 request_identifier="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         message = client.cloudforce_one.requests.message.delete(
@@ -166,7 +155,6 @@ class TestMessage:
         )
         assert_matches_type(MessageDeleteResponse, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.message.with_raw_response.delete(
@@ -180,7 +168,6 @@ class TestMessage:
         message = response.parse()
         assert_matches_type(MessageDeleteResponse, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.message.with_streaming_response.delete(
@@ -196,7 +183,6 @@ class TestMessage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -213,7 +199,6 @@ class TestMessage:
                 request_identifier="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         message = client.cloudforce_one.requests.message.get(
@@ -224,7 +209,6 @@ class TestMessage:
         )
         assert_matches_type(MessageGetResponse, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         message = client.cloudforce_one.requests.message.get(
@@ -239,7 +223,6 @@ class TestMessage:
         )
         assert_matches_type(MessageGetResponse, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.message.with_raw_response.get(
@@ -254,7 +237,6 @@ class TestMessage:
         message = response.parse()
         assert_matches_type(MessageGetResponse, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.message.with_streaming_response.get(
@@ -271,7 +253,6 @@ class TestMessage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -294,7 +275,6 @@ class TestMessage:
 class TestAsyncMessage:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         message = await async_client.cloudforce_one.requests.message.create(
@@ -303,7 +283,6 @@ class TestAsyncMessage:
         )
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         message = await async_client.cloudforce_one.requests.message.create(
@@ -313,7 +292,6 @@ class TestAsyncMessage:
         )
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.message.with_raw_response.create(
@@ -326,7 +304,6 @@ class TestAsyncMessage:
         message = await response.parse()
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.message.with_streaming_response.create(
@@ -341,7 +318,6 @@ class TestAsyncMessage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -356,7 +332,6 @@ class TestAsyncMessage:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         message = await async_client.cloudforce_one.requests.message.update(
@@ -366,7 +341,6 @@ class TestAsyncMessage:
         )
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         message = await async_client.cloudforce_one.requests.message.update(
@@ -381,7 +355,6 @@ class TestAsyncMessage:
         )
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.message.with_raw_response.update(
@@ -395,7 +368,6 @@ class TestAsyncMessage:
         message = await response.parse()
         assert_matches_type(Message, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.message.with_streaming_response.update(
@@ -411,7 +383,6 @@ class TestAsyncMessage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -428,7 +399,6 @@ class TestAsyncMessage:
                 request_identifier="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         message = await async_client.cloudforce_one.requests.message.delete(
@@ -438,7 +408,6 @@ class TestAsyncMessage:
         )
         assert_matches_type(MessageDeleteResponse, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.message.with_raw_response.delete(
@@ -452,7 +421,6 @@ class TestAsyncMessage:
         message = await response.parse()
         assert_matches_type(MessageDeleteResponse, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.message.with_streaming_response.delete(
@@ -468,7 +436,6 @@ class TestAsyncMessage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -485,7 +452,6 @@ class TestAsyncMessage:
                 request_identifier="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         message = await async_client.cloudforce_one.requests.message.get(
@@ -496,7 +462,6 @@ class TestAsyncMessage:
         )
         assert_matches_type(MessageGetResponse, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         message = await async_client.cloudforce_one.requests.message.get(
@@ -511,7 +476,6 @@ class TestAsyncMessage:
         )
         assert_matches_type(MessageGetResponse, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.message.with_raw_response.get(
@@ -526,7 +490,6 @@ class TestAsyncMessage:
         message = await response.parse()
         assert_matches_type(MessageGetResponse, message, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.message.with_streaming_response.get(
@@ -543,7 +506,6 @@ class TestAsyncMessage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):

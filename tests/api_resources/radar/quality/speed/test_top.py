@@ -21,13 +21,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTop:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_ases(self, client: Cloudflare) -> None:
         top = client.radar.quality.speed.top.ases()
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_ases_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.quality.speed.top.ases(
@@ -47,7 +45,6 @@ class TestTop:
         )
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_ases(self, client: Cloudflare) -> None:
         response = client.radar.quality.speed.top.with_raw_response.ases()
@@ -57,7 +54,6 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_ases(self, client: Cloudflare) -> None:
         with client.radar.quality.speed.top.with_streaming_response.ases() as response:
@@ -69,13 +65,11 @@ class TestTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_locations(self, client: Cloudflare) -> None:
         top = client.radar.quality.speed.top.locations()
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_locations_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.quality.speed.top.locations(
@@ -95,7 +89,6 @@ class TestTop:
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_locations(self, client: Cloudflare) -> None:
         response = client.radar.quality.speed.top.with_raw_response.locations()
@@ -105,7 +98,6 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_locations(self, client: Cloudflare) -> None:
         with client.radar.quality.speed.top.with_streaming_response.locations() as response:
@@ -121,13 +113,11 @@ class TestTop:
 class TestAsyncTop:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_ases(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.quality.speed.top.ases()
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_ases_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.quality.speed.top.ases(
@@ -147,7 +137,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_ases(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.quality.speed.top.with_raw_response.ases()
@@ -157,7 +146,6 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_ases(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.quality.speed.top.with_streaming_response.ases() as response:
@@ -169,13 +157,11 @@ class TestAsyncTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_locations(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.quality.speed.top.locations()
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_locations_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.quality.speed.top.locations(
@@ -195,7 +181,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_locations(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.quality.speed.top.with_raw_response.locations()
@@ -205,7 +190,6 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_locations(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.quality.speed.top.with_streaming_response.locations() as response:

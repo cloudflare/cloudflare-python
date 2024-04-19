@@ -21,13 +21,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRanking:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_timeseries_groups(self, client: Cloudflare) -> None:
         ranking = client.radar.ranking.timeseries_groups()
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_timeseries_groups_with_all_params(self, client: Cloudflare) -> None:
         ranking = client.radar.ranking.timeseries_groups(
@@ -51,7 +49,6 @@ class TestRanking:
         )
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_timeseries_groups(self, client: Cloudflare) -> None:
         response = client.radar.ranking.with_raw_response.timeseries_groups()
@@ -61,7 +58,6 @@ class TestRanking:
         ranking = response.parse()
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_timeseries_groups(self, client: Cloudflare) -> None:
         with client.radar.ranking.with_streaming_response.timeseries_groups() as response:
@@ -73,13 +69,11 @@ class TestRanking:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_top(self, client: Cloudflare) -> None:
         ranking = client.radar.ranking.top()
         assert_matches_type(RankingTopResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_top_with_all_params(self, client: Cloudflare) -> None:
         ranking = client.radar.ranking.top(
@@ -92,7 +86,6 @@ class TestRanking:
         )
         assert_matches_type(RankingTopResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_top(self, client: Cloudflare) -> None:
         response = client.radar.ranking.with_raw_response.top()
@@ -102,7 +95,6 @@ class TestRanking:
         ranking = response.parse()
         assert_matches_type(RankingTopResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_top(self, client: Cloudflare) -> None:
         with client.radar.ranking.with_streaming_response.top() as response:
@@ -118,13 +110,11 @@ class TestRanking:
 class TestAsyncRanking:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
         ranking = await async_client.radar.ranking.timeseries_groups()
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries_groups_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ranking = await async_client.radar.ranking.timeseries_groups(
@@ -148,7 +138,6 @@ class TestAsyncRanking:
         )
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.ranking.with_raw_response.timeseries_groups()
@@ -158,7 +147,6 @@ class TestAsyncRanking:
         ranking = await response.parse()
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.ranking.with_streaming_response.timeseries_groups() as response:
@@ -170,13 +158,11 @@ class TestAsyncRanking:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_top(self, async_client: AsyncCloudflare) -> None:
         ranking = await async_client.radar.ranking.top()
         assert_matches_type(RankingTopResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_top_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ranking = await async_client.radar.ranking.top(
@@ -189,7 +175,6 @@ class TestAsyncRanking:
         )
         assert_matches_type(RankingTopResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_top(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.ranking.with_raw_response.top()
@@ -199,7 +184,6 @@ class TestAsyncRanking:
         ranking = await response.parse()
         assert_matches_type(RankingTopResponse, ranking, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_top(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.ranking.with_streaming_response.top() as response:

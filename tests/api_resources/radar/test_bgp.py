@@ -18,13 +18,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBGP:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_timeseries(self, client: Cloudflare) -> None:
         bgp = client.radar.bgp.timeseries()
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         bgp = client.radar.bgp.timeseries(
@@ -48,7 +46,6 @@ class TestBGP:
         )
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_timeseries(self, client: Cloudflare) -> None:
         response = client.radar.bgp.with_raw_response.timeseries()
@@ -58,7 +55,6 @@ class TestBGP:
         bgp = response.parse()
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_timeseries(self, client: Cloudflare) -> None:
         with client.radar.bgp.with_streaming_response.timeseries() as response:
@@ -74,13 +70,11 @@ class TestBGP:
 class TestAsyncBGP:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries(self, async_client: AsyncCloudflare) -> None:
         bgp = await async_client.radar.bgp.timeseries()
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         bgp = await async_client.radar.bgp.timeseries(
@@ -104,7 +98,6 @@ class TestAsyncBGP:
         )
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_timeseries(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.bgp.with_raw_response.timeseries()
@@ -114,7 +107,6 @@ class TestAsyncBGP:
         bgp = await response.parse()
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_timeseries(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.bgp.with_streaming_response.timeseries() as response:

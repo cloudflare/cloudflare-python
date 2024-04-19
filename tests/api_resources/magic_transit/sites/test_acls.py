@@ -23,7 +23,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestACLs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.create(
@@ -32,7 +31,6 @@ class TestACLs:
         )
         assert_matches_type(ACLCreateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.create(
@@ -59,7 +57,6 @@ class TestACLs:
         )
         assert_matches_type(ACLCreateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.create(
@@ -72,7 +69,6 @@ class TestACLs:
         acl = response.parse()
         assert_matches_type(ACLCreateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.create(
@@ -87,7 +83,6 @@ class TestACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -102,7 +97,6 @@ class TestACLs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.update(
@@ -112,7 +106,6 @@ class TestACLs:
         )
         assert_matches_type(ACLUpdateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.update(
@@ -140,7 +133,6 @@ class TestACLs:
         )
         assert_matches_type(ACLUpdateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.update(
@@ -154,7 +146,6 @@ class TestACLs:
         acl = response.parse()
         assert_matches_type(ACLUpdateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.update(
@@ -170,7 +161,6 @@ class TestACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -194,7 +184,6 @@ class TestACLs:
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.list(
@@ -203,7 +192,6 @@ class TestACLs:
         )
         assert_matches_type(ACLListResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.list(
@@ -216,7 +204,6 @@ class TestACLs:
         acl = response.parse()
         assert_matches_type(ACLListResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.list(
@@ -231,7 +218,6 @@ class TestACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -246,7 +232,6 @@ class TestACLs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.delete(
@@ -257,7 +242,6 @@ class TestACLs:
         )
         assert_matches_type(ACLDeleteResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.delete(
@@ -272,7 +256,6 @@ class TestACLs:
         acl = response.parse()
         assert_matches_type(ACLDeleteResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.delete(
@@ -289,7 +272,6 @@ class TestACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -316,7 +298,6 @@ class TestACLs:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.get(
@@ -326,7 +307,6 @@ class TestACLs:
         )
         assert_matches_type(ACLGetResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.get(
@@ -340,7 +320,6 @@ class TestACLs:
         acl = response.parse()
         assert_matches_type(ACLGetResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.get(
@@ -356,7 +335,6 @@ class TestACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -384,7 +362,6 @@ class TestACLs:
 class TestAsyncACLs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.create(
@@ -393,7 +370,6 @@ class TestAsyncACLs:
         )
         assert_matches_type(ACLCreateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.create(
@@ -420,7 +396,6 @@ class TestAsyncACLs:
         )
         assert_matches_type(ACLCreateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.create(
@@ -433,7 +408,6 @@ class TestAsyncACLs:
         acl = await response.parse()
         assert_matches_type(ACLCreateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.create(
@@ -448,7 +422,6 @@ class TestAsyncACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -463,7 +436,6 @@ class TestAsyncACLs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.update(
@@ -473,7 +445,6 @@ class TestAsyncACLs:
         )
         assert_matches_type(ACLUpdateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.update(
@@ -501,7 +472,6 @@ class TestAsyncACLs:
         )
         assert_matches_type(ACLUpdateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.update(
@@ -515,7 +485,6 @@ class TestAsyncACLs:
         acl = await response.parse()
         assert_matches_type(ACLUpdateResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.update(
@@ -531,7 +500,6 @@ class TestAsyncACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -555,7 +523,6 @@ class TestAsyncACLs:
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.list(
@@ -564,7 +531,6 @@ class TestAsyncACLs:
         )
         assert_matches_type(ACLListResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.list(
@@ -577,7 +543,6 @@ class TestAsyncACLs:
         acl = await response.parse()
         assert_matches_type(ACLListResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.list(
@@ -592,7 +557,6 @@ class TestAsyncACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -607,7 +571,6 @@ class TestAsyncACLs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.delete(
@@ -618,7 +581,6 @@ class TestAsyncACLs:
         )
         assert_matches_type(ACLDeleteResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.delete(
@@ -633,7 +595,6 @@ class TestAsyncACLs:
         acl = await response.parse()
         assert_matches_type(ACLDeleteResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.delete(
@@ -650,7 +611,6 @@ class TestAsyncACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -677,7 +637,6 @@ class TestAsyncACLs:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.get(
@@ -687,7 +646,6 @@ class TestAsyncACLs:
         )
         assert_matches_type(ACLGetResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.get(
@@ -701,7 +659,6 @@ class TestAsyncACLs:
         acl = await response.parse()
         assert_matches_type(ACLGetResponse, acl, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.get(
@@ -717,7 +674,6 @@ class TestAsyncACLs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
