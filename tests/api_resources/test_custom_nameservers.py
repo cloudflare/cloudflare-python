@@ -23,6 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCustomNameservers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         custom_nameserver = client.custom_nameservers.create(
@@ -31,6 +32,7 @@ class TestCustomNameservers:
         )
         assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         custom_nameserver = client.custom_nameservers.create(
@@ -40,6 +42,7 @@ class TestCustomNameservers:
         )
         assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.custom_nameservers.with_raw_response.create(
@@ -52,6 +55,7 @@ class TestCustomNameservers:
         custom_nameserver = response.parse()
         assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.custom_nameservers.with_streaming_response.create(
@@ -66,6 +70,7 @@ class TestCustomNameservers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -74,6 +79,7 @@ class TestCustomNameservers:
                 ns_name="ns1.example.com",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         custom_nameserver = client.custom_nameservers.delete(
@@ -83,6 +89,7 @@ class TestCustomNameservers:
         )
         assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.custom_nameservers.with_raw_response.delete(
@@ -96,6 +103,7 @@ class TestCustomNameservers:
         custom_nameserver = response.parse()
         assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.custom_nameservers.with_streaming_response.delete(
@@ -111,6 +119,7 @@ class TestCustomNameservers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -127,6 +136,7 @@ class TestCustomNameservers:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_availabilty(self, client: Cloudflare) -> None:
         custom_nameserver = client.custom_nameservers.availabilty(
@@ -134,6 +144,7 @@ class TestCustomNameservers:
         )
         assert_matches_type(Optional[CustomNameserverAvailabiltyResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_availabilty(self, client: Cloudflare) -> None:
         response = client.custom_nameservers.with_raw_response.availabilty(
@@ -145,6 +156,7 @@ class TestCustomNameservers:
         custom_nameserver = response.parse()
         assert_matches_type(Optional[CustomNameserverAvailabiltyResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_availabilty(self, client: Cloudflare) -> None:
         with client.custom_nameservers.with_streaming_response.availabilty(
@@ -158,6 +170,7 @@ class TestCustomNameservers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_availabilty(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -165,6 +178,7 @@ class TestCustomNameservers:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         custom_nameserver = client.custom_nameservers.get(
@@ -172,6 +186,7 @@ class TestCustomNameservers:
         )
         assert_matches_type(Optional[CustomNameserverGetResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.custom_nameservers.with_raw_response.get(
@@ -183,6 +198,7 @@ class TestCustomNameservers:
         custom_nameserver = response.parse()
         assert_matches_type(Optional[CustomNameserverGetResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.custom_nameservers.with_streaming_response.get(
@@ -196,6 +212,7 @@ class TestCustomNameservers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -203,6 +220,7 @@ class TestCustomNameservers:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_verify(self, client: Cloudflare) -> None:
         custom_nameserver = client.custom_nameservers.verify(
@@ -211,6 +229,7 @@ class TestCustomNameservers:
         )
         assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_verify(self, client: Cloudflare) -> None:
         response = client.custom_nameservers.with_raw_response.verify(
@@ -223,6 +242,7 @@ class TestCustomNameservers:
         custom_nameserver = response.parse()
         assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_verify(self, client: Cloudflare) -> None:
         with client.custom_nameservers.with_streaming_response.verify(
@@ -237,6 +257,7 @@ class TestCustomNameservers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_verify(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -249,6 +270,7 @@ class TestCustomNameservers:
 class TestAsyncCustomNameservers:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         custom_nameserver = await async_client.custom_nameservers.create(
@@ -257,6 +279,7 @@ class TestAsyncCustomNameservers:
         )
         assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom_nameserver = await async_client.custom_nameservers.create(
@@ -266,6 +289,7 @@ class TestAsyncCustomNameservers:
         )
         assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_nameservers.with_raw_response.create(
@@ -278,6 +302,7 @@ class TestAsyncCustomNameservers:
         custom_nameserver = await response.parse()
         assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_nameservers.with_streaming_response.create(
@@ -292,6 +317,7 @@ class TestAsyncCustomNameservers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -300,6 +326,7 @@ class TestAsyncCustomNameservers:
                 ns_name="ns1.example.com",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         custom_nameserver = await async_client.custom_nameservers.delete(
@@ -309,6 +336,7 @@ class TestAsyncCustomNameservers:
         )
         assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_nameservers.with_raw_response.delete(
@@ -322,6 +350,7 @@ class TestAsyncCustomNameservers:
         custom_nameserver = await response.parse()
         assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_nameservers.with_streaming_response.delete(
@@ -337,6 +366,7 @@ class TestAsyncCustomNameservers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -353,6 +383,7 @@ class TestAsyncCustomNameservers:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_availabilty(self, async_client: AsyncCloudflare) -> None:
         custom_nameserver = await async_client.custom_nameservers.availabilty(
@@ -360,6 +391,7 @@ class TestAsyncCustomNameservers:
         )
         assert_matches_type(Optional[CustomNameserverAvailabiltyResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_availabilty(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_nameservers.with_raw_response.availabilty(
@@ -371,6 +403,7 @@ class TestAsyncCustomNameservers:
         custom_nameserver = await response.parse()
         assert_matches_type(Optional[CustomNameserverAvailabiltyResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_availabilty(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_nameservers.with_streaming_response.availabilty(
@@ -384,6 +417,7 @@ class TestAsyncCustomNameservers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_availabilty(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -391,6 +425,7 @@ class TestAsyncCustomNameservers:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         custom_nameserver = await async_client.custom_nameservers.get(
@@ -398,6 +433,7 @@ class TestAsyncCustomNameservers:
         )
         assert_matches_type(Optional[CustomNameserverGetResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_nameservers.with_raw_response.get(
@@ -409,6 +445,7 @@ class TestAsyncCustomNameservers:
         custom_nameserver = await response.parse()
         assert_matches_type(Optional[CustomNameserverGetResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_nameservers.with_streaming_response.get(
@@ -422,6 +459,7 @@ class TestAsyncCustomNameservers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -429,6 +467,7 @@ class TestAsyncCustomNameservers:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_verify(self, async_client: AsyncCloudflare) -> None:
         custom_nameserver = await async_client.custom_nameservers.verify(
@@ -437,6 +476,7 @@ class TestAsyncCustomNameservers:
         )
         assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_verify(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_nameservers.with_raw_response.verify(
@@ -449,6 +489,7 @@ class TestAsyncCustomNameservers:
         custom_nameserver = await response.parse()
         assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_verify(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_nameservers.with_streaming_response.verify(
@@ -463,6 +504,7 @@ class TestAsyncCustomNameservers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_verify(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

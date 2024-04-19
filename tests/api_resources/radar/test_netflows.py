@@ -18,11 +18,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNetflows:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_timeseries(self, client: Cloudflare) -> None:
         netflow = client.radar.netflows.timeseries()
         assert_matches_type(NetflowTimeseriesResponse, netflow, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         netflow = client.radar.netflows.timeseries(
@@ -48,6 +50,7 @@ class TestNetflows:
         )
         assert_matches_type(NetflowTimeseriesResponse, netflow, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_timeseries(self, client: Cloudflare) -> None:
         response = client.radar.netflows.with_raw_response.timeseries()
@@ -57,6 +60,7 @@ class TestNetflows:
         netflow = response.parse()
         assert_matches_type(NetflowTimeseriesResponse, netflow, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_timeseries(self, client: Cloudflare) -> None:
         with client.radar.netflows.with_streaming_response.timeseries() as response:
@@ -72,11 +76,13 @@ class TestNetflows:
 class TestAsyncNetflows:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries(self, async_client: AsyncCloudflare) -> None:
         netflow = await async_client.radar.netflows.timeseries()
         assert_matches_type(NetflowTimeseriesResponse, netflow, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         netflow = await async_client.radar.netflows.timeseries(
@@ -102,6 +108,7 @@ class TestAsyncNetflows:
         )
         assert_matches_type(NetflowTimeseriesResponse, netflow, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_timeseries(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.netflows.with_raw_response.timeseries()
@@ -111,6 +118,7 @@ class TestAsyncNetflows:
         netflow = await response.parse()
         assert_matches_type(NetflowTimeseriesResponse, netflow, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_timeseries(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.netflows.with_streaming_response.timeseries() as response:

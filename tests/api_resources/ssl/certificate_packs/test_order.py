@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestOrder:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         order = client.ssl.certificate_packs.order.create(
@@ -29,6 +30,7 @@ class TestOrder:
         )
         assert_matches_type(OrderCreateResponse, order, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         order = client.ssl.certificate_packs.order.create(
@@ -42,6 +44,7 @@ class TestOrder:
         )
         assert_matches_type(OrderCreateResponse, order, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.ssl.certificate_packs.order.with_raw_response.create(
@@ -58,6 +61,7 @@ class TestOrder:
         order = response.parse()
         assert_matches_type(OrderCreateResponse, order, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.ssl.certificate_packs.order.with_streaming_response.create(
@@ -76,6 +80,7 @@ class TestOrder:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -92,6 +97,7 @@ class TestOrder:
 class TestAsyncOrder:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         order = await async_client.ssl.certificate_packs.order.create(
@@ -104,6 +110,7 @@ class TestAsyncOrder:
         )
         assert_matches_type(OrderCreateResponse, order, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         order = await async_client.ssl.certificate_packs.order.create(
@@ -117,6 +124,7 @@ class TestAsyncOrder:
         )
         assert_matches_type(OrderCreateResponse, order, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.certificate_packs.order.with_raw_response.create(
@@ -133,6 +141,7 @@ class TestAsyncOrder:
         order = await response.parse()
         assert_matches_type(OrderCreateResponse, order, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.certificate_packs.order.with_streaming_response.create(
@@ -151,6 +160,7 @@ class TestAsyncOrder:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

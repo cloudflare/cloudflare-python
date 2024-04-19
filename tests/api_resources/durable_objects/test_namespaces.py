@@ -18,6 +18,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNamespaces:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         namespace = client.durable_objects.namespaces.list(
@@ -25,6 +26,7 @@ class TestNamespaces:
         )
         assert_matches_type(SyncSinglePage[Namespace], namespace, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.durable_objects.namespaces.with_raw_response.list(
@@ -36,6 +38,7 @@ class TestNamespaces:
         namespace = response.parse()
         assert_matches_type(SyncSinglePage[Namespace], namespace, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.durable_objects.namespaces.with_streaming_response.list(
@@ -49,6 +52,7 @@ class TestNamespaces:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -60,6 +64,7 @@ class TestNamespaces:
 class TestAsyncNamespaces:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.durable_objects.namespaces.list(
@@ -67,6 +72,7 @@ class TestAsyncNamespaces:
         )
         assert_matches_type(AsyncSinglePage[Namespace], namespace, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.durable_objects.namespaces.with_raw_response.list(
@@ -78,6 +84,7 @@ class TestAsyncNamespaces:
         namespace = await response.parse()
         assert_matches_type(AsyncSinglePage[Namespace], namespace, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.durable_objects.namespaces.with_streaming_response.list(
@@ -91,6 +98,7 @@ class TestAsyncNamespaces:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

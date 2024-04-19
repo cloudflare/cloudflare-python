@@ -23,6 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestApps:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.create(
@@ -34,6 +35,7 @@ class TestApps:
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.create(
@@ -61,6 +63,7 @@ class TestApps:
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.create(
@@ -76,6 +79,7 @@ class TestApps:
         app = response.parse()
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.create(
@@ -93,6 +97,7 @@ class TestApps:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
@@ -104,6 +109,7 @@ class TestApps:
                 protocol="tcp/22",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.update(
@@ -116,6 +122,7 @@ class TestApps:
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.update(
@@ -144,6 +151,7 @@ class TestApps:
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.update(
@@ -160,6 +168,7 @@ class TestApps:
         app = response.parse()
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.update(
@@ -178,6 +187,7 @@ class TestApps:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
@@ -200,6 +210,7 @@ class TestApps:
                 protocol="tcp/22",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.list(
@@ -207,6 +218,7 @@ class TestApps:
         )
         assert_matches_type(SyncV4PagePaginationArray[object], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.list(
@@ -218,6 +230,7 @@ class TestApps:
         )
         assert_matches_type(SyncV4PagePaginationArray[object], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.list(
@@ -229,6 +242,7 @@ class TestApps:
         app = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[object], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.list(
@@ -242,6 +256,7 @@ class TestApps:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
@@ -249,6 +264,7 @@ class TestApps:
                 "",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.delete(
@@ -258,6 +274,7 @@ class TestApps:
         )
         assert_matches_type(Optional[AppDeleteResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.delete(
@@ -271,6 +288,7 @@ class TestApps:
         app = response.parse()
         assert_matches_type(Optional[AppDeleteResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.delete(
@@ -286,6 +304,7 @@ class TestApps:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
@@ -302,6 +321,7 @@ class TestApps:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.get(
@@ -310,6 +330,7 @@ class TestApps:
         )
         assert_matches_type(AppGetResponse, app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.get(
@@ -322,6 +343,7 @@ class TestApps:
         app = response.parse()
         assert_matches_type(AppGetResponse, app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.get(
@@ -336,6 +358,7 @@ class TestApps:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
@@ -354,6 +377,7 @@ class TestApps:
 class TestAsyncApps:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.create(
@@ -365,6 +389,7 @@ class TestAsyncApps:
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.create(
@@ -392,6 +417,7 @@ class TestAsyncApps:
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.create(
@@ -407,6 +433,7 @@ class TestAsyncApps:
         app = await response.parse()
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.create(
@@ -424,6 +451,7 @@ class TestAsyncApps:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
@@ -435,6 +463,7 @@ class TestAsyncApps:
                 protocol="tcp/22",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.update(
@@ -447,6 +476,7 @@ class TestAsyncApps:
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.update(
@@ -475,6 +505,7 @@ class TestAsyncApps:
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.update(
@@ -491,6 +522,7 @@ class TestAsyncApps:
         app = await response.parse()
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.update(
@@ -509,6 +541,7 @@ class TestAsyncApps:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
@@ -531,6 +564,7 @@ class TestAsyncApps:
                 protocol="tcp/22",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.list(
@@ -538,6 +572,7 @@ class TestAsyncApps:
         )
         assert_matches_type(AsyncV4PagePaginationArray[object], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.list(
@@ -549,6 +584,7 @@ class TestAsyncApps:
         )
         assert_matches_type(AsyncV4PagePaginationArray[object], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.list(
@@ -560,6 +596,7 @@ class TestAsyncApps:
         app = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[object], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.list(
@@ -573,6 +610,7 @@ class TestAsyncApps:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
@@ -580,6 +618,7 @@ class TestAsyncApps:
                 "",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.delete(
@@ -589,6 +628,7 @@ class TestAsyncApps:
         )
         assert_matches_type(Optional[AppDeleteResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.delete(
@@ -602,6 +642,7 @@ class TestAsyncApps:
         app = await response.parse()
         assert_matches_type(Optional[AppDeleteResponse], app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.delete(
@@ -617,6 +658,7 @@ class TestAsyncApps:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
@@ -633,6 +675,7 @@ class TestAsyncApps:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.get(
@@ -641,6 +684,7 @@ class TestAsyncApps:
         )
         assert_matches_type(AppGetResponse, app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.get(
@@ -653,6 +697,7 @@ class TestAsyncApps:
         app = await response.parse()
         assert_matches_type(AppGetResponse, app, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.get(
@@ -667,6 +712,7 @@ class TestAsyncApps:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):

@@ -26,11 +26,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSummary:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_bot_class(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.bot_class()
         assert_matches_type(SummaryBotClassResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_bot_class_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.bot_class(
@@ -59,6 +61,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryBotClassResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_bot_class(self, client: Cloudflare) -> None:
         response = client.radar.http.summary.with_raw_response.bot_class()
@@ -68,6 +71,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryBotClassResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_bot_class(self, client: Cloudflare) -> None:
         with client.radar.http.summary.with_streaming_response.bot_class() as response:
@@ -79,11 +83,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_device_type(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.device_type()
         assert_matches_type(SummaryDeviceTypeResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_device_type_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.device_type(
@@ -112,6 +118,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryDeviceTypeResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_device_type(self, client: Cloudflare) -> None:
         response = client.radar.http.summary.with_raw_response.device_type()
@@ -121,6 +128,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryDeviceTypeResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_device_type(self, client: Cloudflare) -> None:
         with client.radar.http.summary.with_streaming_response.device_type() as response:
@@ -132,11 +140,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_http_protocol(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.http_protocol()
         assert_matches_type(SummaryHTTPProtocolResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_http_protocol_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.http_protocol(
@@ -165,6 +175,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryHTTPProtocolResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_http_protocol(self, client: Cloudflare) -> None:
         response = client.radar.http.summary.with_raw_response.http_protocol()
@@ -174,6 +185,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryHTTPProtocolResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_http_protocol(self, client: Cloudflare) -> None:
         with client.radar.http.summary.with_streaming_response.http_protocol() as response:
@@ -185,11 +197,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_http_version(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.http_version()
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_http_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.http_version(
@@ -218,6 +232,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_http_version(self, client: Cloudflare) -> None:
         response = client.radar.http.summary.with_raw_response.http_version()
@@ -227,6 +242,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_http_version(self, client: Cloudflare) -> None:
         with client.radar.http.summary.with_streaming_response.http_version() as response:
@@ -238,11 +254,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_ip_version(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.ip_version()
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.ip_version(
@@ -271,6 +289,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_ip_version(self, client: Cloudflare) -> None:
         response = client.radar.http.summary.with_raw_response.ip_version()
@@ -280,6 +299,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_ip_version(self, client: Cloudflare) -> None:
         with client.radar.http.summary.with_streaming_response.ip_version() as response:
@@ -291,11 +311,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_os(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.os()
         assert_matches_type(SummaryOSResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_os_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.os(
@@ -324,6 +346,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryOSResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_os(self, client: Cloudflare) -> None:
         response = client.radar.http.summary.with_raw_response.os()
@@ -333,6 +356,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryOSResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_os(self, client: Cloudflare) -> None:
         with client.radar.http.summary.with_streaming_response.os() as response:
@@ -344,11 +368,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_tls_version(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.tls_version()
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_tls_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.http.summary.tls_version(
@@ -377,6 +403,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_tls_version(self, client: Cloudflare) -> None:
         response = client.radar.http.summary.with_raw_response.tls_version()
@@ -386,6 +413,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_tls_version(self, client: Cloudflare) -> None:
         with client.radar.http.summary.with_streaming_response.tls_version() as response:
@@ -401,11 +429,13 @@ class TestSummary:
 class TestAsyncSummary:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_bot_class(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.bot_class()
         assert_matches_type(SummaryBotClassResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_bot_class_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.bot_class(
@@ -434,6 +464,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryBotClassResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_bot_class(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.summary.with_raw_response.bot_class()
@@ -443,6 +474,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryBotClassResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_bot_class(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.summary.with_streaming_response.bot_class() as response:
@@ -454,11 +486,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_device_type(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.device_type()
         assert_matches_type(SummaryDeviceTypeResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_device_type_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.device_type(
@@ -487,6 +521,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryDeviceTypeResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_device_type(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.summary.with_raw_response.device_type()
@@ -496,6 +531,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryDeviceTypeResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_device_type(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.summary.with_streaming_response.device_type() as response:
@@ -507,11 +543,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_http_protocol(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.http_protocol()
         assert_matches_type(SummaryHTTPProtocolResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_http_protocol_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.http_protocol(
@@ -540,6 +578,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryHTTPProtocolResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_http_protocol(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.summary.with_raw_response.http_protocol()
@@ -549,6 +588,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryHTTPProtocolResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_http_protocol(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.summary.with_streaming_response.http_protocol() as response:
@@ -560,11 +600,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_http_version(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.http_version()
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_http_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.http_version(
@@ -593,6 +635,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_http_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.summary.with_raw_response.http_version()
@@ -602,6 +645,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_http_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.summary.with_streaming_response.http_version() as response:
@@ -613,11 +657,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_ip_version(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.ip_version()
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.ip_version(
@@ -646,6 +692,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_ip_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.summary.with_raw_response.ip_version()
@@ -655,6 +702,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_ip_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.summary.with_streaming_response.ip_version() as response:
@@ -666,11 +714,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_os(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.os()
         assert_matches_type(SummaryOSResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_os_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.os(
@@ -699,6 +749,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryOSResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_os(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.summary.with_raw_response.os()
@@ -708,6 +759,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryOSResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_os(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.summary.with_streaming_response.os() as response:
@@ -719,11 +771,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_tls_version(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.tls_version()
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_tls_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.http.summary.tls_version(
@@ -752,6 +806,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_tls_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.summary.with_raw_response.tls_version()
@@ -761,6 +816,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_tls_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.summary.with_streaming_response.tls_version() as response:

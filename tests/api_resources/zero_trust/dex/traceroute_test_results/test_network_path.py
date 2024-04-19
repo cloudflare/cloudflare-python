@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNetworkPath:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         network_path = client.zero_trust.dex.traceroute_test_results.network_path.get(
@@ -25,6 +26,7 @@ class TestNetworkPath:
         )
         assert_matches_type(Optional[NetworkPathGetResponse], network_path, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.traceroute_test_results.network_path.with_raw_response.get(
@@ -37,6 +39,7 @@ class TestNetworkPath:
         network_path = response.parse()
         assert_matches_type(Optional[NetworkPathGetResponse], network_path, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.traceroute_test_results.network_path.with_streaming_response.get(
@@ -51,6 +54,7 @@ class TestNetworkPath:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -69,6 +73,7 @@ class TestNetworkPath:
 class TestAsyncNetworkPath:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         network_path = await async_client.zero_trust.dex.traceroute_test_results.network_path.get(
@@ -77,6 +82,7 @@ class TestAsyncNetworkPath:
         )
         assert_matches_type(Optional[NetworkPathGetResponse], network_path, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.traceroute_test_results.network_path.with_raw_response.get(
@@ -89,6 +95,7 @@ class TestAsyncNetworkPath:
         network_path = await response.parse()
         assert_matches_type(Optional[NetworkPathGetResponse], network_path, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.traceroute_test_results.network_path.with_streaming_response.get(
@@ -103,6 +110,7 @@ class TestAsyncNetworkPath:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

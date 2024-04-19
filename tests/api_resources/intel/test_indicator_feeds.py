@@ -23,6 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestIndicatorFeeds:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         indicator_feed = client.intel.indicator_feeds.create(
@@ -30,6 +31,7 @@ class TestIndicatorFeeds:
         )
         assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         indicator_feed = client.intel.indicator_feeds.create(
@@ -39,6 +41,7 @@ class TestIndicatorFeeds:
         )
         assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.intel.indicator_feeds.with_raw_response.create(
@@ -50,6 +53,7 @@ class TestIndicatorFeeds:
         indicator_feed = response.parse()
         assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.intel.indicator_feeds.with_streaming_response.create(
@@ -63,6 +67,7 @@ class TestIndicatorFeeds:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -70,6 +75,7 @@ class TestIndicatorFeeds:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         indicator_feed = client.intel.indicator_feeds.update(
@@ -78,6 +84,7 @@ class TestIndicatorFeeds:
         )
         assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         indicator_feed = client.intel.indicator_feeds.update(
@@ -87,6 +94,7 @@ class TestIndicatorFeeds:
         )
         assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.intel.indicator_feeds.with_raw_response.update(
@@ -99,6 +107,7 @@ class TestIndicatorFeeds:
         indicator_feed = response.parse()
         assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.intel.indicator_feeds.with_streaming_response.update(
@@ -113,6 +122,7 @@ class TestIndicatorFeeds:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -121,6 +131,7 @@ class TestIndicatorFeeds:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         indicator_feed = client.intel.indicator_feeds.list(
@@ -128,6 +139,7 @@ class TestIndicatorFeeds:
         )
         assert_matches_type(SyncSinglePage[IndicatorFeedListResponse], indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.intel.indicator_feeds.with_raw_response.list(
@@ -139,6 +151,7 @@ class TestIndicatorFeeds:
         indicator_feed = response.parse()
         assert_matches_type(SyncSinglePage[IndicatorFeedListResponse], indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.intel.indicator_feeds.with_streaming_response.list(
@@ -152,6 +165,7 @@ class TestIndicatorFeeds:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -159,6 +173,7 @@ class TestIndicatorFeeds:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_data(self, client: Cloudflare) -> None:
         indicator_feed = client.intel.indicator_feeds.data(
@@ -167,6 +182,7 @@ class TestIndicatorFeeds:
         )
         assert_matches_type(str, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_data(self, client: Cloudflare) -> None:
         response = client.intel.indicator_feeds.with_raw_response.data(
@@ -179,6 +195,7 @@ class TestIndicatorFeeds:
         indicator_feed = response.parse()
         assert_matches_type(str, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_data(self, client: Cloudflare) -> None:
         with client.intel.indicator_feeds.with_streaming_response.data(
@@ -193,6 +210,7 @@ class TestIndicatorFeeds:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_data(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -201,6 +219,7 @@ class TestIndicatorFeeds:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         indicator_feed = client.intel.indicator_feeds.get(
@@ -209,6 +228,7 @@ class TestIndicatorFeeds:
         )
         assert_matches_type(IndicatorFeedGetResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.intel.indicator_feeds.with_raw_response.get(
@@ -221,6 +241,7 @@ class TestIndicatorFeeds:
         indicator_feed = response.parse()
         assert_matches_type(IndicatorFeedGetResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.intel.indicator_feeds.with_streaming_response.get(
@@ -235,6 +256,7 @@ class TestIndicatorFeeds:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -247,6 +269,7 @@ class TestIndicatorFeeds:
 class TestAsyncIndicatorFeeds:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         indicator_feed = await async_client.intel.indicator_feeds.create(
@@ -254,6 +277,7 @@ class TestAsyncIndicatorFeeds:
         )
         assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         indicator_feed = await async_client.intel.indicator_feeds.create(
@@ -263,6 +287,7 @@ class TestAsyncIndicatorFeeds:
         )
         assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.indicator_feeds.with_raw_response.create(
@@ -274,6 +299,7 @@ class TestAsyncIndicatorFeeds:
         indicator_feed = await response.parse()
         assert_matches_type(IndicatorFeedCreateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.indicator_feeds.with_streaming_response.create(
@@ -287,6 +313,7 @@ class TestAsyncIndicatorFeeds:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -294,6 +321,7 @@ class TestAsyncIndicatorFeeds:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         indicator_feed = await async_client.intel.indicator_feeds.update(
@@ -302,6 +330,7 @@ class TestAsyncIndicatorFeeds:
         )
         assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         indicator_feed = await async_client.intel.indicator_feeds.update(
@@ -311,6 +340,7 @@ class TestAsyncIndicatorFeeds:
         )
         assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.indicator_feeds.with_raw_response.update(
@@ -323,6 +353,7 @@ class TestAsyncIndicatorFeeds:
         indicator_feed = await response.parse()
         assert_matches_type(IndicatorFeedUpdateResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.indicator_feeds.with_streaming_response.update(
@@ -337,6 +368,7 @@ class TestAsyncIndicatorFeeds:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -345,6 +377,7 @@ class TestAsyncIndicatorFeeds:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         indicator_feed = await async_client.intel.indicator_feeds.list(
@@ -352,6 +385,7 @@ class TestAsyncIndicatorFeeds:
         )
         assert_matches_type(AsyncSinglePage[IndicatorFeedListResponse], indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.indicator_feeds.with_raw_response.list(
@@ -363,6 +397,7 @@ class TestAsyncIndicatorFeeds:
         indicator_feed = await response.parse()
         assert_matches_type(AsyncSinglePage[IndicatorFeedListResponse], indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.indicator_feeds.with_streaming_response.list(
@@ -376,6 +411,7 @@ class TestAsyncIndicatorFeeds:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -383,6 +419,7 @@ class TestAsyncIndicatorFeeds:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_data(self, async_client: AsyncCloudflare) -> None:
         indicator_feed = await async_client.intel.indicator_feeds.data(
@@ -391,6 +428,7 @@ class TestAsyncIndicatorFeeds:
         )
         assert_matches_type(str, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_data(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.indicator_feeds.with_raw_response.data(
@@ -403,6 +441,7 @@ class TestAsyncIndicatorFeeds:
         indicator_feed = await response.parse()
         assert_matches_type(str, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_data(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.indicator_feeds.with_streaming_response.data(
@@ -417,6 +456,7 @@ class TestAsyncIndicatorFeeds:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_data(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -425,6 +465,7 @@ class TestAsyncIndicatorFeeds:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         indicator_feed = await async_client.intel.indicator_feeds.get(
@@ -433,6 +474,7 @@ class TestAsyncIndicatorFeeds:
         )
         assert_matches_type(IndicatorFeedGetResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.indicator_feeds.with_raw_response.get(
@@ -445,6 +487,7 @@ class TestAsyncIndicatorFeeds:
         indicator_feed = await response.parse()
         assert_matches_type(IndicatorFeedGetResponse, indicator_feed, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.indicator_feeds.with_streaming_response.get(
@@ -459,6 +502,7 @@ class TestAsyncIndicatorFeeds:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestOwnership:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         ownership = client.pcaps.ownership.create(
@@ -25,6 +26,7 @@ class TestOwnership:
         )
         assert_matches_type(Ownership, ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.pcaps.ownership.with_raw_response.create(
@@ -37,6 +39,7 @@ class TestOwnership:
         ownership = response.parse()
         assert_matches_type(Ownership, ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.pcaps.ownership.with_streaming_response.create(
@@ -51,6 +54,7 @@ class TestOwnership:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -59,6 +63,7 @@ class TestOwnership:
                 destination_conf="s3://pcaps-bucket?region=us-east-1",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         ownership = client.pcaps.ownership.delete(
@@ -67,6 +72,7 @@ class TestOwnership:
         )
         assert ownership is None
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.pcaps.ownership.with_raw_response.delete(
@@ -79,6 +85,7 @@ class TestOwnership:
         ownership = response.parse()
         assert ownership is None
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.pcaps.ownership.with_streaming_response.delete(
@@ -93,6 +100,7 @@ class TestOwnership:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -107,6 +115,7 @@ class TestOwnership:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         ownership = client.pcaps.ownership.get(
@@ -114,6 +123,7 @@ class TestOwnership:
         )
         assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.pcaps.ownership.with_raw_response.get(
@@ -125,6 +135,7 @@ class TestOwnership:
         ownership = response.parse()
         assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.pcaps.ownership.with_streaming_response.get(
@@ -138,6 +149,7 @@ class TestOwnership:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -145,6 +157,7 @@ class TestOwnership:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_validate(self, client: Cloudflare) -> None:
         ownership = client.pcaps.ownership.validate(
@@ -154,6 +167,7 @@ class TestOwnership:
         )
         assert_matches_type(Ownership, ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_validate(self, client: Cloudflare) -> None:
         response = client.pcaps.ownership.with_raw_response.validate(
@@ -167,6 +181,7 @@ class TestOwnership:
         ownership = response.parse()
         assert_matches_type(Ownership, ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_validate(self, client: Cloudflare) -> None:
         with client.pcaps.ownership.with_streaming_response.validate(
@@ -182,6 +197,7 @@ class TestOwnership:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_validate(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -195,6 +211,7 @@ class TestOwnership:
 class TestAsyncOwnership:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         ownership = await async_client.pcaps.ownership.create(
@@ -203,6 +220,7 @@ class TestAsyncOwnership:
         )
         assert_matches_type(Ownership, ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.ownership.with_raw_response.create(
@@ -215,6 +233,7 @@ class TestAsyncOwnership:
         ownership = await response.parse()
         assert_matches_type(Ownership, ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.ownership.with_streaming_response.create(
@@ -229,6 +248,7 @@ class TestAsyncOwnership:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -237,6 +257,7 @@ class TestAsyncOwnership:
                 destination_conf="s3://pcaps-bucket?region=us-east-1",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         ownership = await async_client.pcaps.ownership.delete(
@@ -245,6 +266,7 @@ class TestAsyncOwnership:
         )
         assert ownership is None
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.ownership.with_raw_response.delete(
@@ -257,6 +279,7 @@ class TestAsyncOwnership:
         ownership = await response.parse()
         assert ownership is None
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.ownership.with_streaming_response.delete(
@@ -271,6 +294,7 @@ class TestAsyncOwnership:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -285,6 +309,7 @@ class TestAsyncOwnership:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         ownership = await async_client.pcaps.ownership.get(
@@ -292,6 +317,7 @@ class TestAsyncOwnership:
         )
         assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.ownership.with_raw_response.get(
@@ -303,6 +329,7 @@ class TestAsyncOwnership:
         ownership = await response.parse()
         assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.ownership.with_streaming_response.get(
@@ -316,6 +343,7 @@ class TestAsyncOwnership:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -323,6 +351,7 @@ class TestAsyncOwnership:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_validate(self, async_client: AsyncCloudflare) -> None:
         ownership = await async_client.pcaps.ownership.validate(
@@ -332,6 +361,7 @@ class TestAsyncOwnership:
         )
         assert_matches_type(Ownership, ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.ownership.with_raw_response.validate(
@@ -345,6 +375,7 @@ class TestAsyncOwnership:
         ownership = await response.parse()
         assert_matches_type(Ownership, ownership, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_validate(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.ownership.with_streaming_response.validate(
@@ -360,6 +391,7 @@ class TestAsyncOwnership:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_validate(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

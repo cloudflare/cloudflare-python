@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCache:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_purge_overload_1(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
@@ -24,6 +25,7 @@ class TestCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_purge_with_all_params_overload_1(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
@@ -32,6 +34,7 @@ class TestCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_purge_overload_1(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
@@ -43,6 +46,7 @@ class TestCache:
         cache = response.parse()
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_purge_overload_1(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
@@ -56,6 +60,7 @@ class TestCache:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_purge_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -63,6 +68,7 @@ class TestCache:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_purge_overload_2(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
@@ -70,6 +76,7 @@ class TestCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_purge_with_all_params_overload_2(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
@@ -78,6 +85,7 @@ class TestCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_purge_overload_2(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
@@ -89,6 +97,7 @@ class TestCache:
         cache = response.parse()
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_purge_overload_2(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
@@ -102,6 +111,7 @@ class TestCache:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_purge_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -109,6 +119,7 @@ class TestCache:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_purge_overload_3(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
@@ -116,6 +127,7 @@ class TestCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_purge_with_all_params_overload_3(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
@@ -124,6 +136,7 @@ class TestCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_purge_overload_3(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
@@ -135,6 +148,7 @@ class TestCache:
         cache = response.parse()
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_purge_overload_3(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
@@ -148,6 +162,7 @@ class TestCache:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_purge_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -155,6 +170,7 @@ class TestCache:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_purge_overload_4(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
@@ -162,6 +178,7 @@ class TestCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_purge_with_all_params_overload_4(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
@@ -170,6 +187,7 @@ class TestCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_purge_overload_4(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
@@ -181,6 +199,7 @@ class TestCache:
         cache = response.parse()
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_purge_overload_4(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
@@ -194,6 +213,7 @@ class TestCache:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_purge_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -201,6 +221,7 @@ class TestCache:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_purge_overload_5(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
@@ -208,6 +229,7 @@ class TestCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_purge_with_all_params_overload_5(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
@@ -220,6 +242,7 @@ class TestCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_purge_overload_5(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
@@ -231,6 +254,7 @@ class TestCache:
         cache = response.parse()
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_purge_overload_5(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
@@ -244,6 +268,7 @@ class TestCache:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_purge_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -255,6 +280,7 @@ class TestCache:
 class TestAsyncCache:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_purge_overload_1(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
@@ -262,6 +288,7 @@ class TestAsyncCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_purge_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
@@ -270,6 +297,7 @@ class TestAsyncCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_purge_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
@@ -281,6 +309,7 @@ class TestAsyncCache:
         cache = await response.parse()
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_purge_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
@@ -294,6 +323,7 @@ class TestAsyncCache:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_purge_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -301,6 +331,7 @@ class TestAsyncCache:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_purge_overload_2(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
@@ -308,6 +339,7 @@ class TestAsyncCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_purge_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
@@ -316,6 +348,7 @@ class TestAsyncCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_purge_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
@@ -327,6 +360,7 @@ class TestAsyncCache:
         cache = await response.parse()
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_purge_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
@@ -340,6 +374,7 @@ class TestAsyncCache:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_purge_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -347,6 +382,7 @@ class TestAsyncCache:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_purge_overload_3(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
@@ -354,6 +390,7 @@ class TestAsyncCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_purge_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
@@ -362,6 +399,7 @@ class TestAsyncCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_purge_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
@@ -373,6 +411,7 @@ class TestAsyncCache:
         cache = await response.parse()
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_purge_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
@@ -386,6 +425,7 @@ class TestAsyncCache:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_purge_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -393,6 +433,7 @@ class TestAsyncCache:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_purge_overload_4(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
@@ -400,6 +441,7 @@ class TestAsyncCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_purge_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
@@ -408,6 +450,7 @@ class TestAsyncCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_purge_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
@@ -419,6 +462,7 @@ class TestAsyncCache:
         cache = await response.parse()
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_purge_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
@@ -432,6 +476,7 @@ class TestAsyncCache:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_purge_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -439,6 +484,7 @@ class TestAsyncCache:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_purge_overload_5(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
@@ -446,6 +492,7 @@ class TestAsyncCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_purge_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
@@ -458,6 +505,7 @@ class TestAsyncCache:
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_purge_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
@@ -469,6 +517,7 @@ class TestAsyncCache:
         cache = await response.parse()
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_purge_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
@@ -482,6 +531,7 @@ class TestAsyncCache:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_purge_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

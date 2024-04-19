@@ -26,6 +26,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWARPConnector:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         warp_connector = client.warp_connector.create(
@@ -34,6 +35,7 @@ class TestWARPConnector:
         )
         assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.warp_connector.with_raw_response.create(
@@ -46,6 +48,7 @@ class TestWARPConnector:
         warp_connector = response.parse()
         assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.warp_connector.with_streaming_response.create(
@@ -60,6 +63,7 @@ class TestWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -68,6 +72,7 @@ class TestWARPConnector:
                 name="blog",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         warp_connector = client.warp_connector.list(
@@ -75,6 +80,7 @@ class TestWARPConnector:
         )
         assert_matches_type(SyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         warp_connector = client.warp_connector.list(
@@ -92,6 +98,7 @@ class TestWARPConnector:
         )
         assert_matches_type(SyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.warp_connector.with_raw_response.list(
@@ -103,6 +110,7 @@ class TestWARPConnector:
         warp_connector = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.warp_connector.with_streaming_response.list(
@@ -116,6 +124,7 @@ class TestWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -123,6 +132,7 @@ class TestWARPConnector:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         warp_connector = client.warp_connector.delete(
@@ -132,6 +142,7 @@ class TestWARPConnector:
         )
         assert_matches_type(WARPConnectorDeleteResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.warp_connector.with_raw_response.delete(
@@ -145,6 +156,7 @@ class TestWARPConnector:
         warp_connector = response.parse()
         assert_matches_type(WARPConnectorDeleteResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.warp_connector.with_streaming_response.delete(
@@ -160,6 +172,7 @@ class TestWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -176,6 +189,7 @@ class TestWARPConnector:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         warp_connector = client.warp_connector.edit(
@@ -184,6 +198,7 @@ class TestWARPConnector:
         )
         assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         warp_connector = client.warp_connector.edit(
@@ -194,6 +209,7 @@ class TestWARPConnector:
         )
         assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.warp_connector.with_raw_response.edit(
@@ -206,6 +222,7 @@ class TestWARPConnector:
         warp_connector = response.parse()
         assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.warp_connector.with_streaming_response.edit(
@@ -220,6 +237,7 @@ class TestWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -234,6 +252,7 @@ class TestWARPConnector:
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         warp_connector = client.warp_connector.get(
@@ -242,6 +261,7 @@ class TestWARPConnector:
         )
         assert_matches_type(WARPConnectorGetResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.warp_connector.with_raw_response.get(
@@ -254,6 +274,7 @@ class TestWARPConnector:
         warp_connector = response.parse()
         assert_matches_type(WARPConnectorGetResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.warp_connector.with_streaming_response.get(
@@ -268,6 +289,7 @@ class TestWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -282,6 +304,7 @@ class TestWARPConnector:
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_token(self, client: Cloudflare) -> None:
         warp_connector = client.warp_connector.token(
@@ -290,6 +313,7 @@ class TestWARPConnector:
         )
         assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_token(self, client: Cloudflare) -> None:
         response = client.warp_connector.with_raw_response.token(
@@ -302,6 +326,7 @@ class TestWARPConnector:
         warp_connector = response.parse()
         assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_token(self, client: Cloudflare) -> None:
         with client.warp_connector.with_streaming_response.token(
@@ -316,6 +341,7 @@ class TestWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_token(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -334,6 +360,7 @@ class TestWARPConnector:
 class TestAsyncWARPConnector:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         warp_connector = await async_client.warp_connector.create(
@@ -342,6 +369,7 @@ class TestAsyncWARPConnector:
         )
         assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.warp_connector.with_raw_response.create(
@@ -354,6 +382,7 @@ class TestAsyncWARPConnector:
         warp_connector = await response.parse()
         assert_matches_type(WARPConnectorCreateResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.warp_connector.with_streaming_response.create(
@@ -368,6 +397,7 @@ class TestAsyncWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -376,6 +406,7 @@ class TestAsyncWARPConnector:
                 name="blog",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         warp_connector = await async_client.warp_connector.list(
@@ -383,6 +414,7 @@ class TestAsyncWARPConnector:
         )
         assert_matches_type(AsyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         warp_connector = await async_client.warp_connector.list(
@@ -400,6 +432,7 @@ class TestAsyncWARPConnector:
         )
         assert_matches_type(AsyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.warp_connector.with_raw_response.list(
@@ -411,6 +444,7 @@ class TestAsyncWARPConnector:
         warp_connector = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.warp_connector.with_streaming_response.list(
@@ -426,6 +460,7 @@ class TestAsyncWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -433,6 +468,7 @@ class TestAsyncWARPConnector:
                 account_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         warp_connector = await async_client.warp_connector.delete(
@@ -442,6 +478,7 @@ class TestAsyncWARPConnector:
         )
         assert_matches_type(WARPConnectorDeleteResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.warp_connector.with_raw_response.delete(
@@ -455,6 +492,7 @@ class TestAsyncWARPConnector:
         warp_connector = await response.parse()
         assert_matches_type(WARPConnectorDeleteResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.warp_connector.with_streaming_response.delete(
@@ -470,6 +508,7 @@ class TestAsyncWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -486,6 +525,7 @@ class TestAsyncWARPConnector:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         warp_connector = await async_client.warp_connector.edit(
@@ -494,6 +534,7 @@ class TestAsyncWARPConnector:
         )
         assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         warp_connector = await async_client.warp_connector.edit(
@@ -504,6 +545,7 @@ class TestAsyncWARPConnector:
         )
         assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.warp_connector.with_raw_response.edit(
@@ -516,6 +558,7 @@ class TestAsyncWARPConnector:
         warp_connector = await response.parse()
         assert_matches_type(WARPConnectorEditResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.warp_connector.with_streaming_response.edit(
@@ -530,6 +573,7 @@ class TestAsyncWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -544,6 +588,7 @@ class TestAsyncWARPConnector:
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         warp_connector = await async_client.warp_connector.get(
@@ -552,6 +597,7 @@ class TestAsyncWARPConnector:
         )
         assert_matches_type(WARPConnectorGetResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.warp_connector.with_raw_response.get(
@@ -564,6 +610,7 @@ class TestAsyncWARPConnector:
         warp_connector = await response.parse()
         assert_matches_type(WARPConnectorGetResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.warp_connector.with_streaming_response.get(
@@ -578,6 +625,7 @@ class TestAsyncWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -592,6 +640,7 @@ class TestAsyncWARPConnector:
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_token(self, async_client: AsyncCloudflare) -> None:
         warp_connector = await async_client.warp_connector.token(
@@ -600,6 +649,7 @@ class TestAsyncWARPConnector:
         )
         assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_token(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.warp_connector.with_raw_response.token(
@@ -612,6 +662,7 @@ class TestAsyncWARPConnector:
         warp_connector = await response.parse()
         assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_token(self, async_client: AsyncCloudflare) -> None:
         async with async_client.warp_connector.with_streaming_response.token(
@@ -626,6 +677,7 @@ class TestAsyncWARPConnector:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_token(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

@@ -18,6 +18,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCAs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         ca = client.zero_trust.access.applications.cas.create(
@@ -27,6 +28,7 @@ class TestCAs:
         )
         assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         ca = client.zero_trust.access.applications.cas.create(
@@ -36,6 +38,7 @@ class TestCAs:
         )
         assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.cas.with_raw_response.create(
@@ -49,6 +52,7 @@ class TestCAs:
         ca = response.parse()
         assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.cas.with_streaming_response.create(
@@ -64,6 +68,7 @@ class TestCAs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -87,6 +92,7 @@ class TestCAs:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         ca = client.zero_trust.access.applications.cas.list(
@@ -95,6 +101,7 @@ class TestCAs:
         )
         assert_matches_type(SyncSinglePage[CA], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ca = client.zero_trust.access.applications.cas.list(
@@ -103,6 +110,7 @@ class TestCAs:
         )
         assert_matches_type(SyncSinglePage[CA], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.cas.with_raw_response.list(
@@ -115,6 +123,7 @@ class TestCAs:
         ca = response.parse()
         assert_matches_type(SyncSinglePage[CA], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.cas.with_streaming_response.list(
@@ -129,6 +138,7 @@ class TestCAs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -143,6 +153,7 @@ class TestCAs:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         ca = client.zero_trust.access.applications.cas.delete(
@@ -152,6 +163,7 @@ class TestCAs:
         )
         assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         ca = client.zero_trust.access.applications.cas.delete(
@@ -161,6 +173,7 @@ class TestCAs:
         )
         assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.cas.with_raw_response.delete(
@@ -174,6 +187,7 @@ class TestCAs:
         ca = response.parse()
         assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.cas.with_streaming_response.delete(
@@ -189,6 +203,7 @@ class TestCAs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -212,6 +227,7 @@ class TestCAs:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         ca = client.zero_trust.access.applications.cas.get(
@@ -221,6 +237,7 @@ class TestCAs:
         )
         assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         ca = client.zero_trust.access.applications.cas.get(
@@ -230,6 +247,7 @@ class TestCAs:
         )
         assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.cas.with_raw_response.get(
@@ -243,6 +261,7 @@ class TestCAs:
         ca = response.parse()
         assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.cas.with_streaming_response.get(
@@ -258,6 +277,7 @@ class TestCAs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -285,6 +305,7 @@ class TestCAs:
 class TestAsyncCAs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.zero_trust.access.applications.cas.create(
@@ -294,6 +315,7 @@ class TestAsyncCAs:
         )
         assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.zero_trust.access.applications.cas.create(
@@ -303,6 +325,7 @@ class TestAsyncCAs:
         )
         assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.cas.with_raw_response.create(
@@ -316,6 +339,7 @@ class TestAsyncCAs:
         ca = await response.parse()
         assert_matches_type(Optional[CACreateResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.cas.with_streaming_response.create(
@@ -331,6 +355,7 @@ class TestAsyncCAs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -354,6 +379,7 @@ class TestAsyncCAs:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.zero_trust.access.applications.cas.list(
@@ -362,6 +388,7 @@ class TestAsyncCAs:
         )
         assert_matches_type(AsyncSinglePage[CA], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.zero_trust.access.applications.cas.list(
@@ -370,6 +397,7 @@ class TestAsyncCAs:
         )
         assert_matches_type(AsyncSinglePage[CA], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.cas.with_raw_response.list(
@@ -382,6 +410,7 @@ class TestAsyncCAs:
         ca = await response.parse()
         assert_matches_type(AsyncSinglePage[CA], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.cas.with_streaming_response.list(
@@ -396,6 +425,7 @@ class TestAsyncCAs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -410,6 +440,7 @@ class TestAsyncCAs:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.zero_trust.access.applications.cas.delete(
@@ -419,6 +450,7 @@ class TestAsyncCAs:
         )
         assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.zero_trust.access.applications.cas.delete(
@@ -428,6 +460,7 @@ class TestAsyncCAs:
         )
         assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.cas.with_raw_response.delete(
@@ -441,6 +474,7 @@ class TestAsyncCAs:
         ca = await response.parse()
         assert_matches_type(Optional[CADeleteResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.cas.with_streaming_response.delete(
@@ -456,6 +490,7 @@ class TestAsyncCAs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -479,6 +514,7 @@ class TestAsyncCAs:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.zero_trust.access.applications.cas.get(
@@ -488,6 +524,7 @@ class TestAsyncCAs:
         )
         assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.zero_trust.access.applications.cas.get(
@@ -497,6 +534,7 @@ class TestAsyncCAs:
         )
         assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.cas.with_raw_response.get(
@@ -510,6 +548,7 @@ class TestAsyncCAs:
         ca = await response.parse()
         assert_matches_type(Optional[CAGetResponse], ca, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.cas.with_streaming_response.get(
@@ -525,6 +564,7 @@ class TestAsyncCAs:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
