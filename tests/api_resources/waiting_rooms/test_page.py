@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPage:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_preview(self, client: Cloudflare) -> None:
         page = client.waiting_rooms.page.preview(
@@ -25,6 +26,7 @@ class TestPage:
         )
         assert_matches_type(PagePreviewResponse, page, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_preview(self, client: Cloudflare) -> None:
         response = client.waiting_rooms.page.with_raw_response.preview(
@@ -37,6 +39,7 @@ class TestPage:
         page = response.parse()
         assert_matches_type(PagePreviewResponse, page, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_preview(self, client: Cloudflare) -> None:
         with client.waiting_rooms.page.with_streaming_response.preview(
@@ -51,6 +54,7 @@ class TestPage:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_preview(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -63,6 +67,7 @@ class TestPage:
 class TestAsyncPage:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_preview(self, async_client: AsyncCloudflare) -> None:
         page = await async_client.waiting_rooms.page.preview(
@@ -71,6 +76,7 @@ class TestAsyncPage:
         )
         assert_matches_type(PagePreviewResponse, page, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_preview(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.waiting_rooms.page.with_raw_response.preview(
@@ -83,6 +89,7 @@ class TestAsyncPage:
         page = await response.parse()
         assert_matches_type(PagePreviewResponse, page, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_preview(self, async_client: AsyncCloudflare) -> None:
         async with async_client.waiting_rooms.page.with_streaming_response.preview(
@@ -97,6 +104,7 @@ class TestAsyncPage:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_preview(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

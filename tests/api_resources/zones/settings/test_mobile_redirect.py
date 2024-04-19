@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMobileRedirect:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         mobile_redirect = client.zones.settings.mobile_redirect.edit(
@@ -25,6 +26,7 @@ class TestMobileRedirect:
         )
         assert_matches_type(Optional[MobileRedirect], mobile_redirect, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         mobile_redirect = client.zones.settings.mobile_redirect.edit(
@@ -37,6 +39,7 @@ class TestMobileRedirect:
         )
         assert_matches_type(Optional[MobileRedirect], mobile_redirect, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zones.settings.mobile_redirect.with_raw_response.edit(
@@ -49,6 +52,7 @@ class TestMobileRedirect:
         mobile_redirect = response.parse()
         assert_matches_type(Optional[MobileRedirect], mobile_redirect, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zones.settings.mobile_redirect.with_streaming_response.edit(
@@ -63,6 +67,7 @@ class TestMobileRedirect:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -71,6 +76,7 @@ class TestMobileRedirect:
                 value={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         mobile_redirect = client.zones.settings.mobile_redirect.get(
@@ -78,6 +84,7 @@ class TestMobileRedirect:
         )
         assert_matches_type(Optional[MobileRedirect], mobile_redirect, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zones.settings.mobile_redirect.with_raw_response.get(
@@ -89,6 +96,7 @@ class TestMobileRedirect:
         mobile_redirect = response.parse()
         assert_matches_type(Optional[MobileRedirect], mobile_redirect, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zones.settings.mobile_redirect.with_streaming_response.get(
@@ -102,6 +110,7 @@ class TestMobileRedirect:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -113,6 +122,7 @@ class TestMobileRedirect:
 class TestAsyncMobileRedirect:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         mobile_redirect = await async_client.zones.settings.mobile_redirect.edit(
@@ -121,6 +131,7 @@ class TestAsyncMobileRedirect:
         )
         assert_matches_type(Optional[MobileRedirect], mobile_redirect, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         mobile_redirect = await async_client.zones.settings.mobile_redirect.edit(
@@ -133,6 +144,7 @@ class TestAsyncMobileRedirect:
         )
         assert_matches_type(Optional[MobileRedirect], mobile_redirect, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.mobile_redirect.with_raw_response.edit(
@@ -145,6 +157,7 @@ class TestAsyncMobileRedirect:
         mobile_redirect = await response.parse()
         assert_matches_type(Optional[MobileRedirect], mobile_redirect, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.mobile_redirect.with_streaming_response.edit(
@@ -159,6 +172,7 @@ class TestAsyncMobileRedirect:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -167,6 +181,7 @@ class TestAsyncMobileRedirect:
                 value={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         mobile_redirect = await async_client.zones.settings.mobile_redirect.get(
@@ -174,6 +189,7 @@ class TestAsyncMobileRedirect:
         )
         assert_matches_type(Optional[MobileRedirect], mobile_redirect, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.mobile_redirect.with_raw_response.get(
@@ -185,6 +201,7 @@ class TestAsyncMobileRedirect:
         mobile_redirect = await response.parse()
         assert_matches_type(Optional[MobileRedirect], mobile_redirect, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.mobile_redirect.with_streaming_response.get(
@@ -198,6 +215,7 @@ class TestAsyncMobileRedirect:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

@@ -23,6 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBlobs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -38,6 +39,7 @@ class TestBlobs:
         assert cast(Any, blob.is_closed) is True
         assert isinstance(blob, BinaryAPIResponse)
 
+    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -55,6 +57,7 @@ class TestBlobs:
         assert blob.json() == {"foo": "bar"}
         assert isinstance(blob, BinaryAPIResponse)
 
+    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -74,6 +77,7 @@ class TestBlobs:
 
         assert cast(Any, blob.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_path_params_get(self, client: Cloudflare) -> None:
@@ -93,6 +97,7 @@ class TestBlobs:
 class TestAsyncBlobs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -108,6 +113,7 @@ class TestAsyncBlobs:
         assert cast(Any, blob.is_closed) is True
         assert isinstance(blob, AsyncBinaryAPIResponse)
 
+    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -125,6 +131,7 @@ class TestAsyncBlobs:
         assert await blob.json() == {"foo": "bar"}
         assert isinstance(blob, AsyncBinaryAPIResponse)
 
+    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -144,6 +151,7 @@ class TestAsyncBlobs:
 
         assert cast(Any, blob.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:

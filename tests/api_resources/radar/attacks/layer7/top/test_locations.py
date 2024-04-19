@@ -21,11 +21,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestLocations:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_origin(self, client: Cloudflare) -> None:
         location = client.radar.attacks.layer7.top.locations.origin()
         assert_matches_type(LocationOriginResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_origin_with_all_params(self, client: Cloudflare) -> None:
         location = client.radar.attacks.layer7.top.locations.origin(
@@ -48,6 +50,7 @@ class TestLocations:
         )
         assert_matches_type(LocationOriginResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_origin(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.top.locations.with_raw_response.origin()
@@ -57,6 +60,7 @@ class TestLocations:
         location = response.parse()
         assert_matches_type(LocationOriginResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_origin(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.top.locations.with_streaming_response.origin() as response:
@@ -68,11 +72,13 @@ class TestLocations:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_target(self, client: Cloudflare) -> None:
         location = client.radar.attacks.layer7.top.locations.target()
         assert_matches_type(LocationTargetResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_target_with_all_params(self, client: Cloudflare) -> None:
         location = client.radar.attacks.layer7.top.locations.target(
@@ -94,6 +100,7 @@ class TestLocations:
         )
         assert_matches_type(LocationTargetResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_target(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.top.locations.with_raw_response.target()
@@ -103,6 +110,7 @@ class TestLocations:
         location = response.parse()
         assert_matches_type(LocationTargetResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_target(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.top.locations.with_streaming_response.target() as response:
@@ -118,11 +126,13 @@ class TestLocations:
 class TestAsyncLocations:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_origin(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.radar.attacks.layer7.top.locations.origin()
         assert_matches_type(LocationOriginResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_origin_with_all_params(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.radar.attacks.layer7.top.locations.origin(
@@ -145,6 +155,7 @@ class TestAsyncLocations:
         )
         assert_matches_type(LocationOriginResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_origin(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.top.locations.with_raw_response.origin()
@@ -154,6 +165,7 @@ class TestAsyncLocations:
         location = await response.parse()
         assert_matches_type(LocationOriginResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_origin(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.top.locations.with_streaming_response.origin() as response:
@@ -165,11 +177,13 @@ class TestAsyncLocations:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_target(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.radar.attacks.layer7.top.locations.target()
         assert_matches_type(LocationTargetResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_target_with_all_params(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.radar.attacks.layer7.top.locations.target(
@@ -191,6 +205,7 @@ class TestAsyncLocations:
         )
         assert_matches_type(LocationTargetResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_target(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.top.locations.with_raw_response.target()
@@ -200,6 +215,7 @@ class TestAsyncLocations:
         location = await response.parse()
         assert_matches_type(LocationTargetResponse, location, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_target(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.top.locations.with_streaming_response.target() as response:

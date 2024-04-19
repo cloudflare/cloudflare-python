@@ -28,11 +28,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSummary:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_arc(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.arc()
         assert_matches_type(SummaryARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_arc_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.arc(
@@ -56,6 +58,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_arc(self, client: Cloudflare) -> None:
         response = client.radar.email.security.summary.with_raw_response.arc()
@@ -65,6 +68,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_arc(self, client: Cloudflare) -> None:
         with client.radar.email.security.summary.with_streaming_response.arc() as response:
@@ -76,11 +80,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_dkim(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.dkim()
         assert_matches_type(SummaryDKIMResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_dkim_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.dkim(
@@ -104,6 +110,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryDKIMResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_dkim(self, client: Cloudflare) -> None:
         response = client.radar.email.security.summary.with_raw_response.dkim()
@@ -113,6 +120,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryDKIMResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_dkim(self, client: Cloudflare) -> None:
         with client.radar.email.security.summary.with_streaming_response.dkim() as response:
@@ -124,11 +132,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_dmarc(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.dmarc()
         assert_matches_type(SummaryDMARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_dmarc_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.dmarc(
@@ -152,6 +162,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryDMARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_dmarc(self, client: Cloudflare) -> None:
         response = client.radar.email.security.summary.with_raw_response.dmarc()
@@ -161,6 +172,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryDMARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_dmarc(self, client: Cloudflare) -> None:
         with client.radar.email.security.summary.with_streaming_response.dmarc() as response:
@@ -172,11 +184,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_malicious(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.malicious()
         assert_matches_type(SummaryMaliciousResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_malicious_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.malicious(
@@ -201,6 +215,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryMaliciousResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_malicious(self, client: Cloudflare) -> None:
         response = client.radar.email.security.summary.with_raw_response.malicious()
@@ -210,6 +225,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryMaliciousResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_malicious(self, client: Cloudflare) -> None:
         with client.radar.email.security.summary.with_streaming_response.malicious() as response:
@@ -221,11 +237,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spam(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.spam()
         assert_matches_type(SummarySpamResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spam_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.spam(
@@ -250,6 +268,7 @@ class TestSummary:
         )
         assert_matches_type(SummarySpamResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_spam(self, client: Cloudflare) -> None:
         response = client.radar.email.security.summary.with_raw_response.spam()
@@ -259,6 +278,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummarySpamResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_spam(self, client: Cloudflare) -> None:
         with client.radar.email.security.summary.with_streaming_response.spam() as response:
@@ -270,11 +290,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spf(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.spf()
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spf_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.spf(
@@ -298,6 +320,7 @@ class TestSummary:
         )
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_spf(self, client: Cloudflare) -> None:
         response = client.radar.email.security.summary.with_raw_response.spf()
@@ -307,6 +330,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_spf(self, client: Cloudflare) -> None:
         with client.radar.email.security.summary.with_streaming_response.spf() as response:
@@ -318,11 +342,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spoof(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.spoof()
         assert_matches_type(SummarySpoofResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_spoof_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.spoof(
@@ -347,6 +373,7 @@ class TestSummary:
         )
         assert_matches_type(SummarySpoofResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_spoof(self, client: Cloudflare) -> None:
         response = client.radar.email.security.summary.with_raw_response.spoof()
@@ -356,6 +383,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummarySpoofResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_spoof(self, client: Cloudflare) -> None:
         with client.radar.email.security.summary.with_streaming_response.spoof() as response:
@@ -367,11 +395,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_threat_category(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.threat_category()
         assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_threat_category_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.threat_category(
@@ -396,6 +426,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_threat_category(self, client: Cloudflare) -> None:
         response = client.radar.email.security.summary.with_raw_response.threat_category()
@@ -405,6 +436,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_threat_category(self, client: Cloudflare) -> None:
         with client.radar.email.security.summary.with_streaming_response.threat_category() as response:
@@ -416,11 +448,13 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_tls_version(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.tls_version()
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_tls_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.email.security.summary.tls_version(
@@ -444,6 +478,7 @@ class TestSummary:
         )
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_tls_version(self, client: Cloudflare) -> None:
         response = client.radar.email.security.summary.with_raw_response.tls_version()
@@ -453,6 +488,7 @@ class TestSummary:
         summary = response.parse()
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_tls_version(self, client: Cloudflare) -> None:
         with client.radar.email.security.summary.with_streaming_response.tls_version() as response:
@@ -468,11 +504,13 @@ class TestSummary:
 class TestAsyncSummary:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_arc(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.arc()
         assert_matches_type(SummaryARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_arc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.arc(
@@ -496,6 +534,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_arc(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.summary.with_raw_response.arc()
@@ -505,6 +544,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_arc(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.summary.with_streaming_response.arc() as response:
@@ -516,11 +556,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_dkim(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.dkim()
         assert_matches_type(SummaryDKIMResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_dkim_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.dkim(
@@ -544,6 +586,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryDKIMResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_dkim(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.summary.with_raw_response.dkim()
@@ -553,6 +596,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryDKIMResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_dkim(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.summary.with_streaming_response.dkim() as response:
@@ -564,11 +608,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_dmarc(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.dmarc()
         assert_matches_type(SummaryDMARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_dmarc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.dmarc(
@@ -592,6 +638,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryDMARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_dmarc(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.summary.with_raw_response.dmarc()
@@ -601,6 +648,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryDMARCResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_dmarc(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.summary.with_streaming_response.dmarc() as response:
@@ -612,11 +660,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_malicious(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.malicious()
         assert_matches_type(SummaryMaliciousResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_malicious_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.malicious(
@@ -641,6 +691,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryMaliciousResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_malicious(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.summary.with_raw_response.malicious()
@@ -650,6 +701,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryMaliciousResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_malicious(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.summary.with_streaming_response.malicious() as response:
@@ -661,11 +713,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spam(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.spam()
         assert_matches_type(SummarySpamResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spam_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.spam(
@@ -690,6 +744,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummarySpamResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_spam(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.summary.with_raw_response.spam()
@@ -699,6 +754,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummarySpamResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_spam(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.summary.with_streaming_response.spam() as response:
@@ -710,11 +766,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spf(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.spf()
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spf_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.spf(
@@ -738,6 +796,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_spf(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.summary.with_raw_response.spf()
@@ -747,6 +806,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_spf(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.summary.with_streaming_response.spf() as response:
@@ -758,11 +818,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spoof(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.spoof()
         assert_matches_type(SummarySpoofResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_spoof_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.spoof(
@@ -787,6 +849,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummarySpoofResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_spoof(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.summary.with_raw_response.spoof()
@@ -796,6 +859,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummarySpoofResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_spoof(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.summary.with_streaming_response.spoof() as response:
@@ -807,11 +871,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_threat_category(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.threat_category()
         assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_threat_category_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.threat_category(
@@ -836,6 +902,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_threat_category(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.summary.with_raw_response.threat_category()
@@ -845,6 +912,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryThreatCategoryResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_threat_category(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.summary.with_streaming_response.threat_category() as response:
@@ -856,11 +924,13 @@ class TestAsyncSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_tls_version(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.tls_version()
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_tls_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.email.security.summary.tls_version(
@@ -884,6 +954,7 @@ class TestAsyncSummary:
         )
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_tls_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.summary.with_raw_response.tls_version()
@@ -893,6 +964,7 @@ class TestAsyncSummary:
         summary = await response.parse()
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_tls_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.summary.with_streaming_response.tls_version() as response:

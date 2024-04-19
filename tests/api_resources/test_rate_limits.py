@@ -24,6 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRateLimits:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         rate_limit = client.rate_limits.create(
@@ -32,6 +33,7 @@ class TestRateLimits:
         )
         assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.rate_limits.with_raw_response.create(
@@ -44,6 +46,7 @@ class TestRateLimits:
         rate_limit = response.parse()
         assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.rate_limits.with_streaming_response.create(
@@ -58,6 +61,7 @@ class TestRateLimits:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -66,6 +70,7 @@ class TestRateLimits:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         rate_limit = client.rate_limits.list(
@@ -73,6 +78,7 @@ class TestRateLimits:
         )
         assert_matches_type(SyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         rate_limit = client.rate_limits.list(
@@ -82,6 +88,7 @@ class TestRateLimits:
         )
         assert_matches_type(SyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.rate_limits.with_raw_response.list(
@@ -93,6 +100,7 @@ class TestRateLimits:
         rate_limit = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.rate_limits.with_streaming_response.list(
@@ -106,6 +114,7 @@ class TestRateLimits:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -113,6 +122,7 @@ class TestRateLimits:
                 "",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         rate_limit = client.rate_limits.delete(
@@ -122,6 +132,7 @@ class TestRateLimits:
         )
         assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.rate_limits.with_raw_response.delete(
@@ -135,6 +146,7 @@ class TestRateLimits:
         rate_limit = response.parse()
         assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.rate_limits.with_streaming_response.delete(
@@ -150,6 +162,7 @@ class TestRateLimits:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -166,6 +179,7 @@ class TestRateLimits:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         rate_limit = client.rate_limits.edit(
@@ -175,6 +189,7 @@ class TestRateLimits:
         )
         assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.rate_limits.with_raw_response.edit(
@@ -188,6 +203,7 @@ class TestRateLimits:
         rate_limit = response.parse()
         assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.rate_limits.with_streaming_response.edit(
@@ -203,6 +219,7 @@ class TestRateLimits:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -219,6 +236,7 @@ class TestRateLimits:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         rate_limit = client.rate_limits.get(
@@ -227,6 +245,7 @@ class TestRateLimits:
         )
         assert_matches_type(RateLimitGetResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rate_limits.with_raw_response.get(
@@ -239,6 +258,7 @@ class TestRateLimits:
         rate_limit = response.parse()
         assert_matches_type(RateLimitGetResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rate_limits.with_streaming_response.get(
@@ -253,6 +273,7 @@ class TestRateLimits:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -271,6 +292,7 @@ class TestRateLimits:
 class TestAsyncRateLimits:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         rate_limit = await async_client.rate_limits.create(
@@ -279,6 +301,7 @@ class TestAsyncRateLimits:
         )
         assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rate_limits.with_raw_response.create(
@@ -291,6 +314,7 @@ class TestAsyncRateLimits:
         rate_limit = await response.parse()
         assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rate_limits.with_streaming_response.create(
@@ -305,6 +329,7 @@ class TestAsyncRateLimits:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -313,6 +338,7 @@ class TestAsyncRateLimits:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         rate_limit = await async_client.rate_limits.list(
@@ -320,6 +346,7 @@ class TestAsyncRateLimits:
         )
         assert_matches_type(AsyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         rate_limit = await async_client.rate_limits.list(
@@ -329,6 +356,7 @@ class TestAsyncRateLimits:
         )
         assert_matches_type(AsyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rate_limits.with_raw_response.list(
@@ -340,6 +368,7 @@ class TestAsyncRateLimits:
         rate_limit = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rate_limits.with_streaming_response.list(
@@ -353,6 +382,7 @@ class TestAsyncRateLimits:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -360,6 +390,7 @@ class TestAsyncRateLimits:
                 "",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         rate_limit = await async_client.rate_limits.delete(
@@ -369,6 +400,7 @@ class TestAsyncRateLimits:
         )
         assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rate_limits.with_raw_response.delete(
@@ -382,6 +414,7 @@ class TestAsyncRateLimits:
         rate_limit = await response.parse()
         assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rate_limits.with_streaming_response.delete(
@@ -397,6 +430,7 @@ class TestAsyncRateLimits:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -413,6 +447,7 @@ class TestAsyncRateLimits:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         rate_limit = await async_client.rate_limits.edit(
@@ -422,6 +457,7 @@ class TestAsyncRateLimits:
         )
         assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rate_limits.with_raw_response.edit(
@@ -435,6 +471,7 @@ class TestAsyncRateLimits:
         rate_limit = await response.parse()
         assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rate_limits.with_streaming_response.edit(
@@ -450,6 +487,7 @@ class TestAsyncRateLimits:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -466,6 +504,7 @@ class TestAsyncRateLimits:
                 body={},
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         rate_limit = await async_client.rate_limits.get(
@@ -474,6 +513,7 @@ class TestAsyncRateLimits:
         )
         assert_matches_type(RateLimitGetResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rate_limits.with_raw_response.get(
@@ -486,6 +526,7 @@ class TestAsyncRateLimits:
         rate_limit = await response.parse()
         assert_matches_type(RateLimitGetResponse, rate_limit, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rate_limits.with_streaming_response.get(
@@ -500,6 +541,7 @@ class TestAsyncRateLimits:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):

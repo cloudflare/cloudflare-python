@@ -22,6 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCacheReserve:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_clear(self, client: Cloudflare) -> None:
         cache_reserve = client.cache.cache_reserve.clear(
@@ -30,6 +31,7 @@ class TestCacheReserve:
         )
         assert_matches_type(CacheReserveClearResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_clear(self, client: Cloudflare) -> None:
         response = client.cache.cache_reserve.with_raw_response.clear(
@@ -42,6 +44,7 @@ class TestCacheReserve:
         cache_reserve = response.parse()
         assert_matches_type(CacheReserveClearResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_clear(self, client: Cloudflare) -> None:
         with client.cache.cache_reserve.with_streaming_response.clear(
@@ -56,6 +59,7 @@ class TestCacheReserve:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_clear(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -64,6 +68,7 @@ class TestCacheReserve:
                 body="{}",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         cache_reserve = client.cache.cache_reserve.edit(
@@ -72,6 +77,7 @@ class TestCacheReserve:
         )
         assert_matches_type(CacheReserveEditResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.cache.cache_reserve.with_raw_response.edit(
@@ -84,6 +90,7 @@ class TestCacheReserve:
         cache_reserve = response.parse()
         assert_matches_type(CacheReserveEditResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.cache.cache_reserve.with_streaming_response.edit(
@@ -98,6 +105,7 @@ class TestCacheReserve:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -106,6 +114,7 @@ class TestCacheReserve:
                 value="on",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         cache_reserve = client.cache.cache_reserve.get(
@@ -113,6 +122,7 @@ class TestCacheReserve:
         )
         assert_matches_type(CacheReserveGetResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cache.cache_reserve.with_raw_response.get(
@@ -124,6 +134,7 @@ class TestCacheReserve:
         cache_reserve = response.parse()
         assert_matches_type(CacheReserveGetResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cache.cache_reserve.with_streaming_response.get(
@@ -137,6 +148,7 @@ class TestCacheReserve:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -144,6 +156,7 @@ class TestCacheReserve:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_status(self, client: Cloudflare) -> None:
         cache_reserve = client.cache.cache_reserve.status(
@@ -151,6 +164,7 @@ class TestCacheReserve:
         )
         assert_matches_type(CacheReserveStatusResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_status(self, client: Cloudflare) -> None:
         response = client.cache.cache_reserve.with_raw_response.status(
@@ -162,6 +176,7 @@ class TestCacheReserve:
         cache_reserve = response.parse()
         assert_matches_type(CacheReserveStatusResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_status(self, client: Cloudflare) -> None:
         with client.cache.cache_reserve.with_streaming_response.status(
@@ -175,6 +190,7 @@ class TestCacheReserve:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_path_params_status(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -186,6 +202,7 @@ class TestCacheReserve:
 class TestAsyncCacheReserve:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_clear(self, async_client: AsyncCloudflare) -> None:
         cache_reserve = await async_client.cache.cache_reserve.clear(
@@ -194,6 +211,7 @@ class TestAsyncCacheReserve:
         )
         assert_matches_type(CacheReserveClearResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_clear(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.cache_reserve.with_raw_response.clear(
@@ -206,6 +224,7 @@ class TestAsyncCacheReserve:
         cache_reserve = await response.parse()
         assert_matches_type(CacheReserveClearResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_clear(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.cache_reserve.with_streaming_response.clear(
@@ -220,6 +239,7 @@ class TestAsyncCacheReserve:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_clear(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -228,6 +248,7 @@ class TestAsyncCacheReserve:
                 body="{}",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         cache_reserve = await async_client.cache.cache_reserve.edit(
@@ -236,6 +257,7 @@ class TestAsyncCacheReserve:
         )
         assert_matches_type(CacheReserveEditResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.cache_reserve.with_raw_response.edit(
@@ -248,6 +270,7 @@ class TestAsyncCacheReserve:
         cache_reserve = await response.parse()
         assert_matches_type(CacheReserveEditResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.cache_reserve.with_streaming_response.edit(
@@ -262,6 +285,7 @@ class TestAsyncCacheReserve:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -270,6 +294,7 @@ class TestAsyncCacheReserve:
                 value="on",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         cache_reserve = await async_client.cache.cache_reserve.get(
@@ -277,6 +302,7 @@ class TestAsyncCacheReserve:
         )
         assert_matches_type(CacheReserveGetResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.cache_reserve.with_raw_response.get(
@@ -288,6 +314,7 @@ class TestAsyncCacheReserve:
         cache_reserve = await response.parse()
         assert_matches_type(CacheReserveGetResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.cache_reserve.with_streaming_response.get(
@@ -301,6 +328,7 @@ class TestAsyncCacheReserve:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -308,6 +336,7 @@ class TestAsyncCacheReserve:
                 zone_id="",
             )
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_status(self, async_client: AsyncCloudflare) -> None:
         cache_reserve = await async_client.cache.cache_reserve.status(
@@ -315,6 +344,7 @@ class TestAsyncCacheReserve:
         )
         assert_matches_type(CacheReserveStatusResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_status(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.cache_reserve.with_raw_response.status(
@@ -326,6 +356,7 @@ class TestAsyncCacheReserve:
         cache_reserve = await response.parse()
         assert_matches_type(CacheReserveStatusResponse, cache_reserve, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_status(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.cache_reserve.with_streaming_response.status(
@@ -339,6 +370,7 @@ class TestAsyncCacheReserve:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_path_params_status(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

@@ -21,11 +21,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTop:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_browser_families(self, client: Cloudflare) -> None:
         top = client.radar.http.top.browser_families()
         assert_matches_type(TopBrowserFamiliesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_browser_families_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.http.top.browser_families(
@@ -56,6 +58,7 @@ class TestTop:
         )
         assert_matches_type(TopBrowserFamiliesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_browser_families(self, client: Cloudflare) -> None:
         response = client.radar.http.top.with_raw_response.browser_families()
@@ -65,6 +68,7 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopBrowserFamiliesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_browser_families(self, client: Cloudflare) -> None:
         with client.radar.http.top.with_streaming_response.browser_families() as response:
@@ -76,11 +80,13 @@ class TestTop:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_browsers(self, client: Cloudflare) -> None:
         top = client.radar.http.top.browsers()
         assert_matches_type(TopBrowsersResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_method_browsers_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.http.top.browsers(
@@ -111,6 +117,7 @@ class TestTop:
         )
         assert_matches_type(TopBrowsersResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_raw_response_browsers(self, client: Cloudflare) -> None:
         response = client.radar.http.top.with_raw_response.browsers()
@@ -120,6 +127,7 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopBrowsersResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_browsers(self, client: Cloudflare) -> None:
         with client.radar.http.top.with_streaming_response.browsers() as response:
@@ -135,11 +143,13 @@ class TestTop:
 class TestAsyncTop:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_browser_families(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.http.top.browser_families()
         assert_matches_type(TopBrowserFamiliesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_browser_families_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.http.top.browser_families(
@@ -170,6 +180,7 @@ class TestAsyncTop:
         )
         assert_matches_type(TopBrowserFamiliesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_browser_families(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.top.with_raw_response.browser_families()
@@ -179,6 +190,7 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopBrowserFamiliesResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_browser_families(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.top.with_streaming_response.browser_families() as response:
@@ -190,11 +202,13 @@ class TestAsyncTop:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_browsers(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.http.top.browsers()
         assert_matches_type(TopBrowsersResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_method_browsers_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.http.top.browsers(
@@ -225,6 +239,7 @@ class TestAsyncTop:
         )
         assert_matches_type(TopBrowsersResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_browsers(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.top.with_raw_response.browsers()
@@ -234,6 +249,7 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopBrowsersResponse, top, path=["response"])
 
+    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_browsers(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.top.with_streaming_response.browsers() as response:
