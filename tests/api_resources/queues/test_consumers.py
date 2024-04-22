@@ -37,6 +37,7 @@ class TestConsumers:
                     "max_retries": 3,
                     "max_wait_time_ms": 5000,
                 },
+                "type": "worker",
             },
         )
         assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
@@ -56,6 +57,7 @@ class TestConsumers:
                     "max_retries": 3,
                     "max_wait_time_ms": 5000,
                 },
+                "type": "worker",
             },
         )
 
@@ -79,6 +81,7 @@ class TestConsumers:
                     "max_retries": 3,
                     "max_wait_time_ms": 5000,
                 },
+                "type": "worker",
             },
         ) as response:
             assert not response.is_closed
@@ -105,6 +108,7 @@ class TestConsumers:
                         "max_retries": 3,
                         "max_wait_time_ms": 5000,
                     },
+                    "type": "worker",
                 },
             )
 
@@ -121,6 +125,7 @@ class TestConsumers:
                         "max_retries": 3,
                         "max_wait_time_ms": 5000,
                     },
+                    "type": "worker",
                 },
             )
 
@@ -365,6 +370,7 @@ class TestAsyncConsumers:
                     "max_retries": 3,
                     "max_wait_time_ms": 5000,
                 },
+                "type": "worker",
             },
         )
         assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
@@ -384,6 +390,7 @@ class TestAsyncConsumers:
                     "max_retries": 3,
                     "max_wait_time_ms": 5000,
                 },
+                "type": "worker",
             },
         )
 
@@ -407,6 +414,7 @@ class TestAsyncConsumers:
                     "max_retries": 3,
                     "max_wait_time_ms": 5000,
                 },
+                "type": "worker",
             },
         ) as response:
             assert not response.is_closed
@@ -433,6 +441,7 @@ class TestAsyncConsumers:
                         "max_retries": 3,
                         "max_wait_time_ms": 5000,
                     },
+                    "type": "worker",
                 },
             )
 
@@ -449,6 +458,7 @@ class TestAsyncConsumers:
                         "max_retries": 3,
                         "max_wait_time_ms": 5000,
                     },
+                    "type": "worker",
                 },
             )
 
