@@ -165,9 +165,17 @@ class TestApplications:
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
                 "custom_attributes": {
+                    "friendly_name": "Last Name",
                     "name": "family_name",
                     "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
-                    "source": {"name": "last_name"},
+                    "required": True,
+                    "source": {
+                        "name": "last_name",
+                        "name_by_idp": {
+                            "exampleIdPID1": "AttributeName1",
+                            "exampleIdPID2": "AttributeName2",
+                        },
+                    },
                 },
                 "default_relay_state": "https://example.com",
                 "idp_entity_id": "https://example.cloudflareaccess.com",
@@ -889,9 +897,17 @@ class TestApplications:
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
                 "custom_attributes": {
+                    "friendly_name": "Last Name",
                     "name": "family_name",
                     "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
-                    "source": {"name": "last_name"},
+                    "required": True,
+                    "source": {
+                        "name": "last_name",
+                        "name_by_idp": {
+                            "exampleIdPID1": "AttributeName1",
+                            "exampleIdPID2": "AttributeName2",
+                        },
+                    },
                 },
                 "default_relay_state": "https://example.com",
                 "idp_entity_id": "https://example.cloudflareaccess.com",
@@ -1911,9 +1927,17 @@ class TestAsyncApplications:
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
                 "custom_attributes": {
+                    "friendly_name": "Last Name",
                     "name": "family_name",
                     "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
-                    "source": {"name": "last_name"},
+                    "required": True,
+                    "source": {
+                        "name": "last_name",
+                        "name_by_idp": {
+                            "exampleIdPID1": "AttributeName1",
+                            "exampleIdPID2": "AttributeName2",
+                        },
+                    },
                 },
                 "default_relay_state": "https://example.com",
                 "idp_entity_id": "https://example.cloudflareaccess.com",
@@ -2635,9 +2659,17 @@ class TestAsyncApplications:
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
                 "custom_attributes": {
+                    "friendly_name": "Last Name",
                     "name": "family_name",
                     "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
-                    "source": {"name": "last_name"},
+                    "required": True,
+                    "source": {
+                        "name": "last_name",
+                        "name_by_idp": {
+                            "exampleIdPID1": "AttributeName1",
+                            "exampleIdPID2": "AttributeName2",
+                        },
+                    },
                 },
                 "default_relay_state": "https://example.com",
                 "idp_entity_id": "https://example.cloudflareaccess.com",
