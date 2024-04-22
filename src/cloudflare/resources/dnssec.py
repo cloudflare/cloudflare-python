@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Any, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -49,7 +49,7 @@ class DNSSECResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECDeleteResponse:
+    ) -> Optional[DNSSECDeleteResponse]:
         """
         Delete DNSSEC.
 
@@ -67,7 +67,7 @@ class DNSSECResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            DNSSECDeleteResponse,
+            Optional[DNSSECDeleteResponse],
             self._delete(
                 f"/zones/{zone_id}/dnssec",
                 body=maybe_transform(body, dnssec_delete_params.DNSSECDeleteParams),
@@ -76,7 +76,7 @@ class DNSSECResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[DNSSECDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[DNSSECDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DNSSECDeleteResponse]
@@ -97,7 +97,7 @@ class DNSSECResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSEC:
+    ) -> Optional[DNSSEC]:
         """
         Enable or disable DNSSEC.
 
@@ -148,9 +148,9 @@ class DNSSECResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DNSSEC]._unwrapper,
+                post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper,
             ),
-            cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
+            cast_to=cast(Type[Optional[DNSSEC]], ResultWrapper[DNSSEC]),
         )
 
     def get(
@@ -163,7 +163,7 @@ class DNSSECResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSEC:
+    ) -> Optional[DNSSEC]:
         """
         Details about DNSSEC status and configuration.
 
@@ -187,9 +187,9 @@ class DNSSECResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DNSSEC]._unwrapper,
+                post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper,
             ),
-            cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
+            cast_to=cast(Type[Optional[DNSSEC]], ResultWrapper[DNSSEC]),
         )
 
 
@@ -213,7 +213,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSECDeleteResponse:
+    ) -> Optional[DNSSECDeleteResponse]:
         """
         Delete DNSSEC.
 
@@ -231,7 +231,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            DNSSECDeleteResponse,
+            Optional[DNSSECDeleteResponse],
             await self._delete(
                 f"/zones/{zone_id}/dnssec",
                 body=await async_maybe_transform(body, dnssec_delete_params.DNSSECDeleteParams),
@@ -240,7 +240,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[DNSSECDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[DNSSECDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DNSSECDeleteResponse]
@@ -261,7 +261,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSEC:
+    ) -> Optional[DNSSEC]:
         """
         Enable or disable DNSSEC.
 
@@ -312,9 +312,9 @@ class AsyncDNSSECResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DNSSEC]._unwrapper,
+                post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper,
             ),
-            cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
+            cast_to=cast(Type[Optional[DNSSEC]], ResultWrapper[DNSSEC]),
         )
 
     async def get(
@@ -327,7 +327,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSSEC:
+    ) -> Optional[DNSSEC]:
         """
         Details about DNSSEC status and configuration.
 
@@ -351,9 +351,9 @@ class AsyncDNSSECResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DNSSEC]._unwrapper,
+                post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper,
             ),
-            cast_to=cast(Type[DNSSEC], ResultWrapper[DNSSEC]),
+            cast_to=cast(Type[Optional[DNSSEC]], ResultWrapper[DNSSEC]),
         )
 
 
