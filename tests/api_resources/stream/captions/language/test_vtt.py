@@ -23,7 +23,6 @@ class TestVtt:
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         )
         assert_matches_type(str, vtt, path=["response"])
 
@@ -34,7 +33,6 @@ class TestVtt:
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         )
 
         assert response.is_closed is True
@@ -49,7 +47,6 @@ class TestVtt:
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,7 +64,6 @@ class TestVtt:
                 "tr",
                 account_id="",
                 identifier="ea95132c15732412d22c1476fa83f27a",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -75,7 +71,6 @@ class TestVtt:
                 "tr",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
@@ -83,7 +78,6 @@ class TestVtt:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="ea95132c15732412d22c1476fa83f27a",
-                body={},
             )
 
 
@@ -97,7 +91,6 @@ class TestAsyncVtt:
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         )
         assert_matches_type(str, vtt, path=["response"])
 
@@ -108,7 +101,6 @@ class TestAsyncVtt:
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         )
 
         assert response.is_closed is True
@@ -123,7 +115,6 @@ class TestAsyncVtt:
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -141,7 +132,6 @@ class TestAsyncVtt:
                 "tr",
                 account_id="",
                 identifier="ea95132c15732412d22c1476fa83f27a",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -149,7 +139,6 @@ class TestAsyncVtt:
                 "tr",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
@@ -157,5 +146,4 @@ class TestAsyncVtt:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="ea95132c15732412d22c1476fa83f27a",
-                body={},
             )

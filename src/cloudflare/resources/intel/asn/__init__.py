@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .asn import (
-    ASNResource,
-    AsyncASNResource,
-    ASNResourceWithRawResponse,
-    AsyncASNResourceWithRawResponse,
-    ASNResourceWithStreamingResponse,
-    AsyncASNResourceWithStreamingResponse,
+    ASN,
+    AsyncASN,
+    ASNWithRawResponse,
+    AsyncASNWithRawResponse,
+    ASNWithStreamingResponse,
+    AsyncASNWithStreamingResponse,
 )
 from .subnets import (
     Subnets,
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncSubnetsWithRawResponse",
     "SubnetsWithStreamingResponse",
     "AsyncSubnetsWithStreamingResponse",
-    "ASNResource",
-    "AsyncASNResource",
-    "ASNResourceWithRawResponse",
-    "AsyncASNResourceWithRawResponse",
-    "ASNResourceWithStreamingResponse",
-    "AsyncASNResourceWithStreamingResponse",
+    "ASN",
+    "AsyncASN",
+    "ASNWithRawResponse",
+    "AsyncASNWithRawResponse",
+    "ASNWithStreamingResponse",
+    "AsyncASNWithStreamingResponse",
 ]

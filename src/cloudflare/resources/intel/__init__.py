@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .asn import (
-    ASNResource,
-    AsyncASNResource,
-    ASNResourceWithRawResponse,
-    AsyncASNResourceWithRawResponse,
-    ASNResourceWithStreamingResponse,
-    AsyncASNResourceWithStreamingResponse,
+    ASN,
+    AsyncASN,
+    ASNWithRawResponse,
+    AsyncASNWithRawResponse,
+    ASNWithStreamingResponse,
+    AsyncASNWithStreamingResponse,
 )
 from .dns import (
     DNS,
@@ -98,12 +98,12 @@ from .attack_surface_report import (
 )
 
 __all__ = [
-    "ASNResource",
-    "AsyncASNResource",
-    "ASNResourceWithRawResponse",
-    "AsyncASNResourceWithRawResponse",
-    "ASNResourceWithStreamingResponse",
-    "AsyncASNResourceWithStreamingResponse",
+    "ASN",
+    "AsyncASN",
+    "ASNWithRawResponse",
+    "AsyncASNWithRawResponse",
+    "ASNWithStreamingResponse",
+    "AsyncASNWithStreamingResponse",
     "DNS",
     "AsyncDNS",
     "DNSWithRawResponse",

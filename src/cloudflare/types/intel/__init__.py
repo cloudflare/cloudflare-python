@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from .ip import IP as IP
-from .asn import ASN as ASN
 from .dns import DNS as DNS
 from .whois import Whois as Whois
 from .domain import Domain as Domain
 from .ip_list import IPList as IPList
 from .sinkhole import Sinkhole as Sinkhole
 from .dns_param import DNSParam as DNSParam
+from .intel_asn import IntelASN as IntelASN
 from .ip_get_params import IPGetParams as IPGetParams
 from .domain_history import DomainHistory as DomainHistory
 from .dns_list_params import DNSListParams as DNSListParams
