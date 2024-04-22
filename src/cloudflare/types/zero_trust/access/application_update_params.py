@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Dict, List, Union
 from typing_extensions import Literal, Required, TypedDict
 
 from .allowed_idpsh import AllowedIdpsh
@@ -17,6 +17,8 @@ __all__ = [
     "SaaSApplication",
     "SaaSApplicationSaasApp",
     "SaaSApplicationSaasAppAccessOIDCSaasApp",
+    "SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims",
+    "SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource",
     "BrowserSSHApplication",
     "BrowserVncApplication",
     "AppLauncherApplication",
@@ -195,6 +197,27 @@ class SaaSApplication(TypedDict, total=False):
     """The application type."""
 
 
+class SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource(TypedDict, total=False):
+    name: str
+    """The name of the IdP claim."""
+
+
+class SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims(TypedDict, total=False):
+    name: str
+    """The name of the claim."""
+
+    name_by_idp: Dict[str, str]
+    """A mapping from IdP ID to claim name."""
+
+    required: bool
+    """If the claim is required when building an OIDC token."""
+
+    scope: Literal["groups", "profile", "email", "openid"]
+    """The scope of the claim."""
+
+    source: SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource
+
+
 class SaaSApplicationSaasAppAccessOIDCSaasApp(TypedDict, total=False):
     app_launcher_url: str
     """The URL where this applications tile redirects users"""
@@ -210,6 +233,8 @@ class SaaSApplicationSaasAppAccessOIDCSaasApp(TypedDict, total=False):
 
     client_secret: str
     """The application client secret, only returned on POST request."""
+
+    custom_claims: SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims
 
     grant_types: List[Literal["authorization_code", "authorization_code_with_pkce"]]
     """The OIDC flows supported by this application"""

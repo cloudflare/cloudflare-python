@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -17,6 +17,8 @@ __all__ = [
     "SaaSApplication",
     "SaaSApplicationSaasApp",
     "SaaSApplicationSaasAppAccessOIDCSaasApp",
+    "SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims",
+    "SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource",
     "BrowserSSHApplication",
     "BrowserVncApplication",
     "AppLauncherApplication",
@@ -154,6 +156,27 @@ class SelfHostedApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
+class SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource(BaseModel):
+    name: Optional[str] = None
+    """The name of the IdP claim."""
+
+
+class SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims(BaseModel):
+    name: Optional[str] = None
+    """The name of the claim."""
+
+    name_by_idp: Optional[Dict[str, str]] = None
+    """A mapping from IdP ID to claim name."""
+
+    required: Optional[bool] = None
+    """If the claim is required when building an OIDC token."""
+
+    scope: Optional[Literal["groups", "profile", "email", "openid"]] = None
+    """The scope of the claim."""
+
+    source: Optional[SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource] = None
+
+
 class SaaSApplicationSaasAppAccessOIDCSaasApp(BaseModel):
     app_launcher_url: Optional[str] = None
     """The URL where this applications tile redirects users"""
@@ -171,6 +194,8 @@ class SaaSApplicationSaasAppAccessOIDCSaasApp(BaseModel):
     """The application client secret, only returned on POST request."""
 
     created_at: Optional[datetime] = None
+
+    custom_claims: Optional[SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims] = None
 
     grant_types: Optional[List[Literal["authorization_code", "authorization_code_with_pkce"]]] = None
     """The OIDC flows supported by this application"""
