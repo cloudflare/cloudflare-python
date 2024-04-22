@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -24,7 +24,7 @@ class TestDNSSEC:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(DNSSECDeleteResponse, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSECDeleteResponse], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestDNSSEC:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dnssec = response.parse()
-        assert_matches_type(DNSSECDeleteResponse, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSECDeleteResponse], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestDNSSEC:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dnssec = response.parse()
-            assert_matches_type(DNSSECDeleteResponse, dnssec, path=["response"])
+            assert_matches_type(Optional[DNSSECDeleteResponse], dnssec, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestDNSSEC:
         dnssec = client.dnssec.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSSEC, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -80,7 +80,7 @@ class TestDNSSEC:
             dnssec_presigned=True,
             status="active",
         )
-        assert_matches_type(DNSSEC, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -92,7 +92,7 @@ class TestDNSSEC:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dnssec = response.parse()
-        assert_matches_type(DNSSEC, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -104,7 +104,7 @@ class TestDNSSEC:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dnssec = response.parse()
-            assert_matches_type(DNSSEC, dnssec, path=["response"])
+            assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -122,7 +122,7 @@ class TestDNSSEC:
         dnssec = client.dnssec.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSSEC, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -134,7 +134,7 @@ class TestDNSSEC:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dnssec = response.parse()
-        assert_matches_type(DNSSEC, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -146,7 +146,7 @@ class TestDNSSEC:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dnssec = response.parse()
-            assert_matches_type(DNSSEC, dnssec, path=["response"])
+            assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -169,7 +169,7 @@ class TestAsyncDNSSEC:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(DNSSECDeleteResponse, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSECDeleteResponse], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -182,7 +182,7 @@ class TestAsyncDNSSEC:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dnssec = await response.parse()
-        assert_matches_type(DNSSECDeleteResponse, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSECDeleteResponse], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -195,7 +195,7 @@ class TestAsyncDNSSEC:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dnssec = await response.parse()
-            assert_matches_type(DNSSECDeleteResponse, dnssec, path=["response"])
+            assert_matches_type(Optional[DNSSECDeleteResponse], dnssec, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -214,7 +214,7 @@ class TestAsyncDNSSEC:
         dnssec = await async_client.dnssec.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSSEC, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -225,7 +225,7 @@ class TestAsyncDNSSEC:
             dnssec_presigned=True,
             status="active",
         )
-        assert_matches_type(DNSSEC, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -237,7 +237,7 @@ class TestAsyncDNSSEC:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dnssec = await response.parse()
-        assert_matches_type(DNSSEC, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -249,7 +249,7 @@ class TestAsyncDNSSEC:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dnssec = await response.parse()
-            assert_matches_type(DNSSEC, dnssec, path=["response"])
+            assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -267,7 +267,7 @@ class TestAsyncDNSSEC:
         dnssec = await async_client.dnssec.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSSEC, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -279,7 +279,7 @@ class TestAsyncDNSSEC:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dnssec = await response.parse()
-        assert_matches_type(DNSSEC, dnssec, path=["response"])
+        assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -291,7 +291,7 @@ class TestAsyncDNSSEC:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dnssec = await response.parse()
-            assert_matches_type(DNSSEC, dnssec, path=["response"])
+            assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
