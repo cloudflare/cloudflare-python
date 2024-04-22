@@ -1,7 +1,7 @@
 import os
 import sys
+
 from cloudflare import Cloudflare
-from cloudflare.types.workers.ai_run_response import Translation
 
 account_id = os.getenv("CLOUDFLARE_ACCOUNT_ID")
 if account_id is None:
@@ -18,4 +18,4 @@ t = client.workers.ai.run(
     source_lang="english",
 )
 
-print(t['translated_text'])
+# print(t['translated_text'])
