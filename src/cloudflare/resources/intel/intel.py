@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from .asn import (
-    ASNResource,
-    AsyncASNResource,
-    ASNResourceWithRawResponse,
-    AsyncASNResourceWithRawResponse,
-    ASNResourceWithStreamingResponse,
-    AsyncASNResourceWithStreamingResponse,
+    ASN,
+    AsyncASN,
+    ASNWithRawResponse,
+    AsyncASNWithRawResponse,
+    ASNWithStreamingResponse,
+    AsyncASNWithStreamingResponse,
 )
 from .dns import (
     DNS,
@@ -34,7 +34,7 @@ from .whois import (
     WhoisWithStreamingResponse,
     AsyncWhoisWithStreamingResponse,
 )
-from .asn.asn import ASNResource, AsyncASNResource
+from .asn.asn import ASN, AsyncASN
 from .domains import (
     Domains,
     AsyncDomains,
@@ -102,8 +102,8 @@ __all__ = ["Intel", "AsyncIntel"]
 
 class Intel(SyncAPIResource):
     @cached_property
-    def asn(self) -> ASNResource:
-        return ASNResource(self._client)
+    def asn(self) -> ASN:
+        return ASN(self._client)
 
     @cached_property
     def dns(self) -> DNS:
@@ -156,8 +156,8 @@ class Intel(SyncAPIResource):
 
 class AsyncIntel(AsyncAPIResource):
     @cached_property
-    def asn(self) -> AsyncASNResource:
-        return AsyncASNResource(self._client)
+    def asn(self) -> AsyncASN:
+        return AsyncASN(self._client)
 
     @cached_property
     def dns(self) -> AsyncDNS:
@@ -213,8 +213,8 @@ class IntelWithRawResponse:
         self._intel = intel
 
     @cached_property
-    def asn(self) -> ASNResourceWithRawResponse:
-        return ASNResourceWithRawResponse(self._intel.asn)
+    def asn(self) -> ASNWithRawResponse:
+        return ASNWithRawResponse(self._intel.asn)
 
     @cached_property
     def dns(self) -> DNSWithRawResponse:
@@ -262,8 +262,8 @@ class AsyncIntelWithRawResponse:
         self._intel = intel
 
     @cached_property
-    def asn(self) -> AsyncASNResourceWithRawResponse:
-        return AsyncASNResourceWithRawResponse(self._intel.asn)
+    def asn(self) -> AsyncASNWithRawResponse:
+        return AsyncASNWithRawResponse(self._intel.asn)
 
     @cached_property
     def dns(self) -> AsyncDNSWithRawResponse:
@@ -311,8 +311,8 @@ class IntelWithStreamingResponse:
         self._intel = intel
 
     @cached_property
-    def asn(self) -> ASNResourceWithStreamingResponse:
-        return ASNResourceWithStreamingResponse(self._intel.asn)
+    def asn(self) -> ASNWithStreamingResponse:
+        return ASNWithStreamingResponse(self._intel.asn)
 
     @cached_property
     def dns(self) -> DNSWithStreamingResponse:
@@ -360,8 +360,8 @@ class AsyncIntelWithStreamingResponse:
         self._intel = intel
 
     @cached_property
-    def asn(self) -> AsyncASNResourceWithStreamingResponse:
-        return AsyncASNResourceWithStreamingResponse(self._intel.asn)
+    def asn(self) -> AsyncASNWithStreamingResponse:
+        return AsyncASNWithStreamingResponse(self._intel.asn)
 
     @cached_property
     def dns(self) -> AsyncDNSWithStreamingResponse:

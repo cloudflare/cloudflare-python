@@ -24,30 +24,30 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.intel import ASN
+from ....types.intel import IntelASN
 from ...._base_client import (
     make_request_options,
 )
 
-__all__ = ["ASNResource", "AsyncASNResource"]
+__all__ = ["ASN", "AsyncASN"]
 
 
-class ASNResource(SyncAPIResource):
+class ASN(SyncAPIResource):
     @cached_property
     def subnets(self) -> Subnets:
         return Subnets(self._client)
 
     @cached_property
-    def with_raw_response(self) -> ASNResourceWithRawResponse:
-        return ASNResourceWithRawResponse(self)
+    def with_raw_response(self) -> ASNWithRawResponse:
+        return ASNWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ASNResourceWithStreamingResponse:
-        return ASNResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> ASNWithStreamingResponse:
+        return ASNWithStreamingResponse(self)
 
     def get(
         self,
-        asn: ASN,
+        asn: IntelASN,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -56,7 +56,7 @@ class ASNResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ASN:
+    ) -> IntelASN:
         """
         Get ASN Overview
 
@@ -80,28 +80,28 @@ class ASNResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ASN]._unwrapper,
+                post_parser=ResultWrapper[IntelASN]._unwrapper,
             ),
-            cast_to=cast(Type[ASN], ResultWrapper[int]),
+            cast_to=cast(Type[IntelASN], ResultWrapper[int]),
         )
 
 
-class AsyncASNResource(AsyncAPIResource):
+class AsyncASN(AsyncAPIResource):
     @cached_property
     def subnets(self) -> AsyncSubnets:
         return AsyncSubnets(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncASNResourceWithRawResponse:
-        return AsyncASNResourceWithRawResponse(self)
+    def with_raw_response(self) -> AsyncASNWithRawResponse:
+        return AsyncASNWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncASNResourceWithStreamingResponse:
-        return AsyncASNResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncASNWithStreamingResponse:
+        return AsyncASNWithStreamingResponse(self)
 
     async def get(
         self,
-        asn: ASN,
+        asn: IntelASN,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -110,7 +110,7 @@ class AsyncASNResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ASN:
+    ) -> IntelASN:
         """
         Get ASN Overview
 
@@ -134,14 +134,14 @@ class AsyncASNResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ASN]._unwrapper,
+                post_parser=ResultWrapper[IntelASN]._unwrapper,
             ),
-            cast_to=cast(Type[ASN], ResultWrapper[int]),
+            cast_to=cast(Type[IntelASN], ResultWrapper[int]),
         )
 
 
-class ASNResourceWithRawResponse:
-    def __init__(self, asn: ASNResource) -> None:
+class ASNWithRawResponse:
+    def __init__(self, asn: ASN) -> None:
         self._asn = asn
 
         self.get = to_raw_response_wrapper(
@@ -153,8 +153,8 @@ class ASNResourceWithRawResponse:
         return SubnetsWithRawResponse(self._asn.subnets)
 
 
-class AsyncASNResourceWithRawResponse:
-    def __init__(self, asn: AsyncASNResource) -> None:
+class AsyncASNWithRawResponse:
+    def __init__(self, asn: AsyncASN) -> None:
         self._asn = asn
 
         self.get = async_to_raw_response_wrapper(
@@ -166,8 +166,8 @@ class AsyncASNResourceWithRawResponse:
         return AsyncSubnetsWithRawResponse(self._asn.subnets)
 
 
-class ASNResourceWithStreamingResponse:
-    def __init__(self, asn: ASNResource) -> None:
+class ASNWithStreamingResponse:
+    def __init__(self, asn: ASN) -> None:
         self._asn = asn
 
         self.get = to_streamed_response_wrapper(
@@ -179,8 +179,8 @@ class ASNResourceWithStreamingResponse:
         return SubnetsWithStreamingResponse(self._asn.subnets)
 
 
-class AsyncASNResourceWithStreamingResponse:
-    def __init__(self, asn: AsyncASNResource) -> None:
+class AsyncASNWithStreamingResponse:
+    def __init__(self, asn: AsyncASN) -> None:
         self._asn = asn
 
         self.get = async_to_streamed_response_wrapper(

@@ -2,5 +2,4 @@
 
 from __future__ import annotations
 
-from .vtt_get_params import VttGetParams as VttGetParams
 from .vtt_get_response import VttGetResponse as VttGetResponse
