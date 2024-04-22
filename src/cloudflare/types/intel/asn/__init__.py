@@ -2,5 +2,4 @@
 
 from __future__ import annotations
 
-from .asn import ASN as ASN
 from .subnet_get_response import SubnetGetResponse as SubnetGetResponse
