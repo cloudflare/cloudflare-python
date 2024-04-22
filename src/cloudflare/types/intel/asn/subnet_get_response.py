@@ -2,15 +2,14 @@
 
 from typing import List, Optional
 
-from cloudflare.types.intel import ASN
-
 from ...._models import BaseModel
+from ..intel_asn import IntelASN
 
 __all__ = ["SubnetGetResponse"]
 
 
 class SubnetGetResponse(BaseModel):
-    asn: Optional[ASN] = None
+    asn: Optional[IntelASN] = None
 
     count: Optional[float] = None
     """Total results returned based on your search parameters."""
