@@ -13,11 +13,17 @@ __all__ = ["SAMLSaasApp", "CustomAttributes"]
 
 
 class CustomAttributes(BaseModel):
+    friendly_name: Optional[str] = None
+    """The SAML FriendlyName of the attribute."""
+
     name: Optional[str] = None
     """The name of the attribute."""
 
     name_format: Optional[SaasAppNameFormat] = None
     """A globally unique name for an identity or service provider."""
+
+    required: Optional[bool] = None
+    """If the attribute is required when building a SAML assertion."""
 
     source: Optional[SaasAppSource] = None
 

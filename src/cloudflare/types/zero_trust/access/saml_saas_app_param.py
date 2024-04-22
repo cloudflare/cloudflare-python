@@ -12,11 +12,17 @@ __all__ = ["SAMLSaasAppParam", "CustomAttributes"]
 
 
 class CustomAttributes(TypedDict, total=False):
+    friendly_name: str
+    """The SAML FriendlyName of the attribute."""
+
     name: str
     """The name of the attribute."""
 
     name_format: SaasAppNameFormat
     """A globally unique name for an identity or service provider."""
+
+    required: bool
+    """If the attribute is required when building a SAML assertion."""
 
     source: SaasAppSourceParam
 
