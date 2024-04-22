@@ -24,10 +24,10 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.intel import IntelASN
 from ...._base_client import (
     make_request_options,
 )
+from ....types.shared import asn
 
 __all__ = ["ASN", "AsyncASN"]
 
@@ -47,7 +47,7 @@ class ASN(SyncAPIResource):
 
     def get(
         self,
-        asn: IntelASN,
+        asn: asn.ASN,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -56,7 +56,7 @@ class ASN(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IntelASN:
+    ) -> asn.ASN:
         """
         Get ASN Overview
 
@@ -80,9 +80,9 @@ class ASN(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[IntelASN]._unwrapper,
+                post_parser=ResultWrapper[asn.ASN]._unwrapper,
             ),
-            cast_to=cast(Type[IntelASN], ResultWrapper[int]),
+            cast_to=cast(Type[asn.ASN], ResultWrapper[int]),
         )
 
 
@@ -101,7 +101,7 @@ class AsyncASN(AsyncAPIResource):
 
     async def get(
         self,
-        asn: IntelASN,
+        asn: asn.ASN,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -110,7 +110,7 @@ class AsyncASN(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IntelASN:
+    ) -> asn.ASN:
         """
         Get ASN Overview
 
@@ -134,9 +134,9 @@ class AsyncASN(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[IntelASN]._unwrapper,
+                post_parser=ResultWrapper[asn.ASN]._unwrapper,
             ),
-            cast_to=cast(Type[IntelASN], ResultWrapper[int]),
+            cast_to=cast(Type[asn.ASN], ResultWrapper[int]),
         )
 
 
