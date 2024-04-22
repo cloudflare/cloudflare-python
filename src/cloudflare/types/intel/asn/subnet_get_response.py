@@ -2,14 +2,14 @@
 
 from typing import List, Optional
 
+from ...shared import ASN
 from ...._models import BaseModel
-from ..intel_asn import IntelASN
 
 __all__ = ["SubnetGetResponse"]
 
 
 class SubnetGetResponse(BaseModel):
-    asn: Optional[IntelASN] = None
+    asn: Optional[ASN] = None
 
     count: Optional[float] = None
     """Total results returned based on your search parameters."""
