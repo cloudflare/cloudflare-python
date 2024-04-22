@@ -2,6 +2,7 @@
 
 ```python
 from cloudflare.types import (
+    ASN,
     AuditLog,
     CloudflareTunnel,
     ErrorData,
@@ -3525,15 +3526,9 @@ Methods:
 
 ## ASN
 
-Types:
-
-```python
-from cloudflare.types.intel import IntelASN
-```
-
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/asn/{asn}">client.intel.asn.<a href="./src/cloudflare/resources/intel/asn/asn.py">get</a>(asn, \*, account_id) -> <a href="./src/cloudflare/types/intel/intel_asn.py">IntelASN</a></code>
+- <code title="get /accounts/{account_id}/intel/asn/{asn}">client.intel.asn.<a href="./src/cloudflare/resources/intel/asn/asn.py">get</a>(asn, \*, account_id) -> <a href="./src/cloudflare/types/shared/asn.py">ASN</a></code>
 
 ### Subnets
 
