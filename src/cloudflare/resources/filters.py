@@ -25,14 +25,9 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.filters import (
-    FirewallFilter,
-    FilterCreateResponse,
-    filter_list_params,
-    filter_create_params,
-    filter_delete_params,
-    filter_update_params,
-)
+from ..types.filters import filter_list_params, filter_create_params, filter_delete_params, filter_update_params
+from ..types.filters.firewall_filter import FirewallFilter
+from ..types.filters.filter_create_response import FilterCreateResponse
 
 __all__ = ["Filters", "AsyncFilters"]
 

@@ -24,15 +24,15 @@ from .._base_client import (
     make_request_options,
 )
 from ..types.custom_nameservers import (
-    CustomNameserver,
-    CustomNameserverGetResponse,
-    CustomNameserverDeleteResponse,
-    CustomNameserverVerifyResponse,
-    CustomNameserverAvailabiltyResponse,
     custom_nameserver_create_params,
     custom_nameserver_delete_params,
     custom_nameserver_verify_params,
 )
+from ..types.custom_nameservers.custom_nameserver import CustomNameserver
+from ..types.custom_nameservers.custom_nameserver_get_response import CustomNameserverGetResponse
+from ..types.custom_nameservers.custom_nameserver_delete_response import CustomNameserverDeleteResponse
+from ..types.custom_nameservers.custom_nameserver_verify_response import CustomNameserverVerifyResponse
+from ..types.custom_nameservers.custom_nameserver_availabilty_response import CustomNameserverAvailabiltyResponse
 
 __all__ = ["CustomNameservers", "AsyncCustomNameservers"]
 

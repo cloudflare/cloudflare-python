@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.intel.domains import BulkGetResponse, bulk_get_params
+from ....types.intel.domains import bulk_get_params
+from ....types.intel.domains.bulk_get_response import BulkGetResponse
 
 __all__ = ["Bulks", "AsyncBulks"]
 

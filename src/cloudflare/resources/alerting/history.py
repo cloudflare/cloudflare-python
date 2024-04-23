@@ -22,7 +22,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.alerting import History, history_list_params
+from ...types.alerting import history_list_params
+from ...types.alerting.history import History
 
 __all__ = ["HistoryResource", "AsyncHistoryResource"]
 

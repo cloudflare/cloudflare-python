@@ -4,8 +4,8 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .image import Image
-from ..shared import ResponseInfo
 from ..._models import BaseModel
+from ..shared.response_info import ResponseInfo
 
 __all__ = ["V1ListResponse", "Result"]
 

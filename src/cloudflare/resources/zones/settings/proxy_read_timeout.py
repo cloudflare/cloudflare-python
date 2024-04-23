@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ProxyReadTimeout, ProxyReadTimeoutParam, proxy_read_timeout_edit_params
+from ....types.zones.settings import ProxyReadTimeout, proxy_read_timeout_edit_params
+from ....types.zones.settings.proxy_read_timeout import ProxyReadTimeout
+from ....types.zones.settings.proxy_read_timeout_param import ProxyReadTimeoutParam
 
 __all__ = ["ProxyReadTimeoutResource", "AsyncProxyReadTimeoutResource"]
 

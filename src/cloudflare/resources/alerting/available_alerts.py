@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.alerting import AvailableAlertListResponse
+from ...types.alerting.available_alert_list_response import AvailableAlertListResponse
 
 __all__ = ["AvailableAlerts", "AsyncAvailableAlerts"]
 

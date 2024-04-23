@@ -3,9 +3,9 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from .tests import Tests
-from ...shared import ResponseInfo
 from ...._models import BaseModel
+from .tests.tests import Tests
+from ...shared.response_info import ResponseInfo
 
 __all__ = ["TestListResponse", "ResultInfo"]
 

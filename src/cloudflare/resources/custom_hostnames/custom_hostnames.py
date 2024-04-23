@@ -35,16 +35,16 @@ from .fallback_origin import (
     AsyncFallbackOriginWithStreamingResponse,
 )
 from ...types.custom_hostnames import (
-    CustomHostnameGetResponse,
-    CustomHostnameEditResponse,
-    CustomHostnameListResponse,
-    CustomHostnameCreateResponse,
-    CustomHostnameDeleteResponse,
     custom_hostname_edit_params,
     custom_hostname_list_params,
     custom_hostname_create_params,
     custom_hostname_delete_params,
 )
+from ...types.custom_hostnames.custom_hostname_get_response import CustomHostnameGetResponse
+from ...types.custom_hostnames.custom_hostname_edit_response import CustomHostnameEditResponse
+from ...types.custom_hostnames.custom_hostname_list_response import CustomHostnameListResponse
+from ...types.custom_hostnames.custom_hostname_create_response import CustomHostnameCreateResponse
+from ...types.custom_hostnames.custom_hostname_delete_response import CustomHostnameDeleteResponse
 
 __all__ = ["CustomHostnames", "AsyncCustomHostnames"]
 

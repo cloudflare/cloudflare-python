@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.waiting_rooms.events import DetailGetResponse
+from ....types.waiting_rooms.events.detail_get_response import DetailGetResponse
 
 __all__ = ["Details", "AsyncDetails"]
 

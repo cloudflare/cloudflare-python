@@ -20,10 +20,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.zones import ZoneHold, hold_create_params, hold_delete_params
+from ...types.zones import hold_create_params, hold_delete_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.zones.zone_hold import ZoneHold
 
 __all__ = ["Holds", "AsyncHolds"]
 

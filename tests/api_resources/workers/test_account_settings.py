@@ -9,10 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers import (
-    AccountSettingGetResponse,
-    AccountSettingUpdateResponse,
-)
+from cloudflare.types.workers.account_setting_get_response import AccountSettingGetResponse
+from cloudflare.types.workers.account_setting_update_response import AccountSettingUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

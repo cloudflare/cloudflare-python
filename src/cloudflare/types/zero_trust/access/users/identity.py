@@ -5,7 +5,7 @@ from typing import Dict, Optional
 from pydantic import Field as FieldInfo
 
 from ....._models import BaseModel
-from ..applications import UserPolicyCheckGeo
+from ..applications.user_policy_check_geo import UserPolicyCheckGeo
 
 __all__ = ["Identity", "DeviceSessions", "DevicePosture", "DevicePostureCheck", "IdP", "MTLSAuth"]
 

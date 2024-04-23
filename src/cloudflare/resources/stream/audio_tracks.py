@@ -23,13 +23,10 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import (
-    Audio,
-    AudioTrackGetResponse,
-    AudioTrackDeleteResponse,
-    audio_track_copy_params,
-    audio_track_edit_params,
-)
+from ...types.stream import audio_track_copy_params, audio_track_edit_params
+from ...types.stream.audio import Audio
+from ...types.stream.audio_track_get_response import AudioTrackGetResponse
+from ...types.stream.audio_track_delete_response import AudioTrackDeleteResponse
 
 __all__ = ["AudioTracks", "AsyncAudioTracks"]
 

@@ -64,8 +64,9 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.workers import Script
-from ......types.workers_for_platforms.dispatch.namespaces import Script, script_delete_params, script_update_params
+from ......types.workers.script import Script as WorkersScript
+from ......types.workers_for_platforms.dispatch.namespaces import script_delete_params, script_update_params
+from ......types.workers_for_platforms.dispatch.namespaces.script import Script as NamespacesScript
 
 __all__ = ["Scripts", "AsyncScripts"]
 
@@ -114,7 +115,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Optional[WorkersScript]:
         """Upload a worker module to a Workers for Platforms namespace.
 
         You can find an
@@ -160,7 +161,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Optional[WorkersScript]:
         """Upload a worker module to a Workers for Platforms namespace.
 
         You can find an
@@ -203,7 +204,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Optional[WorkersScript]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -225,9 +226,9 @@ class Scripts(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Optional[WorkersScript]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Optional[WorkersScript]], ResultWrapper[WorkersScript]),
         )
 
     def delete(
@@ -301,7 +302,7 @@ class Scripts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Optional[NamespacesScript]:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
@@ -333,9 +334,9 @@ class Scripts(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Optional[NamespacesScript]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Optional[NamespacesScript]], ResultWrapper[NamespacesScript]),
         )
 
 
@@ -383,7 +384,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Optional[WorkersScript]:
         """Upload a worker module to a Workers for Platforms namespace.
 
         You can find an
@@ -429,7 +430,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Optional[WorkersScript]:
         """Upload a worker module to a Workers for Platforms namespace.
 
         You can find an
@@ -472,7 +473,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Optional[WorkersScript]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -494,9 +495,9 @@ class AsyncScripts(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Optional[WorkersScript]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Optional[WorkersScript]], ResultWrapper[WorkersScript]),
         )
 
     async def delete(
@@ -570,7 +571,7 @@ class AsyncScripts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Optional[NamespacesScript]:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
@@ -602,9 +603,9 @@ class AsyncScripts(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Optional[NamespacesScript]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Optional[NamespacesScript]], ResultWrapper[NamespacesScript]),
         )
 
 

@@ -16,10 +16,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.ssl import RecommendationGetResponse
 from ..._base_client import (
     make_request_options,
 )
+from ...types.ssl.recommendation_get_response import RecommendationGetResponse
 
 __all__ = ["Recommendations", "AsyncRecommendations"]
 

@@ -17,11 +17,9 @@ from cloudflare._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from cloudflare.types.url_scanner import (
-    ScanGetResponse,
-    ScanHarResponse,
-    ScanCreateResponse,
-)
+from cloudflare.types.url_scanner.scan_get_response import ScanGetResponse
+from cloudflare.types.url_scanner.scan_har_response import ScanHarResponse
+from cloudflare.types.url_scanner.scan_create_response import ScanCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

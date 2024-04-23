@@ -21,16 +21,13 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import (
-    SmartTieredCacheGetResponse,
-    SmartTieredCacheEditResponse,
-    SmartTieredCacheDeleteResponse,
-    smart_tiered_cache_edit_params,
-    smart_tiered_cache_delete_params,
-)
+from ...types.cache import smart_tiered_cache_edit_params, smart_tiered_cache_delete_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.cache.smart_tiered_cache_get_response import SmartTieredCacheGetResponse
+from ...types.cache.smart_tiered_cache_edit_response import SmartTieredCacheEditResponse
+from ...types.cache.smart_tiered_cache_delete_response import SmartTieredCacheDeleteResponse
 
 __all__ = ["SmartTieredCache", "AsyncSmartTieredCache"]
 

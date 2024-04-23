@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import OriginErrorPagePassThru, origin_error_page_pass_thru_edit_params
+from ....types.zones.settings import origin_error_page_pass_thru_edit_params
+from ....types.zones.settings.origin_error_page_pass_thru import OriginErrorPagePassThru
 
 __all__ = ["OriginErrorPagePassThruResource", "AsyncOriginErrorPagePassThruResource"]
 

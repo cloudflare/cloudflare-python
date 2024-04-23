@@ -2,8 +2,8 @@
 
 from typing import Optional
 
-from .tokens import Value
 from ..._models import BaseModel
+from .tokens.value import Value
 
 __all__ = ["TokenCreateResponse"]
 

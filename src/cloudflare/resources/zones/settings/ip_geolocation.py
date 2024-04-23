@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import IPGeolocation, ip_geolocation_edit_params
+from ....types.zones.settings import ip_geolocation_edit_params
+from ....types.zones.settings.ip_geolocation import IPGeolocation
 
 __all__ = ["IPGeolocationResource", "AsyncIPGeolocationResource"]
 

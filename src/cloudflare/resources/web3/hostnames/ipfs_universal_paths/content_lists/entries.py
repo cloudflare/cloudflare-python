@@ -25,15 +25,15 @@ from ......_base_client import (
     make_request_options,
 )
 from ......types.web3.hostnames.ipfs_universal_paths.content_lists import (
-    EntryGetResponse,
-    EntryListResponse,
-    EntryCreateResponse,
-    EntryDeleteResponse,
-    EntryUpdateResponse,
     entry_create_params,
     entry_delete_params,
     entry_update_params,
 )
+from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_get_response import EntryGetResponse
+from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_list_response import EntryListResponse
+from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_create_response import EntryCreateResponse
+from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_delete_response import EntryDeleteResponse
+from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_update_response import EntryUpdateResponse
 
 __all__ = ["Entries", "AsyncEntries"]
 

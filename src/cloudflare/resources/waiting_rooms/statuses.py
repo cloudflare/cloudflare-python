@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.waiting_rooms import StatusGetResponse
+from ...types.waiting_rooms.status_get_response import StatusGetResponse
 
 __all__ = ["Statuses", "AsyncStatuses"]
 

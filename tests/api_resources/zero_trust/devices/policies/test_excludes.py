@@ -10,11 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.devices.policies import (
-    ExcludeGetResponse,
-    SplitTunnelExclude,
-    ExcludeUpdateResponse,
-)
+from cloudflare.types.zero_trust.devices.policies.exclude_get_response import ExcludeGetResponse
+from cloudflare.types.zero_trust.devices.policies.split_tunnel_exclude import SplitTunnelExclude
+from cloudflare.types.zero_trust.devices.policies.exclude_update_response import ExcludeUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

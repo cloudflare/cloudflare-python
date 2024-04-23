@@ -26,7 +26,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.durable_objects import Namespace
+from ....types.durable_objects.namespace import Namespace
 
 __all__ = ["Namespaces", "AsyncNamespaces"]
 

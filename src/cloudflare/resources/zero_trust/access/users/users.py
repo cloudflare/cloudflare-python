@@ -42,7 +42,7 @@ from .last_seen_identity import (
     LastSeenIdentityWithStreamingResponse,
     AsyncLastSeenIdentityWithStreamingResponse,
 )
-from .....types.zero_trust.access import AccessUser
+from .....types.zero_trust.access.access_user import AccessUser
 
 __all__ = ["Users", "AsyncUsers"]
 

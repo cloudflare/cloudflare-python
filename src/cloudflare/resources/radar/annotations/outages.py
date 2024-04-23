@@ -25,12 +25,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.annotations import (
-    OutageGetResponse,
-    OutageLocationsResponse,
-    outage_get_params,
-    outage_locations_params,
-)
+from ....types.radar.annotations import outage_get_params, outage_locations_params
+from ....types.radar.annotations.outage_get_response import OutageGetResponse
+from ....types.radar.annotations.outage_locations_response import OutageLocationsResponse
 
 __all__ = ["Outages", "AsyncOutages"]
 

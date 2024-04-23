@@ -23,12 +23,10 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.magic_transit import (
-    CfInterconnectGetResponse,
-    CfInterconnectListResponse,
-    CfInterconnectUpdateResponse,
-    cf_interconnect_update_params,
-)
+from ...types.magic_transit import cf_interconnect_update_params
+from ...types.magic_transit.cf_interconnect_get_response import CfInterconnectGetResponse
+from ...types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
+from ...types.magic_transit.cf_interconnect_update_response import CfInterconnectUpdateResponse
 
 __all__ = ["CfInterconnects", "AsyncCfInterconnects"]
 

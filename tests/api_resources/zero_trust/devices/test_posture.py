@@ -10,10 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.devices import (
-    DevicePostureRule,
-    PostureDeleteResponse,
-)
+from cloudflare.types.zero_trust.devices.device_posture_rule import DevicePostureRule
+from cloudflare.types.zero_trust.devices.posture_delete_response import PostureDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

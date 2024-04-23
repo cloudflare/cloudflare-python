@@ -25,7 +25,9 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.addressing.prefixes.bgp import ServiceBinding, BindingDeleteResponse, binding_create_params
+from .....types.addressing.prefixes.bgp import binding_create_params
+from .....types.addressing.prefixes.bgp.service_binding import ServiceBinding
+from .....types.addressing.prefixes.bgp.binding_delete_response import BindingDeleteResponse
 
 __all__ = ["Bindings", "AsyncBindings"]
 

@@ -26,13 +26,13 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.firewall.waf import (
-    Override,
-    OverrideDeleteResponse,
     override_list_params,
     override_create_params,
     override_delete_params,
     override_update_params,
 )
+from ....types.firewall.waf.override import Override
+from ....types.firewall.waf.override_delete_response import OverrideDeleteResponse
 
 __all__ = ["Overrides", "AsyncOverrides"]
 

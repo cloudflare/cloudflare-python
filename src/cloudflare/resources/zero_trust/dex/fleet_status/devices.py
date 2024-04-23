@@ -21,7 +21,8 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.dex.fleet_status import DeviceListResponse, device_list_params
+from .....types.zero_trust.dex.fleet_status import device_list_params
+from .....types.zero_trust.dex.fleet_status.device_list_response import DeviceListResponse
 
 __all__ = ["Devices", "AsyncDevices"]
 

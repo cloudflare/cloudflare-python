@@ -34,14 +34,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.email_routing import (
-    ActionParam,
-    MatcherParam,
-    EmailRoutingRule,
-    rule_list_params,
-    rule_create_params,
-    rule_update_params,
-)
+from ....types.email_routing import rule_list_params, rule_create_params, rule_update_params
+from ....types.email_routing.action_param import ActionParam
+from ....types.email_routing.matcher_param import MatcherParam
+from ....types.email_routing.email_routing_rule import EmailRoutingRule
 
 __all__ = ["Rules", "AsyncRules"]
 

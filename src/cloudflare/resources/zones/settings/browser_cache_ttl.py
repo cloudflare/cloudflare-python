@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import BrowserCacheTTL, browser_cache_ttl_edit_params
+from ....types.zones.settings import browser_cache_ttl_edit_params
+from ....types.zones.settings.browser_cache_ttl import BrowserCacheTTL
 
 __all__ = ["BrowserCacheTTLResource", "AsyncBrowserCacheTTLResource"]
 

@@ -26,12 +26,6 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.radar.email.routing import (
-    SummaryARCResponse,
-    SummarySPFResponse,
-    SummaryDKIMResponse,
-    SummaryDMARCResponse,
-    SummaryEncryptedResponse,
-    SummaryIPVersionResponse,
     summary_arc_params,
     summary_spf_params,
     summary_dkim_params,
@@ -39,6 +33,12 @@ from .....types.radar.email.routing import (
     summary_encrypted_params,
     summary_ip_version_params,
 )
+from .....types.radar.email.routing.summary_arc_response import SummaryARCResponse
+from .....types.radar.email.routing.summary_spf_response import SummarySPFResponse
+from .....types.radar.email.routing.summary_dkim_response import SummaryDKIMResponse
+from .....types.radar.email.routing.summary_dmarc_response import SummaryDMARCResponse
+from .....types.radar.email.routing.summary_encrypted_response import SummaryEncryptedResponse
+from .....types.radar.email.routing.summary_ip_version_response import SummaryIPVersionResponse
 
 __all__ = ["Summary", "AsyncSummary"]
 

@@ -23,7 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.load_balancers import SearchGetResponse, search_get_params
+from ...types.load_balancers import search_get_params
+from ...types.load_balancers.search_get_response import SearchGetResponse
 
 __all__ = ["Searches", "AsyncSearches"]
 

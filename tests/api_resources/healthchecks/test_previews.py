@@ -9,10 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.healthchecks import (
-    Healthcheck,
-    PreviewDeleteResponse,
-)
+from cloudflare.types.healthchecks.healthcheck import Healthcheck
+from cloudflare.types.healthchecks.preview_delete_response import PreviewDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

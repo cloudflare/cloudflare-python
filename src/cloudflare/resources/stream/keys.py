@@ -23,7 +23,9 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import KeyGetResponse, KeyDeleteResponse, keys, key_create_params, key_delete_params
+from ...types.stream import keys, key_create_params, key_delete_params
+from ...types.stream.key_get_response import KeyGetResponse
+from ...types.stream.key_delete_response import KeyDeleteResponse
 
 __all__ = ["Keys", "AsyncKeys"]
 

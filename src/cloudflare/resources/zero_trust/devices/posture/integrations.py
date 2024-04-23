@@ -27,12 +27,12 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.devices.posture import (
-    Integration,
-    IntegrationDeleteResponse,
     integration_edit_params,
     integration_create_params,
     integration_delete_params,
 )
+from .....types.zero_trust.devices.posture.integration import Integration
+from .....types.zero_trust.devices.posture.integration_delete_response import IntegrationDeleteResponse
 
 __all__ = ["Integrations", "AsyncIntegrations"]
 

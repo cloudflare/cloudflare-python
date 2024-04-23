@@ -87,7 +87,8 @@ from ...._base_client import (
 )
 from .posture.posture import Posture, AsyncPosture
 from .policies.policies import Policies, AsyncPolicies
-from ....types.zero_trust import Device, DeviceGetResponse
+from ....types.zero_trust.device import Device
+from ....types.zero_trust.device_get_response import DeviceGetResponse
 
 __all__ = ["Devices", "AsyncDevices"]
 

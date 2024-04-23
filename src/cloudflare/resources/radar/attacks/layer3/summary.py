@@ -26,12 +26,6 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.radar.attacks.layer3 import (
-    SummaryGetResponse,
-    SummaryVectorResponse,
-    SummaryBitrateResponse,
-    SummaryDurationResponse,
-    SummaryProtocolResponse,
-    SummaryIPVersionResponse,
     summary_get_params,
     summary_vector_params,
     summary_bitrate_params,
@@ -39,6 +33,12 @@ from .....types.radar.attacks.layer3 import (
     summary_protocol_params,
     summary_ip_version_params,
 )
+from .....types.radar.attacks.layer3.summary_get_response import SummaryGetResponse
+from .....types.radar.attacks.layer3.summary_vector_response import SummaryVectorResponse
+from .....types.radar.attacks.layer3.summary_bitrate_response import SummaryBitrateResponse
+from .....types.radar.attacks.layer3.summary_duration_response import SummaryDurationResponse
+from .....types.radar.attacks.layer3.summary_protocol_response import SummaryProtocolResponse
+from .....types.radar.attacks.layer3.summary_ip_version_response import SummaryIPVersionResponse
 
 __all__ = ["Summary", "AsyncSummary"]
 

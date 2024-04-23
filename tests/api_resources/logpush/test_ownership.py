@@ -9,10 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.logpush import (
-    OwnershipValidation,
-    OwnershipCreateResponse,
-)
+from cloudflare.types.logpush.ownership_validation import OwnershipValidation
+from cloudflare.types.logpush.ownership_create_response import OwnershipCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

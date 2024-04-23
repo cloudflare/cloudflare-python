@@ -25,7 +25,8 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.radar.attacks.layer7.top import AseOriginResponse, ase_origin_params
+from ......types.radar.attacks.layer7.top import ase_origin_params
+from ......types.radar.attacks.layer7.top.ase_origin_response import AseOriginResponse
 
 __all__ = ["Ases", "AsyncAses"]
 

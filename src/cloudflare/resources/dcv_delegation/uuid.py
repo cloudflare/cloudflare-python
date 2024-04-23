@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.dcv_delegation import DCVDelegationUUID
+from ...types.dcv_delegation.dcv_delegation_uuid import DCVDelegationUUID
 
 __all__ = ["UUID", "AsyncUUID"]
 

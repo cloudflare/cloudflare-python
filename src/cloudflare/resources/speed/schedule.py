@@ -21,10 +21,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.speed import ScheduleCreateResponse, schedule_create_params
+from ...types.speed import schedule_create_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.speed.schedule_create_response import ScheduleCreateResponse
 
 __all__ = ["ScheduleResource", "AsyncScheduleResource"]
 

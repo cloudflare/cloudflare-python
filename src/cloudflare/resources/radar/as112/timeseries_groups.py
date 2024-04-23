@@ -26,12 +26,6 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.radar.as112 import (
-    TimeseriesGroupEdnsResponse,
-    TimeseriesGroupDNSSECResponse,
-    TimeseriesGroupProtocolResponse,
-    TimeseriesGroupIPVersionResponse,
-    TimeseriesGroupQueryTypeResponse,
-    TimeseriesGroupResponseCodesResponse,
     timeseries_group_edns_params,
     timeseries_group_dnssec_params,
     timeseries_group_protocol_params,
@@ -39,6 +33,12 @@ from ....types.radar.as112 import (
     timeseries_group_query_type_params,
     timeseries_group_response_codes_params,
 )
+from ....types.radar.as112.timeseries_group_edns_response import TimeseriesGroupEdnsResponse
+from ....types.radar.as112.timeseries_group_dnssec_response import TimeseriesGroupDNSSECResponse
+from ....types.radar.as112.timeseries_group_protocol_response import TimeseriesGroupProtocolResponse
+from ....types.radar.as112.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
+from ....types.radar.as112.timeseries_group_query_type_response import TimeseriesGroupQueryTypeResponse
+from ....types.radar.as112.timeseries_group_response_codes_response import TimeseriesGroupResponseCodesResponse
 
 __all__ = ["TimeseriesGroups", "AsyncTimeseriesGroups"]
 

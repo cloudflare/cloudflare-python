@@ -33,7 +33,9 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.dlp import Dataset, DatasetCreation, dataset_create_params, dataset_update_params
+from .....types.zero_trust.dlp import dataset_create_params, dataset_update_params
+from .....types.zero_trust.dlp.dataset import Dataset
+from .....types.zero_trust.dlp.dataset_creation import DatasetCreation
 
 __all__ = ["Datasets", "AsyncDatasets"]
 

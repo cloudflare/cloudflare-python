@@ -26,12 +26,6 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.radar.email.routing import (
-    TimeseriesGroupARCResponse,
-    TimeseriesGroupSPFResponse,
-    TimeseriesGroupDKIMResponse,
-    TimeseriesGroupDMARCResponse,
-    TimeseriesGroupEncryptedResponse,
-    TimeseriesGroupIPVersionResponse,
     timeseries_group_arc_params,
     timeseries_group_spf_params,
     timeseries_group_dkim_params,
@@ -39,6 +33,12 @@ from .....types.radar.email.routing import (
     timeseries_group_encrypted_params,
     timeseries_group_ip_version_params,
 )
+from .....types.radar.email.routing.timeseries_group_arc_response import TimeseriesGroupARCResponse
+from .....types.radar.email.routing.timeseries_group_spf_response import TimeseriesGroupSPFResponse
+from .....types.radar.email.routing.timeseries_group_dkim_response import TimeseriesGroupDKIMResponse
+from .....types.radar.email.routing.timeseries_group_dmarc_response import TimeseriesGroupDMARCResponse
+from .....types.radar.email.routing.timeseries_group_encrypted_response import TimeseriesGroupEncryptedResponse
+from .....types.radar.email.routing.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
 
 __all__ = ["TimeseriesGroups", "AsyncTimeseriesGroups"]
 

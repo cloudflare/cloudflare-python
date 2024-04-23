@@ -21,15 +21,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.ssl import (
-    VerificationGetResponse,
-    VerificationEditResponse,
-    verification_get_params,
-    verification_edit_params,
-)
+from ...types.ssl import verification_get_params, verification_edit_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.ssl.verification_get_response import VerificationGetResponse
+from ...types.ssl.verification_edit_response import VerificationEditResponse
 
 __all__ = ["VerificationResource", "AsyncVerificationResource"]
 

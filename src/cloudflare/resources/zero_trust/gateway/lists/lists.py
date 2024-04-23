@@ -34,16 +34,11 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.gateway import (
-    GatewayList,
-    GatewayItemParam,
-    ListCreateResponse,
-    ListDeleteResponse,
-    list_edit_params,
-    list_create_params,
-    list_delete_params,
-    list_update_params,
-)
+from .....types.zero_trust.gateway import list_edit_params, list_create_params, list_delete_params, list_update_params
+from .....types.zero_trust.gateway.gateway_list import GatewayList
+from .....types.zero_trust.gateway.gateway_item_param import GatewayItemParam
+from .....types.zero_trust.gateway.list_create_response import ListCreateResponse
+from .....types.zero_trust.gateway.list_delete_response import ListDeleteResponse
 
 __all__ = ["Lists", "AsyncLists"]
 

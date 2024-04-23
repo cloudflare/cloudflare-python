@@ -21,7 +21,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.page_shield import Connection, connection_list_params
+from ...types.page_shield import connection_list_params
+from ...types.page_shield.connection import Connection
 
 __all__ = ["Connections", "AsyncConnections"]
 

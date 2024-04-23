@@ -3,8 +3,8 @@
 from typing import List, Union, Optional
 from typing_extensions import Literal
 
-from ...shared import ResponseInfo
 from ...._models import BaseModel
+from ...shared.response_info import ResponseInfo
 
 __all__ = ["PackageGetResponse", "FirewallAPIResponseSingle", "Result"]
 

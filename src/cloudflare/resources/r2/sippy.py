@@ -13,7 +13,7 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from ...types.r2 import Sippy, SippyDeleteResponse, sippy_update_params
+from ...types.r2 import sippy_update_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -25,6 +25,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
+from ...types.r2.sippy import Sippy
+from ...types.r2.sippy_delete_response import SippyDeleteResponse
 
 __all__ = ["SippyResource", "AsyncSippyResource"]
 

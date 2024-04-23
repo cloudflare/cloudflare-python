@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.email_routing import DNSGetResponse
+from ...types.email_routing.dns_get_response import DNSGetResponse
 
 __all__ = ["DNS", "AsyncDNS"]
 

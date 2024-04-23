@@ -21,7 +21,8 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.access.users import ActiveSessionGetResponse, ActiveSessionListResponse
+from .....types.zero_trust.access.users.active_session_get_response import ActiveSessionGetResponse
+from .....types.zero_trust.access.users.active_session_list_response import ActiveSessionListResponse
 
 __all__ = ["ActiveSessions", "AsyncActiveSessions"]
 

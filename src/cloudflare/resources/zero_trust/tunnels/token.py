@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.tunnels import TokenGetResponse
+from ....types.zero_trust.tunnels.token_get_response import TokenGetResponse
 
 __all__ = ["Token", "AsyncToken"]
 

@@ -27,14 +27,14 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.challenges import (
-    Widget,
-    WidgetDomain,
-    WidgetListResponse,
     widget_list_params,
     widget_create_params,
     widget_update_params,
     widget_rotate_secret_params,
 )
+from ...types.challenges.widget import Widget
+from ...types.challenges.widget_domain import WidgetDomain
+from ...types.challenges.widget_list_response import WidgetListResponse
 
 __all__ = ["Widgets", "AsyncWidgets"]
 

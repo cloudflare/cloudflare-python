@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.devices import OverrideCodeListResponse
+from ....types.zero_trust.devices.override_code_list_response import OverrideCodeListResponse
 
 __all__ = ["OverrideCodes", "AsyncOverrideCodes"]
 

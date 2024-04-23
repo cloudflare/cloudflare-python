@@ -39,17 +39,15 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ...types.pcaps import (
-    PCAPFilterParam,
-    PCAPGetResponse,
-    PCAPListResponse,
-    PCAPCreateResponse,
-    pcap_create_params,
-)
+from ...types.pcaps import pcap_create_params
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.pcaps.pcap_filter_param import PCAPFilterParam
+from ...types.pcaps.pcap_get_response import PCAPGetResponse
+from ...types.pcaps.pcap_list_response import PCAPListResponse
+from ...types.pcaps.pcap_create_response import PCAPCreateResponse
 
 __all__ = ["PCAPs", "AsyncPCAPs"]
 

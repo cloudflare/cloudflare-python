@@ -16,8 +16,8 @@ from ...._response import (
 from ...._base_client import (
     make_request_options,
 )
-from ....types.shared import ASN
-from ....types.intel.asn import SubnetGetResponse
+from ....types.shared.asn import ASN
+from ....types.intel.asn.subnet_get_response import SubnetGetResponse
 
 __all__ = ["Subnets", "AsyncSubnets"]
 

@@ -9,7 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.images.v1 import KeyListResponse, KeyDeleteResponse, KeyUpdateResponse
+from cloudflare.types.images.v1.key_list_response import KeyListResponse
+from cloudflare.types.images.v1.key_delete_response import KeyDeleteResponse
+from cloudflare.types.images.v1.key_update_response import KeyUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

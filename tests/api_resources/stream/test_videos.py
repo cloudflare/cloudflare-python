@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream import VideoStorageUsageResponse
+from cloudflare.types.stream.video_storage_usage_response import VideoStorageUsageResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

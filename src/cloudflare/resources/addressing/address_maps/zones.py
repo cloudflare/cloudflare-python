@@ -23,12 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import (
-    ZoneDeleteResponse,
-    ZoneUpdateResponse,
-    zone_delete_params,
-    zone_update_params,
-)
+from ....types.addressing.address_maps import zone_delete_params, zone_update_params
+from ....types.addressing.address_maps.zone_delete_response import ZoneDeleteResponse
+from ....types.addressing.address_maps.zone_update_response import ZoneUpdateResponse
 
 __all__ = ["Zones", "AsyncZones"]
 

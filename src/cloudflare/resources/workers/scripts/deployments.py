@@ -23,12 +23,10 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers.scripts import (
-    DeploymentParam,
-    DeploymentGetResponse,
-    DeploymentCreateResponse,
-    deployment_create_params,
-)
+from ....types.workers.scripts import deployment_create_params
+from ....types.workers.scripts.deployment_param import DeploymentParam
+from ....types.workers.scripts.deployment_get_response import DeploymentGetResponse
+from ....types.workers.scripts.deployment_create_response import DeploymentCreateResponse
 
 __all__ = ["Deployments", "AsyncDeployments"]
 

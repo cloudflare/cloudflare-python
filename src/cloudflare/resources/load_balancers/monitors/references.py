@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.load_balancers.monitors import ReferenceGetResponse
+from ....types.load_balancers.monitors.reference_get_response import ReferenceGetResponse
 
 __all__ = ["References", "AsyncReferences"]
 

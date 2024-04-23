@@ -25,11 +25,9 @@ from ......_base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ......types.workers_for_platforms.dispatch.namespaces.scripts import (
-    TagListResponse,
-    TagUpdateResponse,
-    tag_update_params,
-)
+from ......types.workers_for_platforms.dispatch.namespaces.scripts import tag_update_params
+from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_list_response import TagListResponse
+from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_update_response import TagUpdateResponse
 
 __all__ = ["Tags", "AsyncTags"]
 

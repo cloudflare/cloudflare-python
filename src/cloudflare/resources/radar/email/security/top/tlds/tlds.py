@@ -49,7 +49,8 @@ from ......._wrappers import ResultWrapper
 from ......._base_client import (
     make_request_options,
 )
-from .......types.radar.email.security.top import TldGetResponse, tld_get_params
+from .......types.radar.email.security.top import tld_get_params
+from .......types.radar.email.security.top.tld_get_response import TldGetResponse
 
 __all__ = ["Tlds", "AsyncTlds"]
 

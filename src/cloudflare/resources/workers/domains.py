@@ -25,7 +25,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.workers import Domain, domain_list_params, domain_delete_params, domain_update_params
+from ...types.workers import domain_list_params, domain_delete_params, domain_update_params
+from ...types.workers.domain import Domain
 
 __all__ = ["Domains", "AsyncDomains"]
 

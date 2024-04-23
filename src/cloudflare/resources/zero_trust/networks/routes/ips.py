@@ -23,8 +23,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.networks import Teamnet
 from .....types.zero_trust.networks.routes import ip_get_params
+from .....types.zero_trust.networks.teamnet import Teamnet
 
 __all__ = ["IPs", "AsyncIPs"]
 

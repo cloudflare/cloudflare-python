@@ -42,7 +42,9 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.accounts import AccountGetResponse, AccountUpdateResponse, account_list_params, account_update_params
+from ...types.accounts import account_list_params, account_update_params
+from ...types.accounts.account_get_response import AccountGetResponse
+from ...types.accounts.account_update_response import AccountUpdateResponse
 
 __all__ = ["Accounts", "AsyncAccounts"]
 

@@ -10,12 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.shared import Member
-from cloudflare.types.accounts import (
-    MemberListResponse,
-    UserWithInviteCode,
-    MemberDeleteResponse,
-)
+from cloudflare.types.shared.member import Member
+from cloudflare.types.accounts.member_list_response import MemberListResponse
+from cloudflare.types.accounts.user_with_invite_code import UserWithInviteCode
+from cloudflare.types.accounts.member_delete_response import MemberDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -25,17 +25,12 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.firewall import (
-    UARuleGetResponse,
-    UARuleListResponse,
-    UARuleCreateResponse,
-    UARuleDeleteResponse,
-    UARuleUpdateResponse,
-    ua_rule_list_params,
-    ua_rule_create_params,
-    ua_rule_delete_params,
-    ua_rule_update_params,
-)
+from ...types.firewall import ua_rule_list_params, ua_rule_create_params, ua_rule_delete_params, ua_rule_update_params
+from ...types.firewall.ua_rule_get_response import UARuleGetResponse
+from ...types.firewall.ua_rule_list_response import UARuleListResponse
+from ...types.firewall.ua_rule_create_response import UARuleCreateResponse
+from ...types.firewall.ua_rule_delete_response import UARuleDeleteResponse
+from ...types.firewall.ua_rule_update_response import UARuleUpdateResponse
 
 __all__ = ["UARules", "AsyncUARules"]
 

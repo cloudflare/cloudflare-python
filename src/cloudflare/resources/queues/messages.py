@@ -23,7 +23,9 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.queues import MessageAckResponse, MessagePullResponse, message_ack_params, message_pull_params
+from ...types.queues import message_ack_params, message_pull_params
+from ...types.queues.message_ack_response import MessageAckResponse
+from ...types.queues.message_pull_response import MessagePullResponse
 
 __all__ = ["Messages", "AsyncMessages"]
 

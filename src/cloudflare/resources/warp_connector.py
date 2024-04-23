@@ -27,17 +27,17 @@ from .._base_client import (
     make_request_options,
 )
 from ..types.warp_connector import (
-    WARPConnectorGetResponse,
-    WARPConnectorEditResponse,
-    WARPConnectorListResponse,
-    WARPConnectorTokenResponse,
-    WARPConnectorCreateResponse,
-    WARPConnectorDeleteResponse,
     warp_connector_edit_params,
     warp_connector_list_params,
     warp_connector_create_params,
     warp_connector_delete_params,
 )
+from ..types.warp_connector.warp_connector_get_response import WARPConnectorGetResponse
+from ..types.warp_connector.warp_connector_edit_response import WARPConnectorEditResponse
+from ..types.warp_connector.warp_connector_list_response import WARPConnectorListResponse
+from ..types.warp_connector.warp_connector_token_response import WARPConnectorTokenResponse
+from ..types.warp_connector.warp_connector_create_response import WARPConnectorCreateResponse
+from ..types.warp_connector.warp_connector_delete_response import WARPConnectorDeleteResponse
 
 __all__ = ["WARPConnector", "AsyncWARPConnector"]
 

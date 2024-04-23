@@ -24,18 +24,18 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.magic_transit import (
-    ScopeParam,
-    RouteGetResponse,
-    RouteListResponse,
-    RouteEmptyResponse,
-    RouteCreateResponse,
-    RouteDeleteResponse,
-    RouteUpdateResponse,
     route_empty_params,
     route_create_params,
     route_delete_params,
     route_update_params,
 )
+from ...types.magic_transit.scope_param import ScopeParam
+from ...types.magic_transit.route_get_response import RouteGetResponse
+from ...types.magic_transit.route_list_response import RouteListResponse
+from ...types.magic_transit.route_empty_response import RouteEmptyResponse
+from ...types.magic_transit.route_create_response import RouteCreateResponse
+from ...types.magic_transit.route_delete_response import RouteDeleteResponse
+from ...types.magic_transit.route_update_response import RouteUpdateResponse
 
 __all__ = ["Routes", "AsyncRoutes"]
 

@@ -50,7 +50,8 @@ from .timeseries_groups import (
     TimeseriesGroupsWithStreamingResponse,
     AsyncTimeseriesGroupsWithStreamingResponse,
 )
-from .....types.radar.attacks import Layer3TimeseriesResponse, layer3_timeseries_params
+from .....types.radar.attacks import layer3_timeseries_params
+from .....types.radar.attacks.layer3_timeseries_response import Layer3TimeseriesResponse
 
 __all__ = ["Layer3", "AsyncLayer3"]
 

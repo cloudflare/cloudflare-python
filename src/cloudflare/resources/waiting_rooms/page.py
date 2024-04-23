@@ -23,7 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.waiting_rooms import PagePreviewResponse, page_preview_params
+from ...types.waiting_rooms import page_preview_params
+from ...types.waiting_rooms.page_preview_response import PagePreviewResponse
 
 __all__ = ["Page", "AsyncPage"]
 

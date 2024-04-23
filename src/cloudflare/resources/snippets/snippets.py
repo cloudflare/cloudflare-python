@@ -41,7 +41,9 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.snippets import Snippet, SnippetDeleteResponse, snippet_update_params
+from ...types.snippets import snippet_update_params
+from ...types.snippets.snippet import Snippet
+from ...types.snippets.snippet_delete_response import SnippetDeleteResponse
 
 __all__ = ["Snippets", "AsyncSnippets"]
 

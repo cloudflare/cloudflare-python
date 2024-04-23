@@ -24,14 +24,14 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust import NetworkPathResponse
 from ....types.zero_trust.dex import (
-    Traceroute,
-    TracerouteTestPercentilesResponse,
     traceroute_test_get_params,
     traceroute_test_percentiles_params,
     traceroute_test_network_path_params,
 )
+from ....types.zero_trust.dex.traceroute import Traceroute
+from ....types.zero_trust.network_path_response import NetworkPathResponse
+from ....types.zero_trust.dex.traceroute_test_percentiles_response import TracerouteTestPercentilesResponse
 
 __all__ = ["TracerouteTests", "AsyncTracerouteTests"]
 

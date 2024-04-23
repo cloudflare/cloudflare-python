@@ -21,10 +21,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.acm import TotalTLSGetResponse, TotalTLSCreateResponse, total_tls_create_params
+from ...types.acm import total_tls_create_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.acm.total_tls_get_response import TotalTLSGetResponse
+from ...types.acm.total_tls_create_response import TotalTLSCreateResponse
 
 __all__ = ["TotalTLS", "AsyncTotalTLS"]
 

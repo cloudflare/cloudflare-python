@@ -9,11 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream import (
-    Audio,
-    AudioTrackGetResponse,
-    AudioTrackDeleteResponse,
-)
+from cloudflare.types.stream.audio import Audio
+from cloudflare.types.stream.audio_track_get_response import AudioTrackGetResponse
+from cloudflare.types.stream.audio_track_delete_response import AudioTrackDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

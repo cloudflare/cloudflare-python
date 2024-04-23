@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.ranking import DomainGetResponse, domain_get_params
+from ....types.radar.ranking import domain_get_params
+from ....types.radar.ranking.domain_get_response import DomainGetResponse
 
 __all__ = ["Domain", "AsyncDomain"]
 

@@ -37,19 +37,15 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.ssl import (
-    CertificatePackGetResponse,
-    CertificatePackEditResponse,
-    CertificatePackDeleteResponse,
-    certificate_pack_edit_params,
-    certificate_pack_list_params,
-    certificate_pack_delete_params,
-)
+from ....types.ssl import certificate_pack_edit_params, certificate_pack_list_params, certificate_pack_delete_params
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ....types.ssl.certificate_pack_get_response import CertificatePackGetResponse
+from ....types.ssl.certificate_pack_edit_response import CertificatePackEditResponse
+from ....types.ssl.certificate_pack_delete_response import CertificatePackDeleteResponse
 
 __all__ = ["CertificatePacks", "AsyncCertificatePacks"]
 

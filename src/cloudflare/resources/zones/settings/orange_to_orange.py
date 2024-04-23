@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import OrangeToOrange, OrangeToOrangeParam, orange_to_orange_edit_params
+from ....types.zones.settings import OrangeToOrange, orange_to_orange_edit_params
+from ....types.zones.settings.orange_to_orange import OrangeToOrange
+from ....types.zones.settings.orange_to_orange_param import OrangeToOrangeParam
 
 __all__ = ["OrangeToOrangeResource", "AsyncOrangeToOrangeResource"]
 

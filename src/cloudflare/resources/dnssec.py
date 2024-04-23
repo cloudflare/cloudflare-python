@@ -24,7 +24,9 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
-from ..types.dnssec import DNSSEC, DNSSECDeleteResponse, dnssec_edit_params, dnssec_delete_params
+from ..types.dnssec import dnssec_edit_params, dnssec_delete_params
+from ..types.dnssec.dnssec import DNSSEC
+from ..types.dnssec.dnssec_delete_response import DNSSECDeleteResponse
 
 __all__ = ["DNSSECResource", "AsyncDNSSECResource"]
 

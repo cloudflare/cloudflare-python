@@ -25,7 +25,9 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.secondary_dns import Peer, PeerDeleteResponse, peer_create_params, peer_delete_params, peer_update_params
+from ...types.secondary_dns import peer_create_params, peer_delete_params, peer_update_params
+from ...types.secondary_dns.peer import Peer
+from ...types.secondary_dns.peer_delete_response import PeerDeleteResponse
 
 __all__ = ["Peers", "AsyncPeers"]
 

@@ -11,14 +11,12 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.cloudforce_one import (
-    Item,
-    Quota,
-    ListItem,
-    RequestTypes,
-    RequestConstants,
-    RequestDeleteResponse,
-)
+from cloudflare.types.cloudforce_one.item import Item
+from cloudflare.types.cloudforce_one.quota import Quota
+from cloudflare.types.cloudforce_one.list_item import ListItem
+from cloudflare.types.cloudforce_one.request_types import RequestTypes
+from cloudflare.types.cloudforce_one.request_constants import RequestConstants
+from cloudflare.types.cloudforce_one.request_delete_response import RequestDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -21,7 +21,10 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.access.applications import CA, CAGetResponse, CACreateResponse, CADeleteResponse
+from .....types.zero_trust.access.applications.ca import CA
+from .....types.zero_trust.access.applications.ca_get_response import CAGetResponse
+from .....types.zero_trust.access.applications.ca_create_response import CACreateResponse
+from .....types.zero_trust.access.applications.ca_delete_response import CADeleteResponse
 
 __all__ = ["CAs", "AsyncCAs"]
 

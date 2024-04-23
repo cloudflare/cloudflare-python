@@ -5,7 +5,7 @@ from typing import List, Optional
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..radar.http import Browser
+from ..radar.http.browser import Browser
 
 __all__ = [
     "ScanHarResponse",

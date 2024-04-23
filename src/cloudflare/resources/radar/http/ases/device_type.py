@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.http.ases import DeviceTypeGetResponse, device_type_get_params
+from .....types.radar.http.ases import device_type_get_params
+from .....types.radar.http.ases.device_type_get_response import DeviceTypeGetResponse
 
 __all__ = ["DeviceType", "AsyncDeviceType"]
 

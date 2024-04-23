@@ -23,7 +23,9 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.logs.control.retention import FlagGetResponse, FlagCreateResponse, flag_create_params
+from .....types.logs.control.retention import flag_create_params
+from .....types.logs.control.retention.flag_get_response import FlagGetResponse
+from .....types.logs.control.retention.flag_create_response import FlagCreateResponse
 
 __all__ = ["Flag", "AsyncFlag"]
 

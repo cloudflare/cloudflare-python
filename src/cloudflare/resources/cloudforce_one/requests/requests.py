@@ -43,17 +43,13 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.cloudforce_one import (
-    Item,
-    Quota,
-    ListItem,
-    RequestTypes,
-    RequestConstants,
-    RequestDeleteResponse,
-    request_list_params,
-    request_create_params,
-    request_update_params,
-)
+from ....types.cloudforce_one import request_list_params, request_create_params, request_update_params
+from ....types.cloudforce_one.item import Item
+from ....types.cloudforce_one.quota import Quota
+from ....types.cloudforce_one.list_item import ListItem
+from ....types.cloudforce_one.request_types import RequestTypes
+from ....types.cloudforce_one.request_constants import RequestConstants
+from ....types.cloudforce_one.request_delete_response import RequestDeleteResponse
 
 __all__ = ["Requests", "AsyncRequests"]
 

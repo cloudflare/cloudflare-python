@@ -21,17 +21,13 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.speed import (
-    Test,
-    TestListResponse,
-    TestDeleteResponse,
-    test_list_params,
-    test_create_params,
-    test_delete_params,
-)
+from ...types.speed import test_list_params, test_create_params, test_delete_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.speed.test import Test
+from ...types.speed.test_list_response import TestListResponse
+from ...types.speed.test_delete_response import TestDeleteResponse
 
 __all__ = ["Tests", "AsyncTests"]
 

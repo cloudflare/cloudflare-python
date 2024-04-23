@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.risk_scoring import SummaryGetResponse, summary_get_params
+from ....types.zero_trust.risk_scoring import summary_get_params
+from ....types.zero_trust.risk_scoring.summary_get_response import SummaryGetResponse
 
 __all__ = ["Summary", "AsyncSummary"]
 

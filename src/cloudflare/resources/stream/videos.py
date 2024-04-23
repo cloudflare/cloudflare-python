@@ -23,7 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import VideoStorageUsageResponse, video_storage_usage_params
+from ...types.stream import video_storage_usage_params
+from ...types.stream.video_storage_usage_response import VideoStorageUsageResponse
 
 __all__ = ["Videos", "AsyncVideos"]
 

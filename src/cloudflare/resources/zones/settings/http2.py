@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import HTTP2, http2_edit_params
+from ....types.zones.settings import http2_edit_params
+from ....types.zones.settings.http2 import HTTP2
 
 __all__ = ["HTTP2Resource", "AsyncHTTP2Resource"]
 

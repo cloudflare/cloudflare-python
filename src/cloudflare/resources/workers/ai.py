@@ -24,7 +24,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.workers import AIRunResponse, ai_run_params
+from ...types.workers import ai_run_params
+from ...types.workers.ai_run_response import AIRunResponse
 
 __all__ = ["AI", "AsyncAI"]
 

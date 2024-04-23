@@ -21,14 +21,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import (
-    RegionalTieredCacheGetResponse,
-    RegionalTieredCacheEditResponse,
-    regional_tiered_cache_edit_params,
-)
+from ...types.cache import regional_tiered_cache_edit_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.cache.regional_tiered_cache_get_response import RegionalTieredCacheGetResponse
+from ...types.cache.regional_tiered_cache_edit_response import RegionalTieredCacheEditResponse
 
 __all__ = ["RegionalTieredCacheResource", "AsyncRegionalTieredCacheResource"]
 

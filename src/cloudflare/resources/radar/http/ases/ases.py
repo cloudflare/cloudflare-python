@@ -81,7 +81,8 @@ from .http_protocol import (
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.http import AseGetResponse, ase_get_params
+from .....types.radar.http import ase_get_params
+from .....types.radar.http.ase_get_response import AseGetResponse
 
 __all__ = ["Ases", "AsyncAses"]
 

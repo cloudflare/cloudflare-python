@@ -41,15 +41,11 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.queues import (
-    Queue,
-    QueueCreated,
-    QueueUpdated,
-    QueueDeleteResponse,
-    queue_create_params,
-    queue_delete_params,
-    queue_update_params,
-)
+from ...types.queues import queue_create_params, queue_delete_params, queue_update_params
+from ...types.queues.queue import Queue
+from ...types.queues.queue_created import QueueCreated
+from ...types.queues.queue_updated import QueueUpdated
+from ...types.queues.queue_delete_response import QueueDeleteResponse
 
 __all__ = ["Queues", "AsyncQueues"]
 

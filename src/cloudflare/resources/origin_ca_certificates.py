@@ -27,14 +27,14 @@ from .._base_client import (
     make_request_options,
 )
 from ..types.origin_ca_certificates import (
-    OriginCACertificate,
-    OriginCACertificateGetResponse,
-    OriginCACertificateCreateResponse,
-    OriginCACertificateDeleteResponse,
     origin_ca_certificate_list_params,
     origin_ca_certificate_create_params,
     origin_ca_certificate_delete_params,
 )
+from ..types.origin_ca_certificates.origin_ca_certificate import OriginCACertificate
+from ..types.origin_ca_certificates.origin_ca_certificate_get_response import OriginCACertificateGetResponse
+from ..types.origin_ca_certificates.origin_ca_certificate_create_response import OriginCACertificateCreateResponse
+from ..types.origin_ca_certificates.origin_ca_certificate_delete_response import OriginCACertificateDeleteResponse
 
 __all__ = ["OriginCACertificates", "AsyncOriginCACertificates"]
 

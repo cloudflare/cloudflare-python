@@ -9,11 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers.scripts import (
-    VersionGetResponse,
-    VersionListResponse,
-    VersionCreateResponse,
-)
+from cloudflare.types.workers.scripts.version_get_response import VersionGetResponse
+from cloudflare.types.workers.scripts.version_list_response import VersionListResponse
+from cloudflare.types.workers.scripts.version_create_response import VersionCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

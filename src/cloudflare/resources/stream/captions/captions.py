@@ -27,8 +27,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.stream import CaptionGetResponse
 from .language.language import Language, AsyncLanguage
+from ....types.stream.caption_get_response import CaptionGetResponse
 
 __all__ = ["Captions", "AsyncCaptions"]
 

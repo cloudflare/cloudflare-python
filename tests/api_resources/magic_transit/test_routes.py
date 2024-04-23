@@ -9,14 +9,12 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_transit import (
-    RouteGetResponse,
-    RouteListResponse,
-    RouteEmptyResponse,
-    RouteCreateResponse,
-    RouteDeleteResponse,
-    RouteUpdateResponse,
-)
+from cloudflare.types.magic_transit.route_get_response import RouteGetResponse
+from cloudflare.types.magic_transit.route_list_response import RouteListResponse
+from cloudflare.types.magic_transit.route_empty_response import RouteEmptyResponse
+from cloudflare.types.magic_transit.route_create_response import RouteCreateResponse
+from cloudflare.types.magic_transit.route_delete_response import RouteDeleteResponse
+from cloudflare.types.magic_transit.route_update_response import RouteUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

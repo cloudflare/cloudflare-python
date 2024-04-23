@@ -42,14 +42,11 @@ from ..._base_client import (
     make_request_options,
 )
 from .hostnames.hostnames import Hostnames, AsyncHostnames
-from ...types.origin_tls_client_auth import (
-    ZoneAuthenticatedOriginPull,
-    OriginTLSClientAuthGetResponse,
-    OriginTLSClientAuthCreateResponse,
-    OriginTLSClientAuthDeleteResponse,
-    origin_tls_client_auth_create_params,
-    origin_tls_client_auth_delete_params,
-)
+from ...types.origin_tls_client_auth import origin_tls_client_auth_create_params, origin_tls_client_auth_delete_params
+from ...types.origin_tls_client_auth.zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull
+from ...types.origin_tls_client_auth.origin_tls_client_auth_get_response import OriginTLSClientAuthGetResponse
+from ...types.origin_tls_client_auth.origin_tls_client_auth_create_response import OriginTLSClientAuthCreateResponse
+from ...types.origin_tls_client_auth.origin_tls_client_auth_delete_response import OriginTLSClientAuthDeleteResponse
 
 __all__ = ["OriginTLSClientAuth", "AsyncOriginTLSClientAuth"]
 

@@ -21,10 +21,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.argo import SmartRoutingGetResponse, SmartRoutingEditResponse, smart_routing_edit_params
+from ...types.argo import smart_routing_edit_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.argo.smart_routing_get_response import SmartRoutingGetResponse
+from ...types.argo.smart_routing_edit_response import SmartRoutingEditResponse
 
 __all__ = ["SmartRouting", "AsyncSmartRouting"]
 

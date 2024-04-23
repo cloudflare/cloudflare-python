@@ -31,7 +31,9 @@ from .certificates import (
 from ...._base_client import (
     make_request_options,
 )
-from ....types.origin_tls_client_auth import HostnameUpdateResponse, AuthenticatedOriginPull, hostname_update_params
+from ....types.origin_tls_client_auth import hostname_update_params
+from ....types.origin_tls_client_auth.hostname_update_response import HostnameUpdateResponse
+from ....types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
 
 __all__ = ["Hostnames", "AsyncHostnames"]
 

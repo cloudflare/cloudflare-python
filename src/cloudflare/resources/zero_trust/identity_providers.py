@@ -27,15 +27,16 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.zero_trust import (
-    ScimConfigParam,
-    IdentityProvider,
     IdentityProviderType,
-    GenericOAuthConfigParam,
-    IdentityProviderListResponse,
-    IdentityProviderDeleteResponse,
     identity_provider_create_params,
     identity_provider_update_params,
 )
+from ...types.zero_trust.identity_provider import IdentityProvider
+from ...types.zero_trust.scim_config_param import ScimConfigParam
+from ...types.zero_trust.identity_provider_type import IdentityProviderType
+from ...types.zero_trust.generic_oauth_config_param import GenericOAuthConfigParam
+from ...types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
+from ...types.zero_trust.identity_provider_delete_response import IdentityProviderDeleteResponse
 
 __all__ = ["IdentityProviders", "AsyncIdentityProviders"]
 
