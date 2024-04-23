@@ -69,7 +69,7 @@ class WARPConnector(SyncAPIResource):
         Args:
           account_id: Cloudflare account ID
 
-          name: A user-friendly name for the tunnel.
+          name: A user-friendly name for a tunnel.
 
           extra_headers: Send extra headers
 
@@ -252,7 +252,7 @@ class WARPConnector(SyncAPIResource):
 
           tunnel_id: UUID of the tunnel.
 
-          name: A user-friendly name for the tunnel.
+          name: A user-friendly name for a tunnel.
 
           tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
               bytes and encoded as a base64 string.
@@ -420,7 +420,7 @@ class AsyncWARPConnector(AsyncAPIResource):
         Args:
           account_id: Cloudflare account ID
 
-          name: A user-friendly name for the tunnel.
+          name: A user-friendly name for a tunnel.
 
           extra_headers: Send extra headers
 
@@ -605,7 +605,7 @@ class AsyncWARPConnector(AsyncAPIResource):
 
           tunnel_id: UUID of the tunnel.
 
-          name: A user-friendly name for the tunnel.
+          name: A user-friendly name for a tunnel.
 
           tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
               bytes and encoded as a base64 string.

@@ -9,12 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.magic_transit import (
-    SiteGetResponse,
-    SiteListResponse,
-    SiteCreateResponse,
-    SiteDeleteResponse,
-    SiteUpdateResponse,
+    Site,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -28,51 +25,52 @@ class TestSites:
     def test_method_create(self, client: Cloudflare) -> None:
         site = client.magic_transit.sites.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="site_1",
         )
-        assert_matches_type(SiteCreateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         site = client.magic_transit.sites.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            site={
-                "connector_id": "ac60d3d0435248289d446cedd870bcf4",
-                "description": "string",
-                "ha_mode": True,
-                "location": {
-                    "lat": "string",
-                    "lon": "string",
-                },
-                "name": "site_1",
-                "secondary_connector_id": "8d67040d3835dbcf46ce29da440dc482",
+            name="site_1",
+            connector_id="ac60d3d0435248289d446cedd870bcf4",
+            description="string",
+            ha_mode=True,
+            location={
+                "lat": "string",
+                "lon": "string",
             },
+            secondary_connector_id="8d67040d3835dbcf46ce29da440dc482",
         )
-        assert_matches_type(SiteCreateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="site_1",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site = response.parse()
-        assert_matches_type(SiteCreateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="site_1",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site = response.parse()
-            assert_matches_type(SiteCreateResponse, site, path=["response"])
+            assert_matches_type(Site, site, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,6 +80,7 @@ class TestSites:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.with_raw_response.create(
                 account_id="",
+                name="site_1",
             )
 
     @pytest.mark.skip()
@@ -91,7 +90,7 @@ class TestSites:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SiteUpdateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -99,18 +98,16 @@ class TestSites:
         site = client.magic_transit.sites.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            site={
-                "connector_id": "ac60d3d0435248289d446cedd870bcf4",
-                "description": "string",
-                "location": {
-                    "lat": "string",
-                    "lon": "string",
-                },
-                "name": "site_1",
-                "secondary_connector_id": "8d67040d3835dbcf46ce29da440dc482",
+            connector_id="ac60d3d0435248289d446cedd870bcf4",
+            description="string",
+            location={
+                "lat": "string",
+                "lon": "string",
             },
+            name="site_1",
+            secondary_connector_id="8d67040d3835dbcf46ce29da440dc482",
         )
-        assert_matches_type(SiteUpdateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -123,7 +120,7 @@ class TestSites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site = response.parse()
-        assert_matches_type(SiteUpdateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -136,7 +133,7 @@ class TestSites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site = response.parse()
-            assert_matches_type(SiteUpdateResponse, site, path=["response"])
+            assert_matches_type(Site, site, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +158,7 @@ class TestSites:
         site = client.magic_transit.sites.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SiteListResponse, site, path=["response"])
+        assert_matches_type(SyncSinglePage[Site], site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -170,7 +167,7 @@ class TestSites:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SiteListResponse, site, path=["response"])
+        assert_matches_type(SyncSinglePage[Site], site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -182,7 +179,7 @@ class TestSites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site = response.parse()
-        assert_matches_type(SiteListResponse, site, path=["response"])
+        assert_matches_type(SyncSinglePage[Site], site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -194,7 +191,7 @@ class TestSites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site = response.parse()
-            assert_matches_type(SiteListResponse, site, path=["response"])
+            assert_matches_type(SyncSinglePage[Site], site, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -214,7 +211,7 @@ class TestSites:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(SiteDeleteResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -228,7 +225,7 @@ class TestSites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site = response.parse()
-        assert_matches_type(SiteDeleteResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -242,7 +239,7 @@ class TestSites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site = response.parse()
-            assert_matches_type(SiteDeleteResponse, site, path=["response"])
+            assert_matches_type(Site, site, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -270,7 +267,7 @@ class TestSites:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SiteGetResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -283,7 +280,7 @@ class TestSites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site = response.parse()
-        assert_matches_type(SiteGetResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -296,7 +293,7 @@ class TestSites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site = response.parse()
-            assert_matches_type(SiteGetResponse, site, path=["response"])
+            assert_matches_type(Site, site, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -324,51 +321,52 @@ class TestAsyncSites:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         site = await async_client.magic_transit.sites.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="site_1",
         )
-        assert_matches_type(SiteCreateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         site = await async_client.magic_transit.sites.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            site={
-                "connector_id": "ac60d3d0435248289d446cedd870bcf4",
-                "description": "string",
-                "ha_mode": True,
-                "location": {
-                    "lat": "string",
-                    "lon": "string",
-                },
-                "name": "site_1",
-                "secondary_connector_id": "8d67040d3835dbcf46ce29da440dc482",
+            name="site_1",
+            connector_id="ac60d3d0435248289d446cedd870bcf4",
+            description="string",
+            ha_mode=True,
+            location={
+                "lat": "string",
+                "lon": "string",
             },
+            secondary_connector_id="8d67040d3835dbcf46ce29da440dc482",
         )
-        assert_matches_type(SiteCreateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="site_1",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site = await response.parse()
-        assert_matches_type(SiteCreateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="site_1",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site = await response.parse()
-            assert_matches_type(SiteCreateResponse, site, path=["response"])
+            assert_matches_type(Site, site, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -378,6 +376,7 @@ class TestAsyncSites:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.with_raw_response.create(
                 account_id="",
+                name="site_1",
             )
 
     @pytest.mark.skip()
@@ -387,7 +386,7 @@ class TestAsyncSites:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SiteUpdateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -395,18 +394,16 @@ class TestAsyncSites:
         site = await async_client.magic_transit.sites.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            site={
-                "connector_id": "ac60d3d0435248289d446cedd870bcf4",
-                "description": "string",
-                "location": {
-                    "lat": "string",
-                    "lon": "string",
-                },
-                "name": "site_1",
-                "secondary_connector_id": "8d67040d3835dbcf46ce29da440dc482",
+            connector_id="ac60d3d0435248289d446cedd870bcf4",
+            description="string",
+            location={
+                "lat": "string",
+                "lon": "string",
             },
+            name="site_1",
+            secondary_connector_id="8d67040d3835dbcf46ce29da440dc482",
         )
-        assert_matches_type(SiteUpdateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -419,7 +416,7 @@ class TestAsyncSites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site = await response.parse()
-        assert_matches_type(SiteUpdateResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -432,7 +429,7 @@ class TestAsyncSites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site = await response.parse()
-            assert_matches_type(SiteUpdateResponse, site, path=["response"])
+            assert_matches_type(Site, site, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -457,7 +454,7 @@ class TestAsyncSites:
         site = await async_client.magic_transit.sites.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SiteListResponse, site, path=["response"])
+        assert_matches_type(AsyncSinglePage[Site], site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -466,7 +463,7 @@ class TestAsyncSites:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SiteListResponse, site, path=["response"])
+        assert_matches_type(AsyncSinglePage[Site], site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -478,7 +475,7 @@ class TestAsyncSites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site = await response.parse()
-        assert_matches_type(SiteListResponse, site, path=["response"])
+        assert_matches_type(AsyncSinglePage[Site], site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -490,7 +487,7 @@ class TestAsyncSites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site = await response.parse()
-            assert_matches_type(SiteListResponse, site, path=["response"])
+            assert_matches_type(AsyncSinglePage[Site], site, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -510,7 +507,7 @@ class TestAsyncSites:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(SiteDeleteResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -524,7 +521,7 @@ class TestAsyncSites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site = await response.parse()
-        assert_matches_type(SiteDeleteResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -538,7 +535,7 @@ class TestAsyncSites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site = await response.parse()
-            assert_matches_type(SiteDeleteResponse, site, path=["response"])
+            assert_matches_type(Site, site, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -566,7 +563,7 @@ class TestAsyncSites:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SiteGetResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -579,7 +576,7 @@ class TestAsyncSites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         site = await response.parse()
-        assert_matches_type(SiteGetResponse, site, path=["response"])
+        assert_matches_type(Site, site, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -592,7 +589,7 @@ class TestAsyncSites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             site = await response.parse()
-            assert_matches_type(SiteGetResponse, site, path=["response"])
+            assert_matches_type(Site, site, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

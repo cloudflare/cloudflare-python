@@ -11,15 +11,11 @@ class RouteCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Cloudflare account ID"""
 
-    ip_network: Required[str]
+    network: Required[str]
     """The private IPv4 or IPv6 range connected by the route, in CIDR notation."""
 
     comment: str
     """Optional remark describing the route."""
 
-    virtual_network_id: object
-    """UUID of the Tunnel Virtual Network this route belongs to.
-
-    If no virtual networks are configured, the route is assigned to the default
-    virtual network of the account.
-    """
+    virtual_network_id: str
+    """UUID of the virtual network."""

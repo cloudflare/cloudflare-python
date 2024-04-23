@@ -6,7 +6,7 @@ from typing_extensions import Required, TypedDict
 
 from .wan_static_addressing_param import WANStaticAddressingParam
 
-__all__ = ["WANUpdateParams", "WAN"]
+__all__ = ["WANUpdateParams"]
 
 
 class WANUpdateParams(TypedDict, total=False):
@@ -16,11 +16,7 @@ class WANUpdateParams(TypedDict, total=False):
     site_id: Required[str]
     """Identifier"""
 
-    wan: WAN
-
-
-class WAN(TypedDict, total=False):
-    description: str
+    name: str
 
     physport: int
 

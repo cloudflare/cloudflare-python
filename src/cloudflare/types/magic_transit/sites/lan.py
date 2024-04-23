@@ -14,13 +14,13 @@ class LAN(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
-    description: Optional[str] = None
-
     ha_link: Optional[bool] = None
     """mark true to use this LAN for HA probing.
 
     only works for site with HA turned on. only one LAN can be set as the ha_link.
     """
+
+    name: Optional[str] = None
 
     nat: Optional[Nat] = None
 

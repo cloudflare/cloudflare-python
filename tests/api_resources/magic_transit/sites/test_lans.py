@@ -9,12 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.magic_transit.sites import (
-    LANGetResponse,
-    LANListResponse,
+    LAN,
     LANCreateResponse,
-    LANDeleteResponse,
-    LANUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,6 +27,8 @@ class TestLANs:
         lan = client.magic_transit.sites.lans.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            physport=1,
+            vlan_tag=0,
         )
         assert_matches_type(LANCreateResponse, lan, path=["response"])
 
@@ -38,44 +38,42 @@ class TestLANs:
         lan = client.magic_transit.sites.lans.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            lan={
-                "description": "string",
-                "ha_link": True,
-                "nat": {"static_prefix": "192.0.2.0/24"},
-                "physport": 1,
-                "routed_subnets": [
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                ],
-                "static_addressing": {
-                    "address": "192.0.2.0/24",
-                    "dhcp_relay": {"server_addresses": ["192.0.2.1", "192.0.2.1", "192.0.2.1"]},
-                    "dhcp_server": {
-                        "dhcp_pool_end": "192.0.2.1",
-                        "dhcp_pool_start": "192.0.2.1",
-                        "dns_server": "192.0.2.1",
-                        "reservations": {
-                            "00:11:22:33:44:55": "192.0.2.100",
-                            "AA:BB:CC:DD:EE:FF": "192.168.1.101",
-                        },
-                    },
-                    "secondary_address": "192.0.2.0/24",
-                    "virtual_address": "192.0.2.0/24",
+            physport=1,
+            vlan_tag=0,
+            ha_link=True,
+            name="string",
+            nat={"static_prefix": "192.0.2.0/24"},
+            routed_subnets=[
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
                 },
-                "vlan_tag": 0,
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
+                },
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
+                },
+            ],
+            static_addressing={
+                "address": "192.0.2.0/24",
+                "dhcp_relay": {"server_addresses": ["192.0.2.1", "192.0.2.1", "192.0.2.1"]},
+                "dhcp_server": {
+                    "dhcp_pool_end": "192.0.2.1",
+                    "dhcp_pool_start": "192.0.2.1",
+                    "dns_server": "192.0.2.1",
+                    "reservations": {
+                        "00:11:22:33:44:55": "192.0.2.100",
+                        "AA:BB:CC:DD:EE:FF": "192.168.1.101",
+                    },
+                },
+                "secondary_address": "192.0.2.0/24",
+                "virtual_address": "192.0.2.0/24",
             },
         )
         assert_matches_type(LANCreateResponse, lan, path=["response"])
@@ -86,6 +84,8 @@ class TestLANs:
         response = client.magic_transit.sites.lans.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            physport=1,
+            vlan_tag=0,
         )
 
         assert response.is_closed is True
@@ -99,6 +99,8 @@ class TestLANs:
         with client.magic_transit.sites.lans.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            physport=1,
+            vlan_tag=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -115,12 +117,16 @@ class TestLANs:
             client.magic_transit.sites.lans.with_raw_response.create(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                physport=1,
+                vlan_tag=0,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.lans.with_raw_response.create(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                physport=1,
+                vlan_tag=0,
             )
 
     @pytest.mark.skip()
@@ -131,7 +137,7 @@ class TestLANs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LANUpdateResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -140,46 +146,44 @@ class TestLANs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            lan={
-                "description": "string",
-                "nat": {"static_prefix": "192.0.2.0/24"},
-                "physport": 1,
-                "routed_subnets": [
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                ],
-                "static_addressing": {
-                    "address": "192.0.2.0/24",
-                    "dhcp_relay": {"server_addresses": ["192.0.2.1", "192.0.2.1", "192.0.2.1"]},
-                    "dhcp_server": {
-                        "dhcp_pool_end": "192.0.2.1",
-                        "dhcp_pool_start": "192.0.2.1",
-                        "dns_server": "192.0.2.1",
-                        "reservations": {
-                            "00:11:22:33:44:55": "192.0.2.100",
-                            "AA:BB:CC:DD:EE:FF": "192.168.1.101",
-                        },
-                    },
-                    "secondary_address": "192.0.2.0/24",
-                    "virtual_address": "192.0.2.0/24",
+            name="string",
+            nat={"static_prefix": "192.0.2.0/24"},
+            physport=1,
+            routed_subnets=[
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
                 },
-                "vlan_tag": 0,
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
+                },
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
+                },
+            ],
+            static_addressing={
+                "address": "192.0.2.0/24",
+                "dhcp_relay": {"server_addresses": ["192.0.2.1", "192.0.2.1", "192.0.2.1"]},
+                "dhcp_server": {
+                    "dhcp_pool_end": "192.0.2.1",
+                    "dhcp_pool_start": "192.0.2.1",
+                    "dns_server": "192.0.2.1",
+                    "reservations": {
+                        "00:11:22:33:44:55": "192.0.2.100",
+                        "AA:BB:CC:DD:EE:FF": "192.168.1.101",
+                    },
+                },
+                "secondary_address": "192.0.2.0/24",
+                "virtual_address": "192.0.2.0/24",
             },
+            vlan_tag=0,
         )
-        assert_matches_type(LANUpdateResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -193,7 +197,7 @@ class TestLANs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = response.parse()
-        assert_matches_type(LANUpdateResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -207,7 +211,7 @@ class TestLANs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = response.parse()
-            assert_matches_type(LANUpdateResponse, lan, path=["response"])
+            assert_matches_type(LAN, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -242,7 +246,7 @@ class TestLANs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LANListResponse, lan, path=["response"])
+        assert_matches_type(SyncSinglePage[LAN], lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -255,7 +259,7 @@ class TestLANs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = response.parse()
-        assert_matches_type(LANListResponse, lan, path=["response"])
+        assert_matches_type(SyncSinglePage[LAN], lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -268,7 +272,7 @@ class TestLANs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = response.parse()
-            assert_matches_type(LANListResponse, lan, path=["response"])
+            assert_matches_type(SyncSinglePage[LAN], lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -296,7 +300,7 @@ class TestLANs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(LANDeleteResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -311,7 +315,7 @@ class TestLANs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = response.parse()
-        assert_matches_type(LANDeleteResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -326,7 +330,7 @@ class TestLANs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = response.parse()
-            assert_matches_type(LANDeleteResponse, lan, path=["response"])
+            assert_matches_type(LAN, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -365,7 +369,7 @@ class TestLANs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LANGetResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -379,7 +383,7 @@ class TestLANs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = response.parse()
-        assert_matches_type(LANGetResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -393,7 +397,7 @@ class TestLANs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = response.parse()
-            assert_matches_type(LANGetResponse, lan, path=["response"])
+            assert_matches_type(LAN, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -431,6 +435,8 @@ class TestAsyncLANs:
         lan = await async_client.magic_transit.sites.lans.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            physport=1,
+            vlan_tag=0,
         )
         assert_matches_type(LANCreateResponse, lan, path=["response"])
 
@@ -440,44 +446,42 @@ class TestAsyncLANs:
         lan = await async_client.magic_transit.sites.lans.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            lan={
-                "description": "string",
-                "ha_link": True,
-                "nat": {"static_prefix": "192.0.2.0/24"},
-                "physport": 1,
-                "routed_subnets": [
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                ],
-                "static_addressing": {
-                    "address": "192.0.2.0/24",
-                    "dhcp_relay": {"server_addresses": ["192.0.2.1", "192.0.2.1", "192.0.2.1"]},
-                    "dhcp_server": {
-                        "dhcp_pool_end": "192.0.2.1",
-                        "dhcp_pool_start": "192.0.2.1",
-                        "dns_server": "192.0.2.1",
-                        "reservations": {
-                            "00:11:22:33:44:55": "192.0.2.100",
-                            "AA:BB:CC:DD:EE:FF": "192.168.1.101",
-                        },
-                    },
-                    "secondary_address": "192.0.2.0/24",
-                    "virtual_address": "192.0.2.0/24",
+            physport=1,
+            vlan_tag=0,
+            ha_link=True,
+            name="string",
+            nat={"static_prefix": "192.0.2.0/24"},
+            routed_subnets=[
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
                 },
-                "vlan_tag": 0,
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
+                },
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
+                },
+            ],
+            static_addressing={
+                "address": "192.0.2.0/24",
+                "dhcp_relay": {"server_addresses": ["192.0.2.1", "192.0.2.1", "192.0.2.1"]},
+                "dhcp_server": {
+                    "dhcp_pool_end": "192.0.2.1",
+                    "dhcp_pool_start": "192.0.2.1",
+                    "dns_server": "192.0.2.1",
+                    "reservations": {
+                        "00:11:22:33:44:55": "192.0.2.100",
+                        "AA:BB:CC:DD:EE:FF": "192.168.1.101",
+                    },
+                },
+                "secondary_address": "192.0.2.0/24",
+                "virtual_address": "192.0.2.0/24",
             },
         )
         assert_matches_type(LANCreateResponse, lan, path=["response"])
@@ -488,6 +492,8 @@ class TestAsyncLANs:
         response = await async_client.magic_transit.sites.lans.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            physport=1,
+            vlan_tag=0,
         )
 
         assert response.is_closed is True
@@ -501,6 +507,8 @@ class TestAsyncLANs:
         async with async_client.magic_transit.sites.lans.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            physport=1,
+            vlan_tag=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -517,12 +525,16 @@ class TestAsyncLANs:
             await async_client.magic_transit.sites.lans.with_raw_response.create(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                physport=1,
+                vlan_tag=0,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.lans.with_raw_response.create(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                physport=1,
+                vlan_tag=0,
             )
 
     @pytest.mark.skip()
@@ -533,7 +545,7 @@ class TestAsyncLANs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LANUpdateResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -542,46 +554,44 @@ class TestAsyncLANs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            lan={
-                "description": "string",
-                "nat": {"static_prefix": "192.0.2.0/24"},
-                "physport": 1,
-                "routed_subnets": [
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                    {
-                        "nat": {"static_prefix": "192.0.2.0/24"},
-                        "next_hop": "192.0.2.1",
-                        "prefix": "192.0.2.0/24",
-                    },
-                ],
-                "static_addressing": {
-                    "address": "192.0.2.0/24",
-                    "dhcp_relay": {"server_addresses": ["192.0.2.1", "192.0.2.1", "192.0.2.1"]},
-                    "dhcp_server": {
-                        "dhcp_pool_end": "192.0.2.1",
-                        "dhcp_pool_start": "192.0.2.1",
-                        "dns_server": "192.0.2.1",
-                        "reservations": {
-                            "00:11:22:33:44:55": "192.0.2.100",
-                            "AA:BB:CC:DD:EE:FF": "192.168.1.101",
-                        },
-                    },
-                    "secondary_address": "192.0.2.0/24",
-                    "virtual_address": "192.0.2.0/24",
+            name="string",
+            nat={"static_prefix": "192.0.2.0/24"},
+            physport=1,
+            routed_subnets=[
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
                 },
-                "vlan_tag": 0,
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
+                },
+                {
+                    "nat": {"static_prefix": "192.0.2.0/24"},
+                    "next_hop": "192.0.2.1",
+                    "prefix": "192.0.2.0/24",
+                },
+            ],
+            static_addressing={
+                "address": "192.0.2.0/24",
+                "dhcp_relay": {"server_addresses": ["192.0.2.1", "192.0.2.1", "192.0.2.1"]},
+                "dhcp_server": {
+                    "dhcp_pool_end": "192.0.2.1",
+                    "dhcp_pool_start": "192.0.2.1",
+                    "dns_server": "192.0.2.1",
+                    "reservations": {
+                        "00:11:22:33:44:55": "192.0.2.100",
+                        "AA:BB:CC:DD:EE:FF": "192.168.1.101",
+                    },
+                },
+                "secondary_address": "192.0.2.0/24",
+                "virtual_address": "192.0.2.0/24",
             },
+            vlan_tag=0,
         )
-        assert_matches_type(LANUpdateResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -595,7 +605,7 @@ class TestAsyncLANs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = await response.parse()
-        assert_matches_type(LANUpdateResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -609,7 +619,7 @@ class TestAsyncLANs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = await response.parse()
-            assert_matches_type(LANUpdateResponse, lan, path=["response"])
+            assert_matches_type(LAN, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -644,7 +654,7 @@ class TestAsyncLANs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LANListResponse, lan, path=["response"])
+        assert_matches_type(AsyncSinglePage[LAN], lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -657,7 +667,7 @@ class TestAsyncLANs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = await response.parse()
-        assert_matches_type(LANListResponse, lan, path=["response"])
+        assert_matches_type(AsyncSinglePage[LAN], lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -670,7 +680,7 @@ class TestAsyncLANs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = await response.parse()
-            assert_matches_type(LANListResponse, lan, path=["response"])
+            assert_matches_type(AsyncSinglePage[LAN], lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -698,7 +708,7 @@ class TestAsyncLANs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(LANDeleteResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -713,7 +723,7 @@ class TestAsyncLANs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = await response.parse()
-        assert_matches_type(LANDeleteResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -728,7 +738,7 @@ class TestAsyncLANs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = await response.parse()
-            assert_matches_type(LANDeleteResponse, lan, path=["response"])
+            assert_matches_type(LAN, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -767,7 +777,7 @@ class TestAsyncLANs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(LANGetResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -781,7 +791,7 @@ class TestAsyncLANs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = await response.parse()
-        assert_matches_type(LANGetResponse, lan, path=["response"])
+        assert_matches_type(LAN, lan, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -795,7 +805,7 @@ class TestAsyncLANs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = await response.parse()
-            assert_matches_type(LANGetResponse, lan, path=["response"])
+            assert_matches_type(LAN, lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

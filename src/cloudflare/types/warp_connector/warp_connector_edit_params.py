@@ -12,7 +12,7 @@ class WARPConnectorEditParams(TypedDict, total=False):
     """Cloudflare account ID"""
 
     name: str
-    """A user-friendly name for the tunnel."""
+    """A user-friendly name for a tunnel."""
 
     tunnel_secret: str
     """Sets the password required to run a locally-managed tunnel.

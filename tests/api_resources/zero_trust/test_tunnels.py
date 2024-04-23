@@ -31,7 +31,7 @@ class TestTunnels:
         tunnel = client.zero_trust.tunnels.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
-            tunnel_secret={},
+            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
         assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
 
@@ -41,7 +41,7 @@ class TestTunnels:
         response = client.zero_trust.tunnels.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
-            tunnel_secret={},
+            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
 
         assert response.is_closed is True
@@ -55,7 +55,7 @@ class TestTunnels:
         with client.zero_trust.tunnels.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
-            tunnel_secret={},
+            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,7 +72,7 @@ class TestTunnels:
             client.zero_trust.tunnels.with_raw_response.create(
                 account_id="",
                 name="blog",
-                tunnel_secret={},
+                tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
             )
 
     @pytest.mark.skip()
@@ -318,7 +318,7 @@ class TestAsyncTunnels:
         tunnel = await async_client.zero_trust.tunnels.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
-            tunnel_secret={},
+            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
         assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
 
@@ -328,7 +328,7 @@ class TestAsyncTunnels:
         response = await async_client.zero_trust.tunnels.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
-            tunnel_secret={},
+            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
 
         assert response.is_closed is True
@@ -342,7 +342,7 @@ class TestAsyncTunnels:
         async with async_client.zero_trust.tunnels.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
-            tunnel_secret={},
+            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -359,7 +359,7 @@ class TestAsyncTunnels:
             await async_client.zero_trust.tunnels.with_raw_response.create(
                 account_id="",
                 name="blog",
-                tunnel_secret={},
+                tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
             )
 
     @pytest.mark.skip()
