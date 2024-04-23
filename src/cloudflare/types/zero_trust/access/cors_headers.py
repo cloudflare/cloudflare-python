@@ -7,10 +7,10 @@ from .allowed_headersh import AllowedHeadersh
 from .allowed_methodsh import AllowedMethodsh
 from .allowed_originsh import AllowedOriginsh
 
-__all__ = ["CorsHeaders"]
+__all__ = ["CORSHeaders"]
 
 
-class CorsHeaders(BaseModel):
+class CORSHeaders(BaseModel):
     allow_all_headers: Optional[bool] = None
     """Allows all HTTP request headers."""
 

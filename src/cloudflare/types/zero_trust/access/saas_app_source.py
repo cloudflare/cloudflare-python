@@ -4,10 +4,10 @@ from typing import Dict, Optional
 
 from ...._models import BaseModel
 
-__all__ = ["SaasAppSource"]
+__all__ = ["SaaSAppSource"]
 
 
-class SaasAppSource(BaseModel):
+class SaaSAppSource(BaseModel):
     name: Optional[str] = None
     """The name of the IdP attribute."""
 

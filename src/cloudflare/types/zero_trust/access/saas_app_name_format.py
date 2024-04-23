@@ -2,9 +2,9 @@
 
 from typing_extensions import Literal
 
-__all__ = ["SaasAppNameFormat"]
+__all__ = ["SaaSAppNameFormat"]
 
-SaasAppNameFormat = Literal[
+SaaSAppNameFormat = Literal[
     "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
     "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
     "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
