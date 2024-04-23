@@ -25,12 +25,10 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers.scripts import (
-    VersionGetResponse,
-    VersionListResponse,
-    VersionCreateResponse,
-    version_create_params,
-)
+from ....types.workers.scripts import version_create_params
+from ....types.workers.scripts.version_get_response import VersionGetResponse
+from ....types.workers.scripts.version_list_response import VersionListResponse
+from ....types.workers.scripts.version_create_response import VersionCreateResponse
 
 __all__ = ["Versions", "AsyncVersions"]
 

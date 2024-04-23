@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import MobileRedirect, mobile_redirect_edit_params
+from ....types.zones.settings import mobile_redirect_edit_params
+from ....types.zones.settings.mobile_redirect import MobileRedirect
 
 __all__ = ["MobileRedirectResource", "AsyncMobileRedirectResource"]
 

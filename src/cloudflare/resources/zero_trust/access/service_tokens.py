@@ -25,13 +25,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.access import (
-    ServiceToken,
-    ServiceTokenCreateResponse,
-    ServiceTokenRotateResponse,
-    service_token_create_params,
-    service_token_update_params,
-)
+from ....types.zero_trust.access import service_token_create_params, service_token_update_params
+from ....types.zero_trust.access.service_token import ServiceToken
+from ....types.zero_trust.access.service_token_create_response import ServiceTokenCreateResponse
+from ....types.zero_trust.access.service_token_rotate_response import ServiceTokenRotateResponse
 
 __all__ = ["ServiceTokens", "AsyncServiceTokens"]
 

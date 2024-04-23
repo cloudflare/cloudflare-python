@@ -7,7 +7,7 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ......_types import FileTypes
 from ......_utils import PropertyInfo
-from .....workers import WorkerMetadataParam
+from .....workers.worker_metadata_param import WorkerMetadataParam
 
 __all__ = ["ContentUpdateParams"]
 

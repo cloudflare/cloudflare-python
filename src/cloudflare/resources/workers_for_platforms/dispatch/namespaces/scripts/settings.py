@@ -23,11 +23,9 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.workers_for_platforms.dispatch.namespaces.scripts import (
-    SettingGetResponse,
-    SettingEditResponse,
-    setting_edit_params,
-)
+from ......types.workers_for_platforms.dispatch.namespaces.scripts import setting_edit_params
+from ......types.workers_for_platforms.dispatch.namespaces.scripts.setting_get_response import SettingGetResponse
+from ......types.workers_for_platforms.dispatch.namespaces.scripts.setting_edit_response import SettingEditResponse
 
 __all__ = ["Settings", "AsyncSettings"]
 

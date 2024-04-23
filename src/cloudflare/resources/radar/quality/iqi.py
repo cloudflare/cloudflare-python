@@ -25,12 +25,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.quality import (
-    IQISummaryResponse,
-    IQITimeseriesGroupsResponse,
-    iqi_summary_params,
-    iqi_timeseries_groups_params,
-)
+from ....types.radar.quality import iqi_summary_params, iqi_timeseries_groups_params
+from ....types.radar.quality.iqi_summary_response import IQISummaryResponse
+from ....types.radar.quality.iqi_timeseries_groups_response import IQITimeseriesGroupsResponse
 
 __all__ = ["IQI", "AsyncIQI"]
 

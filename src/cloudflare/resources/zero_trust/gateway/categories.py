@@ -18,7 +18,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.gateway import Category
+from ....types.zero_trust.gateway.category import Category
 
 __all__ = ["Categories", "AsyncCategories"]
 

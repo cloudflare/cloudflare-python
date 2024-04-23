@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.kv.namespaces import BulkDeleteResponse, BulkUpdateResponse, bulk_delete_params, bulk_update_params
+from ....types.kv.namespaces import bulk_delete_params, bulk_update_params
+from ....types.kv.namespaces.bulk_delete_response import BulkDeleteResponse
+from ....types.kv.namespaces.bulk_update_response import BulkUpdateResponse
 
 __all__ = ["Bulk", "AsyncBulk"]
 

@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import SortQueryStringForCache, sort_query_string_for_cache_edit_params
+from ....types.zones.settings import sort_query_string_for_cache_edit_params
+from ....types.zones.settings.sort_query_string_for_cache import SortQueryStringForCache
 
 __all__ = ["SortQueryStringForCacheResource", "AsyncSortQueryStringForCacheResource"]
 

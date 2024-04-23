@@ -25,7 +25,9 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.bgp.top import AseGetResponse, AsePrefixesResponse, ase_get_params, ase_prefixes_params
+from .....types.radar.bgp.top import ase_get_params, ase_prefixes_params
+from .....types.radar.bgp.top.ase_get_response import AseGetResponse
+from .....types.radar.bgp.top.ase_prefixes_response import AsePrefixesResponse
 
 __all__ = ["Ases", "AsyncAses"]
 

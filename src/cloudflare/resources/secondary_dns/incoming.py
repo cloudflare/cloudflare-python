@@ -23,15 +23,11 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.secondary_dns import (
-    IncomingGetResponse,
-    IncomingCreateResponse,
-    IncomingDeleteResponse,
-    IncomingUpdateResponse,
-    incoming_create_params,
-    incoming_delete_params,
-    incoming_update_params,
-)
+from ...types.secondary_dns import incoming_create_params, incoming_delete_params, incoming_update_params
+from ...types.secondary_dns.incoming_get_response import IncomingGetResponse
+from ...types.secondary_dns.incoming_create_response import IncomingCreateResponse
+from ...types.secondary_dns.incoming_delete_response import IncomingDeleteResponse
+from ...types.secondary_dns.incoming_update_response import IncomingUpdateResponse
 
 __all__ = ["IncomingResource", "AsyncIncomingResource"]
 

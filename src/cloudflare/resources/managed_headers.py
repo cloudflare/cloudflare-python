@@ -22,12 +22,10 @@ from .._response import (
 from .._base_client import (
     make_request_options,
 )
-from ..types.managed_headers import (
-    RequestModelParam,
-    ManagedHeaderEditResponse,
-    ManagedHeaderListResponse,
-    managed_header_edit_params,
-)
+from ..types.managed_headers import managed_header_edit_params
+from ..types.managed_headers.request_model_param import RequestModelParam
+from ..types.managed_headers.managed_header_edit_response import ManagedHeaderEditResponse
+from ..types.managed_headers.managed_header_list_response import ManagedHeaderListResponse
 
 __all__ = ["ManagedHeaders", "AsyncManagedHeaders"]
 

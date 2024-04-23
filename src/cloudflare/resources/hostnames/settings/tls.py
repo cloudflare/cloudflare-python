@@ -24,13 +24,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.hostnames.settings import (
-    Setting,
-    TLSGetResponse,
-    SettingValueParam,
-    TLSDeleteResponse,
-    tls_update_params,
-)
+from ....types.hostnames.settings import tls_update_params
+from ....types.hostnames.settings.setting import Setting
+from ....types.hostnames.settings.tls_get_response import TLSGetResponse
+from ....types.hostnames.settings.setting_value_param import SettingValueParam
+from ....types.hostnames.settings.tls_delete_response import TLSDeleteResponse
 
 __all__ = ["TLS", "AsyncTLS"]
 

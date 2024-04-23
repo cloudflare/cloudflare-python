@@ -50,17 +50,14 @@ from .user_policy_checks import (
     UserPolicyChecksWithStreamingResponse,
     AsyncUserPolicyChecksWithStreamingResponse,
 )
-from .....types.zero_trust.access import (
-    AppIDParam,
-    Application,
-    AllowedIdpsh,
-    CustomPagesh,
-    CORSHeadersParam,
-    SelfHostedDomainsh,
-    ApplicationDeleteResponse,
-    application_create_params,
-    application_update_params,
-)
+from .....types.zero_trust.access import application_create_params, application_update_params
+from .....types.zero_trust.access.application import Application
+from .....types.zero_trust.access.app_id_param import AppIDParam
+from .....types.zero_trust.access.allowed_idpsh import AllowedIdpsh
+from .....types.zero_trust.access.custom_pagesh import CustomPagesh
+from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
+from .....types.zero_trust.access.self_hosted_domainsh import SelfHostedDomainsh
+from .....types.zero_trust.access.application_delete_response import ApplicationDeleteResponse
 
 __all__ = ["Applications", "AsyncApplications"]
 

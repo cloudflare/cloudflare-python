@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import IPDeleteResponse, IPUpdateResponse, ip_delete_params, ip_update_params
+from ....types.addressing.address_maps import ip_delete_params, ip_update_params
+from ....types.addressing.address_maps.ip_delete_response import IPDeleteResponse
+from ....types.addressing.address_maps.ip_update_response import IPUpdateResponse
 
 __all__ = ["IPs", "AsyncIPs"]
 

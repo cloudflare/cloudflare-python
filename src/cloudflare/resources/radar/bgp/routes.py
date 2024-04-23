@@ -25,16 +25,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.bgp import (
-    RouteMoasResponse,
-    RouteStatsResponse,
-    RoutePfx2asResponse,
-    RouteTimeseriesResponse,
-    route_moas_params,
-    route_stats_params,
-    route_pfx2as_params,
-    route_timeseries_params,
-)
+from ....types.radar.bgp import route_moas_params, route_stats_params, route_pfx2as_params, route_timeseries_params
+from ....types.radar.bgp.route_moas_response import RouteMoasResponse
+from ....types.radar.bgp.route_stats_response import RouteStatsResponse
+from ....types.radar.bgp.route_pfx2as_response import RoutePfx2asResponse
+from ....types.radar.bgp.route_timeseries_response import RouteTimeseriesResponse
 
 __all__ = ["Routes", "AsyncRoutes"]
 

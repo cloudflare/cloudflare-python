@@ -10,13 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.firewall import (
-    UARuleGetResponse,
-    UARuleListResponse,
-    UARuleCreateResponse,
-    UARuleDeleteResponse,
-    UARuleUpdateResponse,
-)
+from cloudflare.types.firewall.ua_rule_get_response import UARuleGetResponse
+from cloudflare.types.firewall.ua_rule_list_response import UARuleListResponse
+from cloudflare.types.firewall.ua_rule_create_response import UARuleCreateResponse
+from cloudflare.types.firewall.ua_rule_delete_response import UARuleDeleteResponse
+from cloudflare.types.firewall.ua_rule_update_response import UARuleUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

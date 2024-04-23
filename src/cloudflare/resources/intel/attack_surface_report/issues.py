@@ -26,22 +26,22 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.intel.attack_surface_report import (
-    IssueType,
-    ProductParam,
-    SubjectParam,
-    IssueClassParam,
-    IssueListResponse,
-    IssueTypeResponse,
-    IssueClassResponse,
-    SeverityQueryParam,
-    IssueDismissResponse,
-    IssueSeverityResponse,
     issue_list_params,
     issue_type_params,
     issue_class_params,
     issue_dismiss_params,
     issue_severity_params,
 )
+from ....types.intel.attack_surface_report.issue_type import IssueType
+from ....types.intel.attack_surface_report.product_param import ProductParam
+from ....types.intel.attack_surface_report.subject_param import SubjectParam
+from ....types.intel.attack_surface_report.issue_class_param import IssueClassParam
+from ....types.intel.attack_surface_report.issue_list_response import IssueListResponse
+from ....types.intel.attack_surface_report.issue_type_response import IssueTypeResponse
+from ....types.intel.attack_surface_report.issue_class_response import IssueClassResponse
+from ....types.intel.attack_surface_report.severity_query_param import SeverityQueryParam
+from ....types.intel.attack_surface_report.issue_dismiss_response import IssueDismissResponse
+from ....types.intel.attack_surface_report.issue_severity_response import IssueSeverityResponse
 
 __all__ = ["Issues", "AsyncIssues"]
 

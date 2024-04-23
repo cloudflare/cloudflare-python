@@ -23,13 +23,10 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import (
-    WebhookGetResponse,
-    WebhookDeleteResponse,
-    WebhookUpdateResponse,
-    webhook_delete_params,
-    webhook_update_params,
-)
+from ...types.stream import webhook_delete_params, webhook_update_params
+from ...types.stream.webhook_get_response import WebhookGetResponse
+from ...types.stream.webhook_delete_response import WebhookDeleteResponse
+from ...types.stream.webhook_update_response import WebhookUpdateResponse
 
 __all__ = ["Webhooks", "AsyncWebhooks"]
 

@@ -49,15 +49,11 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.addressing import (
-    AddressMap,
-    AddressMapGetResponse,
-    AddressMapCreateResponse,
-    AddressMapDeleteResponse,
-    address_map_edit_params,
-    address_map_create_params,
-    address_map_delete_params,
-)
+from ....types.addressing import address_map_edit_params, address_map_create_params, address_map_delete_params
+from ....types.addressing.address_map import AddressMap
+from ....types.addressing.address_map_get_response import AddressMapGetResponse
+from ....types.addressing.address_map_create_response import AddressMapCreateResponse
+from ....types.addressing.address_map_delete_response import AddressMapDeleteResponse
 
 __all__ = ["AddressMaps", "AsyncAddressMaps"]
 

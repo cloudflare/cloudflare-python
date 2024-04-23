@@ -68,16 +68,16 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.waiting_rooms import (
-    WaitingRoom,
-    AdditionalRoutesParam,
-    CookieAttributesParam,
-    WaitingRoomDeleteResponse,
     waiting_room_edit_params,
     waiting_room_list_params,
     waiting_room_create_params,
     waiting_room_delete_params,
     waiting_room_update_params,
 )
+from ...types.waiting_rooms.waiting_room import WaitingRoom
+from ...types.waiting_rooms.additional_routes_param import AdditionalRoutesParam
+from ...types.waiting_rooms.cookie_attributes_param import CookieAttributesParam
+from ...types.waiting_rooms.waiting_room_delete_response import WaitingRoomDeleteResponse
 
 __all__ = ["WaitingRooms", "AsyncWaitingRooms"]
 

@@ -29,10 +29,6 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.dns import (
-    FirewallIPsParam,
-    UpstreamIPsParam,
-    AttackMitigationParam,
-    FirewallDeleteResponse,
     firewall_edit_params,
     firewall_list_params,
     firewall_create_params,
@@ -44,7 +40,11 @@ from ...._base_client import (
     make_request_options,
 )
 from .analytics.analytics import Analytics, AsyncAnalytics
-from ....types.dns.firewall import Firewall
+from ....types.dns.firewall.firewall import Firewall
+from ....types.dns.firewall_ips_param import FirewallIPsParam
+from ....types.dns.upstream_ips_param import UpstreamIPsParam
+from ....types.dns.attack_mitigation_param import AttackMitigationParam
+from ....types.dns.firewall_delete_response import FirewallDeleteResponse
 
 __all__ = ["FirewallResource", "AsyncFirewallResource"]
 

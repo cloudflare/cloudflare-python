@@ -22,17 +22,17 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ...types.user import (
-    Subscription,
-    RatePlanParam,
-    SubscriptionZoneParam,
-    SubscriptionComponentParam,
-)
-from ...types.zones import SubscriptionGetResponse, SubscriptionCreateResponse, subscription_create_params
+from ...types.zones import subscription_create_params
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.user.subscription import Subscription
+from ...types.user.rate_plan_param import RatePlanParam
+from ...types.user.subscription_zone_param import SubscriptionZoneParam
+from ...types.zones.subscription_get_response import SubscriptionGetResponse
+from ...types.user.subscription_component_param import SubscriptionComponentParam
+from ...types.zones.subscription_create_response import SubscriptionCreateResponse
 
 __all__ = ["Subscriptions", "AsyncSubscriptions"]
 

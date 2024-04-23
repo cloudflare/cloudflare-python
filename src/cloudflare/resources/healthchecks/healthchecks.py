@@ -34,17 +34,17 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.healthchecks import (
-    CheckRegion,
-    Healthcheck,
-    TCPConfigurationParam,
-    HTTPConfigurationParam,
-    HealthcheckDeleteResponse,
     healthcheck_edit_params,
     healthcheck_list_params,
     healthcheck_create_params,
     healthcheck_delete_params,
     healthcheck_update_params,
 )
+from ...types.healthchecks.healthcheck import Healthcheck
+from ...types.healthchecks.check_region import CheckRegion
+from ...types.healthchecks.tcp_configuration_param import TCPConfigurationParam
+from ...types.healthchecks.http_configuration_param import HTTPConfigurationParam
+from ...types.healthchecks.healthcheck_delete_response import HealthcheckDeleteResponse
 
 __all__ = ["Healthchecks", "AsyncHealthchecks"]
 

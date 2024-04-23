@@ -47,7 +47,9 @@ from .connections import (
 from ..._base_client import (
     make_request_options,
 )
-from ...types.page_shield import Setting, PageShieldUpdateResponse, page_shield_update_params
+from ...types.page_shield import page_shield_update_params
+from ...types.page_shield.setting import Setting
+from ...types.page_shield.page_shield_update_response import PageShieldUpdateResponse
 
 __all__ = ["PageShield", "AsyncPageShield"]
 

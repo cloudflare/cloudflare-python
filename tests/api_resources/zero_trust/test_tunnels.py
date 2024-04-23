@@ -11,13 +11,11 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.zero_trust import (
-    TunnelGetResponse,
-    TunnelEditResponse,
-    TunnelListResponse,
-    TunnelCreateResponse,
-    TunnelDeleteResponse,
-)
+from cloudflare.types.zero_trust.tunnel_get_response import TunnelGetResponse
+from cloudflare.types.zero_trust.tunnel_edit_response import TunnelEditResponse
+from cloudflare.types.zero_trust.tunnel_list_response import TunnelListResponse
+from cloudflare.types.zero_trust.tunnel_create_response import TunnelCreateResponse
+from cloudflare.types.zero_trust.tunnel_delete_response import TunnelDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

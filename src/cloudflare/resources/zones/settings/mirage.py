@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import Mirage, mirage_edit_params
+from ....types.zones.settings import mirage_edit_params
+from ....types.zones.settings.mirage import Mirage
 
 __all__ = ["MirageResource", "AsyncMirageResource"]
 

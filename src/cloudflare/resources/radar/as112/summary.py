@@ -26,12 +26,6 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.radar.as112 import (
-    SummaryEdnsResponse,
-    SummaryDNSSECResponse,
-    SummaryProtocolResponse,
-    SummaryIPVersionResponse,
-    SummaryQueryTypeResponse,
-    SummaryResponseCodesResponse,
     summary_edns_params,
     summary_dnssec_params,
     summary_protocol_params,
@@ -39,6 +33,12 @@ from ....types.radar.as112 import (
     summary_query_type_params,
     summary_response_codes_params,
 )
+from ....types.radar.as112.summary_edns_response import SummaryEdnsResponse
+from ....types.radar.as112.summary_dnssec_response import SummaryDNSSECResponse
+from ....types.radar.as112.summary_protocol_response import SummaryProtocolResponse
+from ....types.radar.as112.summary_ip_version_response import SummaryIPVersionResponse
+from ....types.radar.as112.summary_query_type_response import SummaryQueryTypeResponse
+from ....types.radar.as112.summary_response_codes_response import SummaryResponseCodesResponse
 
 __all__ = ["Summary", "AsyncSummary"]
 

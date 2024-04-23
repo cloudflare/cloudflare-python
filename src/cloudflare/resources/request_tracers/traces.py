@@ -23,7 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.request_tracers import TraceCreateResponse, trace_create_params
+from ...types.request_tracers import trace_create_params
+from ...types.request_tracers.trace_create_response import TraceCreateResponse
 
 __all__ = ["Traces", "AsyncTraces"]
 

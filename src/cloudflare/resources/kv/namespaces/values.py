@@ -23,12 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.kv.namespaces import (
-    ValueDeleteResponse,
-    ValueUpdateResponse,
-    value_delete_params,
-    value_update_params,
-)
+from ....types.kv.namespaces import value_delete_params, value_update_params
+from ....types.kv.namespaces.value_delete_response import ValueDeleteResponse
+from ....types.kv.namespaces.value_update_response import ValueUpdateResponse
 
 __all__ = ["Values", "AsyncValues"]
 

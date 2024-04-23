@@ -24,13 +24,13 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.gateway import (
-    ConfigurationGetResponse,
-    ConfigurationEditResponse,
-    ConfigurationUpdateResponse,
-    GatewayConfigurationSettingsParam,
     configuration_edit_params,
     configuration_update_params,
 )
+from ....types.zero_trust.gateway.configuration_get_response import ConfigurationGetResponse
+from ....types.zero_trust.gateway.configuration_edit_response import ConfigurationEditResponse
+from ....types.zero_trust.gateway.configuration_update_response import ConfigurationUpdateResponse
+from ....types.zero_trust.gateway.gateway_configuration_settings_param import GatewayConfigurationSettingsParam
 
 __all__ = ["Configurations", "AsyncConfigurations"]
 

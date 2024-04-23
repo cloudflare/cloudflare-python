@@ -25,7 +25,8 @@ from ......._wrappers import ResultWrapper
 from ......._base_client import (
     make_request_options,
 )
-from .......types.radar.email.security.top.tlds import MaliciousGetResponse, malicious_get_params
+from .......types.radar.email.security.top.tlds import malicious_get_params
+from .......types.radar.email.security.top.tlds.malicious_get_response import MaliciousGetResponse
 
 __all__ = ["Malicious", "AsyncMalicious"]
 

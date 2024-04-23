@@ -33,20 +33,20 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.pagerules import (
-    RouteParam,
-    TargetParam,
-    PageruleGetResponse,
-    PageruleEditResponse,
-    PageruleListResponse,
-    PageruleCreateResponse,
-    PageruleDeleteResponse,
-    PageruleUpdateResponse,
     pagerule_edit_params,
     pagerule_list_params,
     pagerule_create_params,
     pagerule_delete_params,
     pagerule_update_params,
 )
+from ...types.pagerules.route_param import RouteParam
+from ...types.pagerules.target_param import TargetParam
+from ...types.pagerules.pagerule_get_response import PageruleGetResponse
+from ...types.pagerules.pagerule_edit_response import PageruleEditResponse
+from ...types.pagerules.pagerule_list_response import PageruleListResponse
+from ...types.pagerules.pagerule_create_response import PageruleCreateResponse
+from ...types.pagerules.pagerule_delete_response import PageruleDeleteResponse
+from ...types.pagerules.pagerule_update_response import PageruleUpdateResponse
 
 __all__ = ["Pagerules", "AsyncPagerules"]
 

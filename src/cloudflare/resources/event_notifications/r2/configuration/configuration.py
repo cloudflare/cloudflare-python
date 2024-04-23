@@ -27,7 +27,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.event_notifications.r2 import ConfigurationGetResponse
+from .....types.event_notifications.r2.configuration_get_response import ConfigurationGetResponse
 
 __all__ = ["Configuration", "AsyncConfiguration"]
 

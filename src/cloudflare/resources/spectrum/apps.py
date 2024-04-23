@@ -27,19 +27,19 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.spectrum import (
-    DNSParam,
-    EdgeIPsParam,
-    AppGetResponse,
-    OriginDNSParam,
-    OriginPortParam,
-    AppCreateResponse,
-    AppDeleteResponse,
-    AppUpdateResponse,
     app_list_params,
     app_create_params,
     app_delete_params,
     app_update_params,
 )
+from ...types.spectrum.dns_param import DNSParam
+from ...types.spectrum.edge_ips_param import EdgeIPsParam
+from ...types.spectrum.app_get_response import AppGetResponse
+from ...types.spectrum.origin_dns_param import OriginDNSParam
+from ...types.spectrum.origin_port_param import OriginPortParam
+from ...types.spectrum.app_create_response import AppCreateResponse
+from ...types.spectrum.app_delete_response import AppDeleteResponse
+from ...types.spectrum.app_update_response import AppUpdateResponse
 
 __all__ = ["Apps", "AsyncApps"]
 

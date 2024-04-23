@@ -23,12 +23,9 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.logpush import (
-    OwnershipValidation,
-    OwnershipCreateResponse,
-    ownership_create_params,
-    ownership_validate_params,
-)
+from ...types.logpush import ownership_create_params, ownership_validate_params
+from ...types.logpush.ownership_validation import OwnershipValidation
+from ...types.logpush.ownership_create_response import OwnershipCreateResponse
 
 __all__ = ["Ownership", "AsyncOwnership"]
 

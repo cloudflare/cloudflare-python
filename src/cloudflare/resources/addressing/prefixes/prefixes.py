@@ -42,13 +42,9 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.addressing import (
-    Prefix,
-    PrefixDeleteResponse,
-    prefix_edit_params,
-    prefix_create_params,
-    prefix_delete_params,
-)
+from ....types.addressing import prefix_edit_params, prefix_create_params, prefix_delete_params
+from ....types.addressing.prefix import Prefix
+from ....types.addressing.prefix_delete_response import PrefixDeleteResponse
 
 __all__ = ["Prefixes", "AsyncPrefixes"]
 

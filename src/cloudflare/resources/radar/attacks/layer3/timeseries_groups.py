@@ -26,14 +26,6 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.radar.attacks.layer3 import (
-    TimeseriesGroupGetResponse,
-    TimeseriesGroupVectorResponse,
-    TimeseriesGroupBitrateResponse,
-    TimeseriesGroupDurationResponse,
-    TimeseriesGroupIndustryResponse,
-    TimeseriesGroupProtocolResponse,
-    TimeseriesGroupVerticalResponse,
-    TimeseriesGroupIPVersionResponse,
     timeseries_group_get_params,
     timeseries_group_vector_params,
     timeseries_group_bitrate_params,
@@ -43,6 +35,14 @@ from .....types.radar.attacks.layer3 import (
     timeseries_group_vertical_params,
     timeseries_group_ip_version_params,
 )
+from .....types.radar.attacks.layer3.timeseries_group_get_response import TimeseriesGroupGetResponse
+from .....types.radar.attacks.layer3.timeseries_group_vector_response import TimeseriesGroupVectorResponse
+from .....types.radar.attacks.layer3.timeseries_group_bitrate_response import TimeseriesGroupBitrateResponse
+from .....types.radar.attacks.layer3.timeseries_group_duration_response import TimeseriesGroupDurationResponse
+from .....types.radar.attacks.layer3.timeseries_group_industry_response import TimeseriesGroupIndustryResponse
+from .....types.radar.attacks.layer3.timeseries_group_protocol_response import TimeseriesGroupProtocolResponse
+from .....types.radar.attacks.layer3.timeseries_group_vertical_response import TimeseriesGroupVerticalResponse
+from .....types.radar.attacks.layer3.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
 
 __all__ = ["TimeseriesGroups", "AsyncTimeseriesGroups"]
 

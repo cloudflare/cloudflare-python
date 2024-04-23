@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from ..custom_hostnames import BundleMethod
 from .geo_restrictions_param import GeoRestrictionsParam
+from ..custom_hostnames.bundle_method import BundleMethod
 
 __all__ = ["CustomCertificateEditParams"]
 

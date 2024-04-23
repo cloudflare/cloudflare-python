@@ -34,12 +34,12 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.magic_network_monitoring import (
-    MagicNetworkMonitoringRule,
     rule_edit_params,
     rule_create_params,
     rule_delete_params,
     rule_update_params,
 )
+from ....types.magic_network_monitoring.magic_network_monitoring_rule import MagicNetworkMonitoringRule
 
 __all__ = ["Rules", "AsyncRules"]
 

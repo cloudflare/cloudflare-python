@@ -46,7 +46,7 @@ from .dns_settings import (
     DNSSettingsWithStreamingResponse,
     AsyncDNSSettingsWithStreamingResponse,
 )
-from ...types.zones import Zone, ZoneDeleteResponse, zone_edit_params, zone_list_params, zone_create_params
+from ...types.zones import zone_edit_params, zone_list_params, zone_create_params
 from .subscriptions import (
     Subscriptions,
     AsyncSubscriptions,
@@ -68,6 +68,7 @@ from .activation_check import (
     AsyncActivationCheckWithStreamingResponse,
 )
 from .settings.settings import Settings, AsyncSettings
+from ...types.zones.zone import Zone
 from .custom_nameservers import (
     CustomNameservers,
     AsyncCustomNameservers,
@@ -76,6 +77,7 @@ from .custom_nameservers import (
     CustomNameserversWithStreamingResponse,
     AsyncCustomNameserversWithStreamingResponse,
 )
+from ...types.zones.zone_delete_response import ZoneDeleteResponse
 
 __all__ = ["Zones", "AsyncZones"]
 

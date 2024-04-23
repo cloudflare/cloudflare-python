@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import RocketLoader, RocketLoaderParam, rocket_loader_edit_params
+from ....types.zones.settings import RocketLoader, rocket_loader_edit_params
+from ....types.zones.settings.rocket_loader import RocketLoader
+from ....types.zones.settings.rocket_loader_param import RocketLoaderParam
 
 __all__ = ["RocketLoaderResource", "AsyncRocketLoaderResource"]
 

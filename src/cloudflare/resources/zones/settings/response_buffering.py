@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ResponseBuffering, response_buffering_edit_params
+from ....types.zones.settings import response_buffering_edit_params
+from ....types.zones.settings.response_buffering import ResponseBuffering
 
 __all__ = ["ResponseBufferingResource", "AsyncResponseBufferingResource"]
 

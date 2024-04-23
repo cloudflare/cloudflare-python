@@ -26,13 +26,9 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.devices import (
-    DeviceNetwork,
-    NetworkDeleteResponse,
-    network_create_params,
-    network_delete_params,
-    network_update_params,
-)
+from ....types.zero_trust.devices import network_create_params, network_delete_params, network_update_params
+from ....types.zero_trust.devices.device_network import DeviceNetwork
+from ....types.zero_trust.devices.network_delete_response import NetworkDeleteResponse
 
 __all__ = ["Networks", "AsyncNetworks"]
 

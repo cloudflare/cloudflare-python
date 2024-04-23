@@ -19,7 +19,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.devices.policies import DefaultPolicyGetResponse
+from .....types.zero_trust.devices.policies.default_policy_get_response import DefaultPolicyGetResponse
 
 __all__ = ["DefaultPolicy", "AsyncDefaultPolicy"]
 

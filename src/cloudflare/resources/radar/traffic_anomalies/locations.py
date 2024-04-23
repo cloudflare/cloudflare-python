@@ -25,7 +25,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.traffic_anomalies import LocationGetResponse, location_get_params
+from ....types.radar.traffic_anomalies import location_get_params
+from ....types.radar.traffic_anomalies.location_get_response import LocationGetResponse
 
 __all__ = ["Locations", "AsyncLocations"]
 

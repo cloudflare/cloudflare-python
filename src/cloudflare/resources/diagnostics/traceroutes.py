@@ -23,7 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.diagnostics import TracerouteCreateResponse, traceroute_create_params
+from ...types.diagnostics import traceroute_create_params
+from ...types.diagnostics.traceroute_create_response import TracerouteCreateResponse
 
 __all__ = ["Traceroutes", "AsyncTraceroutes"]
 

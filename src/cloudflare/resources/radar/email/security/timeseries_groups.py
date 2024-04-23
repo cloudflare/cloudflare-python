@@ -26,15 +26,6 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.radar.email.security import (
-    TimeseriesGroupARCResponse,
-    TimeseriesGroupSPFResponse,
-    TimeseriesGroupDKIMResponse,
-    TimeseriesGroupSpamResponse,
-    TimeseriesGroupDMARCResponse,
-    TimeseriesGroupSpoofResponse,
-    TimeseriesGroupMaliciousResponse,
-    TimeseriesGroupTLSVersionResponse,
-    TimeseriesGroupThreatCategoryResponse,
     timeseries_group_arc_params,
     timeseries_group_spf_params,
     timeseries_group_dkim_params,
@@ -44,6 +35,17 @@ from .....types.radar.email.security import (
     timeseries_group_malicious_params,
     timeseries_group_tls_version_params,
     timeseries_group_threat_category_params,
+)
+from .....types.radar.email.security.timeseries_group_arc_response import TimeseriesGroupARCResponse
+from .....types.radar.email.security.timeseries_group_spf_response import TimeseriesGroupSPFResponse
+from .....types.radar.email.security.timeseries_group_dkim_response import TimeseriesGroupDKIMResponse
+from .....types.radar.email.security.timeseries_group_spam_response import TimeseriesGroupSpamResponse
+from .....types.radar.email.security.timeseries_group_dmarc_response import TimeseriesGroupDMARCResponse
+from .....types.radar.email.security.timeseries_group_spoof_response import TimeseriesGroupSpoofResponse
+from .....types.radar.email.security.timeseries_group_malicious_response import TimeseriesGroupMaliciousResponse
+from .....types.radar.email.security.timeseries_group_tls_version_response import TimeseriesGroupTLSVersionResponse
+from .....types.radar.email.security.timeseries_group_threat_category_response import (
+    TimeseriesGroupThreatCategoryResponse,
 )
 
 __all__ = ["TimeseriesGroups", "AsyncTimeseriesGroups"]

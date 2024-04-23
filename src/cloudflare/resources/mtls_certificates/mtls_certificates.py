@@ -33,12 +33,9 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.mtls_certificates import (
-    MTLSCertificate,
-    MTLSCertificateCreateResponse,
-    mtls_certificate_create_params,
-    mtls_certificate_delete_params,
-)
+from ...types.mtls_certificates import mtls_certificate_create_params, mtls_certificate_delete_params
+from ...types.mtls_certificates.mtls_certificate import MTLSCertificate
+from ...types.mtls_certificates.mtls_certificate_create_response import MTLSCertificateCreateResponse
 
 __all__ = ["MTLSCertificates", "AsyncMTLSCertificates"]
 

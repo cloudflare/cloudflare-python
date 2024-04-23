@@ -9,11 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.rulesets import (
-    RuleEditResponse,
-    RuleCreateResponse,
-    RuleDeleteResponse,
-)
+from cloudflare.types.rulesets.rule_edit_response import RuleEditResponse
+from cloudflare.types.rulesets.rule_create_response import RuleCreateResponse
+from cloudflare.types.rulesets.rule_delete_response import RuleDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

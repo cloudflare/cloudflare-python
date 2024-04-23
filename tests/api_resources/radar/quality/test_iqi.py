@@ -10,10 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.quality import (
-    IQISummaryResponse,
-    IQITimeseriesGroupsResponse,
-)
+from cloudflare.types.radar.quality.iqi_summary_response import IQISummaryResponse
+from cloudflare.types.radar.quality.iqi_timeseries_groups_response import IQITimeseriesGroupsResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

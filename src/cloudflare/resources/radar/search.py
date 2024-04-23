@@ -21,10 +21,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.radar import SearchGlobalResponse, search_global_params
+from ...types.radar import search_global_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.radar.search_global_response import SearchGlobalResponse
 
 __all__ = ["Search", "AsyncSearch"]
 

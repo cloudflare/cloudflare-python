@@ -23,7 +23,9 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.storage import Schema, Components, analytics_list_params, analytics_stored_params
+from ...types.storage import analytics_list_params, analytics_stored_params
+from ...types.storage.schema import Schema
+from ...types.storage.components import Components
 
 __all__ = ["Analytics", "AsyncAnalytics"]
 

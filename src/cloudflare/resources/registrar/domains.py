@@ -25,7 +25,10 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.registrar import Domain, DomainGetResponse, DomainUpdateResponse, domain_update_params
+from ...types.registrar import domain_update_params
+from ...types.registrar.domain import Domain
+from ...types.registrar.domain_get_response import DomainGetResponse
+from ...types.registrar.domain_update_response import DomainUpdateResponse
 
 __all__ = ["Domains", "AsyncDomains"]
 

@@ -26,15 +26,15 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.networks import (
-    VirtualNetwork,
-    VirtualNetworkEditResponse,
-    VirtualNetworkCreateResponse,
-    VirtualNetworkDeleteResponse,
     virtual_network_edit_params,
     virtual_network_list_params,
     virtual_network_create_params,
     virtual_network_delete_params,
 )
+from ....types.zero_trust.networks.virtual_network import VirtualNetwork
+from ....types.zero_trust.networks.virtual_network_edit_response import VirtualNetworkEditResponse
+from ....types.zero_trust.networks.virtual_network_create_response import VirtualNetworkCreateResponse
+from ....types.zero_trust.networks.virtual_network_delete_response import VirtualNetworkDeleteResponse
 
 __all__ = ["VirtualNetworks", "AsyncVirtualNetworks"]
 

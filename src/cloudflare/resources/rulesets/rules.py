@@ -25,14 +25,11 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.rulesets import (
-    LoggingParam,
-    RuleEditResponse,
-    RuleCreateResponse,
-    RuleDeleteResponse,
-    rule_edit_params,
-    rule_create_params,
-)
+from ...types.rulesets import rule_edit_params, rule_create_params
+from ...types.rulesets.logging_param import LoggingParam
+from ...types.rulesets.rule_edit_response import RuleEditResponse
+from ...types.rulesets.rule_create_response import RuleCreateResponse
+from ...types.rulesets.rule_delete_response import RuleDeleteResponse
 
 __all__ = ["Rules", "AsyncRules"]
 

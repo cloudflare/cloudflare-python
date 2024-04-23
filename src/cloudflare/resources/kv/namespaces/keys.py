@@ -19,7 +19,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.kv.namespaces import Key, key_list_params
+from ....types.kv.namespaces import key_list_params
+from ....types.kv.namespaces.key import Key
 
 __all__ = ["Keys", "AsyncKeys"]
 

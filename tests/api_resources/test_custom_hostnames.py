@@ -10,13 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.custom_hostnames import (
-    CustomHostnameGetResponse,
-    CustomHostnameEditResponse,
-    CustomHostnameListResponse,
-    CustomHostnameCreateResponse,
-    CustomHostnameDeleteResponse,
-)
+from cloudflare.types.custom_hostnames.custom_hostname_get_response import CustomHostnameGetResponse
+from cloudflare.types.custom_hostnames.custom_hostname_edit_response import CustomHostnameEditResponse
+from cloudflare.types.custom_hostnames.custom_hostname_list_response import CustomHostnameListResponse
+from cloudflare.types.custom_hostnames.custom_hostname_create_response import CustomHostnameCreateResponse
+from cloudflare.types.custom_hostnames.custom_hostname_delete_response import CustomHostnameDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

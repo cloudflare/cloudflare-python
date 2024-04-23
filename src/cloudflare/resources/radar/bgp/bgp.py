@@ -56,11 +56,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.radar import BGPTimeseriesResponse, bgp_timeseries_params
+from ....types.radar import bgp_timeseries_params
 from ...._base_client import (
     make_request_options,
 )
 from .hijacks.hijacks import Hijacks, AsyncHijacks
+from ....types.radar.bgp_timeseries_response import BGPTimeseriesResponse
 
 __all__ = ["BGP", "AsyncBGP"]
 

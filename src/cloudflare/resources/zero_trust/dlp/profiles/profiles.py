@@ -37,7 +37,8 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.dlp import Profile, ProfileGetResponse
+from .....types.zero_trust.dlp.profile import Profile
+from .....types.zero_trust.dlp.profile_get_response import ProfileGetResponse
 
 __all__ = ["Profiles", "AsyncProfiles"]
 

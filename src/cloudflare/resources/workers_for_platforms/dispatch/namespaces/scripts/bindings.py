@@ -19,7 +19,7 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.workers_for_platforms.dispatch.namespaces.scripts import BindingGetResponse
+from ......types.workers_for_platforms.dispatch.namespaces.scripts.binding_get_response import BindingGetResponse
 
 __all__ = ["Bindings", "AsyncBindings"]
 

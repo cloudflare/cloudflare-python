@@ -23,7 +23,9 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.workers import AccountSettingGetResponse, AccountSettingUpdateResponse, account_setting_update_params
+from ...types.workers import account_setting_update_params
+from ...types.workers.account_setting_get_response import AccountSettingGetResponse
+from ...types.workers.account_setting_update_response import AccountSettingUpdateResponse
 
 __all__ = ["AccountSettings", "AsyncAccountSettings"]
 

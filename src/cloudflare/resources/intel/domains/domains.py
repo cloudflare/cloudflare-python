@@ -28,10 +28,11 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.intel import Domain, domain_get_params
+from ....types.intel import domain_get_params
 from ...._base_client import (
     make_request_options,
 )
+from ....types.intel.domain import Domain
 
 __all__ = ["Domains", "AsyncDomains"]
 

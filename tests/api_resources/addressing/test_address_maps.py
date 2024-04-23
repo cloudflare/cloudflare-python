@@ -10,12 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.addressing import (
-    AddressMap,
-    AddressMapGetResponse,
-    AddressMapCreateResponse,
-    AddressMapDeleteResponse,
-)
+from cloudflare.types.addressing.address_map import AddressMap
+from cloudflare.types.addressing.address_map_get_response import AddressMapGetResponse
+from cloudflare.types.addressing.address_map_create_response import AddressMapCreateResponse
+from cloudflare.types.addressing.address_map_delete_response import AddressMapDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

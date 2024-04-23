@@ -24,13 +24,13 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.zero_trust import (
-    Organization,
-    LoginDesignParam,
-    OrganizationRevokeUsersResponse,
     organization_create_params,
     organization_update_params,
     organization_revoke_users_params,
 )
+from ...types.zero_trust.organization import Organization
+from ...types.zero_trust.login_design_param import LoginDesignParam
+from ...types.zero_trust.organization_revoke_users_response import OrganizationRevokeUsersResponse
 
 __all__ = ["Organizations", "AsyncOrganizations"]
 

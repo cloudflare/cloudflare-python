@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.rules.lists import BulkOperationGetResponse
+from ....types.rules.lists.bulk_operation_get_response import BulkOperationGetResponse
 
 __all__ = ["BulkOperations", "AsyncBulkOperations"]
 

@@ -25,13 +25,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.devices import (
-    SchemaHTTP,
-    SchemaDataParam,
-    DEXTestDeleteResponse,
-    dex_test_create_params,
-    dex_test_update_params,
-)
+from ....types.zero_trust.devices import dex_test_create_params, dex_test_update_params
+from ....types.zero_trust.devices.schema_http import SchemaHTTP
+from ....types.zero_trust.devices.schema_data_param import SchemaDataParam
+from ....types.zero_trust.devices.dex_test_delete_response import DEXTestDeleteResponse
 
 __all__ = ["DEXTests", "AsyncDEXTests"]
 

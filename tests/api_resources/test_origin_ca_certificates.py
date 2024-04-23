@@ -10,10 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.origin_ca_certificates import (
-    OriginCACertificate,
-    OriginCACertificateGetResponse,
+from cloudflare.types.origin_ca_certificates.origin_ca_certificate import OriginCACertificate
+from cloudflare.types.origin_ca_certificates.origin_ca_certificate_get_response import OriginCACertificateGetResponse
+from cloudflare.types.origin_ca_certificates.origin_ca_certificate_create_response import (
     OriginCACertificateCreateResponse,
+)
+from cloudflare.types.origin_ca_certificates.origin_ca_certificate_delete_response import (
     OriginCACertificateDeleteResponse,
 )
 

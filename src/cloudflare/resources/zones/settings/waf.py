@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import WAF, waf_edit_params
+from ....types.zones.settings import waf_edit_params
+from ....types.zones.settings.waf import WAF
 
 __all__ = ["WAFResource", "AsyncWAFResource"]
 

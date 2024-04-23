@@ -25,7 +25,9 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
-from ..types.bot_management import BotManagementGetResponse, BotManagementUpdateResponse, bot_management_update_params
+from ..types.bot_management import bot_management_update_params
+from ..types.bot_management.bot_management_get_response import BotManagementGetResponse
+from ..types.bot_management.bot_management_update_response import BotManagementUpdateResponse
 
 __all__ = ["BotManagement", "AsyncBotManagement"]
 

@@ -37,21 +37,17 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ....types.pages import (
-    Project,
-    Deployment,
-    DeploymentParam,
-    ProjectEditResponse,
-    ProjectCreateResponse,
-    project_edit_params,
-    project_create_params,
-    project_delete_params,
-)
+from ....types.pages import Deployment, project_edit_params, project_create_params, project_delete_params
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ....types.pages.project import Project
 from .deployments.deployments import Deployments, AsyncDeployments
+from ....types.pages.deployment import Deployment
+from ....types.pages.deployment_param import DeploymentParam
+from ....types.pages.project_edit_response import ProjectEditResponse
+from ....types.pages.project_create_response import ProjectCreateResponse
 
 __all__ = ["Projects", "AsyncProjects"]
 

@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.dns.analytics.reports import ByTime, bytime_get_params
+from .....types.dns.analytics.reports import bytime_get_params
+from .....types.dns.analytics.reports.by_time import ByTime
 
 __all__ = ["Bytimes", "AsyncBytimes"]
 

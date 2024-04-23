@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import EmailObfuscation, email_obfuscation_edit_params
+from ....types.zones.settings import email_obfuscation_edit_params
+from ....types.zones.settings.email_obfuscation import EmailObfuscation
 
 __all__ = ["EmailObfuscationResource", "AsyncEmailObfuscationResource"]
 

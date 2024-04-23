@@ -23,7 +23,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dex.http_tests import HTTPDetailsPercentiles, percentile_get_params
+from .....types.zero_trust.dex.http_tests import percentile_get_params
+from .....types.zero_trust.dex.http_tests.http_details_percentiles import HTTPDetailsPercentiles
 
 __all__ = ["Percentiles", "AsyncPercentiles"]
 

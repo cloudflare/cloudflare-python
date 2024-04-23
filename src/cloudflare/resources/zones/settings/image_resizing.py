@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ImageResizing, ImageResizingParam, image_resizing_edit_params
+from ....types.zones.settings import ImageResizing, image_resizing_edit_params
+from ....types.zones.settings.image_resizing import ImageResizing
+from ....types.zones.settings.image_resizing_param import ImageResizingParam
 
 __all__ = ["ImageResizingResource", "AsyncImageResizingResource"]
 

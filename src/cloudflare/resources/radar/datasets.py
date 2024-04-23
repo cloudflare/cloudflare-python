@@ -21,16 +21,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.radar import (
-    DatasetListResponse,
-    DatasetDownloadResponse,
-    dataset_get_params,
-    dataset_list_params,
-    dataset_download_params,
-)
+from ...types.radar import dataset_get_params, dataset_list_params, dataset_download_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.radar.dataset_list_response import DatasetListResponse
+from ...types.radar.dataset_download_response import DatasetDownloadResponse
 
 __all__ = ["Datasets", "AsyncDatasets"]
 

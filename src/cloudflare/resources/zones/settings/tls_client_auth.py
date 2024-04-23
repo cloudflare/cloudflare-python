@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import TLSClientAuth, tls_client_auth_edit_params
+from ....types.zones.settings import tls_client_auth_edit_params
+from ....types.zones.settings.tls_client_auth import TLSClientAuth
 
 __all__ = ["TLSClientAuthResource", "AsyncTLSClientAuthResource"]
 

@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.magic_network_monitoring import Configuration
+from ....types.magic_network_monitoring.configuration import Configuration
 
 __all__ = ["Full", "AsyncFull"]
 

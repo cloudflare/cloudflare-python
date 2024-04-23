@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.mtls_certificates import AssociationGetResponse
+from ...types.mtls_certificates.association_get_response import AssociationGetResponse
 
 __all__ = ["Associations", "AsyncAssociations"]
 

@@ -10,9 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.magic_network_monitoring import (
-    MagicNetworkMonitoringRule,
-)
+from cloudflare.types.magic_network_monitoring.magic_network_monitoring_rule import MagicNetworkMonitoringRule
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -25,7 +25,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.stream.live_inputs import Output, output_create_params, output_delete_params, output_update_params
+from ....types.stream.live_inputs import output_create_params, output_delete_params, output_update_params
+from ....types.stream.live_inputs.output import Output
 
 __all__ = ["Outputs", "AsyncOutputs"]
 

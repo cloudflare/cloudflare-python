@@ -26,13 +26,10 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.firewall.waf.packages import (
-    RuleGetResponse,
-    RuleEditResponse,
-    RuleListResponse,
-    rule_edit_params,
-    rule_list_params,
-)
+from .....types.firewall.waf.packages import rule_edit_params, rule_list_params
+from .....types.firewall.waf.packages.rule_get_response import RuleGetResponse
+from .....types.firewall.waf.packages.rule_edit_response import RuleEditResponse
+from .....types.firewall.waf.packages.rule_list_response import RuleListResponse
 
 __all__ = ["Rules", "AsyncRules"]
 

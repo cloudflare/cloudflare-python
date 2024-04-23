@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from .scripts import ConsumerScript
 from ..._models import BaseModel
+from .scripts.consumer_script import ConsumerScript
 
 __all__ = ["ScriptSetting"]
 

@@ -32,13 +32,10 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.url_scanner import (
-    ScanGetResponse,
-    ScanHarResponse,
-    ScanCreateResponse,
-    scan_create_params,
-    scan_screenshot_params,
-)
+from ...types.url_scanner import scan_create_params, scan_screenshot_params
+from ...types.url_scanner.scan_get_response import ScanGetResponse
+from ...types.url_scanner.scan_har_response import ScanHarResponse
+from ...types.url_scanner.scan_create_response import ScanCreateResponse
 
 __all__ = ["Scans", "AsyncScans"]
 

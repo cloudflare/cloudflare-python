@@ -33,14 +33,10 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.radar.attacks.layer3 import (
-    TopAttacksResponse,
-    TopIndustryResponse,
-    TopVerticalResponse,
-    top_attacks_params,
-    top_industry_params,
-    top_vertical_params,
-)
+from ......types.radar.attacks.layer3 import top_attacks_params, top_industry_params, top_vertical_params
+from ......types.radar.attacks.layer3.top_attacks_response import TopAttacksResponse
+from ......types.radar.attacks.layer3.top_industry_response import TopIndustryResponse
+from ......types.radar.attacks.layer3.top_vertical_response import TopVerticalResponse
 
 __all__ = ["Top", "AsyncTop"]
 

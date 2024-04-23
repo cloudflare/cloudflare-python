@@ -25,12 +25,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.addressing.prefixes import (
-    DelegationDeleteResponse,
-    delegations,
-    delegation_create_params,
-    delegation_delete_params,
-)
+from ....types.addressing.prefixes import delegations, delegation_create_params, delegation_delete_params
+from ....types.addressing.prefixes.delegation_delete_response import DelegationDeleteResponse
 
 __all__ = ["Delegations", "AsyncDelegations"]
 

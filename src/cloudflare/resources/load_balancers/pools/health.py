@@ -24,7 +24,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.load_balancers.pools import HealthGetResponse, HealthCreateResponse, health_create_params
+from ....types.load_balancers.pools import health_create_params
+from ....types.load_balancers.pools.health_get_response import HealthGetResponse
+from ....types.load_balancers.pools.health_create_response import HealthCreateResponse
 
 __all__ = ["Health", "AsyncHealth"]
 

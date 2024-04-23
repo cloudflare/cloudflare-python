@@ -9,12 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.cache import (
-    CacheReserveGetResponse,
-    CacheReserveEditResponse,
-    CacheReserveClearResponse,
-    CacheReserveStatusResponse,
-)
+from cloudflare.types.cache.cache_reserve_get_response import CacheReserveGetResponse
+from cloudflare.types.cache.cache_reserve_edit_response import CacheReserveEditResponse
+from cloudflare.types.cache.cache_reserve_clear_response import CacheReserveClearResponse
+from cloudflare.types.cache.cache_reserve_status_response import CacheReserveStatusResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

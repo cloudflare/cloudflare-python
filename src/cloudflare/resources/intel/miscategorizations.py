@@ -21,10 +21,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.intel import MiscategorizationCreateResponse, miscategorization_create_params
+from ...types.intel import miscategorization_create_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.intel.miscategorization_create_response import MiscategorizationCreateResponse
 
 __all__ = ["Miscategorizations", "AsyncMiscategorizations"]
 

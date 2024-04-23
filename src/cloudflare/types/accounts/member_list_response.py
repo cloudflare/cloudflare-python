@@ -3,8 +3,8 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ..shared import Role
 from ..._models import BaseModel
+from ..shared.role import Role
 
 __all__ = ["MemberListResponse"]
 

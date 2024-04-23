@@ -23,7 +23,10 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.access import KeyGetResponse, KeyRotateResponse, KeyUpdateResponse, key_update_params
+from ....types.zero_trust.access import key_update_params
+from ....types.zero_trust.access.key_get_response import KeyGetResponse
+from ....types.zero_trust.access.key_rotate_response import KeyRotateResponse
+from ....types.zero_trust.access.key_update_response import KeyUpdateResponse
 
 __all__ = ["Keys", "AsyncKeys"]
 

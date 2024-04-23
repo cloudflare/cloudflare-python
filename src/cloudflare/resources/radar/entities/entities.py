@@ -37,10 +37,11 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.radar import EntityGetResponse, entity_get_params
+from ....types.radar import entity_get_params
 from ...._base_client import (
     make_request_options,
 )
+from ....types.radar.entity_get_response import EntityGetResponse
 
 __all__ = ["Entities", "AsyncEntities"]
 

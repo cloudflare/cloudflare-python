@@ -11,13 +11,11 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.user import (
-    TokenGetResponse,
-    TokenCreateResponse,
-    TokenDeleteResponse,
-    TokenUpdateResponse,
-    TokenVerifyResponse,
-)
+from cloudflare.types.user.token_get_response import TokenGetResponse
+from cloudflare.types.user.token_create_response import TokenCreateResponse
+from cloudflare.types.user.token_delete_response import TokenDeleteResponse
+from cloudflare.types.user.token_update_response import TokenUpdateResponse
+from cloudflare.types.user.token_verify_response import TokenVerifyResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

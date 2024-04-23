@@ -50,13 +50,13 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.magic_transit import (
-    Site,
-    SiteLocationParam,
     site_list_params,
     site_create_params,
     site_delete_params,
     site_update_params,
 )
+from ....types.magic_transit.site import Site
+from ....types.magic_transit.site_location_param import SiteLocationParam
 
 __all__ = ["Sites", "AsyncSites"]
 

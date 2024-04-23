@@ -36,17 +36,18 @@ from ..._base_client import (
 )
 from ...types.custom_hostnames import BundleMethod
 from ...types.custom_certificates import (
-    CustomCertificate,
-    GeoRestrictionsParam,
-    CustomCertificateGetResponse,
-    CustomCertificateEditResponse,
-    CustomCertificateCreateResponse,
-    CustomCertificateDeleteResponse,
     custom_certificate_edit_params,
     custom_certificate_list_params,
     custom_certificate_create_params,
     custom_certificate_delete_params,
 )
+from ...types.custom_hostnames.bundle_method import BundleMethod
+from ...types.custom_certificates.custom_certificate import CustomCertificate
+from ...types.custom_certificates.geo_restrictions_param import GeoRestrictionsParam
+from ...types.custom_certificates.custom_certificate_get_response import CustomCertificateGetResponse
+from ...types.custom_certificates.custom_certificate_edit_response import CustomCertificateEditResponse
+from ...types.custom_certificates.custom_certificate_create_response import CustomCertificateCreateResponse
+from ...types.custom_certificates.custom_certificate_delete_response import CustomCertificateDeleteResponse
 
 __all__ = ["CustomCertificates", "AsyncCustomCertificates"]
 

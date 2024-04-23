@@ -32,7 +32,8 @@ from .direct_uploads import (
 from ...._base_client import (
     make_request_options,
 )
-from ....types.images import V2ListResponse, v2_list_params
+from ....types.images import v2_list_params
+from ....types.images.v2_list_response import V2ListResponse
 
 __all__ = ["V2", "AsyncV2"]
 

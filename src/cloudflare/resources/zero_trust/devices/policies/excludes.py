@@ -25,13 +25,11 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.devices.policies import (
-    ExcludeGetResponse,
-    SplitTunnelExclude,
-    ExcludeUpdateResponse,
-    SplitTunnelExcludeParam,
-    exclude_update_params,
-)
+from .....types.zero_trust.devices.policies import exclude_update_params
+from .....types.zero_trust.devices.policies.exclude_get_response import ExcludeGetResponse
+from .....types.zero_trust.devices.policies.split_tunnel_exclude import SplitTunnelExclude
+from .....types.zero_trust.devices.policies.exclude_update_response import ExcludeUpdateResponse
+from .....types.zero_trust.devices.policies.split_tunnel_exclude_param import SplitTunnelExcludeParam
 
 __all__ = ["Excludes", "AsyncExcludes"]
 

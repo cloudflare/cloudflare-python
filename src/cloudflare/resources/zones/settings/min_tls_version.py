@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import MinTLSVersion, min_tls_version_edit_params
+from ....types.zones.settings import min_tls_version_edit_params
+from ....types.zones.settings.min_tls_version import MinTLSVersion
 
 __all__ = ["MinTLSVersionResource", "AsyncMinTLSVersionResource"]
 

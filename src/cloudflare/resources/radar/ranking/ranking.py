@@ -30,15 +30,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.radar import (
-    RankingTopResponse,
-    RankingTimeseriesGroupsResponse,
-    ranking_top_params,
-    ranking_timeseries_groups_params,
-)
+from ....types.radar import ranking_top_params, ranking_timeseries_groups_params
 from ...._base_client import (
     make_request_options,
 )
+from ....types.radar.ranking_top_response import RankingTopResponse
+from ....types.radar.ranking_timeseries_groups_response import RankingTimeseriesGroupsResponse
 
 __all__ = ["Ranking", "AsyncRanking"]
 

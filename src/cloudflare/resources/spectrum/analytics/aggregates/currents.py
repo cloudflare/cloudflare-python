@@ -23,7 +23,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.spectrum.analytics.aggregates import CurrentGetResponse, current_get_params
+from .....types.spectrum.analytics.aggregates import current_get_params
+from .....types.spectrum.analytics.aggregates.current_get_response import CurrentGetResponse
 
 __all__ = ["Currents", "AsyncCurrents"]
 

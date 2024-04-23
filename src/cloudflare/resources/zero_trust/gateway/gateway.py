@@ -92,7 +92,8 @@ from .audit_ssh_settings import (
     AuditSSHSettingsWithStreamingResponse,
     AsyncAuditSSHSettingsWithStreamingResponse,
 )
-from ....types.zero_trust import GatewayListResponse, GatewayCreateResponse
+from ....types.zero_trust.gateway_list_response import GatewayListResponse
+from ....types.zero_trust.gateway_create_response import GatewayCreateResponse
 
 __all__ = ["Gateway", "AsyncGateway"]
 

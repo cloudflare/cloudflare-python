@@ -23,13 +23,10 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.waiting_rooms import (
-    SettingGetResponse,
-    SettingEditResponse,
-    SettingUpdateResponse,
-    setting_edit_params,
-    setting_update_params,
-)
+from ...types.waiting_rooms import setting_edit_params, setting_update_params
+from ...types.waiting_rooms.setting_get_response import SettingGetResponse
+from ...types.waiting_rooms.setting_edit_response import SettingEditResponse
+from ...types.waiting_rooms.setting_update_response import SettingUpdateResponse
 
 __all__ = ["Settings", "AsyncSettings"]
 

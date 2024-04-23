@@ -9,10 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.addressing.address_maps import (
-    ZoneDeleteResponse,
-    ZoneUpdateResponse,
-)
+from cloudflare.types.addressing.address_maps.zone_delete_response import ZoneDeleteResponse
+from cloudflare.types.addressing.address_maps.zone_update_response import ZoneUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

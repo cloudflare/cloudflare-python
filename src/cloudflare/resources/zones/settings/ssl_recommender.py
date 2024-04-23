@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import SSLRecommender, SSLRecommenderParam, ssl_recommender_edit_params
+from ....types.zones.settings import SSLRecommender, ssl_recommender_edit_params
+from ....types.zones.settings.ssl_recommender import SSLRecommender
+from ....types.zones.settings.ssl_recommender_param import SSLRecommenderParam
 
 __all__ = ["SSLRecommenderResource", "AsyncSSLRecommenderResource"]
 

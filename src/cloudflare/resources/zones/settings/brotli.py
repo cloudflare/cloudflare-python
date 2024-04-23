@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import Brotli, brotli_edit_params
+from ....types.zones.settings import brotli_edit_params
+from ....types.zones.settings.brotli import Brotli
 
 __all__ = ["BrotliResource", "AsyncBrotliResource"]
 

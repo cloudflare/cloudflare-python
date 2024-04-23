@@ -23,15 +23,12 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.healthchecks import (
-    CheckRegion,
-    Healthcheck,
-    PreviewDeleteResponse,
-    TCPConfigurationParam,
-    HTTPConfigurationParam,
-    preview_create_params,
-    preview_delete_params,
-)
+from ...types.healthchecks import preview_create_params, preview_delete_params
+from ...types.healthchecks.healthcheck import Healthcheck
+from ...types.healthchecks.check_region import CheckRegion
+from ...types.healthchecks.preview_delete_response import PreviewDeleteResponse
+from ...types.healthchecks.tcp_configuration_param import TCPConfigurationParam
+from ...types.healthchecks.http_configuration_param import HTTPConfigurationParam
 
 __all__ = ["Previews", "AsyncPreviews"]
 

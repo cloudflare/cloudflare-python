@@ -23,7 +23,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.user.billing import BillingHistory, history_list_params
+from ....types.user.billing import history_list_params
+from ....types.user.billing.billing_history import BillingHistory
 
 __all__ = ["History", "AsyncHistory"]
 

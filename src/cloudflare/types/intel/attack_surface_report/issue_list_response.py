@@ -4,8 +4,8 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ...shared import ResponseInfo
 from ...._models import BaseModel
+from ...shared.response_info import ResponseInfo
 
 __all__ = ["IssueListResponse", "Result", "ResultIssue"]
 

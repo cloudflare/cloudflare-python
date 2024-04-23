@@ -23,7 +23,9 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.logpush import EdgeGetResponse, InstantLogpushJob, edge_create_params
+from ...types.logpush import edge_create_params
+from ...types.logpush.edge_get_response import EdgeGetResponse
+from ...types.logpush.instant_logpush_job import InstantLogpushJob
 
 __all__ = ["Edge", "AsyncEdge"]
 
