@@ -7,18 +7,18 @@ from typing_extensions import Literal, Required, TypedDict
 
 from .allowed_idpsh import AllowedIdpsh
 from .custom_pagesh import CustomPagesh
-from .cors_headers_param import CorsHeadersParam
-from .saml_saas_app_param import SAMLSaasAppParam
+from .cors_headers_param import CORSHeadersParam
+from .saml_saas_app_param import SAMLSaaSAppParam
 from .self_hosted_domainsh import SelfHostedDomainsh
 
 __all__ = [
     "ApplicationCreateParams",
     "SelfHostedApplication",
     "SaaSApplication",
-    "SaaSApplicationSaasApp",
-    "SaaSApplicationSaasAppAccessOIDCSaasApp",
-    "SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims",
-    "SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource",
+    "SaaSApplicationSaaSApp",
+    "SaaSApplicationSaaSAppAccessOIDCSaaSApp",
+    "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims",
+    "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource",
     "BrowserSSHApplication",
     "BrowserVncApplication",
     "AppLauncherApplication",
@@ -70,7 +70,7 @@ class SelfHostedApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    cors_headers: CorsHeadersParam
+    cors_headers: CORSHeadersParam
 
     custom_deny_message: str
     """
@@ -185,7 +185,7 @@ class SaaSApplication(TypedDict, total=False):
     name: str
     """The name of the application."""
 
-    saas_app: SaaSApplicationSaasApp
+    saas_app: SaaSApplicationSaaSApp
 
     tags: List[str]
     """The tags you want assigned to an application.
@@ -197,12 +197,12 @@ class SaaSApplication(TypedDict, total=False):
     """The application type."""
 
 
-class SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource(TypedDict, total=False):
+class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource(TypedDict, total=False):
     name: str
     """The name of the IdP claim."""
 
 
-class SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims(TypedDict, total=False):
+class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims(TypedDict, total=False):
     name: str
     """The name of the claim."""
 
@@ -215,10 +215,10 @@ class SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims(TypedDict, total=False
     scope: Literal["groups", "profile", "email", "openid"]
     """The scope of the claim."""
 
-    source: SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource
+    source: SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource
 
 
-class SaaSApplicationSaasAppAccessOIDCSaasApp(TypedDict, total=False):
+class SaaSApplicationSaaSAppAccessOIDCSaaSApp(TypedDict, total=False):
     app_launcher_url: str
     """The URL where this applications tile redirects users"""
 
@@ -234,7 +234,7 @@ class SaaSApplicationSaasAppAccessOIDCSaasApp(TypedDict, total=False):
     client_secret: str
     """The application client secret, only returned on POST request."""
 
-    custom_claims: SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims
+    custom_claims: SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims
 
     grant_types: List[Literal["authorization_code", "authorization_code_with_pkce"]]
     """The OIDC flows supported by this application"""
@@ -255,7 +255,7 @@ class SaaSApplicationSaasAppAccessOIDCSaasApp(TypedDict, total=False):
     """Define the user information shared with access"""
 
 
-SaaSApplicationSaasApp = Union[SAMLSaasAppParam, SaaSApplicationSaasAppAccessOIDCSaasApp]
+SaaSApplicationSaaSApp = Union[SAMLSaaSAppParam, SaaSApplicationSaaSAppAccessOIDCSaaSApp]
 
 
 class BrowserSSHApplication(TypedDict, total=False):
@@ -300,7 +300,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    cors_headers: CorsHeadersParam
+    cors_headers: CORSHeadersParam
 
     custom_deny_message: str
     """
@@ -424,7 +424,7 @@ class BrowserVncApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    cors_headers: CorsHeadersParam
+    cors_headers: CORSHeadersParam
 
     custom_deny_message: str
     """

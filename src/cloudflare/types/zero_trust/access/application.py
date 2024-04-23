@@ -5,20 +5,20 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
-from .cors_headers import CorsHeaders
+from .cors_headers import CORSHeaders
 from .allowed_idpsh import AllowedIdpsh
 from .custom_pagesh import CustomPagesh
-from .saml_saas_app import SAMLSaasApp
+from .saml_saas_app import SAMLSaaSApp
 from .self_hosted_domainsh import SelfHostedDomainsh
 
 __all__ = [
     "Application",
     "SelfHostedApplication",
     "SaaSApplication",
-    "SaaSApplicationSaasApp",
-    "SaaSApplicationSaasAppAccessOIDCSaasApp",
-    "SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims",
-    "SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource",
+    "SaaSApplicationSaaSApp",
+    "SaaSApplicationSaaSAppAccessOIDCSaaSApp",
+    "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims",
+    "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource",
     "BrowserSSHApplication",
     "BrowserVncApplication",
     "AppLauncherApplication",
@@ -70,7 +70,7 @@ class SelfHostedApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
-    cors_headers: Optional[CorsHeaders] = None
+    cors_headers: Optional[CORSHeaders] = None
 
     created_at: Optional[datetime] = None
 
@@ -156,12 +156,12 @@ class SelfHostedApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource(BaseModel):
+class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource(BaseModel):
     name: Optional[str] = None
     """The name of the IdP claim."""
 
 
-class SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims(BaseModel):
+class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims(BaseModel):
     name: Optional[str] = None
     """The name of the claim."""
 
@@ -174,10 +174,10 @@ class SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims(BaseModel):
     scope: Optional[Literal["groups", "profile", "email", "openid"]] = None
     """The scope of the claim."""
 
-    source: Optional[SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaimsSource] = None
+    source: Optional[SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource] = None
 
 
-class SaaSApplicationSaasAppAccessOIDCSaasApp(BaseModel):
+class SaaSApplicationSaaSAppAccessOIDCSaaSApp(BaseModel):
     app_launcher_url: Optional[str] = None
     """The URL where this applications tile redirects users"""
 
@@ -195,7 +195,7 @@ class SaaSApplicationSaasAppAccessOIDCSaasApp(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    custom_claims: Optional[SaaSApplicationSaasAppAccessOIDCSaasAppCustomClaims] = None
+    custom_claims: Optional[SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims] = None
 
     grant_types: Optional[List[Literal["authorization_code", "authorization_code_with_pkce"]]] = None
     """The OIDC flows supported by this application"""
@@ -218,7 +218,7 @@ class SaaSApplicationSaasAppAccessOIDCSaasApp(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-SaaSApplicationSaasApp = Union[SAMLSaasApp, SaaSApplicationSaasAppAccessOIDCSaasApp]
+SaaSApplicationSaaSApp = Union[SAMLSaaSApp, SaaSApplicationSaaSAppAccessOIDCSaaSApp]
 
 
 class SaaSApplication(BaseModel):
@@ -256,7 +256,7 @@ class SaaSApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    saas_app: Optional[SaaSApplicationSaasApp] = None
+    saas_app: Optional[SaaSApplicationSaaSApp] = None
 
     tags: Optional[List[str]] = None
     """The tags you want assigned to an application.
@@ -312,7 +312,7 @@ class BrowserSSHApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
-    cors_headers: Optional[CorsHeaders] = None
+    cors_headers: Optional[CORSHeaders] = None
 
     created_at: Optional[datetime] = None
 
@@ -440,7 +440,7 @@ class BrowserVncApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
-    cors_headers: Optional[CorsHeaders] = None
+    cors_headers: Optional[CORSHeaders] = None
 
     created_at: Optional[datetime] = None
 

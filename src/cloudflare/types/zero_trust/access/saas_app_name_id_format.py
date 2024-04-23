@@ -2,6 +2,6 @@
 
 from typing_extensions import Literal
 
-__all__ = ["SaasAppNameIDFormat"]
+__all__ = ["SaaSAppNameIDFormat"]
 
-SaasAppNameIDFormat = Literal["id", "email"]
+SaaSAppNameIDFormat = Literal["id", "email"]

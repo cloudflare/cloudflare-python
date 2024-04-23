@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .saas_app_name_format import SaasAppNameFormat
-from .saas_app_source_param import SaasAppSourceParam
-from .saas_app_name_id_format import SaasAppNameIDFormat
+from .saas_app_name_format import SaaSAppNameFormat
+from .saas_app_source_param import SaaSAppSourceParam
+from .saas_app_name_id_format import SaaSAppNameIDFormat
 
-__all__ = ["SAMLSaasAppParam", "CustomAttributes"]
+__all__ = ["SAMLSaaSAppParam", "CustomAttributes"]
 
 
 class CustomAttributes(TypedDict, total=False):
@@ -18,16 +18,16 @@ class CustomAttributes(TypedDict, total=False):
     name: str
     """The name of the attribute."""
 
-    name_format: SaasAppNameFormat
+    name_format: SaaSAppNameFormat
     """A globally unique name for an identity or service provider."""
 
     required: bool
     """If the attribute is required when building a SAML assertion."""
 
-    source: SaasAppSourceParam
+    source: SaaSAppSourceParam
 
 
-class SAMLSaasAppParam(TypedDict, total=False):
+class SAMLSaaSAppParam(TypedDict, total=False):
     auth_type: Literal["saml", "oidc"]
     """Optional identifier indicating the authentication protocol used for the saas
     app.
@@ -52,7 +52,7 @@ class SAMLSaasAppParam(TypedDict, total=False):
     idp_entity_id: str
     """The unique identifier for your SaaS application."""
 
-    name_id_format: SaasAppNameIDFormat
+    name_id_format: SaaSAppNameIDFormat
     """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: str
