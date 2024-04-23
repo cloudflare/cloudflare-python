@@ -27,13 +27,14 @@ from .._base_client import (
 )
 from ..types.custom_hostnames import BundleMethod
 from ..types.keyless_certificates import (
-    TunnelParam,
-    KeylessCertificate,
-    KeylessCertificateDeleteResponse,
     keyless_certificate_edit_params,
     keyless_certificate_create_params,
     keyless_certificate_delete_params,
 )
+from ..types.custom_hostnames.bundle_method import BundleMethod
+from ..types.keyless_certificates.tunnel_param import TunnelParam
+from ..types.keyless_certificates.keyless_certificate import KeylessCertificate
+from ..types.keyless_certificates.keyless_certificate_delete_response import KeylessCertificateDeleteResponse
 
 __all__ = ["KeylessCertificates", "AsyncKeylessCertificates"]
 

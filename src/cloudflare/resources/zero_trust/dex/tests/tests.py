@@ -29,7 +29,8 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.dex import TestListResponse, test_list_params
+from .....types.zero_trust.dex import test_list_params
+from .....types.zero_trust.dex.test_list_response import TestListResponse
 
 __all__ = ["Tests", "AsyncTests"]
 

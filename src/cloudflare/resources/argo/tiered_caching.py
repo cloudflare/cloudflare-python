@@ -21,10 +21,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.argo import TieredCachingGetResponse, TieredCachingEditResponse, tiered_caching_edit_params
+from ...types.argo import tiered_caching_edit_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.argo.tiered_caching_get_response import TieredCachingGetResponse
+from ...types.argo.tiered_caching_edit_response import TieredCachingEditResponse
 
 __all__ = ["TieredCaching", "AsyncTieredCaching"]
 

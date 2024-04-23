@@ -25,14 +25,10 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.cloudforce_one.requests import (
-    Message,
-    MessageGetResponse,
-    MessageDeleteResponse,
-    message_get_params,
-    message_create_params,
-    message_update_params,
-)
+from ....types.cloudforce_one.requests import message_get_params, message_create_params, message_update_params
+from ....types.cloudforce_one.requests.message import Message
+from ....types.cloudforce_one.requests.message_get_response import MessageGetResponse
+from ....types.cloudforce_one.requests.message_delete_response import MessageDeleteResponse
 
 __all__ = ["MessageResource", "AsyncMessageResource"]
 

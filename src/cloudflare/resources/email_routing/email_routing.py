@@ -48,7 +48,8 @@ from .rules.rules import Rules, AsyncRules
 from ..._base_client import (
     make_request_options,
 )
-from ...types.email_routing import Settings, email_routing_enable_params, email_routing_disable_params
+from ...types.email_routing import email_routing_enable_params, email_routing_disable_params
+from ...types.email_routing.settings import Settings
 
 __all__ = ["EmailRouting", "AsyncEmailRouting"]
 

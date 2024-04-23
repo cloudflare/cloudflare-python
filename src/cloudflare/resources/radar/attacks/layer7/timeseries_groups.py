@@ -26,14 +26,6 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.radar.attacks.layer7 import (
-    TimeseriesGroupGetResponse,
-    TimeseriesGroupIndustryResponse,
-    TimeseriesGroupVerticalResponse,
-    TimeseriesGroupIPVersionResponse,
-    TimeseriesGroupHTTPMethodResponse,
-    TimeseriesGroupHTTPVersionResponse,
-    TimeseriesGroupManagedRulesResponse,
-    TimeseriesGroupMitigationProductResponse,
     timeseries_group_get_params,
     timeseries_group_industry_params,
     timeseries_group_vertical_params,
@@ -42,6 +34,16 @@ from .....types.radar.attacks.layer7 import (
     timeseries_group_http_version_params,
     timeseries_group_managed_rules_params,
     timeseries_group_mitigation_product_params,
+)
+from .....types.radar.attacks.layer7.timeseries_group_get_response import TimeseriesGroupGetResponse
+from .....types.radar.attacks.layer7.timeseries_group_industry_response import TimeseriesGroupIndustryResponse
+from .....types.radar.attacks.layer7.timeseries_group_vertical_response import TimeseriesGroupVerticalResponse
+from .....types.radar.attacks.layer7.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
+from .....types.radar.attacks.layer7.timeseries_group_http_method_response import TimeseriesGroupHTTPMethodResponse
+from .....types.radar.attacks.layer7.timeseries_group_http_version_response import TimeseriesGroupHTTPVersionResponse
+from .....types.radar.attacks.layer7.timeseries_group_managed_rules_response import TimeseriesGroupManagedRulesResponse
+from .....types.radar.attacks.layer7.timeseries_group_mitigation_product_response import (
+    TimeseriesGroupMitigationProductResponse,
 )
 
 __all__ = ["TimeseriesGroups", "AsyncTimeseriesGroups"]

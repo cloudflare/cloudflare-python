@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.ssl.universal import UniversalSSLSettings, setting_edit_params
+from ....types.ssl.universal import setting_edit_params
+from ....types.ssl.universal.universal_ssl_settings import UniversalSSLSettings
 
 __all__ = ["Settings", "AsyncSettings"]
 

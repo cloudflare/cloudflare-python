@@ -26,9 +26,6 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.firewall import (
-    FirewallRule,
-    RuleEditResponse,
-    RuleCreateResponse,
     rule_get_params,
     rule_edit_params,
     rule_list_params,
@@ -36,6 +33,9 @@ from ...types.firewall import (
     rule_delete_params,
     rule_update_params,
 )
+from ...types.firewall.firewall_rule import FirewallRule
+from ...types.firewall.rule_edit_response import RuleEditResponse
+from ...types.firewall.rule_create_response import RuleCreateResponse
 
 __all__ = ["Rules", "AsyncRules"]
 

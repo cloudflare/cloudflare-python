@@ -32,12 +32,12 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.magic_network_monitoring import (
-    Configuration,
     config_edit_params,
     config_create_params,
     config_delete_params,
     config_update_params,
 )
+from ....types.magic_network_monitoring.configuration import Configuration
 
 __all__ = ["Configs", "AsyncConfigs"]
 

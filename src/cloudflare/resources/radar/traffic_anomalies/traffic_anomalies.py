@@ -30,10 +30,11 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.radar import TrafficAnomalyGetResponse, traffic_anomaly_get_params
+from ....types.radar import traffic_anomaly_get_params
 from ...._base_client import (
     make_request_options,
 )
+from ....types.radar.traffic_anomaly_get_response import TrafficAnomalyGetResponse
 
 __all__ = ["TrafficAnomalies", "AsyncTrafficAnomalies"]
 

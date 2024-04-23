@@ -4,8 +4,8 @@ from typing import List
 from typing_extensions import Literal
 
 from .dns import DNS
-from ..shared import ResponseInfo
 from ..._models import BaseModel
+from ..shared.response_info import ResponseInfo
 
 __all__ = ["DNSListResponse"]
 

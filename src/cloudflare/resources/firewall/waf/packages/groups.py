@@ -26,13 +26,10 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.firewall.waf.packages import (
-    Group,
-    GroupGetResponse,
-    GroupEditResponse,
-    group_edit_params,
-    group_list_params,
-)
+from .....types.firewall.waf.packages import group_edit_params, group_list_params
+from .....types.firewall.waf.packages.group import Group
+from .....types.firewall.waf.packages.group_get_response import GroupGetResponse
+from .....types.firewall.waf.packages.group_edit_response import GroupEditResponse
 
 __all__ = ["Groups", "AsyncGroups"]
 

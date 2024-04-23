@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.ssl.certificate_packs import QuotaGetResponse
+from ....types.ssl.certificate_packs.quota_get_response import QuotaGetResponse
 
 __all__ = ["Quota", "AsyncQuota"]
 

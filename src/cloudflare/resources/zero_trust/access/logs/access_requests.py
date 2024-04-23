@@ -19,7 +19,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.access.logs import AccessRequestListResponse
+from .....types.zero_trust.access.logs.access_request_list_response import AccessRequestListResponse
 
 __all__ = ["AccessRequests", "AsyncAccessRequests"]
 

@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import H2Prioritization, H2PrioritizationParam, h2_prioritization_edit_params
+from ....types.zones.settings import H2Prioritization, h2_prioritization_edit_params
+from ....types.zones.settings.h2_prioritization import H2Prioritization
+from ....types.zones.settings.h2_prioritization_param import H2PrioritizationParam
 
 __all__ = ["H2PrioritizationResource", "AsyncH2PrioritizationResource"]
 

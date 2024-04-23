@@ -33,7 +33,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.bgp import TopPrefixesResponse, top_prefixes_params
+from .....types.radar.bgp import top_prefixes_params
+from .....types.radar.bgp.top_prefixes_response import TopPrefixesResponse
 
 __all__ = ["Top", "AsyncTop"]
 

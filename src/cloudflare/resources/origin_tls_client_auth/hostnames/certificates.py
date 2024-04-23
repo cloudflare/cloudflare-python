@@ -25,14 +25,11 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.origin_tls_client_auth import AuthenticatedOriginPull
-from ....types.origin_tls_client_auth.hostnames import (
-    CertificateGetResponse,
-    CertificateCreateResponse,
-    CertificateDeleteResponse,
-    certificate_create_params,
-    certificate_delete_params,
-)
+from ....types.origin_tls_client_auth.hostnames import certificate_create_params, certificate_delete_params
+from ....types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
+from ....types.origin_tls_client_auth.hostnames.certificate_get_response import CertificateGetResponse
+from ....types.origin_tls_client_auth.hostnames.certificate_create_response import CertificateCreateResponse
+from ....types.origin_tls_client_auth.hostnames.certificate_delete_response import CertificateDeleteResponse
 
 __all__ = ["Certificates", "AsyncCertificates"]
 

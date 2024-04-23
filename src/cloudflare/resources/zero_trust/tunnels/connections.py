@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.tunnels import ConnectionGetResponse, ConnectionDeleteResponse, connection_delete_params
+from ....types.zero_trust.tunnels import connection_delete_params
+from ....types.zero_trust.tunnels.connection_get_response import ConnectionGetResponse
+from ....types.zero_trust.tunnels.connection_delete_response import ConnectionDeleteResponse
 
 __all__ = ["Connections", "AsyncConnections"]
 

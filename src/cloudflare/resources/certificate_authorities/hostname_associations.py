@@ -23,13 +23,10 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.certificate_authorities import (
-    HostnameAssociation,
-    HostnameAssociationGetResponse,
-    HostnameAssociationUpdateResponse,
-    hostname_association_get_params,
-    hostname_association_update_params,
-)
+from ...types.certificate_authorities import hostname_association_get_params, hostname_association_update_params
+from ...types.certificate_authorities.hostname_association import HostnameAssociation
+from ...types.certificate_authorities.hostname_association_get_response import HostnameAssociationGetResponse
+from ...types.certificate_authorities.hostname_association_update_response import HostnameAssociationUpdateResponse
 
 __all__ = ["HostnameAssociations", "AsyncHostnameAssociations"]
 

@@ -10,17 +10,15 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.email.security import (
-    SummaryARCResponse,
-    SummarySPFResponse,
-    SummaryDKIMResponse,
-    SummarySpamResponse,
-    SummaryDMARCResponse,
-    SummarySpoofResponse,
-    SummaryMaliciousResponse,
-    SummaryTLSVersionResponse,
-    SummaryThreatCategoryResponse,
-)
+from cloudflare.types.radar.email.security.summary_arc_response import SummaryARCResponse
+from cloudflare.types.radar.email.security.summary_spf_response import SummarySPFResponse
+from cloudflare.types.radar.email.security.summary_dkim_response import SummaryDKIMResponse
+from cloudflare.types.radar.email.security.summary_spam_response import SummarySpamResponse
+from cloudflare.types.radar.email.security.summary_dmarc_response import SummaryDMARCResponse
+from cloudflare.types.radar.email.security.summary_spoof_response import SummarySpoofResponse
+from cloudflare.types.radar.email.security.summary_malicious_response import SummaryMaliciousResponse
+from cloudflare.types.radar.email.security.summary_tls_version_response import SummaryTLSVersionResponse
+from cloudflare.types.radar.email.security.summary_threat_category_response import SummaryThreatCategoryResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

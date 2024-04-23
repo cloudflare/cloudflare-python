@@ -9,10 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.origin_tls_client_auth import (
-    HostnameUpdateResponse,
-    AuthenticatedOriginPull,
-)
+from cloudflare.types.origin_tls_client_auth.hostname_update_response import HostnameUpdateResponse
+from cloudflare.types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

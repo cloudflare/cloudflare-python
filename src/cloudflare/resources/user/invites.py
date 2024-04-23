@@ -22,11 +22,14 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ...types.user import Invite, InviteGetResponse, InviteEditResponse, invite_edit_params
+from ...types.user import invite_edit_params
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.user.invite import Invite
+from ...types.user.invite_get_response import InviteGetResponse
+from ...types.user.invite_edit_response import InviteEditResponse
 
 __all__ = ["Invites", "AsyncInvites"]
 

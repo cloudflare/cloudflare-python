@@ -23,16 +23,12 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.images.v1 import (
-    Variant,
-    VariantGetResponse,
-    VariantEditResponse,
-    VariantCreateResponse,
-    VariantDeleteResponse,
-    variant_edit_params,
-    variant_create_params,
-    variant_delete_params,
-)
+from ....types.images.v1 import variant_edit_params, variant_create_params, variant_delete_params
+from ....types.images.v1.variant import Variant
+from ....types.images.v1.variant_get_response import VariantGetResponse
+from ....types.images.v1.variant_edit_response import VariantEditResponse
+from ....types.images.v1.variant_create_response import VariantCreateResponse
+from ....types.images.v1.variant_delete_response import VariantDeleteResponse
 
 __all__ = ["Variants", "AsyncVariants"]
 

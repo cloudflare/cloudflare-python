@@ -57,15 +57,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.images import (
-    Image,
-    V1ListResponse,
-    V1DeleteResponse,
-    v1_edit_params,
-    v1_list_params,
-    v1_create_params,
-    v1_delete_params,
-)
+from ....types.images import v1_edit_params, v1_list_params, v1_create_params, v1_delete_params
+from ....types.images.image import Image
+from ....types.images.v1_list_response import V1ListResponse
+from ....types.images.v1_delete_response import V1DeleteResponse
 
 __all__ = ["V1", "AsyncV1"]
 

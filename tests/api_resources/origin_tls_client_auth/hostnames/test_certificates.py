@@ -10,12 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.origin_tls_client_auth import AuthenticatedOriginPull
-from cloudflare.types.origin_tls_client_auth.hostnames import (
-    CertificateGetResponse,
-    CertificateCreateResponse,
-    CertificateDeleteResponse,
-)
+from cloudflare.types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
+from cloudflare.types.origin_tls_client_auth.hostnames.certificate_get_response import CertificateGetResponse
+from cloudflare.types.origin_tls_client_auth.hostnames.certificate_create_response import CertificateCreateResponse
+from cloudflare.types.origin_tls_client_auth.hostnames.certificate_delete_response import CertificateDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

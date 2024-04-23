@@ -26,15 +26,15 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.magic_transit.sites import (
-    LAN,
-    NatParam,
-    LANCreateResponse,
-    RoutedSubnetParam,
-    LANStaticAddressingParam,
     lan_create_params,
     lan_delete_params,
     lan_update_params,
 )
+from ....types.magic_transit.sites.lan import LAN
+from ....types.magic_transit.sites.nat_param import NatParam
+from ....types.magic_transit.sites.lan_create_response import LANCreateResponse
+from ....types.magic_transit.sites.routed_subnet_param import RoutedSubnetParam
+from ....types.magic_transit.sites.lan_static_addressing_param import LANStaticAddressingParam
 
 __all__ = ["LANs", "AsyncLANs"]
 

@@ -26,16 +26,13 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.alerting import (
-    Policy,
-    MechanismParam,
-    PolicyFilterParam,
-    PolicyCreateResponse,
-    PolicyDeleteResponse,
-    PolicyUpdateResponse,
-    policy_create_params,
-    policy_update_params,
-)
+from ...types.alerting import policy_create_params, policy_update_params
+from ...types.alerting.policy import Policy
+from ...types.alerting.mechanism_param import MechanismParam
+from ...types.alerting.policy_filter_param import PolicyFilterParam
+from ...types.alerting.policy_create_response import PolicyCreateResponse
+from ...types.alerting.policy_delete_response import PolicyDeleteResponse
+from ...types.alerting.policy_update_response import PolicyUpdateResponse
 
 __all__ = ["Policies", "AsyncPolicies"]
 

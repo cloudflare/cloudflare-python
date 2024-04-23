@@ -5,8 +5,11 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Required, TypedDict
 
-from .....workers import BindingParam, SteppedMigrationParam, SingleStepMigrationParam, PlacementConfigurationParam
-from .....workers.scripts import ConsumerScriptParam
+from .....workers.binding_param import BindingParam
+from .....workers.stepped_migration_param import SteppedMigrationParam
+from .....workers.single_step_migration_param import SingleStepMigrationParam
+from .....workers.placement_configuration_param import PlacementConfigurationParam
+from .....workers.scripts.consumer_script_param import ConsumerScriptParam
 
 __all__ = ["SettingEditParams", "Settings", "SettingsLimits", "SettingsMigrations"]
 

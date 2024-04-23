@@ -57,13 +57,9 @@ from .fallback_domains import (
     FallbackDomainsWithStreamingResponse,
     AsyncFallbackDomainsWithStreamingResponse,
 )
-from .....types.zero_trust.devices import (
-    SettingsPolicy,
-    PolicyDeleteResponse,
-    policy_edit_params,
-    policy_create_params,
-    policy_delete_params,
-)
+from .....types.zero_trust.devices import policy_edit_params, policy_create_params, policy_delete_params
+from .....types.zero_trust.devices.settings_policy import SettingsPolicy
+from .....types.zero_trust.devices.policy_delete_response import PolicyDeleteResponse
 
 __all__ = ["Policies", "AsyncPolicies"]
 

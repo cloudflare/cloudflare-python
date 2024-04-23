@@ -9,7 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.email_routing.rules import CatchAllGetResponse, CatchAllUpdateResponse
+from cloudflare.types.email_routing.rules.catch_all_get_response import CatchAllGetResponse
+from cloudflare.types.email_routing.rules.catch_all_update_response import CatchAllUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

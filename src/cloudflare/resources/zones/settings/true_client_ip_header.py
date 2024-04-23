@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import TrueClientIPHeader, true_client_ip_header_edit_params
+from ....types.zones.settings import true_client_ip_header_edit_params
+from ....types.zones.settings.true_client_ip_header import TrueClientIPHeader
 
 __all__ = ["TrueClientIPHeaderResource", "AsyncTrueClientIPHeaderResource"]
 

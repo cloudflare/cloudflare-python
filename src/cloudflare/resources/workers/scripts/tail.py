@@ -23,13 +23,10 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers.scripts import (
-    TailGetResponse,
-    TailCreateResponse,
-    TailDeleteResponse,
-    tail_create_params,
-    tail_delete_params,
-)
+from ....types.workers.scripts import tail_create_params, tail_delete_params
+from ....types.workers.scripts.tail_get_response import TailGetResponse
+from ....types.workers.scripts.tail_create_response import TailCreateResponse
+from ....types.workers.scripts.tail_delete_response import TailDeleteResponse
 
 __all__ = ["Tail", "AsyncTail"]
 

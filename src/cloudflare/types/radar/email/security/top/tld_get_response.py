@@ -5,8 +5,8 @@ from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
-from ....http import Browser
 from ......_models import BaseModel
+from ....http.browser import Browser
 
 __all__ = ["TldGetResponse", "Meta", "MetaDateRange", "MetaConfidenceInfo", "MetaConfidenceInfoAnnotation"]
 

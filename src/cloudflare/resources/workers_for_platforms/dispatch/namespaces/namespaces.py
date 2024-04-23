@@ -34,12 +34,10 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.workers_for_platforms.dispatch import (
-    NamespaceGetResponse,
-    NamespaceListResponse,
-    NamespaceCreateResponse,
-    namespace_create_params,
-)
+from .....types.workers_for_platforms.dispatch import namespace_create_params
+from .....types.workers_for_platforms.dispatch.namespace_get_response import NamespaceGetResponse
+from .....types.workers_for_platforms.dispatch.namespace_list_response import NamespaceListResponse
+from .....types.workers_for_platforms.dispatch.namespace_create_response import NamespaceCreateResponse
 
 __all__ = ["Namespaces", "AsyncNamespaces"]
 

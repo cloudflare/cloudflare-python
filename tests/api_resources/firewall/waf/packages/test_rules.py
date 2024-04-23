@@ -10,11 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.firewall.waf.packages import (
-    RuleGetResponse,
-    RuleEditResponse,
-    RuleListResponse,
-)
+from cloudflare.types.firewall.waf.packages.rule_get_response import RuleGetResponse
+from cloudflare.types.firewall.waf.packages.rule_edit_response import RuleEditResponse
+from cloudflare.types.firewall.waf.packages.rule_list_response import RuleListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

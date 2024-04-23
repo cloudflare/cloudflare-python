@@ -31,18 +31,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....types.user import (
-    PolicyParam,
-    TokenGetResponse,
-    TokenCreateResponse,
-    TokenDeleteResponse,
-    TokenUpdateResponse,
-    TokenVerifyResponse,
-    token_list_params,
-    token_create_params,
-    token_delete_params,
-    token_update_params,
-)
+from ....types.user import token_list_params, token_create_params, token_delete_params, token_update_params
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -55,6 +44,12 @@ from .permission_groups import (
     PermissionGroupsWithStreamingResponse,
     AsyncPermissionGroupsWithStreamingResponse,
 )
+from ....types.user.policy_param import PolicyParam
+from ....types.user.token_get_response import TokenGetResponse
+from ....types.user.token_create_response import TokenCreateResponse
+from ....types.user.token_delete_response import TokenDeleteResponse
+from ....types.user.token_update_response import TokenUpdateResponse
+from ....types.user.token_verify_response import TokenVerifyResponse
 
 __all__ = ["Tokens", "AsyncTokens"]
 

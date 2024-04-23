@@ -32,7 +32,8 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.web3.hostnames.ipfs_universal_paths import ContentList, content_list_update_params
+from ......types.web3.hostnames.ipfs_universal_paths import content_list_update_params
+from ......types.web3.hostnames.ipfs_universal_paths.content_list import ContentList
 
 __all__ = ["ContentLists", "AsyncContentLists"]
 

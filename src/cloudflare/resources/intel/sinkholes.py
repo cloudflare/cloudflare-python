@@ -14,11 +14,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ...types.intel import Sinkhole
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.intel.sinkhole import Sinkhole
 
 __all__ = ["Sinkholes", "AsyncSinkholes"]
 

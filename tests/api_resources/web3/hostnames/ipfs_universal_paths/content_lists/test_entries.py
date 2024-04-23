@@ -9,13 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.web3.hostnames.ipfs_universal_paths.content_lists import (
-    EntryGetResponse,
-    EntryListResponse,
-    EntryCreateResponse,
-    EntryDeleteResponse,
-    EntryUpdateResponse,
-)
+from cloudflare.types.web3.hostnames.ipfs_universal_paths.content_lists.entry_get_response import EntryGetResponse
+from cloudflare.types.web3.hostnames.ipfs_universal_paths.content_lists.entry_list_response import EntryListResponse
+from cloudflare.types.web3.hostnames.ipfs_universal_paths.content_lists.entry_create_response import EntryCreateResponse
+from cloudflare.types.web3.hostnames.ipfs_universal_paths.content_lists.entry_delete_response import EntryDeleteResponse
+from cloudflare.types.web3.hostnames.ipfs_universal_paths.content_lists.entry_update_response import EntryUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

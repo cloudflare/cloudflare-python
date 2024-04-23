@@ -9,13 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_transit import (
-    GRETunnelGetResponse,
-    GRETunnelListResponse,
-    GRETunnelCreateResponse,
-    GRETunnelDeleteResponse,
-    GRETunnelUpdateResponse,
-)
+from cloudflare.types.magic_transit.gre_tunnel_get_response import GRETunnelGetResponse
+from cloudflare.types.magic_transit.gre_tunnel_list_response import GRETunnelListResponse
+from cloudflare.types.magic_transit.gre_tunnel_create_response import GRETunnelCreateResponse
+from cloudflare.types.magic_transit.gre_tunnel_delete_response import GRETunnelDeleteResponse
+from cloudflare.types.magic_transit.gre_tunnel_update_response import GRETunnelUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -2,8 +2,10 @@
 
 from typing import List, Optional
 
-from .policies import FallbackDomain, SplitTunnelExclude, SplitTunnelInclude
 from ...._models import BaseModel
+from .policies.fallback_domain import FallbackDomain
+from .policies.split_tunnel_exclude import SplitTunnelExclude
+from .policies.split_tunnel_include import SplitTunnelInclude
 
 __all__ = ["SettingsPolicy", "ServiceModeV2", "TargetTest"]
 

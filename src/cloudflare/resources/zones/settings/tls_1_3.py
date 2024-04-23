@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import TLS1_3, tls_1_3_edit_params
+from ....types.zones.settings import tls_1_3_edit_params
+from ....types.zones.settings.tls_1_3 import TLS1_3
 
 __all__ = ["TLS1_3Resource", "AsyncTLS1_3Resource"]
 

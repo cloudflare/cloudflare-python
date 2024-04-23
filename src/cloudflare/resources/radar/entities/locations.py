@@ -24,12 +24,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.entities import (
-    LocationGetResponse,
-    LocationListResponse,
-    location_get_params,
-    location_list_params,
-)
+from ....types.radar.entities import location_get_params, location_list_params
+from ....types.radar.entities.location_get_response import LocationGetResponse
+from ....types.radar.entities.location_list_response import LocationListResponse
 
 __all__ = ["Locations", "AsyncLocations"]
 

@@ -25,7 +25,8 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.addressing.prefixes.bgp import BGPPrefix, prefix_edit_params
+from .....types.addressing.prefixes.bgp import prefix_edit_params
+from .....types.addressing.prefixes.bgp.bgp_prefix import BGPPrefix
 
 __all__ = ["Prefixes", "AsyncPrefixes"]
 

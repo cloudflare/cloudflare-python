@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.http.locations import OSGetResponse, os_get_params
+from .....types.radar.http.locations import os_get_params
+from .....types.radar.http.locations.os_get_response import OSGetResponse
 
 __all__ = ["OS", "AsyncOS"]
 

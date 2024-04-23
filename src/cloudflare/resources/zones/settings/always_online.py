@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import AlwaysOnline, always_online_edit_params
+from ....types.zones.settings import always_online_edit_params
+from ....types.zones.settings.always_online import AlwaysOnline
 
 __all__ = ["AlwaysOnlineResource", "AsyncAlwaysOnlineResource"]
 

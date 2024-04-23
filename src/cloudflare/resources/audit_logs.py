@@ -23,8 +23,8 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import AuditLog
 from ..types.audit_logs import audit_log_list_params
+from ..types.shared.audit_log import AuditLog
 
 __all__ = ["AuditLogs", "AsyncAuditLogs"]
 

@@ -23,11 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    AutomaticPlatformOptimization,
-    AutomaticPlatformOptimizationParam,
-    automatic_platform_optimization_edit_params,
-)
+from ....types.zones.settings import AutomaticPlatformOptimization, automatic_platform_optimization_edit_params
+from ....types.zones.settings.automatic_platform_optimization import AutomaticPlatformOptimization
+from ....types.zones.settings.automatic_platform_optimization_param import AutomaticPlatformOptimizationParam
 
 __all__ = ["AutomaticPlatformOptimizationResource", "AsyncAutomaticPlatformOptimizationResource"]
 

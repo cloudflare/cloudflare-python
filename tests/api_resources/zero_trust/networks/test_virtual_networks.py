@@ -10,12 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.networks import (
-    VirtualNetwork,
-    VirtualNetworkEditResponse,
-    VirtualNetworkCreateResponse,
-    VirtualNetworkDeleteResponse,
-)
+from cloudflare.types.zero_trust.networks.virtual_network import VirtualNetwork
+from cloudflare.types.zero_trust.networks.virtual_network_edit_response import VirtualNetworkEditResponse
+from cloudflare.types.zero_trust.networks.virtual_network_create_response import VirtualNetworkCreateResponse
+from cloudflare.types.zero_trust.networks.virtual_network_delete_response import VirtualNetworkDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

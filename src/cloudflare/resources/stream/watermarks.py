@@ -25,7 +25,9 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.stream import Watermark, WatermarkDeleteResponse, watermark_create_params, watermark_delete_params
+from ...types.stream import watermark_create_params, watermark_delete_params
+from ...types.stream.watermark import Watermark
+from ...types.stream.watermark_delete_response import WatermarkDeleteResponse
 
 __all__ = ["Watermarks", "AsyncWatermarks"]
 

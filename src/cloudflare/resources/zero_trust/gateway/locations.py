@@ -25,14 +25,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.gateway import (
-    Location,
-    LocationNetworkParam,
-    LocationDeleteResponse,
-    location_create_params,
-    location_delete_params,
-    location_update_params,
-)
+from ....types.zero_trust.gateway import location_create_params, location_delete_params, location_update_params
+from ....types.zero_trust.gateway.location import Location
+from ....types.zero_trust.gateway.location_network_param import LocationNetworkParam
+from ....types.zero_trust.gateway.location_delete_response import LocationDeleteResponse
 
 __all__ = ["Locations", "AsyncLocations"]
 

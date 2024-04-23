@@ -10,11 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.access import (
-    ServiceToken,
-    ServiceTokenCreateResponse,
-    ServiceTokenRotateResponse,
-)
+from cloudflare.types.zero_trust.access.service_token import ServiceToken
+from cloudflare.types.zero_trust.access.service_token_create_response import ServiceTokenCreateResponse
+from cloudflare.types.zero_trust.access.service_token_rotate_response import ServiceTokenRotateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

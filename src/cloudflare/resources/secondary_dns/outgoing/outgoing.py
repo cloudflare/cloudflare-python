@@ -32,13 +32,6 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.secondary_dns import (
-    EnableTransfer,
-    DisableTransfer,
-    OutgoingGetResponse,
-    OutgoingCreateResponse,
-    OutgoingDeleteResponse,
-    OutgoingUpdateResponse,
-    OutgoingForceNotifyResponse,
     outgoing_create_params,
     outgoing_delete_params,
     outgoing_enable_params,
@@ -46,6 +39,13 @@ from ....types.secondary_dns import (
     outgoing_disable_params,
     outgoing_force_notify_params,
 )
+from ....types.secondary_dns.enable_transfer import EnableTransfer
+from ....types.secondary_dns.disable_transfer import DisableTransfer
+from ....types.secondary_dns.outgoing_get_response import OutgoingGetResponse
+from ....types.secondary_dns.outgoing_create_response import OutgoingCreateResponse
+from ....types.secondary_dns.outgoing_delete_response import OutgoingDeleteResponse
+from ....types.secondary_dns.outgoing_update_response import OutgoingUpdateResponse
+from ....types.secondary_dns.outgoing_force_notify_response import OutgoingForceNotifyResponse
 
 __all__ = ["OutgoingResource", "AsyncOutgoingResource"]
 

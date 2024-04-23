@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.pagerules import SettingListResponse
+from ...types.pagerules.setting_list_response import SettingListResponse
 
 __all__ = ["Settings", "AsyncSettings"]
 

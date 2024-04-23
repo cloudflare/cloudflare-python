@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.gateway import LoggingSetting, logging_update_params
+from ....types.zero_trust.gateway import logging_update_params
+from ....types.zero_trust.gateway.logging_setting import LoggingSetting
 
 __all__ = ["Logging", "AsyncLogging"]
 

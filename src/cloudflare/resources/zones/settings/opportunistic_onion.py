@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import OpportunisticOnion, opportunistic_onion_edit_params
+from ....types.zones.settings import opportunistic_onion_edit_params
+from ....types.zones.settings.opportunistic_onion import OpportunisticOnion
 
 __all__ = ["OpportunisticOnionResource", "AsyncOpportunisticOnionResource"]
 

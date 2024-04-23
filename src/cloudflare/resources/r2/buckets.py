@@ -13,7 +13,7 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from ...types.r2 import Bucket, bucket_list_params, bucket_create_params
+from ...types.r2 import bucket_list_params, bucket_create_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -27,6 +27,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.r2.bucket import Bucket
 
 __all__ = ["Buckets", "AsyncBuckets"]
 

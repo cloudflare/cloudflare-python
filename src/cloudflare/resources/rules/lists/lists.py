@@ -30,7 +30,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ....types.rules import ListsList, ListDeleteResponse, list_create_params, list_delete_params, list_update_params
+from ....types.rules import list_create_params, list_delete_params, list_update_params
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -43,6 +43,8 @@ from .bulk_operations import (
     BulkOperationsWithStreamingResponse,
     AsyncBulkOperationsWithStreamingResponse,
 )
+from ....types.rules.lists_list import ListsList
+from ....types.rules.list_delete_response import ListDeleteResponse
 
 __all__ = ["Lists", "AsyncLists"]
 

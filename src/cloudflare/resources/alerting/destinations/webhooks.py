@@ -25,14 +25,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.alerting.destinations import (
-    WebhookCreateResponse,
-    WebhookDeleteResponse,
-    WebhookUpdateResponse,
-    webhooks,
-    webhook_create_params,
-    webhook_update_params,
-)
+from ....types.alerting.destinations import webhooks, webhook_create_params, webhook_update_params
+from ....types.alerting.destinations.webhook_create_response import WebhookCreateResponse
+from ....types.alerting.destinations.webhook_delete_response import WebhookDeleteResponse
+from ....types.alerting.destinations.webhook_update_response import WebhookUpdateResponse
 
 __all__ = ["Webhooks", "AsyncWebhooks"]
 

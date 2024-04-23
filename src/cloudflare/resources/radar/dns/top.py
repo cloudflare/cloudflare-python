@@ -25,7 +25,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.dns import TopAsesResponse, TopLocationsResponse, top_ases_params, top_locations_params
+from ....types.radar.dns import top_ases_params, top_locations_params
+from ....types.radar.dns.top_ases_response import TopAsesResponse
+from ....types.radar.dns.top_locations_response import TopLocationsResponse
 
 __all__ = ["Top", "AsyncTop"]
 

@@ -24,18 +24,18 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.magic_transit import (
-    HealthCheckParam,
-    IPSECTunnelGetResponse,
-    IPSECTunnelListResponse,
-    IPSECTunnelCreateResponse,
-    IPSECTunnelDeleteResponse,
-    IPSECTunnelUpdateResponse,
-    IPSECTunnelPSKGenerateResponse,
     ipsec_tunnel_create_params,
     ipsec_tunnel_delete_params,
     ipsec_tunnel_update_params,
     ipsec_tunnel_psk_generate_params,
 )
+from ...types.magic_transit.health_check_param import HealthCheckParam
+from ...types.magic_transit.ipsec_tunnel_get_response import IPSECTunnelGetResponse
+from ...types.magic_transit.ipsec_tunnel_list_response import IPSECTunnelListResponse
+from ...types.magic_transit.ipsec_tunnel_create_response import IPSECTunnelCreateResponse
+from ...types.magic_transit.ipsec_tunnel_delete_response import IPSECTunnelDeleteResponse
+from ...types.magic_transit.ipsec_tunnel_update_response import IPSECTunnelUpdateResponse
+from ...types.magic_transit.ipsec_tunnel_psk_generate_response import IPSECTunnelPSKGenerateResponse
 
 __all__ = ["IPSECTunnels", "AsyncIPSECTunnels"]
 

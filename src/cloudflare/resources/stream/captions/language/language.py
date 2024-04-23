@@ -31,8 +31,9 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.stream import Caption
-from .....types.stream.captions import LanguageDeleteResponse, language_delete_params, language_update_params
+from .....types.stream.caption import Caption
+from .....types.stream.captions import language_delete_params, language_update_params
+from .....types.stream.captions.language_delete_response import LanguageDeleteResponse
 
 __all__ = ["Language", "AsyncLanguage"]
 

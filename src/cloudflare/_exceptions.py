@@ -9,7 +9,7 @@ import httpx
 
 from ._utils import is_dict
 from ._models import construct_type
-from .types.shared import ErrorData
+from .types.shared.error_data import ErrorData
 
 __all__ = [
     "BadRequestError",

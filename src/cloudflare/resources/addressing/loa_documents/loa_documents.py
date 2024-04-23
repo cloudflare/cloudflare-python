@@ -31,7 +31,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing import LOADocumentCreateResponse, loa_document_create_params
+from ....types.addressing import loa_document_create_params
+from ....types.addressing.loa_document_create_response import LOADocumentCreateResponse
 
 __all__ = ["LOADocuments", "AsyncLOADocuments"]
 

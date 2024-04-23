@@ -9,8 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.certificate_authorities import (
-    HostnameAssociationGetResponse,
+from cloudflare.types.certificate_authorities.hostname_association_get_response import HostnameAssociationGetResponse
+from cloudflare.types.certificate_authorities.hostname_association_update_response import (
     HostnameAssociationUpdateResponse,
 )
 

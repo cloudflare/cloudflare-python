@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.logpush.datasets import JobGetResponse
+from ....types.logpush.datasets.job_get_response import JobGetResponse
 
 __all__ = ["Jobs", "AsyncJobs"]
 

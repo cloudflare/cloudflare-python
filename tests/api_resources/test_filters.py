@@ -10,10 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.filters import (
-    FirewallFilter,
-    FilterCreateResponse,
-)
+from cloudflare.types.filters.firewall_filter import FirewallFilter
+from cloudflare.types.filters.filter_create_response import FilterCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

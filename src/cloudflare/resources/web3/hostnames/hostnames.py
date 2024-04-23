@@ -22,13 +22,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ....types.web3 import (
-    Hostname,
-    HostnameDeleteResponse,
-    hostname_edit_params,
-    hostname_create_params,
-    hostname_delete_params,
-)
+from ....types.web3 import hostname_edit_params, hostname_create_params, hostname_delete_params
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -41,6 +35,8 @@ from .ipfs_universal_paths import (
     IPFSUniversalPathsWithStreamingResponse,
     AsyncIPFSUniversalPathsWithStreamingResponse,
 )
+from ....types.web3.hostname import Hostname
+from ....types.web3.hostname_delete_response import HostnameDeleteResponse
 from .ipfs_universal_paths.ipfs_universal_paths import IPFSUniversalPaths, AsyncIPFSUniversalPaths
 
 __all__ = ["Hostnames", "AsyncHostnames"]

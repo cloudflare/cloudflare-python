@@ -34,14 +34,14 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.waiting_rooms import (
-    Event,
-    EventDeleteResponse,
     event_edit_params,
     event_list_params,
     event_create_params,
     event_delete_params,
     event_update_params,
 )
+from ....types.waiting_rooms.event import Event
+from ....types.waiting_rooms.event_delete_response import EventDeleteResponse
 
 __all__ = ["Events", "AsyncEvents"]
 

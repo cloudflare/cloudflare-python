@@ -66,17 +66,12 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust import (
-    TunnelGetResponse,
-    TunnelEditResponse,
-    TunnelListResponse,
-    TunnelCreateResponse,
-    TunnelDeleteResponse,
-    tunnel_edit_params,
-    tunnel_list_params,
-    tunnel_create_params,
-    tunnel_delete_params,
-)
+from ....types.zero_trust import tunnel_edit_params, tunnel_list_params, tunnel_create_params, tunnel_delete_params
+from ....types.zero_trust.tunnel_get_response import TunnelGetResponse
+from ....types.zero_trust.tunnel_edit_response import TunnelEditResponse
+from ....types.zero_trust.tunnel_list_response import TunnelListResponse
+from ....types.zero_trust.tunnel_create_response import TunnelCreateResponse
+from ....types.zero_trust.tunnel_delete_response import TunnelDeleteResponse
 
 __all__ = ["Tunnels", "AsyncTunnels"]
 

@@ -18,7 +18,7 @@ from cloudflare._response import (
     AsyncStreamedBinaryAPIResponse,
 )
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.workers import Script
+from cloudflare.types.workers.script import Script
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

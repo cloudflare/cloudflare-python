@@ -42,19 +42,19 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.load_balancers import (
-    Pool,
-    CheckRegion,
-    OriginParam,
-    LoadSheddingParam,
-    PoolDeleteResponse,
-    OriginSteeringParam,
-    NotificationFilterParam,
     pool_edit_params,
     pool_list_params,
     pool_create_params,
     pool_delete_params,
     pool_update_params,
 )
+from ....types.load_balancers.pool import Pool
+from ....types.load_balancers.check_region import CheckRegion
+from ....types.load_balancers.origin_param import OriginParam
+from ....types.load_balancers.load_shedding_param import LoadSheddingParam
+from ....types.load_balancers.pool_delete_response import PoolDeleteResponse
+from ....types.load_balancers.origin_steering_param import OriginSteeringParam
+from ....types.load_balancers.notification_filter_param import NotificationFilterParam
 
 __all__ = ["Pools", "AsyncPools"]
 

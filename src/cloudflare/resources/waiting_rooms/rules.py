@@ -26,17 +26,12 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.waiting_rooms import (
-    WaitingRoomRule,
-    RuleEditResponse,
-    RuleCreateResponse,
-    RuleDeleteResponse,
-    RuleUpdateResponse,
-    rule_edit_params,
-    rule_create_params,
-    rule_delete_params,
-    rule_update_params,
-)
+from ...types.waiting_rooms import rule_edit_params, rule_create_params, rule_delete_params, rule_update_params
+from ...types.waiting_rooms.waiting_room_rule import WaitingRoomRule
+from ...types.waiting_rooms.rule_edit_response import RuleEditResponse
+from ...types.waiting_rooms.rule_create_response import RuleCreateResponse
+from ...types.waiting_rooms.rule_delete_response import RuleDeleteResponse
+from ...types.waiting_rooms.rule_update_response import RuleUpdateResponse
 
 __all__ = ["Rules", "AsyncRules"]
 

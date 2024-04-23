@@ -69,19 +69,19 @@ from ..._base_client import (
 )
 from .monitors.monitors import Monitors, AsyncMonitors
 from ...types.load_balancers import (
-    RulesParam,
-    DefaultPools,
-    LoadBalancer,
-    RandomSteeringParam,
-    AdaptiveRoutingParam,
-    LocationStrategyParam,
-    LoadBalancerDeleteResponse,
-    SessionAffinityAttributesParam,
     load_balancer_edit_params,
     load_balancer_create_params,
     load_balancer_delete_params,
     load_balancer_update_params,
 )
+from ...types.load_balancers.rules_param import RulesParam
+from ...types.load_balancers.default_pools import DefaultPools
+from ...types.load_balancers.load_balancer import LoadBalancer
+from ...types.load_balancers.random_steering_param import RandomSteeringParam
+from ...types.load_balancers.adaptive_routing_param import AdaptiveRoutingParam
+from ...types.load_balancers.location_strategy_param import LocationStrategyParam
+from ...types.load_balancers.load_balancer_delete_response import LoadBalancerDeleteResponse
+from ...types.load_balancers.session_affinity_attributes_param import SessionAffinityAttributesParam
 
 __all__ = ["LoadBalancers", "AsyncLoadBalancers"]
 

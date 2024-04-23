@@ -43,13 +43,13 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.load_balancers import (
-    Monitor,
-    MonitorDeleteResponse,
     monitor_edit_params,
     monitor_create_params,
     monitor_delete_params,
     monitor_update_params,
 )
+from ....types.load_balancers.monitor import Monitor
+from ....types.load_balancers.monitor_delete_response import MonitorDeleteResponse
 
 __all__ = ["Monitors", "AsyncMonitors"]
 

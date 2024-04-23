@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.devices import UnrevokeCreateResponse, unrevoke_create_params
+from ....types.zero_trust.devices import unrevoke_create_params
+from ....types.zero_trust.devices.unrevoke_create_response import UnrevokeCreateResponse
 
 __all__ = ["Unrevoke", "AsyncUnrevoke"]
 

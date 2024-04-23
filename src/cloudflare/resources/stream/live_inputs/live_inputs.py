@@ -32,13 +32,13 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.stream import (
-    LiveInput,
-    LiveInputListResponse,
     live_input_list_params,
     live_input_create_params,
     live_input_delete_params,
     live_input_update_params,
 )
+from ....types.stream.live_input import LiveInput
+from ....types.stream.live_input_list_response import LiveInputListResponse
 
 __all__ = ["LiveInputs", "AsyncLiveInputs"]
 

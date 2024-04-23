@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import BrowserCheck, browser_check_edit_params
+from ....types.zones.settings import browser_check_edit_params
+from ....types.zones.settings.browser_check import BrowserCheck
 
 __all__ = ["BrowserCheckResource", "AsyncBrowserCheckResource"]
 

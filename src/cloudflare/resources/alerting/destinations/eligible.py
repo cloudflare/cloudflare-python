@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.alerting.destinations import EligibleGetResponse
+from ....types.alerting.destinations.eligible_get_response import EligibleGetResponse
 
 __all__ = ["Eligible", "AsyncEligible"]
 

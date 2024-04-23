@@ -23,7 +23,9 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.workers import SubdomainGetResponse, SubdomainUpdateResponse, subdomain_update_params
+from ...types.workers import subdomain_update_params
+from ...types.workers.subdomain_get_response import SubdomainGetResponse
+from ...types.workers.subdomain_update_response import SubdomainUpdateResponse
 
 __all__ = ["Subdomains", "AsyncSubdomains"]
 

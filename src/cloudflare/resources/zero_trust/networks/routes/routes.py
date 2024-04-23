@@ -42,7 +42,9 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.networks import Route, Teamnet, route_edit_params, route_list_params, route_create_params
+from .....types.zero_trust.networks import route_edit_params, route_list_params, route_create_params
+from .....types.zero_trust.networks.route import Route
+from .....types.zero_trust.networks.teamnet import Teamnet
 
 __all__ = ["Routes", "AsyncRoutes"]
 

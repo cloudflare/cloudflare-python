@@ -9,13 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.images.v1 import (
-    Variant,
-    VariantGetResponse,
-    VariantEditResponse,
-    VariantCreateResponse,
-    VariantDeleteResponse,
-)
+from cloudflare.types.images.v1.variant import Variant
+from cloudflare.types.images.v1.variant_get_response import VariantGetResponse
+from cloudflare.types.images.v1.variant_edit_response import VariantEditResponse
+from cloudflare.types.images.v1.variant_create_response import VariantCreateResponse
+from cloudflare.types.images.v1.variant_delete_response import VariantDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

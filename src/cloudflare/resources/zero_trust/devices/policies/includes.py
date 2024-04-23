@@ -25,13 +25,11 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.devices.policies import (
-    IncludeGetResponse,
-    SplitTunnelInclude,
-    IncludeUpdateResponse,
-    SplitTunnelIncludeParam,
-    include_update_params,
-)
+from .....types.zero_trust.devices.policies import include_update_params
+from .....types.zero_trust.devices.policies.include_get_response import IncludeGetResponse
+from .....types.zero_trust.devices.policies.split_tunnel_include import SplitTunnelInclude
+from .....types.zero_trust.devices.policies.include_update_response import IncludeUpdateResponse
+from .....types.zero_trust.devices.policies.split_tunnel_include_param import SplitTunnelIncludeParam
 
 __all__ = ["Includes", "AsyncIncludes"]
 

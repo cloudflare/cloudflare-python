@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from ...shared import ASN
 from ...._models import BaseModel
+from ...shared.asn import ASN
 
 __all__ = ["SubnetGetResponse"]
 

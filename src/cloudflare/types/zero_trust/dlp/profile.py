@@ -4,8 +4,9 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .profiles import CustomProfile, PredefinedProfile
 from ...._models import BaseModel
+from .profiles.custom_profile import CustomProfile
+from .profiles.predefined_profile import PredefinedProfile
 
 __all__ = ["Profile", "DLPIntegrationProfile", "DLPIntegrationProfileEntry"]
 

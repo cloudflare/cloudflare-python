@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ChallengeTTL, challenge_ttl_edit_params
+from ....types.zones.settings import challenge_ttl_edit_params
+from ....types.zones.settings.challenge_ttl import ChallengeTTL
 
 __all__ = ["ChallengeTTLResource", "AsyncChallengeTTLResource"]
 

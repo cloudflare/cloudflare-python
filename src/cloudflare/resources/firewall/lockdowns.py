@@ -27,13 +27,13 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.firewall import (
-    Lockdown,
-    LockdownDeleteResponse,
     lockdown_list_params,
     lockdown_create_params,
     lockdown_delete_params,
     lockdown_update_params,
 )
+from ...types.firewall.lockdown import Lockdown
+from ...types.firewall.lockdown_delete_response import LockdownDeleteResponse
 
 __all__ = ["Lockdowns", "AsyncLockdowns"]
 

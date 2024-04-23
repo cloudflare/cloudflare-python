@@ -30,7 +30,6 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from .....types.pages import Deployment
 from .history.history import History, AsyncHistory
 from ....._base_client import (
     AsyncPaginator,
@@ -43,6 +42,7 @@ from .....types.pages.projects import (
     deployment_delete_params,
     deployment_rollback_params,
 )
+from .....types.pages.deployment import Deployment
 
 __all__ = ["Deployments", "AsyncDeployments"]
 

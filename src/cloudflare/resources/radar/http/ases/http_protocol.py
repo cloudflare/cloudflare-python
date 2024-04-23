@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.http.ases import HTTPProtocolGetResponse, http_protocol_get_params
+from .....types.radar.http.ases import http_protocol_get_params
+from .....types.radar.http.ases.http_protocol_get_response import HTTPProtocolGetResponse
 
 __all__ = ["HTTPProtocol", "AsyncHTTPProtocol"]
 

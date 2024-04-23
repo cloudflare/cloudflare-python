@@ -24,11 +24,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import (
-    OriginMaxHTTPVersionGetResponse,
-    OriginMaxHTTPVersionEditResponse,
-    origin_max_http_version_edit_params,
-)
+from ....types.zones.settings import origin_max_http_version_edit_params
+from ....types.zones.settings.origin_max_http_version_get_response import OriginMaxHTTPVersionGetResponse
+from ....types.zones.settings.origin_max_http_version_edit_response import OriginMaxHTTPVersionEditResponse
 
 __all__ = ["OriginMaxHTTPVersionResource", "AsyncOriginMaxHTTPVersionResource"]
 

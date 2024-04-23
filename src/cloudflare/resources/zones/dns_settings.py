@@ -20,10 +20,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.zones import DNSSetting, NameserverParam, dns_setting_edit_params
+from ...types.zones import dns_setting_edit_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.zones.dns_setting import DNSSetting
+from ...types.zones.nameserver_param import NameserverParam
 
 __all__ = ["DNSSettings", "AsyncDNSSettings"]
 

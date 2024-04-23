@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import NEL, NELParam, nel_edit_params
+from ....types.zones.settings import NEL, nel_edit_params
+from ....types.zones.settings.nel import NEL
+from ....types.zones.settings.nel_param import NELParam
 
 __all__ = ["NELResource", "AsyncNELResource"]
 

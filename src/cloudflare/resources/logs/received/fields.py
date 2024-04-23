@@ -16,7 +16,7 @@ from ...._response import (
 from ...._base_client import (
     make_request_options,
 )
-from ....types.logs.received import FieldGetResponse
+from ....types.logs.received.field_get_response import FieldGetResponse
 
 __all__ = ["Fields", "AsyncFields"]
 

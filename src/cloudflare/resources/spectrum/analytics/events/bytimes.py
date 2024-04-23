@@ -25,8 +25,9 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.spectrum.analytics import Dimension
-from .....types.spectrum.analytics.events import BytimeGetResponse, bytime_get_params
+from .....types.spectrum.analytics.events import bytime_get_params
+from .....types.spectrum.analytics.dimension import Dimension
+from .....types.spectrum.analytics.events.bytime_get_response import BytimeGetResponse
 
 __all__ = ["Bytimes", "AsyncBytimes"]
 

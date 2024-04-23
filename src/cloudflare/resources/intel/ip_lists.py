@@ -16,10 +16,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.intel import IPListGetResponse
 from ..._base_client import (
     make_request_options,
 )
+from ...types.intel.ip_list_get_response import IPListGetResponse
 
 __all__ = ["IPLists", "AsyncIPLists"]
 

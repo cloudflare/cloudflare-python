@@ -23,7 +23,9 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.origin_tls_client_auth import SettingGetResponse, SettingUpdateResponse, setting_update_params
+from ...types.origin_tls_client_auth import setting_update_params
+from ...types.origin_tls_client_auth.setting_get_response import SettingGetResponse
+from ...types.origin_tls_client_auth.setting_update_response import SettingUpdateResponse
 
 __all__ = ["Settings", "AsyncSettings"]
 

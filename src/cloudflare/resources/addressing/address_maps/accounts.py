@@ -23,12 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import (
-    AccountDeleteResponse,
-    AccountUpdateResponse,
-    account_delete_params,
-    account_update_params,
-)
+from ....types.addressing.address_maps import account_delete_params, account_update_params
+from ....types.addressing.address_maps.account_delete_response import AccountDeleteResponse
+from ....types.addressing.address_maps.account_update_response import AccountUpdateResponse
 
 __all__ = ["Accounts", "AsyncAccounts"]
 

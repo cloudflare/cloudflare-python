@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import HTTP3, http3_edit_params
+from ....types.zones.settings import http3_edit_params
+from ....types.zones.settings.http3 import HTTP3
 
 __all__ = ["HTTP3Resource", "AsyncHTTP3Resource"]
 

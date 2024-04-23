@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.user.billing import ProfileGetResponse
+from ....types.user.billing.profile_get_response import ProfileGetResponse
 
 __all__ = ["Profile", "AsyncProfile"]
 

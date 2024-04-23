@@ -25,8 +25,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust import AccessRuleParam
-from ....types.zero_trust.access import ZeroTrustGroup, GroupDeleteResponse, group_create_params, group_update_params
+from ....types.zero_trust.access import group_create_params, group_update_params
+from ....types.zero_trust.access_rule_param import AccessRuleParam
+from ....types.zero_trust.access.zero_trust_group import ZeroTrustGroup
+from ....types.zero_trust.access.group_delete_response import GroupDeleteResponse
 
 __all__ = ["Groups", "AsyncGroups"]
 

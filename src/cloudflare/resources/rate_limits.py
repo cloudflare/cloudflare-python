@@ -26,16 +26,16 @@ from .._base_client import (
     make_request_options,
 )
 from ..types.rate_limits import (
-    RateLimit,
-    RateLimitGetResponse,
-    RateLimitEditResponse,
-    RateLimitCreateResponse,
-    RateLimitDeleteResponse,
     rate_limit_edit_params,
     rate_limit_list_params,
     rate_limit_create_params,
     rate_limit_delete_params,
 )
+from ..types.rate_limits.rate_limit import RateLimit
+from ..types.rate_limits.rate_limit_get_response import RateLimitGetResponse
+from ..types.rate_limits.rate_limit_edit_response import RateLimitEditResponse
+from ..types.rate_limits.rate_limit_create_response import RateLimitCreateResponse
+from ..types.rate_limits.rate_limit_delete_response import RateLimitDeleteResponse
 
 __all__ = ["RateLimits", "AsyncRateLimits"]
 

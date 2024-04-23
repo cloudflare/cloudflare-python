@@ -9,7 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.page_shield import Setting, PageShieldUpdateResponse
+from cloudflare.types.page_shield.setting import Setting
+from cloudflare.types.page_shield.page_shield_update_response import PageShieldUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

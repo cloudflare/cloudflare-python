@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ZeroRTT, zero_rtt_edit_params
+from ....types.zones.settings import zero_rtt_edit_params
+from ....types.zones.settings.zero_rtt import ZeroRTT
 
 __all__ = ["ZeroRTTResource", "AsyncZeroRTTResource"]
 

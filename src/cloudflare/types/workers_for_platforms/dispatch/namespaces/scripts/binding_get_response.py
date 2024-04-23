@@ -2,7 +2,7 @@
 
 from typing import List
 
-from .....workers import Binding
+from .....workers.binding import Binding
 
 __all__ = ["BindingGetResponse"]
 

@@ -22,8 +22,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.rulesets import Ruleset
-from ....types.rulesets.phases import VersionGetResponse
+from ....types.rulesets.ruleset import Ruleset
+from ....types.rulesets.phases.version_get_response import VersionGetResponse
 
 __all__ = ["Versions", "AsyncVersions"]
 

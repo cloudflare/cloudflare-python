@@ -21,8 +21,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import Role
-from ...types.accounts import RoleGetResponse
+from ...types.shared.role import Role
+from ...types.accounts.role_get_response import RoleGetResponse
 
 __all__ = ["Roles", "AsyncRoles"]
 

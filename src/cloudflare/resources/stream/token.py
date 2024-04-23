@@ -23,7 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import TokenCreateResponse, token_create_params
+from ...types.stream import token_create_params
+from ...types.stream.token_create_response import TokenCreateResponse
 
 __all__ = ["Token", "AsyncToken"]
 
