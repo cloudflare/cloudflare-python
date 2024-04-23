@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-from typing_extensions import Literal
+from typing import Type, Union, cast
+from datetime import datetime
 
 import httpx
 
@@ -68,9 +68,9 @@ class Routes(SyncAPIResource):
         self,
         *,
         account_id: str,
-        ip_network: str,
+        network: str,
         comment: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: object | NotGiven = NOT_GIVEN,
+        virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,13 +84,11 @@ class Routes(SyncAPIResource):
         Args:
           account_id: Cloudflare account ID
 
-          ip_network: The private IPv4 or IPv6 range connected by the route, in CIDR notation.
+          network: The private IPv4 or IPv6 range connected by the route, in CIDR notation.
 
           comment: Optional remark describing the route.
 
-          virtual_network_id: UUID of the Tunnel Virtual Network this route belongs to. If no virtual networks
-              are configured, the route is assigned to the default virtual network of the
-              account.
+          virtual_network_id: UUID of the virtual network.
 
           extra_headers: Send extra headers
 
@@ -106,7 +104,7 @@ class Routes(SyncAPIResource):
             f"/accounts/{account_id}/teamnet/routes",
             body=maybe_transform(
                 {
-                    "ip_network": ip_network,
+                    "network": network,
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
                 },
@@ -127,16 +125,16 @@ class Routes(SyncAPIResource):
         *,
         account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        existed_at: object | NotGiven = NOT_GIVEN,
-        is_deleted: object | NotGiven = NOT_GIVEN,
-        network_subset: object | NotGiven = NOT_GIVEN,
-        network_superset: object | NotGiven = NOT_GIVEN,
+        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        is_deleted: bool | NotGiven = NOT_GIVEN,
+        network_subset: str | NotGiven = NOT_GIVEN,
+        network_superset: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         route_id: str | NotGiven = NOT_GIVEN,
         tun_types: str | NotGiven = NOT_GIVEN,
-        tunnel_id: object | NotGiven = NOT_GIVEN,
-        virtual_network_id: object | NotGiven = NOT_GIVEN,
+        tunnel_id: str | NotGiven = NOT_GIVEN,
+        virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -152,8 +150,8 @@ class Routes(SyncAPIResource):
 
           comment: Optional remark describing the route.
 
-          existed_at: If provided, include only routes that were created (and not deleted) before this
-              time.
+          existed_at: If provided, include only tunnels that were created (and not deleted) before
+              this time.
 
           is_deleted: If `true`, only include deleted routes. If `false`, exclude deleted routes. If
               empty, all routes will be included.
@@ -170,11 +168,9 @@ class Routes(SyncAPIResource):
 
           tun_types: The types of tunnels to filter separated by a comma.
 
-          tunnel_id: UUID of the Cloudflare Tunnel serving the route.
+          tunnel_id: UUID of the tunnel.
 
-          virtual_network_id: UUID of the Tunnel Virtual Network this route belongs to. If no virtual networks
-              are configured, the route is assigned to the default virtual network of the
-              account.
+          virtual_network_id: UUID of the virtual network.
 
           extra_headers: Send extra headers
 
@@ -265,9 +261,7 @@ class Routes(SyncAPIResource):
         account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
         network: str | NotGiven = NOT_GIVEN,
-        tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"] | NotGiven = NOT_GIVEN,
-        tunnel_id: object | NotGiven = NOT_GIVEN,
-        virtual_network_id: object | NotGiven = NOT_GIVEN,
+        virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -289,13 +283,7 @@ class Routes(SyncAPIResource):
 
           network: The private IPv4 or IPv6 range connected by the route, in CIDR notation.
 
-          tun_type: The type of tunnel.
-
-          tunnel_id: UUID of the Cloudflare Tunnel serving the route.
-
-          virtual_network_id: UUID of the Tunnel Virtual Network this route belongs to. If no virtual networks
-              are configured, the route is assigned to the default virtual network of the
-              account.
+          virtual_network_id: UUID of the virtual network.
 
           extra_headers: Send extra headers
 
@@ -315,8 +303,6 @@ class Routes(SyncAPIResource):
                 {
                     "comment": comment,
                     "network": network,
-                    "tun_type": tun_type,
-                    "tunnel_id": tunnel_id,
                     "virtual_network_id": virtual_network_id,
                 },
                 route_edit_params.RouteEditParams,
@@ -353,9 +339,9 @@ class AsyncRoutes(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        ip_network: str,
+        network: str,
         comment: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: object | NotGiven = NOT_GIVEN,
+        virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -369,13 +355,11 @@ class AsyncRoutes(AsyncAPIResource):
         Args:
           account_id: Cloudflare account ID
 
-          ip_network: The private IPv4 or IPv6 range connected by the route, in CIDR notation.
+          network: The private IPv4 or IPv6 range connected by the route, in CIDR notation.
 
           comment: Optional remark describing the route.
 
-          virtual_network_id: UUID of the Tunnel Virtual Network this route belongs to. If no virtual networks
-              are configured, the route is assigned to the default virtual network of the
-              account.
+          virtual_network_id: UUID of the virtual network.
 
           extra_headers: Send extra headers
 
@@ -391,7 +375,7 @@ class AsyncRoutes(AsyncAPIResource):
             f"/accounts/{account_id}/teamnet/routes",
             body=await async_maybe_transform(
                 {
-                    "ip_network": ip_network,
+                    "network": network,
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
                 },
@@ -412,16 +396,16 @@ class AsyncRoutes(AsyncAPIResource):
         *,
         account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        existed_at: object | NotGiven = NOT_GIVEN,
-        is_deleted: object | NotGiven = NOT_GIVEN,
-        network_subset: object | NotGiven = NOT_GIVEN,
-        network_superset: object | NotGiven = NOT_GIVEN,
+        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        is_deleted: bool | NotGiven = NOT_GIVEN,
+        network_subset: str | NotGiven = NOT_GIVEN,
+        network_superset: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         route_id: str | NotGiven = NOT_GIVEN,
         tun_types: str | NotGiven = NOT_GIVEN,
-        tunnel_id: object | NotGiven = NOT_GIVEN,
-        virtual_network_id: object | NotGiven = NOT_GIVEN,
+        tunnel_id: str | NotGiven = NOT_GIVEN,
+        virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -437,8 +421,8 @@ class AsyncRoutes(AsyncAPIResource):
 
           comment: Optional remark describing the route.
 
-          existed_at: If provided, include only routes that were created (and not deleted) before this
-              time.
+          existed_at: If provided, include only tunnels that were created (and not deleted) before
+              this time.
 
           is_deleted: If `true`, only include deleted routes. If `false`, exclude deleted routes. If
               empty, all routes will be included.
@@ -455,11 +439,9 @@ class AsyncRoutes(AsyncAPIResource):
 
           tun_types: The types of tunnels to filter separated by a comma.
 
-          tunnel_id: UUID of the Cloudflare Tunnel serving the route.
+          tunnel_id: UUID of the tunnel.
 
-          virtual_network_id: UUID of the Tunnel Virtual Network this route belongs to. If no virtual networks
-              are configured, the route is assigned to the default virtual network of the
-              account.
+          virtual_network_id: UUID of the virtual network.
 
           extra_headers: Send extra headers
 
@@ -550,9 +532,7 @@ class AsyncRoutes(AsyncAPIResource):
         account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
         network: str | NotGiven = NOT_GIVEN,
-        tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"] | NotGiven = NOT_GIVEN,
-        tunnel_id: object | NotGiven = NOT_GIVEN,
-        virtual_network_id: object | NotGiven = NOT_GIVEN,
+        virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -574,13 +554,7 @@ class AsyncRoutes(AsyncAPIResource):
 
           network: The private IPv4 or IPv6 range connected by the route, in CIDR notation.
 
-          tun_type: The type of tunnel.
-
-          tunnel_id: UUID of the Cloudflare Tunnel serving the route.
-
-          virtual_network_id: UUID of the Tunnel Virtual Network this route belongs to. If no virtual networks
-              are configured, the route is assigned to the default virtual network of the
-              account.
+          virtual_network_id: UUID of the virtual network.
 
           extra_headers: Send extra headers
 
@@ -600,8 +574,6 @@ class AsyncRoutes(AsyncAPIResource):
                 {
                     "comment": comment,
                     "network": network,
-                    "tun_type": tun_type,
-                    "tunnel_id": tunnel_id,
                     "virtual_network_id": virtual_network_id,
                 },
                 route_edit_params.RouteEditParams,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -75,22 +75,17 @@ class Accounts(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return cast(
-            Optional[AccountUpdateResponse],
-            self._put(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
-                body=maybe_transform(body, account_update_params.AccountUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AccountUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccountUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+            body=maybe_transform(body, account_update_params.AccountUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AccountUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[AccountUpdateResponse]], ResultWrapper[AccountUpdateResponse]),
         )
 
     def delete(
@@ -126,22 +121,17 @@ class Accounts(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return cast(
-            Optional[AccountDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
-                body=maybe_transform(body, account_delete_params.AccountDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AccountDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccountDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+            body=maybe_transform(body, account_delete_params.AccountDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AccountDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[AccountDeleteResponse]], ResultWrapper[AccountDeleteResponse]),
         )
 
 
@@ -187,22 +177,17 @@ class AsyncAccounts(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return cast(
-            Optional[AccountUpdateResponse],
-            await self._put(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
-                body=await async_maybe_transform(body, account_update_params.AccountUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AccountUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccountUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+            body=await async_maybe_transform(body, account_update_params.AccountUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AccountUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[AccountUpdateResponse]], ResultWrapper[AccountUpdateResponse]),
         )
 
     async def delete(
@@ -238,22 +223,17 @@ class AsyncAccounts(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return cast(
-            Optional[AccountDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
-                body=await async_maybe_transform(body, account_delete_params.AccountDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AccountDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccountDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
+            body=await async_maybe_transform(body, account_delete_params.AccountDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AccountDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[AccountDeleteResponse]], ResultWrapper[AccountDeleteResponse]),
         )
 
 

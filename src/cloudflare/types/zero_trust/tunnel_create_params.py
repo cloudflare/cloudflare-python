@@ -12,10 +12,10 @@ class TunnelCreateParams(TypedDict, total=False):
     """Cloudflare account ID"""
 
     name: Required[str]
-    """A user-friendly name for the tunnel."""
+    """A user-friendly name for a tunnel."""
 
-    tunnel_secret: Required[object]
-    """Sets the password required to run the tunnel.
+    tunnel_secret: Required[str]
+    """Sets the password required to run a locally-managed tunnel.
 
     Must be at least 32 bytes and encoded as a base64 string.
     """

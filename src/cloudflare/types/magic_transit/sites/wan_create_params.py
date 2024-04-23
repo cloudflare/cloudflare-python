@@ -6,23 +6,19 @@ from typing_extensions import Required, TypedDict
 
 from .wan_static_addressing_param import WANStaticAddressingParam
 
-__all__ = ["WANCreateParams", "WAN"]
+__all__ = ["WANCreateParams"]
 
 
 class WANCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    wan: WAN
-
-
-class WAN(TypedDict, total=False):
     physport: Required[int]
 
     vlan_tag: Required[int]
     """VLAN port number."""
 
-    description: str
+    name: str
 
     priority: int
 

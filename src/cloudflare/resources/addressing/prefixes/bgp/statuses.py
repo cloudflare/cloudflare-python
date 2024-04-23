@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -49,7 +49,7 @@ class Statuses(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatusEditResponse:
+    ) -> Optional[StatusEditResponse]:
         """
         Advertise or withdraw BGP route for a prefix.
 
@@ -80,9 +80,9 @@ class Statuses(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[StatusEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[StatusEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[StatusEditResponse], ResultWrapper[StatusEditResponse]),
+            cast_to=cast(Type[Optional[StatusEditResponse]], ResultWrapper[StatusEditResponse]),
         )
 
     def get(
@@ -96,7 +96,7 @@ class Statuses(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatusGetResponse:
+    ) -> Optional[StatusGetResponse]:
         """
         List the current advertisement state for a prefix.
 
@@ -124,9 +124,9 @@ class Statuses(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[StatusGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[StatusGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[StatusGetResponse], ResultWrapper[StatusGetResponse]),
+            cast_to=cast(Type[Optional[StatusGetResponse]], ResultWrapper[StatusGetResponse]),
         )
 
 
@@ -151,7 +151,7 @@ class AsyncStatuses(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatusEditResponse:
+    ) -> Optional[StatusEditResponse]:
         """
         Advertise or withdraw BGP route for a prefix.
 
@@ -182,9 +182,9 @@ class AsyncStatuses(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[StatusEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[StatusEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[StatusEditResponse], ResultWrapper[StatusEditResponse]),
+            cast_to=cast(Type[Optional[StatusEditResponse]], ResultWrapper[StatusEditResponse]),
         )
 
     async def get(
@@ -198,7 +198,7 @@ class AsyncStatuses(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StatusGetResponse:
+    ) -> Optional[StatusGetResponse]:
         """
         List the current advertisement state for a prefix.
 
@@ -226,9 +226,9 @@ class AsyncStatuses(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[StatusGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[StatusGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[StatusGetResponse], ResultWrapper[StatusGetResponse]),
+            cast_to=cast(Type[Optional[StatusGetResponse]], ResultWrapper[StatusGetResponse]),
         )
 
 

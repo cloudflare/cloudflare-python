@@ -13,8 +13,8 @@ class Connection(BaseModel):
     id: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
 
-    client_id: Optional[object] = None
-    """UUID of the cloudflared instance."""
+    client_id: Optional[str] = None
+    """UUID of the Cloudflare Tunnel connector."""
 
     client_version: Optional[str] = None
     """The cloudflared version used to establish this connection."""
@@ -63,19 +63,19 @@ class CloudflareTunnel(BaseModel):
     """
 
     created_at: Optional[datetime] = None
-    """Timestamp of when the tunnel was created."""
+    """Timestamp of when the resource was created."""
 
     deleted_at: Optional[datetime] = None
-    """Timestamp of when the tunnel was deleted.
+    """Timestamp of when the resource was deleted.
 
-    If `null`, the tunnel has not been deleted.
+    If `null`, the resource has not been deleted.
     """
 
     metadata: Optional[object] = None
     """Metadata associated with the tunnel."""
 
     name: Optional[str] = None
-    """A user-friendly name for the tunnel."""
+    """A user-friendly name for a tunnel."""
 
     remote_config: Optional[bool] = None
     """If `true`, the tunnel can be configured remotely from the Zero Trust dashboard.

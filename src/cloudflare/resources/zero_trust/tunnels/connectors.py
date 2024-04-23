@@ -54,7 +54,7 @@ class Connectors(SyncAPIResource):
 
           tunnel_id: UUID of the tunnel.
 
-          connector_id: UUID of the Cloudflare Tunnel client.
+          connector_id: UUID of the Cloudflare Tunnel connector.
 
           extra_headers: Send extra headers
 
@@ -113,7 +113,7 @@ class AsyncConnectors(AsyncAPIResource):
 
           tunnel_id: UUID of the tunnel.
 
-          connector_id: UUID of the Cloudflare Tunnel client.
+          connector_id: UUID of the Cloudflare Tunnel connector.
 
           extra_headers: Send extra headers
 

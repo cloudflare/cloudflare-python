@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -30,7 +30,7 @@ class TestDelegations:
             cidr="192.0.2.0/24",
             delegated_account_id="b1946ac92492d2347c6235b4d2611184",
         )
-        assert_matches_type(Delegations, delegation, path=["response"])
+        assert_matches_type(Optional[Delegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -45,7 +45,7 @@ class TestDelegations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         delegation = response.parse()
-        assert_matches_type(Delegations, delegation, path=["response"])
+        assert_matches_type(Optional[Delegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -60,7 +60,7 @@ class TestDelegations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             delegation = response.parse()
-            assert_matches_type(Delegations, delegation, path=["response"])
+            assert_matches_type(Optional[Delegations], delegation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -144,7 +144,7 @@ class TestDelegations:
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(DelegationDeleteResponse, delegation, path=["response"])
+        assert_matches_type(Optional[DelegationDeleteResponse], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -159,7 +159,7 @@ class TestDelegations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         delegation = response.parse()
-        assert_matches_type(DelegationDeleteResponse, delegation, path=["response"])
+        assert_matches_type(Optional[DelegationDeleteResponse], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -174,7 +174,7 @@ class TestDelegations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             delegation = response.parse()
-            assert_matches_type(DelegationDeleteResponse, delegation, path=["response"])
+            assert_matches_type(Optional[DelegationDeleteResponse], delegation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -218,7 +218,7 @@ class TestAsyncDelegations:
             cidr="192.0.2.0/24",
             delegated_account_id="b1946ac92492d2347c6235b4d2611184",
         )
-        assert_matches_type(Delegations, delegation, path=["response"])
+        assert_matches_type(Optional[Delegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -233,7 +233,7 @@ class TestAsyncDelegations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         delegation = await response.parse()
-        assert_matches_type(Delegations, delegation, path=["response"])
+        assert_matches_type(Optional[Delegations], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -248,7 +248,7 @@ class TestAsyncDelegations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             delegation = await response.parse()
-            assert_matches_type(Delegations, delegation, path=["response"])
+            assert_matches_type(Optional[Delegations], delegation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -332,7 +332,7 @@ class TestAsyncDelegations:
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(DelegationDeleteResponse, delegation, path=["response"])
+        assert_matches_type(Optional[DelegationDeleteResponse], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -347,7 +347,7 @@ class TestAsyncDelegations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         delegation = await response.parse()
-        assert_matches_type(DelegationDeleteResponse, delegation, path=["response"])
+        assert_matches_type(Optional[DelegationDeleteResponse], delegation, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -362,7 +362,7 @@ class TestAsyncDelegations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             delegation = await response.parse()
-            assert_matches_type(DelegationDeleteResponse, delegation, path=["response"])
+            assert_matches_type(Optional[DelegationDeleteResponse], delegation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

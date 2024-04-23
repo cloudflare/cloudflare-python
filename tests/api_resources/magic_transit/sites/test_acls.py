@@ -9,12 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.magic_transit.sites import (
-    ACLGetResponse,
-    ACLListResponse,
-    ACLCreateResponse,
-    ACLDeleteResponse,
-    ACLUpdateResponse,
+    ACL,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,8 +26,11 @@ class TestACLs:
         acl = client.magic_transit.sites.acls.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            lan_1={"lan_id": "string"},
+            lan_2={"lan_id": "string"},
+            name="PIN Pad - Cash Register",
         )
-        assert_matches_type(ACLCreateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -38,26 +38,24 @@ class TestACLs:
         acl = client.magic_transit.sites.acls.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            acl={
-                "description": "Allows local traffic between PIN pads and cash register.",
-                "forward_locally": True,
-                "lan_1": {
-                    "lan_id": "string",
-                    "lan_name": "string",
-                    "ports": [1, 1, 1],
-                    "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
-                },
-                "lan_2": {
-                    "lan_id": "string",
-                    "lan_name": "string",
-                    "ports": [1, 1, 1],
-                    "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
-                },
-                "name": "PIN Pad - Cash Register",
-                "protocols": ["tcp", "udp", "icmp"],
+            lan_1={
+                "lan_id": "string",
+                "lan_name": "string",
+                "ports": [1, 1, 1],
+                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
+            lan_2={
+                "lan_id": "string",
+                "lan_name": "string",
+                "ports": [1, 1, 1],
+                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+            },
+            name="PIN Pad - Cash Register",
+            description="Allows local traffic between PIN pads and cash register.",
+            forward_locally=True,
+            protocols=["tcp", "udp", "icmp"],
         )
-        assert_matches_type(ACLCreateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -65,12 +63,15 @@ class TestACLs:
         response = client.magic_transit.sites.acls.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            lan_1={"lan_id": "string"},
+            lan_2={"lan_id": "string"},
+            name="PIN Pad - Cash Register",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = response.parse()
-        assert_matches_type(ACLCreateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -78,12 +79,15 @@ class TestACLs:
         with client.magic_transit.sites.acls.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            lan_1={"lan_id": "string"},
+            lan_2={"lan_id": "string"},
+            name="PIN Pad - Cash Register",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = response.parse()
-            assert_matches_type(ACLCreateResponse, acl, path=["response"])
+            assert_matches_type(ACL, acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -94,12 +98,18 @@ class TestACLs:
             client.magic_transit.sites.acls.with_raw_response.create(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                lan_1={"lan_id": "string"},
+                lan_2={"lan_id": "string"},
+                name="PIN Pad - Cash Register",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.create(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                lan_1={"lan_id": "string"},
+                lan_2={"lan_id": "string"},
+                name="PIN Pad - Cash Register",
             )
 
     @pytest.mark.skip()
@@ -110,7 +120,7 @@ class TestACLs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ACLUpdateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -119,26 +129,24 @@ class TestACLs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            acl={
-                "description": "Allows local traffic between PIN pads and cash register.",
-                "forward_locally": True,
-                "lan_1": {
-                    "lan_id": "string",
-                    "lan_name": "string",
-                    "ports": [1, 1, 1],
-                    "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
-                },
-                "lan_2": {
-                    "lan_id": "string",
-                    "lan_name": "string",
-                    "ports": [1, 1, 1],
-                    "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
-                },
-                "name": "PIN Pad - Cash Register",
-                "protocols": ["tcp", "udp", "icmp"],
+            description="Allows local traffic between PIN pads and cash register.",
+            forward_locally=True,
+            lan_1={
+                "lan_id": "string",
+                "lan_name": "string",
+                "ports": [1, 1, 1],
+                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
+            lan_2={
+                "lan_id": "string",
+                "lan_name": "string",
+                "ports": [1, 1, 1],
+                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+            },
+            name="PIN Pad - Cash Register",
+            protocols=["tcp", "udp", "icmp"],
         )
-        assert_matches_type(ACLUpdateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -152,7 +160,7 @@ class TestACLs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = response.parse()
-        assert_matches_type(ACLUpdateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -166,7 +174,7 @@ class TestACLs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = response.parse()
-            assert_matches_type(ACLUpdateResponse, acl, path=["response"])
+            assert_matches_type(ACL, acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -201,7 +209,7 @@ class TestACLs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ACLListResponse, acl, path=["response"])
+        assert_matches_type(SyncSinglePage[ACL], acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -214,7 +222,7 @@ class TestACLs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = response.parse()
-        assert_matches_type(ACLListResponse, acl, path=["response"])
+        assert_matches_type(SyncSinglePage[ACL], acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -227,7 +235,7 @@ class TestACLs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = response.parse()
-            assert_matches_type(ACLListResponse, acl, path=["response"])
+            assert_matches_type(SyncSinglePage[ACL], acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -255,7 +263,7 @@ class TestACLs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(ACLDeleteResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -270,7 +278,7 @@ class TestACLs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = response.parse()
-        assert_matches_type(ACLDeleteResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -285,7 +293,7 @@ class TestACLs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = response.parse()
-            assert_matches_type(ACLDeleteResponse, acl, path=["response"])
+            assert_matches_type(ACL, acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -324,7 +332,7 @@ class TestACLs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ACLGetResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -338,7 +346,7 @@ class TestACLs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = response.parse()
-        assert_matches_type(ACLGetResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -352,7 +360,7 @@ class TestACLs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = response.parse()
-            assert_matches_type(ACLGetResponse, acl, path=["response"])
+            assert_matches_type(ACL, acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -390,8 +398,11 @@ class TestAsyncACLs:
         acl = await async_client.magic_transit.sites.acls.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            lan_1={"lan_id": "string"},
+            lan_2={"lan_id": "string"},
+            name="PIN Pad - Cash Register",
         )
-        assert_matches_type(ACLCreateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -399,26 +410,24 @@ class TestAsyncACLs:
         acl = await async_client.magic_transit.sites.acls.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            acl={
-                "description": "Allows local traffic between PIN pads and cash register.",
-                "forward_locally": True,
-                "lan_1": {
-                    "lan_id": "string",
-                    "lan_name": "string",
-                    "ports": [1, 1, 1],
-                    "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
-                },
-                "lan_2": {
-                    "lan_id": "string",
-                    "lan_name": "string",
-                    "ports": [1, 1, 1],
-                    "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
-                },
-                "name": "PIN Pad - Cash Register",
-                "protocols": ["tcp", "udp", "icmp"],
+            lan_1={
+                "lan_id": "string",
+                "lan_name": "string",
+                "ports": [1, 1, 1],
+                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
+            lan_2={
+                "lan_id": "string",
+                "lan_name": "string",
+                "ports": [1, 1, 1],
+                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+            },
+            name="PIN Pad - Cash Register",
+            description="Allows local traffic between PIN pads and cash register.",
+            forward_locally=True,
+            protocols=["tcp", "udp", "icmp"],
         )
-        assert_matches_type(ACLCreateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -426,12 +435,15 @@ class TestAsyncACLs:
         response = await async_client.magic_transit.sites.acls.with_raw_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            lan_1={"lan_id": "string"},
+            lan_2={"lan_id": "string"},
+            name="PIN Pad - Cash Register",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = await response.parse()
-        assert_matches_type(ACLCreateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -439,12 +451,15 @@ class TestAsyncACLs:
         async with async_client.magic_transit.sites.acls.with_streaming_response.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            lan_1={"lan_id": "string"},
+            lan_2={"lan_id": "string"},
+            name="PIN Pad - Cash Register",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = await response.parse()
-            assert_matches_type(ACLCreateResponse, acl, path=["response"])
+            assert_matches_type(ACL, acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -455,12 +470,18 @@ class TestAsyncACLs:
             await async_client.magic_transit.sites.acls.with_raw_response.create(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                lan_1={"lan_id": "string"},
+                lan_2={"lan_id": "string"},
+                name="PIN Pad - Cash Register",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.create(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                lan_1={"lan_id": "string"},
+                lan_2={"lan_id": "string"},
+                name="PIN Pad - Cash Register",
             )
 
     @pytest.mark.skip()
@@ -471,7 +492,7 @@ class TestAsyncACLs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ACLUpdateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -480,26 +501,24 @@ class TestAsyncACLs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            acl={
-                "description": "Allows local traffic between PIN pads and cash register.",
-                "forward_locally": True,
-                "lan_1": {
-                    "lan_id": "string",
-                    "lan_name": "string",
-                    "ports": [1, 1, 1],
-                    "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
-                },
-                "lan_2": {
-                    "lan_id": "string",
-                    "lan_name": "string",
-                    "ports": [1, 1, 1],
-                    "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
-                },
-                "name": "PIN Pad - Cash Register",
-                "protocols": ["tcp", "udp", "icmp"],
+            description="Allows local traffic between PIN pads and cash register.",
+            forward_locally=True,
+            lan_1={
+                "lan_id": "string",
+                "lan_name": "string",
+                "ports": [1, 1, 1],
+                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
+            lan_2={
+                "lan_id": "string",
+                "lan_name": "string",
+                "ports": [1, 1, 1],
+                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+            },
+            name="PIN Pad - Cash Register",
+            protocols=["tcp", "udp", "icmp"],
         )
-        assert_matches_type(ACLUpdateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -513,7 +532,7 @@ class TestAsyncACLs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = await response.parse()
-        assert_matches_type(ACLUpdateResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -527,7 +546,7 @@ class TestAsyncACLs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = await response.parse()
-            assert_matches_type(ACLUpdateResponse, acl, path=["response"])
+            assert_matches_type(ACL, acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -562,7 +581,7 @@ class TestAsyncACLs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ACLListResponse, acl, path=["response"])
+        assert_matches_type(AsyncSinglePage[ACL], acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -575,7 +594,7 @@ class TestAsyncACLs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = await response.parse()
-        assert_matches_type(ACLListResponse, acl, path=["response"])
+        assert_matches_type(AsyncSinglePage[ACL], acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -588,7 +607,7 @@ class TestAsyncACLs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = await response.parse()
-            assert_matches_type(ACLListResponse, acl, path=["response"])
+            assert_matches_type(AsyncSinglePage[ACL], acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -616,7 +635,7 @@ class TestAsyncACLs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(ACLDeleteResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -631,7 +650,7 @@ class TestAsyncACLs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = await response.parse()
-        assert_matches_type(ACLDeleteResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -646,7 +665,7 @@ class TestAsyncACLs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = await response.parse()
-            assert_matches_type(ACLDeleteResponse, acl, path=["response"])
+            assert_matches_type(ACL, acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -685,7 +704,7 @@ class TestAsyncACLs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ACLGetResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -699,7 +718,7 @@ class TestAsyncACLs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         acl = await response.parse()
-        assert_matches_type(ACLGetResponse, acl, path=["response"])
+        assert_matches_type(ACL, acl, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -713,7 +732,7 @@ class TestAsyncACLs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             acl = await response.parse()
-            assert_matches_type(ACLGetResponse, acl, path=["response"])
+            assert_matches_type(ACL, acl, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

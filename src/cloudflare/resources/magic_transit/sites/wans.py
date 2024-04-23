@@ -20,15 +20,15 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.magic_transit.sites import (
-    WANGetResponse,
-    WANListResponse,
+    WAN,
     WANCreateResponse,
-    WANDeleteResponse,
-    WANUpdateResponse,
+    WANStaticAddressingParam,
     wan_create_params,
     wan_delete_params,
     wan_update_params,
@@ -51,7 +51,11 @@ class WANs(SyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        wan: wan_create_params.WAN | NotGiven = NOT_GIVEN,
+        physport: int,
+        vlan_tag: int,
+        name: str | NotGiven = NOT_GIVEN,
+        priority: int | NotGiven = NOT_GIVEN,
+        static_addressing: WANStaticAddressingParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,6 +71,11 @@ class WANs(SyncAPIResource):
 
           site_id: Identifier
 
+          vlan_tag: VLAN port number.
+
+          static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
+              availability mode.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -81,7 +90,16 @@ class WANs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._post(
             f"/accounts/{account_id}/magic/sites/{site_id}/wans",
-            body=maybe_transform({"wan": wan}, wan_create_params.WANCreateParams),
+            body=maybe_transform(
+                {
+                    "physport": physport,
+                    "vlan_tag": vlan_tag,
+                    "name": name,
+                    "priority": priority,
+                    "static_addressing": static_addressing,
+                },
+                wan_create_params.WANCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -98,14 +116,18 @@ class WANs(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        wan: wan_update_params.WAN | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        physport: int | NotGiven = NOT_GIVEN,
+        priority: int | NotGiven = NOT_GIVEN,
+        static_addressing: WANStaticAddressingParam | NotGiven = NOT_GIVEN,
+        vlan_tag: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WANUpdateResponse:
+    ) -> WAN:
         """
         Update a specific WAN.
 
@@ -115,6 +137,11 @@ class WANs(SyncAPIResource):
           site_id: Identifier
 
           wan_id: Identifier
+
+          static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
+              availability mode.
+
+          vlan_tag: VLAN port number.
 
           extra_headers: Send extra headers
 
@@ -132,15 +159,24 @@ class WANs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return self._put(
             f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
-            body=maybe_transform({"wan": wan}, wan_update_params.WANUpdateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "physport": physport,
+                    "priority": priority,
+                    "static_addressing": static_addressing,
+                    "vlan_tag": vlan_tag,
+                },
+                wan_update_params.WANUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WANUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[WAN]._unwrapper,
             ),
-            cast_to=cast(Type[WANUpdateResponse], ResultWrapper[WANUpdateResponse]),
+            cast_to=cast(Type[WAN], ResultWrapper[WAN]),
         )
 
     def list(
@@ -154,7 +190,7 @@ class WANs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WANListResponse:
+    ) -> SyncSinglePage[WAN]:
         """
         Lists WANs associated with an account and site.
 
@@ -175,16 +211,13 @@ class WANs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            page=SyncSinglePage[WAN],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WANListResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[WANListResponse], ResultWrapper[WANListResponse]),
+            model=WAN,
         )
 
     def delete(
@@ -200,7 +233,7 @@ class WANs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WANDeleteResponse:
+    ) -> WAN:
         """
         Remove a specific WAN.
 
@@ -233,9 +266,9 @@ class WANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WANDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[WAN]._unwrapper,
             ),
-            cast_to=cast(Type[WANDeleteResponse], ResultWrapper[WANDeleteResponse]),
+            cast_to=cast(Type[WAN], ResultWrapper[WAN]),
         )
 
     def get(
@@ -250,7 +283,7 @@ class WANs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WANGetResponse:
+    ) -> WAN:
         """
         Get a specific WAN.
 
@@ -282,9 +315,9 @@ class WANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WANGetResponse]._unwrapper,
+                post_parser=ResultWrapper[WAN]._unwrapper,
             ),
-            cast_to=cast(Type[WANGetResponse], ResultWrapper[WANGetResponse]),
+            cast_to=cast(Type[WAN], ResultWrapper[WAN]),
         )
 
 
@@ -302,7 +335,11 @@ class AsyncWANs(AsyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        wan: wan_create_params.WAN | NotGiven = NOT_GIVEN,
+        physport: int,
+        vlan_tag: int,
+        name: str | NotGiven = NOT_GIVEN,
+        priority: int | NotGiven = NOT_GIVEN,
+        static_addressing: WANStaticAddressingParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -318,6 +355,11 @@ class AsyncWANs(AsyncAPIResource):
 
           site_id: Identifier
 
+          vlan_tag: VLAN port number.
+
+          static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
+              availability mode.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -332,7 +374,16 @@ class AsyncWANs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._post(
             f"/accounts/{account_id}/magic/sites/{site_id}/wans",
-            body=await async_maybe_transform({"wan": wan}, wan_create_params.WANCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "physport": physport,
+                    "vlan_tag": vlan_tag,
+                    "name": name,
+                    "priority": priority,
+                    "static_addressing": static_addressing,
+                },
+                wan_create_params.WANCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -349,14 +400,18 @@ class AsyncWANs(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        wan: wan_update_params.WAN | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        physport: int | NotGiven = NOT_GIVEN,
+        priority: int | NotGiven = NOT_GIVEN,
+        static_addressing: WANStaticAddressingParam | NotGiven = NOT_GIVEN,
+        vlan_tag: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WANUpdateResponse:
+    ) -> WAN:
         """
         Update a specific WAN.
 
@@ -366,6 +421,11 @@ class AsyncWANs(AsyncAPIResource):
           site_id: Identifier
 
           wan_id: Identifier
+
+          static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
+              availability mode.
+
+          vlan_tag: VLAN port number.
 
           extra_headers: Send extra headers
 
@@ -383,18 +443,27 @@ class AsyncWANs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `wan_id` but received {wan_id!r}")
         return await self._put(
             f"/accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}",
-            body=await async_maybe_transform({"wan": wan}, wan_update_params.WANUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "physport": physport,
+                    "priority": priority,
+                    "static_addressing": static_addressing,
+                    "vlan_tag": vlan_tag,
+                },
+                wan_update_params.WANUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WANUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[WAN]._unwrapper,
             ),
-            cast_to=cast(Type[WANUpdateResponse], ResultWrapper[WANUpdateResponse]),
+            cast_to=cast(Type[WAN], ResultWrapper[WAN]),
         )
 
-    async def list(
+    def list(
         self,
         site_id: str,
         *,
@@ -405,7 +474,7 @@ class AsyncWANs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WANListResponse:
+    ) -> AsyncPaginator[WAN, AsyncSinglePage[WAN]]:
         """
         Lists WANs associated with an account and site.
 
@@ -426,16 +495,13 @@ class AsyncWANs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            page=AsyncSinglePage[WAN],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WANListResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[WANListResponse], ResultWrapper[WANListResponse]),
+            model=WAN,
         )
 
     async def delete(
@@ -451,7 +517,7 @@ class AsyncWANs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WANDeleteResponse:
+    ) -> WAN:
         """
         Remove a specific WAN.
 
@@ -484,9 +550,9 @@ class AsyncWANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WANDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[WAN]._unwrapper,
             ),
-            cast_to=cast(Type[WANDeleteResponse], ResultWrapper[WANDeleteResponse]),
+            cast_to=cast(Type[WAN], ResultWrapper[WAN]),
         )
 
     async def get(
@@ -501,7 +567,7 @@ class AsyncWANs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WANGetResponse:
+    ) -> WAN:
         """
         Get a specific WAN.
 
@@ -533,9 +599,9 @@ class AsyncWANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WANGetResponse]._unwrapper,
+                post_parser=ResultWrapper[WAN]._unwrapper,
             ),
-            cast_to=cast(Type[WANGetResponse], ResultWrapper[WANGetResponse]),
+            cast_to=cast(Type[WAN], ResultWrapper[WAN]),
         )
 
 

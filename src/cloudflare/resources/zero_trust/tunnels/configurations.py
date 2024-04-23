@@ -58,7 +58,7 @@ class Configurations(SyncAPIResource):
         Adds or updates the configuration for a remotely-managed tunnel.
 
         Args:
-          account_id: Identifier
+          account_id: Cloudflare account ID
 
           tunnel_id: UUID of the tunnel.
 
@@ -110,7 +110,7 @@ class Configurations(SyncAPIResource):
         Gets the configuration for a remotely-managed tunnel
 
         Args:
-          account_id: Identifier
+          account_id: Cloudflare account ID
 
           tunnel_id: UUID of the tunnel.
 
@@ -170,7 +170,7 @@ class AsyncConfigurations(AsyncAPIResource):
         Adds or updates the configuration for a remotely-managed tunnel.
 
         Args:
-          account_id: Identifier
+          account_id: Cloudflare account ID
 
           tunnel_id: UUID of the tunnel.
 
@@ -224,7 +224,7 @@ class AsyncConfigurations(AsyncAPIResource):
         Gets the configuration for a remotely-managed tunnel
 
         Args:
-          account_id: Identifier
+          account_id: Cloudflare account ID
 
           tunnel_id: UUID of the tunnel.
 

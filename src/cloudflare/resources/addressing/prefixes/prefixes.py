@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -83,7 +83,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Prefix:
+    ) -> Optional[Prefix]:
         """
         Add a new prefix under the account.
 
@@ -121,9 +121,9 @@ class Prefixes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Prefix]._unwrapper,
+                post_parser=ResultWrapper[Optional[Prefix]]._unwrapper,
             ),
-            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
+            cast_to=cast(Type[Optional[Prefix]], ResultWrapper[Prefix]),
         )
 
     def list(
@@ -195,22 +195,17 @@ class Prefixes(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
-        return cast(
-            Optional[PrefixDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
-                body=maybe_transform(body, prefix_delete_params.PrefixDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PrefixDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
+            body=maybe_transform(body, prefix_delete_params.PrefixDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[PrefixDeleteResponse]], ResultWrapper[PrefixDeleteResponse]),
         )
 
     def edit(
@@ -225,7 +220,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Prefix:
+    ) -> Optional[Prefix]:
         """
         Modify the description for a prefix owned by the account.
 
@@ -256,9 +251,9 @@ class Prefixes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Prefix]._unwrapper,
+                post_parser=ResultWrapper[Optional[Prefix]]._unwrapper,
             ),
-            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
+            cast_to=cast(Type[Optional[Prefix]], ResultWrapper[Prefix]),
         )
 
     def get(
@@ -272,7 +267,7 @@ class Prefixes(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Prefix:
+    ) -> Optional[Prefix]:
         """
         List a particular prefix owned by the account.
 
@@ -300,9 +295,9 @@ class Prefixes(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Prefix]._unwrapper,
+                post_parser=ResultWrapper[Optional[Prefix]]._unwrapper,
             ),
-            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
+            cast_to=cast(Type[Optional[Prefix]], ResultWrapper[Prefix]),
         )
 
 
@@ -336,7 +331,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Prefix:
+    ) -> Optional[Prefix]:
         """
         Add a new prefix under the account.
 
@@ -374,9 +369,9 @@ class AsyncPrefixes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Prefix]._unwrapper,
+                post_parser=ResultWrapper[Optional[Prefix]]._unwrapper,
             ),
-            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
+            cast_to=cast(Type[Optional[Prefix]], ResultWrapper[Prefix]),
         )
 
     def list(
@@ -448,22 +443,17 @@ class AsyncPrefixes(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not prefix_id:
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
-        return cast(
-            Optional[PrefixDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
-                body=await async_maybe_transform(body, prefix_delete_params.PrefixDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PrefixDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
+            body=await async_maybe_transform(body, prefix_delete_params.PrefixDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[PrefixDeleteResponse]], ResultWrapper[PrefixDeleteResponse]),
         )
 
     async def edit(
@@ -478,7 +468,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Prefix:
+    ) -> Optional[Prefix]:
         """
         Modify the description for a prefix owned by the account.
 
@@ -509,9 +499,9 @@ class AsyncPrefixes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Prefix]._unwrapper,
+                post_parser=ResultWrapper[Optional[Prefix]]._unwrapper,
             ),
-            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
+            cast_to=cast(Type[Optional[Prefix]], ResultWrapper[Prefix]),
         )
 
     async def get(
@@ -525,7 +515,7 @@ class AsyncPrefixes(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Prefix:
+    ) -> Optional[Prefix]:
         """
         List a particular prefix owned by the account.
 
@@ -553,9 +543,9 @@ class AsyncPrefixes(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Prefix]._unwrapper,
+                post_parser=ResultWrapper[Optional[Prefix]]._unwrapper,
             ),
-            cast_to=cast(Type[Prefix], ResultWrapper[Prefix]),
+            cast_to=cast(Type[Optional[Prefix]], ResultWrapper[Prefix]),
         )
 
 

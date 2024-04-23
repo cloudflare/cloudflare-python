@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -21,7 +21,7 @@ class TestIPs:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         ip = client.ips.list()
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(Optional[IPListResponse], ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -29,7 +29,7 @@ class TestIPs:
         ip = client.ips.list(
             networks="string",
         )
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(Optional[IPListResponse], ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestIPs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip = response.parse()
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(Optional[IPListResponse], ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -49,7 +49,7 @@ class TestIPs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip = response.parse()
-            assert_matches_type(IPListResponse, ip, path=["response"])
+            assert_matches_type(Optional[IPListResponse], ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -61,7 +61,7 @@ class TestAsyncIPs:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         ip = await async_client.ips.list()
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(Optional[IPListResponse], ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -69,7 +69,7 @@ class TestAsyncIPs:
         ip = await async_client.ips.list(
             networks="string",
         )
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(Optional[IPListResponse], ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -79,7 +79,7 @@ class TestAsyncIPs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ip = await response.parse()
-        assert_matches_type(IPListResponse, ip, path=["response"])
+        assert_matches_type(Optional[IPListResponse], ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -89,6 +89,6 @@ class TestAsyncIPs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ip = await response.parse()
-            assert_matches_type(IPListResponse, ip, path=["response"])
+            assert_matches_type(Optional[IPListResponse], ip, path=["response"])
 
         assert cast(Any, response.is_closed) is True
