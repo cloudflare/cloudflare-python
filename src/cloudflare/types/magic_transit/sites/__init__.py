@@ -12,6 +12,7 @@ from .dhcp_relay import DHCPRelay as DHCPRelay
 from .dhcp_server import DHCPServer as DHCPServer
 from .subnet_param import SubnetParam as SubnetParam
 from .routed_subnet import RoutedSubnet as RoutedSubnet
+from .allowed_protocol import AllowedProtocol as AllowedProtocol
 from .dhcp_relay_param import DHCPRelayParam as DHCPRelayParam
 from .acl_configuration import ACLConfiguration as ACLConfiguration
 from .acl_create_params import ACLCreateParams as ACLCreateParams
