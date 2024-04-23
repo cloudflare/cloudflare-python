@@ -5,11 +5,11 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
-from .saas_app_source import SaasAppSource
-from .saas_app_name_format import SaasAppNameFormat
-from .saas_app_name_id_format import SaasAppNameIDFormat
+from .saas_app_source import SaaSAppSource
+from .saas_app_name_format import SaaSAppNameFormat
+from .saas_app_name_id_format import SaaSAppNameIDFormat
 
-__all__ = ["SAMLSaasApp", "CustomAttributes"]
+__all__ = ["SAMLSaaSApp", "CustomAttributes"]
 
 
 class CustomAttributes(BaseModel):
@@ -19,16 +19,16 @@ class CustomAttributes(BaseModel):
     name: Optional[str] = None
     """The name of the attribute."""
 
-    name_format: Optional[SaasAppNameFormat] = None
+    name_format: Optional[SaaSAppNameFormat] = None
     """A globally unique name for an identity or service provider."""
 
     required: Optional[bool] = None
     """If the attribute is required when building a SAML assertion."""
 
-    source: Optional[SaasAppSource] = None
+    source: Optional[SaaSAppSource] = None
 
 
-class SAMLSaasApp(BaseModel):
+class SAMLSaaSApp(BaseModel):
     auth_type: Optional[Literal["saml", "oidc"]] = None
     """Optional identifier indicating the authentication protocol used for the saas
     app.
@@ -55,7 +55,7 @@ class SAMLSaasApp(BaseModel):
     idp_entity_id: Optional[str] = None
     """The unique identifier for your SaaS application."""
 
-    name_id_format: Optional[SaasAppNameIDFormat] = None
+    name_id_format: Optional[SaaSAppNameIDFormat] = None
     """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: Optional[str] = None
