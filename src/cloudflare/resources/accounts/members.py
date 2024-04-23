@@ -26,16 +26,11 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import Member
-from ...types.accounts import (
-    MemberListResponse,
-    UserWithInviteCode,
-    MemberDeleteResponse,
-    member_list_params,
-    member_create_params,
-    member_delete_params,
-    member_update_params,
-)
+from ...types.accounts import member_list_params, member_create_params, member_delete_params, member_update_params
+from ...types.shared.member import Member
+from ...types.accounts.member_list_response import MemberListResponse
+from ...types.accounts.user_with_invite_code import UserWithInviteCode
+from ...types.accounts.member_delete_response import MemberDeleteResponse
 
 __all__ = ["Members", "AsyncMembers"]
 

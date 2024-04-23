@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.http.locations import BotClassGetResponse, bot_class_get_params
+from .....types.radar.http.locations import bot_class_get_params
+from .....types.radar.http.locations.bot_class_get_response import BotClassGetResponse
 
 __all__ = ["BotClass", "AsyncBotClass"]
 

@@ -10,11 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.speed import (
-    Trend,
-    Schedule,
-    SpeedDeleteResponse,
-)
+from cloudflare.types.speed.trend import Trend
+from cloudflare.types.speed.schedule import Schedule
+from cloudflare.types.speed.speed_delete_response import SpeedDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

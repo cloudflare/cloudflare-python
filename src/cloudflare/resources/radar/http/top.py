@@ -25,12 +25,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.http import (
-    TopBrowsersResponse,
-    TopBrowserFamiliesResponse,
-    top_browsers_params,
-    top_browser_families_params,
-)
+from ....types.radar.http import top_browsers_params, top_browser_families_params
+from ....types.radar.http.top_browsers_response import TopBrowsersResponse
+from ....types.radar.http.top_browser_families_response import TopBrowserFamiliesResponse
 
 __all__ = ["Top", "AsyncTop"]
 

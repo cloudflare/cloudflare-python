@@ -26,11 +26,8 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.client_certificates import (
-    ClientCertificate,
-    client_certificate_list_params,
-    client_certificate_create_params,
-)
+from ..types.client_certificates import client_certificate_list_params, client_certificate_create_params
+from ..types.client_certificates.client_certificate import ClientCertificate
 
 __all__ = ["ClientCertificates", "AsyncClientCertificates"]
 

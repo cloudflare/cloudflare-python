@@ -27,15 +27,15 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.firewall import (
-    AccessRuleGetResponse,
-    AccessRuleEditResponse,
-    AccessRuleCreateResponse,
-    AccessRuleDeleteResponse,
     access_rule_edit_params,
     access_rule_list_params,
     access_rule_create_params,
     access_rule_delete_params,
 )
+from ...types.firewall.access_rule_get_response import AccessRuleGetResponse
+from ...types.firewall.access_rule_edit_response import AccessRuleEditResponse
+from ...types.firewall.access_rule_create_response import AccessRuleCreateResponse
+from ...types.firewall.access_rule_delete_response import AccessRuleDeleteResponse
 
 __all__ = ["AccessRules", "AsyncAccessRules"]
 

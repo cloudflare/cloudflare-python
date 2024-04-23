@@ -35,14 +35,14 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.zero_trust.devices import (
-    DeviceInputParam,
-    DeviceMatchParam,
-    DevicePostureRule,
-    PostureDeleteResponse,
     posture_create_params,
     posture_delete_params,
     posture_update_params,
 )
+from .....types.zero_trust.devices.device_input_param import DeviceInputParam
+from .....types.zero_trust.devices.device_match_param import DeviceMatchParam
+from .....types.zero_trust.devices.device_posture_rule import DevicePostureRule
+from .....types.zero_trust.devices.posture_delete_response import PostureDeleteResponse
 
 __all__ = ["Posture", "AsyncPosture"]
 

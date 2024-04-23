@@ -6,8 +6,8 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
-from .http_tests import TestStatOverTime
 from ..device_experience_monitor import DeviceExperienceMonitor
+from .http_tests.test_stat_over_time import TestStatOverTime
 
 __all__ = [
     "Traceroute",

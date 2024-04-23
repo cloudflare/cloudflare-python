@@ -23,15 +23,11 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dlp import ContextAwarenessParam
-from .....types.zero_trust.dlp.profiles import (
-    CustomProfile,
-    CustomCreateResponse,
-    CustomDeleteResponse,
-    custom_create_params,
-    custom_delete_params,
-    custom_update_params,
-)
+from .....types.zero_trust.dlp.profiles import custom_create_params, custom_delete_params, custom_update_params
+from .....types.zero_trust.dlp.context_awareness_param import ContextAwarenessParam
+from .....types.zero_trust.dlp.profiles.custom_profile import CustomProfile
+from .....types.zero_trust.dlp.profiles.custom_create_response import CustomCreateResponse
+from .....types.zero_trust.dlp.profiles.custom_delete_response import CustomDeleteResponse
 
 __all__ = ["Custom", "AsyncCustom"]
 

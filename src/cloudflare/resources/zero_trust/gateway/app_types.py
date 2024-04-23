@@ -20,7 +20,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.gateway import AppType
+from ....types.zero_trust.gateway.app_type import AppType
 
 __all__ = ["AppTypes", "AsyncAppTypes"]
 

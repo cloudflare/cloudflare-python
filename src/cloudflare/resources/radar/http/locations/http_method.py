@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.http.locations import HTTPMethodGetResponse, http_method_get_params
+from .....types.radar.http.locations import http_method_get_params
+from .....types.radar.http.locations.http_method_get_response import HTTPMethodGetResponse
 
 __all__ = ["HTTPMethod", "AsyncHTTPMethod"]
 

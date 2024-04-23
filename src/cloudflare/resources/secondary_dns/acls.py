@@ -25,7 +25,9 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.secondary_dns import ACL, ACLDeleteResponse, acl_create_params, acl_delete_params, acl_update_params
+from ...types.secondary_dns import acl_create_params, acl_delete_params, acl_update_params
+from ...types.secondary_dns.acl import ACL
+from ...types.secondary_dns.acl_delete_response import ACLDeleteResponse
 
 __all__ = ["ACLs", "AsyncACLs"]
 

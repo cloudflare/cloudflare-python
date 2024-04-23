@@ -24,7 +24,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.page_shield import Policy, policy_create_params, policy_update_params
+from ...types.page_shield import policy_create_params, policy_update_params
+from ...types.page_shield.policy import Policy
 
 __all__ = ["Policies", "AsyncPolicies"]
 

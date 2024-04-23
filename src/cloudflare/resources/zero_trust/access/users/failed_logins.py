@@ -18,7 +18,7 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.access.users import FailedLoginListResponse
+from .....types.zero_trust.access.users.failed_login_list_response import FailedLoginListResponse
 
 __all__ = ["FailedLogins", "AsyncFailedLogins"]
 

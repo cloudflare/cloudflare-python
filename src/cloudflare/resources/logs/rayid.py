@@ -20,10 +20,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.logs import RayIDGetResponse, rayid_get_params
+from ...types.logs import rayid_get_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.logs.rayid_get_response import RayIDGetResponse
 
 __all__ = ["RayID", "AsyncRayID"]
 

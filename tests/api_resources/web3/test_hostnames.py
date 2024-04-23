@@ -10,10 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.web3 import (
-    Hostname,
-    HostnameDeleteResponse,
-)
+from cloudflare.types.web3.hostname import Hostname
+from cloudflare.types.web3.hostname_delete_response import HostnameDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

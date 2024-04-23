@@ -10,14 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.vectorize import (
-    IndexQuery,
-    CreateIndex,
-    IndexInsert,
-    IndexUpsert,
-    IndexDeleteResponse,
-    IndexDeleteVectorsByID,
-)
+from cloudflare.types.vectorize.index_query import IndexQuery
+from cloudflare.types.vectorize.create_index import CreateIndex
+from cloudflare.types.vectorize.index_insert import IndexInsert
+from cloudflare.types.vectorize.index_upsert import IndexUpsert
+from cloudflare.types.vectorize.index_delete_response import IndexDeleteResponse
+from cloudflare.types.vectorize.index_delete_vectors_by_id import IndexDeleteVectorsByID
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

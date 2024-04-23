@@ -24,10 +24,12 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
-from ..types.origin_post_quantum_encryption import (
+from ..types.origin_post_quantum_encryption import origin_post_quantum_encryption_update_params
+from ..types.origin_post_quantum_encryption.origin_post_quantum_encryption_get_response import (
     OriginPostQuantumEncryptionGetResponse,
+)
+from ..types.origin_post_quantum_encryption.origin_post_quantum_encryption_update_response import (
     OriginPostQuantumEncryptionUpdateResponse,
-    origin_post_quantum_encryption_update_params,
 )
 
 __all__ = ["OriginPostQuantumEncryption", "AsyncOriginPostQuantumEncryption"]

@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import IPV6, ipv6_edit_params
+from ....types.zones.settings import ipv6_edit_params
+from ....types.zones.settings.ipv6 import IPV6
 
 __all__ = ["IPV6Resource", "AsyncIPV6Resource"]
 

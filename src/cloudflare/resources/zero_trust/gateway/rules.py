@@ -27,15 +27,15 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.gateway import (
-    GatewayRule,
-    GatewayFilter,
-    ScheduleParam,
-    RuleSettingParam,
-    RuleDeleteResponse,
     rule_create_params,
     rule_delete_params,
     rule_update_params,
 )
+from ....types.zero_trust.gateway.gateway_rule import GatewayRule
+from ....types.zero_trust.gateway.gateway_filter import GatewayFilter
+from ....types.zero_trust.gateway.schedule_param import ScheduleParam
+from ....types.zero_trust.gateway.rule_setting_param import RuleSettingParam
+from ....types.zero_trust.gateway.rule_delete_response import RuleDeleteResponse
 
 __all__ = ["Rules", "AsyncRules"]
 

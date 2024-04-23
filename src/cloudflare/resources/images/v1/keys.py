@@ -19,7 +19,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.images.v1 import KeyListResponse, KeyDeleteResponse, KeyUpdateResponse
+from ....types.images.v1.key_list_response import KeyListResponse
+from ....types.images.v1.key_delete_response import KeyDeleteResponse
+from ....types.images.v1.key_update_response import KeyUpdateResponse
 
 __all__ = ["Keys", "AsyncKeys"]
 

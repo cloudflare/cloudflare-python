@@ -20,10 +20,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.pcaps import Ownership, OwnershipGetResponse, ownership_create_params, ownership_validate_params
+from ...types.pcaps import ownership_create_params, ownership_validate_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.pcaps.ownership import Ownership
+from ...types.pcaps.ownership_get_response import OwnershipGetResponse
 
 __all__ = ["OwnershipResource", "AsyncOwnershipResource"]
 

@@ -25,14 +25,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.magic_transit.sites import (
-    ACL,
-    AllowedProtocol,
-    ACLConfigurationParam,
-    acl_create_params,
-    acl_delete_params,
-    acl_update_params,
-)
+from ....types.magic_transit.sites import acl_create_params, acl_delete_params, acl_update_params
+from ....types.magic_transit.sites.acl import ACL
+from ....types.magic_transit.sites.allowed_protocol import AllowedProtocol
+from ....types.magic_transit.sites.acl_configuration_param import ACLConfigurationParam
 
 __all__ = ["ACLs", "AsyncACLs"]
 

@@ -23,13 +23,10 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.custom_hostnames import (
-    FallbackOriginGetResponse,
-    FallbackOriginDeleteResponse,
-    FallbackOriginUpdateResponse,
-    fallback_origin_delete_params,
-    fallback_origin_update_params,
-)
+from ...types.custom_hostnames import fallback_origin_delete_params, fallback_origin_update_params
+from ...types.custom_hostnames.fallback_origin_get_response import FallbackOriginGetResponse
+from ...types.custom_hostnames.fallback_origin_delete_response import FallbackOriginDeleteResponse
+from ...types.custom_hostnames.fallback_origin_update_response import FallbackOriginUpdateResponse
 
 __all__ = ["FallbackOrigin", "AsyncFallbackOrigin"]
 

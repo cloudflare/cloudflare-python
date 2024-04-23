@@ -23,8 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers import ScriptSetting
-from ....types.workers.scripts import ConsumerScriptParam, setting_edit_params
+from ....types.workers.scripts import setting_edit_params
+from ....types.workers.script_setting import ScriptSetting
+from ....types.workers.scripts.consumer_script_param import ConsumerScriptParam
 
 __all__ = ["Settings", "AsyncSettings"]
 

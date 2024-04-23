@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.dlp import PayloadLogGetResponse, PayloadLogUpdateResponse, payload_log_update_params
+from ....types.zero_trust.dlp import payload_log_update_params
+from ....types.zero_trust.dlp.payload_log_get_response import PayloadLogGetResponse
+from ....types.zero_trust.dlp.payload_log_update_response import PayloadLogUpdateResponse
 
 __all__ = ["PayloadLogs", "AsyncPayloadLogs"]
 

@@ -23,7 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.custom_certificates import PrioritizeUpdateResponse, prioritize_update_params
+from ...types.custom_certificates import prioritize_update_params
+from ...types.custom_certificates.prioritize_update_response import PrioritizeUpdateResponse
 
 __all__ = ["Prioritize", "AsyncPrioritize"]
 

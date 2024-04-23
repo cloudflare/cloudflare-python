@@ -25,7 +25,8 @@ from ......._wrappers import ResultWrapper
 from ......._base_client import (
     make_request_options,
 )
-from .......types.radar.email.security.top.tlds import SpoofGetResponse, spoof_get_params
+from .......types.radar.email.security.top.tlds import spoof_get_params
+from .......types.radar.email.security.top.tlds.spoof_get_response import SpoofGetResponse
 
 __all__ = ["Spoof", "AsyncSpoof"]
 

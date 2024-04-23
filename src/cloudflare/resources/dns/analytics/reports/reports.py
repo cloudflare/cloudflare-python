@@ -32,7 +32,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.dns.analytics import Report, report_get_params
+from .....types.dns.analytics import report_get_params
+from .....types.dns.analytics.report import Report
 
 __all__ = ["Reports", "AsyncReports"]
 

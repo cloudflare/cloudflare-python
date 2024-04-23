@@ -9,11 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust import NetworkPathResponse
-from cloudflare.types.zero_trust.dex import (
-    Traceroute,
-    TracerouteTestPercentilesResponse,
-)
+from cloudflare.types.zero_trust.dex.traceroute import Traceroute
+from cloudflare.types.zero_trust.network_path_response import NetworkPathResponse
+from cloudflare.types.zero_trust.dex.traceroute_test_percentiles_response import TracerouteTestPercentilesResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

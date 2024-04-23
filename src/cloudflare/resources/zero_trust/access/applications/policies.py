@@ -26,14 +26,11 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust import AccessRuleParam
-from .....types.zero_trust.access.applications import (
-    Policy,
-    ApprovalGroupParam,
-    PolicyDeleteResponse,
-    policy_create_params,
-    policy_update_params,
-)
+from .....types.zero_trust.access_rule_param import AccessRuleParam
+from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
+from .....types.zero_trust.access.applications.policy import Policy
+from .....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
+from .....types.zero_trust.access.applications.policy_delete_response import PolicyDeleteResponse
 
 __all__ = ["Policies", "AsyncPolicies"]
 

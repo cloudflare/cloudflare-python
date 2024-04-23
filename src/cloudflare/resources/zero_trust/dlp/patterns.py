@@ -23,8 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.logpush import OwnershipValidation
 from ....types.zero_trust.dlp import pattern_validate_params
+from ....types.logpush.ownership_validation import OwnershipValidation
 
 __all__ = ["Patterns", "AsyncPatterns"]
 

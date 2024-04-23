@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import SSL, ssl_edit_params
+from ....types.zones.settings import ssl_edit_params
+from ....types.zones.settings.ssl import SSL
 
 __all__ = ["SSLResource", "AsyncSSLResource"]
 

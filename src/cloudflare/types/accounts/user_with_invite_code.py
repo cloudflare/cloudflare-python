@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from ..shared import PermissionGrant
 from ..._models import BaseModel
+from ..shared.permission_grant import PermissionGrant
 
 __all__ = ["UserWithInviteCode", "Role", "RolePermissions", "User"]
 

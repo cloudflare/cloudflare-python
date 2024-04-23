@@ -26,12 +26,6 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.vectorize import (
-    IndexQuery,
-    CreateIndex,
-    IndexInsert,
-    IndexUpsert,
-    IndexDeleteResponse,
-    IndexDeleteVectorsByID,
     index_query_params,
     index_create_params,
     index_insert_params,
@@ -40,6 +34,12 @@ from ...types.vectorize import (
     index_get_by_ids_params,
     index_delete_by_ids_params,
 )
+from ...types.vectorize.index_query import IndexQuery
+from ...types.vectorize.create_index import CreateIndex
+from ...types.vectorize.index_insert import IndexInsert
+from ...types.vectorize.index_upsert import IndexUpsert
+from ...types.vectorize.index_delete_response import IndexDeleteResponse
+from ...types.vectorize.index_delete_vectors_by_id import IndexDeleteVectorsByID
 
 __all__ = ["Indexes", "AsyncIndexes"]
 

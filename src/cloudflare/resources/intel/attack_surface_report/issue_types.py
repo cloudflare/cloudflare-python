@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.intel.attack_surface_report import IssueTypeGetResponse
+from ....types.intel.attack_surface_report.issue_type_get_response import IssueTypeGetResponse
 
 __all__ = ["IssueTypes", "AsyncIssueTypes"]
 

@@ -26,15 +26,6 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.radar.http import (
-    TimeseriesGroupOSResponse,
-    TimeseriesGroupBrowserResponse,
-    TimeseriesGroupBotClassResponse,
-    TimeseriesGroupIPVersionResponse,
-    TimeseriesGroupDeviceTypeResponse,
-    TimeseriesGroupTLSVersionResponse,
-    TimeseriesGroupHTTPVersionResponse,
-    TimeseriesGroupHTTPProtocolResponse,
-    TimeseriesGroupBrowserFamilyResponse,
     timeseries_group_os_params,
     timeseries_group_browser_params,
     timeseries_group_bot_class_params,
@@ -45,6 +36,15 @@ from ....types.radar.http import (
     timeseries_group_http_protocol_params,
     timeseries_group_browser_family_params,
 )
+from ....types.radar.http.timeseries_group_os_response import TimeseriesGroupOSResponse
+from ....types.radar.http.timeseries_group_browser_response import TimeseriesGroupBrowserResponse
+from ....types.radar.http.timeseries_group_bot_class_response import TimeseriesGroupBotClassResponse
+from ....types.radar.http.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
+from ....types.radar.http.timeseries_group_device_type_response import TimeseriesGroupDeviceTypeResponse
+from ....types.radar.http.timeseries_group_tls_version_response import TimeseriesGroupTLSVersionResponse
+from ....types.radar.http.timeseries_group_http_version_response import TimeseriesGroupHTTPVersionResponse
+from ....types.radar.http.timeseries_group_http_protocol_response import TimeseriesGroupHTTPProtocolResponse
+from ....types.radar.http.timeseries_group_browser_family_response import TimeseriesGroupBrowserFamilyResponse
 
 __all__ = ["TimeseriesGroups", "AsyncTimeseriesGroups"]
 

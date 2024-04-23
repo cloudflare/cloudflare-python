@@ -40,7 +40,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust import RiskScoringGetResponse, RiskScoringResetResponse, risk_scoring_get_params
+from ....types.zero_trust import risk_scoring_get_params
+from ....types.zero_trust.risk_scoring_get_response import RiskScoringGetResponse
+from ....types.zero_trust.risk_scoring_reset_response import RiskScoringResetResponse
 
 __all__ = ["RiskScoring", "AsyncRiskScoring"]
 

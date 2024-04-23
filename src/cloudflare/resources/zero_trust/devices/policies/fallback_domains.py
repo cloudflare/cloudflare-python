@@ -25,13 +25,11 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.devices.policies import (
-    FallbackDomain,
-    FallbackDomainParam,
-    FallbackDomainGetResponse,
-    FallbackDomainUpdateResponse,
-    fallback_domain_update_params,
-)
+from .....types.zero_trust.devices.policies import fallback_domain_update_params
+from .....types.zero_trust.devices.policies.fallback_domain import FallbackDomain
+from .....types.zero_trust.devices.policies.fallback_domain_param import FallbackDomainParam
+from .....types.zero_trust.devices.policies.fallback_domain_get_response import FallbackDomainGetResponse
+from .....types.zero_trust.devices.policies.fallback_domain_update_response import FallbackDomainUpdateResponse
 
 __all__ = ["FallbackDomains", "AsyncFallbackDomains"]
 

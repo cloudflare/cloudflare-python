@@ -26,13 +26,13 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust.gateway import (
-    GatewayIPs,
-    ProxyEndpoint,
-    ProxyEndpointDeleteResponse,
     proxy_endpoint_edit_params,
     proxy_endpoint_create_params,
     proxy_endpoint_delete_params,
 )
+from ....types.zero_trust.gateway.gateway_ips import GatewayIPs
+from ....types.zero_trust.gateway.proxy_endpoint import ProxyEndpoint
+from ....types.zero_trust.gateway.proxy_endpoint_delete_response import ProxyEndpointDeleteResponse
 
 __all__ = ["ProxyEndpoints", "AsyncProxyEndpoints"]
 

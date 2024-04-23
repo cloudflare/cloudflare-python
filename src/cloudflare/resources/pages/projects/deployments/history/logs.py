@@ -19,7 +19,7 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.pages.projects.deployments.history import LogGetResponse
+from ......types.pages.projects.deployments.history.log_get_response import LogGetResponse
 
 __all__ = ["Logs", "AsyncLogs"]
 

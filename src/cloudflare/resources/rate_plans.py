@@ -19,7 +19,7 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
-from ..types.rate_plans import RatePlanGetResponse
+from ..types.rate_plans.rate_plan_get_response import RatePlanGetResponse
 
 __all__ = ["RatePlans", "AsyncRatePlans"]
 

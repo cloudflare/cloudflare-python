@@ -51,15 +51,12 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.rulesets import (
-    Ruleset,
-    RulesetGetResponse,
-    RulesetCreateResponse,
-    RulesetUpdateResponse,
-    ruleset_create_params,
-    ruleset_update_params,
-)
+from ...types.rulesets import ruleset_create_params, ruleset_update_params
 from .versions.versions import Versions, AsyncVersions
+from ...types.rulesets.ruleset import Ruleset
+from ...types.rulesets.ruleset_get_response import RulesetGetResponse
+from ...types.rulesets.ruleset_create_response import RulesetCreateResponse
+from ...types.rulesets.ruleset_update_response import RulesetUpdateResponse
 
 __all__ = ["Rulesets", "AsyncRulesets"]
 

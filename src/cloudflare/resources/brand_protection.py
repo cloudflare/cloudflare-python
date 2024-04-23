@@ -23,7 +23,9 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
-from ..types.brand_protection import Info, Submit, brand_protection_submit_params, brand_protection_url_info_params
+from ..types.brand_protection import brand_protection_submit_params, brand_protection_url_info_params
+from ..types.brand_protection.info import Info
+from ..types.brand_protection.submit import Submit
 
 __all__ = ["BrandProtection", "AsyncBrandProtection"]
 

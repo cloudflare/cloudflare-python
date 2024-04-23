@@ -18,7 +18,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.addressing import ServiceListResponse
+from ...types.addressing.service_list_response import ServiceListResponse
 
 __all__ = ["Services", "AsyncServices"]
 

@@ -24,16 +24,16 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.magic_transit import (
-    HealthCheckParam,
-    GRETunnelGetResponse,
-    GRETunnelListResponse,
-    GRETunnelCreateResponse,
-    GRETunnelDeleteResponse,
-    GRETunnelUpdateResponse,
     gre_tunnel_create_params,
     gre_tunnel_delete_params,
     gre_tunnel_update_params,
 )
+from ...types.magic_transit.health_check_param import HealthCheckParam
+from ...types.magic_transit.gre_tunnel_get_response import GRETunnelGetResponse
+from ...types.magic_transit.gre_tunnel_list_response import GRETunnelListResponse
+from ...types.magic_transit.gre_tunnel_create_response import GRETunnelCreateResponse
+from ...types.magic_transit.gre_tunnel_delete_response import GRETunnelDeleteResponse
+from ...types.magic_transit.gre_tunnel_update_response import GRETunnelUpdateResponse
 
 __all__ = ["GRETunnels", "AsyncGRETunnels"]
 

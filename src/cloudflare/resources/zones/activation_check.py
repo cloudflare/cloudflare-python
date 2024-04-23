@@ -16,10 +16,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.zones import ActivationCheckTriggerResponse
 from ..._base_client import (
     make_request_options,
 )
+from ...types.zones.activation_check_trigger_response import ActivationCheckTriggerResponse
 
 __all__ = ["ActivationCheck", "AsyncActivationCheck"]
 

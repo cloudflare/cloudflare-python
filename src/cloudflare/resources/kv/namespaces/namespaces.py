@@ -46,9 +46,6 @@ from ...._utils import (
 )
 from ...._compat import cached_property
 from ....types.kv import (
-    Namespace,
-    NamespaceDeleteResponse,
-    NamespaceUpdateResponse,
     namespace_list_params,
     namespace_create_params,
     namespace_delete_params,
@@ -67,6 +64,9 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ....types.kv.namespace import Namespace
+from ....types.kv.namespace_delete_response import NamespaceDeleteResponse
+from ....types.kv.namespace_update_response import NamespaceUpdateResponse
 
 __all__ = ["Namespaces", "AsyncNamespaces"]
 

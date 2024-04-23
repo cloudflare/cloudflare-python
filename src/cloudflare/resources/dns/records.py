@@ -23,12 +23,6 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.dns import (
-    Record,
-    TTLParam,
-    RecordTags,
-    RecordScanResponse,
-    RecordDeleteResponse,
-    RecordImportResponse,
     record_edit_params,
     record_list_params,
     record_scan_params,
@@ -42,6 +36,12 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.dns.record import Record
+from ...types.dns.ttl_param import TTLParam
+from ...types.dns.record_tags import RecordTags
+from ...types.dns.record_scan_response import RecordScanResponse
+from ...types.dns.record_delete_response import RecordDeleteResponse
+from ...types.dns.record_import_response import RecordImportResponse
 
 __all__ = ["Records", "AsyncRecords"]
 

@@ -9,8 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.origin_post_quantum_encryption import (
+from cloudflare.types.origin_post_quantum_encryption.origin_post_quantum_encryption_get_response import (
     OriginPostQuantumEncryptionGetResponse,
+)
+from cloudflare.types.origin_post_quantum_encryption.origin_post_quantum_encryption_update_response import (
     OriginPostQuantumEncryptionUpdateResponse,
 )
 

@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers.scripts import ScheduleGetResponse, ScheduleUpdateResponse, schedule_update_params
+from ....types.workers.scripts import schedule_update_params
+from ....types.workers.scripts.schedule_get_response import ScheduleGetResponse
+from ....types.workers.scripts.schedule_update_response import ScheduleUpdateResponse
 
 __all__ = ["Schedules", "AsyncSchedules"]
 

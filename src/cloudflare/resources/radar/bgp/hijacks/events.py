@@ -23,7 +23,8 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.radar.bgp.hijacks import EventListResponse, event_list_params
+from .....types.radar.bgp.hijacks import event_list_params
+from .....types.radar.bgp.hijacks.event_list_response import EventListResponse
 
 __all__ = ["Events", "AsyncEvents"]
 

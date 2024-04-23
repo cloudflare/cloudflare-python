@@ -10,7 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.registrar import Domain, DomainGetResponse, DomainUpdateResponse
+from cloudflare.types.registrar.domain import Domain
+from cloudflare.types.registrar.domain_get_response import DomainGetResponse
+from cloudflare.types.registrar.domain_update_response import DomainUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

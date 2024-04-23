@@ -23,7 +23,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.logs.control.cmb import CmbConfig, config_create_params, config_delete_params
+from .....types.logs.control.cmb import config_create_params, config_delete_params
+from .....types.logs.control.cmb.cmb_config import CmbConfig
 
 __all__ = ["Config", "AsyncConfig"]
 

@@ -23,11 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.tunnels import (
-    ConfigurationGetResponse,
-    ConfigurationUpdateResponse,
-    configuration_update_params,
-)
+from ....types.zero_trust.tunnels import configuration_update_params
+from ....types.zero_trust.tunnels.configuration_get_response import ConfigurationGetResponse
+from ....types.zero_trust.tunnels.configuration_update_response import ConfigurationUpdateResponse
 
 __all__ = ["Configurations", "AsyncConfigurations"]
 

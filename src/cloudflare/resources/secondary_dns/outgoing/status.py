@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.secondary_dns import EnableTransfer
+from ....types.secondary_dns.enable_transfer import EnableTransfer
 
 __all__ = ["Status", "AsyncStatus"]
 

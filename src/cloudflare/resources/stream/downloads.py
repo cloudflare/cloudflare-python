@@ -23,7 +23,10 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import DownloadGetResponse, DownloadCreateResponse, DownloadDeleteResponse, download_create_params
+from ...types.stream import download_create_params
+from ...types.stream.download_get_response import DownloadGetResponse
+from ...types.stream.download_create_response import DownloadCreateResponse
+from ...types.stream.download_delete_response import DownloadDeleteResponse
 
 __all__ = ["Downloads", "AsyncDownloads"]
 

@@ -25,14 +25,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.pages.projects import (
-    DomainGetResponse,
-    DomainEditResponse,
-    DomainCreateResponse,
-    domain_edit_params,
-    domain_create_params,
-    domain_delete_params,
-)
+from ....types.pages.projects import domain_edit_params, domain_create_params, domain_delete_params
+from ....types.pages.projects.domain_get_response import DomainGetResponse
+from ....types.pages.projects.domain_edit_response import DomainEditResponse
+from ....types.pages.projects.domain_create_response import DomainCreateResponse
 
 __all__ = ["Domains", "AsyncDomains"]
 

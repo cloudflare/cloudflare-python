@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.user.tokens import Value, value_update_params
+from ....types.user.tokens import value_update_params
+from ....types.user.tokens.value import Value
 
 __all__ = ["ValueResource", "AsyncValueResource"]
 

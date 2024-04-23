@@ -21,17 +21,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import (
-    CacheReserveGetResponse,
-    CacheReserveEditResponse,
-    CacheReserveClearResponse,
-    CacheReserveStatusResponse,
-    cache_reserve_edit_params,
-    cache_reserve_clear_params,
-)
+from ...types.cache import cache_reserve_edit_params, cache_reserve_clear_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.cache.cache_reserve_get_response import CacheReserveGetResponse
+from ...types.cache.cache_reserve_edit_response import CacheReserveEditResponse
+from ...types.cache.cache_reserve_clear_response import CacheReserveClearResponse
+from ...types.cache.cache_reserve_status_response import CacheReserveStatusResponse
 
 __all__ = ["CacheReserveResource", "AsyncCacheReserveResource"]
 

@@ -19,7 +19,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.load_balancers import PreviewGetResponse
+from ...types.load_balancers.preview_get_response import PreviewGetResponse
 
 __all__ = ["Previews", "AsyncPreviews"]
 

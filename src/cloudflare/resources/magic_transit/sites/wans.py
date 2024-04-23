@@ -25,14 +25,10 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.magic_transit.sites import (
-    WAN,
-    WANCreateResponse,
-    WANStaticAddressingParam,
-    wan_create_params,
-    wan_delete_params,
-    wan_update_params,
-)
+from ....types.magic_transit.sites import wan_create_params, wan_delete_params, wan_update_params
+from ....types.magic_transit.sites.wan import WAN
+from ....types.magic_transit.sites.wan_create_response import WANCreateResponse
+from ....types.magic_transit.sites.wan_static_addressing_param import WANStaticAddressingParam
 
 __all__ = ["WANs", "AsyncWANs"]
 

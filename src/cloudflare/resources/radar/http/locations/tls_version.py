@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.http.locations import TLSVersionGetResponse, tls_version_get_params
+from .....types.radar.http.locations import tls_version_get_params
+from .....types.radar.http.locations.tls_version_get_response import TLSVersionGetResponse
 
 __all__ = ["TLSVersion", "AsyncTLSVersion"]
 

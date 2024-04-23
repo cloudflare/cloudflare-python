@@ -6,8 +6,8 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..radar.http import Browser
 from .url_scanner_domain import URLScannerDomain
+from ..radar.http.browser import Browser
 
 __all__ = [
     "ScanGetResponse",

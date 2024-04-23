@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import PrefetchPreload, prefetch_preload_edit_params
+from ....types.zones.settings import prefetch_preload_edit_params
+from ....types.zones.settings.prefetch_preload import PrefetchPreload
 
 __all__ = ["PrefetchPreloadResource", "AsyncPrefetchPreloadResource"]
 

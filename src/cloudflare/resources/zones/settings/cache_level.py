@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import CacheLevel, cache_level_edit_params
+from ....types.zones.settings import cache_level_edit_params
+from ....types.zones.settings.cache_level import CacheLevel
 
 __all__ = ["CacheLevelResource", "AsyncCacheLevelResource"]
 

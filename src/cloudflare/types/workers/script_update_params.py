@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from .scripts import ConsumerScriptParam
 from ..._types import FileTypes
 from ..._utils import PropertyInfo
 from .stepped_migration_param import SteppedMigrationParam
 from .single_step_migration_param import SingleStepMigrationParam
 from .placement_configuration_param import PlacementConfigurationParam
+from .scripts.consumer_script_param import ConsumerScriptParam
 
 __all__ = ["ScriptUpdateParams", "Variant0", "Variant0Metadata", "Variant0MetadataMigrations", "Variant1"]
 

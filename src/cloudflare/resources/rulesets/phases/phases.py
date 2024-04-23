@@ -32,7 +32,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.rulesets import PhaseGetResponse, PhaseUpdateResponse, phase_update_params
+from ....types.rulesets import phase_update_params
+from ....types.rulesets.phase_get_response import PhaseGetResponse
+from ....types.rulesets.phase_update_response import PhaseUpdateResponse
 
 __all__ = ["Phases", "AsyncPhases"]
 

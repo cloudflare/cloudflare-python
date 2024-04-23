@@ -25,7 +25,9 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.access import Tag, TagDeleteResponse, tag_create_params, tag_update_params
+from ....types.zero_trust.access import tag_create_params, tag_update_params
+from ....types.zero_trust.access.tag import Tag
+from ....types.zero_trust.access.tag_delete_response import TagDeleteResponse
 
 __all__ = ["Tags", "AsyncTags"]
 

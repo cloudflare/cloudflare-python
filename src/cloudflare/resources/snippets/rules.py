@@ -25,7 +25,9 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.snippets import RuleListResponse, RuleUpdateResponse, rule_update_params
+from ...types.snippets import rule_update_params
+from ...types.snippets.rule_list_response import RuleListResponse
+from ...types.snippets.rule_update_response import RuleUpdateResponse
 
 __all__ = ["Rules", "AsyncRules"]
 

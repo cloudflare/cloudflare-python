@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.rulesets.versions import ByTagGetResponse
+from ....types.rulesets.versions.by_tag_get_response import ByTagGetResponse
 
 __all__ = ["ByTag", "AsyncByTag"]
 

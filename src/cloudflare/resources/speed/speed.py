@@ -46,14 +46,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.speed import (
-    Trend,
-    Schedule,
-    SpeedDeleteResponse,
-    speed_delete_params,
-    speed_trends_list_params,
-    speed_schedule_get_params,
-)
+from ...types.speed import speed_delete_params, speed_trends_list_params, speed_schedule_get_params
 from ..._base_client import (
     make_request_options,
 )
@@ -65,6 +58,9 @@ from .availabilities import (
     AvailabilitiesWithStreamingResponse,
     AsyncAvailabilitiesWithStreamingResponse,
 )
+from ...types.speed.trend import Trend
+from ...types.speed.schedule import Schedule
+from ...types.speed.speed_delete_response import SpeedDeleteResponse
 
 __all__ = ["Speed", "AsyncSpeed"]
 

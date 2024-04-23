@@ -10,10 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
-    TagListResponse,
-    TagUpdateResponse,
-)
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts.tag_list_response import TagListResponse
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts.tag_update_response import TagUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

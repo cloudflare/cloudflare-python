@@ -23,7 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.secondary_dns import ForceAXFR, force_axfr_create_params
+from ...types.secondary_dns import force_axfr_create_params
+from ...types.secondary_dns.force_axfr import ForceAXFR
 
 __all__ = ["ForceAXFRResource", "AsyncForceAXFRResource"]
 

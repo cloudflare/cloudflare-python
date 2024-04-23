@@ -21,7 +21,9 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.page_shield import Script, ScriptGetResponse, script_list_params
+from ...types.page_shield import script_list_params
+from ...types.page_shield.script import Script
+from ...types.page_shield.script_get_response import ScriptGetResponse
 
 __all__ = ["Scripts", "AsyncScripts"]
 

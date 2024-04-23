@@ -26,12 +26,6 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.radar.attacks.layer7 import (
-    SummaryGetResponse,
-    SummaryIPVersionResponse,
-    SummaryHTTPMethodResponse,
-    SummaryHTTPVersionResponse,
-    SummaryManagedRulesResponse,
-    SummaryMitigationProductResponse,
     summary_get_params,
     summary_ip_version_params,
     summary_http_method_params,
@@ -39,6 +33,12 @@ from .....types.radar.attacks.layer7 import (
     summary_managed_rules_params,
     summary_mitigation_product_params,
 )
+from .....types.radar.attacks.layer7.summary_get_response import SummaryGetResponse
+from .....types.radar.attacks.layer7.summary_ip_version_response import SummaryIPVersionResponse
+from .....types.radar.attacks.layer7.summary_http_method_response import SummaryHTTPMethodResponse
+from .....types.radar.attacks.layer7.summary_http_version_response import SummaryHTTPVersionResponse
+from .....types.radar.attacks.layer7.summary_managed_rules_response import SummaryManagedRulesResponse
+from .....types.radar.attacks.layer7.summary_mitigation_product_response import SummaryMitigationProductResponse
 
 __all__ = ["Summary", "AsyncSummary"]
 

@@ -20,11 +20,9 @@ from .._response import (
 from .._base_client import (
     make_request_options,
 )
-from ..types.url_normalization import (
-    URLNormalizationGetResponse,
-    URLNormalizationUpdateResponse,
-    url_normalization_update_params,
-)
+from ..types.url_normalization import url_normalization_update_params
+from ..types.url_normalization.url_normalization_get_response import URLNormalizationGetResponse
+from ..types.url_normalization.url_normalization_update_response import URLNormalizationUpdateResponse
 
 __all__ = ["URLNormalization", "AsyncURLNormalization"]
 

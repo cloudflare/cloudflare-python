@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import PseudoIPV4, pseudo_ipv4_edit_params
+from ....types.zones.settings import pseudo_ipv4_edit_params
+from ....types.zones.settings.pseudo_ipv4 import PseudoIPV4
 
 __all__ = ["PseudoIPV4Resource", "AsyncPseudoIPV4Resource"]
 

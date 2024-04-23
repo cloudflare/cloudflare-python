@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.devices import DeviceSettings, setting_update_params
+from ....types.zero_trust.devices import setting_update_params
+from ....types.zero_trust.devices.device_settings import DeviceSettings
 
 __all__ = ["Settings", "AsyncSettings"]
 

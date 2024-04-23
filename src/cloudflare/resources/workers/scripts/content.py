@@ -33,8 +33,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers import Script, WorkerMetadataParam
+from ....types.workers.script import Script
 from ....types.workers.scripts import content_update_params
+from ....types.workers.worker_metadata_param import WorkerMetadataParam
 
 __all__ = ["Content", "AsyncContent"]
 

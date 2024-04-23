@@ -10,12 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.intel import (
-    IndicatorFeedGetResponse,
-    IndicatorFeedListResponse,
-    IndicatorFeedCreateResponse,
-    IndicatorFeedUpdateResponse,
-)
+from cloudflare.types.intel.indicator_feed_get_response import IndicatorFeedGetResponse
+from cloudflare.types.intel.indicator_feed_list_response import IndicatorFeedListResponse
+from cloudflare.types.intel.indicator_feed_create_response import IndicatorFeedCreateResponse
+from cloudflare.types.intel.indicator_feed_update_response import IndicatorFeedUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

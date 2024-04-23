@@ -33,13 +33,10 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.access import (
-    Certificate,
-    AssociatedHostnames,
-    CertificateDeleteResponse,
-    certificate_create_params,
-    certificate_update_params,
-)
+from .....types.zero_trust.access import certificate_create_params, certificate_update_params
+from .....types.zero_trust.access.certificate import Certificate
+from .....types.zero_trust.access.associated_hostnames import AssociatedHostnames
+from .....types.zero_trust.access.certificate_delete_response import CertificateDeleteResponse
 
 __all__ = ["Certificates", "AsyncCertificates"]
 

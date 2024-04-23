@@ -52,7 +52,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.user import UserGetResponse, UserEditResponse, user_edit_params
+from ...types.user import user_edit_params
 from .organizations import (
     Organizations,
     AsyncOrganizations,
@@ -74,6 +74,8 @@ from ..._base_client import (
     make_request_options,
 )
 from .billing.billing import Billing, AsyncBilling
+from ...types.user.user_get_response import UserGetResponse
+from ...types.user.user_edit_response import UserEditResponse
 
 __all__ = ["User", "AsyncUser"]
 

@@ -33,12 +33,9 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.quality import (
-    SpeedSummaryResponse,
-    SpeedHistogramResponse,
-    speed_summary_params,
-    speed_histogram_params,
-)
+from .....types.radar.quality import speed_summary_params, speed_histogram_params
+from .....types.radar.quality.speed_summary_response import SpeedSummaryResponse
+from .....types.radar.quality.speed_histogram_response import SpeedHistogramResponse
 
 __all__ = ["Speed", "AsyncSpeed"]
 

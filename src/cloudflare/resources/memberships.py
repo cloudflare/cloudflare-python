@@ -26,15 +26,11 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.memberships import (
-    Membership,
-    MembershipGetResponse,
-    MembershipDeleteResponse,
-    MembershipUpdateResponse,
-    membership_list_params,
-    membership_delete_params,
-    membership_update_params,
-)
+from ..types.memberships import membership_list_params, membership_delete_params, membership_update_params
+from ..types.memberships.membership import Membership
+from ..types.memberships.membership_get_response import MembershipGetResponse
+from ..types.memberships.membership_delete_response import MembershipDeleteResponse
+from ..types.memberships.membership_update_response import MembershipUpdateResponse
 
 __all__ = ["Memberships", "AsyncMemberships"]
 

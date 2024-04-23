@@ -24,16 +24,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.entities import (
-    ASNIPResponse,
-    ASNGetResponse,
-    ASNRelResponse,
-    ASNListResponse,
-    asn_ip_params,
-    asn_get_params,
-    asn_rel_params,
-    asn_list_params,
-)
+from ....types.radar.entities import asn_ip_params, asn_get_params, asn_rel_params, asn_list_params
+from ....types.radar.entities.asn_ip_response import ASNIPResponse
+from ....types.radar.entities.asn_get_response import ASNGetResponse
+from ....types.radar.entities.asn_rel_response import ASNRelResponse
+from ....types.radar.entities.asn_list_response import ASNListResponse
 
 __all__ = ["ASNs", "AsyncASNs"]
 

@@ -2,9 +2,12 @@
 
 from typing import List, Union, Optional
 
-from .....workers import Binding, SteppedMigration, SingleStepMigration, PlacementConfiguration
 from ......_models import BaseModel
-from .....workers.scripts import ConsumerScript
+from .....workers.binding import Binding
+from .....workers.stepped_migration import SteppedMigration
+from .....workers.single_step_migration import SingleStepMigration
+from .....workers.placement_configuration import PlacementConfiguration
+from .....workers.scripts.consumer_script import ConsumerScript
 
 __all__ = ["SettingGetResponse", "Limits", "Migrations"]
 

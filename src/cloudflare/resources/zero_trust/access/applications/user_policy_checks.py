@@ -19,8 +19,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.access import AppIDParam
-from .....types.zero_trust.access.applications import UserPolicyCheckListResponse
+from .....types.zero_trust.access.app_id_param import AppIDParam
+from .....types.zero_trust.access.applications.user_policy_check_list_response import UserPolicyCheckListResponse
 
 __all__ = ["UserPolicyChecks", "AsyncUserPolicyChecks"]
 

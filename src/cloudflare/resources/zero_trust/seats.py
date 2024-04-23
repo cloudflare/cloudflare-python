@@ -23,7 +23,8 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.zero_trust import SeatEditResponse, seat_edit_params
+from ...types.zero_trust import seat_edit_params
+from ...types.zero_trust.seat_edit_response import SeatEditResponse
 
 __all__ = ["Seats", "AsyncSeats"]
 

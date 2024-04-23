@@ -26,15 +26,6 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.radar.email.security import (
-    SummaryARCResponse,
-    SummarySPFResponse,
-    SummaryDKIMResponse,
-    SummarySpamResponse,
-    SummaryDMARCResponse,
-    SummarySpoofResponse,
-    SummaryMaliciousResponse,
-    SummaryTLSVersionResponse,
-    SummaryThreatCategoryResponse,
     summary_arc_params,
     summary_spf_params,
     summary_dkim_params,
@@ -45,6 +36,15 @@ from .....types.radar.email.security import (
     summary_tls_version_params,
     summary_threat_category_params,
 )
+from .....types.radar.email.security.summary_arc_response import SummaryARCResponse
+from .....types.radar.email.security.summary_spf_response import SummarySPFResponse
+from .....types.radar.email.security.summary_dkim_response import SummaryDKIMResponse
+from .....types.radar.email.security.summary_spam_response import SummarySpamResponse
+from .....types.radar.email.security.summary_dmarc_response import SummaryDMARCResponse
+from .....types.radar.email.security.summary_spoof_response import SummarySpoofResponse
+from .....types.radar.email.security.summary_malicious_response import SummaryMaliciousResponse
+from .....types.radar.email.security.summary_tls_version_response import SummaryTLSVersionResponse
+from .....types.radar.email.security.summary_threat_category_response import SummaryThreatCategoryResponse
 
 __all__ = ["Summary", "AsyncSummary"]
 

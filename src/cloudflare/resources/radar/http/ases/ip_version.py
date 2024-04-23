@@ -25,7 +25,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.http.ases import IPVersionGetResponse, ip_version_get_params
+from .....types.radar.http.ases import ip_version_get_params
+from .....types.radar.http.ases.ip_version_get_response import IPVersionGetResponse
 
 __all__ = ["IPVersion", "AsyncIPVersion"]
 

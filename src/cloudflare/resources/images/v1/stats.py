@@ -19,7 +19,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.images.v1 import Stat
+from ....types.images.v1.stat import Stat
 
 __all__ = ["Stats", "AsyncStats"]
 

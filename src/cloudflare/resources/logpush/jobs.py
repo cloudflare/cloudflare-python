@@ -26,13 +26,9 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.logpush import (
-    LogpushJob,
-    OutputOptionsParam,
-    job_create_params,
-    job_delete_params,
-    job_update_params,
-)
+from ...types.logpush import job_create_params, job_delete_params, job_update_params
+from ...types.logpush.logpush_job import LogpushJob
+from ...types.logpush.output_options_param import OutputOptionsParam
 
 __all__ = ["Jobs", "AsyncJobs"]
 

@@ -29,7 +29,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import CachePurgeResponse, cache_purge_params
+from ...types.cache import cache_purge_params
 from .cache_reserve import (
     CacheReserveResource,
     AsyncCacheReserveResource,
@@ -57,6 +57,7 @@ from .regional_tiered_cache import (
     RegionalTieredCacheResourceWithStreamingResponse,
     AsyncRegionalTieredCacheResourceWithStreamingResponse,
 )
+from ...types.cache.cache_purge_response import CachePurgeResponse
 
 __all__ = ["Cache", "AsyncCache"]
 

@@ -20,10 +20,11 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
-from ..types.ips import IPListResponse, ip_list_params
+from ..types.ips import ip_list_params
 from .._base_client import (
     make_request_options,
 )
+from ..types.ips.ip_list_response import IPListResponse
 
 __all__ = ["IPs", "AsyncIPs"]
 

@@ -23,13 +23,10 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.intel.indicator_feeds import (
-    PermissionListResponse,
-    PermissionCreateResponse,
-    PermissionDeleteResponse,
-    permission_create_params,
-    permission_delete_params,
-)
+from ....types.intel.indicator_feeds import permission_create_params, permission_delete_params
+from ....types.intel.indicator_feeds.permission_list_response import PermissionListResponse
+from ....types.intel.indicator_feeds.permission_create_response import PermissionCreateResponse
+from ....types.intel.indicator_feeds.permission_delete_response import PermissionDeleteResponse
 
 __all__ = ["Permissions", "AsyncPermissions"]
 

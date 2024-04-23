@@ -23,15 +23,11 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.queues import (
-    ConsumerGetResponse,
-    ConsumerCreateResponse,
-    ConsumerDeleteResponse,
-    ConsumerUpdateResponse,
-    consumer_create_params,
-    consumer_delete_params,
-    consumer_update_params,
-)
+from ...types.queues import consumer_create_params, consumer_delete_params, consumer_update_params
+from ...types.queues.consumer_get_response import ConsumerGetResponse
+from ...types.queues.consumer_create_response import ConsumerCreateResponse
+from ...types.queues.consumer_delete_response import ConsumerDeleteResponse
+from ...types.queues.consumer_update_response import ConsumerUpdateResponse
 
 __all__ = ["Consumers", "AsyncConsumers"]
 

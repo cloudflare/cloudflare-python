@@ -25,7 +25,8 @@ from ......._wrappers import ResultWrapper
 from ......._base_client import (
     make_request_options,
 )
-from .......types.radar.email.security.top.tlds import SpamGetResponse, spam_get_params
+from .......types.radar.email.security.top.tlds import spam_get_params
+from .......types.radar.email.security.top.tlds.spam_get_response import SpamGetResponse
 
 __all__ = ["Spam", "AsyncSpam"]
 

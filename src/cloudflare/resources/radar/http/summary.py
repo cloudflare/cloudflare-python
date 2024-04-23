@@ -26,13 +26,6 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.radar.http import (
-    SummaryOSResponse,
-    SummaryBotClassResponse,
-    SummaryIPVersionResponse,
-    SummaryDeviceTypeResponse,
-    SummaryTLSVersionResponse,
-    SummaryHTTPVersionResponse,
-    SummaryHTTPProtocolResponse,
     summary_os_params,
     summary_bot_class_params,
     summary_ip_version_params,
@@ -41,6 +34,13 @@ from ....types.radar.http import (
     summary_http_version_params,
     summary_http_protocol_params,
 )
+from ....types.radar.http.summary_os_response import SummaryOSResponse
+from ....types.radar.http.summary_bot_class_response import SummaryBotClassResponse
+from ....types.radar.http.summary_ip_version_response import SummaryIPVersionResponse
+from ....types.radar.http.summary_device_type_response import SummaryDeviceTypeResponse
+from ....types.radar.http.summary_tls_version_response import SummaryTLSVersionResponse
+from ....types.radar.http.summary_http_version_response import SummaryHTTPVersionResponse
+from ....types.radar.http.summary_http_protocol_response import SummaryHTTPProtocolResponse
 
 __all__ = ["Summary", "AsyncSummary"]
 

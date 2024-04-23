@@ -12,16 +12,7 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from ...types.d1 import (
-    D1,
-    DatabaseListResponse,
-    DatabaseQueryResponse,
-    DatabaseCreateResponse,
-    DatabaseDeleteResponse,
-    database_list_params,
-    database_query_params,
-    database_create_params,
-)
+from ...types.d1 import database_list_params, database_query_params, database_create_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -31,10 +22,15 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...types.d1.d1 import D1
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.d1.database_list_response import DatabaseListResponse
+from ...types.d1.database_query_response import DatabaseQueryResponse
+from ...types.d1.database_create_response import DatabaseCreateResponse
+from ...types.d1.database_delete_response import DatabaseDeleteResponse
 
 __all__ = ["Database", "AsyncDatabase"]
 

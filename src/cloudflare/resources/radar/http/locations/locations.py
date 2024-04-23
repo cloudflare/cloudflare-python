@@ -81,7 +81,8 @@ from .http_protocol import (
 from ....._base_client import (
     make_request_options,
 )
-from .....types.radar.http import LocationGetResponse, location_get_params
+from .....types.radar.http import location_get_params
+from .....types.radar.http.location_get_response import LocationGetResponse
 
 __all__ = ["Locations", "AsyncLocations"]
 

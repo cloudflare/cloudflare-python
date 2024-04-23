@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.magic_network_monitoring.rules import Advertisement, advertisement_edit_params
+from ....types.magic_network_monitoring.rules import advertisement_edit_params
+from ....types.magic_network_monitoring.rules.advertisement import Advertisement
 
 __all__ = ["Advertisements", "AsyncAdvertisements"]
 

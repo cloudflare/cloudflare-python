@@ -23,7 +23,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import Minify, minify_edit_params
+from ....types.zones.settings import minify_edit_params
+from ....types.zones.settings.minify import Minify
 
 __all__ = ["MinifyResource", "AsyncMinifyResource"]
 

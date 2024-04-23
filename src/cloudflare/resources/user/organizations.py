@@ -22,17 +22,14 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...types.user import (
-    Organization,
-    OrganizationGetResponse,
-    OrganizationDeleteResponse,
-    organization_list_params,
-    organization_delete_params,
-)
+from ...types.user import organization_list_params, organization_delete_params
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.user.organization import Organization
+from ...types.user.organization_get_response import OrganizationGetResponse
+from ...types.user.organization_delete_response import OrganizationDeleteResponse
 
 __all__ = ["Organizations", "AsyncOrganizations"]
 

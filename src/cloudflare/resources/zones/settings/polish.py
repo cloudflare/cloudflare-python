@@ -23,7 +23,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import Polish, PolishParam, polish_edit_params
+from ....types.zones.settings import Polish, polish_edit_params
+from ....types.zones.settings.polish import Polish
+from ....types.zones.settings.polish_param import PolishParam
 
 __all__ = ["PolishResource", "AsyncPolishResource"]
 

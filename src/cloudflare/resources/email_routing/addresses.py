@@ -26,7 +26,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.email_routing import Address, address_list_params, address_create_params
+from ...types.email_routing import address_list_params, address_create_params
+from ...types.email_routing.address import Address
 
 __all__ = ["Addresses", "AsyncAddresses"]
 

@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.load_balancers.monitors import PreviewCreateResponse, preview_create_params
+from ....types.load_balancers.monitors import preview_create_params
+from ....types.load_balancers.monitors.preview_create_response import PreviewCreateResponse
 
 __all__ = ["Previews", "AsyncPreviews"]
 

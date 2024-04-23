@@ -18,7 +18,7 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.gateway.lists import ItemListResponse
+from .....types.zero_trust.gateway.lists.item_list_response import ItemListResponse
 
 __all__ = ["Items", "AsyncItems"]
 

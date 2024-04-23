@@ -20,10 +20,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.zones import CustomNameserverGetResponse, CustomNameserverUpdateResponse, custom_nameserver_update_params
+from ...types.zones import custom_nameserver_update_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.zones.custom_nameserver_get_response import CustomNameserverGetResponse
+from ...types.zones.custom_nameserver_update_response import CustomNameserverUpdateResponse
 
 __all__ = ["CustomNameservers", "AsyncCustomNameservers"]
 

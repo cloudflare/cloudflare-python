@@ -38,7 +38,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.radar import AS112TimeseriesResponse, as112_timeseries_params
+from ....types.radar import as112_timeseries_params
 from ...._base_client import (
     make_request_options,
 )
@@ -50,6 +50,7 @@ from .timeseries_groups import (
     TimeseriesGroupsWithStreamingResponse,
     AsyncTimeseriesGroupsWithStreamingResponse,
 )
+from ....types.radar.as112_timeseries_response import AS112TimeseriesResponse
 
 __all__ = ["AS112", "AsyncAS112"]
 
