@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -23,7 +23,7 @@ class TestActivationCheck:
         activation_check = client.zones.activation_check.trigger(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ActivationCheckTriggerResponse, activation_check, path=["response"])
+        assert_matches_type(Optional[ActivationCheckTriggerResponse], activation_check, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestActivationCheck:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         activation_check = response.parse()
-        assert_matches_type(ActivationCheckTriggerResponse, activation_check, path=["response"])
+        assert_matches_type(Optional[ActivationCheckTriggerResponse], activation_check, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestActivationCheck:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             activation_check = response.parse()
-            assert_matches_type(ActivationCheckTriggerResponse, activation_check, path=["response"])
+            assert_matches_type(Optional[ActivationCheckTriggerResponse], activation_check, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestAsyncActivationCheck:
         activation_check = await async_client.zones.activation_check.trigger(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ActivationCheckTriggerResponse, activation_check, path=["response"])
+        assert_matches_type(Optional[ActivationCheckTriggerResponse], activation_check, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -81,7 +81,7 @@ class TestAsyncActivationCheck:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         activation_check = await response.parse()
-        assert_matches_type(ActivationCheckTriggerResponse, activation_check, path=["response"])
+        assert_matches_type(Optional[ActivationCheckTriggerResponse], activation_check, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -93,7 +93,7 @@ class TestAsyncActivationCheck:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             activation_check = await response.parse()
-            assert_matches_type(ActivationCheckTriggerResponse, activation_check, path=["response"])
+            assert_matches_type(Optional[ActivationCheckTriggerResponse], activation_check, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
