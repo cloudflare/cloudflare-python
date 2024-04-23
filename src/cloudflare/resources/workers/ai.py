@@ -418,9 +418,12 @@ class AI(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
+        image: Iterable[float],
         max_tokens: int | NotGiven = NOT_GIVEN,
+        messages: Iterable[ai_run_params.ImageToTextMessage] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
+        raw: bool | NotGiven = NOT_GIVEN,
+        temperature: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -461,7 +464,7 @@ class AI(SyncAPIResource):
         ["account_id"],
         ["account_id", "target_lang", "text"],
         ["account_id", "input_text"],
-        ["account_id"],
+        ["account_id", "image"],
     )
     def run(
         self,
@@ -487,6 +490,7 @@ class AI(SyncAPIResource):
         source_lang: str | NotGiven = NOT_GIVEN,
         input_text: str | NotGiven = NOT_GIVEN,
         max_length: int | NotGiven = NOT_GIVEN,
+        temperature: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -523,6 +527,7 @@ class AI(SyncAPIResource):
                         "source_lang": source_lang,
                         "input_text": input_text,
                         "max_length": max_length,
+                        "temperature": temperature,
                     },
                     ai_run_params.AIRunParams,
                 ),
@@ -929,9 +934,12 @@ class AsyncAI(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
+        image: Iterable[float],
         max_tokens: int | NotGiven = NOT_GIVEN,
+        messages: Iterable[ai_run_params.ImageToTextMessage] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
+        raw: bool | NotGiven = NOT_GIVEN,
+        temperature: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -972,7 +980,7 @@ class AsyncAI(AsyncAPIResource):
         ["account_id"],
         ["account_id", "target_lang", "text"],
         ["account_id", "input_text"],
-        ["account_id"],
+        ["account_id", "image"],
     )
     async def run(
         self,
@@ -998,6 +1006,7 @@ class AsyncAI(AsyncAPIResource):
         source_lang: str | NotGiven = NOT_GIVEN,
         input_text: str | NotGiven = NOT_GIVEN,
         max_length: int | NotGiven = NOT_GIVEN,
+        temperature: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1034,6 +1043,7 @@ class AsyncAI(AsyncAPIResource):
                         "source_lang": source_lang,
                         "input_text": input_text,
                         "max_length": max_length,
+                        "temperature": temperature,
                     },
                     ai_run_params.AIRunParams,
                 ),
