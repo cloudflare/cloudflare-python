@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -57,7 +57,7 @@ class Delegations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> delegations.Delegations:
+    ) -> Optional[delegations.Delegations]:
         """
         Create a new account delegation for a given IP prefix.
 
@@ -96,9 +96,9 @@ class Delegations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[delegations.Delegations]._unwrapper,
+                post_parser=ResultWrapper[Optional[delegations.Delegations]]._unwrapper,
             ),
-            cast_to=cast(Type[delegations.Delegations], ResultWrapper[delegations.Delegations]),
+            cast_to=cast(Type[Optional[delegations.Delegations]], ResultWrapper[delegations.Delegations]),
         )
 
     def list(
@@ -155,7 +155,7 @@ class Delegations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DelegationDeleteResponse:
+    ) -> Optional[DelegationDeleteResponse]:
         """
         Delete an account delegation for a given IP prefix.
 
@@ -188,9 +188,9 @@ class Delegations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DelegationDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[DelegationDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[DelegationDeleteResponse], ResultWrapper[DelegationDeleteResponse]),
+            cast_to=cast(Type[Optional[DelegationDeleteResponse]], ResultWrapper[DelegationDeleteResponse]),
         )
 
 
@@ -216,7 +216,7 @@ class AsyncDelegations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> delegations.Delegations:
+    ) -> Optional[delegations.Delegations]:
         """
         Create a new account delegation for a given IP prefix.
 
@@ -255,9 +255,9 @@ class AsyncDelegations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[delegations.Delegations]._unwrapper,
+                post_parser=ResultWrapper[Optional[delegations.Delegations]]._unwrapper,
             ),
-            cast_to=cast(Type[delegations.Delegations], ResultWrapper[delegations.Delegations]),
+            cast_to=cast(Type[Optional[delegations.Delegations]], ResultWrapper[delegations.Delegations]),
         )
 
     def list(
@@ -314,7 +314,7 @@ class AsyncDelegations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DelegationDeleteResponse:
+    ) -> Optional[DelegationDeleteResponse]:
         """
         Delete an account delegation for a given IP prefix.
 
@@ -347,9 +347,9 @@ class AsyncDelegations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DelegationDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[DelegationDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[DelegationDeleteResponse], ResultWrapper[DelegationDeleteResponse]),
+            cast_to=cast(Type[Optional[DelegationDeleteResponse]], ResultWrapper[DelegationDeleteResponse]),
         )
 
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -60,7 +60,7 @@ class LOADocuments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LOADocumentCreateResponse:
+    ) -> Optional[LOADocumentCreateResponse]:
         """
         Submit LOA document (pdf format) under the account.
 
@@ -87,9 +87,9 @@ class LOADocuments(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[LOADocumentCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[LOADocumentCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[LOADocumentCreateResponse], ResultWrapper[LOADocumentCreateResponse]),
+            cast_to=cast(Type[Optional[LOADocumentCreateResponse]], ResultWrapper[LOADocumentCreateResponse]),
         )
 
 
@@ -117,7 +117,7 @@ class AsyncLOADocuments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LOADocumentCreateResponse:
+    ) -> Optional[LOADocumentCreateResponse]:
         """
         Submit LOA document (pdf format) under the account.
 
@@ -146,9 +146,9 @@ class AsyncLOADocuments(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[LOADocumentCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[LOADocumentCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[LOADocumentCreateResponse], ResultWrapper[LOADocumentCreateResponse]),
+            cast_to=cast(Type[Optional[LOADocumentCreateResponse]], ResultWrapper[LOADocumentCreateResponse]),
         )
 
 

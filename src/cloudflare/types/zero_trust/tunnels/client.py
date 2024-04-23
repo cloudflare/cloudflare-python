@@ -12,8 +12,8 @@ class Conn(BaseModel):
     id: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
 
-    client_id: Optional[object] = None
-    """UUID of the cloudflared instance."""
+    client_id: Optional[str] = None
+    """UUID of the Cloudflare Tunnel connector."""
 
     client_version: Optional[str] = None
     """The cloudflared version used to establish this connection."""

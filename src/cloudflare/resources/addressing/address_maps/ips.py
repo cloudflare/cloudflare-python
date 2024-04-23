@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -75,22 +75,17 @@ class IPs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
-        return cast(
-            Optional[IPUpdateResponse],
-            self._put(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
-                body=maybe_transform(body, ip_update_params.IPUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IPUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IPUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+            body=maybe_transform(body, ip_update_params.IPUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IPUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[IPUpdateResponse]], ResultWrapper[IPUpdateResponse]),
         )
 
     def delete(
@@ -131,22 +126,17 @@ class IPs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
-        return cast(
-            Optional[IPDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
-                body=maybe_transform(body, ip_delete_params.IPDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IPDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IPDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+            body=maybe_transform(body, ip_delete_params.IPDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IPDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[IPDeleteResponse]], ResultWrapper[IPDeleteResponse]),
         )
 
 
@@ -197,22 +187,17 @@ class AsyncIPs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
-        return cast(
-            Optional[IPUpdateResponse],
-            await self._put(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
-                body=await async_maybe_transform(body, ip_update_params.IPUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IPUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IPUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+            body=await async_maybe_transform(body, ip_update_params.IPUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IPUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[IPUpdateResponse]], ResultWrapper[IPUpdateResponse]),
         )
 
     async def delete(
@@ -253,22 +238,17 @@ class AsyncIPs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         if not ip_address:
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
-        return cast(
-            Optional[IPDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
-                body=await async_maybe_transform(body, ip_delete_params.IPDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IPDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IPDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
+            body=await async_maybe_transform(body, ip_delete_params.IPDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IPDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[IPDeleteResponse]], ResultWrapper[IPDeleteResponse]),
         )
 
 

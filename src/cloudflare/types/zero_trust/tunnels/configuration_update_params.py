@@ -21,7 +21,7 @@ __all__ = [
 
 class ConfigurationUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Cloudflare account ID"""
 
     config: Config
     """The tunnel configuration and ingress rules."""
@@ -128,7 +128,10 @@ class ConfigIngress(TypedDict, total=False):
     """
 
     origin_request: Annotated[ConfigIngressOriginRequest, PropertyInfo(alias="originRequest")]
-    """Configuration parameters of connection between cloudflared and origin server."""
+    """
+    Configuration parameters for the public hostname specific connection settings
+    between cloudflared and origin server.
+    """
 
     path: str
     """Requests with this path route to this public hostname."""
@@ -231,7 +234,10 @@ class Config(TypedDict, total=False):
     """List of public hostname definitions"""
 
     origin_request: Annotated[ConfigOriginRequest, PropertyInfo(alias="originRequest")]
-    """Configuration parameters of connection between cloudflared and origin server."""
+    """
+    Configuration parameters for the public hostname specific connection settings
+    between cloudflared and origin server.
+    """
 
     warp_routing: Annotated[ConfigWARPRouting, PropertyInfo(alias="warp-routing")]
     """Enable private network access from WARP users to private network routes"""

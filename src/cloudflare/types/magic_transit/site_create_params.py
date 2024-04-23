@@ -6,17 +6,13 @@ from typing_extensions import Required, TypedDict
 
 from .site_location_param import SiteLocationParam
 
-__all__ = ["SiteCreateParams", "Site"]
+__all__ = ["SiteCreateParams"]
 
 
 class SiteCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    site: Site
-
-
-class Site(TypedDict, total=False):
     name: Required[str]
     """The name of the site."""
 

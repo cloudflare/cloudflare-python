@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import Union
+from datetime import datetime
+from typing_extensions import Annotated, TypedDict
+
+from ...._utils import PropertyInfo
 
 __all__ = ["RouteParam"]
 
@@ -11,18 +15,17 @@ class RouteParam(TypedDict, total=False):
     comment: str
     """Optional remark describing the route."""
 
-    created_at: object
-    """Timestamp of when the route was created."""
+    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Timestamp of when the resource was created."""
+
+    deleted_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Timestamp of when the resource was deleted.
+
+    If `null`, the resource has not been deleted.
+    """
 
     network: str
     """The private IPv4 or IPv6 range connected by the route, in CIDR notation."""
 
-    tunnel_id: object
-    """UUID of the Cloudflare Tunnel serving the route."""
-
-    virtual_network_id: object
-    """UUID of the Tunnel Virtual Network this route belongs to.
-
-    If no virtual networks are configured, the route is assigned to the default
-    virtual network of the account.
-    """
+    virtual_network_id: str
+    """UUID of the virtual network."""

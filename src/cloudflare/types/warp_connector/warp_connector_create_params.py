@@ -12,4 +12,4 @@ class WARPConnectorCreateParams(TypedDict, total=False):
     """Cloudflare account ID"""
 
     name: Required[str]
-    """A user-friendly name for the tunnel."""
+    """A user-friendly name for a tunnel."""

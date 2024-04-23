@@ -3,22 +3,17 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-from .allowed_protocol import AllowedProtocol
 from .acl_configuration_param import ACLConfigurationParam
 
-__all__ = ["ACLCreateParams", "ACL"]
+__all__ = ["ACLCreateParams"]
 
 
 class ACLCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    acl: ACL
-
-
-class ACL(TypedDict, total=False):
     lan_1: Required[ACLConfigurationParam]
 
     lan_2: Required[ACLConfigurationParam]
@@ -37,4 +32,4 @@ class ACL(TypedDict, total=False):
     not included in request, will default to false.
     """
 
-    protocols: List[AllowedProtocol]
+    protocols: List[Literal["tcp", "udp", "icmp"]]

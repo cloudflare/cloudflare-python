@@ -17,13 +17,13 @@ class TunnelDeleteResponse(BaseModel):
     """The tunnel connections between your origin and Cloudflare's edge."""
 
     created_at: datetime
-    """Timestamp of when the tunnel was created."""
+    """Timestamp of when the resource was created."""
 
     name: str
-    """A user-friendly name for the tunnel."""
+    """A user-friendly name for a tunnel."""
 
     deleted_at: Optional[datetime] = None
-    """Timestamp of when the tunnel was deleted.
+    """Timestamp of when the resource was deleted.
 
-    If `null`, the tunnel has not been deleted.
+    If `null`, the resource has not been deleted.
     """

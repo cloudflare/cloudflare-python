@@ -6,17 +6,13 @@ from typing_extensions import Required, TypedDict
 
 from .site_location_param import SiteLocationParam
 
-__all__ = ["SiteUpdateParams", "Site"]
+__all__ = ["SiteUpdateParams"]
 
 
 class SiteUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    site: Site
-
-
-class Site(TypedDict, total=False):
     connector_id: str
     """Magic WAN Connector identifier tag."""
 

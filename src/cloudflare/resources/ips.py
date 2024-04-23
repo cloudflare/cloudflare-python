@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -47,7 +47,7 @@ class IPs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPListResponse:
+    ) -> Optional[IPListResponse]:
         """
         Get IPs used on the Cloudflare/JD Cloud network, see
         https://www.cloudflare.com/ips for Cloudflare IPs or
@@ -66,7 +66,7 @@ class IPs(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            IPListResponse,
+            Optional[IPListResponse],
             self._get(
                 "/ips",
                 options=make_request_options(
@@ -75,7 +75,7 @@ class IPs(SyncAPIResource):
                     extra_body=extra_body,
                     timeout=timeout,
                     query=maybe_transform({"networks": networks}, ip_list_params.IPListParams),
-                    post_parser=ResultWrapper[IPListResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[IPListResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IPListResponse]
@@ -103,7 +103,7 @@ class AsyncIPs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPListResponse:
+    ) -> Optional[IPListResponse]:
         """
         Get IPs used on the Cloudflare/JD Cloud network, see
         https://www.cloudflare.com/ips for Cloudflare IPs or
@@ -122,7 +122,7 @@ class AsyncIPs(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return cast(
-            IPListResponse,
+            Optional[IPListResponse],
             await self._get(
                 "/ips",
                 options=make_request_options(
@@ -131,7 +131,7 @@ class AsyncIPs(AsyncAPIResource):
                     extra_body=extra_body,
                     timeout=timeout,
                     query=await async_maybe_transform({"networks": networks}, ip_list_params.IPListParams),
-                    post_parser=ResultWrapper[IPListResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[IPListResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IPListResponse]

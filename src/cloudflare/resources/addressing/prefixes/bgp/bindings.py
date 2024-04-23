@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -52,7 +52,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ServiceBinding:
+    ) -> Optional[ServiceBinding]:
         """
         Creates a new Service Binding, routing traffic to IPs within the given CIDR to a
         service running on Cloudflare's network. **Note:** This API may only be used on
@@ -94,9 +94,9 @@ class Bindings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ServiceBinding]._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceBinding]]._unwrapper,
             ),
-            cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
+            cast_to=cast(Type[Optional[ServiceBinding]], ResultWrapper[ServiceBinding]),
         )
 
     def list(
@@ -183,21 +183,12 @@ class Bindings(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         if not binding_id:
             raise ValueError(f"Expected a non-empty value for `binding_id` but received {binding_id!r}")
-        return cast(
-            BindingDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bindings/{binding_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[BindingDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[BindingDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bindings/{binding_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=BindingDeleteResponse,
         )
 
     def get(
@@ -212,7 +203,7 @@ class Bindings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ServiceBinding:
+    ) -> Optional[ServiceBinding]:
         """
         Fetch a single Service Binding
 
@@ -244,9 +235,9 @@ class Bindings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ServiceBinding]._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceBinding]]._unwrapper,
             ),
-            cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
+            cast_to=cast(Type[Optional[ServiceBinding]], ResultWrapper[ServiceBinding]),
         )
 
 
@@ -272,7 +263,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ServiceBinding:
+    ) -> Optional[ServiceBinding]:
         """
         Creates a new Service Binding, routing traffic to IPs within the given CIDR to a
         service running on Cloudflare's network. **Note:** This API may only be used on
@@ -314,9 +305,9 @@ class AsyncBindings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ServiceBinding]._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceBinding]]._unwrapper,
             ),
-            cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
+            cast_to=cast(Type[Optional[ServiceBinding]], ResultWrapper[ServiceBinding]),
         )
 
     def list(
@@ -403,21 +394,12 @@ class AsyncBindings(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         if not binding_id:
             raise ValueError(f"Expected a non-empty value for `binding_id` but received {binding_id!r}")
-        return cast(
-            BindingDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bindings/{binding_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[BindingDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[BindingDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bindings/{binding_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=BindingDeleteResponse,
         )
 
     async def get(
@@ -432,7 +414,7 @@ class AsyncBindings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ServiceBinding:
+    ) -> Optional[ServiceBinding]:
         """
         Fetch a single Service Binding
 
@@ -464,9 +446,9 @@ class AsyncBindings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ServiceBinding]._unwrapper,
+                post_parser=ResultWrapper[Optional[ServiceBinding]]._unwrapper,
             ),
-            cast_to=cast(Type[ServiceBinding], ResultWrapper[ServiceBinding]),
+            cast_to=cast(Type[Optional[ServiceBinding]], ResultWrapper[ServiceBinding]),
         )
 
 

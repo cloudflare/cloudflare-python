@@ -14,9 +14,5 @@ class NetworkCreateParams(TypedDict, total=False):
     comment: str
     """Optional remark describing the route."""
 
-    virtual_network_id: object
-    """UUID of the Tunnel Virtual Network this route belongs to.
-
-    If no virtual networks are configured, the route is assigned to the default
-    virtual network of the account.
-    """
+    virtual_network_id: str
+    """UUID of the virtual network."""
