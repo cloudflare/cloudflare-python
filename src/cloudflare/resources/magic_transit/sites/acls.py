@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import List, Type, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -28,6 +27,7 @@ from ...._base_client import (
 )
 from ....types.magic_transit.sites import (
     ACL,
+    AllowedProtocol,
     ACLConfigurationParam,
     acl_create_params,
     acl_delete_params,
@@ -56,7 +56,7 @@ class ACLs(SyncAPIResource):
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         forward_locally: bool | NotGiven = NOT_GIVEN,
-        protocols: List[Literal["tcp", "udp", "icmp"]] | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -127,7 +127,7 @@ class ACLs(SyncAPIResource):
         lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        protocols: List[Literal["tcp", "udp", "icmp"]] | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -352,7 +352,7 @@ class AsyncACLs(AsyncAPIResource):
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         forward_locally: bool | NotGiven = NOT_GIVEN,
-        protocols: List[Literal["tcp", "udp", "icmp"]] | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -423,7 +423,7 @@ class AsyncACLs(AsyncAPIResource):
         lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        protocols: List[Literal["tcp", "udp", "icmp"]] | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
