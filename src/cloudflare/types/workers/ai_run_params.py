@@ -19,6 +19,7 @@ __all__ = [
     "Translation",
     "Summarization",
     "ImageToText",
+    "ImageToTextMessage",
 ]
 
 
@@ -119,11 +120,23 @@ class Summarization(TypedDict, total=False):
 class ImageToText(TypedDict, total=False):
     account_id: Required[str]
 
-    image: Iterable[float]
+    image: Required[Iterable[float]]
 
     max_tokens: int
 
+    messages: Iterable[ImageToTextMessage]
+
     prompt: str
+
+    raw: bool
+
+    temperature: float
+
+
+class ImageToTextMessage(TypedDict, total=False):
+    content: Required[str]
+
+    role: Required[str]
 
 
 AIRunParams = Union[

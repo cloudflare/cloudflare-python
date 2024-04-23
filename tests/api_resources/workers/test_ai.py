@@ -679,6 +679,7 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -690,7 +691,23 @@ class TestAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0, 0, 0],
             max_tokens=0,
+            messages=[
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+            ],
             prompt="string",
+            raw=True,
+            temperature=0,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -700,6 +717,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         )
 
         assert response.is_closed is True
@@ -713,6 +731,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -729,12 +748,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
+                image=[0, 0, 0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                image=[0, 0, 0],
             )
 
 
@@ -1403,6 +1424,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1414,7 +1436,23 @@ class TestAsyncAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0, 0, 0],
             max_tokens=0,
+            messages=[
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+                {
+                    "content": "string",
+                    "role": "string",
+                },
+            ],
             prompt="string",
+            raw=True,
+            temperature=0,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1424,6 +1462,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         )
 
         assert response.is_closed is True
@@ -1437,6 +1476,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1453,10 +1493,12 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
+                image=[0, 0, 0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                image=[0, 0, 0],
             )
