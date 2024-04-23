@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 from ....._models import BaseModel
 from ..applications import UserPolicyCheckGeo
 
-__all__ = ["Identity", "DeviceSessions", "DevicePosture", "DevicePostureCheck", "IDP", "MTLSAuth"]
+__all__ = ["Identity", "DeviceSessions", "DevicePosture", "DevicePostureCheck", "IdP", "MTLSAuth"]
 
 
 class DeviceSessions(BaseModel):
@@ -40,7 +40,7 @@ class DevicePosture(BaseModel):
     type: Optional[str] = None
 
 
-class IDP(BaseModel):
+class IdP(BaseModel):
     id: Optional[str] = None
 
     type: Optional[str] = None
@@ -77,7 +77,7 @@ class Identity(BaseModel):
 
     iat: Optional[float] = None
 
-    idp: Optional[IDP] = None
+    idp: Optional[IdP] = None
 
     ip: Optional[str] = None
 
