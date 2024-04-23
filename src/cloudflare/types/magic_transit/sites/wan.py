@@ -12,7 +12,7 @@ class WAN(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
-    description: Optional[str] = None
+    name: Optional[str] = None
 
     physport: Optional[int] = None
 

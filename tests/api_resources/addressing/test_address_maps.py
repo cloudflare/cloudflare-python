@@ -29,7 +29,7 @@ class TestAddressMaps:
         address_map = client.addressing.address_maps.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AddressMapCreateResponse, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -39,7 +39,7 @@ class TestAddressMaps:
             description="My Ecommerce zones",
             enabled=True,
         )
-        assert_matches_type(AddressMapCreateResponse, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -51,7 +51,7 @@ class TestAddressMaps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address_map = response.parse()
-        assert_matches_type(AddressMapCreateResponse, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -63,7 +63,7 @@ class TestAddressMaps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address_map = response.parse()
-            assert_matches_type(AddressMapCreateResponse, address_map, path=["response"])
+            assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -181,7 +181,7 @@ class TestAddressMaps:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AddressMap, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -193,7 +193,7 @@ class TestAddressMaps:
             description="My Ecommerce zones",
             enabled=True,
         )
-        assert_matches_type(AddressMap, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -206,7 +206,7 @@ class TestAddressMaps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address_map = response.parse()
-        assert_matches_type(AddressMap, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -219,7 +219,7 @@ class TestAddressMaps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address_map = response.parse()
-            assert_matches_type(AddressMap, address_map, path=["response"])
+            assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -245,7 +245,7 @@ class TestAddressMaps:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AddressMapGetResponse, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -258,7 +258,7 @@ class TestAddressMaps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address_map = response.parse()
-        assert_matches_type(AddressMapGetResponse, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -271,7 +271,7 @@ class TestAddressMaps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address_map = response.parse()
-            assert_matches_type(AddressMapGetResponse, address_map, path=["response"])
+            assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -300,7 +300,7 @@ class TestAsyncAddressMaps:
         address_map = await async_client.addressing.address_maps.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AddressMapCreateResponse, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -310,7 +310,7 @@ class TestAsyncAddressMaps:
             description="My Ecommerce zones",
             enabled=True,
         )
-        assert_matches_type(AddressMapCreateResponse, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -322,7 +322,7 @@ class TestAsyncAddressMaps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address_map = await response.parse()
-        assert_matches_type(AddressMapCreateResponse, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -334,7 +334,7 @@ class TestAsyncAddressMaps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address_map = await response.parse()
-            assert_matches_type(AddressMapCreateResponse, address_map, path=["response"])
+            assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -452,7 +452,7 @@ class TestAsyncAddressMaps:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AddressMap, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -464,7 +464,7 @@ class TestAsyncAddressMaps:
             description="My Ecommerce zones",
             enabled=True,
         )
-        assert_matches_type(AddressMap, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -477,7 +477,7 @@ class TestAsyncAddressMaps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address_map = await response.parse()
-        assert_matches_type(AddressMap, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -490,7 +490,7 @@ class TestAsyncAddressMaps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address_map = await response.parse()
-            assert_matches_type(AddressMap, address_map, path=["response"])
+            assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -516,7 +516,7 @@ class TestAsyncAddressMaps:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AddressMapGetResponse, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -529,7 +529,7 @@ class TestAsyncAddressMaps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address_map = await response.parse()
-        assert_matches_type(AddressMapGetResponse, address_map, path=["response"])
+        assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -542,7 +542,7 @@ class TestAsyncAddressMaps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address_map = await response.parse()
-            assert_matches_type(AddressMapGetResponse, address_map, path=["response"])
+            assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -44,15 +44,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.magic_transit import (
-    SiteGetResponse,
-    SiteListResponse,
-    SiteCreateResponse,
-    SiteDeleteResponse,
-    SiteUpdateResponse,
+    Site,
+    SiteLocationParam,
     site_list_params,
     site_create_params,
     site_delete_params,
@@ -87,19 +86,35 @@ class Sites(SyncAPIResource):
         self,
         *,
         account_id: str,
-        site: site_create_params.Site | NotGiven = NOT_GIVEN,
+        name: str,
+        connector_id: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        ha_mode: bool | NotGiven = NOT_GIVEN,
+        location: SiteLocationParam | NotGiven = NOT_GIVEN,
+        secondary_connector_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SiteCreateResponse:
+    ) -> Site:
         """
         Creates a new Site
 
         Args:
           account_id: Identifier
+
+          name: The name of the site.
+
+          connector_id: Magic WAN Connector identifier tag.
+
+          ha_mode: Site high availability mode. If set to true, the site can have two connectors
+              and runs in high availability mode.
+
+          location: Location of site in latitude and longitude.
+
+          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -113,15 +128,25 @@ class Sites(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/magic/sites",
-            body=maybe_transform({"site": site}, site_create_params.SiteCreateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "connector_id": connector_id,
+                    "description": description,
+                    "ha_mode": ha_mode,
+                    "location": location,
+                    "secondary_connector_id": secondary_connector_id,
+                },
+                site_create_params.SiteCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SiteCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Site]._unwrapper,
             ),
-            cast_to=cast(Type[SiteCreateResponse], ResultWrapper[SiteCreateResponse]),
+            cast_to=cast(Type[Site], ResultWrapper[Site]),
         )
 
     def update(
@@ -129,14 +154,18 @@ class Sites(SyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        site: site_update_params.Site | NotGiven = NOT_GIVEN,
+        connector_id: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        location: SiteLocationParam | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        secondary_connector_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SiteUpdateResponse:
+    ) -> Site:
         """
         Update a specific Site.
 
@@ -144,6 +173,14 @@ class Sites(SyncAPIResource):
           account_id: Identifier
 
           site_id: Identifier
+
+          connector_id: Magic WAN Connector identifier tag.
+
+          location: Location of site in latitude and longitude.
+
+          name: The name of the site.
+
+          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -159,15 +196,24 @@ class Sites(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._put(
             f"/accounts/{account_id}/magic/sites/{site_id}",
-            body=maybe_transform({"site": site}, site_update_params.SiteUpdateParams),
+            body=maybe_transform(
+                {
+                    "connector_id": connector_id,
+                    "description": description,
+                    "location": location,
+                    "name": name,
+                    "secondary_connector_id": secondary_connector_id,
+                },
+                site_update_params.SiteUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SiteUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Site]._unwrapper,
             ),
-            cast_to=cast(Type[SiteUpdateResponse], ResultWrapper[SiteUpdateResponse]),
+            cast_to=cast(Type[Site], ResultWrapper[Site]),
         )
 
     def list(
@@ -181,7 +227,7 @@ class Sites(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SiteListResponse:
+    ) -> SyncSinglePage[Site]:
         """Lists Sites associated with an account.
 
         Use connector_identifier query param to
@@ -203,17 +249,17 @@ class Sites(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites",
+            page=SyncSinglePage[Site],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"connector_identifier": connector_identifier}, site_list_params.SiteListParams),
-                post_parser=ResultWrapper[SiteListResponse]._unwrapper,
             ),
-            cast_to=cast(Type[SiteListResponse], ResultWrapper[SiteListResponse]),
+            model=Site,
         )
 
     def delete(
@@ -228,7 +274,7 @@ class Sites(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SiteDeleteResponse:
+    ) -> Site:
         """
         Remove a specific Site.
 
@@ -257,9 +303,9 @@ class Sites(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SiteDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Site]._unwrapper,
             ),
-            cast_to=cast(Type[SiteDeleteResponse], ResultWrapper[SiteDeleteResponse]),
+            cast_to=cast(Type[Site], ResultWrapper[Site]),
         )
 
     def get(
@@ -273,7 +319,7 @@ class Sites(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SiteGetResponse:
+    ) -> Site:
         """
         Get a specific Site.
 
@@ -301,9 +347,9 @@ class Sites(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SiteGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Site]._unwrapper,
             ),
-            cast_to=cast(Type[SiteGetResponse], ResultWrapper[SiteGetResponse]),
+            cast_to=cast(Type[Site], ResultWrapper[Site]),
         )
 
 
@@ -332,19 +378,35 @@ class AsyncSites(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        site: site_create_params.Site | NotGiven = NOT_GIVEN,
+        name: str,
+        connector_id: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        ha_mode: bool | NotGiven = NOT_GIVEN,
+        location: SiteLocationParam | NotGiven = NOT_GIVEN,
+        secondary_connector_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SiteCreateResponse:
+    ) -> Site:
         """
         Creates a new Site
 
         Args:
           account_id: Identifier
+
+          name: The name of the site.
+
+          connector_id: Magic WAN Connector identifier tag.
+
+          ha_mode: Site high availability mode. If set to true, the site can have two connectors
+              and runs in high availability mode.
+
+          location: Location of site in latitude and longitude.
+
+          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -358,15 +420,25 @@ class AsyncSites(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/magic/sites",
-            body=await async_maybe_transform({"site": site}, site_create_params.SiteCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "connector_id": connector_id,
+                    "description": description,
+                    "ha_mode": ha_mode,
+                    "location": location,
+                    "secondary_connector_id": secondary_connector_id,
+                },
+                site_create_params.SiteCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SiteCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Site]._unwrapper,
             ),
-            cast_to=cast(Type[SiteCreateResponse], ResultWrapper[SiteCreateResponse]),
+            cast_to=cast(Type[Site], ResultWrapper[Site]),
         )
 
     async def update(
@@ -374,14 +446,18 @@ class AsyncSites(AsyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        site: site_update_params.Site | NotGiven = NOT_GIVEN,
+        connector_id: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        location: SiteLocationParam | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        secondary_connector_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SiteUpdateResponse:
+    ) -> Site:
         """
         Update a specific Site.
 
@@ -389,6 +465,14 @@ class AsyncSites(AsyncAPIResource):
           account_id: Identifier
 
           site_id: Identifier
+
+          connector_id: Magic WAN Connector identifier tag.
+
+          location: Location of site in latitude and longitude.
+
+          name: The name of the site.
+
+          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -404,18 +488,27 @@ class AsyncSites(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._put(
             f"/accounts/{account_id}/magic/sites/{site_id}",
-            body=await async_maybe_transform({"site": site}, site_update_params.SiteUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "connector_id": connector_id,
+                    "description": description,
+                    "location": location,
+                    "name": name,
+                    "secondary_connector_id": secondary_connector_id,
+                },
+                site_update_params.SiteUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SiteUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Site]._unwrapper,
             ),
-            cast_to=cast(Type[SiteUpdateResponse], ResultWrapper[SiteUpdateResponse]),
+            cast_to=cast(Type[Site], ResultWrapper[Site]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -426,7 +519,7 @@ class AsyncSites(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SiteListResponse:
+    ) -> AsyncPaginator[Site, AsyncSinglePage[Site]]:
         """Lists Sites associated with an account.
 
         Use connector_identifier query param to
@@ -448,19 +541,17 @@ class AsyncSites(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites",
+            page=AsyncSinglePage[Site],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"connector_identifier": connector_identifier}, site_list_params.SiteListParams
-                ),
-                post_parser=ResultWrapper[SiteListResponse]._unwrapper,
+                query=maybe_transform({"connector_identifier": connector_identifier}, site_list_params.SiteListParams),
             ),
-            cast_to=cast(Type[SiteListResponse], ResultWrapper[SiteListResponse]),
+            model=Site,
         )
 
     async def delete(
@@ -475,7 +566,7 @@ class AsyncSites(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SiteDeleteResponse:
+    ) -> Site:
         """
         Remove a specific Site.
 
@@ -504,9 +595,9 @@ class AsyncSites(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SiteDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Site]._unwrapper,
             ),
-            cast_to=cast(Type[SiteDeleteResponse], ResultWrapper[SiteDeleteResponse]),
+            cast_to=cast(Type[Site], ResultWrapper[Site]),
         )
 
     async def get(
@@ -520,7 +611,7 @@ class AsyncSites(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SiteGetResponse:
+    ) -> Site:
         """
         Get a specific Site.
 
@@ -548,9 +639,9 @@ class AsyncSites(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SiteGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Site]._unwrapper,
             ),
-            cast_to=cast(Type[SiteGetResponse], ResultWrapper[SiteGetResponse]),
+            cast_to=cast(Type[Site], ResultWrapper[Site]),
         )
 
 

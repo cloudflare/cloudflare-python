@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-from .allowed_protocol import AllowedProtocol
 from .acl_configuration_param import ACLConfigurationParam
 
-__all__ = ["ACLUpdateParams", "ACL"]
+__all__ = ["ACLUpdateParams"]
 
 
 class ACLUpdateParams(TypedDict, total=False):
@@ -18,10 +17,6 @@ class ACLUpdateParams(TypedDict, total=False):
     site_id: Required[str]
     """Identifier"""
 
-    acl: ACL
-
-
-class ACL(TypedDict, total=False):
     description: str
     """Description for the ACL."""
 
@@ -40,4 +35,4 @@ class ACL(TypedDict, total=False):
     name: str
     """The name of the ACL."""
 
-    protocols: List[AllowedProtocol]
+    protocols: List[Literal["tcp", "udp", "icmp"]]

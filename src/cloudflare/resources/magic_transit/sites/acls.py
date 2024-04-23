@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import List, Type, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -20,15 +21,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.magic_transit.sites import (
-    ACLGetResponse,
-    ACLListResponse,
-    ACLCreateResponse,
-    ACLDeleteResponse,
-    ACLUpdateResponse,
+    ACL,
+    ACLConfigurationParam,
     acl_create_params,
     acl_delete_params,
     acl_update_params,
@@ -51,14 +51,19 @@ class ACLs(SyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        acl: acl_create_params.ACL | NotGiven = NOT_GIVEN,
+        lan_1: ACLConfigurationParam,
+        lan_2: ACLConfigurationParam,
+        name: str,
+        description: str | NotGiven = NOT_GIVEN,
+        forward_locally: bool | NotGiven = NOT_GIVEN,
+        protocols: List[Literal["tcp", "udp", "icmp"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLCreateResponse:
+    ) -> ACL:
         """
         Creates a new Site ACL.
 
@@ -66,6 +71,15 @@ class ACLs(SyncAPIResource):
           account_id: Identifier
 
           site_id: Identifier
+
+          name: The name of the ACL.
+
+          description: Description for the ACL.
+
+          forward_locally: The desired forwarding action for this ACL policy. If set to "false", the policy
+              will forward traffic to Cloudflare. If set to "true", the policy will forward
+              traffic locally on the Magic WAN Connector. If not included in request, will
+              default to false.
 
           extra_headers: Send extra headers
 
@@ -81,15 +95,25 @@ class ACLs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._post(
             f"/accounts/{account_id}/magic/sites/{site_id}/acls",
-            body=maybe_transform({"acl": acl}, acl_create_params.ACLCreateParams),
+            body=maybe_transform(
+                {
+                    "lan_1": lan_1,
+                    "lan_2": lan_2,
+                    "name": name,
+                    "description": description,
+                    "forward_locally": forward_locally,
+                    "protocols": protocols,
+                },
+                acl_create_params.ACLCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ACLCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[ACL]._unwrapper,
             ),
-            cast_to=cast(Type[ACLCreateResponse], ResultWrapper[ACLCreateResponse]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
     def update(
@@ -98,14 +122,19 @@ class ACLs(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        acl: acl_update_params.ACL | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        forward_locally: bool | NotGiven = NOT_GIVEN,
+        lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
+        lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        protocols: List[Literal["tcp", "udp", "icmp"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLUpdateResponse:
+    ) -> ACL:
         """
         Update a specific Site ACL.
 
@@ -115,6 +144,15 @@ class ACLs(SyncAPIResource):
           site_id: Identifier
 
           acl_identifier: Identifier
+
+          description: Description for the ACL.
+
+          forward_locally: The desired forwarding action for this ACL policy. If set to "false", the policy
+              will forward traffic to Cloudflare. If set to "true", the policy will forward
+              traffic locally on the Magic WAN Connector. If not included in request, will
+              default to false.
+
+          name: The name of the ACL.
 
           extra_headers: Send extra headers
 
@@ -132,15 +170,25 @@ class ACLs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
         return self._put(
             f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
-            body=maybe_transform({"acl": acl}, acl_update_params.ACLUpdateParams),
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "forward_locally": forward_locally,
+                    "lan_1": lan_1,
+                    "lan_2": lan_2,
+                    "name": name,
+                    "protocols": protocols,
+                },
+                acl_update_params.ACLUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ACLUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[ACL]._unwrapper,
             ),
-            cast_to=cast(Type[ACLUpdateResponse], ResultWrapper[ACLUpdateResponse]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
     def list(
@@ -154,7 +202,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLListResponse:
+    ) -> SyncSinglePage[ACL]:
         """
         Lists Site ACLs associated with an account.
 
@@ -175,16 +223,13 @@ class ACLs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites/{site_id}/acls",
+            page=SyncSinglePage[ACL],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ACLListResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ACLListResponse], ResultWrapper[ACLListResponse]),
+            model=ACL,
         )
 
     def delete(
@@ -200,7 +245,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLDeleteResponse:
+    ) -> ACL:
         """
         Remove a specific Site ACL.
 
@@ -233,9 +278,9 @@ class ACLs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ACLDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[ACL]._unwrapper,
             ),
-            cast_to=cast(Type[ACLDeleteResponse], ResultWrapper[ACLDeleteResponse]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
     def get(
@@ -250,7 +295,7 @@ class ACLs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLGetResponse:
+    ) -> ACL:
         """
         Get a specific Site ACL.
 
@@ -282,9 +327,9 @@ class ACLs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ACLGetResponse]._unwrapper,
+                post_parser=ResultWrapper[ACL]._unwrapper,
             ),
-            cast_to=cast(Type[ACLGetResponse], ResultWrapper[ACLGetResponse]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
 
@@ -302,14 +347,19 @@ class AsyncACLs(AsyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        acl: acl_create_params.ACL | NotGiven = NOT_GIVEN,
+        lan_1: ACLConfigurationParam,
+        lan_2: ACLConfigurationParam,
+        name: str,
+        description: str | NotGiven = NOT_GIVEN,
+        forward_locally: bool | NotGiven = NOT_GIVEN,
+        protocols: List[Literal["tcp", "udp", "icmp"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLCreateResponse:
+    ) -> ACL:
         """
         Creates a new Site ACL.
 
@@ -317,6 +367,15 @@ class AsyncACLs(AsyncAPIResource):
           account_id: Identifier
 
           site_id: Identifier
+
+          name: The name of the ACL.
+
+          description: Description for the ACL.
+
+          forward_locally: The desired forwarding action for this ACL policy. If set to "false", the policy
+              will forward traffic to Cloudflare. If set to "true", the policy will forward
+              traffic locally on the Magic WAN Connector. If not included in request, will
+              default to false.
 
           extra_headers: Send extra headers
 
@@ -332,15 +391,25 @@ class AsyncACLs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._post(
             f"/accounts/{account_id}/magic/sites/{site_id}/acls",
-            body=await async_maybe_transform({"acl": acl}, acl_create_params.ACLCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "lan_1": lan_1,
+                    "lan_2": lan_2,
+                    "name": name,
+                    "description": description,
+                    "forward_locally": forward_locally,
+                    "protocols": protocols,
+                },
+                acl_create_params.ACLCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ACLCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[ACL]._unwrapper,
             ),
-            cast_to=cast(Type[ACLCreateResponse], ResultWrapper[ACLCreateResponse]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
     async def update(
@@ -349,14 +418,19 @@ class AsyncACLs(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        acl: acl_update_params.ACL | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        forward_locally: bool | NotGiven = NOT_GIVEN,
+        lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
+        lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        protocols: List[Literal["tcp", "udp", "icmp"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLUpdateResponse:
+    ) -> ACL:
         """
         Update a specific Site ACL.
 
@@ -366,6 +440,15 @@ class AsyncACLs(AsyncAPIResource):
           site_id: Identifier
 
           acl_identifier: Identifier
+
+          description: Description for the ACL.
+
+          forward_locally: The desired forwarding action for this ACL policy. If set to "false", the policy
+              will forward traffic to Cloudflare. If set to "true", the policy will forward
+              traffic locally on the Magic WAN Connector. If not included in request, will
+              default to false.
+
+          name: The name of the ACL.
 
           extra_headers: Send extra headers
 
@@ -383,18 +466,28 @@ class AsyncACLs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
         return await self._put(
             f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
-            body=await async_maybe_transform({"acl": acl}, acl_update_params.ACLUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "description": description,
+                    "forward_locally": forward_locally,
+                    "lan_1": lan_1,
+                    "lan_2": lan_2,
+                    "name": name,
+                    "protocols": protocols,
+                },
+                acl_update_params.ACLUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ACLUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[ACL]._unwrapper,
             ),
-            cast_to=cast(Type[ACLUpdateResponse], ResultWrapper[ACLUpdateResponse]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
-    async def list(
+    def list(
         self,
         site_id: str,
         *,
@@ -405,7 +498,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLListResponse:
+    ) -> AsyncPaginator[ACL, AsyncSinglePage[ACL]]:
         """
         Lists Site ACLs associated with an account.
 
@@ -426,16 +519,13 @@ class AsyncACLs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites/{site_id}/acls",
+            page=AsyncSinglePage[ACL],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ACLListResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ACLListResponse], ResultWrapper[ACLListResponse]),
+            model=ACL,
         )
 
     async def delete(
@@ -451,7 +541,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLDeleteResponse:
+    ) -> ACL:
         """
         Remove a specific Site ACL.
 
@@ -484,9 +574,9 @@ class AsyncACLs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ACLDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[ACL]._unwrapper,
             ),
-            cast_to=cast(Type[ACLDeleteResponse], ResultWrapper[ACLDeleteResponse]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
     async def get(
@@ -501,7 +591,7 @@ class AsyncACLs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ACLGetResponse:
+    ) -> ACL:
         """
         Get a specific Site ACL.
 
@@ -533,9 +623,9 @@ class AsyncACLs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ACLGetResponse]._unwrapper,
+                post_parser=ResultWrapper[ACL]._unwrapper,
             ),
-            cast_to=cast(Type[ACLGetResponse], ResultWrapper[ACLGetResponse]),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
 

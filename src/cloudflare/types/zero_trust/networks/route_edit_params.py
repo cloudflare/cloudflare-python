@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["RouteEditParams"]
 
@@ -17,15 +17,5 @@ class RouteEditParams(TypedDict, total=False):
     network: str
     """The private IPv4 or IPv6 range connected by the route, in CIDR notation."""
 
-    tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"]
-    """The type of tunnel."""
-
-    tunnel_id: object
-    """UUID of the Cloudflare Tunnel serving the route."""
-
-    virtual_network_id: object
-    """UUID of the Tunnel Virtual Network this route belongs to.
-
-    If no virtual networks are configured, the route is assigned to the default
-    virtual network of the account.
-    """
+    virtual_network_id: str
+    """UUID of the virtual network."""

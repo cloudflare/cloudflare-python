@@ -115,7 +115,7 @@ class Tunnels(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        tunnel_secret: object,
+        tunnel_secret: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -129,10 +129,10 @@ class Tunnels(SyncAPIResource):
         Args:
           account_id: Cloudflare account ID
 
-          name: A user-friendly name for the tunnel.
+          name: A user-friendly name for a tunnel.
 
-          tunnel_secret: Sets the password required to run the tunnel. Must be at least 32 bytes and
-              encoded as a base64 string.
+          tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
+              bytes and encoded as a base64 string.
 
           extra_headers: Send extra headers
 
@@ -313,7 +313,7 @@ class Tunnels(SyncAPIResource):
 
           tunnel_id: UUID of the tunnel.
 
-          name: A user-friendly name for the tunnel.
+          name: A user-friendly name for a tunnel.
 
           tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
               bytes and encoded as a base64 string.
@@ -433,7 +433,7 @@ class AsyncTunnels(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        tunnel_secret: object,
+        tunnel_secret: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -447,10 +447,10 @@ class AsyncTunnels(AsyncAPIResource):
         Args:
           account_id: Cloudflare account ID
 
-          name: A user-friendly name for the tunnel.
+          name: A user-friendly name for a tunnel.
 
-          tunnel_secret: Sets the password required to run the tunnel. Must be at least 32 bytes and
-              encoded as a base64 string.
+          tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
+              bytes and encoded as a base64 string.
 
           extra_headers: Send extra headers
 
@@ -631,7 +631,7 @@ class AsyncTunnels(AsyncAPIResource):
 
           tunnel_id: UUID of the tunnel.
 
-          name: A user-friendly name for the tunnel.
+          name: A user-friendly name for a tunnel.
 
           tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
               bytes and encoded as a base64 string.

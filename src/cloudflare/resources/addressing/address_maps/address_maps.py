@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -95,7 +95,7 @@ class AddressMaps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressMapCreateResponse:
+    ) -> Optional[AddressMapCreateResponse]:
         """
         Create a new address map under the account.
 
@@ -132,9 +132,9 @@ class AddressMaps(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AddressMapCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AddressMapCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AddressMapCreateResponse], ResultWrapper[AddressMapCreateResponse]),
+            cast_to=cast(Type[Optional[AddressMapCreateResponse]], ResultWrapper[AddressMapCreateResponse]),
         )
 
     def list(
@@ -208,22 +208,17 @@ class AddressMaps(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return cast(
-            Optional[AddressMapDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-                body=maybe_transform(body, address_map_delete_params.AddressMapDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AddressMapDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AddressMapDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
+            body=maybe_transform(body, address_map_delete_params.AddressMapDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AddressMapDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[AddressMapDeleteResponse]], ResultWrapper[AddressMapDeleteResponse]),
         )
 
     def edit(
@@ -240,7 +235,7 @@ class AddressMaps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressMap:
+    ) -> Optional[AddressMap]:
         """
         Modify properties of an address map owned by the account.
 
@@ -288,9 +283,9 @@ class AddressMaps(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AddressMap]._unwrapper,
+                post_parser=ResultWrapper[Optional[AddressMap]]._unwrapper,
             ),
-            cast_to=cast(Type[AddressMap], ResultWrapper[AddressMap]),
+            cast_to=cast(Type[Optional[AddressMap]], ResultWrapper[AddressMap]),
         )
 
     def get(
@@ -304,7 +299,7 @@ class AddressMaps(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressMapGetResponse:
+    ) -> Optional[AddressMapGetResponse]:
         """
         Show a particular address map owned by the account.
 
@@ -332,9 +327,9 @@ class AddressMaps(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AddressMapGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AddressMapGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AddressMapGetResponse], ResultWrapper[AddressMapGetResponse]),
+            cast_to=cast(Type[Optional[AddressMapGetResponse]], ResultWrapper[AddressMapGetResponse]),
         )
 
 
@@ -371,7 +366,7 @@ class AsyncAddressMaps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressMapCreateResponse:
+    ) -> Optional[AddressMapCreateResponse]:
         """
         Create a new address map under the account.
 
@@ -408,9 +403,9 @@ class AsyncAddressMaps(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AddressMapCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AddressMapCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AddressMapCreateResponse], ResultWrapper[AddressMapCreateResponse]),
+            cast_to=cast(Type[Optional[AddressMapCreateResponse]], ResultWrapper[AddressMapCreateResponse]),
         )
 
     def list(
@@ -484,22 +479,17 @@ class AsyncAddressMaps(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return cast(
-            Optional[AddressMapDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-                body=await async_maybe_transform(body, address_map_delete_params.AddressMapDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AddressMapDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AddressMapDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
+            body=await async_maybe_transform(body, address_map_delete_params.AddressMapDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AddressMapDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[AddressMapDeleteResponse]], ResultWrapper[AddressMapDeleteResponse]),
         )
 
     async def edit(
@@ -516,7 +506,7 @@ class AsyncAddressMaps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressMap:
+    ) -> Optional[AddressMap]:
         """
         Modify properties of an address map owned by the account.
 
@@ -564,9 +554,9 @@ class AsyncAddressMaps(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AddressMap]._unwrapper,
+                post_parser=ResultWrapper[Optional[AddressMap]]._unwrapper,
             ),
-            cast_to=cast(Type[AddressMap], ResultWrapper[AddressMap]),
+            cast_to=cast(Type[Optional[AddressMap]], ResultWrapper[AddressMap]),
         )
 
     async def get(
@@ -580,7 +570,7 @@ class AsyncAddressMaps(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AddressMapGetResponse:
+    ) -> Optional[AddressMapGetResponse]:
         """
         Show a particular address map owned by the account.
 
@@ -608,9 +598,9 @@ class AsyncAddressMaps(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AddressMapGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[AddressMapGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[AddressMapGetResponse], ResultWrapper[AddressMapGetResponse]),
+            cast_to=cast(Type[Optional[AddressMapGetResponse]], ResultWrapper[AddressMapGetResponse]),
         )
 
 

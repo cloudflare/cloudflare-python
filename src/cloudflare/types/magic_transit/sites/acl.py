@@ -1,9 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
 from ...._models import BaseModel
-from .allowed_protocol import AllowedProtocol
 from .acl_configuration import ACLConfiguration
 
 __all__ = ["ACL"]
@@ -31,4 +31,4 @@ class ACL(BaseModel):
     name: Optional[str] = None
     """The name of the ACL."""
 
-    protocols: Optional[List[AllowedProtocol]] = None
+    protocols: Optional[List[Literal["tcp", "udp", "icmp"]]] = None

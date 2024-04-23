@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.networks import (
     Route,
@@ -26,7 +27,7 @@ class TestRoutes:
     def test_method_create(self, client: Cloudflare) -> None:
         route = client.zero_trust.networks.routes.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ip_network="172.16.0.0/16",
+            network="172.16.0.0/16",
         )
         assert_matches_type(Route, route, path=["response"])
 
@@ -35,9 +36,9 @@ class TestRoutes:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         route = client.zero_trust.networks.routes.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ip_network="172.16.0.0/16",
+            network="172.16.0.0/16",
             comment="Example comment for this route.",
-            virtual_network_id={},
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Route, route, path=["response"])
 
@@ -46,7 +47,7 @@ class TestRoutes:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.networks.routes.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ip_network="172.16.0.0/16",
+            network="172.16.0.0/16",
         )
 
         assert response.is_closed is True
@@ -59,7 +60,7 @@ class TestRoutes:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.networks.routes.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ip_network="172.16.0.0/16",
+            network="172.16.0.0/16",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,7 +76,7 @@ class TestRoutes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.networks.routes.with_raw_response.create(
                 account_id="",
-                ip_network="172.16.0.0/16",
+                network="172.16.0.0/16",
             )
 
     @pytest.mark.skip()
@@ -92,16 +93,16 @@ class TestRoutes:
         route = client.zero_trust.networks.routes.list(
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Example comment for this route.",
-            existed_at={},
-            is_deleted={},
-            network_subset={},
-            network_superset={},
+            existed_at=parse_datetime("2019-10-12T07:20:50.52Z"),
+            is_deleted=True,
+            network_subset="172.16.0.0/16",
+            network_superset="172.16.0.0/16",
             page=1,
             per_page=1,
             route_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             tun_types="cfd_tunnel,warp_connector",
-            tunnel_id={},
-            virtual_network_id={},
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(SyncV4PagePaginationArray[Teamnet], route, path=["response"])
 
@@ -208,9 +209,7 @@ class TestRoutes:
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Example comment for this route.",
             network="172.16.0.0/16",
-            tun_type="cfd_tunnel",
-            tunnel_id={},
-            virtual_network_id={},
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Route, route, path=["response"])
 
@@ -266,7 +265,7 @@ class TestAsyncRoutes:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.zero_trust.networks.routes.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ip_network="172.16.0.0/16",
+            network="172.16.0.0/16",
         )
         assert_matches_type(Route, route, path=["response"])
 
@@ -275,9 +274,9 @@ class TestAsyncRoutes:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.zero_trust.networks.routes.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ip_network="172.16.0.0/16",
+            network="172.16.0.0/16",
             comment="Example comment for this route.",
-            virtual_network_id={},
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Route, route, path=["response"])
 
@@ -286,7 +285,7 @@ class TestAsyncRoutes:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.networks.routes.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ip_network="172.16.0.0/16",
+            network="172.16.0.0/16",
         )
 
         assert response.is_closed is True
@@ -299,7 +298,7 @@ class TestAsyncRoutes:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.networks.routes.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ip_network="172.16.0.0/16",
+            network="172.16.0.0/16",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -315,7 +314,7 @@ class TestAsyncRoutes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.networks.routes.with_raw_response.create(
                 account_id="",
-                ip_network="172.16.0.0/16",
+                network="172.16.0.0/16",
             )
 
     @pytest.mark.skip()
@@ -332,16 +331,16 @@ class TestAsyncRoutes:
         route = await async_client.zero_trust.networks.routes.list(
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Example comment for this route.",
-            existed_at={},
-            is_deleted={},
-            network_subset={},
-            network_superset={},
+            existed_at=parse_datetime("2019-10-12T07:20:50.52Z"),
+            is_deleted=True,
+            network_subset="172.16.0.0/16",
+            network_superset="172.16.0.0/16",
             page=1,
             per_page=1,
             route_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             tun_types="cfd_tunnel,warp_connector",
-            tunnel_id={},
-            virtual_network_id={},
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(AsyncV4PagePaginationArray[Teamnet], route, path=["response"])
 
@@ -448,9 +447,7 @@ class TestAsyncRoutes:
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Example comment for this route.",
             network="172.16.0.0/16",
-            tun_type="cfd_tunnel",
-            tunnel_id={},
-            virtual_network_id={},
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Route, route, path=["response"])
 

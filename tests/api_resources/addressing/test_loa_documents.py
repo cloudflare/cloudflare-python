@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -24,7 +24,7 @@ class TestLOADocuments:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             loa_document="@document.pdf",
         )
-        assert_matches_type(LOADocumentCreateResponse, loa_document, path=["response"])
+        assert_matches_type(Optional[LOADocumentCreateResponse], loa_document, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -37,7 +37,7 @@ class TestLOADocuments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         loa_document = response.parse()
-        assert_matches_type(LOADocumentCreateResponse, loa_document, path=["response"])
+        assert_matches_type(Optional[LOADocumentCreateResponse], loa_document, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -50,7 +50,7 @@ class TestLOADocuments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             loa_document = response.parse()
-            assert_matches_type(LOADocumentCreateResponse, loa_document, path=["response"])
+            assert_matches_type(Optional[LOADocumentCreateResponse], loa_document, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,7 +74,7 @@ class TestAsyncLOADocuments:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             loa_document="@document.pdf",
         )
-        assert_matches_type(LOADocumentCreateResponse, loa_document, path=["response"])
+        assert_matches_type(Optional[LOADocumentCreateResponse], loa_document, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -87,7 +87,7 @@ class TestAsyncLOADocuments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         loa_document = await response.parse()
-        assert_matches_type(LOADocumentCreateResponse, loa_document, path=["response"])
+        assert_matches_type(Optional[LOADocumentCreateResponse], loa_document, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -100,7 +100,7 @@ class TestAsyncLOADocuments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             loa_document = await response.parse()
-            assert_matches_type(LOADocumentCreateResponse, loa_document, path=["response"])
+            assert_matches_type(Optional[LOADocumentCreateResponse], loa_document, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

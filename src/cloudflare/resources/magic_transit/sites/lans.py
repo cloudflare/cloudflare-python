@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -20,15 +20,17 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
 from ....types.magic_transit.sites import (
-    LANGetResponse,
-    LANListResponse,
+    LAN,
+    NatParam,
     LANCreateResponse,
-    LANDeleteResponse,
-    LANUpdateResponse,
+    RoutedSubnetParam,
+    LANStaticAddressingParam,
     lan_create_params,
     lan_delete_params,
     lan_update_params,
@@ -51,7 +53,13 @@ class LANs(SyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        lan: lan_create_params.LAN | NotGiven = NOT_GIVEN,
+        physport: int,
+        vlan_tag: int,
+        ha_link: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        nat: NatParam | NotGiven = NOT_GIVEN,
+        routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
+        static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,6 +77,15 @@ class LANs(SyncAPIResource):
 
           site_id: Identifier
 
+          vlan_tag: VLAN port number.
+
+          ha_link: mark true to use this LAN for HA probing. only works for site with HA turned on.
+              only one LAN can be set as the ha_link.
+
+          static_addressing: If the site is not configured in high availability mode, this configuration is
+              optional (if omitted, use DHCP). However, if in high availability mode,
+              static_address is required along with secondary and virtual address.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -83,7 +100,18 @@ class LANs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return self._post(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans",
-            body=maybe_transform({"lan": lan}, lan_create_params.LANCreateParams),
+            body=maybe_transform(
+                {
+                    "physport": physport,
+                    "vlan_tag": vlan_tag,
+                    "ha_link": ha_link,
+                    "name": name,
+                    "nat": nat,
+                    "routed_subnets": routed_subnets,
+                    "static_addressing": static_addressing,
+                },
+                lan_create_params.LANCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -100,14 +128,19 @@ class LANs(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        lan: lan_update_params.LAN | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        nat: NatParam | NotGiven = NOT_GIVEN,
+        physport: int | NotGiven = NOT_GIVEN,
+        routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
+        static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
+        vlan_tag: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LANUpdateResponse:
+    ) -> LAN:
         """
         Update a specific LAN.
 
@@ -117,6 +150,12 @@ class LANs(SyncAPIResource):
           site_id: Identifier
 
           lan_id: Identifier
+
+          static_addressing: If the site is not configured in high availability mode, this configuration is
+              optional (if omitted, use DHCP). However, if in high availability mode,
+              static_address is required along with secondary and virtual address.
+
+          vlan_tag: VLAN port number.
 
           extra_headers: Send extra headers
 
@@ -134,15 +173,25 @@ class LANs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return self._put(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
-            body=maybe_transform({"lan": lan}, lan_update_params.LANUpdateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "nat": nat,
+                    "physport": physport,
+                    "routed_subnets": routed_subnets,
+                    "static_addressing": static_addressing,
+                    "vlan_tag": vlan_tag,
+                },
+                lan_update_params.LANUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[LANUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[LAN]._unwrapper,
             ),
-            cast_to=cast(Type[LANUpdateResponse], ResultWrapper[LANUpdateResponse]),
+            cast_to=cast(Type[LAN], ResultWrapper[LAN]),
         )
 
     def list(
@@ -156,7 +205,7 @@ class LANs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LANListResponse:
+    ) -> SyncSinglePage[LAN]:
         """
         Lists LANs associated with an account and site.
 
@@ -177,16 +226,13 @@ class LANs(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans",
+            page=SyncSinglePage[LAN],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[LANListResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[LANListResponse], ResultWrapper[LANListResponse]),
+            model=LAN,
         )
 
     def delete(
@@ -202,7 +248,7 @@ class LANs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LANDeleteResponse:
+    ) -> LAN:
         """
         Remove a specific LAN.
 
@@ -235,9 +281,9 @@ class LANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[LANDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[LAN]._unwrapper,
             ),
-            cast_to=cast(Type[LANDeleteResponse], ResultWrapper[LANDeleteResponse]),
+            cast_to=cast(Type[LAN], ResultWrapper[LAN]),
         )
 
     def get(
@@ -252,7 +298,7 @@ class LANs(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LANGetResponse:
+    ) -> LAN:
         """
         Get a specific LAN.
 
@@ -284,9 +330,9 @@ class LANs(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[LANGetResponse]._unwrapper,
+                post_parser=ResultWrapper[LAN]._unwrapper,
             ),
-            cast_to=cast(Type[LANGetResponse], ResultWrapper[LANGetResponse]),
+            cast_to=cast(Type[LAN], ResultWrapper[LAN]),
         )
 
 
@@ -304,7 +350,13 @@ class AsyncLANs(AsyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        lan: lan_create_params.LAN | NotGiven = NOT_GIVEN,
+        physport: int,
+        vlan_tag: int,
+        ha_link: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        nat: NatParam | NotGiven = NOT_GIVEN,
+        routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
+        static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -322,6 +374,15 @@ class AsyncLANs(AsyncAPIResource):
 
           site_id: Identifier
 
+          vlan_tag: VLAN port number.
+
+          ha_link: mark true to use this LAN for HA probing. only works for site with HA turned on.
+              only one LAN can be set as the ha_link.
+
+          static_addressing: If the site is not configured in high availability mode, this configuration is
+              optional (if omitted, use DHCP). However, if in high availability mode,
+              static_address is required along with secondary and virtual address.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -336,7 +397,18 @@ class AsyncLANs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
         return await self._post(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans",
-            body=await async_maybe_transform({"lan": lan}, lan_create_params.LANCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "physport": physport,
+                    "vlan_tag": vlan_tag,
+                    "ha_link": ha_link,
+                    "name": name,
+                    "nat": nat,
+                    "routed_subnets": routed_subnets,
+                    "static_addressing": static_addressing,
+                },
+                lan_create_params.LANCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -353,14 +425,19 @@ class AsyncLANs(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        lan: lan_update_params.LAN | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        nat: NatParam | NotGiven = NOT_GIVEN,
+        physport: int | NotGiven = NOT_GIVEN,
+        routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
+        static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
+        vlan_tag: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LANUpdateResponse:
+    ) -> LAN:
         """
         Update a specific LAN.
 
@@ -370,6 +447,12 @@ class AsyncLANs(AsyncAPIResource):
           site_id: Identifier
 
           lan_id: Identifier
+
+          static_addressing: If the site is not configured in high availability mode, this configuration is
+              optional (if omitted, use DHCP). However, if in high availability mode,
+              static_address is required along with secondary and virtual address.
+
+          vlan_tag: VLAN port number.
 
           extra_headers: Send extra headers
 
@@ -387,18 +470,28 @@ class AsyncLANs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return await self._put(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
-            body=await async_maybe_transform({"lan": lan}, lan_update_params.LANUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "nat": nat,
+                    "physport": physport,
+                    "routed_subnets": routed_subnets,
+                    "static_addressing": static_addressing,
+                    "vlan_tag": vlan_tag,
+                },
+                lan_update_params.LANUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[LANUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[LAN]._unwrapper,
             ),
-            cast_to=cast(Type[LANUpdateResponse], ResultWrapper[LANUpdateResponse]),
+            cast_to=cast(Type[LAN], ResultWrapper[LAN]),
         )
 
-    async def list(
+    def list(
         self,
         site_id: str,
         *,
@@ -409,7 +502,7 @@ class AsyncLANs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LANListResponse:
+    ) -> AsyncPaginator[LAN, AsyncSinglePage[LAN]]:
         """
         Lists LANs associated with an account and site.
 
@@ -430,16 +523,13 @@ class AsyncLANs(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans",
+            page=AsyncSinglePage[LAN],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[LANListResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[LANListResponse], ResultWrapper[LANListResponse]),
+            model=LAN,
         )
 
     async def delete(
@@ -455,7 +545,7 @@ class AsyncLANs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LANDeleteResponse:
+    ) -> LAN:
         """
         Remove a specific LAN.
 
@@ -488,9 +578,9 @@ class AsyncLANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[LANDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[LAN]._unwrapper,
             ),
-            cast_to=cast(Type[LANDeleteResponse], ResultWrapper[LANDeleteResponse]),
+            cast_to=cast(Type[LAN], ResultWrapper[LAN]),
         )
 
     async def get(
@@ -505,7 +595,7 @@ class AsyncLANs(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LANGetResponse:
+    ) -> LAN:
         """
         Get a specific LAN.
 
@@ -537,9 +627,9 @@ class AsyncLANs(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[LANGetResponse]._unwrapper,
+                post_parser=ResultWrapper[LAN]._unwrapper,
             ),
-            cast_to=cast(Type[LANGetResponse], ResultWrapper[LANGetResponse]),
+            cast_to=cast(Type[LAN], ResultWrapper[LAN]),
         )
 
 

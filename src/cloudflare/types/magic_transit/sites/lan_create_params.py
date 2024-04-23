@@ -9,29 +9,25 @@ from .nat_param import NatParam
 from .routed_subnet_param import RoutedSubnetParam
 from .lan_static_addressing_param import LANStaticAddressingParam
 
-__all__ = ["LANCreateParams", "LAN"]
+__all__ = ["LANCreateParams"]
 
 
 class LANCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    lan: LAN
-
-
-class LAN(TypedDict, total=False):
     physport: Required[int]
 
     vlan_tag: Required[int]
     """VLAN port number."""
-
-    description: str
 
     ha_link: bool
     """mark true to use this LAN for HA probing.
 
     only works for site with HA turned on. only one LAN can be set as the ha_link.
     """
+
+    name: str
 
     nat: NatParam
 

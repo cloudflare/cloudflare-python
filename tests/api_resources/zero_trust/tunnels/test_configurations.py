@@ -25,7 +25,7 @@ class TestConfigurations:
     def test_method_update(self, client: Cloudflare) -> None:
         configuration = client.zero_trust.tunnels.configurations.update(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
 
@@ -34,7 +34,7 @@ class TestConfigurations:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         configuration = client.zero_trust.tunnels.configurations.update(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "ingress": [
                     {
@@ -143,7 +143,7 @@ class TestConfigurations:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.tunnels.configurations.with_raw_response.update(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -156,7 +156,7 @@ class TestConfigurations:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.tunnels.configurations.with_streaming_response.update(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -178,7 +178,7 @@ class TestConfigurations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             client.zero_trust.tunnels.configurations.with_raw_response.update(
                 "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @pytest.mark.skip()
@@ -186,7 +186,7 @@ class TestConfigurations:
     def test_method_get(self, client: Cloudflare) -> None:
         configuration = client.zero_trust.tunnels.configurations.get(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 
@@ -195,7 +195,7 @@ class TestConfigurations:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.tunnels.configurations.with_raw_response.get(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -208,7 +208,7 @@ class TestConfigurations:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.tunnels.configurations.with_streaming_response.get(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -230,7 +230,7 @@ class TestConfigurations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             client.zero_trust.tunnels.configurations.with_raw_response.get(
                 "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="699d98642c564d2e855e9661899b7252",
             )
 
 
@@ -242,7 +242,7 @@ class TestAsyncConfigurations:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.zero_trust.tunnels.configurations.update(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
 
@@ -251,7 +251,7 @@ class TestAsyncConfigurations:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.zero_trust.tunnels.configurations.update(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "ingress": [
                     {
@@ -360,7 +360,7 @@ class TestAsyncConfigurations:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.tunnels.configurations.with_raw_response.update(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -373,7 +373,7 @@ class TestAsyncConfigurations:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.tunnels.configurations.with_streaming_response.update(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -395,7 +395,7 @@ class TestAsyncConfigurations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.zero_trust.tunnels.configurations.with_raw_response.update(
                 "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @pytest.mark.skip()
@@ -403,7 +403,7 @@ class TestAsyncConfigurations:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.zero_trust.tunnels.configurations.get(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 
@@ -412,7 +412,7 @@ class TestAsyncConfigurations:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.tunnels.configurations.with_raw_response.get(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         )
 
         assert response.is_closed is True
@@ -425,7 +425,7 @@ class TestAsyncConfigurations:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.tunnels.configurations.with_streaming_response.get(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -447,5 +447,5 @@ class TestAsyncConfigurations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.zero_trust.tunnels.configurations.with_raw_response.get(
                 "",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="699d98642c564d2e855e9661899b7252",
             )

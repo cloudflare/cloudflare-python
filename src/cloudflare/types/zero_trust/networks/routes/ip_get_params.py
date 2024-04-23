@@ -11,9 +11,5 @@ class IPGetParams(TypedDict, total=False):
     account_id: Required[str]
     """Cloudflare account ID"""
 
-    virtual_network_id: object
-    """UUID of the Tunnel Virtual Network this route belongs to.
-
-    If no virtual networks are configured, the route is assigned to the default
-    virtual network of the account.
-    """
+    virtual_network_id: str
+    """UUID of the virtual network."""

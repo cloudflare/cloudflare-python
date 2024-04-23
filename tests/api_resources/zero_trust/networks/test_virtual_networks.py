@@ -93,11 +93,10 @@ class TestVirtualNetworks:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         virtual_network = client.zero_trust.networks.virtual_networks.list(
             account_id="699d98642c564d2e855e9661899b7252",
-            is_default={},
-            is_deleted={},
+            id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            is_default=True,
+            is_deleted=True,
             name="us-east-1-vpc",
-            vnet_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            vnet_name="us-east-1-vpc",
         )
         assert_matches_type(SyncSinglePage[VirtualNetwork], virtual_network, path=["response"])
 
@@ -330,11 +329,10 @@ class TestAsyncVirtualNetworks:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         virtual_network = await async_client.zero_trust.networks.virtual_networks.list(
             account_id="699d98642c564d2e855e9661899b7252",
-            is_default={},
-            is_deleted={},
+            id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            is_default=True,
+            is_deleted=True,
             name="us-east-1-vpc",
-            vnet_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            vnet_name="us-east-1-vpc",
         )
         assert_matches_type(AsyncSinglePage[VirtualNetwork], virtual_network, path=["response"])
 

@@ -9,7 +9,7 @@ from .nat_param import NatParam
 from .routed_subnet_param import RoutedSubnetParam
 from .lan_static_addressing_param import LANStaticAddressingParam
 
-__all__ = ["LANUpdateParams", "LAN"]
+__all__ = ["LANUpdateParams"]
 
 
 class LANUpdateParams(TypedDict, total=False):
@@ -19,11 +19,7 @@ class LANUpdateParams(TypedDict, total=False):
     site_id: Required[str]
     """Identifier"""
 
-    lan: LAN
-
-
-class LAN(TypedDict, total=False):
-    description: str
+    name: str
 
     nat: NatParam
 

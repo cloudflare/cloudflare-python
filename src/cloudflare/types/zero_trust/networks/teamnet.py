@@ -16,13 +16,13 @@ class Teamnet(BaseModel):
     comment: Optional[str] = None
     """Optional remark describing the route."""
 
-    created_at: Optional[object] = None
-    """Timestamp of when the route was created."""
+    created_at: Optional[datetime] = None
+    """Timestamp of when the resource was created."""
 
     deleted_at: Optional[datetime] = None
-    """Timestamp of when the route was deleted.
+    """Timestamp of when the resource was deleted.
 
-    If `null`, the route has not been deleted.
+    If `null`, the resource has not been deleted.
     """
 
     network: Optional[str] = None
@@ -31,18 +31,14 @@ class Teamnet(BaseModel):
     tun_type: Optional[Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"]] = None
     """The type of tunnel."""
 
-    tunnel_id: Optional[object] = None
-    """UUID of the Cloudflare Tunnel serving the route."""
+    tunnel_id: Optional[str] = None
+    """UUID of the tunnel."""
 
-    tunnel_name: Optional[object] = None
-    """The user-friendly name of the Cloudflare Tunnel serving the route."""
+    tunnel_name: Optional[str] = None
+    """A user-friendly name for a tunnel."""
 
-    virtual_network_id: Optional[object] = None
-    """UUID of the Tunnel Virtual Network this route belongs to.
-
-    If no virtual networks are configured, the route is assigned to the default
-    virtual network of the account.
-    """
+    virtual_network_id: Optional[str] = None
+    """UUID of the virtual network."""
 
     virtual_network_name: Optional[str] = None
     """A user-friendly name for the virtual network."""

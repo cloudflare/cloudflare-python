@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -80,22 +80,17 @@ class Zones(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return cast(
-            Optional[ZoneUpdateResponse],
-            self._put(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
-                body=maybe_transform(body, zone_update_params.ZoneUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ZoneUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ZoneUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+            body=maybe_transform(body, zone_update_params.ZoneUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ZoneUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ZoneUpdateResponse]], ResultWrapper[ZoneUpdateResponse]),
         )
 
     def delete(
@@ -136,22 +131,17 @@ class Zones(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return cast(
-            Optional[ZoneDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
-                body=maybe_transform(body, zone_delete_params.ZoneDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ZoneDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+            body=maybe_transform(body, zone_delete_params.ZoneDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
         )
 
 
@@ -202,22 +192,17 @@ class AsyncZones(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return cast(
-            Optional[ZoneUpdateResponse],
-            await self._put(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
-                body=await async_maybe_transform(body, zone_update_params.ZoneUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ZoneUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ZoneUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+            body=await async_maybe_transform(body, zone_update_params.ZoneUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ZoneUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ZoneUpdateResponse]], ResultWrapper[ZoneUpdateResponse]),
         )
 
     async def delete(
@@ -258,22 +243,17 @@ class AsyncZones(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
-        return cast(
-            Optional[ZoneDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
-                body=await async_maybe_transform(body, zone_delete_params.ZoneDeleteParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ZoneDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
+            body=await async_maybe_transform(body, zone_delete_params.ZoneDeleteParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
         )
 
 
