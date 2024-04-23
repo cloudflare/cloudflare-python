@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -43,7 +43,7 @@ class ActivationCheck(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ActivationCheckTriggerResponse:
+    ) -> Optional[ActivationCheckTriggerResponse]:
         """Triggeres a new activation check for a PENDING Zone.
 
         This can be triggered every
@@ -69,9 +69,9 @@ class ActivationCheck(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ActivationCheckTriggerResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[ActivationCheckTriggerResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[ActivationCheckTriggerResponse], ResultWrapper[ActivationCheckTriggerResponse]),
+            cast_to=cast(Type[Optional[ActivationCheckTriggerResponse]], ResultWrapper[ActivationCheckTriggerResponse]),
         )
 
 
@@ -94,7 +94,7 @@ class AsyncActivationCheck(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ActivationCheckTriggerResponse:
+    ) -> Optional[ActivationCheckTriggerResponse]:
         """Triggeres a new activation check for a PENDING Zone.
 
         This can be triggered every
@@ -120,9 +120,9 @@ class AsyncActivationCheck(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ActivationCheckTriggerResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[ActivationCheckTriggerResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[ActivationCheckTriggerResponse], ResultWrapper[ActivationCheckTriggerResponse]),
+            cast_to=cast(Type[Optional[ActivationCheckTriggerResponse]], ResultWrapper[ActivationCheckTriggerResponse]),
         )
 
 

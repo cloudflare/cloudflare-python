@@ -292,7 +292,7 @@ from cloudflare.types.zones import ActivationCheckTriggerResponse
 
 Methods:
 
-- <code title="put /zones/{zone_id}/activation_check">client.zones.activation_check.<a href="./src/cloudflare/resources/zones/activation_check.py">trigger</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/activation_check_trigger_response.py">ActivationCheckTriggerResponse</a></code>
+- <code title="put /zones/{zone_id}/activation_check">client.zones.activation_check.<a href="./src/cloudflare/resources/zones/activation_check.py">trigger</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/activation_check_trigger_response.py">Optional</a></code>
 
 ## DNSSettings
 
