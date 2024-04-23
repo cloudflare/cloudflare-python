@@ -3852,7 +3852,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit.sites import ACL, ACLConfiguration, Subnet
+from cloudflare.types.magic_transit.sites import ACL, ACLConfiguration, AllowedProtocol, Subnet
 ```
 
 Methods:
