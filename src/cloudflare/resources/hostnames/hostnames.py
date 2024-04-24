@@ -3,79 +3,79 @@
 from __future__ import annotations
 
 from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .settings.settings import Settings, AsyncSettings
+from .settings.settings import SettingsResource, AsyncSettingsResource
 
-__all__ = ["Hostnames", "AsyncHostnames"]
+__all__ = ["HostnamesResource", "AsyncHostnamesResource"]
 
 
-class Hostnames(SyncAPIResource):
+class HostnamesResource(SyncAPIResource):
     @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> HostnamesWithRawResponse:
-        return HostnamesWithRawResponse(self)
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> HostnamesWithStreamingResponse:
-        return HostnamesWithStreamingResponse(self)
-
-
-class AsyncHostnames(AsyncAPIResource):
-    @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
+    def with_raw_response(self) -> HostnamesResourceWithRawResponse:
+        return HostnamesResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncHostnamesWithRawResponse:
-        return AsyncHostnamesWithRawResponse(self)
+    def with_streaming_response(self) -> HostnamesResourceWithStreamingResponse:
+        return HostnamesResourceWithStreamingResponse(self)
+
+
+class AsyncHostnamesResource(AsyncAPIResource):
+    @cached_property
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHostnamesWithStreamingResponse:
-        return AsyncHostnamesWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncHostnamesResourceWithRawResponse:
+        return AsyncHostnamesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncHostnamesResourceWithStreamingResponse:
+        return AsyncHostnamesResourceWithStreamingResponse(self)
 
 
-class HostnamesWithRawResponse:
-    def __init__(self, hostnames: Hostnames) -> None:
+class HostnamesResourceWithRawResponse:
+    def __init__(self, hostnames: HostnamesResource) -> None:
         self._hostnames = hostnames
 
     @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._hostnames.settings)
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._hostnames.settings)
 
 
-class AsyncHostnamesWithRawResponse:
-    def __init__(self, hostnames: AsyncHostnames) -> None:
+class AsyncHostnamesResourceWithRawResponse:
+    def __init__(self, hostnames: AsyncHostnamesResource) -> None:
         self._hostnames = hostnames
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._hostnames.settings)
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._hostnames.settings)
 
 
-class HostnamesWithStreamingResponse:
-    def __init__(self, hostnames: Hostnames) -> None:
+class HostnamesResourceWithStreamingResponse:
+    def __init__(self, hostnames: HostnamesResource) -> None:
         self._hostnames = hostnames
 
     @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._hostnames.settings)
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._hostnames.settings)
 
 
-class AsyncHostnamesWithStreamingResponse:
-    def __init__(self, hostnames: AsyncHostnames) -> None:
+class AsyncHostnamesResourceWithStreamingResponse:
+    def __init__(self, hostnames: AsyncHostnamesResource) -> None:
         self._hostnames = hostnames
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._hostnames.settings)
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._hostnames.settings)

@@ -28,17 +28,17 @@ from ....types.intel.indicator_feeds.permission_list_response import PermissionL
 from ....types.intel.indicator_feeds.permission_create_response import PermissionCreateResponse
 from ....types.intel.indicator_feeds.permission_delete_response import PermissionDeleteResponse
 
-__all__ = ["Permissions", "AsyncPermissions"]
+__all__ = ["PermissionsResource", "AsyncPermissionsResource"]
 
 
-class Permissions(SyncAPIResource):
+class PermissionsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PermissionsWithRawResponse:
-        return PermissionsWithRawResponse(self)
+    def with_raw_response(self) -> PermissionsResourceWithRawResponse:
+        return PermissionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PermissionsWithStreamingResponse:
-        return PermissionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> PermissionsResourceWithStreamingResponse:
+        return PermissionsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -184,14 +184,14 @@ class Permissions(SyncAPIResource):
         )
 
 
-class AsyncPermissions(AsyncAPIResource):
+class AsyncPermissionsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPermissionsWithRawResponse:
-        return AsyncPermissionsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPermissionsResourceWithRawResponse:
+        return AsyncPermissionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPermissionsWithStreamingResponse:
-        return AsyncPermissionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPermissionsResourceWithStreamingResponse:
+        return AsyncPermissionsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -337,8 +337,8 @@ class AsyncPermissions(AsyncAPIResource):
         )
 
 
-class PermissionsWithRawResponse:
-    def __init__(self, permissions: Permissions) -> None:
+class PermissionsResourceWithRawResponse:
+    def __init__(self, permissions: PermissionsResource) -> None:
         self._permissions = permissions
 
         self.create = to_raw_response_wrapper(
@@ -352,8 +352,8 @@ class PermissionsWithRawResponse:
         )
 
 
-class AsyncPermissionsWithRawResponse:
-    def __init__(self, permissions: AsyncPermissions) -> None:
+class AsyncPermissionsResourceWithRawResponse:
+    def __init__(self, permissions: AsyncPermissionsResource) -> None:
         self._permissions = permissions
 
         self.create = async_to_raw_response_wrapper(
@@ -367,8 +367,8 @@ class AsyncPermissionsWithRawResponse:
         )
 
 
-class PermissionsWithStreamingResponse:
-    def __init__(self, permissions: Permissions) -> None:
+class PermissionsResourceWithStreamingResponse:
+    def __init__(self, permissions: PermissionsResource) -> None:
         self._permissions = permissions
 
         self.create = to_streamed_response_wrapper(
@@ -382,8 +382,8 @@ class PermissionsWithStreamingResponse:
         )
 
 
-class AsyncPermissionsWithStreamingResponse:
-    def __init__(self, permissions: AsyncPermissions) -> None:
+class AsyncPermissionsResourceWithStreamingResponse:
+    def __init__(self, permissions: AsyncPermissionsResource) -> None:
         self._permissions = permissions
 
         self.create = async_to_streamed_response_wrapper(

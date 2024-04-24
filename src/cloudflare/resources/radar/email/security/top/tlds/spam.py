@@ -28,17 +28,17 @@ from ......._base_client import (
 from .......types.radar.email.security.top.tlds import spam_get_params
 from .......types.radar.email.security.top.tlds.spam_get_response import SpamGetResponse
 
-__all__ = ["Spam", "AsyncSpam"]
+__all__ = ["SpamResource", "AsyncSpamResource"]
 
 
-class Spam(SyncAPIResource):
+class SpamResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SpamWithRawResponse:
-        return SpamWithRawResponse(self)
+    def with_raw_response(self) -> SpamResourceWithRawResponse:
+        return SpamResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SpamWithStreamingResponse:
-        return SpamWithStreamingResponse(self)
+    def with_streaming_response(self) -> SpamResourceWithStreamingResponse:
+        return SpamResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -154,14 +154,14 @@ class Spam(SyncAPIResource):
         )
 
 
-class AsyncSpam(AsyncAPIResource):
+class AsyncSpamResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSpamWithRawResponse:
-        return AsyncSpamWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSpamResourceWithRawResponse:
+        return AsyncSpamResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSpamWithStreamingResponse:
-        return AsyncSpamWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSpamResourceWithStreamingResponse:
+        return AsyncSpamResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -277,8 +277,8 @@ class AsyncSpam(AsyncAPIResource):
         )
 
 
-class SpamWithRawResponse:
-    def __init__(self, spam: Spam) -> None:
+class SpamResourceWithRawResponse:
+    def __init__(self, spam: SpamResource) -> None:
         self._spam = spam
 
         self.get = to_raw_response_wrapper(
@@ -286,8 +286,8 @@ class SpamWithRawResponse:
         )
 
 
-class AsyncSpamWithRawResponse:
-    def __init__(self, spam: AsyncSpam) -> None:
+class AsyncSpamResourceWithRawResponse:
+    def __init__(self, spam: AsyncSpamResource) -> None:
         self._spam = spam
 
         self.get = async_to_raw_response_wrapper(
@@ -295,8 +295,8 @@ class AsyncSpamWithRawResponse:
         )
 
 
-class SpamWithStreamingResponse:
-    def __init__(self, spam: Spam) -> None:
+class SpamResourceWithStreamingResponse:
+    def __init__(self, spam: SpamResource) -> None:
         self._spam = spam
 
         self.get = to_streamed_response_wrapper(
@@ -304,8 +304,8 @@ class SpamWithStreamingResponse:
         )
 
 
-class AsyncSpamWithStreamingResponse:
-    def __init__(self, spam: AsyncSpam) -> None:
+class AsyncSpamResourceWithStreamingResponse:
+    def __init__(self, spam: AsyncSpamResource) -> None:
         self._spam = spam
 
         self.get = async_to_streamed_response_wrapper(

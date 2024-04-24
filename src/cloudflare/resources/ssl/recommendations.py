@@ -21,17 +21,17 @@ from ..._base_client import (
 )
 from ...types.ssl.recommendation_get_response import RecommendationGetResponse
 
-__all__ = ["Recommendations", "AsyncRecommendations"]
+__all__ = ["RecommendationsResource", "AsyncRecommendationsResource"]
 
 
-class Recommendations(SyncAPIResource):
+class RecommendationsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RecommendationsWithRawResponse:
-        return RecommendationsWithRawResponse(self)
+    def with_raw_response(self) -> RecommendationsResourceWithRawResponse:
+        return RecommendationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RecommendationsWithStreamingResponse:
-        return RecommendationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> RecommendationsResourceWithStreamingResponse:
+        return RecommendationsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -73,14 +73,14 @@ class Recommendations(SyncAPIResource):
         )
 
 
-class AsyncRecommendations(AsyncAPIResource):
+class AsyncRecommendationsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRecommendationsWithRawResponse:
-        return AsyncRecommendationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRecommendationsResourceWithRawResponse:
+        return AsyncRecommendationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRecommendationsWithStreamingResponse:
-        return AsyncRecommendationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRecommendationsResourceWithStreamingResponse:
+        return AsyncRecommendationsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -122,8 +122,8 @@ class AsyncRecommendations(AsyncAPIResource):
         )
 
 
-class RecommendationsWithRawResponse:
-    def __init__(self, recommendations: Recommendations) -> None:
+class RecommendationsResourceWithRawResponse:
+    def __init__(self, recommendations: RecommendationsResource) -> None:
         self._recommendations = recommendations
 
         self.get = to_raw_response_wrapper(
@@ -131,8 +131,8 @@ class RecommendationsWithRawResponse:
         )
 
 
-class AsyncRecommendationsWithRawResponse:
-    def __init__(self, recommendations: AsyncRecommendations) -> None:
+class AsyncRecommendationsResourceWithRawResponse:
+    def __init__(self, recommendations: AsyncRecommendationsResource) -> None:
         self._recommendations = recommendations
 
         self.get = async_to_raw_response_wrapper(
@@ -140,8 +140,8 @@ class AsyncRecommendationsWithRawResponse:
         )
 
 
-class RecommendationsWithStreamingResponse:
-    def __init__(self, recommendations: Recommendations) -> None:
+class RecommendationsResourceWithStreamingResponse:
+    def __init__(self, recommendations: RecommendationsResource) -> None:
         self._recommendations = recommendations
 
         self.get = to_streamed_response_wrapper(
@@ -149,8 +149,8 @@ class RecommendationsWithStreamingResponse:
         )
 
 
-class AsyncRecommendationsWithStreamingResponse:
-    def __init__(self, recommendations: AsyncRecommendations) -> None:
+class AsyncRecommendationsResourceWithStreamingResponse:
+    def __init__(self, recommendations: AsyncRecommendationsResource) -> None:
         self._recommendations = recommendations
 
         self.get = async_to_streamed_response_wrapper(

@@ -3,79 +3,79 @@
 from __future__ import annotations
 
 from .reports import (
-    Reports,
-    AsyncReports,
-    ReportsWithRawResponse,
-    AsyncReportsWithRawResponse,
-    ReportsWithStreamingResponse,
-    AsyncReportsWithStreamingResponse,
+    ReportsResource,
+    AsyncReportsResource,
+    ReportsResourceWithRawResponse,
+    AsyncReportsResourceWithRawResponse,
+    ReportsResourceWithStreamingResponse,
+    AsyncReportsResourceWithStreamingResponse,
 )
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
-from .reports.reports import Reports, AsyncReports
+from .reports.reports import ReportsResource, AsyncReportsResource
 
-__all__ = ["Analytics", "AsyncAnalytics"]
+__all__ = ["AnalyticsResource", "AsyncAnalyticsResource"]
 
 
-class Analytics(SyncAPIResource):
+class AnalyticsResource(SyncAPIResource):
     @cached_property
-    def reports(self) -> Reports:
-        return Reports(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> AnalyticsWithRawResponse:
-        return AnalyticsWithRawResponse(self)
+    def reports(self) -> ReportsResource:
+        return ReportsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AnalyticsWithStreamingResponse:
-        return AnalyticsWithStreamingResponse(self)
-
-
-class AsyncAnalytics(AsyncAPIResource):
-    @cached_property
-    def reports(self) -> AsyncReports:
-        return AsyncReports(self._client)
+    def with_raw_response(self) -> AnalyticsResourceWithRawResponse:
+        return AnalyticsResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAnalyticsWithRawResponse:
-        return AsyncAnalyticsWithRawResponse(self)
+    def with_streaming_response(self) -> AnalyticsResourceWithStreamingResponse:
+        return AnalyticsResourceWithStreamingResponse(self)
+
+
+class AsyncAnalyticsResource(AsyncAPIResource):
+    @cached_property
+    def reports(self) -> AsyncReportsResource:
+        return AsyncReportsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAnalyticsWithStreamingResponse:
-        return AsyncAnalyticsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncAnalyticsResourceWithRawResponse:
+        return AsyncAnalyticsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAnalyticsResourceWithStreamingResponse:
+        return AsyncAnalyticsResourceWithStreamingResponse(self)
 
 
-class AnalyticsWithRawResponse:
-    def __init__(self, analytics: Analytics) -> None:
+class AnalyticsResourceWithRawResponse:
+    def __init__(self, analytics: AnalyticsResource) -> None:
         self._analytics = analytics
 
     @cached_property
-    def reports(self) -> ReportsWithRawResponse:
-        return ReportsWithRawResponse(self._analytics.reports)
+    def reports(self) -> ReportsResourceWithRawResponse:
+        return ReportsResourceWithRawResponse(self._analytics.reports)
 
 
-class AsyncAnalyticsWithRawResponse:
-    def __init__(self, analytics: AsyncAnalytics) -> None:
+class AsyncAnalyticsResourceWithRawResponse:
+    def __init__(self, analytics: AsyncAnalyticsResource) -> None:
         self._analytics = analytics
 
     @cached_property
-    def reports(self) -> AsyncReportsWithRawResponse:
-        return AsyncReportsWithRawResponse(self._analytics.reports)
+    def reports(self) -> AsyncReportsResourceWithRawResponse:
+        return AsyncReportsResourceWithRawResponse(self._analytics.reports)
 
 
-class AnalyticsWithStreamingResponse:
-    def __init__(self, analytics: Analytics) -> None:
+class AnalyticsResourceWithStreamingResponse:
+    def __init__(self, analytics: AnalyticsResource) -> None:
         self._analytics = analytics
 
     @cached_property
-    def reports(self) -> ReportsWithStreamingResponse:
-        return ReportsWithStreamingResponse(self._analytics.reports)
+    def reports(self) -> ReportsResourceWithStreamingResponse:
+        return ReportsResourceWithStreamingResponse(self._analytics.reports)
 
 
-class AsyncAnalyticsWithStreamingResponse:
-    def __init__(self, analytics: AsyncAnalytics) -> None:
+class AsyncAnalyticsResourceWithStreamingResponse:
+    def __init__(self, analytics: AsyncAnalyticsResource) -> None:
         self._analytics = analytics
 
     @cached_property
-    def reports(self) -> AsyncReportsWithStreamingResponse:
-        return AsyncReportsWithStreamingResponse(self._analytics.reports)
+    def reports(self) -> AsyncReportsResourceWithStreamingResponse:
+        return AsyncReportsResourceWithStreamingResponse(self._analytics.reports)

@@ -7,20 +7,20 @@ from typing import Type, cast
 import httpx
 
 from .dns import (
-    DNS,
-    AsyncDNS,
-    DNSWithRawResponse,
-    AsyncDNSWithRawResponse,
-    DNSWithStreamingResponse,
-    AsyncDNSWithStreamingResponse,
+    DNSResource,
+    AsyncDNSResource,
+    DNSResourceWithRawResponse,
+    AsyncDNSResourceWithRawResponse,
+    DNSResourceWithStreamingResponse,
+    AsyncDNSResourceWithStreamingResponse,
 )
 from .rules import (
-    Rules,
-    AsyncRules,
-    RulesWithRawResponse,
-    AsyncRulesWithRawResponse,
-    RulesWithStreamingResponse,
-    AsyncRulesWithStreamingResponse,
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -29,12 +29,12 @@ from ..._utils import (
 )
 from ..._compat import cached_property
 from .addresses import (
-    Addresses,
-    AsyncAddresses,
-    AddressesWithRawResponse,
-    AsyncAddressesWithRawResponse,
-    AddressesWithStreamingResponse,
-    AsyncAddressesWithStreamingResponse,
+    AddressesResource,
+    AsyncAddressesResource,
+    AddressesResourceWithRawResponse,
+    AsyncAddressesResourceWithRawResponse,
+    AddressesResourceWithStreamingResponse,
+    AsyncAddressesResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -44,36 +44,36 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from .rules.rules import Rules, AsyncRules
+from .rules.rules import RulesResource, AsyncRulesResource
 from ..._base_client import (
     make_request_options,
 )
 from ...types.email_routing import email_routing_enable_params, email_routing_disable_params
 from ...types.email_routing.settings import Settings
 
-__all__ = ["EmailRouting", "AsyncEmailRouting"]
+__all__ = ["EmailRoutingResource", "AsyncEmailRoutingResource"]
 
 
-class EmailRouting(SyncAPIResource):
+class EmailRoutingResource(SyncAPIResource):
     @cached_property
-    def dns(self) -> DNS:
-        return DNS(self._client)
-
-    @cached_property
-    def rules(self) -> Rules:
-        return Rules(self._client)
+    def dns(self) -> DNSResource:
+        return DNSResource(self._client)
 
     @cached_property
-    def addresses(self) -> Addresses:
-        return Addresses(self._client)
+    def rules(self) -> RulesResource:
+        return RulesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> EmailRoutingWithRawResponse:
-        return EmailRoutingWithRawResponse(self)
+    def addresses(self) -> AddressesResource:
+        return AddressesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> EmailRoutingWithStreamingResponse:
-        return EmailRoutingWithStreamingResponse(self)
+    def with_raw_response(self) -> EmailRoutingResourceWithRawResponse:
+        return EmailRoutingResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> EmailRoutingResourceWithStreamingResponse:
+        return EmailRoutingResourceWithStreamingResponse(self)
 
     def disable(
         self,
@@ -200,26 +200,26 @@ class EmailRouting(SyncAPIResource):
         )
 
 
-class AsyncEmailRouting(AsyncAPIResource):
+class AsyncEmailRoutingResource(AsyncAPIResource):
     @cached_property
-    def dns(self) -> AsyncDNS:
-        return AsyncDNS(self._client)
+    def dns(self) -> AsyncDNSResource:
+        return AsyncDNSResource(self._client)
 
     @cached_property
-    def rules(self) -> AsyncRules:
-        return AsyncRules(self._client)
+    def rules(self) -> AsyncRulesResource:
+        return AsyncRulesResource(self._client)
 
     @cached_property
-    def addresses(self) -> AsyncAddresses:
-        return AsyncAddresses(self._client)
+    def addresses(self) -> AsyncAddressesResource:
+        return AsyncAddressesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncEmailRoutingWithRawResponse:
-        return AsyncEmailRoutingWithRawResponse(self)
+    def with_raw_response(self) -> AsyncEmailRoutingResourceWithRawResponse:
+        return AsyncEmailRoutingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEmailRoutingWithStreamingResponse:
-        return AsyncEmailRoutingWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncEmailRoutingResourceWithStreamingResponse:
+        return AsyncEmailRoutingResourceWithStreamingResponse(self)
 
     async def disable(
         self,
@@ -346,8 +346,8 @@ class AsyncEmailRouting(AsyncAPIResource):
         )
 
 
-class EmailRoutingWithRawResponse:
-    def __init__(self, email_routing: EmailRouting) -> None:
+class EmailRoutingResourceWithRawResponse:
+    def __init__(self, email_routing: EmailRoutingResource) -> None:
         self._email_routing = email_routing
 
         self.disable = to_raw_response_wrapper(
@@ -361,20 +361,20 @@ class EmailRoutingWithRawResponse:
         )
 
     @cached_property
-    def dns(self) -> DNSWithRawResponse:
-        return DNSWithRawResponse(self._email_routing.dns)
+    def dns(self) -> DNSResourceWithRawResponse:
+        return DNSResourceWithRawResponse(self._email_routing.dns)
 
     @cached_property
-    def rules(self) -> RulesWithRawResponse:
-        return RulesWithRawResponse(self._email_routing.rules)
+    def rules(self) -> RulesResourceWithRawResponse:
+        return RulesResourceWithRawResponse(self._email_routing.rules)
 
     @cached_property
-    def addresses(self) -> AddressesWithRawResponse:
-        return AddressesWithRawResponse(self._email_routing.addresses)
+    def addresses(self) -> AddressesResourceWithRawResponse:
+        return AddressesResourceWithRawResponse(self._email_routing.addresses)
 
 
-class AsyncEmailRoutingWithRawResponse:
-    def __init__(self, email_routing: AsyncEmailRouting) -> None:
+class AsyncEmailRoutingResourceWithRawResponse:
+    def __init__(self, email_routing: AsyncEmailRoutingResource) -> None:
         self._email_routing = email_routing
 
         self.disable = async_to_raw_response_wrapper(
@@ -388,20 +388,20 @@ class AsyncEmailRoutingWithRawResponse:
         )
 
     @cached_property
-    def dns(self) -> AsyncDNSWithRawResponse:
-        return AsyncDNSWithRawResponse(self._email_routing.dns)
+    def dns(self) -> AsyncDNSResourceWithRawResponse:
+        return AsyncDNSResourceWithRawResponse(self._email_routing.dns)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithRawResponse:
-        return AsyncRulesWithRawResponse(self._email_routing.rules)
+    def rules(self) -> AsyncRulesResourceWithRawResponse:
+        return AsyncRulesResourceWithRawResponse(self._email_routing.rules)
 
     @cached_property
-    def addresses(self) -> AsyncAddressesWithRawResponse:
-        return AsyncAddressesWithRawResponse(self._email_routing.addresses)
+    def addresses(self) -> AsyncAddressesResourceWithRawResponse:
+        return AsyncAddressesResourceWithRawResponse(self._email_routing.addresses)
 
 
-class EmailRoutingWithStreamingResponse:
-    def __init__(self, email_routing: EmailRouting) -> None:
+class EmailRoutingResourceWithStreamingResponse:
+    def __init__(self, email_routing: EmailRoutingResource) -> None:
         self._email_routing = email_routing
 
         self.disable = to_streamed_response_wrapper(
@@ -415,20 +415,20 @@ class EmailRoutingWithStreamingResponse:
         )
 
     @cached_property
-    def dns(self) -> DNSWithStreamingResponse:
-        return DNSWithStreamingResponse(self._email_routing.dns)
+    def dns(self) -> DNSResourceWithStreamingResponse:
+        return DNSResourceWithStreamingResponse(self._email_routing.dns)
 
     @cached_property
-    def rules(self) -> RulesWithStreamingResponse:
-        return RulesWithStreamingResponse(self._email_routing.rules)
+    def rules(self) -> RulesResourceWithStreamingResponse:
+        return RulesResourceWithStreamingResponse(self._email_routing.rules)
 
     @cached_property
-    def addresses(self) -> AddressesWithStreamingResponse:
-        return AddressesWithStreamingResponse(self._email_routing.addresses)
+    def addresses(self) -> AddressesResourceWithStreamingResponse:
+        return AddressesResourceWithStreamingResponse(self._email_routing.addresses)
 
 
-class AsyncEmailRoutingWithStreamingResponse:
-    def __init__(self, email_routing: AsyncEmailRouting) -> None:
+class AsyncEmailRoutingResourceWithStreamingResponse:
+    def __init__(self, email_routing: AsyncEmailRoutingResource) -> None:
         self._email_routing = email_routing
 
         self.disable = async_to_streamed_response_wrapper(
@@ -442,13 +442,13 @@ class AsyncEmailRoutingWithStreamingResponse:
         )
 
     @cached_property
-    def dns(self) -> AsyncDNSWithStreamingResponse:
-        return AsyncDNSWithStreamingResponse(self._email_routing.dns)
+    def dns(self) -> AsyncDNSResourceWithStreamingResponse:
+        return AsyncDNSResourceWithStreamingResponse(self._email_routing.dns)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithStreamingResponse:
-        return AsyncRulesWithStreamingResponse(self._email_routing.rules)
+    def rules(self) -> AsyncRulesResourceWithStreamingResponse:
+        return AsyncRulesResourceWithStreamingResponse(self._email_routing.rules)
 
     @cached_property
-    def addresses(self) -> AsyncAddressesWithStreamingResponse:
-        return AsyncAddressesWithStreamingResponse(self._email_routing.addresses)
+    def addresses(self) -> AsyncAddressesResourceWithStreamingResponse:
+        return AsyncAddressesResourceWithStreamingResponse(self._email_routing.addresses)

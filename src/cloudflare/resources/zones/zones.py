@@ -8,12 +8,12 @@ from typing_extensions import Literal
 import httpx
 
 from .holds import (
-    Holds,
-    AsyncHolds,
-    HoldsWithRawResponse,
-    AsyncHoldsWithRawResponse,
-    HoldsWithStreamingResponse,
-    AsyncHoldsWithStreamingResponse,
+    HoldsResource,
+    AsyncHoldsResource,
+    HoldsResourceWithRawResponse,
+    AsyncHoldsResourceWithRawResponse,
+    HoldsResourceWithStreamingResponse,
+    AsyncHoldsResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -21,12 +21,12 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -39,81 +39,81 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .dns_settings import (
-    DNSSettings,
-    AsyncDNSSettings,
-    DNSSettingsWithRawResponse,
-    AsyncDNSSettingsWithRawResponse,
-    DNSSettingsWithStreamingResponse,
-    AsyncDNSSettingsWithStreamingResponse,
+    DNSSettingsResource,
+    AsyncDNSSettingsResource,
+    DNSSettingsResourceWithRawResponse,
+    AsyncDNSSettingsResourceWithRawResponse,
+    DNSSettingsResourceWithStreamingResponse,
+    AsyncDNSSettingsResourceWithStreamingResponse,
 )
 from ...types.zones import zone_edit_params, zone_list_params, zone_create_params
 from .subscriptions import (
-    Subscriptions,
-    AsyncSubscriptions,
-    SubscriptionsWithRawResponse,
-    AsyncSubscriptionsWithRawResponse,
-    SubscriptionsWithStreamingResponse,
-    AsyncSubscriptionsWithStreamingResponse,
+    SubscriptionsResource,
+    AsyncSubscriptionsResource,
+    SubscriptionsResourceWithRawResponse,
+    AsyncSubscriptionsResourceWithRawResponse,
+    SubscriptionsResourceWithStreamingResponse,
+    AsyncSubscriptionsResourceWithStreamingResponse,
 )
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
 from .activation_check import (
-    ActivationCheck,
-    AsyncActivationCheck,
-    ActivationCheckWithRawResponse,
-    AsyncActivationCheckWithRawResponse,
-    ActivationCheckWithStreamingResponse,
-    AsyncActivationCheckWithStreamingResponse,
+    ActivationCheckResource,
+    AsyncActivationCheckResource,
+    ActivationCheckResourceWithRawResponse,
+    AsyncActivationCheckResourceWithRawResponse,
+    ActivationCheckResourceWithStreamingResponse,
+    AsyncActivationCheckResourceWithStreamingResponse,
 )
-from .settings.settings import Settings, AsyncSettings
+from .settings.settings import SettingsResource, AsyncSettingsResource
 from ...types.zones.zone import Zone
 from .custom_nameservers import (
-    CustomNameservers,
-    AsyncCustomNameservers,
-    CustomNameserversWithRawResponse,
-    AsyncCustomNameserversWithRawResponse,
-    CustomNameserversWithStreamingResponse,
-    AsyncCustomNameserversWithStreamingResponse,
+    CustomNameserversResource,
+    AsyncCustomNameserversResource,
+    CustomNameserversResourceWithRawResponse,
+    AsyncCustomNameserversResourceWithRawResponse,
+    CustomNameserversResourceWithStreamingResponse,
+    AsyncCustomNameserversResourceWithStreamingResponse,
 )
 from ...types.zones.zone_delete_response import ZoneDeleteResponse
 
-__all__ = ["Zones", "AsyncZones"]
+__all__ = ["ZonesResource", "AsyncZonesResource"]
 
 
-class Zones(SyncAPIResource):
+class ZonesResource(SyncAPIResource):
     @cached_property
-    def activation_check(self) -> ActivationCheck:
-        return ActivationCheck(self._client)
-
-    @cached_property
-    def dns_settings(self) -> DNSSettings:
-        return DNSSettings(self._client)
+    def activation_check(self) -> ActivationCheckResource:
+        return ActivationCheckResource(self._client)
 
     @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
+    def dns_settings(self) -> DNSSettingsResource:
+        return DNSSettingsResource(self._client)
 
     @cached_property
-    def custom_nameservers(self) -> CustomNameservers:
-        return CustomNameservers(self._client)
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
-    def holds(self) -> Holds:
-        return Holds(self._client)
+    def custom_nameservers(self) -> CustomNameserversResource:
+        return CustomNameserversResource(self._client)
 
     @cached_property
-    def subscriptions(self) -> Subscriptions:
-        return Subscriptions(self._client)
+    def holds(self) -> HoldsResource:
+        return HoldsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> ZonesWithRawResponse:
-        return ZonesWithRawResponse(self)
+    def subscriptions(self) -> SubscriptionsResource:
+        return SubscriptionsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ZonesWithStreamingResponse:
-        return ZonesWithStreamingResponse(self)
+    def with_raw_response(self) -> ZonesResourceWithRawResponse:
+        return ZonesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ZonesResourceWithStreamingResponse:
+        return ZonesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -386,38 +386,38 @@ class Zones(SyncAPIResource):
         )
 
 
-class AsyncZones(AsyncAPIResource):
+class AsyncZonesResource(AsyncAPIResource):
     @cached_property
-    def activation_check(self) -> AsyncActivationCheck:
-        return AsyncActivationCheck(self._client)
+    def activation_check(self) -> AsyncActivationCheckResource:
+        return AsyncActivationCheckResource(self._client)
 
     @cached_property
-    def dns_settings(self) -> AsyncDNSSettings:
-        return AsyncDNSSettings(self._client)
+    def dns_settings(self) -> AsyncDNSSettingsResource:
+        return AsyncDNSSettingsResource(self._client)
 
     @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
-    def custom_nameservers(self) -> AsyncCustomNameservers:
-        return AsyncCustomNameservers(self._client)
+    def custom_nameservers(self) -> AsyncCustomNameserversResource:
+        return AsyncCustomNameserversResource(self._client)
 
     @cached_property
-    def holds(self) -> AsyncHolds:
-        return AsyncHolds(self._client)
+    def holds(self) -> AsyncHoldsResource:
+        return AsyncHoldsResource(self._client)
 
     @cached_property
-    def subscriptions(self) -> AsyncSubscriptions:
-        return AsyncSubscriptions(self._client)
+    def subscriptions(self) -> AsyncSubscriptionsResource:
+        return AsyncSubscriptionsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncZonesWithRawResponse:
-        return AsyncZonesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncZonesResourceWithRawResponse:
+        return AsyncZonesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncZonesWithStreamingResponse:
-        return AsyncZonesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncZonesResourceWithStreamingResponse:
+        return AsyncZonesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -690,8 +690,8 @@ class AsyncZones(AsyncAPIResource):
         )
 
 
-class ZonesWithRawResponse:
-    def __init__(self, zones: Zones) -> None:
+class ZonesResourceWithRawResponse:
+    def __init__(self, zones: ZonesResource) -> None:
         self._zones = zones
 
         self.create = to_raw_response_wrapper(
@@ -711,32 +711,32 @@ class ZonesWithRawResponse:
         )
 
     @cached_property
-    def activation_check(self) -> ActivationCheckWithRawResponse:
-        return ActivationCheckWithRawResponse(self._zones.activation_check)
+    def activation_check(self) -> ActivationCheckResourceWithRawResponse:
+        return ActivationCheckResourceWithRawResponse(self._zones.activation_check)
 
     @cached_property
-    def dns_settings(self) -> DNSSettingsWithRawResponse:
-        return DNSSettingsWithRawResponse(self._zones.dns_settings)
+    def dns_settings(self) -> DNSSettingsResourceWithRawResponse:
+        return DNSSettingsResourceWithRawResponse(self._zones.dns_settings)
 
     @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._zones.settings)
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._zones.settings)
 
     @cached_property
-    def custom_nameservers(self) -> CustomNameserversWithRawResponse:
-        return CustomNameserversWithRawResponse(self._zones.custom_nameservers)
+    def custom_nameservers(self) -> CustomNameserversResourceWithRawResponse:
+        return CustomNameserversResourceWithRawResponse(self._zones.custom_nameservers)
 
     @cached_property
-    def holds(self) -> HoldsWithRawResponse:
-        return HoldsWithRawResponse(self._zones.holds)
+    def holds(self) -> HoldsResourceWithRawResponse:
+        return HoldsResourceWithRawResponse(self._zones.holds)
 
     @cached_property
-    def subscriptions(self) -> SubscriptionsWithRawResponse:
-        return SubscriptionsWithRawResponse(self._zones.subscriptions)
+    def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
+        return SubscriptionsResourceWithRawResponse(self._zones.subscriptions)
 
 
-class AsyncZonesWithRawResponse:
-    def __init__(self, zones: AsyncZones) -> None:
+class AsyncZonesResourceWithRawResponse:
+    def __init__(self, zones: AsyncZonesResource) -> None:
         self._zones = zones
 
         self.create = async_to_raw_response_wrapper(
@@ -756,32 +756,32 @@ class AsyncZonesWithRawResponse:
         )
 
     @cached_property
-    def activation_check(self) -> AsyncActivationCheckWithRawResponse:
-        return AsyncActivationCheckWithRawResponse(self._zones.activation_check)
+    def activation_check(self) -> AsyncActivationCheckResourceWithRawResponse:
+        return AsyncActivationCheckResourceWithRawResponse(self._zones.activation_check)
 
     @cached_property
-    def dns_settings(self) -> AsyncDNSSettingsWithRawResponse:
-        return AsyncDNSSettingsWithRawResponse(self._zones.dns_settings)
+    def dns_settings(self) -> AsyncDNSSettingsResourceWithRawResponse:
+        return AsyncDNSSettingsResourceWithRawResponse(self._zones.dns_settings)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._zones.settings)
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._zones.settings)
 
     @cached_property
-    def custom_nameservers(self) -> AsyncCustomNameserversWithRawResponse:
-        return AsyncCustomNameserversWithRawResponse(self._zones.custom_nameservers)
+    def custom_nameservers(self) -> AsyncCustomNameserversResourceWithRawResponse:
+        return AsyncCustomNameserversResourceWithRawResponse(self._zones.custom_nameservers)
 
     @cached_property
-    def holds(self) -> AsyncHoldsWithRawResponse:
-        return AsyncHoldsWithRawResponse(self._zones.holds)
+    def holds(self) -> AsyncHoldsResourceWithRawResponse:
+        return AsyncHoldsResourceWithRawResponse(self._zones.holds)
 
     @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsWithRawResponse:
-        return AsyncSubscriptionsWithRawResponse(self._zones.subscriptions)
+    def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
+        return AsyncSubscriptionsResourceWithRawResponse(self._zones.subscriptions)
 
 
-class ZonesWithStreamingResponse:
-    def __init__(self, zones: Zones) -> None:
+class ZonesResourceWithStreamingResponse:
+    def __init__(self, zones: ZonesResource) -> None:
         self._zones = zones
 
         self.create = to_streamed_response_wrapper(
@@ -801,32 +801,32 @@ class ZonesWithStreamingResponse:
         )
 
     @cached_property
-    def activation_check(self) -> ActivationCheckWithStreamingResponse:
-        return ActivationCheckWithStreamingResponse(self._zones.activation_check)
+    def activation_check(self) -> ActivationCheckResourceWithStreamingResponse:
+        return ActivationCheckResourceWithStreamingResponse(self._zones.activation_check)
 
     @cached_property
-    def dns_settings(self) -> DNSSettingsWithStreamingResponse:
-        return DNSSettingsWithStreamingResponse(self._zones.dns_settings)
+    def dns_settings(self) -> DNSSettingsResourceWithStreamingResponse:
+        return DNSSettingsResourceWithStreamingResponse(self._zones.dns_settings)
 
     @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._zones.settings)
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._zones.settings)
 
     @cached_property
-    def custom_nameservers(self) -> CustomNameserversWithStreamingResponse:
-        return CustomNameserversWithStreamingResponse(self._zones.custom_nameservers)
+    def custom_nameservers(self) -> CustomNameserversResourceWithStreamingResponse:
+        return CustomNameserversResourceWithStreamingResponse(self._zones.custom_nameservers)
 
     @cached_property
-    def holds(self) -> HoldsWithStreamingResponse:
-        return HoldsWithStreamingResponse(self._zones.holds)
+    def holds(self) -> HoldsResourceWithStreamingResponse:
+        return HoldsResourceWithStreamingResponse(self._zones.holds)
 
     @cached_property
-    def subscriptions(self) -> SubscriptionsWithStreamingResponse:
-        return SubscriptionsWithStreamingResponse(self._zones.subscriptions)
+    def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
+        return SubscriptionsResourceWithStreamingResponse(self._zones.subscriptions)
 
 
-class AsyncZonesWithStreamingResponse:
-    def __init__(self, zones: AsyncZones) -> None:
+class AsyncZonesResourceWithStreamingResponse:
+    def __init__(self, zones: AsyncZonesResource) -> None:
         self._zones = zones
 
         self.create = async_to_streamed_response_wrapper(
@@ -846,25 +846,25 @@ class AsyncZonesWithStreamingResponse:
         )
 
     @cached_property
-    def activation_check(self) -> AsyncActivationCheckWithStreamingResponse:
-        return AsyncActivationCheckWithStreamingResponse(self._zones.activation_check)
+    def activation_check(self) -> AsyncActivationCheckResourceWithStreamingResponse:
+        return AsyncActivationCheckResourceWithStreamingResponse(self._zones.activation_check)
 
     @cached_property
-    def dns_settings(self) -> AsyncDNSSettingsWithStreamingResponse:
-        return AsyncDNSSettingsWithStreamingResponse(self._zones.dns_settings)
+    def dns_settings(self) -> AsyncDNSSettingsResourceWithStreamingResponse:
+        return AsyncDNSSettingsResourceWithStreamingResponse(self._zones.dns_settings)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._zones.settings)
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._zones.settings)
 
     @cached_property
-    def custom_nameservers(self) -> AsyncCustomNameserversWithStreamingResponse:
-        return AsyncCustomNameserversWithStreamingResponse(self._zones.custom_nameservers)
+    def custom_nameservers(self) -> AsyncCustomNameserversResourceWithStreamingResponse:
+        return AsyncCustomNameserversResourceWithStreamingResponse(self._zones.custom_nameservers)
 
     @cached_property
-    def holds(self) -> AsyncHoldsWithStreamingResponse:
-        return AsyncHoldsWithStreamingResponse(self._zones.holds)
+    def holds(self) -> AsyncHoldsResourceWithStreamingResponse:
+        return AsyncHoldsResourceWithStreamingResponse(self._zones.holds)
 
     @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsWithStreamingResponse:
-        return AsyncSubscriptionsWithStreamingResponse(self._zones.subscriptions)
+    def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
+        return AsyncSubscriptionsResourceWithStreamingResponse(self._zones.subscriptions)

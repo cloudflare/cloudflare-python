@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .indexes import (
-    Indexes,
-    AsyncIndexes,
-    IndexesWithRawResponse,
-    AsyncIndexesWithRawResponse,
-    IndexesWithStreamingResponse,
-    AsyncIndexesWithStreamingResponse,
+    IndexesResource,
+    AsyncIndexesResource,
+    IndexesResourceWithRawResponse,
+    AsyncIndexesResourceWithRawResponse,
+    IndexesResourceWithStreamingResponse,
+    AsyncIndexesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Vectorize", "AsyncVectorize"]
+__all__ = ["VectorizeResource", "AsyncVectorizeResource"]
 
 
-class Vectorize(SyncAPIResource):
+class VectorizeResource(SyncAPIResource):
     @cached_property
-    def indexes(self) -> Indexes:
-        return Indexes(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> VectorizeWithRawResponse:
-        return VectorizeWithRawResponse(self)
+    def indexes(self) -> IndexesResource:
+        return IndexesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> VectorizeWithStreamingResponse:
-        return VectorizeWithStreamingResponse(self)
-
-
-class AsyncVectorize(AsyncAPIResource):
-    @cached_property
-    def indexes(self) -> AsyncIndexes:
-        return AsyncIndexes(self._client)
+    def with_raw_response(self) -> VectorizeResourceWithRawResponse:
+        return VectorizeResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncVectorizeWithRawResponse:
-        return AsyncVectorizeWithRawResponse(self)
+    def with_streaming_response(self) -> VectorizeResourceWithStreamingResponse:
+        return VectorizeResourceWithStreamingResponse(self)
+
+
+class AsyncVectorizeResource(AsyncAPIResource):
+    @cached_property
+    def indexes(self) -> AsyncIndexesResource:
+        return AsyncIndexesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVectorizeWithStreamingResponse:
-        return AsyncVectorizeWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncVectorizeResourceWithRawResponse:
+        return AsyncVectorizeResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncVectorizeResourceWithStreamingResponse:
+        return AsyncVectorizeResourceWithStreamingResponse(self)
 
 
-class VectorizeWithRawResponse:
-    def __init__(self, vectorize: Vectorize) -> None:
+class VectorizeResourceWithRawResponse:
+    def __init__(self, vectorize: VectorizeResource) -> None:
         self._vectorize = vectorize
 
     @cached_property
-    def indexes(self) -> IndexesWithRawResponse:
-        return IndexesWithRawResponse(self._vectorize.indexes)
+    def indexes(self) -> IndexesResourceWithRawResponse:
+        return IndexesResourceWithRawResponse(self._vectorize.indexes)
 
 
-class AsyncVectorizeWithRawResponse:
-    def __init__(self, vectorize: AsyncVectorize) -> None:
+class AsyncVectorizeResourceWithRawResponse:
+    def __init__(self, vectorize: AsyncVectorizeResource) -> None:
         self._vectorize = vectorize
 
     @cached_property
-    def indexes(self) -> AsyncIndexesWithRawResponse:
-        return AsyncIndexesWithRawResponse(self._vectorize.indexes)
+    def indexes(self) -> AsyncIndexesResourceWithRawResponse:
+        return AsyncIndexesResourceWithRawResponse(self._vectorize.indexes)
 
 
-class VectorizeWithStreamingResponse:
-    def __init__(self, vectorize: Vectorize) -> None:
+class VectorizeResourceWithStreamingResponse:
+    def __init__(self, vectorize: VectorizeResource) -> None:
         self._vectorize = vectorize
 
     @cached_property
-    def indexes(self) -> IndexesWithStreamingResponse:
-        return IndexesWithStreamingResponse(self._vectorize.indexes)
+    def indexes(self) -> IndexesResourceWithStreamingResponse:
+        return IndexesResourceWithStreamingResponse(self._vectorize.indexes)
 
 
-class AsyncVectorizeWithStreamingResponse:
-    def __init__(self, vectorize: AsyncVectorize) -> None:
+class AsyncVectorizeResourceWithStreamingResponse:
+    def __init__(self, vectorize: AsyncVectorizeResource) -> None:
         self._vectorize = vectorize
 
     @cached_property
-    def indexes(self) -> AsyncIndexesWithStreamingResponse:
-        return AsyncIndexesWithStreamingResponse(self._vectorize.indexes)
+    def indexes(self) -> AsyncIndexesResourceWithStreamingResponse:
+        return AsyncIndexesResourceWithStreamingResponse(self._vectorize.indexes)

@@ -7,12 +7,12 @@ from typing import Type, Optional, cast
 import httpx
 
 from .scripts import (
-    Scripts,
-    AsyncScripts,
-    ScriptsWithRawResponse,
-    AsyncScriptsWithRawResponse,
-    ScriptsWithStreamingResponse,
-    AsyncScriptsWithStreamingResponse,
+    ScriptsResource,
+    AsyncScriptsResource,
+    ScriptsResourceWithRawResponse,
+    AsyncScriptsResourceWithRawResponse,
+    ScriptsResourceWithStreamingResponse,
+    AsyncScriptsResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -29,7 +29,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from .scripts.scripts import Scripts, AsyncScripts
+from .scripts.scripts import ScriptsResource, AsyncScriptsResource
 from ....._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -39,21 +39,21 @@ from .....types.workers_for_platforms.dispatch.namespace_get_response import Nam
 from .....types.workers_for_platforms.dispatch.namespace_list_response import NamespaceListResponse
 from .....types.workers_for_platforms.dispatch.namespace_create_response import NamespaceCreateResponse
 
-__all__ = ["Namespaces", "AsyncNamespaces"]
+__all__ = ["NamespacesResource", "AsyncNamespacesResource"]
 
 
-class Namespaces(SyncAPIResource):
+class NamespacesResource(SyncAPIResource):
     @cached_property
-    def scripts(self) -> Scripts:
-        return Scripts(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> NamespacesWithRawResponse:
-        return NamespacesWithRawResponse(self)
+    def scripts(self) -> ScriptsResource:
+        return ScriptsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> NamespacesWithStreamingResponse:
-        return NamespacesWithStreamingResponse(self)
+    def with_raw_response(self) -> NamespacesResourceWithRawResponse:
+        return NamespacesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> NamespacesResourceWithStreamingResponse:
+        return NamespacesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -223,18 +223,18 @@ class Namespaces(SyncAPIResource):
         )
 
 
-class AsyncNamespaces(AsyncAPIResource):
+class AsyncNamespacesResource(AsyncAPIResource):
     @cached_property
-    def scripts(self) -> AsyncScripts:
-        return AsyncScripts(self._client)
+    def scripts(self) -> AsyncScriptsResource:
+        return AsyncScriptsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncNamespacesWithRawResponse:
-        return AsyncNamespacesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncNamespacesResourceWithRawResponse:
+        return AsyncNamespacesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncNamespacesWithStreamingResponse:
-        return AsyncNamespacesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncNamespacesResourceWithStreamingResponse:
+        return AsyncNamespacesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -404,8 +404,8 @@ class AsyncNamespaces(AsyncAPIResource):
         )
 
 
-class NamespacesWithRawResponse:
-    def __init__(self, namespaces: Namespaces) -> None:
+class NamespacesResourceWithRawResponse:
+    def __init__(self, namespaces: NamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.create = to_raw_response_wrapper(
@@ -422,12 +422,12 @@ class NamespacesWithRawResponse:
         )
 
     @cached_property
-    def scripts(self) -> ScriptsWithRawResponse:
-        return ScriptsWithRawResponse(self._namespaces.scripts)
+    def scripts(self) -> ScriptsResourceWithRawResponse:
+        return ScriptsResourceWithRawResponse(self._namespaces.scripts)
 
 
-class AsyncNamespacesWithRawResponse:
-    def __init__(self, namespaces: AsyncNamespaces) -> None:
+class AsyncNamespacesResourceWithRawResponse:
+    def __init__(self, namespaces: AsyncNamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.create = async_to_raw_response_wrapper(
@@ -444,12 +444,12 @@ class AsyncNamespacesWithRawResponse:
         )
 
     @cached_property
-    def scripts(self) -> AsyncScriptsWithRawResponse:
-        return AsyncScriptsWithRawResponse(self._namespaces.scripts)
+    def scripts(self) -> AsyncScriptsResourceWithRawResponse:
+        return AsyncScriptsResourceWithRawResponse(self._namespaces.scripts)
 
 
-class NamespacesWithStreamingResponse:
-    def __init__(self, namespaces: Namespaces) -> None:
+class NamespacesResourceWithStreamingResponse:
+    def __init__(self, namespaces: NamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.create = to_streamed_response_wrapper(
@@ -466,12 +466,12 @@ class NamespacesWithStreamingResponse:
         )
 
     @cached_property
-    def scripts(self) -> ScriptsWithStreamingResponse:
-        return ScriptsWithStreamingResponse(self._namespaces.scripts)
+    def scripts(self) -> ScriptsResourceWithStreamingResponse:
+        return ScriptsResourceWithStreamingResponse(self._namespaces.scripts)
 
 
-class AsyncNamespacesWithStreamingResponse:
-    def __init__(self, namespaces: AsyncNamespaces) -> None:
+class AsyncNamespacesResourceWithStreamingResponse:
+    def __init__(self, namespaces: AsyncNamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.create = async_to_streamed_response_wrapper(
@@ -488,5 +488,5 @@ class AsyncNamespacesWithStreamingResponse:
         )
 
     @cached_property
-    def scripts(self) -> AsyncScriptsWithStreamingResponse:
-        return AsyncScriptsWithStreamingResponse(self._namespaces.scripts)
+    def scripts(self) -> AsyncScriptsResourceWithStreamingResponse:
+        return AsyncScriptsResourceWithStreamingResponse(self._namespaces.scripts)

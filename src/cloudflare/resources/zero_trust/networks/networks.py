@@ -3,111 +3,111 @@
 from __future__ import annotations
 
 from .routes import (
-    Routes,
-    AsyncRoutes,
-    RoutesWithRawResponse,
-    AsyncRoutesWithRawResponse,
-    RoutesWithStreamingResponse,
-    AsyncRoutesWithStreamingResponse,
+    RoutesResource,
+    AsyncRoutesResource,
+    RoutesResourceWithRawResponse,
+    AsyncRoutesResourceWithRawResponse,
+    RoutesResourceWithStreamingResponse,
+    AsyncRoutesResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .routes.routes import Routes, AsyncRoutes
+from .routes.routes import RoutesResource, AsyncRoutesResource
 from .virtual_networks import (
-    VirtualNetworks,
-    AsyncVirtualNetworks,
-    VirtualNetworksWithRawResponse,
-    AsyncVirtualNetworksWithRawResponse,
-    VirtualNetworksWithStreamingResponse,
-    AsyncVirtualNetworksWithStreamingResponse,
+    VirtualNetworksResource,
+    AsyncVirtualNetworksResource,
+    VirtualNetworksResourceWithRawResponse,
+    AsyncVirtualNetworksResourceWithRawResponse,
+    VirtualNetworksResourceWithStreamingResponse,
+    AsyncVirtualNetworksResourceWithStreamingResponse,
 )
 
-__all__ = ["Networks", "AsyncNetworks"]
+__all__ = ["NetworksResource", "AsyncNetworksResource"]
 
 
-class Networks(SyncAPIResource):
+class NetworksResource(SyncAPIResource):
     @cached_property
-    def routes(self) -> Routes:
-        return Routes(self._client)
-
-    @cached_property
-    def virtual_networks(self) -> VirtualNetworks:
-        return VirtualNetworks(self._client)
+    def routes(self) -> RoutesResource:
+        return RoutesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> NetworksWithRawResponse:
-        return NetworksWithRawResponse(self)
+    def virtual_networks(self) -> VirtualNetworksResource:
+        return VirtualNetworksResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> NetworksWithStreamingResponse:
-        return NetworksWithStreamingResponse(self)
-
-
-class AsyncNetworks(AsyncAPIResource):
-    @cached_property
-    def routes(self) -> AsyncRoutes:
-        return AsyncRoutes(self._client)
+    def with_raw_response(self) -> NetworksResourceWithRawResponse:
+        return NetworksResourceWithRawResponse(self)
 
     @cached_property
-    def virtual_networks(self) -> AsyncVirtualNetworks:
-        return AsyncVirtualNetworks(self._client)
+    def with_streaming_response(self) -> NetworksResourceWithStreamingResponse:
+        return NetworksResourceWithStreamingResponse(self)
+
+
+class AsyncNetworksResource(AsyncAPIResource):
+    @cached_property
+    def routes(self) -> AsyncRoutesResource:
+        return AsyncRoutesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncNetworksWithRawResponse:
-        return AsyncNetworksWithRawResponse(self)
+    def virtual_networks(self) -> AsyncVirtualNetworksResource:
+        return AsyncVirtualNetworksResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncNetworksWithStreamingResponse:
-        return AsyncNetworksWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncNetworksResourceWithRawResponse:
+        return AsyncNetworksResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncNetworksResourceWithStreamingResponse:
+        return AsyncNetworksResourceWithStreamingResponse(self)
 
 
-class NetworksWithRawResponse:
-    def __init__(self, networks: Networks) -> None:
+class NetworksResourceWithRawResponse:
+    def __init__(self, networks: NetworksResource) -> None:
         self._networks = networks
 
     @cached_property
-    def routes(self) -> RoutesWithRawResponse:
-        return RoutesWithRawResponse(self._networks.routes)
+    def routes(self) -> RoutesResourceWithRawResponse:
+        return RoutesResourceWithRawResponse(self._networks.routes)
 
     @cached_property
-    def virtual_networks(self) -> VirtualNetworksWithRawResponse:
-        return VirtualNetworksWithRawResponse(self._networks.virtual_networks)
+    def virtual_networks(self) -> VirtualNetworksResourceWithRawResponse:
+        return VirtualNetworksResourceWithRawResponse(self._networks.virtual_networks)
 
 
-class AsyncNetworksWithRawResponse:
-    def __init__(self, networks: AsyncNetworks) -> None:
+class AsyncNetworksResourceWithRawResponse:
+    def __init__(self, networks: AsyncNetworksResource) -> None:
         self._networks = networks
 
     @cached_property
-    def routes(self) -> AsyncRoutesWithRawResponse:
-        return AsyncRoutesWithRawResponse(self._networks.routes)
+    def routes(self) -> AsyncRoutesResourceWithRawResponse:
+        return AsyncRoutesResourceWithRawResponse(self._networks.routes)
 
     @cached_property
-    def virtual_networks(self) -> AsyncVirtualNetworksWithRawResponse:
-        return AsyncVirtualNetworksWithRawResponse(self._networks.virtual_networks)
+    def virtual_networks(self) -> AsyncVirtualNetworksResourceWithRawResponse:
+        return AsyncVirtualNetworksResourceWithRawResponse(self._networks.virtual_networks)
 
 
-class NetworksWithStreamingResponse:
-    def __init__(self, networks: Networks) -> None:
+class NetworksResourceWithStreamingResponse:
+    def __init__(self, networks: NetworksResource) -> None:
         self._networks = networks
 
     @cached_property
-    def routes(self) -> RoutesWithStreamingResponse:
-        return RoutesWithStreamingResponse(self._networks.routes)
+    def routes(self) -> RoutesResourceWithStreamingResponse:
+        return RoutesResourceWithStreamingResponse(self._networks.routes)
 
     @cached_property
-    def virtual_networks(self) -> VirtualNetworksWithStreamingResponse:
-        return VirtualNetworksWithStreamingResponse(self._networks.virtual_networks)
+    def virtual_networks(self) -> VirtualNetworksResourceWithStreamingResponse:
+        return VirtualNetworksResourceWithStreamingResponse(self._networks.virtual_networks)
 
 
-class AsyncNetworksWithStreamingResponse:
-    def __init__(self, networks: AsyncNetworks) -> None:
+class AsyncNetworksResourceWithStreamingResponse:
+    def __init__(self, networks: AsyncNetworksResource) -> None:
         self._networks = networks
 
     @cached_property
-    def routes(self) -> AsyncRoutesWithStreamingResponse:
-        return AsyncRoutesWithStreamingResponse(self._networks.routes)
+    def routes(self) -> AsyncRoutesResourceWithStreamingResponse:
+        return AsyncRoutesResourceWithStreamingResponse(self._networks.routes)
 
     @cached_property
-    def virtual_networks(self) -> AsyncVirtualNetworksWithStreamingResponse:
-        return AsyncVirtualNetworksWithStreamingResponse(self._networks.virtual_networks)
+    def virtual_networks(self) -> AsyncVirtualNetworksResourceWithStreamingResponse:
+        return AsyncVirtualNetworksResourceWithStreamingResponse(self._networks.virtual_networks)

@@ -21,17 +21,17 @@ from ..._base_client import (
 )
 from ...types.mtls_certificates.association_get_response import AssociationGetResponse
 
-__all__ = ["Associations", "AsyncAssociations"]
+__all__ = ["AssociationsResource", "AsyncAssociationsResource"]
 
 
-class Associations(SyncAPIResource):
+class AssociationsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AssociationsWithRawResponse:
-        return AssociationsWithRawResponse(self)
+    def with_raw_response(self) -> AssociationsResourceWithRawResponse:
+        return AssociationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AssociationsWithStreamingResponse:
-        return AssociationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AssociationsResourceWithStreamingResponse:
+        return AssociationsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -80,14 +80,14 @@ class Associations(SyncAPIResource):
         )
 
 
-class AsyncAssociations(AsyncAPIResource):
+class AsyncAssociationsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAssociationsWithRawResponse:
-        return AsyncAssociationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAssociationsResourceWithRawResponse:
+        return AsyncAssociationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAssociationsWithStreamingResponse:
-        return AsyncAssociationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAssociationsResourceWithStreamingResponse:
+        return AsyncAssociationsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -136,8 +136,8 @@ class AsyncAssociations(AsyncAPIResource):
         )
 
 
-class AssociationsWithRawResponse:
-    def __init__(self, associations: Associations) -> None:
+class AssociationsResourceWithRawResponse:
+    def __init__(self, associations: AssociationsResource) -> None:
         self._associations = associations
 
         self.get = to_raw_response_wrapper(
@@ -145,8 +145,8 @@ class AssociationsWithRawResponse:
         )
 
 
-class AsyncAssociationsWithRawResponse:
-    def __init__(self, associations: AsyncAssociations) -> None:
+class AsyncAssociationsResourceWithRawResponse:
+    def __init__(self, associations: AsyncAssociationsResource) -> None:
         self._associations = associations
 
         self.get = async_to_raw_response_wrapper(
@@ -154,8 +154,8 @@ class AsyncAssociationsWithRawResponse:
         )
 
 
-class AssociationsWithStreamingResponse:
-    def __init__(self, associations: Associations) -> None:
+class AssociationsResourceWithStreamingResponse:
+    def __init__(self, associations: AssociationsResource) -> None:
         self._associations = associations
 
         self.get = to_streamed_response_wrapper(
@@ -163,8 +163,8 @@ class AssociationsWithStreamingResponse:
         )
 
 
-class AsyncAssociationsWithStreamingResponse:
-    def __init__(self, associations: AsyncAssociations) -> None:
+class AsyncAssociationsResourceWithStreamingResponse:
+    def __init__(self, associations: AsyncAssociationsResource) -> None:
         self._associations = associations
 
         self.get = async_to_streamed_response_wrapper(

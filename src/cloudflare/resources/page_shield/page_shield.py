@@ -7,12 +7,12 @@ from typing import Type, cast
 import httpx
 
 from .scripts import (
-    Scripts,
-    AsyncScripts,
-    ScriptsWithRawResponse,
-    AsyncScriptsWithRawResponse,
-    ScriptsWithStreamingResponse,
-    AsyncScriptsWithStreamingResponse,
+    ScriptsResource,
+    AsyncScriptsResource,
+    ScriptsResourceWithRawResponse,
+    AsyncScriptsResourceWithRawResponse,
+    ScriptsResourceWithStreamingResponse,
+    AsyncScriptsResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -20,12 +20,12 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .policies import (
-    Policies,
-    AsyncPolicies,
-    PoliciesWithRawResponse,
-    AsyncPoliciesWithRawResponse,
-    PoliciesWithStreamingResponse,
-    AsyncPoliciesWithStreamingResponse,
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -37,12 +37,12 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from .connections import (
-    Connections,
-    AsyncConnections,
-    ConnectionsWithRawResponse,
-    AsyncConnectionsWithRawResponse,
-    ConnectionsWithStreamingResponse,
-    AsyncConnectionsWithStreamingResponse,
+    ConnectionsResource,
+    AsyncConnectionsResource,
+    ConnectionsResourceWithRawResponse,
+    AsyncConnectionsResourceWithRawResponse,
+    ConnectionsResourceWithStreamingResponse,
+    AsyncConnectionsResourceWithStreamingResponse,
 )
 from ..._base_client import (
     make_request_options,
@@ -51,29 +51,29 @@ from ...types.page_shield import page_shield_update_params
 from ...types.page_shield.setting import Setting
 from ...types.page_shield.page_shield_update_response import PageShieldUpdateResponse
 
-__all__ = ["PageShield", "AsyncPageShield"]
+__all__ = ["PageShieldResource", "AsyncPageShieldResource"]
 
 
-class PageShield(SyncAPIResource):
+class PageShieldResource(SyncAPIResource):
     @cached_property
-    def policies(self) -> Policies:
-        return Policies(self._client)
-
-    @cached_property
-    def connections(self) -> Connections:
-        return Connections(self._client)
+    def policies(self) -> PoliciesResource:
+        return PoliciesResource(self._client)
 
     @cached_property
-    def scripts(self) -> Scripts:
-        return Scripts(self._client)
+    def connections(self) -> ConnectionsResource:
+        return ConnectionsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> PageShieldWithRawResponse:
-        return PageShieldWithRawResponse(self)
+    def scripts(self) -> ScriptsResource:
+        return ScriptsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> PageShieldWithStreamingResponse:
-        return PageShieldWithStreamingResponse(self)
+    def with_raw_response(self) -> PageShieldResourceWithRawResponse:
+        return PageShieldResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PageShieldResourceWithStreamingResponse:
+        return PageShieldResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -172,26 +172,26 @@ class PageShield(SyncAPIResource):
         )
 
 
-class AsyncPageShield(AsyncAPIResource):
+class AsyncPageShieldResource(AsyncAPIResource):
     @cached_property
-    def policies(self) -> AsyncPolicies:
-        return AsyncPolicies(self._client)
+    def policies(self) -> AsyncPoliciesResource:
+        return AsyncPoliciesResource(self._client)
 
     @cached_property
-    def connections(self) -> AsyncConnections:
-        return AsyncConnections(self._client)
+    def connections(self) -> AsyncConnectionsResource:
+        return AsyncConnectionsResource(self._client)
 
     @cached_property
-    def scripts(self) -> AsyncScripts:
-        return AsyncScripts(self._client)
+    def scripts(self) -> AsyncScriptsResource:
+        return AsyncScriptsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPageShieldWithRawResponse:
-        return AsyncPageShieldWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPageShieldResourceWithRawResponse:
+        return AsyncPageShieldResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPageShieldWithStreamingResponse:
-        return AsyncPageShieldWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPageShieldResourceWithStreamingResponse:
+        return AsyncPageShieldResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -290,8 +290,8 @@ class AsyncPageShield(AsyncAPIResource):
         )
 
 
-class PageShieldWithRawResponse:
-    def __init__(self, page_shield: PageShield) -> None:
+class PageShieldResourceWithRawResponse:
+    def __init__(self, page_shield: PageShieldResource) -> None:
         self._page_shield = page_shield
 
         self.update = to_raw_response_wrapper(
@@ -302,20 +302,20 @@ class PageShieldWithRawResponse:
         )
 
     @cached_property
-    def policies(self) -> PoliciesWithRawResponse:
-        return PoliciesWithRawResponse(self._page_shield.policies)
+    def policies(self) -> PoliciesResourceWithRawResponse:
+        return PoliciesResourceWithRawResponse(self._page_shield.policies)
 
     @cached_property
-    def connections(self) -> ConnectionsWithRawResponse:
-        return ConnectionsWithRawResponse(self._page_shield.connections)
+    def connections(self) -> ConnectionsResourceWithRawResponse:
+        return ConnectionsResourceWithRawResponse(self._page_shield.connections)
 
     @cached_property
-    def scripts(self) -> ScriptsWithRawResponse:
-        return ScriptsWithRawResponse(self._page_shield.scripts)
+    def scripts(self) -> ScriptsResourceWithRawResponse:
+        return ScriptsResourceWithRawResponse(self._page_shield.scripts)
 
 
-class AsyncPageShieldWithRawResponse:
-    def __init__(self, page_shield: AsyncPageShield) -> None:
+class AsyncPageShieldResourceWithRawResponse:
+    def __init__(self, page_shield: AsyncPageShieldResource) -> None:
         self._page_shield = page_shield
 
         self.update = async_to_raw_response_wrapper(
@@ -326,20 +326,20 @@ class AsyncPageShieldWithRawResponse:
         )
 
     @cached_property
-    def policies(self) -> AsyncPoliciesWithRawResponse:
-        return AsyncPoliciesWithRawResponse(self._page_shield.policies)
+    def policies(self) -> AsyncPoliciesResourceWithRawResponse:
+        return AsyncPoliciesResourceWithRawResponse(self._page_shield.policies)
 
     @cached_property
-    def connections(self) -> AsyncConnectionsWithRawResponse:
-        return AsyncConnectionsWithRawResponse(self._page_shield.connections)
+    def connections(self) -> AsyncConnectionsResourceWithRawResponse:
+        return AsyncConnectionsResourceWithRawResponse(self._page_shield.connections)
 
     @cached_property
-    def scripts(self) -> AsyncScriptsWithRawResponse:
-        return AsyncScriptsWithRawResponse(self._page_shield.scripts)
+    def scripts(self) -> AsyncScriptsResourceWithRawResponse:
+        return AsyncScriptsResourceWithRawResponse(self._page_shield.scripts)
 
 
-class PageShieldWithStreamingResponse:
-    def __init__(self, page_shield: PageShield) -> None:
+class PageShieldResourceWithStreamingResponse:
+    def __init__(self, page_shield: PageShieldResource) -> None:
         self._page_shield = page_shield
 
         self.update = to_streamed_response_wrapper(
@@ -350,20 +350,20 @@ class PageShieldWithStreamingResponse:
         )
 
     @cached_property
-    def policies(self) -> PoliciesWithStreamingResponse:
-        return PoliciesWithStreamingResponse(self._page_shield.policies)
+    def policies(self) -> PoliciesResourceWithStreamingResponse:
+        return PoliciesResourceWithStreamingResponse(self._page_shield.policies)
 
     @cached_property
-    def connections(self) -> ConnectionsWithStreamingResponse:
-        return ConnectionsWithStreamingResponse(self._page_shield.connections)
+    def connections(self) -> ConnectionsResourceWithStreamingResponse:
+        return ConnectionsResourceWithStreamingResponse(self._page_shield.connections)
 
     @cached_property
-    def scripts(self) -> ScriptsWithStreamingResponse:
-        return ScriptsWithStreamingResponse(self._page_shield.scripts)
+    def scripts(self) -> ScriptsResourceWithStreamingResponse:
+        return ScriptsResourceWithStreamingResponse(self._page_shield.scripts)
 
 
-class AsyncPageShieldWithStreamingResponse:
-    def __init__(self, page_shield: AsyncPageShield) -> None:
+class AsyncPageShieldResourceWithStreamingResponse:
+    def __init__(self, page_shield: AsyncPageShieldResource) -> None:
         self._page_shield = page_shield
 
         self.update = async_to_streamed_response_wrapper(
@@ -374,13 +374,13 @@ class AsyncPageShieldWithStreamingResponse:
         )
 
     @cached_property
-    def policies(self) -> AsyncPoliciesWithStreamingResponse:
-        return AsyncPoliciesWithStreamingResponse(self._page_shield.policies)
+    def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        return AsyncPoliciesResourceWithStreamingResponse(self._page_shield.policies)
 
     @cached_property
-    def connections(self) -> AsyncConnectionsWithStreamingResponse:
-        return AsyncConnectionsWithStreamingResponse(self._page_shield.connections)
+    def connections(self) -> AsyncConnectionsResourceWithStreamingResponse:
+        return AsyncConnectionsResourceWithStreamingResponse(self._page_shield.connections)
 
     @cached_property
-    def scripts(self) -> AsyncScriptsWithStreamingResponse:
-        return AsyncScriptsWithStreamingResponse(self._page_shield.scripts)
+    def scripts(self) -> AsyncScriptsResourceWithStreamingResponse:
+        return AsyncScriptsResourceWithStreamingResponse(self._page_shield.scripts)

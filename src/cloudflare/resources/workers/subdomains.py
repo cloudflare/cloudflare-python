@@ -27,17 +27,17 @@ from ...types.workers import subdomain_update_params
 from ...types.workers.subdomain_get_response import SubdomainGetResponse
 from ...types.workers.subdomain_update_response import SubdomainUpdateResponse
 
-__all__ = ["Subdomains", "AsyncSubdomains"]
+__all__ = ["SubdomainsResource", "AsyncSubdomainsResource"]
 
 
-class Subdomains(SyncAPIResource):
+class SubdomainsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SubdomainsWithRawResponse:
-        return SubdomainsWithRawResponse(self)
+    def with_raw_response(self) -> SubdomainsResourceWithRawResponse:
+        return SubdomainsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SubdomainsWithStreamingResponse:
-        return SubdomainsWithStreamingResponse(self)
+    def with_streaming_response(self) -> SubdomainsResourceWithStreamingResponse:
+        return SubdomainsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -120,14 +120,14 @@ class Subdomains(SyncAPIResource):
         )
 
 
-class AsyncSubdomains(AsyncAPIResource):
+class AsyncSubdomainsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSubdomainsWithRawResponse:
-        return AsyncSubdomainsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSubdomainsResourceWithRawResponse:
+        return AsyncSubdomainsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSubdomainsWithStreamingResponse:
-        return AsyncSubdomainsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSubdomainsResourceWithStreamingResponse:
+        return AsyncSubdomainsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -210,8 +210,8 @@ class AsyncSubdomains(AsyncAPIResource):
         )
 
 
-class SubdomainsWithRawResponse:
-    def __init__(self, subdomains: Subdomains) -> None:
+class SubdomainsResourceWithRawResponse:
+    def __init__(self, subdomains: SubdomainsResource) -> None:
         self._subdomains = subdomains
 
         self.update = to_raw_response_wrapper(
@@ -222,8 +222,8 @@ class SubdomainsWithRawResponse:
         )
 
 
-class AsyncSubdomainsWithRawResponse:
-    def __init__(self, subdomains: AsyncSubdomains) -> None:
+class AsyncSubdomainsResourceWithRawResponse:
+    def __init__(self, subdomains: AsyncSubdomainsResource) -> None:
         self._subdomains = subdomains
 
         self.update = async_to_raw_response_wrapper(
@@ -234,8 +234,8 @@ class AsyncSubdomainsWithRawResponse:
         )
 
 
-class SubdomainsWithStreamingResponse:
-    def __init__(self, subdomains: Subdomains) -> None:
+class SubdomainsResourceWithStreamingResponse:
+    def __init__(self, subdomains: SubdomainsResource) -> None:
         self._subdomains = subdomains
 
         self.update = to_streamed_response_wrapper(
@@ -246,8 +246,8 @@ class SubdomainsWithStreamingResponse:
         )
 
 
-class AsyncSubdomainsWithStreamingResponse:
-    def __init__(self, subdomains: AsyncSubdomains) -> None:
+class AsyncSubdomainsResourceWithStreamingResponse:
+    def __init__(self, subdomains: AsyncSubdomainsResource) -> None:
         self._subdomains = subdomains
 
         self.update = async_to_streamed_response_wrapper(

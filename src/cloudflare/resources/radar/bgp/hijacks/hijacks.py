@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .events import (
-    Events,
-    AsyncEvents,
-    EventsWithRawResponse,
-    AsyncEventsWithRawResponse,
-    EventsWithStreamingResponse,
-    AsyncEventsWithStreamingResponse,
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
 )
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Hijacks", "AsyncHijacks"]
+__all__ = ["HijacksResource", "AsyncHijacksResource"]
 
 
-class Hijacks(SyncAPIResource):
+class HijacksResource(SyncAPIResource):
     @cached_property
-    def events(self) -> Events:
-        return Events(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> HijacksWithRawResponse:
-        return HijacksWithRawResponse(self)
+    def events(self) -> EventsResource:
+        return EventsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> HijacksWithStreamingResponse:
-        return HijacksWithStreamingResponse(self)
-
-
-class AsyncHijacks(AsyncAPIResource):
-    @cached_property
-    def events(self) -> AsyncEvents:
-        return AsyncEvents(self._client)
+    def with_raw_response(self) -> HijacksResourceWithRawResponse:
+        return HijacksResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncHijacksWithRawResponse:
-        return AsyncHijacksWithRawResponse(self)
+    def with_streaming_response(self) -> HijacksResourceWithStreamingResponse:
+        return HijacksResourceWithStreamingResponse(self)
+
+
+class AsyncHijacksResource(AsyncAPIResource):
+    @cached_property
+    def events(self) -> AsyncEventsResource:
+        return AsyncEventsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHijacksWithStreamingResponse:
-        return AsyncHijacksWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncHijacksResourceWithRawResponse:
+        return AsyncHijacksResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncHijacksResourceWithStreamingResponse:
+        return AsyncHijacksResourceWithStreamingResponse(self)
 
 
-class HijacksWithRawResponse:
-    def __init__(self, hijacks: Hijacks) -> None:
+class HijacksResourceWithRawResponse:
+    def __init__(self, hijacks: HijacksResource) -> None:
         self._hijacks = hijacks
 
     @cached_property
-    def events(self) -> EventsWithRawResponse:
-        return EventsWithRawResponse(self._hijacks.events)
+    def events(self) -> EventsResourceWithRawResponse:
+        return EventsResourceWithRawResponse(self._hijacks.events)
 
 
-class AsyncHijacksWithRawResponse:
-    def __init__(self, hijacks: AsyncHijacks) -> None:
+class AsyncHijacksResourceWithRawResponse:
+    def __init__(self, hijacks: AsyncHijacksResource) -> None:
         self._hijacks = hijacks
 
     @cached_property
-    def events(self) -> AsyncEventsWithRawResponse:
-        return AsyncEventsWithRawResponse(self._hijacks.events)
+    def events(self) -> AsyncEventsResourceWithRawResponse:
+        return AsyncEventsResourceWithRawResponse(self._hijacks.events)
 
 
-class HijacksWithStreamingResponse:
-    def __init__(self, hijacks: Hijacks) -> None:
+class HijacksResourceWithStreamingResponse:
+    def __init__(self, hijacks: HijacksResource) -> None:
         self._hijacks = hijacks
 
     @cached_property
-    def events(self) -> EventsWithStreamingResponse:
-        return EventsWithStreamingResponse(self._hijacks.events)
+    def events(self) -> EventsResourceWithStreamingResponse:
+        return EventsResourceWithStreamingResponse(self._hijacks.events)
 
 
-class AsyncHijacksWithStreamingResponse:
-    def __init__(self, hijacks: AsyncHijacks) -> None:
+class AsyncHijacksResourceWithStreamingResponse:
+    def __init__(self, hijacks: AsyncHijacksResource) -> None:
         self._hijacks = hijacks
 
     @cached_property
-    def events(self) -> AsyncEventsWithStreamingResponse:
-        return AsyncEventsWithStreamingResponse(self._hijacks.events)
+    def events(self) -> AsyncEventsResourceWithStreamingResponse:
+        return AsyncEventsResourceWithStreamingResponse(self._hijacks.events)

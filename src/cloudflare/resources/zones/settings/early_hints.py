@@ -24,19 +24,20 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import early_hints, early_hint_edit_params
+from ....types.zones.settings import early_hint_edit_params
+from ....types.zones.settings.early_hints import EarlyHints
 
-__all__ = ["EarlyHints", "AsyncEarlyHints"]
+__all__ = ["EarlyHintsResource", "AsyncEarlyHintsResource"]
 
 
-class EarlyHints(SyncAPIResource):
+class EarlyHintsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> EarlyHintsWithRawResponse:
-        return EarlyHintsWithRawResponse(self)
+    def with_raw_response(self) -> EarlyHintsResourceWithRawResponse:
+        return EarlyHintsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> EarlyHintsWithStreamingResponse:
-        return EarlyHintsWithStreamingResponse(self)
+    def with_streaming_response(self) -> EarlyHintsResourceWithStreamingResponse:
+        return EarlyHintsResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +50,7 @@ class EarlyHints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[early_hints.EarlyHints]:
+    ) -> Optional[EarlyHints]:
         """
         When enabled, Cloudflare will attempt to speed up overall page loads by serving
         `103` responses with `Link` headers from the final response. Refer to
@@ -79,9 +80,9 @@ class EarlyHints(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[early_hints.EarlyHints]]._unwrapper,
+                post_parser=ResultWrapper[Optional[EarlyHints]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[early_hints.EarlyHints]], ResultWrapper[early_hints.EarlyHints]),
+            cast_to=cast(Type[Optional[EarlyHints]], ResultWrapper[EarlyHints]),
         )
 
     def get(
@@ -94,7 +95,7 @@ class EarlyHints(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[early_hints.EarlyHints]:
+    ) -> Optional[EarlyHints]:
         """
         When enabled, Cloudflare will attempt to speed up overall page loads by serving
         `103` responses with `Link` headers from the final response. Refer to
@@ -121,20 +122,20 @@ class EarlyHints(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[early_hints.EarlyHints]]._unwrapper,
+                post_parser=ResultWrapper[Optional[EarlyHints]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[early_hints.EarlyHints]], ResultWrapper[early_hints.EarlyHints]),
+            cast_to=cast(Type[Optional[EarlyHints]], ResultWrapper[EarlyHints]),
         )
 
 
-class AsyncEarlyHints(AsyncAPIResource):
+class AsyncEarlyHintsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncEarlyHintsWithRawResponse:
-        return AsyncEarlyHintsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncEarlyHintsResourceWithRawResponse:
+        return AsyncEarlyHintsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEarlyHintsWithStreamingResponse:
-        return AsyncEarlyHintsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncEarlyHintsResourceWithStreamingResponse:
+        return AsyncEarlyHintsResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -147,7 +148,7 @@ class AsyncEarlyHints(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[early_hints.EarlyHints]:
+    ) -> Optional[EarlyHints]:
         """
         When enabled, Cloudflare will attempt to speed up overall page loads by serving
         `103` responses with `Link` headers from the final response. Refer to
@@ -177,9 +178,9 @@ class AsyncEarlyHints(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[early_hints.EarlyHints]]._unwrapper,
+                post_parser=ResultWrapper[Optional[EarlyHints]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[early_hints.EarlyHints]], ResultWrapper[early_hints.EarlyHints]),
+            cast_to=cast(Type[Optional[EarlyHints]], ResultWrapper[EarlyHints]),
         )
 
     async def get(
@@ -192,7 +193,7 @@ class AsyncEarlyHints(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[early_hints.EarlyHints]:
+    ) -> Optional[EarlyHints]:
         """
         When enabled, Cloudflare will attempt to speed up overall page loads by serving
         `103` responses with `Link` headers from the final response. Refer to
@@ -219,14 +220,14 @@ class AsyncEarlyHints(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[early_hints.EarlyHints]]._unwrapper,
+                post_parser=ResultWrapper[Optional[EarlyHints]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[early_hints.EarlyHints]], ResultWrapper[early_hints.EarlyHints]),
+            cast_to=cast(Type[Optional[EarlyHints]], ResultWrapper[EarlyHints]),
         )
 
 
-class EarlyHintsWithRawResponse:
-    def __init__(self, early_hints: EarlyHints) -> None:
+class EarlyHintsResourceWithRawResponse:
+    def __init__(self, early_hints: EarlyHintsResource) -> None:
         self._early_hints = early_hints
 
         self.edit = to_raw_response_wrapper(
@@ -237,8 +238,8 @@ class EarlyHintsWithRawResponse:
         )
 
 
-class AsyncEarlyHintsWithRawResponse:
-    def __init__(self, early_hints: AsyncEarlyHints) -> None:
+class AsyncEarlyHintsResourceWithRawResponse:
+    def __init__(self, early_hints: AsyncEarlyHintsResource) -> None:
         self._early_hints = early_hints
 
         self.edit = async_to_raw_response_wrapper(
@@ -249,8 +250,8 @@ class AsyncEarlyHintsWithRawResponse:
         )
 
 
-class EarlyHintsWithStreamingResponse:
-    def __init__(self, early_hints: EarlyHints) -> None:
+class EarlyHintsResourceWithStreamingResponse:
+    def __init__(self, early_hints: EarlyHintsResource) -> None:
         self._early_hints = early_hints
 
         self.edit = to_streamed_response_wrapper(
@@ -261,8 +262,8 @@ class EarlyHintsWithStreamingResponse:
         )
 
 
-class AsyncEarlyHintsWithStreamingResponse:
-    def __init__(self, early_hints: AsyncEarlyHints) -> None:
+class AsyncEarlyHintsResourceWithStreamingResponse:
+    def __init__(self, early_hints: AsyncEarlyHintsResource) -> None:
         self._early_hints = early_hints
 
         self.edit = async_to_streamed_response_wrapper(

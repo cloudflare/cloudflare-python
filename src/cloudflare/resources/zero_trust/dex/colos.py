@@ -23,17 +23,17 @@ from ...._base_client import (
 )
 from ....types.zero_trust.dex import colo_list_params
 
-__all__ = ["Colos", "AsyncColos"]
+__all__ = ["ColosResource", "AsyncColosResource"]
 
 
-class Colos(SyncAPIResource):
+class ColosResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ColosWithRawResponse:
-        return ColosWithRawResponse(self)
+    def with_raw_response(self) -> ColosResourceWithRawResponse:
+        return ColosResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ColosWithStreamingResponse:
-        return ColosWithStreamingResponse(self)
+    def with_streaming_response(self) -> ColosResourceWithStreamingResponse:
+        return ColosResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -93,14 +93,14 @@ class Colos(SyncAPIResource):
         )
 
 
-class AsyncColos(AsyncAPIResource):
+class AsyncColosResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncColosWithRawResponse:
-        return AsyncColosWithRawResponse(self)
+    def with_raw_response(self) -> AsyncColosResourceWithRawResponse:
+        return AsyncColosResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncColosWithStreamingResponse:
-        return AsyncColosWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncColosResourceWithStreamingResponse:
+        return AsyncColosResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -160,8 +160,8 @@ class AsyncColos(AsyncAPIResource):
         )
 
 
-class ColosWithRawResponse:
-    def __init__(self, colos: Colos) -> None:
+class ColosResourceWithRawResponse:
+    def __init__(self, colos: ColosResource) -> None:
         self._colos = colos
 
         self.list = to_raw_response_wrapper(
@@ -169,8 +169,8 @@ class ColosWithRawResponse:
         )
 
 
-class AsyncColosWithRawResponse:
-    def __init__(self, colos: AsyncColos) -> None:
+class AsyncColosResourceWithRawResponse:
+    def __init__(self, colos: AsyncColosResource) -> None:
         self._colos = colos
 
         self.list = async_to_raw_response_wrapper(
@@ -178,8 +178,8 @@ class AsyncColosWithRawResponse:
         )
 
 
-class ColosWithStreamingResponse:
-    def __init__(self, colos: Colos) -> None:
+class ColosResourceWithStreamingResponse:
+    def __init__(self, colos: ColosResource) -> None:
         self._colos = colos
 
         self.list = to_streamed_response_wrapper(
@@ -187,8 +187,8 @@ class ColosWithStreamingResponse:
         )
 
 
-class AsyncColosWithStreamingResponse:
-    def __init__(self, colos: AsyncColos) -> None:
+class AsyncColosResourceWithStreamingResponse:
+    def __init__(self, colos: AsyncColosResource) -> None:
         self._colos = colos
 
         self.list = async_to_streamed_response_wrapper(

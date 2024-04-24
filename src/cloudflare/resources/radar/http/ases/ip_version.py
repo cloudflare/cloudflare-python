@@ -28,17 +28,17 @@ from ....._base_client import (
 from .....types.radar.http.ases import ip_version_get_params
 from .....types.radar.http.ases.ip_version_get_response import IPVersionGetResponse
 
-__all__ = ["IPVersion", "AsyncIPVersion"]
+__all__ = ["IPVersionResource", "AsyncIPVersionResource"]
 
 
-class IPVersion(SyncAPIResource):
+class IPVersionResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IPVersionWithRawResponse:
-        return IPVersionWithRawResponse(self)
+    def with_raw_response(self) -> IPVersionResourceWithRawResponse:
+        return IPVersionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IPVersionWithStreamingResponse:
-        return IPVersionWithStreamingResponse(self)
+    def with_streaming_response(self) -> IPVersionResourceWithStreamingResponse:
+        return IPVersionResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -175,14 +175,14 @@ class IPVersion(SyncAPIResource):
         )
 
 
-class AsyncIPVersion(AsyncAPIResource):
+class AsyncIPVersionResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIPVersionWithRawResponse:
-        return AsyncIPVersionWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIPVersionResourceWithRawResponse:
+        return AsyncIPVersionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIPVersionWithStreamingResponse:
-        return AsyncIPVersionWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIPVersionResourceWithStreamingResponse:
+        return AsyncIPVersionResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -319,8 +319,8 @@ class AsyncIPVersion(AsyncAPIResource):
         )
 
 
-class IPVersionWithRawResponse:
-    def __init__(self, ip_version: IPVersion) -> None:
+class IPVersionResourceWithRawResponse:
+    def __init__(self, ip_version: IPVersionResource) -> None:
         self._ip_version = ip_version
 
         self.get = to_raw_response_wrapper(
@@ -328,8 +328,8 @@ class IPVersionWithRawResponse:
         )
 
 
-class AsyncIPVersionWithRawResponse:
-    def __init__(self, ip_version: AsyncIPVersion) -> None:
+class AsyncIPVersionResourceWithRawResponse:
+    def __init__(self, ip_version: AsyncIPVersionResource) -> None:
         self._ip_version = ip_version
 
         self.get = async_to_raw_response_wrapper(
@@ -337,8 +337,8 @@ class AsyncIPVersionWithRawResponse:
         )
 
 
-class IPVersionWithStreamingResponse:
-    def __init__(self, ip_version: IPVersion) -> None:
+class IPVersionResourceWithStreamingResponse:
+    def __init__(self, ip_version: IPVersionResource) -> None:
         self._ip_version = ip_version
 
         self.get = to_streamed_response_wrapper(
@@ -346,8 +346,8 @@ class IPVersionWithStreamingResponse:
         )
 
 
-class AsyncIPVersionWithStreamingResponse:
-    def __init__(self, ip_version: AsyncIPVersion) -> None:
+class AsyncIPVersionResourceWithStreamingResponse:
+    def __init__(self, ip_version: AsyncIPVersionResource) -> None:
         self._ip_version = ip_version
 
         self.get = async_to_streamed_response_wrapper(

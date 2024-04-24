@@ -21,17 +21,17 @@ from ....._base_client import (
 )
 from .....types.zero_trust.devices.policies.default_policy_get_response import DefaultPolicyGetResponse
 
-__all__ = ["DefaultPolicy", "AsyncDefaultPolicy"]
+__all__ = ["DefaultPolicyResource", "AsyncDefaultPolicyResource"]
 
 
-class DefaultPolicy(SyncAPIResource):
+class DefaultPolicyResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DefaultPolicyWithRawResponse:
-        return DefaultPolicyWithRawResponse(self)
+    def with_raw_response(self) -> DefaultPolicyResourceWithRawResponse:
+        return DefaultPolicyResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DefaultPolicyWithStreamingResponse:
-        return DefaultPolicyWithStreamingResponse(self)
+    def with_streaming_response(self) -> DefaultPolicyResourceWithStreamingResponse:
+        return DefaultPolicyResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -71,14 +71,14 @@ class DefaultPolicy(SyncAPIResource):
         )
 
 
-class AsyncDefaultPolicy(AsyncAPIResource):
+class AsyncDefaultPolicyResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDefaultPolicyWithRawResponse:
-        return AsyncDefaultPolicyWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDefaultPolicyResourceWithRawResponse:
+        return AsyncDefaultPolicyResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDefaultPolicyWithStreamingResponse:
-        return AsyncDefaultPolicyWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDefaultPolicyResourceWithStreamingResponse:
+        return AsyncDefaultPolicyResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -118,8 +118,8 @@ class AsyncDefaultPolicy(AsyncAPIResource):
         )
 
 
-class DefaultPolicyWithRawResponse:
-    def __init__(self, default_policy: DefaultPolicy) -> None:
+class DefaultPolicyResourceWithRawResponse:
+    def __init__(self, default_policy: DefaultPolicyResource) -> None:
         self._default_policy = default_policy
 
         self.get = to_raw_response_wrapper(
@@ -127,8 +127,8 @@ class DefaultPolicyWithRawResponse:
         )
 
 
-class AsyncDefaultPolicyWithRawResponse:
-    def __init__(self, default_policy: AsyncDefaultPolicy) -> None:
+class AsyncDefaultPolicyResourceWithRawResponse:
+    def __init__(self, default_policy: AsyncDefaultPolicyResource) -> None:
         self._default_policy = default_policy
 
         self.get = async_to_raw_response_wrapper(
@@ -136,8 +136,8 @@ class AsyncDefaultPolicyWithRawResponse:
         )
 
 
-class DefaultPolicyWithStreamingResponse:
-    def __init__(self, default_policy: DefaultPolicy) -> None:
+class DefaultPolicyResourceWithStreamingResponse:
+    def __init__(self, default_policy: DefaultPolicyResource) -> None:
         self._default_policy = default_policy
 
         self.get = to_streamed_response_wrapper(
@@ -145,8 +145,8 @@ class DefaultPolicyWithStreamingResponse:
         )
 
 
-class AsyncDefaultPolicyWithStreamingResponse:
-    def __init__(self, default_policy: AsyncDefaultPolicy) -> None:
+class AsyncDefaultPolicyResourceWithStreamingResponse:
+    def __init__(self, default_policy: AsyncDefaultPolicyResource) -> None:
         self._default_policy = default_policy
 
         self.get = async_to_streamed_response_wrapper(

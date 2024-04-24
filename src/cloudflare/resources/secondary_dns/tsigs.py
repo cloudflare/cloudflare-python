@@ -29,17 +29,17 @@ from ...types.secondary_dns import tsig_create_params, tsig_delete_params, tsig_
 from ...types.secondary_dns.tsig import TSIG
 from ...types.secondary_dns.tsig_delete_response import TSIGDeleteResponse
 
-__all__ = ["TSIGs", "AsyncTSIGs"]
+__all__ = ["TSIGsResource", "AsyncTSIGsResource"]
 
 
-class TSIGs(SyncAPIResource):
+class TSIGsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TSIGsWithRawResponse:
-        return TSIGsWithRawResponse(self)
+    def with_raw_response(self) -> TSIGsResourceWithRawResponse:
+        return TSIGsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TSIGsWithStreamingResponse:
-        return TSIGsWithStreamingResponse(self)
+    def with_streaming_response(self) -> TSIGsResourceWithStreamingResponse:
+        return TSIGsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -269,14 +269,14 @@ class TSIGs(SyncAPIResource):
         )
 
 
-class AsyncTSIGs(AsyncAPIResource):
+class AsyncTSIGsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTSIGsWithRawResponse:
-        return AsyncTSIGsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTSIGsResourceWithRawResponse:
+        return AsyncTSIGsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTSIGsWithStreamingResponse:
-        return AsyncTSIGsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTSIGsResourceWithStreamingResponse:
+        return AsyncTSIGsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -506,8 +506,8 @@ class AsyncTSIGs(AsyncAPIResource):
         )
 
 
-class TSIGsWithRawResponse:
-    def __init__(self, tsigs: TSIGs) -> None:
+class TSIGsResourceWithRawResponse:
+    def __init__(self, tsigs: TSIGsResource) -> None:
         self._tsigs = tsigs
 
         self.create = to_raw_response_wrapper(
@@ -527,8 +527,8 @@ class TSIGsWithRawResponse:
         )
 
 
-class AsyncTSIGsWithRawResponse:
-    def __init__(self, tsigs: AsyncTSIGs) -> None:
+class AsyncTSIGsResourceWithRawResponse:
+    def __init__(self, tsigs: AsyncTSIGsResource) -> None:
         self._tsigs = tsigs
 
         self.create = async_to_raw_response_wrapper(
@@ -548,8 +548,8 @@ class AsyncTSIGsWithRawResponse:
         )
 
 
-class TSIGsWithStreamingResponse:
-    def __init__(self, tsigs: TSIGs) -> None:
+class TSIGsResourceWithStreamingResponse:
+    def __init__(self, tsigs: TSIGsResource) -> None:
         self._tsigs = tsigs
 
         self.create = to_streamed_response_wrapper(
@@ -569,8 +569,8 @@ class TSIGsWithStreamingResponse:
         )
 
 
-class AsyncTSIGsWithStreamingResponse:
-    def __init__(self, tsigs: AsyncTSIGs) -> None:
+class AsyncTSIGsResourceWithStreamingResponse:
+    def __init__(self, tsigs: AsyncTSIGsResource) -> None:
         self._tsigs = tsigs
 
         self.create = async_to_streamed_response_wrapper(

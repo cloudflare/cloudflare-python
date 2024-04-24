@@ -7,28 +7,28 @@ from typing import Any, Optional, cast
 import httpx
 
 from .tokens import (
-    Tokens,
-    AsyncTokens,
-    TokensWithRawResponse,
-    AsyncTokensWithRawResponse,
-    TokensWithStreamingResponse,
-    AsyncTokensWithStreamingResponse,
+    TokensResource,
+    AsyncTokensResource,
+    TokensResourceWithRawResponse,
+    AsyncTokensResourceWithRawResponse,
+    TokensResourceWithStreamingResponse,
+    AsyncTokensResourceWithStreamingResponse,
 )
 from .billing import (
-    Billing,
-    AsyncBilling,
-    BillingWithRawResponse,
-    AsyncBillingWithRawResponse,
-    BillingWithStreamingResponse,
-    AsyncBillingWithStreamingResponse,
+    BillingResource,
+    AsyncBillingResource,
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
 )
 from .invites import (
-    Invites,
-    AsyncInvites,
-    InvitesWithRawResponse,
-    AsyncInvitesWithRawResponse,
-    InvitesWithStreamingResponse,
-    AsyncInvitesWithStreamingResponse,
+    InvitesResource,
+    AsyncInvitesResource,
+    InvitesResourceWithRawResponse,
+    AsyncInvitesResourceWithRawResponse,
+    InvitesResourceWithStreamingResponse,
+    AsyncInvitesResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -37,12 +37,12 @@ from ..._utils import (
 )
 from ..._compat import cached_property
 from .audit_logs import (
-    AuditLogs,
-    AsyncAuditLogs,
-    AuditLogsWithRawResponse,
-    AsyncAuditLogsWithRawResponse,
-    AuditLogsWithStreamingResponse,
-    AsyncAuditLogsWithStreamingResponse,
+    AuditLogsResource,
+    AsyncAuditLogsResource,
+    AuditLogsResourceWithRawResponse,
+    AsyncAuditLogsResourceWithRawResponse,
+    AuditLogsResourceWithStreamingResponse,
+    AsyncAuditLogsResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -54,64 +54,64 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.user import user_edit_params
 from .organizations import (
-    Organizations,
-    AsyncOrganizations,
-    OrganizationsWithRawResponse,
-    AsyncOrganizationsWithRawResponse,
-    OrganizationsWithStreamingResponse,
-    AsyncOrganizationsWithStreamingResponse,
+    OrganizationsResource,
+    AsyncOrganizationsResource,
+    OrganizationsResourceWithRawResponse,
+    AsyncOrganizationsResourceWithRawResponse,
+    OrganizationsResourceWithStreamingResponse,
+    AsyncOrganizationsResourceWithStreamingResponse,
 )
 from .subscriptions import (
-    Subscriptions,
-    AsyncSubscriptions,
-    SubscriptionsWithRawResponse,
-    AsyncSubscriptionsWithRawResponse,
-    SubscriptionsWithStreamingResponse,
-    AsyncSubscriptionsWithStreamingResponse,
+    SubscriptionsResource,
+    AsyncSubscriptionsResource,
+    SubscriptionsResourceWithRawResponse,
+    AsyncSubscriptionsResourceWithRawResponse,
+    SubscriptionsResourceWithStreamingResponse,
+    AsyncSubscriptionsResourceWithStreamingResponse,
 )
-from .tokens.tokens import Tokens, AsyncTokens
+from .tokens.tokens import TokensResource, AsyncTokensResource
 from ..._base_client import (
     make_request_options,
 )
-from .billing.billing import Billing, AsyncBilling
+from .billing.billing import BillingResource, AsyncBillingResource
 from ...types.user.user_get_response import UserGetResponse
 from ...types.user.user_edit_response import UserEditResponse
 
-__all__ = ["User", "AsyncUser"]
+__all__ = ["UserResource", "AsyncUserResource"]
 
 
-class User(SyncAPIResource):
+class UserResource(SyncAPIResource):
     @cached_property
-    def audit_logs(self) -> AuditLogs:
-        return AuditLogs(self._client)
-
-    @cached_property
-    def billing(self) -> Billing:
-        return Billing(self._client)
+    def audit_logs(self) -> AuditLogsResource:
+        return AuditLogsResource(self._client)
 
     @cached_property
-    def invites(self) -> Invites:
-        return Invites(self._client)
+    def billing(self) -> BillingResource:
+        return BillingResource(self._client)
 
     @cached_property
-    def organizations(self) -> Organizations:
-        return Organizations(self._client)
+    def invites(self) -> InvitesResource:
+        return InvitesResource(self._client)
 
     @cached_property
-    def subscriptions(self) -> Subscriptions:
-        return Subscriptions(self._client)
+    def organizations(self) -> OrganizationsResource:
+        return OrganizationsResource(self._client)
 
     @cached_property
-    def tokens(self) -> Tokens:
-        return Tokens(self._client)
+    def subscriptions(self) -> SubscriptionsResource:
+        return SubscriptionsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> UserWithRawResponse:
-        return UserWithRawResponse(self)
+    def tokens(self) -> TokensResource:
+        return TokensResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> UserWithStreamingResponse:
-        return UserWithStreamingResponse(self)
+    def with_raw_response(self) -> UserResourceWithRawResponse:
+        return UserResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> UserResourceWithStreamingResponse:
+        return UserResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -206,38 +206,38 @@ class User(SyncAPIResource):
         )
 
 
-class AsyncUser(AsyncAPIResource):
+class AsyncUserResource(AsyncAPIResource):
     @cached_property
-    def audit_logs(self) -> AsyncAuditLogs:
-        return AsyncAuditLogs(self._client)
+    def audit_logs(self) -> AsyncAuditLogsResource:
+        return AsyncAuditLogsResource(self._client)
 
     @cached_property
-    def billing(self) -> AsyncBilling:
-        return AsyncBilling(self._client)
+    def billing(self) -> AsyncBillingResource:
+        return AsyncBillingResource(self._client)
 
     @cached_property
-    def invites(self) -> AsyncInvites:
-        return AsyncInvites(self._client)
+    def invites(self) -> AsyncInvitesResource:
+        return AsyncInvitesResource(self._client)
 
     @cached_property
-    def organizations(self) -> AsyncOrganizations:
-        return AsyncOrganizations(self._client)
+    def organizations(self) -> AsyncOrganizationsResource:
+        return AsyncOrganizationsResource(self._client)
 
     @cached_property
-    def subscriptions(self) -> AsyncSubscriptions:
-        return AsyncSubscriptions(self._client)
+    def subscriptions(self) -> AsyncSubscriptionsResource:
+        return AsyncSubscriptionsResource(self._client)
 
     @cached_property
-    def tokens(self) -> AsyncTokens:
-        return AsyncTokens(self._client)
+    def tokens(self) -> AsyncTokensResource:
+        return AsyncTokensResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncUserWithRawResponse:
-        return AsyncUserWithRawResponse(self)
+    def with_raw_response(self) -> AsyncUserResourceWithRawResponse:
+        return AsyncUserResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUserWithStreamingResponse:
-        return AsyncUserWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncUserResourceWithStreamingResponse:
+        return AsyncUserResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -332,8 +332,8 @@ class AsyncUser(AsyncAPIResource):
         )
 
 
-class UserWithRawResponse:
-    def __init__(self, user: User) -> None:
+class UserResourceWithRawResponse:
+    def __init__(self, user: UserResource) -> None:
         self._user = user
 
         self.edit = to_raw_response_wrapper(
@@ -344,32 +344,32 @@ class UserWithRawResponse:
         )
 
     @cached_property
-    def audit_logs(self) -> AuditLogsWithRawResponse:
-        return AuditLogsWithRawResponse(self._user.audit_logs)
+    def audit_logs(self) -> AuditLogsResourceWithRawResponse:
+        return AuditLogsResourceWithRawResponse(self._user.audit_logs)
 
     @cached_property
-    def billing(self) -> BillingWithRawResponse:
-        return BillingWithRawResponse(self._user.billing)
+    def billing(self) -> BillingResourceWithRawResponse:
+        return BillingResourceWithRawResponse(self._user.billing)
 
     @cached_property
-    def invites(self) -> InvitesWithRawResponse:
-        return InvitesWithRawResponse(self._user.invites)
+    def invites(self) -> InvitesResourceWithRawResponse:
+        return InvitesResourceWithRawResponse(self._user.invites)
 
     @cached_property
-    def organizations(self) -> OrganizationsWithRawResponse:
-        return OrganizationsWithRawResponse(self._user.organizations)
+    def organizations(self) -> OrganizationsResourceWithRawResponse:
+        return OrganizationsResourceWithRawResponse(self._user.organizations)
 
     @cached_property
-    def subscriptions(self) -> SubscriptionsWithRawResponse:
-        return SubscriptionsWithRawResponse(self._user.subscriptions)
+    def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
+        return SubscriptionsResourceWithRawResponse(self._user.subscriptions)
 
     @cached_property
-    def tokens(self) -> TokensWithRawResponse:
-        return TokensWithRawResponse(self._user.tokens)
+    def tokens(self) -> TokensResourceWithRawResponse:
+        return TokensResourceWithRawResponse(self._user.tokens)
 
 
-class AsyncUserWithRawResponse:
-    def __init__(self, user: AsyncUser) -> None:
+class AsyncUserResourceWithRawResponse:
+    def __init__(self, user: AsyncUserResource) -> None:
         self._user = user
 
         self.edit = async_to_raw_response_wrapper(
@@ -380,32 +380,32 @@ class AsyncUserWithRawResponse:
         )
 
     @cached_property
-    def audit_logs(self) -> AsyncAuditLogsWithRawResponse:
-        return AsyncAuditLogsWithRawResponse(self._user.audit_logs)
+    def audit_logs(self) -> AsyncAuditLogsResourceWithRawResponse:
+        return AsyncAuditLogsResourceWithRawResponse(self._user.audit_logs)
 
     @cached_property
-    def billing(self) -> AsyncBillingWithRawResponse:
-        return AsyncBillingWithRawResponse(self._user.billing)
+    def billing(self) -> AsyncBillingResourceWithRawResponse:
+        return AsyncBillingResourceWithRawResponse(self._user.billing)
 
     @cached_property
-    def invites(self) -> AsyncInvitesWithRawResponse:
-        return AsyncInvitesWithRawResponse(self._user.invites)
+    def invites(self) -> AsyncInvitesResourceWithRawResponse:
+        return AsyncInvitesResourceWithRawResponse(self._user.invites)
 
     @cached_property
-    def organizations(self) -> AsyncOrganizationsWithRawResponse:
-        return AsyncOrganizationsWithRawResponse(self._user.organizations)
+    def organizations(self) -> AsyncOrganizationsResourceWithRawResponse:
+        return AsyncOrganizationsResourceWithRawResponse(self._user.organizations)
 
     @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsWithRawResponse:
-        return AsyncSubscriptionsWithRawResponse(self._user.subscriptions)
+    def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
+        return AsyncSubscriptionsResourceWithRawResponse(self._user.subscriptions)
 
     @cached_property
-    def tokens(self) -> AsyncTokensWithRawResponse:
-        return AsyncTokensWithRawResponse(self._user.tokens)
+    def tokens(self) -> AsyncTokensResourceWithRawResponse:
+        return AsyncTokensResourceWithRawResponse(self._user.tokens)
 
 
-class UserWithStreamingResponse:
-    def __init__(self, user: User) -> None:
+class UserResourceWithStreamingResponse:
+    def __init__(self, user: UserResource) -> None:
         self._user = user
 
         self.edit = to_streamed_response_wrapper(
@@ -416,32 +416,32 @@ class UserWithStreamingResponse:
         )
 
     @cached_property
-    def audit_logs(self) -> AuditLogsWithStreamingResponse:
-        return AuditLogsWithStreamingResponse(self._user.audit_logs)
+    def audit_logs(self) -> AuditLogsResourceWithStreamingResponse:
+        return AuditLogsResourceWithStreamingResponse(self._user.audit_logs)
 
     @cached_property
-    def billing(self) -> BillingWithStreamingResponse:
-        return BillingWithStreamingResponse(self._user.billing)
+    def billing(self) -> BillingResourceWithStreamingResponse:
+        return BillingResourceWithStreamingResponse(self._user.billing)
 
     @cached_property
-    def invites(self) -> InvitesWithStreamingResponse:
-        return InvitesWithStreamingResponse(self._user.invites)
+    def invites(self) -> InvitesResourceWithStreamingResponse:
+        return InvitesResourceWithStreamingResponse(self._user.invites)
 
     @cached_property
-    def organizations(self) -> OrganizationsWithStreamingResponse:
-        return OrganizationsWithStreamingResponse(self._user.organizations)
+    def organizations(self) -> OrganizationsResourceWithStreamingResponse:
+        return OrganizationsResourceWithStreamingResponse(self._user.organizations)
 
     @cached_property
-    def subscriptions(self) -> SubscriptionsWithStreamingResponse:
-        return SubscriptionsWithStreamingResponse(self._user.subscriptions)
+    def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
+        return SubscriptionsResourceWithStreamingResponse(self._user.subscriptions)
 
     @cached_property
-    def tokens(self) -> TokensWithStreamingResponse:
-        return TokensWithStreamingResponse(self._user.tokens)
+    def tokens(self) -> TokensResourceWithStreamingResponse:
+        return TokensResourceWithStreamingResponse(self._user.tokens)
 
 
-class AsyncUserWithStreamingResponse:
-    def __init__(self, user: AsyncUser) -> None:
+class AsyncUserResourceWithStreamingResponse:
+    def __init__(self, user: AsyncUserResource) -> None:
         self._user = user
 
         self.edit = async_to_streamed_response_wrapper(
@@ -452,25 +452,25 @@ class AsyncUserWithStreamingResponse:
         )
 
     @cached_property
-    def audit_logs(self) -> AsyncAuditLogsWithStreamingResponse:
-        return AsyncAuditLogsWithStreamingResponse(self._user.audit_logs)
+    def audit_logs(self) -> AsyncAuditLogsResourceWithStreamingResponse:
+        return AsyncAuditLogsResourceWithStreamingResponse(self._user.audit_logs)
 
     @cached_property
-    def billing(self) -> AsyncBillingWithStreamingResponse:
-        return AsyncBillingWithStreamingResponse(self._user.billing)
+    def billing(self) -> AsyncBillingResourceWithStreamingResponse:
+        return AsyncBillingResourceWithStreamingResponse(self._user.billing)
 
     @cached_property
-    def invites(self) -> AsyncInvitesWithStreamingResponse:
-        return AsyncInvitesWithStreamingResponse(self._user.invites)
+    def invites(self) -> AsyncInvitesResourceWithStreamingResponse:
+        return AsyncInvitesResourceWithStreamingResponse(self._user.invites)
 
     @cached_property
-    def organizations(self) -> AsyncOrganizationsWithStreamingResponse:
-        return AsyncOrganizationsWithStreamingResponse(self._user.organizations)
+    def organizations(self) -> AsyncOrganizationsResourceWithStreamingResponse:
+        return AsyncOrganizationsResourceWithStreamingResponse(self._user.organizations)
 
     @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsWithStreamingResponse:
-        return AsyncSubscriptionsWithStreamingResponse(self._user.subscriptions)
+    def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
+        return AsyncSubscriptionsResourceWithStreamingResponse(self._user.subscriptions)
 
     @cached_property
-    def tokens(self) -> AsyncTokensWithStreamingResponse:
-        return AsyncTokensWithStreamingResponse(self._user.tokens)
+    def tokens(self) -> AsyncTokensResourceWithStreamingResponse:
+        return AsyncTokensResourceWithStreamingResponse(self._user.tokens)

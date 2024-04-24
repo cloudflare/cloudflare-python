@@ -26,17 +26,17 @@ from ..._base_client import (
 from ...types.stream import video_storage_usage_params
 from ...types.stream.video_storage_usage_response import VideoStorageUsageResponse
 
-__all__ = ["Videos", "AsyncVideos"]
+__all__ = ["VideosResource", "AsyncVideosResource"]
 
 
-class Videos(SyncAPIResource):
+class VideosResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> VideosWithRawResponse:
-        return VideosWithRawResponse(self)
+    def with_raw_response(self) -> VideosResourceWithRawResponse:
+        return VideosResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> VideosWithStreamingResponse:
-        return VideosWithStreamingResponse(self)
+    def with_streaming_response(self) -> VideosResourceWithStreamingResponse:
+        return VideosResourceWithStreamingResponse(self)
 
     def storage_usage(
         self,
@@ -82,14 +82,14 @@ class Videos(SyncAPIResource):
         )
 
 
-class AsyncVideos(AsyncAPIResource):
+class AsyncVideosResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncVideosWithRawResponse:
-        return AsyncVideosWithRawResponse(self)
+    def with_raw_response(self) -> AsyncVideosResourceWithRawResponse:
+        return AsyncVideosResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVideosWithStreamingResponse:
-        return AsyncVideosWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncVideosResourceWithStreamingResponse:
+        return AsyncVideosResourceWithStreamingResponse(self)
 
     async def storage_usage(
         self,
@@ -137,8 +137,8 @@ class AsyncVideos(AsyncAPIResource):
         )
 
 
-class VideosWithRawResponse:
-    def __init__(self, videos: Videos) -> None:
+class VideosResourceWithRawResponse:
+    def __init__(self, videos: VideosResource) -> None:
         self._videos = videos
 
         self.storage_usage = to_raw_response_wrapper(
@@ -146,8 +146,8 @@ class VideosWithRawResponse:
         )
 
 
-class AsyncVideosWithRawResponse:
-    def __init__(self, videos: AsyncVideos) -> None:
+class AsyncVideosResourceWithRawResponse:
+    def __init__(self, videos: AsyncVideosResource) -> None:
         self._videos = videos
 
         self.storage_usage = async_to_raw_response_wrapper(
@@ -155,8 +155,8 @@ class AsyncVideosWithRawResponse:
         )
 
 
-class VideosWithStreamingResponse:
-    def __init__(self, videos: Videos) -> None:
+class VideosResourceWithStreamingResponse:
+    def __init__(self, videos: VideosResource) -> None:
         self._videos = videos
 
         self.storage_usage = to_streamed_response_wrapper(
@@ -164,8 +164,8 @@ class VideosWithStreamingResponse:
         )
 
 
-class AsyncVideosWithStreamingResponse:
-    def __init__(self, videos: AsyncVideos) -> None:
+class AsyncVideosResourceWithStreamingResponse:
+    def __init__(self, videos: AsyncVideosResource) -> None:
         self._videos = videos
 
         self.storage_usage = async_to_streamed_response_wrapper(

@@ -20,17 +20,17 @@ from ..._base_client import (
 )
 from ...types.speed.page_list_response import PageListResponse
 
-__all__ = ["Pages", "AsyncPages"]
+__all__ = ["PagesResource", "AsyncPagesResource"]
 
 
-class Pages(SyncAPIResource):
+class PagesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PagesWithRawResponse:
-        return PagesWithRawResponse(self)
+    def with_raw_response(self) -> PagesResourceWithRawResponse:
+        return PagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PagesWithStreamingResponse:
-        return PagesWithStreamingResponse(self)
+    def with_streaming_response(self) -> PagesResourceWithStreamingResponse:
+        return PagesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -69,14 +69,14 @@ class Pages(SyncAPIResource):
         )
 
 
-class AsyncPages(AsyncAPIResource):
+class AsyncPagesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPagesWithRawResponse:
-        return AsyncPagesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPagesResourceWithRawResponse:
+        return AsyncPagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPagesWithStreamingResponse:
-        return AsyncPagesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPagesResourceWithStreamingResponse:
+        return AsyncPagesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -115,8 +115,8 @@ class AsyncPages(AsyncAPIResource):
         )
 
 
-class PagesWithRawResponse:
-    def __init__(self, pages: Pages) -> None:
+class PagesResourceWithRawResponse:
+    def __init__(self, pages: PagesResource) -> None:
         self._pages = pages
 
         self.list = to_raw_response_wrapper(
@@ -124,8 +124,8 @@ class PagesWithRawResponse:
         )
 
 
-class AsyncPagesWithRawResponse:
-    def __init__(self, pages: AsyncPages) -> None:
+class AsyncPagesResourceWithRawResponse:
+    def __init__(self, pages: AsyncPagesResource) -> None:
         self._pages = pages
 
         self.list = async_to_raw_response_wrapper(
@@ -133,8 +133,8 @@ class AsyncPagesWithRawResponse:
         )
 
 
-class PagesWithStreamingResponse:
-    def __init__(self, pages: Pages) -> None:
+class PagesResourceWithStreamingResponse:
+    def __init__(self, pages: PagesResource) -> None:
         self._pages = pages
 
         self.list = to_streamed_response_wrapper(
@@ -142,8 +142,8 @@ class PagesWithStreamingResponse:
         )
 
 
-class AsyncPagesWithStreamingResponse:
-    def __init__(self, pages: AsyncPages) -> None:
+class AsyncPagesResourceWithStreamingResponse:
+    def __init__(self, pages: AsyncPagesResource) -> None:
         self._pages = pages
 
         self.list = async_to_streamed_response_wrapper(

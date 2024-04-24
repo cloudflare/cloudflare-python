@@ -25,17 +25,17 @@ from ...._base_client import (
 from ....types.rulesets.ruleset import Ruleset
 from ....types.rulesets.phases.version_get_response import VersionGetResponse
 
-__all__ = ["Versions", "AsyncVersions"]
+__all__ = ["VersionsResource", "AsyncVersionsResource"]
 
 
-class Versions(SyncAPIResource):
+class VersionsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> VersionsWithRawResponse:
-        return VersionsWithRawResponse(self)
+    def with_raw_response(self) -> VersionsResourceWithRawResponse:
+        return VersionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> VersionsWithStreamingResponse:
-        return VersionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> VersionsResourceWithStreamingResponse:
+        return VersionsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -202,14 +202,14 @@ class Versions(SyncAPIResource):
         )
 
 
-class AsyncVersions(AsyncAPIResource):
+class AsyncVersionsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncVersionsWithRawResponse:
-        return AsyncVersionsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncVersionsResourceWithRawResponse:
+        return AsyncVersionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVersionsWithStreamingResponse:
-        return AsyncVersionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncVersionsResourceWithStreamingResponse:
+        return AsyncVersionsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -376,8 +376,8 @@ class AsyncVersions(AsyncAPIResource):
         )
 
 
-class VersionsWithRawResponse:
-    def __init__(self, versions: Versions) -> None:
+class VersionsResourceWithRawResponse:
+    def __init__(self, versions: VersionsResource) -> None:
         self._versions = versions
 
         self.list = to_raw_response_wrapper(
@@ -388,8 +388,8 @@ class VersionsWithRawResponse:
         )
 
 
-class AsyncVersionsWithRawResponse:
-    def __init__(self, versions: AsyncVersions) -> None:
+class AsyncVersionsResourceWithRawResponse:
+    def __init__(self, versions: AsyncVersionsResource) -> None:
         self._versions = versions
 
         self.list = async_to_raw_response_wrapper(
@@ -400,8 +400,8 @@ class AsyncVersionsWithRawResponse:
         )
 
 
-class VersionsWithStreamingResponse:
-    def __init__(self, versions: Versions) -> None:
+class VersionsResourceWithStreamingResponse:
+    def __init__(self, versions: VersionsResource) -> None:
         self._versions = versions
 
         self.list = to_streamed_response_wrapper(
@@ -412,8 +412,8 @@ class VersionsWithStreamingResponse:
         )
 
 
-class AsyncVersionsWithStreamingResponse:
-    def __init__(self, versions: AsyncVersions) -> None:
+class AsyncVersionsResourceWithStreamingResponse:
+    def __init__(self, versions: AsyncVersionsResource) -> None:
         self._versions = versions
 
         self.list = async_to_streamed_response_wrapper(

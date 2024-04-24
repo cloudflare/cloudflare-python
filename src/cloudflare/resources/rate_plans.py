@@ -21,17 +21,17 @@ from .._base_client import (
 )
 from ..types.rate_plans.rate_plan_get_response import RatePlanGetResponse
 
-__all__ = ["RatePlans", "AsyncRatePlans"]
+__all__ = ["RatePlansResource", "AsyncRatePlansResource"]
 
 
-class RatePlans(SyncAPIResource):
+class RatePlansResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RatePlansWithRawResponse:
-        return RatePlansWithRawResponse(self)
+    def with_raw_response(self) -> RatePlansResourceWithRawResponse:
+        return RatePlansResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RatePlansWithStreamingResponse:
-        return RatePlansWithStreamingResponse(self)
+    def with_streaming_response(self) -> RatePlansResourceWithStreamingResponse:
+        return RatePlansResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -73,14 +73,14 @@ class RatePlans(SyncAPIResource):
         )
 
 
-class AsyncRatePlans(AsyncAPIResource):
+class AsyncRatePlansResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRatePlansWithRawResponse:
-        return AsyncRatePlansWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRatePlansResourceWithRawResponse:
+        return AsyncRatePlansResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRatePlansWithStreamingResponse:
-        return AsyncRatePlansWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRatePlansResourceWithStreamingResponse:
+        return AsyncRatePlansResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -122,8 +122,8 @@ class AsyncRatePlans(AsyncAPIResource):
         )
 
 
-class RatePlansWithRawResponse:
-    def __init__(self, rate_plans: RatePlans) -> None:
+class RatePlansResourceWithRawResponse:
+    def __init__(self, rate_plans: RatePlansResource) -> None:
         self._rate_plans = rate_plans
 
         self.get = to_raw_response_wrapper(
@@ -131,8 +131,8 @@ class RatePlansWithRawResponse:
         )
 
 
-class AsyncRatePlansWithRawResponse:
-    def __init__(self, rate_plans: AsyncRatePlans) -> None:
+class AsyncRatePlansResourceWithRawResponse:
+    def __init__(self, rate_plans: AsyncRatePlansResource) -> None:
         self._rate_plans = rate_plans
 
         self.get = async_to_raw_response_wrapper(
@@ -140,8 +140,8 @@ class AsyncRatePlansWithRawResponse:
         )
 
 
-class RatePlansWithStreamingResponse:
-    def __init__(self, rate_plans: RatePlans) -> None:
+class RatePlansResourceWithStreamingResponse:
+    def __init__(self, rate_plans: RatePlansResource) -> None:
         self._rate_plans = rate_plans
 
         self.get = to_streamed_response_wrapper(
@@ -149,8 +149,8 @@ class RatePlansWithStreamingResponse:
         )
 
 
-class AsyncRatePlansWithStreamingResponse:
-    def __init__(self, rate_plans: AsyncRatePlans) -> None:
+class AsyncRatePlansResourceWithStreamingResponse:
+    def __init__(self, rate_plans: AsyncRatePlansResource) -> None:
         self._rate_plans = rate_plans
 
         self.get = async_to_streamed_response_wrapper(

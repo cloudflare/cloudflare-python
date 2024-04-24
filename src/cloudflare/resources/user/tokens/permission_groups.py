@@ -19,17 +19,17 @@ from ...._base_client import (
     make_request_options,
 )
 
-__all__ = ["PermissionGroups", "AsyncPermissionGroups"]
+__all__ = ["PermissionGroupsResource", "AsyncPermissionGroupsResource"]
 
 
-class PermissionGroups(SyncAPIResource):
+class PermissionGroupsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PermissionGroupsWithRawResponse:
-        return PermissionGroupsWithRawResponse(self)
+    def with_raw_response(self) -> PermissionGroupsResourceWithRawResponse:
+        return PermissionGroupsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PermissionGroupsWithStreamingResponse:
-        return PermissionGroupsWithStreamingResponse(self)
+    def with_streaming_response(self) -> PermissionGroupsResourceWithStreamingResponse:
+        return PermissionGroupsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -52,14 +52,14 @@ class PermissionGroups(SyncAPIResource):
         )
 
 
-class AsyncPermissionGroups(AsyncAPIResource):
+class AsyncPermissionGroupsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPermissionGroupsWithRawResponse:
-        return AsyncPermissionGroupsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPermissionGroupsResourceWithRawResponse:
+        return AsyncPermissionGroupsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPermissionGroupsWithStreamingResponse:
-        return AsyncPermissionGroupsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPermissionGroupsResourceWithStreamingResponse:
+        return AsyncPermissionGroupsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -82,8 +82,8 @@ class AsyncPermissionGroups(AsyncAPIResource):
         )
 
 
-class PermissionGroupsWithRawResponse:
-    def __init__(self, permission_groups: PermissionGroups) -> None:
+class PermissionGroupsResourceWithRawResponse:
+    def __init__(self, permission_groups: PermissionGroupsResource) -> None:
         self._permission_groups = permission_groups
 
         self.list = to_raw_response_wrapper(
@@ -91,8 +91,8 @@ class PermissionGroupsWithRawResponse:
         )
 
 
-class AsyncPermissionGroupsWithRawResponse:
-    def __init__(self, permission_groups: AsyncPermissionGroups) -> None:
+class AsyncPermissionGroupsResourceWithRawResponse:
+    def __init__(self, permission_groups: AsyncPermissionGroupsResource) -> None:
         self._permission_groups = permission_groups
 
         self.list = async_to_raw_response_wrapper(
@@ -100,8 +100,8 @@ class AsyncPermissionGroupsWithRawResponse:
         )
 
 
-class PermissionGroupsWithStreamingResponse:
-    def __init__(self, permission_groups: PermissionGroups) -> None:
+class PermissionGroupsResourceWithStreamingResponse:
+    def __init__(self, permission_groups: PermissionGroupsResource) -> None:
         self._permission_groups = permission_groups
 
         self.list = to_streamed_response_wrapper(
@@ -109,8 +109,8 @@ class PermissionGroupsWithStreamingResponse:
         )
 
 
-class AsyncPermissionGroupsWithStreamingResponse:
-    def __init__(self, permission_groups: AsyncPermissionGroups) -> None:
+class AsyncPermissionGroupsResourceWithStreamingResponse:
+    def __init__(self, permission_groups: AsyncPermissionGroupsResource) -> None:
         self._permission_groups = permission_groups
 
         self.list = async_to_streamed_response_wrapper(

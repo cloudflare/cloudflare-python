@@ -3,142 +3,142 @@
 from __future__ import annotations
 
 from .bindings import (
-    Bindings,
-    AsyncBindings,
-    BindingsWithRawResponse,
-    AsyncBindingsWithRawResponse,
-    BindingsWithStreamingResponse,
-    AsyncBindingsWithStreamingResponse,
+    BindingsResource,
+    AsyncBindingsResource,
+    BindingsResourceWithRawResponse,
+    AsyncBindingsResourceWithRawResponse,
+    BindingsResourceWithStreamingResponse,
+    AsyncBindingsResourceWithStreamingResponse,
 )
 from .prefixes import (
-    Prefixes,
-    AsyncPrefixes,
-    PrefixesWithRawResponse,
-    AsyncPrefixesWithRawResponse,
-    PrefixesWithStreamingResponse,
-    AsyncPrefixesWithStreamingResponse,
+    PrefixesResource,
+    AsyncPrefixesResource,
+    PrefixesResourceWithRawResponse,
+    AsyncPrefixesResourceWithRawResponse,
+    PrefixesResourceWithStreamingResponse,
+    AsyncPrefixesResourceWithStreamingResponse,
 )
 from .statuses import (
-    Statuses,
-    AsyncStatuses,
-    StatusesWithRawResponse,
-    AsyncStatusesWithRawResponse,
-    StatusesWithStreamingResponse,
-    AsyncStatusesWithStreamingResponse,
+    StatusesResource,
+    AsyncStatusesResource,
+    StatusesResourceWithRawResponse,
+    AsyncStatusesResourceWithRawResponse,
+    StatusesResourceWithStreamingResponse,
+    AsyncStatusesResourceWithStreamingResponse,
 )
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["BGP", "AsyncBGP"]
+__all__ = ["BGPResource", "AsyncBGPResource"]
 
 
-class BGP(SyncAPIResource):
+class BGPResource(SyncAPIResource):
     @cached_property
-    def bindings(self) -> Bindings:
-        return Bindings(self._client)
-
-    @cached_property
-    def prefixes(self) -> Prefixes:
-        return Prefixes(self._client)
+    def bindings(self) -> BindingsResource:
+        return BindingsResource(self._client)
 
     @cached_property
-    def statuses(self) -> Statuses:
-        return Statuses(self._client)
+    def prefixes(self) -> PrefixesResource:
+        return PrefixesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> BGPWithRawResponse:
-        return BGPWithRawResponse(self)
+    def statuses(self) -> StatusesResource:
+        return StatusesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> BGPWithStreamingResponse:
-        return BGPWithStreamingResponse(self)
-
-
-class AsyncBGP(AsyncAPIResource):
-    @cached_property
-    def bindings(self) -> AsyncBindings:
-        return AsyncBindings(self._client)
+    def with_raw_response(self) -> BGPResourceWithRawResponse:
+        return BGPResourceWithRawResponse(self)
 
     @cached_property
-    def prefixes(self) -> AsyncPrefixes:
-        return AsyncPrefixes(self._client)
+    def with_streaming_response(self) -> BGPResourceWithStreamingResponse:
+        return BGPResourceWithStreamingResponse(self)
+
+
+class AsyncBGPResource(AsyncAPIResource):
+    @cached_property
+    def bindings(self) -> AsyncBindingsResource:
+        return AsyncBindingsResource(self._client)
 
     @cached_property
-    def statuses(self) -> AsyncStatuses:
-        return AsyncStatuses(self._client)
+    def prefixes(self) -> AsyncPrefixesResource:
+        return AsyncPrefixesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncBGPWithRawResponse:
-        return AsyncBGPWithRawResponse(self)
+    def statuses(self) -> AsyncStatusesResource:
+        return AsyncStatusesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBGPWithStreamingResponse:
-        return AsyncBGPWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncBGPResourceWithRawResponse:
+        return AsyncBGPResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncBGPResourceWithStreamingResponse:
+        return AsyncBGPResourceWithStreamingResponse(self)
 
 
-class BGPWithRawResponse:
-    def __init__(self, bgp: BGP) -> None:
+class BGPResourceWithRawResponse:
+    def __init__(self, bgp: BGPResource) -> None:
         self._bgp = bgp
 
     @cached_property
-    def bindings(self) -> BindingsWithRawResponse:
-        return BindingsWithRawResponse(self._bgp.bindings)
+    def bindings(self) -> BindingsResourceWithRawResponse:
+        return BindingsResourceWithRawResponse(self._bgp.bindings)
 
     @cached_property
-    def prefixes(self) -> PrefixesWithRawResponse:
-        return PrefixesWithRawResponse(self._bgp.prefixes)
+    def prefixes(self) -> PrefixesResourceWithRawResponse:
+        return PrefixesResourceWithRawResponse(self._bgp.prefixes)
 
     @cached_property
-    def statuses(self) -> StatusesWithRawResponse:
-        return StatusesWithRawResponse(self._bgp.statuses)
+    def statuses(self) -> StatusesResourceWithRawResponse:
+        return StatusesResourceWithRawResponse(self._bgp.statuses)
 
 
-class AsyncBGPWithRawResponse:
-    def __init__(self, bgp: AsyncBGP) -> None:
+class AsyncBGPResourceWithRawResponse:
+    def __init__(self, bgp: AsyncBGPResource) -> None:
         self._bgp = bgp
 
     @cached_property
-    def bindings(self) -> AsyncBindingsWithRawResponse:
-        return AsyncBindingsWithRawResponse(self._bgp.bindings)
+    def bindings(self) -> AsyncBindingsResourceWithRawResponse:
+        return AsyncBindingsResourceWithRawResponse(self._bgp.bindings)
 
     @cached_property
-    def prefixes(self) -> AsyncPrefixesWithRawResponse:
-        return AsyncPrefixesWithRawResponse(self._bgp.prefixes)
+    def prefixes(self) -> AsyncPrefixesResourceWithRawResponse:
+        return AsyncPrefixesResourceWithRawResponse(self._bgp.prefixes)
 
     @cached_property
-    def statuses(self) -> AsyncStatusesWithRawResponse:
-        return AsyncStatusesWithRawResponse(self._bgp.statuses)
+    def statuses(self) -> AsyncStatusesResourceWithRawResponse:
+        return AsyncStatusesResourceWithRawResponse(self._bgp.statuses)
 
 
-class BGPWithStreamingResponse:
-    def __init__(self, bgp: BGP) -> None:
+class BGPResourceWithStreamingResponse:
+    def __init__(self, bgp: BGPResource) -> None:
         self._bgp = bgp
 
     @cached_property
-    def bindings(self) -> BindingsWithStreamingResponse:
-        return BindingsWithStreamingResponse(self._bgp.bindings)
+    def bindings(self) -> BindingsResourceWithStreamingResponse:
+        return BindingsResourceWithStreamingResponse(self._bgp.bindings)
 
     @cached_property
-    def prefixes(self) -> PrefixesWithStreamingResponse:
-        return PrefixesWithStreamingResponse(self._bgp.prefixes)
+    def prefixes(self) -> PrefixesResourceWithStreamingResponse:
+        return PrefixesResourceWithStreamingResponse(self._bgp.prefixes)
 
     @cached_property
-    def statuses(self) -> StatusesWithStreamingResponse:
-        return StatusesWithStreamingResponse(self._bgp.statuses)
+    def statuses(self) -> StatusesResourceWithStreamingResponse:
+        return StatusesResourceWithStreamingResponse(self._bgp.statuses)
 
 
-class AsyncBGPWithStreamingResponse:
-    def __init__(self, bgp: AsyncBGP) -> None:
+class AsyncBGPResourceWithStreamingResponse:
+    def __init__(self, bgp: AsyncBGPResource) -> None:
         self._bgp = bgp
 
     @cached_property
-    def bindings(self) -> AsyncBindingsWithStreamingResponse:
-        return AsyncBindingsWithStreamingResponse(self._bgp.bindings)
+    def bindings(self) -> AsyncBindingsResourceWithStreamingResponse:
+        return AsyncBindingsResourceWithStreamingResponse(self._bgp.bindings)
 
     @cached_property
-    def prefixes(self) -> AsyncPrefixesWithStreamingResponse:
-        return AsyncPrefixesWithStreamingResponse(self._bgp.prefixes)
+    def prefixes(self) -> AsyncPrefixesResourceWithStreamingResponse:
+        return AsyncPrefixesResourceWithStreamingResponse(self._bgp.prefixes)
 
     @cached_property
-    def statuses(self) -> AsyncStatusesWithStreamingResponse:
-        return AsyncStatusesWithStreamingResponse(self._bgp.statuses)
+    def statuses(self) -> AsyncStatusesResourceWithStreamingResponse:
+        return AsyncStatusesResourceWithStreamingResponse(self._bgp.statuses)

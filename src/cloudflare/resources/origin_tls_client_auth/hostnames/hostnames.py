@@ -21,12 +21,12 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from .certificates import (
-    Certificates,
-    AsyncCertificates,
-    CertificatesWithRawResponse,
-    AsyncCertificatesWithRawResponse,
-    CertificatesWithStreamingResponse,
-    AsyncCertificatesWithStreamingResponse,
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
 )
 from ...._base_client import (
     make_request_options,
@@ -35,21 +35,21 @@ from ....types.origin_tls_client_auth import hostname_update_params
 from ....types.origin_tls_client_auth.hostname_update_response import HostnameUpdateResponse
 from ....types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
 
-__all__ = ["Hostnames", "AsyncHostnames"]
+__all__ = ["HostnamesResource", "AsyncHostnamesResource"]
 
 
-class Hostnames(SyncAPIResource):
+class HostnamesResource(SyncAPIResource):
     @cached_property
-    def certificates(self) -> Certificates:
-        return Certificates(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> HostnamesWithRawResponse:
-        return HostnamesWithRawResponse(self)
+    def certificates(self) -> CertificatesResource:
+        return CertificatesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> HostnamesWithStreamingResponse:
-        return HostnamesWithStreamingResponse(self)
+    def with_raw_response(self) -> HostnamesResourceWithRawResponse:
+        return HostnamesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> HostnamesResourceWithStreamingResponse:
+        return HostnamesResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -142,18 +142,18 @@ class Hostnames(SyncAPIResource):
         )
 
 
-class AsyncHostnames(AsyncAPIResource):
+class AsyncHostnamesResource(AsyncAPIResource):
     @cached_property
-    def certificates(self) -> AsyncCertificates:
-        return AsyncCertificates(self._client)
+    def certificates(self) -> AsyncCertificatesResource:
+        return AsyncCertificatesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncHostnamesWithRawResponse:
-        return AsyncHostnamesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHostnamesResourceWithRawResponse:
+        return AsyncHostnamesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHostnamesWithStreamingResponse:
-        return AsyncHostnamesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHostnamesResourceWithStreamingResponse:
+        return AsyncHostnamesResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -246,8 +246,8 @@ class AsyncHostnames(AsyncAPIResource):
         )
 
 
-class HostnamesWithRawResponse:
-    def __init__(self, hostnames: Hostnames) -> None:
+class HostnamesResourceWithRawResponse:
+    def __init__(self, hostnames: HostnamesResource) -> None:
         self._hostnames = hostnames
 
         self.update = to_raw_response_wrapper(
@@ -258,12 +258,12 @@ class HostnamesWithRawResponse:
         )
 
     @cached_property
-    def certificates(self) -> CertificatesWithRawResponse:
-        return CertificatesWithRawResponse(self._hostnames.certificates)
+    def certificates(self) -> CertificatesResourceWithRawResponse:
+        return CertificatesResourceWithRawResponse(self._hostnames.certificates)
 
 
-class AsyncHostnamesWithRawResponse:
-    def __init__(self, hostnames: AsyncHostnames) -> None:
+class AsyncHostnamesResourceWithRawResponse:
+    def __init__(self, hostnames: AsyncHostnamesResource) -> None:
         self._hostnames = hostnames
 
         self.update = async_to_raw_response_wrapper(
@@ -274,12 +274,12 @@ class AsyncHostnamesWithRawResponse:
         )
 
     @cached_property
-    def certificates(self) -> AsyncCertificatesWithRawResponse:
-        return AsyncCertificatesWithRawResponse(self._hostnames.certificates)
+    def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
+        return AsyncCertificatesResourceWithRawResponse(self._hostnames.certificates)
 
 
-class HostnamesWithStreamingResponse:
-    def __init__(self, hostnames: Hostnames) -> None:
+class HostnamesResourceWithStreamingResponse:
+    def __init__(self, hostnames: HostnamesResource) -> None:
         self._hostnames = hostnames
 
         self.update = to_streamed_response_wrapper(
@@ -290,12 +290,12 @@ class HostnamesWithStreamingResponse:
         )
 
     @cached_property
-    def certificates(self) -> CertificatesWithStreamingResponse:
-        return CertificatesWithStreamingResponse(self._hostnames.certificates)
+    def certificates(self) -> CertificatesResourceWithStreamingResponse:
+        return CertificatesResourceWithStreamingResponse(self._hostnames.certificates)
 
 
-class AsyncHostnamesWithStreamingResponse:
-    def __init__(self, hostnames: AsyncHostnames) -> None:
+class AsyncHostnamesResourceWithStreamingResponse:
+    def __init__(self, hostnames: AsyncHostnamesResource) -> None:
         self._hostnames = hostnames
 
         self.update = async_to_streamed_response_wrapper(
@@ -306,5 +306,5 @@ class AsyncHostnamesWithStreamingResponse:
         )
 
     @cached_property
-    def certificates(self) -> AsyncCertificatesWithStreamingResponse:
-        return AsyncCertificatesWithStreamingResponse(self._hostnames.certificates)
+    def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:
+        return AsyncCertificatesResourceWithStreamingResponse(self._hostnames.certificates)

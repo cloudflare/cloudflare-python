@@ -12,21 +12,21 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .messages import (
-    Messages,
-    AsyncMessages,
-    MessagesWithRawResponse,
-    AsyncMessagesWithRawResponse,
-    MessagesWithStreamingResponse,
-    AsyncMessagesWithStreamingResponse,
+    MessagesResource,
+    AsyncMessagesResource,
+    MessagesResourceWithRawResponse,
+    AsyncMessagesResourceWithRawResponse,
+    MessagesResourceWithStreamingResponse,
+    AsyncMessagesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .consumers import (
-    Consumers,
-    AsyncConsumers,
-    ConsumersWithRawResponse,
-    AsyncConsumersWithRawResponse,
-    ConsumersWithStreamingResponse,
-    AsyncConsumersWithStreamingResponse,
+    ConsumersResource,
+    AsyncConsumersResource,
+    ConsumersResourceWithRawResponse,
+    AsyncConsumersResourceWithRawResponse,
+    ConsumersResourceWithStreamingResponse,
+    AsyncConsumersResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -47,25 +47,25 @@ from ...types.queues.queue_created import QueueCreated
 from ...types.queues.queue_updated import QueueUpdated
 from ...types.queues.queue_delete_response import QueueDeleteResponse
 
-__all__ = ["Queues", "AsyncQueues"]
+__all__ = ["QueuesResource", "AsyncQueuesResource"]
 
 
-class Queues(SyncAPIResource):
+class QueuesResource(SyncAPIResource):
     @cached_property
-    def consumers(self) -> Consumers:
-        return Consumers(self._client)
-
-    @cached_property
-    def messages(self) -> Messages:
-        return Messages(self._client)
+    def consumers(self) -> ConsumersResource:
+        return ConsumersResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> QueuesWithRawResponse:
-        return QueuesWithRawResponse(self)
+    def messages(self) -> MessagesResource:
+        return MessagesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> QueuesWithStreamingResponse:
-        return QueuesWithStreamingResponse(self)
+    def with_raw_response(self) -> QueuesResourceWithRawResponse:
+        return QueuesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> QueuesResourceWithStreamingResponse:
+        return QueuesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -286,22 +286,22 @@ class Queues(SyncAPIResource):
         )
 
 
-class AsyncQueues(AsyncAPIResource):
+class AsyncQueuesResource(AsyncAPIResource):
     @cached_property
-    def consumers(self) -> AsyncConsumers:
-        return AsyncConsumers(self._client)
+    def consumers(self) -> AsyncConsumersResource:
+        return AsyncConsumersResource(self._client)
 
     @cached_property
-    def messages(self) -> AsyncMessages:
-        return AsyncMessages(self._client)
+    def messages(self) -> AsyncMessagesResource:
+        return AsyncMessagesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncQueuesWithRawResponse:
-        return AsyncQueuesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncQueuesResourceWithRawResponse:
+        return AsyncQueuesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncQueuesWithStreamingResponse:
-        return AsyncQueuesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncQueuesResourceWithStreamingResponse:
+        return AsyncQueuesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -522,8 +522,8 @@ class AsyncQueues(AsyncAPIResource):
         )
 
 
-class QueuesWithRawResponse:
-    def __init__(self, queues: Queues) -> None:
+class QueuesResourceWithRawResponse:
+    def __init__(self, queues: QueuesResource) -> None:
         self._queues = queues
 
         self.create = to_raw_response_wrapper(
@@ -543,16 +543,16 @@ class QueuesWithRawResponse:
         )
 
     @cached_property
-    def consumers(self) -> ConsumersWithRawResponse:
-        return ConsumersWithRawResponse(self._queues.consumers)
+    def consumers(self) -> ConsumersResourceWithRawResponse:
+        return ConsumersResourceWithRawResponse(self._queues.consumers)
 
     @cached_property
-    def messages(self) -> MessagesWithRawResponse:
-        return MessagesWithRawResponse(self._queues.messages)
+    def messages(self) -> MessagesResourceWithRawResponse:
+        return MessagesResourceWithRawResponse(self._queues.messages)
 
 
-class AsyncQueuesWithRawResponse:
-    def __init__(self, queues: AsyncQueues) -> None:
+class AsyncQueuesResourceWithRawResponse:
+    def __init__(self, queues: AsyncQueuesResource) -> None:
         self._queues = queues
 
         self.create = async_to_raw_response_wrapper(
@@ -572,16 +572,16 @@ class AsyncQueuesWithRawResponse:
         )
 
     @cached_property
-    def consumers(self) -> AsyncConsumersWithRawResponse:
-        return AsyncConsumersWithRawResponse(self._queues.consumers)
+    def consumers(self) -> AsyncConsumersResourceWithRawResponse:
+        return AsyncConsumersResourceWithRawResponse(self._queues.consumers)
 
     @cached_property
-    def messages(self) -> AsyncMessagesWithRawResponse:
-        return AsyncMessagesWithRawResponse(self._queues.messages)
+    def messages(self) -> AsyncMessagesResourceWithRawResponse:
+        return AsyncMessagesResourceWithRawResponse(self._queues.messages)
 
 
-class QueuesWithStreamingResponse:
-    def __init__(self, queues: Queues) -> None:
+class QueuesResourceWithStreamingResponse:
+    def __init__(self, queues: QueuesResource) -> None:
         self._queues = queues
 
         self.create = to_streamed_response_wrapper(
@@ -601,16 +601,16 @@ class QueuesWithStreamingResponse:
         )
 
     @cached_property
-    def consumers(self) -> ConsumersWithStreamingResponse:
-        return ConsumersWithStreamingResponse(self._queues.consumers)
+    def consumers(self) -> ConsumersResourceWithStreamingResponse:
+        return ConsumersResourceWithStreamingResponse(self._queues.consumers)
 
     @cached_property
-    def messages(self) -> MessagesWithStreamingResponse:
-        return MessagesWithStreamingResponse(self._queues.messages)
+    def messages(self) -> MessagesResourceWithStreamingResponse:
+        return MessagesResourceWithStreamingResponse(self._queues.messages)
 
 
-class AsyncQueuesWithStreamingResponse:
-    def __init__(self, queues: AsyncQueues) -> None:
+class AsyncQueuesResourceWithStreamingResponse:
+    def __init__(self, queues: AsyncQueuesResource) -> None:
         self._queues = queues
 
         self.create = async_to_streamed_response_wrapper(
@@ -630,9 +630,9 @@ class AsyncQueuesWithStreamingResponse:
         )
 
     @cached_property
-    def consumers(self) -> AsyncConsumersWithStreamingResponse:
-        return AsyncConsumersWithStreamingResponse(self._queues.consumers)
+    def consumers(self) -> AsyncConsumersResourceWithStreamingResponse:
+        return AsyncConsumersResourceWithStreamingResponse(self._queues.consumers)
 
     @cached_property
-    def messages(self) -> AsyncMessagesWithStreamingResponse:
-        return AsyncMessagesWithStreamingResponse(self._queues.messages)
+    def messages(self) -> AsyncMessagesResourceWithStreamingResponse:
+        return AsyncMessagesResourceWithStreamingResponse(self._queues.messages)

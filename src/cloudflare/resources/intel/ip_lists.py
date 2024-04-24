@@ -21,17 +21,17 @@ from ..._base_client import (
 )
 from ...types.intel.ip_list_get_response import IPListGetResponse
 
-__all__ = ["IPLists", "AsyncIPLists"]
+__all__ = ["IPListsResource", "AsyncIPListsResource"]
 
 
-class IPLists(SyncAPIResource):
+class IPListsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IPListsWithRawResponse:
-        return IPListsWithRawResponse(self)
+    def with_raw_response(self) -> IPListsResourceWithRawResponse:
+        return IPListsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IPListsWithStreamingResponse:
-        return IPListsWithStreamingResponse(self)
+    def with_streaming_response(self) -> IPListsResourceWithStreamingResponse:
+        return IPListsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -73,14 +73,14 @@ class IPLists(SyncAPIResource):
         )
 
 
-class AsyncIPLists(AsyncAPIResource):
+class AsyncIPListsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIPListsWithRawResponse:
-        return AsyncIPListsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIPListsResourceWithRawResponse:
+        return AsyncIPListsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIPListsWithStreamingResponse:
-        return AsyncIPListsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIPListsResourceWithStreamingResponse:
+        return AsyncIPListsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -122,8 +122,8 @@ class AsyncIPLists(AsyncAPIResource):
         )
 
 
-class IPListsWithRawResponse:
-    def __init__(self, ip_lists: IPLists) -> None:
+class IPListsResourceWithRawResponse:
+    def __init__(self, ip_lists: IPListsResource) -> None:
         self._ip_lists = ip_lists
 
         self.get = to_raw_response_wrapper(
@@ -131,8 +131,8 @@ class IPListsWithRawResponse:
         )
 
 
-class AsyncIPListsWithRawResponse:
-    def __init__(self, ip_lists: AsyncIPLists) -> None:
+class AsyncIPListsResourceWithRawResponse:
+    def __init__(self, ip_lists: AsyncIPListsResource) -> None:
         self._ip_lists = ip_lists
 
         self.get = async_to_raw_response_wrapper(
@@ -140,8 +140,8 @@ class AsyncIPListsWithRawResponse:
         )
 
 
-class IPListsWithStreamingResponse:
-    def __init__(self, ip_lists: IPLists) -> None:
+class IPListsResourceWithStreamingResponse:
+    def __init__(self, ip_lists: IPListsResource) -> None:
         self._ip_lists = ip_lists
 
         self.get = to_streamed_response_wrapper(
@@ -149,8 +149,8 @@ class IPListsWithStreamingResponse:
         )
 
 
-class AsyncIPListsWithStreamingResponse:
-    def __init__(self, ip_lists: AsyncIPLists) -> None:
+class AsyncIPListsResourceWithStreamingResponse:
+    def __init__(self, ip_lists: AsyncIPListsResource) -> None:
         self._ip_lists = ip_lists
 
         self.get = async_to_streamed_response_wrapper(

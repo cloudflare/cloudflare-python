@@ -27,17 +27,17 @@ from ..._base_client import (
 from ...types.workers import ai_run_params
 from ...types.workers.ai_run_response import AIRunResponse
 
-__all__ = ["AI", "AsyncAI"]
+__all__ = ["AIResource", "AsyncAIResource"]
 
 
-class AI(SyncAPIResource):
+class AIResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AIWithRawResponse:
-        return AIWithRawResponse(self)
+    def with_raw_response(self) -> AIResourceWithRawResponse:
+        return AIResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AIWithStreamingResponse:
-        return AIWithStreamingResponse(self)
+    def with_streaming_response(self) -> AIResourceWithStreamingResponse:
+        return AIResourceWithStreamingResponse(self)
 
     @overload
     def run(
@@ -546,14 +546,14 @@ class AI(SyncAPIResource):
         )
 
 
-class AsyncAI(AsyncAPIResource):
+class AsyncAIResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAIWithRawResponse:
-        return AsyncAIWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
+        return AsyncAIResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAIWithStreamingResponse:
-        return AsyncAIWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAIResourceWithStreamingResponse:
+        return AsyncAIResourceWithStreamingResponse(self)
 
     @overload
     async def run(
@@ -1062,8 +1062,8 @@ class AsyncAI(AsyncAPIResource):
         )
 
 
-class AIWithRawResponse:
-    def __init__(self, ai: AI) -> None:
+class AIResourceWithRawResponse:
+    def __init__(self, ai: AIResource) -> None:
         self._ai = ai
 
         self.run = to_raw_response_wrapper(
@@ -1071,8 +1071,8 @@ class AIWithRawResponse:
         )
 
 
-class AsyncAIWithRawResponse:
-    def __init__(self, ai: AsyncAI) -> None:
+class AsyncAIResourceWithRawResponse:
+    def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
 
         self.run = async_to_raw_response_wrapper(
@@ -1080,8 +1080,8 @@ class AsyncAIWithRawResponse:
         )
 
 
-class AIWithStreamingResponse:
-    def __init__(self, ai: AI) -> None:
+class AIResourceWithStreamingResponse:
+    def __init__(self, ai: AIResource) -> None:
         self._ai = ai
 
         self.run = to_streamed_response_wrapper(
@@ -1089,8 +1089,8 @@ class AIWithStreamingResponse:
         )
 
 
-class AsyncAIWithStreamingResponse:
-    def __init__(self, ai: AsyncAI) -> None:
+class AsyncAIResourceWithStreamingResponse:
+    def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
 
         self.run = async_to_streamed_response_wrapper(

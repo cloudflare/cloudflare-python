@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from .database import (
-    Database,
-    AsyncDatabase,
-    DatabaseWithRawResponse,
-    AsyncDatabaseWithRawResponse,
-    DatabaseWithStreamingResponse,
-    AsyncDatabaseWithStreamingResponse,
+    DatabaseResource,
+    AsyncDatabaseResource,
+    DatabaseResourceWithRawResponse,
+    AsyncDatabaseResourceWithRawResponse,
+    DatabaseResourceWithStreamingResponse,
+    AsyncDatabaseResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -18,8 +18,8 @@ __all__ = ["D1Resource", "AsyncD1Resource"]
 
 class D1Resource(SyncAPIResource):
     @cached_property
-    def database(self) -> Database:
-        return Database(self._client)
+    def database(self) -> DatabaseResource:
+        return DatabaseResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> D1ResourceWithRawResponse:
@@ -32,8 +32,8 @@ class D1Resource(SyncAPIResource):
 
 class AsyncD1Resource(AsyncAPIResource):
     @cached_property
-    def database(self) -> AsyncDatabase:
-        return AsyncDatabase(self._client)
+    def database(self) -> AsyncDatabaseResource:
+        return AsyncDatabaseResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncD1ResourceWithRawResponse:
@@ -49,8 +49,8 @@ class D1ResourceWithRawResponse:
         self._d1 = d1
 
     @cached_property
-    def database(self) -> DatabaseWithRawResponse:
-        return DatabaseWithRawResponse(self._d1.database)
+    def database(self) -> DatabaseResourceWithRawResponse:
+        return DatabaseResourceWithRawResponse(self._d1.database)
 
 
 class AsyncD1ResourceWithRawResponse:
@@ -58,8 +58,8 @@ class AsyncD1ResourceWithRawResponse:
         self._d1 = d1
 
     @cached_property
-    def database(self) -> AsyncDatabaseWithRawResponse:
-        return AsyncDatabaseWithRawResponse(self._d1.database)
+    def database(self) -> AsyncDatabaseResourceWithRawResponse:
+        return AsyncDatabaseResourceWithRawResponse(self._d1.database)
 
 
 class D1ResourceWithStreamingResponse:
@@ -67,8 +67,8 @@ class D1ResourceWithStreamingResponse:
         self._d1 = d1
 
     @cached_property
-    def database(self) -> DatabaseWithStreamingResponse:
-        return DatabaseWithStreamingResponse(self._d1.database)
+    def database(self) -> DatabaseResourceWithStreamingResponse:
+        return DatabaseResourceWithStreamingResponse(self._d1.database)
 
 
 class AsyncD1ResourceWithStreamingResponse:
@@ -76,5 +76,5 @@ class AsyncD1ResourceWithStreamingResponse:
         self._d1 = d1
 
     @cached_property
-    def database(self) -> AsyncDatabaseWithStreamingResponse:
-        return AsyncDatabaseWithStreamingResponse(self._d1.database)
+    def database(self) -> AsyncDatabaseResourceWithStreamingResponse:
+        return AsyncDatabaseResourceWithStreamingResponse(self._d1.database)

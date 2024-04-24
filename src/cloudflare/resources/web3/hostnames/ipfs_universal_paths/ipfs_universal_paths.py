@@ -5,77 +5,77 @@ from __future__ import annotations
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from .content_lists import (
-    ContentLists,
-    AsyncContentLists,
-    ContentListsWithRawResponse,
-    AsyncContentListsWithRawResponse,
-    ContentListsWithStreamingResponse,
-    AsyncContentListsWithStreamingResponse,
+    ContentListsResource,
+    AsyncContentListsResource,
+    ContentListsResourceWithRawResponse,
+    AsyncContentListsResourceWithRawResponse,
+    ContentListsResourceWithStreamingResponse,
+    AsyncContentListsResourceWithStreamingResponse,
 )
-from .content_lists.content_lists import ContentLists, AsyncContentLists
+from .content_lists.content_lists import ContentListsResource, AsyncContentListsResource
 
-__all__ = ["IPFSUniversalPaths", "AsyncIPFSUniversalPaths"]
+__all__ = ["IPFSUniversalPathsResource", "AsyncIPFSUniversalPathsResource"]
 
 
-class IPFSUniversalPaths(SyncAPIResource):
+class IPFSUniversalPathsResource(SyncAPIResource):
     @cached_property
-    def content_lists(self) -> ContentLists:
-        return ContentLists(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> IPFSUniversalPathsWithRawResponse:
-        return IPFSUniversalPathsWithRawResponse(self)
+    def content_lists(self) -> ContentListsResource:
+        return ContentListsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> IPFSUniversalPathsWithStreamingResponse:
-        return IPFSUniversalPathsWithStreamingResponse(self)
-
-
-class AsyncIPFSUniversalPaths(AsyncAPIResource):
-    @cached_property
-    def content_lists(self) -> AsyncContentLists:
-        return AsyncContentLists(self._client)
+    def with_raw_response(self) -> IPFSUniversalPathsResourceWithRawResponse:
+        return IPFSUniversalPathsResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncIPFSUniversalPathsWithRawResponse:
-        return AsyncIPFSUniversalPathsWithRawResponse(self)
+    def with_streaming_response(self) -> IPFSUniversalPathsResourceWithStreamingResponse:
+        return IPFSUniversalPathsResourceWithStreamingResponse(self)
+
+
+class AsyncIPFSUniversalPathsResource(AsyncAPIResource):
+    @cached_property
+    def content_lists(self) -> AsyncContentListsResource:
+        return AsyncContentListsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIPFSUniversalPathsWithStreamingResponse:
-        return AsyncIPFSUniversalPathsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncIPFSUniversalPathsResourceWithRawResponse:
+        return AsyncIPFSUniversalPathsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncIPFSUniversalPathsResourceWithStreamingResponse:
+        return AsyncIPFSUniversalPathsResourceWithStreamingResponse(self)
 
 
-class IPFSUniversalPathsWithRawResponse:
-    def __init__(self, ipfs_universal_paths: IPFSUniversalPaths) -> None:
+class IPFSUniversalPathsResourceWithRawResponse:
+    def __init__(self, ipfs_universal_paths: IPFSUniversalPathsResource) -> None:
         self._ipfs_universal_paths = ipfs_universal_paths
 
     @cached_property
-    def content_lists(self) -> ContentListsWithRawResponse:
-        return ContentListsWithRawResponse(self._ipfs_universal_paths.content_lists)
+    def content_lists(self) -> ContentListsResourceWithRawResponse:
+        return ContentListsResourceWithRawResponse(self._ipfs_universal_paths.content_lists)
 
 
-class AsyncIPFSUniversalPathsWithRawResponse:
-    def __init__(self, ipfs_universal_paths: AsyncIPFSUniversalPaths) -> None:
+class AsyncIPFSUniversalPathsResourceWithRawResponse:
+    def __init__(self, ipfs_universal_paths: AsyncIPFSUniversalPathsResource) -> None:
         self._ipfs_universal_paths = ipfs_universal_paths
 
     @cached_property
-    def content_lists(self) -> AsyncContentListsWithRawResponse:
-        return AsyncContentListsWithRawResponse(self._ipfs_universal_paths.content_lists)
+    def content_lists(self) -> AsyncContentListsResourceWithRawResponse:
+        return AsyncContentListsResourceWithRawResponse(self._ipfs_universal_paths.content_lists)
 
 
-class IPFSUniversalPathsWithStreamingResponse:
-    def __init__(self, ipfs_universal_paths: IPFSUniversalPaths) -> None:
+class IPFSUniversalPathsResourceWithStreamingResponse:
+    def __init__(self, ipfs_universal_paths: IPFSUniversalPathsResource) -> None:
         self._ipfs_universal_paths = ipfs_universal_paths
 
     @cached_property
-    def content_lists(self) -> ContentListsWithStreamingResponse:
-        return ContentListsWithStreamingResponse(self._ipfs_universal_paths.content_lists)
+    def content_lists(self) -> ContentListsResourceWithStreamingResponse:
+        return ContentListsResourceWithStreamingResponse(self._ipfs_universal_paths.content_lists)
 
 
-class AsyncIPFSUniversalPathsWithStreamingResponse:
-    def __init__(self, ipfs_universal_paths: AsyncIPFSUniversalPaths) -> None:
+class AsyncIPFSUniversalPathsResourceWithStreamingResponse:
+    def __init__(self, ipfs_universal_paths: AsyncIPFSUniversalPathsResource) -> None:
         self._ipfs_universal_paths = ipfs_universal_paths
 
     @cached_property
-    def content_lists(self) -> AsyncContentListsWithStreamingResponse:
-        return AsyncContentListsWithStreamingResponse(self._ipfs_universal_paths.content_lists)
+    def content_lists(self) -> AsyncContentListsResourceWithStreamingResponse:
+        return AsyncContentListsResourceWithStreamingResponse(self._ipfs_universal_paths.content_lists)

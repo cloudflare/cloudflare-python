@@ -14,12 +14,12 @@ from ..._utils import (
 )
 from ..._compat import cached_property
 from .prioritize import (
-    Prioritize,
-    AsyncPrioritize,
-    PrioritizeWithRawResponse,
-    AsyncPrioritizeWithRawResponse,
-    PrioritizeWithStreamingResponse,
-    AsyncPrioritizeWithStreamingResponse,
+    PrioritizeResource,
+    AsyncPrioritizeResource,
+    PrioritizeResourceWithRawResponse,
+    AsyncPrioritizeResourceWithRawResponse,
+    PrioritizeResourceWithStreamingResponse,
+    AsyncPrioritizeResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -49,21 +49,21 @@ from ...types.custom_certificates.custom_certificate_edit_response import Custom
 from ...types.custom_certificates.custom_certificate_create_response import CustomCertificateCreateResponse
 from ...types.custom_certificates.custom_certificate_delete_response import CustomCertificateDeleteResponse
 
-__all__ = ["CustomCertificates", "AsyncCustomCertificates"]
+__all__ = ["CustomCertificatesResource", "AsyncCustomCertificatesResource"]
 
 
-class CustomCertificates(SyncAPIResource):
+class CustomCertificatesResource(SyncAPIResource):
     @cached_property
-    def prioritize(self) -> Prioritize:
-        return Prioritize(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> CustomCertificatesWithRawResponse:
-        return CustomCertificatesWithRawResponse(self)
+    def prioritize(self) -> PrioritizeResource:
+        return PrioritizeResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> CustomCertificatesWithStreamingResponse:
-        return CustomCertificatesWithStreamingResponse(self)
+    def with_raw_response(self) -> CustomCertificatesResourceWithRawResponse:
+        return CustomCertificatesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> CustomCertificatesResourceWithStreamingResponse:
+        return CustomCertificatesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -415,18 +415,18 @@ class CustomCertificates(SyncAPIResource):
         )
 
 
-class AsyncCustomCertificates(AsyncAPIResource):
+class AsyncCustomCertificatesResource(AsyncAPIResource):
     @cached_property
-    def prioritize(self) -> AsyncPrioritize:
-        return AsyncPrioritize(self._client)
+    def prioritize(self) -> AsyncPrioritizeResource:
+        return AsyncPrioritizeResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCustomCertificatesWithRawResponse:
-        return AsyncCustomCertificatesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCustomCertificatesResourceWithRawResponse:
+        return AsyncCustomCertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCustomCertificatesWithStreamingResponse:
-        return AsyncCustomCertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCustomCertificatesResourceWithStreamingResponse:
+        return AsyncCustomCertificatesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -778,8 +778,8 @@ class AsyncCustomCertificates(AsyncAPIResource):
         )
 
 
-class CustomCertificatesWithRawResponse:
-    def __init__(self, custom_certificates: CustomCertificates) -> None:
+class CustomCertificatesResourceWithRawResponse:
+    def __init__(self, custom_certificates: CustomCertificatesResource) -> None:
         self._custom_certificates = custom_certificates
 
         self.create = to_raw_response_wrapper(
@@ -799,12 +799,12 @@ class CustomCertificatesWithRawResponse:
         )
 
     @cached_property
-    def prioritize(self) -> PrioritizeWithRawResponse:
-        return PrioritizeWithRawResponse(self._custom_certificates.prioritize)
+    def prioritize(self) -> PrioritizeResourceWithRawResponse:
+        return PrioritizeResourceWithRawResponse(self._custom_certificates.prioritize)
 
 
-class AsyncCustomCertificatesWithRawResponse:
-    def __init__(self, custom_certificates: AsyncCustomCertificates) -> None:
+class AsyncCustomCertificatesResourceWithRawResponse:
+    def __init__(self, custom_certificates: AsyncCustomCertificatesResource) -> None:
         self._custom_certificates = custom_certificates
 
         self.create = async_to_raw_response_wrapper(
@@ -824,12 +824,12 @@ class AsyncCustomCertificatesWithRawResponse:
         )
 
     @cached_property
-    def prioritize(self) -> AsyncPrioritizeWithRawResponse:
-        return AsyncPrioritizeWithRawResponse(self._custom_certificates.prioritize)
+    def prioritize(self) -> AsyncPrioritizeResourceWithRawResponse:
+        return AsyncPrioritizeResourceWithRawResponse(self._custom_certificates.prioritize)
 
 
-class CustomCertificatesWithStreamingResponse:
-    def __init__(self, custom_certificates: CustomCertificates) -> None:
+class CustomCertificatesResourceWithStreamingResponse:
+    def __init__(self, custom_certificates: CustomCertificatesResource) -> None:
         self._custom_certificates = custom_certificates
 
         self.create = to_streamed_response_wrapper(
@@ -849,12 +849,12 @@ class CustomCertificatesWithStreamingResponse:
         )
 
     @cached_property
-    def prioritize(self) -> PrioritizeWithStreamingResponse:
-        return PrioritizeWithStreamingResponse(self._custom_certificates.prioritize)
+    def prioritize(self) -> PrioritizeResourceWithStreamingResponse:
+        return PrioritizeResourceWithStreamingResponse(self._custom_certificates.prioritize)
 
 
-class AsyncCustomCertificatesWithStreamingResponse:
-    def __init__(self, custom_certificates: AsyncCustomCertificates) -> None:
+class AsyncCustomCertificatesResourceWithStreamingResponse:
+    def __init__(self, custom_certificates: AsyncCustomCertificatesResource) -> None:
         self._custom_certificates = custom_certificates
 
         self.create = async_to_streamed_response_wrapper(
@@ -874,5 +874,5 @@ class AsyncCustomCertificatesWithStreamingResponse:
         )
 
     @cached_property
-    def prioritize(self) -> AsyncPrioritizeWithStreamingResponse:
-        return AsyncPrioritizeWithStreamingResponse(self._custom_certificates.prioritize)
+    def prioritize(self) -> AsyncPrioritizeResourceWithStreamingResponse:
+        return AsyncPrioritizeResourceWithStreamingResponse(self._custom_certificates.prioritize)

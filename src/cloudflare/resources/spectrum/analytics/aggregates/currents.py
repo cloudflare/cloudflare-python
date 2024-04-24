@@ -26,17 +26,17 @@ from ....._base_client import (
 from .....types.spectrum.analytics.aggregates import current_get_params
 from .....types.spectrum.analytics.aggregates.current_get_response import CurrentGetResponse
 
-__all__ = ["Currents", "AsyncCurrents"]
+__all__ = ["CurrentsResource", "AsyncCurrentsResource"]
 
 
-class Currents(SyncAPIResource):
+class CurrentsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CurrentsWithRawResponse:
-        return CurrentsWithRawResponse(self)
+    def with_raw_response(self) -> CurrentsResourceWithRawResponse:
+        return CurrentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CurrentsWithStreamingResponse:
-        return CurrentsWithStreamingResponse(self)
+    def with_streaming_response(self) -> CurrentsResourceWithStreamingResponse:
+        return CurrentsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -98,14 +98,14 @@ class Currents(SyncAPIResource):
         )
 
 
-class AsyncCurrents(AsyncAPIResource):
+class AsyncCurrentsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCurrentsWithRawResponse:
-        return AsyncCurrentsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCurrentsResourceWithRawResponse:
+        return AsyncCurrentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCurrentsWithStreamingResponse:
-        return AsyncCurrentsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCurrentsResourceWithStreamingResponse:
+        return AsyncCurrentsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -167,8 +167,8 @@ class AsyncCurrents(AsyncAPIResource):
         )
 
 
-class CurrentsWithRawResponse:
-    def __init__(self, currents: Currents) -> None:
+class CurrentsResourceWithRawResponse:
+    def __init__(self, currents: CurrentsResource) -> None:
         self._currents = currents
 
         self.get = to_raw_response_wrapper(
@@ -176,8 +176,8 @@ class CurrentsWithRawResponse:
         )
 
 
-class AsyncCurrentsWithRawResponse:
-    def __init__(self, currents: AsyncCurrents) -> None:
+class AsyncCurrentsResourceWithRawResponse:
+    def __init__(self, currents: AsyncCurrentsResource) -> None:
         self._currents = currents
 
         self.get = async_to_raw_response_wrapper(
@@ -185,8 +185,8 @@ class AsyncCurrentsWithRawResponse:
         )
 
 
-class CurrentsWithStreamingResponse:
-    def __init__(self, currents: Currents) -> None:
+class CurrentsResourceWithStreamingResponse:
+    def __init__(self, currents: CurrentsResource) -> None:
         self._currents = currents
 
         self.get = to_streamed_response_wrapper(
@@ -194,8 +194,8 @@ class CurrentsWithStreamingResponse:
         )
 
 
-class AsyncCurrentsWithStreamingResponse:
-    def __init__(self, currents: AsyncCurrents) -> None:
+class AsyncCurrentsResourceWithStreamingResponse:
+    def __init__(self, currents: AsyncCurrentsResource) -> None:
         self._currents = currents
 
         self.get = async_to_streamed_response_wrapper(

@@ -51,10 +51,10 @@ from ....types.cloudforce_one.request_types import RequestTypes
 from ....types.cloudforce_one.request_constants import RequestConstants
 from ....types.cloudforce_one.request_delete_response import RequestDeleteResponse
 
-__all__ = ["Requests", "AsyncRequests"]
+__all__ = ["RequestsResource", "AsyncRequestsResource"]
 
 
-class Requests(SyncAPIResource):
+class RequestsResource(SyncAPIResource):
     @cached_property
     def message(self) -> MessageResource:
         return MessageResource(self._client)
@@ -64,12 +64,12 @@ class Requests(SyncAPIResource):
         return PriorityResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> RequestsWithRawResponse:
-        return RequestsWithRawResponse(self)
+    def with_raw_response(self) -> RequestsResourceWithRawResponse:
+        return RequestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RequestsWithStreamingResponse:
-        return RequestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> RequestsResourceWithStreamingResponse:
+        return RequestsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -502,7 +502,7 @@ class Requests(SyncAPIResource):
         )
 
 
-class AsyncRequests(AsyncAPIResource):
+class AsyncRequestsResource(AsyncAPIResource):
     @cached_property
     def message(self) -> AsyncMessageResource:
         return AsyncMessageResource(self._client)
@@ -512,12 +512,12 @@ class AsyncRequests(AsyncAPIResource):
         return AsyncPriorityResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRequestsWithRawResponse:
-        return AsyncRequestsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRequestsResourceWithRawResponse:
+        return AsyncRequestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRequestsWithStreamingResponse:
-        return AsyncRequestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRequestsResourceWithStreamingResponse:
+        return AsyncRequestsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -950,8 +950,8 @@ class AsyncRequests(AsyncAPIResource):
         )
 
 
-class RequestsWithRawResponse:
-    def __init__(self, requests: Requests) -> None:
+class RequestsResourceWithRawResponse:
+    def __init__(self, requests: RequestsResource) -> None:
         self._requests = requests
 
         self.create = to_raw_response_wrapper(
@@ -988,8 +988,8 @@ class RequestsWithRawResponse:
         return PriorityResourceWithRawResponse(self._requests.priority)
 
 
-class AsyncRequestsWithRawResponse:
-    def __init__(self, requests: AsyncRequests) -> None:
+class AsyncRequestsResourceWithRawResponse:
+    def __init__(self, requests: AsyncRequestsResource) -> None:
         self._requests = requests
 
         self.create = async_to_raw_response_wrapper(
@@ -1026,8 +1026,8 @@ class AsyncRequestsWithRawResponse:
         return AsyncPriorityResourceWithRawResponse(self._requests.priority)
 
 
-class RequestsWithStreamingResponse:
-    def __init__(self, requests: Requests) -> None:
+class RequestsResourceWithStreamingResponse:
+    def __init__(self, requests: RequestsResource) -> None:
         self._requests = requests
 
         self.create = to_streamed_response_wrapper(
@@ -1064,8 +1064,8 @@ class RequestsWithStreamingResponse:
         return PriorityResourceWithStreamingResponse(self._requests.priority)
 
 
-class AsyncRequestsWithStreamingResponse:
-    def __init__(self, requests: AsyncRequests) -> None:
+class AsyncRequestsResourceWithStreamingResponse:
+    def __init__(self, requests: AsyncRequestsResource) -> None:
         self._requests = requests
 
         self.create = async_to_streamed_response_wrapper(

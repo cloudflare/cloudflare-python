@@ -24,19 +24,20 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import font_settings, font_setting_edit_params
+from ....types.zones.settings import font_setting_edit_params
+from ....types.zones.settings.font_settings import FontSettings
 
-__all__ = ["FontSettings", "AsyncFontSettings"]
+__all__ = ["FontSettingsResource", "AsyncFontSettingsResource"]
 
 
-class FontSettings(SyncAPIResource):
+class FontSettingsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> FontSettingsWithRawResponse:
-        return FontSettingsWithRawResponse(self)
+    def with_raw_response(self) -> FontSettingsResourceWithRawResponse:
+        return FontSettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FontSettingsWithStreamingResponse:
-        return FontSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> FontSettingsResourceWithStreamingResponse:
+        return FontSettingsResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -49,7 +50,7 @@ class FontSettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[font_settings.FontSettings]:
+    ) -> Optional[FontSettings]:
         """Enhance your website's font delivery with Cloudflare Fonts.
 
         Deliver Google
@@ -79,9 +80,9 @@ class FontSettings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[font_settings.FontSettings]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FontSettings]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[font_settings.FontSettings]], ResultWrapper[font_settings.FontSettings]),
+            cast_to=cast(Type[Optional[FontSettings]], ResultWrapper[FontSettings]),
         )
 
     def get(
@@ -94,7 +95,7 @@ class FontSettings(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[font_settings.FontSettings]:
+    ) -> Optional[FontSettings]:
         """Enhance your website's font delivery with Cloudflare Fonts.
 
         Deliver Google
@@ -121,20 +122,20 @@ class FontSettings(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[font_settings.FontSettings]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FontSettings]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[font_settings.FontSettings]], ResultWrapper[font_settings.FontSettings]),
+            cast_to=cast(Type[Optional[FontSettings]], ResultWrapper[FontSettings]),
         )
 
 
-class AsyncFontSettings(AsyncAPIResource):
+class AsyncFontSettingsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncFontSettingsWithRawResponse:
-        return AsyncFontSettingsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFontSettingsResourceWithRawResponse:
+        return AsyncFontSettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFontSettingsWithStreamingResponse:
-        return AsyncFontSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFontSettingsResourceWithStreamingResponse:
+        return AsyncFontSettingsResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -147,7 +148,7 @@ class AsyncFontSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[font_settings.FontSettings]:
+    ) -> Optional[FontSettings]:
         """Enhance your website's font delivery with Cloudflare Fonts.
 
         Deliver Google
@@ -177,9 +178,9 @@ class AsyncFontSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[font_settings.FontSettings]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FontSettings]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[font_settings.FontSettings]], ResultWrapper[font_settings.FontSettings]),
+            cast_to=cast(Type[Optional[FontSettings]], ResultWrapper[FontSettings]),
         )
 
     async def get(
@@ -192,7 +193,7 @@ class AsyncFontSettings(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[font_settings.FontSettings]:
+    ) -> Optional[FontSettings]:
         """Enhance your website's font delivery with Cloudflare Fonts.
 
         Deliver Google
@@ -219,14 +220,14 @@ class AsyncFontSettings(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[font_settings.FontSettings]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FontSettings]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[font_settings.FontSettings]], ResultWrapper[font_settings.FontSettings]),
+            cast_to=cast(Type[Optional[FontSettings]], ResultWrapper[FontSettings]),
         )
 
 
-class FontSettingsWithRawResponse:
-    def __init__(self, font_settings: FontSettings) -> None:
+class FontSettingsResourceWithRawResponse:
+    def __init__(self, font_settings: FontSettingsResource) -> None:
         self._font_settings = font_settings
 
         self.edit = to_raw_response_wrapper(
@@ -237,8 +238,8 @@ class FontSettingsWithRawResponse:
         )
 
 
-class AsyncFontSettingsWithRawResponse:
-    def __init__(self, font_settings: AsyncFontSettings) -> None:
+class AsyncFontSettingsResourceWithRawResponse:
+    def __init__(self, font_settings: AsyncFontSettingsResource) -> None:
         self._font_settings = font_settings
 
         self.edit = async_to_raw_response_wrapper(
@@ -249,8 +250,8 @@ class AsyncFontSettingsWithRawResponse:
         )
 
 
-class FontSettingsWithStreamingResponse:
-    def __init__(self, font_settings: FontSettings) -> None:
+class FontSettingsResourceWithStreamingResponse:
+    def __init__(self, font_settings: FontSettingsResource) -> None:
         self._font_settings = font_settings
 
         self.edit = to_streamed_response_wrapper(
@@ -261,8 +262,8 @@ class FontSettingsWithStreamingResponse:
         )
 
 
-class AsyncFontSettingsWithStreamingResponse:
-    def __init__(self, font_settings: AsyncFontSettings) -> None:
+class AsyncFontSettingsResourceWithStreamingResponse:
+    def __init__(self, font_settings: AsyncFontSettingsResource) -> None:
         self._font_settings = font_settings
 
         self.edit = async_to_streamed_response_wrapper(

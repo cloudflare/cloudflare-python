@@ -17,12 +17,12 @@ from .priority import (
     AsyncPriorityResourceWithStreamingResponse,
 )
 from .requests import (
-    Requests,
-    AsyncRequests,
-    RequestsWithRawResponse,
-    AsyncRequestsWithRawResponse,
-    RequestsWithStreamingResponse,
-    AsyncRequestsWithStreamingResponse,
+    RequestsResource,
+    AsyncRequestsResource,
+    RequestsResourceWithRawResponse,
+    AsyncRequestsResourceWithRawResponse,
+    RequestsResourceWithStreamingResponse,
+    AsyncRequestsResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -38,10 +38,10 @@ __all__ = [
     "AsyncPriorityResourceWithRawResponse",
     "PriorityResourceWithStreamingResponse",
     "AsyncPriorityResourceWithStreamingResponse",
-    "Requests",
-    "AsyncRequests",
-    "RequestsWithRawResponse",
-    "AsyncRequestsWithRawResponse",
-    "RequestsWithStreamingResponse",
-    "AsyncRequestsWithStreamingResponse",
+    "RequestsResource",
+    "AsyncRequestsResource",
+    "RequestsResourceWithRawResponse",
+    "AsyncRequestsResourceWithRawResponse",
+    "RequestsResourceWithStreamingResponse",
+    "AsyncRequestsResourceWithStreamingResponse",
 ]

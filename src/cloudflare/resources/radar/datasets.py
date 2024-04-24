@@ -28,17 +28,17 @@ from ..._base_client import (
 from ...types.radar.dataset_list_response import DatasetListResponse
 from ...types.radar.dataset_download_response import DatasetDownloadResponse
 
-__all__ = ["Datasets", "AsyncDatasets"]
+__all__ = ["DatasetsResource", "AsyncDatasetsResource"]
 
 
-class Datasets(SyncAPIResource):
+class DatasetsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DatasetsWithRawResponse:
-        return DatasetsWithRawResponse(self)
+    def with_raw_response(self) -> DatasetsResourceWithRawResponse:
+        return DatasetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DatasetsWithStreamingResponse:
-        return DatasetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> DatasetsResourceWithStreamingResponse:
+        return DatasetsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -182,14 +182,14 @@ class Datasets(SyncAPIResource):
         )
 
 
-class AsyncDatasets(AsyncAPIResource):
+class AsyncDatasetsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDatasetsWithRawResponse:
-        return AsyncDatasetsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
+        return AsyncDatasetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDatasetsWithStreamingResponse:
-        return AsyncDatasetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDatasetsResourceWithStreamingResponse:
+        return AsyncDatasetsResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -333,8 +333,8 @@ class AsyncDatasets(AsyncAPIResource):
         )
 
 
-class DatasetsWithRawResponse:
-    def __init__(self, datasets: Datasets) -> None:
+class DatasetsResourceWithRawResponse:
+    def __init__(self, datasets: DatasetsResource) -> None:
         self._datasets = datasets
 
         self.list = to_raw_response_wrapper(
@@ -348,8 +348,8 @@ class DatasetsWithRawResponse:
         )
 
 
-class AsyncDatasetsWithRawResponse:
-    def __init__(self, datasets: AsyncDatasets) -> None:
+class AsyncDatasetsResourceWithRawResponse:
+    def __init__(self, datasets: AsyncDatasetsResource) -> None:
         self._datasets = datasets
 
         self.list = async_to_raw_response_wrapper(
@@ -363,8 +363,8 @@ class AsyncDatasetsWithRawResponse:
         )
 
 
-class DatasetsWithStreamingResponse:
-    def __init__(self, datasets: Datasets) -> None:
+class DatasetsResourceWithStreamingResponse:
+    def __init__(self, datasets: DatasetsResource) -> None:
         self._datasets = datasets
 
         self.list = to_streamed_response_wrapper(
@@ -378,8 +378,8 @@ class DatasetsWithStreamingResponse:
         )
 
 
-class AsyncDatasetsWithStreamingResponse:
-    def __init__(self, datasets: AsyncDatasets) -> None:
+class AsyncDatasetsResourceWithStreamingResponse:
+    def __init__(self, datasets: AsyncDatasetsResource) -> None:
         self._datasets = datasets
 
         self.list = async_to_streamed_response_wrapper(

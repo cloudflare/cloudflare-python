@@ -8,20 +8,20 @@ from typing_extensions import Literal
 import httpx
 
 from .rules import (
-    Rules,
-    AsyncRules,
-    RulesWithRawResponse,
-    AsyncRulesWithRawResponse,
-    RulesWithStreamingResponse,
-    AsyncRulesWithStreamingResponse,
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
 from .phases import (
-    Phases,
-    AsyncPhases,
-    PhasesWithRawResponse,
-    AsyncPhasesWithRawResponse,
-    PhasesWithStreamingResponse,
-    AsyncPhasesWithStreamingResponse,
+    PhasesResource,
+    AsyncPhasesResource,
+    PhasesResourceWithRawResponse,
+    AsyncPhasesResourceWithRawResponse,
+    PhasesResourceWithStreamingResponse,
+    AsyncPhasesResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
@@ -29,12 +29,12 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .versions import (
-    Versions,
-    AsyncVersions,
-    VersionsWithRawResponse,
-    AsyncVersionsWithRawResponse,
-    VersionsWithStreamingResponse,
-    AsyncVersionsWithStreamingResponse,
+    VersionsResource,
+    AsyncVersionsResource,
+    VersionsResourceWithRawResponse,
+    AsyncVersionsResourceWithRawResponse,
+    VersionsResourceWithStreamingResponse,
+    AsyncVersionsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -46,41 +46,41 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from .phases.phases import Phases, AsyncPhases
+from .phases.phases import PhasesResource, AsyncPhasesResource
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
 from ...types.rulesets import ruleset_create_params, ruleset_update_params
-from .versions.versions import Versions, AsyncVersions
+from .versions.versions import VersionsResource, AsyncVersionsResource
 from ...types.rulesets.ruleset import Ruleset
 from ...types.rulesets.ruleset_get_response import RulesetGetResponse
 from ...types.rulesets.ruleset_create_response import RulesetCreateResponse
 from ...types.rulesets.ruleset_update_response import RulesetUpdateResponse
 
-__all__ = ["Rulesets", "AsyncRulesets"]
+__all__ = ["RulesetsResource", "AsyncRulesetsResource"]
 
 
-class Rulesets(SyncAPIResource):
+class RulesetsResource(SyncAPIResource):
     @cached_property
-    def phases(self) -> Phases:
-        return Phases(self._client)
-
-    @cached_property
-    def rules(self) -> Rules:
-        return Rules(self._client)
+    def phases(self) -> PhasesResource:
+        return PhasesResource(self._client)
 
     @cached_property
-    def versions(self) -> Versions:
-        return Versions(self._client)
+    def rules(self) -> RulesResource:
+        return RulesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> RulesetsWithRawResponse:
-        return RulesetsWithRawResponse(self)
+    def versions(self) -> VersionsResource:
+        return VersionsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> RulesetsWithStreamingResponse:
-        return RulesetsWithStreamingResponse(self)
+    def with_raw_response(self) -> RulesetsResourceWithRawResponse:
+        return RulesetsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> RulesetsResourceWithStreamingResponse:
+        return RulesetsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -451,26 +451,26 @@ class Rulesets(SyncAPIResource):
         )
 
 
-class AsyncRulesets(AsyncAPIResource):
+class AsyncRulesetsResource(AsyncAPIResource):
     @cached_property
-    def phases(self) -> AsyncPhases:
-        return AsyncPhases(self._client)
+    def phases(self) -> AsyncPhasesResource:
+        return AsyncPhasesResource(self._client)
 
     @cached_property
-    def rules(self) -> AsyncRules:
-        return AsyncRules(self._client)
+    def rules(self) -> AsyncRulesResource:
+        return AsyncRulesResource(self._client)
 
     @cached_property
-    def versions(self) -> AsyncVersions:
-        return AsyncVersions(self._client)
+    def versions(self) -> AsyncVersionsResource:
+        return AsyncVersionsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRulesetsWithRawResponse:
-        return AsyncRulesetsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRulesetsResourceWithRawResponse:
+        return AsyncRulesetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRulesetsWithStreamingResponse:
-        return AsyncRulesetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRulesetsResourceWithStreamingResponse:
+        return AsyncRulesetsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -841,8 +841,8 @@ class AsyncRulesets(AsyncAPIResource):
         )
 
 
-class RulesetsWithRawResponse:
-    def __init__(self, rulesets: Rulesets) -> None:
+class RulesetsResourceWithRawResponse:
+    def __init__(self, rulesets: RulesetsResource) -> None:
         self._rulesets = rulesets
 
         self.create = to_raw_response_wrapper(
@@ -862,20 +862,20 @@ class RulesetsWithRawResponse:
         )
 
     @cached_property
-    def phases(self) -> PhasesWithRawResponse:
-        return PhasesWithRawResponse(self._rulesets.phases)
+    def phases(self) -> PhasesResourceWithRawResponse:
+        return PhasesResourceWithRawResponse(self._rulesets.phases)
 
     @cached_property
-    def rules(self) -> RulesWithRawResponse:
-        return RulesWithRawResponse(self._rulesets.rules)
+    def rules(self) -> RulesResourceWithRawResponse:
+        return RulesResourceWithRawResponse(self._rulesets.rules)
 
     @cached_property
-    def versions(self) -> VersionsWithRawResponse:
-        return VersionsWithRawResponse(self._rulesets.versions)
+    def versions(self) -> VersionsResourceWithRawResponse:
+        return VersionsResourceWithRawResponse(self._rulesets.versions)
 
 
-class AsyncRulesetsWithRawResponse:
-    def __init__(self, rulesets: AsyncRulesets) -> None:
+class AsyncRulesetsResourceWithRawResponse:
+    def __init__(self, rulesets: AsyncRulesetsResource) -> None:
         self._rulesets = rulesets
 
         self.create = async_to_raw_response_wrapper(
@@ -895,20 +895,20 @@ class AsyncRulesetsWithRawResponse:
         )
 
     @cached_property
-    def phases(self) -> AsyncPhasesWithRawResponse:
-        return AsyncPhasesWithRawResponse(self._rulesets.phases)
+    def phases(self) -> AsyncPhasesResourceWithRawResponse:
+        return AsyncPhasesResourceWithRawResponse(self._rulesets.phases)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithRawResponse:
-        return AsyncRulesWithRawResponse(self._rulesets.rules)
+    def rules(self) -> AsyncRulesResourceWithRawResponse:
+        return AsyncRulesResourceWithRawResponse(self._rulesets.rules)
 
     @cached_property
-    def versions(self) -> AsyncVersionsWithRawResponse:
-        return AsyncVersionsWithRawResponse(self._rulesets.versions)
+    def versions(self) -> AsyncVersionsResourceWithRawResponse:
+        return AsyncVersionsResourceWithRawResponse(self._rulesets.versions)
 
 
-class RulesetsWithStreamingResponse:
-    def __init__(self, rulesets: Rulesets) -> None:
+class RulesetsResourceWithStreamingResponse:
+    def __init__(self, rulesets: RulesetsResource) -> None:
         self._rulesets = rulesets
 
         self.create = to_streamed_response_wrapper(
@@ -928,20 +928,20 @@ class RulesetsWithStreamingResponse:
         )
 
     @cached_property
-    def phases(self) -> PhasesWithStreamingResponse:
-        return PhasesWithStreamingResponse(self._rulesets.phases)
+    def phases(self) -> PhasesResourceWithStreamingResponse:
+        return PhasesResourceWithStreamingResponse(self._rulesets.phases)
 
     @cached_property
-    def rules(self) -> RulesWithStreamingResponse:
-        return RulesWithStreamingResponse(self._rulesets.rules)
+    def rules(self) -> RulesResourceWithStreamingResponse:
+        return RulesResourceWithStreamingResponse(self._rulesets.rules)
 
     @cached_property
-    def versions(self) -> VersionsWithStreamingResponse:
-        return VersionsWithStreamingResponse(self._rulesets.versions)
+    def versions(self) -> VersionsResourceWithStreamingResponse:
+        return VersionsResourceWithStreamingResponse(self._rulesets.versions)
 
 
-class AsyncRulesetsWithStreamingResponse:
-    def __init__(self, rulesets: AsyncRulesets) -> None:
+class AsyncRulesetsResourceWithStreamingResponse:
+    def __init__(self, rulesets: AsyncRulesetsResource) -> None:
         self._rulesets = rulesets
 
         self.create = async_to_streamed_response_wrapper(
@@ -961,13 +961,13 @@ class AsyncRulesetsWithStreamingResponse:
         )
 
     @cached_property
-    def phases(self) -> AsyncPhasesWithStreamingResponse:
-        return AsyncPhasesWithStreamingResponse(self._rulesets.phases)
+    def phases(self) -> AsyncPhasesResourceWithStreamingResponse:
+        return AsyncPhasesResourceWithStreamingResponse(self._rulesets.phases)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithStreamingResponse:
-        return AsyncRulesWithStreamingResponse(self._rulesets.rules)
+    def rules(self) -> AsyncRulesResourceWithStreamingResponse:
+        return AsyncRulesResourceWithStreamingResponse(self._rulesets.rules)
 
     @cached_property
-    def versions(self) -> AsyncVersionsWithStreamingResponse:
-        return AsyncVersionsWithStreamingResponse(self._rulesets.versions)
+    def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
+        return AsyncVersionsResourceWithStreamingResponse(self._rulesets.versions)

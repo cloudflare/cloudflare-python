@@ -3,21 +3,21 @@
 from __future__ import annotations
 
 from .analyze import (
-    Analyze,
-    AsyncAnalyze,
-    AnalyzeWithRawResponse,
-    AsyncAnalyzeWithRawResponse,
-    AnalyzeWithStreamingResponse,
-    AsyncAnalyzeWithStreamingResponse,
+    AnalyzeResource,
+    AsyncAnalyzeResource,
+    AnalyzeResourceWithRawResponse,
+    AsyncAnalyzeResourceWithRawResponse,
+    AnalyzeResourceWithStreamingResponse,
+    AsyncAnalyzeResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .universal import (
-    Universal,
-    AsyncUniversal,
-    UniversalWithRawResponse,
-    AsyncUniversalWithRawResponse,
-    UniversalWithStreamingResponse,
-    AsyncUniversalWithStreamingResponse,
+    UniversalResource,
+    AsyncUniversalResource,
+    UniversalResourceWithRawResponse,
+    AsyncUniversalResourceWithRawResponse,
+    UniversalResourceWithStreamingResponse,
+    AsyncUniversalResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .verification import (
@@ -29,181 +29,181 @@ from .verification import (
     AsyncVerificationResourceWithStreamingResponse,
 )
 from .recommendations import (
-    Recommendations,
-    AsyncRecommendations,
-    RecommendationsWithRawResponse,
-    AsyncRecommendationsWithRawResponse,
-    RecommendationsWithStreamingResponse,
-    AsyncRecommendationsWithStreamingResponse,
+    RecommendationsResource,
+    AsyncRecommendationsResource,
+    RecommendationsResourceWithRawResponse,
+    AsyncRecommendationsResourceWithRawResponse,
+    RecommendationsResourceWithStreamingResponse,
+    AsyncRecommendationsResourceWithStreamingResponse,
 )
 from .certificate_packs import (
-    CertificatePacks,
-    AsyncCertificatePacks,
-    CertificatePacksWithRawResponse,
-    AsyncCertificatePacksWithRawResponse,
-    CertificatePacksWithStreamingResponse,
-    AsyncCertificatePacksWithStreamingResponse,
+    CertificatePacksResource,
+    AsyncCertificatePacksResource,
+    CertificatePacksResourceWithRawResponse,
+    AsyncCertificatePacksResourceWithRawResponse,
+    CertificatePacksResourceWithStreamingResponse,
+    AsyncCertificatePacksResourceWithStreamingResponse,
 )
-from .universal.universal import Universal, AsyncUniversal
-from .certificate_packs.certificate_packs import CertificatePacks, AsyncCertificatePacks
+from .universal.universal import UniversalResource, AsyncUniversalResource
+from .certificate_packs.certificate_packs import CertificatePacksResource, AsyncCertificatePacksResource
 
-__all__ = ["SSL", "AsyncSSL"]
+__all__ = ["SSLResource", "AsyncSSLResource"]
 
 
-class SSL(SyncAPIResource):
+class SSLResource(SyncAPIResource):
     @cached_property
-    def analyze(self) -> Analyze:
-        return Analyze(self._client)
-
-    @cached_property
-    def certificate_packs(self) -> CertificatePacks:
-        return CertificatePacks(self._client)
+    def analyze(self) -> AnalyzeResource:
+        return AnalyzeResource(self._client)
 
     @cached_property
-    def recommendations(self) -> Recommendations:
-        return Recommendations(self._client)
+    def certificate_packs(self) -> CertificatePacksResource:
+        return CertificatePacksResource(self._client)
 
     @cached_property
-    def universal(self) -> Universal:
-        return Universal(self._client)
+    def recommendations(self) -> RecommendationsResource:
+        return RecommendationsResource(self._client)
+
+    @cached_property
+    def universal(self) -> UniversalResource:
+        return UniversalResource(self._client)
 
     @cached_property
     def verification(self) -> VerificationResource:
         return VerificationResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> SSLWithRawResponse:
-        return SSLWithRawResponse(self)
+    def with_raw_response(self) -> SSLResourceWithRawResponse:
+        return SSLResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SSLWithStreamingResponse:
-        return SSLWithStreamingResponse(self)
+    def with_streaming_response(self) -> SSLResourceWithStreamingResponse:
+        return SSLResourceWithStreamingResponse(self)
 
 
-class AsyncSSL(AsyncAPIResource):
+class AsyncSSLResource(AsyncAPIResource):
     @cached_property
-    def analyze(self) -> AsyncAnalyze:
-        return AsyncAnalyze(self._client)
-
-    @cached_property
-    def certificate_packs(self) -> AsyncCertificatePacks:
-        return AsyncCertificatePacks(self._client)
+    def analyze(self) -> AsyncAnalyzeResource:
+        return AsyncAnalyzeResource(self._client)
 
     @cached_property
-    def recommendations(self) -> AsyncRecommendations:
-        return AsyncRecommendations(self._client)
+    def certificate_packs(self) -> AsyncCertificatePacksResource:
+        return AsyncCertificatePacksResource(self._client)
 
     @cached_property
-    def universal(self) -> AsyncUniversal:
-        return AsyncUniversal(self._client)
+    def recommendations(self) -> AsyncRecommendationsResource:
+        return AsyncRecommendationsResource(self._client)
+
+    @cached_property
+    def universal(self) -> AsyncUniversalResource:
+        return AsyncUniversalResource(self._client)
 
     @cached_property
     def verification(self) -> AsyncVerificationResource:
         return AsyncVerificationResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncSSLWithRawResponse:
-        return AsyncSSLWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSSLResourceWithRawResponse:
+        return AsyncSSLResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSSLWithStreamingResponse:
-        return AsyncSSLWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSSLResourceWithStreamingResponse:
+        return AsyncSSLResourceWithStreamingResponse(self)
 
 
-class SSLWithRawResponse:
-    def __init__(self, ssl: SSL) -> None:
+class SSLResourceWithRawResponse:
+    def __init__(self, ssl: SSLResource) -> None:
         self._ssl = ssl
 
     @cached_property
-    def analyze(self) -> AnalyzeWithRawResponse:
-        return AnalyzeWithRawResponse(self._ssl.analyze)
+    def analyze(self) -> AnalyzeResourceWithRawResponse:
+        return AnalyzeResourceWithRawResponse(self._ssl.analyze)
 
     @cached_property
-    def certificate_packs(self) -> CertificatePacksWithRawResponse:
-        return CertificatePacksWithRawResponse(self._ssl.certificate_packs)
+    def certificate_packs(self) -> CertificatePacksResourceWithRawResponse:
+        return CertificatePacksResourceWithRawResponse(self._ssl.certificate_packs)
 
     @cached_property
-    def recommendations(self) -> RecommendationsWithRawResponse:
-        return RecommendationsWithRawResponse(self._ssl.recommendations)
+    def recommendations(self) -> RecommendationsResourceWithRawResponse:
+        return RecommendationsResourceWithRawResponse(self._ssl.recommendations)
 
     @cached_property
-    def universal(self) -> UniversalWithRawResponse:
-        return UniversalWithRawResponse(self._ssl.universal)
+    def universal(self) -> UniversalResourceWithRawResponse:
+        return UniversalResourceWithRawResponse(self._ssl.universal)
 
     @cached_property
     def verification(self) -> VerificationResourceWithRawResponse:
         return VerificationResourceWithRawResponse(self._ssl.verification)
 
 
-class AsyncSSLWithRawResponse:
-    def __init__(self, ssl: AsyncSSL) -> None:
+class AsyncSSLResourceWithRawResponse:
+    def __init__(self, ssl: AsyncSSLResource) -> None:
         self._ssl = ssl
 
     @cached_property
-    def analyze(self) -> AsyncAnalyzeWithRawResponse:
-        return AsyncAnalyzeWithRawResponse(self._ssl.analyze)
+    def analyze(self) -> AsyncAnalyzeResourceWithRawResponse:
+        return AsyncAnalyzeResourceWithRawResponse(self._ssl.analyze)
 
     @cached_property
-    def certificate_packs(self) -> AsyncCertificatePacksWithRawResponse:
-        return AsyncCertificatePacksWithRawResponse(self._ssl.certificate_packs)
+    def certificate_packs(self) -> AsyncCertificatePacksResourceWithRawResponse:
+        return AsyncCertificatePacksResourceWithRawResponse(self._ssl.certificate_packs)
 
     @cached_property
-    def recommendations(self) -> AsyncRecommendationsWithRawResponse:
-        return AsyncRecommendationsWithRawResponse(self._ssl.recommendations)
+    def recommendations(self) -> AsyncRecommendationsResourceWithRawResponse:
+        return AsyncRecommendationsResourceWithRawResponse(self._ssl.recommendations)
 
     @cached_property
-    def universal(self) -> AsyncUniversalWithRawResponse:
-        return AsyncUniversalWithRawResponse(self._ssl.universal)
+    def universal(self) -> AsyncUniversalResourceWithRawResponse:
+        return AsyncUniversalResourceWithRawResponse(self._ssl.universal)
 
     @cached_property
     def verification(self) -> AsyncVerificationResourceWithRawResponse:
         return AsyncVerificationResourceWithRawResponse(self._ssl.verification)
 
 
-class SSLWithStreamingResponse:
-    def __init__(self, ssl: SSL) -> None:
+class SSLResourceWithStreamingResponse:
+    def __init__(self, ssl: SSLResource) -> None:
         self._ssl = ssl
 
     @cached_property
-    def analyze(self) -> AnalyzeWithStreamingResponse:
-        return AnalyzeWithStreamingResponse(self._ssl.analyze)
+    def analyze(self) -> AnalyzeResourceWithStreamingResponse:
+        return AnalyzeResourceWithStreamingResponse(self._ssl.analyze)
 
     @cached_property
-    def certificate_packs(self) -> CertificatePacksWithStreamingResponse:
-        return CertificatePacksWithStreamingResponse(self._ssl.certificate_packs)
+    def certificate_packs(self) -> CertificatePacksResourceWithStreamingResponse:
+        return CertificatePacksResourceWithStreamingResponse(self._ssl.certificate_packs)
 
     @cached_property
-    def recommendations(self) -> RecommendationsWithStreamingResponse:
-        return RecommendationsWithStreamingResponse(self._ssl.recommendations)
+    def recommendations(self) -> RecommendationsResourceWithStreamingResponse:
+        return RecommendationsResourceWithStreamingResponse(self._ssl.recommendations)
 
     @cached_property
-    def universal(self) -> UniversalWithStreamingResponse:
-        return UniversalWithStreamingResponse(self._ssl.universal)
+    def universal(self) -> UniversalResourceWithStreamingResponse:
+        return UniversalResourceWithStreamingResponse(self._ssl.universal)
 
     @cached_property
     def verification(self) -> VerificationResourceWithStreamingResponse:
         return VerificationResourceWithStreamingResponse(self._ssl.verification)
 
 
-class AsyncSSLWithStreamingResponse:
-    def __init__(self, ssl: AsyncSSL) -> None:
+class AsyncSSLResourceWithStreamingResponse:
+    def __init__(self, ssl: AsyncSSLResource) -> None:
         self._ssl = ssl
 
     @cached_property
-    def analyze(self) -> AsyncAnalyzeWithStreamingResponse:
-        return AsyncAnalyzeWithStreamingResponse(self._ssl.analyze)
+    def analyze(self) -> AsyncAnalyzeResourceWithStreamingResponse:
+        return AsyncAnalyzeResourceWithStreamingResponse(self._ssl.analyze)
 
     @cached_property
-    def certificate_packs(self) -> AsyncCertificatePacksWithStreamingResponse:
-        return AsyncCertificatePacksWithStreamingResponse(self._ssl.certificate_packs)
+    def certificate_packs(self) -> AsyncCertificatePacksResourceWithStreamingResponse:
+        return AsyncCertificatePacksResourceWithStreamingResponse(self._ssl.certificate_packs)
 
     @cached_property
-    def recommendations(self) -> AsyncRecommendationsWithStreamingResponse:
-        return AsyncRecommendationsWithStreamingResponse(self._ssl.recommendations)
+    def recommendations(self) -> AsyncRecommendationsResourceWithStreamingResponse:
+        return AsyncRecommendationsResourceWithStreamingResponse(self._ssl.recommendations)
 
     @cached_property
-    def universal(self) -> AsyncUniversalWithStreamingResponse:
-        return AsyncUniversalWithStreamingResponse(self._ssl.universal)
+    def universal(self) -> AsyncUniversalResourceWithStreamingResponse:
+        return AsyncUniversalResourceWithStreamingResponse(self._ssl.universal)
 
     @cached_property
     def verification(self) -> AsyncVerificationResourceWithStreamingResponse:

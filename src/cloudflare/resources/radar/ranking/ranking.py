@@ -9,12 +9,12 @@ from typing_extensions import Literal
 import httpx
 
 from .domain import (
-    Domain,
-    AsyncDomain,
-    DomainWithRawResponse,
-    AsyncDomainWithRawResponse,
-    DomainWithStreamingResponse,
-    AsyncDomainWithStreamingResponse,
+    DomainResource,
+    AsyncDomainResource,
+    DomainResourceWithRawResponse,
+    AsyncDomainResourceWithRawResponse,
+    DomainResourceWithStreamingResponse,
+    AsyncDomainResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -37,21 +37,21 @@ from ...._base_client import (
 from ....types.radar.ranking_top_response import RankingTopResponse
 from ....types.radar.ranking_timeseries_groups_response import RankingTimeseriesGroupsResponse
 
-__all__ = ["Ranking", "AsyncRanking"]
+__all__ = ["RankingResource", "AsyncRankingResource"]
 
 
-class Ranking(SyncAPIResource):
+class RankingResource(SyncAPIResource):
     @cached_property
-    def domain(self) -> Domain:
-        return Domain(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> RankingWithRawResponse:
-        return RankingWithRawResponse(self)
+    def domain(self) -> DomainResource:
+        return DomainResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> RankingWithStreamingResponse:
-        return RankingWithStreamingResponse(self)
+    def with_raw_response(self) -> RankingResourceWithRawResponse:
+        return RankingResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> RankingResourceWithStreamingResponse:
+        return RankingResourceWithStreamingResponse(self)
 
     def timeseries_groups(
         self,
@@ -218,18 +218,18 @@ class Ranking(SyncAPIResource):
         )
 
 
-class AsyncRanking(AsyncAPIResource):
+class AsyncRankingResource(AsyncAPIResource):
     @cached_property
-    def domain(self) -> AsyncDomain:
-        return AsyncDomain(self._client)
+    def domain(self) -> AsyncDomainResource:
+        return AsyncDomainResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRankingWithRawResponse:
-        return AsyncRankingWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRankingResourceWithRawResponse:
+        return AsyncRankingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRankingWithStreamingResponse:
-        return AsyncRankingWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRankingResourceWithStreamingResponse:
+        return AsyncRankingResourceWithStreamingResponse(self)
 
     async def timeseries_groups(
         self,
@@ -396,8 +396,8 @@ class AsyncRanking(AsyncAPIResource):
         )
 
 
-class RankingWithRawResponse:
-    def __init__(self, ranking: Ranking) -> None:
+class RankingResourceWithRawResponse:
+    def __init__(self, ranking: RankingResource) -> None:
         self._ranking = ranking
 
         self.timeseries_groups = to_raw_response_wrapper(
@@ -408,12 +408,12 @@ class RankingWithRawResponse:
         )
 
     @cached_property
-    def domain(self) -> DomainWithRawResponse:
-        return DomainWithRawResponse(self._ranking.domain)
+    def domain(self) -> DomainResourceWithRawResponse:
+        return DomainResourceWithRawResponse(self._ranking.domain)
 
 
-class AsyncRankingWithRawResponse:
-    def __init__(self, ranking: AsyncRanking) -> None:
+class AsyncRankingResourceWithRawResponse:
+    def __init__(self, ranking: AsyncRankingResource) -> None:
         self._ranking = ranking
 
         self.timeseries_groups = async_to_raw_response_wrapper(
@@ -424,12 +424,12 @@ class AsyncRankingWithRawResponse:
         )
 
     @cached_property
-    def domain(self) -> AsyncDomainWithRawResponse:
-        return AsyncDomainWithRawResponse(self._ranking.domain)
+    def domain(self) -> AsyncDomainResourceWithRawResponse:
+        return AsyncDomainResourceWithRawResponse(self._ranking.domain)
 
 
-class RankingWithStreamingResponse:
-    def __init__(self, ranking: Ranking) -> None:
+class RankingResourceWithStreamingResponse:
+    def __init__(self, ranking: RankingResource) -> None:
         self._ranking = ranking
 
         self.timeseries_groups = to_streamed_response_wrapper(
@@ -440,12 +440,12 @@ class RankingWithStreamingResponse:
         )
 
     @cached_property
-    def domain(self) -> DomainWithStreamingResponse:
-        return DomainWithStreamingResponse(self._ranking.domain)
+    def domain(self) -> DomainResourceWithStreamingResponse:
+        return DomainResourceWithStreamingResponse(self._ranking.domain)
 
 
-class AsyncRankingWithStreamingResponse:
-    def __init__(self, ranking: AsyncRanking) -> None:
+class AsyncRankingResourceWithStreamingResponse:
+    def __init__(self, ranking: AsyncRankingResource) -> None:
         self._ranking = ranking
 
         self.timeseries_groups = async_to_streamed_response_wrapper(
@@ -456,5 +456,5 @@ class AsyncRankingWithStreamingResponse:
         )
 
     @cached_property
-    def domain(self) -> AsyncDomainWithStreamingResponse:
-        return AsyncDomainWithStreamingResponse(self._ranking.domain)
+    def domain(self) -> AsyncDomainResourceWithStreamingResponse:
+        return AsyncDomainResourceWithStreamingResponse(self._ranking.domain)

@@ -31,17 +31,17 @@ from ...types.user.organization import Organization
 from ...types.user.organization_get_response import OrganizationGetResponse
 from ...types.user.organization_delete_response import OrganizationDeleteResponse
 
-__all__ = ["Organizations", "AsyncOrganizations"]
+__all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 
 
-class Organizations(SyncAPIResource):
+class OrganizationsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OrganizationsWithRawResponse:
-        return OrganizationsWithRawResponse(self)
+    def with_raw_response(self) -> OrganizationsResourceWithRawResponse:
+        return OrganizationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OrganizationsWithStreamingResponse:
-        return OrganizationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> OrganizationsResourceWithStreamingResponse:
+        return OrganizationsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -192,14 +192,14 @@ class Organizations(SyncAPIResource):
         )
 
 
-class AsyncOrganizations(AsyncAPIResource):
+class AsyncOrganizationsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOrganizationsWithRawResponse:
-        return AsyncOrganizationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOrganizationsResourceWithRawResponse:
+        return AsyncOrganizationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOrganizationsWithStreamingResponse:
-        return AsyncOrganizationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOrganizationsResourceWithStreamingResponse:
+        return AsyncOrganizationsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -350,8 +350,8 @@ class AsyncOrganizations(AsyncAPIResource):
         )
 
 
-class OrganizationsWithRawResponse:
-    def __init__(self, organizations: Organizations) -> None:
+class OrganizationsResourceWithRawResponse:
+    def __init__(self, organizations: OrganizationsResource) -> None:
         self._organizations = organizations
 
         self.list = to_raw_response_wrapper(
@@ -365,8 +365,8 @@ class OrganizationsWithRawResponse:
         )
 
 
-class AsyncOrganizationsWithRawResponse:
-    def __init__(self, organizations: AsyncOrganizations) -> None:
+class AsyncOrganizationsResourceWithRawResponse:
+    def __init__(self, organizations: AsyncOrganizationsResource) -> None:
         self._organizations = organizations
 
         self.list = async_to_raw_response_wrapper(
@@ -380,8 +380,8 @@ class AsyncOrganizationsWithRawResponse:
         )
 
 
-class OrganizationsWithStreamingResponse:
-    def __init__(self, organizations: Organizations) -> None:
+class OrganizationsResourceWithStreamingResponse:
+    def __init__(self, organizations: OrganizationsResource) -> None:
         self._organizations = organizations
 
         self.list = to_streamed_response_wrapper(
@@ -395,8 +395,8 @@ class OrganizationsWithStreamingResponse:
         )
 
 
-class AsyncOrganizationsWithStreamingResponse:
-    def __init__(self, organizations: AsyncOrganizations) -> None:
+class AsyncOrganizationsResourceWithStreamingResponse:
+    def __init__(self, organizations: AsyncOrganizationsResource) -> None:
         self._organizations = organizations
 
         self.list = async_to_streamed_response_wrapper(

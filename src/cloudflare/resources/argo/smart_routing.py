@@ -28,17 +28,17 @@ from ..._base_client import (
 from ...types.argo.smart_routing_get_response import SmartRoutingGetResponse
 from ...types.argo.smart_routing_edit_response import SmartRoutingEditResponse
 
-__all__ = ["SmartRouting", "AsyncSmartRouting"]
+__all__ = ["SmartRoutingResource", "AsyncSmartRoutingResource"]
 
 
-class SmartRouting(SyncAPIResource):
+class SmartRoutingResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SmartRoutingWithRawResponse:
-        return SmartRoutingWithRawResponse(self)
+    def with_raw_response(self) -> SmartRoutingResourceWithRawResponse:
+        return SmartRoutingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SmartRoutingWithStreamingResponse:
-        return SmartRoutingWithStreamingResponse(self)
+    def with_streaming_response(self) -> SmartRoutingResourceWithStreamingResponse:
+        return SmartRoutingResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -133,14 +133,14 @@ class SmartRouting(SyncAPIResource):
         )
 
 
-class AsyncSmartRouting(AsyncAPIResource):
+class AsyncSmartRoutingResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSmartRoutingWithRawResponse:
-        return AsyncSmartRoutingWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSmartRoutingResourceWithRawResponse:
+        return AsyncSmartRoutingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSmartRoutingWithStreamingResponse:
-        return AsyncSmartRoutingWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSmartRoutingResourceWithStreamingResponse:
+        return AsyncSmartRoutingResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -235,8 +235,8 @@ class AsyncSmartRouting(AsyncAPIResource):
         )
 
 
-class SmartRoutingWithRawResponse:
-    def __init__(self, smart_routing: SmartRouting) -> None:
+class SmartRoutingResourceWithRawResponse:
+    def __init__(self, smart_routing: SmartRoutingResource) -> None:
         self._smart_routing = smart_routing
 
         self.edit = to_raw_response_wrapper(
@@ -247,8 +247,8 @@ class SmartRoutingWithRawResponse:
         )
 
 
-class AsyncSmartRoutingWithRawResponse:
-    def __init__(self, smart_routing: AsyncSmartRouting) -> None:
+class AsyncSmartRoutingResourceWithRawResponse:
+    def __init__(self, smart_routing: AsyncSmartRoutingResource) -> None:
         self._smart_routing = smart_routing
 
         self.edit = async_to_raw_response_wrapper(
@@ -259,8 +259,8 @@ class AsyncSmartRoutingWithRawResponse:
         )
 
 
-class SmartRoutingWithStreamingResponse:
-    def __init__(self, smart_routing: SmartRouting) -> None:
+class SmartRoutingResourceWithStreamingResponse:
+    def __init__(self, smart_routing: SmartRoutingResource) -> None:
         self._smart_routing = smart_routing
 
         self.edit = to_streamed_response_wrapper(
@@ -271,8 +271,8 @@ class SmartRoutingWithStreamingResponse:
         )
 
 
-class AsyncSmartRoutingWithStreamingResponse:
-    def __init__(self, smart_routing: AsyncSmartRouting) -> None:
+class AsyncSmartRoutingResourceWithStreamingResponse:
+    def __init__(self, smart_routing: AsyncSmartRoutingResource) -> None:
         self._smart_routing = smart_routing
 
         self.edit = async_to_streamed_response_wrapper(

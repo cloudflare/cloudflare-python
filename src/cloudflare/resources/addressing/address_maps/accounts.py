@@ -27,17 +27,17 @@ from ....types.addressing.address_maps import account_delete_params, account_upd
 from ....types.addressing.address_maps.account_delete_response import AccountDeleteResponse
 from ....types.addressing.address_maps.account_update_response import AccountUpdateResponse
 
-__all__ = ["Accounts", "AsyncAccounts"]
+__all__ = ["AccountsResource", "AsyncAccountsResource"]
 
 
-class Accounts(SyncAPIResource):
+class AccountsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AccountsWithRawResponse:
-        return AccountsWithRawResponse(self)
+    def with_raw_response(self) -> AccountsResourceWithRawResponse:
+        return AccountsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AccountsWithStreamingResponse:
-        return AccountsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AccountsResourceWithStreamingResponse:
+        return AccountsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -132,14 +132,14 @@ class Accounts(SyncAPIResource):
         )
 
 
-class AsyncAccounts(AsyncAPIResource):
+class AsyncAccountsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAccountsWithRawResponse:
-        return AsyncAccountsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAccountsResourceWithRawResponse:
+        return AsyncAccountsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAccountsWithStreamingResponse:
-        return AsyncAccountsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAccountsResourceWithStreamingResponse:
+        return AsyncAccountsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -234,8 +234,8 @@ class AsyncAccounts(AsyncAPIResource):
         )
 
 
-class AccountsWithRawResponse:
-    def __init__(self, accounts: Accounts) -> None:
+class AccountsResourceWithRawResponse:
+    def __init__(self, accounts: AccountsResource) -> None:
         self._accounts = accounts
 
         self.update = to_raw_response_wrapper(
@@ -246,8 +246,8 @@ class AccountsWithRawResponse:
         )
 
 
-class AsyncAccountsWithRawResponse:
-    def __init__(self, accounts: AsyncAccounts) -> None:
+class AsyncAccountsResourceWithRawResponse:
+    def __init__(self, accounts: AsyncAccountsResource) -> None:
         self._accounts = accounts
 
         self.update = async_to_raw_response_wrapper(
@@ -258,8 +258,8 @@ class AsyncAccountsWithRawResponse:
         )
 
 
-class AccountsWithStreamingResponse:
-    def __init__(self, accounts: Accounts) -> None:
+class AccountsResourceWithStreamingResponse:
+    def __init__(self, accounts: AccountsResource) -> None:
         self._accounts = accounts
 
         self.update = to_streamed_response_wrapper(
@@ -270,8 +270,8 @@ class AccountsWithStreamingResponse:
         )
 
 
-class AsyncAccountsWithStreamingResponse:
-    def __init__(self, accounts: AsyncAccounts) -> None:
+class AsyncAccountsResourceWithStreamingResponse:
+    def __init__(self, accounts: AsyncAccountsResource) -> None:
         self._accounts = accounts
 
         self.update = async_to_streamed_response_wrapper(

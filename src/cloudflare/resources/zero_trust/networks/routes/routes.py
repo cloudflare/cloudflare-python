@@ -8,20 +8,20 @@ from datetime import datetime
 import httpx
 
 from .ips import (
-    IPs,
-    AsyncIPs,
-    IPsWithRawResponse,
-    AsyncIPsWithRawResponse,
-    IPsWithStreamingResponse,
-    AsyncIPsWithStreamingResponse,
+    IPsResource,
+    AsyncIPsResource,
+    IPsResourceWithRawResponse,
+    AsyncIPsResourceWithRawResponse,
+    IPsResourceWithStreamingResponse,
+    AsyncIPsResourceWithStreamingResponse,
 )
 from .networks import (
-    Networks,
-    AsyncNetworks,
-    NetworksWithRawResponse,
-    AsyncNetworksWithRawResponse,
-    NetworksWithStreamingResponse,
-    AsyncNetworksWithStreamingResponse,
+    NetworksResource,
+    AsyncNetworksResource,
+    NetworksResourceWithRawResponse,
+    AsyncNetworksResourceWithRawResponse,
+    NetworksResourceWithStreamingResponse,
+    AsyncNetworksResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -46,25 +46,25 @@ from .....types.zero_trust.networks import route_edit_params, route_list_params,
 from .....types.zero_trust.networks.route import Route
 from .....types.zero_trust.networks.teamnet import Teamnet
 
-__all__ = ["Routes", "AsyncRoutes"]
+__all__ = ["RoutesResource", "AsyncRoutesResource"]
 
 
-class Routes(SyncAPIResource):
+class RoutesResource(SyncAPIResource):
     @cached_property
-    def ips(self) -> IPs:
-        return IPs(self._client)
-
-    @cached_property
-    def networks(self) -> Networks:
-        return Networks(self._client)
+    def ips(self) -> IPsResource:
+        return IPsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> RoutesWithRawResponse:
-        return RoutesWithRawResponse(self)
+    def networks(self) -> NetworksResource:
+        return NetworksResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> RoutesWithStreamingResponse:
-        return RoutesWithStreamingResponse(self)
+    def with_raw_response(self) -> RoutesResourceWithRawResponse:
+        return RoutesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> RoutesResourceWithStreamingResponse:
+        return RoutesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -320,22 +320,22 @@ class Routes(SyncAPIResource):
         )
 
 
-class AsyncRoutes(AsyncAPIResource):
+class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
-    def ips(self) -> AsyncIPs:
-        return AsyncIPs(self._client)
+    def ips(self) -> AsyncIPsResource:
+        return AsyncIPsResource(self._client)
 
     @cached_property
-    def networks(self) -> AsyncNetworks:
-        return AsyncNetworks(self._client)
+    def networks(self) -> AsyncNetworksResource:
+        return AsyncNetworksResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRoutesWithRawResponse:
-        return AsyncRoutesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRoutesResourceWithRawResponse:
+        return AsyncRoutesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRoutesWithStreamingResponse:
-        return AsyncRoutesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRoutesResourceWithStreamingResponse:
+        return AsyncRoutesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -591,8 +591,8 @@ class AsyncRoutes(AsyncAPIResource):
         )
 
 
-class RoutesWithRawResponse:
-    def __init__(self, routes: Routes) -> None:
+class RoutesResourceWithRawResponse:
+    def __init__(self, routes: RoutesResource) -> None:
         self._routes = routes
 
         self.create = to_raw_response_wrapper(
@@ -609,16 +609,16 @@ class RoutesWithRawResponse:
         )
 
     @cached_property
-    def ips(self) -> IPsWithRawResponse:
-        return IPsWithRawResponse(self._routes.ips)
+    def ips(self) -> IPsResourceWithRawResponse:
+        return IPsResourceWithRawResponse(self._routes.ips)
 
     @cached_property
-    def networks(self) -> NetworksWithRawResponse:
-        return NetworksWithRawResponse(self._routes.networks)
+    def networks(self) -> NetworksResourceWithRawResponse:
+        return NetworksResourceWithRawResponse(self._routes.networks)
 
 
-class AsyncRoutesWithRawResponse:
-    def __init__(self, routes: AsyncRoutes) -> None:
+class AsyncRoutesResourceWithRawResponse:
+    def __init__(self, routes: AsyncRoutesResource) -> None:
         self._routes = routes
 
         self.create = async_to_raw_response_wrapper(
@@ -635,16 +635,16 @@ class AsyncRoutesWithRawResponse:
         )
 
     @cached_property
-    def ips(self) -> AsyncIPsWithRawResponse:
-        return AsyncIPsWithRawResponse(self._routes.ips)
+    def ips(self) -> AsyncIPsResourceWithRawResponse:
+        return AsyncIPsResourceWithRawResponse(self._routes.ips)
 
     @cached_property
-    def networks(self) -> AsyncNetworksWithRawResponse:
-        return AsyncNetworksWithRawResponse(self._routes.networks)
+    def networks(self) -> AsyncNetworksResourceWithRawResponse:
+        return AsyncNetworksResourceWithRawResponse(self._routes.networks)
 
 
-class RoutesWithStreamingResponse:
-    def __init__(self, routes: Routes) -> None:
+class RoutesResourceWithStreamingResponse:
+    def __init__(self, routes: RoutesResource) -> None:
         self._routes = routes
 
         self.create = to_streamed_response_wrapper(
@@ -661,16 +661,16 @@ class RoutesWithStreamingResponse:
         )
 
     @cached_property
-    def ips(self) -> IPsWithStreamingResponse:
-        return IPsWithStreamingResponse(self._routes.ips)
+    def ips(self) -> IPsResourceWithStreamingResponse:
+        return IPsResourceWithStreamingResponse(self._routes.ips)
 
     @cached_property
-    def networks(self) -> NetworksWithStreamingResponse:
-        return NetworksWithStreamingResponse(self._routes.networks)
+    def networks(self) -> NetworksResourceWithStreamingResponse:
+        return NetworksResourceWithStreamingResponse(self._routes.networks)
 
 
-class AsyncRoutesWithStreamingResponse:
-    def __init__(self, routes: AsyncRoutes) -> None:
+class AsyncRoutesResourceWithStreamingResponse:
+    def __init__(self, routes: AsyncRoutesResource) -> None:
         self._routes = routes
 
         self.create = async_to_streamed_response_wrapper(
@@ -687,9 +687,9 @@ class AsyncRoutesWithStreamingResponse:
         )
 
     @cached_property
-    def ips(self) -> AsyncIPsWithStreamingResponse:
-        return AsyncIPsWithStreamingResponse(self._routes.ips)
+    def ips(self) -> AsyncIPsResourceWithStreamingResponse:
+        return AsyncIPsResourceWithStreamingResponse(self._routes.ips)
 
     @cached_property
-    def networks(self) -> AsyncNetworksWithStreamingResponse:
-        return AsyncNetworksWithStreamingResponse(self._routes.networks)
+    def networks(self) -> AsyncNetworksResourceWithStreamingResponse:
+        return AsyncNetworksResourceWithStreamingResponse(self._routes.networks)

@@ -7,12 +7,12 @@ from typing import Type, Optional, cast
 import httpx
 
 from .outputs import (
-    Outputs,
-    AsyncOutputs,
-    OutputsWithRawResponse,
-    AsyncOutputsWithRawResponse,
-    OutputsWithStreamingResponse,
-    AsyncOutputsWithStreamingResponse,
+    OutputsResource,
+    AsyncOutputsResource,
+    OutputsResourceWithRawResponse,
+    AsyncOutputsResourceWithRawResponse,
+    OutputsResourceWithStreamingResponse,
+    AsyncOutputsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ...._utils import (
@@ -40,21 +40,21 @@ from ....types.stream import (
 from ....types.stream.live_input import LiveInput
 from ....types.stream.live_input_list_response import LiveInputListResponse
 
-__all__ = ["LiveInputs", "AsyncLiveInputs"]
+__all__ = ["LiveInputsResource", "AsyncLiveInputsResource"]
 
 
-class LiveInputs(SyncAPIResource):
+class LiveInputsResource(SyncAPIResource):
     @cached_property
-    def outputs(self) -> Outputs:
-        return Outputs(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> LiveInputsWithRawResponse:
-        return LiveInputsWithRawResponse(self)
+    def outputs(self) -> OutputsResource:
+        return OutputsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> LiveInputsWithStreamingResponse:
-        return LiveInputsWithStreamingResponse(self)
+    def with_raw_response(self) -> LiveInputsResourceWithRawResponse:
+        return LiveInputsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LiveInputsResourceWithStreamingResponse:
+        return LiveInputsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -337,18 +337,18 @@ class LiveInputs(SyncAPIResource):
         )
 
 
-class AsyncLiveInputs(AsyncAPIResource):
+class AsyncLiveInputsResource(AsyncAPIResource):
     @cached_property
-    def outputs(self) -> AsyncOutputs:
-        return AsyncOutputs(self._client)
+    def outputs(self) -> AsyncOutputsResource:
+        return AsyncOutputsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncLiveInputsWithRawResponse:
-        return AsyncLiveInputsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLiveInputsResourceWithRawResponse:
+        return AsyncLiveInputsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLiveInputsWithStreamingResponse:
-        return AsyncLiveInputsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLiveInputsResourceWithStreamingResponse:
+        return AsyncLiveInputsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -633,8 +633,8 @@ class AsyncLiveInputs(AsyncAPIResource):
         )
 
 
-class LiveInputsWithRawResponse:
-    def __init__(self, live_inputs: LiveInputs) -> None:
+class LiveInputsResourceWithRawResponse:
+    def __init__(self, live_inputs: LiveInputsResource) -> None:
         self._live_inputs = live_inputs
 
         self.create = to_raw_response_wrapper(
@@ -654,12 +654,12 @@ class LiveInputsWithRawResponse:
         )
 
     @cached_property
-    def outputs(self) -> OutputsWithRawResponse:
-        return OutputsWithRawResponse(self._live_inputs.outputs)
+    def outputs(self) -> OutputsResourceWithRawResponse:
+        return OutputsResourceWithRawResponse(self._live_inputs.outputs)
 
 
-class AsyncLiveInputsWithRawResponse:
-    def __init__(self, live_inputs: AsyncLiveInputs) -> None:
+class AsyncLiveInputsResourceWithRawResponse:
+    def __init__(self, live_inputs: AsyncLiveInputsResource) -> None:
         self._live_inputs = live_inputs
 
         self.create = async_to_raw_response_wrapper(
@@ -679,12 +679,12 @@ class AsyncLiveInputsWithRawResponse:
         )
 
     @cached_property
-    def outputs(self) -> AsyncOutputsWithRawResponse:
-        return AsyncOutputsWithRawResponse(self._live_inputs.outputs)
+    def outputs(self) -> AsyncOutputsResourceWithRawResponse:
+        return AsyncOutputsResourceWithRawResponse(self._live_inputs.outputs)
 
 
-class LiveInputsWithStreamingResponse:
-    def __init__(self, live_inputs: LiveInputs) -> None:
+class LiveInputsResourceWithStreamingResponse:
+    def __init__(self, live_inputs: LiveInputsResource) -> None:
         self._live_inputs = live_inputs
 
         self.create = to_streamed_response_wrapper(
@@ -704,12 +704,12 @@ class LiveInputsWithStreamingResponse:
         )
 
     @cached_property
-    def outputs(self) -> OutputsWithStreamingResponse:
-        return OutputsWithStreamingResponse(self._live_inputs.outputs)
+    def outputs(self) -> OutputsResourceWithStreamingResponse:
+        return OutputsResourceWithStreamingResponse(self._live_inputs.outputs)
 
 
-class AsyncLiveInputsWithStreamingResponse:
-    def __init__(self, live_inputs: AsyncLiveInputs) -> None:
+class AsyncLiveInputsResourceWithStreamingResponse:
+    def __init__(self, live_inputs: AsyncLiveInputsResource) -> None:
         self._live_inputs = live_inputs
 
         self.create = async_to_streamed_response_wrapper(
@@ -729,5 +729,5 @@ class AsyncLiveInputsWithStreamingResponse:
         )
 
     @cached_property
-    def outputs(self) -> AsyncOutputsWithStreamingResponse:
-        return AsyncOutputsWithStreamingResponse(self._live_inputs.outputs)
+    def outputs(self) -> AsyncOutputsResourceWithStreamingResponse:
+        return AsyncOutputsResourceWithStreamingResponse(self._live_inputs.outputs)

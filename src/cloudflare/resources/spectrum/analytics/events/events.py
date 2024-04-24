@@ -3,110 +3,110 @@
 from __future__ import annotations
 
 from .bytimes import (
-    Bytimes,
-    AsyncBytimes,
-    BytimesWithRawResponse,
-    AsyncBytimesWithRawResponse,
-    BytimesWithStreamingResponse,
-    AsyncBytimesWithStreamingResponse,
+    BytimesResource,
+    AsyncBytimesResource,
+    BytimesResourceWithRawResponse,
+    AsyncBytimesResourceWithRawResponse,
+    BytimesResourceWithStreamingResponse,
+    AsyncBytimesResourceWithStreamingResponse,
 )
 from .summaries import (
-    Summaries,
-    AsyncSummaries,
-    SummariesWithRawResponse,
-    AsyncSummariesWithRawResponse,
-    SummariesWithStreamingResponse,
-    AsyncSummariesWithStreamingResponse,
+    SummariesResource,
+    AsyncSummariesResource,
+    SummariesResourceWithRawResponse,
+    AsyncSummariesResourceWithRawResponse,
+    SummariesResourceWithStreamingResponse,
+    AsyncSummariesResourceWithStreamingResponse,
 )
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Events", "AsyncEvents"]
+__all__ = ["EventsResource", "AsyncEventsResource"]
 
 
-class Events(SyncAPIResource):
+class EventsResource(SyncAPIResource):
     @cached_property
-    def bytimes(self) -> Bytimes:
-        return Bytimes(self._client)
-
-    @cached_property
-    def summaries(self) -> Summaries:
-        return Summaries(self._client)
+    def bytimes(self) -> BytimesResource:
+        return BytimesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> EventsWithRawResponse:
-        return EventsWithRawResponse(self)
+    def summaries(self) -> SummariesResource:
+        return SummariesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> EventsWithStreamingResponse:
-        return EventsWithStreamingResponse(self)
-
-
-class AsyncEvents(AsyncAPIResource):
-    @cached_property
-    def bytimes(self) -> AsyncBytimes:
-        return AsyncBytimes(self._client)
+    def with_raw_response(self) -> EventsResourceWithRawResponse:
+        return EventsResourceWithRawResponse(self)
 
     @cached_property
-    def summaries(self) -> AsyncSummaries:
-        return AsyncSummaries(self._client)
+    def with_streaming_response(self) -> EventsResourceWithStreamingResponse:
+        return EventsResourceWithStreamingResponse(self)
+
+
+class AsyncEventsResource(AsyncAPIResource):
+    @cached_property
+    def bytimes(self) -> AsyncBytimesResource:
+        return AsyncBytimesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncEventsWithRawResponse:
-        return AsyncEventsWithRawResponse(self)
+    def summaries(self) -> AsyncSummariesResource:
+        return AsyncSummariesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEventsWithStreamingResponse:
-        return AsyncEventsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
+        return AsyncEventsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncEventsResourceWithStreamingResponse:
+        return AsyncEventsResourceWithStreamingResponse(self)
 
 
-class EventsWithRawResponse:
-    def __init__(self, events: Events) -> None:
+class EventsResourceWithRawResponse:
+    def __init__(self, events: EventsResource) -> None:
         self._events = events
 
     @cached_property
-    def bytimes(self) -> BytimesWithRawResponse:
-        return BytimesWithRawResponse(self._events.bytimes)
+    def bytimes(self) -> BytimesResourceWithRawResponse:
+        return BytimesResourceWithRawResponse(self._events.bytimes)
 
     @cached_property
-    def summaries(self) -> SummariesWithRawResponse:
-        return SummariesWithRawResponse(self._events.summaries)
+    def summaries(self) -> SummariesResourceWithRawResponse:
+        return SummariesResourceWithRawResponse(self._events.summaries)
 
 
-class AsyncEventsWithRawResponse:
-    def __init__(self, events: AsyncEvents) -> None:
+class AsyncEventsResourceWithRawResponse:
+    def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
 
     @cached_property
-    def bytimes(self) -> AsyncBytimesWithRawResponse:
-        return AsyncBytimesWithRawResponse(self._events.bytimes)
+    def bytimes(self) -> AsyncBytimesResourceWithRawResponse:
+        return AsyncBytimesResourceWithRawResponse(self._events.bytimes)
 
     @cached_property
-    def summaries(self) -> AsyncSummariesWithRawResponse:
-        return AsyncSummariesWithRawResponse(self._events.summaries)
+    def summaries(self) -> AsyncSummariesResourceWithRawResponse:
+        return AsyncSummariesResourceWithRawResponse(self._events.summaries)
 
 
-class EventsWithStreamingResponse:
-    def __init__(self, events: Events) -> None:
+class EventsResourceWithStreamingResponse:
+    def __init__(self, events: EventsResource) -> None:
         self._events = events
 
     @cached_property
-    def bytimes(self) -> BytimesWithStreamingResponse:
-        return BytimesWithStreamingResponse(self._events.bytimes)
+    def bytimes(self) -> BytimesResourceWithStreamingResponse:
+        return BytimesResourceWithStreamingResponse(self._events.bytimes)
 
     @cached_property
-    def summaries(self) -> SummariesWithStreamingResponse:
-        return SummariesWithStreamingResponse(self._events.summaries)
+    def summaries(self) -> SummariesResourceWithStreamingResponse:
+        return SummariesResourceWithStreamingResponse(self._events.summaries)
 
 
-class AsyncEventsWithStreamingResponse:
-    def __init__(self, events: AsyncEvents) -> None:
+class AsyncEventsResourceWithStreamingResponse:
+    def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
 
     @cached_property
-    def bytimes(self) -> AsyncBytimesWithStreamingResponse:
-        return AsyncBytimesWithStreamingResponse(self._events.bytimes)
+    def bytimes(self) -> AsyncBytimesResourceWithStreamingResponse:
+        return AsyncBytimesResourceWithStreamingResponse(self._events.bytimes)
 
     @cached_property
-    def summaries(self) -> AsyncSummariesWithStreamingResponse:
-        return AsyncSummariesWithStreamingResponse(self._events.summaries)
+    def summaries(self) -> AsyncSummariesResourceWithStreamingResponse:
+        return AsyncSummariesResourceWithStreamingResponse(self._events.summaries)

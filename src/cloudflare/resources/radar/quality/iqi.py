@@ -29,17 +29,17 @@ from ....types.radar.quality import iqi_summary_params, iqi_timeseries_groups_pa
 from ....types.radar.quality.iqi_summary_response import IQISummaryResponse
 from ....types.radar.quality.iqi_timeseries_groups_response import IQITimeseriesGroupsResponse
 
-__all__ = ["IQI", "AsyncIQI"]
+__all__ = ["IQIResource", "AsyncIQIResource"]
 
 
-class IQI(SyncAPIResource):
+class IQIResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IQIWithRawResponse:
-        return IQIWithRawResponse(self)
+    def with_raw_response(self) -> IQIResourceWithRawResponse:
+        return IQIResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IQIWithStreamingResponse:
-        return IQIWithStreamingResponse(self)
+    def with_streaming_response(self) -> IQIResourceWithStreamingResponse:
+        return IQIResourceWithStreamingResponse(self)
 
     def summary(
         self,
@@ -258,14 +258,14 @@ class IQI(SyncAPIResource):
         )
 
 
-class AsyncIQI(AsyncAPIResource):
+class AsyncIQIResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIQIWithRawResponse:
-        return AsyncIQIWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIQIResourceWithRawResponse:
+        return AsyncIQIResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIQIWithStreamingResponse:
-        return AsyncIQIWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIQIResourceWithStreamingResponse:
+        return AsyncIQIResourceWithStreamingResponse(self)
 
     async def summary(
         self,
@@ -484,8 +484,8 @@ class AsyncIQI(AsyncAPIResource):
         )
 
 
-class IQIWithRawResponse:
-    def __init__(self, iqi: IQI) -> None:
+class IQIResourceWithRawResponse:
+    def __init__(self, iqi: IQIResource) -> None:
         self._iqi = iqi
 
         self.summary = to_raw_response_wrapper(
@@ -496,8 +496,8 @@ class IQIWithRawResponse:
         )
 
 
-class AsyncIQIWithRawResponse:
-    def __init__(self, iqi: AsyncIQI) -> None:
+class AsyncIQIResourceWithRawResponse:
+    def __init__(self, iqi: AsyncIQIResource) -> None:
         self._iqi = iqi
 
         self.summary = async_to_raw_response_wrapper(
@@ -508,8 +508,8 @@ class AsyncIQIWithRawResponse:
         )
 
 
-class IQIWithStreamingResponse:
-    def __init__(self, iqi: IQI) -> None:
+class IQIResourceWithStreamingResponse:
+    def __init__(self, iqi: IQIResource) -> None:
         self._iqi = iqi
 
         self.summary = to_streamed_response_wrapper(
@@ -520,8 +520,8 @@ class IQIWithStreamingResponse:
         )
 
 
-class AsyncIQIWithStreamingResponse:
-    def __init__(self, iqi: AsyncIQI) -> None:
+class AsyncIQIResourceWithStreamingResponse:
+    def __init__(self, iqi: AsyncIQIResource) -> None:
         self._iqi = iqi
 
         self.summary = async_to_streamed_response_wrapper(

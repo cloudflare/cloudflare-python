@@ -32,17 +32,17 @@ from ...types.d1.database_query_response import DatabaseQueryResponse
 from ...types.d1.database_create_response import DatabaseCreateResponse
 from ...types.d1.database_delete_response import DatabaseDeleteResponse
 
-__all__ = ["Database", "AsyncDatabase"]
+__all__ = ["DatabaseResource", "AsyncDatabaseResource"]
 
 
-class Database(SyncAPIResource):
+class DatabaseResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DatabaseWithRawResponse:
-        return DatabaseWithRawResponse(self)
+    def with_raw_response(self) -> DatabaseResourceWithRawResponse:
+        return DatabaseResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DatabaseWithStreamingResponse:
-        return DatabaseWithStreamingResponse(self)
+    def with_streaming_response(self) -> DatabaseResourceWithStreamingResponse:
+        return DatabaseResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -288,14 +288,14 @@ class Database(SyncAPIResource):
         )
 
 
-class AsyncDatabase(AsyncAPIResource):
+class AsyncDatabaseResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDatabaseWithRawResponse:
-        return AsyncDatabaseWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDatabaseResourceWithRawResponse:
+        return AsyncDatabaseResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDatabaseWithStreamingResponse:
-        return AsyncDatabaseWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDatabaseResourceWithStreamingResponse:
+        return AsyncDatabaseResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -541,8 +541,8 @@ class AsyncDatabase(AsyncAPIResource):
         )
 
 
-class DatabaseWithRawResponse:
-    def __init__(self, database: Database) -> None:
+class DatabaseResourceWithRawResponse:
+    def __init__(self, database: DatabaseResource) -> None:
         self._database = database
 
         self.create = to_raw_response_wrapper(
@@ -562,8 +562,8 @@ class DatabaseWithRawResponse:
         )
 
 
-class AsyncDatabaseWithRawResponse:
-    def __init__(self, database: AsyncDatabase) -> None:
+class AsyncDatabaseResourceWithRawResponse:
+    def __init__(self, database: AsyncDatabaseResource) -> None:
         self._database = database
 
         self.create = async_to_raw_response_wrapper(
@@ -583,8 +583,8 @@ class AsyncDatabaseWithRawResponse:
         )
 
 
-class DatabaseWithStreamingResponse:
-    def __init__(self, database: Database) -> None:
+class DatabaseResourceWithStreamingResponse:
+    def __init__(self, database: DatabaseResource) -> None:
         self._database = database
 
         self.create = to_streamed_response_wrapper(
@@ -604,8 +604,8 @@ class DatabaseWithStreamingResponse:
         )
 
 
-class AsyncDatabaseWithStreamingResponse:
-    def __init__(self, database: AsyncDatabase) -> None:
+class AsyncDatabaseResourceWithStreamingResponse:
+    def __init__(self, database: AsyncDatabaseResource) -> None:
         self._database = database
 
         self.create = async_to_streamed_response_wrapper(

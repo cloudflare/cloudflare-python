@@ -27,17 +27,17 @@ from ...types.storage import analytics_list_params, analytics_stored_params
 from ...types.storage.schema import Schema
 from ...types.storage.components import Components
 
-__all__ = ["Analytics", "AsyncAnalytics"]
+__all__ = ["AnalyticsResource", "AsyncAnalyticsResource"]
 
 
-class Analytics(SyncAPIResource):
+class AnalyticsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AnalyticsWithRawResponse:
-        return AnalyticsWithRawResponse(self)
+    def with_raw_response(self) -> AnalyticsResourceWithRawResponse:
+        return AnalyticsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AnalyticsWithStreamingResponse:
-        return AnalyticsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AnalyticsResourceWithStreamingResponse:
+        return AnalyticsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -126,14 +126,14 @@ class Analytics(SyncAPIResource):
         )
 
 
-class AsyncAnalytics(AsyncAPIResource):
+class AsyncAnalyticsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAnalyticsWithRawResponse:
-        return AsyncAnalyticsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAnalyticsResourceWithRawResponse:
+        return AsyncAnalyticsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAnalyticsWithStreamingResponse:
-        return AsyncAnalyticsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAnalyticsResourceWithStreamingResponse:
+        return AsyncAnalyticsResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -222,8 +222,8 @@ class AsyncAnalytics(AsyncAPIResource):
         )
 
 
-class AnalyticsWithRawResponse:
-    def __init__(self, analytics: Analytics) -> None:
+class AnalyticsResourceWithRawResponse:
+    def __init__(self, analytics: AnalyticsResource) -> None:
         self._analytics = analytics
 
         self.list = to_raw_response_wrapper(
@@ -234,8 +234,8 @@ class AnalyticsWithRawResponse:
         )
 
 
-class AsyncAnalyticsWithRawResponse:
-    def __init__(self, analytics: AsyncAnalytics) -> None:
+class AsyncAnalyticsResourceWithRawResponse:
+    def __init__(self, analytics: AsyncAnalyticsResource) -> None:
         self._analytics = analytics
 
         self.list = async_to_raw_response_wrapper(
@@ -246,8 +246,8 @@ class AsyncAnalyticsWithRawResponse:
         )
 
 
-class AnalyticsWithStreamingResponse:
-    def __init__(self, analytics: Analytics) -> None:
+class AnalyticsResourceWithStreamingResponse:
+    def __init__(self, analytics: AnalyticsResource) -> None:
         self._analytics = analytics
 
         self.list = to_streamed_response_wrapper(
@@ -258,8 +258,8 @@ class AnalyticsWithStreamingResponse:
         )
 
 
-class AsyncAnalyticsWithStreamingResponse:
-    def __init__(self, analytics: AsyncAnalytics) -> None:
+class AsyncAnalyticsResourceWithStreamingResponse:
+    def __init__(self, analytics: AsyncAnalyticsResource) -> None:
         self._analytics = analytics
 
         self.list = async_to_streamed_response_wrapper(

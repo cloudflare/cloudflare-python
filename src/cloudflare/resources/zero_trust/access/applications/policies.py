@@ -32,17 +32,17 @@ from .....types.zero_trust.access.applications.policy import Policy
 from .....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
 from .....types.zero_trust.access.applications.policy_delete_response import PolicyDeleteResponse
 
-__all__ = ["Policies", "AsyncPolicies"]
+__all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
 
-class Policies(SyncAPIResource):
+class PoliciesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PoliciesWithRawResponse:
-        return PoliciesWithRawResponse(self)
+    def with_raw_response(self) -> PoliciesResourceWithRawResponse:
+        return PoliciesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PoliciesWithStreamingResponse:
-        return PoliciesWithStreamingResponse(self)
+    def with_streaming_response(self) -> PoliciesResourceWithStreamingResponse:
+        return PoliciesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -464,14 +464,14 @@ class Policies(SyncAPIResource):
         )
 
 
-class AsyncPolicies(AsyncAPIResource):
+class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPoliciesWithRawResponse:
-        return AsyncPoliciesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPoliciesResourceWithRawResponse:
+        return AsyncPoliciesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPoliciesWithStreamingResponse:
-        return AsyncPoliciesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        return AsyncPoliciesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -893,8 +893,8 @@ class AsyncPolicies(AsyncAPIResource):
         )
 
 
-class PoliciesWithRawResponse:
-    def __init__(self, policies: Policies) -> None:
+class PoliciesResourceWithRawResponse:
+    def __init__(self, policies: PoliciesResource) -> None:
         self._policies = policies
 
         self.create = to_raw_response_wrapper(
@@ -914,8 +914,8 @@ class PoliciesWithRawResponse:
         )
 
 
-class AsyncPoliciesWithRawResponse:
-    def __init__(self, policies: AsyncPolicies) -> None:
+class AsyncPoliciesResourceWithRawResponse:
+    def __init__(self, policies: AsyncPoliciesResource) -> None:
         self._policies = policies
 
         self.create = async_to_raw_response_wrapper(
@@ -935,8 +935,8 @@ class AsyncPoliciesWithRawResponse:
         )
 
 
-class PoliciesWithStreamingResponse:
-    def __init__(self, policies: Policies) -> None:
+class PoliciesResourceWithStreamingResponse:
+    def __init__(self, policies: PoliciesResource) -> None:
         self._policies = policies
 
         self.create = to_streamed_response_wrapper(
@@ -956,8 +956,8 @@ class PoliciesWithStreamingResponse:
         )
 
 
-class AsyncPoliciesWithStreamingResponse:
-    def __init__(self, policies: AsyncPolicies) -> None:
+class AsyncPoliciesResourceWithStreamingResponse:
+    def __init__(self, policies: AsyncPoliciesResource) -> None:
         self._policies = policies
 
         self.create = async_to_streamed_response_wrapper(

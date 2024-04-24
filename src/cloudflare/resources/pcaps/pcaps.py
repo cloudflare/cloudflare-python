@@ -14,12 +14,12 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .download import (
-    Download,
-    AsyncDownload,
-    DownloadWithRawResponse,
-    AsyncDownloadWithRawResponse,
-    DownloadWithStreamingResponse,
-    AsyncDownloadWithStreamingResponse,
+    DownloadResource,
+    AsyncDownloadResource,
+    DownloadResourceWithRawResponse,
+    AsyncDownloadResourceWithRawResponse,
+    DownloadResourceWithStreamingResponse,
+    AsyncDownloadResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .ownership import (
@@ -49,25 +49,25 @@ from ...types.pcaps.pcap_get_response import PCAPGetResponse
 from ...types.pcaps.pcap_list_response import PCAPListResponse
 from ...types.pcaps.pcap_create_response import PCAPCreateResponse
 
-__all__ = ["PCAPs", "AsyncPCAPs"]
+__all__ = ["PCAPsResource", "AsyncPCAPsResource"]
 
 
-class PCAPs(SyncAPIResource):
+class PCAPsResource(SyncAPIResource):
     @cached_property
     def ownership(self) -> OwnershipResource:
         return OwnershipResource(self._client)
 
     @cached_property
-    def download(self) -> Download:
-        return Download(self._client)
+    def download(self) -> DownloadResource:
+        return DownloadResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> PCAPsWithRawResponse:
-        return PCAPsWithRawResponse(self)
+    def with_raw_response(self) -> PCAPsResourceWithRawResponse:
+        return PCAPsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PCAPsWithStreamingResponse:
-        return PCAPsWithStreamingResponse(self)
+    def with_streaming_response(self) -> PCAPsResourceWithStreamingResponse:
+        return PCAPsResourceWithStreamingResponse(self)
 
     @overload
     def create(
@@ -310,22 +310,22 @@ class PCAPs(SyncAPIResource):
         )
 
 
-class AsyncPCAPs(AsyncAPIResource):
+class AsyncPCAPsResource(AsyncAPIResource):
     @cached_property
     def ownership(self) -> AsyncOwnershipResource:
         return AsyncOwnershipResource(self._client)
 
     @cached_property
-    def download(self) -> AsyncDownload:
-        return AsyncDownload(self._client)
+    def download(self) -> AsyncDownloadResource:
+        return AsyncDownloadResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPCAPsWithRawResponse:
-        return AsyncPCAPsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPCAPsResourceWithRawResponse:
+        return AsyncPCAPsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPCAPsWithStreamingResponse:
-        return AsyncPCAPsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPCAPsResourceWithStreamingResponse:
+        return AsyncPCAPsResourceWithStreamingResponse(self)
 
     @overload
     async def create(
@@ -568,8 +568,8 @@ class AsyncPCAPs(AsyncAPIResource):
         )
 
 
-class PCAPsWithRawResponse:
-    def __init__(self, pcaps: PCAPs) -> None:
+class PCAPsResourceWithRawResponse:
+    def __init__(self, pcaps: PCAPsResource) -> None:
         self._pcaps = pcaps
 
         self.create = to_raw_response_wrapper(
@@ -587,12 +587,12 @@ class PCAPsWithRawResponse:
         return OwnershipResourceWithRawResponse(self._pcaps.ownership)
 
     @cached_property
-    def download(self) -> DownloadWithRawResponse:
-        return DownloadWithRawResponse(self._pcaps.download)
+    def download(self) -> DownloadResourceWithRawResponse:
+        return DownloadResourceWithRawResponse(self._pcaps.download)
 
 
-class AsyncPCAPsWithRawResponse:
-    def __init__(self, pcaps: AsyncPCAPs) -> None:
+class AsyncPCAPsResourceWithRawResponse:
+    def __init__(self, pcaps: AsyncPCAPsResource) -> None:
         self._pcaps = pcaps
 
         self.create = async_to_raw_response_wrapper(
@@ -610,12 +610,12 @@ class AsyncPCAPsWithRawResponse:
         return AsyncOwnershipResourceWithRawResponse(self._pcaps.ownership)
 
     @cached_property
-    def download(self) -> AsyncDownloadWithRawResponse:
-        return AsyncDownloadWithRawResponse(self._pcaps.download)
+    def download(self) -> AsyncDownloadResourceWithRawResponse:
+        return AsyncDownloadResourceWithRawResponse(self._pcaps.download)
 
 
-class PCAPsWithStreamingResponse:
-    def __init__(self, pcaps: PCAPs) -> None:
+class PCAPsResourceWithStreamingResponse:
+    def __init__(self, pcaps: PCAPsResource) -> None:
         self._pcaps = pcaps
 
         self.create = to_streamed_response_wrapper(
@@ -633,12 +633,12 @@ class PCAPsWithStreamingResponse:
         return OwnershipResourceWithStreamingResponse(self._pcaps.ownership)
 
     @cached_property
-    def download(self) -> DownloadWithStreamingResponse:
-        return DownloadWithStreamingResponse(self._pcaps.download)
+    def download(self) -> DownloadResourceWithStreamingResponse:
+        return DownloadResourceWithStreamingResponse(self._pcaps.download)
 
 
-class AsyncPCAPsWithStreamingResponse:
-    def __init__(self, pcaps: AsyncPCAPs) -> None:
+class AsyncPCAPsResourceWithStreamingResponse:
+    def __init__(self, pcaps: AsyncPCAPsResource) -> None:
         self._pcaps = pcaps
 
         self.create = async_to_streamed_response_wrapper(
@@ -656,5 +656,5 @@ class AsyncPCAPsWithStreamingResponse:
         return AsyncOwnershipResourceWithStreamingResponse(self._pcaps.ownership)
 
     @cached_property
-    def download(self) -> AsyncDownloadWithStreamingResponse:
-        return AsyncDownloadWithStreamingResponse(self._pcaps.download)
+    def download(self) -> AsyncDownloadResourceWithStreamingResponse:
+        return AsyncDownloadResourceWithStreamingResponse(self._pcaps.download)

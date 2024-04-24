@@ -17,17 +17,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["Embed", "AsyncEmbed"]
+__all__ = ["EmbedResource", "AsyncEmbedResource"]
 
 
-class Embed(SyncAPIResource):
+class EmbedResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> EmbedWithRawResponse:
-        return EmbedWithRawResponse(self)
+    def with_raw_response(self) -> EmbedResourceWithRawResponse:
+        return EmbedResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> EmbedWithStreamingResponse:
-        return EmbedWithStreamingResponse(self)
+    def with_streaming_response(self) -> EmbedResourceWithStreamingResponse:
+        return EmbedResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -72,14 +72,14 @@ class Embed(SyncAPIResource):
         )
 
 
-class AsyncEmbed(AsyncAPIResource):
+class AsyncEmbedResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncEmbedWithRawResponse:
-        return AsyncEmbedWithRawResponse(self)
+    def with_raw_response(self) -> AsyncEmbedResourceWithRawResponse:
+        return AsyncEmbedResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEmbedWithStreamingResponse:
-        return AsyncEmbedWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncEmbedResourceWithStreamingResponse:
+        return AsyncEmbedResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -124,8 +124,8 @@ class AsyncEmbed(AsyncAPIResource):
         )
 
 
-class EmbedWithRawResponse:
-    def __init__(self, embed: Embed) -> None:
+class EmbedResourceWithRawResponse:
+    def __init__(self, embed: EmbedResource) -> None:
         self._embed = embed
 
         self.get = to_raw_response_wrapper(
@@ -133,8 +133,8 @@ class EmbedWithRawResponse:
         )
 
 
-class AsyncEmbedWithRawResponse:
-    def __init__(self, embed: AsyncEmbed) -> None:
+class AsyncEmbedResourceWithRawResponse:
+    def __init__(self, embed: AsyncEmbedResource) -> None:
         self._embed = embed
 
         self.get = async_to_raw_response_wrapper(
@@ -142,8 +142,8 @@ class AsyncEmbedWithRawResponse:
         )
 
 
-class EmbedWithStreamingResponse:
-    def __init__(self, embed: Embed) -> None:
+class EmbedResourceWithStreamingResponse:
+    def __init__(self, embed: EmbedResource) -> None:
         self._embed = embed
 
         self.get = to_streamed_response_wrapper(
@@ -151,8 +151,8 @@ class EmbedWithStreamingResponse:
         )
 
 
-class AsyncEmbedWithStreamingResponse:
-    def __init__(self, embed: AsyncEmbed) -> None:
+class AsyncEmbedResourceWithStreamingResponse:
+    def __init__(self, embed: AsyncEmbedResource) -> None:
         self._embed = embed
 
         self.get = async_to_streamed_response_wrapper(

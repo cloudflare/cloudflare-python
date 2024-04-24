@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .uuid import (
-    UUID,
-    AsyncUUID,
-    UUIDWithRawResponse,
-    AsyncUUIDWithRawResponse,
-    UUIDWithStreamingResponse,
-    AsyncUUIDWithStreamingResponse,
+    UUIDResource,
+    AsyncUUIDResource,
+    UUIDResourceWithRawResponse,
+    AsyncUUIDResourceWithRawResponse,
+    UUIDResourceWithStreamingResponse,
+    AsyncUUIDResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["DCVDelegation", "AsyncDCVDelegation"]
+__all__ = ["DCVDelegationResource", "AsyncDCVDelegationResource"]
 
 
-class DCVDelegation(SyncAPIResource):
+class DCVDelegationResource(SyncAPIResource):
     @cached_property
-    def uuid(self) -> UUID:
-        return UUID(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> DCVDelegationWithRawResponse:
-        return DCVDelegationWithRawResponse(self)
+    def uuid(self) -> UUIDResource:
+        return UUIDResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> DCVDelegationWithStreamingResponse:
-        return DCVDelegationWithStreamingResponse(self)
-
-
-class AsyncDCVDelegation(AsyncAPIResource):
-    @cached_property
-    def uuid(self) -> AsyncUUID:
-        return AsyncUUID(self._client)
+    def with_raw_response(self) -> DCVDelegationResourceWithRawResponse:
+        return DCVDelegationResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDCVDelegationWithRawResponse:
-        return AsyncDCVDelegationWithRawResponse(self)
+    def with_streaming_response(self) -> DCVDelegationResourceWithStreamingResponse:
+        return DCVDelegationResourceWithStreamingResponse(self)
+
+
+class AsyncDCVDelegationResource(AsyncAPIResource):
+    @cached_property
+    def uuid(self) -> AsyncUUIDResource:
+        return AsyncUUIDResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDCVDelegationWithStreamingResponse:
-        return AsyncDCVDelegationWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncDCVDelegationResourceWithRawResponse:
+        return AsyncDCVDelegationResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDCVDelegationResourceWithStreamingResponse:
+        return AsyncDCVDelegationResourceWithStreamingResponse(self)
 
 
-class DCVDelegationWithRawResponse:
-    def __init__(self, dcv_delegation: DCVDelegation) -> None:
+class DCVDelegationResourceWithRawResponse:
+    def __init__(self, dcv_delegation: DCVDelegationResource) -> None:
         self._dcv_delegation = dcv_delegation
 
     @cached_property
-    def uuid(self) -> UUIDWithRawResponse:
-        return UUIDWithRawResponse(self._dcv_delegation.uuid)
+    def uuid(self) -> UUIDResourceWithRawResponse:
+        return UUIDResourceWithRawResponse(self._dcv_delegation.uuid)
 
 
-class AsyncDCVDelegationWithRawResponse:
-    def __init__(self, dcv_delegation: AsyncDCVDelegation) -> None:
+class AsyncDCVDelegationResourceWithRawResponse:
+    def __init__(self, dcv_delegation: AsyncDCVDelegationResource) -> None:
         self._dcv_delegation = dcv_delegation
 
     @cached_property
-    def uuid(self) -> AsyncUUIDWithRawResponse:
-        return AsyncUUIDWithRawResponse(self._dcv_delegation.uuid)
+    def uuid(self) -> AsyncUUIDResourceWithRawResponse:
+        return AsyncUUIDResourceWithRawResponse(self._dcv_delegation.uuid)
 
 
-class DCVDelegationWithStreamingResponse:
-    def __init__(self, dcv_delegation: DCVDelegation) -> None:
+class DCVDelegationResourceWithStreamingResponse:
+    def __init__(self, dcv_delegation: DCVDelegationResource) -> None:
         self._dcv_delegation = dcv_delegation
 
     @cached_property
-    def uuid(self) -> UUIDWithStreamingResponse:
-        return UUIDWithStreamingResponse(self._dcv_delegation.uuid)
+    def uuid(self) -> UUIDResourceWithStreamingResponse:
+        return UUIDResourceWithStreamingResponse(self._dcv_delegation.uuid)
 
 
-class AsyncDCVDelegationWithStreamingResponse:
-    def __init__(self, dcv_delegation: AsyncDCVDelegation) -> None:
+class AsyncDCVDelegationResourceWithStreamingResponse:
+    def __init__(self, dcv_delegation: AsyncDCVDelegationResource) -> None:
         self._dcv_delegation = dcv_delegation
 
     @cached_property
-    def uuid(self) -> AsyncUUIDWithStreamingResponse:
-        return AsyncUUIDWithStreamingResponse(self._dcv_delegation.uuid)
+    def uuid(self) -> AsyncUUIDResourceWithStreamingResponse:
+        return AsyncUUIDResourceWithStreamingResponse(self._dcv_delegation.uuid)

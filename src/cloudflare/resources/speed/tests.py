@@ -29,19 +29,19 @@ from ...types.speed.test import Test
 from ...types.speed.test_list_response import TestListResponse
 from ...types.speed.test_delete_response import TestDeleteResponse
 
-__all__ = ["Tests", "AsyncTests"]
+__all__ = ["TestsResource", "AsyncTestsResource"]
 
 
-class Tests(SyncAPIResource):
+class TestsResource(SyncAPIResource):
     __test__ = False
 
     @cached_property
-    def with_raw_response(self) -> TestsWithRawResponse:
-        return TestsWithRawResponse(self)
+    def with_raw_response(self) -> TestsResourceWithRawResponse:
+        return TestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TestsWithStreamingResponse:
-        return TestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> TestsResourceWithStreamingResponse:
+        return TestsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -314,14 +314,14 @@ class Tests(SyncAPIResource):
         )
 
 
-class AsyncTests(AsyncAPIResource):
+class AsyncTestsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTestsWithRawResponse:
-        return AsyncTestsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTestsResourceWithRawResponse:
+        return AsyncTestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTestsWithStreamingResponse:
-        return AsyncTestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTestsResourceWithStreamingResponse:
+        return AsyncTestsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -594,10 +594,10 @@ class AsyncTests(AsyncAPIResource):
         )
 
 
-class TestsWithRawResponse:
+class TestsResourceWithRawResponse:
     __test__ = False
 
-    def __init__(self, tests: Tests) -> None:
+    def __init__(self, tests: TestsResource) -> None:
         self._tests = tests
 
         self.create = to_raw_response_wrapper(
@@ -614,8 +614,8 @@ class TestsWithRawResponse:
         )
 
 
-class AsyncTestsWithRawResponse:
-    def __init__(self, tests: AsyncTests) -> None:
+class AsyncTestsResourceWithRawResponse:
+    def __init__(self, tests: AsyncTestsResource) -> None:
         self._tests = tests
 
         self.create = async_to_raw_response_wrapper(
@@ -632,10 +632,10 @@ class AsyncTestsWithRawResponse:
         )
 
 
-class TestsWithStreamingResponse:
+class TestsResourceWithStreamingResponse:
     __test__ = False
 
-    def __init__(self, tests: Tests) -> None:
+    def __init__(self, tests: TestsResource) -> None:
         self._tests = tests
 
         self.create = to_streamed_response_wrapper(
@@ -652,8 +652,8 @@ class TestsWithStreamingResponse:
         )
 
 
-class AsyncTestsWithStreamingResponse:
-    def __init__(self, tests: AsyncTests) -> None:
+class AsyncTestsResourceWithStreamingResponse:
+    def __init__(self, tests: AsyncTestsResource) -> None:
         self._tests = tests
 
         self.create = async_to_streamed_response_wrapper(

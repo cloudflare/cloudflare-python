@@ -26,17 +26,17 @@ from ....._base_client import (
 from .....types.zero_trust.dex.http_tests import percentile_get_params
 from .....types.zero_trust.dex.http_tests.http_details_percentiles import HTTPDetailsPercentiles
 
-__all__ = ["Percentiles", "AsyncPercentiles"]
+__all__ = ["PercentilesResource", "AsyncPercentilesResource"]
 
 
-class Percentiles(SyncAPIResource):
+class PercentilesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PercentilesWithRawResponse:
-        return PercentilesWithRawResponse(self)
+    def with_raw_response(self) -> PercentilesResourceWithRawResponse:
+        return PercentilesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PercentilesWithStreamingResponse:
-        return PercentilesWithStreamingResponse(self)
+    def with_streaming_response(self) -> PercentilesResourceWithStreamingResponse:
+        return PercentilesResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -105,14 +105,14 @@ class Percentiles(SyncAPIResource):
         )
 
 
-class AsyncPercentiles(AsyncAPIResource):
+class AsyncPercentilesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPercentilesWithRawResponse:
-        return AsyncPercentilesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPercentilesResourceWithRawResponse:
+        return AsyncPercentilesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPercentilesWithStreamingResponse:
-        return AsyncPercentilesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPercentilesResourceWithStreamingResponse:
+        return AsyncPercentilesResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -181,8 +181,8 @@ class AsyncPercentiles(AsyncAPIResource):
         )
 
 
-class PercentilesWithRawResponse:
-    def __init__(self, percentiles: Percentiles) -> None:
+class PercentilesResourceWithRawResponse:
+    def __init__(self, percentiles: PercentilesResource) -> None:
         self._percentiles = percentiles
 
         self.get = to_raw_response_wrapper(
@@ -190,8 +190,8 @@ class PercentilesWithRawResponse:
         )
 
 
-class AsyncPercentilesWithRawResponse:
-    def __init__(self, percentiles: AsyncPercentiles) -> None:
+class AsyncPercentilesResourceWithRawResponse:
+    def __init__(self, percentiles: AsyncPercentilesResource) -> None:
         self._percentiles = percentiles
 
         self.get = async_to_raw_response_wrapper(
@@ -199,8 +199,8 @@ class AsyncPercentilesWithRawResponse:
         )
 
 
-class PercentilesWithStreamingResponse:
-    def __init__(self, percentiles: Percentiles) -> None:
+class PercentilesResourceWithStreamingResponse:
+    def __init__(self, percentiles: PercentilesResource) -> None:
         self._percentiles = percentiles
 
         self.get = to_streamed_response_wrapper(
@@ -208,8 +208,8 @@ class PercentilesWithStreamingResponse:
         )
 
 
-class AsyncPercentilesWithStreamingResponse:
-    def __init__(self, percentiles: AsyncPercentiles) -> None:
+class AsyncPercentilesResourceWithStreamingResponse:
+    def __init__(self, percentiles: AsyncPercentilesResource) -> None:
         self._percentiles = percentiles
 
         self.get = async_to_streamed_response_wrapper(

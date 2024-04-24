@@ -28,17 +28,17 @@ from ....types.ssl.host import Host
 from ....types.ssl.certificate_packs import order_create_params
 from ....types.ssl.certificate_packs.order_create_response import OrderCreateResponse
 
-__all__ = ["Order", "AsyncOrder"]
+__all__ = ["OrderResource", "AsyncOrderResource"]
 
 
-class Order(SyncAPIResource):
+class OrderResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OrderWithRawResponse:
-        return OrderWithRawResponse(self)
+    def with_raw_response(self) -> OrderResourceWithRawResponse:
+        return OrderResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OrderWithStreamingResponse:
-        return OrderWithStreamingResponse(self)
+    def with_streaming_response(self) -> OrderResourceWithStreamingResponse:
+        return OrderResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -113,14 +113,14 @@ class Order(SyncAPIResource):
         )
 
 
-class AsyncOrder(AsyncAPIResource):
+class AsyncOrderResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOrderWithRawResponse:
-        return AsyncOrderWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOrderResourceWithRawResponse:
+        return AsyncOrderResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOrderWithStreamingResponse:
-        return AsyncOrderWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOrderResourceWithStreamingResponse:
+        return AsyncOrderResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -195,8 +195,8 @@ class AsyncOrder(AsyncAPIResource):
         )
 
 
-class OrderWithRawResponse:
-    def __init__(self, order: Order) -> None:
+class OrderResourceWithRawResponse:
+    def __init__(self, order: OrderResource) -> None:
         self._order = order
 
         self.create = to_raw_response_wrapper(
@@ -204,8 +204,8 @@ class OrderWithRawResponse:
         )
 
 
-class AsyncOrderWithRawResponse:
-    def __init__(self, order: AsyncOrder) -> None:
+class AsyncOrderResourceWithRawResponse:
+    def __init__(self, order: AsyncOrderResource) -> None:
         self._order = order
 
         self.create = async_to_raw_response_wrapper(
@@ -213,8 +213,8 @@ class AsyncOrderWithRawResponse:
         )
 
 
-class OrderWithStreamingResponse:
-    def __init__(self, order: Order) -> None:
+class OrderResourceWithStreamingResponse:
+    def __init__(self, order: OrderResource) -> None:
         self._order = order
 
         self.create = to_streamed_response_wrapper(
@@ -222,8 +222,8 @@ class OrderWithStreamingResponse:
         )
 
 
-class AsyncOrderWithStreamingResponse:
-    def __init__(self, order: AsyncOrder) -> None:
+class AsyncOrderResourceWithStreamingResponse:
+    def __init__(self, order: AsyncOrderResource) -> None:
         self._order = order
 
         self.create = async_to_streamed_response_wrapper(

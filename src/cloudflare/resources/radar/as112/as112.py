@@ -9,20 +9,20 @@ from typing_extensions import Literal
 import httpx
 
 from .top import (
-    Top,
-    AsyncTop,
-    TopWithRawResponse,
-    AsyncTopWithRawResponse,
-    TopWithStreamingResponse,
-    AsyncTopWithStreamingResponse,
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
 )
 from .summary import (
-    Summary,
-    AsyncSummary,
-    SummaryWithRawResponse,
-    AsyncSummaryWithRawResponse,
-    SummaryWithStreamingResponse,
-    AsyncSummaryWithStreamingResponse,
+    SummaryResource,
+    AsyncSummaryResource,
+    SummaryResourceWithRawResponse,
+    AsyncSummaryResourceWithRawResponse,
+    SummaryResourceWithStreamingResponse,
+    AsyncSummaryResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -43,38 +43,38 @@ from ...._base_client import (
     make_request_options,
 )
 from .timeseries_groups import (
-    TimeseriesGroups,
-    AsyncTimeseriesGroups,
-    TimeseriesGroupsWithRawResponse,
-    AsyncTimeseriesGroupsWithRawResponse,
-    TimeseriesGroupsWithStreamingResponse,
-    AsyncTimeseriesGroupsWithStreamingResponse,
+    TimeseriesGroupsResource,
+    AsyncTimeseriesGroupsResource,
+    TimeseriesGroupsResourceWithRawResponse,
+    AsyncTimeseriesGroupsResourceWithRawResponse,
+    TimeseriesGroupsResourceWithStreamingResponse,
+    AsyncTimeseriesGroupsResourceWithStreamingResponse,
 )
 from ....types.radar.as112_timeseries_response import AS112TimeseriesResponse
 
-__all__ = ["AS112", "AsyncAS112"]
+__all__ = ["AS112Resource", "AsyncAS112Resource"]
 
 
-class AS112(SyncAPIResource):
+class AS112Resource(SyncAPIResource):
     @cached_property
-    def summary(self) -> Summary:
-        return Summary(self._client)
-
-    @cached_property
-    def timeseries_groups(self) -> TimeseriesGroups:
-        return TimeseriesGroups(self._client)
+    def summary(self) -> SummaryResource:
+        return SummaryResource(self._client)
 
     @cached_property
-    def top(self) -> Top:
-        return Top(self._client)
+    def timeseries_groups(self) -> TimeseriesGroupsResource:
+        return TimeseriesGroupsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AS112WithRawResponse:
-        return AS112WithRawResponse(self)
+    def top(self) -> TopResource:
+        return TopResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AS112WithStreamingResponse:
-        return AS112WithStreamingResponse(self)
+    def with_raw_response(self) -> AS112ResourceWithRawResponse:
+        return AS112ResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AS112ResourceWithStreamingResponse:
+        return AS112ResourceWithStreamingResponse(self)
 
     def timeseries(
         self,
@@ -181,26 +181,26 @@ class AS112(SyncAPIResource):
         )
 
 
-class AsyncAS112(AsyncAPIResource):
+class AsyncAS112Resource(AsyncAPIResource):
     @cached_property
-    def summary(self) -> AsyncSummary:
-        return AsyncSummary(self._client)
+    def summary(self) -> AsyncSummaryResource:
+        return AsyncSummaryResource(self._client)
 
     @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroups:
-        return AsyncTimeseriesGroups(self._client)
+    def timeseries_groups(self) -> AsyncTimeseriesGroupsResource:
+        return AsyncTimeseriesGroupsResource(self._client)
 
     @cached_property
-    def top(self) -> AsyncTop:
-        return AsyncTop(self._client)
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAS112WithRawResponse:
-        return AsyncAS112WithRawResponse(self)
+    def with_raw_response(self) -> AsyncAS112ResourceWithRawResponse:
+        return AsyncAS112ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAS112WithStreamingResponse:
-        return AsyncAS112WithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAS112ResourceWithStreamingResponse:
+        return AsyncAS112ResourceWithStreamingResponse(self)
 
     async def timeseries(
         self,
@@ -307,8 +307,8 @@ class AsyncAS112(AsyncAPIResource):
         )
 
 
-class AS112WithRawResponse:
-    def __init__(self, as112: AS112) -> None:
+class AS112ResourceWithRawResponse:
+    def __init__(self, as112: AS112Resource) -> None:
         self._as112 = as112
 
         self.timeseries = to_raw_response_wrapper(
@@ -316,20 +316,20 @@ class AS112WithRawResponse:
         )
 
     @cached_property
-    def summary(self) -> SummaryWithRawResponse:
-        return SummaryWithRawResponse(self._as112.summary)
+    def summary(self) -> SummaryResourceWithRawResponse:
+        return SummaryResourceWithRawResponse(self._as112.summary)
 
     @cached_property
-    def timeseries_groups(self) -> TimeseriesGroupsWithRawResponse:
-        return TimeseriesGroupsWithRawResponse(self._as112.timeseries_groups)
+    def timeseries_groups(self) -> TimeseriesGroupsResourceWithRawResponse:
+        return TimeseriesGroupsResourceWithRawResponse(self._as112.timeseries_groups)
 
     @cached_property
-    def top(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self._as112.top)
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._as112.top)
 
 
-class AsyncAS112WithRawResponse:
-    def __init__(self, as112: AsyncAS112) -> None:
+class AsyncAS112ResourceWithRawResponse:
+    def __init__(self, as112: AsyncAS112Resource) -> None:
         self._as112 = as112
 
         self.timeseries = async_to_raw_response_wrapper(
@@ -337,20 +337,20 @@ class AsyncAS112WithRawResponse:
         )
 
     @cached_property
-    def summary(self) -> AsyncSummaryWithRawResponse:
-        return AsyncSummaryWithRawResponse(self._as112.summary)
+    def summary(self) -> AsyncSummaryResourceWithRawResponse:
+        return AsyncSummaryResourceWithRawResponse(self._as112.summary)
 
     @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroupsWithRawResponse:
-        return AsyncTimeseriesGroupsWithRawResponse(self._as112.timeseries_groups)
+    def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
+        return AsyncTimeseriesGroupsResourceWithRawResponse(self._as112.timeseries_groups)
 
     @cached_property
-    def top(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self._as112.top)
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._as112.top)
 
 
-class AS112WithStreamingResponse:
-    def __init__(self, as112: AS112) -> None:
+class AS112ResourceWithStreamingResponse:
+    def __init__(self, as112: AS112Resource) -> None:
         self._as112 = as112
 
         self.timeseries = to_streamed_response_wrapper(
@@ -358,20 +358,20 @@ class AS112WithStreamingResponse:
         )
 
     @cached_property
-    def summary(self) -> SummaryWithStreamingResponse:
-        return SummaryWithStreamingResponse(self._as112.summary)
+    def summary(self) -> SummaryResourceWithStreamingResponse:
+        return SummaryResourceWithStreamingResponse(self._as112.summary)
 
     @cached_property
-    def timeseries_groups(self) -> TimeseriesGroupsWithStreamingResponse:
-        return TimeseriesGroupsWithStreamingResponse(self._as112.timeseries_groups)
+    def timeseries_groups(self) -> TimeseriesGroupsResourceWithStreamingResponse:
+        return TimeseriesGroupsResourceWithStreamingResponse(self._as112.timeseries_groups)
 
     @cached_property
-    def top(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self._as112.top)
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._as112.top)
 
 
-class AsyncAS112WithStreamingResponse:
-    def __init__(self, as112: AsyncAS112) -> None:
+class AsyncAS112ResourceWithStreamingResponse:
+    def __init__(self, as112: AsyncAS112Resource) -> None:
         self._as112 = as112
 
         self.timeseries = async_to_streamed_response_wrapper(
@@ -379,13 +379,13 @@ class AsyncAS112WithStreamingResponse:
         )
 
     @cached_property
-    def summary(self) -> AsyncSummaryWithStreamingResponse:
-        return AsyncSummaryWithStreamingResponse(self._as112.summary)
+    def summary(self) -> AsyncSummaryResourceWithStreamingResponse:
+        return AsyncSummaryResourceWithStreamingResponse(self._as112.summary)
 
     @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroupsWithStreamingResponse:
-        return AsyncTimeseriesGroupsWithStreamingResponse(self._as112.timeseries_groups)
+    def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
+        return AsyncTimeseriesGroupsResourceWithStreamingResponse(self._as112.timeseries_groups)
 
     @cached_property
-    def top(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self._as112.top)
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._as112.top)

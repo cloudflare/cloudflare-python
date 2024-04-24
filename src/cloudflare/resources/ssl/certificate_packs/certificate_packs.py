@@ -8,20 +8,20 @@ from typing_extensions import Literal
 import httpx
 
 from .order import (
-    Order,
-    AsyncOrder,
-    OrderWithRawResponse,
-    AsyncOrderWithRawResponse,
-    OrderWithStreamingResponse,
-    AsyncOrderWithStreamingResponse,
+    OrderResource,
+    AsyncOrderResource,
+    OrderResourceWithRawResponse,
+    AsyncOrderResourceWithRawResponse,
+    OrderResourceWithStreamingResponse,
+    AsyncOrderResourceWithStreamingResponse,
 )
 from .quota import (
-    Quota,
-    AsyncQuota,
-    QuotaWithRawResponse,
-    AsyncQuotaWithRawResponse,
-    QuotaWithStreamingResponse,
-    AsyncQuotaWithStreamingResponse,
+    QuotaResource,
+    AsyncQuotaResource,
+    QuotaResourceWithRawResponse,
+    AsyncQuotaResourceWithRawResponse,
+    QuotaResourceWithStreamingResponse,
+    AsyncQuotaResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -47,25 +47,25 @@ from ....types.ssl.certificate_pack_get_response import CertificatePackGetRespon
 from ....types.ssl.certificate_pack_edit_response import CertificatePackEditResponse
 from ....types.ssl.certificate_pack_delete_response import CertificatePackDeleteResponse
 
-__all__ = ["CertificatePacks", "AsyncCertificatePacks"]
+__all__ = ["CertificatePacksResource", "AsyncCertificatePacksResource"]
 
 
-class CertificatePacks(SyncAPIResource):
+class CertificatePacksResource(SyncAPIResource):
     @cached_property
-    def order(self) -> Order:
-        return Order(self._client)
-
-    @cached_property
-    def quota(self) -> Quota:
-        return Quota(self._client)
+    def order(self) -> OrderResource:
+        return OrderResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> CertificatePacksWithRawResponse:
-        return CertificatePacksWithRawResponse(self)
+    def quota(self) -> QuotaResource:
+        return QuotaResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> CertificatePacksWithStreamingResponse:
-        return CertificatePacksWithStreamingResponse(self)
+    def with_raw_response(self) -> CertificatePacksResourceWithRawResponse:
+        return CertificatePacksResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> CertificatePacksResourceWithStreamingResponse:
+        return CertificatePacksResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -261,22 +261,22 @@ class CertificatePacks(SyncAPIResource):
         )
 
 
-class AsyncCertificatePacks(AsyncAPIResource):
+class AsyncCertificatePacksResource(AsyncAPIResource):
     @cached_property
-    def order(self) -> AsyncOrder:
-        return AsyncOrder(self._client)
+    def order(self) -> AsyncOrderResource:
+        return AsyncOrderResource(self._client)
 
     @cached_property
-    def quota(self) -> AsyncQuota:
-        return AsyncQuota(self._client)
+    def quota(self) -> AsyncQuotaResource:
+        return AsyncQuotaResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCertificatePacksWithRawResponse:
-        return AsyncCertificatePacksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCertificatePacksResourceWithRawResponse:
+        return AsyncCertificatePacksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCertificatePacksWithStreamingResponse:
-        return AsyncCertificatePacksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCertificatePacksResourceWithStreamingResponse:
+        return AsyncCertificatePacksResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -472,8 +472,8 @@ class AsyncCertificatePacks(AsyncAPIResource):
         )
 
 
-class CertificatePacksWithRawResponse:
-    def __init__(self, certificate_packs: CertificatePacks) -> None:
+class CertificatePacksResourceWithRawResponse:
+    def __init__(self, certificate_packs: CertificatePacksResource) -> None:
         self._certificate_packs = certificate_packs
 
         self.list = to_raw_response_wrapper(
@@ -490,16 +490,16 @@ class CertificatePacksWithRawResponse:
         )
 
     @cached_property
-    def order(self) -> OrderWithRawResponse:
-        return OrderWithRawResponse(self._certificate_packs.order)
+    def order(self) -> OrderResourceWithRawResponse:
+        return OrderResourceWithRawResponse(self._certificate_packs.order)
 
     @cached_property
-    def quota(self) -> QuotaWithRawResponse:
-        return QuotaWithRawResponse(self._certificate_packs.quota)
+    def quota(self) -> QuotaResourceWithRawResponse:
+        return QuotaResourceWithRawResponse(self._certificate_packs.quota)
 
 
-class AsyncCertificatePacksWithRawResponse:
-    def __init__(self, certificate_packs: AsyncCertificatePacks) -> None:
+class AsyncCertificatePacksResourceWithRawResponse:
+    def __init__(self, certificate_packs: AsyncCertificatePacksResource) -> None:
         self._certificate_packs = certificate_packs
 
         self.list = async_to_raw_response_wrapper(
@@ -516,16 +516,16 @@ class AsyncCertificatePacksWithRawResponse:
         )
 
     @cached_property
-    def order(self) -> AsyncOrderWithRawResponse:
-        return AsyncOrderWithRawResponse(self._certificate_packs.order)
+    def order(self) -> AsyncOrderResourceWithRawResponse:
+        return AsyncOrderResourceWithRawResponse(self._certificate_packs.order)
 
     @cached_property
-    def quota(self) -> AsyncQuotaWithRawResponse:
-        return AsyncQuotaWithRawResponse(self._certificate_packs.quota)
+    def quota(self) -> AsyncQuotaResourceWithRawResponse:
+        return AsyncQuotaResourceWithRawResponse(self._certificate_packs.quota)
 
 
-class CertificatePacksWithStreamingResponse:
-    def __init__(self, certificate_packs: CertificatePacks) -> None:
+class CertificatePacksResourceWithStreamingResponse:
+    def __init__(self, certificate_packs: CertificatePacksResource) -> None:
         self._certificate_packs = certificate_packs
 
         self.list = to_streamed_response_wrapper(
@@ -542,16 +542,16 @@ class CertificatePacksWithStreamingResponse:
         )
 
     @cached_property
-    def order(self) -> OrderWithStreamingResponse:
-        return OrderWithStreamingResponse(self._certificate_packs.order)
+    def order(self) -> OrderResourceWithStreamingResponse:
+        return OrderResourceWithStreamingResponse(self._certificate_packs.order)
 
     @cached_property
-    def quota(self) -> QuotaWithStreamingResponse:
-        return QuotaWithStreamingResponse(self._certificate_packs.quota)
+    def quota(self) -> QuotaResourceWithStreamingResponse:
+        return QuotaResourceWithStreamingResponse(self._certificate_packs.quota)
 
 
-class AsyncCertificatePacksWithStreamingResponse:
-    def __init__(self, certificate_packs: AsyncCertificatePacks) -> None:
+class AsyncCertificatePacksResourceWithStreamingResponse:
+    def __init__(self, certificate_packs: AsyncCertificatePacksResource) -> None:
         self._certificate_packs = certificate_packs
 
         self.list = async_to_streamed_response_wrapper(
@@ -568,9 +568,9 @@ class AsyncCertificatePacksWithStreamingResponse:
         )
 
     @cached_property
-    def order(self) -> AsyncOrderWithStreamingResponse:
-        return AsyncOrderWithStreamingResponse(self._certificate_packs.order)
+    def order(self) -> AsyncOrderResourceWithStreamingResponse:
+        return AsyncOrderResourceWithStreamingResponse(self._certificate_packs.order)
 
     @cached_property
-    def quota(self) -> AsyncQuotaWithStreamingResponse:
-        return AsyncQuotaWithStreamingResponse(self._certificate_packs.quota)
+    def quota(self) -> AsyncQuotaResourceWithStreamingResponse:
+        return AsyncQuotaResourceWithStreamingResponse(self._certificate_packs.quota)

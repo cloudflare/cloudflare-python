@@ -29,17 +29,17 @@ from .._base_client import (
 from ..types.calls.calls_app import CallsApp
 from ..types.calls.calls_app_with_secret import CallsAppWithSecret
 
-__all__ = ["Calls", "AsyncCalls"]
+__all__ = ["CallsResource", "AsyncCallsResource"]
 
 
-class Calls(SyncAPIResource):
+class CallsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CallsWithRawResponse:
-        return CallsWithRawResponse(self)
+    def with_raw_response(self) -> CallsResourceWithRawResponse:
+        return CallsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CallsWithStreamingResponse:
-        return CallsWithStreamingResponse(self)
+    def with_streaming_response(self) -> CallsResourceWithStreamingResponse:
+        return CallsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -259,14 +259,14 @@ class Calls(SyncAPIResource):
         )
 
 
-class AsyncCalls(AsyncAPIResource):
+class AsyncCallsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCallsWithRawResponse:
-        return AsyncCallsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCallsResourceWithRawResponse:
+        return AsyncCallsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCallsWithStreamingResponse:
-        return AsyncCallsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCallsResourceWithStreamingResponse:
+        return AsyncCallsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -486,8 +486,8 @@ class AsyncCalls(AsyncAPIResource):
         )
 
 
-class CallsWithRawResponse:
-    def __init__(self, calls: Calls) -> None:
+class CallsResourceWithRawResponse:
+    def __init__(self, calls: CallsResource) -> None:
         self._calls = calls
 
         self.create = to_raw_response_wrapper(
@@ -507,8 +507,8 @@ class CallsWithRawResponse:
         )
 
 
-class AsyncCallsWithRawResponse:
-    def __init__(self, calls: AsyncCalls) -> None:
+class AsyncCallsResourceWithRawResponse:
+    def __init__(self, calls: AsyncCallsResource) -> None:
         self._calls = calls
 
         self.create = async_to_raw_response_wrapper(
@@ -528,8 +528,8 @@ class AsyncCallsWithRawResponse:
         )
 
 
-class CallsWithStreamingResponse:
-    def __init__(self, calls: Calls) -> None:
+class CallsResourceWithStreamingResponse:
+    def __init__(self, calls: CallsResource) -> None:
         self._calls = calls
 
         self.create = to_streamed_response_wrapper(
@@ -549,8 +549,8 @@ class CallsWithStreamingResponse:
         )
 
 
-class AsyncCallsWithStreamingResponse:
-    def __init__(self, calls: AsyncCalls) -> None:
+class AsyncCallsResourceWithStreamingResponse:
+    def __init__(self, calls: AsyncCallsResource) -> None:
         self._calls = calls
 
         self.create = async_to_streamed_response_wrapper(

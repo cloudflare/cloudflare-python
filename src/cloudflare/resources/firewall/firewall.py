@@ -3,207 +3,207 @@
 from __future__ import annotations
 
 from .waf import (
-    WAF,
-    AsyncWAF,
-    WAFWithRawResponse,
-    AsyncWAFWithRawResponse,
-    WAFWithStreamingResponse,
-    AsyncWAFWithStreamingResponse,
+    WAFResource,
+    AsyncWAFResource,
+    WAFResourceWithRawResponse,
+    AsyncWAFResourceWithRawResponse,
+    WAFResourceWithStreamingResponse,
+    AsyncWAFResourceWithStreamingResponse,
 )
 from .rules import (
-    Rules,
-    AsyncRules,
-    RulesWithRawResponse,
-    AsyncRulesWithRawResponse,
-    RulesWithStreamingResponse,
-    AsyncRulesWithStreamingResponse,
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
-from .waf.waf import WAF, AsyncWAF
+from .waf.waf import WAFResource, AsyncWAFResource
 from .ua_rules import (
-    UARules,
-    AsyncUARules,
-    UARulesWithRawResponse,
-    AsyncUARulesWithRawResponse,
-    UARulesWithStreamingResponse,
-    AsyncUARulesWithStreamingResponse,
+    UARulesResource,
+    AsyncUARulesResource,
+    UARulesResourceWithRawResponse,
+    AsyncUARulesResourceWithRawResponse,
+    UARulesResourceWithStreamingResponse,
+    AsyncUARulesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .lockdowns import (
-    Lockdowns,
-    AsyncLockdowns,
-    LockdownsWithRawResponse,
-    AsyncLockdownsWithRawResponse,
-    LockdownsWithStreamingResponse,
-    AsyncLockdownsWithStreamingResponse,
+    LockdownsResource,
+    AsyncLockdownsResource,
+    LockdownsResourceWithRawResponse,
+    AsyncLockdownsResourceWithRawResponse,
+    LockdownsResourceWithStreamingResponse,
+    AsyncLockdownsResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .access_rules import (
-    AccessRules,
-    AsyncAccessRules,
-    AccessRulesWithRawResponse,
-    AsyncAccessRulesWithRawResponse,
-    AccessRulesWithStreamingResponse,
-    AsyncAccessRulesWithStreamingResponse,
+    AccessRulesResource,
+    AsyncAccessRulesResource,
+    AccessRulesResourceWithRawResponse,
+    AsyncAccessRulesResourceWithRawResponse,
+    AccessRulesResourceWithStreamingResponse,
+    AsyncAccessRulesResourceWithStreamingResponse,
 )
 
-__all__ = ["Firewall", "AsyncFirewall"]
+__all__ = ["FirewallResource", "AsyncFirewallResource"]
 
 
-class Firewall(SyncAPIResource):
+class FirewallResource(SyncAPIResource):
     @cached_property
-    def lockdowns(self) -> Lockdowns:
-        return Lockdowns(self._client)
-
-    @cached_property
-    def rules(self) -> Rules:
-        return Rules(self._client)
+    def lockdowns(self) -> LockdownsResource:
+        return LockdownsResource(self._client)
 
     @cached_property
-    def access_rules(self) -> AccessRules:
-        return AccessRules(self._client)
+    def rules(self) -> RulesResource:
+        return RulesResource(self._client)
 
     @cached_property
-    def ua_rules(self) -> UARules:
-        return UARules(self._client)
+    def access_rules(self) -> AccessRulesResource:
+        return AccessRulesResource(self._client)
 
     @cached_property
-    def waf(self) -> WAF:
-        return WAF(self._client)
+    def ua_rules(self) -> UARulesResource:
+        return UARulesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> FirewallWithRawResponse:
-        return FirewallWithRawResponse(self)
+    def waf(self) -> WAFResource:
+        return WAFResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> FirewallWithStreamingResponse:
-        return FirewallWithStreamingResponse(self)
-
-
-class AsyncFirewall(AsyncAPIResource):
-    @cached_property
-    def lockdowns(self) -> AsyncLockdowns:
-        return AsyncLockdowns(self._client)
+    def with_raw_response(self) -> FirewallResourceWithRawResponse:
+        return FirewallResourceWithRawResponse(self)
 
     @cached_property
-    def rules(self) -> AsyncRules:
-        return AsyncRules(self._client)
+    def with_streaming_response(self) -> FirewallResourceWithStreamingResponse:
+        return FirewallResourceWithStreamingResponse(self)
+
+
+class AsyncFirewallResource(AsyncAPIResource):
+    @cached_property
+    def lockdowns(self) -> AsyncLockdownsResource:
+        return AsyncLockdownsResource(self._client)
 
     @cached_property
-    def access_rules(self) -> AsyncAccessRules:
-        return AsyncAccessRules(self._client)
+    def rules(self) -> AsyncRulesResource:
+        return AsyncRulesResource(self._client)
 
     @cached_property
-    def ua_rules(self) -> AsyncUARules:
-        return AsyncUARules(self._client)
+    def access_rules(self) -> AsyncAccessRulesResource:
+        return AsyncAccessRulesResource(self._client)
 
     @cached_property
-    def waf(self) -> AsyncWAF:
-        return AsyncWAF(self._client)
+    def ua_rules(self) -> AsyncUARulesResource:
+        return AsyncUARulesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncFirewallWithRawResponse:
-        return AsyncFirewallWithRawResponse(self)
+    def waf(self) -> AsyncWAFResource:
+        return AsyncWAFResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFirewallWithStreamingResponse:
-        return AsyncFirewallWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncFirewallResourceWithRawResponse:
+        return AsyncFirewallResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncFirewallResourceWithStreamingResponse:
+        return AsyncFirewallResourceWithStreamingResponse(self)
 
 
-class FirewallWithRawResponse:
-    def __init__(self, firewall: Firewall) -> None:
+class FirewallResourceWithRawResponse:
+    def __init__(self, firewall: FirewallResource) -> None:
         self._firewall = firewall
 
     @cached_property
-    def lockdowns(self) -> LockdownsWithRawResponse:
-        return LockdownsWithRawResponse(self._firewall.lockdowns)
+    def lockdowns(self) -> LockdownsResourceWithRawResponse:
+        return LockdownsResourceWithRawResponse(self._firewall.lockdowns)
 
     @cached_property
-    def rules(self) -> RulesWithRawResponse:
-        return RulesWithRawResponse(self._firewall.rules)
+    def rules(self) -> RulesResourceWithRawResponse:
+        return RulesResourceWithRawResponse(self._firewall.rules)
 
     @cached_property
-    def access_rules(self) -> AccessRulesWithRawResponse:
-        return AccessRulesWithRawResponse(self._firewall.access_rules)
+    def access_rules(self) -> AccessRulesResourceWithRawResponse:
+        return AccessRulesResourceWithRawResponse(self._firewall.access_rules)
 
     @cached_property
-    def ua_rules(self) -> UARulesWithRawResponse:
-        return UARulesWithRawResponse(self._firewall.ua_rules)
+    def ua_rules(self) -> UARulesResourceWithRawResponse:
+        return UARulesResourceWithRawResponse(self._firewall.ua_rules)
 
     @cached_property
-    def waf(self) -> WAFWithRawResponse:
-        return WAFWithRawResponse(self._firewall.waf)
+    def waf(self) -> WAFResourceWithRawResponse:
+        return WAFResourceWithRawResponse(self._firewall.waf)
 
 
-class AsyncFirewallWithRawResponse:
-    def __init__(self, firewall: AsyncFirewall) -> None:
+class AsyncFirewallResourceWithRawResponse:
+    def __init__(self, firewall: AsyncFirewallResource) -> None:
         self._firewall = firewall
 
     @cached_property
-    def lockdowns(self) -> AsyncLockdownsWithRawResponse:
-        return AsyncLockdownsWithRawResponse(self._firewall.lockdowns)
+    def lockdowns(self) -> AsyncLockdownsResourceWithRawResponse:
+        return AsyncLockdownsResourceWithRawResponse(self._firewall.lockdowns)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithRawResponse:
-        return AsyncRulesWithRawResponse(self._firewall.rules)
+    def rules(self) -> AsyncRulesResourceWithRawResponse:
+        return AsyncRulesResourceWithRawResponse(self._firewall.rules)
 
     @cached_property
-    def access_rules(self) -> AsyncAccessRulesWithRawResponse:
-        return AsyncAccessRulesWithRawResponse(self._firewall.access_rules)
+    def access_rules(self) -> AsyncAccessRulesResourceWithRawResponse:
+        return AsyncAccessRulesResourceWithRawResponse(self._firewall.access_rules)
 
     @cached_property
-    def ua_rules(self) -> AsyncUARulesWithRawResponse:
-        return AsyncUARulesWithRawResponse(self._firewall.ua_rules)
+    def ua_rules(self) -> AsyncUARulesResourceWithRawResponse:
+        return AsyncUARulesResourceWithRawResponse(self._firewall.ua_rules)
 
     @cached_property
-    def waf(self) -> AsyncWAFWithRawResponse:
-        return AsyncWAFWithRawResponse(self._firewall.waf)
+    def waf(self) -> AsyncWAFResourceWithRawResponse:
+        return AsyncWAFResourceWithRawResponse(self._firewall.waf)
 
 
-class FirewallWithStreamingResponse:
-    def __init__(self, firewall: Firewall) -> None:
+class FirewallResourceWithStreamingResponse:
+    def __init__(self, firewall: FirewallResource) -> None:
         self._firewall = firewall
 
     @cached_property
-    def lockdowns(self) -> LockdownsWithStreamingResponse:
-        return LockdownsWithStreamingResponse(self._firewall.lockdowns)
+    def lockdowns(self) -> LockdownsResourceWithStreamingResponse:
+        return LockdownsResourceWithStreamingResponse(self._firewall.lockdowns)
 
     @cached_property
-    def rules(self) -> RulesWithStreamingResponse:
-        return RulesWithStreamingResponse(self._firewall.rules)
+    def rules(self) -> RulesResourceWithStreamingResponse:
+        return RulesResourceWithStreamingResponse(self._firewall.rules)
 
     @cached_property
-    def access_rules(self) -> AccessRulesWithStreamingResponse:
-        return AccessRulesWithStreamingResponse(self._firewall.access_rules)
+    def access_rules(self) -> AccessRulesResourceWithStreamingResponse:
+        return AccessRulesResourceWithStreamingResponse(self._firewall.access_rules)
 
     @cached_property
-    def ua_rules(self) -> UARulesWithStreamingResponse:
-        return UARulesWithStreamingResponse(self._firewall.ua_rules)
+    def ua_rules(self) -> UARulesResourceWithStreamingResponse:
+        return UARulesResourceWithStreamingResponse(self._firewall.ua_rules)
 
     @cached_property
-    def waf(self) -> WAFWithStreamingResponse:
-        return WAFWithStreamingResponse(self._firewall.waf)
+    def waf(self) -> WAFResourceWithStreamingResponse:
+        return WAFResourceWithStreamingResponse(self._firewall.waf)
 
 
-class AsyncFirewallWithStreamingResponse:
-    def __init__(self, firewall: AsyncFirewall) -> None:
+class AsyncFirewallResourceWithStreamingResponse:
+    def __init__(self, firewall: AsyncFirewallResource) -> None:
         self._firewall = firewall
 
     @cached_property
-    def lockdowns(self) -> AsyncLockdownsWithStreamingResponse:
-        return AsyncLockdownsWithStreamingResponse(self._firewall.lockdowns)
+    def lockdowns(self) -> AsyncLockdownsResourceWithStreamingResponse:
+        return AsyncLockdownsResourceWithStreamingResponse(self._firewall.lockdowns)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithStreamingResponse:
-        return AsyncRulesWithStreamingResponse(self._firewall.rules)
+    def rules(self) -> AsyncRulesResourceWithStreamingResponse:
+        return AsyncRulesResourceWithStreamingResponse(self._firewall.rules)
 
     @cached_property
-    def access_rules(self) -> AsyncAccessRulesWithStreamingResponse:
-        return AsyncAccessRulesWithStreamingResponse(self._firewall.access_rules)
+    def access_rules(self) -> AsyncAccessRulesResourceWithStreamingResponse:
+        return AsyncAccessRulesResourceWithStreamingResponse(self._firewall.access_rules)
 
     @cached_property
-    def ua_rules(self) -> AsyncUARulesWithStreamingResponse:
-        return AsyncUARulesWithStreamingResponse(self._firewall.ua_rules)
+    def ua_rules(self) -> AsyncUARulesResourceWithStreamingResponse:
+        return AsyncUARulesResourceWithStreamingResponse(self._firewall.ua_rules)
 
     @cached_property
-    def waf(self) -> AsyncWAFWithStreamingResponse:
-        return AsyncWAFWithStreamingResponse(self._firewall.waf)
+    def waf(self) -> AsyncWAFResourceWithStreamingResponse:
+        return AsyncWAFResourceWithStreamingResponse(self._firewall.waf)

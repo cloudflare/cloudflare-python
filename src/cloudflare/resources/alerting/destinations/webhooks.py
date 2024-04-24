@@ -25,22 +25,23 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.alerting.destinations import webhooks, webhook_create_params, webhook_update_params
+from ....types.alerting.destinations import webhook_create_params, webhook_update_params
+from ....types.alerting.destinations.webhooks import Webhooks
 from ....types.alerting.destinations.webhook_create_response import WebhookCreateResponse
 from ....types.alerting.destinations.webhook_delete_response import WebhookDeleteResponse
 from ....types.alerting.destinations.webhook_update_response import WebhookUpdateResponse
 
-__all__ = ["Webhooks", "AsyncWebhooks"]
+__all__ = ["WebhooksResource", "AsyncWebhooksResource"]
 
 
-class Webhooks(SyncAPIResource):
+class WebhooksResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WebhooksWithRawResponse:
-        return WebhooksWithRawResponse(self)
+    def with_raw_response(self) -> WebhooksResourceWithRawResponse:
+        return WebhooksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WebhooksWithStreamingResponse:
-        return WebhooksWithStreamingResponse(self)
+    def with_streaming_response(self) -> WebhooksResourceWithStreamingResponse:
+        return WebhooksResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -175,7 +176,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[webhooks.Webhooks]:
+    ) -> SyncSinglePage[Webhooks]:
         """
         Gets a list of all configured webhook destinations.
 
@@ -194,11 +195,11 @@ class Webhooks(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks",
-            page=SyncSinglePage[webhooks.Webhooks],
+            page=SyncSinglePage[Webhooks],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=webhooks.Webhooks,
+            model=Webhooks,
         )
 
     def delete(
@@ -261,7 +262,7 @@ class Webhooks(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> webhooks.Webhooks:
+    ) -> Webhooks:
         """
         Get details for a single webhooks destination.
 
@@ -289,20 +290,20 @@ class Webhooks(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[webhooks.Webhooks]._unwrapper,
+                post_parser=ResultWrapper[Webhooks]._unwrapper,
             ),
-            cast_to=cast(Type[webhooks.Webhooks], ResultWrapper[webhooks.Webhooks]),
+            cast_to=cast(Type[Webhooks], ResultWrapper[Webhooks]),
         )
 
 
-class AsyncWebhooks(AsyncAPIResource):
+class AsyncWebhooksResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncWebhooksWithRawResponse:
-        return AsyncWebhooksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWebhooksResourceWithRawResponse:
+        return AsyncWebhooksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWebhooksWithStreamingResponse:
-        return AsyncWebhooksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWebhooksResourceWithStreamingResponse:
+        return AsyncWebhooksResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -437,7 +438,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[webhooks.Webhooks, AsyncSinglePage[webhooks.Webhooks]]:
+    ) -> AsyncPaginator[Webhooks, AsyncSinglePage[Webhooks]]:
         """
         Gets a list of all configured webhook destinations.
 
@@ -456,11 +457,11 @@ class AsyncWebhooks(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks",
-            page=AsyncSinglePage[webhooks.Webhooks],
+            page=AsyncSinglePage[Webhooks],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=webhooks.Webhooks,
+            model=Webhooks,
         )
 
     async def delete(
@@ -523,7 +524,7 @@ class AsyncWebhooks(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> webhooks.Webhooks:
+    ) -> Webhooks:
         """
         Get details for a single webhooks destination.
 
@@ -551,14 +552,14 @@ class AsyncWebhooks(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[webhooks.Webhooks]._unwrapper,
+                post_parser=ResultWrapper[Webhooks]._unwrapper,
             ),
-            cast_to=cast(Type[webhooks.Webhooks], ResultWrapper[webhooks.Webhooks]),
+            cast_to=cast(Type[Webhooks], ResultWrapper[Webhooks]),
         )
 
 
-class WebhooksWithRawResponse:
-    def __init__(self, webhooks: Webhooks) -> None:
+class WebhooksResourceWithRawResponse:
+    def __init__(self, webhooks: WebhooksResource) -> None:
         self._webhooks = webhooks
 
         self.create = to_raw_response_wrapper(
@@ -578,8 +579,8 @@ class WebhooksWithRawResponse:
         )
 
 
-class AsyncWebhooksWithRawResponse:
-    def __init__(self, webhooks: AsyncWebhooks) -> None:
+class AsyncWebhooksResourceWithRawResponse:
+    def __init__(self, webhooks: AsyncWebhooksResource) -> None:
         self._webhooks = webhooks
 
         self.create = async_to_raw_response_wrapper(
@@ -599,8 +600,8 @@ class AsyncWebhooksWithRawResponse:
         )
 
 
-class WebhooksWithStreamingResponse:
-    def __init__(self, webhooks: Webhooks) -> None:
+class WebhooksResourceWithStreamingResponse:
+    def __init__(self, webhooks: WebhooksResource) -> None:
         self._webhooks = webhooks
 
         self.create = to_streamed_response_wrapper(
@@ -620,8 +621,8 @@ class WebhooksWithStreamingResponse:
         )
 
 
-class AsyncWebhooksWithStreamingResponse:
-    def __init__(self, webhooks: AsyncWebhooks) -> None:
+class AsyncWebhooksResourceWithStreamingResponse:
+    def __init__(self, webhooks: AsyncWebhooksResource) -> None:
         self._webhooks = webhooks
 
         self.create = async_to_streamed_response_wrapper(

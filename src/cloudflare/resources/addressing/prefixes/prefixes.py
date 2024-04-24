@@ -7,14 +7,14 @@ from typing import Type, Optional, cast
 import httpx
 
 from .bgp import (
-    BGP,
-    AsyncBGP,
-    BGPWithRawResponse,
-    AsyncBGPWithRawResponse,
-    BGPWithStreamingResponse,
-    AsyncBGPWithStreamingResponse,
+    BGPResource,
+    AsyncBGPResource,
+    BGPResourceWithRawResponse,
+    AsyncBGPResourceWithRawResponse,
+    BGPResourceWithStreamingResponse,
+    AsyncBGPResourceWithStreamingResponse,
 )
-from .bgp.bgp import BGP, AsyncBGP
+from .bgp.bgp import BGPResource, AsyncBGPResource
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -22,12 +22,12 @@ from ...._utils import (
 )
 from ...._compat import cached_property
 from .delegations import (
-    Delegations,
-    AsyncDelegations,
-    DelegationsWithRawResponse,
-    AsyncDelegationsWithRawResponse,
-    DelegationsWithStreamingResponse,
-    AsyncDelegationsWithStreamingResponse,
+    DelegationsResource,
+    AsyncDelegationsResource,
+    DelegationsResourceWithRawResponse,
+    AsyncDelegationsResourceWithRawResponse,
+    DelegationsResourceWithStreamingResponse,
+    AsyncDelegationsResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -46,25 +46,25 @@ from ....types.addressing import prefix_edit_params, prefix_create_params, prefi
 from ....types.addressing.prefix import Prefix
 from ....types.addressing.prefix_delete_response import PrefixDeleteResponse
 
-__all__ = ["Prefixes", "AsyncPrefixes"]
+__all__ = ["PrefixesResource", "AsyncPrefixesResource"]
 
 
-class Prefixes(SyncAPIResource):
+class PrefixesResource(SyncAPIResource):
     @cached_property
-    def bgp(self) -> BGP:
-        return BGP(self._client)
-
-    @cached_property
-    def delegations(self) -> Delegations:
-        return Delegations(self._client)
+    def bgp(self) -> BGPResource:
+        return BGPResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> PrefixesWithRawResponse:
-        return PrefixesWithRawResponse(self)
+    def delegations(self) -> DelegationsResource:
+        return DelegationsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> PrefixesWithStreamingResponse:
-        return PrefixesWithStreamingResponse(self)
+    def with_raw_response(self) -> PrefixesResourceWithRawResponse:
+        return PrefixesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PrefixesResourceWithStreamingResponse:
+        return PrefixesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -297,22 +297,22 @@ class Prefixes(SyncAPIResource):
         )
 
 
-class AsyncPrefixes(AsyncAPIResource):
+class AsyncPrefixesResource(AsyncAPIResource):
     @cached_property
-    def bgp(self) -> AsyncBGP:
-        return AsyncBGP(self._client)
+    def bgp(self) -> AsyncBGPResource:
+        return AsyncBGPResource(self._client)
 
     @cached_property
-    def delegations(self) -> AsyncDelegations:
-        return AsyncDelegations(self._client)
+    def delegations(self) -> AsyncDelegationsResource:
+        return AsyncDelegationsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPrefixesWithRawResponse:
-        return AsyncPrefixesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPrefixesResourceWithRawResponse:
+        return AsyncPrefixesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPrefixesWithStreamingResponse:
-        return AsyncPrefixesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPrefixesResourceWithStreamingResponse:
+        return AsyncPrefixesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -545,8 +545,8 @@ class AsyncPrefixes(AsyncAPIResource):
         )
 
 
-class PrefixesWithRawResponse:
-    def __init__(self, prefixes: Prefixes) -> None:
+class PrefixesResourceWithRawResponse:
+    def __init__(self, prefixes: PrefixesResource) -> None:
         self._prefixes = prefixes
 
         self.create = to_raw_response_wrapper(
@@ -566,16 +566,16 @@ class PrefixesWithRawResponse:
         )
 
     @cached_property
-    def bgp(self) -> BGPWithRawResponse:
-        return BGPWithRawResponse(self._prefixes.bgp)
+    def bgp(self) -> BGPResourceWithRawResponse:
+        return BGPResourceWithRawResponse(self._prefixes.bgp)
 
     @cached_property
-    def delegations(self) -> DelegationsWithRawResponse:
-        return DelegationsWithRawResponse(self._prefixes.delegations)
+    def delegations(self) -> DelegationsResourceWithRawResponse:
+        return DelegationsResourceWithRawResponse(self._prefixes.delegations)
 
 
-class AsyncPrefixesWithRawResponse:
-    def __init__(self, prefixes: AsyncPrefixes) -> None:
+class AsyncPrefixesResourceWithRawResponse:
+    def __init__(self, prefixes: AsyncPrefixesResource) -> None:
         self._prefixes = prefixes
 
         self.create = async_to_raw_response_wrapper(
@@ -595,16 +595,16 @@ class AsyncPrefixesWithRawResponse:
         )
 
     @cached_property
-    def bgp(self) -> AsyncBGPWithRawResponse:
-        return AsyncBGPWithRawResponse(self._prefixes.bgp)
+    def bgp(self) -> AsyncBGPResourceWithRawResponse:
+        return AsyncBGPResourceWithRawResponse(self._prefixes.bgp)
 
     @cached_property
-    def delegations(self) -> AsyncDelegationsWithRawResponse:
-        return AsyncDelegationsWithRawResponse(self._prefixes.delegations)
+    def delegations(self) -> AsyncDelegationsResourceWithRawResponse:
+        return AsyncDelegationsResourceWithRawResponse(self._prefixes.delegations)
 
 
-class PrefixesWithStreamingResponse:
-    def __init__(self, prefixes: Prefixes) -> None:
+class PrefixesResourceWithStreamingResponse:
+    def __init__(self, prefixes: PrefixesResource) -> None:
         self._prefixes = prefixes
 
         self.create = to_streamed_response_wrapper(
@@ -624,16 +624,16 @@ class PrefixesWithStreamingResponse:
         )
 
     @cached_property
-    def bgp(self) -> BGPWithStreamingResponse:
-        return BGPWithStreamingResponse(self._prefixes.bgp)
+    def bgp(self) -> BGPResourceWithStreamingResponse:
+        return BGPResourceWithStreamingResponse(self._prefixes.bgp)
 
     @cached_property
-    def delegations(self) -> DelegationsWithStreamingResponse:
-        return DelegationsWithStreamingResponse(self._prefixes.delegations)
+    def delegations(self) -> DelegationsResourceWithStreamingResponse:
+        return DelegationsResourceWithStreamingResponse(self._prefixes.delegations)
 
 
-class AsyncPrefixesWithStreamingResponse:
-    def __init__(self, prefixes: AsyncPrefixes) -> None:
+class AsyncPrefixesResourceWithStreamingResponse:
+    def __init__(self, prefixes: AsyncPrefixesResource) -> None:
         self._prefixes = prefixes
 
         self.create = async_to_streamed_response_wrapper(
@@ -653,9 +653,9 @@ class AsyncPrefixesWithStreamingResponse:
         )
 
     @cached_property
-    def bgp(self) -> AsyncBGPWithStreamingResponse:
-        return AsyncBGPWithStreamingResponse(self._prefixes.bgp)
+    def bgp(self) -> AsyncBGPResourceWithStreamingResponse:
+        return AsyncBGPResourceWithStreamingResponse(self._prefixes.bgp)
 
     @cached_property
-    def delegations(self) -> AsyncDelegationsWithStreamingResponse:
-        return AsyncDelegationsWithStreamingResponse(self._prefixes.delegations)
+    def delegations(self) -> AsyncDelegationsResourceWithStreamingResponse:
+        return AsyncDelegationsResourceWithStreamingResponse(self._prefixes.delegations)

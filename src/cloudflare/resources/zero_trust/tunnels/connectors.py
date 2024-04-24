@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.zero_trust.tunnels.client import Client
 
-__all__ = ["Connectors", "AsyncConnectors"]
+__all__ = ["ConnectorsResource", "AsyncConnectorsResource"]
 
 
-class Connectors(SyncAPIResource):
+class ConnectorsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ConnectorsWithRawResponse:
-        return ConnectorsWithRawResponse(self)
+    def with_raw_response(self) -> ConnectorsResourceWithRawResponse:
+        return ConnectorsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ConnectorsWithStreamingResponse:
-        return ConnectorsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ConnectorsResourceWithStreamingResponse:
+        return ConnectorsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -83,14 +83,14 @@ class Connectors(SyncAPIResource):
         )
 
 
-class AsyncConnectors(AsyncAPIResource):
+class AsyncConnectorsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncConnectorsWithRawResponse:
-        return AsyncConnectorsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncConnectorsResourceWithRawResponse:
+        return AsyncConnectorsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConnectorsWithStreamingResponse:
-        return AsyncConnectorsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncConnectorsResourceWithStreamingResponse:
+        return AsyncConnectorsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -142,8 +142,8 @@ class AsyncConnectors(AsyncAPIResource):
         )
 
 
-class ConnectorsWithRawResponse:
-    def __init__(self, connectors: Connectors) -> None:
+class ConnectorsResourceWithRawResponse:
+    def __init__(self, connectors: ConnectorsResource) -> None:
         self._connectors = connectors
 
         self.get = to_raw_response_wrapper(
@@ -151,8 +151,8 @@ class ConnectorsWithRawResponse:
         )
 
 
-class AsyncConnectorsWithRawResponse:
-    def __init__(self, connectors: AsyncConnectors) -> None:
+class AsyncConnectorsResourceWithRawResponse:
+    def __init__(self, connectors: AsyncConnectorsResource) -> None:
         self._connectors = connectors
 
         self.get = async_to_raw_response_wrapper(
@@ -160,8 +160,8 @@ class AsyncConnectorsWithRawResponse:
         )
 
 
-class ConnectorsWithStreamingResponse:
-    def __init__(self, connectors: Connectors) -> None:
+class ConnectorsResourceWithStreamingResponse:
+    def __init__(self, connectors: ConnectorsResource) -> None:
         self._connectors = connectors
 
         self.get = to_streamed_response_wrapper(
@@ -169,8 +169,8 @@ class ConnectorsWithStreamingResponse:
         )
 
 
-class AsyncConnectorsWithStreamingResponse:
-    def __init__(self, connectors: AsyncConnectors) -> None:
+class AsyncConnectorsResourceWithStreamingResponse:
+    def __init__(self, connectors: AsyncConnectorsResource) -> None:
         self._connectors = connectors
 
         self.get = async_to_streamed_response_wrapper(

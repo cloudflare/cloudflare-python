@@ -26,17 +26,17 @@ from ..._base_client import (
 )
 from ...types.logs.rayid_get_response import RayIDGetResponse
 
-__all__ = ["RayID", "AsyncRayID"]
+__all__ = ["RayIDResource", "AsyncRayIDResource"]
 
 
-class RayID(SyncAPIResource):
+class RayIDResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RayIDWithRawResponse:
-        return RayIDWithRawResponse(self)
+    def with_raw_response(self) -> RayIDResourceWithRawResponse:
+        return RayIDResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RayIDWithStreamingResponse:
-        return RayIDWithStreamingResponse(self)
+    def with_streaming_response(self) -> RayIDResourceWithStreamingResponse:
+        return RayIDResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -114,14 +114,14 @@ class RayID(SyncAPIResource):
         )
 
 
-class AsyncRayID(AsyncAPIResource):
+class AsyncRayIDResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRayIDWithRawResponse:
-        return AsyncRayIDWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRayIDResourceWithRawResponse:
+        return AsyncRayIDResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRayIDWithStreamingResponse:
-        return AsyncRayIDWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRayIDResourceWithStreamingResponse:
+        return AsyncRayIDResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -199,8 +199,8 @@ class AsyncRayID(AsyncAPIResource):
         )
 
 
-class RayIDWithRawResponse:
-    def __init__(self, rayid: RayID) -> None:
+class RayIDResourceWithRawResponse:
+    def __init__(self, rayid: RayIDResource) -> None:
         self._rayid = rayid
 
         self.get = to_raw_response_wrapper(
@@ -208,8 +208,8 @@ class RayIDWithRawResponse:
         )
 
 
-class AsyncRayIDWithRawResponse:
-    def __init__(self, rayid: AsyncRayID) -> None:
+class AsyncRayIDResourceWithRawResponse:
+    def __init__(self, rayid: AsyncRayIDResource) -> None:
         self._rayid = rayid
 
         self.get = async_to_raw_response_wrapper(
@@ -217,8 +217,8 @@ class AsyncRayIDWithRawResponse:
         )
 
 
-class RayIDWithStreamingResponse:
-    def __init__(self, rayid: RayID) -> None:
+class RayIDResourceWithStreamingResponse:
+    def __init__(self, rayid: RayIDResource) -> None:
         self._rayid = rayid
 
         self.get = to_streamed_response_wrapper(
@@ -226,8 +226,8 @@ class RayIDWithStreamingResponse:
         )
 
 
-class AsyncRayIDWithStreamingResponse:
-    def __init__(self, rayid: AsyncRayID) -> None:
+class AsyncRayIDResourceWithStreamingResponse:
+    def __init__(self, rayid: AsyncRayIDResource) -> None:
         self._rayid = rayid
 
         self.get = async_to_streamed_response_wrapper(

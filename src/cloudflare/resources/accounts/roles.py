@@ -24,17 +24,17 @@ from ..._base_client import (
 from ...types.shared.role import Role
 from ...types.accounts.role_get_response import RoleGetResponse
 
-__all__ = ["Roles", "AsyncRoles"]
+__all__ = ["RolesResource", "AsyncRolesResource"]
 
 
-class Roles(SyncAPIResource):
+class RolesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RolesWithRawResponse:
-        return RolesWithRawResponse(self)
+    def with_raw_response(self) -> RolesResourceWithRawResponse:
+        return RolesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RolesWithStreamingResponse:
-        return RolesWithStreamingResponse(self)
+    def with_streaming_response(self) -> RolesResourceWithStreamingResponse:
+        return RolesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -110,14 +110,14 @@ class Roles(SyncAPIResource):
         )
 
 
-class AsyncRoles(AsyncAPIResource):
+class AsyncRolesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRolesWithRawResponse:
-        return AsyncRolesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRolesResourceWithRawResponse:
+        return AsyncRolesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRolesWithStreamingResponse:
-        return AsyncRolesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRolesResourceWithStreamingResponse:
+        return AsyncRolesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -193,8 +193,8 @@ class AsyncRoles(AsyncAPIResource):
         )
 
 
-class RolesWithRawResponse:
-    def __init__(self, roles: Roles) -> None:
+class RolesResourceWithRawResponse:
+    def __init__(self, roles: RolesResource) -> None:
         self._roles = roles
 
         self.list = to_raw_response_wrapper(
@@ -205,8 +205,8 @@ class RolesWithRawResponse:
         )
 
 
-class AsyncRolesWithRawResponse:
-    def __init__(self, roles: AsyncRoles) -> None:
+class AsyncRolesResourceWithRawResponse:
+    def __init__(self, roles: AsyncRolesResource) -> None:
         self._roles = roles
 
         self.list = async_to_raw_response_wrapper(
@@ -217,8 +217,8 @@ class AsyncRolesWithRawResponse:
         )
 
 
-class RolesWithStreamingResponse:
-    def __init__(self, roles: Roles) -> None:
+class RolesResourceWithStreamingResponse:
+    def __init__(self, roles: RolesResource) -> None:
         self._roles = roles
 
         self.list = to_streamed_response_wrapper(
@@ -229,8 +229,8 @@ class RolesWithStreamingResponse:
         )
 
 
-class AsyncRolesWithStreamingResponse:
-    def __init__(self, roles: AsyncRoles) -> None:
+class AsyncRolesResourceWithStreamingResponse:
+    def __init__(self, roles: AsyncRolesResource) -> None:
         self._roles = roles
 
         self.list = async_to_streamed_response_wrapper(

@@ -30,17 +30,17 @@ from ...types.healthchecks.preview_delete_response import PreviewDeleteResponse
 from ...types.healthchecks.tcp_configuration_param import TCPConfigurationParam
 from ...types.healthchecks.http_configuration_param import HTTPConfigurationParam
 
-__all__ = ["Previews", "AsyncPreviews"]
+__all__ = ["PreviewsResource", "AsyncPreviewsResource"]
 
 
-class Previews(SyncAPIResource):
+class PreviewsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PreviewsWithRawResponse:
-        return PreviewsWithRawResponse(self)
+    def with_raw_response(self) -> PreviewsResourceWithRawResponse:
+        return PreviewsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PreviewsWithStreamingResponse:
-        return PreviewsWithStreamingResponse(self)
+    def with_streaming_response(self) -> PreviewsResourceWithStreamingResponse:
+        return PreviewsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -237,14 +237,14 @@ class Previews(SyncAPIResource):
         )
 
 
-class AsyncPreviews(AsyncAPIResource):
+class AsyncPreviewsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPreviewsWithRawResponse:
-        return AsyncPreviewsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPreviewsResourceWithRawResponse:
+        return AsyncPreviewsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPreviewsWithStreamingResponse:
-        return AsyncPreviewsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPreviewsResourceWithStreamingResponse:
+        return AsyncPreviewsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -441,8 +441,8 @@ class AsyncPreviews(AsyncAPIResource):
         )
 
 
-class PreviewsWithRawResponse:
-    def __init__(self, previews: Previews) -> None:
+class PreviewsResourceWithRawResponse:
+    def __init__(self, previews: PreviewsResource) -> None:
         self._previews = previews
 
         self.create = to_raw_response_wrapper(
@@ -456,8 +456,8 @@ class PreviewsWithRawResponse:
         )
 
 
-class AsyncPreviewsWithRawResponse:
-    def __init__(self, previews: AsyncPreviews) -> None:
+class AsyncPreviewsResourceWithRawResponse:
+    def __init__(self, previews: AsyncPreviewsResource) -> None:
         self._previews = previews
 
         self.create = async_to_raw_response_wrapper(
@@ -471,8 +471,8 @@ class AsyncPreviewsWithRawResponse:
         )
 
 
-class PreviewsWithStreamingResponse:
-    def __init__(self, previews: Previews) -> None:
+class PreviewsResourceWithStreamingResponse:
+    def __init__(self, previews: PreviewsResource) -> None:
         self._previews = previews
 
         self.create = to_streamed_response_wrapper(
@@ -486,8 +486,8 @@ class PreviewsWithStreamingResponse:
         )
 
 
-class AsyncPreviewsWithStreamingResponse:
-    def __init__(self, previews: AsyncPreviews) -> None:
+class AsyncPreviewsResourceWithStreamingResponse:
+    def __init__(self, previews: AsyncPreviewsResource) -> None:
         self._previews = previews
 
         self.create = async_to_streamed_response_wrapper(

@@ -27,17 +27,17 @@ from ..._base_client import (
 from ...types.zones.custom_nameserver_get_response import CustomNameserverGetResponse
 from ...types.zones.custom_nameserver_update_response import CustomNameserverUpdateResponse
 
-__all__ = ["CustomNameservers", "AsyncCustomNameservers"]
+__all__ = ["CustomNameserversResource", "AsyncCustomNameserversResource"]
 
 
-class CustomNameservers(SyncAPIResource):
+class CustomNameserversResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CustomNameserversWithRawResponse:
-        return CustomNameserversWithRawResponse(self)
+    def with_raw_response(self) -> CustomNameserversResourceWithRawResponse:
+        return CustomNameserversResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CustomNameserversWithStreamingResponse:
-        return CustomNameserversWithStreamingResponse(self)
+    def with_streaming_response(self) -> CustomNameserversResourceWithStreamingResponse:
+        return CustomNameserversResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -145,14 +145,14 @@ class CustomNameservers(SyncAPIResource):
         )
 
 
-class AsyncCustomNameservers(AsyncAPIResource):
+class AsyncCustomNameserversResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCustomNameserversWithRawResponse:
-        return AsyncCustomNameserversWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCustomNameserversResourceWithRawResponse:
+        return AsyncCustomNameserversResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCustomNameserversWithStreamingResponse:
-        return AsyncCustomNameserversWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCustomNameserversResourceWithStreamingResponse:
+        return AsyncCustomNameserversResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -260,8 +260,8 @@ class AsyncCustomNameservers(AsyncAPIResource):
         )
 
 
-class CustomNameserversWithRawResponse:
-    def __init__(self, custom_nameservers: CustomNameservers) -> None:
+class CustomNameserversResourceWithRawResponse:
+    def __init__(self, custom_nameservers: CustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
         self.update = to_raw_response_wrapper(
@@ -272,8 +272,8 @@ class CustomNameserversWithRawResponse:
         )
 
 
-class AsyncCustomNameserversWithRawResponse:
-    def __init__(self, custom_nameservers: AsyncCustomNameservers) -> None:
+class AsyncCustomNameserversResourceWithRawResponse:
+    def __init__(self, custom_nameservers: AsyncCustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
         self.update = async_to_raw_response_wrapper(
@@ -284,8 +284,8 @@ class AsyncCustomNameserversWithRawResponse:
         )
 
 
-class CustomNameserversWithStreamingResponse:
-    def __init__(self, custom_nameservers: CustomNameservers) -> None:
+class CustomNameserversResourceWithStreamingResponse:
+    def __init__(self, custom_nameservers: CustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
         self.update = to_streamed_response_wrapper(
@@ -296,8 +296,8 @@ class CustomNameserversWithStreamingResponse:
         )
 
 
-class AsyncCustomNameserversWithStreamingResponse:
-    def __init__(self, custom_nameservers: AsyncCustomNameservers) -> None:
+class AsyncCustomNameserversResourceWithStreamingResponse:
+    def __init__(self, custom_nameservers: AsyncCustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
         self.update = async_to_streamed_response_wrapper(

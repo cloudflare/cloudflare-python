@@ -7,12 +7,12 @@ from typing import Type, cast
 import httpx
 
 from .by_tag import (
-    ByTag,
-    AsyncByTag,
-    ByTagWithRawResponse,
-    AsyncByTagWithRawResponse,
-    ByTagWithStreamingResponse,
-    AsyncByTagWithStreamingResponse,
+    ByTagResource,
+    AsyncByTagResource,
+    ByTagResourceWithRawResponse,
+    AsyncByTagResourceWithRawResponse,
+    ByTagResourceWithStreamingResponse,
+    AsyncByTagResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ...._compat import cached_property
@@ -32,21 +32,21 @@ from ...._base_client import (
 from ....types.rulesets.ruleset import Ruleset
 from ....types.rulesets.version_get_response import VersionGetResponse
 
-__all__ = ["Versions", "AsyncVersions"]
+__all__ = ["VersionsResource", "AsyncVersionsResource"]
 
 
-class Versions(SyncAPIResource):
+class VersionsResource(SyncAPIResource):
     @cached_property
-    def by_tag(self) -> ByTag:
-        return ByTag(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> VersionsWithRawResponse:
-        return VersionsWithRawResponse(self)
+    def by_tag(self) -> ByTagResource:
+        return ByTagResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> VersionsWithStreamingResponse:
-        return VersionsWithStreamingResponse(self)
+    def with_raw_response(self) -> VersionsResourceWithRawResponse:
+        return VersionsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> VersionsResourceWithStreamingResponse:
+        return VersionsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -224,18 +224,18 @@ class Versions(SyncAPIResource):
         )
 
 
-class AsyncVersions(AsyncAPIResource):
+class AsyncVersionsResource(AsyncAPIResource):
     @cached_property
-    def by_tag(self) -> AsyncByTag:
-        return AsyncByTag(self._client)
+    def by_tag(self) -> AsyncByTagResource:
+        return AsyncByTagResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncVersionsWithRawResponse:
-        return AsyncVersionsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncVersionsResourceWithRawResponse:
+        return AsyncVersionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVersionsWithStreamingResponse:
-        return AsyncVersionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncVersionsResourceWithStreamingResponse:
+        return AsyncVersionsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -413,8 +413,8 @@ class AsyncVersions(AsyncAPIResource):
         )
 
 
-class VersionsWithRawResponse:
-    def __init__(self, versions: Versions) -> None:
+class VersionsResourceWithRawResponse:
+    def __init__(self, versions: VersionsResource) -> None:
         self._versions = versions
 
         self.list = to_raw_response_wrapper(
@@ -428,12 +428,12 @@ class VersionsWithRawResponse:
         )
 
     @cached_property
-    def by_tag(self) -> ByTagWithRawResponse:
-        return ByTagWithRawResponse(self._versions.by_tag)
+    def by_tag(self) -> ByTagResourceWithRawResponse:
+        return ByTagResourceWithRawResponse(self._versions.by_tag)
 
 
-class AsyncVersionsWithRawResponse:
-    def __init__(self, versions: AsyncVersions) -> None:
+class AsyncVersionsResourceWithRawResponse:
+    def __init__(self, versions: AsyncVersionsResource) -> None:
         self._versions = versions
 
         self.list = async_to_raw_response_wrapper(
@@ -447,12 +447,12 @@ class AsyncVersionsWithRawResponse:
         )
 
     @cached_property
-    def by_tag(self) -> AsyncByTagWithRawResponse:
-        return AsyncByTagWithRawResponse(self._versions.by_tag)
+    def by_tag(self) -> AsyncByTagResourceWithRawResponse:
+        return AsyncByTagResourceWithRawResponse(self._versions.by_tag)
 
 
-class VersionsWithStreamingResponse:
-    def __init__(self, versions: Versions) -> None:
+class VersionsResourceWithStreamingResponse:
+    def __init__(self, versions: VersionsResource) -> None:
         self._versions = versions
 
         self.list = to_streamed_response_wrapper(
@@ -466,12 +466,12 @@ class VersionsWithStreamingResponse:
         )
 
     @cached_property
-    def by_tag(self) -> ByTagWithStreamingResponse:
-        return ByTagWithStreamingResponse(self._versions.by_tag)
+    def by_tag(self) -> ByTagResourceWithStreamingResponse:
+        return ByTagResourceWithStreamingResponse(self._versions.by_tag)
 
 
-class AsyncVersionsWithStreamingResponse:
-    def __init__(self, versions: AsyncVersions) -> None:
+class AsyncVersionsResourceWithStreamingResponse:
+    def __init__(self, versions: AsyncVersionsResource) -> None:
         self._versions = versions
 
         self.list = async_to_streamed_response_wrapper(
@@ -485,5 +485,5 @@ class AsyncVersionsWithStreamingResponse:
         )
 
     @cached_property
-    def by_tag(self) -> AsyncByTagWithStreamingResponse:
-        return AsyncByTagWithStreamingResponse(self._versions.by_tag)
+    def by_tag(self) -> AsyncByTagResourceWithStreamingResponse:
+        return AsyncByTagResourceWithStreamingResponse(self._versions.by_tag)

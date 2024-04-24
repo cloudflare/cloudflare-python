@@ -30,17 +30,17 @@ from ....types.magic_transit.sites.wan import WAN
 from ....types.magic_transit.sites.wan_create_response import WANCreateResponse
 from ....types.magic_transit.sites.wan_static_addressing_param import WANStaticAddressingParam
 
-__all__ = ["WANs", "AsyncWANs"]
+__all__ = ["WANsResource", "AsyncWANsResource"]
 
 
-class WANs(SyncAPIResource):
+class WANsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WANsWithRawResponse:
-        return WANsWithRawResponse(self)
+    def with_raw_response(self) -> WANsResourceWithRawResponse:
+        return WANsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WANsWithStreamingResponse:
-        return WANsWithStreamingResponse(self)
+    def with_streaming_response(self) -> WANsResourceWithStreamingResponse:
+        return WANsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -317,14 +317,14 @@ class WANs(SyncAPIResource):
         )
 
 
-class AsyncWANs(AsyncAPIResource):
+class AsyncWANsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncWANsWithRawResponse:
-        return AsyncWANsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWANsResourceWithRawResponse:
+        return AsyncWANsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWANsWithStreamingResponse:
-        return AsyncWANsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWANsResourceWithStreamingResponse:
+        return AsyncWANsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -601,8 +601,8 @@ class AsyncWANs(AsyncAPIResource):
         )
 
 
-class WANsWithRawResponse:
-    def __init__(self, wans: WANs) -> None:
+class WANsResourceWithRawResponse:
+    def __init__(self, wans: WANsResource) -> None:
         self._wans = wans
 
         self.create = to_raw_response_wrapper(
@@ -622,8 +622,8 @@ class WANsWithRawResponse:
         )
 
 
-class AsyncWANsWithRawResponse:
-    def __init__(self, wans: AsyncWANs) -> None:
+class AsyncWANsResourceWithRawResponse:
+    def __init__(self, wans: AsyncWANsResource) -> None:
         self._wans = wans
 
         self.create = async_to_raw_response_wrapper(
@@ -643,8 +643,8 @@ class AsyncWANsWithRawResponse:
         )
 
 
-class WANsWithStreamingResponse:
-    def __init__(self, wans: WANs) -> None:
+class WANsResourceWithStreamingResponse:
+    def __init__(self, wans: WANsResource) -> None:
         self._wans = wans
 
         self.create = to_streamed_response_wrapper(
@@ -664,8 +664,8 @@ class WANsWithStreamingResponse:
         )
 
 
-class AsyncWANsWithStreamingResponse:
-    def __init__(self, wans: AsyncWANs) -> None:
+class AsyncWANsResourceWithStreamingResponse:
+    def __init__(self, wans: AsyncWANsResource) -> None:
         self._wans = wans
 
         self.create = async_to_streamed_response_wrapper(

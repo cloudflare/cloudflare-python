@@ -9,22 +9,22 @@ from typing_extensions import Literal
 import httpx
 
 from .top import (
-    Top,
-    AsyncTop,
-    TopWithRawResponse,
-    AsyncTopWithRawResponse,
-    TopWithStreamingResponse,
-    AsyncTopWithStreamingResponse,
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
 )
 from .summary import (
-    Summary,
-    AsyncSummary,
-    SummaryWithRawResponse,
-    AsyncSummaryWithRawResponse,
-    SummaryWithStreamingResponse,
-    AsyncSummaryWithStreamingResponse,
+    SummaryResource,
+    AsyncSummaryResource,
+    SummaryResourceWithRawResponse,
+    AsyncSummaryResourceWithRawResponse,
+    SummaryResourceWithStreamingResponse,
+    AsyncSummaryResourceWithStreamingResponse,
 )
-from .top.top import Top, AsyncTop
+from .top.top import TopResource, AsyncTopResource
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
     maybe_transform,
@@ -43,39 +43,39 @@ from ....._base_client import (
     make_request_options,
 )
 from .timeseries_groups import (
-    TimeseriesGroups,
-    AsyncTimeseriesGroups,
-    TimeseriesGroupsWithRawResponse,
-    AsyncTimeseriesGroupsWithRawResponse,
-    TimeseriesGroupsWithStreamingResponse,
-    AsyncTimeseriesGroupsWithStreamingResponse,
+    TimeseriesGroupsResource,
+    AsyncTimeseriesGroupsResource,
+    TimeseriesGroupsResourceWithRawResponse,
+    AsyncTimeseriesGroupsResourceWithRawResponse,
+    TimeseriesGroupsResourceWithStreamingResponse,
+    AsyncTimeseriesGroupsResourceWithStreamingResponse,
 )
 from .....types.radar.attacks import layer7_timeseries_params
 from .....types.radar.attacks.layer7_timeseries_response import Layer7TimeseriesResponse
 
-__all__ = ["Layer7", "AsyncLayer7"]
+__all__ = ["Layer7Resource", "AsyncLayer7Resource"]
 
 
-class Layer7(SyncAPIResource):
+class Layer7Resource(SyncAPIResource):
     @cached_property
-    def summary(self) -> Summary:
-        return Summary(self._client)
-
-    @cached_property
-    def timeseries_groups(self) -> TimeseriesGroups:
-        return TimeseriesGroups(self._client)
+    def summary(self) -> SummaryResource:
+        return SummaryResource(self._client)
 
     @cached_property
-    def top(self) -> Top:
-        return Top(self._client)
+    def timeseries_groups(self) -> TimeseriesGroupsResource:
+        return TimeseriesGroupsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> Layer7WithRawResponse:
-        return Layer7WithRawResponse(self)
+    def top(self) -> TopResource:
+        return TopResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> Layer7WithStreamingResponse:
-        return Layer7WithStreamingResponse(self)
+    def with_raw_response(self) -> Layer7ResourceWithRawResponse:
+        return Layer7ResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> Layer7ResourceWithStreamingResponse:
+        return Layer7ResourceWithStreamingResponse(self)
 
     def timeseries(
         self,
@@ -198,26 +198,26 @@ class Layer7(SyncAPIResource):
         )
 
 
-class AsyncLayer7(AsyncAPIResource):
+class AsyncLayer7Resource(AsyncAPIResource):
     @cached_property
-    def summary(self) -> AsyncSummary:
-        return AsyncSummary(self._client)
+    def summary(self) -> AsyncSummaryResource:
+        return AsyncSummaryResource(self._client)
 
     @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroups:
-        return AsyncTimeseriesGroups(self._client)
+    def timeseries_groups(self) -> AsyncTimeseriesGroupsResource:
+        return AsyncTimeseriesGroupsResource(self._client)
 
     @cached_property
-    def top(self) -> AsyncTop:
-        return AsyncTop(self._client)
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncLayer7WithRawResponse:
-        return AsyncLayer7WithRawResponse(self)
+    def with_raw_response(self) -> AsyncLayer7ResourceWithRawResponse:
+        return AsyncLayer7ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLayer7WithStreamingResponse:
-        return AsyncLayer7WithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLayer7ResourceWithStreamingResponse:
+        return AsyncLayer7ResourceWithStreamingResponse(self)
 
     async def timeseries(
         self,
@@ -340,8 +340,8 @@ class AsyncLayer7(AsyncAPIResource):
         )
 
 
-class Layer7WithRawResponse:
-    def __init__(self, layer7: Layer7) -> None:
+class Layer7ResourceWithRawResponse:
+    def __init__(self, layer7: Layer7Resource) -> None:
         self._layer7 = layer7
 
         self.timeseries = to_raw_response_wrapper(
@@ -349,20 +349,20 @@ class Layer7WithRawResponse:
         )
 
     @cached_property
-    def summary(self) -> SummaryWithRawResponse:
-        return SummaryWithRawResponse(self._layer7.summary)
+    def summary(self) -> SummaryResourceWithRawResponse:
+        return SummaryResourceWithRawResponse(self._layer7.summary)
 
     @cached_property
-    def timeseries_groups(self) -> TimeseriesGroupsWithRawResponse:
-        return TimeseriesGroupsWithRawResponse(self._layer7.timeseries_groups)
+    def timeseries_groups(self) -> TimeseriesGroupsResourceWithRawResponse:
+        return TimeseriesGroupsResourceWithRawResponse(self._layer7.timeseries_groups)
 
     @cached_property
-    def top(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self._layer7.top)
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._layer7.top)
 
 
-class AsyncLayer7WithRawResponse:
-    def __init__(self, layer7: AsyncLayer7) -> None:
+class AsyncLayer7ResourceWithRawResponse:
+    def __init__(self, layer7: AsyncLayer7Resource) -> None:
         self._layer7 = layer7
 
         self.timeseries = async_to_raw_response_wrapper(
@@ -370,20 +370,20 @@ class AsyncLayer7WithRawResponse:
         )
 
     @cached_property
-    def summary(self) -> AsyncSummaryWithRawResponse:
-        return AsyncSummaryWithRawResponse(self._layer7.summary)
+    def summary(self) -> AsyncSummaryResourceWithRawResponse:
+        return AsyncSummaryResourceWithRawResponse(self._layer7.summary)
 
     @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroupsWithRawResponse:
-        return AsyncTimeseriesGroupsWithRawResponse(self._layer7.timeseries_groups)
+    def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
+        return AsyncTimeseriesGroupsResourceWithRawResponse(self._layer7.timeseries_groups)
 
     @cached_property
-    def top(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self._layer7.top)
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._layer7.top)
 
 
-class Layer7WithStreamingResponse:
-    def __init__(self, layer7: Layer7) -> None:
+class Layer7ResourceWithStreamingResponse:
+    def __init__(self, layer7: Layer7Resource) -> None:
         self._layer7 = layer7
 
         self.timeseries = to_streamed_response_wrapper(
@@ -391,20 +391,20 @@ class Layer7WithStreamingResponse:
         )
 
     @cached_property
-    def summary(self) -> SummaryWithStreamingResponse:
-        return SummaryWithStreamingResponse(self._layer7.summary)
+    def summary(self) -> SummaryResourceWithStreamingResponse:
+        return SummaryResourceWithStreamingResponse(self._layer7.summary)
 
     @cached_property
-    def timeseries_groups(self) -> TimeseriesGroupsWithStreamingResponse:
-        return TimeseriesGroupsWithStreamingResponse(self._layer7.timeseries_groups)
+    def timeseries_groups(self) -> TimeseriesGroupsResourceWithStreamingResponse:
+        return TimeseriesGroupsResourceWithStreamingResponse(self._layer7.timeseries_groups)
 
     @cached_property
-    def top(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self._layer7.top)
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._layer7.top)
 
 
-class AsyncLayer7WithStreamingResponse:
-    def __init__(self, layer7: AsyncLayer7) -> None:
+class AsyncLayer7ResourceWithStreamingResponse:
+    def __init__(self, layer7: AsyncLayer7Resource) -> None:
         self._layer7 = layer7
 
         self.timeseries = async_to_streamed_response_wrapper(
@@ -412,13 +412,13 @@ class AsyncLayer7WithStreamingResponse:
         )
 
     @cached_property
-    def summary(self) -> AsyncSummaryWithStreamingResponse:
-        return AsyncSummaryWithStreamingResponse(self._layer7.summary)
+    def summary(self) -> AsyncSummaryResourceWithStreamingResponse:
+        return AsyncSummaryResourceWithStreamingResponse(self._layer7.summary)
 
     @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroupsWithStreamingResponse:
-        return AsyncTimeseriesGroupsWithStreamingResponse(self._layer7.timeseries_groups)
+    def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
+        return AsyncTimeseriesGroupsResourceWithStreamingResponse(self._layer7.timeseries_groups)
 
     @cached_property
-    def top(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self._layer7.top)
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._layer7.top)

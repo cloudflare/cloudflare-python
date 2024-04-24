@@ -21,17 +21,17 @@ from ..._base_client import (
 )
 from ...types.dcv_delegation.dcv_delegation_uuid import DCVDelegationUUID
 
-__all__ = ["UUID", "AsyncUUID"]
+__all__ = ["UUIDResource", "AsyncUUIDResource"]
 
 
-class UUID(SyncAPIResource):
+class UUIDResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> UUIDWithRawResponse:
-        return UUIDWithRawResponse(self)
+    def with_raw_response(self) -> UUIDResourceWithRawResponse:
+        return UUIDResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> UUIDWithStreamingResponse:
-        return UUIDWithStreamingResponse(self)
+    def with_streaming_response(self) -> UUIDResourceWithStreamingResponse:
+        return UUIDResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -74,14 +74,14 @@ class UUID(SyncAPIResource):
         )
 
 
-class AsyncUUID(AsyncAPIResource):
+class AsyncUUIDResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncUUIDWithRawResponse:
-        return AsyncUUIDWithRawResponse(self)
+    def with_raw_response(self) -> AsyncUUIDResourceWithRawResponse:
+        return AsyncUUIDResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUUIDWithStreamingResponse:
-        return AsyncUUIDWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncUUIDResourceWithStreamingResponse:
+        return AsyncUUIDResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -124,8 +124,8 @@ class AsyncUUID(AsyncAPIResource):
         )
 
 
-class UUIDWithRawResponse:
-    def __init__(self, uuid: UUID) -> None:
+class UUIDResourceWithRawResponse:
+    def __init__(self, uuid: UUIDResource) -> None:
         self._uuid = uuid
 
         self.get = to_raw_response_wrapper(
@@ -133,8 +133,8 @@ class UUIDWithRawResponse:
         )
 
 
-class AsyncUUIDWithRawResponse:
-    def __init__(self, uuid: AsyncUUID) -> None:
+class AsyncUUIDResourceWithRawResponse:
+    def __init__(self, uuid: AsyncUUIDResource) -> None:
         self._uuid = uuid
 
         self.get = async_to_raw_response_wrapper(
@@ -142,8 +142,8 @@ class AsyncUUIDWithRawResponse:
         )
 
 
-class UUIDWithStreamingResponse:
-    def __init__(self, uuid: UUID) -> None:
+class UUIDResourceWithStreamingResponse:
+    def __init__(self, uuid: UUIDResource) -> None:
         self._uuid = uuid
 
         self.get = to_streamed_response_wrapper(
@@ -151,8 +151,8 @@ class UUIDWithStreamingResponse:
         )
 
 
-class AsyncUUIDWithStreamingResponse:
-    def __init__(self, uuid: AsyncUUID) -> None:
+class AsyncUUIDResourceWithStreamingResponse:
+    def __init__(self, uuid: AsyncUUIDResource) -> None:
         self._uuid = uuid
 
         self.get = async_to_streamed_response_wrapper(

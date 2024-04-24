@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.user.billing.profile_get_response import ProfileGetResponse
 
-__all__ = ["Profile", "AsyncProfile"]
+__all__ = ["ProfileResource", "AsyncProfileResource"]
 
 
-class Profile(SyncAPIResource):
+class ProfileResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ProfileWithRawResponse:
-        return ProfileWithRawResponse(self)
+    def with_raw_response(self) -> ProfileResourceWithRawResponse:
+        return ProfileResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ProfileWithStreamingResponse:
-        return ProfileWithStreamingResponse(self)
+    def with_streaming_response(self) -> ProfileResourceWithStreamingResponse:
+        return ProfileResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -62,14 +62,14 @@ class Profile(SyncAPIResource):
         )
 
 
-class AsyncProfile(AsyncAPIResource):
+class AsyncProfileResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncProfileWithRawResponse:
-        return AsyncProfileWithRawResponse(self)
+    def with_raw_response(self) -> AsyncProfileResourceWithRawResponse:
+        return AsyncProfileResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncProfileWithStreamingResponse:
-        return AsyncProfileWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncProfileResourceWithStreamingResponse:
+        return AsyncProfileResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -100,8 +100,8 @@ class AsyncProfile(AsyncAPIResource):
         )
 
 
-class ProfileWithRawResponse:
-    def __init__(self, profile: Profile) -> None:
+class ProfileResourceWithRawResponse:
+    def __init__(self, profile: ProfileResource) -> None:
         self._profile = profile
 
         self.get = to_raw_response_wrapper(
@@ -109,8 +109,8 @@ class ProfileWithRawResponse:
         )
 
 
-class AsyncProfileWithRawResponse:
-    def __init__(self, profile: AsyncProfile) -> None:
+class AsyncProfileResourceWithRawResponse:
+    def __init__(self, profile: AsyncProfileResource) -> None:
         self._profile = profile
 
         self.get = async_to_raw_response_wrapper(
@@ -118,8 +118,8 @@ class AsyncProfileWithRawResponse:
         )
 
 
-class ProfileWithStreamingResponse:
-    def __init__(self, profile: Profile) -> None:
+class ProfileResourceWithStreamingResponse:
+    def __init__(self, profile: ProfileResource) -> None:
         self._profile = profile
 
         self.get = to_streamed_response_wrapper(
@@ -127,8 +127,8 @@ class ProfileWithStreamingResponse:
         )
 
 
-class AsyncProfileWithStreamingResponse:
-    def __init__(self, profile: AsyncProfile) -> None:
+class AsyncProfileResourceWithStreamingResponse:
+    def __init__(self, profile: AsyncProfileResource) -> None:
         self._profile = profile
 
         self.get = async_to_streamed_response_wrapper(

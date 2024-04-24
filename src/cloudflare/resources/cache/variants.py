@@ -28,17 +28,17 @@ from ...types.cache.cache_variant import CacheVariant
 from ...types.cache.variant_get_response import VariantGetResponse
 from ...types.cache.variant_edit_response import VariantEditResponse
 
-__all__ = ["Variants", "AsyncVariants"]
+__all__ = ["VariantsResource", "AsyncVariantsResource"]
 
 
-class Variants(SyncAPIResource):
+class VariantsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> VariantsWithRawResponse:
-        return VariantsWithRawResponse(self)
+    def with_raw_response(self) -> VariantsResourceWithRawResponse:
+        return VariantsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> VariantsWithStreamingResponse:
-        return VariantsWithStreamingResponse(self)
+    def with_streaming_response(self) -> VariantsResourceWithStreamingResponse:
+        return VariantsResourceWithStreamingResponse(self)
 
     def delete(
         self,
@@ -176,14 +176,14 @@ class Variants(SyncAPIResource):
         )
 
 
-class AsyncVariants(AsyncAPIResource):
+class AsyncVariantsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncVariantsWithRawResponse:
-        return AsyncVariantsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncVariantsResourceWithRawResponse:
+        return AsyncVariantsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVariantsWithStreamingResponse:
-        return AsyncVariantsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncVariantsResourceWithStreamingResponse:
+        return AsyncVariantsResourceWithStreamingResponse(self)
 
     async def delete(
         self,
@@ -321,8 +321,8 @@ class AsyncVariants(AsyncAPIResource):
         )
 
 
-class VariantsWithRawResponse:
-    def __init__(self, variants: Variants) -> None:
+class VariantsResourceWithRawResponse:
+    def __init__(self, variants: VariantsResource) -> None:
         self._variants = variants
 
         self.delete = to_raw_response_wrapper(
@@ -336,8 +336,8 @@ class VariantsWithRawResponse:
         )
 
 
-class AsyncVariantsWithRawResponse:
-    def __init__(self, variants: AsyncVariants) -> None:
+class AsyncVariantsResourceWithRawResponse:
+    def __init__(self, variants: AsyncVariantsResource) -> None:
         self._variants = variants
 
         self.delete = async_to_raw_response_wrapper(
@@ -351,8 +351,8 @@ class AsyncVariantsWithRawResponse:
         )
 
 
-class VariantsWithStreamingResponse:
-    def __init__(self, variants: Variants) -> None:
+class VariantsResourceWithStreamingResponse:
+    def __init__(self, variants: VariantsResource) -> None:
         self._variants = variants
 
         self.delete = to_streamed_response_wrapper(
@@ -366,8 +366,8 @@ class VariantsWithStreamingResponse:
         )
 
 
-class AsyncVariantsWithStreamingResponse:
-    def __init__(self, variants: AsyncVariants) -> None:
+class AsyncVariantsResourceWithStreamingResponse:
+    def __init__(self, variants: AsyncVariantsResource) -> None:
         self._variants = variants
 
         self.delete = async_to_streamed_response_wrapper(

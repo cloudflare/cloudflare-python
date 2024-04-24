@@ -21,17 +21,17 @@ from ......_base_client import (
 )
 from ......types.pages.projects.deployments.history.log_get_response import LogGetResponse
 
-__all__ = ["Logs", "AsyncLogs"]
+__all__ = ["LogsResource", "AsyncLogsResource"]
 
 
-class Logs(SyncAPIResource):
+class LogsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> LogsWithRawResponse:
-        return LogsWithRawResponse(self)
+    def with_raw_response(self) -> LogsResourceWithRawResponse:
+        return LogsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> LogsWithStreamingResponse:
-        return LogsWithStreamingResponse(self)
+    def with_streaming_response(self) -> LogsResourceWithStreamingResponse:
+        return LogsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -88,14 +88,14 @@ class Logs(SyncAPIResource):
         )
 
 
-class AsyncLogs(AsyncAPIResource):
+class AsyncLogsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncLogsWithRawResponse:
-        return AsyncLogsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLogsResourceWithRawResponse:
+        return AsyncLogsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLogsWithStreamingResponse:
-        return AsyncLogsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLogsResourceWithStreamingResponse:
+        return AsyncLogsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -152,8 +152,8 @@ class AsyncLogs(AsyncAPIResource):
         )
 
 
-class LogsWithRawResponse:
-    def __init__(self, logs: Logs) -> None:
+class LogsResourceWithRawResponse:
+    def __init__(self, logs: LogsResource) -> None:
         self._logs = logs
 
         self.get = to_raw_response_wrapper(
@@ -161,8 +161,8 @@ class LogsWithRawResponse:
         )
 
 
-class AsyncLogsWithRawResponse:
-    def __init__(self, logs: AsyncLogs) -> None:
+class AsyncLogsResourceWithRawResponse:
+    def __init__(self, logs: AsyncLogsResource) -> None:
         self._logs = logs
 
         self.get = async_to_raw_response_wrapper(
@@ -170,8 +170,8 @@ class AsyncLogsWithRawResponse:
         )
 
 
-class LogsWithStreamingResponse:
-    def __init__(self, logs: Logs) -> None:
+class LogsResourceWithStreamingResponse:
+    def __init__(self, logs: LogsResource) -> None:
         self._logs = logs
 
         self.get = to_streamed_response_wrapper(
@@ -179,8 +179,8 @@ class LogsWithStreamingResponse:
         )
 
 
-class AsyncLogsWithStreamingResponse:
-    def __init__(self, logs: AsyncLogs) -> None:
+class AsyncLogsResourceWithStreamingResponse:
+    def __init__(self, logs: AsyncLogsResource) -> None:
         self._logs = logs
 
         self.get = async_to_streamed_response_wrapper(

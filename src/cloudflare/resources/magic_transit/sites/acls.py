@@ -30,17 +30,17 @@ from ....types.magic_transit.sites.acl import ACL
 from ....types.magic_transit.sites.allowed_protocol import AllowedProtocol
 from ....types.magic_transit.sites.acl_configuration_param import ACLConfigurationParam
 
-__all__ = ["ACLs", "AsyncACLs"]
+__all__ = ["ACLsResource", "AsyncACLsResource"]
 
 
-class ACLs(SyncAPIResource):
+class ACLsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ACLsWithRawResponse:
-        return ACLsWithRawResponse(self)
+    def with_raw_response(self) -> ACLsResourceWithRawResponse:
+        return ACLsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ACLsWithStreamingResponse:
-        return ACLsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ACLsResourceWithStreamingResponse:
+        return ACLsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -329,14 +329,14 @@ class ACLs(SyncAPIResource):
         )
 
 
-class AsyncACLs(AsyncAPIResource):
+class AsyncACLsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncACLsWithRawResponse:
-        return AsyncACLsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncACLsResourceWithRawResponse:
+        return AsyncACLsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncACLsWithStreamingResponse:
-        return AsyncACLsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncACLsResourceWithStreamingResponse:
+        return AsyncACLsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -625,8 +625,8 @@ class AsyncACLs(AsyncAPIResource):
         )
 
 
-class ACLsWithRawResponse:
-    def __init__(self, acls: ACLs) -> None:
+class ACLsResourceWithRawResponse:
+    def __init__(self, acls: ACLsResource) -> None:
         self._acls = acls
 
         self.create = to_raw_response_wrapper(
@@ -646,8 +646,8 @@ class ACLsWithRawResponse:
         )
 
 
-class AsyncACLsWithRawResponse:
-    def __init__(self, acls: AsyncACLs) -> None:
+class AsyncACLsResourceWithRawResponse:
+    def __init__(self, acls: AsyncACLsResource) -> None:
         self._acls = acls
 
         self.create = async_to_raw_response_wrapper(
@@ -667,8 +667,8 @@ class AsyncACLsWithRawResponse:
         )
 
 
-class ACLsWithStreamingResponse:
-    def __init__(self, acls: ACLs) -> None:
+class ACLsResourceWithStreamingResponse:
+    def __init__(self, acls: ACLsResource) -> None:
         self._acls = acls
 
         self.create = to_streamed_response_wrapper(
@@ -688,8 +688,8 @@ class ACLsWithStreamingResponse:
         )
 
 
-class AsyncACLsWithStreamingResponse:
-    def __init__(self, acls: AsyncACLs) -> None:
+class AsyncACLsResourceWithStreamingResponse:
+    def __init__(self, acls: AsyncACLsResource) -> None:
         self._acls = acls
 
         self.create = async_to_streamed_response_wrapper(

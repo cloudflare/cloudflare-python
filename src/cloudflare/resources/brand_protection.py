@@ -27,17 +27,17 @@ from ..types.brand_protection import brand_protection_submit_params, brand_prote
 from ..types.brand_protection.info import Info
 from ..types.brand_protection.submit import Submit
 
-__all__ = ["BrandProtection", "AsyncBrandProtection"]
+__all__ = ["BrandProtectionResource", "AsyncBrandProtectionResource"]
 
 
-class BrandProtection(SyncAPIResource):
+class BrandProtectionResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BrandProtectionWithRawResponse:
-        return BrandProtectionWithRawResponse(self)
+    def with_raw_response(self) -> BrandProtectionResourceWithRawResponse:
+        return BrandProtectionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BrandProtectionWithStreamingResponse:
-        return BrandProtectionWithStreamingResponse(self)
+    def with_streaming_response(self) -> BrandProtectionResourceWithStreamingResponse:
+        return BrandProtectionResourceWithStreamingResponse(self)
 
     def submit(
         self,
@@ -131,14 +131,14 @@ class BrandProtection(SyncAPIResource):
         )
 
 
-class AsyncBrandProtection(AsyncAPIResource):
+class AsyncBrandProtectionResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBrandProtectionWithRawResponse:
-        return AsyncBrandProtectionWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBrandProtectionResourceWithRawResponse:
+        return AsyncBrandProtectionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBrandProtectionWithStreamingResponse:
-        return AsyncBrandProtectionWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBrandProtectionResourceWithStreamingResponse:
+        return AsyncBrandProtectionResourceWithStreamingResponse(self)
 
     async def submit(
         self,
@@ -232,8 +232,8 @@ class AsyncBrandProtection(AsyncAPIResource):
         )
 
 
-class BrandProtectionWithRawResponse:
-    def __init__(self, brand_protection: BrandProtection) -> None:
+class BrandProtectionResourceWithRawResponse:
+    def __init__(self, brand_protection: BrandProtectionResource) -> None:
         self._brand_protection = brand_protection
 
         self.submit = to_raw_response_wrapper(
@@ -244,8 +244,8 @@ class BrandProtectionWithRawResponse:
         )
 
 
-class AsyncBrandProtectionWithRawResponse:
-    def __init__(self, brand_protection: AsyncBrandProtection) -> None:
+class AsyncBrandProtectionResourceWithRawResponse:
+    def __init__(self, brand_protection: AsyncBrandProtectionResource) -> None:
         self._brand_protection = brand_protection
 
         self.submit = async_to_raw_response_wrapper(
@@ -256,8 +256,8 @@ class AsyncBrandProtectionWithRawResponse:
         )
 
 
-class BrandProtectionWithStreamingResponse:
-    def __init__(self, brand_protection: BrandProtection) -> None:
+class BrandProtectionResourceWithStreamingResponse:
+    def __init__(self, brand_protection: BrandProtectionResource) -> None:
         self._brand_protection = brand_protection
 
         self.submit = to_streamed_response_wrapper(
@@ -268,8 +268,8 @@ class BrandProtectionWithStreamingResponse:
         )
 
 
-class AsyncBrandProtectionWithStreamingResponse:
-    def __init__(self, brand_protection: AsyncBrandProtection) -> None:
+class AsyncBrandProtectionResourceWithStreamingResponse:
+    def __init__(self, brand_protection: AsyncBrandProtectionResource) -> None:
         self._brand_protection = brand_protection
 
         self.submit = async_to_streamed_response_wrapper(

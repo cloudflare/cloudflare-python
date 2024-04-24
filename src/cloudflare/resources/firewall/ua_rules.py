@@ -32,17 +32,17 @@ from ...types.firewall.ua_rule_create_response import UARuleCreateResponse
 from ...types.firewall.ua_rule_delete_response import UARuleDeleteResponse
 from ...types.firewall.ua_rule_update_response import UARuleUpdateResponse
 
-__all__ = ["UARules", "AsyncUARules"]
+__all__ = ["UARulesResource", "AsyncUARulesResource"]
 
 
-class UARules(SyncAPIResource):
+class UARulesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> UARulesWithRawResponse:
-        return UARulesWithRawResponse(self)
+    def with_raw_response(self) -> UARulesResourceWithRawResponse:
+        return UARulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> UARulesWithStreamingResponse:
-        return UARulesWithStreamingResponse(self)
+    def with_streaming_response(self) -> UARulesResourceWithStreamingResponse:
+        return UARulesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -304,14 +304,14 @@ class UARules(SyncAPIResource):
         )
 
 
-class AsyncUARules(AsyncAPIResource):
+class AsyncUARulesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncUARulesWithRawResponse:
-        return AsyncUARulesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncUARulesResourceWithRawResponse:
+        return AsyncUARulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUARulesWithStreamingResponse:
-        return AsyncUARulesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncUARulesResourceWithStreamingResponse:
+        return AsyncUARulesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -573,8 +573,8 @@ class AsyncUARules(AsyncAPIResource):
         )
 
 
-class UARulesWithRawResponse:
-    def __init__(self, ua_rules: UARules) -> None:
+class UARulesResourceWithRawResponse:
+    def __init__(self, ua_rules: UARulesResource) -> None:
         self._ua_rules = ua_rules
 
         self.create = to_raw_response_wrapper(
@@ -594,8 +594,8 @@ class UARulesWithRawResponse:
         )
 
 
-class AsyncUARulesWithRawResponse:
-    def __init__(self, ua_rules: AsyncUARules) -> None:
+class AsyncUARulesResourceWithRawResponse:
+    def __init__(self, ua_rules: AsyncUARulesResource) -> None:
         self._ua_rules = ua_rules
 
         self.create = async_to_raw_response_wrapper(
@@ -615,8 +615,8 @@ class AsyncUARulesWithRawResponse:
         )
 
 
-class UARulesWithStreamingResponse:
-    def __init__(self, ua_rules: UARules) -> None:
+class UARulesResourceWithStreamingResponse:
+    def __init__(self, ua_rules: UARulesResource) -> None:
         self._ua_rules = ua_rules
 
         self.create = to_streamed_response_wrapper(
@@ -636,8 +636,8 @@ class UARulesWithStreamingResponse:
         )
 
 
-class AsyncUARulesWithStreamingResponse:
-    def __init__(self, ua_rules: AsyncUARules) -> None:
+class AsyncUARulesResourceWithStreamingResponse:
+    def __init__(self, ua_rules: AsyncUARulesResource) -> None:
         self._ua_rules = ua_rules
 
         self.create = async_to_streamed_response_wrapper(

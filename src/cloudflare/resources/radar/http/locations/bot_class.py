@@ -28,17 +28,17 @@ from ....._base_client import (
 from .....types.radar.http.locations import bot_class_get_params
 from .....types.radar.http.locations.bot_class_get_response import BotClassGetResponse
 
-__all__ = ["BotClass", "AsyncBotClass"]
+__all__ = ["BotClassResource", "AsyncBotClassResource"]
 
 
-class BotClass(SyncAPIResource):
+class BotClassResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BotClassWithRawResponse:
-        return BotClassWithRawResponse(self)
+    def with_raw_response(self) -> BotClassResourceWithRawResponse:
+        return BotClassResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BotClassWithStreamingResponse:
-        return BotClassWithStreamingResponse(self)
+    def with_streaming_response(self) -> BotClassResourceWithStreamingResponse:
+        return BotClassResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -177,14 +177,14 @@ class BotClass(SyncAPIResource):
         )
 
 
-class AsyncBotClass(AsyncAPIResource):
+class AsyncBotClassResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBotClassWithRawResponse:
-        return AsyncBotClassWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBotClassResourceWithRawResponse:
+        return AsyncBotClassResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBotClassWithStreamingResponse:
-        return AsyncBotClassWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBotClassResourceWithStreamingResponse:
+        return AsyncBotClassResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -323,8 +323,8 @@ class AsyncBotClass(AsyncAPIResource):
         )
 
 
-class BotClassWithRawResponse:
-    def __init__(self, bot_class: BotClass) -> None:
+class BotClassResourceWithRawResponse:
+    def __init__(self, bot_class: BotClassResource) -> None:
         self._bot_class = bot_class
 
         self.get = to_raw_response_wrapper(
@@ -332,8 +332,8 @@ class BotClassWithRawResponse:
         )
 
 
-class AsyncBotClassWithRawResponse:
-    def __init__(self, bot_class: AsyncBotClass) -> None:
+class AsyncBotClassResourceWithRawResponse:
+    def __init__(self, bot_class: AsyncBotClassResource) -> None:
         self._bot_class = bot_class
 
         self.get = async_to_raw_response_wrapper(
@@ -341,8 +341,8 @@ class AsyncBotClassWithRawResponse:
         )
 
 
-class BotClassWithStreamingResponse:
-    def __init__(self, bot_class: BotClass) -> None:
+class BotClassResourceWithStreamingResponse:
+    def __init__(self, bot_class: BotClassResource) -> None:
         self._bot_class = bot_class
 
         self.get = to_streamed_response_wrapper(
@@ -350,8 +350,8 @@ class BotClassWithStreamingResponse:
         )
 
 
-class AsyncBotClassWithStreamingResponse:
-    def __init__(self, bot_class: AsyncBotClass) -> None:
+class AsyncBotClassResourceWithStreamingResponse:
+    def __init__(self, bot_class: AsyncBotClassResource) -> None:
         self._bot_class = bot_class
 
         self.get = async_to_streamed_response_wrapper(

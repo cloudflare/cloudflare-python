@@ -3,144 +3,144 @@
 from __future__ import annotations
 
 from .rayid import (
-    RayID,
-    AsyncRayID,
-    RayIDWithRawResponse,
-    AsyncRayIDWithRawResponse,
-    RayIDWithStreamingResponse,
-    AsyncRayIDWithStreamingResponse,
+    RayIDResource,
+    AsyncRayIDResource,
+    RayIDResourceWithRawResponse,
+    AsyncRayIDResourceWithRawResponse,
+    RayIDResourceWithStreamingResponse,
+    AsyncRayIDResourceWithStreamingResponse,
 )
 from .control import (
-    Control,
-    AsyncControl,
-    ControlWithRawResponse,
-    AsyncControlWithRawResponse,
-    ControlWithStreamingResponse,
-    AsyncControlWithStreamingResponse,
+    ControlResource,
+    AsyncControlResource,
+    ControlResourceWithRawResponse,
+    AsyncControlResourceWithRawResponse,
+    ControlResourceWithStreamingResponse,
+    AsyncControlResourceWithStreamingResponse,
 )
 from .received import (
-    Received,
-    AsyncReceived,
-    ReceivedWithRawResponse,
-    AsyncReceivedWithRawResponse,
-    ReceivedWithStreamingResponse,
-    AsyncReceivedWithStreamingResponse,
+    ReceivedResource,
+    AsyncReceivedResource,
+    ReceivedResourceWithRawResponse,
+    AsyncReceivedResourceWithRawResponse,
+    ReceivedResourceWithStreamingResponse,
+    AsyncReceivedResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .control.control import Control, AsyncControl
-from .received.received import Received, AsyncReceived
+from .control.control import ControlResource, AsyncControlResource
+from .received.received import ReceivedResource, AsyncReceivedResource
 
-__all__ = ["Logs", "AsyncLogs"]
+__all__ = ["LogsResource", "AsyncLogsResource"]
 
 
-class Logs(SyncAPIResource):
+class LogsResource(SyncAPIResource):
     @cached_property
-    def control(self) -> Control:
-        return Control(self._client)
-
-    @cached_property
-    def rayid(self) -> RayID:
-        return RayID(self._client)
+    def control(self) -> ControlResource:
+        return ControlResource(self._client)
 
     @cached_property
-    def received(self) -> Received:
-        return Received(self._client)
+    def rayid(self) -> RayIDResource:
+        return RayIDResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> LogsWithRawResponse:
-        return LogsWithRawResponse(self)
+    def received(self) -> ReceivedResource:
+        return ReceivedResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> LogsWithStreamingResponse:
-        return LogsWithStreamingResponse(self)
-
-
-class AsyncLogs(AsyncAPIResource):
-    @cached_property
-    def control(self) -> AsyncControl:
-        return AsyncControl(self._client)
+    def with_raw_response(self) -> LogsResourceWithRawResponse:
+        return LogsResourceWithRawResponse(self)
 
     @cached_property
-    def rayid(self) -> AsyncRayID:
-        return AsyncRayID(self._client)
+    def with_streaming_response(self) -> LogsResourceWithStreamingResponse:
+        return LogsResourceWithStreamingResponse(self)
+
+
+class AsyncLogsResource(AsyncAPIResource):
+    @cached_property
+    def control(self) -> AsyncControlResource:
+        return AsyncControlResource(self._client)
 
     @cached_property
-    def received(self) -> AsyncReceived:
-        return AsyncReceived(self._client)
+    def rayid(self) -> AsyncRayIDResource:
+        return AsyncRayIDResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncLogsWithRawResponse:
-        return AsyncLogsWithRawResponse(self)
+    def received(self) -> AsyncReceivedResource:
+        return AsyncReceivedResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLogsWithStreamingResponse:
-        return AsyncLogsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncLogsResourceWithRawResponse:
+        return AsyncLogsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncLogsResourceWithStreamingResponse:
+        return AsyncLogsResourceWithStreamingResponse(self)
 
 
-class LogsWithRawResponse:
-    def __init__(self, logs: Logs) -> None:
+class LogsResourceWithRawResponse:
+    def __init__(self, logs: LogsResource) -> None:
         self._logs = logs
 
     @cached_property
-    def control(self) -> ControlWithRawResponse:
-        return ControlWithRawResponse(self._logs.control)
+    def control(self) -> ControlResourceWithRawResponse:
+        return ControlResourceWithRawResponse(self._logs.control)
 
     @cached_property
-    def rayid(self) -> RayIDWithRawResponse:
-        return RayIDWithRawResponse(self._logs.rayid)
+    def rayid(self) -> RayIDResourceWithRawResponse:
+        return RayIDResourceWithRawResponse(self._logs.rayid)
 
     @cached_property
-    def received(self) -> ReceivedWithRawResponse:
-        return ReceivedWithRawResponse(self._logs.received)
+    def received(self) -> ReceivedResourceWithRawResponse:
+        return ReceivedResourceWithRawResponse(self._logs.received)
 
 
-class AsyncLogsWithRawResponse:
-    def __init__(self, logs: AsyncLogs) -> None:
+class AsyncLogsResourceWithRawResponse:
+    def __init__(self, logs: AsyncLogsResource) -> None:
         self._logs = logs
 
     @cached_property
-    def control(self) -> AsyncControlWithRawResponse:
-        return AsyncControlWithRawResponse(self._logs.control)
+    def control(self) -> AsyncControlResourceWithRawResponse:
+        return AsyncControlResourceWithRawResponse(self._logs.control)
 
     @cached_property
-    def rayid(self) -> AsyncRayIDWithRawResponse:
-        return AsyncRayIDWithRawResponse(self._logs.rayid)
+    def rayid(self) -> AsyncRayIDResourceWithRawResponse:
+        return AsyncRayIDResourceWithRawResponse(self._logs.rayid)
 
     @cached_property
-    def received(self) -> AsyncReceivedWithRawResponse:
-        return AsyncReceivedWithRawResponse(self._logs.received)
+    def received(self) -> AsyncReceivedResourceWithRawResponse:
+        return AsyncReceivedResourceWithRawResponse(self._logs.received)
 
 
-class LogsWithStreamingResponse:
-    def __init__(self, logs: Logs) -> None:
+class LogsResourceWithStreamingResponse:
+    def __init__(self, logs: LogsResource) -> None:
         self._logs = logs
 
     @cached_property
-    def control(self) -> ControlWithStreamingResponse:
-        return ControlWithStreamingResponse(self._logs.control)
+    def control(self) -> ControlResourceWithStreamingResponse:
+        return ControlResourceWithStreamingResponse(self._logs.control)
 
     @cached_property
-    def rayid(self) -> RayIDWithStreamingResponse:
-        return RayIDWithStreamingResponse(self._logs.rayid)
+    def rayid(self) -> RayIDResourceWithStreamingResponse:
+        return RayIDResourceWithStreamingResponse(self._logs.rayid)
 
     @cached_property
-    def received(self) -> ReceivedWithStreamingResponse:
-        return ReceivedWithStreamingResponse(self._logs.received)
+    def received(self) -> ReceivedResourceWithStreamingResponse:
+        return ReceivedResourceWithStreamingResponse(self._logs.received)
 
 
-class AsyncLogsWithStreamingResponse:
-    def __init__(self, logs: AsyncLogs) -> None:
+class AsyncLogsResourceWithStreamingResponse:
+    def __init__(self, logs: AsyncLogsResource) -> None:
         self._logs = logs
 
     @cached_property
-    def control(self) -> AsyncControlWithStreamingResponse:
-        return AsyncControlWithStreamingResponse(self._logs.control)
+    def control(self) -> AsyncControlResourceWithStreamingResponse:
+        return AsyncControlResourceWithStreamingResponse(self._logs.control)
 
     @cached_property
-    def rayid(self) -> AsyncRayIDWithStreamingResponse:
-        return AsyncRayIDWithStreamingResponse(self._logs.rayid)
+    def rayid(self) -> AsyncRayIDResourceWithStreamingResponse:
+        return AsyncRayIDResourceWithStreamingResponse(self._logs.rayid)
 
     @cached_property
-    def received(self) -> AsyncReceivedWithStreamingResponse:
-        return AsyncReceivedWithStreamingResponse(self._logs.received)
+    def received(self) -> AsyncReceivedResourceWithStreamingResponse:
+        return AsyncReceivedResourceWithStreamingResponse(self._logs.received)

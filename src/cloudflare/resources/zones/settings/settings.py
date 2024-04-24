@@ -91,12 +91,12 @@ from .polish import (
     AsyncPolishResourceWithStreamingResponse,
 )
 from .ciphers import (
-    Ciphers,
-    AsyncCiphers,
-    CiphersWithRawResponse,
-    AsyncCiphersWithRawResponse,
-    CiphersWithStreamingResponse,
-    AsyncCiphersWithStreamingResponse,
+    CiphersResource,
+    AsyncCiphersResource,
+    CiphersResourceWithRawResponse,
+    AsyncCiphersResourceWithRawResponse,
+    CiphersResourceWithStreamingResponse,
+    AsyncCiphersResourceWithStreamingResponse,
 )
 from .tls_1_3 import (
     TLS1_3Resource,
@@ -132,12 +132,12 @@ from .cache_level import (
     AsyncCacheLevelResourceWithStreamingResponse,
 )
 from .early_hints import (
-    EarlyHints,
-    AsyncEarlyHints,
-    EarlyHintsWithRawResponse,
-    AsyncEarlyHintsWithRawResponse,
-    EarlyHintsWithStreamingResponse,
-    AsyncEarlyHintsWithStreamingResponse,
+    EarlyHintsResource,
+    AsyncEarlyHintsResource,
+    EarlyHintsResourceWithRawResponse,
+    AsyncEarlyHintsResourceWithRawResponse,
+    EarlyHintsResourceWithStreamingResponse,
+    AsyncEarlyHintsResourceWithStreamingResponse,
 )
 from .pseudo_ipv4 import (
     PseudoIPV4Resource,
@@ -149,12 +149,12 @@ from .pseudo_ipv4 import (
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from .advanced_ddos import (
-    AdvancedDDoS,
-    AsyncAdvancedDDoS,
-    AdvancedDDoSWithRawResponse,
-    AsyncAdvancedDDoSWithRawResponse,
-    AdvancedDDoSWithStreamingResponse,
-    AsyncAdvancedDDoSWithStreamingResponse,
+    AdvancedDDoSResource,
+    AsyncAdvancedDDoSResource,
+    AdvancedDDoSResourceWithRawResponse,
+    AsyncAdvancedDDoSResourceWithRawResponse,
+    AdvancedDDoSResourceWithStreamingResponse,
+    AsyncAdvancedDDoSResourceWithStreamingResponse,
 )
 from .always_online import (
     AlwaysOnlineResource,
@@ -181,12 +181,12 @@ from .challenge_ttl import (
     AsyncChallengeTTLResourceWithStreamingResponse,
 )
 from .font_settings import (
-    FontSettings,
-    AsyncFontSettings,
-    FontSettingsWithRawResponse,
-    AsyncFontSettingsWithRawResponse,
-    FontSettingsWithStreamingResponse,
-    AsyncFontSettingsWithStreamingResponse,
+    FontSettingsResource,
+    AsyncFontSettingsResource,
+    FontSettingsResourceWithRawResponse,
+    AsyncFontSettingsResourceWithRawResponse,
+    FontSettingsResourceWithStreamingResponse,
+    AsyncFontSettingsResourceWithStreamingResponse,
 )
 from .rocket_loader import (
     RocketLoaderResource,
@@ -253,12 +253,12 @@ from .tls_client_auth import (
     AsyncTLSClientAuthResourceWithStreamingResponse,
 )
 from .always_use_https import (
-    AlwaysUseHTTPS,
-    AsyncAlwaysUseHTTPS,
-    AlwaysUseHTTPSWithRawResponse,
-    AsyncAlwaysUseHTTPSWithRawResponse,
-    AlwaysUseHTTPSWithStreamingResponse,
-    AsyncAlwaysUseHTTPSWithStreamingResponse,
+    AlwaysUseHTTPSResource,
+    AsyncAlwaysUseHTTPSResource,
+    AlwaysUseHTTPSResourceWithRawResponse,
+    AsyncAlwaysUseHTTPSResourceWithRawResponse,
+    AlwaysUseHTTPSResourceWithStreamingResponse,
+    AsyncAlwaysUseHTTPSResourceWithStreamingResponse,
 )
 from .development_mode import (
     DevelopmentModeResource,
@@ -285,12 +285,12 @@ from .prefetch_preload import (
     AsyncPrefetchPreloadResourceWithStreamingResponse,
 )
 from .security_headers import (
-    SecurityHeaders,
-    AsyncSecurityHeaders,
-    SecurityHeadersWithRawResponse,
-    AsyncSecurityHeadersWithRawResponse,
-    SecurityHeadersWithStreamingResponse,
-    AsyncSecurityHeadersWithStreamingResponse,
+    SecurityHeadersResource,
+    AsyncSecurityHeadersResource,
+    SecurityHeadersResourceWithRawResponse,
+    AsyncSecurityHeadersResourceWithRawResponse,
+    SecurityHeadersResourceWithStreamingResponse,
+    AsyncSecurityHeadersResourceWithStreamingResponse,
 )
 from .browser_cache_ttl import (
     BrowserCacheTTLResource,
@@ -349,12 +349,12 @@ from .opportunistic_onion import (
     AsyncOpportunisticOnionResourceWithStreamingResponse,
 )
 from .server_side_excludes import (
-    ServerSideExcludes,
-    AsyncServerSideExcludes,
-    ServerSideExcludesWithRawResponse,
-    AsyncServerSideExcludesWithRawResponse,
-    ServerSideExcludesWithStreamingResponse,
-    AsyncServerSideExcludesWithStreamingResponse,
+    ServerSideExcludesResource,
+    AsyncServerSideExcludesResource,
+    ServerSideExcludesResourceWithRawResponse,
+    AsyncServerSideExcludesResourceWithRawResponse,
+    ServerSideExcludesResourceWithStreamingResponse,
+    AsyncServerSideExcludesResourceWithStreamingResponse,
 )
 from .true_client_ip_header import (
     TrueClientIPHeaderResource,
@@ -373,12 +373,12 @@ from .origin_max_http_version import (
     AsyncOriginMaxHTTPVersionResourceWithStreamingResponse,
 )
 from .automatic_https_rewrites import (
-    AutomaticHTTPSRewrites,
-    AsyncAutomaticHTTPSRewrites,
-    AutomaticHTTPSRewritesWithRawResponse,
-    AsyncAutomaticHTTPSRewritesWithRawResponse,
-    AutomaticHTTPSRewritesWithStreamingResponse,
-    AsyncAutomaticHTTPSRewritesWithStreamingResponse,
+    AutomaticHTTPSRewritesResource,
+    AsyncAutomaticHTTPSRewritesResource,
+    AutomaticHTTPSRewritesResourceWithRawResponse,
+    AsyncAutomaticHTTPSRewritesResourceWithRawResponse,
+    AutomaticHTTPSRewritesResourceWithStreamingResponse,
+    AsyncAutomaticHTTPSRewritesResourceWithStreamingResponse,
 )
 from .opportunistic_encryption import (
     OpportunisticEncryptionResource,
@@ -413,29 +413,29 @@ from .automatic_platform_optimization import (
     AsyncAutomaticPlatformOptimizationResourceWithStreamingResponse,
 )
 
-__all__ = ["Settings", "AsyncSettings"]
+__all__ = ["SettingsResource", "AsyncSettingsResource"]
 
 
-class Settings(SyncAPIResource):
+class SettingsResource(SyncAPIResource):
     @cached_property
     def zero_rtt(self) -> ZeroRTTResource:
         return ZeroRTTResource(self._client)
 
     @cached_property
-    def advanced_ddos(self) -> AdvancedDDoS:
-        return AdvancedDDoS(self._client)
+    def advanced_ddos(self) -> AdvancedDDoSResource:
+        return AdvancedDDoSResource(self._client)
 
     @cached_property
     def always_online(self) -> AlwaysOnlineResource:
         return AlwaysOnlineResource(self._client)
 
     @cached_property
-    def always_use_https(self) -> AlwaysUseHTTPS:
-        return AlwaysUseHTTPS(self._client)
+    def always_use_https(self) -> AlwaysUseHTTPSResource:
+        return AlwaysUseHTTPSResource(self._client)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AutomaticHTTPSRewrites:
-        return AutomaticHTTPSRewrites(self._client)
+    def automatic_https_rewrites(self) -> AutomaticHTTPSRewritesResource:
+        return AutomaticHTTPSRewritesResource(self._client)
 
     @cached_property
     def automatic_platform_optimization(self) -> AutomaticPlatformOptimizationResource:
@@ -462,16 +462,16 @@ class Settings(SyncAPIResource):
         return ChallengeTTLResource(self._client)
 
     @cached_property
-    def ciphers(self) -> Ciphers:
-        return Ciphers(self._client)
+    def ciphers(self) -> CiphersResource:
+        return CiphersResource(self._client)
 
     @cached_property
     def development_mode(self) -> DevelopmentModeResource:
         return DevelopmentModeResource(self._client)
 
     @cached_property
-    def early_hints(self) -> EarlyHints:
-        return EarlyHints(self._client)
+    def early_hints(self) -> EarlyHintsResource:
+        return EarlyHintsResource(self._client)
 
     @cached_property
     def email_obfuscation(self) -> EmailObfuscationResource:
@@ -570,16 +570,16 @@ class Settings(SyncAPIResource):
         return RocketLoaderResource(self._client)
 
     @cached_property
-    def security_headers(self) -> SecurityHeaders:
-        return SecurityHeaders(self._client)
+    def security_headers(self) -> SecurityHeadersResource:
+        return SecurityHeadersResource(self._client)
 
     @cached_property
     def security_level(self) -> SecurityLevelResource:
         return SecurityLevelResource(self._client)
 
     @cached_property
-    def server_side_excludes(self) -> ServerSideExcludes:
-        return ServerSideExcludes(self._client)
+    def server_side_excludes(self) -> ServerSideExcludesResource:
+        return ServerSideExcludesResource(self._client)
 
     @cached_property
     def sort_query_string_for_cache(self) -> SortQueryStringForCacheResource:
@@ -618,38 +618,38 @@ class Settings(SyncAPIResource):
         return WebsocketResource(self._client)
 
     @cached_property
-    def font_settings(self) -> FontSettings:
-        return FontSettings(self._client)
+    def font_settings(self) -> FontSettingsResource:
+        return FontSettingsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self)
+    def with_raw_response(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self)
 
 
-class AsyncSettings(AsyncAPIResource):
+class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
     def zero_rtt(self) -> AsyncZeroRTTResource:
         return AsyncZeroRTTResource(self._client)
 
     @cached_property
-    def advanced_ddos(self) -> AsyncAdvancedDDoS:
-        return AsyncAdvancedDDoS(self._client)
+    def advanced_ddos(self) -> AsyncAdvancedDDoSResource:
+        return AsyncAdvancedDDoSResource(self._client)
 
     @cached_property
     def always_online(self) -> AsyncAlwaysOnlineResource:
         return AsyncAlwaysOnlineResource(self._client)
 
     @cached_property
-    def always_use_https(self) -> AsyncAlwaysUseHTTPS:
-        return AsyncAlwaysUseHTTPS(self._client)
+    def always_use_https(self) -> AsyncAlwaysUseHTTPSResource:
+        return AsyncAlwaysUseHTTPSResource(self._client)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPSRewrites:
-        return AsyncAutomaticHTTPSRewrites(self._client)
+    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPSRewritesResource:
+        return AsyncAutomaticHTTPSRewritesResource(self._client)
 
     @cached_property
     def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimizationResource:
@@ -676,16 +676,16 @@ class AsyncSettings(AsyncAPIResource):
         return AsyncChallengeTTLResource(self._client)
 
     @cached_property
-    def ciphers(self) -> AsyncCiphers:
-        return AsyncCiphers(self._client)
+    def ciphers(self) -> AsyncCiphersResource:
+        return AsyncCiphersResource(self._client)
 
     @cached_property
     def development_mode(self) -> AsyncDevelopmentModeResource:
         return AsyncDevelopmentModeResource(self._client)
 
     @cached_property
-    def early_hints(self) -> AsyncEarlyHints:
-        return AsyncEarlyHints(self._client)
+    def early_hints(self) -> AsyncEarlyHintsResource:
+        return AsyncEarlyHintsResource(self._client)
 
     @cached_property
     def email_obfuscation(self) -> AsyncEmailObfuscationResource:
@@ -784,16 +784,16 @@ class AsyncSettings(AsyncAPIResource):
         return AsyncRocketLoaderResource(self._client)
 
     @cached_property
-    def security_headers(self) -> AsyncSecurityHeaders:
-        return AsyncSecurityHeaders(self._client)
+    def security_headers(self) -> AsyncSecurityHeadersResource:
+        return AsyncSecurityHeadersResource(self._client)
 
     @cached_property
     def security_level(self) -> AsyncSecurityLevelResource:
         return AsyncSecurityLevelResource(self._client)
 
     @cached_property
-    def server_side_excludes(self) -> AsyncServerSideExcludes:
-        return AsyncServerSideExcludes(self._client)
+    def server_side_excludes(self) -> AsyncServerSideExcludesResource:
+        return AsyncServerSideExcludesResource(self._client)
 
     @cached_property
     def sort_query_string_for_cache(self) -> AsyncSortQueryStringForCacheResource:
@@ -832,20 +832,20 @@ class AsyncSettings(AsyncAPIResource):
         return AsyncWebsocketResource(self._client)
 
     @cached_property
-    def font_settings(self) -> AsyncFontSettings:
-        return AsyncFontSettings(self._client)
+    def font_settings(self) -> AsyncFontSettingsResource:
+        return AsyncFontSettingsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self)
 
 
-class SettingsWithRawResponse:
-    def __init__(self, settings: Settings) -> None:
+class SettingsResourceWithRawResponse:
+    def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
 
     @cached_property
@@ -853,20 +853,20 @@ class SettingsWithRawResponse:
         return ZeroRTTResourceWithRawResponse(self._settings.zero_rtt)
 
     @cached_property
-    def advanced_ddos(self) -> AdvancedDDoSWithRawResponse:
-        return AdvancedDDoSWithRawResponse(self._settings.advanced_ddos)
+    def advanced_ddos(self) -> AdvancedDDoSResourceWithRawResponse:
+        return AdvancedDDoSResourceWithRawResponse(self._settings.advanced_ddos)
 
     @cached_property
     def always_online(self) -> AlwaysOnlineResourceWithRawResponse:
         return AlwaysOnlineResourceWithRawResponse(self._settings.always_online)
 
     @cached_property
-    def always_use_https(self) -> AlwaysUseHTTPSWithRawResponse:
-        return AlwaysUseHTTPSWithRawResponse(self._settings.always_use_https)
+    def always_use_https(self) -> AlwaysUseHTTPSResourceWithRawResponse:
+        return AlwaysUseHTTPSResourceWithRawResponse(self._settings.always_use_https)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AutomaticHTTPSRewritesWithRawResponse:
-        return AutomaticHTTPSRewritesWithRawResponse(self._settings.automatic_https_rewrites)
+    def automatic_https_rewrites(self) -> AutomaticHTTPSRewritesResourceWithRawResponse:
+        return AutomaticHTTPSRewritesResourceWithRawResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
     def automatic_platform_optimization(self) -> AutomaticPlatformOptimizationResourceWithRawResponse:
@@ -893,16 +893,16 @@ class SettingsWithRawResponse:
         return ChallengeTTLResourceWithRawResponse(self._settings.challenge_ttl)
 
     @cached_property
-    def ciphers(self) -> CiphersWithRawResponse:
-        return CiphersWithRawResponse(self._settings.ciphers)
+    def ciphers(self) -> CiphersResourceWithRawResponse:
+        return CiphersResourceWithRawResponse(self._settings.ciphers)
 
     @cached_property
     def development_mode(self) -> DevelopmentModeResourceWithRawResponse:
         return DevelopmentModeResourceWithRawResponse(self._settings.development_mode)
 
     @cached_property
-    def early_hints(self) -> EarlyHintsWithRawResponse:
-        return EarlyHintsWithRawResponse(self._settings.early_hints)
+    def early_hints(self) -> EarlyHintsResourceWithRawResponse:
+        return EarlyHintsResourceWithRawResponse(self._settings.early_hints)
 
     @cached_property
     def email_obfuscation(self) -> EmailObfuscationResourceWithRawResponse:
@@ -1001,16 +1001,16 @@ class SettingsWithRawResponse:
         return RocketLoaderResourceWithRawResponse(self._settings.rocket_loader)
 
     @cached_property
-    def security_headers(self) -> SecurityHeadersWithRawResponse:
-        return SecurityHeadersWithRawResponse(self._settings.security_headers)
+    def security_headers(self) -> SecurityHeadersResourceWithRawResponse:
+        return SecurityHeadersResourceWithRawResponse(self._settings.security_headers)
 
     @cached_property
     def security_level(self) -> SecurityLevelResourceWithRawResponse:
         return SecurityLevelResourceWithRawResponse(self._settings.security_level)
 
     @cached_property
-    def server_side_excludes(self) -> ServerSideExcludesWithRawResponse:
-        return ServerSideExcludesWithRawResponse(self._settings.server_side_excludes)
+    def server_side_excludes(self) -> ServerSideExcludesResourceWithRawResponse:
+        return ServerSideExcludesResourceWithRawResponse(self._settings.server_side_excludes)
 
     @cached_property
     def sort_query_string_for_cache(self) -> SortQueryStringForCacheResourceWithRawResponse:
@@ -1049,12 +1049,12 @@ class SettingsWithRawResponse:
         return WebsocketResourceWithRawResponse(self._settings.websocket)
 
     @cached_property
-    def font_settings(self) -> FontSettingsWithRawResponse:
-        return FontSettingsWithRawResponse(self._settings.font_settings)
+    def font_settings(self) -> FontSettingsResourceWithRawResponse:
+        return FontSettingsResourceWithRawResponse(self._settings.font_settings)
 
 
-class AsyncSettingsWithRawResponse:
-    def __init__(self, settings: AsyncSettings) -> None:
+class AsyncSettingsResourceWithRawResponse:
+    def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
 
     @cached_property
@@ -1062,20 +1062,20 @@ class AsyncSettingsWithRawResponse:
         return AsyncZeroRTTResourceWithRawResponse(self._settings.zero_rtt)
 
     @cached_property
-    def advanced_ddos(self) -> AsyncAdvancedDDoSWithRawResponse:
-        return AsyncAdvancedDDoSWithRawResponse(self._settings.advanced_ddos)
+    def advanced_ddos(self) -> AsyncAdvancedDDoSResourceWithRawResponse:
+        return AsyncAdvancedDDoSResourceWithRawResponse(self._settings.advanced_ddos)
 
     @cached_property
     def always_online(self) -> AsyncAlwaysOnlineResourceWithRawResponse:
         return AsyncAlwaysOnlineResourceWithRawResponse(self._settings.always_online)
 
     @cached_property
-    def always_use_https(self) -> AsyncAlwaysUseHTTPSWithRawResponse:
-        return AsyncAlwaysUseHTTPSWithRawResponse(self._settings.always_use_https)
+    def always_use_https(self) -> AsyncAlwaysUseHTTPSResourceWithRawResponse:
+        return AsyncAlwaysUseHTTPSResourceWithRawResponse(self._settings.always_use_https)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPSRewritesWithRawResponse:
-        return AsyncAutomaticHTTPSRewritesWithRawResponse(self._settings.automatic_https_rewrites)
+    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPSRewritesResourceWithRawResponse:
+        return AsyncAutomaticHTTPSRewritesResourceWithRawResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
     def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimizationResourceWithRawResponse:
@@ -1102,16 +1102,16 @@ class AsyncSettingsWithRawResponse:
         return AsyncChallengeTTLResourceWithRawResponse(self._settings.challenge_ttl)
 
     @cached_property
-    def ciphers(self) -> AsyncCiphersWithRawResponse:
-        return AsyncCiphersWithRawResponse(self._settings.ciphers)
+    def ciphers(self) -> AsyncCiphersResourceWithRawResponse:
+        return AsyncCiphersResourceWithRawResponse(self._settings.ciphers)
 
     @cached_property
     def development_mode(self) -> AsyncDevelopmentModeResourceWithRawResponse:
         return AsyncDevelopmentModeResourceWithRawResponse(self._settings.development_mode)
 
     @cached_property
-    def early_hints(self) -> AsyncEarlyHintsWithRawResponse:
-        return AsyncEarlyHintsWithRawResponse(self._settings.early_hints)
+    def early_hints(self) -> AsyncEarlyHintsResourceWithRawResponse:
+        return AsyncEarlyHintsResourceWithRawResponse(self._settings.early_hints)
 
     @cached_property
     def email_obfuscation(self) -> AsyncEmailObfuscationResourceWithRawResponse:
@@ -1210,16 +1210,16 @@ class AsyncSettingsWithRawResponse:
         return AsyncRocketLoaderResourceWithRawResponse(self._settings.rocket_loader)
 
     @cached_property
-    def security_headers(self) -> AsyncSecurityHeadersWithRawResponse:
-        return AsyncSecurityHeadersWithRawResponse(self._settings.security_headers)
+    def security_headers(self) -> AsyncSecurityHeadersResourceWithRawResponse:
+        return AsyncSecurityHeadersResourceWithRawResponse(self._settings.security_headers)
 
     @cached_property
     def security_level(self) -> AsyncSecurityLevelResourceWithRawResponse:
         return AsyncSecurityLevelResourceWithRawResponse(self._settings.security_level)
 
     @cached_property
-    def server_side_excludes(self) -> AsyncServerSideExcludesWithRawResponse:
-        return AsyncServerSideExcludesWithRawResponse(self._settings.server_side_excludes)
+    def server_side_excludes(self) -> AsyncServerSideExcludesResourceWithRawResponse:
+        return AsyncServerSideExcludesResourceWithRawResponse(self._settings.server_side_excludes)
 
     @cached_property
     def sort_query_string_for_cache(self) -> AsyncSortQueryStringForCacheResourceWithRawResponse:
@@ -1258,12 +1258,12 @@ class AsyncSettingsWithRawResponse:
         return AsyncWebsocketResourceWithRawResponse(self._settings.websocket)
 
     @cached_property
-    def font_settings(self) -> AsyncFontSettingsWithRawResponse:
-        return AsyncFontSettingsWithRawResponse(self._settings.font_settings)
+    def font_settings(self) -> AsyncFontSettingsResourceWithRawResponse:
+        return AsyncFontSettingsResourceWithRawResponse(self._settings.font_settings)
 
 
-class SettingsWithStreamingResponse:
-    def __init__(self, settings: Settings) -> None:
+class SettingsResourceWithStreamingResponse:
+    def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
 
     @cached_property
@@ -1271,20 +1271,20 @@ class SettingsWithStreamingResponse:
         return ZeroRTTResourceWithStreamingResponse(self._settings.zero_rtt)
 
     @cached_property
-    def advanced_ddos(self) -> AdvancedDDoSWithStreamingResponse:
-        return AdvancedDDoSWithStreamingResponse(self._settings.advanced_ddos)
+    def advanced_ddos(self) -> AdvancedDDoSResourceWithStreamingResponse:
+        return AdvancedDDoSResourceWithStreamingResponse(self._settings.advanced_ddos)
 
     @cached_property
     def always_online(self) -> AlwaysOnlineResourceWithStreamingResponse:
         return AlwaysOnlineResourceWithStreamingResponse(self._settings.always_online)
 
     @cached_property
-    def always_use_https(self) -> AlwaysUseHTTPSWithStreamingResponse:
-        return AlwaysUseHTTPSWithStreamingResponse(self._settings.always_use_https)
+    def always_use_https(self) -> AlwaysUseHTTPSResourceWithStreamingResponse:
+        return AlwaysUseHTTPSResourceWithStreamingResponse(self._settings.always_use_https)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AutomaticHTTPSRewritesWithStreamingResponse:
-        return AutomaticHTTPSRewritesWithStreamingResponse(self._settings.automatic_https_rewrites)
+    def automatic_https_rewrites(self) -> AutomaticHTTPSRewritesResourceWithStreamingResponse:
+        return AutomaticHTTPSRewritesResourceWithStreamingResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
     def automatic_platform_optimization(self) -> AutomaticPlatformOptimizationResourceWithStreamingResponse:
@@ -1313,16 +1313,16 @@ class SettingsWithStreamingResponse:
         return ChallengeTTLResourceWithStreamingResponse(self._settings.challenge_ttl)
 
     @cached_property
-    def ciphers(self) -> CiphersWithStreamingResponse:
-        return CiphersWithStreamingResponse(self._settings.ciphers)
+    def ciphers(self) -> CiphersResourceWithStreamingResponse:
+        return CiphersResourceWithStreamingResponse(self._settings.ciphers)
 
     @cached_property
     def development_mode(self) -> DevelopmentModeResourceWithStreamingResponse:
         return DevelopmentModeResourceWithStreamingResponse(self._settings.development_mode)
 
     @cached_property
-    def early_hints(self) -> EarlyHintsWithStreamingResponse:
-        return EarlyHintsWithStreamingResponse(self._settings.early_hints)
+    def early_hints(self) -> EarlyHintsResourceWithStreamingResponse:
+        return EarlyHintsResourceWithStreamingResponse(self._settings.early_hints)
 
     @cached_property
     def email_obfuscation(self) -> EmailObfuscationResourceWithStreamingResponse:
@@ -1421,16 +1421,16 @@ class SettingsWithStreamingResponse:
         return RocketLoaderResourceWithStreamingResponse(self._settings.rocket_loader)
 
     @cached_property
-    def security_headers(self) -> SecurityHeadersWithStreamingResponse:
-        return SecurityHeadersWithStreamingResponse(self._settings.security_headers)
+    def security_headers(self) -> SecurityHeadersResourceWithStreamingResponse:
+        return SecurityHeadersResourceWithStreamingResponse(self._settings.security_headers)
 
     @cached_property
     def security_level(self) -> SecurityLevelResourceWithStreamingResponse:
         return SecurityLevelResourceWithStreamingResponse(self._settings.security_level)
 
     @cached_property
-    def server_side_excludes(self) -> ServerSideExcludesWithStreamingResponse:
-        return ServerSideExcludesWithStreamingResponse(self._settings.server_side_excludes)
+    def server_side_excludes(self) -> ServerSideExcludesResourceWithStreamingResponse:
+        return ServerSideExcludesResourceWithStreamingResponse(self._settings.server_side_excludes)
 
     @cached_property
     def sort_query_string_for_cache(self) -> SortQueryStringForCacheResourceWithStreamingResponse:
@@ -1469,12 +1469,12 @@ class SettingsWithStreamingResponse:
         return WebsocketResourceWithStreamingResponse(self._settings.websocket)
 
     @cached_property
-    def font_settings(self) -> FontSettingsWithStreamingResponse:
-        return FontSettingsWithStreamingResponse(self._settings.font_settings)
+    def font_settings(self) -> FontSettingsResourceWithStreamingResponse:
+        return FontSettingsResourceWithStreamingResponse(self._settings.font_settings)
 
 
-class AsyncSettingsWithStreamingResponse:
-    def __init__(self, settings: AsyncSettings) -> None:
+class AsyncSettingsResourceWithStreamingResponse:
+    def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
 
     @cached_property
@@ -1482,20 +1482,20 @@ class AsyncSettingsWithStreamingResponse:
         return AsyncZeroRTTResourceWithStreamingResponse(self._settings.zero_rtt)
 
     @cached_property
-    def advanced_ddos(self) -> AsyncAdvancedDDoSWithStreamingResponse:
-        return AsyncAdvancedDDoSWithStreamingResponse(self._settings.advanced_ddos)
+    def advanced_ddos(self) -> AsyncAdvancedDDoSResourceWithStreamingResponse:
+        return AsyncAdvancedDDoSResourceWithStreamingResponse(self._settings.advanced_ddos)
 
     @cached_property
     def always_online(self) -> AsyncAlwaysOnlineResourceWithStreamingResponse:
         return AsyncAlwaysOnlineResourceWithStreamingResponse(self._settings.always_online)
 
     @cached_property
-    def always_use_https(self) -> AsyncAlwaysUseHTTPSWithStreamingResponse:
-        return AsyncAlwaysUseHTTPSWithStreamingResponse(self._settings.always_use_https)
+    def always_use_https(self) -> AsyncAlwaysUseHTTPSResourceWithStreamingResponse:
+        return AsyncAlwaysUseHTTPSResourceWithStreamingResponse(self._settings.always_use_https)
 
     @cached_property
-    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPSRewritesWithStreamingResponse:
-        return AsyncAutomaticHTTPSRewritesWithStreamingResponse(self._settings.automatic_https_rewrites)
+    def automatic_https_rewrites(self) -> AsyncAutomaticHTTPSRewritesResourceWithStreamingResponse:
+        return AsyncAutomaticHTTPSRewritesResourceWithStreamingResponse(self._settings.automatic_https_rewrites)
 
     @cached_property
     def automatic_platform_optimization(self) -> AsyncAutomaticPlatformOptimizationResourceWithStreamingResponse:
@@ -1524,16 +1524,16 @@ class AsyncSettingsWithStreamingResponse:
         return AsyncChallengeTTLResourceWithStreamingResponse(self._settings.challenge_ttl)
 
     @cached_property
-    def ciphers(self) -> AsyncCiphersWithStreamingResponse:
-        return AsyncCiphersWithStreamingResponse(self._settings.ciphers)
+    def ciphers(self) -> AsyncCiphersResourceWithStreamingResponse:
+        return AsyncCiphersResourceWithStreamingResponse(self._settings.ciphers)
 
     @cached_property
     def development_mode(self) -> AsyncDevelopmentModeResourceWithStreamingResponse:
         return AsyncDevelopmentModeResourceWithStreamingResponse(self._settings.development_mode)
 
     @cached_property
-    def early_hints(self) -> AsyncEarlyHintsWithStreamingResponse:
-        return AsyncEarlyHintsWithStreamingResponse(self._settings.early_hints)
+    def early_hints(self) -> AsyncEarlyHintsResourceWithStreamingResponse:
+        return AsyncEarlyHintsResourceWithStreamingResponse(self._settings.early_hints)
 
     @cached_property
     def email_obfuscation(self) -> AsyncEmailObfuscationResourceWithStreamingResponse:
@@ -1632,16 +1632,16 @@ class AsyncSettingsWithStreamingResponse:
         return AsyncRocketLoaderResourceWithStreamingResponse(self._settings.rocket_loader)
 
     @cached_property
-    def security_headers(self) -> AsyncSecurityHeadersWithStreamingResponse:
-        return AsyncSecurityHeadersWithStreamingResponse(self._settings.security_headers)
+    def security_headers(self) -> AsyncSecurityHeadersResourceWithStreamingResponse:
+        return AsyncSecurityHeadersResourceWithStreamingResponse(self._settings.security_headers)
 
     @cached_property
     def security_level(self) -> AsyncSecurityLevelResourceWithStreamingResponse:
         return AsyncSecurityLevelResourceWithStreamingResponse(self._settings.security_level)
 
     @cached_property
-    def server_side_excludes(self) -> AsyncServerSideExcludesWithStreamingResponse:
-        return AsyncServerSideExcludesWithStreamingResponse(self._settings.server_side_excludes)
+    def server_side_excludes(self) -> AsyncServerSideExcludesResourceWithStreamingResponse:
+        return AsyncServerSideExcludesResourceWithStreamingResponse(self._settings.server_side_excludes)
 
     @cached_property
     def sort_query_string_for_cache(self) -> AsyncSortQueryStringForCacheResourceWithStreamingResponse:
@@ -1680,5 +1680,5 @@ class AsyncSettingsWithStreamingResponse:
         return AsyncWebsocketResourceWithStreamingResponse(self._settings.websocket)
 
     @cached_property
-    def font_settings(self) -> AsyncFontSettingsWithStreamingResponse:
-        return AsyncFontSettingsWithStreamingResponse(self._settings.font_settings)
+    def font_settings(self) -> AsyncFontSettingsResourceWithStreamingResponse:
+        return AsyncFontSettingsResourceWithStreamingResponse(self._settings.font_settings)

@@ -7,20 +7,20 @@ from typing import Type, Optional, cast
 import httpx
 
 from .excludes import (
-    Excludes,
-    AsyncExcludes,
-    ExcludesWithRawResponse,
-    AsyncExcludesWithRawResponse,
-    ExcludesWithStreamingResponse,
-    AsyncExcludesWithStreamingResponse,
+    ExcludesResource,
+    AsyncExcludesResource,
+    ExcludesResourceWithRawResponse,
+    AsyncExcludesResourceWithRawResponse,
+    ExcludesResourceWithStreamingResponse,
+    AsyncExcludesResourceWithStreamingResponse,
 )
 from .includes import (
-    Includes,
-    AsyncIncludes,
-    IncludesWithRawResponse,
-    AsyncIncludesWithRawResponse,
-    IncludesWithStreamingResponse,
-    AsyncIncludesWithStreamingResponse,
+    IncludesResource,
+    AsyncIncludesResource,
+    IncludesResourceWithRawResponse,
+    AsyncIncludesResourceWithRawResponse,
+    IncludesResourceWithStreamingResponse,
+    AsyncIncludesResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -38,56 +38,56 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from .default_policy import (
-    DefaultPolicy,
-    AsyncDefaultPolicy,
-    DefaultPolicyWithRawResponse,
-    AsyncDefaultPolicyWithRawResponse,
-    DefaultPolicyWithStreamingResponse,
-    AsyncDefaultPolicyWithStreamingResponse,
+    DefaultPolicyResource,
+    AsyncDefaultPolicyResource,
+    DefaultPolicyResourceWithRawResponse,
+    AsyncDefaultPolicyResourceWithRawResponse,
+    DefaultPolicyResourceWithStreamingResponse,
+    AsyncDefaultPolicyResourceWithStreamingResponse,
 )
 from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
 from .fallback_domains import (
-    FallbackDomains,
-    AsyncFallbackDomains,
-    FallbackDomainsWithRawResponse,
-    AsyncFallbackDomainsWithRawResponse,
-    FallbackDomainsWithStreamingResponse,
-    AsyncFallbackDomainsWithStreamingResponse,
+    FallbackDomainsResource,
+    AsyncFallbackDomainsResource,
+    FallbackDomainsResourceWithRawResponse,
+    AsyncFallbackDomainsResourceWithRawResponse,
+    FallbackDomainsResourceWithStreamingResponse,
+    AsyncFallbackDomainsResourceWithStreamingResponse,
 )
 from .....types.zero_trust.devices import policy_edit_params, policy_create_params, policy_delete_params
 from .....types.zero_trust.devices.settings_policy import SettingsPolicy
 from .....types.zero_trust.devices.policy_delete_response import PolicyDeleteResponse
 
-__all__ = ["Policies", "AsyncPolicies"]
+__all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
 
-class Policies(SyncAPIResource):
+class PoliciesResource(SyncAPIResource):
     @cached_property
-    def default_policy(self) -> DefaultPolicy:
-        return DefaultPolicy(self._client)
-
-    @cached_property
-    def excludes(self) -> Excludes:
-        return Excludes(self._client)
+    def default_policy(self) -> DefaultPolicyResource:
+        return DefaultPolicyResource(self._client)
 
     @cached_property
-    def fallback_domains(self) -> FallbackDomains:
-        return FallbackDomains(self._client)
+    def excludes(self) -> ExcludesResource:
+        return ExcludesResource(self._client)
 
     @cached_property
-    def includes(self) -> Includes:
-        return Includes(self._client)
+    def fallback_domains(self) -> FallbackDomainsResource:
+        return FallbackDomainsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> PoliciesWithRawResponse:
-        return PoliciesWithRawResponse(self)
+    def includes(self) -> IncludesResource:
+        return IncludesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> PoliciesWithStreamingResponse:
-        return PoliciesWithStreamingResponse(self)
+    def with_raw_response(self) -> PoliciesResourceWithRawResponse:
+        return PoliciesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PoliciesResourceWithStreamingResponse:
+        return PoliciesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -437,30 +437,30 @@ class Policies(SyncAPIResource):
         )
 
 
-class AsyncPolicies(AsyncAPIResource):
+class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
-    def default_policy(self) -> AsyncDefaultPolicy:
-        return AsyncDefaultPolicy(self._client)
+    def default_policy(self) -> AsyncDefaultPolicyResource:
+        return AsyncDefaultPolicyResource(self._client)
 
     @cached_property
-    def excludes(self) -> AsyncExcludes:
-        return AsyncExcludes(self._client)
+    def excludes(self) -> AsyncExcludesResource:
+        return AsyncExcludesResource(self._client)
 
     @cached_property
-    def fallback_domains(self) -> AsyncFallbackDomains:
-        return AsyncFallbackDomains(self._client)
+    def fallback_domains(self) -> AsyncFallbackDomainsResource:
+        return AsyncFallbackDomainsResource(self._client)
 
     @cached_property
-    def includes(self) -> AsyncIncludes:
-        return AsyncIncludes(self._client)
+    def includes(self) -> AsyncIncludesResource:
+        return AsyncIncludesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPoliciesWithRawResponse:
-        return AsyncPoliciesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPoliciesResourceWithRawResponse:
+        return AsyncPoliciesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPoliciesWithStreamingResponse:
-        return AsyncPoliciesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        return AsyncPoliciesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -810,8 +810,8 @@ class AsyncPolicies(AsyncAPIResource):
         )
 
 
-class PoliciesWithRawResponse:
-    def __init__(self, policies: Policies) -> None:
+class PoliciesResourceWithRawResponse:
+    def __init__(self, policies: PoliciesResource) -> None:
         self._policies = policies
 
         self.create = to_raw_response_wrapper(
@@ -831,24 +831,24 @@ class PoliciesWithRawResponse:
         )
 
     @cached_property
-    def default_policy(self) -> DefaultPolicyWithRawResponse:
-        return DefaultPolicyWithRawResponse(self._policies.default_policy)
+    def default_policy(self) -> DefaultPolicyResourceWithRawResponse:
+        return DefaultPolicyResourceWithRawResponse(self._policies.default_policy)
 
     @cached_property
-    def excludes(self) -> ExcludesWithRawResponse:
-        return ExcludesWithRawResponse(self._policies.excludes)
+    def excludes(self) -> ExcludesResourceWithRawResponse:
+        return ExcludesResourceWithRawResponse(self._policies.excludes)
 
     @cached_property
-    def fallback_domains(self) -> FallbackDomainsWithRawResponse:
-        return FallbackDomainsWithRawResponse(self._policies.fallback_domains)
+    def fallback_domains(self) -> FallbackDomainsResourceWithRawResponse:
+        return FallbackDomainsResourceWithRawResponse(self._policies.fallback_domains)
 
     @cached_property
-    def includes(self) -> IncludesWithRawResponse:
-        return IncludesWithRawResponse(self._policies.includes)
+    def includes(self) -> IncludesResourceWithRawResponse:
+        return IncludesResourceWithRawResponse(self._policies.includes)
 
 
-class AsyncPoliciesWithRawResponse:
-    def __init__(self, policies: AsyncPolicies) -> None:
+class AsyncPoliciesResourceWithRawResponse:
+    def __init__(self, policies: AsyncPoliciesResource) -> None:
         self._policies = policies
 
         self.create = async_to_raw_response_wrapper(
@@ -868,24 +868,24 @@ class AsyncPoliciesWithRawResponse:
         )
 
     @cached_property
-    def default_policy(self) -> AsyncDefaultPolicyWithRawResponse:
-        return AsyncDefaultPolicyWithRawResponse(self._policies.default_policy)
+    def default_policy(self) -> AsyncDefaultPolicyResourceWithRawResponse:
+        return AsyncDefaultPolicyResourceWithRawResponse(self._policies.default_policy)
 
     @cached_property
-    def excludes(self) -> AsyncExcludesWithRawResponse:
-        return AsyncExcludesWithRawResponse(self._policies.excludes)
+    def excludes(self) -> AsyncExcludesResourceWithRawResponse:
+        return AsyncExcludesResourceWithRawResponse(self._policies.excludes)
 
     @cached_property
-    def fallback_domains(self) -> AsyncFallbackDomainsWithRawResponse:
-        return AsyncFallbackDomainsWithRawResponse(self._policies.fallback_domains)
+    def fallback_domains(self) -> AsyncFallbackDomainsResourceWithRawResponse:
+        return AsyncFallbackDomainsResourceWithRawResponse(self._policies.fallback_domains)
 
     @cached_property
-    def includes(self) -> AsyncIncludesWithRawResponse:
-        return AsyncIncludesWithRawResponse(self._policies.includes)
+    def includes(self) -> AsyncIncludesResourceWithRawResponse:
+        return AsyncIncludesResourceWithRawResponse(self._policies.includes)
 
 
-class PoliciesWithStreamingResponse:
-    def __init__(self, policies: Policies) -> None:
+class PoliciesResourceWithStreamingResponse:
+    def __init__(self, policies: PoliciesResource) -> None:
         self._policies = policies
 
         self.create = to_streamed_response_wrapper(
@@ -905,24 +905,24 @@ class PoliciesWithStreamingResponse:
         )
 
     @cached_property
-    def default_policy(self) -> DefaultPolicyWithStreamingResponse:
-        return DefaultPolicyWithStreamingResponse(self._policies.default_policy)
+    def default_policy(self) -> DefaultPolicyResourceWithStreamingResponse:
+        return DefaultPolicyResourceWithStreamingResponse(self._policies.default_policy)
 
     @cached_property
-    def excludes(self) -> ExcludesWithStreamingResponse:
-        return ExcludesWithStreamingResponse(self._policies.excludes)
+    def excludes(self) -> ExcludesResourceWithStreamingResponse:
+        return ExcludesResourceWithStreamingResponse(self._policies.excludes)
 
     @cached_property
-    def fallback_domains(self) -> FallbackDomainsWithStreamingResponse:
-        return FallbackDomainsWithStreamingResponse(self._policies.fallback_domains)
+    def fallback_domains(self) -> FallbackDomainsResourceWithStreamingResponse:
+        return FallbackDomainsResourceWithStreamingResponse(self._policies.fallback_domains)
 
     @cached_property
-    def includes(self) -> IncludesWithStreamingResponse:
-        return IncludesWithStreamingResponse(self._policies.includes)
+    def includes(self) -> IncludesResourceWithStreamingResponse:
+        return IncludesResourceWithStreamingResponse(self._policies.includes)
 
 
-class AsyncPoliciesWithStreamingResponse:
-    def __init__(self, policies: AsyncPolicies) -> None:
+class AsyncPoliciesResourceWithStreamingResponse:
+    def __init__(self, policies: AsyncPoliciesResource) -> None:
         self._policies = policies
 
         self.create = async_to_streamed_response_wrapper(
@@ -942,17 +942,17 @@ class AsyncPoliciesWithStreamingResponse:
         )
 
     @cached_property
-    def default_policy(self) -> AsyncDefaultPolicyWithStreamingResponse:
-        return AsyncDefaultPolicyWithStreamingResponse(self._policies.default_policy)
+    def default_policy(self) -> AsyncDefaultPolicyResourceWithStreamingResponse:
+        return AsyncDefaultPolicyResourceWithStreamingResponse(self._policies.default_policy)
 
     @cached_property
-    def excludes(self) -> AsyncExcludesWithStreamingResponse:
-        return AsyncExcludesWithStreamingResponse(self._policies.excludes)
+    def excludes(self) -> AsyncExcludesResourceWithStreamingResponse:
+        return AsyncExcludesResourceWithStreamingResponse(self._policies.excludes)
 
     @cached_property
-    def fallback_domains(self) -> AsyncFallbackDomainsWithStreamingResponse:
-        return AsyncFallbackDomainsWithStreamingResponse(self._policies.fallback_domains)
+    def fallback_domains(self) -> AsyncFallbackDomainsResourceWithStreamingResponse:
+        return AsyncFallbackDomainsResourceWithStreamingResponse(self._policies.fallback_domains)
 
     @cached_property
-    def includes(self) -> AsyncIncludesWithStreamingResponse:
-        return AsyncIncludesWithStreamingResponse(self._policies.includes)
+    def includes(self) -> AsyncIncludesResourceWithStreamingResponse:
+        return AsyncIncludesResourceWithStreamingResponse(self._policies.includes)

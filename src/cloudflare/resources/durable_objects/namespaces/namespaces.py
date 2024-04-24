@@ -5,12 +5,12 @@ from __future__ import annotations
 import httpx
 
 from .objects import (
-    Objects,
-    AsyncObjects,
-    ObjectsWithRawResponse,
-    AsyncObjectsWithRawResponse,
-    ObjectsWithStreamingResponse,
-    AsyncObjectsWithStreamingResponse,
+    ObjectsResource,
+    AsyncObjectsResource,
+    ObjectsResourceWithRawResponse,
+    AsyncObjectsResourceWithRawResponse,
+    ObjectsResourceWithStreamingResponse,
+    AsyncObjectsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
@@ -28,21 +28,21 @@ from ...._base_client import (
 )
 from ....types.durable_objects.namespace import Namespace
 
-__all__ = ["Namespaces", "AsyncNamespaces"]
+__all__ = ["NamespacesResource", "AsyncNamespacesResource"]
 
 
-class Namespaces(SyncAPIResource):
+class NamespacesResource(SyncAPIResource):
     @cached_property
-    def objects(self) -> Objects:
-        return Objects(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> NamespacesWithRawResponse:
-        return NamespacesWithRawResponse(self)
+    def objects(self) -> ObjectsResource:
+        return ObjectsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> NamespacesWithStreamingResponse:
-        return NamespacesWithStreamingResponse(self)
+    def with_raw_response(self) -> NamespacesResourceWithRawResponse:
+        return NamespacesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> NamespacesResourceWithStreamingResponse:
+        return NamespacesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -81,18 +81,18 @@ class Namespaces(SyncAPIResource):
         )
 
 
-class AsyncNamespaces(AsyncAPIResource):
+class AsyncNamespacesResource(AsyncAPIResource):
     @cached_property
-    def objects(self) -> AsyncObjects:
-        return AsyncObjects(self._client)
+    def objects(self) -> AsyncObjectsResource:
+        return AsyncObjectsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncNamespacesWithRawResponse:
-        return AsyncNamespacesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncNamespacesResourceWithRawResponse:
+        return AsyncNamespacesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncNamespacesWithStreamingResponse:
-        return AsyncNamespacesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncNamespacesResourceWithStreamingResponse:
+        return AsyncNamespacesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -131,8 +131,8 @@ class AsyncNamespaces(AsyncAPIResource):
         )
 
 
-class NamespacesWithRawResponse:
-    def __init__(self, namespaces: Namespaces) -> None:
+class NamespacesResourceWithRawResponse:
+    def __init__(self, namespaces: NamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.list = to_raw_response_wrapper(
@@ -140,12 +140,12 @@ class NamespacesWithRawResponse:
         )
 
     @cached_property
-    def objects(self) -> ObjectsWithRawResponse:
-        return ObjectsWithRawResponse(self._namespaces.objects)
+    def objects(self) -> ObjectsResourceWithRawResponse:
+        return ObjectsResourceWithRawResponse(self._namespaces.objects)
 
 
-class AsyncNamespacesWithRawResponse:
-    def __init__(self, namespaces: AsyncNamespaces) -> None:
+class AsyncNamespacesResourceWithRawResponse:
+    def __init__(self, namespaces: AsyncNamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.list = async_to_raw_response_wrapper(
@@ -153,12 +153,12 @@ class AsyncNamespacesWithRawResponse:
         )
 
     @cached_property
-    def objects(self) -> AsyncObjectsWithRawResponse:
-        return AsyncObjectsWithRawResponse(self._namespaces.objects)
+    def objects(self) -> AsyncObjectsResourceWithRawResponse:
+        return AsyncObjectsResourceWithRawResponse(self._namespaces.objects)
 
 
-class NamespacesWithStreamingResponse:
-    def __init__(self, namespaces: Namespaces) -> None:
+class NamespacesResourceWithStreamingResponse:
+    def __init__(self, namespaces: NamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.list = to_streamed_response_wrapper(
@@ -166,12 +166,12 @@ class NamespacesWithStreamingResponse:
         )
 
     @cached_property
-    def objects(self) -> ObjectsWithStreamingResponse:
-        return ObjectsWithStreamingResponse(self._namespaces.objects)
+    def objects(self) -> ObjectsResourceWithStreamingResponse:
+        return ObjectsResourceWithStreamingResponse(self._namespaces.objects)
 
 
-class AsyncNamespacesWithStreamingResponse:
-    def __init__(self, namespaces: AsyncNamespaces) -> None:
+class AsyncNamespacesResourceWithStreamingResponse:
+    def __init__(self, namespaces: AsyncNamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.list = async_to_streamed_response_wrapper(
@@ -179,5 +179,5 @@ class AsyncNamespacesWithStreamingResponse:
         )
 
     @cached_property
-    def objects(self) -> AsyncObjectsWithStreamingResponse:
-        return AsyncObjectsWithStreamingResponse(self._namespaces.objects)
+    def objects(self) -> AsyncObjectsResourceWithStreamingResponse:
+        return AsyncObjectsResourceWithStreamingResponse(self._namespaces.objects)

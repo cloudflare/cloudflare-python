@@ -20,17 +20,17 @@ from ..._base_client import (
 )
 from ...types.addressing.service_list_response import ServiceListResponse
 
-__all__ = ["Services", "AsyncServices"]
+__all__ = ["ServicesResource", "AsyncServicesResource"]
 
 
-class Services(SyncAPIResource):
+class ServicesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ServicesWithRawResponse:
-        return ServicesWithRawResponse(self)
+    def with_raw_response(self) -> ServicesResourceWithRawResponse:
+        return ServicesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ServicesWithStreamingResponse:
-        return ServicesWithStreamingResponse(self)
+    def with_streaming_response(self) -> ServicesResourceWithStreamingResponse:
+        return ServicesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -72,14 +72,14 @@ class Services(SyncAPIResource):
         )
 
 
-class AsyncServices(AsyncAPIResource):
+class AsyncServicesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncServicesWithRawResponse:
-        return AsyncServicesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncServicesResourceWithRawResponse:
+        return AsyncServicesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncServicesWithStreamingResponse:
-        return AsyncServicesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncServicesResourceWithStreamingResponse:
+        return AsyncServicesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -121,8 +121,8 @@ class AsyncServices(AsyncAPIResource):
         )
 
 
-class ServicesWithRawResponse:
-    def __init__(self, services: Services) -> None:
+class ServicesResourceWithRawResponse:
+    def __init__(self, services: ServicesResource) -> None:
         self._services = services
 
         self.list = to_raw_response_wrapper(
@@ -130,8 +130,8 @@ class ServicesWithRawResponse:
         )
 
 
-class AsyncServicesWithRawResponse:
-    def __init__(self, services: AsyncServices) -> None:
+class AsyncServicesResourceWithRawResponse:
+    def __init__(self, services: AsyncServicesResource) -> None:
         self._services = services
 
         self.list = async_to_raw_response_wrapper(
@@ -139,8 +139,8 @@ class AsyncServicesWithRawResponse:
         )
 
 
-class ServicesWithStreamingResponse:
-    def __init__(self, services: Services) -> None:
+class ServicesResourceWithStreamingResponse:
+    def __init__(self, services: ServicesResource) -> None:
         self._services = services
 
         self.list = to_streamed_response_wrapper(
@@ -148,8 +148,8 @@ class ServicesWithStreamingResponse:
         )
 
 
-class AsyncServicesWithStreamingResponse:
-    def __init__(self, services: AsyncServices) -> None:
+class AsyncServicesResourceWithStreamingResponse:
+    def __init__(self, services: AsyncServicesResource) -> None:
         self._services = services
 
         self.list = async_to_streamed_response_wrapper(

@@ -29,17 +29,17 @@ from .....types.zero_trust.dlp.profiles.custom_profile import CustomProfile
 from .....types.zero_trust.dlp.profiles.custom_create_response import CustomCreateResponse
 from .....types.zero_trust.dlp.profiles.custom_delete_response import CustomDeleteResponse
 
-__all__ = ["Custom", "AsyncCustom"]
+__all__ = ["CustomResource", "AsyncCustomResource"]
 
 
-class Custom(SyncAPIResource):
+class CustomResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CustomWithRawResponse:
-        return CustomWithRawResponse(self)
+    def with_raw_response(self) -> CustomResourceWithRawResponse:
+        return CustomResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CustomWithStreamingResponse:
-        return CustomWithStreamingResponse(self)
+    def with_streaming_response(self) -> CustomResourceWithStreamingResponse:
+        return CustomResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -255,14 +255,14 @@ class Custom(SyncAPIResource):
         )
 
 
-class AsyncCustom(AsyncAPIResource):
+class AsyncCustomResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCustomWithRawResponse:
-        return AsyncCustomWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCustomResourceWithRawResponse:
+        return AsyncCustomResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCustomWithStreamingResponse:
-        return AsyncCustomWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCustomResourceWithStreamingResponse:
+        return AsyncCustomResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -478,8 +478,8 @@ class AsyncCustom(AsyncAPIResource):
         )
 
 
-class CustomWithRawResponse:
-    def __init__(self, custom: Custom) -> None:
+class CustomResourceWithRawResponse:
+    def __init__(self, custom: CustomResource) -> None:
         self._custom = custom
 
         self.create = to_raw_response_wrapper(
@@ -496,8 +496,8 @@ class CustomWithRawResponse:
         )
 
 
-class AsyncCustomWithRawResponse:
-    def __init__(self, custom: AsyncCustom) -> None:
+class AsyncCustomResourceWithRawResponse:
+    def __init__(self, custom: AsyncCustomResource) -> None:
         self._custom = custom
 
         self.create = async_to_raw_response_wrapper(
@@ -514,8 +514,8 @@ class AsyncCustomWithRawResponse:
         )
 
 
-class CustomWithStreamingResponse:
-    def __init__(self, custom: Custom) -> None:
+class CustomResourceWithStreamingResponse:
+    def __init__(self, custom: CustomResource) -> None:
         self._custom = custom
 
         self.create = to_streamed_response_wrapper(
@@ -532,8 +532,8 @@ class CustomWithStreamingResponse:
         )
 
 
-class AsyncCustomWithStreamingResponse:
-    def __init__(self, custom: AsyncCustom) -> None:
+class AsyncCustomResourceWithStreamingResponse:
+    def __init__(self, custom: AsyncCustomResource) -> None:
         self._custom = custom
 
         self.create = async_to_streamed_response_wrapper(

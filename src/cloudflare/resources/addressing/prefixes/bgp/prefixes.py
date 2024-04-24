@@ -28,17 +28,17 @@ from ....._base_client import (
 from .....types.addressing.prefixes.bgp import prefix_edit_params
 from .....types.addressing.prefixes.bgp.bgp_prefix import BGPPrefix
 
-__all__ = ["Prefixes", "AsyncPrefixes"]
+__all__ = ["PrefixesResource", "AsyncPrefixesResource"]
 
 
-class Prefixes(SyncAPIResource):
+class PrefixesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PrefixesWithRawResponse:
-        return PrefixesWithRawResponse(self)
+    def with_raw_response(self) -> PrefixesResourceWithRawResponse:
+        return PrefixesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PrefixesWithStreamingResponse:
-        return PrefixesWithStreamingResponse(self)
+    def with_streaming_response(self) -> PrefixesResourceWithStreamingResponse:
+        return PrefixesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -187,14 +187,14 @@ class Prefixes(SyncAPIResource):
         )
 
 
-class AsyncPrefixes(AsyncAPIResource):
+class AsyncPrefixesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPrefixesWithRawResponse:
-        return AsyncPrefixesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPrefixesResourceWithRawResponse:
+        return AsyncPrefixesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPrefixesWithStreamingResponse:
-        return AsyncPrefixesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPrefixesResourceWithStreamingResponse:
+        return AsyncPrefixesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -343,8 +343,8 @@ class AsyncPrefixes(AsyncAPIResource):
         )
 
 
-class PrefixesWithRawResponse:
-    def __init__(self, prefixes: Prefixes) -> None:
+class PrefixesResourceWithRawResponse:
+    def __init__(self, prefixes: PrefixesResource) -> None:
         self._prefixes = prefixes
 
         self.list = to_raw_response_wrapper(
@@ -358,8 +358,8 @@ class PrefixesWithRawResponse:
         )
 
 
-class AsyncPrefixesWithRawResponse:
-    def __init__(self, prefixes: AsyncPrefixes) -> None:
+class AsyncPrefixesResourceWithRawResponse:
+    def __init__(self, prefixes: AsyncPrefixesResource) -> None:
         self._prefixes = prefixes
 
         self.list = async_to_raw_response_wrapper(
@@ -373,8 +373,8 @@ class AsyncPrefixesWithRawResponse:
         )
 
 
-class PrefixesWithStreamingResponse:
-    def __init__(self, prefixes: Prefixes) -> None:
+class PrefixesResourceWithStreamingResponse:
+    def __init__(self, prefixes: PrefixesResource) -> None:
         self._prefixes = prefixes
 
         self.list = to_streamed_response_wrapper(
@@ -388,8 +388,8 @@ class PrefixesWithStreamingResponse:
         )
 
 
-class AsyncPrefixesWithStreamingResponse:
-    def __init__(self, prefixes: AsyncPrefixes) -> None:
+class AsyncPrefixesResourceWithStreamingResponse:
+    def __init__(self, prefixes: AsyncPrefixesResource) -> None:
         self._prefixes = prefixes
 
         self.list = async_to_streamed_response_wrapper(

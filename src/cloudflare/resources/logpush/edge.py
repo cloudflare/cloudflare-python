@@ -27,17 +27,17 @@ from ...types.logpush import edge_create_params
 from ...types.logpush.edge_get_response import EdgeGetResponse
 from ...types.logpush.instant_logpush_job import InstantLogpushJob
 
-__all__ = ["Edge", "AsyncEdge"]
+__all__ = ["EdgeResource", "AsyncEdgeResource"]
 
 
-class Edge(SyncAPIResource):
+class EdgeResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> EdgeWithRawResponse:
-        return EdgeWithRawResponse(self)
+    def with_raw_response(self) -> EdgeResourceWithRawResponse:
+        return EdgeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> EdgeWithStreamingResponse:
-        return EdgeWithStreamingResponse(self)
+    def with_streaming_response(self) -> EdgeResourceWithStreamingResponse:
+        return EdgeResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -137,14 +137,14 @@ class Edge(SyncAPIResource):
         )
 
 
-class AsyncEdge(AsyncAPIResource):
+class AsyncEdgeResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncEdgeWithRawResponse:
-        return AsyncEdgeWithRawResponse(self)
+    def with_raw_response(self) -> AsyncEdgeResourceWithRawResponse:
+        return AsyncEdgeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEdgeWithStreamingResponse:
-        return AsyncEdgeWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncEdgeResourceWithStreamingResponse:
+        return AsyncEdgeResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -244,8 +244,8 @@ class AsyncEdge(AsyncAPIResource):
         )
 
 
-class EdgeWithRawResponse:
-    def __init__(self, edge: Edge) -> None:
+class EdgeResourceWithRawResponse:
+    def __init__(self, edge: EdgeResource) -> None:
         self._edge = edge
 
         self.create = to_raw_response_wrapper(
@@ -256,8 +256,8 @@ class EdgeWithRawResponse:
         )
 
 
-class AsyncEdgeWithRawResponse:
-    def __init__(self, edge: AsyncEdge) -> None:
+class AsyncEdgeResourceWithRawResponse:
+    def __init__(self, edge: AsyncEdgeResource) -> None:
         self._edge = edge
 
         self.create = async_to_raw_response_wrapper(
@@ -268,8 +268,8 @@ class AsyncEdgeWithRawResponse:
         )
 
 
-class EdgeWithStreamingResponse:
-    def __init__(self, edge: Edge) -> None:
+class EdgeResourceWithStreamingResponse:
+    def __init__(self, edge: EdgeResource) -> None:
         self._edge = edge
 
         self.create = to_streamed_response_wrapper(
@@ -280,8 +280,8 @@ class EdgeWithStreamingResponse:
         )
 
 
-class AsyncEdgeWithStreamingResponse:
-    def __init__(self, edge: AsyncEdge) -> None:
+class AsyncEdgeResourceWithStreamingResponse:
+    def __init__(self, edge: AsyncEdgeResource) -> None:
         self._edge = edge
 
         self.create = async_to_streamed_response_wrapper(

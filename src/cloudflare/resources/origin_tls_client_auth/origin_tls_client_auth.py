@@ -12,21 +12,21 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .hostnames import (
-    Hostnames,
-    AsyncHostnames,
-    HostnamesWithRawResponse,
-    AsyncHostnamesWithRawResponse,
-    HostnamesWithStreamingResponse,
-    AsyncHostnamesWithStreamingResponse,
+    HostnamesResource,
+    AsyncHostnamesResource,
+    HostnamesResourceWithRawResponse,
+    AsyncHostnamesResourceWithRawResponse,
+    HostnamesResourceWithStreamingResponse,
+    AsyncHostnamesResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -41,32 +41,32 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .hostnames.hostnames import Hostnames, AsyncHostnames
+from .hostnames.hostnames import HostnamesResource, AsyncHostnamesResource
 from ...types.origin_tls_client_auth import origin_tls_client_auth_create_params, origin_tls_client_auth_delete_params
 from ...types.origin_tls_client_auth.zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull
 from ...types.origin_tls_client_auth.origin_tls_client_auth_get_response import OriginTLSClientAuthGetResponse
 from ...types.origin_tls_client_auth.origin_tls_client_auth_create_response import OriginTLSClientAuthCreateResponse
 from ...types.origin_tls_client_auth.origin_tls_client_auth_delete_response import OriginTLSClientAuthDeleteResponse
 
-__all__ = ["OriginTLSClientAuth", "AsyncOriginTLSClientAuth"]
+__all__ = ["OriginTLSClientAuthResource", "AsyncOriginTLSClientAuthResource"]
 
 
-class OriginTLSClientAuth(SyncAPIResource):
+class OriginTLSClientAuthResource(SyncAPIResource):
     @cached_property
-    def hostnames(self) -> Hostnames:
-        return Hostnames(self._client)
-
-    @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
+    def hostnames(self) -> HostnamesResource:
+        return HostnamesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> OriginTLSClientAuthWithRawResponse:
-        return OriginTLSClientAuthWithRawResponse(self)
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> OriginTLSClientAuthWithStreamingResponse:
-        return OriginTLSClientAuthWithStreamingResponse(self)
+    def with_raw_response(self) -> OriginTLSClientAuthResourceWithRawResponse:
+        return OriginTLSClientAuthResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> OriginTLSClientAuthResourceWithStreamingResponse:
+        return OriginTLSClientAuthResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -266,22 +266,22 @@ class OriginTLSClientAuth(SyncAPIResource):
         )
 
 
-class AsyncOriginTLSClientAuth(AsyncAPIResource):
+class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
     @cached_property
-    def hostnames(self) -> AsyncHostnames:
-        return AsyncHostnames(self._client)
+    def hostnames(self) -> AsyncHostnamesResource:
+        return AsyncHostnamesResource(self._client)
 
     @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncOriginTLSClientAuthWithRawResponse:
-        return AsyncOriginTLSClientAuthWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOriginTLSClientAuthResourceWithRawResponse:
+        return AsyncOriginTLSClientAuthResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOriginTLSClientAuthWithStreamingResponse:
-        return AsyncOriginTLSClientAuthWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOriginTLSClientAuthResourceWithStreamingResponse:
+        return AsyncOriginTLSClientAuthResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -483,8 +483,8 @@ class AsyncOriginTLSClientAuth(AsyncAPIResource):
         )
 
 
-class OriginTLSClientAuthWithRawResponse:
-    def __init__(self, origin_tls_client_auth: OriginTLSClientAuth) -> None:
+class OriginTLSClientAuthResourceWithRawResponse:
+    def __init__(self, origin_tls_client_auth: OriginTLSClientAuthResource) -> None:
         self._origin_tls_client_auth = origin_tls_client_auth
 
         self.create = to_raw_response_wrapper(
@@ -501,16 +501,16 @@ class OriginTLSClientAuthWithRawResponse:
         )
 
     @cached_property
-    def hostnames(self) -> HostnamesWithRawResponse:
-        return HostnamesWithRawResponse(self._origin_tls_client_auth.hostnames)
+    def hostnames(self) -> HostnamesResourceWithRawResponse:
+        return HostnamesResourceWithRawResponse(self._origin_tls_client_auth.hostnames)
 
     @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._origin_tls_client_auth.settings)
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._origin_tls_client_auth.settings)
 
 
-class AsyncOriginTLSClientAuthWithRawResponse:
-    def __init__(self, origin_tls_client_auth: AsyncOriginTLSClientAuth) -> None:
+class AsyncOriginTLSClientAuthResourceWithRawResponse:
+    def __init__(self, origin_tls_client_auth: AsyncOriginTLSClientAuthResource) -> None:
         self._origin_tls_client_auth = origin_tls_client_auth
 
         self.create = async_to_raw_response_wrapper(
@@ -527,16 +527,16 @@ class AsyncOriginTLSClientAuthWithRawResponse:
         )
 
     @cached_property
-    def hostnames(self) -> AsyncHostnamesWithRawResponse:
-        return AsyncHostnamesWithRawResponse(self._origin_tls_client_auth.hostnames)
+    def hostnames(self) -> AsyncHostnamesResourceWithRawResponse:
+        return AsyncHostnamesResourceWithRawResponse(self._origin_tls_client_auth.hostnames)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._origin_tls_client_auth.settings)
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._origin_tls_client_auth.settings)
 
 
-class OriginTLSClientAuthWithStreamingResponse:
-    def __init__(self, origin_tls_client_auth: OriginTLSClientAuth) -> None:
+class OriginTLSClientAuthResourceWithStreamingResponse:
+    def __init__(self, origin_tls_client_auth: OriginTLSClientAuthResource) -> None:
         self._origin_tls_client_auth = origin_tls_client_auth
 
         self.create = to_streamed_response_wrapper(
@@ -553,16 +553,16 @@ class OriginTLSClientAuthWithStreamingResponse:
         )
 
     @cached_property
-    def hostnames(self) -> HostnamesWithStreamingResponse:
-        return HostnamesWithStreamingResponse(self._origin_tls_client_auth.hostnames)
+    def hostnames(self) -> HostnamesResourceWithStreamingResponse:
+        return HostnamesResourceWithStreamingResponse(self._origin_tls_client_auth.hostnames)
 
     @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._origin_tls_client_auth.settings)
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._origin_tls_client_auth.settings)
 
 
-class AsyncOriginTLSClientAuthWithStreamingResponse:
-    def __init__(self, origin_tls_client_auth: AsyncOriginTLSClientAuth) -> None:
+class AsyncOriginTLSClientAuthResourceWithStreamingResponse:
+    def __init__(self, origin_tls_client_auth: AsyncOriginTLSClientAuthResource) -> None:
         self._origin_tls_client_auth = origin_tls_client_auth
 
         self.create = async_to_streamed_response_wrapper(
@@ -579,9 +579,9 @@ class AsyncOriginTLSClientAuthWithStreamingResponse:
         )
 
     @cached_property
-    def hostnames(self) -> AsyncHostnamesWithStreamingResponse:
-        return AsyncHostnamesWithStreamingResponse(self._origin_tls_client_auth.hostnames)
+    def hostnames(self) -> AsyncHostnamesResourceWithStreamingResponse:
+        return AsyncHostnamesResourceWithStreamingResponse(self._origin_tls_client_auth.hostnames)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._origin_tls_client_auth.settings)
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._origin_tls_client_auth.settings)

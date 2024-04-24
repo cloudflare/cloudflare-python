@@ -4,78 +4,78 @@ from __future__ import annotations
 
 from ...._compat import cached_property
 from .namespaces import (
-    Namespaces,
-    AsyncNamespaces,
-    NamespacesWithRawResponse,
-    AsyncNamespacesWithRawResponse,
-    NamespacesWithStreamingResponse,
-    AsyncNamespacesWithStreamingResponse,
+    NamespacesResource,
+    AsyncNamespacesResource,
+    NamespacesResourceWithRawResponse,
+    AsyncNamespacesResourceWithRawResponse,
+    NamespacesResourceWithStreamingResponse,
+    AsyncNamespacesResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .namespaces.namespaces import Namespaces, AsyncNamespaces
+from .namespaces.namespaces import NamespacesResource, AsyncNamespacesResource
 
-__all__ = ["Dispatch", "AsyncDispatch"]
+__all__ = ["DispatchResource", "AsyncDispatchResource"]
 
 
-class Dispatch(SyncAPIResource):
+class DispatchResource(SyncAPIResource):
     @cached_property
-    def namespaces(self) -> Namespaces:
-        return Namespaces(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> DispatchWithRawResponse:
-        return DispatchWithRawResponse(self)
+    def namespaces(self) -> NamespacesResource:
+        return NamespacesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> DispatchWithStreamingResponse:
-        return DispatchWithStreamingResponse(self)
-
-
-class AsyncDispatch(AsyncAPIResource):
-    @cached_property
-    def namespaces(self) -> AsyncNamespaces:
-        return AsyncNamespaces(self._client)
+    def with_raw_response(self) -> DispatchResourceWithRawResponse:
+        return DispatchResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDispatchWithRawResponse:
-        return AsyncDispatchWithRawResponse(self)
+    def with_streaming_response(self) -> DispatchResourceWithStreamingResponse:
+        return DispatchResourceWithStreamingResponse(self)
+
+
+class AsyncDispatchResource(AsyncAPIResource):
+    @cached_property
+    def namespaces(self) -> AsyncNamespacesResource:
+        return AsyncNamespacesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDispatchWithStreamingResponse:
-        return AsyncDispatchWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncDispatchResourceWithRawResponse:
+        return AsyncDispatchResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDispatchResourceWithStreamingResponse:
+        return AsyncDispatchResourceWithStreamingResponse(self)
 
 
-class DispatchWithRawResponse:
-    def __init__(self, dispatch: Dispatch) -> None:
+class DispatchResourceWithRawResponse:
+    def __init__(self, dispatch: DispatchResource) -> None:
         self._dispatch = dispatch
 
     @cached_property
-    def namespaces(self) -> NamespacesWithRawResponse:
-        return NamespacesWithRawResponse(self._dispatch.namespaces)
+    def namespaces(self) -> NamespacesResourceWithRawResponse:
+        return NamespacesResourceWithRawResponse(self._dispatch.namespaces)
 
 
-class AsyncDispatchWithRawResponse:
-    def __init__(self, dispatch: AsyncDispatch) -> None:
+class AsyncDispatchResourceWithRawResponse:
+    def __init__(self, dispatch: AsyncDispatchResource) -> None:
         self._dispatch = dispatch
 
     @cached_property
-    def namespaces(self) -> AsyncNamespacesWithRawResponse:
-        return AsyncNamespacesWithRawResponse(self._dispatch.namespaces)
+    def namespaces(self) -> AsyncNamespacesResourceWithRawResponse:
+        return AsyncNamespacesResourceWithRawResponse(self._dispatch.namespaces)
 
 
-class DispatchWithStreamingResponse:
-    def __init__(self, dispatch: Dispatch) -> None:
+class DispatchResourceWithStreamingResponse:
+    def __init__(self, dispatch: DispatchResource) -> None:
         self._dispatch = dispatch
 
     @cached_property
-    def namespaces(self) -> NamespacesWithStreamingResponse:
-        return NamespacesWithStreamingResponse(self._dispatch.namespaces)
+    def namespaces(self) -> NamespacesResourceWithStreamingResponse:
+        return NamespacesResourceWithStreamingResponse(self._dispatch.namespaces)
 
 
-class AsyncDispatchWithStreamingResponse:
-    def __init__(self, dispatch: AsyncDispatch) -> None:
+class AsyncDispatchResourceWithStreamingResponse:
+    def __init__(self, dispatch: AsyncDispatchResource) -> None:
         self._dispatch = dispatch
 
     @cached_property
-    def namespaces(self) -> AsyncNamespacesWithStreamingResponse:
-        return AsyncNamespacesWithStreamingResponse(self._dispatch.namespaces)
+    def namespaces(self) -> AsyncNamespacesResourceWithStreamingResponse:
+        return AsyncNamespacesResourceWithStreamingResponse(self._dispatch.namespaces)

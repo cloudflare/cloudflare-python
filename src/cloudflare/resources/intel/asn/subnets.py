@@ -19,17 +19,17 @@ from ...._base_client import (
 from ....types.shared.asn import ASN
 from ....types.intel.asn.subnet_get_response import SubnetGetResponse
 
-__all__ = ["Subnets", "AsyncSubnets"]
+__all__ = ["SubnetsResource", "AsyncSubnetsResource"]
 
 
-class Subnets(SyncAPIResource):
+class SubnetsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SubnetsWithRawResponse:
-        return SubnetsWithRawResponse(self)
+    def with_raw_response(self) -> SubnetsResourceWithRawResponse:
+        return SubnetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SubnetsWithStreamingResponse:
-        return SubnetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> SubnetsResourceWithStreamingResponse:
+        return SubnetsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -68,14 +68,14 @@ class Subnets(SyncAPIResource):
         )
 
 
-class AsyncSubnets(AsyncAPIResource):
+class AsyncSubnetsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSubnetsWithRawResponse:
-        return AsyncSubnetsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSubnetsResourceWithRawResponse:
+        return AsyncSubnetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSubnetsWithStreamingResponse:
-        return AsyncSubnetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSubnetsResourceWithStreamingResponse:
+        return AsyncSubnetsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -114,8 +114,8 @@ class AsyncSubnets(AsyncAPIResource):
         )
 
 
-class SubnetsWithRawResponse:
-    def __init__(self, subnets: Subnets) -> None:
+class SubnetsResourceWithRawResponse:
+    def __init__(self, subnets: SubnetsResource) -> None:
         self._subnets = subnets
 
         self.get = to_raw_response_wrapper(
@@ -123,8 +123,8 @@ class SubnetsWithRawResponse:
         )
 
 
-class AsyncSubnetsWithRawResponse:
-    def __init__(self, subnets: AsyncSubnets) -> None:
+class AsyncSubnetsResourceWithRawResponse:
+    def __init__(self, subnets: AsyncSubnetsResource) -> None:
         self._subnets = subnets
 
         self.get = async_to_raw_response_wrapper(
@@ -132,8 +132,8 @@ class AsyncSubnetsWithRawResponse:
         )
 
 
-class SubnetsWithStreamingResponse:
-    def __init__(self, subnets: Subnets) -> None:
+class SubnetsResourceWithStreamingResponse:
+    def __init__(self, subnets: SubnetsResource) -> None:
         self._subnets = subnets
 
         self.get = to_streamed_response_wrapper(
@@ -141,8 +141,8 @@ class SubnetsWithStreamingResponse:
         )
 
 
-class AsyncSubnetsWithStreamingResponse:
-    def __init__(self, subnets: AsyncSubnets) -> None:
+class AsyncSubnetsResourceWithStreamingResponse:
+    def __init__(self, subnets: AsyncSubnetsResource) -> None:
         self._subnets = subnets
 
         self.get = async_to_streamed_response_wrapper(

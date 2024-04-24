@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .top import (
-    Top,
-    AsyncTop,
-    TopWithRawResponse,
-    AsyncTopWithRawResponse,
-    TopWithStreamingResponse,
-    AsyncTopWithStreamingResponse,
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["DNS", "AsyncDNS"]
+__all__ = ["DNSResource", "AsyncDNSResource"]
 
 
-class DNS(SyncAPIResource):
+class DNSResource(SyncAPIResource):
     @cached_property
-    def top(self) -> Top:
-        return Top(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> DNSWithRawResponse:
-        return DNSWithRawResponse(self)
+    def top(self) -> TopResource:
+        return TopResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> DNSWithStreamingResponse:
-        return DNSWithStreamingResponse(self)
-
-
-class AsyncDNS(AsyncAPIResource):
-    @cached_property
-    def top(self) -> AsyncTop:
-        return AsyncTop(self._client)
+    def with_raw_response(self) -> DNSResourceWithRawResponse:
+        return DNSResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDNSWithRawResponse:
-        return AsyncDNSWithRawResponse(self)
+    def with_streaming_response(self) -> DNSResourceWithStreamingResponse:
+        return DNSResourceWithStreamingResponse(self)
+
+
+class AsyncDNSResource(AsyncAPIResource):
+    @cached_property
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDNSWithStreamingResponse:
-        return AsyncDNSWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncDNSResourceWithRawResponse:
+        return AsyncDNSResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDNSResourceWithStreamingResponse:
+        return AsyncDNSResourceWithStreamingResponse(self)
 
 
-class DNSWithRawResponse:
-    def __init__(self, dns: DNS) -> None:
+class DNSResourceWithRawResponse:
+    def __init__(self, dns: DNSResource) -> None:
         self._dns = dns
 
     @cached_property
-    def top(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self._dns.top)
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._dns.top)
 
 
-class AsyncDNSWithRawResponse:
-    def __init__(self, dns: AsyncDNS) -> None:
+class AsyncDNSResourceWithRawResponse:
+    def __init__(self, dns: AsyncDNSResource) -> None:
         self._dns = dns
 
     @cached_property
-    def top(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self._dns.top)
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._dns.top)
 
 
-class DNSWithStreamingResponse:
-    def __init__(self, dns: DNS) -> None:
+class DNSResourceWithStreamingResponse:
+    def __init__(self, dns: DNSResource) -> None:
         self._dns = dns
 
     @cached_property
-    def top(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self._dns.top)
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._dns.top)
 
 
-class AsyncDNSWithStreamingResponse:
-    def __init__(self, dns: AsyncDNS) -> None:
+class AsyncDNSResourceWithStreamingResponse:
+    def __init__(self, dns: AsyncDNSResource) -> None:
         self._dns = dns
 
     @cached_property
-    def top(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self._dns.top)
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._dns.top)

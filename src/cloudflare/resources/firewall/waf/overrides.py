@@ -34,17 +34,17 @@ from ....types.firewall.waf import (
 from ....types.firewall.waf.override import Override
 from ....types.firewall.waf.override_delete_response import OverrideDeleteResponse
 
-__all__ = ["Overrides", "AsyncOverrides"]
+__all__ = ["OverridesResource", "AsyncOverridesResource"]
 
 
-class Overrides(SyncAPIResource):
+class OverridesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OverridesWithRawResponse:
-        return OverridesWithRawResponse(self)
+    def with_raw_response(self) -> OverridesResourceWithRawResponse:
+        return OverridesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OverridesWithStreamingResponse:
-        return OverridesWithStreamingResponse(self)
+    def with_streaming_response(self) -> OverridesResourceWithStreamingResponse:
+        return OverridesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -291,14 +291,14 @@ class Overrides(SyncAPIResource):
         )
 
 
-class AsyncOverrides(AsyncAPIResource):
+class AsyncOverridesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOverridesWithRawResponse:
-        return AsyncOverridesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOverridesResourceWithRawResponse:
+        return AsyncOverridesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOverridesWithStreamingResponse:
-        return AsyncOverridesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOverridesResourceWithStreamingResponse:
+        return AsyncOverridesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -545,8 +545,8 @@ class AsyncOverrides(AsyncAPIResource):
         )
 
 
-class OverridesWithRawResponse:
-    def __init__(self, overrides: Overrides) -> None:
+class OverridesResourceWithRawResponse:
+    def __init__(self, overrides: OverridesResource) -> None:
         self._overrides = overrides
 
         self.create = to_raw_response_wrapper(
@@ -566,8 +566,8 @@ class OverridesWithRawResponse:
         )
 
 
-class AsyncOverridesWithRawResponse:
-    def __init__(self, overrides: AsyncOverrides) -> None:
+class AsyncOverridesResourceWithRawResponse:
+    def __init__(self, overrides: AsyncOverridesResource) -> None:
         self._overrides = overrides
 
         self.create = async_to_raw_response_wrapper(
@@ -587,8 +587,8 @@ class AsyncOverridesWithRawResponse:
         )
 
 
-class OverridesWithStreamingResponse:
-    def __init__(self, overrides: Overrides) -> None:
+class OverridesResourceWithStreamingResponse:
+    def __init__(self, overrides: OverridesResource) -> None:
         self._overrides = overrides
 
         self.create = to_streamed_response_wrapper(
@@ -608,8 +608,8 @@ class OverridesWithStreamingResponse:
         )
 
 
-class AsyncOverridesWithStreamingResponse:
-    def __init__(self, overrides: AsyncOverrides) -> None:
+class AsyncOverridesResourceWithStreamingResponse:
+    def __init__(self, overrides: AsyncOverridesResource) -> None:
         self._overrides = overrides
 
         self.create = async_to_streamed_response_wrapper(

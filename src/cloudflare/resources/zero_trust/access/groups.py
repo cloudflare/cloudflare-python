@@ -30,17 +30,17 @@ from ....types.zero_trust.access_rule_param import AccessRuleParam
 from ....types.zero_trust.access.zero_trust_group import ZeroTrustGroup
 from ....types.zero_trust.access.group_delete_response import GroupDeleteResponse
 
-__all__ = ["Groups", "AsyncGroups"]
+__all__ = ["GroupsResource", "AsyncGroupsResource"]
 
 
-class Groups(SyncAPIResource):
+class GroupsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> GroupsWithRawResponse:
-        return GroupsWithRawResponse(self)
+    def with_raw_response(self) -> GroupsResourceWithRawResponse:
+        return GroupsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> GroupsWithStreamingResponse:
-        return GroupsWithStreamingResponse(self)
+    def with_streaming_response(self) -> GroupsResourceWithStreamingResponse:
+        return GroupsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -371,14 +371,14 @@ class Groups(SyncAPIResource):
         )
 
 
-class AsyncGroups(AsyncAPIResource):
+class AsyncGroupsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncGroupsWithRawResponse:
-        return AsyncGroupsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncGroupsResourceWithRawResponse:
+        return AsyncGroupsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncGroupsWithStreamingResponse:
-        return AsyncGroupsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncGroupsResourceWithStreamingResponse:
+        return AsyncGroupsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -709,8 +709,8 @@ class AsyncGroups(AsyncAPIResource):
         )
 
 
-class GroupsWithRawResponse:
-    def __init__(self, groups: Groups) -> None:
+class GroupsResourceWithRawResponse:
+    def __init__(self, groups: GroupsResource) -> None:
         self._groups = groups
 
         self.create = to_raw_response_wrapper(
@@ -730,8 +730,8 @@ class GroupsWithRawResponse:
         )
 
 
-class AsyncGroupsWithRawResponse:
-    def __init__(self, groups: AsyncGroups) -> None:
+class AsyncGroupsResourceWithRawResponse:
+    def __init__(self, groups: AsyncGroupsResource) -> None:
         self._groups = groups
 
         self.create = async_to_raw_response_wrapper(
@@ -751,8 +751,8 @@ class AsyncGroupsWithRawResponse:
         )
 
 
-class GroupsWithStreamingResponse:
-    def __init__(self, groups: Groups) -> None:
+class GroupsResourceWithStreamingResponse:
+    def __init__(self, groups: GroupsResource) -> None:
         self._groups = groups
 
         self.create = to_streamed_response_wrapper(
@@ -772,8 +772,8 @@ class GroupsWithStreamingResponse:
         )
 
 
-class AsyncGroupsWithStreamingResponse:
-    def __init__(self, groups: AsyncGroups) -> None:
+class AsyncGroupsResourceWithStreamingResponse:
+    def __init__(self, groups: AsyncGroupsResource) -> None:
         self._groups = groups
 
         self.create = async_to_streamed_response_wrapper(

@@ -27,17 +27,17 @@ from .....types.zero_trust.dlp.profiles import predefined_update_params
 from .....types.zero_trust.dlp.context_awareness_param import ContextAwarenessParam
 from .....types.zero_trust.dlp.profiles.predefined_profile import PredefinedProfile
 
-__all__ = ["Predefined", "AsyncPredefined"]
+__all__ = ["PredefinedResource", "AsyncPredefinedResource"]
 
 
-class Predefined(SyncAPIResource):
+class PredefinedResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PredefinedWithRawResponse:
-        return PredefinedWithRawResponse(self)
+    def with_raw_response(self) -> PredefinedResourceWithRawResponse:
+        return PredefinedResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PredefinedWithStreamingResponse:
-        return PredefinedWithStreamingResponse(self)
+    def with_streaming_response(self) -> PredefinedResourceWithStreamingResponse:
+        return PredefinedResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -147,14 +147,14 @@ class Predefined(SyncAPIResource):
         )
 
 
-class AsyncPredefined(AsyncAPIResource):
+class AsyncPredefinedResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPredefinedWithRawResponse:
-        return AsyncPredefinedWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPredefinedResourceWithRawResponse:
+        return AsyncPredefinedResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPredefinedWithStreamingResponse:
-        return AsyncPredefinedWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPredefinedResourceWithStreamingResponse:
+        return AsyncPredefinedResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -264,8 +264,8 @@ class AsyncPredefined(AsyncAPIResource):
         )
 
 
-class PredefinedWithRawResponse:
-    def __init__(self, predefined: Predefined) -> None:
+class PredefinedResourceWithRawResponse:
+    def __init__(self, predefined: PredefinedResource) -> None:
         self._predefined = predefined
 
         self.update = to_raw_response_wrapper(
@@ -276,8 +276,8 @@ class PredefinedWithRawResponse:
         )
 
 
-class AsyncPredefinedWithRawResponse:
-    def __init__(self, predefined: AsyncPredefined) -> None:
+class AsyncPredefinedResourceWithRawResponse:
+    def __init__(self, predefined: AsyncPredefinedResource) -> None:
         self._predefined = predefined
 
         self.update = async_to_raw_response_wrapper(
@@ -288,8 +288,8 @@ class AsyncPredefinedWithRawResponse:
         )
 
 
-class PredefinedWithStreamingResponse:
-    def __init__(self, predefined: Predefined) -> None:
+class PredefinedResourceWithStreamingResponse:
+    def __init__(self, predefined: PredefinedResource) -> None:
         self._predefined = predefined
 
         self.update = to_streamed_response_wrapper(
@@ -300,8 +300,8 @@ class PredefinedWithStreamingResponse:
         )
 
 
-class AsyncPredefinedWithStreamingResponse:
-    def __init__(self, predefined: AsyncPredefined) -> None:
+class AsyncPredefinedResourceWithStreamingResponse:
+    def __init__(self, predefined: AsyncPredefinedResource) -> None:
         self._predefined = predefined
 
         self.update = async_to_streamed_response_wrapper(

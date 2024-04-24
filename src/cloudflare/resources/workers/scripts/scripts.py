@@ -7,36 +7,36 @@ from typing import List, Type, Optional, cast, overload
 import httpx
 
 from .tail import (
-    Tail,
-    AsyncTail,
-    TailWithRawResponse,
-    AsyncTailWithRawResponse,
-    TailWithStreamingResponse,
-    AsyncTailWithStreamingResponse,
+    TailResource,
+    AsyncTailResource,
+    TailResourceWithRawResponse,
+    AsyncTailResourceWithRawResponse,
+    TailResourceWithStreamingResponse,
+    AsyncTailResourceWithStreamingResponse,
 )
 from .content import (
-    Content,
-    AsyncContent,
-    ContentWithRawResponse,
-    AsyncContentWithRawResponse,
-    ContentWithStreamingResponse,
-    AsyncContentWithStreamingResponse,
+    ContentResource,
+    AsyncContentResource,
+    ContentResourceWithRawResponse,
+    AsyncContentResourceWithRawResponse,
+    ContentResourceWithStreamingResponse,
+    AsyncContentResourceWithStreamingResponse,
 )
 from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
 from .versions import (
-    Versions,
-    AsyncVersions,
-    VersionsWithRawResponse,
-    AsyncVersionsWithRawResponse,
-    VersionsWithStreamingResponse,
-    AsyncVersionsWithStreamingResponse,
+    VersionsResource,
+    AsyncVersionsResource,
+    VersionsResourceWithRawResponse,
+    AsyncVersionsResourceWithRawResponse,
+    VersionsResourceWithStreamingResponse,
+    AsyncVersionsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
 from ...._utils import (
@@ -45,21 +45,21 @@ from ...._utils import (
     async_maybe_transform,
 )
 from .schedules import (
-    Schedules,
-    AsyncSchedules,
-    SchedulesWithRawResponse,
-    AsyncSchedulesWithRawResponse,
-    SchedulesWithStreamingResponse,
-    AsyncSchedulesWithStreamingResponse,
+    SchedulesResource,
+    AsyncSchedulesResource,
+    SchedulesResourceWithRawResponse,
+    AsyncSchedulesResourceWithRawResponse,
+    SchedulesResourceWithStreamingResponse,
+    AsyncSchedulesResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from .deployments import (
-    Deployments,
-    AsyncDeployments,
-    DeploymentsWithRawResponse,
-    AsyncDeploymentsWithRawResponse,
-    DeploymentsWithStreamingResponse,
-    AsyncDeploymentsWithStreamingResponse,
+    DeploymentsResource,
+    AsyncDeploymentsResource,
+    DeploymentsResourceWithRawResponse,
+    AsyncDeploymentsResourceWithRawResponse,
+    DeploymentsResourceWithStreamingResponse,
+    AsyncDeploymentsResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -85,41 +85,41 @@ from ...._base_client import (
 from ....types.workers import script_delete_params, script_update_params
 from ....types.workers.script import Script
 
-__all__ = ["Scripts", "AsyncScripts"]
+__all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
 
-class Scripts(SyncAPIResource):
+class ScriptsResource(SyncAPIResource):
     @cached_property
-    def schedules(self) -> Schedules:
-        return Schedules(self._client)
-
-    @cached_property
-    def tail(self) -> Tail:
-        return Tail(self._client)
+    def schedules(self) -> SchedulesResource:
+        return SchedulesResource(self._client)
 
     @cached_property
-    def content(self) -> Content:
-        return Content(self._client)
+    def tail(self) -> TailResource:
+        return TailResource(self._client)
 
     @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
+    def content(self) -> ContentResource:
+        return ContentResource(self._client)
 
     @cached_property
-    def deployments(self) -> Deployments:
-        return Deployments(self._client)
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
-    def versions(self) -> Versions:
-        return Versions(self._client)
+    def deployments(self) -> DeploymentsResource:
+        return DeploymentsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> ScriptsWithRawResponse:
-        return ScriptsWithRawResponse(self)
+    def versions(self) -> VersionsResource:
+        return VersionsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ScriptsWithStreamingResponse:
-        return ScriptsWithStreamingResponse(self)
+    def with_raw_response(self) -> ScriptsResourceWithRawResponse:
+        return ScriptsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ScriptsResourceWithStreamingResponse:
+        return ScriptsResourceWithStreamingResponse(self)
 
     @overload
     def update(
@@ -382,38 +382,38 @@ class Scripts(SyncAPIResource):
         )
 
 
-class AsyncScripts(AsyncAPIResource):
+class AsyncScriptsResource(AsyncAPIResource):
     @cached_property
-    def schedules(self) -> AsyncSchedules:
-        return AsyncSchedules(self._client)
+    def schedules(self) -> AsyncSchedulesResource:
+        return AsyncSchedulesResource(self._client)
 
     @cached_property
-    def tail(self) -> AsyncTail:
-        return AsyncTail(self._client)
+    def tail(self) -> AsyncTailResource:
+        return AsyncTailResource(self._client)
 
     @cached_property
-    def content(self) -> AsyncContent:
-        return AsyncContent(self._client)
+    def content(self) -> AsyncContentResource:
+        return AsyncContentResource(self._client)
 
     @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
-    def deployments(self) -> AsyncDeployments:
-        return AsyncDeployments(self._client)
+    def deployments(self) -> AsyncDeploymentsResource:
+        return AsyncDeploymentsResource(self._client)
 
     @cached_property
-    def versions(self) -> AsyncVersions:
-        return AsyncVersions(self._client)
+    def versions(self) -> AsyncVersionsResource:
+        return AsyncVersionsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncScriptsWithRawResponse:
-        return AsyncScriptsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncScriptsResourceWithRawResponse:
+        return AsyncScriptsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncScriptsWithStreamingResponse:
-        return AsyncScriptsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncScriptsResourceWithStreamingResponse:
+        return AsyncScriptsResourceWithStreamingResponse(self)
 
     @overload
     async def update(
@@ -678,8 +678,8 @@ class AsyncScripts(AsyncAPIResource):
         )
 
 
-class ScriptsWithRawResponse:
-    def __init__(self, scripts: Scripts) -> None:
+class ScriptsResourceWithRawResponse:
+    def __init__(self, scripts: ScriptsResource) -> None:
         self._scripts = scripts
 
         self.update = to_raw_response_wrapper(
@@ -697,32 +697,32 @@ class ScriptsWithRawResponse:
         )
 
     @cached_property
-    def schedules(self) -> SchedulesWithRawResponse:
-        return SchedulesWithRawResponse(self._scripts.schedules)
+    def schedules(self) -> SchedulesResourceWithRawResponse:
+        return SchedulesResourceWithRawResponse(self._scripts.schedules)
 
     @cached_property
-    def tail(self) -> TailWithRawResponse:
-        return TailWithRawResponse(self._scripts.tail)
+    def tail(self) -> TailResourceWithRawResponse:
+        return TailResourceWithRawResponse(self._scripts.tail)
 
     @cached_property
-    def content(self) -> ContentWithRawResponse:
-        return ContentWithRawResponse(self._scripts.content)
+    def content(self) -> ContentResourceWithRawResponse:
+        return ContentResourceWithRawResponse(self._scripts.content)
 
     @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._scripts.settings)
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._scripts.settings)
 
     @cached_property
-    def deployments(self) -> DeploymentsWithRawResponse:
-        return DeploymentsWithRawResponse(self._scripts.deployments)
+    def deployments(self) -> DeploymentsResourceWithRawResponse:
+        return DeploymentsResourceWithRawResponse(self._scripts.deployments)
 
     @cached_property
-    def versions(self) -> VersionsWithRawResponse:
-        return VersionsWithRawResponse(self._scripts.versions)
+    def versions(self) -> VersionsResourceWithRawResponse:
+        return VersionsResourceWithRawResponse(self._scripts.versions)
 
 
-class AsyncScriptsWithRawResponse:
-    def __init__(self, scripts: AsyncScripts) -> None:
+class AsyncScriptsResourceWithRawResponse:
+    def __init__(self, scripts: AsyncScriptsResource) -> None:
         self._scripts = scripts
 
         self.update = async_to_raw_response_wrapper(
@@ -740,32 +740,32 @@ class AsyncScriptsWithRawResponse:
         )
 
     @cached_property
-    def schedules(self) -> AsyncSchedulesWithRawResponse:
-        return AsyncSchedulesWithRawResponse(self._scripts.schedules)
+    def schedules(self) -> AsyncSchedulesResourceWithRawResponse:
+        return AsyncSchedulesResourceWithRawResponse(self._scripts.schedules)
 
     @cached_property
-    def tail(self) -> AsyncTailWithRawResponse:
-        return AsyncTailWithRawResponse(self._scripts.tail)
+    def tail(self) -> AsyncTailResourceWithRawResponse:
+        return AsyncTailResourceWithRawResponse(self._scripts.tail)
 
     @cached_property
-    def content(self) -> AsyncContentWithRawResponse:
-        return AsyncContentWithRawResponse(self._scripts.content)
+    def content(self) -> AsyncContentResourceWithRawResponse:
+        return AsyncContentResourceWithRawResponse(self._scripts.content)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._scripts.settings)
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._scripts.settings)
 
     @cached_property
-    def deployments(self) -> AsyncDeploymentsWithRawResponse:
-        return AsyncDeploymentsWithRawResponse(self._scripts.deployments)
+    def deployments(self) -> AsyncDeploymentsResourceWithRawResponse:
+        return AsyncDeploymentsResourceWithRawResponse(self._scripts.deployments)
 
     @cached_property
-    def versions(self) -> AsyncVersionsWithRawResponse:
-        return AsyncVersionsWithRawResponse(self._scripts.versions)
+    def versions(self) -> AsyncVersionsResourceWithRawResponse:
+        return AsyncVersionsResourceWithRawResponse(self._scripts.versions)
 
 
-class ScriptsWithStreamingResponse:
-    def __init__(self, scripts: Scripts) -> None:
+class ScriptsResourceWithStreamingResponse:
+    def __init__(self, scripts: ScriptsResource) -> None:
         self._scripts = scripts
 
         self.update = to_streamed_response_wrapper(
@@ -783,32 +783,32 @@ class ScriptsWithStreamingResponse:
         )
 
     @cached_property
-    def schedules(self) -> SchedulesWithStreamingResponse:
-        return SchedulesWithStreamingResponse(self._scripts.schedules)
+    def schedules(self) -> SchedulesResourceWithStreamingResponse:
+        return SchedulesResourceWithStreamingResponse(self._scripts.schedules)
 
     @cached_property
-    def tail(self) -> TailWithStreamingResponse:
-        return TailWithStreamingResponse(self._scripts.tail)
+    def tail(self) -> TailResourceWithStreamingResponse:
+        return TailResourceWithStreamingResponse(self._scripts.tail)
 
     @cached_property
-    def content(self) -> ContentWithStreamingResponse:
-        return ContentWithStreamingResponse(self._scripts.content)
+    def content(self) -> ContentResourceWithStreamingResponse:
+        return ContentResourceWithStreamingResponse(self._scripts.content)
 
     @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._scripts.settings)
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._scripts.settings)
 
     @cached_property
-    def deployments(self) -> DeploymentsWithStreamingResponse:
-        return DeploymentsWithStreamingResponse(self._scripts.deployments)
+    def deployments(self) -> DeploymentsResourceWithStreamingResponse:
+        return DeploymentsResourceWithStreamingResponse(self._scripts.deployments)
 
     @cached_property
-    def versions(self) -> VersionsWithStreamingResponse:
-        return VersionsWithStreamingResponse(self._scripts.versions)
+    def versions(self) -> VersionsResourceWithStreamingResponse:
+        return VersionsResourceWithStreamingResponse(self._scripts.versions)
 
 
-class AsyncScriptsWithStreamingResponse:
-    def __init__(self, scripts: AsyncScripts) -> None:
+class AsyncScriptsResourceWithStreamingResponse:
+    def __init__(self, scripts: AsyncScriptsResource) -> None:
         self._scripts = scripts
 
         self.update = async_to_streamed_response_wrapper(
@@ -826,25 +826,25 @@ class AsyncScriptsWithStreamingResponse:
         )
 
     @cached_property
-    def schedules(self) -> AsyncSchedulesWithStreamingResponse:
-        return AsyncSchedulesWithStreamingResponse(self._scripts.schedules)
+    def schedules(self) -> AsyncSchedulesResourceWithStreamingResponse:
+        return AsyncSchedulesResourceWithStreamingResponse(self._scripts.schedules)
 
     @cached_property
-    def tail(self) -> AsyncTailWithStreamingResponse:
-        return AsyncTailWithStreamingResponse(self._scripts.tail)
+    def tail(self) -> AsyncTailResourceWithStreamingResponse:
+        return AsyncTailResourceWithStreamingResponse(self._scripts.tail)
 
     @cached_property
-    def content(self) -> AsyncContentWithStreamingResponse:
-        return AsyncContentWithStreamingResponse(self._scripts.content)
+    def content(self) -> AsyncContentResourceWithStreamingResponse:
+        return AsyncContentResourceWithStreamingResponse(self._scripts.content)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._scripts.settings)
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._scripts.settings)
 
     @cached_property
-    def deployments(self) -> AsyncDeploymentsWithStreamingResponse:
-        return AsyncDeploymentsWithStreamingResponse(self._scripts.deployments)
+    def deployments(self) -> AsyncDeploymentsResourceWithStreamingResponse:
+        return AsyncDeploymentsResourceWithStreamingResponse(self._scripts.deployments)
 
     @cached_property
-    def versions(self) -> AsyncVersionsWithStreamingResponse:
-        return AsyncVersionsWithStreamingResponse(self._scripts.versions)
+    def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
+        return AsyncVersionsResourceWithStreamingResponse(self._scripts.versions)
