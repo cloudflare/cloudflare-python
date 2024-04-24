@@ -28,12 +28,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....types.dns import (
-    firewall_edit_params,
-    firewall_list_params,
-    firewall_create_params,
-    firewall_delete_params,
-)
+from ....types.dns import firewall_edit_params, firewall_list_params, firewall_create_params
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import (
     AsyncPaginator,
@@ -203,7 +198,6 @@ class FirewallResource(SyncAPIResource):
         dns_firewall_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -233,7 +227,6 @@ class FirewallResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return self._delete(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
-            body=maybe_transform(body, firewall_delete_params.FirewallDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -534,7 +527,6 @@ class AsyncFirewallResource(AsyncAPIResource):
         dns_firewall_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -564,7 +556,6 @@ class AsyncFirewallResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
-            body=await async_maybe_transform(body, firewall_delete_params.FirewallDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

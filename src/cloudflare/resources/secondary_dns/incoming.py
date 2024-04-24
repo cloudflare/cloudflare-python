@@ -23,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.secondary_dns import incoming_create_params, incoming_delete_params, incoming_update_params
+from ...types.secondary_dns import incoming_create_params, incoming_update_params
 from ...types.secondary_dns.incoming_get_response import IncomingGetResponse
 from ...types.secondary_dns.incoming_create_response import IncomingCreateResponse
 from ...types.secondary_dns.incoming_delete_response import IncomingDeleteResponse
@@ -155,7 +155,6 @@ class IncomingResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -179,7 +178,6 @@ class IncomingResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._delete(
             f"/zones/{zone_id}/secondary_dns/incoming",
-            body=maybe_transform(body, incoming_delete_params.IncomingDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -351,7 +349,6 @@ class AsyncIncomingResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -375,7 +372,6 @@ class AsyncIncomingResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/secondary_dns/incoming",
-            body=await async_maybe_transform(body, incoming_delete_params.IncomingDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

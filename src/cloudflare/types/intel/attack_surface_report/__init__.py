@@ -3,9 +3,6 @@
 from __future__ import annotations
 
 from .issue_type import IssueType as IssueType
-from .product_param import ProductParam as ProductParam
-from .subject_param import SubjectParam as SubjectParam
-from .issue_class_param import IssueClassParam as IssueClassParam
 from .issue_list_params import IssueListParams as IssueListParams
 from .issue_type_params import IssueTypeParams as IssueTypeParams
 from .issue_class_params import IssueClassParams as IssueClassParams

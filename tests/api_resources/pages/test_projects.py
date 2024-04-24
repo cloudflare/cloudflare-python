@@ -192,7 +192,6 @@ class TestProjects:
         project = client.pages.projects.delete(
             "this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(object, project, path=["response"])
 
@@ -202,7 +201,6 @@ class TestProjects:
         response = client.pages.projects.with_raw_response.delete(
             "this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -216,7 +214,6 @@ class TestProjects:
         with client.pages.projects.with_streaming_response.delete(
             "this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -233,14 +230,12 @@ class TestProjects:
             client.pages.projects.with_raw_response.delete(
                 "this-is-my-project-01",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -653,7 +648,6 @@ class TestAsyncProjects:
         project = await async_client.pages.projects.delete(
             "this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(object, project, path=["response"])
 
@@ -663,7 +657,6 @@ class TestAsyncProjects:
         response = await async_client.pages.projects.with_raw_response.delete(
             "this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -677,7 +670,6 @@ class TestAsyncProjects:
         async with async_client.pages.projects.with_streaming_response.delete(
             "this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -694,14 +686,12 @@ class TestAsyncProjects:
             await async_client.pages.projects.with_raw_response.delete(
                 "this-is-my-project-01",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

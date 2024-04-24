@@ -248,7 +248,6 @@ class TestScripts:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body={},
         )
         assert script is None
 
@@ -259,7 +258,6 @@ class TestScripts:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body={},
             force=True,
         )
         assert script is None
@@ -271,7 +269,6 @@ class TestScripts:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body={},
         )
 
         assert response.is_closed is True
@@ -286,7 +283,6 @@ class TestScripts:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -304,7 +300,6 @@ class TestScripts:
                 "this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -312,7 +307,6 @@ class TestScripts:
                 "this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -320,7 +314,6 @@ class TestScripts:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -621,7 +614,6 @@ class TestAsyncScripts:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body={},
         )
         assert script is None
 
@@ -632,7 +624,6 @@ class TestAsyncScripts:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body={},
             force=True,
         )
         assert script is None
@@ -644,7 +635,6 @@ class TestAsyncScripts:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body={},
         )
 
         assert response.is_closed is True
@@ -659,7 +649,6 @@ class TestAsyncScripts:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -677,7 +666,6 @@ class TestAsyncScripts:
                 "this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -685,7 +673,6 @@ class TestAsyncScripts:
                 "this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -693,7 +680,6 @@ class TestAsyncScripts:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                body={},
             )
 
     @pytest.mark.skip()

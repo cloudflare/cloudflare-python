@@ -24,7 +24,6 @@ class TestConnections:
         connection = client.zero_trust.tunnels.connections.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(ConnectionDeleteResponse, connection, path=["response"])
 
@@ -34,7 +33,6 @@ class TestConnections:
         response = client.zero_trust.tunnels.connections.with_raw_response.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -48,7 +46,6 @@ class TestConnections:
         with client.zero_trust.tunnels.connections.with_streaming_response.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -65,14 +62,12 @@ class TestConnections:
             client.zero_trust.tunnels.connections.with_raw_response.delete(
                 "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             client.zero_trust.tunnels.connections.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -137,7 +132,6 @@ class TestAsyncConnections:
         connection = await async_client.zero_trust.tunnels.connections.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(ConnectionDeleteResponse, connection, path=["response"])
 
@@ -147,7 +141,6 @@ class TestAsyncConnections:
         response = await async_client.zero_trust.tunnels.connections.with_raw_response.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -161,7 +154,6 @@ class TestAsyncConnections:
         async with async_client.zero_trust.tunnels.connections.with_streaming_response.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -178,14 +170,12 @@ class TestAsyncConnections:
             await async_client.zero_trust.tunnels.connections.with_raw_response.delete(
                 "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.zero_trust.tunnels.connections.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()

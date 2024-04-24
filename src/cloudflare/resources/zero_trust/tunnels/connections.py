@@ -7,10 +7,6 @@ from typing import Any, Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -23,7 +19,6 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zero_trust.tunnels import connection_delete_params
 from ....types.zero_trust.tunnels.connection_get_response import ConnectionGetResponse
 from ....types.zero_trust.tunnels.connection_delete_response import ConnectionDeleteResponse
 
@@ -44,7 +39,6 @@ class ConnectionsResource(SyncAPIResource):
         tunnel_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -78,7 +72,6 @@ class ConnectionsResource(SyncAPIResource):
             ConnectionDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/tunnels/{tunnel_id}/connections",
-                body=maybe_transform(body, connection_delete_params.ConnectionDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -151,7 +144,6 @@ class AsyncConnectionsResource(AsyncAPIResource):
         tunnel_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -185,7 +177,6 @@ class AsyncConnectionsResource(AsyncAPIResource):
             ConnectionDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/tunnels/{tunnel_id}/connections",
-                body=await async_maybe_transform(body, connection_delete_params.ConnectionDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

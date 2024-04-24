@@ -175,7 +175,6 @@ class TestACLs:
         acl = client.secondary_dns.acls.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         )
         assert_matches_type(Optional[ACLDeleteResponse], acl, path=["response"])
 
@@ -185,7 +184,6 @@ class TestACLs:
         response = client.secondary_dns.acls.with_raw_response.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         )
 
         assert response.is_closed is True
@@ -199,7 +197,6 @@ class TestACLs:
         with client.secondary_dns.acls.with_streaming_response.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -216,14 +213,12 @@ class TestACLs:
             client.secondary_dns.acls.with_raw_response.delete(
                 "23ff594956f20c2a721606e94745a8aa",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.secondary_dns.acls.with_raw_response.delete(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -438,7 +433,6 @@ class TestAsyncACLs:
         acl = await async_client.secondary_dns.acls.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         )
         assert_matches_type(Optional[ACLDeleteResponse], acl, path=["response"])
 
@@ -448,7 +442,6 @@ class TestAsyncACLs:
         response = await async_client.secondary_dns.acls.with_raw_response.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         )
 
         assert response.is_closed is True
@@ -462,7 +455,6 @@ class TestAsyncACLs:
         async with async_client.secondary_dns.acls.with_streaming_response.delete(
             "23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -479,14 +471,12 @@ class TestAsyncACLs:
             await async_client.secondary_dns.acls.with_raw_response.delete(
                 "23ff594956f20c2a721606e94745a8aa",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.secondary_dns.acls.with_raw_response.delete(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                body={},
             )
 
     @pytest.mark.skip()

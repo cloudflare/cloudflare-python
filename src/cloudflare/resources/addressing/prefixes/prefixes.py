@@ -42,7 +42,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.addressing import prefix_edit_params, prefix_create_params, prefix_delete_params
+from ....types.addressing import prefix_edit_params, prefix_create_params
 from ....types.addressing.prefix import Prefix
 from ....types.addressing.prefix_delete_response import PrefixDeleteResponse
 
@@ -163,7 +163,6 @@ class PrefixesResource(SyncAPIResource):
         prefix_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,7 +192,6 @@ class PrefixesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._delete(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
-            body=maybe_transform(body, prefix_delete_params.PrefixDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -411,7 +409,6 @@ class AsyncPrefixesResource(AsyncAPIResource):
         prefix_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -441,7 +438,6 @@ class AsyncPrefixesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
-            body=await async_maybe_transform(body, prefix_delete_params.PrefixDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

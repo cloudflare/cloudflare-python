@@ -85,7 +85,6 @@ class TestCustomNameservers:
         custom_nameserver = client.custom_nameservers.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
         )
         assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
 
@@ -95,7 +94,6 @@ class TestCustomNameservers:
         response = client.custom_nameservers.with_raw_response.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
         )
 
         assert response.is_closed is True
@@ -109,7 +107,6 @@ class TestCustomNameservers:
         with client.custom_nameservers.with_streaming_response.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -126,14 +123,12 @@ class TestCustomNameservers:
             client.custom_nameservers.with_raw_response.delete(
                 "ns1.example.com",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_ns_id` but received ''"):
             client.custom_nameservers.with_raw_response.delete(
                 "",
                 account_id="372e67954025e0ba6aaa6d586b9e0b59",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -332,7 +327,6 @@ class TestAsyncCustomNameservers:
         custom_nameserver = await async_client.custom_nameservers.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
         )
         assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
 
@@ -342,7 +336,6 @@ class TestAsyncCustomNameservers:
         response = await async_client.custom_nameservers.with_raw_response.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
         )
 
         assert response.is_closed is True
@@ -356,7 +349,6 @@ class TestAsyncCustomNameservers:
         async with async_client.custom_nameservers.with_streaming_response.delete(
             "ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -373,14 +365,12 @@ class TestAsyncCustomNameservers:
             await async_client.custom_nameservers.with_raw_response.delete(
                 "ns1.example.com",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_ns_id` but received ''"):
             await async_client.custom_nameservers.with_raw_response.delete(
                 "",
                 account_id="372e67954025e0ba6aaa6d586b9e0b59",
-                body={},
             )
 
     @pytest.mark.skip()

@@ -138,7 +138,6 @@ class TestKeylessCertificates:
         keyless_certificate = client.keyless_certificates.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(KeylessCertificateDeleteResponse, keyless_certificate, path=["response"])
 
@@ -148,7 +147,6 @@ class TestKeylessCertificates:
         response = client.keyless_certificates.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -162,7 +160,6 @@ class TestKeylessCertificates:
         with client.keyless_certificates.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -179,7 +176,6 @@ class TestKeylessCertificates:
             client.keyless_certificates.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                body={},
             )
 
         with pytest.raises(
@@ -188,7 +184,6 @@ class TestKeylessCertificates:
             client.keyless_certificates.with_raw_response.delete(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -439,7 +434,6 @@ class TestAsyncKeylessCertificates:
         keyless_certificate = await async_client.keyless_certificates.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(KeylessCertificateDeleteResponse, keyless_certificate, path=["response"])
 
@@ -449,7 +443,6 @@ class TestAsyncKeylessCertificates:
         response = await async_client.keyless_certificates.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -463,7 +456,6 @@ class TestAsyncKeylessCertificates:
         async with async_client.keyless_certificates.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -480,7 +472,6 @@ class TestAsyncKeylessCertificates:
             await async_client.keyless_certificates.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                body={},
             )
 
         with pytest.raises(
@@ -489,7 +480,6 @@ class TestAsyncKeylessCertificates:
             await async_client.keyless_certificates.with_raw_response.delete(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

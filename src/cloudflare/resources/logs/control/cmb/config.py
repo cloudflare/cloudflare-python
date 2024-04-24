@@ -23,7 +23,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.logs.control.cmb import config_create_params, config_delete_params
+from .....types.logs.control.cmb import config_create_params
 from .....types.logs.control.cmb.cmb_config import CmbConfig
 
 __all__ = ["ConfigResource", "AsyncConfigResource"]
@@ -85,7 +85,6 @@ class ConfigResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -111,7 +110,6 @@ class ConfigResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
             f"/accounts/{account_id}/logs/control/cmb/config",
-            body=maybe_transform(body, config_delete_params.ConfigDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -218,7 +216,6 @@ class AsyncConfigResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -244,7 +241,6 @@ class AsyncConfigResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/logs/control/cmb/config",
-            body=await async_maybe_transform(body, config_delete_params.ConfigDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

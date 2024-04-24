@@ -25,7 +25,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.access import bookmark_create_params, bookmark_delete_params, bookmark_update_params
+from ....types.zero_trust.access import bookmark_create_params, bookmark_update_params
 from ....types.zero_trust.access.bookmark import Bookmark
 from ....types.zero_trust.access.bookmark_delete_response import BookmarkDeleteResponse
 
@@ -168,7 +168,6 @@ class BookmarksResource(SyncAPIResource):
         uuid: str,
         *,
         identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -196,7 +195,6 @@ class BookmarksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._delete(
             f"/accounts/{identifier}/access/bookmarks/{uuid}",
-            body=maybe_transform(body, bookmark_delete_params.BookmarkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -386,7 +384,6 @@ class AsyncBookmarksResource(AsyncAPIResource):
         uuid: str,
         *,
         identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -414,7 +411,6 @@ class AsyncBookmarksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._delete(
             f"/accounts/{identifier}/access/bookmarks/{uuid}",
-            body=await async_maybe_transform(body, bookmark_delete_params.BookmarkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

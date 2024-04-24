@@ -21,11 +21,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.user import (
-    subscription_edit_params,
-    subscription_delete_params,
-    subscription_update_params,
-)
+from ...types.user import subscription_edit_params, subscription_update_params
 from ..._base_client import (
     make_request_options,
 )
@@ -120,7 +116,6 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -146,7 +141,6 @@ class SubscriptionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._delete(
             f"/user/subscriptions/{identifier}",
-            body=maybe_transform(body, subscription_delete_params.SubscriptionDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -324,7 +318,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -350,7 +343,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._delete(
             f"/user/subscriptions/{identifier}",
-            body=await async_maybe_transform(body, subscription_delete_params.SubscriptionDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

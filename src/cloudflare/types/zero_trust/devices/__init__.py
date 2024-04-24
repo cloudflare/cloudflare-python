@@ -31,14 +31,11 @@ from .domain_joined_input import DomainJoinedInput as DomainJoinedInput
 from .workspace_one_input import WorkspaceOneInput as WorkspaceOneInput
 from .firewall_input_param import FirewallInputParam as FirewallInputParam
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
-from .policy_delete_params import PolicyDeleteParams as PolicyDeleteParams
 from .revoke_create_params import RevokeCreateParams as RevokeCreateParams
 from .disk_encryption_input import DiskEncryptionInput as DiskEncryptionInput
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
-from .network_delete_params import NetworkDeleteParams as NetworkDeleteParams
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .posture_create_params import PostureCreateParams as PostureCreateParams
-from .posture_delete_params import PostureDeleteParams as PostureDeleteParams
 from .posture_update_params import PostureUpdateParams as PostureUpdateParams
 from .sentinelone_s2s_input import SentineloneS2sInput as SentineloneS2sInput
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams

@@ -257,7 +257,6 @@ class TestJobs:
     def test_method_delete(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.delete(
             1,
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -268,7 +267,6 @@ class TestJobs:
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         job = client.logpush.jobs.delete(
             1,
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -279,7 +277,6 @@ class TestJobs:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.logpush.jobs.with_raw_response.delete(
             1,
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -294,7 +291,6 @@ class TestJobs:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.logpush.jobs.with_streaming_response.delete(
             1,
-            body={},
             account_id="string",
             zone_id="string",
         ) as response:
@@ -312,7 +308,6 @@ class TestJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.jobs.with_raw_response.delete(
                 1,
-                body={},
                 account_id="",
                 zone_id="string",
             )
@@ -320,7 +315,6 @@ class TestJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.jobs.with_raw_response.delete(
                 1,
-                body={},
                 account_id="string",
                 zone_id="",
             )
@@ -635,7 +629,6 @@ class TestAsyncJobs:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.delete(
             1,
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -646,7 +639,6 @@ class TestAsyncJobs:
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.jobs.delete(
             1,
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -657,7 +649,6 @@ class TestAsyncJobs:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.jobs.with_raw_response.delete(
             1,
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -672,7 +663,6 @@ class TestAsyncJobs:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.jobs.with_streaming_response.delete(
             1,
-            body={},
             account_id="string",
             zone_id="string",
         ) as response:
@@ -690,7 +680,6 @@ class TestAsyncJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.delete(
                 1,
-                body={},
                 account_id="",
                 zone_id="string",
             )
@@ -698,7 +687,6 @@ class TestAsyncJobs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.jobs.with_raw_response.delete(
                 1,
-                body={},
                 account_id="string",
                 zone_id="",
             )

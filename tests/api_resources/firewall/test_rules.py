@@ -190,16 +190,6 @@ class TestRules:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
-        rule = client.firewall.rules.delete(
-            "372e67954025e0ba6aaa6d586b9e0b60",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            delete_filter_if_unused=True,
-        )
-        assert_matches_type(FirewallRule, rule, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.firewall.rules.with_raw_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b60",
@@ -530,16 +520,6 @@ class TestAsyncRules:
         rule = await async_client.firewall.rules.delete(
             "372e67954025e0ba6aaa6d586b9e0b60",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(FirewallRule, rule, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        rule = await async_client.firewall.rules.delete(
-            "372e67954025e0ba6aaa6d586b9e0b60",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            delete_filter_if_unused=True,
         )
         assert_matches_type(FirewallRule, rule, path=["response"])
 

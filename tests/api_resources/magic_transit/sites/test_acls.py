@@ -259,7 +259,6 @@ class TestACLs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -270,7 +269,6 @@ class TestACLs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -285,7 +283,6 @@ class TestACLs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -303,7 +300,6 @@ class TestACLs:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
@@ -311,7 +307,6 @@ class TestACLs:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_identifier` but received ''"):
@@ -319,7 +314,6 @@ class TestACLs:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -631,7 +625,6 @@ class TestAsyncACLs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -642,7 +635,6 @@ class TestAsyncACLs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -657,7 +649,6 @@ class TestAsyncACLs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -675,7 +666,6 @@ class TestAsyncACLs:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
@@ -683,7 +673,6 @@ class TestAsyncACLs:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_identifier` but received ''"):
@@ -691,7 +680,6 @@ class TestAsyncACLs:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

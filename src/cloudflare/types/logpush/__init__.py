@@ -6,7 +6,6 @@ from .logpush_job import LogpushJob as LogpushJob
 from .output_options import OutputOptions as OutputOptions
 from .edge_get_response import EdgeGetResponse as EdgeGetResponse
 from .job_create_params import JobCreateParams as JobCreateParams
-from .job_delete_params import JobDeleteParams as JobDeleteParams
 from .job_update_params import JobUpdateParams as JobUpdateParams
 from .edge_create_params import EdgeCreateParams as EdgeCreateParams
 from .instant_logpush_job import InstantLogpushJob as InstantLogpushJob

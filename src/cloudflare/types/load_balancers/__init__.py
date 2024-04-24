@@ -24,7 +24,6 @@ from .pool_list_params import PoolListParams as PoolListParams
 from .location_strategy import LocationStrategy as LocationStrategy
 from .search_get_params import SearchGetParams as SearchGetParams
 from .pool_create_params import PoolCreateParams as PoolCreateParams
-from .pool_delete_params import PoolDeleteParams as PoolDeleteParams
 from .pool_update_params import PoolUpdateParams as PoolUpdateParams
 from .region_list_params import RegionListParams as RegionListParams
 from .load_shedding_param import LoadSheddingParam as LoadSheddingParam
@@ -37,7 +36,6 @@ from .pool_delete_response import PoolDeleteResponse as PoolDeleteResponse
 from .preview_get_response import PreviewGetResponse as PreviewGetResponse
 from .region_list_response import RegionListResponse as RegionListResponse
 from .monitor_create_params import MonitorCreateParams as MonitorCreateParams
-from .monitor_delete_params import MonitorDeleteParams as MonitorDeleteParams
 from .monitor_update_params import MonitorUpdateParams as MonitorUpdateParams
 from .origin_steering_param import OriginSteeringParam as OriginSteeringParam
 from .random_steering_param import RandomSteeringParam as RandomSteeringParam
@@ -47,7 +45,6 @@ from .monitor_delete_response import MonitorDeleteResponse as MonitorDeleteRespo
 from .load_balancer_edit_params import LoadBalancerEditParams as LoadBalancerEditParams
 from .notification_filter_param import NotificationFilterParam as NotificationFilterParam
 from .load_balancer_create_params import LoadBalancerCreateParams as LoadBalancerCreateParams
-from .load_balancer_delete_params import LoadBalancerDeleteParams as LoadBalancerDeleteParams
 from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalancerUpdateParams
 from .session_affinity_attributes import SessionAffinityAttributes as SessionAffinityAttributes
 from .load_balancer_delete_response import LoadBalancerDeleteResponse as LoadBalancerDeleteResponse

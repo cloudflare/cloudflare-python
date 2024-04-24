@@ -101,7 +101,6 @@ class TestValues:
             "My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            body={},
         )
         assert_matches_type(ValueDeleteResponse, value, path=["response"])
 
@@ -112,7 +111,6 @@ class TestValues:
             "My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            body={},
         )
 
         assert response.is_closed is True
@@ -127,7 +125,6 @@ class TestValues:
             "My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,7 +142,6 @@ class TestValues:
                 "My-Key",
                 account_id="",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
@@ -153,7 +149,6 @@ class TestValues:
                 "My-Key",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
@@ -161,7 +156,6 @@ class TestValues:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -315,7 +309,6 @@ class TestAsyncValues:
             "My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            body={},
         )
         assert_matches_type(ValueDeleteResponse, value, path=["response"])
 
@@ -326,7 +319,6 @@ class TestAsyncValues:
             "My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            body={},
         )
 
         assert response.is_closed is True
@@ -341,7 +333,6 @@ class TestAsyncValues:
             "My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -359,7 +350,6 @@ class TestAsyncValues:
                 "My-Key",
                 account_id="",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
@@ -367,7 +357,6 @@ class TestAsyncValues:
                 "My-Key",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
@@ -375,7 +364,6 @@ class TestAsyncValues:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
-                body={},
             )
 
     @pytest.mark.skip()
