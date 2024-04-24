@@ -26,17 +26,17 @@ from ..._base_client import (
 from ...types.diagnostics import traceroute_create_params
 from ...types.diagnostics.traceroute_create_response import TracerouteCreateResponse
 
-__all__ = ["Traceroutes", "AsyncTraceroutes"]
+__all__ = ["TraceroutesResource", "AsyncTraceroutesResource"]
 
 
-class Traceroutes(SyncAPIResource):
+class TraceroutesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TraceroutesWithRawResponse:
-        return TraceroutesWithRawResponse(self)
+    def with_raw_response(self) -> TraceroutesResourceWithRawResponse:
+        return TraceroutesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TraceroutesWithStreamingResponse:
-        return TraceroutesWithStreamingResponse(self)
+    def with_streaming_response(self) -> TraceroutesResourceWithStreamingResponse:
+        return TraceroutesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -92,14 +92,14 @@ class Traceroutes(SyncAPIResource):
         )
 
 
-class AsyncTraceroutes(AsyncAPIResource):
+class AsyncTraceroutesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTraceroutesWithRawResponse:
-        return AsyncTraceroutesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTraceroutesResourceWithRawResponse:
+        return AsyncTraceroutesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTraceroutesWithStreamingResponse:
-        return AsyncTraceroutesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTraceroutesResourceWithStreamingResponse:
+        return AsyncTraceroutesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -155,8 +155,8 @@ class AsyncTraceroutes(AsyncAPIResource):
         )
 
 
-class TraceroutesWithRawResponse:
-    def __init__(self, traceroutes: Traceroutes) -> None:
+class TraceroutesResourceWithRawResponse:
+    def __init__(self, traceroutes: TraceroutesResource) -> None:
         self._traceroutes = traceroutes
 
         self.create = to_raw_response_wrapper(
@@ -164,8 +164,8 @@ class TraceroutesWithRawResponse:
         )
 
 
-class AsyncTraceroutesWithRawResponse:
-    def __init__(self, traceroutes: AsyncTraceroutes) -> None:
+class AsyncTraceroutesResourceWithRawResponse:
+    def __init__(self, traceroutes: AsyncTraceroutesResource) -> None:
         self._traceroutes = traceroutes
 
         self.create = async_to_raw_response_wrapper(
@@ -173,8 +173,8 @@ class AsyncTraceroutesWithRawResponse:
         )
 
 
-class TraceroutesWithStreamingResponse:
-    def __init__(self, traceroutes: Traceroutes) -> None:
+class TraceroutesResourceWithStreamingResponse:
+    def __init__(self, traceroutes: TraceroutesResource) -> None:
         self._traceroutes = traceroutes
 
         self.create = to_streamed_response_wrapper(
@@ -182,8 +182,8 @@ class TraceroutesWithStreamingResponse:
         )
 
 
-class AsyncTraceroutesWithStreamingResponse:
-    def __init__(self, traceroutes: AsyncTraceroutes) -> None:
+class AsyncTraceroutesResourceWithStreamingResponse:
+    def __init__(self, traceroutes: AsyncTraceroutesResource) -> None:
         self._traceroutes = traceroutes
 
         self.create = async_to_streamed_response_wrapper(

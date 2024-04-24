@@ -28,32 +28,32 @@ from ...._base_client import (
     make_request_options,
 )
 from .ipfs_universal_paths import (
-    IPFSUniversalPaths,
-    AsyncIPFSUniversalPaths,
-    IPFSUniversalPathsWithRawResponse,
-    AsyncIPFSUniversalPathsWithRawResponse,
-    IPFSUniversalPathsWithStreamingResponse,
-    AsyncIPFSUniversalPathsWithStreamingResponse,
+    IPFSUniversalPathsResource,
+    AsyncIPFSUniversalPathsResource,
+    IPFSUniversalPathsResourceWithRawResponse,
+    AsyncIPFSUniversalPathsResourceWithRawResponse,
+    IPFSUniversalPathsResourceWithStreamingResponse,
+    AsyncIPFSUniversalPathsResourceWithStreamingResponse,
 )
 from ....types.web3.hostname import Hostname
 from ....types.web3.hostname_delete_response import HostnameDeleteResponse
-from .ipfs_universal_paths.ipfs_universal_paths import IPFSUniversalPaths, AsyncIPFSUniversalPaths
+from .ipfs_universal_paths.ipfs_universal_paths import IPFSUniversalPathsResource, AsyncIPFSUniversalPathsResource
 
-__all__ = ["Hostnames", "AsyncHostnames"]
+__all__ = ["HostnamesResource", "AsyncHostnamesResource"]
 
 
-class Hostnames(SyncAPIResource):
+class HostnamesResource(SyncAPIResource):
     @cached_property
-    def ipfs_universal_paths(self) -> IPFSUniversalPaths:
-        return IPFSUniversalPaths(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> HostnamesWithRawResponse:
-        return HostnamesWithRawResponse(self)
+    def ipfs_universal_paths(self) -> IPFSUniversalPathsResource:
+        return IPFSUniversalPathsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> HostnamesWithStreamingResponse:
-        return HostnamesWithStreamingResponse(self)
+    def with_raw_response(self) -> HostnamesResourceWithRawResponse:
+        return HostnamesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> HostnamesResourceWithStreamingResponse:
+        return HostnamesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -295,18 +295,18 @@ class Hostnames(SyncAPIResource):
         )
 
 
-class AsyncHostnames(AsyncAPIResource):
+class AsyncHostnamesResource(AsyncAPIResource):
     @cached_property
-    def ipfs_universal_paths(self) -> AsyncIPFSUniversalPaths:
-        return AsyncIPFSUniversalPaths(self._client)
+    def ipfs_universal_paths(self) -> AsyncIPFSUniversalPathsResource:
+        return AsyncIPFSUniversalPathsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncHostnamesWithRawResponse:
-        return AsyncHostnamesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHostnamesResourceWithRawResponse:
+        return AsyncHostnamesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHostnamesWithStreamingResponse:
-        return AsyncHostnamesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHostnamesResourceWithStreamingResponse:
+        return AsyncHostnamesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -548,8 +548,8 @@ class AsyncHostnames(AsyncAPIResource):
         )
 
 
-class HostnamesWithRawResponse:
-    def __init__(self, hostnames: Hostnames) -> None:
+class HostnamesResourceWithRawResponse:
+    def __init__(self, hostnames: HostnamesResource) -> None:
         self._hostnames = hostnames
 
         self.create = to_raw_response_wrapper(
@@ -569,12 +569,12 @@ class HostnamesWithRawResponse:
         )
 
     @cached_property
-    def ipfs_universal_paths(self) -> IPFSUniversalPathsWithRawResponse:
-        return IPFSUniversalPathsWithRawResponse(self._hostnames.ipfs_universal_paths)
+    def ipfs_universal_paths(self) -> IPFSUniversalPathsResourceWithRawResponse:
+        return IPFSUniversalPathsResourceWithRawResponse(self._hostnames.ipfs_universal_paths)
 
 
-class AsyncHostnamesWithRawResponse:
-    def __init__(self, hostnames: AsyncHostnames) -> None:
+class AsyncHostnamesResourceWithRawResponse:
+    def __init__(self, hostnames: AsyncHostnamesResource) -> None:
         self._hostnames = hostnames
 
         self.create = async_to_raw_response_wrapper(
@@ -594,12 +594,12 @@ class AsyncHostnamesWithRawResponse:
         )
 
     @cached_property
-    def ipfs_universal_paths(self) -> AsyncIPFSUniversalPathsWithRawResponse:
-        return AsyncIPFSUniversalPathsWithRawResponse(self._hostnames.ipfs_universal_paths)
+    def ipfs_universal_paths(self) -> AsyncIPFSUniversalPathsResourceWithRawResponse:
+        return AsyncIPFSUniversalPathsResourceWithRawResponse(self._hostnames.ipfs_universal_paths)
 
 
-class HostnamesWithStreamingResponse:
-    def __init__(self, hostnames: Hostnames) -> None:
+class HostnamesResourceWithStreamingResponse:
+    def __init__(self, hostnames: HostnamesResource) -> None:
         self._hostnames = hostnames
 
         self.create = to_streamed_response_wrapper(
@@ -619,12 +619,12 @@ class HostnamesWithStreamingResponse:
         )
 
     @cached_property
-    def ipfs_universal_paths(self) -> IPFSUniversalPathsWithStreamingResponse:
-        return IPFSUniversalPathsWithStreamingResponse(self._hostnames.ipfs_universal_paths)
+    def ipfs_universal_paths(self) -> IPFSUniversalPathsResourceWithStreamingResponse:
+        return IPFSUniversalPathsResourceWithStreamingResponse(self._hostnames.ipfs_universal_paths)
 
 
-class AsyncHostnamesWithStreamingResponse:
-    def __init__(self, hostnames: AsyncHostnames) -> None:
+class AsyncHostnamesResourceWithStreamingResponse:
+    def __init__(self, hostnames: AsyncHostnamesResource) -> None:
         self._hostnames = hostnames
 
         self.create = async_to_streamed_response_wrapper(
@@ -644,5 +644,5 @@ class AsyncHostnamesWithStreamingResponse:
         )
 
     @cached_property
-    def ipfs_universal_paths(self) -> AsyncIPFSUniversalPathsWithStreamingResponse:
-        return AsyncIPFSUniversalPathsWithStreamingResponse(self._hostnames.ipfs_universal_paths)
+    def ipfs_universal_paths(self) -> AsyncIPFSUniversalPathsResourceWithStreamingResponse:
+        return AsyncIPFSUniversalPathsResourceWithStreamingResponse(self._hostnames.ipfs_universal_paths)

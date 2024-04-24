@@ -28,17 +28,17 @@ from ....._base_client import (
 from .....types.radar.http.ases import tls_version_get_params
 from .....types.radar.http.ases.tls_version_get_response import TLSVersionGetResponse
 
-__all__ = ["TLSVersion", "AsyncTLSVersion"]
+__all__ = ["TLSVersionResource", "AsyncTLSVersionResource"]
 
 
-class TLSVersion(SyncAPIResource):
+class TLSVersionResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TLSVersionWithRawResponse:
-        return TLSVersionWithRawResponse(self)
+    def with_raw_response(self) -> TLSVersionResourceWithRawResponse:
+        return TLSVersionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TLSVersionWithStreamingResponse:
-        return TLSVersionWithStreamingResponse(self)
+    def with_streaming_response(self) -> TLSVersionResourceWithStreamingResponse:
+        return TLSVersionResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -175,14 +175,14 @@ class TLSVersion(SyncAPIResource):
         )
 
 
-class AsyncTLSVersion(AsyncAPIResource):
+class AsyncTLSVersionResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTLSVersionWithRawResponse:
-        return AsyncTLSVersionWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTLSVersionResourceWithRawResponse:
+        return AsyncTLSVersionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTLSVersionWithStreamingResponse:
-        return AsyncTLSVersionWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTLSVersionResourceWithStreamingResponse:
+        return AsyncTLSVersionResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -319,8 +319,8 @@ class AsyncTLSVersion(AsyncAPIResource):
         )
 
 
-class TLSVersionWithRawResponse:
-    def __init__(self, tls_version: TLSVersion) -> None:
+class TLSVersionResourceWithRawResponse:
+    def __init__(self, tls_version: TLSVersionResource) -> None:
         self._tls_version = tls_version
 
         self.get = to_raw_response_wrapper(
@@ -328,8 +328,8 @@ class TLSVersionWithRawResponse:
         )
 
 
-class AsyncTLSVersionWithRawResponse:
-    def __init__(self, tls_version: AsyncTLSVersion) -> None:
+class AsyncTLSVersionResourceWithRawResponse:
+    def __init__(self, tls_version: AsyncTLSVersionResource) -> None:
         self._tls_version = tls_version
 
         self.get = async_to_raw_response_wrapper(
@@ -337,8 +337,8 @@ class AsyncTLSVersionWithRawResponse:
         )
 
 
-class TLSVersionWithStreamingResponse:
-    def __init__(self, tls_version: TLSVersion) -> None:
+class TLSVersionResourceWithStreamingResponse:
+    def __init__(self, tls_version: TLSVersionResource) -> None:
         self._tls_version = tls_version
 
         self.get = to_streamed_response_wrapper(
@@ -346,8 +346,8 @@ class TLSVersionWithStreamingResponse:
         )
 
 
-class AsyncTLSVersionWithStreamingResponse:
-    def __init__(self, tls_version: AsyncTLSVersion) -> None:
+class AsyncTLSVersionResourceWithStreamingResponse:
+    def __init__(self, tls_version: AsyncTLSVersionResource) -> None:
         self._tls_version = tls_version
 
         self.get = async_to_streamed_response_wrapper(

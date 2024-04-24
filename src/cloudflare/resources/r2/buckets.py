@@ -29,17 +29,17 @@ from ..._base_client import (
 )
 from ...types.r2.bucket import Bucket
 
-__all__ = ["Buckets", "AsyncBuckets"]
+__all__ = ["BucketsResource", "AsyncBucketsResource"]
 
 
-class Buckets(SyncAPIResource):
+class BucketsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BucketsWithRawResponse:
-        return BucketsWithRawResponse(self)
+    def with_raw_response(self) -> BucketsResourceWithRawResponse:
+        return BucketsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BucketsWithStreamingResponse:
-        return BucketsWithStreamingResponse(self)
+    def with_streaming_response(self) -> BucketsResourceWithStreamingResponse:
+        return BucketsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -252,14 +252,14 @@ class Buckets(SyncAPIResource):
         )
 
 
-class AsyncBuckets(AsyncAPIResource):
+class AsyncBucketsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBucketsWithRawResponse:
-        return AsyncBucketsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBucketsResourceWithRawResponse:
+        return AsyncBucketsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBucketsWithStreamingResponse:
-        return AsyncBucketsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBucketsResourceWithStreamingResponse:
+        return AsyncBucketsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -472,8 +472,8 @@ class AsyncBuckets(AsyncAPIResource):
         )
 
 
-class BucketsWithRawResponse:
-    def __init__(self, buckets: Buckets) -> None:
+class BucketsResourceWithRawResponse:
+    def __init__(self, buckets: BucketsResource) -> None:
         self._buckets = buckets
 
         self.create = to_raw_response_wrapper(
@@ -490,8 +490,8 @@ class BucketsWithRawResponse:
         )
 
 
-class AsyncBucketsWithRawResponse:
-    def __init__(self, buckets: AsyncBuckets) -> None:
+class AsyncBucketsResourceWithRawResponse:
+    def __init__(self, buckets: AsyncBucketsResource) -> None:
         self._buckets = buckets
 
         self.create = async_to_raw_response_wrapper(
@@ -508,8 +508,8 @@ class AsyncBucketsWithRawResponse:
         )
 
 
-class BucketsWithStreamingResponse:
-    def __init__(self, buckets: Buckets) -> None:
+class BucketsResourceWithStreamingResponse:
+    def __init__(self, buckets: BucketsResource) -> None:
         self._buckets = buckets
 
         self.create = to_streamed_response_wrapper(
@@ -526,8 +526,8 @@ class BucketsWithStreamingResponse:
         )
 
 
-class AsyncBucketsWithStreamingResponse:
-    def __init__(self, buckets: AsyncBuckets) -> None:
+class AsyncBucketsResourceWithStreamingResponse:
+    def __init__(self, buckets: AsyncBucketsResource) -> None:
         self._buckets = buckets
 
         self.create = async_to_streamed_response_wrapper(

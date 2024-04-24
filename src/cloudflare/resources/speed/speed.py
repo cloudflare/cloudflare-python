@@ -9,20 +9,20 @@ from typing_extensions import Literal
 import httpx
 
 from .pages import (
-    Pages,
-    AsyncPages,
-    PagesWithRawResponse,
-    AsyncPagesWithRawResponse,
-    PagesWithStreamingResponse,
-    AsyncPagesWithStreamingResponse,
+    PagesResource,
+    AsyncPagesResource,
+    PagesResourceWithRawResponse,
+    AsyncPagesResourceWithRawResponse,
+    PagesResourceWithStreamingResponse,
+    AsyncPagesResourceWithStreamingResponse,
 )
 from .tests import (
-    Tests,
-    AsyncTests,
-    TestsWithRawResponse,
-    AsyncTestsWithRawResponse,
-    TestsWithStreamingResponse,
-    AsyncTestsWithStreamingResponse,
+    TestsResource,
+    AsyncTestsResource,
+    TestsResourceWithRawResponse,
+    AsyncTestsResourceWithRawResponse,
+    TestsResourceWithStreamingResponse,
+    AsyncTestsResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -51,44 +51,44 @@ from ..._base_client import (
     make_request_options,
 )
 from .availabilities import (
-    Availabilities,
-    AsyncAvailabilities,
-    AvailabilitiesWithRawResponse,
-    AsyncAvailabilitiesWithRawResponse,
-    AvailabilitiesWithStreamingResponse,
-    AsyncAvailabilitiesWithStreamingResponse,
+    AvailabilitiesResource,
+    AsyncAvailabilitiesResource,
+    AvailabilitiesResourceWithRawResponse,
+    AsyncAvailabilitiesResourceWithRawResponse,
+    AvailabilitiesResourceWithStreamingResponse,
+    AsyncAvailabilitiesResourceWithStreamingResponse,
 )
 from ...types.speed.trend import Trend
 from ...types.speed.schedule import Schedule
 from ...types.speed.speed_delete_response import SpeedDeleteResponse
 
-__all__ = ["Speed", "AsyncSpeed"]
+__all__ = ["SpeedResource", "AsyncSpeedResource"]
 
 
-class Speed(SyncAPIResource):
+class SpeedResource(SyncAPIResource):
     @cached_property
-    def tests(self) -> Tests:
-        return Tests(self._client)
+    def tests(self) -> TestsResource:
+        return TestsResource(self._client)
 
     @cached_property
     def schedule(self) -> ScheduleResource:
         return ScheduleResource(self._client)
 
     @cached_property
-    def availabilities(self) -> Availabilities:
-        return Availabilities(self._client)
+    def availabilities(self) -> AvailabilitiesResource:
+        return AvailabilitiesResource(self._client)
 
     @cached_property
-    def pages(self) -> Pages:
-        return Pages(self._client)
+    def pages(self) -> PagesResource:
+        return PagesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> SpeedWithRawResponse:
-        return SpeedWithRawResponse(self)
+    def with_raw_response(self) -> SpeedResourceWithRawResponse:
+        return SpeedResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SpeedWithStreamingResponse:
-        return SpeedWithStreamingResponse(self)
+    def with_streaming_response(self) -> SpeedResourceWithStreamingResponse:
+        return SpeedResourceWithStreamingResponse(self)
 
     def delete(
         self,
@@ -324,30 +324,30 @@ class Speed(SyncAPIResource):
         )
 
 
-class AsyncSpeed(AsyncAPIResource):
+class AsyncSpeedResource(AsyncAPIResource):
     @cached_property
-    def tests(self) -> AsyncTests:
-        return AsyncTests(self._client)
+    def tests(self) -> AsyncTestsResource:
+        return AsyncTestsResource(self._client)
 
     @cached_property
     def schedule(self) -> AsyncScheduleResource:
         return AsyncScheduleResource(self._client)
 
     @cached_property
-    def availabilities(self) -> AsyncAvailabilities:
-        return AsyncAvailabilities(self._client)
+    def availabilities(self) -> AsyncAvailabilitiesResource:
+        return AsyncAvailabilitiesResource(self._client)
 
     @cached_property
-    def pages(self) -> AsyncPages:
-        return AsyncPages(self._client)
+    def pages(self) -> AsyncPagesResource:
+        return AsyncPagesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncSpeedWithRawResponse:
-        return AsyncSpeedWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSpeedResourceWithRawResponse:
+        return AsyncSpeedResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSpeedWithStreamingResponse:
-        return AsyncSpeedWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSpeedResourceWithStreamingResponse:
+        return AsyncSpeedResourceWithStreamingResponse(self)
 
     async def delete(
         self,
@@ -583,8 +583,8 @@ class AsyncSpeed(AsyncAPIResource):
         )
 
 
-class SpeedWithRawResponse:
-    def __init__(self, speed: Speed) -> None:
+class SpeedResourceWithRawResponse:
+    def __init__(self, speed: SpeedResource) -> None:
         self._speed = speed
 
         self.delete = to_raw_response_wrapper(
@@ -598,24 +598,24 @@ class SpeedWithRawResponse:
         )
 
     @cached_property
-    def tests(self) -> TestsWithRawResponse:
-        return TestsWithRawResponse(self._speed.tests)
+    def tests(self) -> TestsResourceWithRawResponse:
+        return TestsResourceWithRawResponse(self._speed.tests)
 
     @cached_property
     def schedule(self) -> ScheduleResourceWithRawResponse:
         return ScheduleResourceWithRawResponse(self._speed.schedule)
 
     @cached_property
-    def availabilities(self) -> AvailabilitiesWithRawResponse:
-        return AvailabilitiesWithRawResponse(self._speed.availabilities)
+    def availabilities(self) -> AvailabilitiesResourceWithRawResponse:
+        return AvailabilitiesResourceWithRawResponse(self._speed.availabilities)
 
     @cached_property
-    def pages(self) -> PagesWithRawResponse:
-        return PagesWithRawResponse(self._speed.pages)
+    def pages(self) -> PagesResourceWithRawResponse:
+        return PagesResourceWithRawResponse(self._speed.pages)
 
 
-class AsyncSpeedWithRawResponse:
-    def __init__(self, speed: AsyncSpeed) -> None:
+class AsyncSpeedResourceWithRawResponse:
+    def __init__(self, speed: AsyncSpeedResource) -> None:
         self._speed = speed
 
         self.delete = async_to_raw_response_wrapper(
@@ -629,24 +629,24 @@ class AsyncSpeedWithRawResponse:
         )
 
     @cached_property
-    def tests(self) -> AsyncTestsWithRawResponse:
-        return AsyncTestsWithRawResponse(self._speed.tests)
+    def tests(self) -> AsyncTestsResourceWithRawResponse:
+        return AsyncTestsResourceWithRawResponse(self._speed.tests)
 
     @cached_property
     def schedule(self) -> AsyncScheduleResourceWithRawResponse:
         return AsyncScheduleResourceWithRawResponse(self._speed.schedule)
 
     @cached_property
-    def availabilities(self) -> AsyncAvailabilitiesWithRawResponse:
-        return AsyncAvailabilitiesWithRawResponse(self._speed.availabilities)
+    def availabilities(self) -> AsyncAvailabilitiesResourceWithRawResponse:
+        return AsyncAvailabilitiesResourceWithRawResponse(self._speed.availabilities)
 
     @cached_property
-    def pages(self) -> AsyncPagesWithRawResponse:
-        return AsyncPagesWithRawResponse(self._speed.pages)
+    def pages(self) -> AsyncPagesResourceWithRawResponse:
+        return AsyncPagesResourceWithRawResponse(self._speed.pages)
 
 
-class SpeedWithStreamingResponse:
-    def __init__(self, speed: Speed) -> None:
+class SpeedResourceWithStreamingResponse:
+    def __init__(self, speed: SpeedResource) -> None:
         self._speed = speed
 
         self.delete = to_streamed_response_wrapper(
@@ -660,24 +660,24 @@ class SpeedWithStreamingResponse:
         )
 
     @cached_property
-    def tests(self) -> TestsWithStreamingResponse:
-        return TestsWithStreamingResponse(self._speed.tests)
+    def tests(self) -> TestsResourceWithStreamingResponse:
+        return TestsResourceWithStreamingResponse(self._speed.tests)
 
     @cached_property
     def schedule(self) -> ScheduleResourceWithStreamingResponse:
         return ScheduleResourceWithStreamingResponse(self._speed.schedule)
 
     @cached_property
-    def availabilities(self) -> AvailabilitiesWithStreamingResponse:
-        return AvailabilitiesWithStreamingResponse(self._speed.availabilities)
+    def availabilities(self) -> AvailabilitiesResourceWithStreamingResponse:
+        return AvailabilitiesResourceWithStreamingResponse(self._speed.availabilities)
 
     @cached_property
-    def pages(self) -> PagesWithStreamingResponse:
-        return PagesWithStreamingResponse(self._speed.pages)
+    def pages(self) -> PagesResourceWithStreamingResponse:
+        return PagesResourceWithStreamingResponse(self._speed.pages)
 
 
-class AsyncSpeedWithStreamingResponse:
-    def __init__(self, speed: AsyncSpeed) -> None:
+class AsyncSpeedResourceWithStreamingResponse:
+    def __init__(self, speed: AsyncSpeedResource) -> None:
         self._speed = speed
 
         self.delete = async_to_streamed_response_wrapper(
@@ -691,17 +691,17 @@ class AsyncSpeedWithStreamingResponse:
         )
 
     @cached_property
-    def tests(self) -> AsyncTestsWithStreamingResponse:
-        return AsyncTestsWithStreamingResponse(self._speed.tests)
+    def tests(self) -> AsyncTestsResourceWithStreamingResponse:
+        return AsyncTestsResourceWithStreamingResponse(self._speed.tests)
 
     @cached_property
     def schedule(self) -> AsyncScheduleResourceWithStreamingResponse:
         return AsyncScheduleResourceWithStreamingResponse(self._speed.schedule)
 
     @cached_property
-    def availabilities(self) -> AsyncAvailabilitiesWithStreamingResponse:
-        return AsyncAvailabilitiesWithStreamingResponse(self._speed.availabilities)
+    def availabilities(self) -> AsyncAvailabilitiesResourceWithStreamingResponse:
+        return AsyncAvailabilitiesResourceWithStreamingResponse(self._speed.availabilities)
 
     @cached_property
-    def pages(self) -> AsyncPagesWithStreamingResponse:
-        return AsyncPagesWithStreamingResponse(self._speed.pages)
+    def pages(self) -> AsyncPagesResourceWithStreamingResponse:
+        return AsyncPagesResourceWithStreamingResponse(self._speed.pages)

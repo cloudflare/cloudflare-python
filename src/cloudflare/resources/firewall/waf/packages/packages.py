@@ -8,20 +8,20 @@ from typing_extensions import Literal
 import httpx
 
 from .rules import (
-    Rules,
-    AsyncRules,
-    RulesWithRawResponse,
-    AsyncRulesWithRawResponse,
-    RulesWithStreamingResponse,
-    AsyncRulesWithStreamingResponse,
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
 from .groups import (
-    Groups,
-    AsyncGroups,
-    GroupsWithRawResponse,
-    AsyncGroupsWithRawResponse,
-    GroupsWithStreamingResponse,
-    AsyncGroupsWithStreamingResponse,
+    GroupsResource,
+    AsyncGroupsResource,
+    GroupsResourceWithRawResponse,
+    AsyncGroupsResourceWithRawResponse,
+    GroupsResourceWithStreamingResponse,
+    AsyncGroupsResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import maybe_transform
@@ -42,25 +42,25 @@ from .....types.firewall.waf import package_list_params
 from .....types.firewall.waf.package_get_response import PackageGetResponse
 from .....types.firewall.waf.package_list_response import PackageListResponse
 
-__all__ = ["Packages", "AsyncPackages"]
+__all__ = ["PackagesResource", "AsyncPackagesResource"]
 
 
-class Packages(SyncAPIResource):
+class PackagesResource(SyncAPIResource):
     @cached_property
-    def groups(self) -> Groups:
-        return Groups(self._client)
-
-    @cached_property
-    def rules(self) -> Rules:
-        return Rules(self._client)
+    def groups(self) -> GroupsResource:
+        return GroupsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> PackagesWithRawResponse:
-        return PackagesWithRawResponse(self)
+    def rules(self) -> RulesResource:
+        return RulesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> PackagesWithStreamingResponse:
-        return PackagesWithStreamingResponse(self)
+    def with_raw_response(self) -> PackagesResourceWithRawResponse:
+        return PackagesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PackagesResourceWithStreamingResponse:
+        return PackagesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -183,22 +183,22 @@ class Packages(SyncAPIResource):
         )
 
 
-class AsyncPackages(AsyncAPIResource):
+class AsyncPackagesResource(AsyncAPIResource):
     @cached_property
-    def groups(self) -> AsyncGroups:
-        return AsyncGroups(self._client)
+    def groups(self) -> AsyncGroupsResource:
+        return AsyncGroupsResource(self._client)
 
     @cached_property
-    def rules(self) -> AsyncRules:
-        return AsyncRules(self._client)
+    def rules(self) -> AsyncRulesResource:
+        return AsyncRulesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPackagesWithRawResponse:
-        return AsyncPackagesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPackagesResourceWithRawResponse:
+        return AsyncPackagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPackagesWithStreamingResponse:
-        return AsyncPackagesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPackagesResourceWithStreamingResponse:
+        return AsyncPackagesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -321,8 +321,8 @@ class AsyncPackages(AsyncAPIResource):
         )
 
 
-class PackagesWithRawResponse:
-    def __init__(self, packages: Packages) -> None:
+class PackagesResourceWithRawResponse:
+    def __init__(self, packages: PackagesResource) -> None:
         self._packages = packages
 
         self.list = to_raw_response_wrapper(
@@ -333,16 +333,16 @@ class PackagesWithRawResponse:
         )
 
     @cached_property
-    def groups(self) -> GroupsWithRawResponse:
-        return GroupsWithRawResponse(self._packages.groups)
+    def groups(self) -> GroupsResourceWithRawResponse:
+        return GroupsResourceWithRawResponse(self._packages.groups)
 
     @cached_property
-    def rules(self) -> RulesWithRawResponse:
-        return RulesWithRawResponse(self._packages.rules)
+    def rules(self) -> RulesResourceWithRawResponse:
+        return RulesResourceWithRawResponse(self._packages.rules)
 
 
-class AsyncPackagesWithRawResponse:
-    def __init__(self, packages: AsyncPackages) -> None:
+class AsyncPackagesResourceWithRawResponse:
+    def __init__(self, packages: AsyncPackagesResource) -> None:
         self._packages = packages
 
         self.list = async_to_raw_response_wrapper(
@@ -353,16 +353,16 @@ class AsyncPackagesWithRawResponse:
         )
 
     @cached_property
-    def groups(self) -> AsyncGroupsWithRawResponse:
-        return AsyncGroupsWithRawResponse(self._packages.groups)
+    def groups(self) -> AsyncGroupsResourceWithRawResponse:
+        return AsyncGroupsResourceWithRawResponse(self._packages.groups)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithRawResponse:
-        return AsyncRulesWithRawResponse(self._packages.rules)
+    def rules(self) -> AsyncRulesResourceWithRawResponse:
+        return AsyncRulesResourceWithRawResponse(self._packages.rules)
 
 
-class PackagesWithStreamingResponse:
-    def __init__(self, packages: Packages) -> None:
+class PackagesResourceWithStreamingResponse:
+    def __init__(self, packages: PackagesResource) -> None:
         self._packages = packages
 
         self.list = to_streamed_response_wrapper(
@@ -373,16 +373,16 @@ class PackagesWithStreamingResponse:
         )
 
     @cached_property
-    def groups(self) -> GroupsWithStreamingResponse:
-        return GroupsWithStreamingResponse(self._packages.groups)
+    def groups(self) -> GroupsResourceWithStreamingResponse:
+        return GroupsResourceWithStreamingResponse(self._packages.groups)
 
     @cached_property
-    def rules(self) -> RulesWithStreamingResponse:
-        return RulesWithStreamingResponse(self._packages.rules)
+    def rules(self) -> RulesResourceWithStreamingResponse:
+        return RulesResourceWithStreamingResponse(self._packages.rules)
 
 
-class AsyncPackagesWithStreamingResponse:
-    def __init__(self, packages: AsyncPackages) -> None:
+class AsyncPackagesResourceWithStreamingResponse:
+    def __init__(self, packages: AsyncPackagesResource) -> None:
         self._packages = packages
 
         self.list = async_to_streamed_response_wrapper(
@@ -393,9 +393,9 @@ class AsyncPackagesWithStreamingResponse:
         )
 
     @cached_property
-    def groups(self) -> AsyncGroupsWithStreamingResponse:
-        return AsyncGroupsWithStreamingResponse(self._packages.groups)
+    def groups(self) -> AsyncGroupsResourceWithStreamingResponse:
+        return AsyncGroupsResourceWithStreamingResponse(self._packages.groups)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithStreamingResponse:
-        return AsyncRulesWithStreamingResponse(self._packages.rules)
+    def rules(self) -> AsyncRulesResourceWithStreamingResponse:
+        return AsyncRulesResourceWithStreamingResponse(self._packages.rules)

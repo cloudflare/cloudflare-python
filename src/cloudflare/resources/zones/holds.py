@@ -26,17 +26,17 @@ from ..._base_client import (
 )
 from ...types.zones.zone_hold import ZoneHold
 
-__all__ = ["Holds", "AsyncHolds"]
+__all__ = ["HoldsResource", "AsyncHoldsResource"]
 
 
-class Holds(SyncAPIResource):
+class HoldsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HoldsWithRawResponse:
-        return HoldsWithRawResponse(self)
+    def with_raw_response(self) -> HoldsResourceWithRawResponse:
+        return HoldsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HoldsWithStreamingResponse:
-        return HoldsWithStreamingResponse(self)
+    def with_streaming_response(self) -> HoldsResourceWithStreamingResponse:
+        return HoldsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -172,14 +172,14 @@ class Holds(SyncAPIResource):
         )
 
 
-class AsyncHolds(AsyncAPIResource):
+class AsyncHoldsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHoldsWithRawResponse:
-        return AsyncHoldsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHoldsResourceWithRawResponse:
+        return AsyncHoldsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHoldsWithStreamingResponse:
-        return AsyncHoldsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHoldsResourceWithStreamingResponse:
+        return AsyncHoldsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -317,8 +317,8 @@ class AsyncHolds(AsyncAPIResource):
         )
 
 
-class HoldsWithRawResponse:
-    def __init__(self, holds: Holds) -> None:
+class HoldsResourceWithRawResponse:
+    def __init__(self, holds: HoldsResource) -> None:
         self._holds = holds
 
         self.create = to_raw_response_wrapper(
@@ -332,8 +332,8 @@ class HoldsWithRawResponse:
         )
 
 
-class AsyncHoldsWithRawResponse:
-    def __init__(self, holds: AsyncHolds) -> None:
+class AsyncHoldsResourceWithRawResponse:
+    def __init__(self, holds: AsyncHoldsResource) -> None:
         self._holds = holds
 
         self.create = async_to_raw_response_wrapper(
@@ -347,8 +347,8 @@ class AsyncHoldsWithRawResponse:
         )
 
 
-class HoldsWithStreamingResponse:
-    def __init__(self, holds: Holds) -> None:
+class HoldsResourceWithStreamingResponse:
+    def __init__(self, holds: HoldsResource) -> None:
         self._holds = holds
 
         self.create = to_streamed_response_wrapper(
@@ -362,8 +362,8 @@ class HoldsWithStreamingResponse:
         )
 
 
-class AsyncHoldsWithStreamingResponse:
-    def __init__(self, holds: AsyncHolds) -> None:
+class AsyncHoldsResourceWithStreamingResponse:
+    def __init__(self, holds: AsyncHoldsResource) -> None:
         self._holds = holds
 
         self.create = async_to_streamed_response_wrapper(

@@ -31,17 +31,17 @@ from .....types.zero_trust.devices.policies.fallback_domain_param import Fallbac
 from .....types.zero_trust.devices.policies.fallback_domain_get_response import FallbackDomainGetResponse
 from .....types.zero_trust.devices.policies.fallback_domain_update_response import FallbackDomainUpdateResponse
 
-__all__ = ["FallbackDomains", "AsyncFallbackDomains"]
+__all__ = ["FallbackDomainsResource", "AsyncFallbackDomainsResource"]
 
 
-class FallbackDomains(SyncAPIResource):
+class FallbackDomainsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> FallbackDomainsWithRawResponse:
-        return FallbackDomainsWithRawResponse(self)
+    def with_raw_response(self) -> FallbackDomainsResourceWithRawResponse:
+        return FallbackDomainsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FallbackDomainsWithStreamingResponse:
-        return FallbackDomainsWithStreamingResponse(self)
+    def with_streaming_response(self) -> FallbackDomainsResourceWithStreamingResponse:
+        return FallbackDomainsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -171,14 +171,14 @@ class FallbackDomains(SyncAPIResource):
         )
 
 
-class AsyncFallbackDomains(AsyncAPIResource):
+class AsyncFallbackDomainsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncFallbackDomainsWithRawResponse:
-        return AsyncFallbackDomainsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFallbackDomainsResourceWithRawResponse:
+        return AsyncFallbackDomainsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFallbackDomainsWithStreamingResponse:
-        return AsyncFallbackDomainsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFallbackDomainsResourceWithStreamingResponse:
+        return AsyncFallbackDomainsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -308,8 +308,8 @@ class AsyncFallbackDomains(AsyncAPIResource):
         )
 
 
-class FallbackDomainsWithRawResponse:
-    def __init__(self, fallback_domains: FallbackDomains) -> None:
+class FallbackDomainsResourceWithRawResponse:
+    def __init__(self, fallback_domains: FallbackDomainsResource) -> None:
         self._fallback_domains = fallback_domains
 
         self.update = to_raw_response_wrapper(
@@ -323,8 +323,8 @@ class FallbackDomainsWithRawResponse:
         )
 
 
-class AsyncFallbackDomainsWithRawResponse:
-    def __init__(self, fallback_domains: AsyncFallbackDomains) -> None:
+class AsyncFallbackDomainsResourceWithRawResponse:
+    def __init__(self, fallback_domains: AsyncFallbackDomainsResource) -> None:
         self._fallback_domains = fallback_domains
 
         self.update = async_to_raw_response_wrapper(
@@ -338,8 +338,8 @@ class AsyncFallbackDomainsWithRawResponse:
         )
 
 
-class FallbackDomainsWithStreamingResponse:
-    def __init__(self, fallback_domains: FallbackDomains) -> None:
+class FallbackDomainsResourceWithStreamingResponse:
+    def __init__(self, fallback_domains: FallbackDomainsResource) -> None:
         self._fallback_domains = fallback_domains
 
         self.update = to_streamed_response_wrapper(
@@ -353,8 +353,8 @@ class FallbackDomainsWithStreamingResponse:
         )
 
 
-class AsyncFallbackDomainsWithStreamingResponse:
-    def __init__(self, fallback_domains: AsyncFallbackDomains) -> None:
+class AsyncFallbackDomainsResourceWithStreamingResponse:
+    def __init__(self, fallback_domains: AsyncFallbackDomainsResource) -> None:
         self._fallback_domains = fallback_domains
 
         self.update = async_to_streamed_response_wrapper(

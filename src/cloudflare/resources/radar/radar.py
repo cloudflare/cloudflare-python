@@ -3,571 +3,571 @@
 from __future__ import annotations
 
 from .bgp import (
-    BGP,
-    AsyncBGP,
-    BGPWithRawResponse,
-    AsyncBGPWithRawResponse,
-    BGPWithStreamingResponse,
-    AsyncBGPWithStreamingResponse,
+    BGPResource,
+    AsyncBGPResource,
+    BGPResourceWithRawResponse,
+    AsyncBGPResourceWithRawResponse,
+    BGPResourceWithStreamingResponse,
+    AsyncBGPResourceWithStreamingResponse,
 )
 from .dns import (
-    DNS,
-    AsyncDNS,
-    DNSWithRawResponse,
-    AsyncDNSWithRawResponse,
-    DNSWithStreamingResponse,
-    AsyncDNSWithStreamingResponse,
+    DNSResource,
+    AsyncDNSResource,
+    DNSResourceWithRawResponse,
+    AsyncDNSResourceWithRawResponse,
+    DNSResourceWithStreamingResponse,
+    AsyncDNSResourceWithStreamingResponse,
 )
 from .http import (
-    HTTP,
-    AsyncHTTP,
-    HTTPWithRawResponse,
-    AsyncHTTPWithRawResponse,
-    HTTPWithStreamingResponse,
-    AsyncHTTPWithStreamingResponse,
+    HTTPResource,
+    AsyncHTTPResource,
+    HTTPResourceWithRawResponse,
+    AsyncHTTPResourceWithRawResponse,
+    HTTPResourceWithStreamingResponse,
+    AsyncHTTPResourceWithStreamingResponse,
 )
 from .as112 import (
-    AS112,
-    AsyncAS112,
-    AS112WithRawResponse,
-    AsyncAS112WithRawResponse,
-    AS112WithStreamingResponse,
-    AsyncAS112WithStreamingResponse,
+    AS112Resource,
+    AsyncAS112Resource,
+    AS112ResourceWithRawResponse,
+    AsyncAS112ResourceWithRawResponse,
+    AS112ResourceWithStreamingResponse,
+    AsyncAS112ResourceWithStreamingResponse,
 )
 from .email import (
-    Email,
-    AsyncEmail,
-    EmailWithRawResponse,
-    AsyncEmailWithRawResponse,
-    EmailWithStreamingResponse,
-    AsyncEmailWithStreamingResponse,
+    EmailResource,
+    AsyncEmailResource,
+    EmailResourceWithRawResponse,
+    AsyncEmailResourceWithRawResponse,
+    EmailResourceWithStreamingResponse,
+    AsyncEmailResourceWithStreamingResponse,
 )
 from .search import (
-    Search,
-    AsyncSearch,
-    SearchWithRawResponse,
-    AsyncSearchWithRawResponse,
-    SearchWithStreamingResponse,
-    AsyncSearchWithStreamingResponse,
+    SearchResource,
+    AsyncSearchResource,
+    SearchResourceWithRawResponse,
+    AsyncSearchResourceWithRawResponse,
+    SearchResourceWithStreamingResponse,
+    AsyncSearchResourceWithStreamingResponse,
 )
 from .attacks import (
-    Attacks,
-    AsyncAttacks,
-    AttacksWithRawResponse,
-    AsyncAttacksWithRawResponse,
-    AttacksWithStreamingResponse,
-    AsyncAttacksWithStreamingResponse,
+    AttacksResource,
+    AsyncAttacksResource,
+    AttacksResourceWithRawResponse,
+    AsyncAttacksResourceWithRawResponse,
+    AttacksResourceWithStreamingResponse,
+    AsyncAttacksResourceWithStreamingResponse,
 )
-from .bgp.bgp import BGP, AsyncBGP
-from .dns.dns import DNS, AsyncDNS
+from .bgp.bgp import BGPResource, AsyncBGPResource
+from .dns.dns import DNSResource, AsyncDNSResource
 from .quality import (
-    Quality,
-    AsyncQuality,
-    QualityWithRawResponse,
-    AsyncQualityWithRawResponse,
-    QualityWithStreamingResponse,
-    AsyncQualityWithStreamingResponse,
+    QualityResource,
+    AsyncQualityResource,
+    QualityResourceWithRawResponse,
+    AsyncQualityResourceWithRawResponse,
+    QualityResourceWithStreamingResponse,
+    AsyncQualityResourceWithStreamingResponse,
 )
 from .ranking import (
-    Ranking,
-    AsyncRanking,
-    RankingWithRawResponse,
-    AsyncRankingWithRawResponse,
-    RankingWithStreamingResponse,
-    AsyncRankingWithStreamingResponse,
+    RankingResource,
+    AsyncRankingResource,
+    RankingResourceWithRawResponse,
+    AsyncRankingResourceWithRawResponse,
+    RankingResourceWithStreamingResponse,
+    AsyncRankingResourceWithStreamingResponse,
 )
 from .datasets import (
-    Datasets,
-    AsyncDatasets,
-    DatasetsWithRawResponse,
-    AsyncDatasetsWithRawResponse,
-    DatasetsWithStreamingResponse,
-    AsyncDatasetsWithStreamingResponse,
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
 )
 from .entities import (
-    Entities,
-    AsyncEntities,
-    EntitiesWithRawResponse,
-    AsyncEntitiesWithRawResponse,
-    EntitiesWithStreamingResponse,
-    AsyncEntitiesWithStreamingResponse,
+    EntitiesResource,
+    AsyncEntitiesResource,
+    EntitiesResourceWithRawResponse,
+    AsyncEntitiesResourceWithRawResponse,
+    EntitiesResourceWithStreamingResponse,
+    AsyncEntitiesResourceWithStreamingResponse,
 )
 from .netflows import (
-    Netflows,
-    AsyncNetflows,
-    NetflowsWithRawResponse,
-    AsyncNetflowsWithRawResponse,
-    NetflowsWithStreamingResponse,
-    AsyncNetflowsWithStreamingResponse,
+    NetflowsResource,
+    AsyncNetflowsResource,
+    NetflowsResourceWithRawResponse,
+    AsyncNetflowsResourceWithRawResponse,
+    NetflowsResourceWithStreamingResponse,
+    AsyncNetflowsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .http.http import HTTP, AsyncHTTP
+from .http.http import HTTPResource, AsyncHTTPResource
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .annotations import (
-    Annotations,
-    AsyncAnnotations,
-    AnnotationsWithRawResponse,
-    AsyncAnnotationsWithRawResponse,
-    AnnotationsWithStreamingResponse,
-    AsyncAnnotationsWithStreamingResponse,
+    AnnotationsResource,
+    AsyncAnnotationsResource,
+    AnnotationsResourceWithRawResponse,
+    AsyncAnnotationsResourceWithRawResponse,
+    AnnotationsResourceWithStreamingResponse,
+    AsyncAnnotationsResourceWithStreamingResponse,
 )
-from .as112.as112 import AS112, AsyncAS112
-from .email.email import Email, AsyncEmail
+from .as112.as112 import AS112Resource, AsyncAS112Resource
+from .email.email import EmailResource, AsyncEmailResource
 from .verified_bots import (
-    VerifiedBots,
-    AsyncVerifiedBots,
-    VerifiedBotsWithRawResponse,
-    AsyncVerifiedBotsWithRawResponse,
-    VerifiedBotsWithStreamingResponse,
-    AsyncVerifiedBotsWithStreamingResponse,
+    VerifiedBotsResource,
+    AsyncVerifiedBotsResource,
+    VerifiedBotsResourceWithRawResponse,
+    AsyncVerifiedBotsResourceWithRawResponse,
+    VerifiedBotsResourceWithStreamingResponse,
+    AsyncVerifiedBotsResourceWithStreamingResponse,
 )
-from .attacks.attacks import Attacks, AsyncAttacks
-from .quality.quality import Quality, AsyncQuality
-from .ranking.ranking import Ranking, AsyncRanking
-from .entities.entities import Entities, AsyncEntities
-from .netflows.netflows import Netflows, AsyncNetflows
+from .attacks.attacks import AttacksResource, AsyncAttacksResource
+from .quality.quality import QualityResource, AsyncQualityResource
+from .ranking.ranking import RankingResource, AsyncRankingResource
+from .entities.entities import EntitiesResource, AsyncEntitiesResource
+from .netflows.netflows import NetflowsResource, AsyncNetflowsResource
 from .traffic_anomalies import (
-    TrafficAnomalies,
-    AsyncTrafficAnomalies,
-    TrafficAnomaliesWithRawResponse,
-    AsyncTrafficAnomaliesWithRawResponse,
-    TrafficAnomaliesWithStreamingResponse,
-    AsyncTrafficAnomaliesWithStreamingResponse,
+    TrafficAnomaliesResource,
+    AsyncTrafficAnomaliesResource,
+    TrafficAnomaliesResourceWithRawResponse,
+    AsyncTrafficAnomaliesResourceWithRawResponse,
+    TrafficAnomaliesResourceWithStreamingResponse,
+    AsyncTrafficAnomaliesResourceWithStreamingResponse,
 )
 from .connection_tampering import (
-    ConnectionTampering,
-    AsyncConnectionTampering,
-    ConnectionTamperingWithRawResponse,
-    AsyncConnectionTamperingWithRawResponse,
-    ConnectionTamperingWithStreamingResponse,
-    AsyncConnectionTamperingWithStreamingResponse,
+    ConnectionTamperingResource,
+    AsyncConnectionTamperingResource,
+    ConnectionTamperingResourceWithRawResponse,
+    AsyncConnectionTamperingResourceWithRawResponse,
+    ConnectionTamperingResourceWithStreamingResponse,
+    AsyncConnectionTamperingResourceWithStreamingResponse,
 )
-from .annotations.annotations import Annotations, AsyncAnnotations
-from .verified_bots.verified_bots import VerifiedBots, AsyncVerifiedBots
-from .traffic_anomalies.traffic_anomalies import TrafficAnomalies, AsyncTrafficAnomalies
+from .annotations.annotations import AnnotationsResource, AsyncAnnotationsResource
+from .verified_bots.verified_bots import VerifiedBotsResource, AsyncVerifiedBotsResource
+from .traffic_anomalies.traffic_anomalies import TrafficAnomaliesResource, AsyncTrafficAnomaliesResource
 
-__all__ = ["Radar", "AsyncRadar"]
+__all__ = ["RadarResource", "AsyncRadarResource"]
 
 
-class Radar(SyncAPIResource):
+class RadarResource(SyncAPIResource):
     @cached_property
-    def annotations(self) -> Annotations:
-        return Annotations(self._client)
-
-    @cached_property
-    def bgp(self) -> BGP:
-        return BGP(self._client)
+    def annotations(self) -> AnnotationsResource:
+        return AnnotationsResource(self._client)
 
     @cached_property
-    def datasets(self) -> Datasets:
-        return Datasets(self._client)
+    def bgp(self) -> BGPResource:
+        return BGPResource(self._client)
 
     @cached_property
-    def dns(self) -> DNS:
-        return DNS(self._client)
+    def datasets(self) -> DatasetsResource:
+        return DatasetsResource(self._client)
 
     @cached_property
-    def netflows(self) -> Netflows:
-        return Netflows(self._client)
+    def dns(self) -> DNSResource:
+        return DNSResource(self._client)
 
     @cached_property
-    def search(self) -> Search:
-        return Search(self._client)
+    def netflows(self) -> NetflowsResource:
+        return NetflowsResource(self._client)
 
     @cached_property
-    def verified_bots(self) -> VerifiedBots:
-        return VerifiedBots(self._client)
+    def search(self) -> SearchResource:
+        return SearchResource(self._client)
 
     @cached_property
-    def as112(self) -> AS112:
-        return AS112(self._client)
+    def verified_bots(self) -> VerifiedBotsResource:
+        return VerifiedBotsResource(self._client)
 
     @cached_property
-    def connection_tampering(self) -> ConnectionTampering:
-        return ConnectionTampering(self._client)
+    def as112(self) -> AS112Resource:
+        return AS112Resource(self._client)
 
     @cached_property
-    def email(self) -> Email:
-        return Email(self._client)
+    def connection_tampering(self) -> ConnectionTamperingResource:
+        return ConnectionTamperingResource(self._client)
 
     @cached_property
-    def attacks(self) -> Attacks:
-        return Attacks(self._client)
+    def email(self) -> EmailResource:
+        return EmailResource(self._client)
 
     @cached_property
-    def entities(self) -> Entities:
-        return Entities(self._client)
+    def attacks(self) -> AttacksResource:
+        return AttacksResource(self._client)
 
     @cached_property
-    def http(self) -> HTTP:
-        return HTTP(self._client)
+    def entities(self) -> EntitiesResource:
+        return EntitiesResource(self._client)
 
     @cached_property
-    def quality(self) -> Quality:
-        return Quality(self._client)
+    def http(self) -> HTTPResource:
+        return HTTPResource(self._client)
 
     @cached_property
-    def ranking(self) -> Ranking:
-        return Ranking(self._client)
+    def quality(self) -> QualityResource:
+        return QualityResource(self._client)
 
     @cached_property
-    def traffic_anomalies(self) -> TrafficAnomalies:
-        return TrafficAnomalies(self._client)
+    def ranking(self) -> RankingResource:
+        return RankingResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> RadarWithRawResponse:
-        return RadarWithRawResponse(self)
+    def traffic_anomalies(self) -> TrafficAnomaliesResource:
+        return TrafficAnomaliesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> RadarWithStreamingResponse:
-        return RadarWithStreamingResponse(self)
-
-
-class AsyncRadar(AsyncAPIResource):
-    @cached_property
-    def annotations(self) -> AsyncAnnotations:
-        return AsyncAnnotations(self._client)
+    def with_raw_response(self) -> RadarResourceWithRawResponse:
+        return RadarResourceWithRawResponse(self)
 
     @cached_property
-    def bgp(self) -> AsyncBGP:
-        return AsyncBGP(self._client)
+    def with_streaming_response(self) -> RadarResourceWithStreamingResponse:
+        return RadarResourceWithStreamingResponse(self)
+
+
+class AsyncRadarResource(AsyncAPIResource):
+    @cached_property
+    def annotations(self) -> AsyncAnnotationsResource:
+        return AsyncAnnotationsResource(self._client)
 
     @cached_property
-    def datasets(self) -> AsyncDatasets:
-        return AsyncDatasets(self._client)
+    def bgp(self) -> AsyncBGPResource:
+        return AsyncBGPResource(self._client)
 
     @cached_property
-    def dns(self) -> AsyncDNS:
-        return AsyncDNS(self._client)
+    def datasets(self) -> AsyncDatasetsResource:
+        return AsyncDatasetsResource(self._client)
 
     @cached_property
-    def netflows(self) -> AsyncNetflows:
-        return AsyncNetflows(self._client)
+    def dns(self) -> AsyncDNSResource:
+        return AsyncDNSResource(self._client)
 
     @cached_property
-    def search(self) -> AsyncSearch:
-        return AsyncSearch(self._client)
+    def netflows(self) -> AsyncNetflowsResource:
+        return AsyncNetflowsResource(self._client)
 
     @cached_property
-    def verified_bots(self) -> AsyncVerifiedBots:
-        return AsyncVerifiedBots(self._client)
+    def search(self) -> AsyncSearchResource:
+        return AsyncSearchResource(self._client)
 
     @cached_property
-    def as112(self) -> AsyncAS112:
-        return AsyncAS112(self._client)
+    def verified_bots(self) -> AsyncVerifiedBotsResource:
+        return AsyncVerifiedBotsResource(self._client)
 
     @cached_property
-    def connection_tampering(self) -> AsyncConnectionTampering:
-        return AsyncConnectionTampering(self._client)
+    def as112(self) -> AsyncAS112Resource:
+        return AsyncAS112Resource(self._client)
 
     @cached_property
-    def email(self) -> AsyncEmail:
-        return AsyncEmail(self._client)
+    def connection_tampering(self) -> AsyncConnectionTamperingResource:
+        return AsyncConnectionTamperingResource(self._client)
 
     @cached_property
-    def attacks(self) -> AsyncAttacks:
-        return AsyncAttacks(self._client)
+    def email(self) -> AsyncEmailResource:
+        return AsyncEmailResource(self._client)
 
     @cached_property
-    def entities(self) -> AsyncEntities:
-        return AsyncEntities(self._client)
+    def attacks(self) -> AsyncAttacksResource:
+        return AsyncAttacksResource(self._client)
 
     @cached_property
-    def http(self) -> AsyncHTTP:
-        return AsyncHTTP(self._client)
+    def entities(self) -> AsyncEntitiesResource:
+        return AsyncEntitiesResource(self._client)
 
     @cached_property
-    def quality(self) -> AsyncQuality:
-        return AsyncQuality(self._client)
+    def http(self) -> AsyncHTTPResource:
+        return AsyncHTTPResource(self._client)
 
     @cached_property
-    def ranking(self) -> AsyncRanking:
-        return AsyncRanking(self._client)
+    def quality(self) -> AsyncQualityResource:
+        return AsyncQualityResource(self._client)
 
     @cached_property
-    def traffic_anomalies(self) -> AsyncTrafficAnomalies:
-        return AsyncTrafficAnomalies(self._client)
+    def ranking(self) -> AsyncRankingResource:
+        return AsyncRankingResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRadarWithRawResponse:
-        return AsyncRadarWithRawResponse(self)
+    def traffic_anomalies(self) -> AsyncTrafficAnomaliesResource:
+        return AsyncTrafficAnomaliesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRadarWithStreamingResponse:
-        return AsyncRadarWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncRadarResourceWithRawResponse:
+        return AsyncRadarResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRadarResourceWithStreamingResponse:
+        return AsyncRadarResourceWithStreamingResponse(self)
 
 
-class RadarWithRawResponse:
-    def __init__(self, radar: Radar) -> None:
+class RadarResourceWithRawResponse:
+    def __init__(self, radar: RadarResource) -> None:
         self._radar = radar
 
     @cached_property
-    def annotations(self) -> AnnotationsWithRawResponse:
-        return AnnotationsWithRawResponse(self._radar.annotations)
+    def annotations(self) -> AnnotationsResourceWithRawResponse:
+        return AnnotationsResourceWithRawResponse(self._radar.annotations)
 
     @cached_property
-    def bgp(self) -> BGPWithRawResponse:
-        return BGPWithRawResponse(self._radar.bgp)
+    def bgp(self) -> BGPResourceWithRawResponse:
+        return BGPResourceWithRawResponse(self._radar.bgp)
 
     @cached_property
-    def datasets(self) -> DatasetsWithRawResponse:
-        return DatasetsWithRawResponse(self._radar.datasets)
+    def datasets(self) -> DatasetsResourceWithRawResponse:
+        return DatasetsResourceWithRawResponse(self._radar.datasets)
 
     @cached_property
-    def dns(self) -> DNSWithRawResponse:
-        return DNSWithRawResponse(self._radar.dns)
+    def dns(self) -> DNSResourceWithRawResponse:
+        return DNSResourceWithRawResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> NetflowsWithRawResponse:
-        return NetflowsWithRawResponse(self._radar.netflows)
+    def netflows(self) -> NetflowsResourceWithRawResponse:
+        return NetflowsResourceWithRawResponse(self._radar.netflows)
 
     @cached_property
-    def search(self) -> SearchWithRawResponse:
-        return SearchWithRawResponse(self._radar.search)
+    def search(self) -> SearchResourceWithRawResponse:
+        return SearchResourceWithRawResponse(self._radar.search)
 
     @cached_property
-    def verified_bots(self) -> VerifiedBotsWithRawResponse:
-        return VerifiedBotsWithRawResponse(self._radar.verified_bots)
+    def verified_bots(self) -> VerifiedBotsResourceWithRawResponse:
+        return VerifiedBotsResourceWithRawResponse(self._radar.verified_bots)
 
     @cached_property
-    def as112(self) -> AS112WithRawResponse:
-        return AS112WithRawResponse(self._radar.as112)
+    def as112(self) -> AS112ResourceWithRawResponse:
+        return AS112ResourceWithRawResponse(self._radar.as112)
 
     @cached_property
-    def connection_tampering(self) -> ConnectionTamperingWithRawResponse:
-        return ConnectionTamperingWithRawResponse(self._radar.connection_tampering)
+    def connection_tampering(self) -> ConnectionTamperingResourceWithRawResponse:
+        return ConnectionTamperingResourceWithRawResponse(self._radar.connection_tampering)
 
     @cached_property
-    def email(self) -> EmailWithRawResponse:
-        return EmailWithRawResponse(self._radar.email)
+    def email(self) -> EmailResourceWithRawResponse:
+        return EmailResourceWithRawResponse(self._radar.email)
 
     @cached_property
-    def attacks(self) -> AttacksWithRawResponse:
-        return AttacksWithRawResponse(self._radar.attacks)
+    def attacks(self) -> AttacksResourceWithRawResponse:
+        return AttacksResourceWithRawResponse(self._radar.attacks)
 
     @cached_property
-    def entities(self) -> EntitiesWithRawResponse:
-        return EntitiesWithRawResponse(self._radar.entities)
+    def entities(self) -> EntitiesResourceWithRawResponse:
+        return EntitiesResourceWithRawResponse(self._radar.entities)
 
     @cached_property
-    def http(self) -> HTTPWithRawResponse:
-        return HTTPWithRawResponse(self._radar.http)
+    def http(self) -> HTTPResourceWithRawResponse:
+        return HTTPResourceWithRawResponse(self._radar.http)
 
     @cached_property
-    def quality(self) -> QualityWithRawResponse:
-        return QualityWithRawResponse(self._radar.quality)
+    def quality(self) -> QualityResourceWithRawResponse:
+        return QualityResourceWithRawResponse(self._radar.quality)
 
     @cached_property
-    def ranking(self) -> RankingWithRawResponse:
-        return RankingWithRawResponse(self._radar.ranking)
+    def ranking(self) -> RankingResourceWithRawResponse:
+        return RankingResourceWithRawResponse(self._radar.ranking)
 
     @cached_property
-    def traffic_anomalies(self) -> TrafficAnomaliesWithRawResponse:
-        return TrafficAnomaliesWithRawResponse(self._radar.traffic_anomalies)
+    def traffic_anomalies(self) -> TrafficAnomaliesResourceWithRawResponse:
+        return TrafficAnomaliesResourceWithRawResponse(self._radar.traffic_anomalies)
 
 
-class AsyncRadarWithRawResponse:
-    def __init__(self, radar: AsyncRadar) -> None:
+class AsyncRadarResourceWithRawResponse:
+    def __init__(self, radar: AsyncRadarResource) -> None:
         self._radar = radar
 
     @cached_property
-    def annotations(self) -> AsyncAnnotationsWithRawResponse:
-        return AsyncAnnotationsWithRawResponse(self._radar.annotations)
+    def annotations(self) -> AsyncAnnotationsResourceWithRawResponse:
+        return AsyncAnnotationsResourceWithRawResponse(self._radar.annotations)
 
     @cached_property
-    def bgp(self) -> AsyncBGPWithRawResponse:
-        return AsyncBGPWithRawResponse(self._radar.bgp)
+    def bgp(self) -> AsyncBGPResourceWithRawResponse:
+        return AsyncBGPResourceWithRawResponse(self._radar.bgp)
 
     @cached_property
-    def datasets(self) -> AsyncDatasetsWithRawResponse:
-        return AsyncDatasetsWithRawResponse(self._radar.datasets)
+    def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
+        return AsyncDatasetsResourceWithRawResponse(self._radar.datasets)
 
     @cached_property
-    def dns(self) -> AsyncDNSWithRawResponse:
-        return AsyncDNSWithRawResponse(self._radar.dns)
+    def dns(self) -> AsyncDNSResourceWithRawResponse:
+        return AsyncDNSResourceWithRawResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> AsyncNetflowsWithRawResponse:
-        return AsyncNetflowsWithRawResponse(self._radar.netflows)
+    def netflows(self) -> AsyncNetflowsResourceWithRawResponse:
+        return AsyncNetflowsResourceWithRawResponse(self._radar.netflows)
 
     @cached_property
-    def search(self) -> AsyncSearchWithRawResponse:
-        return AsyncSearchWithRawResponse(self._radar.search)
+    def search(self) -> AsyncSearchResourceWithRawResponse:
+        return AsyncSearchResourceWithRawResponse(self._radar.search)
 
     @cached_property
-    def verified_bots(self) -> AsyncVerifiedBotsWithRawResponse:
-        return AsyncVerifiedBotsWithRawResponse(self._radar.verified_bots)
+    def verified_bots(self) -> AsyncVerifiedBotsResourceWithRawResponse:
+        return AsyncVerifiedBotsResourceWithRawResponse(self._radar.verified_bots)
 
     @cached_property
-    def as112(self) -> AsyncAS112WithRawResponse:
-        return AsyncAS112WithRawResponse(self._radar.as112)
+    def as112(self) -> AsyncAS112ResourceWithRawResponse:
+        return AsyncAS112ResourceWithRawResponse(self._radar.as112)
 
     @cached_property
-    def connection_tampering(self) -> AsyncConnectionTamperingWithRawResponse:
-        return AsyncConnectionTamperingWithRawResponse(self._radar.connection_tampering)
+    def connection_tampering(self) -> AsyncConnectionTamperingResourceWithRawResponse:
+        return AsyncConnectionTamperingResourceWithRawResponse(self._radar.connection_tampering)
 
     @cached_property
-    def email(self) -> AsyncEmailWithRawResponse:
-        return AsyncEmailWithRawResponse(self._radar.email)
+    def email(self) -> AsyncEmailResourceWithRawResponse:
+        return AsyncEmailResourceWithRawResponse(self._radar.email)
 
     @cached_property
-    def attacks(self) -> AsyncAttacksWithRawResponse:
-        return AsyncAttacksWithRawResponse(self._radar.attacks)
+    def attacks(self) -> AsyncAttacksResourceWithRawResponse:
+        return AsyncAttacksResourceWithRawResponse(self._radar.attacks)
 
     @cached_property
-    def entities(self) -> AsyncEntitiesWithRawResponse:
-        return AsyncEntitiesWithRawResponse(self._radar.entities)
+    def entities(self) -> AsyncEntitiesResourceWithRawResponse:
+        return AsyncEntitiesResourceWithRawResponse(self._radar.entities)
 
     @cached_property
-    def http(self) -> AsyncHTTPWithRawResponse:
-        return AsyncHTTPWithRawResponse(self._radar.http)
+    def http(self) -> AsyncHTTPResourceWithRawResponse:
+        return AsyncHTTPResourceWithRawResponse(self._radar.http)
 
     @cached_property
-    def quality(self) -> AsyncQualityWithRawResponse:
-        return AsyncQualityWithRawResponse(self._radar.quality)
+    def quality(self) -> AsyncQualityResourceWithRawResponse:
+        return AsyncQualityResourceWithRawResponse(self._radar.quality)
 
     @cached_property
-    def ranking(self) -> AsyncRankingWithRawResponse:
-        return AsyncRankingWithRawResponse(self._radar.ranking)
+    def ranking(self) -> AsyncRankingResourceWithRawResponse:
+        return AsyncRankingResourceWithRawResponse(self._radar.ranking)
 
     @cached_property
-    def traffic_anomalies(self) -> AsyncTrafficAnomaliesWithRawResponse:
-        return AsyncTrafficAnomaliesWithRawResponse(self._radar.traffic_anomalies)
+    def traffic_anomalies(self) -> AsyncTrafficAnomaliesResourceWithRawResponse:
+        return AsyncTrafficAnomaliesResourceWithRawResponse(self._radar.traffic_anomalies)
 
 
-class RadarWithStreamingResponse:
-    def __init__(self, radar: Radar) -> None:
+class RadarResourceWithStreamingResponse:
+    def __init__(self, radar: RadarResource) -> None:
         self._radar = radar
 
     @cached_property
-    def annotations(self) -> AnnotationsWithStreamingResponse:
-        return AnnotationsWithStreamingResponse(self._radar.annotations)
+    def annotations(self) -> AnnotationsResourceWithStreamingResponse:
+        return AnnotationsResourceWithStreamingResponse(self._radar.annotations)
 
     @cached_property
-    def bgp(self) -> BGPWithStreamingResponse:
-        return BGPWithStreamingResponse(self._radar.bgp)
+    def bgp(self) -> BGPResourceWithStreamingResponse:
+        return BGPResourceWithStreamingResponse(self._radar.bgp)
 
     @cached_property
-    def datasets(self) -> DatasetsWithStreamingResponse:
-        return DatasetsWithStreamingResponse(self._radar.datasets)
+    def datasets(self) -> DatasetsResourceWithStreamingResponse:
+        return DatasetsResourceWithStreamingResponse(self._radar.datasets)
 
     @cached_property
-    def dns(self) -> DNSWithStreamingResponse:
-        return DNSWithStreamingResponse(self._radar.dns)
+    def dns(self) -> DNSResourceWithStreamingResponse:
+        return DNSResourceWithStreamingResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> NetflowsWithStreamingResponse:
-        return NetflowsWithStreamingResponse(self._radar.netflows)
+    def netflows(self) -> NetflowsResourceWithStreamingResponse:
+        return NetflowsResourceWithStreamingResponse(self._radar.netflows)
 
     @cached_property
-    def search(self) -> SearchWithStreamingResponse:
-        return SearchWithStreamingResponse(self._radar.search)
+    def search(self) -> SearchResourceWithStreamingResponse:
+        return SearchResourceWithStreamingResponse(self._radar.search)
 
     @cached_property
-    def verified_bots(self) -> VerifiedBotsWithStreamingResponse:
-        return VerifiedBotsWithStreamingResponse(self._radar.verified_bots)
+    def verified_bots(self) -> VerifiedBotsResourceWithStreamingResponse:
+        return VerifiedBotsResourceWithStreamingResponse(self._radar.verified_bots)
 
     @cached_property
-    def as112(self) -> AS112WithStreamingResponse:
-        return AS112WithStreamingResponse(self._radar.as112)
+    def as112(self) -> AS112ResourceWithStreamingResponse:
+        return AS112ResourceWithStreamingResponse(self._radar.as112)
 
     @cached_property
-    def connection_tampering(self) -> ConnectionTamperingWithStreamingResponse:
-        return ConnectionTamperingWithStreamingResponse(self._radar.connection_tampering)
+    def connection_tampering(self) -> ConnectionTamperingResourceWithStreamingResponse:
+        return ConnectionTamperingResourceWithStreamingResponse(self._radar.connection_tampering)
 
     @cached_property
-    def email(self) -> EmailWithStreamingResponse:
-        return EmailWithStreamingResponse(self._radar.email)
+    def email(self) -> EmailResourceWithStreamingResponse:
+        return EmailResourceWithStreamingResponse(self._radar.email)
 
     @cached_property
-    def attacks(self) -> AttacksWithStreamingResponse:
-        return AttacksWithStreamingResponse(self._radar.attacks)
+    def attacks(self) -> AttacksResourceWithStreamingResponse:
+        return AttacksResourceWithStreamingResponse(self._radar.attacks)
 
     @cached_property
-    def entities(self) -> EntitiesWithStreamingResponse:
-        return EntitiesWithStreamingResponse(self._radar.entities)
+    def entities(self) -> EntitiesResourceWithStreamingResponse:
+        return EntitiesResourceWithStreamingResponse(self._radar.entities)
 
     @cached_property
-    def http(self) -> HTTPWithStreamingResponse:
-        return HTTPWithStreamingResponse(self._radar.http)
+    def http(self) -> HTTPResourceWithStreamingResponse:
+        return HTTPResourceWithStreamingResponse(self._radar.http)
 
     @cached_property
-    def quality(self) -> QualityWithStreamingResponse:
-        return QualityWithStreamingResponse(self._radar.quality)
+    def quality(self) -> QualityResourceWithStreamingResponse:
+        return QualityResourceWithStreamingResponse(self._radar.quality)
 
     @cached_property
-    def ranking(self) -> RankingWithStreamingResponse:
-        return RankingWithStreamingResponse(self._radar.ranking)
+    def ranking(self) -> RankingResourceWithStreamingResponse:
+        return RankingResourceWithStreamingResponse(self._radar.ranking)
 
     @cached_property
-    def traffic_anomalies(self) -> TrafficAnomaliesWithStreamingResponse:
-        return TrafficAnomaliesWithStreamingResponse(self._radar.traffic_anomalies)
+    def traffic_anomalies(self) -> TrafficAnomaliesResourceWithStreamingResponse:
+        return TrafficAnomaliesResourceWithStreamingResponse(self._radar.traffic_anomalies)
 
 
-class AsyncRadarWithStreamingResponse:
-    def __init__(self, radar: AsyncRadar) -> None:
+class AsyncRadarResourceWithStreamingResponse:
+    def __init__(self, radar: AsyncRadarResource) -> None:
         self._radar = radar
 
     @cached_property
-    def annotations(self) -> AsyncAnnotationsWithStreamingResponse:
-        return AsyncAnnotationsWithStreamingResponse(self._radar.annotations)
+    def annotations(self) -> AsyncAnnotationsResourceWithStreamingResponse:
+        return AsyncAnnotationsResourceWithStreamingResponse(self._radar.annotations)
 
     @cached_property
-    def bgp(self) -> AsyncBGPWithStreamingResponse:
-        return AsyncBGPWithStreamingResponse(self._radar.bgp)
+    def bgp(self) -> AsyncBGPResourceWithStreamingResponse:
+        return AsyncBGPResourceWithStreamingResponse(self._radar.bgp)
 
     @cached_property
-    def datasets(self) -> AsyncDatasetsWithStreamingResponse:
-        return AsyncDatasetsWithStreamingResponse(self._radar.datasets)
+    def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:
+        return AsyncDatasetsResourceWithStreamingResponse(self._radar.datasets)
 
     @cached_property
-    def dns(self) -> AsyncDNSWithStreamingResponse:
-        return AsyncDNSWithStreamingResponse(self._radar.dns)
+    def dns(self) -> AsyncDNSResourceWithStreamingResponse:
+        return AsyncDNSResourceWithStreamingResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> AsyncNetflowsWithStreamingResponse:
-        return AsyncNetflowsWithStreamingResponse(self._radar.netflows)
+    def netflows(self) -> AsyncNetflowsResourceWithStreamingResponse:
+        return AsyncNetflowsResourceWithStreamingResponse(self._radar.netflows)
 
     @cached_property
-    def search(self) -> AsyncSearchWithStreamingResponse:
-        return AsyncSearchWithStreamingResponse(self._radar.search)
+    def search(self) -> AsyncSearchResourceWithStreamingResponse:
+        return AsyncSearchResourceWithStreamingResponse(self._radar.search)
 
     @cached_property
-    def verified_bots(self) -> AsyncVerifiedBotsWithStreamingResponse:
-        return AsyncVerifiedBotsWithStreamingResponse(self._radar.verified_bots)
+    def verified_bots(self) -> AsyncVerifiedBotsResourceWithStreamingResponse:
+        return AsyncVerifiedBotsResourceWithStreamingResponse(self._radar.verified_bots)
 
     @cached_property
-    def as112(self) -> AsyncAS112WithStreamingResponse:
-        return AsyncAS112WithStreamingResponse(self._radar.as112)
+    def as112(self) -> AsyncAS112ResourceWithStreamingResponse:
+        return AsyncAS112ResourceWithStreamingResponse(self._radar.as112)
 
     @cached_property
-    def connection_tampering(self) -> AsyncConnectionTamperingWithStreamingResponse:
-        return AsyncConnectionTamperingWithStreamingResponse(self._radar.connection_tampering)
+    def connection_tampering(self) -> AsyncConnectionTamperingResourceWithStreamingResponse:
+        return AsyncConnectionTamperingResourceWithStreamingResponse(self._radar.connection_tampering)
 
     @cached_property
-    def email(self) -> AsyncEmailWithStreamingResponse:
-        return AsyncEmailWithStreamingResponse(self._radar.email)
+    def email(self) -> AsyncEmailResourceWithStreamingResponse:
+        return AsyncEmailResourceWithStreamingResponse(self._radar.email)
 
     @cached_property
-    def attacks(self) -> AsyncAttacksWithStreamingResponse:
-        return AsyncAttacksWithStreamingResponse(self._radar.attacks)
+    def attacks(self) -> AsyncAttacksResourceWithStreamingResponse:
+        return AsyncAttacksResourceWithStreamingResponse(self._radar.attacks)
 
     @cached_property
-    def entities(self) -> AsyncEntitiesWithStreamingResponse:
-        return AsyncEntitiesWithStreamingResponse(self._radar.entities)
+    def entities(self) -> AsyncEntitiesResourceWithStreamingResponse:
+        return AsyncEntitiesResourceWithStreamingResponse(self._radar.entities)
 
     @cached_property
-    def http(self) -> AsyncHTTPWithStreamingResponse:
-        return AsyncHTTPWithStreamingResponse(self._radar.http)
+    def http(self) -> AsyncHTTPResourceWithStreamingResponse:
+        return AsyncHTTPResourceWithStreamingResponse(self._radar.http)
 
     @cached_property
-    def quality(self) -> AsyncQualityWithStreamingResponse:
-        return AsyncQualityWithStreamingResponse(self._radar.quality)
+    def quality(self) -> AsyncQualityResourceWithStreamingResponse:
+        return AsyncQualityResourceWithStreamingResponse(self._radar.quality)
 
     @cached_property
-    def ranking(self) -> AsyncRankingWithStreamingResponse:
-        return AsyncRankingWithStreamingResponse(self._radar.ranking)
+    def ranking(self) -> AsyncRankingResourceWithStreamingResponse:
+        return AsyncRankingResourceWithStreamingResponse(self._radar.ranking)
 
     @cached_property
-    def traffic_anomalies(self) -> AsyncTrafficAnomaliesWithStreamingResponse:
-        return AsyncTrafficAnomaliesWithStreamingResponse(self._radar.traffic_anomalies)
+    def traffic_anomalies(self) -> AsyncTrafficAnomaliesResourceWithStreamingResponse:
+        return AsyncTrafficAnomaliesResourceWithStreamingResponse(self._radar.traffic_anomalies)

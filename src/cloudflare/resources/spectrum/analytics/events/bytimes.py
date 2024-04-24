@@ -29,17 +29,17 @@ from .....types.spectrum.analytics.events import bytime_get_params
 from .....types.spectrum.analytics.dimension import Dimension
 from .....types.spectrum.analytics.events.bytime_get_response import BytimeGetResponse
 
-__all__ = ["Bytimes", "AsyncBytimes"]
+__all__ = ["BytimesResource", "AsyncBytimesResource"]
 
 
-class Bytimes(SyncAPIResource):
+class BytimesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BytimesWithRawResponse:
-        return BytimesWithRawResponse(self)
+    def with_raw_response(self) -> BytimesResourceWithRawResponse:
+        return BytimesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BytimesWithStreamingResponse:
-        return BytimesWithStreamingResponse(self)
+    def with_streaming_response(self) -> BytimesResourceWithStreamingResponse:
+        return BytimesResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -161,14 +161,14 @@ class Bytimes(SyncAPIResource):
         )
 
 
-class AsyncBytimes(AsyncAPIResource):
+class AsyncBytimesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBytimesWithRawResponse:
-        return AsyncBytimesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBytimesResourceWithRawResponse:
+        return AsyncBytimesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBytimesWithStreamingResponse:
-        return AsyncBytimesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBytimesResourceWithStreamingResponse:
+        return AsyncBytimesResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -290,8 +290,8 @@ class AsyncBytimes(AsyncAPIResource):
         )
 
 
-class BytimesWithRawResponse:
-    def __init__(self, bytimes: Bytimes) -> None:
+class BytimesResourceWithRawResponse:
+    def __init__(self, bytimes: BytimesResource) -> None:
         self._bytimes = bytimes
 
         self.get = to_raw_response_wrapper(
@@ -299,8 +299,8 @@ class BytimesWithRawResponse:
         )
 
 
-class AsyncBytimesWithRawResponse:
-    def __init__(self, bytimes: AsyncBytimes) -> None:
+class AsyncBytimesResourceWithRawResponse:
+    def __init__(self, bytimes: AsyncBytimesResource) -> None:
         self._bytimes = bytimes
 
         self.get = async_to_raw_response_wrapper(
@@ -308,8 +308,8 @@ class AsyncBytimesWithRawResponse:
         )
 
 
-class BytimesWithStreamingResponse:
-    def __init__(self, bytimes: Bytimes) -> None:
+class BytimesResourceWithStreamingResponse:
+    def __init__(self, bytimes: BytimesResource) -> None:
         self._bytimes = bytimes
 
         self.get = to_streamed_response_wrapper(
@@ -317,8 +317,8 @@ class BytimesWithStreamingResponse:
         )
 
 
-class AsyncBytimesWithStreamingResponse:
-    def __init__(self, bytimes: AsyncBytimes) -> None:
+class AsyncBytimesResourceWithStreamingResponse:
+    def __init__(self, bytimes: AsyncBytimesResource) -> None:
         self._bytimes = bytimes
 
         self.get = async_to_streamed_response_wrapper(

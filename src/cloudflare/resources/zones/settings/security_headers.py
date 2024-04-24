@@ -23,19 +23,20 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import security_headers, security_header_edit_params
+from ....types.zones.settings import security_header_edit_params
+from ....types.zones.settings.security_headers import SecurityHeaders
 
-__all__ = ["SecurityHeaders", "AsyncSecurityHeaders"]
+__all__ = ["SecurityHeadersResource", "AsyncSecurityHeadersResource"]
 
 
-class SecurityHeaders(SyncAPIResource):
+class SecurityHeadersResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SecurityHeadersWithRawResponse:
-        return SecurityHeadersWithRawResponse(self)
+    def with_raw_response(self) -> SecurityHeadersResourceWithRawResponse:
+        return SecurityHeadersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SecurityHeadersWithStreamingResponse:
-        return SecurityHeadersWithStreamingResponse(self)
+    def with_streaming_response(self) -> SecurityHeadersResourceWithStreamingResponse:
+        return SecurityHeadersResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -48,7 +49,7 @@ class SecurityHeaders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[security_headers.SecurityHeaders]:
+    ) -> Optional[SecurityHeaders]:
         """
         Cloudflare security header for a zone.
 
@@ -73,11 +74,9 @@ class SecurityHeaders(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[security_headers.SecurityHeaders]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SecurityHeaders]]._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[security_headers.SecurityHeaders]], ResultWrapper[security_headers.SecurityHeaders]
-            ),
+            cast_to=cast(Type[Optional[SecurityHeaders]], ResultWrapper[SecurityHeaders]),
         )
 
     def get(
@@ -90,7 +89,7 @@ class SecurityHeaders(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[security_headers.SecurityHeaders]:
+    ) -> Optional[SecurityHeaders]:
         """
         Cloudflare security header for a zone.
 
@@ -114,22 +113,20 @@ class SecurityHeaders(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[security_headers.SecurityHeaders]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SecurityHeaders]]._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[security_headers.SecurityHeaders]], ResultWrapper[security_headers.SecurityHeaders]
-            ),
+            cast_to=cast(Type[Optional[SecurityHeaders]], ResultWrapper[SecurityHeaders]),
         )
 
 
-class AsyncSecurityHeaders(AsyncAPIResource):
+class AsyncSecurityHeadersResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSecurityHeadersWithRawResponse:
-        return AsyncSecurityHeadersWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSecurityHeadersResourceWithRawResponse:
+        return AsyncSecurityHeadersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSecurityHeadersWithStreamingResponse:
-        return AsyncSecurityHeadersWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSecurityHeadersResourceWithStreamingResponse:
+        return AsyncSecurityHeadersResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -142,7 +139,7 @@ class AsyncSecurityHeaders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[security_headers.SecurityHeaders]:
+    ) -> Optional[SecurityHeaders]:
         """
         Cloudflare security header for a zone.
 
@@ -167,11 +164,9 @@ class AsyncSecurityHeaders(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[security_headers.SecurityHeaders]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SecurityHeaders]]._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[security_headers.SecurityHeaders]], ResultWrapper[security_headers.SecurityHeaders]
-            ),
+            cast_to=cast(Type[Optional[SecurityHeaders]], ResultWrapper[SecurityHeaders]),
         )
 
     async def get(
@@ -184,7 +179,7 @@ class AsyncSecurityHeaders(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[security_headers.SecurityHeaders]:
+    ) -> Optional[SecurityHeaders]:
         """
         Cloudflare security header for a zone.
 
@@ -208,16 +203,14 @@ class AsyncSecurityHeaders(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[security_headers.SecurityHeaders]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SecurityHeaders]]._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[security_headers.SecurityHeaders]], ResultWrapper[security_headers.SecurityHeaders]
-            ),
+            cast_to=cast(Type[Optional[SecurityHeaders]], ResultWrapper[SecurityHeaders]),
         )
 
 
-class SecurityHeadersWithRawResponse:
-    def __init__(self, security_headers: SecurityHeaders) -> None:
+class SecurityHeadersResourceWithRawResponse:
+    def __init__(self, security_headers: SecurityHeadersResource) -> None:
         self._security_headers = security_headers
 
         self.edit = to_raw_response_wrapper(
@@ -228,8 +221,8 @@ class SecurityHeadersWithRawResponse:
         )
 
 
-class AsyncSecurityHeadersWithRawResponse:
-    def __init__(self, security_headers: AsyncSecurityHeaders) -> None:
+class AsyncSecurityHeadersResourceWithRawResponse:
+    def __init__(self, security_headers: AsyncSecurityHeadersResource) -> None:
         self._security_headers = security_headers
 
         self.edit = async_to_raw_response_wrapper(
@@ -240,8 +233,8 @@ class AsyncSecurityHeadersWithRawResponse:
         )
 
 
-class SecurityHeadersWithStreamingResponse:
-    def __init__(self, security_headers: SecurityHeaders) -> None:
+class SecurityHeadersResourceWithStreamingResponse:
+    def __init__(self, security_headers: SecurityHeadersResource) -> None:
         self._security_headers = security_headers
 
         self.edit = to_streamed_response_wrapper(
@@ -252,8 +245,8 @@ class SecurityHeadersWithStreamingResponse:
         )
 
 
-class AsyncSecurityHeadersWithStreamingResponse:
-    def __init__(self, security_headers: AsyncSecurityHeaders) -> None:
+class AsyncSecurityHeadersResourceWithStreamingResponse:
+    def __init__(self, security_headers: AsyncSecurityHeadersResource) -> None:
         self._security_headers = security_headers
 
         self.edit = async_to_streamed_response_wrapper(

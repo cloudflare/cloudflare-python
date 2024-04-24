@@ -8,12 +8,12 @@ from datetime import datetime
 import httpx
 
 from .token import (
-    Token,
-    AsyncToken,
-    TokenWithRawResponse,
-    AsyncTokenWithRawResponse,
-    TokenWithStreamingResponse,
-    AsyncTokenWithStreamingResponse,
+    TokenResource,
+    AsyncTokenResource,
+    TokenResourceWithRawResponse,
+    AsyncTokenResourceWithRawResponse,
+    TokenResourceWithStreamingResponse,
+    AsyncTokenResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -22,28 +22,28 @@ from ...._utils import (
 )
 from ...._compat import cached_property
 from .connectors import (
-    Connectors,
-    AsyncConnectors,
-    ConnectorsWithRawResponse,
-    AsyncConnectorsWithRawResponse,
-    ConnectorsWithStreamingResponse,
-    AsyncConnectorsWithStreamingResponse,
+    ConnectorsResource,
+    AsyncConnectorsResource,
+    ConnectorsResourceWithRawResponse,
+    AsyncConnectorsResourceWithRawResponse,
+    ConnectorsResourceWithStreamingResponse,
+    AsyncConnectorsResourceWithStreamingResponse,
 )
 from .management import (
-    Management,
-    AsyncManagement,
-    ManagementWithRawResponse,
-    AsyncManagementWithRawResponse,
-    ManagementWithStreamingResponse,
-    AsyncManagementWithStreamingResponse,
+    ManagementResource,
+    AsyncManagementResource,
+    ManagementResourceWithRawResponse,
+    AsyncManagementResourceWithRawResponse,
+    ManagementResourceWithStreamingResponse,
+    AsyncManagementResourceWithStreamingResponse,
 )
 from .connections import (
-    Connections,
-    AsyncConnections,
-    ConnectionsWithRawResponse,
-    AsyncConnectionsWithRawResponse,
-    ConnectionsWithStreamingResponse,
-    AsyncConnectionsWithStreamingResponse,
+    ConnectionsResource,
+    AsyncConnectionsResource,
+    ConnectionsResourceWithRawResponse,
+    AsyncConnectionsResourceWithRawResponse,
+    ConnectionsResourceWithStreamingResponse,
+    AsyncConnectionsResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -55,12 +55,12 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .configurations import (
-    Configurations,
-    AsyncConfigurations,
-    ConfigurationsWithRawResponse,
-    AsyncConfigurationsWithRawResponse,
-    ConfigurationsWithStreamingResponse,
-    AsyncConfigurationsWithStreamingResponse,
+    ConfigurationsResource,
+    AsyncConfigurationsResource,
+    ConfigurationsResourceWithRawResponse,
+    AsyncConfigurationsResourceWithRawResponse,
+    ConfigurationsResourceWithStreamingResponse,
+    AsyncConfigurationsResourceWithStreamingResponse,
 )
 from ...._base_client import (
     AsyncPaginator,
@@ -73,37 +73,37 @@ from ....types.zero_trust.tunnel_list_response import TunnelListResponse
 from ....types.zero_trust.tunnel_create_response import TunnelCreateResponse
 from ....types.zero_trust.tunnel_delete_response import TunnelDeleteResponse
 
-__all__ = ["Tunnels", "AsyncTunnels"]
+__all__ = ["TunnelsResource", "AsyncTunnelsResource"]
 
 
-class Tunnels(SyncAPIResource):
+class TunnelsResource(SyncAPIResource):
     @cached_property
-    def configurations(self) -> Configurations:
-        return Configurations(self._client)
-
-    @cached_property
-    def connections(self) -> Connections:
-        return Connections(self._client)
+    def configurations(self) -> ConfigurationsResource:
+        return ConfigurationsResource(self._client)
 
     @cached_property
-    def token(self) -> Token:
-        return Token(self._client)
+    def connections(self) -> ConnectionsResource:
+        return ConnectionsResource(self._client)
 
     @cached_property
-    def connectors(self) -> Connectors:
-        return Connectors(self._client)
+    def token(self) -> TokenResource:
+        return TokenResource(self._client)
 
     @cached_property
-    def management(self) -> Management:
-        return Management(self._client)
+    def connectors(self) -> ConnectorsResource:
+        return ConnectorsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> TunnelsWithRawResponse:
-        return TunnelsWithRawResponse(self)
+    def management(self) -> ManagementResource:
+        return ManagementResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> TunnelsWithStreamingResponse:
-        return TunnelsWithStreamingResponse(self)
+    def with_raw_response(self) -> TunnelsResourceWithRawResponse:
+        return TunnelsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> TunnelsResourceWithStreamingResponse:
+        return TunnelsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -394,34 +394,34 @@ class Tunnels(SyncAPIResource):
         )
 
 
-class AsyncTunnels(AsyncAPIResource):
+class AsyncTunnelsResource(AsyncAPIResource):
     @cached_property
-    def configurations(self) -> AsyncConfigurations:
-        return AsyncConfigurations(self._client)
+    def configurations(self) -> AsyncConfigurationsResource:
+        return AsyncConfigurationsResource(self._client)
 
     @cached_property
-    def connections(self) -> AsyncConnections:
-        return AsyncConnections(self._client)
+    def connections(self) -> AsyncConnectionsResource:
+        return AsyncConnectionsResource(self._client)
 
     @cached_property
-    def token(self) -> AsyncToken:
-        return AsyncToken(self._client)
+    def token(self) -> AsyncTokenResource:
+        return AsyncTokenResource(self._client)
 
     @cached_property
-    def connectors(self) -> AsyncConnectors:
-        return AsyncConnectors(self._client)
+    def connectors(self) -> AsyncConnectorsResource:
+        return AsyncConnectorsResource(self._client)
 
     @cached_property
-    def management(self) -> AsyncManagement:
-        return AsyncManagement(self._client)
+    def management(self) -> AsyncManagementResource:
+        return AsyncManagementResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncTunnelsWithRawResponse:
-        return AsyncTunnelsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTunnelsResourceWithRawResponse:
+        return AsyncTunnelsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTunnelsWithStreamingResponse:
-        return AsyncTunnelsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTunnelsResourceWithStreamingResponse:
+        return AsyncTunnelsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -712,8 +712,8 @@ class AsyncTunnels(AsyncAPIResource):
         )
 
 
-class TunnelsWithRawResponse:
-    def __init__(self, tunnels: Tunnels) -> None:
+class TunnelsResourceWithRawResponse:
+    def __init__(self, tunnels: TunnelsResource) -> None:
         self._tunnels = tunnels
 
         self.create = to_raw_response_wrapper(
@@ -733,28 +733,28 @@ class TunnelsWithRawResponse:
         )
 
     @cached_property
-    def configurations(self) -> ConfigurationsWithRawResponse:
-        return ConfigurationsWithRawResponse(self._tunnels.configurations)
+    def configurations(self) -> ConfigurationsResourceWithRawResponse:
+        return ConfigurationsResourceWithRawResponse(self._tunnels.configurations)
 
     @cached_property
-    def connections(self) -> ConnectionsWithRawResponse:
-        return ConnectionsWithRawResponse(self._tunnels.connections)
+    def connections(self) -> ConnectionsResourceWithRawResponse:
+        return ConnectionsResourceWithRawResponse(self._tunnels.connections)
 
     @cached_property
-    def token(self) -> TokenWithRawResponse:
-        return TokenWithRawResponse(self._tunnels.token)
+    def token(self) -> TokenResourceWithRawResponse:
+        return TokenResourceWithRawResponse(self._tunnels.token)
 
     @cached_property
-    def connectors(self) -> ConnectorsWithRawResponse:
-        return ConnectorsWithRawResponse(self._tunnels.connectors)
+    def connectors(self) -> ConnectorsResourceWithRawResponse:
+        return ConnectorsResourceWithRawResponse(self._tunnels.connectors)
 
     @cached_property
-    def management(self) -> ManagementWithRawResponse:
-        return ManagementWithRawResponse(self._tunnels.management)
+    def management(self) -> ManagementResourceWithRawResponse:
+        return ManagementResourceWithRawResponse(self._tunnels.management)
 
 
-class AsyncTunnelsWithRawResponse:
-    def __init__(self, tunnels: AsyncTunnels) -> None:
+class AsyncTunnelsResourceWithRawResponse:
+    def __init__(self, tunnels: AsyncTunnelsResource) -> None:
         self._tunnels = tunnels
 
         self.create = async_to_raw_response_wrapper(
@@ -774,28 +774,28 @@ class AsyncTunnelsWithRawResponse:
         )
 
     @cached_property
-    def configurations(self) -> AsyncConfigurationsWithRawResponse:
-        return AsyncConfigurationsWithRawResponse(self._tunnels.configurations)
+    def configurations(self) -> AsyncConfigurationsResourceWithRawResponse:
+        return AsyncConfigurationsResourceWithRawResponse(self._tunnels.configurations)
 
     @cached_property
-    def connections(self) -> AsyncConnectionsWithRawResponse:
-        return AsyncConnectionsWithRawResponse(self._tunnels.connections)
+    def connections(self) -> AsyncConnectionsResourceWithRawResponse:
+        return AsyncConnectionsResourceWithRawResponse(self._tunnels.connections)
 
     @cached_property
-    def token(self) -> AsyncTokenWithRawResponse:
-        return AsyncTokenWithRawResponse(self._tunnels.token)
+    def token(self) -> AsyncTokenResourceWithRawResponse:
+        return AsyncTokenResourceWithRawResponse(self._tunnels.token)
 
     @cached_property
-    def connectors(self) -> AsyncConnectorsWithRawResponse:
-        return AsyncConnectorsWithRawResponse(self._tunnels.connectors)
+    def connectors(self) -> AsyncConnectorsResourceWithRawResponse:
+        return AsyncConnectorsResourceWithRawResponse(self._tunnels.connectors)
 
     @cached_property
-    def management(self) -> AsyncManagementWithRawResponse:
-        return AsyncManagementWithRawResponse(self._tunnels.management)
+    def management(self) -> AsyncManagementResourceWithRawResponse:
+        return AsyncManagementResourceWithRawResponse(self._tunnels.management)
 
 
-class TunnelsWithStreamingResponse:
-    def __init__(self, tunnels: Tunnels) -> None:
+class TunnelsResourceWithStreamingResponse:
+    def __init__(self, tunnels: TunnelsResource) -> None:
         self._tunnels = tunnels
 
         self.create = to_streamed_response_wrapper(
@@ -815,28 +815,28 @@ class TunnelsWithStreamingResponse:
         )
 
     @cached_property
-    def configurations(self) -> ConfigurationsWithStreamingResponse:
-        return ConfigurationsWithStreamingResponse(self._tunnels.configurations)
+    def configurations(self) -> ConfigurationsResourceWithStreamingResponse:
+        return ConfigurationsResourceWithStreamingResponse(self._tunnels.configurations)
 
     @cached_property
-    def connections(self) -> ConnectionsWithStreamingResponse:
-        return ConnectionsWithStreamingResponse(self._tunnels.connections)
+    def connections(self) -> ConnectionsResourceWithStreamingResponse:
+        return ConnectionsResourceWithStreamingResponse(self._tunnels.connections)
 
     @cached_property
-    def token(self) -> TokenWithStreamingResponse:
-        return TokenWithStreamingResponse(self._tunnels.token)
+    def token(self) -> TokenResourceWithStreamingResponse:
+        return TokenResourceWithStreamingResponse(self._tunnels.token)
 
     @cached_property
-    def connectors(self) -> ConnectorsWithStreamingResponse:
-        return ConnectorsWithStreamingResponse(self._tunnels.connectors)
+    def connectors(self) -> ConnectorsResourceWithStreamingResponse:
+        return ConnectorsResourceWithStreamingResponse(self._tunnels.connectors)
 
     @cached_property
-    def management(self) -> ManagementWithStreamingResponse:
-        return ManagementWithStreamingResponse(self._tunnels.management)
+    def management(self) -> ManagementResourceWithStreamingResponse:
+        return ManagementResourceWithStreamingResponse(self._tunnels.management)
 
 
-class AsyncTunnelsWithStreamingResponse:
-    def __init__(self, tunnels: AsyncTunnels) -> None:
+class AsyncTunnelsResourceWithStreamingResponse:
+    def __init__(self, tunnels: AsyncTunnelsResource) -> None:
         self._tunnels = tunnels
 
         self.create = async_to_streamed_response_wrapper(
@@ -856,21 +856,21 @@ class AsyncTunnelsWithStreamingResponse:
         )
 
     @cached_property
-    def configurations(self) -> AsyncConfigurationsWithStreamingResponse:
-        return AsyncConfigurationsWithStreamingResponse(self._tunnels.configurations)
+    def configurations(self) -> AsyncConfigurationsResourceWithStreamingResponse:
+        return AsyncConfigurationsResourceWithStreamingResponse(self._tunnels.configurations)
 
     @cached_property
-    def connections(self) -> AsyncConnectionsWithStreamingResponse:
-        return AsyncConnectionsWithStreamingResponse(self._tunnels.connections)
+    def connections(self) -> AsyncConnectionsResourceWithStreamingResponse:
+        return AsyncConnectionsResourceWithStreamingResponse(self._tunnels.connections)
 
     @cached_property
-    def token(self) -> AsyncTokenWithStreamingResponse:
-        return AsyncTokenWithStreamingResponse(self._tunnels.token)
+    def token(self) -> AsyncTokenResourceWithStreamingResponse:
+        return AsyncTokenResourceWithStreamingResponse(self._tunnels.token)
 
     @cached_property
-    def connectors(self) -> AsyncConnectorsWithStreamingResponse:
-        return AsyncConnectorsWithStreamingResponse(self._tunnels.connectors)
+    def connectors(self) -> AsyncConnectorsResourceWithStreamingResponse:
+        return AsyncConnectorsResourceWithStreamingResponse(self._tunnels.connectors)
 
     @cached_property
-    def management(self) -> AsyncManagementWithStreamingResponse:
-        return AsyncManagementWithStreamingResponse(self._tunnels.management)
+    def management(self) -> AsyncManagementResourceWithStreamingResponse:
+        return AsyncManagementResourceWithStreamingResponse(self._tunnels.management)

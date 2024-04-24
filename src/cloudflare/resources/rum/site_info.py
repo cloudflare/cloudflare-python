@@ -30,17 +30,17 @@ from ..._base_client import (
 from ...types.rum.site import Site
 from ...types.rum.site_info_delete_response import SiteInfoDeleteResponse
 
-__all__ = ["SiteInfo", "AsyncSiteInfo"]
+__all__ = ["SiteInfoResource", "AsyncSiteInfoResource"]
 
 
-class SiteInfo(SyncAPIResource):
+class SiteInfoResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SiteInfoWithRawResponse:
-        return SiteInfoWithRawResponse(self)
+    def with_raw_response(self) -> SiteInfoResourceWithRawResponse:
+        return SiteInfoResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SiteInfoWithStreamingResponse:
-        return SiteInfoWithStreamingResponse(self)
+    def with_streaming_response(self) -> SiteInfoResourceWithStreamingResponse:
+        return SiteInfoResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -306,14 +306,14 @@ class SiteInfo(SyncAPIResource):
         )
 
 
-class AsyncSiteInfo(AsyncAPIResource):
+class AsyncSiteInfoResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSiteInfoWithRawResponse:
-        return AsyncSiteInfoWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSiteInfoResourceWithRawResponse:
+        return AsyncSiteInfoResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSiteInfoWithStreamingResponse:
-        return AsyncSiteInfoWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSiteInfoResourceWithStreamingResponse:
+        return AsyncSiteInfoResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -579,8 +579,8 @@ class AsyncSiteInfo(AsyncAPIResource):
         )
 
 
-class SiteInfoWithRawResponse:
-    def __init__(self, site_info: SiteInfo) -> None:
+class SiteInfoResourceWithRawResponse:
+    def __init__(self, site_info: SiteInfoResource) -> None:
         self._site_info = site_info
 
         self.create = to_raw_response_wrapper(
@@ -600,8 +600,8 @@ class SiteInfoWithRawResponse:
         )
 
 
-class AsyncSiteInfoWithRawResponse:
-    def __init__(self, site_info: AsyncSiteInfo) -> None:
+class AsyncSiteInfoResourceWithRawResponse:
+    def __init__(self, site_info: AsyncSiteInfoResource) -> None:
         self._site_info = site_info
 
         self.create = async_to_raw_response_wrapper(
@@ -621,8 +621,8 @@ class AsyncSiteInfoWithRawResponse:
         )
 
 
-class SiteInfoWithStreamingResponse:
-    def __init__(self, site_info: SiteInfo) -> None:
+class SiteInfoResourceWithStreamingResponse:
+    def __init__(self, site_info: SiteInfoResource) -> None:
         self._site_info = site_info
 
         self.create = to_streamed_response_wrapper(
@@ -642,8 +642,8 @@ class SiteInfoWithStreamingResponse:
         )
 
 
-class AsyncSiteInfoWithStreamingResponse:
-    def __init__(self, site_info: AsyncSiteInfo) -> None:
+class AsyncSiteInfoResourceWithStreamingResponse:
+    def __init__(self, site_info: AsyncSiteInfoResource) -> None:
         self._site_info = site_info
 
         self.create = async_to_streamed_response_wrapper(

@@ -23,19 +23,20 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import ciphers, cipher_edit_params
+from ....types.zones.settings import cipher_edit_params
+from ....types.zones.settings.ciphers import Ciphers
 
-__all__ = ["Ciphers", "AsyncCiphers"]
+__all__ = ["CiphersResource", "AsyncCiphersResource"]
 
 
-class Ciphers(SyncAPIResource):
+class CiphersResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CiphersWithRawResponse:
-        return CiphersWithRawResponse(self)
+    def with_raw_response(self) -> CiphersResourceWithRawResponse:
+        return CiphersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CiphersWithStreamingResponse:
-        return CiphersWithStreamingResponse(self)
+    def with_streaming_response(self) -> CiphersResourceWithStreamingResponse:
+        return CiphersResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -48,7 +49,7 @@ class Ciphers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ciphers.Ciphers]:
+    ) -> Optional[Ciphers]:
         """
         Changes ciphers setting.
 
@@ -75,9 +76,9 @@ class Ciphers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ciphers.Ciphers]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Ciphers]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
+            cast_to=cast(Type[Optional[Ciphers]], ResultWrapper[Ciphers]),
         )
 
     def get(
@@ -90,7 +91,7 @@ class Ciphers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ciphers.Ciphers]:
+    ) -> Optional[Ciphers]:
         """
         Gets ciphers setting.
 
@@ -114,20 +115,20 @@ class Ciphers(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ciphers.Ciphers]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Ciphers]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
+            cast_to=cast(Type[Optional[Ciphers]], ResultWrapper[Ciphers]),
         )
 
 
-class AsyncCiphers(AsyncAPIResource):
+class AsyncCiphersResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCiphersWithRawResponse:
-        return AsyncCiphersWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCiphersResourceWithRawResponse:
+        return AsyncCiphersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCiphersWithStreamingResponse:
-        return AsyncCiphersWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCiphersResourceWithStreamingResponse:
+        return AsyncCiphersResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -140,7 +141,7 @@ class AsyncCiphers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ciphers.Ciphers]:
+    ) -> Optional[Ciphers]:
         """
         Changes ciphers setting.
 
@@ -167,9 +168,9 @@ class AsyncCiphers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ciphers.Ciphers]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Ciphers]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
+            cast_to=cast(Type[Optional[Ciphers]], ResultWrapper[Ciphers]),
         )
 
     async def get(
@@ -182,7 +183,7 @@ class AsyncCiphers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ciphers.Ciphers]:
+    ) -> Optional[Ciphers]:
         """
         Gets ciphers setting.
 
@@ -206,14 +207,14 @@ class AsyncCiphers(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ciphers.Ciphers]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Ciphers]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ciphers.Ciphers]], ResultWrapper[ciphers.Ciphers]),
+            cast_to=cast(Type[Optional[Ciphers]], ResultWrapper[Ciphers]),
         )
 
 
-class CiphersWithRawResponse:
-    def __init__(self, ciphers: Ciphers) -> None:
+class CiphersResourceWithRawResponse:
+    def __init__(self, ciphers: CiphersResource) -> None:
         self._ciphers = ciphers
 
         self.edit = to_raw_response_wrapper(
@@ -224,8 +225,8 @@ class CiphersWithRawResponse:
         )
 
 
-class AsyncCiphersWithRawResponse:
-    def __init__(self, ciphers: AsyncCiphers) -> None:
+class AsyncCiphersResourceWithRawResponse:
+    def __init__(self, ciphers: AsyncCiphersResource) -> None:
         self._ciphers = ciphers
 
         self.edit = async_to_raw_response_wrapper(
@@ -236,8 +237,8 @@ class AsyncCiphersWithRawResponse:
         )
 
 
-class CiphersWithStreamingResponse:
-    def __init__(self, ciphers: Ciphers) -> None:
+class CiphersResourceWithStreamingResponse:
+    def __init__(self, ciphers: CiphersResource) -> None:
         self._ciphers = ciphers
 
         self.edit = to_streamed_response_wrapper(
@@ -248,8 +249,8 @@ class CiphersWithStreamingResponse:
         )
 
 
-class AsyncCiphersWithStreamingResponse:
-    def __init__(self, ciphers: AsyncCiphers) -> None:
+class AsyncCiphersResourceWithStreamingResponse:
+    def __init__(self, ciphers: AsyncCiphersResource) -> None:
         self._ciphers = ciphers
 
         self.edit = async_to_streamed_response_wrapper(

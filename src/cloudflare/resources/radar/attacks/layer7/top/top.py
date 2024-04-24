@@ -9,20 +9,20 @@ from typing_extensions import Literal
 import httpx
 
 from .ases import (
-    Ases,
-    AsyncAses,
-    AsesWithRawResponse,
-    AsyncAsesWithRawResponse,
-    AsesWithStreamingResponse,
-    AsyncAsesWithStreamingResponse,
+    AsesResource,
+    AsyncAsesResource,
+    AsesResourceWithRawResponse,
+    AsyncAsesResourceWithRawResponse,
+    AsesResourceWithStreamingResponse,
+    AsyncAsesResourceWithStreamingResponse,
 )
 from .locations import (
-    Locations,
-    AsyncLocations,
-    LocationsWithRawResponse,
-    AsyncLocationsWithRawResponse,
-    LocationsWithStreamingResponse,
-    AsyncLocationsWithStreamingResponse,
+    LocationsResource,
+    AsyncLocationsResource,
+    LocationsResourceWithRawResponse,
+    AsyncLocationsResourceWithRawResponse,
+    LocationsResourceWithStreamingResponse,
+    AsyncLocationsResourceWithStreamingResponse,
 )
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ......_utils import (
@@ -46,25 +46,25 @@ from ......types.radar.attacks.layer7.top_attacks_response import TopAttacksResp
 from ......types.radar.attacks.layer7.top_industry_response import TopIndustryResponse
 from ......types.radar.attacks.layer7.top_vertical_response import TopVerticalResponse
 
-__all__ = ["Top", "AsyncTop"]
+__all__ = ["TopResource", "AsyncTopResource"]
 
 
-class Top(SyncAPIResource):
+class TopResource(SyncAPIResource):
     @cached_property
-    def locations(self) -> Locations:
-        return Locations(self._client)
-
-    @cached_property
-    def ases(self) -> Ases:
-        return Ases(self._client)
+    def locations(self) -> LocationsResource:
+        return LocationsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self)
+    def ases(self) -> AsesResource:
+        return AsesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self)
+    def with_raw_response(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self)
 
     def attacks(
         self,
@@ -394,22 +394,22 @@ class Top(SyncAPIResource):
         )
 
 
-class AsyncTop(AsyncAPIResource):
+class AsyncTopResource(AsyncAPIResource):
     @cached_property
-    def locations(self) -> AsyncLocations:
-        return AsyncLocations(self._client)
+    def locations(self) -> AsyncLocationsResource:
+        return AsyncLocationsResource(self._client)
 
     @cached_property
-    def ases(self) -> AsyncAses:
-        return AsyncAses(self._client)
+    def ases(self) -> AsyncAsesResource:
+        return AsyncAsesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self)
 
     async def attacks(
         self,
@@ -739,8 +739,8 @@ class AsyncTop(AsyncAPIResource):
         )
 
 
-class TopWithRawResponse:
-    def __init__(self, top: Top) -> None:
+class TopResourceWithRawResponse:
+    def __init__(self, top: TopResource) -> None:
         self._top = top
 
         self.attacks = to_raw_response_wrapper(
@@ -754,16 +754,16 @@ class TopWithRawResponse:
         )
 
     @cached_property
-    def locations(self) -> LocationsWithRawResponse:
-        return LocationsWithRawResponse(self._top.locations)
+    def locations(self) -> LocationsResourceWithRawResponse:
+        return LocationsResourceWithRawResponse(self._top.locations)
 
     @cached_property
-    def ases(self) -> AsesWithRawResponse:
-        return AsesWithRawResponse(self._top.ases)
+    def ases(self) -> AsesResourceWithRawResponse:
+        return AsesResourceWithRawResponse(self._top.ases)
 
 
-class AsyncTopWithRawResponse:
-    def __init__(self, top: AsyncTop) -> None:
+class AsyncTopResourceWithRawResponse:
+    def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
         self.attacks = async_to_raw_response_wrapper(
@@ -777,16 +777,16 @@ class AsyncTopWithRawResponse:
         )
 
     @cached_property
-    def locations(self) -> AsyncLocationsWithRawResponse:
-        return AsyncLocationsWithRawResponse(self._top.locations)
+    def locations(self) -> AsyncLocationsResourceWithRawResponse:
+        return AsyncLocationsResourceWithRawResponse(self._top.locations)
 
     @cached_property
-    def ases(self) -> AsyncAsesWithRawResponse:
-        return AsyncAsesWithRawResponse(self._top.ases)
+    def ases(self) -> AsyncAsesResourceWithRawResponse:
+        return AsyncAsesResourceWithRawResponse(self._top.ases)
 
 
-class TopWithStreamingResponse:
-    def __init__(self, top: Top) -> None:
+class TopResourceWithStreamingResponse:
+    def __init__(self, top: TopResource) -> None:
         self._top = top
 
         self.attacks = to_streamed_response_wrapper(
@@ -800,16 +800,16 @@ class TopWithStreamingResponse:
         )
 
     @cached_property
-    def locations(self) -> LocationsWithStreamingResponse:
-        return LocationsWithStreamingResponse(self._top.locations)
+    def locations(self) -> LocationsResourceWithStreamingResponse:
+        return LocationsResourceWithStreamingResponse(self._top.locations)
 
     @cached_property
-    def ases(self) -> AsesWithStreamingResponse:
-        return AsesWithStreamingResponse(self._top.ases)
+    def ases(self) -> AsesResourceWithStreamingResponse:
+        return AsesResourceWithStreamingResponse(self._top.ases)
 
 
-class AsyncTopWithStreamingResponse:
-    def __init__(self, top: AsyncTop) -> None:
+class AsyncTopResourceWithStreamingResponse:
+    def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
         self.attacks = async_to_streamed_response_wrapper(
@@ -823,9 +823,9 @@ class AsyncTopWithStreamingResponse:
         )
 
     @cached_property
-    def locations(self) -> AsyncLocationsWithStreamingResponse:
-        return AsyncLocationsWithStreamingResponse(self._top.locations)
+    def locations(self) -> AsyncLocationsResourceWithStreamingResponse:
+        return AsyncLocationsResourceWithStreamingResponse(self._top.locations)
 
     @cached_property
-    def ases(self) -> AsyncAsesWithStreamingResponse:
-        return AsyncAsesWithStreamingResponse(self._top.ases)
+    def ases(self) -> AsyncAsesResourceWithStreamingResponse:
+        return AsyncAsesResourceWithStreamingResponse(self._top.ases)

@@ -7,56 +7,56 @@ from typing import Type, Optional, cast
 import httpx
 
 from .lists import (
-    Lists,
-    AsyncLists,
-    ListsWithRawResponse,
-    AsyncListsWithRawResponse,
-    ListsWithStreamingResponse,
-    AsyncListsWithStreamingResponse,
+    ListsResource,
+    AsyncListsResource,
+    ListsResourceWithRawResponse,
+    AsyncListsResourceWithRawResponse,
+    ListsResourceWithStreamingResponse,
+    AsyncListsResourceWithStreamingResponse,
 )
 from .rules import (
-    Rules,
-    AsyncRules,
-    RulesWithRawResponse,
-    AsyncRulesWithRawResponse,
-    RulesWithStreamingResponse,
-    AsyncRulesWithStreamingResponse,
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
 from .logging import (
-    Logging,
-    AsyncLogging,
-    LoggingWithRawResponse,
-    AsyncLoggingWithRawResponse,
-    LoggingWithStreamingResponse,
-    AsyncLoggingWithStreamingResponse,
+    LoggingResource,
+    AsyncLoggingResource,
+    LoggingResourceWithRawResponse,
+    AsyncLoggingResourceWithRawResponse,
+    LoggingResourceWithStreamingResponse,
+    AsyncLoggingResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .app_types import (
-    AppTypes,
-    AsyncAppTypes,
-    AppTypesWithRawResponse,
-    AsyncAppTypesWithRawResponse,
-    AppTypesWithStreamingResponse,
-    AsyncAppTypesWithStreamingResponse,
+    AppTypesResource,
+    AsyncAppTypesResource,
+    AppTypesResourceWithRawResponse,
+    AsyncAppTypesResourceWithRawResponse,
+    AppTypesResourceWithStreamingResponse,
+    AsyncAppTypesResourceWithStreamingResponse,
 )
 from .locations import (
-    Locations,
-    AsyncLocations,
-    LocationsWithRawResponse,
-    AsyncLocationsWithRawResponse,
-    LocationsWithStreamingResponse,
-    AsyncLocationsWithStreamingResponse,
+    LocationsResource,
+    AsyncLocationsResource,
+    LocationsResourceWithRawResponse,
+    AsyncLocationsResourceWithRawResponse,
+    LocationsResourceWithStreamingResponse,
+    AsyncLocationsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from .categories import (
-    Categories,
-    AsyncCategories,
-    CategoriesWithRawResponse,
-    AsyncCategoriesWithRawResponse,
-    CategoriesWithStreamingResponse,
-    AsyncCategoriesWithStreamingResponse,
+    CategoriesResource,
+    AsyncCategoriesResource,
+    CategoriesResourceWithRawResponse,
+    AsyncCategoriesResourceWithRawResponse,
+    CategoriesResourceWithStreamingResponse,
+    AsyncCategoriesResourceWithStreamingResponse,
 )
-from .lists.lists import Lists, AsyncLists
+from .lists.lists import ListsResource, AsyncListsResource
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -66,82 +66,82 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from .configurations import (
-    Configurations,
-    AsyncConfigurations,
-    ConfigurationsWithRawResponse,
-    AsyncConfigurationsWithRawResponse,
-    ConfigurationsWithStreamingResponse,
-    AsyncConfigurationsWithStreamingResponse,
+    ConfigurationsResource,
+    AsyncConfigurationsResource,
+    ConfigurationsResourceWithRawResponse,
+    AsyncConfigurationsResourceWithRawResponse,
+    ConfigurationsResourceWithStreamingResponse,
+    AsyncConfigurationsResourceWithStreamingResponse,
 )
 from ...._base_client import (
     make_request_options,
 )
 from .proxy_endpoints import (
-    ProxyEndpoints,
-    AsyncProxyEndpoints,
-    ProxyEndpointsWithRawResponse,
-    AsyncProxyEndpointsWithRawResponse,
-    ProxyEndpointsWithStreamingResponse,
-    AsyncProxyEndpointsWithStreamingResponse,
+    ProxyEndpointsResource,
+    AsyncProxyEndpointsResource,
+    ProxyEndpointsResourceWithRawResponse,
+    AsyncProxyEndpointsResourceWithRawResponse,
+    ProxyEndpointsResourceWithStreamingResponse,
+    AsyncProxyEndpointsResourceWithStreamingResponse,
 )
 from .audit_ssh_settings import (
-    AuditSSHSettings,
-    AsyncAuditSSHSettings,
-    AuditSSHSettingsWithRawResponse,
-    AsyncAuditSSHSettingsWithRawResponse,
-    AuditSSHSettingsWithStreamingResponse,
-    AsyncAuditSSHSettingsWithStreamingResponse,
+    AuditSSHSettingsResource,
+    AsyncAuditSSHSettingsResource,
+    AuditSSHSettingsResourceWithRawResponse,
+    AsyncAuditSSHSettingsResourceWithRawResponse,
+    AuditSSHSettingsResourceWithStreamingResponse,
+    AsyncAuditSSHSettingsResourceWithStreamingResponse,
 )
 from ....types.zero_trust.gateway_list_response import GatewayListResponse
 from ....types.zero_trust.gateway_create_response import GatewayCreateResponse
 
-__all__ = ["Gateway", "AsyncGateway"]
+__all__ = ["GatewayResource", "AsyncGatewayResource"]
 
 
-class Gateway(SyncAPIResource):
+class GatewayResource(SyncAPIResource):
     @cached_property
-    def audit_ssh_settings(self) -> AuditSSHSettings:
-        return AuditSSHSettings(self._client)
-
-    @cached_property
-    def categories(self) -> Categories:
-        return Categories(self._client)
+    def audit_ssh_settings(self) -> AuditSSHSettingsResource:
+        return AuditSSHSettingsResource(self._client)
 
     @cached_property
-    def app_types(self) -> AppTypes:
-        return AppTypes(self._client)
+    def categories(self) -> CategoriesResource:
+        return CategoriesResource(self._client)
 
     @cached_property
-    def configurations(self) -> Configurations:
-        return Configurations(self._client)
+    def app_types(self) -> AppTypesResource:
+        return AppTypesResource(self._client)
 
     @cached_property
-    def lists(self) -> Lists:
-        return Lists(self._client)
+    def configurations(self) -> ConfigurationsResource:
+        return ConfigurationsResource(self._client)
 
     @cached_property
-    def locations(self) -> Locations:
-        return Locations(self._client)
+    def lists(self) -> ListsResource:
+        return ListsResource(self._client)
 
     @cached_property
-    def logging(self) -> Logging:
-        return Logging(self._client)
+    def locations(self) -> LocationsResource:
+        return LocationsResource(self._client)
 
     @cached_property
-    def proxy_endpoints(self) -> ProxyEndpoints:
-        return ProxyEndpoints(self._client)
+    def logging(self) -> LoggingResource:
+        return LoggingResource(self._client)
 
     @cached_property
-    def rules(self) -> Rules:
-        return Rules(self._client)
+    def proxy_endpoints(self) -> ProxyEndpointsResource:
+        return ProxyEndpointsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> GatewayWithRawResponse:
-        return GatewayWithRawResponse(self)
+    def rules(self) -> RulesResource:
+        return RulesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> GatewayWithStreamingResponse:
-        return GatewayWithStreamingResponse(self)
+    def with_raw_response(self) -> GatewayResourceWithRawResponse:
+        return GatewayResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> GatewayResourceWithStreamingResponse:
+        return GatewayResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -218,50 +218,50 @@ class Gateway(SyncAPIResource):
         )
 
 
-class AsyncGateway(AsyncAPIResource):
+class AsyncGatewayResource(AsyncAPIResource):
     @cached_property
-    def audit_ssh_settings(self) -> AsyncAuditSSHSettings:
-        return AsyncAuditSSHSettings(self._client)
+    def audit_ssh_settings(self) -> AsyncAuditSSHSettingsResource:
+        return AsyncAuditSSHSettingsResource(self._client)
 
     @cached_property
-    def categories(self) -> AsyncCategories:
-        return AsyncCategories(self._client)
+    def categories(self) -> AsyncCategoriesResource:
+        return AsyncCategoriesResource(self._client)
 
     @cached_property
-    def app_types(self) -> AsyncAppTypes:
-        return AsyncAppTypes(self._client)
+    def app_types(self) -> AsyncAppTypesResource:
+        return AsyncAppTypesResource(self._client)
 
     @cached_property
-    def configurations(self) -> AsyncConfigurations:
-        return AsyncConfigurations(self._client)
+    def configurations(self) -> AsyncConfigurationsResource:
+        return AsyncConfigurationsResource(self._client)
 
     @cached_property
-    def lists(self) -> AsyncLists:
-        return AsyncLists(self._client)
+    def lists(self) -> AsyncListsResource:
+        return AsyncListsResource(self._client)
 
     @cached_property
-    def locations(self) -> AsyncLocations:
-        return AsyncLocations(self._client)
+    def locations(self) -> AsyncLocationsResource:
+        return AsyncLocationsResource(self._client)
 
     @cached_property
-    def logging(self) -> AsyncLogging:
-        return AsyncLogging(self._client)
+    def logging(self) -> AsyncLoggingResource:
+        return AsyncLoggingResource(self._client)
 
     @cached_property
-    def proxy_endpoints(self) -> AsyncProxyEndpoints:
-        return AsyncProxyEndpoints(self._client)
+    def proxy_endpoints(self) -> AsyncProxyEndpointsResource:
+        return AsyncProxyEndpointsResource(self._client)
 
     @cached_property
-    def rules(self) -> AsyncRules:
-        return AsyncRules(self._client)
+    def rules(self) -> AsyncRulesResource:
+        return AsyncRulesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncGatewayWithRawResponse:
-        return AsyncGatewayWithRawResponse(self)
+    def with_raw_response(self) -> AsyncGatewayResourceWithRawResponse:
+        return AsyncGatewayResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncGatewayWithStreamingResponse:
-        return AsyncGatewayWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncGatewayResourceWithStreamingResponse:
+        return AsyncGatewayResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -338,8 +338,8 @@ class AsyncGateway(AsyncAPIResource):
         )
 
 
-class GatewayWithRawResponse:
-    def __init__(self, gateway: Gateway) -> None:
+class GatewayResourceWithRawResponse:
+    def __init__(self, gateway: GatewayResource) -> None:
         self._gateway = gateway
 
         self.create = to_raw_response_wrapper(
@@ -350,44 +350,44 @@ class GatewayWithRawResponse:
         )
 
     @cached_property
-    def audit_ssh_settings(self) -> AuditSSHSettingsWithRawResponse:
-        return AuditSSHSettingsWithRawResponse(self._gateway.audit_ssh_settings)
+    def audit_ssh_settings(self) -> AuditSSHSettingsResourceWithRawResponse:
+        return AuditSSHSettingsResourceWithRawResponse(self._gateway.audit_ssh_settings)
 
     @cached_property
-    def categories(self) -> CategoriesWithRawResponse:
-        return CategoriesWithRawResponse(self._gateway.categories)
+    def categories(self) -> CategoriesResourceWithRawResponse:
+        return CategoriesResourceWithRawResponse(self._gateway.categories)
 
     @cached_property
-    def app_types(self) -> AppTypesWithRawResponse:
-        return AppTypesWithRawResponse(self._gateway.app_types)
+    def app_types(self) -> AppTypesResourceWithRawResponse:
+        return AppTypesResourceWithRawResponse(self._gateway.app_types)
 
     @cached_property
-    def configurations(self) -> ConfigurationsWithRawResponse:
-        return ConfigurationsWithRawResponse(self._gateway.configurations)
+    def configurations(self) -> ConfigurationsResourceWithRawResponse:
+        return ConfigurationsResourceWithRawResponse(self._gateway.configurations)
 
     @cached_property
-    def lists(self) -> ListsWithRawResponse:
-        return ListsWithRawResponse(self._gateway.lists)
+    def lists(self) -> ListsResourceWithRawResponse:
+        return ListsResourceWithRawResponse(self._gateway.lists)
 
     @cached_property
-    def locations(self) -> LocationsWithRawResponse:
-        return LocationsWithRawResponse(self._gateway.locations)
+    def locations(self) -> LocationsResourceWithRawResponse:
+        return LocationsResourceWithRawResponse(self._gateway.locations)
 
     @cached_property
-    def logging(self) -> LoggingWithRawResponse:
-        return LoggingWithRawResponse(self._gateway.logging)
+    def logging(self) -> LoggingResourceWithRawResponse:
+        return LoggingResourceWithRawResponse(self._gateway.logging)
 
     @cached_property
-    def proxy_endpoints(self) -> ProxyEndpointsWithRawResponse:
-        return ProxyEndpointsWithRawResponse(self._gateway.proxy_endpoints)
+    def proxy_endpoints(self) -> ProxyEndpointsResourceWithRawResponse:
+        return ProxyEndpointsResourceWithRawResponse(self._gateway.proxy_endpoints)
 
     @cached_property
-    def rules(self) -> RulesWithRawResponse:
-        return RulesWithRawResponse(self._gateway.rules)
+    def rules(self) -> RulesResourceWithRawResponse:
+        return RulesResourceWithRawResponse(self._gateway.rules)
 
 
-class AsyncGatewayWithRawResponse:
-    def __init__(self, gateway: AsyncGateway) -> None:
+class AsyncGatewayResourceWithRawResponse:
+    def __init__(self, gateway: AsyncGatewayResource) -> None:
         self._gateway = gateway
 
         self.create = async_to_raw_response_wrapper(
@@ -398,44 +398,44 @@ class AsyncGatewayWithRawResponse:
         )
 
     @cached_property
-    def audit_ssh_settings(self) -> AsyncAuditSSHSettingsWithRawResponse:
-        return AsyncAuditSSHSettingsWithRawResponse(self._gateway.audit_ssh_settings)
+    def audit_ssh_settings(self) -> AsyncAuditSSHSettingsResourceWithRawResponse:
+        return AsyncAuditSSHSettingsResourceWithRawResponse(self._gateway.audit_ssh_settings)
 
     @cached_property
-    def categories(self) -> AsyncCategoriesWithRawResponse:
-        return AsyncCategoriesWithRawResponse(self._gateway.categories)
+    def categories(self) -> AsyncCategoriesResourceWithRawResponse:
+        return AsyncCategoriesResourceWithRawResponse(self._gateway.categories)
 
     @cached_property
-    def app_types(self) -> AsyncAppTypesWithRawResponse:
-        return AsyncAppTypesWithRawResponse(self._gateway.app_types)
+    def app_types(self) -> AsyncAppTypesResourceWithRawResponse:
+        return AsyncAppTypesResourceWithRawResponse(self._gateway.app_types)
 
     @cached_property
-    def configurations(self) -> AsyncConfigurationsWithRawResponse:
-        return AsyncConfigurationsWithRawResponse(self._gateway.configurations)
+    def configurations(self) -> AsyncConfigurationsResourceWithRawResponse:
+        return AsyncConfigurationsResourceWithRawResponse(self._gateway.configurations)
 
     @cached_property
-    def lists(self) -> AsyncListsWithRawResponse:
-        return AsyncListsWithRawResponse(self._gateway.lists)
+    def lists(self) -> AsyncListsResourceWithRawResponse:
+        return AsyncListsResourceWithRawResponse(self._gateway.lists)
 
     @cached_property
-    def locations(self) -> AsyncLocationsWithRawResponse:
-        return AsyncLocationsWithRawResponse(self._gateway.locations)
+    def locations(self) -> AsyncLocationsResourceWithRawResponse:
+        return AsyncLocationsResourceWithRawResponse(self._gateway.locations)
 
     @cached_property
-    def logging(self) -> AsyncLoggingWithRawResponse:
-        return AsyncLoggingWithRawResponse(self._gateway.logging)
+    def logging(self) -> AsyncLoggingResourceWithRawResponse:
+        return AsyncLoggingResourceWithRawResponse(self._gateway.logging)
 
     @cached_property
-    def proxy_endpoints(self) -> AsyncProxyEndpointsWithRawResponse:
-        return AsyncProxyEndpointsWithRawResponse(self._gateway.proxy_endpoints)
+    def proxy_endpoints(self) -> AsyncProxyEndpointsResourceWithRawResponse:
+        return AsyncProxyEndpointsResourceWithRawResponse(self._gateway.proxy_endpoints)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithRawResponse:
-        return AsyncRulesWithRawResponse(self._gateway.rules)
+    def rules(self) -> AsyncRulesResourceWithRawResponse:
+        return AsyncRulesResourceWithRawResponse(self._gateway.rules)
 
 
-class GatewayWithStreamingResponse:
-    def __init__(self, gateway: Gateway) -> None:
+class GatewayResourceWithStreamingResponse:
+    def __init__(self, gateway: GatewayResource) -> None:
         self._gateway = gateway
 
         self.create = to_streamed_response_wrapper(
@@ -446,44 +446,44 @@ class GatewayWithStreamingResponse:
         )
 
     @cached_property
-    def audit_ssh_settings(self) -> AuditSSHSettingsWithStreamingResponse:
-        return AuditSSHSettingsWithStreamingResponse(self._gateway.audit_ssh_settings)
+    def audit_ssh_settings(self) -> AuditSSHSettingsResourceWithStreamingResponse:
+        return AuditSSHSettingsResourceWithStreamingResponse(self._gateway.audit_ssh_settings)
 
     @cached_property
-    def categories(self) -> CategoriesWithStreamingResponse:
-        return CategoriesWithStreamingResponse(self._gateway.categories)
+    def categories(self) -> CategoriesResourceWithStreamingResponse:
+        return CategoriesResourceWithStreamingResponse(self._gateway.categories)
 
     @cached_property
-    def app_types(self) -> AppTypesWithStreamingResponse:
-        return AppTypesWithStreamingResponse(self._gateway.app_types)
+    def app_types(self) -> AppTypesResourceWithStreamingResponse:
+        return AppTypesResourceWithStreamingResponse(self._gateway.app_types)
 
     @cached_property
-    def configurations(self) -> ConfigurationsWithStreamingResponse:
-        return ConfigurationsWithStreamingResponse(self._gateway.configurations)
+    def configurations(self) -> ConfigurationsResourceWithStreamingResponse:
+        return ConfigurationsResourceWithStreamingResponse(self._gateway.configurations)
 
     @cached_property
-    def lists(self) -> ListsWithStreamingResponse:
-        return ListsWithStreamingResponse(self._gateway.lists)
+    def lists(self) -> ListsResourceWithStreamingResponse:
+        return ListsResourceWithStreamingResponse(self._gateway.lists)
 
     @cached_property
-    def locations(self) -> LocationsWithStreamingResponse:
-        return LocationsWithStreamingResponse(self._gateway.locations)
+    def locations(self) -> LocationsResourceWithStreamingResponse:
+        return LocationsResourceWithStreamingResponse(self._gateway.locations)
 
     @cached_property
-    def logging(self) -> LoggingWithStreamingResponse:
-        return LoggingWithStreamingResponse(self._gateway.logging)
+    def logging(self) -> LoggingResourceWithStreamingResponse:
+        return LoggingResourceWithStreamingResponse(self._gateway.logging)
 
     @cached_property
-    def proxy_endpoints(self) -> ProxyEndpointsWithStreamingResponse:
-        return ProxyEndpointsWithStreamingResponse(self._gateway.proxy_endpoints)
+    def proxy_endpoints(self) -> ProxyEndpointsResourceWithStreamingResponse:
+        return ProxyEndpointsResourceWithStreamingResponse(self._gateway.proxy_endpoints)
 
     @cached_property
-    def rules(self) -> RulesWithStreamingResponse:
-        return RulesWithStreamingResponse(self._gateway.rules)
+    def rules(self) -> RulesResourceWithStreamingResponse:
+        return RulesResourceWithStreamingResponse(self._gateway.rules)
 
 
-class AsyncGatewayWithStreamingResponse:
-    def __init__(self, gateway: AsyncGateway) -> None:
+class AsyncGatewayResourceWithStreamingResponse:
+    def __init__(self, gateway: AsyncGatewayResource) -> None:
         self._gateway = gateway
 
         self.create = async_to_streamed_response_wrapper(
@@ -494,37 +494,37 @@ class AsyncGatewayWithStreamingResponse:
         )
 
     @cached_property
-    def audit_ssh_settings(self) -> AsyncAuditSSHSettingsWithStreamingResponse:
-        return AsyncAuditSSHSettingsWithStreamingResponse(self._gateway.audit_ssh_settings)
+    def audit_ssh_settings(self) -> AsyncAuditSSHSettingsResourceWithStreamingResponse:
+        return AsyncAuditSSHSettingsResourceWithStreamingResponse(self._gateway.audit_ssh_settings)
 
     @cached_property
-    def categories(self) -> AsyncCategoriesWithStreamingResponse:
-        return AsyncCategoriesWithStreamingResponse(self._gateway.categories)
+    def categories(self) -> AsyncCategoriesResourceWithStreamingResponse:
+        return AsyncCategoriesResourceWithStreamingResponse(self._gateway.categories)
 
     @cached_property
-    def app_types(self) -> AsyncAppTypesWithStreamingResponse:
-        return AsyncAppTypesWithStreamingResponse(self._gateway.app_types)
+    def app_types(self) -> AsyncAppTypesResourceWithStreamingResponse:
+        return AsyncAppTypesResourceWithStreamingResponse(self._gateway.app_types)
 
     @cached_property
-    def configurations(self) -> AsyncConfigurationsWithStreamingResponse:
-        return AsyncConfigurationsWithStreamingResponse(self._gateway.configurations)
+    def configurations(self) -> AsyncConfigurationsResourceWithStreamingResponse:
+        return AsyncConfigurationsResourceWithStreamingResponse(self._gateway.configurations)
 
     @cached_property
-    def lists(self) -> AsyncListsWithStreamingResponse:
-        return AsyncListsWithStreamingResponse(self._gateway.lists)
+    def lists(self) -> AsyncListsResourceWithStreamingResponse:
+        return AsyncListsResourceWithStreamingResponse(self._gateway.lists)
 
     @cached_property
-    def locations(self) -> AsyncLocationsWithStreamingResponse:
-        return AsyncLocationsWithStreamingResponse(self._gateway.locations)
+    def locations(self) -> AsyncLocationsResourceWithStreamingResponse:
+        return AsyncLocationsResourceWithStreamingResponse(self._gateway.locations)
 
     @cached_property
-    def logging(self) -> AsyncLoggingWithStreamingResponse:
-        return AsyncLoggingWithStreamingResponse(self._gateway.logging)
+    def logging(self) -> AsyncLoggingResourceWithStreamingResponse:
+        return AsyncLoggingResourceWithStreamingResponse(self._gateway.logging)
 
     @cached_property
-    def proxy_endpoints(self) -> AsyncProxyEndpointsWithStreamingResponse:
-        return AsyncProxyEndpointsWithStreamingResponse(self._gateway.proxy_endpoints)
+    def proxy_endpoints(self) -> AsyncProxyEndpointsResourceWithStreamingResponse:
+        return AsyncProxyEndpointsResourceWithStreamingResponse(self._gateway.proxy_endpoints)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithStreamingResponse:
-        return AsyncRulesWithStreamingResponse(self._gateway.rules)
+    def rules(self) -> AsyncRulesResourceWithStreamingResponse:
+        return AsyncRulesResourceWithStreamingResponse(self._gateway.rules)

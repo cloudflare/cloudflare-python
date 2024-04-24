@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.load_balancers.pools.reference_get_response import ReferenceGetResponse
 
-__all__ = ["References", "AsyncReferences"]
+__all__ = ["ReferencesResource", "AsyncReferencesResource"]
 
 
-class References(SyncAPIResource):
+class ReferencesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ReferencesWithRawResponse:
-        return ReferencesWithRawResponse(self)
+    def with_raw_response(self) -> ReferencesResourceWithRawResponse:
+        return ReferencesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ReferencesWithStreamingResponse:
-        return ReferencesWithStreamingResponse(self)
+    def with_streaming_response(self) -> ReferencesResourceWithStreamingResponse:
+        return ReferencesResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -76,14 +76,14 @@ class References(SyncAPIResource):
         )
 
 
-class AsyncReferences(AsyncAPIResource):
+class AsyncReferencesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncReferencesWithRawResponse:
-        return AsyncReferencesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncReferencesResourceWithRawResponse:
+        return AsyncReferencesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncReferencesWithStreamingResponse:
-        return AsyncReferencesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncReferencesResourceWithStreamingResponse:
+        return AsyncReferencesResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -128,8 +128,8 @@ class AsyncReferences(AsyncAPIResource):
         )
 
 
-class ReferencesWithRawResponse:
-    def __init__(self, references: References) -> None:
+class ReferencesResourceWithRawResponse:
+    def __init__(self, references: ReferencesResource) -> None:
         self._references = references
 
         self.get = to_raw_response_wrapper(
@@ -137,8 +137,8 @@ class ReferencesWithRawResponse:
         )
 
 
-class AsyncReferencesWithRawResponse:
-    def __init__(self, references: AsyncReferences) -> None:
+class AsyncReferencesResourceWithRawResponse:
+    def __init__(self, references: AsyncReferencesResource) -> None:
         self._references = references
 
         self.get = async_to_raw_response_wrapper(
@@ -146,8 +146,8 @@ class AsyncReferencesWithRawResponse:
         )
 
 
-class ReferencesWithStreamingResponse:
-    def __init__(self, references: References) -> None:
+class ReferencesResourceWithStreamingResponse:
+    def __init__(self, references: ReferencesResource) -> None:
         self._references = references
 
         self.get = to_streamed_response_wrapper(
@@ -155,8 +155,8 @@ class ReferencesWithStreamingResponse:
         )
 
 
-class AsyncReferencesWithStreamingResponse:
-    def __init__(self, references: AsyncReferences) -> None:
+class AsyncReferencesResourceWithStreamingResponse:
+    def __init__(self, references: AsyncReferencesResource) -> None:
         self._references = references
 
         self.get = async_to_streamed_response_wrapper(

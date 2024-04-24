@@ -26,17 +26,17 @@ from ..._base_client import (
 from ...types.request_tracers import trace_create_params
 from ...types.request_tracers.trace_create_response import TraceCreateResponse
 
-__all__ = ["Traces", "AsyncTraces"]
+__all__ = ["TracesResource", "AsyncTracesResource"]
 
 
-class Traces(SyncAPIResource):
+class TracesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TracesWithRawResponse:
-        return TracesWithRawResponse(self)
+    def with_raw_response(self) -> TracesResourceWithRawResponse:
+        return TracesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TracesWithStreamingResponse:
-        return TracesWithStreamingResponse(self)
+    def with_streaming_response(self) -> TracesResourceWithStreamingResponse:
+        return TracesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -113,14 +113,14 @@ class Traces(SyncAPIResource):
         )
 
 
-class AsyncTraces(AsyncAPIResource):
+class AsyncTracesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTracesWithRawResponse:
-        return AsyncTracesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTracesResourceWithRawResponse:
+        return AsyncTracesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTracesWithStreamingResponse:
-        return AsyncTracesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTracesResourceWithStreamingResponse:
+        return AsyncTracesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -197,8 +197,8 @@ class AsyncTraces(AsyncAPIResource):
         )
 
 
-class TracesWithRawResponse:
-    def __init__(self, traces: Traces) -> None:
+class TracesResourceWithRawResponse:
+    def __init__(self, traces: TracesResource) -> None:
         self._traces = traces
 
         self.create = to_raw_response_wrapper(
@@ -206,8 +206,8 @@ class TracesWithRawResponse:
         )
 
 
-class AsyncTracesWithRawResponse:
-    def __init__(self, traces: AsyncTraces) -> None:
+class AsyncTracesResourceWithRawResponse:
+    def __init__(self, traces: AsyncTracesResource) -> None:
         self._traces = traces
 
         self.create = async_to_raw_response_wrapper(
@@ -215,8 +215,8 @@ class AsyncTracesWithRawResponse:
         )
 
 
-class TracesWithStreamingResponse:
-    def __init__(self, traces: Traces) -> None:
+class TracesResourceWithStreamingResponse:
+    def __init__(self, traces: TracesResource) -> None:
         self._traces = traces
 
         self.create = to_streamed_response_wrapper(
@@ -224,8 +224,8 @@ class TracesWithStreamingResponse:
         )
 
 
-class AsyncTracesWithStreamingResponse:
-    def __init__(self, traces: AsyncTraces) -> None:
+class AsyncTracesResourceWithStreamingResponse:
+    def __init__(self, traces: AsyncTracesResource) -> None:
         self._traces = traces
 
         self.create = async_to_streamed_response_wrapper(

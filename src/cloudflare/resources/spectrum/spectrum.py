@@ -3,111 +3,111 @@
 from __future__ import annotations
 
 from .apps import (
-    Apps,
-    AsyncApps,
-    AppsWithRawResponse,
-    AsyncAppsWithRawResponse,
-    AppsWithStreamingResponse,
-    AsyncAppsWithStreamingResponse,
+    AppsResource,
+    AsyncAppsResource,
+    AppsResourceWithRawResponse,
+    AsyncAppsResourceWithRawResponse,
+    AppsResourceWithStreamingResponse,
+    AsyncAppsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .analytics import (
-    Analytics,
-    AsyncAnalytics,
-    AnalyticsWithRawResponse,
-    AsyncAnalyticsWithRawResponse,
-    AnalyticsWithStreamingResponse,
-    AsyncAnalyticsWithStreamingResponse,
+    AnalyticsResource,
+    AsyncAnalyticsResource,
+    AnalyticsResourceWithRawResponse,
+    AsyncAnalyticsResourceWithRawResponse,
+    AnalyticsResourceWithStreamingResponse,
+    AsyncAnalyticsResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .analytics.analytics import Analytics, AsyncAnalytics
+from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
 
-__all__ = ["Spectrum", "AsyncSpectrum"]
+__all__ = ["SpectrumResource", "AsyncSpectrumResource"]
 
 
-class Spectrum(SyncAPIResource):
+class SpectrumResource(SyncAPIResource):
     @cached_property
-    def analytics(self) -> Analytics:
-        return Analytics(self._client)
-
-    @cached_property
-    def apps(self) -> Apps:
-        return Apps(self._client)
+    def analytics(self) -> AnalyticsResource:
+        return AnalyticsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> SpectrumWithRawResponse:
-        return SpectrumWithRawResponse(self)
+    def apps(self) -> AppsResource:
+        return AppsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> SpectrumWithStreamingResponse:
-        return SpectrumWithStreamingResponse(self)
-
-
-class AsyncSpectrum(AsyncAPIResource):
-    @cached_property
-    def analytics(self) -> AsyncAnalytics:
-        return AsyncAnalytics(self._client)
+    def with_raw_response(self) -> SpectrumResourceWithRawResponse:
+        return SpectrumResourceWithRawResponse(self)
 
     @cached_property
-    def apps(self) -> AsyncApps:
-        return AsyncApps(self._client)
+    def with_streaming_response(self) -> SpectrumResourceWithStreamingResponse:
+        return SpectrumResourceWithStreamingResponse(self)
+
+
+class AsyncSpectrumResource(AsyncAPIResource):
+    @cached_property
+    def analytics(self) -> AsyncAnalyticsResource:
+        return AsyncAnalyticsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncSpectrumWithRawResponse:
-        return AsyncSpectrumWithRawResponse(self)
+    def apps(self) -> AsyncAppsResource:
+        return AsyncAppsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSpectrumWithStreamingResponse:
-        return AsyncSpectrumWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncSpectrumResourceWithRawResponse:
+        return AsyncSpectrumResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncSpectrumResourceWithStreamingResponse:
+        return AsyncSpectrumResourceWithStreamingResponse(self)
 
 
-class SpectrumWithRawResponse:
-    def __init__(self, spectrum: Spectrum) -> None:
+class SpectrumResourceWithRawResponse:
+    def __init__(self, spectrum: SpectrumResource) -> None:
         self._spectrum = spectrum
 
     @cached_property
-    def analytics(self) -> AnalyticsWithRawResponse:
-        return AnalyticsWithRawResponse(self._spectrum.analytics)
+    def analytics(self) -> AnalyticsResourceWithRawResponse:
+        return AnalyticsResourceWithRawResponse(self._spectrum.analytics)
 
     @cached_property
-    def apps(self) -> AppsWithRawResponse:
-        return AppsWithRawResponse(self._spectrum.apps)
+    def apps(self) -> AppsResourceWithRawResponse:
+        return AppsResourceWithRawResponse(self._spectrum.apps)
 
 
-class AsyncSpectrumWithRawResponse:
-    def __init__(self, spectrum: AsyncSpectrum) -> None:
+class AsyncSpectrumResourceWithRawResponse:
+    def __init__(self, spectrum: AsyncSpectrumResource) -> None:
         self._spectrum = spectrum
 
     @cached_property
-    def analytics(self) -> AsyncAnalyticsWithRawResponse:
-        return AsyncAnalyticsWithRawResponse(self._spectrum.analytics)
+    def analytics(self) -> AsyncAnalyticsResourceWithRawResponse:
+        return AsyncAnalyticsResourceWithRawResponse(self._spectrum.analytics)
 
     @cached_property
-    def apps(self) -> AsyncAppsWithRawResponse:
-        return AsyncAppsWithRawResponse(self._spectrum.apps)
+    def apps(self) -> AsyncAppsResourceWithRawResponse:
+        return AsyncAppsResourceWithRawResponse(self._spectrum.apps)
 
 
-class SpectrumWithStreamingResponse:
-    def __init__(self, spectrum: Spectrum) -> None:
+class SpectrumResourceWithStreamingResponse:
+    def __init__(self, spectrum: SpectrumResource) -> None:
         self._spectrum = spectrum
 
     @cached_property
-    def analytics(self) -> AnalyticsWithStreamingResponse:
-        return AnalyticsWithStreamingResponse(self._spectrum.analytics)
+    def analytics(self) -> AnalyticsResourceWithStreamingResponse:
+        return AnalyticsResourceWithStreamingResponse(self._spectrum.analytics)
 
     @cached_property
-    def apps(self) -> AppsWithStreamingResponse:
-        return AppsWithStreamingResponse(self._spectrum.apps)
+    def apps(self) -> AppsResourceWithStreamingResponse:
+        return AppsResourceWithStreamingResponse(self._spectrum.apps)
 
 
-class AsyncSpectrumWithStreamingResponse:
-    def __init__(self, spectrum: AsyncSpectrum) -> None:
+class AsyncSpectrumResourceWithStreamingResponse:
+    def __init__(self, spectrum: AsyncSpectrumResource) -> None:
         self._spectrum = spectrum
 
     @cached_property
-    def analytics(self) -> AsyncAnalyticsWithStreamingResponse:
-        return AsyncAnalyticsWithStreamingResponse(self._spectrum.analytics)
+    def analytics(self) -> AsyncAnalyticsResourceWithStreamingResponse:
+        return AsyncAnalyticsResourceWithStreamingResponse(self._spectrum.analytics)
 
     @cached_property
-    def apps(self) -> AsyncAppsWithStreamingResponse:
-        return AsyncAppsWithStreamingResponse(self._spectrum.apps)
+    def apps(self) -> AsyncAppsResourceWithStreamingResponse:
+        return AsyncAppsResourceWithStreamingResponse(self._spectrum.apps)

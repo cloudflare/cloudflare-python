@@ -35,17 +35,17 @@ from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_create_
 from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_delete_response import EntryDeleteResponse
 from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_update_response import EntryUpdateResponse
 
-__all__ = ["Entries", "AsyncEntries"]
+__all__ = ["EntriesResource", "AsyncEntriesResource"]
 
 
-class Entries(SyncAPIResource):
+class EntriesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> EntriesWithRawResponse:
-        return EntriesWithRawResponse(self)
+    def with_raw_response(self) -> EntriesResourceWithRawResponse:
+        return EntriesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> EntriesWithStreamingResponse:
-        return EntriesWithStreamingResponse(self)
+    def with_streaming_response(self) -> EntriesResourceWithStreamingResponse:
+        return EntriesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -325,14 +325,14 @@ class Entries(SyncAPIResource):
         )
 
 
-class AsyncEntries(AsyncAPIResource):
+class AsyncEntriesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncEntriesWithRawResponse:
-        return AsyncEntriesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncEntriesResourceWithRawResponse:
+        return AsyncEntriesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEntriesWithStreamingResponse:
-        return AsyncEntriesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncEntriesResourceWithStreamingResponse:
+        return AsyncEntriesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -612,8 +612,8 @@ class AsyncEntries(AsyncAPIResource):
         )
 
 
-class EntriesWithRawResponse:
-    def __init__(self, entries: Entries) -> None:
+class EntriesResourceWithRawResponse:
+    def __init__(self, entries: EntriesResource) -> None:
         self._entries = entries
 
         self.create = to_raw_response_wrapper(
@@ -633,8 +633,8 @@ class EntriesWithRawResponse:
         )
 
 
-class AsyncEntriesWithRawResponse:
-    def __init__(self, entries: AsyncEntries) -> None:
+class AsyncEntriesResourceWithRawResponse:
+    def __init__(self, entries: AsyncEntriesResource) -> None:
         self._entries = entries
 
         self.create = async_to_raw_response_wrapper(
@@ -654,8 +654,8 @@ class AsyncEntriesWithRawResponse:
         )
 
 
-class EntriesWithStreamingResponse:
-    def __init__(self, entries: Entries) -> None:
+class EntriesResourceWithStreamingResponse:
+    def __init__(self, entries: EntriesResource) -> None:
         self._entries = entries
 
         self.create = to_streamed_response_wrapper(
@@ -675,8 +675,8 @@ class EntriesWithStreamingResponse:
         )
 
 
-class AsyncEntriesWithStreamingResponse:
-    def __init__(self, entries: AsyncEntries) -> None:
+class AsyncEntriesResourceWithStreamingResponse:
+    def __init__(self, entries: AsyncEntriesResource) -> None:
         self._entries = entries
 
         self.create = async_to_streamed_response_wrapper(

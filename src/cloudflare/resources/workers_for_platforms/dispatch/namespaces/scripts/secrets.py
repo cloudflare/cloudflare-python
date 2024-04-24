@@ -30,17 +30,17 @@ from ......types.workers_for_platforms.dispatch.namespaces.scripts import secret
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.secret_list_response import SecretListResponse
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.secret_update_response import SecretUpdateResponse
 
-__all__ = ["Secrets", "AsyncSecrets"]
+__all__ = ["SecretsResource", "AsyncSecretsResource"]
 
 
-class Secrets(SyncAPIResource):
+class SecretsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SecretsWithRawResponse:
-        return SecretsWithRawResponse(self)
+    def with_raw_response(self) -> SecretsResourceWithRawResponse:
+        return SecretsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SecretsWithStreamingResponse:
-        return SecretsWithStreamingResponse(self)
+    def with_streaming_response(self) -> SecretsResourceWithStreamingResponse:
+        return SecretsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -155,14 +155,14 @@ class Secrets(SyncAPIResource):
         )
 
 
-class AsyncSecrets(AsyncAPIResource):
+class AsyncSecretsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSecretsWithRawResponse:
-        return AsyncSecretsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSecretsResourceWithRawResponse:
+        return AsyncSecretsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSecretsWithStreamingResponse:
-        return AsyncSecretsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSecretsResourceWithStreamingResponse:
+        return AsyncSecretsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -277,8 +277,8 @@ class AsyncSecrets(AsyncAPIResource):
         )
 
 
-class SecretsWithRawResponse:
-    def __init__(self, secrets: Secrets) -> None:
+class SecretsResourceWithRawResponse:
+    def __init__(self, secrets: SecretsResource) -> None:
         self._secrets = secrets
 
         self.update = to_raw_response_wrapper(
@@ -289,8 +289,8 @@ class SecretsWithRawResponse:
         )
 
 
-class AsyncSecretsWithRawResponse:
-    def __init__(self, secrets: AsyncSecrets) -> None:
+class AsyncSecretsResourceWithRawResponse:
+    def __init__(self, secrets: AsyncSecretsResource) -> None:
         self._secrets = secrets
 
         self.update = async_to_raw_response_wrapper(
@@ -301,8 +301,8 @@ class AsyncSecretsWithRawResponse:
         )
 
 
-class SecretsWithStreamingResponse:
-    def __init__(self, secrets: Secrets) -> None:
+class SecretsResourceWithStreamingResponse:
+    def __init__(self, secrets: SecretsResource) -> None:
         self._secrets = secrets
 
         self.update = to_streamed_response_wrapper(
@@ -313,8 +313,8 @@ class SecretsWithStreamingResponse:
         )
 
 
-class AsyncSecretsWithStreamingResponse:
-    def __init__(self, secrets: AsyncSecrets) -> None:
+class AsyncSecretsResourceWithStreamingResponse:
+    def __init__(self, secrets: AsyncSecretsResource) -> None:
         self._secrets = secrets
 
         self.update = async_to_streamed_response_wrapper(

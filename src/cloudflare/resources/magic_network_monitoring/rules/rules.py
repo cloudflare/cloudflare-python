@@ -22,12 +22,12 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from .advertisements import (
-    Advertisements,
-    AsyncAdvertisements,
-    AdvertisementsWithRawResponse,
-    AsyncAdvertisementsWithRawResponse,
-    AdvertisementsWithStreamingResponse,
-    AsyncAdvertisementsWithStreamingResponse,
+    AdvertisementsResource,
+    AsyncAdvertisementsResource,
+    AdvertisementsResourceWithRawResponse,
+    AsyncAdvertisementsResourceWithRawResponse,
+    AdvertisementsResourceWithStreamingResponse,
+    AsyncAdvertisementsResourceWithStreamingResponse,
 )
 from ...._base_client import (
     AsyncPaginator,
@@ -41,21 +41,21 @@ from ....types.magic_network_monitoring import (
 )
 from ....types.magic_network_monitoring.magic_network_monitoring_rule import MagicNetworkMonitoringRule
 
-__all__ = ["Rules", "AsyncRules"]
+__all__ = ["RulesResource", "AsyncRulesResource"]
 
 
-class Rules(SyncAPIResource):
+class RulesResource(SyncAPIResource):
     @cached_property
-    def advertisements(self) -> Advertisements:
-        return Advertisements(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> RulesWithRawResponse:
-        return RulesWithRawResponse(self)
+    def advertisements(self) -> AdvertisementsResource:
+        return AdvertisementsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> RulesWithStreamingResponse:
-        return RulesWithStreamingResponse(self)
+    def with_raw_response(self) -> RulesResourceWithRawResponse:
+        return RulesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> RulesResourceWithStreamingResponse:
+        return RulesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -302,18 +302,18 @@ class Rules(SyncAPIResource):
         )
 
 
-class AsyncRules(AsyncAPIResource):
+class AsyncRulesResource(AsyncAPIResource):
     @cached_property
-    def advertisements(self) -> AsyncAdvertisements:
-        return AsyncAdvertisements(self._client)
+    def advertisements(self) -> AsyncAdvertisementsResource:
+        return AsyncAdvertisementsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRulesWithRawResponse:
-        return AsyncRulesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
+        return AsyncRulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRulesWithStreamingResponse:
-        return AsyncRulesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRulesResourceWithStreamingResponse:
+        return AsyncRulesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -560,8 +560,8 @@ class AsyncRules(AsyncAPIResource):
         )
 
 
-class RulesWithRawResponse:
-    def __init__(self, rules: Rules) -> None:
+class RulesResourceWithRawResponse:
+    def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
 
         self.create = to_raw_response_wrapper(
@@ -584,12 +584,12 @@ class RulesWithRawResponse:
         )
 
     @cached_property
-    def advertisements(self) -> AdvertisementsWithRawResponse:
-        return AdvertisementsWithRawResponse(self._rules.advertisements)
+    def advertisements(self) -> AdvertisementsResourceWithRawResponse:
+        return AdvertisementsResourceWithRawResponse(self._rules.advertisements)
 
 
-class AsyncRulesWithRawResponse:
-    def __init__(self, rules: AsyncRules) -> None:
+class AsyncRulesResourceWithRawResponse:
+    def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
 
         self.create = async_to_raw_response_wrapper(
@@ -612,12 +612,12 @@ class AsyncRulesWithRawResponse:
         )
 
     @cached_property
-    def advertisements(self) -> AsyncAdvertisementsWithRawResponse:
-        return AsyncAdvertisementsWithRawResponse(self._rules.advertisements)
+    def advertisements(self) -> AsyncAdvertisementsResourceWithRawResponse:
+        return AsyncAdvertisementsResourceWithRawResponse(self._rules.advertisements)
 
 
-class RulesWithStreamingResponse:
-    def __init__(self, rules: Rules) -> None:
+class RulesResourceWithStreamingResponse:
+    def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
 
         self.create = to_streamed_response_wrapper(
@@ -640,12 +640,12 @@ class RulesWithStreamingResponse:
         )
 
     @cached_property
-    def advertisements(self) -> AdvertisementsWithStreamingResponse:
-        return AdvertisementsWithStreamingResponse(self._rules.advertisements)
+    def advertisements(self) -> AdvertisementsResourceWithStreamingResponse:
+        return AdvertisementsResourceWithStreamingResponse(self._rules.advertisements)
 
 
-class AsyncRulesWithStreamingResponse:
-    def __init__(self, rules: AsyncRules) -> None:
+class AsyncRulesResourceWithStreamingResponse:
+    def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
 
         self.create = async_to_streamed_response_wrapper(
@@ -668,5 +668,5 @@ class AsyncRulesWithStreamingResponse:
         )
 
     @cached_property
-    def advertisements(self) -> AsyncAdvertisementsWithStreamingResponse:
-        return AsyncAdvertisementsWithStreamingResponse(self._rules.advertisements)
+    def advertisements(self) -> AsyncAdvertisementsResourceWithStreamingResponse:
+        return AsyncAdvertisementsResourceWithStreamingResponse(self._rules.advertisements)

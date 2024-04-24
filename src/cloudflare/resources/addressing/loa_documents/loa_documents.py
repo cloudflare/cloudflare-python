@@ -12,12 +12,12 @@ from ...._utils import (
     async_maybe_transform,
 )
 from .downloads import (
-    Downloads,
-    AsyncDownloads,
-    DownloadsWithRawResponse,
-    AsyncDownloadsWithRawResponse,
-    DownloadsWithStreamingResponse,
-    AsyncDownloadsWithStreamingResponse,
+    DownloadsResource,
+    AsyncDownloadsResource,
+    DownloadsResourceWithRawResponse,
+    AsyncDownloadsResourceWithRawResponse,
+    DownloadsResourceWithStreamingResponse,
+    AsyncDownloadsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -34,21 +34,21 @@ from ...._base_client import (
 from ....types.addressing import loa_document_create_params
 from ....types.addressing.loa_document_create_response import LOADocumentCreateResponse
 
-__all__ = ["LOADocuments", "AsyncLOADocuments"]
+__all__ = ["LOADocumentsResource", "AsyncLOADocumentsResource"]
 
 
-class LOADocuments(SyncAPIResource):
+class LOADocumentsResource(SyncAPIResource):
     @cached_property
-    def downloads(self) -> Downloads:
-        return Downloads(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> LOADocumentsWithRawResponse:
-        return LOADocumentsWithRawResponse(self)
+    def downloads(self) -> DownloadsResource:
+        return DownloadsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> LOADocumentsWithStreamingResponse:
-        return LOADocumentsWithStreamingResponse(self)
+    def with_raw_response(self) -> LOADocumentsResourceWithRawResponse:
+        return LOADocumentsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LOADocumentsResourceWithStreamingResponse:
+        return LOADocumentsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -94,18 +94,18 @@ class LOADocuments(SyncAPIResource):
         )
 
 
-class AsyncLOADocuments(AsyncAPIResource):
+class AsyncLOADocumentsResource(AsyncAPIResource):
     @cached_property
-    def downloads(self) -> AsyncDownloads:
-        return AsyncDownloads(self._client)
+    def downloads(self) -> AsyncDownloadsResource:
+        return AsyncDownloadsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncLOADocumentsWithRawResponse:
-        return AsyncLOADocumentsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLOADocumentsResourceWithRawResponse:
+        return AsyncLOADocumentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLOADocumentsWithStreamingResponse:
-        return AsyncLOADocumentsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLOADocumentsResourceWithStreamingResponse:
+        return AsyncLOADocumentsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -153,8 +153,8 @@ class AsyncLOADocuments(AsyncAPIResource):
         )
 
 
-class LOADocumentsWithRawResponse:
-    def __init__(self, loa_documents: LOADocuments) -> None:
+class LOADocumentsResourceWithRawResponse:
+    def __init__(self, loa_documents: LOADocumentsResource) -> None:
         self._loa_documents = loa_documents
 
         self.create = to_raw_response_wrapper(
@@ -162,12 +162,12 @@ class LOADocumentsWithRawResponse:
         )
 
     @cached_property
-    def downloads(self) -> DownloadsWithRawResponse:
-        return DownloadsWithRawResponse(self._loa_documents.downloads)
+    def downloads(self) -> DownloadsResourceWithRawResponse:
+        return DownloadsResourceWithRawResponse(self._loa_documents.downloads)
 
 
-class AsyncLOADocumentsWithRawResponse:
-    def __init__(self, loa_documents: AsyncLOADocuments) -> None:
+class AsyncLOADocumentsResourceWithRawResponse:
+    def __init__(self, loa_documents: AsyncLOADocumentsResource) -> None:
         self._loa_documents = loa_documents
 
         self.create = async_to_raw_response_wrapper(
@@ -175,12 +175,12 @@ class AsyncLOADocumentsWithRawResponse:
         )
 
     @cached_property
-    def downloads(self) -> AsyncDownloadsWithRawResponse:
-        return AsyncDownloadsWithRawResponse(self._loa_documents.downloads)
+    def downloads(self) -> AsyncDownloadsResourceWithRawResponse:
+        return AsyncDownloadsResourceWithRawResponse(self._loa_documents.downloads)
 
 
-class LOADocumentsWithStreamingResponse:
-    def __init__(self, loa_documents: LOADocuments) -> None:
+class LOADocumentsResourceWithStreamingResponse:
+    def __init__(self, loa_documents: LOADocumentsResource) -> None:
         self._loa_documents = loa_documents
 
         self.create = to_streamed_response_wrapper(
@@ -188,12 +188,12 @@ class LOADocumentsWithStreamingResponse:
         )
 
     @cached_property
-    def downloads(self) -> DownloadsWithStreamingResponse:
-        return DownloadsWithStreamingResponse(self._loa_documents.downloads)
+    def downloads(self) -> DownloadsResourceWithStreamingResponse:
+        return DownloadsResourceWithStreamingResponse(self._loa_documents.downloads)
 
 
-class AsyncLOADocumentsWithStreamingResponse:
-    def __init__(self, loa_documents: AsyncLOADocuments) -> None:
+class AsyncLOADocumentsResourceWithStreamingResponse:
+    def __init__(self, loa_documents: AsyncLOADocumentsResource) -> None:
         self._loa_documents = loa_documents
 
         self.create = async_to_streamed_response_wrapper(
@@ -201,5 +201,5 @@ class AsyncLOADocumentsWithStreamingResponse:
         )
 
     @cached_property
-    def downloads(self) -> AsyncDownloadsWithStreamingResponse:
-        return AsyncDownloadsWithStreamingResponse(self._loa_documents.downloads)
+    def downloads(self) -> AsyncDownloadsResourceWithStreamingResponse:
+        return AsyncDownloadsResourceWithStreamingResponse(self._loa_documents.downloads)

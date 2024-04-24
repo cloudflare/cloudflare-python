@@ -35,17 +35,17 @@ from ...types.magic_transit.gre_tunnel_create_response import GRETunnelCreateRes
 from ...types.magic_transit.gre_tunnel_delete_response import GRETunnelDeleteResponse
 from ...types.magic_transit.gre_tunnel_update_response import GRETunnelUpdateResponse
 
-__all__ = ["GRETunnels", "AsyncGRETunnels"]
+__all__ = ["GRETunnelsResource", "AsyncGRETunnelsResource"]
 
 
-class GRETunnels(SyncAPIResource):
+class GRETunnelsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> GRETunnelsWithRawResponse:
-        return GRETunnelsWithRawResponse(self)
+    def with_raw_response(self) -> GRETunnelsResourceWithRawResponse:
+        return GRETunnelsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> GRETunnelsWithStreamingResponse:
-        return GRETunnelsWithStreamingResponse(self)
+    def with_streaming_response(self) -> GRETunnelsResourceWithStreamingResponse:
+        return GRETunnelsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -307,14 +307,14 @@ class GRETunnels(SyncAPIResource):
         )
 
 
-class AsyncGRETunnels(AsyncAPIResource):
+class AsyncGRETunnelsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncGRETunnelsWithRawResponse:
-        return AsyncGRETunnelsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncGRETunnelsResourceWithRawResponse:
+        return AsyncGRETunnelsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncGRETunnelsWithStreamingResponse:
-        return AsyncGRETunnelsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncGRETunnelsResourceWithStreamingResponse:
+        return AsyncGRETunnelsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -576,8 +576,8 @@ class AsyncGRETunnels(AsyncAPIResource):
         )
 
 
-class GRETunnelsWithRawResponse:
-    def __init__(self, gre_tunnels: GRETunnels) -> None:
+class GRETunnelsResourceWithRawResponse:
+    def __init__(self, gre_tunnels: GRETunnelsResource) -> None:
         self._gre_tunnels = gre_tunnels
 
         self.create = to_raw_response_wrapper(
@@ -597,8 +597,8 @@ class GRETunnelsWithRawResponse:
         )
 
 
-class AsyncGRETunnelsWithRawResponse:
-    def __init__(self, gre_tunnels: AsyncGRETunnels) -> None:
+class AsyncGRETunnelsResourceWithRawResponse:
+    def __init__(self, gre_tunnels: AsyncGRETunnelsResource) -> None:
         self._gre_tunnels = gre_tunnels
 
         self.create = async_to_raw_response_wrapper(
@@ -618,8 +618,8 @@ class AsyncGRETunnelsWithRawResponse:
         )
 
 
-class GRETunnelsWithStreamingResponse:
-    def __init__(self, gre_tunnels: GRETunnels) -> None:
+class GRETunnelsResourceWithStreamingResponse:
+    def __init__(self, gre_tunnels: GRETunnelsResource) -> None:
         self._gre_tunnels = gre_tunnels
 
         self.create = to_streamed_response_wrapper(
@@ -639,8 +639,8 @@ class GRETunnelsWithStreamingResponse:
         )
 
 
-class AsyncGRETunnelsWithStreamingResponse:
-    def __init__(self, gre_tunnels: AsyncGRETunnels) -> None:
+class AsyncGRETunnelsResourceWithStreamingResponse:
+    def __init__(self, gre_tunnels: AsyncGRETunnelsResource) -> None:
         self._gre_tunnels = gre_tunnels
 
         self.create = async_to_streamed_response_wrapper(

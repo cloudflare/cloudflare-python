@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .traces import (
-    Traces,
-    AsyncTraces,
-    TracesWithRawResponse,
-    AsyncTracesWithRawResponse,
-    TracesWithStreamingResponse,
-    AsyncTracesWithStreamingResponse,
+    TracesResource,
+    AsyncTracesResource,
+    TracesResourceWithRawResponse,
+    AsyncTracesResourceWithRawResponse,
+    TracesResourceWithStreamingResponse,
+    AsyncTracesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["RequestTracers", "AsyncRequestTracers"]
+__all__ = ["RequestTracersResource", "AsyncRequestTracersResource"]
 
 
-class RequestTracers(SyncAPIResource):
+class RequestTracersResource(SyncAPIResource):
     @cached_property
-    def traces(self) -> Traces:
-        return Traces(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> RequestTracersWithRawResponse:
-        return RequestTracersWithRawResponse(self)
+    def traces(self) -> TracesResource:
+        return TracesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> RequestTracersWithStreamingResponse:
-        return RequestTracersWithStreamingResponse(self)
-
-
-class AsyncRequestTracers(AsyncAPIResource):
-    @cached_property
-    def traces(self) -> AsyncTraces:
-        return AsyncTraces(self._client)
+    def with_raw_response(self) -> RequestTracersResourceWithRawResponse:
+        return RequestTracersResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRequestTracersWithRawResponse:
-        return AsyncRequestTracersWithRawResponse(self)
+    def with_streaming_response(self) -> RequestTracersResourceWithStreamingResponse:
+        return RequestTracersResourceWithStreamingResponse(self)
+
+
+class AsyncRequestTracersResource(AsyncAPIResource):
+    @cached_property
+    def traces(self) -> AsyncTracesResource:
+        return AsyncTracesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRequestTracersWithStreamingResponse:
-        return AsyncRequestTracersWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncRequestTracersResourceWithRawResponse:
+        return AsyncRequestTracersResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRequestTracersResourceWithStreamingResponse:
+        return AsyncRequestTracersResourceWithStreamingResponse(self)
 
 
-class RequestTracersWithRawResponse:
-    def __init__(self, request_tracers: RequestTracers) -> None:
+class RequestTracersResourceWithRawResponse:
+    def __init__(self, request_tracers: RequestTracersResource) -> None:
         self._request_tracers = request_tracers
 
     @cached_property
-    def traces(self) -> TracesWithRawResponse:
-        return TracesWithRawResponse(self._request_tracers.traces)
+    def traces(self) -> TracesResourceWithRawResponse:
+        return TracesResourceWithRawResponse(self._request_tracers.traces)
 
 
-class AsyncRequestTracersWithRawResponse:
-    def __init__(self, request_tracers: AsyncRequestTracers) -> None:
+class AsyncRequestTracersResourceWithRawResponse:
+    def __init__(self, request_tracers: AsyncRequestTracersResource) -> None:
         self._request_tracers = request_tracers
 
     @cached_property
-    def traces(self) -> AsyncTracesWithRawResponse:
-        return AsyncTracesWithRawResponse(self._request_tracers.traces)
+    def traces(self) -> AsyncTracesResourceWithRawResponse:
+        return AsyncTracesResourceWithRawResponse(self._request_tracers.traces)
 
 
-class RequestTracersWithStreamingResponse:
-    def __init__(self, request_tracers: RequestTracers) -> None:
+class RequestTracersResourceWithStreamingResponse:
+    def __init__(self, request_tracers: RequestTracersResource) -> None:
         self._request_tracers = request_tracers
 
     @cached_property
-    def traces(self) -> TracesWithStreamingResponse:
-        return TracesWithStreamingResponse(self._request_tracers.traces)
+    def traces(self) -> TracesResourceWithStreamingResponse:
+        return TracesResourceWithStreamingResponse(self._request_tracers.traces)
 
 
-class AsyncRequestTracersWithStreamingResponse:
-    def __init__(self, request_tracers: AsyncRequestTracers) -> None:
+class AsyncRequestTracersResourceWithStreamingResponse:
+    def __init__(self, request_tracers: AsyncRequestTracersResource) -> None:
         self._request_tracers = request_tracers
 
     @cached_property
-    def traces(self) -> AsyncTracesWithStreamingResponse:
-        return AsyncTracesWithStreamingResponse(self._request_tracers.traces)
+    def traces(self) -> AsyncTracesResourceWithStreamingResponse:
+        return AsyncTracesResourceWithStreamingResponse(self._request_tracers.traces)

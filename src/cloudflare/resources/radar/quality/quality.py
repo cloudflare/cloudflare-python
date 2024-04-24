@@ -3,111 +3,111 @@
 from __future__ import annotations
 
 from .iqi import (
-    IQI,
-    AsyncIQI,
-    IQIWithRawResponse,
-    AsyncIQIWithRawResponse,
-    IQIWithStreamingResponse,
-    AsyncIQIWithStreamingResponse,
+    IQIResource,
+    AsyncIQIResource,
+    IQIResourceWithRawResponse,
+    AsyncIQIResourceWithRawResponse,
+    IQIResourceWithStreamingResponse,
+    AsyncIQIResourceWithStreamingResponse,
 )
 from .speed import (
-    Speed,
-    AsyncSpeed,
-    SpeedWithRawResponse,
-    AsyncSpeedWithRawResponse,
-    SpeedWithStreamingResponse,
-    AsyncSpeedWithStreamingResponse,
+    SpeedResource,
+    AsyncSpeedResource,
+    SpeedResourceWithRawResponse,
+    AsyncSpeedResourceWithRawResponse,
+    SpeedResourceWithStreamingResponse,
+    AsyncSpeedResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
-from .speed.speed import Speed, AsyncSpeed
+from .speed.speed import SpeedResource, AsyncSpeedResource
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Quality", "AsyncQuality"]
+__all__ = ["QualityResource", "AsyncQualityResource"]
 
 
-class Quality(SyncAPIResource):
+class QualityResource(SyncAPIResource):
     @cached_property
-    def iqi(self) -> IQI:
-        return IQI(self._client)
-
-    @cached_property
-    def speed(self) -> Speed:
-        return Speed(self._client)
+    def iqi(self) -> IQIResource:
+        return IQIResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> QualityWithRawResponse:
-        return QualityWithRawResponse(self)
+    def speed(self) -> SpeedResource:
+        return SpeedResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> QualityWithStreamingResponse:
-        return QualityWithStreamingResponse(self)
-
-
-class AsyncQuality(AsyncAPIResource):
-    @cached_property
-    def iqi(self) -> AsyncIQI:
-        return AsyncIQI(self._client)
+    def with_raw_response(self) -> QualityResourceWithRawResponse:
+        return QualityResourceWithRawResponse(self)
 
     @cached_property
-    def speed(self) -> AsyncSpeed:
-        return AsyncSpeed(self._client)
+    def with_streaming_response(self) -> QualityResourceWithStreamingResponse:
+        return QualityResourceWithStreamingResponse(self)
+
+
+class AsyncQualityResource(AsyncAPIResource):
+    @cached_property
+    def iqi(self) -> AsyncIQIResource:
+        return AsyncIQIResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncQualityWithRawResponse:
-        return AsyncQualityWithRawResponse(self)
+    def speed(self) -> AsyncSpeedResource:
+        return AsyncSpeedResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncQualityWithStreamingResponse:
-        return AsyncQualityWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncQualityResourceWithRawResponse:
+        return AsyncQualityResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncQualityResourceWithStreamingResponse:
+        return AsyncQualityResourceWithStreamingResponse(self)
 
 
-class QualityWithRawResponse:
-    def __init__(self, quality: Quality) -> None:
+class QualityResourceWithRawResponse:
+    def __init__(self, quality: QualityResource) -> None:
         self._quality = quality
 
     @cached_property
-    def iqi(self) -> IQIWithRawResponse:
-        return IQIWithRawResponse(self._quality.iqi)
+    def iqi(self) -> IQIResourceWithRawResponse:
+        return IQIResourceWithRawResponse(self._quality.iqi)
 
     @cached_property
-    def speed(self) -> SpeedWithRawResponse:
-        return SpeedWithRawResponse(self._quality.speed)
+    def speed(self) -> SpeedResourceWithRawResponse:
+        return SpeedResourceWithRawResponse(self._quality.speed)
 
 
-class AsyncQualityWithRawResponse:
-    def __init__(self, quality: AsyncQuality) -> None:
+class AsyncQualityResourceWithRawResponse:
+    def __init__(self, quality: AsyncQualityResource) -> None:
         self._quality = quality
 
     @cached_property
-    def iqi(self) -> AsyncIQIWithRawResponse:
-        return AsyncIQIWithRawResponse(self._quality.iqi)
+    def iqi(self) -> AsyncIQIResourceWithRawResponse:
+        return AsyncIQIResourceWithRawResponse(self._quality.iqi)
 
     @cached_property
-    def speed(self) -> AsyncSpeedWithRawResponse:
-        return AsyncSpeedWithRawResponse(self._quality.speed)
+    def speed(self) -> AsyncSpeedResourceWithRawResponse:
+        return AsyncSpeedResourceWithRawResponse(self._quality.speed)
 
 
-class QualityWithStreamingResponse:
-    def __init__(self, quality: Quality) -> None:
+class QualityResourceWithStreamingResponse:
+    def __init__(self, quality: QualityResource) -> None:
         self._quality = quality
 
     @cached_property
-    def iqi(self) -> IQIWithStreamingResponse:
-        return IQIWithStreamingResponse(self._quality.iqi)
+    def iqi(self) -> IQIResourceWithStreamingResponse:
+        return IQIResourceWithStreamingResponse(self._quality.iqi)
 
     @cached_property
-    def speed(self) -> SpeedWithStreamingResponse:
-        return SpeedWithStreamingResponse(self._quality.speed)
+    def speed(self) -> SpeedResourceWithStreamingResponse:
+        return SpeedResourceWithStreamingResponse(self._quality.speed)
 
 
-class AsyncQualityWithStreamingResponse:
-    def __init__(self, quality: AsyncQuality) -> None:
+class AsyncQualityResourceWithStreamingResponse:
+    def __init__(self, quality: AsyncQualityResource) -> None:
         self._quality = quality
 
     @cached_property
-    def iqi(self) -> AsyncIQIWithStreamingResponse:
-        return AsyncIQIWithStreamingResponse(self._quality.iqi)
+    def iqi(self) -> AsyncIQIResourceWithStreamingResponse:
+        return AsyncIQIResourceWithStreamingResponse(self._quality.iqi)
 
     @cached_property
-    def speed(self) -> AsyncSpeedWithStreamingResponse:
-        return AsyncSpeedWithStreamingResponse(self._quality.speed)
+    def speed(self) -> AsyncSpeedResourceWithStreamingResponse:
+        return AsyncSpeedResourceWithStreamingResponse(self._quality.speed)

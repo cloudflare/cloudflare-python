@@ -30,17 +30,17 @@ from ....types.zero_trust.devices.schema_http import SchemaHTTP
 from ....types.zero_trust.devices.schema_data_param import SchemaDataParam
 from ....types.zero_trust.devices.dex_test_delete_response import DEXTestDeleteResponse
 
-__all__ = ["DEXTests", "AsyncDEXTests"]
+__all__ = ["DEXTestsResource", "AsyncDEXTestsResource"]
 
 
-class DEXTests(SyncAPIResource):
+class DEXTestsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DEXTestsWithRawResponse:
-        return DEXTestsWithRawResponse(self)
+    def with_raw_response(self) -> DEXTestsResourceWithRawResponse:
+        return DEXTestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DEXTestsWithStreamingResponse:
-        return DEXTestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> DEXTestsResourceWithStreamingResponse:
+        return DEXTestsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -306,14 +306,14 @@ class DEXTests(SyncAPIResource):
         )
 
 
-class AsyncDEXTests(AsyncAPIResource):
+class AsyncDEXTestsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDEXTestsWithRawResponse:
-        return AsyncDEXTestsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDEXTestsResourceWithRawResponse:
+        return AsyncDEXTestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDEXTestsWithStreamingResponse:
-        return AsyncDEXTestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDEXTestsResourceWithStreamingResponse:
+        return AsyncDEXTestsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -579,8 +579,8 @@ class AsyncDEXTests(AsyncAPIResource):
         )
 
 
-class DEXTestsWithRawResponse:
-    def __init__(self, dex_tests: DEXTests) -> None:
+class DEXTestsResourceWithRawResponse:
+    def __init__(self, dex_tests: DEXTestsResource) -> None:
         self._dex_tests = dex_tests
 
         self.create = to_raw_response_wrapper(
@@ -600,8 +600,8 @@ class DEXTestsWithRawResponse:
         )
 
 
-class AsyncDEXTestsWithRawResponse:
-    def __init__(self, dex_tests: AsyncDEXTests) -> None:
+class AsyncDEXTestsResourceWithRawResponse:
+    def __init__(self, dex_tests: AsyncDEXTestsResource) -> None:
         self._dex_tests = dex_tests
 
         self.create = async_to_raw_response_wrapper(
@@ -621,8 +621,8 @@ class AsyncDEXTestsWithRawResponse:
         )
 
 
-class DEXTestsWithStreamingResponse:
-    def __init__(self, dex_tests: DEXTests) -> None:
+class DEXTestsResourceWithStreamingResponse:
+    def __init__(self, dex_tests: DEXTestsResource) -> None:
         self._dex_tests = dex_tests
 
         self.create = to_streamed_response_wrapper(
@@ -642,8 +642,8 @@ class DEXTestsWithStreamingResponse:
         )
 
 
-class AsyncDEXTestsWithStreamingResponse:
-    def __init__(self, dex_tests: AsyncDEXTests) -> None:
+class AsyncDEXTestsResourceWithStreamingResponse:
+    def __init__(self, dex_tests: AsyncDEXTestsResource) -> None:
         self._dex_tests = dex_tests
 
         self.create = async_to_streamed_response_wrapper(

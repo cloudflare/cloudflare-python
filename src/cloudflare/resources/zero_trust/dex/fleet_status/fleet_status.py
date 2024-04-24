@@ -7,12 +7,12 @@ from typing import Type, Optional, cast
 import httpx
 
 from .devices import (
-    Devices,
-    AsyncDevices,
-    DevicesWithRawResponse,
-    AsyncDevicesWithRawResponse,
-    DevicesWithStreamingResponse,
-    AsyncDevicesWithStreamingResponse,
+    DevicesResource,
+    AsyncDevicesResource,
+    DevicesResourceWithRawResponse,
+    AsyncDevicesResourceWithRawResponse,
+    DevicesResourceWithStreamingResponse,
+    AsyncDevicesResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ....._utils import (
@@ -34,21 +34,21 @@ from ....._base_client import (
 from .....types.zero_trust.dex import fleet_status_live_params, fleet_status_over_time_params
 from .....types.zero_trust.dex.fleet_status_live_response import FleetStatusLiveResponse
 
-__all__ = ["FleetStatus", "AsyncFleetStatus"]
+__all__ = ["FleetStatusResource", "AsyncFleetStatusResource"]
 
 
-class FleetStatus(SyncAPIResource):
+class FleetStatusResource(SyncAPIResource):
     @cached_property
-    def devices(self) -> Devices:
-        return Devices(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> FleetStatusWithRawResponse:
-        return FleetStatusWithRawResponse(self)
+    def devices(self) -> DevicesResource:
+        return DevicesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> FleetStatusWithStreamingResponse:
-        return FleetStatusWithStreamingResponse(self)
+    def with_raw_response(self) -> FleetStatusResourceWithRawResponse:
+        return FleetStatusResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> FleetStatusResourceWithStreamingResponse:
+        return FleetStatusResourceWithStreamingResponse(self)
 
     def live(
         self,
@@ -150,18 +150,18 @@ class FleetStatus(SyncAPIResource):
         )
 
 
-class AsyncFleetStatus(AsyncAPIResource):
+class AsyncFleetStatusResource(AsyncAPIResource):
     @cached_property
-    def devices(self) -> AsyncDevices:
-        return AsyncDevices(self._client)
+    def devices(self) -> AsyncDevicesResource:
+        return AsyncDevicesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncFleetStatusWithRawResponse:
-        return AsyncFleetStatusWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFleetStatusResourceWithRawResponse:
+        return AsyncFleetStatusResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFleetStatusWithStreamingResponse:
-        return AsyncFleetStatusWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFleetStatusResourceWithStreamingResponse:
+        return AsyncFleetStatusResourceWithStreamingResponse(self)
 
     async def live(
         self,
@@ -265,8 +265,8 @@ class AsyncFleetStatus(AsyncAPIResource):
         )
 
 
-class FleetStatusWithRawResponse:
-    def __init__(self, fleet_status: FleetStatus) -> None:
+class FleetStatusResourceWithRawResponse:
+    def __init__(self, fleet_status: FleetStatusResource) -> None:
         self._fleet_status = fleet_status
 
         self.live = to_raw_response_wrapper(
@@ -277,12 +277,12 @@ class FleetStatusWithRawResponse:
         )
 
     @cached_property
-    def devices(self) -> DevicesWithRawResponse:
-        return DevicesWithRawResponse(self._fleet_status.devices)
+    def devices(self) -> DevicesResourceWithRawResponse:
+        return DevicesResourceWithRawResponse(self._fleet_status.devices)
 
 
-class AsyncFleetStatusWithRawResponse:
-    def __init__(self, fleet_status: AsyncFleetStatus) -> None:
+class AsyncFleetStatusResourceWithRawResponse:
+    def __init__(self, fleet_status: AsyncFleetStatusResource) -> None:
         self._fleet_status = fleet_status
 
         self.live = async_to_raw_response_wrapper(
@@ -293,12 +293,12 @@ class AsyncFleetStatusWithRawResponse:
         )
 
     @cached_property
-    def devices(self) -> AsyncDevicesWithRawResponse:
-        return AsyncDevicesWithRawResponse(self._fleet_status.devices)
+    def devices(self) -> AsyncDevicesResourceWithRawResponse:
+        return AsyncDevicesResourceWithRawResponse(self._fleet_status.devices)
 
 
-class FleetStatusWithStreamingResponse:
-    def __init__(self, fleet_status: FleetStatus) -> None:
+class FleetStatusResourceWithStreamingResponse:
+    def __init__(self, fleet_status: FleetStatusResource) -> None:
         self._fleet_status = fleet_status
 
         self.live = to_streamed_response_wrapper(
@@ -309,12 +309,12 @@ class FleetStatusWithStreamingResponse:
         )
 
     @cached_property
-    def devices(self) -> DevicesWithStreamingResponse:
-        return DevicesWithStreamingResponse(self._fleet_status.devices)
+    def devices(self) -> DevicesResourceWithStreamingResponse:
+        return DevicesResourceWithStreamingResponse(self._fleet_status.devices)
 
 
-class AsyncFleetStatusWithStreamingResponse:
-    def __init__(self, fleet_status: AsyncFleetStatus) -> None:
+class AsyncFleetStatusResourceWithStreamingResponse:
+    def __init__(self, fleet_status: AsyncFleetStatusResource) -> None:
         self._fleet_status = fleet_status
 
         self.live = async_to_streamed_response_wrapper(
@@ -325,5 +325,5 @@ class AsyncFleetStatusWithStreamingResponse:
         )
 
     @cached_property
-    def devices(self) -> AsyncDevicesWithStreamingResponse:
-        return AsyncDevicesWithStreamingResponse(self._fleet_status.devices)
+    def devices(self) -> AsyncDevicesResourceWithStreamingResponse:
+        return AsyncDevicesResourceWithStreamingResponse(self._fleet_status.devices)

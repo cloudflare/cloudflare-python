@@ -29,17 +29,17 @@ from ....types.radar.verified_bots import top_bots_params, top_categories_params
 from ....types.radar.verified_bots.top_bots_response import TopBotsResponse
 from ....types.radar.verified_bots.top_categories_response import TopCategoriesResponse
 
-__all__ = ["Top", "AsyncTop"]
+__all__ = ["TopResource", "AsyncTopResource"]
 
 
-class Top(SyncAPIResource):
+class TopResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self)
+    def with_raw_response(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self)
+    def with_streaming_response(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self)
 
     def bots(
         self,
@@ -247,14 +247,14 @@ class Top(SyncAPIResource):
         )
 
 
-class AsyncTop(AsyncAPIResource):
+class AsyncTopResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self)
 
     async def bots(
         self,
@@ -462,8 +462,8 @@ class AsyncTop(AsyncAPIResource):
         )
 
 
-class TopWithRawResponse:
-    def __init__(self, top: Top) -> None:
+class TopResourceWithRawResponse:
+    def __init__(self, top: TopResource) -> None:
         self._top = top
 
         self.bots = to_raw_response_wrapper(
@@ -474,8 +474,8 @@ class TopWithRawResponse:
         )
 
 
-class AsyncTopWithRawResponse:
-    def __init__(self, top: AsyncTop) -> None:
+class AsyncTopResourceWithRawResponse:
+    def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
         self.bots = async_to_raw_response_wrapper(
@@ -486,8 +486,8 @@ class AsyncTopWithRawResponse:
         )
 
 
-class TopWithStreamingResponse:
-    def __init__(self, top: Top) -> None:
+class TopResourceWithStreamingResponse:
+    def __init__(self, top: TopResource) -> None:
         self._top = top
 
         self.bots = to_streamed_response_wrapper(
@@ -498,8 +498,8 @@ class TopWithStreamingResponse:
         )
 
 
-class AsyncTopWithStreamingResponse:
-    def __init__(self, top: AsyncTop) -> None:
+class AsyncTopResourceWithStreamingResponse:
+    def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
         self.bots = async_to_streamed_response_wrapper(

@@ -7,12 +7,12 @@ from typing import List, Type, Iterable, Optional, cast
 import httpx
 
 from .health import (
-    Health,
-    AsyncHealth,
-    HealthWithRawResponse,
-    AsyncHealthWithRawResponse,
-    HealthWithStreamingResponse,
-    AsyncHealthWithStreamingResponse,
+    HealthResource,
+    AsyncHealthResource,
+    HealthResourceWithRawResponse,
+    AsyncHealthResourceWithRawResponse,
+    HealthResourceWithStreamingResponse,
+    AsyncHealthResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -21,12 +21,12 @@ from ...._utils import (
 )
 from ...._compat import cached_property
 from .references import (
-    References,
-    AsyncReferences,
-    ReferencesWithRawResponse,
-    AsyncReferencesWithRawResponse,
-    ReferencesWithStreamingResponse,
-    AsyncReferencesWithStreamingResponse,
+    ReferencesResource,
+    AsyncReferencesResource,
+    ReferencesResourceWithRawResponse,
+    AsyncReferencesResourceWithRawResponse,
+    ReferencesResourceWithStreamingResponse,
+    AsyncReferencesResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -56,25 +56,25 @@ from ....types.load_balancers.pool_delete_response import PoolDeleteResponse
 from ....types.load_balancers.origin_steering_param import OriginSteeringParam
 from ....types.load_balancers.notification_filter_param import NotificationFilterParam
 
-__all__ = ["Pools", "AsyncPools"]
+__all__ = ["PoolsResource", "AsyncPoolsResource"]
 
 
-class Pools(SyncAPIResource):
+class PoolsResource(SyncAPIResource):
     @cached_property
-    def health(self) -> Health:
-        return Health(self._client)
-
-    @cached_property
-    def references(self) -> References:
-        return References(self._client)
+    def health(self) -> HealthResource:
+        return HealthResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> PoolsWithRawResponse:
-        return PoolsWithRawResponse(self)
+    def references(self) -> ReferencesResource:
+        return ReferencesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> PoolsWithStreamingResponse:
-        return PoolsWithStreamingResponse(self)
+    def with_raw_response(self) -> PoolsResourceWithRawResponse:
+        return PoolsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PoolsResourceWithStreamingResponse:
+        return PoolsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -544,22 +544,22 @@ class Pools(SyncAPIResource):
         )
 
 
-class AsyncPools(AsyncAPIResource):
+class AsyncPoolsResource(AsyncAPIResource):
     @cached_property
-    def health(self) -> AsyncHealth:
-        return AsyncHealth(self._client)
+    def health(self) -> AsyncHealthResource:
+        return AsyncHealthResource(self._client)
 
     @cached_property
-    def references(self) -> AsyncReferences:
-        return AsyncReferences(self._client)
+    def references(self) -> AsyncReferencesResource:
+        return AsyncReferencesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPoolsWithRawResponse:
-        return AsyncPoolsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPoolsResourceWithRawResponse:
+        return AsyncPoolsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPoolsWithStreamingResponse:
-        return AsyncPoolsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPoolsResourceWithStreamingResponse:
+        return AsyncPoolsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -1029,8 +1029,8 @@ class AsyncPools(AsyncAPIResource):
         )
 
 
-class PoolsWithRawResponse:
-    def __init__(self, pools: Pools) -> None:
+class PoolsResourceWithRawResponse:
+    def __init__(self, pools: PoolsResource) -> None:
         self._pools = pools
 
         self.create = to_raw_response_wrapper(
@@ -1053,16 +1053,16 @@ class PoolsWithRawResponse:
         )
 
     @cached_property
-    def health(self) -> HealthWithRawResponse:
-        return HealthWithRawResponse(self._pools.health)
+    def health(self) -> HealthResourceWithRawResponse:
+        return HealthResourceWithRawResponse(self._pools.health)
 
     @cached_property
-    def references(self) -> ReferencesWithRawResponse:
-        return ReferencesWithRawResponse(self._pools.references)
+    def references(self) -> ReferencesResourceWithRawResponse:
+        return ReferencesResourceWithRawResponse(self._pools.references)
 
 
-class AsyncPoolsWithRawResponse:
-    def __init__(self, pools: AsyncPools) -> None:
+class AsyncPoolsResourceWithRawResponse:
+    def __init__(self, pools: AsyncPoolsResource) -> None:
         self._pools = pools
 
         self.create = async_to_raw_response_wrapper(
@@ -1085,16 +1085,16 @@ class AsyncPoolsWithRawResponse:
         )
 
     @cached_property
-    def health(self) -> AsyncHealthWithRawResponse:
-        return AsyncHealthWithRawResponse(self._pools.health)
+    def health(self) -> AsyncHealthResourceWithRawResponse:
+        return AsyncHealthResourceWithRawResponse(self._pools.health)
 
     @cached_property
-    def references(self) -> AsyncReferencesWithRawResponse:
-        return AsyncReferencesWithRawResponse(self._pools.references)
+    def references(self) -> AsyncReferencesResourceWithRawResponse:
+        return AsyncReferencesResourceWithRawResponse(self._pools.references)
 
 
-class PoolsWithStreamingResponse:
-    def __init__(self, pools: Pools) -> None:
+class PoolsResourceWithStreamingResponse:
+    def __init__(self, pools: PoolsResource) -> None:
         self._pools = pools
 
         self.create = to_streamed_response_wrapper(
@@ -1117,16 +1117,16 @@ class PoolsWithStreamingResponse:
         )
 
     @cached_property
-    def health(self) -> HealthWithStreamingResponse:
-        return HealthWithStreamingResponse(self._pools.health)
+    def health(self) -> HealthResourceWithStreamingResponse:
+        return HealthResourceWithStreamingResponse(self._pools.health)
 
     @cached_property
-    def references(self) -> ReferencesWithStreamingResponse:
-        return ReferencesWithStreamingResponse(self._pools.references)
+    def references(self) -> ReferencesResourceWithStreamingResponse:
+        return ReferencesResourceWithStreamingResponse(self._pools.references)
 
 
-class AsyncPoolsWithStreamingResponse:
-    def __init__(self, pools: AsyncPools) -> None:
+class AsyncPoolsResourceWithStreamingResponse:
+    def __init__(self, pools: AsyncPoolsResource) -> None:
         self._pools = pools
 
         self.create = async_to_streamed_response_wrapper(
@@ -1149,9 +1149,9 @@ class AsyncPoolsWithStreamingResponse:
         )
 
     @cached_property
-    def health(self) -> AsyncHealthWithStreamingResponse:
-        return AsyncHealthWithStreamingResponse(self._pools.health)
+    def health(self) -> AsyncHealthResourceWithStreamingResponse:
+        return AsyncHealthResourceWithStreamingResponse(self._pools.health)
 
     @cached_property
-    def references(self) -> AsyncReferencesWithStreamingResponse:
-        return AsyncReferencesWithStreamingResponse(self._pools.references)
+    def references(self) -> AsyncReferencesResourceWithStreamingResponse:
+        return AsyncReferencesResourceWithStreamingResponse(self._pools.references)

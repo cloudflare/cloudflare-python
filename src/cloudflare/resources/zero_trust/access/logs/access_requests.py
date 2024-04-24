@@ -21,17 +21,17 @@ from ....._base_client import (
 )
 from .....types.zero_trust.access.logs.access_request_list_response import AccessRequestListResponse
 
-__all__ = ["AccessRequests", "AsyncAccessRequests"]
+__all__ = ["AccessRequestsResource", "AsyncAccessRequestsResource"]
 
 
-class AccessRequests(SyncAPIResource):
+class AccessRequestsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AccessRequestsWithRawResponse:
-        return AccessRequestsWithRawResponse(self)
+    def with_raw_response(self) -> AccessRequestsResourceWithRawResponse:
+        return AccessRequestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AccessRequestsWithStreamingResponse:
-        return AccessRequestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AccessRequestsResourceWithStreamingResponse:
+        return AccessRequestsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -73,14 +73,14 @@ class AccessRequests(SyncAPIResource):
         )
 
 
-class AsyncAccessRequests(AsyncAPIResource):
+class AsyncAccessRequestsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAccessRequestsWithRawResponse:
-        return AsyncAccessRequestsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAccessRequestsResourceWithRawResponse:
+        return AsyncAccessRequestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAccessRequestsWithStreamingResponse:
-        return AsyncAccessRequestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAccessRequestsResourceWithStreamingResponse:
+        return AsyncAccessRequestsResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -122,8 +122,8 @@ class AsyncAccessRequests(AsyncAPIResource):
         )
 
 
-class AccessRequestsWithRawResponse:
-    def __init__(self, access_requests: AccessRequests) -> None:
+class AccessRequestsResourceWithRawResponse:
+    def __init__(self, access_requests: AccessRequestsResource) -> None:
         self._access_requests = access_requests
 
         self.list = to_raw_response_wrapper(
@@ -131,8 +131,8 @@ class AccessRequestsWithRawResponse:
         )
 
 
-class AsyncAccessRequestsWithRawResponse:
-    def __init__(self, access_requests: AsyncAccessRequests) -> None:
+class AsyncAccessRequestsResourceWithRawResponse:
+    def __init__(self, access_requests: AsyncAccessRequestsResource) -> None:
         self._access_requests = access_requests
 
         self.list = async_to_raw_response_wrapper(
@@ -140,8 +140,8 @@ class AsyncAccessRequestsWithRawResponse:
         )
 
 
-class AccessRequestsWithStreamingResponse:
-    def __init__(self, access_requests: AccessRequests) -> None:
+class AccessRequestsResourceWithStreamingResponse:
+    def __init__(self, access_requests: AccessRequestsResource) -> None:
         self._access_requests = access_requests
 
         self.list = to_streamed_response_wrapper(
@@ -149,8 +149,8 @@ class AccessRequestsWithStreamingResponse:
         )
 
 
-class AsyncAccessRequestsWithStreamingResponse:
-    def __init__(self, access_requests: AsyncAccessRequests) -> None:
+class AsyncAccessRequestsResourceWithStreamingResponse:
+    def __init__(self, access_requests: AsyncAccessRequestsResource) -> None:
         self._access_requests = access_requests
 
         self.list = async_to_streamed_response_wrapper(

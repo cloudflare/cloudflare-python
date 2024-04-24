@@ -34,17 +34,17 @@ from .....types.zero_trust.devices.posture import (
 from .....types.zero_trust.devices.posture.integration import Integration
 from .....types.zero_trust.devices.posture.integration_delete_response import IntegrationDeleteResponse
 
-__all__ = ["Integrations", "AsyncIntegrations"]
+__all__ = ["IntegrationsResource", "AsyncIntegrationsResource"]
 
 
-class Integrations(SyncAPIResource):
+class IntegrationsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IntegrationsWithRawResponse:
-        return IntegrationsWithRawResponse(self)
+    def with_raw_response(self) -> IntegrationsResourceWithRawResponse:
+        return IntegrationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IntegrationsWithStreamingResponse:
-        return IntegrationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> IntegrationsResourceWithStreamingResponse:
+        return IntegrationsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -296,14 +296,14 @@ class Integrations(SyncAPIResource):
         )
 
 
-class AsyncIntegrations(AsyncAPIResource):
+class AsyncIntegrationsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIntegrationsWithRawResponse:
-        return AsyncIntegrationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIntegrationsResourceWithRawResponse:
+        return AsyncIntegrationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIntegrationsWithStreamingResponse:
-        return AsyncIntegrationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIntegrationsResourceWithStreamingResponse:
+        return AsyncIntegrationsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -555,8 +555,8 @@ class AsyncIntegrations(AsyncAPIResource):
         )
 
 
-class IntegrationsWithRawResponse:
-    def __init__(self, integrations: Integrations) -> None:
+class IntegrationsResourceWithRawResponse:
+    def __init__(self, integrations: IntegrationsResource) -> None:
         self._integrations = integrations
 
         self.create = to_raw_response_wrapper(
@@ -576,8 +576,8 @@ class IntegrationsWithRawResponse:
         )
 
 
-class AsyncIntegrationsWithRawResponse:
-    def __init__(self, integrations: AsyncIntegrations) -> None:
+class AsyncIntegrationsResourceWithRawResponse:
+    def __init__(self, integrations: AsyncIntegrationsResource) -> None:
         self._integrations = integrations
 
         self.create = async_to_raw_response_wrapper(
@@ -597,8 +597,8 @@ class AsyncIntegrationsWithRawResponse:
         )
 
 
-class IntegrationsWithStreamingResponse:
-    def __init__(self, integrations: Integrations) -> None:
+class IntegrationsResourceWithStreamingResponse:
+    def __init__(self, integrations: IntegrationsResource) -> None:
         self._integrations = integrations
 
         self.create = to_streamed_response_wrapper(
@@ -618,8 +618,8 @@ class IntegrationsWithStreamingResponse:
         )
 
 
-class AsyncIntegrationsWithStreamingResponse:
-    def __init__(self, integrations: AsyncIntegrations) -> None:
+class AsyncIntegrationsResourceWithStreamingResponse:
+    def __init__(self, integrations: AsyncIntegrationsResource) -> None:
         self._integrations = integrations
 
         self.create = async_to_streamed_response_wrapper(

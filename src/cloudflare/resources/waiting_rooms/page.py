@@ -26,17 +26,17 @@ from ..._base_client import (
 from ...types.waiting_rooms import page_preview_params
 from ...types.waiting_rooms.page_preview_response import PagePreviewResponse
 
-__all__ = ["Page", "AsyncPage"]
+__all__ = ["PageResource", "AsyncPageResource"]
 
 
-class Page(SyncAPIResource):
+class PageResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PageWithRawResponse:
-        return PageWithRawResponse(self)
+    def with_raw_response(self) -> PageResourceWithRawResponse:
+        return PageResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PageWithStreamingResponse:
-        return PageWithStreamingResponse(self)
+    def with_streaming_response(self) -> PageResourceWithStreamingResponse:
+        return PageResourceWithStreamingResponse(self)
 
     def preview(
         self,
@@ -138,14 +138,14 @@ class Page(SyncAPIResource):
         )
 
 
-class AsyncPage(AsyncAPIResource):
+class AsyncPageResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPageWithRawResponse:
-        return AsyncPageWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPageResourceWithRawResponse:
+        return AsyncPageResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPageWithStreamingResponse:
-        return AsyncPageWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPageResourceWithStreamingResponse:
+        return AsyncPageResourceWithStreamingResponse(self)
 
     async def preview(
         self,
@@ -247,8 +247,8 @@ class AsyncPage(AsyncAPIResource):
         )
 
 
-class PageWithRawResponse:
-    def __init__(self, page: Page) -> None:
+class PageResourceWithRawResponse:
+    def __init__(self, page: PageResource) -> None:
         self._page = page
 
         self.preview = to_raw_response_wrapper(
@@ -256,8 +256,8 @@ class PageWithRawResponse:
         )
 
 
-class AsyncPageWithRawResponse:
-    def __init__(self, page: AsyncPage) -> None:
+class AsyncPageResourceWithRawResponse:
+    def __init__(self, page: AsyncPageResource) -> None:
         self._page = page
 
         self.preview = async_to_raw_response_wrapper(
@@ -265,8 +265,8 @@ class AsyncPageWithRawResponse:
         )
 
 
-class PageWithStreamingResponse:
-    def __init__(self, page: Page) -> None:
+class PageResourceWithStreamingResponse:
+    def __init__(self, page: PageResource) -> None:
         self._page = page
 
         self.preview = to_streamed_response_wrapper(
@@ -274,8 +274,8 @@ class PageWithStreamingResponse:
         )
 
 
-class AsyncPageWithStreamingResponse:
-    def __init__(self, page: AsyncPage) -> None:
+class AsyncPageResourceWithStreamingResponse:
+    def __init__(self, page: AsyncPageResource) -> None:
         self._page = page
 
         self.preview = async_to_streamed_response_wrapper(

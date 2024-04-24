@@ -25,17 +25,17 @@ from ...types.page_shield import script_list_params
 from ...types.page_shield.script import Script
 from ...types.page_shield.script_get_response import ScriptGetResponse
 
-__all__ = ["Scripts", "AsyncScripts"]
+__all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
 
-class Scripts(SyncAPIResource):
+class ScriptsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ScriptsWithRawResponse:
-        return ScriptsWithRawResponse(self)
+    def with_raw_response(self) -> ScriptsResourceWithRawResponse:
+        return ScriptsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ScriptsWithStreamingResponse:
-        return ScriptsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ScriptsResourceWithStreamingResponse:
+        return ScriptsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -199,14 +199,14 @@ class Scripts(SyncAPIResource):
         )
 
 
-class AsyncScripts(AsyncAPIResource):
+class AsyncScriptsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncScriptsWithRawResponse:
-        return AsyncScriptsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncScriptsResourceWithRawResponse:
+        return AsyncScriptsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncScriptsWithStreamingResponse:
-        return AsyncScriptsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncScriptsResourceWithStreamingResponse:
+        return AsyncScriptsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -370,8 +370,8 @@ class AsyncScripts(AsyncAPIResource):
         )
 
 
-class ScriptsWithRawResponse:
-    def __init__(self, scripts: Scripts) -> None:
+class ScriptsResourceWithRawResponse:
+    def __init__(self, scripts: ScriptsResource) -> None:
         self._scripts = scripts
 
         self.list = to_raw_response_wrapper(
@@ -382,8 +382,8 @@ class ScriptsWithRawResponse:
         )
 
 
-class AsyncScriptsWithRawResponse:
-    def __init__(self, scripts: AsyncScripts) -> None:
+class AsyncScriptsResourceWithRawResponse:
+    def __init__(self, scripts: AsyncScriptsResource) -> None:
         self._scripts = scripts
 
         self.list = async_to_raw_response_wrapper(
@@ -394,8 +394,8 @@ class AsyncScriptsWithRawResponse:
         )
 
 
-class ScriptsWithStreamingResponse:
-    def __init__(self, scripts: Scripts) -> None:
+class ScriptsResourceWithStreamingResponse:
+    def __init__(self, scripts: ScriptsResource) -> None:
         self._scripts = scripts
 
         self.list = to_streamed_response_wrapper(
@@ -406,8 +406,8 @@ class ScriptsWithStreamingResponse:
         )
 
 
-class AsyncScriptsWithStreamingResponse:
-    def __init__(self, scripts: AsyncScripts) -> None:
+class AsyncScriptsResourceWithStreamingResponse:
+    def __init__(self, scripts: AsyncScriptsResource) -> None:
         self._scripts = scripts
 
         self.list = async_to_streamed_response_wrapper(

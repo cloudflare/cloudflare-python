@@ -41,17 +41,17 @@ from ...types.spectrum.app_create_response import AppCreateResponse
 from ...types.spectrum.app_delete_response import AppDeleteResponse
 from ...types.spectrum.app_update_response import AppUpdateResponse
 
-__all__ = ["Apps", "AsyncApps"]
+__all__ = ["AppsResource", "AsyncAppsResource"]
 
 
-class Apps(SyncAPIResource):
+class AppsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AppsWithRawResponse:
-        return AppsWithRawResponse(self)
+    def with_raw_response(self) -> AppsResourceWithRawResponse:
+        return AppsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AppsWithStreamingResponse:
-        return AppsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AppsResourceWithStreamingResponse:
+        return AppsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -414,14 +414,14 @@ class Apps(SyncAPIResource):
         )
 
 
-class AsyncApps(AsyncAPIResource):
+class AsyncAppsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAppsWithRawResponse:
-        return AsyncAppsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAppsResourceWithRawResponse:
+        return AsyncAppsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAppsWithStreamingResponse:
-        return AsyncAppsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAppsResourceWithStreamingResponse:
+        return AsyncAppsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -784,8 +784,8 @@ class AsyncApps(AsyncAPIResource):
         )
 
 
-class AppsWithRawResponse:
-    def __init__(self, apps: Apps) -> None:
+class AppsResourceWithRawResponse:
+    def __init__(self, apps: AppsResource) -> None:
         self._apps = apps
 
         self.create = to_raw_response_wrapper(
@@ -805,8 +805,8 @@ class AppsWithRawResponse:
         )
 
 
-class AsyncAppsWithRawResponse:
-    def __init__(self, apps: AsyncApps) -> None:
+class AsyncAppsResourceWithRawResponse:
+    def __init__(self, apps: AsyncAppsResource) -> None:
         self._apps = apps
 
         self.create = async_to_raw_response_wrapper(
@@ -826,8 +826,8 @@ class AsyncAppsWithRawResponse:
         )
 
 
-class AppsWithStreamingResponse:
-    def __init__(self, apps: Apps) -> None:
+class AppsResourceWithStreamingResponse:
+    def __init__(self, apps: AppsResource) -> None:
         self._apps = apps
 
         self.create = to_streamed_response_wrapper(
@@ -847,8 +847,8 @@ class AppsWithStreamingResponse:
         )
 
 
-class AsyncAppsWithStreamingResponse:
-    def __init__(self, apps: AsyncApps) -> None:
+class AsyncAppsResourceWithStreamingResponse:
+    def __init__(self, apps: AsyncAppsResource) -> None:
         self._apps = apps
 
         self.create = async_to_streamed_response_wrapper(

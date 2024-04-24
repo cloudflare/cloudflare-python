@@ -36,17 +36,17 @@ from ....types.magic_transit.sites.lan_create_response import LANCreateResponse
 from ....types.magic_transit.sites.routed_subnet_param import RoutedSubnetParam
 from ....types.magic_transit.sites.lan_static_addressing_param import LANStaticAddressingParam
 
-__all__ = ["LANs", "AsyncLANs"]
+__all__ = ["LANsResource", "AsyncLANsResource"]
 
 
-class LANs(SyncAPIResource):
+class LANsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> LANsWithRawResponse:
-        return LANsWithRawResponse(self)
+    def with_raw_response(self) -> LANsResourceWithRawResponse:
+        return LANsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> LANsWithStreamingResponse:
-        return LANsWithStreamingResponse(self)
+    def with_streaming_response(self) -> LANsResourceWithStreamingResponse:
+        return LANsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -336,14 +336,14 @@ class LANs(SyncAPIResource):
         )
 
 
-class AsyncLANs(AsyncAPIResource):
+class AsyncLANsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncLANsWithRawResponse:
-        return AsyncLANsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLANsResourceWithRawResponse:
+        return AsyncLANsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLANsWithStreamingResponse:
-        return AsyncLANsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLANsResourceWithStreamingResponse:
+        return AsyncLANsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -633,8 +633,8 @@ class AsyncLANs(AsyncAPIResource):
         )
 
 
-class LANsWithRawResponse:
-    def __init__(self, lans: LANs) -> None:
+class LANsResourceWithRawResponse:
+    def __init__(self, lans: LANsResource) -> None:
         self._lans = lans
 
         self.create = to_raw_response_wrapper(
@@ -654,8 +654,8 @@ class LANsWithRawResponse:
         )
 
 
-class AsyncLANsWithRawResponse:
-    def __init__(self, lans: AsyncLANs) -> None:
+class AsyncLANsResourceWithRawResponse:
+    def __init__(self, lans: AsyncLANsResource) -> None:
         self._lans = lans
 
         self.create = async_to_raw_response_wrapper(
@@ -675,8 +675,8 @@ class AsyncLANsWithRawResponse:
         )
 
 
-class LANsWithStreamingResponse:
-    def __init__(self, lans: LANs) -> None:
+class LANsResourceWithStreamingResponse:
+    def __init__(self, lans: LANsResource) -> None:
         self._lans = lans
 
         self.create = to_streamed_response_wrapper(
@@ -696,8 +696,8 @@ class LANsWithStreamingResponse:
         )
 
 
-class AsyncLANsWithStreamingResponse:
-    def __init__(self, lans: AsyncLANs) -> None:
+class AsyncLANsResourceWithStreamingResponse:
+    def __init__(self, lans: AsyncLANsResource) -> None:
         self._lans = lans
 
         self.create = async_to_streamed_response_wrapper(

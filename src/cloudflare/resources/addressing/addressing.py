@@ -3,177 +3,177 @@
 from __future__ import annotations
 
 from .prefixes import (
-    Prefixes,
-    AsyncPrefixes,
-    PrefixesWithRawResponse,
-    AsyncPrefixesWithRawResponse,
-    PrefixesWithStreamingResponse,
-    AsyncPrefixesWithStreamingResponse,
+    PrefixesResource,
+    AsyncPrefixesResource,
+    PrefixesResourceWithRawResponse,
+    AsyncPrefixesResourceWithRawResponse,
+    PrefixesResourceWithStreamingResponse,
+    AsyncPrefixesResourceWithStreamingResponse,
 )
 from .services import (
-    Services,
-    AsyncServices,
-    ServicesWithRawResponse,
-    AsyncServicesWithRawResponse,
-    ServicesWithStreamingResponse,
-    AsyncServicesWithStreamingResponse,
+    ServicesResource,
+    AsyncServicesResource,
+    ServicesResourceWithRawResponse,
+    AsyncServicesResourceWithRawResponse,
+    ServicesResourceWithStreamingResponse,
+    AsyncServicesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .address_maps import (
-    AddressMaps,
-    AsyncAddressMaps,
-    AddressMapsWithRawResponse,
-    AsyncAddressMapsWithRawResponse,
-    AddressMapsWithStreamingResponse,
-    AsyncAddressMapsWithStreamingResponse,
+    AddressMapsResource,
+    AsyncAddressMapsResource,
+    AddressMapsResourceWithRawResponse,
+    AsyncAddressMapsResourceWithRawResponse,
+    AddressMapsResourceWithStreamingResponse,
+    AsyncAddressMapsResourceWithStreamingResponse,
 )
 from .loa_documents import (
-    LOADocuments,
-    AsyncLOADocuments,
-    LOADocumentsWithRawResponse,
-    AsyncLOADocumentsWithRawResponse,
-    LOADocumentsWithStreamingResponse,
-    AsyncLOADocumentsWithStreamingResponse,
+    LOADocumentsResource,
+    AsyncLOADocumentsResource,
+    LOADocumentsResourceWithRawResponse,
+    AsyncLOADocumentsResourceWithRawResponse,
+    LOADocumentsResourceWithStreamingResponse,
+    AsyncLOADocumentsResourceWithStreamingResponse,
 )
-from .prefixes.prefixes import Prefixes, AsyncPrefixes
-from .address_maps.address_maps import AddressMaps, AsyncAddressMaps
-from .loa_documents.loa_documents import LOADocuments, AsyncLOADocuments
+from .prefixes.prefixes import PrefixesResource, AsyncPrefixesResource
+from .address_maps.address_maps import AddressMapsResource, AsyncAddressMapsResource
+from .loa_documents.loa_documents import LOADocumentsResource, AsyncLOADocumentsResource
 
-__all__ = ["Addressing", "AsyncAddressing"]
+__all__ = ["AddressingResource", "AsyncAddressingResource"]
 
 
-class Addressing(SyncAPIResource):
+class AddressingResource(SyncAPIResource):
     @cached_property
-    def services(self) -> Services:
-        return Services(self._client)
-
-    @cached_property
-    def address_maps(self) -> AddressMaps:
-        return AddressMaps(self._client)
+    def services(self) -> ServicesResource:
+        return ServicesResource(self._client)
 
     @cached_property
-    def loa_documents(self) -> LOADocuments:
-        return LOADocuments(self._client)
+    def address_maps(self) -> AddressMapsResource:
+        return AddressMapsResource(self._client)
 
     @cached_property
-    def prefixes(self) -> Prefixes:
-        return Prefixes(self._client)
+    def loa_documents(self) -> LOADocumentsResource:
+        return LOADocumentsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AddressingWithRawResponse:
-        return AddressingWithRawResponse(self)
+    def prefixes(self) -> PrefixesResource:
+        return PrefixesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AddressingWithStreamingResponse:
-        return AddressingWithStreamingResponse(self)
-
-
-class AsyncAddressing(AsyncAPIResource):
-    @cached_property
-    def services(self) -> AsyncServices:
-        return AsyncServices(self._client)
+    def with_raw_response(self) -> AddressingResourceWithRawResponse:
+        return AddressingResourceWithRawResponse(self)
 
     @cached_property
-    def address_maps(self) -> AsyncAddressMaps:
-        return AsyncAddressMaps(self._client)
+    def with_streaming_response(self) -> AddressingResourceWithStreamingResponse:
+        return AddressingResourceWithStreamingResponse(self)
+
+
+class AsyncAddressingResource(AsyncAPIResource):
+    @cached_property
+    def services(self) -> AsyncServicesResource:
+        return AsyncServicesResource(self._client)
 
     @cached_property
-    def loa_documents(self) -> AsyncLOADocuments:
-        return AsyncLOADocuments(self._client)
+    def address_maps(self) -> AsyncAddressMapsResource:
+        return AsyncAddressMapsResource(self._client)
 
     @cached_property
-    def prefixes(self) -> AsyncPrefixes:
-        return AsyncPrefixes(self._client)
+    def loa_documents(self) -> AsyncLOADocumentsResource:
+        return AsyncLOADocumentsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAddressingWithRawResponse:
-        return AsyncAddressingWithRawResponse(self)
+    def prefixes(self) -> AsyncPrefixesResource:
+        return AsyncPrefixesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAddressingWithStreamingResponse:
-        return AsyncAddressingWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncAddressingResourceWithRawResponse:
+        return AsyncAddressingResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAddressingResourceWithStreamingResponse:
+        return AsyncAddressingResourceWithStreamingResponse(self)
 
 
-class AddressingWithRawResponse:
-    def __init__(self, addressing: Addressing) -> None:
+class AddressingResourceWithRawResponse:
+    def __init__(self, addressing: AddressingResource) -> None:
         self._addressing = addressing
 
     @cached_property
-    def services(self) -> ServicesWithRawResponse:
-        return ServicesWithRawResponse(self._addressing.services)
+    def services(self) -> ServicesResourceWithRawResponse:
+        return ServicesResourceWithRawResponse(self._addressing.services)
 
     @cached_property
-    def address_maps(self) -> AddressMapsWithRawResponse:
-        return AddressMapsWithRawResponse(self._addressing.address_maps)
+    def address_maps(self) -> AddressMapsResourceWithRawResponse:
+        return AddressMapsResourceWithRawResponse(self._addressing.address_maps)
 
     @cached_property
-    def loa_documents(self) -> LOADocumentsWithRawResponse:
-        return LOADocumentsWithRawResponse(self._addressing.loa_documents)
+    def loa_documents(self) -> LOADocumentsResourceWithRawResponse:
+        return LOADocumentsResourceWithRawResponse(self._addressing.loa_documents)
 
     @cached_property
-    def prefixes(self) -> PrefixesWithRawResponse:
-        return PrefixesWithRawResponse(self._addressing.prefixes)
+    def prefixes(self) -> PrefixesResourceWithRawResponse:
+        return PrefixesResourceWithRawResponse(self._addressing.prefixes)
 
 
-class AsyncAddressingWithRawResponse:
-    def __init__(self, addressing: AsyncAddressing) -> None:
+class AsyncAddressingResourceWithRawResponse:
+    def __init__(self, addressing: AsyncAddressingResource) -> None:
         self._addressing = addressing
 
     @cached_property
-    def services(self) -> AsyncServicesWithRawResponse:
-        return AsyncServicesWithRawResponse(self._addressing.services)
+    def services(self) -> AsyncServicesResourceWithRawResponse:
+        return AsyncServicesResourceWithRawResponse(self._addressing.services)
 
     @cached_property
-    def address_maps(self) -> AsyncAddressMapsWithRawResponse:
-        return AsyncAddressMapsWithRawResponse(self._addressing.address_maps)
+    def address_maps(self) -> AsyncAddressMapsResourceWithRawResponse:
+        return AsyncAddressMapsResourceWithRawResponse(self._addressing.address_maps)
 
     @cached_property
-    def loa_documents(self) -> AsyncLOADocumentsWithRawResponse:
-        return AsyncLOADocumentsWithRawResponse(self._addressing.loa_documents)
+    def loa_documents(self) -> AsyncLOADocumentsResourceWithRawResponse:
+        return AsyncLOADocumentsResourceWithRawResponse(self._addressing.loa_documents)
 
     @cached_property
-    def prefixes(self) -> AsyncPrefixesWithRawResponse:
-        return AsyncPrefixesWithRawResponse(self._addressing.prefixes)
+    def prefixes(self) -> AsyncPrefixesResourceWithRawResponse:
+        return AsyncPrefixesResourceWithRawResponse(self._addressing.prefixes)
 
 
-class AddressingWithStreamingResponse:
-    def __init__(self, addressing: Addressing) -> None:
+class AddressingResourceWithStreamingResponse:
+    def __init__(self, addressing: AddressingResource) -> None:
         self._addressing = addressing
 
     @cached_property
-    def services(self) -> ServicesWithStreamingResponse:
-        return ServicesWithStreamingResponse(self._addressing.services)
+    def services(self) -> ServicesResourceWithStreamingResponse:
+        return ServicesResourceWithStreamingResponse(self._addressing.services)
 
     @cached_property
-    def address_maps(self) -> AddressMapsWithStreamingResponse:
-        return AddressMapsWithStreamingResponse(self._addressing.address_maps)
+    def address_maps(self) -> AddressMapsResourceWithStreamingResponse:
+        return AddressMapsResourceWithStreamingResponse(self._addressing.address_maps)
 
     @cached_property
-    def loa_documents(self) -> LOADocumentsWithStreamingResponse:
-        return LOADocumentsWithStreamingResponse(self._addressing.loa_documents)
+    def loa_documents(self) -> LOADocumentsResourceWithStreamingResponse:
+        return LOADocumentsResourceWithStreamingResponse(self._addressing.loa_documents)
 
     @cached_property
-    def prefixes(self) -> PrefixesWithStreamingResponse:
-        return PrefixesWithStreamingResponse(self._addressing.prefixes)
+    def prefixes(self) -> PrefixesResourceWithStreamingResponse:
+        return PrefixesResourceWithStreamingResponse(self._addressing.prefixes)
 
 
-class AsyncAddressingWithStreamingResponse:
-    def __init__(self, addressing: AsyncAddressing) -> None:
+class AsyncAddressingResourceWithStreamingResponse:
+    def __init__(self, addressing: AsyncAddressingResource) -> None:
         self._addressing = addressing
 
     @cached_property
-    def services(self) -> AsyncServicesWithStreamingResponse:
-        return AsyncServicesWithStreamingResponse(self._addressing.services)
+    def services(self) -> AsyncServicesResourceWithStreamingResponse:
+        return AsyncServicesResourceWithStreamingResponse(self._addressing.services)
 
     @cached_property
-    def address_maps(self) -> AsyncAddressMapsWithStreamingResponse:
-        return AsyncAddressMapsWithStreamingResponse(self._addressing.address_maps)
+    def address_maps(self) -> AsyncAddressMapsResourceWithStreamingResponse:
+        return AsyncAddressMapsResourceWithStreamingResponse(self._addressing.address_maps)
 
     @cached_property
-    def loa_documents(self) -> AsyncLOADocumentsWithStreamingResponse:
-        return AsyncLOADocumentsWithStreamingResponse(self._addressing.loa_documents)
+    def loa_documents(self) -> AsyncLOADocumentsResourceWithStreamingResponse:
+        return AsyncLOADocumentsResourceWithStreamingResponse(self._addressing.loa_documents)
 
     @cached_property
-    def prefixes(self) -> AsyncPrefixesWithStreamingResponse:
-        return AsyncPrefixesWithStreamingResponse(self._addressing.prefixes)
+    def prefixes(self) -> AsyncPrefixesResourceWithStreamingResponse:
+        return AsyncPrefixesResourceWithStreamingResponse(self._addressing.prefixes)

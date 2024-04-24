@@ -22,12 +22,12 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from .associations import (
-    Associations,
-    AsyncAssociations,
-    AssociationsWithRawResponse,
-    AsyncAssociationsWithRawResponse,
-    AssociationsWithStreamingResponse,
-    AsyncAssociationsWithStreamingResponse,
+    AssociationsResource,
+    AsyncAssociationsResource,
+    AssociationsResourceWithRawResponse,
+    AsyncAssociationsResourceWithRawResponse,
+    AssociationsResourceWithStreamingResponse,
+    AsyncAssociationsResourceWithStreamingResponse,
 )
 from ..._base_client import (
     AsyncPaginator,
@@ -37,21 +37,21 @@ from ...types.mtls_certificates import mtls_certificate_create_params, mtls_cert
 from ...types.mtls_certificates.mtls_certificate import MTLSCertificate
 from ...types.mtls_certificates.mtls_certificate_create_response import MTLSCertificateCreateResponse
 
-__all__ = ["MTLSCertificates", "AsyncMTLSCertificates"]
+__all__ = ["MTLSCertificatesResource", "AsyncMTLSCertificatesResource"]
 
 
-class MTLSCertificates(SyncAPIResource):
+class MTLSCertificatesResource(SyncAPIResource):
     @cached_property
-    def associations(self) -> Associations:
-        return Associations(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> MTLSCertificatesWithRawResponse:
-        return MTLSCertificatesWithRawResponse(self)
+    def associations(self) -> AssociationsResource:
+        return AssociationsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> MTLSCertificatesWithStreamingResponse:
-        return MTLSCertificatesWithStreamingResponse(self)
+    def with_raw_response(self) -> MTLSCertificatesResourceWithRawResponse:
+        return MTLSCertificatesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> MTLSCertificatesResourceWithStreamingResponse:
+        return MTLSCertificatesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -245,18 +245,18 @@ class MTLSCertificates(SyncAPIResource):
         )
 
 
-class AsyncMTLSCertificates(AsyncAPIResource):
+class AsyncMTLSCertificatesResource(AsyncAPIResource):
     @cached_property
-    def associations(self) -> AsyncAssociations:
-        return AsyncAssociations(self._client)
+    def associations(self) -> AsyncAssociationsResource:
+        return AsyncAssociationsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncMTLSCertificatesWithRawResponse:
-        return AsyncMTLSCertificatesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMTLSCertificatesResourceWithRawResponse:
+        return AsyncMTLSCertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMTLSCertificatesWithStreamingResponse:
-        return AsyncMTLSCertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMTLSCertificatesResourceWithStreamingResponse:
+        return AsyncMTLSCertificatesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -450,8 +450,8 @@ class AsyncMTLSCertificates(AsyncAPIResource):
         )
 
 
-class MTLSCertificatesWithRawResponse:
-    def __init__(self, mtls_certificates: MTLSCertificates) -> None:
+class MTLSCertificatesResourceWithRawResponse:
+    def __init__(self, mtls_certificates: MTLSCertificatesResource) -> None:
         self._mtls_certificates = mtls_certificates
 
         self.create = to_raw_response_wrapper(
@@ -468,12 +468,12 @@ class MTLSCertificatesWithRawResponse:
         )
 
     @cached_property
-    def associations(self) -> AssociationsWithRawResponse:
-        return AssociationsWithRawResponse(self._mtls_certificates.associations)
+    def associations(self) -> AssociationsResourceWithRawResponse:
+        return AssociationsResourceWithRawResponse(self._mtls_certificates.associations)
 
 
-class AsyncMTLSCertificatesWithRawResponse:
-    def __init__(self, mtls_certificates: AsyncMTLSCertificates) -> None:
+class AsyncMTLSCertificatesResourceWithRawResponse:
+    def __init__(self, mtls_certificates: AsyncMTLSCertificatesResource) -> None:
         self._mtls_certificates = mtls_certificates
 
         self.create = async_to_raw_response_wrapper(
@@ -490,12 +490,12 @@ class AsyncMTLSCertificatesWithRawResponse:
         )
 
     @cached_property
-    def associations(self) -> AsyncAssociationsWithRawResponse:
-        return AsyncAssociationsWithRawResponse(self._mtls_certificates.associations)
+    def associations(self) -> AsyncAssociationsResourceWithRawResponse:
+        return AsyncAssociationsResourceWithRawResponse(self._mtls_certificates.associations)
 
 
-class MTLSCertificatesWithStreamingResponse:
-    def __init__(self, mtls_certificates: MTLSCertificates) -> None:
+class MTLSCertificatesResourceWithStreamingResponse:
+    def __init__(self, mtls_certificates: MTLSCertificatesResource) -> None:
         self._mtls_certificates = mtls_certificates
 
         self.create = to_streamed_response_wrapper(
@@ -512,12 +512,12 @@ class MTLSCertificatesWithStreamingResponse:
         )
 
     @cached_property
-    def associations(self) -> AssociationsWithStreamingResponse:
-        return AssociationsWithStreamingResponse(self._mtls_certificates.associations)
+    def associations(self) -> AssociationsResourceWithStreamingResponse:
+        return AssociationsResourceWithStreamingResponse(self._mtls_certificates.associations)
 
 
-class AsyncMTLSCertificatesWithStreamingResponse:
-    def __init__(self, mtls_certificates: AsyncMTLSCertificates) -> None:
+class AsyncMTLSCertificatesResourceWithStreamingResponse:
+    def __init__(self, mtls_certificates: AsyncMTLSCertificatesResource) -> None:
         self._mtls_certificates = mtls_certificates
 
         self.create = async_to_streamed_response_wrapper(
@@ -534,5 +534,5 @@ class AsyncMTLSCertificatesWithStreamingResponse:
         )
 
     @cached_property
-    def associations(self) -> AsyncAssociationsWithStreamingResponse:
-        return AsyncAssociationsWithStreamingResponse(self._mtls_certificates.associations)
+    def associations(self) -> AsyncAssociationsResourceWithStreamingResponse:
+        return AsyncAssociationsResourceWithStreamingResponse(self._mtls_certificates.associations)

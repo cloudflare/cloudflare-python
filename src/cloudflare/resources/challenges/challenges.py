@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .widgets import (
-    Widgets,
-    AsyncWidgets,
-    WidgetsWithRawResponse,
-    AsyncWidgetsWithRawResponse,
-    WidgetsWithStreamingResponse,
-    AsyncWidgetsWithStreamingResponse,
+    WidgetsResource,
+    AsyncWidgetsResource,
+    WidgetsResourceWithRawResponse,
+    AsyncWidgetsResourceWithRawResponse,
+    WidgetsResourceWithStreamingResponse,
+    AsyncWidgetsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Challenges", "AsyncChallenges"]
+__all__ = ["ChallengesResource", "AsyncChallengesResource"]
 
 
-class Challenges(SyncAPIResource):
+class ChallengesResource(SyncAPIResource):
     @cached_property
-    def widgets(self) -> Widgets:
-        return Widgets(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> ChallengesWithRawResponse:
-        return ChallengesWithRawResponse(self)
+    def widgets(self) -> WidgetsResource:
+        return WidgetsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ChallengesWithStreamingResponse:
-        return ChallengesWithStreamingResponse(self)
-
-
-class AsyncChallenges(AsyncAPIResource):
-    @cached_property
-    def widgets(self) -> AsyncWidgets:
-        return AsyncWidgets(self._client)
+    def with_raw_response(self) -> ChallengesResourceWithRawResponse:
+        return ChallengesResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncChallengesWithRawResponse:
-        return AsyncChallengesWithRawResponse(self)
+    def with_streaming_response(self) -> ChallengesResourceWithStreamingResponse:
+        return ChallengesResourceWithStreamingResponse(self)
+
+
+class AsyncChallengesResource(AsyncAPIResource):
+    @cached_property
+    def widgets(self) -> AsyncWidgetsResource:
+        return AsyncWidgetsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncChallengesWithStreamingResponse:
-        return AsyncChallengesWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncChallengesResourceWithRawResponse:
+        return AsyncChallengesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncChallengesResourceWithStreamingResponse:
+        return AsyncChallengesResourceWithStreamingResponse(self)
 
 
-class ChallengesWithRawResponse:
-    def __init__(self, challenges: Challenges) -> None:
+class ChallengesResourceWithRawResponse:
+    def __init__(self, challenges: ChallengesResource) -> None:
         self._challenges = challenges
 
     @cached_property
-    def widgets(self) -> WidgetsWithRawResponse:
-        return WidgetsWithRawResponse(self._challenges.widgets)
+    def widgets(self) -> WidgetsResourceWithRawResponse:
+        return WidgetsResourceWithRawResponse(self._challenges.widgets)
 
 
-class AsyncChallengesWithRawResponse:
-    def __init__(self, challenges: AsyncChallenges) -> None:
+class AsyncChallengesResourceWithRawResponse:
+    def __init__(self, challenges: AsyncChallengesResource) -> None:
         self._challenges = challenges
 
     @cached_property
-    def widgets(self) -> AsyncWidgetsWithRawResponse:
-        return AsyncWidgetsWithRawResponse(self._challenges.widgets)
+    def widgets(self) -> AsyncWidgetsResourceWithRawResponse:
+        return AsyncWidgetsResourceWithRawResponse(self._challenges.widgets)
 
 
-class ChallengesWithStreamingResponse:
-    def __init__(self, challenges: Challenges) -> None:
+class ChallengesResourceWithStreamingResponse:
+    def __init__(self, challenges: ChallengesResource) -> None:
         self._challenges = challenges
 
     @cached_property
-    def widgets(self) -> WidgetsWithStreamingResponse:
-        return WidgetsWithStreamingResponse(self._challenges.widgets)
+    def widgets(self) -> WidgetsResourceWithStreamingResponse:
+        return WidgetsResourceWithStreamingResponse(self._challenges.widgets)
 
 
-class AsyncChallengesWithStreamingResponse:
-    def __init__(self, challenges: AsyncChallenges) -> None:
+class AsyncChallengesResourceWithStreamingResponse:
+    def __init__(self, challenges: AsyncChallengesResource) -> None:
         self._challenges = challenges
 
     @cached_property
-    def widgets(self) -> AsyncWidgetsWithStreamingResponse:
-        return AsyncWidgetsWithStreamingResponse(self._challenges.widgets)
+    def widgets(self) -> AsyncWidgetsResourceWithStreamingResponse:
+        return AsyncWidgetsResourceWithStreamingResponse(self._challenges.widgets)

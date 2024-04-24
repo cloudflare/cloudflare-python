@@ -3,110 +3,110 @@
 from __future__ import annotations
 
 from .history import (
-    History,
-    AsyncHistory,
-    HistoryWithRawResponse,
-    AsyncHistoryWithRawResponse,
-    HistoryWithStreamingResponse,
-    AsyncHistoryWithStreamingResponse,
+    HistoryResource,
+    AsyncHistoryResource,
+    HistoryResourceWithRawResponse,
+    AsyncHistoryResourceWithRawResponse,
+    HistoryResourceWithStreamingResponse,
+    AsyncHistoryResourceWithStreamingResponse,
 )
 from .profile import (
-    Profile,
-    AsyncProfile,
-    ProfileWithRawResponse,
-    AsyncProfileWithRawResponse,
-    ProfileWithStreamingResponse,
-    AsyncProfileWithStreamingResponse,
+    ProfileResource,
+    AsyncProfileResource,
+    ProfileResourceWithRawResponse,
+    AsyncProfileResourceWithRawResponse,
+    ProfileResourceWithStreamingResponse,
+    AsyncProfileResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Billing", "AsyncBilling"]
+__all__ = ["BillingResource", "AsyncBillingResource"]
 
 
-class Billing(SyncAPIResource):
+class BillingResource(SyncAPIResource):
     @cached_property
-    def history(self) -> History:
-        return History(self._client)
-
-    @cached_property
-    def profile(self) -> Profile:
-        return Profile(self._client)
+    def history(self) -> HistoryResource:
+        return HistoryResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> BillingWithRawResponse:
-        return BillingWithRawResponse(self)
+    def profile(self) -> ProfileResource:
+        return ProfileResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> BillingWithStreamingResponse:
-        return BillingWithStreamingResponse(self)
-
-
-class AsyncBilling(AsyncAPIResource):
-    @cached_property
-    def history(self) -> AsyncHistory:
-        return AsyncHistory(self._client)
+    def with_raw_response(self) -> BillingResourceWithRawResponse:
+        return BillingResourceWithRawResponse(self)
 
     @cached_property
-    def profile(self) -> AsyncProfile:
-        return AsyncProfile(self._client)
+    def with_streaming_response(self) -> BillingResourceWithStreamingResponse:
+        return BillingResourceWithStreamingResponse(self)
+
+
+class AsyncBillingResource(AsyncAPIResource):
+    @cached_property
+    def history(self) -> AsyncHistoryResource:
+        return AsyncHistoryResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncBillingWithRawResponse:
-        return AsyncBillingWithRawResponse(self)
+    def profile(self) -> AsyncProfileResource:
+        return AsyncProfileResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBillingWithStreamingResponse:
-        return AsyncBillingWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncBillingResourceWithRawResponse:
+        return AsyncBillingResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncBillingResourceWithStreamingResponse:
+        return AsyncBillingResourceWithStreamingResponse(self)
 
 
-class BillingWithRawResponse:
-    def __init__(self, billing: Billing) -> None:
+class BillingResourceWithRawResponse:
+    def __init__(self, billing: BillingResource) -> None:
         self._billing = billing
 
     @cached_property
-    def history(self) -> HistoryWithRawResponse:
-        return HistoryWithRawResponse(self._billing.history)
+    def history(self) -> HistoryResourceWithRawResponse:
+        return HistoryResourceWithRawResponse(self._billing.history)
 
     @cached_property
-    def profile(self) -> ProfileWithRawResponse:
-        return ProfileWithRawResponse(self._billing.profile)
+    def profile(self) -> ProfileResourceWithRawResponse:
+        return ProfileResourceWithRawResponse(self._billing.profile)
 
 
-class AsyncBillingWithRawResponse:
-    def __init__(self, billing: AsyncBilling) -> None:
+class AsyncBillingResourceWithRawResponse:
+    def __init__(self, billing: AsyncBillingResource) -> None:
         self._billing = billing
 
     @cached_property
-    def history(self) -> AsyncHistoryWithRawResponse:
-        return AsyncHistoryWithRawResponse(self._billing.history)
+    def history(self) -> AsyncHistoryResourceWithRawResponse:
+        return AsyncHistoryResourceWithRawResponse(self._billing.history)
 
     @cached_property
-    def profile(self) -> AsyncProfileWithRawResponse:
-        return AsyncProfileWithRawResponse(self._billing.profile)
+    def profile(self) -> AsyncProfileResourceWithRawResponse:
+        return AsyncProfileResourceWithRawResponse(self._billing.profile)
 
 
-class BillingWithStreamingResponse:
-    def __init__(self, billing: Billing) -> None:
+class BillingResourceWithStreamingResponse:
+    def __init__(self, billing: BillingResource) -> None:
         self._billing = billing
 
     @cached_property
-    def history(self) -> HistoryWithStreamingResponse:
-        return HistoryWithStreamingResponse(self._billing.history)
+    def history(self) -> HistoryResourceWithStreamingResponse:
+        return HistoryResourceWithStreamingResponse(self._billing.history)
 
     @cached_property
-    def profile(self) -> ProfileWithStreamingResponse:
-        return ProfileWithStreamingResponse(self._billing.profile)
+    def profile(self) -> ProfileResourceWithStreamingResponse:
+        return ProfileResourceWithStreamingResponse(self._billing.profile)
 
 
-class AsyncBillingWithStreamingResponse:
-    def __init__(self, billing: AsyncBilling) -> None:
+class AsyncBillingResourceWithStreamingResponse:
+    def __init__(self, billing: AsyncBillingResource) -> None:
         self._billing = billing
 
     @cached_property
-    def history(self) -> AsyncHistoryWithStreamingResponse:
-        return AsyncHistoryWithStreamingResponse(self._billing.history)
+    def history(self) -> AsyncHistoryResourceWithStreamingResponse:
+        return AsyncHistoryResourceWithStreamingResponse(self._billing.history)
 
     @cached_property
-    def profile(self) -> AsyncProfileWithStreamingResponse:
-        return AsyncProfileWithStreamingResponse(self._billing.profile)
+    def profile(self) -> AsyncProfileResourceWithStreamingResponse:
+        return AsyncProfileResourceWithStreamingResponse(self._billing.profile)

@@ -22,17 +22,17 @@ from ....._base_client import (
 from .....types.zero_trust.access.app_id_param import AppIDParam
 from .....types.zero_trust.access.applications.user_policy_check_list_response import UserPolicyCheckListResponse
 
-__all__ = ["UserPolicyChecks", "AsyncUserPolicyChecks"]
+__all__ = ["UserPolicyChecksResource", "AsyncUserPolicyChecksResource"]
 
 
-class UserPolicyChecks(SyncAPIResource):
+class UserPolicyChecksResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> UserPolicyChecksWithRawResponse:
-        return UserPolicyChecksWithRawResponse(self)
+    def with_raw_response(self) -> UserPolicyChecksResourceWithRawResponse:
+        return UserPolicyChecksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> UserPolicyChecksWithStreamingResponse:
-        return UserPolicyChecksWithStreamingResponse(self)
+    def with_streaming_response(self) -> UserPolicyChecksResourceWithStreamingResponse:
+        return UserPolicyChecksResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -90,14 +90,14 @@ class UserPolicyChecks(SyncAPIResource):
         )
 
 
-class AsyncUserPolicyChecks(AsyncAPIResource):
+class AsyncUserPolicyChecksResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncUserPolicyChecksWithRawResponse:
-        return AsyncUserPolicyChecksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncUserPolicyChecksResourceWithRawResponse:
+        return AsyncUserPolicyChecksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUserPolicyChecksWithStreamingResponse:
-        return AsyncUserPolicyChecksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncUserPolicyChecksResourceWithStreamingResponse:
+        return AsyncUserPolicyChecksResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -155,8 +155,8 @@ class AsyncUserPolicyChecks(AsyncAPIResource):
         )
 
 
-class UserPolicyChecksWithRawResponse:
-    def __init__(self, user_policy_checks: UserPolicyChecks) -> None:
+class UserPolicyChecksResourceWithRawResponse:
+    def __init__(self, user_policy_checks: UserPolicyChecksResource) -> None:
         self._user_policy_checks = user_policy_checks
 
         self.list = to_raw_response_wrapper(
@@ -164,8 +164,8 @@ class UserPolicyChecksWithRawResponse:
         )
 
 
-class AsyncUserPolicyChecksWithRawResponse:
-    def __init__(self, user_policy_checks: AsyncUserPolicyChecks) -> None:
+class AsyncUserPolicyChecksResourceWithRawResponse:
+    def __init__(self, user_policy_checks: AsyncUserPolicyChecksResource) -> None:
         self._user_policy_checks = user_policy_checks
 
         self.list = async_to_raw_response_wrapper(
@@ -173,8 +173,8 @@ class AsyncUserPolicyChecksWithRawResponse:
         )
 
 
-class UserPolicyChecksWithStreamingResponse:
-    def __init__(self, user_policy_checks: UserPolicyChecks) -> None:
+class UserPolicyChecksResourceWithStreamingResponse:
+    def __init__(self, user_policy_checks: UserPolicyChecksResource) -> None:
         self._user_policy_checks = user_policy_checks
 
         self.list = to_streamed_response_wrapper(
@@ -182,8 +182,8 @@ class UserPolicyChecksWithStreamingResponse:
         )
 
 
-class AsyncUserPolicyChecksWithStreamingResponse:
-    def __init__(self, user_policy_checks: AsyncUserPolicyChecks) -> None:
+class AsyncUserPolicyChecksResourceWithStreamingResponse:
+    def __init__(self, user_policy_checks: AsyncUserPolicyChecksResource) -> None:
         self._user_policy_checks = user_policy_checks
 
         self.list = async_to_streamed_response_wrapper(

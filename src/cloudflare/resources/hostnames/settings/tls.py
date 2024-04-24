@@ -30,17 +30,17 @@ from ....types.hostnames.settings.tls_get_response import TLSGetResponse
 from ....types.hostnames.settings.setting_value_param import SettingValueParam
 from ....types.hostnames.settings.tls_delete_response import TLSDeleteResponse
 
-__all__ = ["TLS", "AsyncTLS"]
+__all__ = ["TLSResource", "AsyncTLSResource"]
 
 
-class TLS(SyncAPIResource):
+class TLSResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TLSWithRawResponse:
-        return TLSWithRawResponse(self)
+    def with_raw_response(self) -> TLSResourceWithRawResponse:
+        return TLSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TLSWithStreamingResponse:
-        return TLSWithStreamingResponse(self)
+    def with_streaming_response(self) -> TLSResourceWithStreamingResponse:
+        return TLSResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -189,14 +189,14 @@ class TLS(SyncAPIResource):
         )
 
 
-class AsyncTLS(AsyncAPIResource):
+class AsyncTLSResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTLSWithRawResponse:
-        return AsyncTLSWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTLSResourceWithRawResponse:
+        return AsyncTLSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTLSWithStreamingResponse:
-        return AsyncTLSWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTLSResourceWithStreamingResponse:
+        return AsyncTLSResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -345,8 +345,8 @@ class AsyncTLS(AsyncAPIResource):
         )
 
 
-class TLSWithRawResponse:
-    def __init__(self, tls: TLS) -> None:
+class TLSResourceWithRawResponse:
+    def __init__(self, tls: TLSResource) -> None:
         self._tls = tls
 
         self.update = to_raw_response_wrapper(
@@ -360,8 +360,8 @@ class TLSWithRawResponse:
         )
 
 
-class AsyncTLSWithRawResponse:
-    def __init__(self, tls: AsyncTLS) -> None:
+class AsyncTLSResourceWithRawResponse:
+    def __init__(self, tls: AsyncTLSResource) -> None:
         self._tls = tls
 
         self.update = async_to_raw_response_wrapper(
@@ -375,8 +375,8 @@ class AsyncTLSWithRawResponse:
         )
 
 
-class TLSWithStreamingResponse:
-    def __init__(self, tls: TLS) -> None:
+class TLSResourceWithStreamingResponse:
+    def __init__(self, tls: TLSResource) -> None:
         self._tls = tls
 
         self.update = to_streamed_response_wrapper(
@@ -390,8 +390,8 @@ class TLSWithStreamingResponse:
         )
 
 
-class AsyncTLSWithStreamingResponse:
-    def __init__(self, tls: AsyncTLS) -> None:
+class AsyncTLSResourceWithStreamingResponse:
+    def __init__(self, tls: AsyncTLSResource) -> None:
         self._tls = tls
 
         self.update = async_to_streamed_response_wrapper(

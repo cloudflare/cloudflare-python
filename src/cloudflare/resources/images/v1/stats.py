@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.images.v1.stat import Stat
 
-__all__ = ["Stats", "AsyncStats"]
+__all__ = ["StatsResource", "AsyncStatsResource"]
 
 
-class Stats(SyncAPIResource):
+class StatsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> StatsWithRawResponse:
-        return StatsWithRawResponse(self)
+    def with_raw_response(self) -> StatsResourceWithRawResponse:
+        return StatsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> StatsWithStreamingResponse:
-        return StatsWithStreamingResponse(self)
+    def with_streaming_response(self) -> StatsResourceWithStreamingResponse:
+        return StatsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -73,14 +73,14 @@ class Stats(SyncAPIResource):
         )
 
 
-class AsyncStats(AsyncAPIResource):
+class AsyncStatsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncStatsWithRawResponse:
-        return AsyncStatsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncStatsResourceWithRawResponse:
+        return AsyncStatsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncStatsWithStreamingResponse:
-        return AsyncStatsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncStatsResourceWithStreamingResponse:
+        return AsyncStatsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -122,8 +122,8 @@ class AsyncStats(AsyncAPIResource):
         )
 
 
-class StatsWithRawResponse:
-    def __init__(self, stats: Stats) -> None:
+class StatsResourceWithRawResponse:
+    def __init__(self, stats: StatsResource) -> None:
         self._stats = stats
 
         self.get = to_raw_response_wrapper(
@@ -131,8 +131,8 @@ class StatsWithRawResponse:
         )
 
 
-class AsyncStatsWithRawResponse:
-    def __init__(self, stats: AsyncStats) -> None:
+class AsyncStatsResourceWithRawResponse:
+    def __init__(self, stats: AsyncStatsResource) -> None:
         self._stats = stats
 
         self.get = async_to_raw_response_wrapper(
@@ -140,8 +140,8 @@ class AsyncStatsWithRawResponse:
         )
 
 
-class StatsWithStreamingResponse:
-    def __init__(self, stats: Stats) -> None:
+class StatsResourceWithStreamingResponse:
+    def __init__(self, stats: StatsResource) -> None:
         self._stats = stats
 
         self.get = to_streamed_response_wrapper(
@@ -149,8 +149,8 @@ class StatsWithStreamingResponse:
         )
 
 
-class AsyncStatsWithStreamingResponse:
-    def __init__(self, stats: AsyncStats) -> None:
+class AsyncStatsResourceWithStreamingResponse:
+    def __init__(self, stats: AsyncStatsResource) -> None:
         self._stats = stats
 
         self.get = async_to_streamed_response_wrapper(

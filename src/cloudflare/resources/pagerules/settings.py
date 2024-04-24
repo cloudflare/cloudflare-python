@@ -21,17 +21,17 @@ from ..._base_client import (
 )
 from ...types.pagerules.setting_list_response import SettingListResponse
 
-__all__ = ["Settings", "AsyncSettings"]
+__all__ = ["SettingsResource", "AsyncSettingsResource"]
 
 
-class Settings(SyncAPIResource):
+class SettingsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self)
+    def with_raw_response(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -74,14 +74,14 @@ class Settings(SyncAPIResource):
         )
 
 
-class AsyncSettings(AsyncAPIResource):
+class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -124,8 +124,8 @@ class AsyncSettings(AsyncAPIResource):
         )
 
 
-class SettingsWithRawResponse:
-    def __init__(self, settings: Settings) -> None:
+class SettingsResourceWithRawResponse:
+    def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
 
         self.list = to_raw_response_wrapper(
@@ -133,8 +133,8 @@ class SettingsWithRawResponse:
         )
 
 
-class AsyncSettingsWithRawResponse:
-    def __init__(self, settings: AsyncSettings) -> None:
+class AsyncSettingsResourceWithRawResponse:
+    def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
 
         self.list = async_to_raw_response_wrapper(
@@ -142,8 +142,8 @@ class AsyncSettingsWithRawResponse:
         )
 
 
-class SettingsWithStreamingResponse:
-    def __init__(self, settings: Settings) -> None:
+class SettingsResourceWithStreamingResponse:
+    def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
 
         self.list = to_streamed_response_wrapper(
@@ -151,8 +151,8 @@ class SettingsWithStreamingResponse:
         )
 
 
-class AsyncSettingsWithStreamingResponse:
-    def __init__(self, settings: AsyncSettings) -> None:
+class AsyncSettingsResourceWithStreamingResponse:
+    def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
 
         self.list = async_to_streamed_response_wrapper(

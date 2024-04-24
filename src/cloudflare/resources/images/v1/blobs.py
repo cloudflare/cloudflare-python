@@ -21,17 +21,17 @@ from ...._base_client import (
     make_request_options,
 )
 
-__all__ = ["Blobs", "AsyncBlobs"]
+__all__ = ["BlobsResource", "AsyncBlobsResource"]
 
 
-class Blobs(SyncAPIResource):
+class BlobsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BlobsWithRawResponse:
-        return BlobsWithRawResponse(self)
+    def with_raw_response(self) -> BlobsResourceWithRawResponse:
+        return BlobsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BlobsWithStreamingResponse:
-        return BlobsWithStreamingResponse(self)
+    def with_streaming_response(self) -> BlobsResourceWithStreamingResponse:
+        return BlobsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -77,14 +77,14 @@ class Blobs(SyncAPIResource):
         )
 
 
-class AsyncBlobs(AsyncAPIResource):
+class AsyncBlobsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBlobsWithRawResponse:
-        return AsyncBlobsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBlobsResourceWithRawResponse:
+        return AsyncBlobsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBlobsWithStreamingResponse:
-        return AsyncBlobsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBlobsResourceWithStreamingResponse:
+        return AsyncBlobsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -130,8 +130,8 @@ class AsyncBlobs(AsyncAPIResource):
         )
 
 
-class BlobsWithRawResponse:
-    def __init__(self, blobs: Blobs) -> None:
+class BlobsResourceWithRawResponse:
+    def __init__(self, blobs: BlobsResource) -> None:
         self._blobs = blobs
 
         self.get = to_custom_raw_response_wrapper(
@@ -140,8 +140,8 @@ class BlobsWithRawResponse:
         )
 
 
-class AsyncBlobsWithRawResponse:
-    def __init__(self, blobs: AsyncBlobs) -> None:
+class AsyncBlobsResourceWithRawResponse:
+    def __init__(self, blobs: AsyncBlobsResource) -> None:
         self._blobs = blobs
 
         self.get = async_to_custom_raw_response_wrapper(
@@ -150,8 +150,8 @@ class AsyncBlobsWithRawResponse:
         )
 
 
-class BlobsWithStreamingResponse:
-    def __init__(self, blobs: Blobs) -> None:
+class BlobsResourceWithStreamingResponse:
+    def __init__(self, blobs: BlobsResource) -> None:
         self._blobs = blobs
 
         self.get = to_custom_streamed_response_wrapper(
@@ -160,8 +160,8 @@ class BlobsWithStreamingResponse:
         )
 
 
-class AsyncBlobsWithStreamingResponse:
-    def __init__(self, blobs: AsyncBlobs) -> None:
+class AsyncBlobsResourceWithStreamingResponse:
+    def __init__(self, blobs: AsyncBlobsResource) -> None:
         self._blobs = blobs
 
         self.get = async_to_custom_streamed_response_wrapper(

@@ -14,12 +14,12 @@ from ...._utils import (
     async_maybe_transform,
 )
 from .locations import (
-    Locations,
-    AsyncLocations,
-    LocationsWithRawResponse,
-    AsyncLocationsWithRawResponse,
-    LocationsWithStreamingResponse,
-    AsyncLocationsWithStreamingResponse,
+    LocationsResource,
+    AsyncLocationsResource,
+    LocationsResourceWithRawResponse,
+    AsyncLocationsResourceWithRawResponse,
+    LocationsResourceWithStreamingResponse,
+    AsyncLocationsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -36,21 +36,21 @@ from ...._base_client import (
 )
 from ....types.radar.traffic_anomaly_get_response import TrafficAnomalyGetResponse
 
-__all__ = ["TrafficAnomalies", "AsyncTrafficAnomalies"]
+__all__ = ["TrafficAnomaliesResource", "AsyncTrafficAnomaliesResource"]
 
 
-class TrafficAnomalies(SyncAPIResource):
+class TrafficAnomaliesResource(SyncAPIResource):
     @cached_property
-    def locations(self) -> Locations:
-        return Locations(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> TrafficAnomaliesWithRawResponse:
-        return TrafficAnomaliesWithRawResponse(self)
+    def locations(self) -> LocationsResource:
+        return LocationsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> TrafficAnomaliesWithStreamingResponse:
-        return TrafficAnomaliesWithStreamingResponse(self)
+    def with_raw_response(self) -> TrafficAnomaliesResourceWithRawResponse:
+        return TrafficAnomaliesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> TrafficAnomaliesResourceWithStreamingResponse:
+        return TrafficAnomaliesResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -146,18 +146,18 @@ class TrafficAnomalies(SyncAPIResource):
         )
 
 
-class AsyncTrafficAnomalies(AsyncAPIResource):
+class AsyncTrafficAnomaliesResource(AsyncAPIResource):
     @cached_property
-    def locations(self) -> AsyncLocations:
-        return AsyncLocations(self._client)
+    def locations(self) -> AsyncLocationsResource:
+        return AsyncLocationsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncTrafficAnomaliesWithRawResponse:
-        return AsyncTrafficAnomaliesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTrafficAnomaliesResourceWithRawResponse:
+        return AsyncTrafficAnomaliesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTrafficAnomaliesWithStreamingResponse:
-        return AsyncTrafficAnomaliesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTrafficAnomaliesResourceWithStreamingResponse:
+        return AsyncTrafficAnomaliesResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -253,8 +253,8 @@ class AsyncTrafficAnomalies(AsyncAPIResource):
         )
 
 
-class TrafficAnomaliesWithRawResponse:
-    def __init__(self, traffic_anomalies: TrafficAnomalies) -> None:
+class TrafficAnomaliesResourceWithRawResponse:
+    def __init__(self, traffic_anomalies: TrafficAnomaliesResource) -> None:
         self._traffic_anomalies = traffic_anomalies
 
         self.get = to_raw_response_wrapper(
@@ -262,12 +262,12 @@ class TrafficAnomaliesWithRawResponse:
         )
 
     @cached_property
-    def locations(self) -> LocationsWithRawResponse:
-        return LocationsWithRawResponse(self._traffic_anomalies.locations)
+    def locations(self) -> LocationsResourceWithRawResponse:
+        return LocationsResourceWithRawResponse(self._traffic_anomalies.locations)
 
 
-class AsyncTrafficAnomaliesWithRawResponse:
-    def __init__(self, traffic_anomalies: AsyncTrafficAnomalies) -> None:
+class AsyncTrafficAnomaliesResourceWithRawResponse:
+    def __init__(self, traffic_anomalies: AsyncTrafficAnomaliesResource) -> None:
         self._traffic_anomalies = traffic_anomalies
 
         self.get = async_to_raw_response_wrapper(
@@ -275,12 +275,12 @@ class AsyncTrafficAnomaliesWithRawResponse:
         )
 
     @cached_property
-    def locations(self) -> AsyncLocationsWithRawResponse:
-        return AsyncLocationsWithRawResponse(self._traffic_anomalies.locations)
+    def locations(self) -> AsyncLocationsResourceWithRawResponse:
+        return AsyncLocationsResourceWithRawResponse(self._traffic_anomalies.locations)
 
 
-class TrafficAnomaliesWithStreamingResponse:
-    def __init__(self, traffic_anomalies: TrafficAnomalies) -> None:
+class TrafficAnomaliesResourceWithStreamingResponse:
+    def __init__(self, traffic_anomalies: TrafficAnomaliesResource) -> None:
         self._traffic_anomalies = traffic_anomalies
 
         self.get = to_streamed_response_wrapper(
@@ -288,12 +288,12 @@ class TrafficAnomaliesWithStreamingResponse:
         )
 
     @cached_property
-    def locations(self) -> LocationsWithStreamingResponse:
-        return LocationsWithStreamingResponse(self._traffic_anomalies.locations)
+    def locations(self) -> LocationsResourceWithStreamingResponse:
+        return LocationsResourceWithStreamingResponse(self._traffic_anomalies.locations)
 
 
-class AsyncTrafficAnomaliesWithStreamingResponse:
-    def __init__(self, traffic_anomalies: AsyncTrafficAnomalies) -> None:
+class AsyncTrafficAnomaliesResourceWithStreamingResponse:
+    def __init__(self, traffic_anomalies: AsyncTrafficAnomaliesResource) -> None:
         self._traffic_anomalies = traffic_anomalies
 
         self.get = async_to_streamed_response_wrapper(
@@ -301,5 +301,5 @@ class AsyncTrafficAnomaliesWithStreamingResponse:
         )
 
     @cached_property
-    def locations(self) -> AsyncLocationsWithStreamingResponse:
-        return AsyncLocationsWithStreamingResponse(self._traffic_anomalies.locations)
+    def locations(self) -> AsyncLocationsResourceWithStreamingResponse:
+        return AsyncLocationsResourceWithStreamingResponse(self._traffic_anomalies.locations)

@@ -27,17 +27,17 @@ from ...types.queues import message_ack_params, message_pull_params
 from ...types.queues.message_ack_response import MessageAckResponse
 from ...types.queues.message_pull_response import MessagePullResponse
 
-__all__ = ["Messages", "AsyncMessages"]
+__all__ = ["MessagesResource", "AsyncMessagesResource"]
 
 
-class Messages(SyncAPIResource):
+class MessagesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MessagesWithRawResponse:
-        return MessagesWithRawResponse(self)
+    def with_raw_response(self) -> MessagesResourceWithRawResponse:
+        return MessagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MessagesWithStreamingResponse:
-        return MessagesWithStreamingResponse(self)
+    def with_streaming_response(self) -> MessagesResourceWithStreamingResponse:
+        return MessagesResourceWithStreamingResponse(self)
 
     def ack(
         self,
@@ -151,14 +151,14 @@ class Messages(SyncAPIResource):
         )
 
 
-class AsyncMessages(AsyncAPIResource):
+class AsyncMessagesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMessagesWithRawResponse:
-        return AsyncMessagesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMessagesResourceWithRawResponse:
+        return AsyncMessagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMessagesWithStreamingResponse:
-        return AsyncMessagesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMessagesResourceWithStreamingResponse:
+        return AsyncMessagesResourceWithStreamingResponse(self)
 
     async def ack(
         self,
@@ -272,8 +272,8 @@ class AsyncMessages(AsyncAPIResource):
         )
 
 
-class MessagesWithRawResponse:
-    def __init__(self, messages: Messages) -> None:
+class MessagesResourceWithRawResponse:
+    def __init__(self, messages: MessagesResource) -> None:
         self._messages = messages
 
         self.ack = to_raw_response_wrapper(
@@ -284,8 +284,8 @@ class MessagesWithRawResponse:
         )
 
 
-class AsyncMessagesWithRawResponse:
-    def __init__(self, messages: AsyncMessages) -> None:
+class AsyncMessagesResourceWithRawResponse:
+    def __init__(self, messages: AsyncMessagesResource) -> None:
         self._messages = messages
 
         self.ack = async_to_raw_response_wrapper(
@@ -296,8 +296,8 @@ class AsyncMessagesWithRawResponse:
         )
 
 
-class MessagesWithStreamingResponse:
-    def __init__(self, messages: Messages) -> None:
+class MessagesResourceWithStreamingResponse:
+    def __init__(self, messages: MessagesResource) -> None:
         self._messages = messages
 
         self.ack = to_streamed_response_wrapper(
@@ -308,8 +308,8 @@ class MessagesWithStreamingResponse:
         )
 
 
-class AsyncMessagesWithStreamingResponse:
-    def __init__(self, messages: AsyncMessages) -> None:
+class AsyncMessagesResourceWithStreamingResponse:
+    def __init__(self, messages: AsyncMessagesResource) -> None:
         self._messages = messages
 
         self.ack = async_to_streamed_response_wrapper(

@@ -43,17 +43,17 @@ from ...types.dns.record_scan_response import RecordScanResponse
 from ...types.dns.record_delete_response import RecordDeleteResponse
 from ...types.dns.record_import_response import RecordImportResponse
 
-__all__ = ["Records", "AsyncRecords"]
+__all__ = ["RecordsResource", "AsyncRecordsResource"]
 
 
-class Records(SyncAPIResource):
+class RecordsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RecordsWithRawResponse:
-        return RecordsWithRawResponse(self)
+    def with_raw_response(self) -> RecordsResourceWithRawResponse:
+        return RecordsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RecordsWithStreamingResponse:
-        return RecordsWithStreamingResponse(self)
+    def with_streaming_response(self) -> RecordsResourceWithStreamingResponse:
+        return RecordsResourceWithStreamingResponse(self)
 
     @overload
     def create(
@@ -4252,14 +4252,14 @@ class Records(SyncAPIResource):
         )
 
 
-class AsyncRecords(AsyncAPIResource):
+class AsyncRecordsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRecordsWithRawResponse:
-        return AsyncRecordsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRecordsResourceWithRawResponse:
+        return AsyncRecordsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRecordsWithStreamingResponse:
-        return AsyncRecordsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRecordsResourceWithStreamingResponse:
+        return AsyncRecordsResourceWithStreamingResponse(self)
 
     @overload
     async def create(
@@ -8458,8 +8458,8 @@ class AsyncRecords(AsyncAPIResource):
         )
 
 
-class RecordsWithRawResponse:
-    def __init__(self, records: Records) -> None:
+class RecordsResourceWithRawResponse:
+    def __init__(self, records: RecordsResource) -> None:
         self._records = records
 
         self.create = to_raw_response_wrapper(
@@ -8491,8 +8491,8 @@ class RecordsWithRawResponse:
         )
 
 
-class AsyncRecordsWithRawResponse:
-    def __init__(self, records: AsyncRecords) -> None:
+class AsyncRecordsResourceWithRawResponse:
+    def __init__(self, records: AsyncRecordsResource) -> None:
         self._records = records
 
         self.create = async_to_raw_response_wrapper(
@@ -8524,8 +8524,8 @@ class AsyncRecordsWithRawResponse:
         )
 
 
-class RecordsWithStreamingResponse:
-    def __init__(self, records: Records) -> None:
+class RecordsResourceWithStreamingResponse:
+    def __init__(self, records: RecordsResource) -> None:
         self._records = records
 
         self.create = to_streamed_response_wrapper(
@@ -8557,8 +8557,8 @@ class RecordsWithStreamingResponse:
         )
 
 
-class AsyncRecordsWithStreamingResponse:
-    def __init__(self, records: AsyncRecords) -> None:
+class AsyncRecordsResourceWithStreamingResponse:
+    def __init__(self, records: AsyncRecordsResource) -> None:
         self._records = records
 
         self.create = async_to_streamed_response_wrapper(

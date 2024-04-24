@@ -32,17 +32,17 @@ from ..types.memberships.membership_get_response import MembershipGetResponse
 from ..types.memberships.membership_delete_response import MembershipDeleteResponse
 from ..types.memberships.membership_update_response import MembershipUpdateResponse
 
-__all__ = ["Memberships", "AsyncMemberships"]
+__all__ = ["MembershipsResource", "AsyncMembershipsResource"]
 
 
-class Memberships(SyncAPIResource):
+class MembershipsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MembershipsWithRawResponse:
-        return MembershipsWithRawResponse(self)
+    def with_raw_response(self) -> MembershipsResourceWithRawResponse:
+        return MembershipsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MembershipsWithStreamingResponse:
-        return MembershipsWithStreamingResponse(self)
+    def with_streaming_response(self) -> MembershipsResourceWithStreamingResponse:
+        return MembershipsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -243,14 +243,14 @@ class Memberships(SyncAPIResource):
         )
 
 
-class AsyncMemberships(AsyncAPIResource):
+class AsyncMembershipsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMembershipsWithRawResponse:
-        return AsyncMembershipsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMembershipsResourceWithRawResponse:
+        return AsyncMembershipsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMembershipsWithStreamingResponse:
-        return AsyncMembershipsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMembershipsResourceWithStreamingResponse:
+        return AsyncMembershipsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -451,8 +451,8 @@ class AsyncMemberships(AsyncAPIResource):
         )
 
 
-class MembershipsWithRawResponse:
-    def __init__(self, memberships: Memberships) -> None:
+class MembershipsResourceWithRawResponse:
+    def __init__(self, memberships: MembershipsResource) -> None:
         self._memberships = memberships
 
         self.update = to_raw_response_wrapper(
@@ -469,8 +469,8 @@ class MembershipsWithRawResponse:
         )
 
 
-class AsyncMembershipsWithRawResponse:
-    def __init__(self, memberships: AsyncMemberships) -> None:
+class AsyncMembershipsResourceWithRawResponse:
+    def __init__(self, memberships: AsyncMembershipsResource) -> None:
         self._memberships = memberships
 
         self.update = async_to_raw_response_wrapper(
@@ -487,8 +487,8 @@ class AsyncMembershipsWithRawResponse:
         )
 
 
-class MembershipsWithStreamingResponse:
-    def __init__(self, memberships: Memberships) -> None:
+class MembershipsResourceWithStreamingResponse:
+    def __init__(self, memberships: MembershipsResource) -> None:
         self._memberships = memberships
 
         self.update = to_streamed_response_wrapper(
@@ -505,8 +505,8 @@ class MembershipsWithStreamingResponse:
         )
 
 
-class AsyncMembershipsWithStreamingResponse:
-    def __init__(self, memberships: AsyncMemberships) -> None:
+class AsyncMembershipsResourceWithStreamingResponse:
+    def __init__(self, memberships: AsyncMembershipsResource) -> None:
         self._memberships = memberships
 
         self.update = async_to_streamed_response_wrapper(

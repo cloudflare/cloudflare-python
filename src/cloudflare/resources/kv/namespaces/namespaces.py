@@ -8,36 +8,36 @@ from typing_extensions import Literal
 import httpx
 
 from .bulk import (
-    Bulk,
-    AsyncBulk,
-    BulkWithRawResponse,
-    AsyncBulkWithRawResponse,
-    BulkWithStreamingResponse,
-    AsyncBulkWithStreamingResponse,
+    BulkResource,
+    AsyncBulkResource,
+    BulkResourceWithRawResponse,
+    AsyncBulkResourceWithRawResponse,
+    BulkResourceWithStreamingResponse,
+    AsyncBulkResourceWithStreamingResponse,
 )
 from .keys import (
-    Keys,
-    AsyncKeys,
-    KeysWithRawResponse,
-    AsyncKeysWithRawResponse,
-    KeysWithStreamingResponse,
-    AsyncKeysWithStreamingResponse,
+    KeysResource,
+    AsyncKeysResource,
+    KeysResourceWithRawResponse,
+    AsyncKeysResourceWithRawResponse,
+    KeysResourceWithStreamingResponse,
+    AsyncKeysResourceWithStreamingResponse,
 )
 from .values import (
-    Values,
-    AsyncValues,
-    ValuesWithRawResponse,
-    AsyncValuesWithRawResponse,
-    ValuesWithStreamingResponse,
-    AsyncValuesWithStreamingResponse,
+    ValuesResource,
+    AsyncValuesResource,
+    ValuesResourceWithRawResponse,
+    AsyncValuesResourceWithRawResponse,
+    ValuesResourceWithStreamingResponse,
+    AsyncValuesResourceWithStreamingResponse,
 )
 from .metadata import (
-    Metadata,
-    AsyncMetadata,
-    MetadataWithRawResponse,
-    AsyncMetadataWithRawResponse,
-    MetadataWithStreamingResponse,
-    AsyncMetadataWithStreamingResponse,
+    MetadataResource,
+    AsyncMetadataResource,
+    MetadataResourceWithRawResponse,
+    AsyncMetadataResourceWithRawResponse,
+    MetadataResourceWithStreamingResponse,
+    AsyncMetadataResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -68,33 +68,33 @@ from ....types.kv.namespace import Namespace
 from ....types.kv.namespace_delete_response import NamespaceDeleteResponse
 from ....types.kv.namespace_update_response import NamespaceUpdateResponse
 
-__all__ = ["Namespaces", "AsyncNamespaces"]
+__all__ = ["NamespacesResource", "AsyncNamespacesResource"]
 
 
-class Namespaces(SyncAPIResource):
+class NamespacesResource(SyncAPIResource):
     @cached_property
-    def bulk(self) -> Bulk:
-        return Bulk(self._client)
-
-    @cached_property
-    def keys(self) -> Keys:
-        return Keys(self._client)
+    def bulk(self) -> BulkResource:
+        return BulkResource(self._client)
 
     @cached_property
-    def metadata(self) -> Metadata:
-        return Metadata(self._client)
+    def keys(self) -> KeysResource:
+        return KeysResource(self._client)
 
     @cached_property
-    def values(self) -> Values:
-        return Values(self._client)
+    def metadata(self) -> MetadataResource:
+        return MetadataResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> NamespacesWithRawResponse:
-        return NamespacesWithRawResponse(self)
+    def values(self) -> ValuesResource:
+        return ValuesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> NamespacesWithStreamingResponse:
-        return NamespacesWithStreamingResponse(self)
+    def with_raw_response(self) -> NamespacesResourceWithRawResponse:
+        return NamespacesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> NamespacesResourceWithStreamingResponse:
+        return NamespacesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -307,30 +307,30 @@ class Namespaces(SyncAPIResource):
         )
 
 
-class AsyncNamespaces(AsyncAPIResource):
+class AsyncNamespacesResource(AsyncAPIResource):
     @cached_property
-    def bulk(self) -> AsyncBulk:
-        return AsyncBulk(self._client)
+    def bulk(self) -> AsyncBulkResource:
+        return AsyncBulkResource(self._client)
 
     @cached_property
-    def keys(self) -> AsyncKeys:
-        return AsyncKeys(self._client)
+    def keys(self) -> AsyncKeysResource:
+        return AsyncKeysResource(self._client)
 
     @cached_property
-    def metadata(self) -> AsyncMetadata:
-        return AsyncMetadata(self._client)
+    def metadata(self) -> AsyncMetadataResource:
+        return AsyncMetadataResource(self._client)
 
     @cached_property
-    def values(self) -> AsyncValues:
-        return AsyncValues(self._client)
+    def values(self) -> AsyncValuesResource:
+        return AsyncValuesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncNamespacesWithRawResponse:
-        return AsyncNamespacesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncNamespacesResourceWithRawResponse:
+        return AsyncNamespacesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncNamespacesWithStreamingResponse:
-        return AsyncNamespacesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncNamespacesResourceWithStreamingResponse:
+        return AsyncNamespacesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -543,8 +543,8 @@ class AsyncNamespaces(AsyncAPIResource):
         )
 
 
-class NamespacesWithRawResponse:
-    def __init__(self, namespaces: Namespaces) -> None:
+class NamespacesResourceWithRawResponse:
+    def __init__(self, namespaces: NamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.create = to_raw_response_wrapper(
@@ -561,24 +561,24 @@ class NamespacesWithRawResponse:
         )
 
     @cached_property
-    def bulk(self) -> BulkWithRawResponse:
-        return BulkWithRawResponse(self._namespaces.bulk)
+    def bulk(self) -> BulkResourceWithRawResponse:
+        return BulkResourceWithRawResponse(self._namespaces.bulk)
 
     @cached_property
-    def keys(self) -> KeysWithRawResponse:
-        return KeysWithRawResponse(self._namespaces.keys)
+    def keys(self) -> KeysResourceWithRawResponse:
+        return KeysResourceWithRawResponse(self._namespaces.keys)
 
     @cached_property
-    def metadata(self) -> MetadataWithRawResponse:
-        return MetadataWithRawResponse(self._namespaces.metadata)
+    def metadata(self) -> MetadataResourceWithRawResponse:
+        return MetadataResourceWithRawResponse(self._namespaces.metadata)
 
     @cached_property
-    def values(self) -> ValuesWithRawResponse:
-        return ValuesWithRawResponse(self._namespaces.values)
+    def values(self) -> ValuesResourceWithRawResponse:
+        return ValuesResourceWithRawResponse(self._namespaces.values)
 
 
-class AsyncNamespacesWithRawResponse:
-    def __init__(self, namespaces: AsyncNamespaces) -> None:
+class AsyncNamespacesResourceWithRawResponse:
+    def __init__(self, namespaces: AsyncNamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.create = async_to_raw_response_wrapper(
@@ -595,24 +595,24 @@ class AsyncNamespacesWithRawResponse:
         )
 
     @cached_property
-    def bulk(self) -> AsyncBulkWithRawResponse:
-        return AsyncBulkWithRawResponse(self._namespaces.bulk)
+    def bulk(self) -> AsyncBulkResourceWithRawResponse:
+        return AsyncBulkResourceWithRawResponse(self._namespaces.bulk)
 
     @cached_property
-    def keys(self) -> AsyncKeysWithRawResponse:
-        return AsyncKeysWithRawResponse(self._namespaces.keys)
+    def keys(self) -> AsyncKeysResourceWithRawResponse:
+        return AsyncKeysResourceWithRawResponse(self._namespaces.keys)
 
     @cached_property
-    def metadata(self) -> AsyncMetadataWithRawResponse:
-        return AsyncMetadataWithRawResponse(self._namespaces.metadata)
+    def metadata(self) -> AsyncMetadataResourceWithRawResponse:
+        return AsyncMetadataResourceWithRawResponse(self._namespaces.metadata)
 
     @cached_property
-    def values(self) -> AsyncValuesWithRawResponse:
-        return AsyncValuesWithRawResponse(self._namespaces.values)
+    def values(self) -> AsyncValuesResourceWithRawResponse:
+        return AsyncValuesResourceWithRawResponse(self._namespaces.values)
 
 
-class NamespacesWithStreamingResponse:
-    def __init__(self, namespaces: Namespaces) -> None:
+class NamespacesResourceWithStreamingResponse:
+    def __init__(self, namespaces: NamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.create = to_streamed_response_wrapper(
@@ -629,24 +629,24 @@ class NamespacesWithStreamingResponse:
         )
 
     @cached_property
-    def bulk(self) -> BulkWithStreamingResponse:
-        return BulkWithStreamingResponse(self._namespaces.bulk)
+    def bulk(self) -> BulkResourceWithStreamingResponse:
+        return BulkResourceWithStreamingResponse(self._namespaces.bulk)
 
     @cached_property
-    def keys(self) -> KeysWithStreamingResponse:
-        return KeysWithStreamingResponse(self._namespaces.keys)
+    def keys(self) -> KeysResourceWithStreamingResponse:
+        return KeysResourceWithStreamingResponse(self._namespaces.keys)
 
     @cached_property
-    def metadata(self) -> MetadataWithStreamingResponse:
-        return MetadataWithStreamingResponse(self._namespaces.metadata)
+    def metadata(self) -> MetadataResourceWithStreamingResponse:
+        return MetadataResourceWithStreamingResponse(self._namespaces.metadata)
 
     @cached_property
-    def values(self) -> ValuesWithStreamingResponse:
-        return ValuesWithStreamingResponse(self._namespaces.values)
+    def values(self) -> ValuesResourceWithStreamingResponse:
+        return ValuesResourceWithStreamingResponse(self._namespaces.values)
 
 
-class AsyncNamespacesWithStreamingResponse:
-    def __init__(self, namespaces: AsyncNamespaces) -> None:
+class AsyncNamespacesResourceWithStreamingResponse:
+    def __init__(self, namespaces: AsyncNamespacesResource) -> None:
         self._namespaces = namespaces
 
         self.create = async_to_streamed_response_wrapper(
@@ -663,17 +663,17 @@ class AsyncNamespacesWithStreamingResponse:
         )
 
     @cached_property
-    def bulk(self) -> AsyncBulkWithStreamingResponse:
-        return AsyncBulkWithStreamingResponse(self._namespaces.bulk)
+    def bulk(self) -> AsyncBulkResourceWithStreamingResponse:
+        return AsyncBulkResourceWithStreamingResponse(self._namespaces.bulk)
 
     @cached_property
-    def keys(self) -> AsyncKeysWithStreamingResponse:
-        return AsyncKeysWithStreamingResponse(self._namespaces.keys)
+    def keys(self) -> AsyncKeysResourceWithStreamingResponse:
+        return AsyncKeysResourceWithStreamingResponse(self._namespaces.keys)
 
     @cached_property
-    def metadata(self) -> AsyncMetadataWithStreamingResponse:
-        return AsyncMetadataWithStreamingResponse(self._namespaces.metadata)
+    def metadata(self) -> AsyncMetadataResourceWithStreamingResponse:
+        return AsyncMetadataResourceWithStreamingResponse(self._namespaces.metadata)
 
     @cached_property
-    def values(self) -> AsyncValuesWithStreamingResponse:
-        return AsyncValuesWithStreamingResponse(self._namespaces.values)
+    def values(self) -> AsyncValuesResourceWithStreamingResponse:
+        return AsyncValuesResourceWithStreamingResponse(self._namespaces.values)

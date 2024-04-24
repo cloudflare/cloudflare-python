@@ -29,17 +29,17 @@ from ....types.zero_trust.access import bookmark_create_params, bookmark_delete_
 from ....types.zero_trust.access.bookmark import Bookmark
 from ....types.zero_trust.access.bookmark_delete_response import BookmarkDeleteResponse
 
-__all__ = ["Bookmarks", "AsyncBookmarks"]
+__all__ = ["BookmarksResource", "AsyncBookmarksResource"]
 
 
-class Bookmarks(SyncAPIResource):
+class BookmarksResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BookmarksWithRawResponse:
-        return BookmarksWithRawResponse(self)
+    def with_raw_response(self) -> BookmarksResourceWithRawResponse:
+        return BookmarksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BookmarksWithStreamingResponse:
-        return BookmarksWithStreamingResponse(self)
+    def with_streaming_response(self) -> BookmarksResourceWithStreamingResponse:
+        return BookmarksResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -250,14 +250,14 @@ class Bookmarks(SyncAPIResource):
         )
 
 
-class AsyncBookmarks(AsyncAPIResource):
+class AsyncBookmarksResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBookmarksWithRawResponse:
-        return AsyncBookmarksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBookmarksResourceWithRawResponse:
+        return AsyncBookmarksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBookmarksWithStreamingResponse:
-        return AsyncBookmarksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBookmarksResourceWithStreamingResponse:
+        return AsyncBookmarksResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -468,8 +468,8 @@ class AsyncBookmarks(AsyncAPIResource):
         )
 
 
-class BookmarksWithRawResponse:
-    def __init__(self, bookmarks: Bookmarks) -> None:
+class BookmarksResourceWithRawResponse:
+    def __init__(self, bookmarks: BookmarksResource) -> None:
         self._bookmarks = bookmarks
 
         self.create = to_raw_response_wrapper(
@@ -489,8 +489,8 @@ class BookmarksWithRawResponse:
         )
 
 
-class AsyncBookmarksWithRawResponse:
-    def __init__(self, bookmarks: AsyncBookmarks) -> None:
+class AsyncBookmarksResourceWithRawResponse:
+    def __init__(self, bookmarks: AsyncBookmarksResource) -> None:
         self._bookmarks = bookmarks
 
         self.create = async_to_raw_response_wrapper(
@@ -510,8 +510,8 @@ class AsyncBookmarksWithRawResponse:
         )
 
 
-class BookmarksWithStreamingResponse:
-    def __init__(self, bookmarks: Bookmarks) -> None:
+class BookmarksResourceWithStreamingResponse:
+    def __init__(self, bookmarks: BookmarksResource) -> None:
         self._bookmarks = bookmarks
 
         self.create = to_streamed_response_wrapper(
@@ -531,8 +531,8 @@ class BookmarksWithStreamingResponse:
         )
 
 
-class AsyncBookmarksWithStreamingResponse:
-    def __init__(self, bookmarks: AsyncBookmarks) -> None:
+class AsyncBookmarksResourceWithStreamingResponse:
+    def __init__(self, bookmarks: AsyncBookmarksResource) -> None:
         self._bookmarks = bookmarks
 
         self.create = async_to_streamed_response_wrapper(

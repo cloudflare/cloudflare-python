@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.intel.attack_surface_report.issue_type_get_response import IssueTypeGetResponse
 
-__all__ = ["IssueTypes", "AsyncIssueTypes"]
+__all__ = ["IssueTypesResource", "AsyncIssueTypesResource"]
 
 
-class IssueTypes(SyncAPIResource):
+class IssueTypesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IssueTypesWithRawResponse:
-        return IssueTypesWithRawResponse(self)
+    def with_raw_response(self) -> IssueTypesResourceWithRawResponse:
+        return IssueTypesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IssueTypesWithStreamingResponse:
-        return IssueTypesWithStreamingResponse(self)
+    def with_streaming_response(self) -> IssueTypesResourceWithStreamingResponse:
+        return IssueTypesResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -73,14 +73,14 @@ class IssueTypes(SyncAPIResource):
         )
 
 
-class AsyncIssueTypes(AsyncAPIResource):
+class AsyncIssueTypesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIssueTypesWithRawResponse:
-        return AsyncIssueTypesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIssueTypesResourceWithRawResponse:
+        return AsyncIssueTypesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIssueTypesWithStreamingResponse:
-        return AsyncIssueTypesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIssueTypesResourceWithStreamingResponse:
+        return AsyncIssueTypesResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -122,8 +122,8 @@ class AsyncIssueTypes(AsyncAPIResource):
         )
 
 
-class IssueTypesWithRawResponse:
-    def __init__(self, issue_types: IssueTypes) -> None:
+class IssueTypesResourceWithRawResponse:
+    def __init__(self, issue_types: IssueTypesResource) -> None:
         self._issue_types = issue_types
 
         self.get = to_raw_response_wrapper(
@@ -131,8 +131,8 @@ class IssueTypesWithRawResponse:
         )
 
 
-class AsyncIssueTypesWithRawResponse:
-    def __init__(self, issue_types: AsyncIssueTypes) -> None:
+class AsyncIssueTypesResourceWithRawResponse:
+    def __init__(self, issue_types: AsyncIssueTypesResource) -> None:
         self._issue_types = issue_types
 
         self.get = async_to_raw_response_wrapper(
@@ -140,8 +140,8 @@ class AsyncIssueTypesWithRawResponse:
         )
 
 
-class IssueTypesWithStreamingResponse:
-    def __init__(self, issue_types: IssueTypes) -> None:
+class IssueTypesResourceWithStreamingResponse:
+    def __init__(self, issue_types: IssueTypesResource) -> None:
         self._issue_types = issue_types
 
         self.get = to_streamed_response_wrapper(
@@ -149,8 +149,8 @@ class IssueTypesWithStreamingResponse:
         )
 
 
-class AsyncIssueTypesWithStreamingResponse:
-    def __init__(self, issue_types: AsyncIssueTypes) -> None:
+class AsyncIssueTypesResourceWithStreamingResponse:
+    def __init__(self, issue_types: AsyncIssueTypesResource) -> None:
         self._issue_types = issue_types
 
         self.get = async_to_streamed_response_wrapper(

@@ -8,20 +8,20 @@ from typing_extensions import Literal
 import httpx
 
 from .cas import (
-    CAs,
-    AsyncCAs,
-    CAsWithRawResponse,
-    AsyncCAsWithRawResponse,
-    CAsWithStreamingResponse,
-    AsyncCAsWithStreamingResponse,
+    CAsResource,
+    AsyncCAsResource,
+    CAsResourceWithRawResponse,
+    AsyncCAsResourceWithRawResponse,
+    CAsResourceWithStreamingResponse,
+    AsyncCAsResourceWithStreamingResponse,
 )
 from .policies import (
-    Policies,
-    AsyncPolicies,
-    PoliciesWithRawResponse,
-    AsyncPoliciesWithRawResponse,
-    PoliciesWithStreamingResponse,
-    AsyncPoliciesWithStreamingResponse,
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -43,12 +43,12 @@ from ....._base_client import (
     make_request_options,
 )
 from .user_policy_checks import (
-    UserPolicyChecks,
-    AsyncUserPolicyChecks,
-    UserPolicyChecksWithRawResponse,
-    AsyncUserPolicyChecksWithRawResponse,
-    UserPolicyChecksWithStreamingResponse,
-    AsyncUserPolicyChecksWithStreamingResponse,
+    UserPolicyChecksResource,
+    AsyncUserPolicyChecksResource,
+    UserPolicyChecksResourceWithRawResponse,
+    AsyncUserPolicyChecksResourceWithRawResponse,
+    UserPolicyChecksResourceWithStreamingResponse,
+    AsyncUserPolicyChecksResourceWithStreamingResponse,
 )
 from .....types.zero_trust.access import application_create_params, application_update_params
 from .....types.zero_trust.access.application import Application
@@ -59,29 +59,29 @@ from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
 from .....types.zero_trust.access.self_hosted_domainsh import SelfHostedDomainsh
 from .....types.zero_trust.access.application_delete_response import ApplicationDeleteResponse
 
-__all__ = ["Applications", "AsyncApplications"]
+__all__ = ["ApplicationsResource", "AsyncApplicationsResource"]
 
 
-class Applications(SyncAPIResource):
+class ApplicationsResource(SyncAPIResource):
     @cached_property
-    def cas(self) -> CAs:
-        return CAs(self._client)
-
-    @cached_property
-    def user_policy_checks(self) -> UserPolicyChecks:
-        return UserPolicyChecks(self._client)
+    def cas(self) -> CAsResource:
+        return CAsResource(self._client)
 
     @cached_property
-    def policies(self) -> Policies:
-        return Policies(self._client)
+    def user_policy_checks(self) -> UserPolicyChecksResource:
+        return UserPolicyChecksResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> ApplicationsWithRawResponse:
-        return ApplicationsWithRawResponse(self)
+    def policies(self) -> PoliciesResource:
+        return PoliciesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ApplicationsWithStreamingResponse:
-        return ApplicationsWithStreamingResponse(self)
+    def with_raw_response(self) -> ApplicationsResourceWithRawResponse:
+        return ApplicationsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ApplicationsResourceWithStreamingResponse:
+        return ApplicationsResourceWithStreamingResponse(self)
 
     @overload
     def create(
@@ -1710,26 +1710,26 @@ class Applications(SyncAPIResource):
         )
 
 
-class AsyncApplications(AsyncAPIResource):
+class AsyncApplicationsResource(AsyncAPIResource):
     @cached_property
-    def cas(self) -> AsyncCAs:
-        return AsyncCAs(self._client)
+    def cas(self) -> AsyncCAsResource:
+        return AsyncCAsResource(self._client)
 
     @cached_property
-    def user_policy_checks(self) -> AsyncUserPolicyChecks:
-        return AsyncUserPolicyChecks(self._client)
+    def user_policy_checks(self) -> AsyncUserPolicyChecksResource:
+        return AsyncUserPolicyChecksResource(self._client)
 
     @cached_property
-    def policies(self) -> AsyncPolicies:
-        return AsyncPolicies(self._client)
+    def policies(self) -> AsyncPoliciesResource:
+        return AsyncPoliciesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncApplicationsWithRawResponse:
-        return AsyncApplicationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncApplicationsResourceWithRawResponse:
+        return AsyncApplicationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncApplicationsWithStreamingResponse:
-        return AsyncApplicationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncApplicationsResourceWithStreamingResponse:
+        return AsyncApplicationsResourceWithStreamingResponse(self)
 
     @overload
     async def create(
@@ -3358,8 +3358,8 @@ class AsyncApplications(AsyncAPIResource):
         )
 
 
-class ApplicationsWithRawResponse:
-    def __init__(self, applications: Applications) -> None:
+class ApplicationsResourceWithRawResponse:
+    def __init__(self, applications: ApplicationsResource) -> None:
         self._applications = applications
 
         self.create = to_raw_response_wrapper(
@@ -3382,20 +3382,20 @@ class ApplicationsWithRawResponse:
         )
 
     @cached_property
-    def cas(self) -> CAsWithRawResponse:
-        return CAsWithRawResponse(self._applications.cas)
+    def cas(self) -> CAsResourceWithRawResponse:
+        return CAsResourceWithRawResponse(self._applications.cas)
 
     @cached_property
-    def user_policy_checks(self) -> UserPolicyChecksWithRawResponse:
-        return UserPolicyChecksWithRawResponse(self._applications.user_policy_checks)
+    def user_policy_checks(self) -> UserPolicyChecksResourceWithRawResponse:
+        return UserPolicyChecksResourceWithRawResponse(self._applications.user_policy_checks)
 
     @cached_property
-    def policies(self) -> PoliciesWithRawResponse:
-        return PoliciesWithRawResponse(self._applications.policies)
+    def policies(self) -> PoliciesResourceWithRawResponse:
+        return PoliciesResourceWithRawResponse(self._applications.policies)
 
 
-class AsyncApplicationsWithRawResponse:
-    def __init__(self, applications: AsyncApplications) -> None:
+class AsyncApplicationsResourceWithRawResponse:
+    def __init__(self, applications: AsyncApplicationsResource) -> None:
         self._applications = applications
 
         self.create = async_to_raw_response_wrapper(
@@ -3418,20 +3418,20 @@ class AsyncApplicationsWithRawResponse:
         )
 
     @cached_property
-    def cas(self) -> AsyncCAsWithRawResponse:
-        return AsyncCAsWithRawResponse(self._applications.cas)
+    def cas(self) -> AsyncCAsResourceWithRawResponse:
+        return AsyncCAsResourceWithRawResponse(self._applications.cas)
 
     @cached_property
-    def user_policy_checks(self) -> AsyncUserPolicyChecksWithRawResponse:
-        return AsyncUserPolicyChecksWithRawResponse(self._applications.user_policy_checks)
+    def user_policy_checks(self) -> AsyncUserPolicyChecksResourceWithRawResponse:
+        return AsyncUserPolicyChecksResourceWithRawResponse(self._applications.user_policy_checks)
 
     @cached_property
-    def policies(self) -> AsyncPoliciesWithRawResponse:
-        return AsyncPoliciesWithRawResponse(self._applications.policies)
+    def policies(self) -> AsyncPoliciesResourceWithRawResponse:
+        return AsyncPoliciesResourceWithRawResponse(self._applications.policies)
 
 
-class ApplicationsWithStreamingResponse:
-    def __init__(self, applications: Applications) -> None:
+class ApplicationsResourceWithStreamingResponse:
+    def __init__(self, applications: ApplicationsResource) -> None:
         self._applications = applications
 
         self.create = to_streamed_response_wrapper(
@@ -3454,20 +3454,20 @@ class ApplicationsWithStreamingResponse:
         )
 
     @cached_property
-    def cas(self) -> CAsWithStreamingResponse:
-        return CAsWithStreamingResponse(self._applications.cas)
+    def cas(self) -> CAsResourceWithStreamingResponse:
+        return CAsResourceWithStreamingResponse(self._applications.cas)
 
     @cached_property
-    def user_policy_checks(self) -> UserPolicyChecksWithStreamingResponse:
-        return UserPolicyChecksWithStreamingResponse(self._applications.user_policy_checks)
+    def user_policy_checks(self) -> UserPolicyChecksResourceWithStreamingResponse:
+        return UserPolicyChecksResourceWithStreamingResponse(self._applications.user_policy_checks)
 
     @cached_property
-    def policies(self) -> PoliciesWithStreamingResponse:
-        return PoliciesWithStreamingResponse(self._applications.policies)
+    def policies(self) -> PoliciesResourceWithStreamingResponse:
+        return PoliciesResourceWithStreamingResponse(self._applications.policies)
 
 
-class AsyncApplicationsWithStreamingResponse:
-    def __init__(self, applications: AsyncApplications) -> None:
+class AsyncApplicationsResourceWithStreamingResponse:
+    def __init__(self, applications: AsyncApplicationsResource) -> None:
         self._applications = applications
 
         self.create = async_to_streamed_response_wrapper(
@@ -3490,13 +3490,13 @@ class AsyncApplicationsWithStreamingResponse:
         )
 
     @cached_property
-    def cas(self) -> AsyncCAsWithStreamingResponse:
-        return AsyncCAsWithStreamingResponse(self._applications.cas)
+    def cas(self) -> AsyncCAsResourceWithStreamingResponse:
+        return AsyncCAsResourceWithStreamingResponse(self._applications.cas)
 
     @cached_property
-    def user_policy_checks(self) -> AsyncUserPolicyChecksWithStreamingResponse:
-        return AsyncUserPolicyChecksWithStreamingResponse(self._applications.user_policy_checks)
+    def user_policy_checks(self) -> AsyncUserPolicyChecksResourceWithStreamingResponse:
+        return AsyncUserPolicyChecksResourceWithStreamingResponse(self._applications.user_policy_checks)
 
     @cached_property
-    def policies(self) -> AsyncPoliciesWithStreamingResponse:
-        return AsyncPoliciesWithStreamingResponse(self._applications.policies)
+    def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        return AsyncPoliciesResourceWithStreamingResponse(self._applications.policies)

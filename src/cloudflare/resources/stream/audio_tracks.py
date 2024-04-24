@@ -28,17 +28,17 @@ from ...types.stream.audio import Audio
 from ...types.stream.audio_track_get_response import AudioTrackGetResponse
 from ...types.stream.audio_track_delete_response import AudioTrackDeleteResponse
 
-__all__ = ["AudioTracks", "AsyncAudioTracks"]
+__all__ = ["AudioTracksResource", "AsyncAudioTracksResource"]
 
 
-class AudioTracks(SyncAPIResource):
+class AudioTracksResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AudioTracksWithRawResponse:
-        return AudioTracksWithRawResponse(self)
+    def with_raw_response(self) -> AudioTracksResourceWithRawResponse:
+        return AudioTracksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AudioTracksWithStreamingResponse:
-        return AudioTracksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AudioTracksResourceWithStreamingResponse:
+        return AudioTracksResourceWithStreamingResponse(self)
 
     def delete(
         self,
@@ -269,14 +269,14 @@ class AudioTracks(SyncAPIResource):
         )
 
 
-class AsyncAudioTracks(AsyncAPIResource):
+class AsyncAudioTracksResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAudioTracksWithRawResponse:
-        return AsyncAudioTracksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAudioTracksResourceWithRawResponse:
+        return AsyncAudioTracksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAudioTracksWithStreamingResponse:
-        return AsyncAudioTracksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAudioTracksResourceWithStreamingResponse:
+        return AsyncAudioTracksResourceWithStreamingResponse(self)
 
     async def delete(
         self,
@@ -507,8 +507,8 @@ class AsyncAudioTracks(AsyncAPIResource):
         )
 
 
-class AudioTracksWithRawResponse:
-    def __init__(self, audio_tracks: AudioTracks) -> None:
+class AudioTracksResourceWithRawResponse:
+    def __init__(self, audio_tracks: AudioTracksResource) -> None:
         self._audio_tracks = audio_tracks
 
         self.delete = to_raw_response_wrapper(
@@ -525,8 +525,8 @@ class AudioTracksWithRawResponse:
         )
 
 
-class AsyncAudioTracksWithRawResponse:
-    def __init__(self, audio_tracks: AsyncAudioTracks) -> None:
+class AsyncAudioTracksResourceWithRawResponse:
+    def __init__(self, audio_tracks: AsyncAudioTracksResource) -> None:
         self._audio_tracks = audio_tracks
 
         self.delete = async_to_raw_response_wrapper(
@@ -543,8 +543,8 @@ class AsyncAudioTracksWithRawResponse:
         )
 
 
-class AudioTracksWithStreamingResponse:
-    def __init__(self, audio_tracks: AudioTracks) -> None:
+class AudioTracksResourceWithStreamingResponse:
+    def __init__(self, audio_tracks: AudioTracksResource) -> None:
         self._audio_tracks = audio_tracks
 
         self.delete = to_streamed_response_wrapper(
@@ -561,8 +561,8 @@ class AudioTracksWithStreamingResponse:
         )
 
 
-class AsyncAudioTracksWithStreamingResponse:
-    def __init__(self, audio_tracks: AsyncAudioTracks) -> None:
+class AsyncAudioTracksResourceWithStreamingResponse:
+    def __init__(self, audio_tracks: AsyncAudioTracksResource) -> None:
         self._audio_tracks = audio_tracks
 
         self.delete = async_to_streamed_response_wrapper(

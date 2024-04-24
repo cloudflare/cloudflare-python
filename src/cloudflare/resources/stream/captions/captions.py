@@ -7,12 +7,12 @@ from typing import Type, Optional, cast
 import httpx
 
 from .language import (
-    Language,
-    AsyncLanguage,
-    LanguageWithRawResponse,
-    AsyncLanguageWithRawResponse,
-    LanguageWithStreamingResponse,
-    AsyncLanguageWithStreamingResponse,
+    LanguageResource,
+    AsyncLanguageResource,
+    LanguageResourceWithRawResponse,
+    AsyncLanguageResourceWithRawResponse,
+    LanguageResourceWithStreamingResponse,
+    AsyncLanguageResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
@@ -27,24 +27,24 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from .language.language import Language, AsyncLanguage
+from .language.language import LanguageResource, AsyncLanguageResource
 from ....types.stream.caption_get_response import CaptionGetResponse
 
-__all__ = ["Captions", "AsyncCaptions"]
+__all__ = ["CaptionsResource", "AsyncCaptionsResource"]
 
 
-class Captions(SyncAPIResource):
+class CaptionsResource(SyncAPIResource):
     @cached_property
-    def language(self) -> Language:
-        return Language(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> CaptionsWithRawResponse:
-        return CaptionsWithRawResponse(self)
+    def language(self) -> LanguageResource:
+        return LanguageResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> CaptionsWithStreamingResponse:
-        return CaptionsWithStreamingResponse(self)
+    def with_raw_response(self) -> CaptionsResourceWithRawResponse:
+        return CaptionsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> CaptionsResourceWithStreamingResponse:
+        return CaptionsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -91,18 +91,18 @@ class Captions(SyncAPIResource):
         )
 
 
-class AsyncCaptions(AsyncAPIResource):
+class AsyncCaptionsResource(AsyncAPIResource):
     @cached_property
-    def language(self) -> AsyncLanguage:
-        return AsyncLanguage(self._client)
+    def language(self) -> AsyncLanguageResource:
+        return AsyncLanguageResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCaptionsWithRawResponse:
-        return AsyncCaptionsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCaptionsResourceWithRawResponse:
+        return AsyncCaptionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCaptionsWithStreamingResponse:
-        return AsyncCaptionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCaptionsResourceWithStreamingResponse:
+        return AsyncCaptionsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -149,8 +149,8 @@ class AsyncCaptions(AsyncAPIResource):
         )
 
 
-class CaptionsWithRawResponse:
-    def __init__(self, captions: Captions) -> None:
+class CaptionsResourceWithRawResponse:
+    def __init__(self, captions: CaptionsResource) -> None:
         self._captions = captions
 
         self.get = to_raw_response_wrapper(
@@ -158,12 +158,12 @@ class CaptionsWithRawResponse:
         )
 
     @cached_property
-    def language(self) -> LanguageWithRawResponse:
-        return LanguageWithRawResponse(self._captions.language)
+    def language(self) -> LanguageResourceWithRawResponse:
+        return LanguageResourceWithRawResponse(self._captions.language)
 
 
-class AsyncCaptionsWithRawResponse:
-    def __init__(self, captions: AsyncCaptions) -> None:
+class AsyncCaptionsResourceWithRawResponse:
+    def __init__(self, captions: AsyncCaptionsResource) -> None:
         self._captions = captions
 
         self.get = async_to_raw_response_wrapper(
@@ -171,12 +171,12 @@ class AsyncCaptionsWithRawResponse:
         )
 
     @cached_property
-    def language(self) -> AsyncLanguageWithRawResponse:
-        return AsyncLanguageWithRawResponse(self._captions.language)
+    def language(self) -> AsyncLanguageResourceWithRawResponse:
+        return AsyncLanguageResourceWithRawResponse(self._captions.language)
 
 
-class CaptionsWithStreamingResponse:
-    def __init__(self, captions: Captions) -> None:
+class CaptionsResourceWithStreamingResponse:
+    def __init__(self, captions: CaptionsResource) -> None:
         self._captions = captions
 
         self.get = to_streamed_response_wrapper(
@@ -184,12 +184,12 @@ class CaptionsWithStreamingResponse:
         )
 
     @cached_property
-    def language(self) -> LanguageWithStreamingResponse:
-        return LanguageWithStreamingResponse(self._captions.language)
+    def language(self) -> LanguageResourceWithStreamingResponse:
+        return LanguageResourceWithStreamingResponse(self._captions.language)
 
 
-class AsyncCaptionsWithStreamingResponse:
-    def __init__(self, captions: AsyncCaptions) -> None:
+class AsyncCaptionsResourceWithStreamingResponse:
+    def __init__(self, captions: AsyncCaptionsResource) -> None:
         self._captions = captions
 
         self.get = async_to_streamed_response_wrapper(
@@ -197,5 +197,5 @@ class AsyncCaptionsWithStreamingResponse:
         )
 
     @cached_property
-    def language(self) -> AsyncLanguageWithStreamingResponse:
-        return AsyncLanguageWithStreamingResponse(self._captions.language)
+    def language(self) -> AsyncLanguageResourceWithStreamingResponse:
+        return AsyncLanguageResourceWithStreamingResponse(self._captions.language)

@@ -30,17 +30,17 @@ from ....types.zero_trust.access.service_token import ServiceToken
 from ....types.zero_trust.access.service_token_create_response import ServiceTokenCreateResponse
 from ....types.zero_trust.access.service_token_rotate_response import ServiceTokenRotateResponse
 
-__all__ = ["ServiceTokens", "AsyncServiceTokens"]
+__all__ = ["ServiceTokensResource", "AsyncServiceTokensResource"]
 
 
-class ServiceTokens(SyncAPIResource):
+class ServiceTokensResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ServiceTokensWithRawResponse:
-        return ServiceTokensWithRawResponse(self)
+    def with_raw_response(self) -> ServiceTokensResourceWithRawResponse:
+        return ServiceTokensResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ServiceTokensWithStreamingResponse:
-        return ServiceTokensWithStreamingResponse(self)
+    def with_streaming_response(self) -> ServiceTokensResourceWithStreamingResponse:
+        return ServiceTokensResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -379,14 +379,14 @@ class ServiceTokens(SyncAPIResource):
         )
 
 
-class AsyncServiceTokens(AsyncAPIResource):
+class AsyncServiceTokensResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncServiceTokensWithRawResponse:
-        return AsyncServiceTokensWithRawResponse(self)
+    def with_raw_response(self) -> AsyncServiceTokensResourceWithRawResponse:
+        return AsyncServiceTokensResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncServiceTokensWithStreamingResponse:
-        return AsyncServiceTokensWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncServiceTokensResourceWithStreamingResponse:
+        return AsyncServiceTokensResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -725,8 +725,8 @@ class AsyncServiceTokens(AsyncAPIResource):
         )
 
 
-class ServiceTokensWithRawResponse:
-    def __init__(self, service_tokens: ServiceTokens) -> None:
+class ServiceTokensResourceWithRawResponse:
+    def __init__(self, service_tokens: ServiceTokensResource) -> None:
         self._service_tokens = service_tokens
 
         self.create = to_raw_response_wrapper(
@@ -749,8 +749,8 @@ class ServiceTokensWithRawResponse:
         )
 
 
-class AsyncServiceTokensWithRawResponse:
-    def __init__(self, service_tokens: AsyncServiceTokens) -> None:
+class AsyncServiceTokensResourceWithRawResponse:
+    def __init__(self, service_tokens: AsyncServiceTokensResource) -> None:
         self._service_tokens = service_tokens
 
         self.create = async_to_raw_response_wrapper(
@@ -773,8 +773,8 @@ class AsyncServiceTokensWithRawResponse:
         )
 
 
-class ServiceTokensWithStreamingResponse:
-    def __init__(self, service_tokens: ServiceTokens) -> None:
+class ServiceTokensResourceWithStreamingResponse:
+    def __init__(self, service_tokens: ServiceTokensResource) -> None:
         self._service_tokens = service_tokens
 
         self.create = to_streamed_response_wrapper(
@@ -797,8 +797,8 @@ class ServiceTokensWithStreamingResponse:
         )
 
 
-class AsyncServiceTokensWithStreamingResponse:
-    def __init__(self, service_tokens: AsyncServiceTokens) -> None:
+class AsyncServiceTokensResourceWithStreamingResponse:
+    def __init__(self, service_tokens: AsyncServiceTokensResource) -> None:
         self._service_tokens = service_tokens
 
         self.create = async_to_streamed_response_wrapper(

@@ -27,17 +27,17 @@ from ..types.managed_headers.request_model_param import RequestModelParam
 from ..types.managed_headers.managed_header_edit_response import ManagedHeaderEditResponse
 from ..types.managed_headers.managed_header_list_response import ManagedHeaderListResponse
 
-__all__ = ["ManagedHeaders", "AsyncManagedHeaders"]
+__all__ = ["ManagedHeadersResource", "AsyncManagedHeadersResource"]
 
 
-class ManagedHeaders(SyncAPIResource):
+class ManagedHeadersResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ManagedHeadersWithRawResponse:
-        return ManagedHeadersWithRawResponse(self)
+    def with_raw_response(self) -> ManagedHeadersResourceWithRawResponse:
+        return ManagedHeadersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ManagedHeadersWithStreamingResponse:
-        return ManagedHeadersWithStreamingResponse(self)
+    def with_streaming_response(self) -> ManagedHeadersResourceWithStreamingResponse:
+        return ManagedHeadersResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -119,14 +119,14 @@ class ManagedHeaders(SyncAPIResource):
         )
 
 
-class AsyncManagedHeaders(AsyncAPIResource):
+class AsyncManagedHeadersResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncManagedHeadersWithRawResponse:
-        return AsyncManagedHeadersWithRawResponse(self)
+    def with_raw_response(self) -> AsyncManagedHeadersResourceWithRawResponse:
+        return AsyncManagedHeadersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncManagedHeadersWithStreamingResponse:
-        return AsyncManagedHeadersWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncManagedHeadersResourceWithStreamingResponse:
+        return AsyncManagedHeadersResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -208,8 +208,8 @@ class AsyncManagedHeaders(AsyncAPIResource):
         )
 
 
-class ManagedHeadersWithRawResponse:
-    def __init__(self, managed_headers: ManagedHeaders) -> None:
+class ManagedHeadersResourceWithRawResponse:
+    def __init__(self, managed_headers: ManagedHeadersResource) -> None:
         self._managed_headers = managed_headers
 
         self.list = to_raw_response_wrapper(
@@ -220,8 +220,8 @@ class ManagedHeadersWithRawResponse:
         )
 
 
-class AsyncManagedHeadersWithRawResponse:
-    def __init__(self, managed_headers: AsyncManagedHeaders) -> None:
+class AsyncManagedHeadersResourceWithRawResponse:
+    def __init__(self, managed_headers: AsyncManagedHeadersResource) -> None:
         self._managed_headers = managed_headers
 
         self.list = async_to_raw_response_wrapper(
@@ -232,8 +232,8 @@ class AsyncManagedHeadersWithRawResponse:
         )
 
 
-class ManagedHeadersWithStreamingResponse:
-    def __init__(self, managed_headers: ManagedHeaders) -> None:
+class ManagedHeadersResourceWithStreamingResponse:
+    def __init__(self, managed_headers: ManagedHeadersResource) -> None:
         self._managed_headers = managed_headers
 
         self.list = to_streamed_response_wrapper(
@@ -244,8 +244,8 @@ class ManagedHeadersWithStreamingResponse:
         )
 
 
-class AsyncManagedHeadersWithStreamingResponse:
-    def __init__(self, managed_headers: AsyncManagedHeaders) -> None:
+class AsyncManagedHeadersResourceWithStreamingResponse:
+    def __init__(self, managed_headers: AsyncManagedHeadersResource) -> None:
         self._managed_headers = managed_headers
 
         self.list = async_to_streamed_response_wrapper(

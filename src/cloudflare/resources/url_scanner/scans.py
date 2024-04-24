@@ -37,17 +37,17 @@ from ...types.url_scanner.scan_get_response import ScanGetResponse
 from ...types.url_scanner.scan_har_response import ScanHarResponse
 from ...types.url_scanner.scan_create_response import ScanCreateResponse
 
-__all__ = ["Scans", "AsyncScans"]
+__all__ = ["ScansResource", "AsyncScansResource"]
 
 
-class Scans(SyncAPIResource):
+class ScansResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ScansWithRawResponse:
-        return ScansWithRawResponse(self)
+    def with_raw_response(self) -> ScansResourceWithRawResponse:
+        return ScansResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ScansWithStreamingResponse:
-        return ScansWithStreamingResponse(self)
+    def with_streaming_response(self) -> ScansResourceWithStreamingResponse:
+        return ScansResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -253,14 +253,14 @@ class Scans(SyncAPIResource):
         )
 
 
-class AsyncScans(AsyncAPIResource):
+class AsyncScansResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncScansWithRawResponse:
-        return AsyncScansWithRawResponse(self)
+    def with_raw_response(self) -> AsyncScansResourceWithRawResponse:
+        return AsyncScansResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncScansWithStreamingResponse:
-        return AsyncScansWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncScansResourceWithStreamingResponse:
+        return AsyncScansResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -468,8 +468,8 @@ class AsyncScans(AsyncAPIResource):
         )
 
 
-class ScansWithRawResponse:
-    def __init__(self, scans: Scans) -> None:
+class ScansResourceWithRawResponse:
+    def __init__(self, scans: ScansResource) -> None:
         self._scans = scans
 
         self.create = to_raw_response_wrapper(
@@ -487,8 +487,8 @@ class ScansWithRawResponse:
         )
 
 
-class AsyncScansWithRawResponse:
-    def __init__(self, scans: AsyncScans) -> None:
+class AsyncScansResourceWithRawResponse:
+    def __init__(self, scans: AsyncScansResource) -> None:
         self._scans = scans
 
         self.create = async_to_raw_response_wrapper(
@@ -506,8 +506,8 @@ class AsyncScansWithRawResponse:
         )
 
 
-class ScansWithStreamingResponse:
-    def __init__(self, scans: Scans) -> None:
+class ScansResourceWithStreamingResponse:
+    def __init__(self, scans: ScansResource) -> None:
         self._scans = scans
 
         self.create = to_streamed_response_wrapper(
@@ -525,8 +525,8 @@ class ScansWithStreamingResponse:
         )
 
 
-class AsyncScansWithStreamingResponse:
-    def __init__(self, scans: AsyncScans) -> None:
+class AsyncScansResourceWithStreamingResponse:
+    def __init__(self, scans: AsyncScansResource) -> None:
         self._scans = scans
 
         self.create = async_to_streamed_response_wrapper(

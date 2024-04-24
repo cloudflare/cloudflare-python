@@ -29,17 +29,17 @@ from ..types.filters import filter_list_params, filter_create_params, filter_del
 from ..types.filters.firewall_filter import FirewallFilter
 from ..types.filters.filter_create_response import FilterCreateResponse
 
-__all__ = ["Filters", "AsyncFilters"]
+__all__ = ["FiltersResource", "AsyncFiltersResource"]
 
 
-class Filters(SyncAPIResource):
+class FiltersResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> FiltersWithRawResponse:
-        return FiltersWithRawResponse(self)
+    def with_raw_response(self) -> FiltersResourceWithRawResponse:
+        return FiltersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FiltersWithStreamingResponse:
-        return FiltersWithStreamingResponse(self)
+    def with_streaming_response(self) -> FiltersResourceWithStreamingResponse:
+        return FiltersResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -293,14 +293,14 @@ class Filters(SyncAPIResource):
         )
 
 
-class AsyncFilters(AsyncAPIResource):
+class AsyncFiltersResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncFiltersWithRawResponse:
-        return AsyncFiltersWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFiltersResourceWithRawResponse:
+        return AsyncFiltersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFiltersWithStreamingResponse:
-        return AsyncFiltersWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFiltersResourceWithStreamingResponse:
+        return AsyncFiltersResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -554,8 +554,8 @@ class AsyncFilters(AsyncAPIResource):
         )
 
 
-class FiltersWithRawResponse:
-    def __init__(self, filters: Filters) -> None:
+class FiltersResourceWithRawResponse:
+    def __init__(self, filters: FiltersResource) -> None:
         self._filters = filters
 
         self.create = to_raw_response_wrapper(
@@ -575,8 +575,8 @@ class FiltersWithRawResponse:
         )
 
 
-class AsyncFiltersWithRawResponse:
-    def __init__(self, filters: AsyncFilters) -> None:
+class AsyncFiltersResourceWithRawResponse:
+    def __init__(self, filters: AsyncFiltersResource) -> None:
         self._filters = filters
 
         self.create = async_to_raw_response_wrapper(
@@ -596,8 +596,8 @@ class AsyncFiltersWithRawResponse:
         )
 
 
-class FiltersWithStreamingResponse:
-    def __init__(self, filters: Filters) -> None:
+class FiltersResourceWithStreamingResponse:
+    def __init__(self, filters: FiltersResource) -> None:
         self._filters = filters
 
         self.create = to_streamed_response_wrapper(
@@ -617,8 +617,8 @@ class FiltersWithStreamingResponse:
         )
 
 
-class AsyncFiltersWithStreamingResponse:
-    def __init__(self, filters: AsyncFilters) -> None:
+class AsyncFiltersResourceWithStreamingResponse:
+    def __init__(self, filters: AsyncFiltersResource) -> None:
         self._filters = filters
 
         self.create = async_to_streamed_response_wrapper(

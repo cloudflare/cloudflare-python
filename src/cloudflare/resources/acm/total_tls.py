@@ -28,17 +28,17 @@ from ..._base_client import (
 from ...types.acm.total_tls_get_response import TotalTLSGetResponse
 from ...types.acm.total_tls_create_response import TotalTLSCreateResponse
 
-__all__ = ["TotalTLS", "AsyncTotalTLS"]
+__all__ = ["TotalTLSResource", "AsyncTotalTLSResource"]
 
 
-class TotalTLS(SyncAPIResource):
+class TotalTLSResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TotalTLSWithRawResponse:
-        return TotalTLSWithRawResponse(self)
+    def with_raw_response(self) -> TotalTLSResourceWithRawResponse:
+        return TotalTLSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TotalTLSWithStreamingResponse:
-        return TotalTLSWithStreamingResponse(self)
+    def with_streaming_response(self) -> TotalTLSResourceWithStreamingResponse:
+        return TotalTLSResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -133,14 +133,14 @@ class TotalTLS(SyncAPIResource):
         )
 
 
-class AsyncTotalTLS(AsyncAPIResource):
+class AsyncTotalTLSResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTotalTLSWithRawResponse:
-        return AsyncTotalTLSWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTotalTLSResourceWithRawResponse:
+        return AsyncTotalTLSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTotalTLSWithStreamingResponse:
-        return AsyncTotalTLSWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTotalTLSResourceWithStreamingResponse:
+        return AsyncTotalTLSResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -235,8 +235,8 @@ class AsyncTotalTLS(AsyncAPIResource):
         )
 
 
-class TotalTLSWithRawResponse:
-    def __init__(self, total_tls: TotalTLS) -> None:
+class TotalTLSResourceWithRawResponse:
+    def __init__(self, total_tls: TotalTLSResource) -> None:
         self._total_tls = total_tls
 
         self.create = to_raw_response_wrapper(
@@ -247,8 +247,8 @@ class TotalTLSWithRawResponse:
         )
 
 
-class AsyncTotalTLSWithRawResponse:
-    def __init__(self, total_tls: AsyncTotalTLS) -> None:
+class AsyncTotalTLSResourceWithRawResponse:
+    def __init__(self, total_tls: AsyncTotalTLSResource) -> None:
         self._total_tls = total_tls
 
         self.create = async_to_raw_response_wrapper(
@@ -259,8 +259,8 @@ class AsyncTotalTLSWithRawResponse:
         )
 
 
-class TotalTLSWithStreamingResponse:
-    def __init__(self, total_tls: TotalTLS) -> None:
+class TotalTLSResourceWithStreamingResponse:
+    def __init__(self, total_tls: TotalTLSResource) -> None:
         self._total_tls = total_tls
 
         self.create = to_streamed_response_wrapper(
@@ -271,8 +271,8 @@ class TotalTLSWithStreamingResponse:
         )
 
 
-class AsyncTotalTLSWithStreamingResponse:
-    def __init__(self, total_tls: AsyncTotalTLS) -> None:
+class AsyncTotalTLSResourceWithStreamingResponse:
+    def __init__(self, total_tls: AsyncTotalTLSResource) -> None:
         self._total_tls = total_tls
 
         self.create = async_to_streamed_response_wrapper(

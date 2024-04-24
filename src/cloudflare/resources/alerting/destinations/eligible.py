@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.alerting.destinations.eligible_get_response import EligibleGetResponse
 
-__all__ = ["Eligible", "AsyncEligible"]
+__all__ = ["EligibleResource", "AsyncEligibleResource"]
 
 
-class Eligible(SyncAPIResource):
+class EligibleResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> EligibleWithRawResponse:
-        return EligibleWithRawResponse(self)
+    def with_raw_response(self) -> EligibleResourceWithRawResponse:
+        return EligibleResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> EligibleWithStreamingResponse:
-        return EligibleWithStreamingResponse(self)
+    def with_streaming_response(self) -> EligibleResourceWithStreamingResponse:
+        return EligibleResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -78,14 +78,14 @@ class Eligible(SyncAPIResource):
         )
 
 
-class AsyncEligible(AsyncAPIResource):
+class AsyncEligibleResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncEligibleWithRawResponse:
-        return AsyncEligibleWithRawResponse(self)
+    def with_raw_response(self) -> AsyncEligibleResourceWithRawResponse:
+        return AsyncEligibleResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEligibleWithStreamingResponse:
-        return AsyncEligibleWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncEligibleResourceWithStreamingResponse:
+        return AsyncEligibleResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -132,8 +132,8 @@ class AsyncEligible(AsyncAPIResource):
         )
 
 
-class EligibleWithRawResponse:
-    def __init__(self, eligible: Eligible) -> None:
+class EligibleResourceWithRawResponse:
+    def __init__(self, eligible: EligibleResource) -> None:
         self._eligible = eligible
 
         self.get = to_raw_response_wrapper(
@@ -141,8 +141,8 @@ class EligibleWithRawResponse:
         )
 
 
-class AsyncEligibleWithRawResponse:
-    def __init__(self, eligible: AsyncEligible) -> None:
+class AsyncEligibleResourceWithRawResponse:
+    def __init__(self, eligible: AsyncEligibleResource) -> None:
         self._eligible = eligible
 
         self.get = async_to_raw_response_wrapper(
@@ -150,8 +150,8 @@ class AsyncEligibleWithRawResponse:
         )
 
 
-class EligibleWithStreamingResponse:
-    def __init__(self, eligible: Eligible) -> None:
+class EligibleResourceWithStreamingResponse:
+    def __init__(self, eligible: EligibleResource) -> None:
         self._eligible = eligible
 
         self.get = to_streamed_response_wrapper(
@@ -159,8 +159,8 @@ class EligibleWithStreamingResponse:
         )
 
 
-class AsyncEligibleWithStreamingResponse:
-    def __init__(self, eligible: AsyncEligible) -> None:
+class AsyncEligibleResourceWithStreamingResponse:
+    def __init__(self, eligible: AsyncEligibleResource) -> None:
         self._eligible = eligible
 
         self.get = async_to_streamed_response_wrapper(

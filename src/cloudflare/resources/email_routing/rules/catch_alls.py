@@ -30,17 +30,17 @@ from ....types.email_routing.rules.catch_all_get_response import CatchAllGetResp
 from ....types.email_routing.rules.catch_all_matcher_param import CatchAllMatcherParam
 from ....types.email_routing.rules.catch_all_update_response import CatchAllUpdateResponse
 
-__all__ = ["CatchAlls", "AsyncCatchAlls"]
+__all__ = ["CatchAllsResource", "AsyncCatchAllsResource"]
 
 
-class CatchAlls(SyncAPIResource):
+class CatchAllsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CatchAllsWithRawResponse:
-        return CatchAllsWithRawResponse(self)
+    def with_raw_response(self) -> CatchAllsResourceWithRawResponse:
+        return CatchAllsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CatchAllsWithStreamingResponse:
-        return CatchAllsWithStreamingResponse(self)
+    def with_streaming_response(self) -> CatchAllsResourceWithStreamingResponse:
+        return CatchAllsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -143,14 +143,14 @@ class CatchAlls(SyncAPIResource):
         )
 
 
-class AsyncCatchAlls(AsyncAPIResource):
+class AsyncCatchAllsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCatchAllsWithRawResponse:
-        return AsyncCatchAllsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCatchAllsResourceWithRawResponse:
+        return AsyncCatchAllsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCatchAllsWithStreamingResponse:
-        return AsyncCatchAllsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCatchAllsResourceWithStreamingResponse:
+        return AsyncCatchAllsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -253,8 +253,8 @@ class AsyncCatchAlls(AsyncAPIResource):
         )
 
 
-class CatchAllsWithRawResponse:
-    def __init__(self, catch_alls: CatchAlls) -> None:
+class CatchAllsResourceWithRawResponse:
+    def __init__(self, catch_alls: CatchAllsResource) -> None:
         self._catch_alls = catch_alls
 
         self.update = to_raw_response_wrapper(
@@ -265,8 +265,8 @@ class CatchAllsWithRawResponse:
         )
 
 
-class AsyncCatchAllsWithRawResponse:
-    def __init__(self, catch_alls: AsyncCatchAlls) -> None:
+class AsyncCatchAllsResourceWithRawResponse:
+    def __init__(self, catch_alls: AsyncCatchAllsResource) -> None:
         self._catch_alls = catch_alls
 
         self.update = async_to_raw_response_wrapper(
@@ -277,8 +277,8 @@ class AsyncCatchAllsWithRawResponse:
         )
 
 
-class CatchAllsWithStreamingResponse:
-    def __init__(self, catch_alls: CatchAlls) -> None:
+class CatchAllsResourceWithStreamingResponse:
+    def __init__(self, catch_alls: CatchAllsResource) -> None:
         self._catch_alls = catch_alls
 
         self.update = to_streamed_response_wrapper(
@@ -289,8 +289,8 @@ class CatchAllsWithStreamingResponse:
         )
 
 
-class AsyncCatchAllsWithStreamingResponse:
-    def __init__(self, catch_alls: AsyncCatchAlls) -> None:
+class AsyncCatchAllsResourceWithStreamingResponse:
+    def __init__(self, catch_alls: AsyncCatchAllsResource) -> None:
         self._catch_alls = catch_alls
 
         self.update = async_to_streamed_response_wrapper(

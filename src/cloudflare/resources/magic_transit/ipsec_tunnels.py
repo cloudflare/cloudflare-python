@@ -37,17 +37,17 @@ from ...types.magic_transit.ipsec_tunnel_delete_response import IPSECTunnelDelet
 from ...types.magic_transit.ipsec_tunnel_update_response import IPSECTunnelUpdateResponse
 from ...types.magic_transit.ipsec_tunnel_psk_generate_response import IPSECTunnelPSKGenerateResponse
 
-__all__ = ["IPSECTunnels", "AsyncIPSECTunnels"]
+__all__ = ["IPSECTunnelsResource", "AsyncIPSECTunnelsResource"]
 
 
-class IPSECTunnels(SyncAPIResource):
+class IPSECTunnelsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IPSECTunnelsWithRawResponse:
-        return IPSECTunnelsWithRawResponse(self)
+    def with_raw_response(self) -> IPSECTunnelsResourceWithRawResponse:
+        return IPSECTunnelsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IPSECTunnelsWithStreamingResponse:
-        return IPSECTunnelsWithStreamingResponse(self)
+    def with_streaming_response(self) -> IPSECTunnelsResourceWithStreamingResponse:
+        return IPSECTunnelsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -398,14 +398,14 @@ class IPSECTunnels(SyncAPIResource):
         )
 
 
-class AsyncIPSECTunnels(AsyncAPIResource):
+class AsyncIPSECTunnelsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIPSECTunnelsWithRawResponse:
-        return AsyncIPSECTunnelsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIPSECTunnelsResourceWithRawResponse:
+        return AsyncIPSECTunnelsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIPSECTunnelsWithStreamingResponse:
-        return AsyncIPSECTunnelsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIPSECTunnelsResourceWithStreamingResponse:
+        return AsyncIPSECTunnelsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -756,8 +756,8 @@ class AsyncIPSECTunnels(AsyncAPIResource):
         )
 
 
-class IPSECTunnelsWithRawResponse:
-    def __init__(self, ipsec_tunnels: IPSECTunnels) -> None:
+class IPSECTunnelsResourceWithRawResponse:
+    def __init__(self, ipsec_tunnels: IPSECTunnelsResource) -> None:
         self._ipsec_tunnels = ipsec_tunnels
 
         self.create = to_raw_response_wrapper(
@@ -780,8 +780,8 @@ class IPSECTunnelsWithRawResponse:
         )
 
 
-class AsyncIPSECTunnelsWithRawResponse:
-    def __init__(self, ipsec_tunnels: AsyncIPSECTunnels) -> None:
+class AsyncIPSECTunnelsResourceWithRawResponse:
+    def __init__(self, ipsec_tunnels: AsyncIPSECTunnelsResource) -> None:
         self._ipsec_tunnels = ipsec_tunnels
 
         self.create = async_to_raw_response_wrapper(
@@ -804,8 +804,8 @@ class AsyncIPSECTunnelsWithRawResponse:
         )
 
 
-class IPSECTunnelsWithStreamingResponse:
-    def __init__(self, ipsec_tunnels: IPSECTunnels) -> None:
+class IPSECTunnelsResourceWithStreamingResponse:
+    def __init__(self, ipsec_tunnels: IPSECTunnelsResource) -> None:
         self._ipsec_tunnels = ipsec_tunnels
 
         self.create = to_streamed_response_wrapper(
@@ -828,8 +828,8 @@ class IPSECTunnelsWithStreamingResponse:
         )
 
 
-class AsyncIPSECTunnelsWithStreamingResponse:
-    def __init__(self, ipsec_tunnels: AsyncIPSECTunnels) -> None:
+class AsyncIPSECTunnelsResourceWithStreamingResponse:
+    def __init__(self, ipsec_tunnels: AsyncIPSECTunnelsResource) -> None:
         self._ipsec_tunnels = ipsec_tunnels
 
         self.create = async_to_streamed_response_wrapper(

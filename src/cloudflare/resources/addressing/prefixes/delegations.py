@@ -25,20 +25,21 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.addressing.prefixes import delegations, delegation_create_params, delegation_delete_params
+from ....types.addressing.prefixes import delegation_create_params, delegation_delete_params
+from ....types.addressing.prefixes.delegations import Delegations
 from ....types.addressing.prefixes.delegation_delete_response import DelegationDeleteResponse
 
-__all__ = ["Delegations", "AsyncDelegations"]
+__all__ = ["DelegationsResource", "AsyncDelegationsResource"]
 
 
-class Delegations(SyncAPIResource):
+class DelegationsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DelegationsWithRawResponse:
-        return DelegationsWithRawResponse(self)
+    def with_raw_response(self) -> DelegationsResourceWithRawResponse:
+        return DelegationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DelegationsWithStreamingResponse:
-        return DelegationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> DelegationsResourceWithStreamingResponse:
+        return DelegationsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -53,7 +54,7 @@ class Delegations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[delegations.Delegations]:
+    ) -> Optional[Delegations]:
         """
         Create a new account delegation for a given IP prefix.
 
@@ -92,9 +93,9 @@ class Delegations(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[delegations.Delegations]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Delegations]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[delegations.Delegations]], ResultWrapper[delegations.Delegations]),
+            cast_to=cast(Type[Optional[Delegations]], ResultWrapper[Delegations]),
         )
 
     def list(
@@ -108,7 +109,7 @@ class Delegations(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[delegations.Delegations]:
+    ) -> SyncSinglePage[Delegations]:
         """
         List all delegations for a given account IP prefix.
 
@@ -131,11 +132,11 @@ class Delegations(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
-            page=SyncSinglePage[delegations.Delegations],
+            page=SyncSinglePage[Delegations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=delegations.Delegations,
+            model=Delegations,
         )
 
     def delete(
@@ -190,14 +191,14 @@ class Delegations(SyncAPIResource):
         )
 
 
-class AsyncDelegations(AsyncAPIResource):
+class AsyncDelegationsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDelegationsWithRawResponse:
-        return AsyncDelegationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDelegationsResourceWithRawResponse:
+        return AsyncDelegationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDelegationsWithStreamingResponse:
-        return AsyncDelegationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDelegationsResourceWithStreamingResponse:
+        return AsyncDelegationsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -212,7 +213,7 @@ class AsyncDelegations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[delegations.Delegations]:
+    ) -> Optional[Delegations]:
         """
         Create a new account delegation for a given IP prefix.
 
@@ -251,9 +252,9 @@ class AsyncDelegations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[delegations.Delegations]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Delegations]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[delegations.Delegations]], ResultWrapper[delegations.Delegations]),
+            cast_to=cast(Type[Optional[Delegations]], ResultWrapper[Delegations]),
         )
 
     def list(
@@ -267,7 +268,7 @@ class AsyncDelegations(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[delegations.Delegations, AsyncSinglePage[delegations.Delegations]]:
+    ) -> AsyncPaginator[Delegations, AsyncSinglePage[Delegations]]:
         """
         List all delegations for a given account IP prefix.
 
@@ -290,11 +291,11 @@ class AsyncDelegations(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations",
-            page=AsyncSinglePage[delegations.Delegations],
+            page=AsyncSinglePage[Delegations],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=delegations.Delegations,
+            model=Delegations,
         )
 
     async def delete(
@@ -349,8 +350,8 @@ class AsyncDelegations(AsyncAPIResource):
         )
 
 
-class DelegationsWithRawResponse:
-    def __init__(self, delegations: Delegations) -> None:
+class DelegationsResourceWithRawResponse:
+    def __init__(self, delegations: DelegationsResource) -> None:
         self._delegations = delegations
 
         self.create = to_raw_response_wrapper(
@@ -364,8 +365,8 @@ class DelegationsWithRawResponse:
         )
 
 
-class AsyncDelegationsWithRawResponse:
-    def __init__(self, delegations: AsyncDelegations) -> None:
+class AsyncDelegationsResourceWithRawResponse:
+    def __init__(self, delegations: AsyncDelegationsResource) -> None:
         self._delegations = delegations
 
         self.create = async_to_raw_response_wrapper(
@@ -379,8 +380,8 @@ class AsyncDelegationsWithRawResponse:
         )
 
 
-class DelegationsWithStreamingResponse:
-    def __init__(self, delegations: Delegations) -> None:
+class DelegationsResourceWithStreamingResponse:
+    def __init__(self, delegations: DelegationsResource) -> None:
         self._delegations = delegations
 
         self.create = to_streamed_response_wrapper(
@@ -394,8 +395,8 @@ class DelegationsWithStreamingResponse:
         )
 
 
-class AsyncDelegationsWithStreamingResponse:
-    def __init__(self, delegations: AsyncDelegations) -> None:
+class AsyncDelegationsResourceWithStreamingResponse:
+    def __init__(self, delegations: AsyncDelegationsResource) -> None:
         self._delegations = delegations
 
         self.create = async_to_streamed_response_wrapper(

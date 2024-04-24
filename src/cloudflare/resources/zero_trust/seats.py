@@ -26,17 +26,17 @@ from ..._base_client import (
 from ...types.zero_trust import seat_edit_params
 from ...types.zero_trust.seat_edit_response import SeatEditResponse
 
-__all__ = ["Seats", "AsyncSeats"]
+__all__ = ["SeatsResource", "AsyncSeatsResource"]
 
 
-class Seats(SyncAPIResource):
+class SeatsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SeatsWithRawResponse:
-        return SeatsWithRawResponse(self)
+    def with_raw_response(self) -> SeatsResourceWithRawResponse:
+        return SeatsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SeatsWithStreamingResponse:
-        return SeatsWithStreamingResponse(self)
+    def with_streaming_response(self) -> SeatsResourceWithStreamingResponse:
+        return SeatsResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -81,14 +81,14 @@ class Seats(SyncAPIResource):
         )
 
 
-class AsyncSeats(AsyncAPIResource):
+class AsyncSeatsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSeatsWithRawResponse:
-        return AsyncSeatsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSeatsResourceWithRawResponse:
+        return AsyncSeatsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSeatsWithStreamingResponse:
-        return AsyncSeatsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSeatsResourceWithStreamingResponse:
+        return AsyncSeatsResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -133,8 +133,8 @@ class AsyncSeats(AsyncAPIResource):
         )
 
 
-class SeatsWithRawResponse:
-    def __init__(self, seats: Seats) -> None:
+class SeatsResourceWithRawResponse:
+    def __init__(self, seats: SeatsResource) -> None:
         self._seats = seats
 
         self.edit = to_raw_response_wrapper(
@@ -142,8 +142,8 @@ class SeatsWithRawResponse:
         )
 
 
-class AsyncSeatsWithRawResponse:
-    def __init__(self, seats: AsyncSeats) -> None:
+class AsyncSeatsResourceWithRawResponse:
+    def __init__(self, seats: AsyncSeatsResource) -> None:
         self._seats = seats
 
         self.edit = async_to_raw_response_wrapper(
@@ -151,8 +151,8 @@ class AsyncSeatsWithRawResponse:
         )
 
 
-class SeatsWithStreamingResponse:
-    def __init__(self, seats: Seats) -> None:
+class SeatsResourceWithStreamingResponse:
+    def __init__(self, seats: SeatsResource) -> None:
         self._seats = seats
 
         self.edit = to_streamed_response_wrapper(
@@ -160,8 +160,8 @@ class SeatsWithStreamingResponse:
         )
 
 
-class AsyncSeatsWithStreamingResponse:
-    def __init__(self, seats: AsyncSeats) -> None:
+class AsyncSeatsResourceWithStreamingResponse:
+    def __init__(self, seats: AsyncSeatsResource) -> None:
         self._seats = seats
 
         self.edit = async_to_streamed_response_wrapper(

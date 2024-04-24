@@ -27,17 +27,17 @@ from ...types.logpush import ownership_create_params, ownership_validate_params
 from ...types.logpush.ownership_validation import OwnershipValidation
 from ...types.logpush.ownership_create_response import OwnershipCreateResponse
 
-__all__ = ["Ownership", "AsyncOwnership"]
+__all__ = ["OwnershipResource", "AsyncOwnershipResource"]
 
 
-class Ownership(SyncAPIResource):
+class OwnershipResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OwnershipWithRawResponse:
-        return OwnershipWithRawResponse(self)
+    def with_raw_response(self) -> OwnershipResourceWithRawResponse:
+        return OwnershipResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OwnershipWithStreamingResponse:
-        return OwnershipWithStreamingResponse(self)
+    def with_streaming_response(self) -> OwnershipResourceWithStreamingResponse:
+        return OwnershipResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -165,14 +165,14 @@ class Ownership(SyncAPIResource):
         )
 
 
-class AsyncOwnership(AsyncAPIResource):
+class AsyncOwnershipResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOwnershipWithRawResponse:
-        return AsyncOwnershipWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOwnershipResourceWithRawResponse:
+        return AsyncOwnershipResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOwnershipWithStreamingResponse:
-        return AsyncOwnershipWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOwnershipResourceWithStreamingResponse:
+        return AsyncOwnershipResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -302,8 +302,8 @@ class AsyncOwnership(AsyncAPIResource):
         )
 
 
-class OwnershipWithRawResponse:
-    def __init__(self, ownership: Ownership) -> None:
+class OwnershipResourceWithRawResponse:
+    def __init__(self, ownership: OwnershipResource) -> None:
         self._ownership = ownership
 
         self.create = to_raw_response_wrapper(
@@ -314,8 +314,8 @@ class OwnershipWithRawResponse:
         )
 
 
-class AsyncOwnershipWithRawResponse:
-    def __init__(self, ownership: AsyncOwnership) -> None:
+class AsyncOwnershipResourceWithRawResponse:
+    def __init__(self, ownership: AsyncOwnershipResource) -> None:
         self._ownership = ownership
 
         self.create = async_to_raw_response_wrapper(
@@ -326,8 +326,8 @@ class AsyncOwnershipWithRawResponse:
         )
 
 
-class OwnershipWithStreamingResponse:
-    def __init__(self, ownership: Ownership) -> None:
+class OwnershipResourceWithStreamingResponse:
+    def __init__(self, ownership: OwnershipResource) -> None:
         self._ownership = ownership
 
         self.create = to_streamed_response_wrapper(
@@ -338,8 +338,8 @@ class OwnershipWithStreamingResponse:
         )
 
 
-class AsyncOwnershipWithStreamingResponse:
-    def __init__(self, ownership: AsyncOwnership) -> None:
+class AsyncOwnershipResourceWithStreamingResponse:
+    def __init__(self, ownership: AsyncOwnershipResource) -> None:
         self._ownership = ownership
 
         self.create = async_to_streamed_response_wrapper(

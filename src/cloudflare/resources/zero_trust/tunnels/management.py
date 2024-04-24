@@ -27,17 +27,17 @@ from ...._base_client import (
 from ....types.zero_trust.tunnels import management_create_params
 from ....types.zero_trust.tunnels.management_create_response import ManagementCreateResponse
 
-__all__ = ["Management", "AsyncManagement"]
+__all__ = ["ManagementResource", "AsyncManagementResource"]
 
 
-class Management(SyncAPIResource):
+class ManagementResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ManagementWithRawResponse:
-        return ManagementWithRawResponse(self)
+    def with_raw_response(self) -> ManagementResourceWithRawResponse:
+        return ManagementResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ManagementWithStreamingResponse:
-        return ManagementWithStreamingResponse(self)
+    def with_streaming_response(self) -> ManagementResourceWithStreamingResponse:
+        return ManagementResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -93,14 +93,14 @@ class Management(SyncAPIResource):
         )
 
 
-class AsyncManagement(AsyncAPIResource):
+class AsyncManagementResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncManagementWithRawResponse:
-        return AsyncManagementWithRawResponse(self)
+    def with_raw_response(self) -> AsyncManagementResourceWithRawResponse:
+        return AsyncManagementResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncManagementWithStreamingResponse:
-        return AsyncManagementWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncManagementResourceWithStreamingResponse:
+        return AsyncManagementResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -158,8 +158,8 @@ class AsyncManagement(AsyncAPIResource):
         )
 
 
-class ManagementWithRawResponse:
-    def __init__(self, management: Management) -> None:
+class ManagementResourceWithRawResponse:
+    def __init__(self, management: ManagementResource) -> None:
         self._management = management
 
         self.create = to_raw_response_wrapper(
@@ -167,8 +167,8 @@ class ManagementWithRawResponse:
         )
 
 
-class AsyncManagementWithRawResponse:
-    def __init__(self, management: AsyncManagement) -> None:
+class AsyncManagementResourceWithRawResponse:
+    def __init__(self, management: AsyncManagementResource) -> None:
         self._management = management
 
         self.create = async_to_raw_response_wrapper(
@@ -176,8 +176,8 @@ class AsyncManagementWithRawResponse:
         )
 
 
-class ManagementWithStreamingResponse:
-    def __init__(self, management: Management) -> None:
+class ManagementResourceWithStreamingResponse:
+    def __init__(self, management: ManagementResource) -> None:
         self._management = management
 
         self.create = to_streamed_response_wrapper(
@@ -185,8 +185,8 @@ class ManagementWithStreamingResponse:
         )
 
 
-class AsyncManagementWithStreamingResponse:
-    def __init__(self, management: AsyncManagement) -> None:
+class AsyncManagementResourceWithStreamingResponse:
+    def __init__(self, management: AsyncManagementResource) -> None:
         self._management = management
 
         self.create = async_to_streamed_response_wrapper(

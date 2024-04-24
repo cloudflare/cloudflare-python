@@ -4,78 +4,78 @@ from __future__ import annotations
 
 from ..._compat import cached_property
 from .hostnames import (
-    Hostnames,
-    AsyncHostnames,
-    HostnamesWithRawResponse,
-    AsyncHostnamesWithRawResponse,
-    HostnamesWithStreamingResponse,
-    AsyncHostnamesWithStreamingResponse,
+    HostnamesResource,
+    AsyncHostnamesResource,
+    HostnamesResourceWithRawResponse,
+    AsyncHostnamesResourceWithRawResponse,
+    HostnamesResourceWithStreamingResponse,
+    AsyncHostnamesResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .hostnames.hostnames import Hostnames, AsyncHostnames
+from .hostnames.hostnames import HostnamesResource, AsyncHostnamesResource
 
-__all__ = ["Web3", "AsyncWeb3"]
+__all__ = ["Web3Resource", "AsyncWeb3Resource"]
 
 
-class Web3(SyncAPIResource):
+class Web3Resource(SyncAPIResource):
     @cached_property
-    def hostnames(self) -> Hostnames:
-        return Hostnames(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> Web3WithRawResponse:
-        return Web3WithRawResponse(self)
+    def hostnames(self) -> HostnamesResource:
+        return HostnamesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> Web3WithStreamingResponse:
-        return Web3WithStreamingResponse(self)
-
-
-class AsyncWeb3(AsyncAPIResource):
-    @cached_property
-    def hostnames(self) -> AsyncHostnames:
-        return AsyncHostnames(self._client)
+    def with_raw_response(self) -> Web3ResourceWithRawResponse:
+        return Web3ResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncWeb3WithRawResponse:
-        return AsyncWeb3WithRawResponse(self)
+    def with_streaming_response(self) -> Web3ResourceWithStreamingResponse:
+        return Web3ResourceWithStreamingResponse(self)
+
+
+class AsyncWeb3Resource(AsyncAPIResource):
+    @cached_property
+    def hostnames(self) -> AsyncHostnamesResource:
+        return AsyncHostnamesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWeb3WithStreamingResponse:
-        return AsyncWeb3WithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncWeb3ResourceWithRawResponse:
+        return AsyncWeb3ResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncWeb3ResourceWithStreamingResponse:
+        return AsyncWeb3ResourceWithStreamingResponse(self)
 
 
-class Web3WithRawResponse:
-    def __init__(self, web3: Web3) -> None:
+class Web3ResourceWithRawResponse:
+    def __init__(self, web3: Web3Resource) -> None:
         self._web3 = web3
 
     @cached_property
-    def hostnames(self) -> HostnamesWithRawResponse:
-        return HostnamesWithRawResponse(self._web3.hostnames)
+    def hostnames(self) -> HostnamesResourceWithRawResponse:
+        return HostnamesResourceWithRawResponse(self._web3.hostnames)
 
 
-class AsyncWeb3WithRawResponse:
-    def __init__(self, web3: AsyncWeb3) -> None:
+class AsyncWeb3ResourceWithRawResponse:
+    def __init__(self, web3: AsyncWeb3Resource) -> None:
         self._web3 = web3
 
     @cached_property
-    def hostnames(self) -> AsyncHostnamesWithRawResponse:
-        return AsyncHostnamesWithRawResponse(self._web3.hostnames)
+    def hostnames(self) -> AsyncHostnamesResourceWithRawResponse:
+        return AsyncHostnamesResourceWithRawResponse(self._web3.hostnames)
 
 
-class Web3WithStreamingResponse:
-    def __init__(self, web3: Web3) -> None:
+class Web3ResourceWithStreamingResponse:
+    def __init__(self, web3: Web3Resource) -> None:
         self._web3 = web3
 
     @cached_property
-    def hostnames(self) -> HostnamesWithStreamingResponse:
-        return HostnamesWithStreamingResponse(self._web3.hostnames)
+    def hostnames(self) -> HostnamesResourceWithStreamingResponse:
+        return HostnamesResourceWithStreamingResponse(self._web3.hostnames)
 
 
-class AsyncWeb3WithStreamingResponse:
-    def __init__(self, web3: AsyncWeb3) -> None:
+class AsyncWeb3ResourceWithStreamingResponse:
+    def __init__(self, web3: AsyncWeb3Resource) -> None:
         self._web3 = web3
 
     @cached_property
-    def hostnames(self) -> AsyncHostnamesWithStreamingResponse:
-        return AsyncHostnamesWithStreamingResponse(self._web3.hostnames)
+    def hostnames(self) -> AsyncHostnamesResourceWithStreamingResponse:
+        return AsyncHostnamesResourceWithStreamingResponse(self._web3.hostnames)

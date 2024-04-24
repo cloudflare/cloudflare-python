@@ -12,12 +12,12 @@ from ...._utils import (
     async_maybe_transform,
 )
 from .analytics import (
-    Analytics,
-    AsyncAnalytics,
-    AnalyticsWithRawResponse,
-    AsyncAnalyticsWithRawResponse,
-    AnalyticsWithStreamingResponse,
-    AsyncAnalyticsWithStreamingResponse,
+    AnalyticsResource,
+    AsyncAnalyticsResource,
+    AnalyticsResourceWithRawResponse,
+    AsyncAnalyticsResourceWithRawResponse,
+    AnalyticsResourceWithStreamingResponse,
+    AsyncAnalyticsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -39,7 +39,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .analytics.analytics import Analytics, AsyncAnalytics
+from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
 from ....types.dns.firewall.firewall import Firewall
 from ....types.dns.firewall_ips_param import FirewallIPsParam
 from ....types.dns.upstream_ips_param import UpstreamIPsParam
@@ -51,8 +51,8 @@ __all__ = ["FirewallResource", "AsyncFirewallResource"]
 
 class FirewallResource(SyncAPIResource):
     @cached_property
-    def analytics(self) -> Analytics:
-        return Analytics(self._client)
+    def analytics(self) -> AnalyticsResource:
+        return AnalyticsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> FirewallResourceWithRawResponse:
@@ -382,8 +382,8 @@ class FirewallResource(SyncAPIResource):
 
 class AsyncFirewallResource(AsyncAPIResource):
     @cached_property
-    def analytics(self) -> AsyncAnalytics:
-        return AsyncAnalytics(self._client)
+    def analytics(self) -> AsyncAnalyticsResource:
+        return AsyncAnalyticsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncFirewallResourceWithRawResponse:
@@ -732,8 +732,8 @@ class FirewallResourceWithRawResponse:
         )
 
     @cached_property
-    def analytics(self) -> AnalyticsWithRawResponse:
-        return AnalyticsWithRawResponse(self._firewall.analytics)
+    def analytics(self) -> AnalyticsResourceWithRawResponse:
+        return AnalyticsResourceWithRawResponse(self._firewall.analytics)
 
 
 class AsyncFirewallResourceWithRawResponse:
@@ -757,8 +757,8 @@ class AsyncFirewallResourceWithRawResponse:
         )
 
     @cached_property
-    def analytics(self) -> AsyncAnalyticsWithRawResponse:
-        return AsyncAnalyticsWithRawResponse(self._firewall.analytics)
+    def analytics(self) -> AsyncAnalyticsResourceWithRawResponse:
+        return AsyncAnalyticsResourceWithRawResponse(self._firewall.analytics)
 
 
 class FirewallResourceWithStreamingResponse:
@@ -782,8 +782,8 @@ class FirewallResourceWithStreamingResponse:
         )
 
     @cached_property
-    def analytics(self) -> AnalyticsWithStreamingResponse:
-        return AnalyticsWithStreamingResponse(self._firewall.analytics)
+    def analytics(self) -> AnalyticsResourceWithStreamingResponse:
+        return AnalyticsResourceWithStreamingResponse(self._firewall.analytics)
 
 
 class AsyncFirewallResourceWithStreamingResponse:
@@ -807,5 +807,5 @@ class AsyncFirewallResourceWithStreamingResponse:
         )
 
     @cached_property
-    def analytics(self) -> AsyncAnalyticsWithStreamingResponse:
-        return AsyncAnalyticsWithStreamingResponse(self._firewall.analytics)
+    def analytics(self) -> AsyncAnalyticsResourceWithStreamingResponse:
+        return AsyncAnalyticsResourceWithStreamingResponse(self._firewall.analytics)

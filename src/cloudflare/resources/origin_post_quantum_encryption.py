@@ -32,17 +32,17 @@ from ..types.origin_post_quantum_encryption.origin_post_quantum_encryption_updat
     OriginPostQuantumEncryptionUpdateResponse,
 )
 
-__all__ = ["OriginPostQuantumEncryption", "AsyncOriginPostQuantumEncryption"]
+__all__ = ["OriginPostQuantumEncryptionResource", "AsyncOriginPostQuantumEncryptionResource"]
 
 
-class OriginPostQuantumEncryption(SyncAPIResource):
+class OriginPostQuantumEncryptionResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OriginPostQuantumEncryptionWithRawResponse:
-        return OriginPostQuantumEncryptionWithRawResponse(self)
+    def with_raw_response(self) -> OriginPostQuantumEncryptionResourceWithRawResponse:
+        return OriginPostQuantumEncryptionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OriginPostQuantumEncryptionWithStreamingResponse:
-        return OriginPostQuantumEncryptionWithStreamingResponse(self)
+    def with_streaming_response(self) -> OriginPostQuantumEncryptionResourceWithStreamingResponse:
+        return OriginPostQuantumEncryptionResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -150,14 +150,14 @@ class OriginPostQuantumEncryption(SyncAPIResource):
         )
 
 
-class AsyncOriginPostQuantumEncryption(AsyncAPIResource):
+class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOriginPostQuantumEncryptionWithRawResponse:
-        return AsyncOriginPostQuantumEncryptionWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOriginPostQuantumEncryptionResourceWithRawResponse:
+        return AsyncOriginPostQuantumEncryptionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOriginPostQuantumEncryptionWithStreamingResponse:
-        return AsyncOriginPostQuantumEncryptionWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse:
+        return AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -265,8 +265,8 @@ class AsyncOriginPostQuantumEncryption(AsyncAPIResource):
         )
 
 
-class OriginPostQuantumEncryptionWithRawResponse:
-    def __init__(self, origin_post_quantum_encryption: OriginPostQuantumEncryption) -> None:
+class OriginPostQuantumEncryptionResourceWithRawResponse:
+    def __init__(self, origin_post_quantum_encryption: OriginPostQuantumEncryptionResource) -> None:
         self._origin_post_quantum_encryption = origin_post_quantum_encryption
 
         self.update = to_raw_response_wrapper(
@@ -277,8 +277,8 @@ class OriginPostQuantumEncryptionWithRawResponse:
         )
 
 
-class AsyncOriginPostQuantumEncryptionWithRawResponse:
-    def __init__(self, origin_post_quantum_encryption: AsyncOriginPostQuantumEncryption) -> None:
+class AsyncOriginPostQuantumEncryptionResourceWithRawResponse:
+    def __init__(self, origin_post_quantum_encryption: AsyncOriginPostQuantumEncryptionResource) -> None:
         self._origin_post_quantum_encryption = origin_post_quantum_encryption
 
         self.update = async_to_raw_response_wrapper(
@@ -289,8 +289,8 @@ class AsyncOriginPostQuantumEncryptionWithRawResponse:
         )
 
 
-class OriginPostQuantumEncryptionWithStreamingResponse:
-    def __init__(self, origin_post_quantum_encryption: OriginPostQuantumEncryption) -> None:
+class OriginPostQuantumEncryptionResourceWithStreamingResponse:
+    def __init__(self, origin_post_quantum_encryption: OriginPostQuantumEncryptionResource) -> None:
         self._origin_post_quantum_encryption = origin_post_quantum_encryption
 
         self.update = to_streamed_response_wrapper(
@@ -301,8 +301,8 @@ class OriginPostQuantumEncryptionWithStreamingResponse:
         )
 
 
-class AsyncOriginPostQuantumEncryptionWithStreamingResponse:
-    def __init__(self, origin_post_quantum_encryption: AsyncOriginPostQuantumEncryption) -> None:
+class AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse:
+    def __init__(self, origin_post_quantum_encryption: AsyncOriginPostQuantumEncryptionResource) -> None:
         self._origin_post_quantum_encryption = origin_post_quantum_encryption
 
         self.update = async_to_streamed_response_wrapper(

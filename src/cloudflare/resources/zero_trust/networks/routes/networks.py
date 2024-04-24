@@ -27,17 +27,17 @@ from ....._base_client import (
 from .....types.zero_trust.networks.route import Route
 from .....types.zero_trust.networks.routes import network_create_params, network_delete_params
 
-__all__ = ["Networks", "AsyncNetworks"]
+__all__ = ["NetworksResource", "AsyncNetworksResource"]
 
 
-class Networks(SyncAPIResource):
+class NetworksResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> NetworksWithRawResponse:
-        return NetworksWithRawResponse(self)
+    def with_raw_response(self) -> NetworksResourceWithRawResponse:
+        return NetworksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> NetworksWithStreamingResponse:
-        return NetworksWithStreamingResponse(self)
+    def with_streaming_response(self) -> NetworksResourceWithStreamingResponse:
+        return NetworksResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -213,14 +213,14 @@ class Networks(SyncAPIResource):
         )
 
 
-class AsyncNetworks(AsyncAPIResource):
+class AsyncNetworksResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncNetworksWithRawResponse:
-        return AsyncNetworksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncNetworksResourceWithRawResponse:
+        return AsyncNetworksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncNetworksWithStreamingResponse:
-        return AsyncNetworksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncNetworksResourceWithStreamingResponse:
+        return AsyncNetworksResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -396,8 +396,8 @@ class AsyncNetworks(AsyncAPIResource):
         )
 
 
-class NetworksWithRawResponse:
-    def __init__(self, networks: Networks) -> None:
+class NetworksResourceWithRawResponse:
+    def __init__(self, networks: NetworksResource) -> None:
         self._networks = networks
 
         self.create = to_raw_response_wrapper(
@@ -411,8 +411,8 @@ class NetworksWithRawResponse:
         )
 
 
-class AsyncNetworksWithRawResponse:
-    def __init__(self, networks: AsyncNetworks) -> None:
+class AsyncNetworksResourceWithRawResponse:
+    def __init__(self, networks: AsyncNetworksResource) -> None:
         self._networks = networks
 
         self.create = async_to_raw_response_wrapper(
@@ -426,8 +426,8 @@ class AsyncNetworksWithRawResponse:
         )
 
 
-class NetworksWithStreamingResponse:
-    def __init__(self, networks: Networks) -> None:
+class NetworksResourceWithStreamingResponse:
+    def __init__(self, networks: NetworksResource) -> None:
         self._networks = networks
 
         self.create = to_streamed_response_wrapper(
@@ -441,8 +441,8 @@ class NetworksWithStreamingResponse:
         )
 
 
-class AsyncNetworksWithStreamingResponse:
-    def __init__(self, networks: AsyncNetworks) -> None:
+class AsyncNetworksResourceWithStreamingResponse:
+    def __init__(self, networks: AsyncNetworksResource) -> None:
         self._networks = networks
 
         self.create = async_to_streamed_response_wrapper(

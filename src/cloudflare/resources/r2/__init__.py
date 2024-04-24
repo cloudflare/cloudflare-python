@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .r2 import (
-    R2,
-    AsyncR2,
-    R2WithRawResponse,
-    AsyncR2WithRawResponse,
-    R2WithStreamingResponse,
-    AsyncR2WithStreamingResponse,
+    R2Resource,
+    AsyncR2Resource,
+    R2ResourceWithRawResponse,
+    AsyncR2ResourceWithRawResponse,
+    R2ResourceWithStreamingResponse,
+    AsyncR2ResourceWithStreamingResponse,
 )
 from .sippy import (
     SippyResource,
@@ -17,31 +17,31 @@ from .sippy import (
     AsyncSippyResourceWithStreamingResponse,
 )
 from .buckets import (
-    Buckets,
-    AsyncBuckets,
-    BucketsWithRawResponse,
-    AsyncBucketsWithRawResponse,
-    BucketsWithStreamingResponse,
-    AsyncBucketsWithStreamingResponse,
+    BucketsResource,
+    AsyncBucketsResource,
+    BucketsResourceWithRawResponse,
+    AsyncBucketsResourceWithRawResponse,
+    BucketsResourceWithStreamingResponse,
+    AsyncBucketsResourceWithStreamingResponse,
 )
 
 __all__ = [
-    "Buckets",
-    "AsyncBuckets",
-    "BucketsWithRawResponse",
-    "AsyncBucketsWithRawResponse",
-    "BucketsWithStreamingResponse",
-    "AsyncBucketsWithStreamingResponse",
+    "BucketsResource",
+    "AsyncBucketsResource",
+    "BucketsResourceWithRawResponse",
+    "AsyncBucketsResourceWithRawResponse",
+    "BucketsResourceWithStreamingResponse",
+    "AsyncBucketsResourceWithStreamingResponse",
     "SippyResource",
     "AsyncSippyResource",
     "SippyResourceWithRawResponse",
     "AsyncSippyResourceWithRawResponse",
     "SippyResourceWithStreamingResponse",
     "AsyncSippyResourceWithStreamingResponse",
-    "R2",
-    "AsyncR2",
-    "R2WithRawResponse",
-    "AsyncR2WithRawResponse",
-    "R2WithStreamingResponse",
-    "AsyncR2WithStreamingResponse",
+    "R2Resource",
+    "AsyncR2Resource",
+    "R2ResourceWithRawResponse",
+    "AsyncR2ResourceWithRawResponse",
+    "R2ResourceWithStreamingResponse",
+    "AsyncR2ResourceWithStreamingResponse",
 ]

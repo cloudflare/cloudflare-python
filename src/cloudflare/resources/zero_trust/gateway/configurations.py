@@ -32,17 +32,17 @@ from ....types.zero_trust.gateway.configuration_edit_response import Configurati
 from ....types.zero_trust.gateway.configuration_update_response import ConfigurationUpdateResponse
 from ....types.zero_trust.gateway.gateway_configuration_settings_param import GatewayConfigurationSettingsParam
 
-__all__ = ["Configurations", "AsyncConfigurations"]
+__all__ = ["ConfigurationsResource", "AsyncConfigurationsResource"]
 
 
-class Configurations(SyncAPIResource):
+class ConfigurationsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ConfigurationsWithRawResponse:
-        return ConfigurationsWithRawResponse(self)
+    def with_raw_response(self) -> ConfigurationsResourceWithRawResponse:
+        return ConfigurationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ConfigurationsWithStreamingResponse:
-        return ConfigurationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ConfigurationsResourceWithStreamingResponse:
+        return ConfigurationsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -169,14 +169,14 @@ class Configurations(SyncAPIResource):
         )
 
 
-class AsyncConfigurations(AsyncAPIResource):
+class AsyncConfigurationsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncConfigurationsWithRawResponse:
-        return AsyncConfigurationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncConfigurationsResourceWithRawResponse:
+        return AsyncConfigurationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConfigurationsWithStreamingResponse:
-        return AsyncConfigurationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncConfigurationsResourceWithStreamingResponse:
+        return AsyncConfigurationsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -305,8 +305,8 @@ class AsyncConfigurations(AsyncAPIResource):
         )
 
 
-class ConfigurationsWithRawResponse:
-    def __init__(self, configurations: Configurations) -> None:
+class ConfigurationsResourceWithRawResponse:
+    def __init__(self, configurations: ConfigurationsResource) -> None:
         self._configurations = configurations
 
         self.update = to_raw_response_wrapper(
@@ -320,8 +320,8 @@ class ConfigurationsWithRawResponse:
         )
 
 
-class AsyncConfigurationsWithRawResponse:
-    def __init__(self, configurations: AsyncConfigurations) -> None:
+class AsyncConfigurationsResourceWithRawResponse:
+    def __init__(self, configurations: AsyncConfigurationsResource) -> None:
         self._configurations = configurations
 
         self.update = async_to_raw_response_wrapper(
@@ -335,8 +335,8 @@ class AsyncConfigurationsWithRawResponse:
         )
 
 
-class ConfigurationsWithStreamingResponse:
-    def __init__(self, configurations: Configurations) -> None:
+class ConfigurationsResourceWithStreamingResponse:
+    def __init__(self, configurations: ConfigurationsResource) -> None:
         self._configurations = configurations
 
         self.update = to_streamed_response_wrapper(
@@ -350,8 +350,8 @@ class ConfigurationsWithStreamingResponse:
         )
 
 
-class AsyncConfigurationsWithStreamingResponse:
-    def __init__(self, configurations: AsyncConfigurations) -> None:
+class AsyncConfigurationsResourceWithStreamingResponse:
+    def __init__(self, configurations: AsyncConfigurationsResource) -> None:
         self._configurations = configurations
 
         self.update = async_to_streamed_response_wrapper(

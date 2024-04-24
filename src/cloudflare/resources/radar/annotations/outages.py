@@ -29,17 +29,17 @@ from ....types.radar.annotations import outage_get_params, outage_locations_para
 from ....types.radar.annotations.outage_get_response import OutageGetResponse
 from ....types.radar.annotations.outage_locations_response import OutageLocationsResponse
 
-__all__ = ["Outages", "AsyncOutages"]
+__all__ = ["OutagesResource", "AsyncOutagesResource"]
 
 
-class Outages(SyncAPIResource):
+class OutagesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OutagesWithRawResponse:
-        return OutagesWithRawResponse(self)
+    def with_raw_response(self) -> OutagesResourceWithRawResponse:
+        return OutagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OutagesWithStreamingResponse:
-        return OutagesWithStreamingResponse(self)
+    def with_streaming_response(self) -> OutagesResourceWithStreamingResponse:
+        return OutagesResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -208,14 +208,14 @@ class Outages(SyncAPIResource):
         )
 
 
-class AsyncOutages(AsyncAPIResource):
+class AsyncOutagesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOutagesWithRawResponse:
-        return AsyncOutagesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOutagesResourceWithRawResponse:
+        return AsyncOutagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOutagesWithStreamingResponse:
-        return AsyncOutagesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOutagesResourceWithStreamingResponse:
+        return AsyncOutagesResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -384,8 +384,8 @@ class AsyncOutages(AsyncAPIResource):
         )
 
 
-class OutagesWithRawResponse:
-    def __init__(self, outages: Outages) -> None:
+class OutagesResourceWithRawResponse:
+    def __init__(self, outages: OutagesResource) -> None:
         self._outages = outages
 
         self.get = to_raw_response_wrapper(
@@ -396,8 +396,8 @@ class OutagesWithRawResponse:
         )
 
 
-class AsyncOutagesWithRawResponse:
-    def __init__(self, outages: AsyncOutages) -> None:
+class AsyncOutagesResourceWithRawResponse:
+    def __init__(self, outages: AsyncOutagesResource) -> None:
         self._outages = outages
 
         self.get = async_to_raw_response_wrapper(
@@ -408,8 +408,8 @@ class AsyncOutagesWithRawResponse:
         )
 
 
-class OutagesWithStreamingResponse:
-    def __init__(self, outages: Outages) -> None:
+class OutagesResourceWithStreamingResponse:
+    def __init__(self, outages: OutagesResource) -> None:
         self._outages = outages
 
         self.get = to_streamed_response_wrapper(
@@ -420,8 +420,8 @@ class OutagesWithStreamingResponse:
         )
 
 
-class AsyncOutagesWithStreamingResponse:
-    def __init__(self, outages: AsyncOutages) -> None:
+class AsyncOutagesResourceWithStreamingResponse:
+    def __init__(self, outages: AsyncOutagesResource) -> None:
         self._outages = outages
 
         self.get = async_to_streamed_response_wrapper(

@@ -26,17 +26,17 @@ from ...._base_client import (
 from ....types.zero_trust.devices import unrevoke_create_params
 from ....types.zero_trust.devices.unrevoke_create_response import UnrevokeCreateResponse
 
-__all__ = ["Unrevoke", "AsyncUnrevoke"]
+__all__ = ["UnrevokeResource", "AsyncUnrevokeResource"]
 
 
-class Unrevoke(SyncAPIResource):
+class UnrevokeResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> UnrevokeWithRawResponse:
-        return UnrevokeWithRawResponse(self)
+    def with_raw_response(self) -> UnrevokeResourceWithRawResponse:
+        return UnrevokeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> UnrevokeWithStreamingResponse:
-        return UnrevokeWithStreamingResponse(self)
+    def with_streaming_response(self) -> UnrevokeResourceWithStreamingResponse:
+        return UnrevokeResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -85,14 +85,14 @@ class Unrevoke(SyncAPIResource):
         )
 
 
-class AsyncUnrevoke(AsyncAPIResource):
+class AsyncUnrevokeResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncUnrevokeWithRawResponse:
-        return AsyncUnrevokeWithRawResponse(self)
+    def with_raw_response(self) -> AsyncUnrevokeResourceWithRawResponse:
+        return AsyncUnrevokeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUnrevokeWithStreamingResponse:
-        return AsyncUnrevokeWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncUnrevokeResourceWithStreamingResponse:
+        return AsyncUnrevokeResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -141,8 +141,8 @@ class AsyncUnrevoke(AsyncAPIResource):
         )
 
 
-class UnrevokeWithRawResponse:
-    def __init__(self, unrevoke: Unrevoke) -> None:
+class UnrevokeResourceWithRawResponse:
+    def __init__(self, unrevoke: UnrevokeResource) -> None:
         self._unrevoke = unrevoke
 
         self.create = to_raw_response_wrapper(
@@ -150,8 +150,8 @@ class UnrevokeWithRawResponse:
         )
 
 
-class AsyncUnrevokeWithRawResponse:
-    def __init__(self, unrevoke: AsyncUnrevoke) -> None:
+class AsyncUnrevokeResourceWithRawResponse:
+    def __init__(self, unrevoke: AsyncUnrevokeResource) -> None:
         self._unrevoke = unrevoke
 
         self.create = async_to_raw_response_wrapper(
@@ -159,8 +159,8 @@ class AsyncUnrevokeWithRawResponse:
         )
 
 
-class UnrevokeWithStreamingResponse:
-    def __init__(self, unrevoke: Unrevoke) -> None:
+class UnrevokeResourceWithStreamingResponse:
+    def __init__(self, unrevoke: UnrevokeResource) -> None:
         self._unrevoke = unrevoke
 
         self.create = to_streamed_response_wrapper(
@@ -168,8 +168,8 @@ class UnrevokeWithStreamingResponse:
         )
 
 
-class AsyncUnrevokeWithStreamingResponse:
-    def __init__(self, unrevoke: AsyncUnrevoke) -> None:
+class AsyncUnrevokeResourceWithStreamingResponse:
+    def __init__(self, unrevoke: AsyncUnrevokeResource) -> None:
         self._unrevoke = unrevoke
 
         self.create = async_to_streamed_response_wrapper(

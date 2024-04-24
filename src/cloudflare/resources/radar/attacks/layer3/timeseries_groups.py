@@ -44,17 +44,17 @@ from .....types.radar.attacks.layer3.timeseries_group_protocol_response import T
 from .....types.radar.attacks.layer3.timeseries_group_vertical_response import TimeseriesGroupVerticalResponse
 from .....types.radar.attacks.layer3.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
 
-__all__ = ["TimeseriesGroups", "AsyncTimeseriesGroups"]
+__all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
 
 
-class TimeseriesGroups(SyncAPIResource):
+class TimeseriesGroupsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TimeseriesGroupsWithRawResponse:
-        return TimeseriesGroupsWithRawResponse(self)
+    def with_raw_response(self) -> TimeseriesGroupsResourceWithRawResponse:
+        return TimeseriesGroupsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TimeseriesGroupsWithStreamingResponse:
-        return TimeseriesGroupsWithStreamingResponse(self)
+    def with_streaming_response(self) -> TimeseriesGroupsResourceWithStreamingResponse:
+        return TimeseriesGroupsResourceWithStreamingResponse(self)
 
     def bitrate(
         self,
@@ -973,14 +973,14 @@ class TimeseriesGroups(SyncAPIResource):
         )
 
 
-class AsyncTimeseriesGroups(AsyncAPIResource):
+class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTimeseriesGroupsWithRawResponse:
-        return AsyncTimeseriesGroupsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
+        return AsyncTimeseriesGroupsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTimeseriesGroupsWithStreamingResponse:
-        return AsyncTimeseriesGroupsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
+        return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
     async def bitrate(
         self,
@@ -1899,8 +1899,8 @@ class AsyncTimeseriesGroups(AsyncAPIResource):
         )
 
 
-class TimeseriesGroupsWithRawResponse:
-    def __init__(self, timeseries_groups: TimeseriesGroups) -> None:
+class TimeseriesGroupsResourceWithRawResponse:
+    def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
         self.bitrate = to_raw_response_wrapper(
@@ -1929,8 +1929,8 @@ class TimeseriesGroupsWithRawResponse:
         )
 
 
-class AsyncTimeseriesGroupsWithRawResponse:
-    def __init__(self, timeseries_groups: AsyncTimeseriesGroups) -> None:
+class AsyncTimeseriesGroupsResourceWithRawResponse:
+    def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
         self.bitrate = async_to_raw_response_wrapper(
@@ -1959,8 +1959,8 @@ class AsyncTimeseriesGroupsWithRawResponse:
         )
 
 
-class TimeseriesGroupsWithStreamingResponse:
-    def __init__(self, timeseries_groups: TimeseriesGroups) -> None:
+class TimeseriesGroupsResourceWithStreamingResponse:
+    def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
         self.bitrate = to_streamed_response_wrapper(
@@ -1989,8 +1989,8 @@ class TimeseriesGroupsWithStreamingResponse:
         )
 
 
-class AsyncTimeseriesGroupsWithStreamingResponse:
-    def __init__(self, timeseries_groups: AsyncTimeseriesGroups) -> None:
+class AsyncTimeseriesGroupsResourceWithStreamingResponse:
+    def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
         self.bitrate = async_to_streamed_response_wrapper(

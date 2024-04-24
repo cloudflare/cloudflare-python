@@ -29,17 +29,17 @@ from .....types.radar.bgp.top import ase_get_params, ase_prefixes_params
 from .....types.radar.bgp.top.ase_get_response import AseGetResponse
 from .....types.radar.bgp.top.ase_prefixes_response import AsePrefixesResponse
 
-__all__ = ["Ases", "AsyncAses"]
+__all__ = ["AsesResource", "AsyncAsesResource"]
 
 
-class Ases(SyncAPIResource):
+class AsesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsesWithRawResponse:
-        return AsesWithRawResponse(self)
+    def with_raw_response(self) -> AsesResourceWithRawResponse:
+        return AsesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsesWithStreamingResponse:
-        return AsesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsesResourceWithStreamingResponse:
+        return AsesResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -195,14 +195,14 @@ class Ases(SyncAPIResource):
         )
 
 
-class AsyncAses(AsyncAPIResource):
+class AsyncAsesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAsesWithRawResponse:
-        return AsyncAsesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAsesResourceWithRawResponse:
+        return AsyncAsesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAsesWithStreamingResponse:
-        return AsyncAsesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAsesResourceWithStreamingResponse:
+        return AsyncAsesResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -358,8 +358,8 @@ class AsyncAses(AsyncAPIResource):
         )
 
 
-class AsesWithRawResponse:
-    def __init__(self, ases: Ases) -> None:
+class AsesResourceWithRawResponse:
+    def __init__(self, ases: AsesResource) -> None:
         self._ases = ases
 
         self.get = to_raw_response_wrapper(
@@ -370,8 +370,8 @@ class AsesWithRawResponse:
         )
 
 
-class AsyncAsesWithRawResponse:
-    def __init__(self, ases: AsyncAses) -> None:
+class AsyncAsesResourceWithRawResponse:
+    def __init__(self, ases: AsyncAsesResource) -> None:
         self._ases = ases
 
         self.get = async_to_raw_response_wrapper(
@@ -382,8 +382,8 @@ class AsyncAsesWithRawResponse:
         )
 
 
-class AsesWithStreamingResponse:
-    def __init__(self, ases: Ases) -> None:
+class AsesResourceWithStreamingResponse:
+    def __init__(self, ases: AsesResource) -> None:
         self._ases = ases
 
         self.get = to_streamed_response_wrapper(
@@ -394,8 +394,8 @@ class AsesWithStreamingResponse:
         )
 
 
-class AsyncAsesWithStreamingResponse:
-    def __init__(self, ases: AsyncAses) -> None:
+class AsyncAsesResourceWithStreamingResponse:
+    def __init__(self, ases: AsyncAsesResource) -> None:
         self._ases = ases
 
         self.get = async_to_streamed_response_wrapper(

@@ -22,12 +22,12 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from .direct_uploads import (
-    DirectUploads,
-    AsyncDirectUploads,
-    DirectUploadsWithRawResponse,
-    AsyncDirectUploadsWithRawResponse,
-    DirectUploadsWithStreamingResponse,
-    AsyncDirectUploadsWithStreamingResponse,
+    DirectUploadsResource,
+    AsyncDirectUploadsResource,
+    DirectUploadsResourceWithRawResponse,
+    AsyncDirectUploadsResourceWithRawResponse,
+    DirectUploadsResourceWithStreamingResponse,
+    AsyncDirectUploadsResourceWithStreamingResponse,
 )
 from ...._base_client import (
     make_request_options,
@@ -35,21 +35,21 @@ from ...._base_client import (
 from ....types.images import v2_list_params
 from ....types.images.v2_list_response import V2ListResponse
 
-__all__ = ["V2", "AsyncV2"]
+__all__ = ["V2Resource", "AsyncV2Resource"]
 
 
-class V2(SyncAPIResource):
+class V2Resource(SyncAPIResource):
     @cached_property
-    def direct_uploads(self) -> DirectUploads:
-        return DirectUploads(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> V2WithRawResponse:
-        return V2WithRawResponse(self)
+    def direct_uploads(self) -> DirectUploadsResource:
+        return DirectUploadsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> V2WithStreamingResponse:
-        return V2WithStreamingResponse(self)
+    def with_raw_response(self) -> V2ResourceWithRawResponse:
+        return V2ResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> V2ResourceWithStreamingResponse:
+        return V2ResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -111,18 +111,18 @@ class V2(SyncAPIResource):
         )
 
 
-class AsyncV2(AsyncAPIResource):
+class AsyncV2Resource(AsyncAPIResource):
     @cached_property
-    def direct_uploads(self) -> AsyncDirectUploads:
-        return AsyncDirectUploads(self._client)
+    def direct_uploads(self) -> AsyncDirectUploadsResource:
+        return AsyncDirectUploadsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncV2WithRawResponse:
-        return AsyncV2WithRawResponse(self)
+    def with_raw_response(self) -> AsyncV2ResourceWithRawResponse:
+        return AsyncV2ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncV2WithStreamingResponse:
-        return AsyncV2WithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncV2ResourceWithStreamingResponse:
+        return AsyncV2ResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -184,8 +184,8 @@ class AsyncV2(AsyncAPIResource):
         )
 
 
-class V2WithRawResponse:
-    def __init__(self, v2: V2) -> None:
+class V2ResourceWithRawResponse:
+    def __init__(self, v2: V2Resource) -> None:
         self._v2 = v2
 
         self.list = to_raw_response_wrapper(
@@ -193,12 +193,12 @@ class V2WithRawResponse:
         )
 
     @cached_property
-    def direct_uploads(self) -> DirectUploadsWithRawResponse:
-        return DirectUploadsWithRawResponse(self._v2.direct_uploads)
+    def direct_uploads(self) -> DirectUploadsResourceWithRawResponse:
+        return DirectUploadsResourceWithRawResponse(self._v2.direct_uploads)
 
 
-class AsyncV2WithRawResponse:
-    def __init__(self, v2: AsyncV2) -> None:
+class AsyncV2ResourceWithRawResponse:
+    def __init__(self, v2: AsyncV2Resource) -> None:
         self._v2 = v2
 
         self.list = async_to_raw_response_wrapper(
@@ -206,12 +206,12 @@ class AsyncV2WithRawResponse:
         )
 
     @cached_property
-    def direct_uploads(self) -> AsyncDirectUploadsWithRawResponse:
-        return AsyncDirectUploadsWithRawResponse(self._v2.direct_uploads)
+    def direct_uploads(self) -> AsyncDirectUploadsResourceWithRawResponse:
+        return AsyncDirectUploadsResourceWithRawResponse(self._v2.direct_uploads)
 
 
-class V2WithStreamingResponse:
-    def __init__(self, v2: V2) -> None:
+class V2ResourceWithStreamingResponse:
+    def __init__(self, v2: V2Resource) -> None:
         self._v2 = v2
 
         self.list = to_streamed_response_wrapper(
@@ -219,12 +219,12 @@ class V2WithStreamingResponse:
         )
 
     @cached_property
-    def direct_uploads(self) -> DirectUploadsWithStreamingResponse:
-        return DirectUploadsWithStreamingResponse(self._v2.direct_uploads)
+    def direct_uploads(self) -> DirectUploadsResourceWithStreamingResponse:
+        return DirectUploadsResourceWithStreamingResponse(self._v2.direct_uploads)
 
 
-class AsyncV2WithStreamingResponse:
-    def __init__(self, v2: AsyncV2) -> None:
+class AsyncV2ResourceWithStreamingResponse:
+    def __init__(self, v2: AsyncV2Resource) -> None:
         self._v2 = v2
 
         self.list = async_to_streamed_response_wrapper(
@@ -232,5 +232,5 @@ class AsyncV2WithStreamingResponse:
         )
 
     @cached_property
-    def direct_uploads(self) -> AsyncDirectUploadsWithStreamingResponse:
-        return AsyncDirectUploadsWithStreamingResponse(self._v2.direct_uploads)
+    def direct_uploads(self) -> AsyncDirectUploadsResourceWithStreamingResponse:
+        return AsyncDirectUploadsResourceWithStreamingResponse(self._v2.direct_uploads)

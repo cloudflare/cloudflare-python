@@ -31,17 +31,17 @@ from ....types.radar.bgp.route_stats_response import RouteStatsResponse
 from ....types.radar.bgp.route_pfx2as_response import RoutePfx2asResponse
 from ....types.radar.bgp.route_timeseries_response import RouteTimeseriesResponse
 
-__all__ = ["Routes", "AsyncRoutes"]
+__all__ = ["RoutesResource", "AsyncRoutesResource"]
 
 
-class Routes(SyncAPIResource):
+class RoutesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RoutesWithRawResponse:
-        return RoutesWithRawResponse(self)
+    def with_raw_response(self) -> RoutesResourceWithRawResponse:
+        return RoutesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RoutesWithStreamingResponse:
-        return RoutesWithStreamingResponse(self)
+    def with_streaming_response(self) -> RoutesResourceWithStreamingResponse:
+        return RoutesResourceWithStreamingResponse(self)
 
     def moas(
         self,
@@ -296,14 +296,14 @@ class Routes(SyncAPIResource):
         )
 
 
-class AsyncRoutes(AsyncAPIResource):
+class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRoutesWithRawResponse:
-        return AsyncRoutesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRoutesResourceWithRawResponse:
+        return AsyncRoutesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRoutesWithStreamingResponse:
-        return AsyncRoutesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRoutesResourceWithStreamingResponse:
+        return AsyncRoutesResourceWithStreamingResponse(self)
 
     async def moas(
         self,
@@ -558,8 +558,8 @@ class AsyncRoutes(AsyncAPIResource):
         )
 
 
-class RoutesWithRawResponse:
-    def __init__(self, routes: Routes) -> None:
+class RoutesResourceWithRawResponse:
+    def __init__(self, routes: RoutesResource) -> None:
         self._routes = routes
 
         self.moas = to_raw_response_wrapper(
@@ -576,8 +576,8 @@ class RoutesWithRawResponse:
         )
 
 
-class AsyncRoutesWithRawResponse:
-    def __init__(self, routes: AsyncRoutes) -> None:
+class AsyncRoutesResourceWithRawResponse:
+    def __init__(self, routes: AsyncRoutesResource) -> None:
         self._routes = routes
 
         self.moas = async_to_raw_response_wrapper(
@@ -594,8 +594,8 @@ class AsyncRoutesWithRawResponse:
         )
 
 
-class RoutesWithStreamingResponse:
-    def __init__(self, routes: Routes) -> None:
+class RoutesResourceWithStreamingResponse:
+    def __init__(self, routes: RoutesResource) -> None:
         self._routes = routes
 
         self.moas = to_streamed_response_wrapper(
@@ -612,8 +612,8 @@ class RoutesWithStreamingResponse:
         )
 
 
-class AsyncRoutesWithStreamingResponse:
-    def __init__(self, routes: AsyncRoutes) -> None:
+class AsyncRoutesResourceWithStreamingResponse:
+    def __init__(self, routes: AsyncRoutesResource) -> None:
         self._routes = routes
 
         self.moas = async_to_streamed_response_wrapper(

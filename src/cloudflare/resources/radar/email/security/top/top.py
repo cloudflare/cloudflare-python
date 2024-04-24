@@ -3,79 +3,79 @@
 from __future__ import annotations
 
 from .tlds import (
-    Tlds,
-    AsyncTlds,
-    TldsWithRawResponse,
-    AsyncTldsWithRawResponse,
-    TldsWithStreamingResponse,
-    AsyncTldsWithStreamingResponse,
+    TldsResource,
+    AsyncTldsResource,
+    TldsResourceWithRawResponse,
+    AsyncTldsResourceWithRawResponse,
+    TldsResourceWithStreamingResponse,
+    AsyncTldsResourceWithStreamingResponse,
 )
-from .tlds.tlds import Tlds, AsyncTlds
+from .tlds.tlds import TldsResource, AsyncTldsResource
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Top", "AsyncTop"]
+__all__ = ["TopResource", "AsyncTopResource"]
 
 
-class Top(SyncAPIResource):
+class TopResource(SyncAPIResource):
     @cached_property
-    def tlds(self) -> Tlds:
-        return Tlds(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self)
+    def tlds(self) -> TldsResource:
+        return TldsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self)
-
-
-class AsyncTop(AsyncAPIResource):
-    @cached_property
-    def tlds(self) -> AsyncTlds:
-        return AsyncTlds(self._client)
+    def with_raw_response(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self)
+    def with_streaming_response(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self)
+
+
+class AsyncTopResource(AsyncAPIResource):
+    @cached_property
+    def tlds(self) -> AsyncTldsResource:
+        return AsyncTldsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self)
 
 
-class TopWithRawResponse:
-    def __init__(self, top: Top) -> None:
+class TopResourceWithRawResponse:
+    def __init__(self, top: TopResource) -> None:
         self._top = top
 
     @cached_property
-    def tlds(self) -> TldsWithRawResponse:
-        return TldsWithRawResponse(self._top.tlds)
+    def tlds(self) -> TldsResourceWithRawResponse:
+        return TldsResourceWithRawResponse(self._top.tlds)
 
 
-class AsyncTopWithRawResponse:
-    def __init__(self, top: AsyncTop) -> None:
+class AsyncTopResourceWithRawResponse:
+    def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
     @cached_property
-    def tlds(self) -> AsyncTldsWithRawResponse:
-        return AsyncTldsWithRawResponse(self._top.tlds)
+    def tlds(self) -> AsyncTldsResourceWithRawResponse:
+        return AsyncTldsResourceWithRawResponse(self._top.tlds)
 
 
-class TopWithStreamingResponse:
-    def __init__(self, top: Top) -> None:
+class TopResourceWithStreamingResponse:
+    def __init__(self, top: TopResource) -> None:
         self._top = top
 
     @cached_property
-    def tlds(self) -> TldsWithStreamingResponse:
-        return TldsWithStreamingResponse(self._top.tlds)
+    def tlds(self) -> TldsResourceWithStreamingResponse:
+        return TldsResourceWithStreamingResponse(self._top.tlds)
 
 
-class AsyncTopWithStreamingResponse:
-    def __init__(self, top: AsyncTop) -> None:
+class AsyncTopResourceWithStreamingResponse:
+    def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
     @cached_property
-    def tlds(self) -> AsyncTldsWithStreamingResponse:
-        return AsyncTldsWithStreamingResponse(self._top.tlds)
+    def tlds(self) -> AsyncTldsResourceWithStreamingResponse:
+        return AsyncTldsResourceWithStreamingResponse(self._top.tlds)

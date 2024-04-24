@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .outages import (
-    Outages,
-    AsyncOutages,
-    OutagesWithRawResponse,
-    AsyncOutagesWithRawResponse,
-    OutagesWithStreamingResponse,
-    AsyncOutagesWithStreamingResponse,
+    OutagesResource,
+    AsyncOutagesResource,
+    OutagesResourceWithRawResponse,
+    AsyncOutagesResourceWithRawResponse,
+    OutagesResourceWithStreamingResponse,
+    AsyncOutagesResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Annotations", "AsyncAnnotations"]
+__all__ = ["AnnotationsResource", "AsyncAnnotationsResource"]
 
 
-class Annotations(SyncAPIResource):
+class AnnotationsResource(SyncAPIResource):
     @cached_property
-    def outages(self) -> Outages:
-        return Outages(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> AnnotationsWithRawResponse:
-        return AnnotationsWithRawResponse(self)
+    def outages(self) -> OutagesResource:
+        return OutagesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AnnotationsWithStreamingResponse:
-        return AnnotationsWithStreamingResponse(self)
-
-
-class AsyncAnnotations(AsyncAPIResource):
-    @cached_property
-    def outages(self) -> AsyncOutages:
-        return AsyncOutages(self._client)
+    def with_raw_response(self) -> AnnotationsResourceWithRawResponse:
+        return AnnotationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAnnotationsWithRawResponse:
-        return AsyncAnnotationsWithRawResponse(self)
+    def with_streaming_response(self) -> AnnotationsResourceWithStreamingResponse:
+        return AnnotationsResourceWithStreamingResponse(self)
+
+
+class AsyncAnnotationsResource(AsyncAPIResource):
+    @cached_property
+    def outages(self) -> AsyncOutagesResource:
+        return AsyncOutagesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAnnotationsWithStreamingResponse:
-        return AsyncAnnotationsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncAnnotationsResourceWithRawResponse:
+        return AsyncAnnotationsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAnnotationsResourceWithStreamingResponse:
+        return AsyncAnnotationsResourceWithStreamingResponse(self)
 
 
-class AnnotationsWithRawResponse:
-    def __init__(self, annotations: Annotations) -> None:
+class AnnotationsResourceWithRawResponse:
+    def __init__(self, annotations: AnnotationsResource) -> None:
         self._annotations = annotations
 
     @cached_property
-    def outages(self) -> OutagesWithRawResponse:
-        return OutagesWithRawResponse(self._annotations.outages)
+    def outages(self) -> OutagesResourceWithRawResponse:
+        return OutagesResourceWithRawResponse(self._annotations.outages)
 
 
-class AsyncAnnotationsWithRawResponse:
-    def __init__(self, annotations: AsyncAnnotations) -> None:
+class AsyncAnnotationsResourceWithRawResponse:
+    def __init__(self, annotations: AsyncAnnotationsResource) -> None:
         self._annotations = annotations
 
     @cached_property
-    def outages(self) -> AsyncOutagesWithRawResponse:
-        return AsyncOutagesWithRawResponse(self._annotations.outages)
+    def outages(self) -> AsyncOutagesResourceWithRawResponse:
+        return AsyncOutagesResourceWithRawResponse(self._annotations.outages)
 
 
-class AnnotationsWithStreamingResponse:
-    def __init__(self, annotations: Annotations) -> None:
+class AnnotationsResourceWithStreamingResponse:
+    def __init__(self, annotations: AnnotationsResource) -> None:
         self._annotations = annotations
 
     @cached_property
-    def outages(self) -> OutagesWithStreamingResponse:
-        return OutagesWithStreamingResponse(self._annotations.outages)
+    def outages(self) -> OutagesResourceWithStreamingResponse:
+        return OutagesResourceWithStreamingResponse(self._annotations.outages)
 
 
-class AsyncAnnotationsWithStreamingResponse:
-    def __init__(self, annotations: AsyncAnnotations) -> None:
+class AsyncAnnotationsResourceWithStreamingResponse:
+    def __init__(self, annotations: AsyncAnnotationsResource) -> None:
         self._annotations = annotations
 
     @cached_property
-    def outages(self) -> AsyncOutagesWithStreamingResponse:
-        return AsyncOutagesWithStreamingResponse(self._annotations.outages)
+    def outages(self) -> AsyncOutagesResourceWithStreamingResponse:
+        return AsyncOutagesResourceWithStreamingResponse(self._annotations.outages)

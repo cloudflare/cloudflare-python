@@ -27,17 +27,17 @@ from ...._base_client import (
 from ....types.radar.ranking import domain_get_params
 from ....types.radar.ranking.domain_get_response import DomainGetResponse
 
-__all__ = ["Domain", "AsyncDomain"]
+__all__ = ["DomainResource", "AsyncDomainResource"]
 
 
-class Domain(SyncAPIResource):
+class DomainResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DomainWithRawResponse:
-        return DomainWithRawResponse(self)
+    def with_raw_response(self) -> DomainResourceWithRawResponse:
+        return DomainResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DomainWithStreamingResponse:
-        return DomainWithStreamingResponse(self)
+    def with_streaming_response(self) -> DomainResourceWithStreamingResponse:
+        return DomainResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -106,14 +106,14 @@ class Domain(SyncAPIResource):
         )
 
 
-class AsyncDomain(AsyncAPIResource):
+class AsyncDomainResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDomainWithRawResponse:
-        return AsyncDomainWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDomainResourceWithRawResponse:
+        return AsyncDomainResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDomainWithStreamingResponse:
-        return AsyncDomainWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDomainResourceWithStreamingResponse:
+        return AsyncDomainResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -182,8 +182,8 @@ class AsyncDomain(AsyncAPIResource):
         )
 
 
-class DomainWithRawResponse:
-    def __init__(self, domain: Domain) -> None:
+class DomainResourceWithRawResponse:
+    def __init__(self, domain: DomainResource) -> None:
         self._domain = domain
 
         self.get = to_raw_response_wrapper(
@@ -191,8 +191,8 @@ class DomainWithRawResponse:
         )
 
 
-class AsyncDomainWithRawResponse:
-    def __init__(self, domain: AsyncDomain) -> None:
+class AsyncDomainResourceWithRawResponse:
+    def __init__(self, domain: AsyncDomainResource) -> None:
         self._domain = domain
 
         self.get = async_to_raw_response_wrapper(
@@ -200,8 +200,8 @@ class AsyncDomainWithRawResponse:
         )
 
 
-class DomainWithStreamingResponse:
-    def __init__(self, domain: Domain) -> None:
+class DomainResourceWithStreamingResponse:
+    def __init__(self, domain: DomainResource) -> None:
         self._domain = domain
 
         self.get = to_streamed_response_wrapper(
@@ -209,8 +209,8 @@ class DomainWithStreamingResponse:
         )
 
 
-class AsyncDomainWithStreamingResponse:
-    def __init__(self, domain: AsyncDomain) -> None:
+class AsyncDomainResourceWithStreamingResponse:
+    def __init__(self, domain: AsyncDomainResource) -> None:
         self._domain = domain
 
         self.get = async_to_streamed_response_wrapper(

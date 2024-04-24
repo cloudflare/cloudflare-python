@@ -27,17 +27,17 @@ from ....types.addressing.address_maps import zone_delete_params, zone_update_pa
 from ....types.addressing.address_maps.zone_delete_response import ZoneDeleteResponse
 from ....types.addressing.address_maps.zone_update_response import ZoneUpdateResponse
 
-__all__ = ["Zones", "AsyncZones"]
+__all__ = ["ZonesResource", "AsyncZonesResource"]
 
 
-class Zones(SyncAPIResource):
+class ZonesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ZonesWithRawResponse:
-        return ZonesWithRawResponse(self)
+    def with_raw_response(self) -> ZonesResourceWithRawResponse:
+        return ZonesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ZonesWithStreamingResponse:
-        return ZonesWithStreamingResponse(self)
+    def with_streaming_response(self) -> ZonesResourceWithStreamingResponse:
+        return ZonesResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -142,14 +142,14 @@ class Zones(SyncAPIResource):
         )
 
 
-class AsyncZones(AsyncAPIResource):
+class AsyncZonesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncZonesWithRawResponse:
-        return AsyncZonesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncZonesResourceWithRawResponse:
+        return AsyncZonesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncZonesWithStreamingResponse:
-        return AsyncZonesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncZonesResourceWithStreamingResponse:
+        return AsyncZonesResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -254,8 +254,8 @@ class AsyncZones(AsyncAPIResource):
         )
 
 
-class ZonesWithRawResponse:
-    def __init__(self, zones: Zones) -> None:
+class ZonesResourceWithRawResponse:
+    def __init__(self, zones: ZonesResource) -> None:
         self._zones = zones
 
         self.update = to_raw_response_wrapper(
@@ -266,8 +266,8 @@ class ZonesWithRawResponse:
         )
 
 
-class AsyncZonesWithRawResponse:
-    def __init__(self, zones: AsyncZones) -> None:
+class AsyncZonesResourceWithRawResponse:
+    def __init__(self, zones: AsyncZonesResource) -> None:
         self._zones = zones
 
         self.update = async_to_raw_response_wrapper(
@@ -278,8 +278,8 @@ class AsyncZonesWithRawResponse:
         )
 
 
-class ZonesWithStreamingResponse:
-    def __init__(self, zones: Zones) -> None:
+class ZonesResourceWithStreamingResponse:
+    def __init__(self, zones: ZonesResource) -> None:
         self._zones = zones
 
         self.update = to_streamed_response_wrapper(
@@ -290,8 +290,8 @@ class ZonesWithStreamingResponse:
         )
 
 
-class AsyncZonesWithStreamingResponse:
-    def __init__(self, zones: AsyncZones) -> None:
+class AsyncZonesResourceWithStreamingResponse:
+    def __init__(self, zones: AsyncZonesResource) -> None:
         self._zones = zones
 
         self.update = async_to_streamed_response_wrapper(

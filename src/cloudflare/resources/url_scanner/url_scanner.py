@@ -8,12 +8,12 @@ from datetime import datetime
 import httpx
 
 from .scans import (
-    Scans,
-    AsyncScans,
-    ScansWithRawResponse,
-    AsyncScansWithRawResponse,
-    ScansWithStreamingResponse,
-    AsyncScansWithStreamingResponse,
+    ScansResource,
+    AsyncScansResource,
+    ScansResourceWithRawResponse,
+    AsyncScansResourceWithRawResponse,
+    ScansResourceWithStreamingResponse,
+    AsyncScansResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -35,21 +35,21 @@ from ..._base_client import (
 from ...types.url_scanner import url_scanner_scan_params
 from ...types.url_scanner.url_scanner_scan_response import URLScannerScanResponse
 
-__all__ = ["URLScanner", "AsyncURLScanner"]
+__all__ = ["URLScannerResource", "AsyncURLScannerResource"]
 
 
-class URLScanner(SyncAPIResource):
+class URLScannerResource(SyncAPIResource):
     @cached_property
-    def scans(self) -> Scans:
-        return Scans(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> URLScannerWithRawResponse:
-        return URLScannerWithRawResponse(self)
+    def scans(self) -> ScansResource:
+        return ScansResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> URLScannerWithStreamingResponse:
-        return URLScannerWithStreamingResponse(self)
+    def with_raw_response(self) -> URLScannerResourceWithRawResponse:
+        return URLScannerResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> URLScannerResourceWithStreamingResponse:
+        return URLScannerResourceWithStreamingResponse(self)
 
     def scan(
         self,
@@ -170,18 +170,18 @@ class URLScanner(SyncAPIResource):
         )
 
 
-class AsyncURLScanner(AsyncAPIResource):
+class AsyncURLScannerResource(AsyncAPIResource):
     @cached_property
-    def scans(self) -> AsyncScans:
-        return AsyncScans(self._client)
+    def scans(self) -> AsyncScansResource:
+        return AsyncScansResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncURLScannerWithRawResponse:
-        return AsyncURLScannerWithRawResponse(self)
+    def with_raw_response(self) -> AsyncURLScannerResourceWithRawResponse:
+        return AsyncURLScannerResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncURLScannerWithStreamingResponse:
-        return AsyncURLScannerWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncURLScannerResourceWithStreamingResponse:
+        return AsyncURLScannerResourceWithStreamingResponse(self)
 
     async def scan(
         self,
@@ -302,8 +302,8 @@ class AsyncURLScanner(AsyncAPIResource):
         )
 
 
-class URLScannerWithRawResponse:
-    def __init__(self, url_scanner: URLScanner) -> None:
+class URLScannerResourceWithRawResponse:
+    def __init__(self, url_scanner: URLScannerResource) -> None:
         self._url_scanner = url_scanner
 
         self.scan = to_raw_response_wrapper(
@@ -311,12 +311,12 @@ class URLScannerWithRawResponse:
         )
 
     @cached_property
-    def scans(self) -> ScansWithRawResponse:
-        return ScansWithRawResponse(self._url_scanner.scans)
+    def scans(self) -> ScansResourceWithRawResponse:
+        return ScansResourceWithRawResponse(self._url_scanner.scans)
 
 
-class AsyncURLScannerWithRawResponse:
-    def __init__(self, url_scanner: AsyncURLScanner) -> None:
+class AsyncURLScannerResourceWithRawResponse:
+    def __init__(self, url_scanner: AsyncURLScannerResource) -> None:
         self._url_scanner = url_scanner
 
         self.scan = async_to_raw_response_wrapper(
@@ -324,12 +324,12 @@ class AsyncURLScannerWithRawResponse:
         )
 
     @cached_property
-    def scans(self) -> AsyncScansWithRawResponse:
-        return AsyncScansWithRawResponse(self._url_scanner.scans)
+    def scans(self) -> AsyncScansResourceWithRawResponse:
+        return AsyncScansResourceWithRawResponse(self._url_scanner.scans)
 
 
-class URLScannerWithStreamingResponse:
-    def __init__(self, url_scanner: URLScanner) -> None:
+class URLScannerResourceWithStreamingResponse:
+    def __init__(self, url_scanner: URLScannerResource) -> None:
         self._url_scanner = url_scanner
 
         self.scan = to_streamed_response_wrapper(
@@ -337,12 +337,12 @@ class URLScannerWithStreamingResponse:
         )
 
     @cached_property
-    def scans(self) -> ScansWithStreamingResponse:
-        return ScansWithStreamingResponse(self._url_scanner.scans)
+    def scans(self) -> ScansResourceWithStreamingResponse:
+        return ScansResourceWithStreamingResponse(self._url_scanner.scans)
 
 
-class AsyncURLScannerWithStreamingResponse:
-    def __init__(self, url_scanner: AsyncURLScanner) -> None:
+class AsyncURLScannerResourceWithStreamingResponse:
+    def __init__(self, url_scanner: AsyncURLScannerResource) -> None:
         self._url_scanner = url_scanner
 
         self.scan = async_to_streamed_response_wrapper(
@@ -350,5 +350,5 @@ class AsyncURLScannerWithStreamingResponse:
         )
 
     @cached_property
-    def scans(self) -> AsyncScansWithStreamingResponse:
-        return AsyncScansWithStreamingResponse(self._url_scanner.scans)
+    def scans(self) -> AsyncScansResourceWithStreamingResponse:
+        return AsyncScansResourceWithStreamingResponse(self._url_scanner.scans)

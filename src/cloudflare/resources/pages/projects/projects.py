@@ -7,12 +7,12 @@ from typing import Any, Type, cast
 import httpx
 
 from .domains import (
-    Domains,
-    AsyncDomains,
-    DomainsWithRawResponse,
-    AsyncDomainsWithRawResponse,
-    DomainsWithStreamingResponse,
-    AsyncDomainsWithStreamingResponse,
+    DomainsResource,
+    AsyncDomainsResource,
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -21,12 +21,12 @@ from ...._utils import (
 )
 from ...._compat import cached_property
 from .deployments import (
-    Deployments,
-    AsyncDeployments,
-    DeploymentsWithRawResponse,
-    AsyncDeploymentsWithRawResponse,
-    DeploymentsWithStreamingResponse,
-    AsyncDeploymentsWithStreamingResponse,
+    DeploymentsResource,
+    AsyncDeploymentsResource,
+    DeploymentsResourceWithRawResponse,
+    AsyncDeploymentsResourceWithRawResponse,
+    DeploymentsResourceWithStreamingResponse,
+    AsyncDeploymentsResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -43,31 +43,31 @@ from ...._base_client import (
     make_request_options,
 )
 from ....types.pages.project import Project
-from .deployments.deployments import Deployments, AsyncDeployments
+from .deployments.deployments import DeploymentsResource, AsyncDeploymentsResource
 from ....types.pages.deployment import Deployment
 from ....types.pages.deployment_param import DeploymentParam
 from ....types.pages.project_edit_response import ProjectEditResponse
 from ....types.pages.project_create_response import ProjectCreateResponse
 
-__all__ = ["Projects", "AsyncProjects"]
+__all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
 
-class Projects(SyncAPIResource):
+class ProjectsResource(SyncAPIResource):
     @cached_property
-    def deployments(self) -> Deployments:
-        return Deployments(self._client)
-
-    @cached_property
-    def domains(self) -> Domains:
-        return Domains(self._client)
+    def deployments(self) -> DeploymentsResource:
+        return DeploymentsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> ProjectsWithRawResponse:
-        return ProjectsWithRawResponse(self)
+    def domains(self) -> DomainsResource:
+        return DomainsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ProjectsWithStreamingResponse:
-        return ProjectsWithStreamingResponse(self)
+    def with_raw_response(self) -> ProjectsResourceWithRawResponse:
+        return ProjectsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ProjectsResourceWithStreamingResponse:
+        return ProjectsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -354,22 +354,22 @@ class Projects(SyncAPIResource):
         )
 
 
-class AsyncProjects(AsyncAPIResource):
+class AsyncProjectsResource(AsyncAPIResource):
     @cached_property
-    def deployments(self) -> AsyncDeployments:
-        return AsyncDeployments(self._client)
+    def deployments(self) -> AsyncDeploymentsResource:
+        return AsyncDeploymentsResource(self._client)
 
     @cached_property
-    def domains(self) -> AsyncDomains:
-        return AsyncDomains(self._client)
+    def domains(self) -> AsyncDomainsResource:
+        return AsyncDomainsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncProjectsWithRawResponse:
-        return AsyncProjectsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncProjectsResourceWithRawResponse:
+        return AsyncProjectsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncProjectsWithStreamingResponse:
-        return AsyncProjectsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncProjectsResourceWithStreamingResponse:
+        return AsyncProjectsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -656,8 +656,8 @@ class AsyncProjects(AsyncAPIResource):
         )
 
 
-class ProjectsWithRawResponse:
-    def __init__(self, projects: Projects) -> None:
+class ProjectsResourceWithRawResponse:
+    def __init__(self, projects: ProjectsResource) -> None:
         self._projects = projects
 
         self.create = to_raw_response_wrapper(
@@ -680,16 +680,16 @@ class ProjectsWithRawResponse:
         )
 
     @cached_property
-    def deployments(self) -> DeploymentsWithRawResponse:
-        return DeploymentsWithRawResponse(self._projects.deployments)
+    def deployments(self) -> DeploymentsResourceWithRawResponse:
+        return DeploymentsResourceWithRawResponse(self._projects.deployments)
 
     @cached_property
-    def domains(self) -> DomainsWithRawResponse:
-        return DomainsWithRawResponse(self._projects.domains)
+    def domains(self) -> DomainsResourceWithRawResponse:
+        return DomainsResourceWithRawResponse(self._projects.domains)
 
 
-class AsyncProjectsWithRawResponse:
-    def __init__(self, projects: AsyncProjects) -> None:
+class AsyncProjectsResourceWithRawResponse:
+    def __init__(self, projects: AsyncProjectsResource) -> None:
         self._projects = projects
 
         self.create = async_to_raw_response_wrapper(
@@ -712,16 +712,16 @@ class AsyncProjectsWithRawResponse:
         )
 
     @cached_property
-    def deployments(self) -> AsyncDeploymentsWithRawResponse:
-        return AsyncDeploymentsWithRawResponse(self._projects.deployments)
+    def deployments(self) -> AsyncDeploymentsResourceWithRawResponse:
+        return AsyncDeploymentsResourceWithRawResponse(self._projects.deployments)
 
     @cached_property
-    def domains(self) -> AsyncDomainsWithRawResponse:
-        return AsyncDomainsWithRawResponse(self._projects.domains)
+    def domains(self) -> AsyncDomainsResourceWithRawResponse:
+        return AsyncDomainsResourceWithRawResponse(self._projects.domains)
 
 
-class ProjectsWithStreamingResponse:
-    def __init__(self, projects: Projects) -> None:
+class ProjectsResourceWithStreamingResponse:
+    def __init__(self, projects: ProjectsResource) -> None:
         self._projects = projects
 
         self.create = to_streamed_response_wrapper(
@@ -744,16 +744,16 @@ class ProjectsWithStreamingResponse:
         )
 
     @cached_property
-    def deployments(self) -> DeploymentsWithStreamingResponse:
-        return DeploymentsWithStreamingResponse(self._projects.deployments)
+    def deployments(self) -> DeploymentsResourceWithStreamingResponse:
+        return DeploymentsResourceWithStreamingResponse(self._projects.deployments)
 
     @cached_property
-    def domains(self) -> DomainsWithStreamingResponse:
-        return DomainsWithStreamingResponse(self._projects.domains)
+    def domains(self) -> DomainsResourceWithStreamingResponse:
+        return DomainsResourceWithStreamingResponse(self._projects.domains)
 
 
-class AsyncProjectsWithStreamingResponse:
-    def __init__(self, projects: AsyncProjects) -> None:
+class AsyncProjectsResourceWithStreamingResponse:
+    def __init__(self, projects: AsyncProjectsResource) -> None:
         self._projects = projects
 
         self.create = async_to_streamed_response_wrapper(
@@ -776,9 +776,9 @@ class AsyncProjectsWithStreamingResponse:
         )
 
     @cached_property
-    def deployments(self) -> AsyncDeploymentsWithStreamingResponse:
-        return AsyncDeploymentsWithStreamingResponse(self._projects.deployments)
+    def deployments(self) -> AsyncDeploymentsResourceWithStreamingResponse:
+        return AsyncDeploymentsResourceWithStreamingResponse(self._projects.deployments)
 
     @cached_property
-    def domains(self) -> AsyncDomainsWithStreamingResponse:
-        return AsyncDomainsWithStreamingResponse(self._projects.domains)
+    def domains(self) -> AsyncDomainsResourceWithStreamingResponse:
+        return AsyncDomainsResourceWithStreamingResponse(self._projects.domains)

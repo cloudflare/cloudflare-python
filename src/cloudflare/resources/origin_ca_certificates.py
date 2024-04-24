@@ -36,17 +36,17 @@ from ..types.origin_ca_certificates.origin_ca_certificate_get_response import Or
 from ..types.origin_ca_certificates.origin_ca_certificate_create_response import OriginCACertificateCreateResponse
 from ..types.origin_ca_certificates.origin_ca_certificate_delete_response import OriginCACertificateDeleteResponse
 
-__all__ = ["OriginCACertificates", "AsyncOriginCACertificates"]
+__all__ = ["OriginCACertificatesResource", "AsyncOriginCACertificatesResource"]
 
 
-class OriginCACertificates(SyncAPIResource):
+class OriginCACertificatesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OriginCACertificatesWithRawResponse:
-        return OriginCACertificatesWithRawResponse(self)
+    def with_raw_response(self) -> OriginCACertificatesResourceWithRawResponse:
+        return OriginCACertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OriginCACertificatesWithStreamingResponse:
-        return OriginCACertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> OriginCACertificatesResourceWithStreamingResponse:
+        return OriginCACertificatesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -247,14 +247,14 @@ class OriginCACertificates(SyncAPIResource):
         )
 
 
-class AsyncOriginCACertificates(AsyncAPIResource):
+class AsyncOriginCACertificatesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOriginCACertificatesWithRawResponse:
-        return AsyncOriginCACertificatesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOriginCACertificatesResourceWithRawResponse:
+        return AsyncOriginCACertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOriginCACertificatesWithStreamingResponse:
-        return AsyncOriginCACertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOriginCACertificatesResourceWithStreamingResponse:
+        return AsyncOriginCACertificatesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -455,8 +455,8 @@ class AsyncOriginCACertificates(AsyncAPIResource):
         )
 
 
-class OriginCACertificatesWithRawResponse:
-    def __init__(self, origin_ca_certificates: OriginCACertificates) -> None:
+class OriginCACertificatesResourceWithRawResponse:
+    def __init__(self, origin_ca_certificates: OriginCACertificatesResource) -> None:
         self._origin_ca_certificates = origin_ca_certificates
 
         self.create = to_raw_response_wrapper(
@@ -473,8 +473,8 @@ class OriginCACertificatesWithRawResponse:
         )
 
 
-class AsyncOriginCACertificatesWithRawResponse:
-    def __init__(self, origin_ca_certificates: AsyncOriginCACertificates) -> None:
+class AsyncOriginCACertificatesResourceWithRawResponse:
+    def __init__(self, origin_ca_certificates: AsyncOriginCACertificatesResource) -> None:
         self._origin_ca_certificates = origin_ca_certificates
 
         self.create = async_to_raw_response_wrapper(
@@ -491,8 +491,8 @@ class AsyncOriginCACertificatesWithRawResponse:
         )
 
 
-class OriginCACertificatesWithStreamingResponse:
-    def __init__(self, origin_ca_certificates: OriginCACertificates) -> None:
+class OriginCACertificatesResourceWithStreamingResponse:
+    def __init__(self, origin_ca_certificates: OriginCACertificatesResource) -> None:
         self._origin_ca_certificates = origin_ca_certificates
 
         self.create = to_streamed_response_wrapper(
@@ -509,8 +509,8 @@ class OriginCACertificatesWithStreamingResponse:
         )
 
 
-class AsyncOriginCACertificatesWithStreamingResponse:
-    def __init__(self, origin_ca_certificates: AsyncOriginCACertificates) -> None:
+class AsyncOriginCACertificatesResourceWithStreamingResponse:
+    def __init__(self, origin_ca_certificates: AsyncOriginCACertificatesResource) -> None:
         self._origin_ca_certificates = origin_ca_certificates
 
         self.create = async_to_streamed_response_wrapper(

@@ -27,17 +27,17 @@ from ....types.kv.namespaces import bulk_delete_params, bulk_update_params
 from ....types.kv.namespaces.bulk_delete_response import BulkDeleteResponse
 from ....types.kv.namespaces.bulk_update_response import BulkUpdateResponse
 
-__all__ = ["Bulk", "AsyncBulk"]
+__all__ = ["BulkResource", "AsyncBulkResource"]
 
 
-class Bulk(SyncAPIResource):
+class BulkResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BulkWithRawResponse:
-        return BulkWithRawResponse(self)
+    def with_raw_response(self) -> BulkResourceWithRawResponse:
+        return BulkResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BulkWithStreamingResponse:
-        return BulkWithStreamingResponse(self)
+    def with_streaming_response(self) -> BulkResourceWithStreamingResponse:
+        return BulkResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -150,14 +150,14 @@ class Bulk(SyncAPIResource):
         )
 
 
-class AsyncBulk(AsyncAPIResource):
+class AsyncBulkResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBulkWithRawResponse:
-        return AsyncBulkWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBulkResourceWithRawResponse:
+        return AsyncBulkResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBulkWithStreamingResponse:
-        return AsyncBulkWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBulkResourceWithStreamingResponse:
+        return AsyncBulkResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -270,8 +270,8 @@ class AsyncBulk(AsyncAPIResource):
         )
 
 
-class BulkWithRawResponse:
-    def __init__(self, bulk: Bulk) -> None:
+class BulkResourceWithRawResponse:
+    def __init__(self, bulk: BulkResource) -> None:
         self._bulk = bulk
 
         self.update = to_raw_response_wrapper(
@@ -282,8 +282,8 @@ class BulkWithRawResponse:
         )
 
 
-class AsyncBulkWithRawResponse:
-    def __init__(self, bulk: AsyncBulk) -> None:
+class AsyncBulkResourceWithRawResponse:
+    def __init__(self, bulk: AsyncBulkResource) -> None:
         self._bulk = bulk
 
         self.update = async_to_raw_response_wrapper(
@@ -294,8 +294,8 @@ class AsyncBulkWithRawResponse:
         )
 
 
-class BulkWithStreamingResponse:
-    def __init__(self, bulk: Bulk) -> None:
+class BulkResourceWithStreamingResponse:
+    def __init__(self, bulk: BulkResource) -> None:
         self._bulk = bulk
 
         self.update = to_streamed_response_wrapper(
@@ -306,8 +306,8 @@ class BulkWithStreamingResponse:
         )
 
 
-class AsyncBulkWithStreamingResponse:
-    def __init__(self, bulk: AsyncBulk) -> None:
+class AsyncBulkResourceWithStreamingResponse:
+    def __init__(self, bulk: AsyncBulkResource) -> None:
         self._bulk = bulk
 
         self.update = async_to_streamed_response_wrapper(

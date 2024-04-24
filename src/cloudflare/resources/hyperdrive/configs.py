@@ -30,17 +30,17 @@ from ...types.hyperdrive.hyperdrive import Hyperdrive
 from ...types.hyperdrive.configuration_param import ConfigurationParam
 from ...types.hyperdrive.config_delete_response import ConfigDeleteResponse
 
-__all__ = ["Configs", "AsyncConfigs"]
+__all__ = ["ConfigsResource", "AsyncConfigsResource"]
 
 
-class Configs(SyncAPIResource):
+class ConfigsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ConfigsWithRawResponse:
-        return ConfigsWithRawResponse(self)
+    def with_raw_response(self) -> ConfigsResourceWithRawResponse:
+        return ConfigsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ConfigsWithStreamingResponse:
-        return ConfigsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ConfigsResourceWithStreamingResponse:
+        return ConfigsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -334,14 +334,14 @@ class Configs(SyncAPIResource):
         )
 
 
-class AsyncConfigs(AsyncAPIResource):
+class AsyncConfigsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncConfigsWithRawResponse:
-        return AsyncConfigsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncConfigsResourceWithRawResponse:
+        return AsyncConfigsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConfigsWithStreamingResponse:
-        return AsyncConfigsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncConfigsResourceWithStreamingResponse:
+        return AsyncConfigsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -635,8 +635,8 @@ class AsyncConfigs(AsyncAPIResource):
         )
 
 
-class ConfigsWithRawResponse:
-    def __init__(self, configs: Configs) -> None:
+class ConfigsResourceWithRawResponse:
+    def __init__(self, configs: ConfigsResource) -> None:
         self._configs = configs
 
         self.create = to_raw_response_wrapper(
@@ -659,8 +659,8 @@ class ConfigsWithRawResponse:
         )
 
 
-class AsyncConfigsWithRawResponse:
-    def __init__(self, configs: AsyncConfigs) -> None:
+class AsyncConfigsResourceWithRawResponse:
+    def __init__(self, configs: AsyncConfigsResource) -> None:
         self._configs = configs
 
         self.create = async_to_raw_response_wrapper(
@@ -683,8 +683,8 @@ class AsyncConfigsWithRawResponse:
         )
 
 
-class ConfigsWithStreamingResponse:
-    def __init__(self, configs: Configs) -> None:
+class ConfigsResourceWithStreamingResponse:
+    def __init__(self, configs: ConfigsResource) -> None:
         self._configs = configs
 
         self.create = to_streamed_response_wrapper(
@@ -707,8 +707,8 @@ class ConfigsWithStreamingResponse:
         )
 
 
-class AsyncConfigsWithStreamingResponse:
-    def __init__(self, configs: AsyncConfigs) -> None:
+class AsyncConfigsResourceWithStreamingResponse:
+    def __init__(self, configs: AsyncConfigsResource) -> None:
         self._configs = configs
 
         self.create = async_to_streamed_response_wrapper(

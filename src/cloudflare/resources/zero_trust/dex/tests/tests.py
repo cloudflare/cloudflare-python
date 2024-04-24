@@ -18,12 +18,12 @@ from ....._response import (
 )
 from .....pagination import SyncV4PagePagination, AsyncV4PagePagination
 from .unique_devices import (
-    UniqueDevices,
-    AsyncUniqueDevices,
-    UniqueDevicesWithRawResponse,
-    AsyncUniqueDevicesWithRawResponse,
-    UniqueDevicesWithStreamingResponse,
-    AsyncUniqueDevicesWithStreamingResponse,
+    UniqueDevicesResource,
+    AsyncUniqueDevicesResource,
+    UniqueDevicesResourceWithRawResponse,
+    AsyncUniqueDevicesResourceWithRawResponse,
+    UniqueDevicesResourceWithStreamingResponse,
+    AsyncUniqueDevicesResourceWithStreamingResponse,
 )
 from ....._base_client import (
     AsyncPaginator,
@@ -32,23 +32,23 @@ from ....._base_client import (
 from .....types.zero_trust.dex import test_list_params
 from .....types.zero_trust.dex.test_list_response import TestListResponse
 
-__all__ = ["Tests", "AsyncTests"]
+__all__ = ["TestsResource", "AsyncTestsResource"]
 
 
-class Tests(SyncAPIResource):
+class TestsResource(SyncAPIResource):
     __test__ = False
 
     @cached_property
-    def unique_devices(self) -> UniqueDevices:
-        return UniqueDevices(self._client)
+    def unique_devices(self) -> UniqueDevicesResource:
+        return UniqueDevicesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> TestsWithRawResponse:
-        return TestsWithRawResponse(self)
+    def with_raw_response(self) -> TestsResourceWithRawResponse:
+        return TestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TestsWithStreamingResponse:
-        return TestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> TestsResourceWithStreamingResponse:
+        return TestsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -115,18 +115,18 @@ class Tests(SyncAPIResource):
         )
 
 
-class AsyncTests(AsyncAPIResource):
+class AsyncTestsResource(AsyncAPIResource):
     @cached_property
-    def unique_devices(self) -> AsyncUniqueDevices:
-        return AsyncUniqueDevices(self._client)
+    def unique_devices(self) -> AsyncUniqueDevicesResource:
+        return AsyncUniqueDevicesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncTestsWithRawResponse:
-        return AsyncTestsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTestsResourceWithRawResponse:
+        return AsyncTestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTestsWithStreamingResponse:
-        return AsyncTestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTestsResourceWithStreamingResponse:
+        return AsyncTestsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -193,10 +193,10 @@ class AsyncTests(AsyncAPIResource):
         )
 
 
-class TestsWithRawResponse:
+class TestsResourceWithRawResponse:
     __test__ = False
 
-    def __init__(self, tests: Tests) -> None:
+    def __init__(self, tests: TestsResource) -> None:
         self._tests = tests
 
         self.list = to_raw_response_wrapper(
@@ -204,12 +204,12 @@ class TestsWithRawResponse:
         )
 
     @cached_property
-    def unique_devices(self) -> UniqueDevicesWithRawResponse:
-        return UniqueDevicesWithRawResponse(self._tests.unique_devices)
+    def unique_devices(self) -> UniqueDevicesResourceWithRawResponse:
+        return UniqueDevicesResourceWithRawResponse(self._tests.unique_devices)
 
 
-class AsyncTestsWithRawResponse:
-    def __init__(self, tests: AsyncTests) -> None:
+class AsyncTestsResourceWithRawResponse:
+    def __init__(self, tests: AsyncTestsResource) -> None:
         self._tests = tests
 
         self.list = async_to_raw_response_wrapper(
@@ -217,14 +217,14 @@ class AsyncTestsWithRawResponse:
         )
 
     @cached_property
-    def unique_devices(self) -> AsyncUniqueDevicesWithRawResponse:
-        return AsyncUniqueDevicesWithRawResponse(self._tests.unique_devices)
+    def unique_devices(self) -> AsyncUniqueDevicesResourceWithRawResponse:
+        return AsyncUniqueDevicesResourceWithRawResponse(self._tests.unique_devices)
 
 
-class TestsWithStreamingResponse:
+class TestsResourceWithStreamingResponse:
     __test__ = False
 
-    def __init__(self, tests: Tests) -> None:
+    def __init__(self, tests: TestsResource) -> None:
         self._tests = tests
 
         self.list = to_streamed_response_wrapper(
@@ -232,12 +232,12 @@ class TestsWithStreamingResponse:
         )
 
     @cached_property
-    def unique_devices(self) -> UniqueDevicesWithStreamingResponse:
-        return UniqueDevicesWithStreamingResponse(self._tests.unique_devices)
+    def unique_devices(self) -> UniqueDevicesResourceWithStreamingResponse:
+        return UniqueDevicesResourceWithStreamingResponse(self._tests.unique_devices)
 
 
-class AsyncTestsWithStreamingResponse:
-    def __init__(self, tests: AsyncTests) -> None:
+class AsyncTestsResourceWithStreamingResponse:
+    def __init__(self, tests: AsyncTestsResource) -> None:
         self._tests = tests
 
         self.list = async_to_streamed_response_wrapper(
@@ -245,5 +245,5 @@ class AsyncTestsWithStreamingResponse:
         )
 
     @cached_property
-    def unique_devices(self) -> AsyncUniqueDevicesWithStreamingResponse:
-        return AsyncUniqueDevicesWithStreamingResponse(self._tests.unique_devices)
+    def unique_devices(self) -> AsyncUniqueDevicesResourceWithStreamingResponse:
+        return AsyncUniqueDevicesResourceWithStreamingResponse(self._tests.unique_devices)

@@ -7,28 +7,28 @@ from typing import Type, Optional, cast
 import httpx
 
 from .ips import (
-    IPs,
-    AsyncIPs,
-    IPsWithRawResponse,
-    AsyncIPsWithRawResponse,
-    IPsWithStreamingResponse,
-    AsyncIPsWithStreamingResponse,
+    IPsResource,
+    AsyncIPsResource,
+    IPsResourceWithRawResponse,
+    AsyncIPsResourceWithRawResponse,
+    IPsResourceWithStreamingResponse,
+    AsyncIPsResourceWithStreamingResponse,
 )
 from .zones import (
-    Zones,
-    AsyncZones,
-    ZonesWithRawResponse,
-    AsyncZonesWithRawResponse,
-    ZonesWithStreamingResponse,
-    AsyncZonesWithStreamingResponse,
+    ZonesResource,
+    AsyncZonesResource,
+    ZonesResourceWithRawResponse,
+    AsyncZonesResourceWithRawResponse,
+    ZonesResourceWithStreamingResponse,
+    AsyncZonesResourceWithStreamingResponse,
 )
 from .accounts import (
-    Accounts,
-    AsyncAccounts,
-    AccountsWithRawResponse,
-    AsyncAccountsWithRawResponse,
-    AccountsWithStreamingResponse,
-    AsyncAccountsWithStreamingResponse,
+    AccountsResource,
+    AsyncAccountsResource,
+    AccountsResourceWithRawResponse,
+    AsyncAccountsResourceWithRawResponse,
+    AccountsResourceWithStreamingResponse,
+    AsyncAccountsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -55,29 +55,29 @@ from ....types.addressing.address_map_get_response import AddressMapGetResponse
 from ....types.addressing.address_map_create_response import AddressMapCreateResponse
 from ....types.addressing.address_map_delete_response import AddressMapDeleteResponse
 
-__all__ = ["AddressMaps", "AsyncAddressMaps"]
+__all__ = ["AddressMapsResource", "AsyncAddressMapsResource"]
 
 
-class AddressMaps(SyncAPIResource):
+class AddressMapsResource(SyncAPIResource):
     @cached_property
-    def accounts(self) -> Accounts:
-        return Accounts(self._client)
-
-    @cached_property
-    def ips(self) -> IPs:
-        return IPs(self._client)
+    def accounts(self) -> AccountsResource:
+        return AccountsResource(self._client)
 
     @cached_property
-    def zones(self) -> Zones:
-        return Zones(self._client)
+    def ips(self) -> IPsResource:
+        return IPsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AddressMapsWithRawResponse:
-        return AddressMapsWithRawResponse(self)
+    def zones(self) -> ZonesResource:
+        return ZonesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AddressMapsWithStreamingResponse:
-        return AddressMapsWithStreamingResponse(self)
+    def with_raw_response(self) -> AddressMapsResourceWithRawResponse:
+        return AddressMapsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AddressMapsResourceWithStreamingResponse:
+        return AddressMapsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -329,26 +329,26 @@ class AddressMaps(SyncAPIResource):
         )
 
 
-class AsyncAddressMaps(AsyncAPIResource):
+class AsyncAddressMapsResource(AsyncAPIResource):
     @cached_property
-    def accounts(self) -> AsyncAccounts:
-        return AsyncAccounts(self._client)
+    def accounts(self) -> AsyncAccountsResource:
+        return AsyncAccountsResource(self._client)
 
     @cached_property
-    def ips(self) -> AsyncIPs:
-        return AsyncIPs(self._client)
+    def ips(self) -> AsyncIPsResource:
+        return AsyncIPsResource(self._client)
 
     @cached_property
-    def zones(self) -> AsyncZones:
-        return AsyncZones(self._client)
+    def zones(self) -> AsyncZonesResource:
+        return AsyncZonesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAddressMapsWithRawResponse:
-        return AsyncAddressMapsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAddressMapsResourceWithRawResponse:
+        return AsyncAddressMapsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAddressMapsWithStreamingResponse:
-        return AsyncAddressMapsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAddressMapsResourceWithStreamingResponse:
+        return AsyncAddressMapsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -600,8 +600,8 @@ class AsyncAddressMaps(AsyncAPIResource):
         )
 
 
-class AddressMapsWithRawResponse:
-    def __init__(self, address_maps: AddressMaps) -> None:
+class AddressMapsResourceWithRawResponse:
+    def __init__(self, address_maps: AddressMapsResource) -> None:
         self._address_maps = address_maps
 
         self.create = to_raw_response_wrapper(
@@ -621,20 +621,20 @@ class AddressMapsWithRawResponse:
         )
 
     @cached_property
-    def accounts(self) -> AccountsWithRawResponse:
-        return AccountsWithRawResponse(self._address_maps.accounts)
+    def accounts(self) -> AccountsResourceWithRawResponse:
+        return AccountsResourceWithRawResponse(self._address_maps.accounts)
 
     @cached_property
-    def ips(self) -> IPsWithRawResponse:
-        return IPsWithRawResponse(self._address_maps.ips)
+    def ips(self) -> IPsResourceWithRawResponse:
+        return IPsResourceWithRawResponse(self._address_maps.ips)
 
     @cached_property
-    def zones(self) -> ZonesWithRawResponse:
-        return ZonesWithRawResponse(self._address_maps.zones)
+    def zones(self) -> ZonesResourceWithRawResponse:
+        return ZonesResourceWithRawResponse(self._address_maps.zones)
 
 
-class AsyncAddressMapsWithRawResponse:
-    def __init__(self, address_maps: AsyncAddressMaps) -> None:
+class AsyncAddressMapsResourceWithRawResponse:
+    def __init__(self, address_maps: AsyncAddressMapsResource) -> None:
         self._address_maps = address_maps
 
         self.create = async_to_raw_response_wrapper(
@@ -654,20 +654,20 @@ class AsyncAddressMapsWithRawResponse:
         )
 
     @cached_property
-    def accounts(self) -> AsyncAccountsWithRawResponse:
-        return AsyncAccountsWithRawResponse(self._address_maps.accounts)
+    def accounts(self) -> AsyncAccountsResourceWithRawResponse:
+        return AsyncAccountsResourceWithRawResponse(self._address_maps.accounts)
 
     @cached_property
-    def ips(self) -> AsyncIPsWithRawResponse:
-        return AsyncIPsWithRawResponse(self._address_maps.ips)
+    def ips(self) -> AsyncIPsResourceWithRawResponse:
+        return AsyncIPsResourceWithRawResponse(self._address_maps.ips)
 
     @cached_property
-    def zones(self) -> AsyncZonesWithRawResponse:
-        return AsyncZonesWithRawResponse(self._address_maps.zones)
+    def zones(self) -> AsyncZonesResourceWithRawResponse:
+        return AsyncZonesResourceWithRawResponse(self._address_maps.zones)
 
 
-class AddressMapsWithStreamingResponse:
-    def __init__(self, address_maps: AddressMaps) -> None:
+class AddressMapsResourceWithStreamingResponse:
+    def __init__(self, address_maps: AddressMapsResource) -> None:
         self._address_maps = address_maps
 
         self.create = to_streamed_response_wrapper(
@@ -687,20 +687,20 @@ class AddressMapsWithStreamingResponse:
         )
 
     @cached_property
-    def accounts(self) -> AccountsWithStreamingResponse:
-        return AccountsWithStreamingResponse(self._address_maps.accounts)
+    def accounts(self) -> AccountsResourceWithStreamingResponse:
+        return AccountsResourceWithStreamingResponse(self._address_maps.accounts)
 
     @cached_property
-    def ips(self) -> IPsWithStreamingResponse:
-        return IPsWithStreamingResponse(self._address_maps.ips)
+    def ips(self) -> IPsResourceWithStreamingResponse:
+        return IPsResourceWithStreamingResponse(self._address_maps.ips)
 
     @cached_property
-    def zones(self) -> ZonesWithStreamingResponse:
-        return ZonesWithStreamingResponse(self._address_maps.zones)
+    def zones(self) -> ZonesResourceWithStreamingResponse:
+        return ZonesResourceWithStreamingResponse(self._address_maps.zones)
 
 
-class AsyncAddressMapsWithStreamingResponse:
-    def __init__(self, address_maps: AsyncAddressMaps) -> None:
+class AsyncAddressMapsResourceWithStreamingResponse:
+    def __init__(self, address_maps: AsyncAddressMapsResource) -> None:
         self._address_maps = address_maps
 
         self.create = async_to_streamed_response_wrapper(
@@ -720,13 +720,13 @@ class AsyncAddressMapsWithStreamingResponse:
         )
 
     @cached_property
-    def accounts(self) -> AsyncAccountsWithStreamingResponse:
-        return AsyncAccountsWithStreamingResponse(self._address_maps.accounts)
+    def accounts(self) -> AsyncAccountsResourceWithStreamingResponse:
+        return AsyncAccountsResourceWithStreamingResponse(self._address_maps.accounts)
 
     @cached_property
-    def ips(self) -> AsyncIPsWithStreamingResponse:
-        return AsyncIPsWithStreamingResponse(self._address_maps.ips)
+    def ips(self) -> AsyncIPsResourceWithStreamingResponse:
+        return AsyncIPsResourceWithStreamingResponse(self._address_maps.ips)
 
     @cached_property
-    def zones(self) -> AsyncZonesWithStreamingResponse:
-        return AsyncZonesWithStreamingResponse(self._address_maps.zones)
+    def zones(self) -> AsyncZonesResourceWithStreamingResponse:
+        return AsyncZonesResourceWithStreamingResponse(self._address_maps.zones)

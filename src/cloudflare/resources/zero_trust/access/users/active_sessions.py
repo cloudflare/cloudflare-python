@@ -24,17 +24,17 @@ from ....._base_client import (
 from .....types.zero_trust.access.users.active_session_get_response import ActiveSessionGetResponse
 from .....types.zero_trust.access.users.active_session_list_response import ActiveSessionListResponse
 
-__all__ = ["ActiveSessions", "AsyncActiveSessions"]
+__all__ = ["ActiveSessionsResource", "AsyncActiveSessionsResource"]
 
 
-class ActiveSessions(SyncAPIResource):
+class ActiveSessionsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ActiveSessionsWithRawResponse:
-        return ActiveSessionsWithRawResponse(self)
+    def with_raw_response(self) -> ActiveSessionsResourceWithRawResponse:
+        return ActiveSessionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ActiveSessionsWithStreamingResponse:
-        return ActiveSessionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ActiveSessionsResourceWithStreamingResponse:
+        return ActiveSessionsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -125,14 +125,14 @@ class ActiveSessions(SyncAPIResource):
         )
 
 
-class AsyncActiveSessions(AsyncAPIResource):
+class AsyncActiveSessionsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncActiveSessionsWithRawResponse:
-        return AsyncActiveSessionsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncActiveSessionsResourceWithRawResponse:
+        return AsyncActiveSessionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncActiveSessionsWithStreamingResponse:
-        return AsyncActiveSessionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncActiveSessionsResourceWithStreamingResponse:
+        return AsyncActiveSessionsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -223,8 +223,8 @@ class AsyncActiveSessions(AsyncAPIResource):
         )
 
 
-class ActiveSessionsWithRawResponse:
-    def __init__(self, active_sessions: ActiveSessions) -> None:
+class ActiveSessionsResourceWithRawResponse:
+    def __init__(self, active_sessions: ActiveSessionsResource) -> None:
         self._active_sessions = active_sessions
 
         self.list = to_raw_response_wrapper(
@@ -235,8 +235,8 @@ class ActiveSessionsWithRawResponse:
         )
 
 
-class AsyncActiveSessionsWithRawResponse:
-    def __init__(self, active_sessions: AsyncActiveSessions) -> None:
+class AsyncActiveSessionsResourceWithRawResponse:
+    def __init__(self, active_sessions: AsyncActiveSessionsResource) -> None:
         self._active_sessions = active_sessions
 
         self.list = async_to_raw_response_wrapper(
@@ -247,8 +247,8 @@ class AsyncActiveSessionsWithRawResponse:
         )
 
 
-class ActiveSessionsWithStreamingResponse:
-    def __init__(self, active_sessions: ActiveSessions) -> None:
+class ActiveSessionsResourceWithStreamingResponse:
+    def __init__(self, active_sessions: ActiveSessionsResource) -> None:
         self._active_sessions = active_sessions
 
         self.list = to_streamed_response_wrapper(
@@ -259,8 +259,8 @@ class ActiveSessionsWithStreamingResponse:
         )
 
 
-class AsyncActiveSessionsWithStreamingResponse:
-    def __init__(self, active_sessions: AsyncActiveSessions) -> None:
+class AsyncActiveSessionsResourceWithStreamingResponse:
+    def __init__(self, active_sessions: AsyncActiveSessionsResource) -> None:
         self._active_sessions = active_sessions
 
         self.list = async_to_streamed_response_wrapper(

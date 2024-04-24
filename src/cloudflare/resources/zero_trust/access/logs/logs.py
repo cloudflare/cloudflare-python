@@ -5,76 +5,76 @@ from __future__ import annotations
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from .access_requests import (
-    AccessRequests,
-    AsyncAccessRequests,
-    AccessRequestsWithRawResponse,
-    AsyncAccessRequestsWithRawResponse,
-    AccessRequestsWithStreamingResponse,
-    AsyncAccessRequestsWithStreamingResponse,
+    AccessRequestsResource,
+    AsyncAccessRequestsResource,
+    AccessRequestsResourceWithRawResponse,
+    AsyncAccessRequestsResourceWithRawResponse,
+    AccessRequestsResourceWithStreamingResponse,
+    AsyncAccessRequestsResourceWithStreamingResponse,
 )
 
-__all__ = ["Logs", "AsyncLogs"]
+__all__ = ["LogsResource", "AsyncLogsResource"]
 
 
-class Logs(SyncAPIResource):
+class LogsResource(SyncAPIResource):
     @cached_property
-    def access_requests(self) -> AccessRequests:
-        return AccessRequests(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> LogsWithRawResponse:
-        return LogsWithRawResponse(self)
+    def access_requests(self) -> AccessRequestsResource:
+        return AccessRequestsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> LogsWithStreamingResponse:
-        return LogsWithStreamingResponse(self)
-
-
-class AsyncLogs(AsyncAPIResource):
-    @cached_property
-    def access_requests(self) -> AsyncAccessRequests:
-        return AsyncAccessRequests(self._client)
+    def with_raw_response(self) -> LogsResourceWithRawResponse:
+        return LogsResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncLogsWithRawResponse:
-        return AsyncLogsWithRawResponse(self)
+    def with_streaming_response(self) -> LogsResourceWithStreamingResponse:
+        return LogsResourceWithStreamingResponse(self)
+
+
+class AsyncLogsResource(AsyncAPIResource):
+    @cached_property
+    def access_requests(self) -> AsyncAccessRequestsResource:
+        return AsyncAccessRequestsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLogsWithStreamingResponse:
-        return AsyncLogsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncLogsResourceWithRawResponse:
+        return AsyncLogsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncLogsResourceWithStreamingResponse:
+        return AsyncLogsResourceWithStreamingResponse(self)
 
 
-class LogsWithRawResponse:
-    def __init__(self, logs: Logs) -> None:
+class LogsResourceWithRawResponse:
+    def __init__(self, logs: LogsResource) -> None:
         self._logs = logs
 
     @cached_property
-    def access_requests(self) -> AccessRequestsWithRawResponse:
-        return AccessRequestsWithRawResponse(self._logs.access_requests)
+    def access_requests(self) -> AccessRequestsResourceWithRawResponse:
+        return AccessRequestsResourceWithRawResponse(self._logs.access_requests)
 
 
-class AsyncLogsWithRawResponse:
-    def __init__(self, logs: AsyncLogs) -> None:
+class AsyncLogsResourceWithRawResponse:
+    def __init__(self, logs: AsyncLogsResource) -> None:
         self._logs = logs
 
     @cached_property
-    def access_requests(self) -> AsyncAccessRequestsWithRawResponse:
-        return AsyncAccessRequestsWithRawResponse(self._logs.access_requests)
+    def access_requests(self) -> AsyncAccessRequestsResourceWithRawResponse:
+        return AsyncAccessRequestsResourceWithRawResponse(self._logs.access_requests)
 
 
-class LogsWithStreamingResponse:
-    def __init__(self, logs: Logs) -> None:
+class LogsResourceWithStreamingResponse:
+    def __init__(self, logs: LogsResource) -> None:
         self._logs = logs
 
     @cached_property
-    def access_requests(self) -> AccessRequestsWithStreamingResponse:
-        return AccessRequestsWithStreamingResponse(self._logs.access_requests)
+    def access_requests(self) -> AccessRequestsResourceWithStreamingResponse:
+        return AccessRequestsResourceWithStreamingResponse(self._logs.access_requests)
 
 
-class AsyncLogsWithStreamingResponse:
-    def __init__(self, logs: AsyncLogs) -> None:
+class AsyncLogsResourceWithStreamingResponse:
+    def __init__(self, logs: AsyncLogsResource) -> None:
         self._logs = logs
 
     @cached_property
-    def access_requests(self) -> AsyncAccessRequestsWithStreamingResponse:
-        return AsyncAccessRequestsWithStreamingResponse(self._logs.access_requests)
+    def access_requests(self) -> AsyncAccessRequestsResourceWithStreamingResponse:
+        return AsyncAccessRequestsResourceWithStreamingResponse(self._logs.access_requests)

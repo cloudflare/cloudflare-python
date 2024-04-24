@@ -30,17 +30,17 @@ from ....types.radar.entities.asn_get_response import ASNGetResponse
 from ....types.radar.entities.asn_rel_response import ASNRelResponse
 from ....types.radar.entities.asn_list_response import ASNListResponse
 
-__all__ = ["ASNs", "AsyncASNs"]
+__all__ = ["ASNsResource", "AsyncASNsResource"]
 
 
-class ASNs(SyncAPIResource):
+class ASNsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ASNsWithRawResponse:
-        return ASNsWithRawResponse(self)
+    def with_raw_response(self) -> ASNsResourceWithRawResponse:
+        return ASNsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ASNsWithStreamingResponse:
-        return ASNsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ASNsResourceWithStreamingResponse:
+        return ASNsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -250,14 +250,14 @@ class ASNs(SyncAPIResource):
         )
 
 
-class AsyncASNs(AsyncAPIResource):
+class AsyncASNsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncASNsWithRawResponse:
-        return AsyncASNsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncASNsResourceWithRawResponse:
+        return AsyncASNsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncASNsWithStreamingResponse:
-        return AsyncASNsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncASNsResourceWithStreamingResponse:
+        return AsyncASNsResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -467,8 +467,8 @@ class AsyncASNs(AsyncAPIResource):
         )
 
 
-class ASNsWithRawResponse:
-    def __init__(self, asns: ASNs) -> None:
+class ASNsResourceWithRawResponse:
+    def __init__(self, asns: ASNsResource) -> None:
         self._asns = asns
 
         self.list = to_raw_response_wrapper(
@@ -485,8 +485,8 @@ class ASNsWithRawResponse:
         )
 
 
-class AsyncASNsWithRawResponse:
-    def __init__(self, asns: AsyncASNs) -> None:
+class AsyncASNsResourceWithRawResponse:
+    def __init__(self, asns: AsyncASNsResource) -> None:
         self._asns = asns
 
         self.list = async_to_raw_response_wrapper(
@@ -503,8 +503,8 @@ class AsyncASNsWithRawResponse:
         )
 
 
-class ASNsWithStreamingResponse:
-    def __init__(self, asns: ASNs) -> None:
+class ASNsResourceWithStreamingResponse:
+    def __init__(self, asns: ASNsResource) -> None:
         self._asns = asns
 
         self.list = to_streamed_response_wrapper(
@@ -521,8 +521,8 @@ class ASNsWithStreamingResponse:
         )
 
 
-class AsyncASNsWithStreamingResponse:
-    def __init__(self, asns: AsyncASNs) -> None:
+class AsyncASNsResourceWithStreamingResponse:
+    def __init__(self, asns: AsyncASNsResource) -> None:
         self._asns = asns
 
         self.list = async_to_streamed_response_wrapper(

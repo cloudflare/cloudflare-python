@@ -38,17 +38,17 @@ from ...types.zero_trust.generic_oauth_config_param import GenericOAuthConfigPar
 from ...types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
 from ...types.zero_trust.identity_provider_delete_response import IdentityProviderDeleteResponse
 
-__all__ = ["IdentityProviders", "AsyncIdentityProviders"]
+__all__ = ["IdentityProvidersResource", "AsyncIdentityProvidersResource"]
 
 
-class IdentityProviders(SyncAPIResource):
+class IdentityProvidersResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IdentityProvidersWithRawResponse:
-        return IdentityProvidersWithRawResponse(self)
+    def with_raw_response(self) -> IdentityProvidersResourceWithRawResponse:
+        return IdentityProvidersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IdentityProvidersWithStreamingResponse:
-        return IdentityProvidersWithStreamingResponse(self)
+    def with_streaming_response(self) -> IdentityProvidersResourceWithStreamingResponse:
+        return IdentityProvidersResourceWithStreamingResponse(self)
 
     @overload
     def create(
@@ -1770,14 +1770,14 @@ class IdentityProviders(SyncAPIResource):
         )
 
 
-class AsyncIdentityProviders(AsyncAPIResource):
+class AsyncIdentityProvidersResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIdentityProvidersWithRawResponse:
-        return AsyncIdentityProvidersWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIdentityProvidersResourceWithRawResponse:
+        return AsyncIdentityProvidersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIdentityProvidersWithStreamingResponse:
-        return AsyncIdentityProvidersWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIdentityProvidersResourceWithStreamingResponse:
+        return AsyncIdentityProvidersResourceWithStreamingResponse(self)
 
     @overload
     async def create(
@@ -3499,8 +3499,8 @@ class AsyncIdentityProviders(AsyncAPIResource):
         )
 
 
-class IdentityProvidersWithRawResponse:
-    def __init__(self, identity_providers: IdentityProviders) -> None:
+class IdentityProvidersResourceWithRawResponse:
+    def __init__(self, identity_providers: IdentityProvidersResource) -> None:
         self._identity_providers = identity_providers
 
         self.create = to_raw_response_wrapper(
@@ -3520,8 +3520,8 @@ class IdentityProvidersWithRawResponse:
         )
 
 
-class AsyncIdentityProvidersWithRawResponse:
-    def __init__(self, identity_providers: AsyncIdentityProviders) -> None:
+class AsyncIdentityProvidersResourceWithRawResponse:
+    def __init__(self, identity_providers: AsyncIdentityProvidersResource) -> None:
         self._identity_providers = identity_providers
 
         self.create = async_to_raw_response_wrapper(
@@ -3541,8 +3541,8 @@ class AsyncIdentityProvidersWithRawResponse:
         )
 
 
-class IdentityProvidersWithStreamingResponse:
-    def __init__(self, identity_providers: IdentityProviders) -> None:
+class IdentityProvidersResourceWithStreamingResponse:
+    def __init__(self, identity_providers: IdentityProvidersResource) -> None:
         self._identity_providers = identity_providers
 
         self.create = to_streamed_response_wrapper(
@@ -3562,8 +3562,8 @@ class IdentityProvidersWithStreamingResponse:
         )
 
 
-class AsyncIdentityProvidersWithStreamingResponse:
-    def __init__(self, identity_providers: AsyncIdentityProviders) -> None:
+class AsyncIdentityProvidersResourceWithStreamingResponse:
+    def __init__(self, identity_providers: AsyncIdentityProvidersResource) -> None:
         self._identity_providers = identity_providers
 
         self.create = async_to_streamed_response_wrapper(

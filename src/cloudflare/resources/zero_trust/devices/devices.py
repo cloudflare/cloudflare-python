@@ -7,61 +7,61 @@ from typing import Any, cast
 import httpx
 
 from .revoke import (
-    Revoke,
-    AsyncRevoke,
-    RevokeWithRawResponse,
-    AsyncRevokeWithRawResponse,
-    RevokeWithStreamingResponse,
-    AsyncRevokeWithStreamingResponse,
+    RevokeResource,
+    AsyncRevokeResource,
+    RevokeResourceWithRawResponse,
+    AsyncRevokeResourceWithRawResponse,
+    RevokeResourceWithStreamingResponse,
+    AsyncRevokeResourceWithStreamingResponse,
 )
 from .posture import (
-    Posture,
-    AsyncPosture,
-    PostureWithRawResponse,
-    AsyncPostureWithRawResponse,
-    PostureWithStreamingResponse,
-    AsyncPostureWithStreamingResponse,
+    PostureResource,
+    AsyncPostureResource,
+    PostureResourceWithRawResponse,
+    AsyncPostureResourceWithRawResponse,
+    PostureResourceWithStreamingResponse,
+    AsyncPostureResourceWithStreamingResponse,
 )
 from .networks import (
-    Networks,
-    AsyncNetworks,
-    NetworksWithRawResponse,
-    AsyncNetworksWithRawResponse,
-    NetworksWithStreamingResponse,
-    AsyncNetworksWithStreamingResponse,
+    NetworksResource,
+    AsyncNetworksResource,
+    NetworksResourceWithRawResponse,
+    AsyncNetworksResourceWithRawResponse,
+    NetworksResourceWithStreamingResponse,
+    AsyncNetworksResourceWithStreamingResponse,
 )
 from .policies import (
-    Policies,
-    AsyncPolicies,
-    PoliciesWithRawResponse,
-    AsyncPoliciesWithRawResponse,
-    PoliciesWithStreamingResponse,
-    AsyncPoliciesWithStreamingResponse,
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
 )
 from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
 from .unrevoke import (
-    Unrevoke,
-    AsyncUnrevoke,
-    UnrevokeWithRawResponse,
-    AsyncUnrevokeWithRawResponse,
-    UnrevokeWithStreamingResponse,
-    AsyncUnrevokeWithStreamingResponse,
+    UnrevokeResource,
+    AsyncUnrevokeResource,
+    UnrevokeResourceWithRawResponse,
+    AsyncUnrevokeResourceWithRawResponse,
+    UnrevokeResourceWithStreamingResponse,
+    AsyncUnrevokeResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .dex_tests import (
-    DEXTests,
-    AsyncDEXTests,
-    DEXTestsWithRawResponse,
-    AsyncDEXTestsWithRawResponse,
-    DEXTestsWithStreamingResponse,
-    AsyncDEXTestsWithStreamingResponse,
+    DEXTestsResource,
+    AsyncDEXTestsResource,
+    DEXTestsResourceWithRawResponse,
+    AsyncDEXTestsResourceWithRawResponse,
+    DEXTestsResourceWithStreamingResponse,
+    AsyncDEXTestsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -74,65 +74,65 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from .override_codes import (
-    OverrideCodes,
-    AsyncOverrideCodes,
-    OverrideCodesWithRawResponse,
-    AsyncOverrideCodesWithRawResponse,
-    OverrideCodesWithStreamingResponse,
-    AsyncOverrideCodesWithStreamingResponse,
+    OverrideCodesResource,
+    AsyncOverrideCodesResource,
+    OverrideCodesResourceWithRawResponse,
+    AsyncOverrideCodesResourceWithRawResponse,
+    OverrideCodesResourceWithStreamingResponse,
+    AsyncOverrideCodesResourceWithStreamingResponse,
 )
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .posture.posture import Posture, AsyncPosture
-from .policies.policies import Policies, AsyncPolicies
+from .posture.posture import PostureResource, AsyncPostureResource
+from .policies.policies import PoliciesResource, AsyncPoliciesResource
 from ....types.zero_trust.device import Device
 from ....types.zero_trust.device_get_response import DeviceGetResponse
 
-__all__ = ["Devices", "AsyncDevices"]
+__all__ = ["DevicesResource", "AsyncDevicesResource"]
 
 
-class Devices(SyncAPIResource):
+class DevicesResource(SyncAPIResource):
     @cached_property
-    def dex_tests(self) -> DEXTests:
-        return DEXTests(self._client)
-
-    @cached_property
-    def networks(self) -> Networks:
-        return Networks(self._client)
+    def dex_tests(self) -> DEXTestsResource:
+        return DEXTestsResource(self._client)
 
     @cached_property
-    def policies(self) -> Policies:
-        return Policies(self._client)
+    def networks(self) -> NetworksResource:
+        return NetworksResource(self._client)
 
     @cached_property
-    def posture(self) -> Posture:
-        return Posture(self._client)
+    def policies(self) -> PoliciesResource:
+        return PoliciesResource(self._client)
 
     @cached_property
-    def revoke(self) -> Revoke:
-        return Revoke(self._client)
+    def posture(self) -> PostureResource:
+        return PostureResource(self._client)
 
     @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
+    def revoke(self) -> RevokeResource:
+        return RevokeResource(self._client)
 
     @cached_property
-    def unrevoke(self) -> Unrevoke:
-        return Unrevoke(self._client)
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
-    def override_codes(self) -> OverrideCodes:
-        return OverrideCodes(self._client)
+    def unrevoke(self) -> UnrevokeResource:
+        return UnrevokeResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> DevicesWithRawResponse:
-        return DevicesWithRawResponse(self)
+    def override_codes(self) -> OverrideCodesResource:
+        return OverrideCodesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> DevicesWithStreamingResponse:
-        return DevicesWithStreamingResponse(self)
+    def with_raw_response(self) -> DevicesResourceWithRawResponse:
+        return DevicesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> DevicesResourceWithStreamingResponse:
+        return DevicesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -216,46 +216,46 @@ class Devices(SyncAPIResource):
         )
 
 
-class AsyncDevices(AsyncAPIResource):
+class AsyncDevicesResource(AsyncAPIResource):
     @cached_property
-    def dex_tests(self) -> AsyncDEXTests:
-        return AsyncDEXTests(self._client)
+    def dex_tests(self) -> AsyncDEXTestsResource:
+        return AsyncDEXTestsResource(self._client)
 
     @cached_property
-    def networks(self) -> AsyncNetworks:
-        return AsyncNetworks(self._client)
+    def networks(self) -> AsyncNetworksResource:
+        return AsyncNetworksResource(self._client)
 
     @cached_property
-    def policies(self) -> AsyncPolicies:
-        return AsyncPolicies(self._client)
+    def policies(self) -> AsyncPoliciesResource:
+        return AsyncPoliciesResource(self._client)
 
     @cached_property
-    def posture(self) -> AsyncPosture:
-        return AsyncPosture(self._client)
+    def posture(self) -> AsyncPostureResource:
+        return AsyncPostureResource(self._client)
 
     @cached_property
-    def revoke(self) -> AsyncRevoke:
-        return AsyncRevoke(self._client)
+    def revoke(self) -> AsyncRevokeResource:
+        return AsyncRevokeResource(self._client)
 
     @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
-    def unrevoke(self) -> AsyncUnrevoke:
-        return AsyncUnrevoke(self._client)
+    def unrevoke(self) -> AsyncUnrevokeResource:
+        return AsyncUnrevokeResource(self._client)
 
     @cached_property
-    def override_codes(self) -> AsyncOverrideCodes:
-        return AsyncOverrideCodes(self._client)
+    def override_codes(self) -> AsyncOverrideCodesResource:
+        return AsyncOverrideCodesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDevicesWithRawResponse:
-        return AsyncDevicesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDevicesResourceWithRawResponse:
+        return AsyncDevicesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDevicesWithStreamingResponse:
-        return AsyncDevicesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDevicesResourceWithStreamingResponse:
+        return AsyncDevicesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -339,8 +339,8 @@ class AsyncDevices(AsyncAPIResource):
         )
 
 
-class DevicesWithRawResponse:
-    def __init__(self, devices: Devices) -> None:
+class DevicesResourceWithRawResponse:
+    def __init__(self, devices: DevicesResource) -> None:
         self._devices = devices
 
         self.list = to_raw_response_wrapper(
@@ -351,40 +351,40 @@ class DevicesWithRawResponse:
         )
 
     @cached_property
-    def dex_tests(self) -> DEXTestsWithRawResponse:
-        return DEXTestsWithRawResponse(self._devices.dex_tests)
+    def dex_tests(self) -> DEXTestsResourceWithRawResponse:
+        return DEXTestsResourceWithRawResponse(self._devices.dex_tests)
 
     @cached_property
-    def networks(self) -> NetworksWithRawResponse:
-        return NetworksWithRawResponse(self._devices.networks)
+    def networks(self) -> NetworksResourceWithRawResponse:
+        return NetworksResourceWithRawResponse(self._devices.networks)
 
     @cached_property
-    def policies(self) -> PoliciesWithRawResponse:
-        return PoliciesWithRawResponse(self._devices.policies)
+    def policies(self) -> PoliciesResourceWithRawResponse:
+        return PoliciesResourceWithRawResponse(self._devices.policies)
 
     @cached_property
-    def posture(self) -> PostureWithRawResponse:
-        return PostureWithRawResponse(self._devices.posture)
+    def posture(self) -> PostureResourceWithRawResponse:
+        return PostureResourceWithRawResponse(self._devices.posture)
 
     @cached_property
-    def revoke(self) -> RevokeWithRawResponse:
-        return RevokeWithRawResponse(self._devices.revoke)
+    def revoke(self) -> RevokeResourceWithRawResponse:
+        return RevokeResourceWithRawResponse(self._devices.revoke)
 
     @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._devices.settings)
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._devices.settings)
 
     @cached_property
-    def unrevoke(self) -> UnrevokeWithRawResponse:
-        return UnrevokeWithRawResponse(self._devices.unrevoke)
+    def unrevoke(self) -> UnrevokeResourceWithRawResponse:
+        return UnrevokeResourceWithRawResponse(self._devices.unrevoke)
 
     @cached_property
-    def override_codes(self) -> OverrideCodesWithRawResponse:
-        return OverrideCodesWithRawResponse(self._devices.override_codes)
+    def override_codes(self) -> OverrideCodesResourceWithRawResponse:
+        return OverrideCodesResourceWithRawResponse(self._devices.override_codes)
 
 
-class AsyncDevicesWithRawResponse:
-    def __init__(self, devices: AsyncDevices) -> None:
+class AsyncDevicesResourceWithRawResponse:
+    def __init__(self, devices: AsyncDevicesResource) -> None:
         self._devices = devices
 
         self.list = async_to_raw_response_wrapper(
@@ -395,40 +395,40 @@ class AsyncDevicesWithRawResponse:
         )
 
     @cached_property
-    def dex_tests(self) -> AsyncDEXTestsWithRawResponse:
-        return AsyncDEXTestsWithRawResponse(self._devices.dex_tests)
+    def dex_tests(self) -> AsyncDEXTestsResourceWithRawResponse:
+        return AsyncDEXTestsResourceWithRawResponse(self._devices.dex_tests)
 
     @cached_property
-    def networks(self) -> AsyncNetworksWithRawResponse:
-        return AsyncNetworksWithRawResponse(self._devices.networks)
+    def networks(self) -> AsyncNetworksResourceWithRawResponse:
+        return AsyncNetworksResourceWithRawResponse(self._devices.networks)
 
     @cached_property
-    def policies(self) -> AsyncPoliciesWithRawResponse:
-        return AsyncPoliciesWithRawResponse(self._devices.policies)
+    def policies(self) -> AsyncPoliciesResourceWithRawResponse:
+        return AsyncPoliciesResourceWithRawResponse(self._devices.policies)
 
     @cached_property
-    def posture(self) -> AsyncPostureWithRawResponse:
-        return AsyncPostureWithRawResponse(self._devices.posture)
+    def posture(self) -> AsyncPostureResourceWithRawResponse:
+        return AsyncPostureResourceWithRawResponse(self._devices.posture)
 
     @cached_property
-    def revoke(self) -> AsyncRevokeWithRawResponse:
-        return AsyncRevokeWithRawResponse(self._devices.revoke)
+    def revoke(self) -> AsyncRevokeResourceWithRawResponse:
+        return AsyncRevokeResourceWithRawResponse(self._devices.revoke)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._devices.settings)
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._devices.settings)
 
     @cached_property
-    def unrevoke(self) -> AsyncUnrevokeWithRawResponse:
-        return AsyncUnrevokeWithRawResponse(self._devices.unrevoke)
+    def unrevoke(self) -> AsyncUnrevokeResourceWithRawResponse:
+        return AsyncUnrevokeResourceWithRawResponse(self._devices.unrevoke)
 
     @cached_property
-    def override_codes(self) -> AsyncOverrideCodesWithRawResponse:
-        return AsyncOverrideCodesWithRawResponse(self._devices.override_codes)
+    def override_codes(self) -> AsyncOverrideCodesResourceWithRawResponse:
+        return AsyncOverrideCodesResourceWithRawResponse(self._devices.override_codes)
 
 
-class DevicesWithStreamingResponse:
-    def __init__(self, devices: Devices) -> None:
+class DevicesResourceWithStreamingResponse:
+    def __init__(self, devices: DevicesResource) -> None:
         self._devices = devices
 
         self.list = to_streamed_response_wrapper(
@@ -439,40 +439,40 @@ class DevicesWithStreamingResponse:
         )
 
     @cached_property
-    def dex_tests(self) -> DEXTestsWithStreamingResponse:
-        return DEXTestsWithStreamingResponse(self._devices.dex_tests)
+    def dex_tests(self) -> DEXTestsResourceWithStreamingResponse:
+        return DEXTestsResourceWithStreamingResponse(self._devices.dex_tests)
 
     @cached_property
-    def networks(self) -> NetworksWithStreamingResponse:
-        return NetworksWithStreamingResponse(self._devices.networks)
+    def networks(self) -> NetworksResourceWithStreamingResponse:
+        return NetworksResourceWithStreamingResponse(self._devices.networks)
 
     @cached_property
-    def policies(self) -> PoliciesWithStreamingResponse:
-        return PoliciesWithStreamingResponse(self._devices.policies)
+    def policies(self) -> PoliciesResourceWithStreamingResponse:
+        return PoliciesResourceWithStreamingResponse(self._devices.policies)
 
     @cached_property
-    def posture(self) -> PostureWithStreamingResponse:
-        return PostureWithStreamingResponse(self._devices.posture)
+    def posture(self) -> PostureResourceWithStreamingResponse:
+        return PostureResourceWithStreamingResponse(self._devices.posture)
 
     @cached_property
-    def revoke(self) -> RevokeWithStreamingResponse:
-        return RevokeWithStreamingResponse(self._devices.revoke)
+    def revoke(self) -> RevokeResourceWithStreamingResponse:
+        return RevokeResourceWithStreamingResponse(self._devices.revoke)
 
     @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._devices.settings)
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._devices.settings)
 
     @cached_property
-    def unrevoke(self) -> UnrevokeWithStreamingResponse:
-        return UnrevokeWithStreamingResponse(self._devices.unrevoke)
+    def unrevoke(self) -> UnrevokeResourceWithStreamingResponse:
+        return UnrevokeResourceWithStreamingResponse(self._devices.unrevoke)
 
     @cached_property
-    def override_codes(self) -> OverrideCodesWithStreamingResponse:
-        return OverrideCodesWithStreamingResponse(self._devices.override_codes)
+    def override_codes(self) -> OverrideCodesResourceWithStreamingResponse:
+        return OverrideCodesResourceWithStreamingResponse(self._devices.override_codes)
 
 
-class AsyncDevicesWithStreamingResponse:
-    def __init__(self, devices: AsyncDevices) -> None:
+class AsyncDevicesResourceWithStreamingResponse:
+    def __init__(self, devices: AsyncDevicesResource) -> None:
         self._devices = devices
 
         self.list = async_to_streamed_response_wrapper(
@@ -483,33 +483,33 @@ class AsyncDevicesWithStreamingResponse:
         )
 
     @cached_property
-    def dex_tests(self) -> AsyncDEXTestsWithStreamingResponse:
-        return AsyncDEXTestsWithStreamingResponse(self._devices.dex_tests)
+    def dex_tests(self) -> AsyncDEXTestsResourceWithStreamingResponse:
+        return AsyncDEXTestsResourceWithStreamingResponse(self._devices.dex_tests)
 
     @cached_property
-    def networks(self) -> AsyncNetworksWithStreamingResponse:
-        return AsyncNetworksWithStreamingResponse(self._devices.networks)
+    def networks(self) -> AsyncNetworksResourceWithStreamingResponse:
+        return AsyncNetworksResourceWithStreamingResponse(self._devices.networks)
 
     @cached_property
-    def policies(self) -> AsyncPoliciesWithStreamingResponse:
-        return AsyncPoliciesWithStreamingResponse(self._devices.policies)
+    def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        return AsyncPoliciesResourceWithStreamingResponse(self._devices.policies)
 
     @cached_property
-    def posture(self) -> AsyncPostureWithStreamingResponse:
-        return AsyncPostureWithStreamingResponse(self._devices.posture)
+    def posture(self) -> AsyncPostureResourceWithStreamingResponse:
+        return AsyncPostureResourceWithStreamingResponse(self._devices.posture)
 
     @cached_property
-    def revoke(self) -> AsyncRevokeWithStreamingResponse:
-        return AsyncRevokeWithStreamingResponse(self._devices.revoke)
+    def revoke(self) -> AsyncRevokeResourceWithStreamingResponse:
+        return AsyncRevokeResourceWithStreamingResponse(self._devices.revoke)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._devices.settings)
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._devices.settings)
 
     @cached_property
-    def unrevoke(self) -> AsyncUnrevokeWithStreamingResponse:
-        return AsyncUnrevokeWithStreamingResponse(self._devices.unrevoke)
+    def unrevoke(self) -> AsyncUnrevokeResourceWithStreamingResponse:
+        return AsyncUnrevokeResourceWithStreamingResponse(self._devices.unrevoke)
 
     @cached_property
-    def override_codes(self) -> AsyncOverrideCodesWithStreamingResponse:
-        return AsyncOverrideCodesWithStreamingResponse(self._devices.override_codes)
+    def override_codes(self) -> AsyncOverrideCodesResourceWithStreamingResponse:
+        return AsyncOverrideCodesResourceWithStreamingResponse(self._devices.override_codes)

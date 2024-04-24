@@ -36,17 +36,17 @@ from ..types.keyless_certificates.tunnel_param import TunnelParam
 from ..types.keyless_certificates.keyless_certificate import KeylessCertificate
 from ..types.keyless_certificates.keyless_certificate_delete_response import KeylessCertificateDeleteResponse
 
-__all__ = ["KeylessCertificates", "AsyncKeylessCertificates"]
+__all__ = ["KeylessCertificatesResource", "AsyncKeylessCertificatesResource"]
 
 
-class KeylessCertificates(SyncAPIResource):
+class KeylessCertificatesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> KeylessCertificatesWithRawResponse:
-        return KeylessCertificatesWithRawResponse(self)
+    def with_raw_response(self) -> KeylessCertificatesResourceWithRawResponse:
+        return KeylessCertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> KeylessCertificatesWithStreamingResponse:
-        return KeylessCertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> KeylessCertificatesResourceWithStreamingResponse:
+        return KeylessCertificatesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -325,14 +325,14 @@ class KeylessCertificates(SyncAPIResource):
         )
 
 
-class AsyncKeylessCertificates(AsyncAPIResource):
+class AsyncKeylessCertificatesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncKeylessCertificatesWithRawResponse:
-        return AsyncKeylessCertificatesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncKeylessCertificatesResourceWithRawResponse:
+        return AsyncKeylessCertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncKeylessCertificatesWithStreamingResponse:
-        return AsyncKeylessCertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncKeylessCertificatesResourceWithStreamingResponse:
+        return AsyncKeylessCertificatesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -611,8 +611,8 @@ class AsyncKeylessCertificates(AsyncAPIResource):
         )
 
 
-class KeylessCertificatesWithRawResponse:
-    def __init__(self, keyless_certificates: KeylessCertificates) -> None:
+class KeylessCertificatesResourceWithRawResponse:
+    def __init__(self, keyless_certificates: KeylessCertificatesResource) -> None:
         self._keyless_certificates = keyless_certificates
 
         self.create = to_raw_response_wrapper(
@@ -632,8 +632,8 @@ class KeylessCertificatesWithRawResponse:
         )
 
 
-class AsyncKeylessCertificatesWithRawResponse:
-    def __init__(self, keyless_certificates: AsyncKeylessCertificates) -> None:
+class AsyncKeylessCertificatesResourceWithRawResponse:
+    def __init__(self, keyless_certificates: AsyncKeylessCertificatesResource) -> None:
         self._keyless_certificates = keyless_certificates
 
         self.create = async_to_raw_response_wrapper(
@@ -653,8 +653,8 @@ class AsyncKeylessCertificatesWithRawResponse:
         )
 
 
-class KeylessCertificatesWithStreamingResponse:
-    def __init__(self, keyless_certificates: KeylessCertificates) -> None:
+class KeylessCertificatesResourceWithStreamingResponse:
+    def __init__(self, keyless_certificates: KeylessCertificatesResource) -> None:
         self._keyless_certificates = keyless_certificates
 
         self.create = to_streamed_response_wrapper(
@@ -674,8 +674,8 @@ class KeylessCertificatesWithStreamingResponse:
         )
 
 
-class AsyncKeylessCertificatesWithStreamingResponse:
-    def __init__(self, keyless_certificates: AsyncKeylessCertificates) -> None:
+class AsyncKeylessCertificatesResourceWithStreamingResponse:
+    def __init__(self, keyless_certificates: AsyncKeylessCertificatesResource) -> None:
         self._keyless_certificates = keyless_certificates
 
         self.create = async_to_streamed_response_wrapper(

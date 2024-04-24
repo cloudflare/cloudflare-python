@@ -9,21 +9,21 @@ from .firewall import (
     AsyncFirewallResourceWithStreamingResponse,
 )
 from .analytics import (
-    Analytics,
-    AsyncAnalytics,
-    AnalyticsWithRawResponse,
-    AsyncAnalyticsWithRawResponse,
-    AnalyticsWithStreamingResponse,
-    AsyncAnalyticsWithStreamingResponse,
+    AnalyticsResource,
+    AsyncAnalyticsResource,
+    AnalyticsResourceWithRawResponse,
+    AsyncAnalyticsResourceWithRawResponse,
+    AnalyticsResourceWithStreamingResponse,
+    AsyncAnalyticsResourceWithStreamingResponse,
 )
 
 __all__ = [
-    "Analytics",
-    "AsyncAnalytics",
-    "AnalyticsWithRawResponse",
-    "AsyncAnalyticsWithRawResponse",
-    "AnalyticsWithStreamingResponse",
-    "AsyncAnalyticsWithStreamingResponse",
+    "AnalyticsResource",
+    "AsyncAnalyticsResource",
+    "AnalyticsResourceWithRawResponse",
+    "AsyncAnalyticsResourceWithRawResponse",
+    "AnalyticsResourceWithStreamingResponse",
+    "AsyncAnalyticsResourceWithStreamingResponse",
     "FirewallResource",
     "AsyncFirewallResource",
     "FirewallResourceWithRawResponse",
