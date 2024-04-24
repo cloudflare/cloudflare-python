@@ -3,207 +3,207 @@
 from __future__ import annotations
 
 from .ai import (
-    AI,
-    AsyncAI,
-    AIWithRawResponse,
-    AsyncAIWithRawResponse,
-    AIWithStreamingResponse,
-    AsyncAIWithStreamingResponse,
+    AIResource,
+    AsyncAIResource,
+    AIResourceWithRawResponse,
+    AsyncAIResourceWithRawResponse,
+    AIResourceWithStreamingResponse,
+    AsyncAIResourceWithStreamingResponse,
 )
 from .domains import (
-    Domains,
-    AsyncDomains,
-    DomainsWithRawResponse,
-    AsyncDomainsWithRawResponse,
-    DomainsWithStreamingResponse,
-    AsyncDomainsWithStreamingResponse,
+    DomainsResource,
+    AsyncDomainsResource,
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
 )
 from .scripts import (
-    Scripts,
-    AsyncScripts,
-    ScriptsWithRawResponse,
-    AsyncScriptsWithRawResponse,
-    ScriptsWithStreamingResponse,
-    AsyncScriptsWithStreamingResponse,
+    ScriptsResource,
+    AsyncScriptsResource,
+    ScriptsResourceWithRawResponse,
+    AsyncScriptsResourceWithRawResponse,
+    ScriptsResourceWithStreamingResponse,
+    AsyncScriptsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .subdomains import (
-    Subdomains,
-    AsyncSubdomains,
-    SubdomainsWithRawResponse,
-    AsyncSubdomainsWithRawResponse,
-    SubdomainsWithStreamingResponse,
-    AsyncSubdomainsWithStreamingResponse,
+    SubdomainsResource,
+    AsyncSubdomainsResource,
+    SubdomainsResourceWithRawResponse,
+    AsyncSubdomainsResourceWithRawResponse,
+    SubdomainsResourceWithStreamingResponse,
+    AsyncSubdomainsResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .scripts.scripts import Scripts, AsyncScripts
+from .scripts.scripts import ScriptsResource, AsyncScriptsResource
 from .account_settings import (
-    AccountSettings,
-    AsyncAccountSettings,
-    AccountSettingsWithRawResponse,
-    AsyncAccountSettingsWithRawResponse,
-    AccountSettingsWithStreamingResponse,
-    AsyncAccountSettingsWithStreamingResponse,
+    AccountSettingsResource,
+    AsyncAccountSettingsResource,
+    AccountSettingsResourceWithRawResponse,
+    AsyncAccountSettingsResourceWithRawResponse,
+    AccountSettingsResourceWithStreamingResponse,
+    AsyncAccountSettingsResourceWithStreamingResponse,
 )
 
-__all__ = ["Workers", "AsyncWorkers"]
+__all__ = ["WorkersResource", "AsyncWorkersResource"]
 
 
-class Workers(SyncAPIResource):
+class WorkersResource(SyncAPIResource):
     @cached_property
-    def ai(self) -> AI:
-        return AI(self._client)
-
-    @cached_property
-    def scripts(self) -> Scripts:
-        return Scripts(self._client)
+    def ai(self) -> AIResource:
+        return AIResource(self._client)
 
     @cached_property
-    def account_settings(self) -> AccountSettings:
-        return AccountSettings(self._client)
+    def scripts(self) -> ScriptsResource:
+        return ScriptsResource(self._client)
 
     @cached_property
-    def domains(self) -> Domains:
-        return Domains(self._client)
+    def account_settings(self) -> AccountSettingsResource:
+        return AccountSettingsResource(self._client)
 
     @cached_property
-    def subdomains(self) -> Subdomains:
-        return Subdomains(self._client)
+    def domains(self) -> DomainsResource:
+        return DomainsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> WorkersWithRawResponse:
-        return WorkersWithRawResponse(self)
+    def subdomains(self) -> SubdomainsResource:
+        return SubdomainsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> WorkersWithStreamingResponse:
-        return WorkersWithStreamingResponse(self)
-
-
-class AsyncWorkers(AsyncAPIResource):
-    @cached_property
-    def ai(self) -> AsyncAI:
-        return AsyncAI(self._client)
+    def with_raw_response(self) -> WorkersResourceWithRawResponse:
+        return WorkersResourceWithRawResponse(self)
 
     @cached_property
-    def scripts(self) -> AsyncScripts:
-        return AsyncScripts(self._client)
+    def with_streaming_response(self) -> WorkersResourceWithStreamingResponse:
+        return WorkersResourceWithStreamingResponse(self)
+
+
+class AsyncWorkersResource(AsyncAPIResource):
+    @cached_property
+    def ai(self) -> AsyncAIResource:
+        return AsyncAIResource(self._client)
 
     @cached_property
-    def account_settings(self) -> AsyncAccountSettings:
-        return AsyncAccountSettings(self._client)
+    def scripts(self) -> AsyncScriptsResource:
+        return AsyncScriptsResource(self._client)
 
     @cached_property
-    def domains(self) -> AsyncDomains:
-        return AsyncDomains(self._client)
+    def account_settings(self) -> AsyncAccountSettingsResource:
+        return AsyncAccountSettingsResource(self._client)
 
     @cached_property
-    def subdomains(self) -> AsyncSubdomains:
-        return AsyncSubdomains(self._client)
+    def domains(self) -> AsyncDomainsResource:
+        return AsyncDomainsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncWorkersWithRawResponse:
-        return AsyncWorkersWithRawResponse(self)
+    def subdomains(self) -> AsyncSubdomainsResource:
+        return AsyncSubdomainsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWorkersWithStreamingResponse:
-        return AsyncWorkersWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncWorkersResourceWithRawResponse:
+        return AsyncWorkersResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncWorkersResourceWithStreamingResponse:
+        return AsyncWorkersResourceWithStreamingResponse(self)
 
 
-class WorkersWithRawResponse:
-    def __init__(self, workers: Workers) -> None:
+class WorkersResourceWithRawResponse:
+    def __init__(self, workers: WorkersResource) -> None:
         self._workers = workers
 
     @cached_property
-    def ai(self) -> AIWithRawResponse:
-        return AIWithRawResponse(self._workers.ai)
+    def ai(self) -> AIResourceWithRawResponse:
+        return AIResourceWithRawResponse(self._workers.ai)
 
     @cached_property
-    def scripts(self) -> ScriptsWithRawResponse:
-        return ScriptsWithRawResponse(self._workers.scripts)
+    def scripts(self) -> ScriptsResourceWithRawResponse:
+        return ScriptsResourceWithRawResponse(self._workers.scripts)
 
     @cached_property
-    def account_settings(self) -> AccountSettingsWithRawResponse:
-        return AccountSettingsWithRawResponse(self._workers.account_settings)
+    def account_settings(self) -> AccountSettingsResourceWithRawResponse:
+        return AccountSettingsResourceWithRawResponse(self._workers.account_settings)
 
     @cached_property
-    def domains(self) -> DomainsWithRawResponse:
-        return DomainsWithRawResponse(self._workers.domains)
+    def domains(self) -> DomainsResourceWithRawResponse:
+        return DomainsResourceWithRawResponse(self._workers.domains)
 
     @cached_property
-    def subdomains(self) -> SubdomainsWithRawResponse:
-        return SubdomainsWithRawResponse(self._workers.subdomains)
+    def subdomains(self) -> SubdomainsResourceWithRawResponse:
+        return SubdomainsResourceWithRawResponse(self._workers.subdomains)
 
 
-class AsyncWorkersWithRawResponse:
-    def __init__(self, workers: AsyncWorkers) -> None:
+class AsyncWorkersResourceWithRawResponse:
+    def __init__(self, workers: AsyncWorkersResource) -> None:
         self._workers = workers
 
     @cached_property
-    def ai(self) -> AsyncAIWithRawResponse:
-        return AsyncAIWithRawResponse(self._workers.ai)
+    def ai(self) -> AsyncAIResourceWithRawResponse:
+        return AsyncAIResourceWithRawResponse(self._workers.ai)
 
     @cached_property
-    def scripts(self) -> AsyncScriptsWithRawResponse:
-        return AsyncScriptsWithRawResponse(self._workers.scripts)
+    def scripts(self) -> AsyncScriptsResourceWithRawResponse:
+        return AsyncScriptsResourceWithRawResponse(self._workers.scripts)
 
     @cached_property
-    def account_settings(self) -> AsyncAccountSettingsWithRawResponse:
-        return AsyncAccountSettingsWithRawResponse(self._workers.account_settings)
+    def account_settings(self) -> AsyncAccountSettingsResourceWithRawResponse:
+        return AsyncAccountSettingsResourceWithRawResponse(self._workers.account_settings)
 
     @cached_property
-    def domains(self) -> AsyncDomainsWithRawResponse:
-        return AsyncDomainsWithRawResponse(self._workers.domains)
+    def domains(self) -> AsyncDomainsResourceWithRawResponse:
+        return AsyncDomainsResourceWithRawResponse(self._workers.domains)
 
     @cached_property
-    def subdomains(self) -> AsyncSubdomainsWithRawResponse:
-        return AsyncSubdomainsWithRawResponse(self._workers.subdomains)
+    def subdomains(self) -> AsyncSubdomainsResourceWithRawResponse:
+        return AsyncSubdomainsResourceWithRawResponse(self._workers.subdomains)
 
 
-class WorkersWithStreamingResponse:
-    def __init__(self, workers: Workers) -> None:
+class WorkersResourceWithStreamingResponse:
+    def __init__(self, workers: WorkersResource) -> None:
         self._workers = workers
 
     @cached_property
-    def ai(self) -> AIWithStreamingResponse:
-        return AIWithStreamingResponse(self._workers.ai)
+    def ai(self) -> AIResourceWithStreamingResponse:
+        return AIResourceWithStreamingResponse(self._workers.ai)
 
     @cached_property
-    def scripts(self) -> ScriptsWithStreamingResponse:
-        return ScriptsWithStreamingResponse(self._workers.scripts)
+    def scripts(self) -> ScriptsResourceWithStreamingResponse:
+        return ScriptsResourceWithStreamingResponse(self._workers.scripts)
 
     @cached_property
-    def account_settings(self) -> AccountSettingsWithStreamingResponse:
-        return AccountSettingsWithStreamingResponse(self._workers.account_settings)
+    def account_settings(self) -> AccountSettingsResourceWithStreamingResponse:
+        return AccountSettingsResourceWithStreamingResponse(self._workers.account_settings)
 
     @cached_property
-    def domains(self) -> DomainsWithStreamingResponse:
-        return DomainsWithStreamingResponse(self._workers.domains)
+    def domains(self) -> DomainsResourceWithStreamingResponse:
+        return DomainsResourceWithStreamingResponse(self._workers.domains)
 
     @cached_property
-    def subdomains(self) -> SubdomainsWithStreamingResponse:
-        return SubdomainsWithStreamingResponse(self._workers.subdomains)
+    def subdomains(self) -> SubdomainsResourceWithStreamingResponse:
+        return SubdomainsResourceWithStreamingResponse(self._workers.subdomains)
 
 
-class AsyncWorkersWithStreamingResponse:
-    def __init__(self, workers: AsyncWorkers) -> None:
+class AsyncWorkersResourceWithStreamingResponse:
+    def __init__(self, workers: AsyncWorkersResource) -> None:
         self._workers = workers
 
     @cached_property
-    def ai(self) -> AsyncAIWithStreamingResponse:
-        return AsyncAIWithStreamingResponse(self._workers.ai)
+    def ai(self) -> AsyncAIResourceWithStreamingResponse:
+        return AsyncAIResourceWithStreamingResponse(self._workers.ai)
 
     @cached_property
-    def scripts(self) -> AsyncScriptsWithStreamingResponse:
-        return AsyncScriptsWithStreamingResponse(self._workers.scripts)
+    def scripts(self) -> AsyncScriptsResourceWithStreamingResponse:
+        return AsyncScriptsResourceWithStreamingResponse(self._workers.scripts)
 
     @cached_property
-    def account_settings(self) -> AsyncAccountSettingsWithStreamingResponse:
-        return AsyncAccountSettingsWithStreamingResponse(self._workers.account_settings)
+    def account_settings(self) -> AsyncAccountSettingsResourceWithStreamingResponse:
+        return AsyncAccountSettingsResourceWithStreamingResponse(self._workers.account_settings)
 
     @cached_property
-    def domains(self) -> AsyncDomainsWithStreamingResponse:
-        return AsyncDomainsWithStreamingResponse(self._workers.domains)
+    def domains(self) -> AsyncDomainsResourceWithStreamingResponse:
+        return AsyncDomainsResourceWithStreamingResponse(self._workers.domains)
 
     @cached_property
-    def subdomains(self) -> AsyncSubdomainsWithStreamingResponse:
-        return AsyncSubdomainsWithStreamingResponse(self._workers.subdomains)
+    def subdomains(self) -> AsyncSubdomainsResourceWithStreamingResponse:
+        return AsyncSubdomainsResourceWithStreamingResponse(self._workers.subdomains)

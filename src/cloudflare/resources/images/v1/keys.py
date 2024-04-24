@@ -23,17 +23,17 @@ from ....types.images.v1.key_list_response import KeyListResponse
 from ....types.images.v1.key_delete_response import KeyDeleteResponse
 from ....types.images.v1.key_update_response import KeyUpdateResponse
 
-__all__ = ["Keys", "AsyncKeys"]
+__all__ = ["KeysResource", "AsyncKeysResource"]
 
 
-class Keys(SyncAPIResource):
+class KeysResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> KeysWithRawResponse:
-        return KeysWithRawResponse(self)
+    def with_raw_response(self) -> KeysResourceWithRawResponse:
+        return KeysResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> KeysWithStreamingResponse:
-        return KeysWithStreamingResponse(self)
+    def with_streaming_response(self) -> KeysResourceWithStreamingResponse:
+        return KeysResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -163,14 +163,14 @@ class Keys(SyncAPIResource):
         )
 
 
-class AsyncKeys(AsyncAPIResource):
+class AsyncKeysResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncKeysWithRawResponse:
-        return AsyncKeysWithRawResponse(self)
+    def with_raw_response(self) -> AsyncKeysResourceWithRawResponse:
+        return AsyncKeysResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncKeysWithStreamingResponse:
-        return AsyncKeysWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncKeysResourceWithStreamingResponse:
+        return AsyncKeysResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -300,8 +300,8 @@ class AsyncKeys(AsyncAPIResource):
         )
 
 
-class KeysWithRawResponse:
-    def __init__(self, keys: Keys) -> None:
+class KeysResourceWithRawResponse:
+    def __init__(self, keys: KeysResource) -> None:
         self._keys = keys
 
         self.update = to_raw_response_wrapper(
@@ -315,8 +315,8 @@ class KeysWithRawResponse:
         )
 
 
-class AsyncKeysWithRawResponse:
-    def __init__(self, keys: AsyncKeys) -> None:
+class AsyncKeysResourceWithRawResponse:
+    def __init__(self, keys: AsyncKeysResource) -> None:
         self._keys = keys
 
         self.update = async_to_raw_response_wrapper(
@@ -330,8 +330,8 @@ class AsyncKeysWithRawResponse:
         )
 
 
-class KeysWithStreamingResponse:
-    def __init__(self, keys: Keys) -> None:
+class KeysResourceWithStreamingResponse:
+    def __init__(self, keys: KeysResource) -> None:
         self._keys = keys
 
         self.update = to_streamed_response_wrapper(
@@ -345,8 +345,8 @@ class KeysWithStreamingResponse:
         )
 
 
-class AsyncKeysWithStreamingResponse:
-    def __init__(self, keys: AsyncKeys) -> None:
+class AsyncKeysResourceWithStreamingResponse:
+    def __init__(self, keys: AsyncKeysResource) -> None:
         self._keys = keys
 
         self.update = async_to_streamed_response_wrapper(

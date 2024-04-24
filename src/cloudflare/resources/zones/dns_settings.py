@@ -27,17 +27,17 @@ from ..._base_client import (
 from ...types.zones.dns_setting import DNSSetting
 from ...types.zones.nameserver_param import NameserverParam
 
-__all__ = ["DNSSettings", "AsyncDNSSettings"]
+__all__ = ["DNSSettingsResource", "AsyncDNSSettingsResource"]
 
 
-class DNSSettings(SyncAPIResource):
+class DNSSettingsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DNSSettingsWithRawResponse:
-        return DNSSettingsWithRawResponse(self)
+    def with_raw_response(self) -> DNSSettingsResourceWithRawResponse:
+        return DNSSettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DNSSettingsWithStreamingResponse:
-        return DNSSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> DNSSettingsResourceWithStreamingResponse:
+        return DNSSettingsResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -142,14 +142,14 @@ class DNSSettings(SyncAPIResource):
         )
 
 
-class AsyncDNSSettings(AsyncAPIResource):
+class AsyncDNSSettingsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDNSSettingsWithRawResponse:
-        return AsyncDNSSettingsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDNSSettingsResourceWithRawResponse:
+        return AsyncDNSSettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDNSSettingsWithStreamingResponse:
-        return AsyncDNSSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDNSSettingsResourceWithStreamingResponse:
+        return AsyncDNSSettingsResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -254,8 +254,8 @@ class AsyncDNSSettings(AsyncAPIResource):
         )
 
 
-class DNSSettingsWithRawResponse:
-    def __init__(self, dns_settings: DNSSettings) -> None:
+class DNSSettingsResourceWithRawResponse:
+    def __init__(self, dns_settings: DNSSettingsResource) -> None:
         self._dns_settings = dns_settings
 
         self.edit = to_raw_response_wrapper(
@@ -266,8 +266,8 @@ class DNSSettingsWithRawResponse:
         )
 
 
-class AsyncDNSSettingsWithRawResponse:
-    def __init__(self, dns_settings: AsyncDNSSettings) -> None:
+class AsyncDNSSettingsResourceWithRawResponse:
+    def __init__(self, dns_settings: AsyncDNSSettingsResource) -> None:
         self._dns_settings = dns_settings
 
         self.edit = async_to_raw_response_wrapper(
@@ -278,8 +278,8 @@ class AsyncDNSSettingsWithRawResponse:
         )
 
 
-class DNSSettingsWithStreamingResponse:
-    def __init__(self, dns_settings: DNSSettings) -> None:
+class DNSSettingsResourceWithStreamingResponse:
+    def __init__(self, dns_settings: DNSSettingsResource) -> None:
         self._dns_settings = dns_settings
 
         self.edit = to_streamed_response_wrapper(
@@ -290,8 +290,8 @@ class DNSSettingsWithStreamingResponse:
         )
 
 
-class AsyncDNSSettingsWithStreamingResponse:
-    def __init__(self, dns_settings: AsyncDNSSettings) -> None:
+class AsyncDNSSettingsResourceWithStreamingResponse:
+    def __init__(self, dns_settings: AsyncDNSSettingsResource) -> None:
         self._dns_settings = dns_settings
 
         self.edit = async_to_streamed_response_wrapper(

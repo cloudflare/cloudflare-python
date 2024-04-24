@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.zero_trust.devices.override_code_list_response import OverrideCodeListResponse
 
-__all__ = ["OverrideCodes", "AsyncOverrideCodes"]
+__all__ = ["OverrideCodesResource", "AsyncOverrideCodesResource"]
 
 
-class OverrideCodes(SyncAPIResource):
+class OverrideCodesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OverrideCodesWithRawResponse:
-        return OverrideCodesWithRawResponse(self)
+    def with_raw_response(self) -> OverrideCodesResourceWithRawResponse:
+        return OverrideCodesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OverrideCodesWithStreamingResponse:
-        return OverrideCodesWithStreamingResponse(self)
+    def with_streaming_response(self) -> OverrideCodesResourceWithStreamingResponse:
+        return OverrideCodesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -78,14 +78,14 @@ class OverrideCodes(SyncAPIResource):
         )
 
 
-class AsyncOverrideCodes(AsyncAPIResource):
+class AsyncOverrideCodesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOverrideCodesWithRawResponse:
-        return AsyncOverrideCodesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOverrideCodesResourceWithRawResponse:
+        return AsyncOverrideCodesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOverrideCodesWithStreamingResponse:
-        return AsyncOverrideCodesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOverrideCodesResourceWithStreamingResponse:
+        return AsyncOverrideCodesResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -132,8 +132,8 @@ class AsyncOverrideCodes(AsyncAPIResource):
         )
 
 
-class OverrideCodesWithRawResponse:
-    def __init__(self, override_codes: OverrideCodes) -> None:
+class OverrideCodesResourceWithRawResponse:
+    def __init__(self, override_codes: OverrideCodesResource) -> None:
         self._override_codes = override_codes
 
         self.list = to_raw_response_wrapper(
@@ -141,8 +141,8 @@ class OverrideCodesWithRawResponse:
         )
 
 
-class AsyncOverrideCodesWithRawResponse:
-    def __init__(self, override_codes: AsyncOverrideCodes) -> None:
+class AsyncOverrideCodesResourceWithRawResponse:
+    def __init__(self, override_codes: AsyncOverrideCodesResource) -> None:
         self._override_codes = override_codes
 
         self.list = async_to_raw_response_wrapper(
@@ -150,8 +150,8 @@ class AsyncOverrideCodesWithRawResponse:
         )
 
 
-class OverrideCodesWithStreamingResponse:
-    def __init__(self, override_codes: OverrideCodes) -> None:
+class OverrideCodesResourceWithStreamingResponse:
+    def __init__(self, override_codes: OverrideCodesResource) -> None:
         self._override_codes = override_codes
 
         self.list = to_streamed_response_wrapper(
@@ -159,8 +159,8 @@ class OverrideCodesWithStreamingResponse:
         )
 
 
-class AsyncOverrideCodesWithStreamingResponse:
-    def __init__(self, override_codes: AsyncOverrideCodes) -> None:
+class AsyncOverrideCodesResourceWithStreamingResponse:
+    def __init__(self, override_codes: AsyncOverrideCodesResource) -> None:
         self._override_codes = override_codes
 
         self.list = async_to_streamed_response_wrapper(

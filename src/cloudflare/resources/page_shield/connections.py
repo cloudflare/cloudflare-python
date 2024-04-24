@@ -24,17 +24,17 @@ from ..._base_client import (
 from ...types.page_shield import connection_list_params
 from ...types.page_shield.connection import Connection
 
-__all__ = ["Connections", "AsyncConnections"]
+__all__ = ["ConnectionsResource", "AsyncConnectionsResource"]
 
 
-class Connections(SyncAPIResource):
+class ConnectionsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ConnectionsWithRawResponse:
-        return ConnectionsWithRawResponse(self)
+    def with_raw_response(self) -> ConnectionsResourceWithRawResponse:
+        return ConnectionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ConnectionsWithStreamingResponse:
-        return ConnectionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ConnectionsResourceWithStreamingResponse:
+        return ConnectionsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -191,14 +191,14 @@ class Connections(SyncAPIResource):
         )
 
 
-class AsyncConnections(AsyncAPIResource):
+class AsyncConnectionsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncConnectionsWithRawResponse:
-        return AsyncConnectionsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncConnectionsResourceWithRawResponse:
+        return AsyncConnectionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConnectionsWithStreamingResponse:
-        return AsyncConnectionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncConnectionsResourceWithStreamingResponse:
+        return AsyncConnectionsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -355,8 +355,8 @@ class AsyncConnections(AsyncAPIResource):
         )
 
 
-class ConnectionsWithRawResponse:
-    def __init__(self, connections: Connections) -> None:
+class ConnectionsResourceWithRawResponse:
+    def __init__(self, connections: ConnectionsResource) -> None:
         self._connections = connections
 
         self.list = to_raw_response_wrapper(
@@ -367,8 +367,8 @@ class ConnectionsWithRawResponse:
         )
 
 
-class AsyncConnectionsWithRawResponse:
-    def __init__(self, connections: AsyncConnections) -> None:
+class AsyncConnectionsResourceWithRawResponse:
+    def __init__(self, connections: AsyncConnectionsResource) -> None:
         self._connections = connections
 
         self.list = async_to_raw_response_wrapper(
@@ -379,8 +379,8 @@ class AsyncConnectionsWithRawResponse:
         )
 
 
-class ConnectionsWithStreamingResponse:
-    def __init__(self, connections: Connections) -> None:
+class ConnectionsResourceWithStreamingResponse:
+    def __init__(self, connections: ConnectionsResource) -> None:
         self._connections = connections
 
         self.list = to_streamed_response_wrapper(
@@ -391,8 +391,8 @@ class ConnectionsWithStreamingResponse:
         )
 
 
-class AsyncConnectionsWithStreamingResponse:
-    def __init__(self, connections: AsyncConnections) -> None:
+class AsyncConnectionsResourceWithStreamingResponse:
+    def __init__(self, connections: AsyncConnectionsResource) -> None:
         self._connections = connections
 
         self.list = async_to_streamed_response_wrapper(

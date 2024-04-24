@@ -17,44 +17,44 @@ from .clip import (
     AsyncClipResourceWithStreamingResponse,
 )
 from .copy import (
-    Copy,
-    AsyncCopy,
-    CopyWithRawResponse,
-    AsyncCopyWithRawResponse,
-    CopyWithStreamingResponse,
-    AsyncCopyWithStreamingResponse,
+    CopyResource,
+    AsyncCopyResource,
+    CopyResourceWithRawResponse,
+    AsyncCopyResourceWithRawResponse,
+    CopyResourceWithStreamingResponse,
+    AsyncCopyResourceWithStreamingResponse,
 )
 from .keys import (
-    Keys,
-    AsyncKeys,
-    KeysWithRawResponse,
-    AsyncKeysWithRawResponse,
-    KeysWithStreamingResponse,
-    AsyncKeysWithStreamingResponse,
+    KeysResource,
+    AsyncKeysResource,
+    KeysResourceWithRawResponse,
+    AsyncKeysResourceWithRawResponse,
+    KeysResourceWithStreamingResponse,
+    AsyncKeysResourceWithStreamingResponse,
 )
 from .embed import (
-    Embed,
-    AsyncEmbed,
-    EmbedWithRawResponse,
-    AsyncEmbedWithRawResponse,
-    EmbedWithStreamingResponse,
-    AsyncEmbedWithStreamingResponse,
+    EmbedResource,
+    AsyncEmbedResource,
+    EmbedResourceWithRawResponse,
+    AsyncEmbedResourceWithRawResponse,
+    EmbedResourceWithStreamingResponse,
+    AsyncEmbedResourceWithStreamingResponse,
 )
 from .token import (
-    Token,
-    AsyncToken,
-    TokenWithRawResponse,
-    AsyncTokenWithRawResponse,
-    TokenWithStreamingResponse,
-    AsyncTokenWithStreamingResponse,
+    TokenResource,
+    AsyncTokenResource,
+    TokenResourceWithRawResponse,
+    AsyncTokenResourceWithRawResponse,
+    TokenResourceWithStreamingResponse,
+    AsyncTokenResourceWithStreamingResponse,
 )
 from .videos import (
-    Videos,
-    AsyncVideos,
-    VideosWithRawResponse,
-    AsyncVideosWithRawResponse,
-    VideosWithStreamingResponse,
-    AsyncVideosWithStreamingResponse,
+    VideosResource,
+    AsyncVideosResource,
+    VideosResourceWithRawResponse,
+    AsyncVideosResourceWithRawResponse,
+    VideosResourceWithStreamingResponse,
+    AsyncVideosResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
@@ -62,37 +62,37 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .captions import (
-    Captions,
-    AsyncCaptions,
-    CaptionsWithRawResponse,
-    AsyncCaptionsWithRawResponse,
-    CaptionsWithStreamingResponse,
-    AsyncCaptionsWithStreamingResponse,
+    CaptionsResource,
+    AsyncCaptionsResource,
+    CaptionsResourceWithRawResponse,
+    AsyncCaptionsResourceWithRawResponse,
+    CaptionsResourceWithStreamingResponse,
+    AsyncCaptionsResourceWithStreamingResponse,
 )
 from .webhooks import (
-    Webhooks,
-    AsyncWebhooks,
-    WebhooksWithRawResponse,
-    AsyncWebhooksWithRawResponse,
-    WebhooksWithStreamingResponse,
-    AsyncWebhooksWithStreamingResponse,
+    WebhooksResource,
+    AsyncWebhooksResource,
+    WebhooksResourceWithRawResponse,
+    AsyncWebhooksResourceWithRawResponse,
+    WebhooksResourceWithStreamingResponse,
+    AsyncWebhooksResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .downloads import (
-    Downloads,
-    AsyncDownloads,
-    DownloadsWithRawResponse,
-    AsyncDownloadsWithRawResponse,
-    DownloadsWithStreamingResponse,
-    AsyncDownloadsWithStreamingResponse,
+    DownloadsResource,
+    AsyncDownloadsResource,
+    DownloadsResourceWithRawResponse,
+    AsyncDownloadsResourceWithRawResponse,
+    DownloadsResourceWithStreamingResponse,
+    AsyncDownloadsResourceWithStreamingResponse,
 )
 from .watermarks import (
-    Watermarks,
-    AsyncWatermarks,
-    WatermarksWithRawResponse,
-    AsyncWatermarksWithRawResponse,
-    WatermarksWithStreamingResponse,
-    AsyncWatermarksWithStreamingResponse,
+    WatermarksResource,
+    AsyncWatermarksResource,
+    WatermarksResourceWithRawResponse,
+    AsyncWatermarksResourceWithRawResponse,
+    WatermarksResourceWithStreamingResponse,
+    AsyncWatermarksResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -103,102 +103,102 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from .live_inputs import (
-    LiveInputs,
-    AsyncLiveInputs,
-    LiveInputsWithRawResponse,
-    AsyncLiveInputsWithRawResponse,
-    LiveInputsWithStreamingResponse,
-    AsyncLiveInputsWithStreamingResponse,
+    LiveInputsResource,
+    AsyncLiveInputsResource,
+    LiveInputsResourceWithRawResponse,
+    AsyncLiveInputsResourceWithRawResponse,
+    LiveInputsResourceWithStreamingResponse,
+    AsyncLiveInputsResourceWithStreamingResponse,
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from .audio_tracks import (
-    AudioTracks,
-    AsyncAudioTracks,
-    AudioTracksWithRawResponse,
-    AsyncAudioTracksWithRawResponse,
-    AudioTracksWithStreamingResponse,
-    AsyncAudioTracksWithStreamingResponse,
+    AudioTracksResource,
+    AsyncAudioTracksResource,
+    AudioTracksResourceWithRawResponse,
+    AsyncAudioTracksResourceWithRawResponse,
+    AudioTracksResourceWithStreamingResponse,
+    AsyncAudioTracksResourceWithStreamingResponse,
 )
 from .direct_upload import (
-    DirectUpload,
-    AsyncDirectUpload,
-    DirectUploadWithRawResponse,
-    AsyncDirectUploadWithRawResponse,
-    DirectUploadWithStreamingResponse,
-    AsyncDirectUploadWithStreamingResponse,
+    DirectUploadResource,
+    AsyncDirectUploadResource,
+    DirectUploadResourceWithRawResponse,
+    AsyncDirectUploadResourceWithRawResponse,
+    DirectUploadResourceWithStreamingResponse,
+    AsyncDirectUploadResourceWithStreamingResponse,
 )
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
 from ...types.stream import stream_list_params, stream_create_params, stream_delete_params
-from .captions.captions import Captions, AsyncCaptions
+from .captions.captions import CaptionsResource, AsyncCaptionsResource
 from ...types.stream.video import Video
-from .live_inputs.live_inputs import LiveInputs, AsyncLiveInputs
+from .live_inputs.live_inputs import LiveInputsResource, AsyncLiveInputsResource
 
-__all__ = ["Stream", "AsyncStream"]
+__all__ = ["StreamResource", "AsyncStreamResource"]
 
 
-class Stream(SyncAPIResource):
+class StreamResource(SyncAPIResource):
     @cached_property
-    def audio_tracks(self) -> AudioTracks:
-        return AudioTracks(self._client)
+    def audio_tracks(self) -> AudioTracksResource:
+        return AudioTracksResource(self._client)
 
     @cached_property
-    def videos(self) -> Videos:
-        return Videos(self._client)
+    def videos(self) -> VideosResource:
+        return VideosResource(self._client)
 
     @cached_property
     def clip(self) -> ClipResource:
         return ClipResource(self._client)
 
     @cached_property
-    def copy(self) -> Copy:
-        return Copy(self._client)
+    def copy(self) -> CopyResource:
+        return CopyResource(self._client)
 
     @cached_property
-    def direct_upload(self) -> DirectUpload:
-        return DirectUpload(self._client)
+    def direct_upload(self) -> DirectUploadResource:
+        return DirectUploadResource(self._client)
 
     @cached_property
-    def keys(self) -> Keys:
-        return Keys(self._client)
+    def keys(self) -> KeysResource:
+        return KeysResource(self._client)
 
     @cached_property
-    def live_inputs(self) -> LiveInputs:
-        return LiveInputs(self._client)
+    def live_inputs(self) -> LiveInputsResource:
+        return LiveInputsResource(self._client)
 
     @cached_property
-    def watermarks(self) -> Watermarks:
-        return Watermarks(self._client)
+    def watermarks(self) -> WatermarksResource:
+        return WatermarksResource(self._client)
 
     @cached_property
-    def webhooks(self) -> Webhooks:
-        return Webhooks(self._client)
+    def webhooks(self) -> WebhooksResource:
+        return WebhooksResource(self._client)
 
     @cached_property
-    def captions(self) -> Captions:
-        return Captions(self._client)
+    def captions(self) -> CaptionsResource:
+        return CaptionsResource(self._client)
 
     @cached_property
-    def downloads(self) -> Downloads:
-        return Downloads(self._client)
+    def downloads(self) -> DownloadsResource:
+        return DownloadsResource(self._client)
 
     @cached_property
-    def embed(self) -> Embed:
-        return Embed(self._client)
+    def embed(self) -> EmbedResource:
+        return EmbedResource(self._client)
 
     @cached_property
-    def token(self) -> Token:
-        return Token(self._client)
+    def token(self) -> TokenResource:
+        return TokenResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> StreamWithRawResponse:
-        return StreamWithRawResponse(self)
+    def with_raw_response(self) -> StreamResourceWithRawResponse:
+        return StreamResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> StreamWithStreamingResponse:
-        return StreamWithStreamingResponse(self)
+    def with_streaming_response(self) -> StreamResourceWithStreamingResponse:
+        return StreamResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -411,66 +411,66 @@ class Stream(SyncAPIResource):
         )
 
 
-class AsyncStream(AsyncAPIResource):
+class AsyncStreamResource(AsyncAPIResource):
     @cached_property
-    def audio_tracks(self) -> AsyncAudioTracks:
-        return AsyncAudioTracks(self._client)
+    def audio_tracks(self) -> AsyncAudioTracksResource:
+        return AsyncAudioTracksResource(self._client)
 
     @cached_property
-    def videos(self) -> AsyncVideos:
-        return AsyncVideos(self._client)
+    def videos(self) -> AsyncVideosResource:
+        return AsyncVideosResource(self._client)
 
     @cached_property
     def clip(self) -> AsyncClipResource:
         return AsyncClipResource(self._client)
 
     @cached_property
-    def copy(self) -> AsyncCopy:
-        return AsyncCopy(self._client)
+    def copy(self) -> AsyncCopyResource:
+        return AsyncCopyResource(self._client)
 
     @cached_property
-    def direct_upload(self) -> AsyncDirectUpload:
-        return AsyncDirectUpload(self._client)
+    def direct_upload(self) -> AsyncDirectUploadResource:
+        return AsyncDirectUploadResource(self._client)
 
     @cached_property
-    def keys(self) -> AsyncKeys:
-        return AsyncKeys(self._client)
+    def keys(self) -> AsyncKeysResource:
+        return AsyncKeysResource(self._client)
 
     @cached_property
-    def live_inputs(self) -> AsyncLiveInputs:
-        return AsyncLiveInputs(self._client)
+    def live_inputs(self) -> AsyncLiveInputsResource:
+        return AsyncLiveInputsResource(self._client)
 
     @cached_property
-    def watermarks(self) -> AsyncWatermarks:
-        return AsyncWatermarks(self._client)
+    def watermarks(self) -> AsyncWatermarksResource:
+        return AsyncWatermarksResource(self._client)
 
     @cached_property
-    def webhooks(self) -> AsyncWebhooks:
-        return AsyncWebhooks(self._client)
+    def webhooks(self) -> AsyncWebhooksResource:
+        return AsyncWebhooksResource(self._client)
 
     @cached_property
-    def captions(self) -> AsyncCaptions:
-        return AsyncCaptions(self._client)
+    def captions(self) -> AsyncCaptionsResource:
+        return AsyncCaptionsResource(self._client)
 
     @cached_property
-    def downloads(self) -> AsyncDownloads:
-        return AsyncDownloads(self._client)
+    def downloads(self) -> AsyncDownloadsResource:
+        return AsyncDownloadsResource(self._client)
 
     @cached_property
-    def embed(self) -> AsyncEmbed:
-        return AsyncEmbed(self._client)
+    def embed(self) -> AsyncEmbedResource:
+        return AsyncEmbedResource(self._client)
 
     @cached_property
-    def token(self) -> AsyncToken:
-        return AsyncToken(self._client)
+    def token(self) -> AsyncTokenResource:
+        return AsyncTokenResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncStreamWithRawResponse:
-        return AsyncStreamWithRawResponse(self)
+    def with_raw_response(self) -> AsyncStreamResourceWithRawResponse:
+        return AsyncStreamResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncStreamWithStreamingResponse:
-        return AsyncStreamWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncStreamResourceWithStreamingResponse:
+        return AsyncStreamResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -683,8 +683,8 @@ class AsyncStream(AsyncAPIResource):
         )
 
 
-class StreamWithRawResponse:
-    def __init__(self, stream: Stream) -> None:
+class StreamResourceWithRawResponse:
+    def __init__(self, stream: StreamResource) -> None:
         self._stream = stream
 
         self.create = to_raw_response_wrapper(
@@ -701,60 +701,60 @@ class StreamWithRawResponse:
         )
 
     @cached_property
-    def audio_tracks(self) -> AudioTracksWithRawResponse:
-        return AudioTracksWithRawResponse(self._stream.audio_tracks)
+    def audio_tracks(self) -> AudioTracksResourceWithRawResponse:
+        return AudioTracksResourceWithRawResponse(self._stream.audio_tracks)
 
     @cached_property
-    def videos(self) -> VideosWithRawResponse:
-        return VideosWithRawResponse(self._stream.videos)
+    def videos(self) -> VideosResourceWithRawResponse:
+        return VideosResourceWithRawResponse(self._stream.videos)
 
     @cached_property
     def clip(self) -> ClipResourceWithRawResponse:
         return ClipResourceWithRawResponse(self._stream.clip)
 
     @cached_property
-    def copy(self) -> CopyWithRawResponse:
-        return CopyWithRawResponse(self._stream.copy)
+    def copy(self) -> CopyResourceWithRawResponse:
+        return CopyResourceWithRawResponse(self._stream.copy)
 
     @cached_property
-    def direct_upload(self) -> DirectUploadWithRawResponse:
-        return DirectUploadWithRawResponse(self._stream.direct_upload)
+    def direct_upload(self) -> DirectUploadResourceWithRawResponse:
+        return DirectUploadResourceWithRawResponse(self._stream.direct_upload)
 
     @cached_property
-    def keys(self) -> KeysWithRawResponse:
-        return KeysWithRawResponse(self._stream.keys)
+    def keys(self) -> KeysResourceWithRawResponse:
+        return KeysResourceWithRawResponse(self._stream.keys)
 
     @cached_property
-    def live_inputs(self) -> LiveInputsWithRawResponse:
-        return LiveInputsWithRawResponse(self._stream.live_inputs)
+    def live_inputs(self) -> LiveInputsResourceWithRawResponse:
+        return LiveInputsResourceWithRawResponse(self._stream.live_inputs)
 
     @cached_property
-    def watermarks(self) -> WatermarksWithRawResponse:
-        return WatermarksWithRawResponse(self._stream.watermarks)
+    def watermarks(self) -> WatermarksResourceWithRawResponse:
+        return WatermarksResourceWithRawResponse(self._stream.watermarks)
 
     @cached_property
-    def webhooks(self) -> WebhooksWithRawResponse:
-        return WebhooksWithRawResponse(self._stream.webhooks)
+    def webhooks(self) -> WebhooksResourceWithRawResponse:
+        return WebhooksResourceWithRawResponse(self._stream.webhooks)
 
     @cached_property
-    def captions(self) -> CaptionsWithRawResponse:
-        return CaptionsWithRawResponse(self._stream.captions)
+    def captions(self) -> CaptionsResourceWithRawResponse:
+        return CaptionsResourceWithRawResponse(self._stream.captions)
 
     @cached_property
-    def downloads(self) -> DownloadsWithRawResponse:
-        return DownloadsWithRawResponse(self._stream.downloads)
+    def downloads(self) -> DownloadsResourceWithRawResponse:
+        return DownloadsResourceWithRawResponse(self._stream.downloads)
 
     @cached_property
-    def embed(self) -> EmbedWithRawResponse:
-        return EmbedWithRawResponse(self._stream.embed)
+    def embed(self) -> EmbedResourceWithRawResponse:
+        return EmbedResourceWithRawResponse(self._stream.embed)
 
     @cached_property
-    def token(self) -> TokenWithRawResponse:
-        return TokenWithRawResponse(self._stream.token)
+    def token(self) -> TokenResourceWithRawResponse:
+        return TokenResourceWithRawResponse(self._stream.token)
 
 
-class AsyncStreamWithRawResponse:
-    def __init__(self, stream: AsyncStream) -> None:
+class AsyncStreamResourceWithRawResponse:
+    def __init__(self, stream: AsyncStreamResource) -> None:
         self._stream = stream
 
         self.create = async_to_raw_response_wrapper(
@@ -771,60 +771,60 @@ class AsyncStreamWithRawResponse:
         )
 
     @cached_property
-    def audio_tracks(self) -> AsyncAudioTracksWithRawResponse:
-        return AsyncAudioTracksWithRawResponse(self._stream.audio_tracks)
+    def audio_tracks(self) -> AsyncAudioTracksResourceWithRawResponse:
+        return AsyncAudioTracksResourceWithRawResponse(self._stream.audio_tracks)
 
     @cached_property
-    def videos(self) -> AsyncVideosWithRawResponse:
-        return AsyncVideosWithRawResponse(self._stream.videos)
+    def videos(self) -> AsyncVideosResourceWithRawResponse:
+        return AsyncVideosResourceWithRawResponse(self._stream.videos)
 
     @cached_property
     def clip(self) -> AsyncClipResourceWithRawResponse:
         return AsyncClipResourceWithRawResponse(self._stream.clip)
 
     @cached_property
-    def copy(self) -> AsyncCopyWithRawResponse:
-        return AsyncCopyWithRawResponse(self._stream.copy)
+    def copy(self) -> AsyncCopyResourceWithRawResponse:
+        return AsyncCopyResourceWithRawResponse(self._stream.copy)
 
     @cached_property
-    def direct_upload(self) -> AsyncDirectUploadWithRawResponse:
-        return AsyncDirectUploadWithRawResponse(self._stream.direct_upload)
+    def direct_upload(self) -> AsyncDirectUploadResourceWithRawResponse:
+        return AsyncDirectUploadResourceWithRawResponse(self._stream.direct_upload)
 
     @cached_property
-    def keys(self) -> AsyncKeysWithRawResponse:
-        return AsyncKeysWithRawResponse(self._stream.keys)
+    def keys(self) -> AsyncKeysResourceWithRawResponse:
+        return AsyncKeysResourceWithRawResponse(self._stream.keys)
 
     @cached_property
-    def live_inputs(self) -> AsyncLiveInputsWithRawResponse:
-        return AsyncLiveInputsWithRawResponse(self._stream.live_inputs)
+    def live_inputs(self) -> AsyncLiveInputsResourceWithRawResponse:
+        return AsyncLiveInputsResourceWithRawResponse(self._stream.live_inputs)
 
     @cached_property
-    def watermarks(self) -> AsyncWatermarksWithRawResponse:
-        return AsyncWatermarksWithRawResponse(self._stream.watermarks)
+    def watermarks(self) -> AsyncWatermarksResourceWithRawResponse:
+        return AsyncWatermarksResourceWithRawResponse(self._stream.watermarks)
 
     @cached_property
-    def webhooks(self) -> AsyncWebhooksWithRawResponse:
-        return AsyncWebhooksWithRawResponse(self._stream.webhooks)
+    def webhooks(self) -> AsyncWebhooksResourceWithRawResponse:
+        return AsyncWebhooksResourceWithRawResponse(self._stream.webhooks)
 
     @cached_property
-    def captions(self) -> AsyncCaptionsWithRawResponse:
-        return AsyncCaptionsWithRawResponse(self._stream.captions)
+    def captions(self) -> AsyncCaptionsResourceWithRawResponse:
+        return AsyncCaptionsResourceWithRawResponse(self._stream.captions)
 
     @cached_property
-    def downloads(self) -> AsyncDownloadsWithRawResponse:
-        return AsyncDownloadsWithRawResponse(self._stream.downloads)
+    def downloads(self) -> AsyncDownloadsResourceWithRawResponse:
+        return AsyncDownloadsResourceWithRawResponse(self._stream.downloads)
 
     @cached_property
-    def embed(self) -> AsyncEmbedWithRawResponse:
-        return AsyncEmbedWithRawResponse(self._stream.embed)
+    def embed(self) -> AsyncEmbedResourceWithRawResponse:
+        return AsyncEmbedResourceWithRawResponse(self._stream.embed)
 
     @cached_property
-    def token(self) -> AsyncTokenWithRawResponse:
-        return AsyncTokenWithRawResponse(self._stream.token)
+    def token(self) -> AsyncTokenResourceWithRawResponse:
+        return AsyncTokenResourceWithRawResponse(self._stream.token)
 
 
-class StreamWithStreamingResponse:
-    def __init__(self, stream: Stream) -> None:
+class StreamResourceWithStreamingResponse:
+    def __init__(self, stream: StreamResource) -> None:
         self._stream = stream
 
         self.create = to_streamed_response_wrapper(
@@ -841,60 +841,60 @@ class StreamWithStreamingResponse:
         )
 
     @cached_property
-    def audio_tracks(self) -> AudioTracksWithStreamingResponse:
-        return AudioTracksWithStreamingResponse(self._stream.audio_tracks)
+    def audio_tracks(self) -> AudioTracksResourceWithStreamingResponse:
+        return AudioTracksResourceWithStreamingResponse(self._stream.audio_tracks)
 
     @cached_property
-    def videos(self) -> VideosWithStreamingResponse:
-        return VideosWithStreamingResponse(self._stream.videos)
+    def videos(self) -> VideosResourceWithStreamingResponse:
+        return VideosResourceWithStreamingResponse(self._stream.videos)
 
     @cached_property
     def clip(self) -> ClipResourceWithStreamingResponse:
         return ClipResourceWithStreamingResponse(self._stream.clip)
 
     @cached_property
-    def copy(self) -> CopyWithStreamingResponse:
-        return CopyWithStreamingResponse(self._stream.copy)
+    def copy(self) -> CopyResourceWithStreamingResponse:
+        return CopyResourceWithStreamingResponse(self._stream.copy)
 
     @cached_property
-    def direct_upload(self) -> DirectUploadWithStreamingResponse:
-        return DirectUploadWithStreamingResponse(self._stream.direct_upload)
+    def direct_upload(self) -> DirectUploadResourceWithStreamingResponse:
+        return DirectUploadResourceWithStreamingResponse(self._stream.direct_upload)
 
     @cached_property
-    def keys(self) -> KeysWithStreamingResponse:
-        return KeysWithStreamingResponse(self._stream.keys)
+    def keys(self) -> KeysResourceWithStreamingResponse:
+        return KeysResourceWithStreamingResponse(self._stream.keys)
 
     @cached_property
-    def live_inputs(self) -> LiveInputsWithStreamingResponse:
-        return LiveInputsWithStreamingResponse(self._stream.live_inputs)
+    def live_inputs(self) -> LiveInputsResourceWithStreamingResponse:
+        return LiveInputsResourceWithStreamingResponse(self._stream.live_inputs)
 
     @cached_property
-    def watermarks(self) -> WatermarksWithStreamingResponse:
-        return WatermarksWithStreamingResponse(self._stream.watermarks)
+    def watermarks(self) -> WatermarksResourceWithStreamingResponse:
+        return WatermarksResourceWithStreamingResponse(self._stream.watermarks)
 
     @cached_property
-    def webhooks(self) -> WebhooksWithStreamingResponse:
-        return WebhooksWithStreamingResponse(self._stream.webhooks)
+    def webhooks(self) -> WebhooksResourceWithStreamingResponse:
+        return WebhooksResourceWithStreamingResponse(self._stream.webhooks)
 
     @cached_property
-    def captions(self) -> CaptionsWithStreamingResponse:
-        return CaptionsWithStreamingResponse(self._stream.captions)
+    def captions(self) -> CaptionsResourceWithStreamingResponse:
+        return CaptionsResourceWithStreamingResponse(self._stream.captions)
 
     @cached_property
-    def downloads(self) -> DownloadsWithStreamingResponse:
-        return DownloadsWithStreamingResponse(self._stream.downloads)
+    def downloads(self) -> DownloadsResourceWithStreamingResponse:
+        return DownloadsResourceWithStreamingResponse(self._stream.downloads)
 
     @cached_property
-    def embed(self) -> EmbedWithStreamingResponse:
-        return EmbedWithStreamingResponse(self._stream.embed)
+    def embed(self) -> EmbedResourceWithStreamingResponse:
+        return EmbedResourceWithStreamingResponse(self._stream.embed)
 
     @cached_property
-    def token(self) -> TokenWithStreamingResponse:
-        return TokenWithStreamingResponse(self._stream.token)
+    def token(self) -> TokenResourceWithStreamingResponse:
+        return TokenResourceWithStreamingResponse(self._stream.token)
 
 
-class AsyncStreamWithStreamingResponse:
-    def __init__(self, stream: AsyncStream) -> None:
+class AsyncStreamResourceWithStreamingResponse:
+    def __init__(self, stream: AsyncStreamResource) -> None:
         self._stream = stream
 
         self.create = async_to_streamed_response_wrapper(
@@ -911,53 +911,53 @@ class AsyncStreamWithStreamingResponse:
         )
 
     @cached_property
-    def audio_tracks(self) -> AsyncAudioTracksWithStreamingResponse:
-        return AsyncAudioTracksWithStreamingResponse(self._stream.audio_tracks)
+    def audio_tracks(self) -> AsyncAudioTracksResourceWithStreamingResponse:
+        return AsyncAudioTracksResourceWithStreamingResponse(self._stream.audio_tracks)
 
     @cached_property
-    def videos(self) -> AsyncVideosWithStreamingResponse:
-        return AsyncVideosWithStreamingResponse(self._stream.videos)
+    def videos(self) -> AsyncVideosResourceWithStreamingResponse:
+        return AsyncVideosResourceWithStreamingResponse(self._stream.videos)
 
     @cached_property
     def clip(self) -> AsyncClipResourceWithStreamingResponse:
         return AsyncClipResourceWithStreamingResponse(self._stream.clip)
 
     @cached_property
-    def copy(self) -> AsyncCopyWithStreamingResponse:
-        return AsyncCopyWithStreamingResponse(self._stream.copy)
+    def copy(self) -> AsyncCopyResourceWithStreamingResponse:
+        return AsyncCopyResourceWithStreamingResponse(self._stream.copy)
 
     @cached_property
-    def direct_upload(self) -> AsyncDirectUploadWithStreamingResponse:
-        return AsyncDirectUploadWithStreamingResponse(self._stream.direct_upload)
+    def direct_upload(self) -> AsyncDirectUploadResourceWithStreamingResponse:
+        return AsyncDirectUploadResourceWithStreamingResponse(self._stream.direct_upload)
 
     @cached_property
-    def keys(self) -> AsyncKeysWithStreamingResponse:
-        return AsyncKeysWithStreamingResponse(self._stream.keys)
+    def keys(self) -> AsyncKeysResourceWithStreamingResponse:
+        return AsyncKeysResourceWithStreamingResponse(self._stream.keys)
 
     @cached_property
-    def live_inputs(self) -> AsyncLiveInputsWithStreamingResponse:
-        return AsyncLiveInputsWithStreamingResponse(self._stream.live_inputs)
+    def live_inputs(self) -> AsyncLiveInputsResourceWithStreamingResponse:
+        return AsyncLiveInputsResourceWithStreamingResponse(self._stream.live_inputs)
 
     @cached_property
-    def watermarks(self) -> AsyncWatermarksWithStreamingResponse:
-        return AsyncWatermarksWithStreamingResponse(self._stream.watermarks)
+    def watermarks(self) -> AsyncWatermarksResourceWithStreamingResponse:
+        return AsyncWatermarksResourceWithStreamingResponse(self._stream.watermarks)
 
     @cached_property
-    def webhooks(self) -> AsyncWebhooksWithStreamingResponse:
-        return AsyncWebhooksWithStreamingResponse(self._stream.webhooks)
+    def webhooks(self) -> AsyncWebhooksResourceWithStreamingResponse:
+        return AsyncWebhooksResourceWithStreamingResponse(self._stream.webhooks)
 
     @cached_property
-    def captions(self) -> AsyncCaptionsWithStreamingResponse:
-        return AsyncCaptionsWithStreamingResponse(self._stream.captions)
+    def captions(self) -> AsyncCaptionsResourceWithStreamingResponse:
+        return AsyncCaptionsResourceWithStreamingResponse(self._stream.captions)
 
     @cached_property
-    def downloads(self) -> AsyncDownloadsWithStreamingResponse:
-        return AsyncDownloadsWithStreamingResponse(self._stream.downloads)
+    def downloads(self) -> AsyncDownloadsResourceWithStreamingResponse:
+        return AsyncDownloadsResourceWithStreamingResponse(self._stream.downloads)
 
     @cached_property
-    def embed(self) -> AsyncEmbedWithStreamingResponse:
-        return AsyncEmbedWithStreamingResponse(self._stream.embed)
+    def embed(self) -> AsyncEmbedResourceWithStreamingResponse:
+        return AsyncEmbedResourceWithStreamingResponse(self._stream.embed)
 
     @cached_property
-    def token(self) -> AsyncTokenWithStreamingResponse:
-        return AsyncTokenWithStreamingResponse(self._stream.token)
+    def token(self) -> AsyncTokenResourceWithStreamingResponse:
+        return AsyncTokenResourceWithStreamingResponse(self._stream.token)

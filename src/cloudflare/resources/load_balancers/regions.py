@@ -28,17 +28,17 @@ from ...types.load_balancers import region_list_params
 from ...types.load_balancers.region_get_response import RegionGetResponse
 from ...types.load_balancers.region_list_response import RegionListResponse
 
-__all__ = ["Regions", "AsyncRegions"]
+__all__ = ["RegionsResource", "AsyncRegionsResource"]
 
 
-class Regions(SyncAPIResource):
+class RegionsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RegionsWithRawResponse:
-        return RegionsWithRawResponse(self)
+    def with_raw_response(self) -> RegionsResourceWithRawResponse:
+        return RegionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RegionsWithStreamingResponse:
-        return RegionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> RegionsResourceWithStreamingResponse:
+        return RegionsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -157,14 +157,14 @@ class Regions(SyncAPIResource):
         )
 
 
-class AsyncRegions(AsyncAPIResource):
+class AsyncRegionsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRegionsWithRawResponse:
-        return AsyncRegionsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRegionsResourceWithRawResponse:
+        return AsyncRegionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRegionsWithStreamingResponse:
-        return AsyncRegionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRegionsResourceWithStreamingResponse:
+        return AsyncRegionsResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -283,8 +283,8 @@ class AsyncRegions(AsyncAPIResource):
         )
 
 
-class RegionsWithRawResponse:
-    def __init__(self, regions: Regions) -> None:
+class RegionsResourceWithRawResponse:
+    def __init__(self, regions: RegionsResource) -> None:
         self._regions = regions
 
         self.list = to_raw_response_wrapper(
@@ -295,8 +295,8 @@ class RegionsWithRawResponse:
         )
 
 
-class AsyncRegionsWithRawResponse:
-    def __init__(self, regions: AsyncRegions) -> None:
+class AsyncRegionsResourceWithRawResponse:
+    def __init__(self, regions: AsyncRegionsResource) -> None:
         self._regions = regions
 
         self.list = async_to_raw_response_wrapper(
@@ -307,8 +307,8 @@ class AsyncRegionsWithRawResponse:
         )
 
 
-class RegionsWithStreamingResponse:
-    def __init__(self, regions: Regions) -> None:
+class RegionsResourceWithStreamingResponse:
+    def __init__(self, regions: RegionsResource) -> None:
         self._regions = regions
 
         self.list = to_streamed_response_wrapper(
@@ -319,8 +319,8 @@ class RegionsWithStreamingResponse:
         )
 
 
-class AsyncRegionsWithStreamingResponse:
-    def __init__(self, regions: AsyncRegions) -> None:
+class AsyncRegionsResourceWithStreamingResponse:
+    def __init__(self, regions: AsyncRegionsResource) -> None:
         self._regions = regions
 
         self.list = async_to_streamed_response_wrapper(

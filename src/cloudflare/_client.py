@@ -47,87 +47,87 @@ __all__ = [
 
 
 class Cloudflare(SyncAPIClient):
-    accounts: resources.Accounts
-    origin_ca_certificates: resources.OriginCACertificates
-    ips: resources.IPs
-    memberships: resources.Memberships
-    user: resources.User
-    zones: resources.Zones
-    load_balancers: resources.LoadBalancers
-    cache: resources.Cache
-    ssl: resources.SSL
-    subscriptions: resources.Subscriptions
-    acm: resources.ACM
-    argo: resources.Argo
-    plans: resources.Plans
-    rate_plans: resources.RatePlans
-    certificate_authorities: resources.CertificateAuthorities
-    client_certificates: resources.ClientCertificates
-    custom_certificates: resources.CustomCertificates
-    custom_hostnames: resources.CustomHostnames
-    custom_nameservers: resources.CustomNameservers
-    dns: resources.DNS
+    accounts: resources.AccountsResource
+    origin_ca_certificates: resources.OriginCACertificatesResource
+    ips: resources.IPsResource
+    memberships: resources.MembershipsResource
+    user: resources.UserResource
+    zones: resources.ZonesResource
+    load_balancers: resources.LoadBalancersResource
+    cache: resources.CacheResource
+    ssl: resources.SSLResource
+    subscriptions: resources.SubscriptionsResource
+    acm: resources.ACMResource
+    argo: resources.ArgoResource
+    plans: resources.PlansResource
+    rate_plans: resources.RatePlansResource
+    certificate_authorities: resources.CertificateAuthoritiesResource
+    client_certificates: resources.ClientCertificatesResource
+    custom_certificates: resources.CustomCertificatesResource
+    custom_hostnames: resources.CustomHostnamesResource
+    custom_nameservers: resources.CustomNameserversResource
+    dns: resources.DNSResource
     dnssec: resources.DNSSECResource
-    email_routing: resources.EmailRouting
-    filters: resources.Filters
-    firewall: resources.Firewall
-    healthchecks: resources.Healthchecks
-    keyless_certificates: resources.KeylessCertificates
-    logpush: resources.Logpush
-    logs: resources.Logs
-    origin_tls_client_auth: resources.OriginTLSClientAuth
-    pagerules: resources.Pagerules
-    rate_limits: resources.RateLimits
-    secondary_dns: resources.SecondaryDNS
-    waiting_rooms: resources.WaitingRooms
-    web3: resources.Web3
-    workers: resources.Workers
-    kv: resources.KV
-    durable_objects: resources.DurableObjects
-    queues: resources.Queues
-    managed_headers: resources.ManagedHeaders
-    page_shield: resources.PageShield
-    rulesets: resources.Rulesets
-    url_normalization: resources.URLNormalization
-    spectrum: resources.Spectrum
-    addressing: resources.Addressing
-    audit_logs: resources.AuditLogs
-    billing: resources.Billing
-    brand_protection: resources.BrandProtection
-    diagnostics: resources.Diagnostics
-    images: resources.Images
-    intel: resources.Intel
-    magic_transit: resources.MagicTransit
-    magic_network_monitoring: resources.MagicNetworkMonitoring
-    mtls_certificates: resources.MTLSCertificates
-    pages: resources.Pages
-    pcaps: resources.PCAPs
-    registrar: resources.Registrar
-    request_tracers: resources.RequestTracers
-    rules: resources.Rules
-    storage: resources.Storage
-    stream: resources.Stream
-    alerting: resources.Alerting
+    email_routing: resources.EmailRoutingResource
+    filters: resources.FiltersResource
+    firewall: resources.FirewallResource
+    healthchecks: resources.HealthchecksResource
+    keyless_certificates: resources.KeylessCertificatesResource
+    logpush: resources.LogpushResource
+    logs: resources.LogsResource
+    origin_tls_client_auth: resources.OriginTLSClientAuthResource
+    pagerules: resources.PagerulesResource
+    rate_limits: resources.RateLimitsResource
+    secondary_dns: resources.SecondaryDNSResource
+    waiting_rooms: resources.WaitingRoomsResource
+    web3: resources.Web3Resource
+    workers: resources.WorkersResource
+    kv: resources.KVResource
+    durable_objects: resources.DurableObjectsResource
+    queues: resources.QueuesResource
+    managed_headers: resources.ManagedHeadersResource
+    page_shield: resources.PageShieldResource
+    rulesets: resources.RulesetsResource
+    url_normalization: resources.URLNormalizationResource
+    spectrum: resources.SpectrumResource
+    addressing: resources.AddressingResource
+    audit_logs: resources.AuditLogsResource
+    billing: resources.BillingResource
+    brand_protection: resources.BrandProtectionResource
+    diagnostics: resources.DiagnosticsResource
+    images: resources.ImagesResource
+    intel: resources.IntelResource
+    magic_transit: resources.MagicTransitResource
+    magic_network_monitoring: resources.MagicNetworkMonitoringResource
+    mtls_certificates: resources.MTLSCertificatesResource
+    pages: resources.PagesResource
+    pcaps: resources.PCAPsResource
+    registrar: resources.RegistrarResource
+    request_tracers: resources.RequestTracersResource
+    rules: resources.RulesResource
+    storage: resources.StorageResource
+    stream: resources.StreamResource
+    alerting: resources.AlertingResource
     d1: resources.D1Resource
-    r2: resources.R2
-    warp_connector: resources.WARPConnector
-    workers_for_platforms: resources.WorkersForPlatforms
-    zero_trust: resources.ZeroTrust
-    challenges: resources.Challenges
+    r2: resources.R2Resource
+    warp_connector: resources.WARPConnectorResource
+    workers_for_platforms: resources.WorkersForPlatformsResource
+    zero_trust: resources.ZeroTrustResource
+    challenges: resources.ChallengesResource
     hyperdrive: resources.HyperdriveResource
-    rum: resources.RUM
-    vectorize: resources.Vectorize
-    url_scanner: resources.URLScanner
-    radar: resources.Radar
-    bot_management: resources.BotManagement
-    origin_post_quantum_encryption: resources.OriginPostQuantumEncryption
-    speed: resources.Speed
-    dcv_delegation: resources.DCVDelegation
-    hostnames: resources.Hostnames
-    snippets: resources.Snippets
-    calls: resources.Calls
-    cloudforce_one: resources.CloudforceOne
-    event_notifications: resources.EventNotifications
+    rum: resources.RUMResource
+    vectorize: resources.VectorizeResource
+    url_scanner: resources.URLScannerResource
+    radar: resources.RadarResource
+    bot_management: resources.BotManagementResource
+    origin_post_quantum_encryption: resources.OriginPostQuantumEncryptionResource
+    speed: resources.SpeedResource
+    dcv_delegation: resources.DCVDelegationResource
+    hostnames: resources.HostnamesResource
+    snippets: resources.SnippetsResource
+    calls: resources.CallsResource
+    cloudforce_one: resources.CloudforceOneResource
+    event_notifications: resources.EventNotificationsResource
     with_raw_response: CloudflareWithRawResponse
     with_streaming_response: CloudflareWithStreamedResponse
 
@@ -203,87 +203,87 @@ class Cloudflare(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.accounts = resources.Accounts(self)
-        self.origin_ca_certificates = resources.OriginCACertificates(self)
-        self.ips = resources.IPs(self)
-        self.memberships = resources.Memberships(self)
-        self.user = resources.User(self)
-        self.zones = resources.Zones(self)
-        self.load_balancers = resources.LoadBalancers(self)
-        self.cache = resources.Cache(self)
-        self.ssl = resources.SSL(self)
-        self.subscriptions = resources.Subscriptions(self)
-        self.acm = resources.ACM(self)
-        self.argo = resources.Argo(self)
-        self.plans = resources.Plans(self)
-        self.rate_plans = resources.RatePlans(self)
-        self.certificate_authorities = resources.CertificateAuthorities(self)
-        self.client_certificates = resources.ClientCertificates(self)
-        self.custom_certificates = resources.CustomCertificates(self)
-        self.custom_hostnames = resources.CustomHostnames(self)
-        self.custom_nameservers = resources.CustomNameservers(self)
-        self.dns = resources.DNS(self)
+        self.accounts = resources.AccountsResource(self)
+        self.origin_ca_certificates = resources.OriginCACertificatesResource(self)
+        self.ips = resources.IPsResource(self)
+        self.memberships = resources.MembershipsResource(self)
+        self.user = resources.UserResource(self)
+        self.zones = resources.ZonesResource(self)
+        self.load_balancers = resources.LoadBalancersResource(self)
+        self.cache = resources.CacheResource(self)
+        self.ssl = resources.SSLResource(self)
+        self.subscriptions = resources.SubscriptionsResource(self)
+        self.acm = resources.ACMResource(self)
+        self.argo = resources.ArgoResource(self)
+        self.plans = resources.PlansResource(self)
+        self.rate_plans = resources.RatePlansResource(self)
+        self.certificate_authorities = resources.CertificateAuthoritiesResource(self)
+        self.client_certificates = resources.ClientCertificatesResource(self)
+        self.custom_certificates = resources.CustomCertificatesResource(self)
+        self.custom_hostnames = resources.CustomHostnamesResource(self)
+        self.custom_nameservers = resources.CustomNameserversResource(self)
+        self.dns = resources.DNSResource(self)
         self.dnssec = resources.DNSSECResource(self)
-        self.email_routing = resources.EmailRouting(self)
-        self.filters = resources.Filters(self)
-        self.firewall = resources.Firewall(self)
-        self.healthchecks = resources.Healthchecks(self)
-        self.keyless_certificates = resources.KeylessCertificates(self)
-        self.logpush = resources.Logpush(self)
-        self.logs = resources.Logs(self)
-        self.origin_tls_client_auth = resources.OriginTLSClientAuth(self)
-        self.pagerules = resources.Pagerules(self)
-        self.rate_limits = resources.RateLimits(self)
-        self.secondary_dns = resources.SecondaryDNS(self)
-        self.waiting_rooms = resources.WaitingRooms(self)
-        self.web3 = resources.Web3(self)
-        self.workers = resources.Workers(self)
-        self.kv = resources.KV(self)
-        self.durable_objects = resources.DurableObjects(self)
-        self.queues = resources.Queues(self)
-        self.managed_headers = resources.ManagedHeaders(self)
-        self.page_shield = resources.PageShield(self)
-        self.rulesets = resources.Rulesets(self)
-        self.url_normalization = resources.URLNormalization(self)
-        self.spectrum = resources.Spectrum(self)
-        self.addressing = resources.Addressing(self)
-        self.audit_logs = resources.AuditLogs(self)
-        self.billing = resources.Billing(self)
-        self.brand_protection = resources.BrandProtection(self)
-        self.diagnostics = resources.Diagnostics(self)
-        self.images = resources.Images(self)
-        self.intel = resources.Intel(self)
-        self.magic_transit = resources.MagicTransit(self)
-        self.magic_network_monitoring = resources.MagicNetworkMonitoring(self)
-        self.mtls_certificates = resources.MTLSCertificates(self)
-        self.pages = resources.Pages(self)
-        self.pcaps = resources.PCAPs(self)
-        self.registrar = resources.Registrar(self)
-        self.request_tracers = resources.RequestTracers(self)
-        self.rules = resources.Rules(self)
-        self.storage = resources.Storage(self)
-        self.stream = resources.Stream(self)
-        self.alerting = resources.Alerting(self)
+        self.email_routing = resources.EmailRoutingResource(self)
+        self.filters = resources.FiltersResource(self)
+        self.firewall = resources.FirewallResource(self)
+        self.healthchecks = resources.HealthchecksResource(self)
+        self.keyless_certificates = resources.KeylessCertificatesResource(self)
+        self.logpush = resources.LogpushResource(self)
+        self.logs = resources.LogsResource(self)
+        self.origin_tls_client_auth = resources.OriginTLSClientAuthResource(self)
+        self.pagerules = resources.PagerulesResource(self)
+        self.rate_limits = resources.RateLimitsResource(self)
+        self.secondary_dns = resources.SecondaryDNSResource(self)
+        self.waiting_rooms = resources.WaitingRoomsResource(self)
+        self.web3 = resources.Web3Resource(self)
+        self.workers = resources.WorkersResource(self)
+        self.kv = resources.KVResource(self)
+        self.durable_objects = resources.DurableObjectsResource(self)
+        self.queues = resources.QueuesResource(self)
+        self.managed_headers = resources.ManagedHeadersResource(self)
+        self.page_shield = resources.PageShieldResource(self)
+        self.rulesets = resources.RulesetsResource(self)
+        self.url_normalization = resources.URLNormalizationResource(self)
+        self.spectrum = resources.SpectrumResource(self)
+        self.addressing = resources.AddressingResource(self)
+        self.audit_logs = resources.AuditLogsResource(self)
+        self.billing = resources.BillingResource(self)
+        self.brand_protection = resources.BrandProtectionResource(self)
+        self.diagnostics = resources.DiagnosticsResource(self)
+        self.images = resources.ImagesResource(self)
+        self.intel = resources.IntelResource(self)
+        self.magic_transit = resources.MagicTransitResource(self)
+        self.magic_network_monitoring = resources.MagicNetworkMonitoringResource(self)
+        self.mtls_certificates = resources.MTLSCertificatesResource(self)
+        self.pages = resources.PagesResource(self)
+        self.pcaps = resources.PCAPsResource(self)
+        self.registrar = resources.RegistrarResource(self)
+        self.request_tracers = resources.RequestTracersResource(self)
+        self.rules = resources.RulesResource(self)
+        self.storage = resources.StorageResource(self)
+        self.stream = resources.StreamResource(self)
+        self.alerting = resources.AlertingResource(self)
         self.d1 = resources.D1Resource(self)
-        self.r2 = resources.R2(self)
-        self.warp_connector = resources.WARPConnector(self)
-        self.workers_for_platforms = resources.WorkersForPlatforms(self)
-        self.zero_trust = resources.ZeroTrust(self)
-        self.challenges = resources.Challenges(self)
+        self.r2 = resources.R2Resource(self)
+        self.warp_connector = resources.WARPConnectorResource(self)
+        self.workers_for_platforms = resources.WorkersForPlatformsResource(self)
+        self.zero_trust = resources.ZeroTrustResource(self)
+        self.challenges = resources.ChallengesResource(self)
         self.hyperdrive = resources.HyperdriveResource(self)
-        self.rum = resources.RUM(self)
-        self.vectorize = resources.Vectorize(self)
-        self.url_scanner = resources.URLScanner(self)
-        self.radar = resources.Radar(self)
-        self.bot_management = resources.BotManagement(self)
-        self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryption(self)
-        self.speed = resources.Speed(self)
-        self.dcv_delegation = resources.DCVDelegation(self)
-        self.hostnames = resources.Hostnames(self)
-        self.snippets = resources.Snippets(self)
-        self.calls = resources.Calls(self)
-        self.cloudforce_one = resources.CloudforceOne(self)
-        self.event_notifications = resources.EventNotifications(self)
+        self.rum = resources.RUMResource(self)
+        self.vectorize = resources.VectorizeResource(self)
+        self.url_scanner = resources.URLScannerResource(self)
+        self.radar = resources.RadarResource(self)
+        self.bot_management = resources.BotManagementResource(self)
+        self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionResource(self)
+        self.speed = resources.SpeedResource(self)
+        self.dcv_delegation = resources.DCVDelegationResource(self)
+        self.hostnames = resources.HostnamesResource(self)
+        self.snippets = resources.SnippetsResource(self)
+        self.calls = resources.CallsResource(self)
+        self.cloudforce_one = resources.CloudforceOneResource(self)
+        self.event_notifications = resources.EventNotificationsResource(self)
         self.with_raw_response = CloudflareWithRawResponse(self)
         self.with_streaming_response = CloudflareWithStreamedResponse(self)
 
@@ -462,87 +462,87 @@ class Cloudflare(SyncAPIClient):
 
 
 class AsyncCloudflare(AsyncAPIClient):
-    accounts: resources.AsyncAccounts
-    origin_ca_certificates: resources.AsyncOriginCACertificates
-    ips: resources.AsyncIPs
-    memberships: resources.AsyncMemberships
-    user: resources.AsyncUser
-    zones: resources.AsyncZones
-    load_balancers: resources.AsyncLoadBalancers
-    cache: resources.AsyncCache
-    ssl: resources.AsyncSSL
-    subscriptions: resources.AsyncSubscriptions
-    acm: resources.AsyncACM
-    argo: resources.AsyncArgo
-    plans: resources.AsyncPlans
-    rate_plans: resources.AsyncRatePlans
-    certificate_authorities: resources.AsyncCertificateAuthorities
-    client_certificates: resources.AsyncClientCertificates
-    custom_certificates: resources.AsyncCustomCertificates
-    custom_hostnames: resources.AsyncCustomHostnames
-    custom_nameservers: resources.AsyncCustomNameservers
-    dns: resources.AsyncDNS
+    accounts: resources.AsyncAccountsResource
+    origin_ca_certificates: resources.AsyncOriginCACertificatesResource
+    ips: resources.AsyncIPsResource
+    memberships: resources.AsyncMembershipsResource
+    user: resources.AsyncUserResource
+    zones: resources.AsyncZonesResource
+    load_balancers: resources.AsyncLoadBalancersResource
+    cache: resources.AsyncCacheResource
+    ssl: resources.AsyncSSLResource
+    subscriptions: resources.AsyncSubscriptionsResource
+    acm: resources.AsyncACMResource
+    argo: resources.AsyncArgoResource
+    plans: resources.AsyncPlansResource
+    rate_plans: resources.AsyncRatePlansResource
+    certificate_authorities: resources.AsyncCertificateAuthoritiesResource
+    client_certificates: resources.AsyncClientCertificatesResource
+    custom_certificates: resources.AsyncCustomCertificatesResource
+    custom_hostnames: resources.AsyncCustomHostnamesResource
+    custom_nameservers: resources.AsyncCustomNameserversResource
+    dns: resources.AsyncDNSResource
     dnssec: resources.AsyncDNSSECResource
-    email_routing: resources.AsyncEmailRouting
-    filters: resources.AsyncFilters
-    firewall: resources.AsyncFirewall
-    healthchecks: resources.AsyncHealthchecks
-    keyless_certificates: resources.AsyncKeylessCertificates
-    logpush: resources.AsyncLogpush
-    logs: resources.AsyncLogs
-    origin_tls_client_auth: resources.AsyncOriginTLSClientAuth
-    pagerules: resources.AsyncPagerules
-    rate_limits: resources.AsyncRateLimits
-    secondary_dns: resources.AsyncSecondaryDNS
-    waiting_rooms: resources.AsyncWaitingRooms
-    web3: resources.AsyncWeb3
-    workers: resources.AsyncWorkers
-    kv: resources.AsyncKV
-    durable_objects: resources.AsyncDurableObjects
-    queues: resources.AsyncQueues
-    managed_headers: resources.AsyncManagedHeaders
-    page_shield: resources.AsyncPageShield
-    rulesets: resources.AsyncRulesets
-    url_normalization: resources.AsyncURLNormalization
-    spectrum: resources.AsyncSpectrum
-    addressing: resources.AsyncAddressing
-    audit_logs: resources.AsyncAuditLogs
-    billing: resources.AsyncBilling
-    brand_protection: resources.AsyncBrandProtection
-    diagnostics: resources.AsyncDiagnostics
-    images: resources.AsyncImages
-    intel: resources.AsyncIntel
-    magic_transit: resources.AsyncMagicTransit
-    magic_network_monitoring: resources.AsyncMagicNetworkMonitoring
-    mtls_certificates: resources.AsyncMTLSCertificates
-    pages: resources.AsyncPages
-    pcaps: resources.AsyncPCAPs
-    registrar: resources.AsyncRegistrar
-    request_tracers: resources.AsyncRequestTracers
-    rules: resources.AsyncRules
-    storage: resources.AsyncStorage
-    stream: resources.AsyncStream
-    alerting: resources.AsyncAlerting
+    email_routing: resources.AsyncEmailRoutingResource
+    filters: resources.AsyncFiltersResource
+    firewall: resources.AsyncFirewallResource
+    healthchecks: resources.AsyncHealthchecksResource
+    keyless_certificates: resources.AsyncKeylessCertificatesResource
+    logpush: resources.AsyncLogpushResource
+    logs: resources.AsyncLogsResource
+    origin_tls_client_auth: resources.AsyncOriginTLSClientAuthResource
+    pagerules: resources.AsyncPagerulesResource
+    rate_limits: resources.AsyncRateLimitsResource
+    secondary_dns: resources.AsyncSecondaryDNSResource
+    waiting_rooms: resources.AsyncWaitingRoomsResource
+    web3: resources.AsyncWeb3Resource
+    workers: resources.AsyncWorkersResource
+    kv: resources.AsyncKVResource
+    durable_objects: resources.AsyncDurableObjectsResource
+    queues: resources.AsyncQueuesResource
+    managed_headers: resources.AsyncManagedHeadersResource
+    page_shield: resources.AsyncPageShieldResource
+    rulesets: resources.AsyncRulesetsResource
+    url_normalization: resources.AsyncURLNormalizationResource
+    spectrum: resources.AsyncSpectrumResource
+    addressing: resources.AsyncAddressingResource
+    audit_logs: resources.AsyncAuditLogsResource
+    billing: resources.AsyncBillingResource
+    brand_protection: resources.AsyncBrandProtectionResource
+    diagnostics: resources.AsyncDiagnosticsResource
+    images: resources.AsyncImagesResource
+    intel: resources.AsyncIntelResource
+    magic_transit: resources.AsyncMagicTransitResource
+    magic_network_monitoring: resources.AsyncMagicNetworkMonitoringResource
+    mtls_certificates: resources.AsyncMTLSCertificatesResource
+    pages: resources.AsyncPagesResource
+    pcaps: resources.AsyncPCAPsResource
+    registrar: resources.AsyncRegistrarResource
+    request_tracers: resources.AsyncRequestTracersResource
+    rules: resources.AsyncRulesResource
+    storage: resources.AsyncStorageResource
+    stream: resources.AsyncStreamResource
+    alerting: resources.AsyncAlertingResource
     d1: resources.AsyncD1Resource
-    r2: resources.AsyncR2
-    warp_connector: resources.AsyncWARPConnector
-    workers_for_platforms: resources.AsyncWorkersForPlatforms
-    zero_trust: resources.AsyncZeroTrust
-    challenges: resources.AsyncChallenges
+    r2: resources.AsyncR2Resource
+    warp_connector: resources.AsyncWARPConnectorResource
+    workers_for_platforms: resources.AsyncWorkersForPlatformsResource
+    zero_trust: resources.AsyncZeroTrustResource
+    challenges: resources.AsyncChallengesResource
     hyperdrive: resources.AsyncHyperdriveResource
-    rum: resources.AsyncRUM
-    vectorize: resources.AsyncVectorize
-    url_scanner: resources.AsyncURLScanner
-    radar: resources.AsyncRadar
-    bot_management: resources.AsyncBotManagement
-    origin_post_quantum_encryption: resources.AsyncOriginPostQuantumEncryption
-    speed: resources.AsyncSpeed
-    dcv_delegation: resources.AsyncDCVDelegation
-    hostnames: resources.AsyncHostnames
-    snippets: resources.AsyncSnippets
-    calls: resources.AsyncCalls
-    cloudforce_one: resources.AsyncCloudforceOne
-    event_notifications: resources.AsyncEventNotifications
+    rum: resources.AsyncRUMResource
+    vectorize: resources.AsyncVectorizeResource
+    url_scanner: resources.AsyncURLScannerResource
+    radar: resources.AsyncRadarResource
+    bot_management: resources.AsyncBotManagementResource
+    origin_post_quantum_encryption: resources.AsyncOriginPostQuantumEncryptionResource
+    speed: resources.AsyncSpeedResource
+    dcv_delegation: resources.AsyncDCVDelegationResource
+    hostnames: resources.AsyncHostnamesResource
+    snippets: resources.AsyncSnippetsResource
+    calls: resources.AsyncCallsResource
+    cloudforce_one: resources.AsyncCloudforceOneResource
+    event_notifications: resources.AsyncEventNotificationsResource
     with_raw_response: AsyncCloudflareWithRawResponse
     with_streaming_response: AsyncCloudflareWithStreamedResponse
 
@@ -618,87 +618,87 @@ class AsyncCloudflare(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.accounts = resources.AsyncAccounts(self)
-        self.origin_ca_certificates = resources.AsyncOriginCACertificates(self)
-        self.ips = resources.AsyncIPs(self)
-        self.memberships = resources.AsyncMemberships(self)
-        self.user = resources.AsyncUser(self)
-        self.zones = resources.AsyncZones(self)
-        self.load_balancers = resources.AsyncLoadBalancers(self)
-        self.cache = resources.AsyncCache(self)
-        self.ssl = resources.AsyncSSL(self)
-        self.subscriptions = resources.AsyncSubscriptions(self)
-        self.acm = resources.AsyncACM(self)
-        self.argo = resources.AsyncArgo(self)
-        self.plans = resources.AsyncPlans(self)
-        self.rate_plans = resources.AsyncRatePlans(self)
-        self.certificate_authorities = resources.AsyncCertificateAuthorities(self)
-        self.client_certificates = resources.AsyncClientCertificates(self)
-        self.custom_certificates = resources.AsyncCustomCertificates(self)
-        self.custom_hostnames = resources.AsyncCustomHostnames(self)
-        self.custom_nameservers = resources.AsyncCustomNameservers(self)
-        self.dns = resources.AsyncDNS(self)
+        self.accounts = resources.AsyncAccountsResource(self)
+        self.origin_ca_certificates = resources.AsyncOriginCACertificatesResource(self)
+        self.ips = resources.AsyncIPsResource(self)
+        self.memberships = resources.AsyncMembershipsResource(self)
+        self.user = resources.AsyncUserResource(self)
+        self.zones = resources.AsyncZonesResource(self)
+        self.load_balancers = resources.AsyncLoadBalancersResource(self)
+        self.cache = resources.AsyncCacheResource(self)
+        self.ssl = resources.AsyncSSLResource(self)
+        self.subscriptions = resources.AsyncSubscriptionsResource(self)
+        self.acm = resources.AsyncACMResource(self)
+        self.argo = resources.AsyncArgoResource(self)
+        self.plans = resources.AsyncPlansResource(self)
+        self.rate_plans = resources.AsyncRatePlansResource(self)
+        self.certificate_authorities = resources.AsyncCertificateAuthoritiesResource(self)
+        self.client_certificates = resources.AsyncClientCertificatesResource(self)
+        self.custom_certificates = resources.AsyncCustomCertificatesResource(self)
+        self.custom_hostnames = resources.AsyncCustomHostnamesResource(self)
+        self.custom_nameservers = resources.AsyncCustomNameserversResource(self)
+        self.dns = resources.AsyncDNSResource(self)
         self.dnssec = resources.AsyncDNSSECResource(self)
-        self.email_routing = resources.AsyncEmailRouting(self)
-        self.filters = resources.AsyncFilters(self)
-        self.firewall = resources.AsyncFirewall(self)
-        self.healthchecks = resources.AsyncHealthchecks(self)
-        self.keyless_certificates = resources.AsyncKeylessCertificates(self)
-        self.logpush = resources.AsyncLogpush(self)
-        self.logs = resources.AsyncLogs(self)
-        self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuth(self)
-        self.pagerules = resources.AsyncPagerules(self)
-        self.rate_limits = resources.AsyncRateLimits(self)
-        self.secondary_dns = resources.AsyncSecondaryDNS(self)
-        self.waiting_rooms = resources.AsyncWaitingRooms(self)
-        self.web3 = resources.AsyncWeb3(self)
-        self.workers = resources.AsyncWorkers(self)
-        self.kv = resources.AsyncKV(self)
-        self.durable_objects = resources.AsyncDurableObjects(self)
-        self.queues = resources.AsyncQueues(self)
-        self.managed_headers = resources.AsyncManagedHeaders(self)
-        self.page_shield = resources.AsyncPageShield(self)
-        self.rulesets = resources.AsyncRulesets(self)
-        self.url_normalization = resources.AsyncURLNormalization(self)
-        self.spectrum = resources.AsyncSpectrum(self)
-        self.addressing = resources.AsyncAddressing(self)
-        self.audit_logs = resources.AsyncAuditLogs(self)
-        self.billing = resources.AsyncBilling(self)
-        self.brand_protection = resources.AsyncBrandProtection(self)
-        self.diagnostics = resources.AsyncDiagnostics(self)
-        self.images = resources.AsyncImages(self)
-        self.intel = resources.AsyncIntel(self)
-        self.magic_transit = resources.AsyncMagicTransit(self)
-        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoring(self)
-        self.mtls_certificates = resources.AsyncMTLSCertificates(self)
-        self.pages = resources.AsyncPages(self)
-        self.pcaps = resources.AsyncPCAPs(self)
-        self.registrar = resources.AsyncRegistrar(self)
-        self.request_tracers = resources.AsyncRequestTracers(self)
-        self.rules = resources.AsyncRules(self)
-        self.storage = resources.AsyncStorage(self)
-        self.stream = resources.AsyncStream(self)
-        self.alerting = resources.AsyncAlerting(self)
+        self.email_routing = resources.AsyncEmailRoutingResource(self)
+        self.filters = resources.AsyncFiltersResource(self)
+        self.firewall = resources.AsyncFirewallResource(self)
+        self.healthchecks = resources.AsyncHealthchecksResource(self)
+        self.keyless_certificates = resources.AsyncKeylessCertificatesResource(self)
+        self.logpush = resources.AsyncLogpushResource(self)
+        self.logs = resources.AsyncLogsResource(self)
+        self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuthResource(self)
+        self.pagerules = resources.AsyncPagerulesResource(self)
+        self.rate_limits = resources.AsyncRateLimitsResource(self)
+        self.secondary_dns = resources.AsyncSecondaryDNSResource(self)
+        self.waiting_rooms = resources.AsyncWaitingRoomsResource(self)
+        self.web3 = resources.AsyncWeb3Resource(self)
+        self.workers = resources.AsyncWorkersResource(self)
+        self.kv = resources.AsyncKVResource(self)
+        self.durable_objects = resources.AsyncDurableObjectsResource(self)
+        self.queues = resources.AsyncQueuesResource(self)
+        self.managed_headers = resources.AsyncManagedHeadersResource(self)
+        self.page_shield = resources.AsyncPageShieldResource(self)
+        self.rulesets = resources.AsyncRulesetsResource(self)
+        self.url_normalization = resources.AsyncURLNormalizationResource(self)
+        self.spectrum = resources.AsyncSpectrumResource(self)
+        self.addressing = resources.AsyncAddressingResource(self)
+        self.audit_logs = resources.AsyncAuditLogsResource(self)
+        self.billing = resources.AsyncBillingResource(self)
+        self.brand_protection = resources.AsyncBrandProtectionResource(self)
+        self.diagnostics = resources.AsyncDiagnosticsResource(self)
+        self.images = resources.AsyncImagesResource(self)
+        self.intel = resources.AsyncIntelResource(self)
+        self.magic_transit = resources.AsyncMagicTransitResource(self)
+        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringResource(self)
+        self.mtls_certificates = resources.AsyncMTLSCertificatesResource(self)
+        self.pages = resources.AsyncPagesResource(self)
+        self.pcaps = resources.AsyncPCAPsResource(self)
+        self.registrar = resources.AsyncRegistrarResource(self)
+        self.request_tracers = resources.AsyncRequestTracersResource(self)
+        self.rules = resources.AsyncRulesResource(self)
+        self.storage = resources.AsyncStorageResource(self)
+        self.stream = resources.AsyncStreamResource(self)
+        self.alerting = resources.AsyncAlertingResource(self)
         self.d1 = resources.AsyncD1Resource(self)
-        self.r2 = resources.AsyncR2(self)
-        self.warp_connector = resources.AsyncWARPConnector(self)
-        self.workers_for_platforms = resources.AsyncWorkersForPlatforms(self)
-        self.zero_trust = resources.AsyncZeroTrust(self)
-        self.challenges = resources.AsyncChallenges(self)
+        self.r2 = resources.AsyncR2Resource(self)
+        self.warp_connector = resources.AsyncWARPConnectorResource(self)
+        self.workers_for_platforms = resources.AsyncWorkersForPlatformsResource(self)
+        self.zero_trust = resources.AsyncZeroTrustResource(self)
+        self.challenges = resources.AsyncChallengesResource(self)
         self.hyperdrive = resources.AsyncHyperdriveResource(self)
-        self.rum = resources.AsyncRUM(self)
-        self.vectorize = resources.AsyncVectorize(self)
-        self.url_scanner = resources.AsyncURLScanner(self)
-        self.radar = resources.AsyncRadar(self)
-        self.bot_management = resources.AsyncBotManagement(self)
-        self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryption(self)
-        self.speed = resources.AsyncSpeed(self)
-        self.dcv_delegation = resources.AsyncDCVDelegation(self)
-        self.hostnames = resources.AsyncHostnames(self)
-        self.snippets = resources.AsyncSnippets(self)
-        self.calls = resources.AsyncCalls(self)
-        self.cloudforce_one = resources.AsyncCloudforceOne(self)
-        self.event_notifications = resources.AsyncEventNotifications(self)
+        self.rum = resources.AsyncRUMResource(self)
+        self.vectorize = resources.AsyncVectorizeResource(self)
+        self.url_scanner = resources.AsyncURLScannerResource(self)
+        self.radar = resources.AsyncRadarResource(self)
+        self.bot_management = resources.AsyncBotManagementResource(self)
+        self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionResource(self)
+        self.speed = resources.AsyncSpeedResource(self)
+        self.dcv_delegation = resources.AsyncDCVDelegationResource(self)
+        self.hostnames = resources.AsyncHostnamesResource(self)
+        self.snippets = resources.AsyncSnippetsResource(self)
+        self.calls = resources.AsyncCallsResource(self)
+        self.cloudforce_one = resources.AsyncCloudforceOneResource(self)
+        self.event_notifications = resources.AsyncEventNotificationsResource(self)
         self.with_raw_response = AsyncCloudflareWithRawResponse(self)
         self.with_streaming_response = AsyncCloudflareWithStreamedResponse(self)
 
@@ -878,368 +878,402 @@ class AsyncCloudflare(AsyncAPIClient):
 
 class CloudflareWithRawResponse:
     def __init__(self, client: Cloudflare) -> None:
-        self.accounts = resources.AccountsWithRawResponse(client.accounts)
-        self.origin_ca_certificates = resources.OriginCACertificatesWithRawResponse(client.origin_ca_certificates)
-        self.ips = resources.IPsWithRawResponse(client.ips)
-        self.memberships = resources.MembershipsWithRawResponse(client.memberships)
-        self.user = resources.UserWithRawResponse(client.user)
-        self.zones = resources.ZonesWithRawResponse(client.zones)
-        self.load_balancers = resources.LoadBalancersWithRawResponse(client.load_balancers)
-        self.cache = resources.CacheWithRawResponse(client.cache)
-        self.ssl = resources.SSLWithRawResponse(client.ssl)
-        self.subscriptions = resources.SubscriptionsWithRawResponse(client.subscriptions)
-        self.acm = resources.ACMWithRawResponse(client.acm)
-        self.argo = resources.ArgoWithRawResponse(client.argo)
-        self.plans = resources.PlansWithRawResponse(client.plans)
-        self.rate_plans = resources.RatePlansWithRawResponse(client.rate_plans)
-        self.certificate_authorities = resources.CertificateAuthoritiesWithRawResponse(client.certificate_authorities)
-        self.client_certificates = resources.ClientCertificatesWithRawResponse(client.client_certificates)
-        self.custom_certificates = resources.CustomCertificatesWithRawResponse(client.custom_certificates)
-        self.custom_hostnames = resources.CustomHostnamesWithRawResponse(client.custom_hostnames)
-        self.custom_nameservers = resources.CustomNameserversWithRawResponse(client.custom_nameservers)
-        self.dns = resources.DNSWithRawResponse(client.dns)
+        self.accounts = resources.AccountsResourceWithRawResponse(client.accounts)
+        self.origin_ca_certificates = resources.OriginCACertificatesResourceWithRawResponse(
+            client.origin_ca_certificates
+        )
+        self.ips = resources.IPsResourceWithRawResponse(client.ips)
+        self.memberships = resources.MembershipsResourceWithRawResponse(client.memberships)
+        self.user = resources.UserResourceWithRawResponse(client.user)
+        self.zones = resources.ZonesResourceWithRawResponse(client.zones)
+        self.load_balancers = resources.LoadBalancersResourceWithRawResponse(client.load_balancers)
+        self.cache = resources.CacheResourceWithRawResponse(client.cache)
+        self.ssl = resources.SSLResourceWithRawResponse(client.ssl)
+        self.subscriptions = resources.SubscriptionsResourceWithRawResponse(client.subscriptions)
+        self.acm = resources.ACMResourceWithRawResponse(client.acm)
+        self.argo = resources.ArgoResourceWithRawResponse(client.argo)
+        self.plans = resources.PlansResourceWithRawResponse(client.plans)
+        self.rate_plans = resources.RatePlansResourceWithRawResponse(client.rate_plans)
+        self.certificate_authorities = resources.CertificateAuthoritiesResourceWithRawResponse(
+            client.certificate_authorities
+        )
+        self.client_certificates = resources.ClientCertificatesResourceWithRawResponse(client.client_certificates)
+        self.custom_certificates = resources.CustomCertificatesResourceWithRawResponse(client.custom_certificates)
+        self.custom_hostnames = resources.CustomHostnamesResourceWithRawResponse(client.custom_hostnames)
+        self.custom_nameservers = resources.CustomNameserversResourceWithRawResponse(client.custom_nameservers)
+        self.dns = resources.DNSResourceWithRawResponse(client.dns)
         self.dnssec = resources.DNSSECResourceWithRawResponse(client.dnssec)
-        self.email_routing = resources.EmailRoutingWithRawResponse(client.email_routing)
-        self.filters = resources.FiltersWithRawResponse(client.filters)
-        self.firewall = resources.FirewallWithRawResponse(client.firewall)
-        self.healthchecks = resources.HealthchecksWithRawResponse(client.healthchecks)
-        self.keyless_certificates = resources.KeylessCertificatesWithRawResponse(client.keyless_certificates)
-        self.logpush = resources.LogpushWithRawResponse(client.logpush)
-        self.logs = resources.LogsWithRawResponse(client.logs)
-        self.origin_tls_client_auth = resources.OriginTLSClientAuthWithRawResponse(client.origin_tls_client_auth)
-        self.pagerules = resources.PagerulesWithRawResponse(client.pagerules)
-        self.rate_limits = resources.RateLimitsWithRawResponse(client.rate_limits)
-        self.secondary_dns = resources.SecondaryDNSWithRawResponse(client.secondary_dns)
-        self.waiting_rooms = resources.WaitingRoomsWithRawResponse(client.waiting_rooms)
-        self.web3 = resources.Web3WithRawResponse(client.web3)
-        self.workers = resources.WorkersWithRawResponse(client.workers)
-        self.kv = resources.KVWithRawResponse(client.kv)
-        self.durable_objects = resources.DurableObjectsWithRawResponse(client.durable_objects)
-        self.queues = resources.QueuesWithRawResponse(client.queues)
-        self.managed_headers = resources.ManagedHeadersWithRawResponse(client.managed_headers)
-        self.page_shield = resources.PageShieldWithRawResponse(client.page_shield)
-        self.rulesets = resources.RulesetsWithRawResponse(client.rulesets)
-        self.url_normalization = resources.URLNormalizationWithRawResponse(client.url_normalization)
-        self.spectrum = resources.SpectrumWithRawResponse(client.spectrum)
-        self.addressing = resources.AddressingWithRawResponse(client.addressing)
-        self.audit_logs = resources.AuditLogsWithRawResponse(client.audit_logs)
-        self.billing = resources.BillingWithRawResponse(client.billing)
-        self.brand_protection = resources.BrandProtectionWithRawResponse(client.brand_protection)
-        self.diagnostics = resources.DiagnosticsWithRawResponse(client.diagnostics)
-        self.images = resources.ImagesWithRawResponse(client.images)
-        self.intel = resources.IntelWithRawResponse(client.intel)
-        self.magic_transit = resources.MagicTransitWithRawResponse(client.magic_transit)
-        self.magic_network_monitoring = resources.MagicNetworkMonitoringWithRawResponse(client.magic_network_monitoring)
-        self.mtls_certificates = resources.MTLSCertificatesWithRawResponse(client.mtls_certificates)
-        self.pages = resources.PagesWithRawResponse(client.pages)
-        self.pcaps = resources.PCAPsWithRawResponse(client.pcaps)
-        self.registrar = resources.RegistrarWithRawResponse(client.registrar)
-        self.request_tracers = resources.RequestTracersWithRawResponse(client.request_tracers)
-        self.rules = resources.RulesWithRawResponse(client.rules)
-        self.storage = resources.StorageWithRawResponse(client.storage)
-        self.stream = resources.StreamWithRawResponse(client.stream)
-        self.alerting = resources.AlertingWithRawResponse(client.alerting)
+        self.email_routing = resources.EmailRoutingResourceWithRawResponse(client.email_routing)
+        self.filters = resources.FiltersResourceWithRawResponse(client.filters)
+        self.firewall = resources.FirewallResourceWithRawResponse(client.firewall)
+        self.healthchecks = resources.HealthchecksResourceWithRawResponse(client.healthchecks)
+        self.keyless_certificates = resources.KeylessCertificatesResourceWithRawResponse(client.keyless_certificates)
+        self.logpush = resources.LogpushResourceWithRawResponse(client.logpush)
+        self.logs = resources.LogsResourceWithRawResponse(client.logs)
+        self.origin_tls_client_auth = resources.OriginTLSClientAuthResourceWithRawResponse(
+            client.origin_tls_client_auth
+        )
+        self.pagerules = resources.PagerulesResourceWithRawResponse(client.pagerules)
+        self.rate_limits = resources.RateLimitsResourceWithRawResponse(client.rate_limits)
+        self.secondary_dns = resources.SecondaryDNSResourceWithRawResponse(client.secondary_dns)
+        self.waiting_rooms = resources.WaitingRoomsResourceWithRawResponse(client.waiting_rooms)
+        self.web3 = resources.Web3ResourceWithRawResponse(client.web3)
+        self.workers = resources.WorkersResourceWithRawResponse(client.workers)
+        self.kv = resources.KVResourceWithRawResponse(client.kv)
+        self.durable_objects = resources.DurableObjectsResourceWithRawResponse(client.durable_objects)
+        self.queues = resources.QueuesResourceWithRawResponse(client.queues)
+        self.managed_headers = resources.ManagedHeadersResourceWithRawResponse(client.managed_headers)
+        self.page_shield = resources.PageShieldResourceWithRawResponse(client.page_shield)
+        self.rulesets = resources.RulesetsResourceWithRawResponse(client.rulesets)
+        self.url_normalization = resources.URLNormalizationResourceWithRawResponse(client.url_normalization)
+        self.spectrum = resources.SpectrumResourceWithRawResponse(client.spectrum)
+        self.addressing = resources.AddressingResourceWithRawResponse(client.addressing)
+        self.audit_logs = resources.AuditLogsResourceWithRawResponse(client.audit_logs)
+        self.billing = resources.BillingResourceWithRawResponse(client.billing)
+        self.brand_protection = resources.BrandProtectionResourceWithRawResponse(client.brand_protection)
+        self.diagnostics = resources.DiagnosticsResourceWithRawResponse(client.diagnostics)
+        self.images = resources.ImagesResourceWithRawResponse(client.images)
+        self.intel = resources.IntelResourceWithRawResponse(client.intel)
+        self.magic_transit = resources.MagicTransitResourceWithRawResponse(client.magic_transit)
+        self.magic_network_monitoring = resources.MagicNetworkMonitoringResourceWithRawResponse(
+            client.magic_network_monitoring
+        )
+        self.mtls_certificates = resources.MTLSCertificatesResourceWithRawResponse(client.mtls_certificates)
+        self.pages = resources.PagesResourceWithRawResponse(client.pages)
+        self.pcaps = resources.PCAPsResourceWithRawResponse(client.pcaps)
+        self.registrar = resources.RegistrarResourceWithRawResponse(client.registrar)
+        self.request_tracers = resources.RequestTracersResourceWithRawResponse(client.request_tracers)
+        self.rules = resources.RulesResourceWithRawResponse(client.rules)
+        self.storage = resources.StorageResourceWithRawResponse(client.storage)
+        self.stream = resources.StreamResourceWithRawResponse(client.stream)
+        self.alerting = resources.AlertingResourceWithRawResponse(client.alerting)
         self.d1 = resources.D1ResourceWithRawResponse(client.d1)
-        self.r2 = resources.R2WithRawResponse(client.r2)
-        self.warp_connector = resources.WARPConnectorWithRawResponse(client.warp_connector)
-        self.workers_for_platforms = resources.WorkersForPlatformsWithRawResponse(client.workers_for_platforms)
-        self.zero_trust = resources.ZeroTrustWithRawResponse(client.zero_trust)
-        self.challenges = resources.ChallengesWithRawResponse(client.challenges)
+        self.r2 = resources.R2ResourceWithRawResponse(client.r2)
+        self.warp_connector = resources.WARPConnectorResourceWithRawResponse(client.warp_connector)
+        self.workers_for_platforms = resources.WorkersForPlatformsResourceWithRawResponse(client.workers_for_platforms)
+        self.zero_trust = resources.ZeroTrustResourceWithRawResponse(client.zero_trust)
+        self.challenges = resources.ChallengesResourceWithRawResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveResourceWithRawResponse(client.hyperdrive)
-        self.rum = resources.RUMWithRawResponse(client.rum)
-        self.vectorize = resources.VectorizeWithRawResponse(client.vectorize)
-        self.url_scanner = resources.URLScannerWithRawResponse(client.url_scanner)
-        self.radar = resources.RadarWithRawResponse(client.radar)
-        self.bot_management = resources.BotManagementWithRawResponse(client.bot_management)
-        self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionWithRawResponse(
+        self.rum = resources.RUMResourceWithRawResponse(client.rum)
+        self.vectorize = resources.VectorizeResourceWithRawResponse(client.vectorize)
+        self.url_scanner = resources.URLScannerResourceWithRawResponse(client.url_scanner)
+        self.radar = resources.RadarResourceWithRawResponse(client.radar)
+        self.bot_management = resources.BotManagementResourceWithRawResponse(client.bot_management)
+        self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionResourceWithRawResponse(
             client.origin_post_quantum_encryption
         )
-        self.speed = resources.SpeedWithRawResponse(client.speed)
-        self.dcv_delegation = resources.DCVDelegationWithRawResponse(client.dcv_delegation)
-        self.hostnames = resources.HostnamesWithRawResponse(client.hostnames)
-        self.snippets = resources.SnippetsWithRawResponse(client.snippets)
-        self.calls = resources.CallsWithRawResponse(client.calls)
-        self.cloudforce_one = resources.CloudforceOneWithRawResponse(client.cloudforce_one)
-        self.event_notifications = resources.EventNotificationsWithRawResponse(client.event_notifications)
+        self.speed = resources.SpeedResourceWithRawResponse(client.speed)
+        self.dcv_delegation = resources.DCVDelegationResourceWithRawResponse(client.dcv_delegation)
+        self.hostnames = resources.HostnamesResourceWithRawResponse(client.hostnames)
+        self.snippets = resources.SnippetsResourceWithRawResponse(client.snippets)
+        self.calls = resources.CallsResourceWithRawResponse(client.calls)
+        self.cloudforce_one = resources.CloudforceOneResourceWithRawResponse(client.cloudforce_one)
+        self.event_notifications = resources.EventNotificationsResourceWithRawResponse(client.event_notifications)
 
 
 class AsyncCloudflareWithRawResponse:
     def __init__(self, client: AsyncCloudflare) -> None:
-        self.accounts = resources.AsyncAccountsWithRawResponse(client.accounts)
-        self.origin_ca_certificates = resources.AsyncOriginCACertificatesWithRawResponse(client.origin_ca_certificates)
-        self.ips = resources.AsyncIPsWithRawResponse(client.ips)
-        self.memberships = resources.AsyncMembershipsWithRawResponse(client.memberships)
-        self.user = resources.AsyncUserWithRawResponse(client.user)
-        self.zones = resources.AsyncZonesWithRawResponse(client.zones)
-        self.load_balancers = resources.AsyncLoadBalancersWithRawResponse(client.load_balancers)
-        self.cache = resources.AsyncCacheWithRawResponse(client.cache)
-        self.ssl = resources.AsyncSSLWithRawResponse(client.ssl)
-        self.subscriptions = resources.AsyncSubscriptionsWithRawResponse(client.subscriptions)
-        self.acm = resources.AsyncACMWithRawResponse(client.acm)
-        self.argo = resources.AsyncArgoWithRawResponse(client.argo)
-        self.plans = resources.AsyncPlansWithRawResponse(client.plans)
-        self.rate_plans = resources.AsyncRatePlansWithRawResponse(client.rate_plans)
-        self.certificate_authorities = resources.AsyncCertificateAuthoritiesWithRawResponse(
+        self.accounts = resources.AsyncAccountsResourceWithRawResponse(client.accounts)
+        self.origin_ca_certificates = resources.AsyncOriginCACertificatesResourceWithRawResponse(
+            client.origin_ca_certificates
+        )
+        self.ips = resources.AsyncIPsResourceWithRawResponse(client.ips)
+        self.memberships = resources.AsyncMembershipsResourceWithRawResponse(client.memberships)
+        self.user = resources.AsyncUserResourceWithRawResponse(client.user)
+        self.zones = resources.AsyncZonesResourceWithRawResponse(client.zones)
+        self.load_balancers = resources.AsyncLoadBalancersResourceWithRawResponse(client.load_balancers)
+        self.cache = resources.AsyncCacheResourceWithRawResponse(client.cache)
+        self.ssl = resources.AsyncSSLResourceWithRawResponse(client.ssl)
+        self.subscriptions = resources.AsyncSubscriptionsResourceWithRawResponse(client.subscriptions)
+        self.acm = resources.AsyncACMResourceWithRawResponse(client.acm)
+        self.argo = resources.AsyncArgoResourceWithRawResponse(client.argo)
+        self.plans = resources.AsyncPlansResourceWithRawResponse(client.plans)
+        self.rate_plans = resources.AsyncRatePlansResourceWithRawResponse(client.rate_plans)
+        self.certificate_authorities = resources.AsyncCertificateAuthoritiesResourceWithRawResponse(
             client.certificate_authorities
         )
-        self.client_certificates = resources.AsyncClientCertificatesWithRawResponse(client.client_certificates)
-        self.custom_certificates = resources.AsyncCustomCertificatesWithRawResponse(client.custom_certificates)
-        self.custom_hostnames = resources.AsyncCustomHostnamesWithRawResponse(client.custom_hostnames)
-        self.custom_nameservers = resources.AsyncCustomNameserversWithRawResponse(client.custom_nameservers)
-        self.dns = resources.AsyncDNSWithRawResponse(client.dns)
+        self.client_certificates = resources.AsyncClientCertificatesResourceWithRawResponse(client.client_certificates)
+        self.custom_certificates = resources.AsyncCustomCertificatesResourceWithRawResponse(client.custom_certificates)
+        self.custom_hostnames = resources.AsyncCustomHostnamesResourceWithRawResponse(client.custom_hostnames)
+        self.custom_nameservers = resources.AsyncCustomNameserversResourceWithRawResponse(client.custom_nameservers)
+        self.dns = resources.AsyncDNSResourceWithRawResponse(client.dns)
         self.dnssec = resources.AsyncDNSSECResourceWithRawResponse(client.dnssec)
-        self.email_routing = resources.AsyncEmailRoutingWithRawResponse(client.email_routing)
-        self.filters = resources.AsyncFiltersWithRawResponse(client.filters)
-        self.firewall = resources.AsyncFirewallWithRawResponse(client.firewall)
-        self.healthchecks = resources.AsyncHealthchecksWithRawResponse(client.healthchecks)
-        self.keyless_certificates = resources.AsyncKeylessCertificatesWithRawResponse(client.keyless_certificates)
-        self.logpush = resources.AsyncLogpushWithRawResponse(client.logpush)
-        self.logs = resources.AsyncLogsWithRawResponse(client.logs)
-        self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuthWithRawResponse(client.origin_tls_client_auth)
-        self.pagerules = resources.AsyncPagerulesWithRawResponse(client.pagerules)
-        self.rate_limits = resources.AsyncRateLimitsWithRawResponse(client.rate_limits)
-        self.secondary_dns = resources.AsyncSecondaryDNSWithRawResponse(client.secondary_dns)
-        self.waiting_rooms = resources.AsyncWaitingRoomsWithRawResponse(client.waiting_rooms)
-        self.web3 = resources.AsyncWeb3WithRawResponse(client.web3)
-        self.workers = resources.AsyncWorkersWithRawResponse(client.workers)
-        self.kv = resources.AsyncKVWithRawResponse(client.kv)
-        self.durable_objects = resources.AsyncDurableObjectsWithRawResponse(client.durable_objects)
-        self.queues = resources.AsyncQueuesWithRawResponse(client.queues)
-        self.managed_headers = resources.AsyncManagedHeadersWithRawResponse(client.managed_headers)
-        self.page_shield = resources.AsyncPageShieldWithRawResponse(client.page_shield)
-        self.rulesets = resources.AsyncRulesetsWithRawResponse(client.rulesets)
-        self.url_normalization = resources.AsyncURLNormalizationWithRawResponse(client.url_normalization)
-        self.spectrum = resources.AsyncSpectrumWithRawResponse(client.spectrum)
-        self.addressing = resources.AsyncAddressingWithRawResponse(client.addressing)
-        self.audit_logs = resources.AsyncAuditLogsWithRawResponse(client.audit_logs)
-        self.billing = resources.AsyncBillingWithRawResponse(client.billing)
-        self.brand_protection = resources.AsyncBrandProtectionWithRawResponse(client.brand_protection)
-        self.diagnostics = resources.AsyncDiagnosticsWithRawResponse(client.diagnostics)
-        self.images = resources.AsyncImagesWithRawResponse(client.images)
-        self.intel = resources.AsyncIntelWithRawResponse(client.intel)
-        self.magic_transit = resources.AsyncMagicTransitWithRawResponse(client.magic_transit)
-        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringWithRawResponse(
+        self.email_routing = resources.AsyncEmailRoutingResourceWithRawResponse(client.email_routing)
+        self.filters = resources.AsyncFiltersResourceWithRawResponse(client.filters)
+        self.firewall = resources.AsyncFirewallResourceWithRawResponse(client.firewall)
+        self.healthchecks = resources.AsyncHealthchecksResourceWithRawResponse(client.healthchecks)
+        self.keyless_certificates = resources.AsyncKeylessCertificatesResourceWithRawResponse(
+            client.keyless_certificates
+        )
+        self.logpush = resources.AsyncLogpushResourceWithRawResponse(client.logpush)
+        self.logs = resources.AsyncLogsResourceWithRawResponse(client.logs)
+        self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuthResourceWithRawResponse(
+            client.origin_tls_client_auth
+        )
+        self.pagerules = resources.AsyncPagerulesResourceWithRawResponse(client.pagerules)
+        self.rate_limits = resources.AsyncRateLimitsResourceWithRawResponse(client.rate_limits)
+        self.secondary_dns = resources.AsyncSecondaryDNSResourceWithRawResponse(client.secondary_dns)
+        self.waiting_rooms = resources.AsyncWaitingRoomsResourceWithRawResponse(client.waiting_rooms)
+        self.web3 = resources.AsyncWeb3ResourceWithRawResponse(client.web3)
+        self.workers = resources.AsyncWorkersResourceWithRawResponse(client.workers)
+        self.kv = resources.AsyncKVResourceWithRawResponse(client.kv)
+        self.durable_objects = resources.AsyncDurableObjectsResourceWithRawResponse(client.durable_objects)
+        self.queues = resources.AsyncQueuesResourceWithRawResponse(client.queues)
+        self.managed_headers = resources.AsyncManagedHeadersResourceWithRawResponse(client.managed_headers)
+        self.page_shield = resources.AsyncPageShieldResourceWithRawResponse(client.page_shield)
+        self.rulesets = resources.AsyncRulesetsResourceWithRawResponse(client.rulesets)
+        self.url_normalization = resources.AsyncURLNormalizationResourceWithRawResponse(client.url_normalization)
+        self.spectrum = resources.AsyncSpectrumResourceWithRawResponse(client.spectrum)
+        self.addressing = resources.AsyncAddressingResourceWithRawResponse(client.addressing)
+        self.audit_logs = resources.AsyncAuditLogsResourceWithRawResponse(client.audit_logs)
+        self.billing = resources.AsyncBillingResourceWithRawResponse(client.billing)
+        self.brand_protection = resources.AsyncBrandProtectionResourceWithRawResponse(client.brand_protection)
+        self.diagnostics = resources.AsyncDiagnosticsResourceWithRawResponse(client.diagnostics)
+        self.images = resources.AsyncImagesResourceWithRawResponse(client.images)
+        self.intel = resources.AsyncIntelResourceWithRawResponse(client.intel)
+        self.magic_transit = resources.AsyncMagicTransitResourceWithRawResponse(client.magic_transit)
+        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringResourceWithRawResponse(
             client.magic_network_monitoring
         )
-        self.mtls_certificates = resources.AsyncMTLSCertificatesWithRawResponse(client.mtls_certificates)
-        self.pages = resources.AsyncPagesWithRawResponse(client.pages)
-        self.pcaps = resources.AsyncPCAPsWithRawResponse(client.pcaps)
-        self.registrar = resources.AsyncRegistrarWithRawResponse(client.registrar)
-        self.request_tracers = resources.AsyncRequestTracersWithRawResponse(client.request_tracers)
-        self.rules = resources.AsyncRulesWithRawResponse(client.rules)
-        self.storage = resources.AsyncStorageWithRawResponse(client.storage)
-        self.stream = resources.AsyncStreamWithRawResponse(client.stream)
-        self.alerting = resources.AsyncAlertingWithRawResponse(client.alerting)
+        self.mtls_certificates = resources.AsyncMTLSCertificatesResourceWithRawResponse(client.mtls_certificates)
+        self.pages = resources.AsyncPagesResourceWithRawResponse(client.pages)
+        self.pcaps = resources.AsyncPCAPsResourceWithRawResponse(client.pcaps)
+        self.registrar = resources.AsyncRegistrarResourceWithRawResponse(client.registrar)
+        self.request_tracers = resources.AsyncRequestTracersResourceWithRawResponse(client.request_tracers)
+        self.rules = resources.AsyncRulesResourceWithRawResponse(client.rules)
+        self.storage = resources.AsyncStorageResourceWithRawResponse(client.storage)
+        self.stream = resources.AsyncStreamResourceWithRawResponse(client.stream)
+        self.alerting = resources.AsyncAlertingResourceWithRawResponse(client.alerting)
         self.d1 = resources.AsyncD1ResourceWithRawResponse(client.d1)
-        self.r2 = resources.AsyncR2WithRawResponse(client.r2)
-        self.warp_connector = resources.AsyncWARPConnectorWithRawResponse(client.warp_connector)
-        self.workers_for_platforms = resources.AsyncWorkersForPlatformsWithRawResponse(client.workers_for_platforms)
-        self.zero_trust = resources.AsyncZeroTrustWithRawResponse(client.zero_trust)
-        self.challenges = resources.AsyncChallengesWithRawResponse(client.challenges)
+        self.r2 = resources.AsyncR2ResourceWithRawResponse(client.r2)
+        self.warp_connector = resources.AsyncWARPConnectorResourceWithRawResponse(client.warp_connector)
+        self.workers_for_platforms = resources.AsyncWorkersForPlatformsResourceWithRawResponse(
+            client.workers_for_platforms
+        )
+        self.zero_trust = resources.AsyncZeroTrustResourceWithRawResponse(client.zero_trust)
+        self.challenges = resources.AsyncChallengesResourceWithRawResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveResourceWithRawResponse(client.hyperdrive)
-        self.rum = resources.AsyncRUMWithRawResponse(client.rum)
-        self.vectorize = resources.AsyncVectorizeWithRawResponse(client.vectorize)
-        self.url_scanner = resources.AsyncURLScannerWithRawResponse(client.url_scanner)
-        self.radar = resources.AsyncRadarWithRawResponse(client.radar)
-        self.bot_management = resources.AsyncBotManagementWithRawResponse(client.bot_management)
-        self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionWithRawResponse(
+        self.rum = resources.AsyncRUMResourceWithRawResponse(client.rum)
+        self.vectorize = resources.AsyncVectorizeResourceWithRawResponse(client.vectorize)
+        self.url_scanner = resources.AsyncURLScannerResourceWithRawResponse(client.url_scanner)
+        self.radar = resources.AsyncRadarResourceWithRawResponse(client.radar)
+        self.bot_management = resources.AsyncBotManagementResourceWithRawResponse(client.bot_management)
+        self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionResourceWithRawResponse(
             client.origin_post_quantum_encryption
         )
-        self.speed = resources.AsyncSpeedWithRawResponse(client.speed)
-        self.dcv_delegation = resources.AsyncDCVDelegationWithRawResponse(client.dcv_delegation)
-        self.hostnames = resources.AsyncHostnamesWithRawResponse(client.hostnames)
-        self.snippets = resources.AsyncSnippetsWithRawResponse(client.snippets)
-        self.calls = resources.AsyncCallsWithRawResponse(client.calls)
-        self.cloudforce_one = resources.AsyncCloudforceOneWithRawResponse(client.cloudforce_one)
-        self.event_notifications = resources.AsyncEventNotificationsWithRawResponse(client.event_notifications)
+        self.speed = resources.AsyncSpeedResourceWithRawResponse(client.speed)
+        self.dcv_delegation = resources.AsyncDCVDelegationResourceWithRawResponse(client.dcv_delegation)
+        self.hostnames = resources.AsyncHostnamesResourceWithRawResponse(client.hostnames)
+        self.snippets = resources.AsyncSnippetsResourceWithRawResponse(client.snippets)
+        self.calls = resources.AsyncCallsResourceWithRawResponse(client.calls)
+        self.cloudforce_one = resources.AsyncCloudforceOneResourceWithRawResponse(client.cloudforce_one)
+        self.event_notifications = resources.AsyncEventNotificationsResourceWithRawResponse(client.event_notifications)
 
 
 class CloudflareWithStreamedResponse:
     def __init__(self, client: Cloudflare) -> None:
-        self.accounts = resources.AccountsWithStreamingResponse(client.accounts)
-        self.origin_ca_certificates = resources.OriginCACertificatesWithStreamingResponse(client.origin_ca_certificates)
-        self.ips = resources.IPsWithStreamingResponse(client.ips)
-        self.memberships = resources.MembershipsWithStreamingResponse(client.memberships)
-        self.user = resources.UserWithStreamingResponse(client.user)
-        self.zones = resources.ZonesWithStreamingResponse(client.zones)
-        self.load_balancers = resources.LoadBalancersWithStreamingResponse(client.load_balancers)
-        self.cache = resources.CacheWithStreamingResponse(client.cache)
-        self.ssl = resources.SSLWithStreamingResponse(client.ssl)
-        self.subscriptions = resources.SubscriptionsWithStreamingResponse(client.subscriptions)
-        self.acm = resources.ACMWithStreamingResponse(client.acm)
-        self.argo = resources.ArgoWithStreamingResponse(client.argo)
-        self.plans = resources.PlansWithStreamingResponse(client.plans)
-        self.rate_plans = resources.RatePlansWithStreamingResponse(client.rate_plans)
-        self.certificate_authorities = resources.CertificateAuthoritiesWithStreamingResponse(
+        self.accounts = resources.AccountsResourceWithStreamingResponse(client.accounts)
+        self.origin_ca_certificates = resources.OriginCACertificatesResourceWithStreamingResponse(
+            client.origin_ca_certificates
+        )
+        self.ips = resources.IPsResourceWithStreamingResponse(client.ips)
+        self.memberships = resources.MembershipsResourceWithStreamingResponse(client.memberships)
+        self.user = resources.UserResourceWithStreamingResponse(client.user)
+        self.zones = resources.ZonesResourceWithStreamingResponse(client.zones)
+        self.load_balancers = resources.LoadBalancersResourceWithStreamingResponse(client.load_balancers)
+        self.cache = resources.CacheResourceWithStreamingResponse(client.cache)
+        self.ssl = resources.SSLResourceWithStreamingResponse(client.ssl)
+        self.subscriptions = resources.SubscriptionsResourceWithStreamingResponse(client.subscriptions)
+        self.acm = resources.ACMResourceWithStreamingResponse(client.acm)
+        self.argo = resources.ArgoResourceWithStreamingResponse(client.argo)
+        self.plans = resources.PlansResourceWithStreamingResponse(client.plans)
+        self.rate_plans = resources.RatePlansResourceWithStreamingResponse(client.rate_plans)
+        self.certificate_authorities = resources.CertificateAuthoritiesResourceWithStreamingResponse(
             client.certificate_authorities
         )
-        self.client_certificates = resources.ClientCertificatesWithStreamingResponse(client.client_certificates)
-        self.custom_certificates = resources.CustomCertificatesWithStreamingResponse(client.custom_certificates)
-        self.custom_hostnames = resources.CustomHostnamesWithStreamingResponse(client.custom_hostnames)
-        self.custom_nameservers = resources.CustomNameserversWithStreamingResponse(client.custom_nameservers)
-        self.dns = resources.DNSWithStreamingResponse(client.dns)
+        self.client_certificates = resources.ClientCertificatesResourceWithStreamingResponse(client.client_certificates)
+        self.custom_certificates = resources.CustomCertificatesResourceWithStreamingResponse(client.custom_certificates)
+        self.custom_hostnames = resources.CustomHostnamesResourceWithStreamingResponse(client.custom_hostnames)
+        self.custom_nameservers = resources.CustomNameserversResourceWithStreamingResponse(client.custom_nameservers)
+        self.dns = resources.DNSResourceWithStreamingResponse(client.dns)
         self.dnssec = resources.DNSSECResourceWithStreamingResponse(client.dnssec)
-        self.email_routing = resources.EmailRoutingWithStreamingResponse(client.email_routing)
-        self.filters = resources.FiltersWithStreamingResponse(client.filters)
-        self.firewall = resources.FirewallWithStreamingResponse(client.firewall)
-        self.healthchecks = resources.HealthchecksWithStreamingResponse(client.healthchecks)
-        self.keyless_certificates = resources.KeylessCertificatesWithStreamingResponse(client.keyless_certificates)
-        self.logpush = resources.LogpushWithStreamingResponse(client.logpush)
-        self.logs = resources.LogsWithStreamingResponse(client.logs)
-        self.origin_tls_client_auth = resources.OriginTLSClientAuthWithStreamingResponse(client.origin_tls_client_auth)
-        self.pagerules = resources.PagerulesWithStreamingResponse(client.pagerules)
-        self.rate_limits = resources.RateLimitsWithStreamingResponse(client.rate_limits)
-        self.secondary_dns = resources.SecondaryDNSWithStreamingResponse(client.secondary_dns)
-        self.waiting_rooms = resources.WaitingRoomsWithStreamingResponse(client.waiting_rooms)
-        self.web3 = resources.Web3WithStreamingResponse(client.web3)
-        self.workers = resources.WorkersWithStreamingResponse(client.workers)
-        self.kv = resources.KVWithStreamingResponse(client.kv)
-        self.durable_objects = resources.DurableObjectsWithStreamingResponse(client.durable_objects)
-        self.queues = resources.QueuesWithStreamingResponse(client.queues)
-        self.managed_headers = resources.ManagedHeadersWithStreamingResponse(client.managed_headers)
-        self.page_shield = resources.PageShieldWithStreamingResponse(client.page_shield)
-        self.rulesets = resources.RulesetsWithStreamingResponse(client.rulesets)
-        self.url_normalization = resources.URLNormalizationWithStreamingResponse(client.url_normalization)
-        self.spectrum = resources.SpectrumWithStreamingResponse(client.spectrum)
-        self.addressing = resources.AddressingWithStreamingResponse(client.addressing)
-        self.audit_logs = resources.AuditLogsWithStreamingResponse(client.audit_logs)
-        self.billing = resources.BillingWithStreamingResponse(client.billing)
-        self.brand_protection = resources.BrandProtectionWithStreamingResponse(client.brand_protection)
-        self.diagnostics = resources.DiagnosticsWithStreamingResponse(client.diagnostics)
-        self.images = resources.ImagesWithStreamingResponse(client.images)
-        self.intel = resources.IntelWithStreamingResponse(client.intel)
-        self.magic_transit = resources.MagicTransitWithStreamingResponse(client.magic_transit)
-        self.magic_network_monitoring = resources.MagicNetworkMonitoringWithStreamingResponse(
+        self.email_routing = resources.EmailRoutingResourceWithStreamingResponse(client.email_routing)
+        self.filters = resources.FiltersResourceWithStreamingResponse(client.filters)
+        self.firewall = resources.FirewallResourceWithStreamingResponse(client.firewall)
+        self.healthchecks = resources.HealthchecksResourceWithStreamingResponse(client.healthchecks)
+        self.keyless_certificates = resources.KeylessCertificatesResourceWithStreamingResponse(
+            client.keyless_certificates
+        )
+        self.logpush = resources.LogpushResourceWithStreamingResponse(client.logpush)
+        self.logs = resources.LogsResourceWithStreamingResponse(client.logs)
+        self.origin_tls_client_auth = resources.OriginTLSClientAuthResourceWithStreamingResponse(
+            client.origin_tls_client_auth
+        )
+        self.pagerules = resources.PagerulesResourceWithStreamingResponse(client.pagerules)
+        self.rate_limits = resources.RateLimitsResourceWithStreamingResponse(client.rate_limits)
+        self.secondary_dns = resources.SecondaryDNSResourceWithStreamingResponse(client.secondary_dns)
+        self.waiting_rooms = resources.WaitingRoomsResourceWithStreamingResponse(client.waiting_rooms)
+        self.web3 = resources.Web3ResourceWithStreamingResponse(client.web3)
+        self.workers = resources.WorkersResourceWithStreamingResponse(client.workers)
+        self.kv = resources.KVResourceWithStreamingResponse(client.kv)
+        self.durable_objects = resources.DurableObjectsResourceWithStreamingResponse(client.durable_objects)
+        self.queues = resources.QueuesResourceWithStreamingResponse(client.queues)
+        self.managed_headers = resources.ManagedHeadersResourceWithStreamingResponse(client.managed_headers)
+        self.page_shield = resources.PageShieldResourceWithStreamingResponse(client.page_shield)
+        self.rulesets = resources.RulesetsResourceWithStreamingResponse(client.rulesets)
+        self.url_normalization = resources.URLNormalizationResourceWithStreamingResponse(client.url_normalization)
+        self.spectrum = resources.SpectrumResourceWithStreamingResponse(client.spectrum)
+        self.addressing = resources.AddressingResourceWithStreamingResponse(client.addressing)
+        self.audit_logs = resources.AuditLogsResourceWithStreamingResponse(client.audit_logs)
+        self.billing = resources.BillingResourceWithStreamingResponse(client.billing)
+        self.brand_protection = resources.BrandProtectionResourceWithStreamingResponse(client.brand_protection)
+        self.diagnostics = resources.DiagnosticsResourceWithStreamingResponse(client.diagnostics)
+        self.images = resources.ImagesResourceWithStreamingResponse(client.images)
+        self.intel = resources.IntelResourceWithStreamingResponse(client.intel)
+        self.magic_transit = resources.MagicTransitResourceWithStreamingResponse(client.magic_transit)
+        self.magic_network_monitoring = resources.MagicNetworkMonitoringResourceWithStreamingResponse(
             client.magic_network_monitoring
         )
-        self.mtls_certificates = resources.MTLSCertificatesWithStreamingResponse(client.mtls_certificates)
-        self.pages = resources.PagesWithStreamingResponse(client.pages)
-        self.pcaps = resources.PCAPsWithStreamingResponse(client.pcaps)
-        self.registrar = resources.RegistrarWithStreamingResponse(client.registrar)
-        self.request_tracers = resources.RequestTracersWithStreamingResponse(client.request_tracers)
-        self.rules = resources.RulesWithStreamingResponse(client.rules)
-        self.storage = resources.StorageWithStreamingResponse(client.storage)
-        self.stream = resources.StreamWithStreamingResponse(client.stream)
-        self.alerting = resources.AlertingWithStreamingResponse(client.alerting)
+        self.mtls_certificates = resources.MTLSCertificatesResourceWithStreamingResponse(client.mtls_certificates)
+        self.pages = resources.PagesResourceWithStreamingResponse(client.pages)
+        self.pcaps = resources.PCAPsResourceWithStreamingResponse(client.pcaps)
+        self.registrar = resources.RegistrarResourceWithStreamingResponse(client.registrar)
+        self.request_tracers = resources.RequestTracersResourceWithStreamingResponse(client.request_tracers)
+        self.rules = resources.RulesResourceWithStreamingResponse(client.rules)
+        self.storage = resources.StorageResourceWithStreamingResponse(client.storage)
+        self.stream = resources.StreamResourceWithStreamingResponse(client.stream)
+        self.alerting = resources.AlertingResourceWithStreamingResponse(client.alerting)
         self.d1 = resources.D1ResourceWithStreamingResponse(client.d1)
-        self.r2 = resources.R2WithStreamingResponse(client.r2)
-        self.warp_connector = resources.WARPConnectorWithStreamingResponse(client.warp_connector)
-        self.workers_for_platforms = resources.WorkersForPlatformsWithStreamingResponse(client.workers_for_platforms)
-        self.zero_trust = resources.ZeroTrustWithStreamingResponse(client.zero_trust)
-        self.challenges = resources.ChallengesWithStreamingResponse(client.challenges)
+        self.r2 = resources.R2ResourceWithStreamingResponse(client.r2)
+        self.warp_connector = resources.WARPConnectorResourceWithStreamingResponse(client.warp_connector)
+        self.workers_for_platforms = resources.WorkersForPlatformsResourceWithStreamingResponse(
+            client.workers_for_platforms
+        )
+        self.zero_trust = resources.ZeroTrustResourceWithStreamingResponse(client.zero_trust)
+        self.challenges = resources.ChallengesResourceWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveResourceWithStreamingResponse(client.hyperdrive)
-        self.rum = resources.RUMWithStreamingResponse(client.rum)
-        self.vectorize = resources.VectorizeWithStreamingResponse(client.vectorize)
-        self.url_scanner = resources.URLScannerWithStreamingResponse(client.url_scanner)
-        self.radar = resources.RadarWithStreamingResponse(client.radar)
-        self.bot_management = resources.BotManagementWithStreamingResponse(client.bot_management)
-        self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionWithStreamingResponse(
+        self.rum = resources.RUMResourceWithStreamingResponse(client.rum)
+        self.vectorize = resources.VectorizeResourceWithStreamingResponse(client.vectorize)
+        self.url_scanner = resources.URLScannerResourceWithStreamingResponse(client.url_scanner)
+        self.radar = resources.RadarResourceWithStreamingResponse(client.radar)
+        self.bot_management = resources.BotManagementResourceWithStreamingResponse(client.bot_management)
+        self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionResourceWithStreamingResponse(
             client.origin_post_quantum_encryption
         )
-        self.speed = resources.SpeedWithStreamingResponse(client.speed)
-        self.dcv_delegation = resources.DCVDelegationWithStreamingResponse(client.dcv_delegation)
-        self.hostnames = resources.HostnamesWithStreamingResponse(client.hostnames)
-        self.snippets = resources.SnippetsWithStreamingResponse(client.snippets)
-        self.calls = resources.CallsWithStreamingResponse(client.calls)
-        self.cloudforce_one = resources.CloudforceOneWithStreamingResponse(client.cloudforce_one)
-        self.event_notifications = resources.EventNotificationsWithStreamingResponse(client.event_notifications)
+        self.speed = resources.SpeedResourceWithStreamingResponse(client.speed)
+        self.dcv_delegation = resources.DCVDelegationResourceWithStreamingResponse(client.dcv_delegation)
+        self.hostnames = resources.HostnamesResourceWithStreamingResponse(client.hostnames)
+        self.snippets = resources.SnippetsResourceWithStreamingResponse(client.snippets)
+        self.calls = resources.CallsResourceWithStreamingResponse(client.calls)
+        self.cloudforce_one = resources.CloudforceOneResourceWithStreamingResponse(client.cloudforce_one)
+        self.event_notifications = resources.EventNotificationsResourceWithStreamingResponse(client.event_notifications)
 
 
 class AsyncCloudflareWithStreamedResponse:
     def __init__(self, client: AsyncCloudflare) -> None:
-        self.accounts = resources.AsyncAccountsWithStreamingResponse(client.accounts)
-        self.origin_ca_certificates = resources.AsyncOriginCACertificatesWithStreamingResponse(
+        self.accounts = resources.AsyncAccountsResourceWithStreamingResponse(client.accounts)
+        self.origin_ca_certificates = resources.AsyncOriginCACertificatesResourceWithStreamingResponse(
             client.origin_ca_certificates
         )
-        self.ips = resources.AsyncIPsWithStreamingResponse(client.ips)
-        self.memberships = resources.AsyncMembershipsWithStreamingResponse(client.memberships)
-        self.user = resources.AsyncUserWithStreamingResponse(client.user)
-        self.zones = resources.AsyncZonesWithStreamingResponse(client.zones)
-        self.load_balancers = resources.AsyncLoadBalancersWithStreamingResponse(client.load_balancers)
-        self.cache = resources.AsyncCacheWithStreamingResponse(client.cache)
-        self.ssl = resources.AsyncSSLWithStreamingResponse(client.ssl)
-        self.subscriptions = resources.AsyncSubscriptionsWithStreamingResponse(client.subscriptions)
-        self.acm = resources.AsyncACMWithStreamingResponse(client.acm)
-        self.argo = resources.AsyncArgoWithStreamingResponse(client.argo)
-        self.plans = resources.AsyncPlansWithStreamingResponse(client.plans)
-        self.rate_plans = resources.AsyncRatePlansWithStreamingResponse(client.rate_plans)
-        self.certificate_authorities = resources.AsyncCertificateAuthoritiesWithStreamingResponse(
+        self.ips = resources.AsyncIPsResourceWithStreamingResponse(client.ips)
+        self.memberships = resources.AsyncMembershipsResourceWithStreamingResponse(client.memberships)
+        self.user = resources.AsyncUserResourceWithStreamingResponse(client.user)
+        self.zones = resources.AsyncZonesResourceWithStreamingResponse(client.zones)
+        self.load_balancers = resources.AsyncLoadBalancersResourceWithStreamingResponse(client.load_balancers)
+        self.cache = resources.AsyncCacheResourceWithStreamingResponse(client.cache)
+        self.ssl = resources.AsyncSSLResourceWithStreamingResponse(client.ssl)
+        self.subscriptions = resources.AsyncSubscriptionsResourceWithStreamingResponse(client.subscriptions)
+        self.acm = resources.AsyncACMResourceWithStreamingResponse(client.acm)
+        self.argo = resources.AsyncArgoResourceWithStreamingResponse(client.argo)
+        self.plans = resources.AsyncPlansResourceWithStreamingResponse(client.plans)
+        self.rate_plans = resources.AsyncRatePlansResourceWithStreamingResponse(client.rate_plans)
+        self.certificate_authorities = resources.AsyncCertificateAuthoritiesResourceWithStreamingResponse(
             client.certificate_authorities
         )
-        self.client_certificates = resources.AsyncClientCertificatesWithStreamingResponse(client.client_certificates)
-        self.custom_certificates = resources.AsyncCustomCertificatesWithStreamingResponse(client.custom_certificates)
-        self.custom_hostnames = resources.AsyncCustomHostnamesWithStreamingResponse(client.custom_hostnames)
-        self.custom_nameservers = resources.AsyncCustomNameserversWithStreamingResponse(client.custom_nameservers)
-        self.dns = resources.AsyncDNSWithStreamingResponse(client.dns)
+        self.client_certificates = resources.AsyncClientCertificatesResourceWithStreamingResponse(
+            client.client_certificates
+        )
+        self.custom_certificates = resources.AsyncCustomCertificatesResourceWithStreamingResponse(
+            client.custom_certificates
+        )
+        self.custom_hostnames = resources.AsyncCustomHostnamesResourceWithStreamingResponse(client.custom_hostnames)
+        self.custom_nameservers = resources.AsyncCustomNameserversResourceWithStreamingResponse(
+            client.custom_nameservers
+        )
+        self.dns = resources.AsyncDNSResourceWithStreamingResponse(client.dns)
         self.dnssec = resources.AsyncDNSSECResourceWithStreamingResponse(client.dnssec)
-        self.email_routing = resources.AsyncEmailRoutingWithStreamingResponse(client.email_routing)
-        self.filters = resources.AsyncFiltersWithStreamingResponse(client.filters)
-        self.firewall = resources.AsyncFirewallWithStreamingResponse(client.firewall)
-        self.healthchecks = resources.AsyncHealthchecksWithStreamingResponse(client.healthchecks)
-        self.keyless_certificates = resources.AsyncKeylessCertificatesWithStreamingResponse(client.keyless_certificates)
-        self.logpush = resources.AsyncLogpushWithStreamingResponse(client.logpush)
-        self.logs = resources.AsyncLogsWithStreamingResponse(client.logs)
-        self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuthWithStreamingResponse(
+        self.email_routing = resources.AsyncEmailRoutingResourceWithStreamingResponse(client.email_routing)
+        self.filters = resources.AsyncFiltersResourceWithStreamingResponse(client.filters)
+        self.firewall = resources.AsyncFirewallResourceWithStreamingResponse(client.firewall)
+        self.healthchecks = resources.AsyncHealthchecksResourceWithStreamingResponse(client.healthchecks)
+        self.keyless_certificates = resources.AsyncKeylessCertificatesResourceWithStreamingResponse(
+            client.keyless_certificates
+        )
+        self.logpush = resources.AsyncLogpushResourceWithStreamingResponse(client.logpush)
+        self.logs = resources.AsyncLogsResourceWithStreamingResponse(client.logs)
+        self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuthResourceWithStreamingResponse(
             client.origin_tls_client_auth
         )
-        self.pagerules = resources.AsyncPagerulesWithStreamingResponse(client.pagerules)
-        self.rate_limits = resources.AsyncRateLimitsWithStreamingResponse(client.rate_limits)
-        self.secondary_dns = resources.AsyncSecondaryDNSWithStreamingResponse(client.secondary_dns)
-        self.waiting_rooms = resources.AsyncWaitingRoomsWithStreamingResponse(client.waiting_rooms)
-        self.web3 = resources.AsyncWeb3WithStreamingResponse(client.web3)
-        self.workers = resources.AsyncWorkersWithStreamingResponse(client.workers)
-        self.kv = resources.AsyncKVWithStreamingResponse(client.kv)
-        self.durable_objects = resources.AsyncDurableObjectsWithStreamingResponse(client.durable_objects)
-        self.queues = resources.AsyncQueuesWithStreamingResponse(client.queues)
-        self.managed_headers = resources.AsyncManagedHeadersWithStreamingResponse(client.managed_headers)
-        self.page_shield = resources.AsyncPageShieldWithStreamingResponse(client.page_shield)
-        self.rulesets = resources.AsyncRulesetsWithStreamingResponse(client.rulesets)
-        self.url_normalization = resources.AsyncURLNormalizationWithStreamingResponse(client.url_normalization)
-        self.spectrum = resources.AsyncSpectrumWithStreamingResponse(client.spectrum)
-        self.addressing = resources.AsyncAddressingWithStreamingResponse(client.addressing)
-        self.audit_logs = resources.AsyncAuditLogsWithStreamingResponse(client.audit_logs)
-        self.billing = resources.AsyncBillingWithStreamingResponse(client.billing)
-        self.brand_protection = resources.AsyncBrandProtectionWithStreamingResponse(client.brand_protection)
-        self.diagnostics = resources.AsyncDiagnosticsWithStreamingResponse(client.diagnostics)
-        self.images = resources.AsyncImagesWithStreamingResponse(client.images)
-        self.intel = resources.AsyncIntelWithStreamingResponse(client.intel)
-        self.magic_transit = resources.AsyncMagicTransitWithStreamingResponse(client.magic_transit)
-        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringWithStreamingResponse(
+        self.pagerules = resources.AsyncPagerulesResourceWithStreamingResponse(client.pagerules)
+        self.rate_limits = resources.AsyncRateLimitsResourceWithStreamingResponse(client.rate_limits)
+        self.secondary_dns = resources.AsyncSecondaryDNSResourceWithStreamingResponse(client.secondary_dns)
+        self.waiting_rooms = resources.AsyncWaitingRoomsResourceWithStreamingResponse(client.waiting_rooms)
+        self.web3 = resources.AsyncWeb3ResourceWithStreamingResponse(client.web3)
+        self.workers = resources.AsyncWorkersResourceWithStreamingResponse(client.workers)
+        self.kv = resources.AsyncKVResourceWithStreamingResponse(client.kv)
+        self.durable_objects = resources.AsyncDurableObjectsResourceWithStreamingResponse(client.durable_objects)
+        self.queues = resources.AsyncQueuesResourceWithStreamingResponse(client.queues)
+        self.managed_headers = resources.AsyncManagedHeadersResourceWithStreamingResponse(client.managed_headers)
+        self.page_shield = resources.AsyncPageShieldResourceWithStreamingResponse(client.page_shield)
+        self.rulesets = resources.AsyncRulesetsResourceWithStreamingResponse(client.rulesets)
+        self.url_normalization = resources.AsyncURLNormalizationResourceWithStreamingResponse(client.url_normalization)
+        self.spectrum = resources.AsyncSpectrumResourceWithStreamingResponse(client.spectrum)
+        self.addressing = resources.AsyncAddressingResourceWithStreamingResponse(client.addressing)
+        self.audit_logs = resources.AsyncAuditLogsResourceWithStreamingResponse(client.audit_logs)
+        self.billing = resources.AsyncBillingResourceWithStreamingResponse(client.billing)
+        self.brand_protection = resources.AsyncBrandProtectionResourceWithStreamingResponse(client.brand_protection)
+        self.diagnostics = resources.AsyncDiagnosticsResourceWithStreamingResponse(client.diagnostics)
+        self.images = resources.AsyncImagesResourceWithStreamingResponse(client.images)
+        self.intel = resources.AsyncIntelResourceWithStreamingResponse(client.intel)
+        self.magic_transit = resources.AsyncMagicTransitResourceWithStreamingResponse(client.magic_transit)
+        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringResourceWithStreamingResponse(
             client.magic_network_monitoring
         )
-        self.mtls_certificates = resources.AsyncMTLSCertificatesWithStreamingResponse(client.mtls_certificates)
-        self.pages = resources.AsyncPagesWithStreamingResponse(client.pages)
-        self.pcaps = resources.AsyncPCAPsWithStreamingResponse(client.pcaps)
-        self.registrar = resources.AsyncRegistrarWithStreamingResponse(client.registrar)
-        self.request_tracers = resources.AsyncRequestTracersWithStreamingResponse(client.request_tracers)
-        self.rules = resources.AsyncRulesWithStreamingResponse(client.rules)
-        self.storage = resources.AsyncStorageWithStreamingResponse(client.storage)
-        self.stream = resources.AsyncStreamWithStreamingResponse(client.stream)
-        self.alerting = resources.AsyncAlertingWithStreamingResponse(client.alerting)
+        self.mtls_certificates = resources.AsyncMTLSCertificatesResourceWithStreamingResponse(client.mtls_certificates)
+        self.pages = resources.AsyncPagesResourceWithStreamingResponse(client.pages)
+        self.pcaps = resources.AsyncPCAPsResourceWithStreamingResponse(client.pcaps)
+        self.registrar = resources.AsyncRegistrarResourceWithStreamingResponse(client.registrar)
+        self.request_tracers = resources.AsyncRequestTracersResourceWithStreamingResponse(client.request_tracers)
+        self.rules = resources.AsyncRulesResourceWithStreamingResponse(client.rules)
+        self.storage = resources.AsyncStorageResourceWithStreamingResponse(client.storage)
+        self.stream = resources.AsyncStreamResourceWithStreamingResponse(client.stream)
+        self.alerting = resources.AsyncAlertingResourceWithStreamingResponse(client.alerting)
         self.d1 = resources.AsyncD1ResourceWithStreamingResponse(client.d1)
-        self.r2 = resources.AsyncR2WithStreamingResponse(client.r2)
-        self.warp_connector = resources.AsyncWARPConnectorWithStreamingResponse(client.warp_connector)
-        self.workers_for_platforms = resources.AsyncWorkersForPlatformsWithStreamingResponse(
+        self.r2 = resources.AsyncR2ResourceWithStreamingResponse(client.r2)
+        self.warp_connector = resources.AsyncWARPConnectorResourceWithStreamingResponse(client.warp_connector)
+        self.workers_for_platforms = resources.AsyncWorkersForPlatformsResourceWithStreamingResponse(
             client.workers_for_platforms
         )
-        self.zero_trust = resources.AsyncZeroTrustWithStreamingResponse(client.zero_trust)
-        self.challenges = resources.AsyncChallengesWithStreamingResponse(client.challenges)
+        self.zero_trust = resources.AsyncZeroTrustResourceWithStreamingResponse(client.zero_trust)
+        self.challenges = resources.AsyncChallengesResourceWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveResourceWithStreamingResponse(client.hyperdrive)
-        self.rum = resources.AsyncRUMWithStreamingResponse(client.rum)
-        self.vectorize = resources.AsyncVectorizeWithStreamingResponse(client.vectorize)
-        self.url_scanner = resources.AsyncURLScannerWithStreamingResponse(client.url_scanner)
-        self.radar = resources.AsyncRadarWithStreamingResponse(client.radar)
-        self.bot_management = resources.AsyncBotManagementWithStreamingResponse(client.bot_management)
-        self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionWithStreamingResponse(
+        self.rum = resources.AsyncRUMResourceWithStreamingResponse(client.rum)
+        self.vectorize = resources.AsyncVectorizeResourceWithStreamingResponse(client.vectorize)
+        self.url_scanner = resources.AsyncURLScannerResourceWithStreamingResponse(client.url_scanner)
+        self.radar = resources.AsyncRadarResourceWithStreamingResponse(client.radar)
+        self.bot_management = resources.AsyncBotManagementResourceWithStreamingResponse(client.bot_management)
+        self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse(
             client.origin_post_quantum_encryption
         )
-        self.speed = resources.AsyncSpeedWithStreamingResponse(client.speed)
-        self.dcv_delegation = resources.AsyncDCVDelegationWithStreamingResponse(client.dcv_delegation)
-        self.hostnames = resources.AsyncHostnamesWithStreamingResponse(client.hostnames)
-        self.snippets = resources.AsyncSnippetsWithStreamingResponse(client.snippets)
-        self.calls = resources.AsyncCallsWithStreamingResponse(client.calls)
-        self.cloudforce_one = resources.AsyncCloudforceOneWithStreamingResponse(client.cloudforce_one)
-        self.event_notifications = resources.AsyncEventNotificationsWithStreamingResponse(client.event_notifications)
+        self.speed = resources.AsyncSpeedResourceWithStreamingResponse(client.speed)
+        self.dcv_delegation = resources.AsyncDCVDelegationResourceWithStreamingResponse(client.dcv_delegation)
+        self.hostnames = resources.AsyncHostnamesResourceWithStreamingResponse(client.hostnames)
+        self.snippets = resources.AsyncSnippetsResourceWithStreamingResponse(client.snippets)
+        self.calls = resources.AsyncCallsResourceWithStreamingResponse(client.calls)
+        self.cloudforce_one = resources.AsyncCloudforceOneResourceWithStreamingResponse(client.cloudforce_one)
+        self.event_notifications = resources.AsyncEventNotificationsResourceWithStreamingResponse(
+            client.event_notifications
+        )
 
 
 Client = Cloudflare

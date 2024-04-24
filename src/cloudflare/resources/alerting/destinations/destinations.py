@@ -3,20 +3,20 @@
 from __future__ import annotations
 
 from .eligible import (
-    Eligible,
-    AsyncEligible,
-    EligibleWithRawResponse,
-    AsyncEligibleWithRawResponse,
-    EligibleWithStreamingResponse,
-    AsyncEligibleWithStreamingResponse,
+    EligibleResource,
+    AsyncEligibleResource,
+    EligibleResourceWithRawResponse,
+    AsyncEligibleResourceWithRawResponse,
+    EligibleResourceWithStreamingResponse,
+    AsyncEligibleResourceWithStreamingResponse,
 )
 from .webhooks import (
-    Webhooks,
-    AsyncWebhooks,
-    WebhooksWithRawResponse,
-    AsyncWebhooksWithRawResponse,
-    WebhooksWithStreamingResponse,
-    AsyncWebhooksWithStreamingResponse,
+    WebhooksResource,
+    AsyncWebhooksResource,
+    WebhooksResourceWithRawResponse,
+    AsyncWebhooksResourceWithRawResponse,
+    WebhooksResourceWithStreamingResponse,
+    AsyncWebhooksResourceWithStreamingResponse,
 )
 from .pagerduty import (
     PagerdutyResource,
@@ -29,116 +29,116 @@ from .pagerduty import (
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Destinations", "AsyncDestinations"]
+__all__ = ["DestinationsResource", "AsyncDestinationsResource"]
 
 
-class Destinations(SyncAPIResource):
+class DestinationsResource(SyncAPIResource):
     @cached_property
-    def eligible(self) -> Eligible:
-        return Eligible(self._client)
+    def eligible(self) -> EligibleResource:
+        return EligibleResource(self._client)
 
     @cached_property
     def pagerduty(self) -> PagerdutyResource:
         return PagerdutyResource(self._client)
 
     @cached_property
-    def webhooks(self) -> Webhooks:
-        return Webhooks(self._client)
+    def webhooks(self) -> WebhooksResource:
+        return WebhooksResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> DestinationsWithRawResponse:
-        return DestinationsWithRawResponse(self)
+    def with_raw_response(self) -> DestinationsResourceWithRawResponse:
+        return DestinationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DestinationsWithStreamingResponse:
-        return DestinationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> DestinationsResourceWithStreamingResponse:
+        return DestinationsResourceWithStreamingResponse(self)
 
 
-class AsyncDestinations(AsyncAPIResource):
+class AsyncDestinationsResource(AsyncAPIResource):
     @cached_property
-    def eligible(self) -> AsyncEligible:
-        return AsyncEligible(self._client)
+    def eligible(self) -> AsyncEligibleResource:
+        return AsyncEligibleResource(self._client)
 
     @cached_property
     def pagerduty(self) -> AsyncPagerdutyResource:
         return AsyncPagerdutyResource(self._client)
 
     @cached_property
-    def webhooks(self) -> AsyncWebhooks:
-        return AsyncWebhooks(self._client)
+    def webhooks(self) -> AsyncWebhooksResource:
+        return AsyncWebhooksResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDestinationsWithRawResponse:
-        return AsyncDestinationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDestinationsResourceWithRawResponse:
+        return AsyncDestinationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDestinationsWithStreamingResponse:
-        return AsyncDestinationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDestinationsResourceWithStreamingResponse:
+        return AsyncDestinationsResourceWithStreamingResponse(self)
 
 
-class DestinationsWithRawResponse:
-    def __init__(self, destinations: Destinations) -> None:
+class DestinationsResourceWithRawResponse:
+    def __init__(self, destinations: DestinationsResource) -> None:
         self._destinations = destinations
 
     @cached_property
-    def eligible(self) -> EligibleWithRawResponse:
-        return EligibleWithRawResponse(self._destinations.eligible)
+    def eligible(self) -> EligibleResourceWithRawResponse:
+        return EligibleResourceWithRawResponse(self._destinations.eligible)
 
     @cached_property
     def pagerduty(self) -> PagerdutyResourceWithRawResponse:
         return PagerdutyResourceWithRawResponse(self._destinations.pagerduty)
 
     @cached_property
-    def webhooks(self) -> WebhooksWithRawResponse:
-        return WebhooksWithRawResponse(self._destinations.webhooks)
+    def webhooks(self) -> WebhooksResourceWithRawResponse:
+        return WebhooksResourceWithRawResponse(self._destinations.webhooks)
 
 
-class AsyncDestinationsWithRawResponse:
-    def __init__(self, destinations: AsyncDestinations) -> None:
+class AsyncDestinationsResourceWithRawResponse:
+    def __init__(self, destinations: AsyncDestinationsResource) -> None:
         self._destinations = destinations
 
     @cached_property
-    def eligible(self) -> AsyncEligibleWithRawResponse:
-        return AsyncEligibleWithRawResponse(self._destinations.eligible)
+    def eligible(self) -> AsyncEligibleResourceWithRawResponse:
+        return AsyncEligibleResourceWithRawResponse(self._destinations.eligible)
 
     @cached_property
     def pagerduty(self) -> AsyncPagerdutyResourceWithRawResponse:
         return AsyncPagerdutyResourceWithRawResponse(self._destinations.pagerduty)
 
     @cached_property
-    def webhooks(self) -> AsyncWebhooksWithRawResponse:
-        return AsyncWebhooksWithRawResponse(self._destinations.webhooks)
+    def webhooks(self) -> AsyncWebhooksResourceWithRawResponse:
+        return AsyncWebhooksResourceWithRawResponse(self._destinations.webhooks)
 
 
-class DestinationsWithStreamingResponse:
-    def __init__(self, destinations: Destinations) -> None:
+class DestinationsResourceWithStreamingResponse:
+    def __init__(self, destinations: DestinationsResource) -> None:
         self._destinations = destinations
 
     @cached_property
-    def eligible(self) -> EligibleWithStreamingResponse:
-        return EligibleWithStreamingResponse(self._destinations.eligible)
+    def eligible(self) -> EligibleResourceWithStreamingResponse:
+        return EligibleResourceWithStreamingResponse(self._destinations.eligible)
 
     @cached_property
     def pagerduty(self) -> PagerdutyResourceWithStreamingResponse:
         return PagerdutyResourceWithStreamingResponse(self._destinations.pagerduty)
 
     @cached_property
-    def webhooks(self) -> WebhooksWithStreamingResponse:
-        return WebhooksWithStreamingResponse(self._destinations.webhooks)
+    def webhooks(self) -> WebhooksResourceWithStreamingResponse:
+        return WebhooksResourceWithStreamingResponse(self._destinations.webhooks)
 
 
-class AsyncDestinationsWithStreamingResponse:
-    def __init__(self, destinations: AsyncDestinations) -> None:
+class AsyncDestinationsResourceWithStreamingResponse:
+    def __init__(self, destinations: AsyncDestinationsResource) -> None:
         self._destinations = destinations
 
     @cached_property
-    def eligible(self) -> AsyncEligibleWithStreamingResponse:
-        return AsyncEligibleWithStreamingResponse(self._destinations.eligible)
+    def eligible(self) -> AsyncEligibleResourceWithStreamingResponse:
+        return AsyncEligibleResourceWithStreamingResponse(self._destinations.eligible)
 
     @cached_property
     def pagerduty(self) -> AsyncPagerdutyResourceWithStreamingResponse:
         return AsyncPagerdutyResourceWithStreamingResponse(self._destinations.pagerduty)
 
     @cached_property
-    def webhooks(self) -> AsyncWebhooksWithStreamingResponse:
-        return AsyncWebhooksWithStreamingResponse(self._destinations.webhooks)
+    def webhooks(self) -> AsyncWebhooksResourceWithStreamingResponse:
+        return AsyncWebhooksResourceWithStreamingResponse(self._destinations.webhooks)

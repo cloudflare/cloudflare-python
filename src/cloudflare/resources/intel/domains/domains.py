@@ -7,12 +7,12 @@ from typing import Type, cast
 import httpx
 
 from .bulks import (
-    Bulks,
-    AsyncBulks,
-    BulksWithRawResponse,
-    AsyncBulksWithRawResponse,
-    BulksWithStreamingResponse,
-    AsyncBulksWithStreamingResponse,
+    BulksResource,
+    AsyncBulksResource,
+    BulksResourceWithRawResponse,
+    AsyncBulksResourceWithRawResponse,
+    BulksResourceWithStreamingResponse,
+    AsyncBulksResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -34,21 +34,21 @@ from ...._base_client import (
 )
 from ....types.intel.domain import Domain
 
-__all__ = ["Domains", "AsyncDomains"]
+__all__ = ["DomainsResource", "AsyncDomainsResource"]
 
 
-class Domains(SyncAPIResource):
+class DomainsResource(SyncAPIResource):
     @cached_property
-    def bulks(self) -> Bulks:
-        return Bulks(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> DomainsWithRawResponse:
-        return DomainsWithRawResponse(self)
+    def bulks(self) -> BulksResource:
+        return BulksResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> DomainsWithStreamingResponse:
-        return DomainsWithStreamingResponse(self)
+    def with_raw_response(self) -> DomainsResourceWithRawResponse:
+        return DomainsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> DomainsResourceWithStreamingResponse:
+        return DomainsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -92,18 +92,18 @@ class Domains(SyncAPIResource):
         )
 
 
-class AsyncDomains(AsyncAPIResource):
+class AsyncDomainsResource(AsyncAPIResource):
     @cached_property
-    def bulks(self) -> AsyncBulks:
-        return AsyncBulks(self._client)
+    def bulks(self) -> AsyncBulksResource:
+        return AsyncBulksResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDomainsWithRawResponse:
-        return AsyncDomainsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDomainsResourceWithRawResponse:
+        return AsyncDomainsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDomainsWithStreamingResponse:
-        return AsyncDomainsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDomainsResourceWithStreamingResponse:
+        return AsyncDomainsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -147,8 +147,8 @@ class AsyncDomains(AsyncAPIResource):
         )
 
 
-class DomainsWithRawResponse:
-    def __init__(self, domains: Domains) -> None:
+class DomainsResourceWithRawResponse:
+    def __init__(self, domains: DomainsResource) -> None:
         self._domains = domains
 
         self.get = to_raw_response_wrapper(
@@ -156,12 +156,12 @@ class DomainsWithRawResponse:
         )
 
     @cached_property
-    def bulks(self) -> BulksWithRawResponse:
-        return BulksWithRawResponse(self._domains.bulks)
+    def bulks(self) -> BulksResourceWithRawResponse:
+        return BulksResourceWithRawResponse(self._domains.bulks)
 
 
-class AsyncDomainsWithRawResponse:
-    def __init__(self, domains: AsyncDomains) -> None:
+class AsyncDomainsResourceWithRawResponse:
+    def __init__(self, domains: AsyncDomainsResource) -> None:
         self._domains = domains
 
         self.get = async_to_raw_response_wrapper(
@@ -169,12 +169,12 @@ class AsyncDomainsWithRawResponse:
         )
 
     @cached_property
-    def bulks(self) -> AsyncBulksWithRawResponse:
-        return AsyncBulksWithRawResponse(self._domains.bulks)
+    def bulks(self) -> AsyncBulksResourceWithRawResponse:
+        return AsyncBulksResourceWithRawResponse(self._domains.bulks)
 
 
-class DomainsWithStreamingResponse:
-    def __init__(self, domains: Domains) -> None:
+class DomainsResourceWithStreamingResponse:
+    def __init__(self, domains: DomainsResource) -> None:
         self._domains = domains
 
         self.get = to_streamed_response_wrapper(
@@ -182,12 +182,12 @@ class DomainsWithStreamingResponse:
         )
 
     @cached_property
-    def bulks(self) -> BulksWithStreamingResponse:
-        return BulksWithStreamingResponse(self._domains.bulks)
+    def bulks(self) -> BulksResourceWithStreamingResponse:
+        return BulksResourceWithStreamingResponse(self._domains.bulks)
 
 
-class AsyncDomainsWithStreamingResponse:
-    def __init__(self, domains: AsyncDomains) -> None:
+class AsyncDomainsResourceWithStreamingResponse:
+    def __init__(self, domains: AsyncDomainsResource) -> None:
         self._domains = domains
 
         self.get = async_to_streamed_response_wrapper(
@@ -195,5 +195,5 @@ class AsyncDomainsWithStreamingResponse:
         )
 
     @cached_property
-    def bulks(self) -> AsyncBulksWithStreamingResponse:
-        return AsyncBulksWithStreamingResponse(self._domains.bulks)
+    def bulks(self) -> AsyncBulksResourceWithStreamingResponse:
+        return AsyncBulksResourceWithStreamingResponse(self._domains.bulks)

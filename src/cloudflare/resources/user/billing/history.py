@@ -26,17 +26,17 @@ from ...._base_client import (
 from ....types.user.billing import history_list_params
 from ....types.user.billing.billing_history import BillingHistory
 
-__all__ = ["History", "AsyncHistory"]
+__all__ = ["HistoryResource", "AsyncHistoryResource"]
 
 
-class History(SyncAPIResource):
+class HistoryResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HistoryWithRawResponse:
-        return HistoryWithRawResponse(self)
+    def with_raw_response(self) -> HistoryResourceWithRawResponse:
+        return HistoryResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HistoryWithStreamingResponse:
-        return HistoryWithStreamingResponse(self)
+    def with_streaming_response(self) -> HistoryResourceWithStreamingResponse:
+        return HistoryResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -106,14 +106,14 @@ class History(SyncAPIResource):
         )
 
 
-class AsyncHistory(AsyncAPIResource):
+class AsyncHistoryResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHistoryWithRawResponse:
-        return AsyncHistoryWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHistoryResourceWithRawResponse:
+        return AsyncHistoryResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHistoryWithStreamingResponse:
-        return AsyncHistoryWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHistoryResourceWithStreamingResponse:
+        return AsyncHistoryResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -183,8 +183,8 @@ class AsyncHistory(AsyncAPIResource):
         )
 
 
-class HistoryWithRawResponse:
-    def __init__(self, history: History) -> None:
+class HistoryResourceWithRawResponse:
+    def __init__(self, history: HistoryResource) -> None:
         self._history = history
 
         self.list = to_raw_response_wrapper(
@@ -192,8 +192,8 @@ class HistoryWithRawResponse:
         )
 
 
-class AsyncHistoryWithRawResponse:
-    def __init__(self, history: AsyncHistory) -> None:
+class AsyncHistoryResourceWithRawResponse:
+    def __init__(self, history: AsyncHistoryResource) -> None:
         self._history = history
 
         self.list = async_to_raw_response_wrapper(
@@ -201,8 +201,8 @@ class AsyncHistoryWithRawResponse:
         )
 
 
-class HistoryWithStreamingResponse:
-    def __init__(self, history: History) -> None:
+class HistoryResourceWithStreamingResponse:
+    def __init__(self, history: HistoryResource) -> None:
         self._history = history
 
         self.list = to_streamed_response_wrapper(
@@ -210,8 +210,8 @@ class HistoryWithStreamingResponse:
         )
 
 
-class AsyncHistoryWithStreamingResponse:
-    def __init__(self, history: AsyncHistory) -> None:
+class AsyncHistoryResourceWithStreamingResponse:
+    def __init__(self, history: AsyncHistoryResource) -> None:
         self._history = history
 
         self.list = async_to_streamed_response_wrapper(

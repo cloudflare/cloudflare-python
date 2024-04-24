@@ -27,12 +27,12 @@ from ..._base_client import (
     make_request_options,
 )
 from .fallback_origin import (
-    FallbackOrigin,
-    AsyncFallbackOrigin,
-    FallbackOriginWithRawResponse,
-    AsyncFallbackOriginWithRawResponse,
-    FallbackOriginWithStreamingResponse,
-    AsyncFallbackOriginWithStreamingResponse,
+    FallbackOriginResource,
+    AsyncFallbackOriginResource,
+    FallbackOriginResourceWithRawResponse,
+    AsyncFallbackOriginResourceWithRawResponse,
+    FallbackOriginResourceWithStreamingResponse,
+    AsyncFallbackOriginResourceWithStreamingResponse,
 )
 from ...types.custom_hostnames import (
     custom_hostname_edit_params,
@@ -46,21 +46,21 @@ from ...types.custom_hostnames.custom_hostname_list_response import CustomHostna
 from ...types.custom_hostnames.custom_hostname_create_response import CustomHostnameCreateResponse
 from ...types.custom_hostnames.custom_hostname_delete_response import CustomHostnameDeleteResponse
 
-__all__ = ["CustomHostnames", "AsyncCustomHostnames"]
+__all__ = ["CustomHostnamesResource", "AsyncCustomHostnamesResource"]
 
 
-class CustomHostnames(SyncAPIResource):
+class CustomHostnamesResource(SyncAPIResource):
     @cached_property
-    def fallback_origin(self) -> FallbackOrigin:
-        return FallbackOrigin(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> CustomHostnamesWithRawResponse:
-        return CustomHostnamesWithRawResponse(self)
+    def fallback_origin(self) -> FallbackOriginResource:
+        return FallbackOriginResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> CustomHostnamesWithStreamingResponse:
-        return CustomHostnamesWithStreamingResponse(self)
+    def with_raw_response(self) -> CustomHostnamesResourceWithRawResponse:
+        return CustomHostnamesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> CustomHostnamesResourceWithStreamingResponse:
+        return CustomHostnamesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -360,18 +360,18 @@ class CustomHostnames(SyncAPIResource):
         )
 
 
-class AsyncCustomHostnames(AsyncAPIResource):
+class AsyncCustomHostnamesResource(AsyncAPIResource):
     @cached_property
-    def fallback_origin(self) -> AsyncFallbackOrigin:
-        return AsyncFallbackOrigin(self._client)
+    def fallback_origin(self) -> AsyncFallbackOriginResource:
+        return AsyncFallbackOriginResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCustomHostnamesWithRawResponse:
-        return AsyncCustomHostnamesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCustomHostnamesResourceWithRawResponse:
+        return AsyncCustomHostnamesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCustomHostnamesWithStreamingResponse:
-        return AsyncCustomHostnamesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCustomHostnamesResourceWithStreamingResponse:
+        return AsyncCustomHostnamesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -671,8 +671,8 @@ class AsyncCustomHostnames(AsyncAPIResource):
         )
 
 
-class CustomHostnamesWithRawResponse:
-    def __init__(self, custom_hostnames: CustomHostnames) -> None:
+class CustomHostnamesResourceWithRawResponse:
+    def __init__(self, custom_hostnames: CustomHostnamesResource) -> None:
         self._custom_hostnames = custom_hostnames
 
         self.create = to_raw_response_wrapper(
@@ -692,12 +692,12 @@ class CustomHostnamesWithRawResponse:
         )
 
     @cached_property
-    def fallback_origin(self) -> FallbackOriginWithRawResponse:
-        return FallbackOriginWithRawResponse(self._custom_hostnames.fallback_origin)
+    def fallback_origin(self) -> FallbackOriginResourceWithRawResponse:
+        return FallbackOriginResourceWithRawResponse(self._custom_hostnames.fallback_origin)
 
 
-class AsyncCustomHostnamesWithRawResponse:
-    def __init__(self, custom_hostnames: AsyncCustomHostnames) -> None:
+class AsyncCustomHostnamesResourceWithRawResponse:
+    def __init__(self, custom_hostnames: AsyncCustomHostnamesResource) -> None:
         self._custom_hostnames = custom_hostnames
 
         self.create = async_to_raw_response_wrapper(
@@ -717,12 +717,12 @@ class AsyncCustomHostnamesWithRawResponse:
         )
 
     @cached_property
-    def fallback_origin(self) -> AsyncFallbackOriginWithRawResponse:
-        return AsyncFallbackOriginWithRawResponse(self._custom_hostnames.fallback_origin)
+    def fallback_origin(self) -> AsyncFallbackOriginResourceWithRawResponse:
+        return AsyncFallbackOriginResourceWithRawResponse(self._custom_hostnames.fallback_origin)
 
 
-class CustomHostnamesWithStreamingResponse:
-    def __init__(self, custom_hostnames: CustomHostnames) -> None:
+class CustomHostnamesResourceWithStreamingResponse:
+    def __init__(self, custom_hostnames: CustomHostnamesResource) -> None:
         self._custom_hostnames = custom_hostnames
 
         self.create = to_streamed_response_wrapper(
@@ -742,12 +742,12 @@ class CustomHostnamesWithStreamingResponse:
         )
 
     @cached_property
-    def fallback_origin(self) -> FallbackOriginWithStreamingResponse:
-        return FallbackOriginWithStreamingResponse(self._custom_hostnames.fallback_origin)
+    def fallback_origin(self) -> FallbackOriginResourceWithStreamingResponse:
+        return FallbackOriginResourceWithStreamingResponse(self._custom_hostnames.fallback_origin)
 
 
-class AsyncCustomHostnamesWithStreamingResponse:
-    def __init__(self, custom_hostnames: AsyncCustomHostnames) -> None:
+class AsyncCustomHostnamesResourceWithStreamingResponse:
+    def __init__(self, custom_hostnames: AsyncCustomHostnamesResource) -> None:
         self._custom_hostnames = custom_hostnames
 
         self.create = async_to_streamed_response_wrapper(
@@ -767,5 +767,5 @@ class AsyncCustomHostnamesWithStreamingResponse:
         )
 
     @cached_property
-    def fallback_origin(self) -> AsyncFallbackOriginWithStreamingResponse:
-        return AsyncFallbackOriginWithStreamingResponse(self._custom_hostnames.fallback_origin)
+    def fallback_origin(self) -> AsyncFallbackOriginResourceWithStreamingResponse:
+        return AsyncFallbackOriginResourceWithStreamingResponse(self._custom_hostnames.fallback_origin)

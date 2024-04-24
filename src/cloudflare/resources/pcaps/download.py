@@ -21,17 +21,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-__all__ = ["Download", "AsyncDownload"]
+__all__ = ["DownloadResource", "AsyncDownloadResource"]
 
 
-class Download(SyncAPIResource):
+class DownloadResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DownloadWithRawResponse:
-        return DownloadWithRawResponse(self)
+    def with_raw_response(self) -> DownloadResourceWithRawResponse:
+        return DownloadResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DownloadWithStreamingResponse:
-        return DownloadWithStreamingResponse(self)
+    def with_streaming_response(self) -> DownloadResourceWithStreamingResponse:
+        return DownloadResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -76,14 +76,14 @@ class Download(SyncAPIResource):
         )
 
 
-class AsyncDownload(AsyncAPIResource):
+class AsyncDownloadResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDownloadWithRawResponse:
-        return AsyncDownloadWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDownloadResourceWithRawResponse:
+        return AsyncDownloadResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDownloadWithStreamingResponse:
-        return AsyncDownloadWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDownloadResourceWithStreamingResponse:
+        return AsyncDownloadResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -128,8 +128,8 @@ class AsyncDownload(AsyncAPIResource):
         )
 
 
-class DownloadWithRawResponse:
-    def __init__(self, download: Download) -> None:
+class DownloadResourceWithRawResponse:
+    def __init__(self, download: DownloadResource) -> None:
         self._download = download
 
         self.get = to_custom_raw_response_wrapper(
@@ -138,8 +138,8 @@ class DownloadWithRawResponse:
         )
 
 
-class AsyncDownloadWithRawResponse:
-    def __init__(self, download: AsyncDownload) -> None:
+class AsyncDownloadResourceWithRawResponse:
+    def __init__(self, download: AsyncDownloadResource) -> None:
         self._download = download
 
         self.get = async_to_custom_raw_response_wrapper(
@@ -148,8 +148,8 @@ class AsyncDownloadWithRawResponse:
         )
 
 
-class DownloadWithStreamingResponse:
-    def __init__(self, download: Download) -> None:
+class DownloadResourceWithStreamingResponse:
+    def __init__(self, download: DownloadResource) -> None:
         self._download = download
 
         self.get = to_custom_streamed_response_wrapper(
@@ -158,8 +158,8 @@ class DownloadWithStreamingResponse:
         )
 
 
-class AsyncDownloadWithStreamingResponse:
-    def __init__(self, download: AsyncDownload) -> None:
+class AsyncDownloadResourceWithStreamingResponse:
+    def __init__(self, download: AsyncDownloadResource) -> None:
         self._download = download
 
         self.get = async_to_custom_streamed_response_wrapper(

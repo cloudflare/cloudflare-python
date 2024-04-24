@@ -9,12 +9,12 @@ from typing_extensions import Literal
 import httpx
 
 from .top import (
-    Top,
-    AsyncTop,
-    TopWithRawResponse,
-    AsyncTopWithRawResponse,
-    TopWithStreamingResponse,
-    AsyncTopWithStreamingResponse,
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -37,21 +37,21 @@ from .....types.radar.quality import speed_summary_params, speed_histogram_param
 from .....types.radar.quality.speed_summary_response import SpeedSummaryResponse
 from .....types.radar.quality.speed_histogram_response import SpeedHistogramResponse
 
-__all__ = ["Speed", "AsyncSpeed"]
+__all__ = ["SpeedResource", "AsyncSpeedResource"]
 
 
-class Speed(SyncAPIResource):
+class SpeedResource(SyncAPIResource):
     @cached_property
-    def top(self) -> Top:
-        return Top(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> SpeedWithRawResponse:
-        return SpeedWithRawResponse(self)
+    def top(self) -> TopResource:
+        return TopResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> SpeedWithStreamingResponse:
-        return SpeedWithStreamingResponse(self)
+    def with_raw_response(self) -> SpeedResourceWithRawResponse:
+        return SpeedResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> SpeedResourceWithStreamingResponse:
+        return SpeedResourceWithStreamingResponse(self)
 
     def histogram(
         self,
@@ -202,18 +202,18 @@ class Speed(SyncAPIResource):
         )
 
 
-class AsyncSpeed(AsyncAPIResource):
+class AsyncSpeedResource(AsyncAPIResource):
     @cached_property
-    def top(self) -> AsyncTop:
-        return AsyncTop(self._client)
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncSpeedWithRawResponse:
-        return AsyncSpeedWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSpeedResourceWithRawResponse:
+        return AsyncSpeedResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSpeedWithStreamingResponse:
-        return AsyncSpeedWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSpeedResourceWithStreamingResponse:
+        return AsyncSpeedResourceWithStreamingResponse(self)
 
     async def histogram(
         self,
@@ -364,8 +364,8 @@ class AsyncSpeed(AsyncAPIResource):
         )
 
 
-class SpeedWithRawResponse:
-    def __init__(self, speed: Speed) -> None:
+class SpeedResourceWithRawResponse:
+    def __init__(self, speed: SpeedResource) -> None:
         self._speed = speed
 
         self.histogram = to_raw_response_wrapper(
@@ -376,12 +376,12 @@ class SpeedWithRawResponse:
         )
 
     @cached_property
-    def top(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self._speed.top)
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._speed.top)
 
 
-class AsyncSpeedWithRawResponse:
-    def __init__(self, speed: AsyncSpeed) -> None:
+class AsyncSpeedResourceWithRawResponse:
+    def __init__(self, speed: AsyncSpeedResource) -> None:
         self._speed = speed
 
         self.histogram = async_to_raw_response_wrapper(
@@ -392,12 +392,12 @@ class AsyncSpeedWithRawResponse:
         )
 
     @cached_property
-    def top(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self._speed.top)
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._speed.top)
 
 
-class SpeedWithStreamingResponse:
-    def __init__(self, speed: Speed) -> None:
+class SpeedResourceWithStreamingResponse:
+    def __init__(self, speed: SpeedResource) -> None:
         self._speed = speed
 
         self.histogram = to_streamed_response_wrapper(
@@ -408,12 +408,12 @@ class SpeedWithStreamingResponse:
         )
 
     @cached_property
-    def top(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self._speed.top)
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._speed.top)
 
 
-class AsyncSpeedWithStreamingResponse:
-    def __init__(self, speed: AsyncSpeed) -> None:
+class AsyncSpeedResourceWithStreamingResponse:
+    def __init__(self, speed: AsyncSpeedResource) -> None:
         self._speed = speed
 
         self.histogram = async_to_streamed_response_wrapper(
@@ -424,5 +424,5 @@ class AsyncSpeedWithStreamingResponse:
         )
 
     @cached_property
-    def top(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self._speed.top)
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._speed.top)

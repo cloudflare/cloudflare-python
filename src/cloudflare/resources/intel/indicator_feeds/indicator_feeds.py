@@ -13,12 +13,12 @@ from ...._utils import (
 )
 from ...._compat import cached_property
 from .permissions import (
-    Permissions,
-    AsyncPermissions,
-    PermissionsWithRawResponse,
-    AsyncPermissionsWithRawResponse,
-    PermissionsWithStreamingResponse,
-    AsyncPermissionsWithStreamingResponse,
+    PermissionsResource,
+    AsyncPermissionsResource,
+    PermissionsResourceWithRawResponse,
+    AsyncPermissionsResourceWithRawResponse,
+    PermissionsResourceWithStreamingResponse,
+    AsyncPermissionsResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -39,21 +39,21 @@ from ....types.intel.indicator_feed_list_response import IndicatorFeedListRespon
 from ....types.intel.indicator_feed_create_response import IndicatorFeedCreateResponse
 from ....types.intel.indicator_feed_update_response import IndicatorFeedUpdateResponse
 
-__all__ = ["IndicatorFeeds", "AsyncIndicatorFeeds"]
+__all__ = ["IndicatorFeedsResource", "AsyncIndicatorFeedsResource"]
 
 
-class IndicatorFeeds(SyncAPIResource):
+class IndicatorFeedsResource(SyncAPIResource):
     @cached_property
-    def permissions(self) -> Permissions:
-        return Permissions(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> IndicatorFeedsWithRawResponse:
-        return IndicatorFeedsWithRawResponse(self)
+    def permissions(self) -> PermissionsResource:
+        return PermissionsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> IndicatorFeedsWithStreamingResponse:
-        return IndicatorFeedsWithStreamingResponse(self)
+    def with_raw_response(self) -> IndicatorFeedsResourceWithRawResponse:
+        return IndicatorFeedsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> IndicatorFeedsResourceWithStreamingResponse:
+        return IndicatorFeedsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -271,18 +271,18 @@ class IndicatorFeeds(SyncAPIResource):
         )
 
 
-class AsyncIndicatorFeeds(AsyncAPIResource):
+class AsyncIndicatorFeedsResource(AsyncAPIResource):
     @cached_property
-    def permissions(self) -> AsyncPermissions:
-        return AsyncPermissions(self._client)
+    def permissions(self) -> AsyncPermissionsResource:
+        return AsyncPermissionsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncIndicatorFeedsWithRawResponse:
-        return AsyncIndicatorFeedsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIndicatorFeedsResourceWithRawResponse:
+        return AsyncIndicatorFeedsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIndicatorFeedsWithStreamingResponse:
-        return AsyncIndicatorFeedsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIndicatorFeedsResourceWithStreamingResponse:
+        return AsyncIndicatorFeedsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -502,8 +502,8 @@ class AsyncIndicatorFeeds(AsyncAPIResource):
         )
 
 
-class IndicatorFeedsWithRawResponse:
-    def __init__(self, indicator_feeds: IndicatorFeeds) -> None:
+class IndicatorFeedsResourceWithRawResponse:
+    def __init__(self, indicator_feeds: IndicatorFeedsResource) -> None:
         self._indicator_feeds = indicator_feeds
 
         self.create = to_raw_response_wrapper(
@@ -523,12 +523,12 @@ class IndicatorFeedsWithRawResponse:
         )
 
     @cached_property
-    def permissions(self) -> PermissionsWithRawResponse:
-        return PermissionsWithRawResponse(self._indicator_feeds.permissions)
+    def permissions(self) -> PermissionsResourceWithRawResponse:
+        return PermissionsResourceWithRawResponse(self._indicator_feeds.permissions)
 
 
-class AsyncIndicatorFeedsWithRawResponse:
-    def __init__(self, indicator_feeds: AsyncIndicatorFeeds) -> None:
+class AsyncIndicatorFeedsResourceWithRawResponse:
+    def __init__(self, indicator_feeds: AsyncIndicatorFeedsResource) -> None:
         self._indicator_feeds = indicator_feeds
 
         self.create = async_to_raw_response_wrapper(
@@ -548,12 +548,12 @@ class AsyncIndicatorFeedsWithRawResponse:
         )
 
     @cached_property
-    def permissions(self) -> AsyncPermissionsWithRawResponse:
-        return AsyncPermissionsWithRawResponse(self._indicator_feeds.permissions)
+    def permissions(self) -> AsyncPermissionsResourceWithRawResponse:
+        return AsyncPermissionsResourceWithRawResponse(self._indicator_feeds.permissions)
 
 
-class IndicatorFeedsWithStreamingResponse:
-    def __init__(self, indicator_feeds: IndicatorFeeds) -> None:
+class IndicatorFeedsResourceWithStreamingResponse:
+    def __init__(self, indicator_feeds: IndicatorFeedsResource) -> None:
         self._indicator_feeds = indicator_feeds
 
         self.create = to_streamed_response_wrapper(
@@ -573,12 +573,12 @@ class IndicatorFeedsWithStreamingResponse:
         )
 
     @cached_property
-    def permissions(self) -> PermissionsWithStreamingResponse:
-        return PermissionsWithStreamingResponse(self._indicator_feeds.permissions)
+    def permissions(self) -> PermissionsResourceWithStreamingResponse:
+        return PermissionsResourceWithStreamingResponse(self._indicator_feeds.permissions)
 
 
-class AsyncIndicatorFeedsWithStreamingResponse:
-    def __init__(self, indicator_feeds: AsyncIndicatorFeeds) -> None:
+class AsyncIndicatorFeedsResourceWithStreamingResponse:
+    def __init__(self, indicator_feeds: AsyncIndicatorFeedsResource) -> None:
         self._indicator_feeds = indicator_feeds
 
         self.create = async_to_streamed_response_wrapper(
@@ -598,5 +598,5 @@ class AsyncIndicatorFeedsWithStreamingResponse:
         )
 
     @cached_property
-    def permissions(self) -> AsyncPermissionsWithStreamingResponse:
-        return AsyncPermissionsWithStreamingResponse(self._indicator_feeds.permissions)
+    def permissions(self) -> AsyncPermissionsResourceWithStreamingResponse:
+        return AsyncPermissionsResourceWithStreamingResponse(self._indicator_feeds.permissions)

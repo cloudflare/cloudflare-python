@@ -24,17 +24,17 @@ from ..types.url_normalization import url_normalization_update_params
 from ..types.url_normalization.url_normalization_get_response import URLNormalizationGetResponse
 from ..types.url_normalization.url_normalization_update_response import URLNormalizationUpdateResponse
 
-__all__ = ["URLNormalization", "AsyncURLNormalization"]
+__all__ = ["URLNormalizationResource", "AsyncURLNormalizationResource"]
 
 
-class URLNormalization(SyncAPIResource):
+class URLNormalizationResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> URLNormalizationWithRawResponse:
-        return URLNormalizationWithRawResponse(self)
+    def with_raw_response(self) -> URLNormalizationResourceWithRawResponse:
+        return URLNormalizationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> URLNormalizationWithStreamingResponse:
-        return URLNormalizationWithStreamingResponse(self)
+    def with_streaming_response(self) -> URLNormalizationResourceWithStreamingResponse:
+        return URLNormalizationResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -120,14 +120,14 @@ class URLNormalization(SyncAPIResource):
         )
 
 
-class AsyncURLNormalization(AsyncAPIResource):
+class AsyncURLNormalizationResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncURLNormalizationWithRawResponse:
-        return AsyncURLNormalizationWithRawResponse(self)
+    def with_raw_response(self) -> AsyncURLNormalizationResourceWithRawResponse:
+        return AsyncURLNormalizationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncURLNormalizationWithStreamingResponse:
-        return AsyncURLNormalizationWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncURLNormalizationResourceWithStreamingResponse:
+        return AsyncURLNormalizationResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -213,8 +213,8 @@ class AsyncURLNormalization(AsyncAPIResource):
         )
 
 
-class URLNormalizationWithRawResponse:
-    def __init__(self, url_normalization: URLNormalization) -> None:
+class URLNormalizationResourceWithRawResponse:
+    def __init__(self, url_normalization: URLNormalizationResource) -> None:
         self._url_normalization = url_normalization
 
         self.update = to_raw_response_wrapper(
@@ -225,8 +225,8 @@ class URLNormalizationWithRawResponse:
         )
 
 
-class AsyncURLNormalizationWithRawResponse:
-    def __init__(self, url_normalization: AsyncURLNormalization) -> None:
+class AsyncURLNormalizationResourceWithRawResponse:
+    def __init__(self, url_normalization: AsyncURLNormalizationResource) -> None:
         self._url_normalization = url_normalization
 
         self.update = async_to_raw_response_wrapper(
@@ -237,8 +237,8 @@ class AsyncURLNormalizationWithRawResponse:
         )
 
 
-class URLNormalizationWithStreamingResponse:
-    def __init__(self, url_normalization: URLNormalization) -> None:
+class URLNormalizationResourceWithStreamingResponse:
+    def __init__(self, url_normalization: URLNormalizationResource) -> None:
         self._url_normalization = url_normalization
 
         self.update = to_streamed_response_wrapper(
@@ -249,8 +249,8 @@ class URLNormalizationWithStreamingResponse:
         )
 
 
-class AsyncURLNormalizationWithStreamingResponse:
-    def __init__(self, url_normalization: AsyncURLNormalization) -> None:
+class AsyncURLNormalizationResourceWithStreamingResponse:
+    def __init__(self, url_normalization: AsyncURLNormalizationResource) -> None:
         self._url_normalization = url_normalization
 
         self.update = async_to_streamed_response_wrapper(

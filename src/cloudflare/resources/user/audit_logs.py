@@ -26,17 +26,17 @@ from ..._base_client import (
 )
 from ...types.shared.audit_log import AuditLog
 
-__all__ = ["AuditLogs", "AsyncAuditLogs"]
+__all__ = ["AuditLogsResource", "AsyncAuditLogsResource"]
 
 
-class AuditLogs(SyncAPIResource):
+class AuditLogsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AuditLogsWithRawResponse:
-        return AuditLogsWithRawResponse(self)
+    def with_raw_response(self) -> AuditLogsResourceWithRawResponse:
+        return AuditLogsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AuditLogsWithStreamingResponse:
-        return AuditLogsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AuditLogsResourceWithStreamingResponse:
+        return AuditLogsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -120,14 +120,14 @@ class AuditLogs(SyncAPIResource):
         )
 
 
-class AsyncAuditLogs(AsyncAPIResource):
+class AsyncAuditLogsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAuditLogsWithRawResponse:
-        return AsyncAuditLogsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAuditLogsResourceWithRawResponse:
+        return AsyncAuditLogsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAuditLogsWithStreamingResponse:
-        return AsyncAuditLogsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAuditLogsResourceWithStreamingResponse:
+        return AsyncAuditLogsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -211,8 +211,8 @@ class AsyncAuditLogs(AsyncAPIResource):
         )
 
 
-class AuditLogsWithRawResponse:
-    def __init__(self, audit_logs: AuditLogs) -> None:
+class AuditLogsResourceWithRawResponse:
+    def __init__(self, audit_logs: AuditLogsResource) -> None:
         self._audit_logs = audit_logs
 
         self.list = to_raw_response_wrapper(
@@ -220,8 +220,8 @@ class AuditLogsWithRawResponse:
         )
 
 
-class AsyncAuditLogsWithRawResponse:
-    def __init__(self, audit_logs: AsyncAuditLogs) -> None:
+class AsyncAuditLogsResourceWithRawResponse:
+    def __init__(self, audit_logs: AsyncAuditLogsResource) -> None:
         self._audit_logs = audit_logs
 
         self.list = async_to_raw_response_wrapper(
@@ -229,8 +229,8 @@ class AsyncAuditLogsWithRawResponse:
         )
 
 
-class AuditLogsWithStreamingResponse:
-    def __init__(self, audit_logs: AuditLogs) -> None:
+class AuditLogsResourceWithStreamingResponse:
+    def __init__(self, audit_logs: AuditLogsResource) -> None:
         self._audit_logs = audit_logs
 
         self.list = to_streamed_response_wrapper(
@@ -238,8 +238,8 @@ class AuditLogsWithStreamingResponse:
         )
 
 
-class AsyncAuditLogsWithStreamingResponse:
-    def __init__(self, audit_logs: AsyncAuditLogs) -> None:
+class AsyncAuditLogsResourceWithStreamingResponse:
+    def __init__(self, audit_logs: AsyncAuditLogsResource) -> None:
         self._audit_logs = audit_logs
 
         self.list = async_to_streamed_response_wrapper(

@@ -23,21 +23,22 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import keys, key_create_params, key_delete_params
+from ...types.stream import key_create_params, key_delete_params
+from ...types.stream.keys import Keys
 from ...types.stream.key_get_response import KeyGetResponse
 from ...types.stream.key_delete_response import KeyDeleteResponse
 
-__all__ = ["Keys", "AsyncKeys"]
+__all__ = ["KeysResource", "AsyncKeysResource"]
 
 
-class Keys(SyncAPIResource):
+class KeysResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> KeysWithRawResponse:
-        return KeysWithRawResponse(self)
+    def with_raw_response(self) -> KeysResourceWithRawResponse:
+        return KeysResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> KeysWithStreamingResponse:
-        return KeysWithStreamingResponse(self)
+    def with_streaming_response(self) -> KeysResourceWithStreamingResponse:
+        return KeysResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -50,7 +51,7 @@ class Keys(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[keys.Keys]:
+    ) -> Optional[Keys]:
         """Creates an RSA private key in PEM and JWK formats.
 
         Key files are only displayed
@@ -78,9 +79,9 @@ class Keys(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[keys.Keys]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Keys]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[keys.Keys]], ResultWrapper[keys.Keys]),
+            cast_to=cast(Type[Optional[Keys]], ResultWrapper[Keys]),
         )
 
     def delete(
@@ -174,14 +175,14 @@ class Keys(SyncAPIResource):
         )
 
 
-class AsyncKeys(AsyncAPIResource):
+class AsyncKeysResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncKeysWithRawResponse:
-        return AsyncKeysWithRawResponse(self)
+    def with_raw_response(self) -> AsyncKeysResourceWithRawResponse:
+        return AsyncKeysResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncKeysWithStreamingResponse:
-        return AsyncKeysWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncKeysResourceWithStreamingResponse:
+        return AsyncKeysResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -194,7 +195,7 @@ class AsyncKeys(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[keys.Keys]:
+    ) -> Optional[Keys]:
         """Creates an RSA private key in PEM and JWK formats.
 
         Key files are only displayed
@@ -222,9 +223,9 @@ class AsyncKeys(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[keys.Keys]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Keys]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[keys.Keys]], ResultWrapper[keys.Keys]),
+            cast_to=cast(Type[Optional[Keys]], ResultWrapper[Keys]),
         )
 
     async def delete(
@@ -318,8 +319,8 @@ class AsyncKeys(AsyncAPIResource):
         )
 
 
-class KeysWithRawResponse:
-    def __init__(self, keys: Keys) -> None:
+class KeysResourceWithRawResponse:
+    def __init__(self, keys: KeysResource) -> None:
         self._keys = keys
 
         self.create = to_raw_response_wrapper(
@@ -333,8 +334,8 @@ class KeysWithRawResponse:
         )
 
 
-class AsyncKeysWithRawResponse:
-    def __init__(self, keys: AsyncKeys) -> None:
+class AsyncKeysResourceWithRawResponse:
+    def __init__(self, keys: AsyncKeysResource) -> None:
         self._keys = keys
 
         self.create = async_to_raw_response_wrapper(
@@ -348,8 +349,8 @@ class AsyncKeysWithRawResponse:
         )
 
 
-class KeysWithStreamingResponse:
-    def __init__(self, keys: Keys) -> None:
+class KeysResourceWithStreamingResponse:
+    def __init__(self, keys: KeysResource) -> None:
         self._keys = keys
 
         self.create = to_streamed_response_wrapper(
@@ -363,8 +364,8 @@ class KeysWithStreamingResponse:
         )
 
 
-class AsyncKeysWithStreamingResponse:
-    def __init__(self, keys: AsyncKeys) -> None:
+class AsyncKeysResourceWithStreamingResponse:
+    def __init__(self, keys: AsyncKeysResource) -> None:
         self._keys = keys
 
         self.create = async_to_streamed_response_wrapper(

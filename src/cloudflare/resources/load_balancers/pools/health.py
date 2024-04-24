@@ -28,17 +28,17 @@ from ....types.load_balancers.pools import health_create_params
 from ....types.load_balancers.pools.health_get_response import HealthGetResponse
 from ....types.load_balancers.pools.health_create_response import HealthCreateResponse
 
-__all__ = ["Health", "AsyncHealth"]
+__all__ = ["HealthResource", "AsyncHealthResource"]
 
 
-class Health(SyncAPIResource):
+class HealthResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HealthWithRawResponse:
-        return HealthWithRawResponse(self)
+    def with_raw_response(self) -> HealthResourceWithRawResponse:
+        return HealthResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HealthWithStreamingResponse:
-        return HealthWithStreamingResponse(self)
+    def with_streaming_response(self) -> HealthResourceWithStreamingResponse:
+        return HealthResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -218,14 +218,14 @@ class Health(SyncAPIResource):
         )
 
 
-class AsyncHealth(AsyncAPIResource):
+class AsyncHealthResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHealthWithRawResponse:
-        return AsyncHealthWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHealthResourceWithRawResponse:
+        return AsyncHealthResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHealthWithStreamingResponse:
-        return AsyncHealthWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHealthResourceWithStreamingResponse:
+        return AsyncHealthResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -405,8 +405,8 @@ class AsyncHealth(AsyncAPIResource):
         )
 
 
-class HealthWithRawResponse:
-    def __init__(self, health: Health) -> None:
+class HealthResourceWithRawResponse:
+    def __init__(self, health: HealthResource) -> None:
         self._health = health
 
         self.create = to_raw_response_wrapper(
@@ -417,8 +417,8 @@ class HealthWithRawResponse:
         )
 
 
-class AsyncHealthWithRawResponse:
-    def __init__(self, health: AsyncHealth) -> None:
+class AsyncHealthResourceWithRawResponse:
+    def __init__(self, health: AsyncHealthResource) -> None:
         self._health = health
 
         self.create = async_to_raw_response_wrapper(
@@ -429,8 +429,8 @@ class AsyncHealthWithRawResponse:
         )
 
 
-class HealthWithStreamingResponse:
-    def __init__(self, health: Health) -> None:
+class HealthResourceWithStreamingResponse:
+    def __init__(self, health: HealthResource) -> None:
         self._health = health
 
         self.create = to_streamed_response_wrapper(
@@ -441,8 +441,8 @@ class HealthWithStreamingResponse:
         )
 
 
-class AsyncHealthWithStreamingResponse:
-    def __init__(self, health: AsyncHealth) -> None:
+class AsyncHealthResourceWithStreamingResponse:
+    def __init__(self, health: AsyncHealthResource) -> None:
         self._health = health
 
         self.create = async_to_streamed_response_wrapper(

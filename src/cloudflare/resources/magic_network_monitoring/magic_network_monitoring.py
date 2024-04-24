@@ -3,112 +3,112 @@
 from __future__ import annotations
 
 from .rules import (
-    Rules,
-    AsyncRules,
-    RulesWithRawResponse,
-    AsyncRulesWithRawResponse,
-    RulesWithStreamingResponse,
-    AsyncRulesWithStreamingResponse,
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
 from .configs import (
-    Configs,
-    AsyncConfigs,
-    ConfigsWithRawResponse,
-    AsyncConfigsWithRawResponse,
-    ConfigsWithStreamingResponse,
-    AsyncConfigsWithStreamingResponse,
+    ConfigsResource,
+    AsyncConfigsResource,
+    ConfigsResourceWithRawResponse,
+    AsyncConfigsResourceWithRawResponse,
+    ConfigsResourceWithStreamingResponse,
+    AsyncConfigsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .rules.rules import Rules, AsyncRules
-from .configs.configs import Configs, AsyncConfigs
+from .rules.rules import RulesResource, AsyncRulesResource
+from .configs.configs import ConfigsResource, AsyncConfigsResource
 
-__all__ = ["MagicNetworkMonitoring", "AsyncMagicNetworkMonitoring"]
+__all__ = ["MagicNetworkMonitoringResource", "AsyncMagicNetworkMonitoringResource"]
 
 
-class MagicNetworkMonitoring(SyncAPIResource):
+class MagicNetworkMonitoringResource(SyncAPIResource):
     @cached_property
-    def configs(self) -> Configs:
-        return Configs(self._client)
-
-    @cached_property
-    def rules(self) -> Rules:
-        return Rules(self._client)
+    def configs(self) -> ConfigsResource:
+        return ConfigsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> MagicNetworkMonitoringWithRawResponse:
-        return MagicNetworkMonitoringWithRawResponse(self)
+    def rules(self) -> RulesResource:
+        return RulesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> MagicNetworkMonitoringWithStreamingResponse:
-        return MagicNetworkMonitoringWithStreamingResponse(self)
-
-
-class AsyncMagicNetworkMonitoring(AsyncAPIResource):
-    @cached_property
-    def configs(self) -> AsyncConfigs:
-        return AsyncConfigs(self._client)
+    def with_raw_response(self) -> MagicNetworkMonitoringResourceWithRawResponse:
+        return MagicNetworkMonitoringResourceWithRawResponse(self)
 
     @cached_property
-    def rules(self) -> AsyncRules:
-        return AsyncRules(self._client)
+    def with_streaming_response(self) -> MagicNetworkMonitoringResourceWithStreamingResponse:
+        return MagicNetworkMonitoringResourceWithStreamingResponse(self)
+
+
+class AsyncMagicNetworkMonitoringResource(AsyncAPIResource):
+    @cached_property
+    def configs(self) -> AsyncConfigsResource:
+        return AsyncConfigsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncMagicNetworkMonitoringWithRawResponse:
-        return AsyncMagicNetworkMonitoringWithRawResponse(self)
+    def rules(self) -> AsyncRulesResource:
+        return AsyncRulesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMagicNetworkMonitoringWithStreamingResponse:
-        return AsyncMagicNetworkMonitoringWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncMagicNetworkMonitoringResourceWithRawResponse:
+        return AsyncMagicNetworkMonitoringResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncMagicNetworkMonitoringResourceWithStreamingResponse:
+        return AsyncMagicNetworkMonitoringResourceWithStreamingResponse(self)
 
 
-class MagicNetworkMonitoringWithRawResponse:
-    def __init__(self, magic_network_monitoring: MagicNetworkMonitoring) -> None:
+class MagicNetworkMonitoringResourceWithRawResponse:
+    def __init__(self, magic_network_monitoring: MagicNetworkMonitoringResource) -> None:
         self._magic_network_monitoring = magic_network_monitoring
 
     @cached_property
-    def configs(self) -> ConfigsWithRawResponse:
-        return ConfigsWithRawResponse(self._magic_network_monitoring.configs)
+    def configs(self) -> ConfigsResourceWithRawResponse:
+        return ConfigsResourceWithRawResponse(self._magic_network_monitoring.configs)
 
     @cached_property
-    def rules(self) -> RulesWithRawResponse:
-        return RulesWithRawResponse(self._magic_network_monitoring.rules)
+    def rules(self) -> RulesResourceWithRawResponse:
+        return RulesResourceWithRawResponse(self._magic_network_monitoring.rules)
 
 
-class AsyncMagicNetworkMonitoringWithRawResponse:
-    def __init__(self, magic_network_monitoring: AsyncMagicNetworkMonitoring) -> None:
+class AsyncMagicNetworkMonitoringResourceWithRawResponse:
+    def __init__(self, magic_network_monitoring: AsyncMagicNetworkMonitoringResource) -> None:
         self._magic_network_monitoring = magic_network_monitoring
 
     @cached_property
-    def configs(self) -> AsyncConfigsWithRawResponse:
-        return AsyncConfigsWithRawResponse(self._magic_network_monitoring.configs)
+    def configs(self) -> AsyncConfigsResourceWithRawResponse:
+        return AsyncConfigsResourceWithRawResponse(self._magic_network_monitoring.configs)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithRawResponse:
-        return AsyncRulesWithRawResponse(self._magic_network_monitoring.rules)
+    def rules(self) -> AsyncRulesResourceWithRawResponse:
+        return AsyncRulesResourceWithRawResponse(self._magic_network_monitoring.rules)
 
 
-class MagicNetworkMonitoringWithStreamingResponse:
-    def __init__(self, magic_network_monitoring: MagicNetworkMonitoring) -> None:
+class MagicNetworkMonitoringResourceWithStreamingResponse:
+    def __init__(self, magic_network_monitoring: MagicNetworkMonitoringResource) -> None:
         self._magic_network_monitoring = magic_network_monitoring
 
     @cached_property
-    def configs(self) -> ConfigsWithStreamingResponse:
-        return ConfigsWithStreamingResponse(self._magic_network_monitoring.configs)
+    def configs(self) -> ConfigsResourceWithStreamingResponse:
+        return ConfigsResourceWithStreamingResponse(self._magic_network_monitoring.configs)
 
     @cached_property
-    def rules(self) -> RulesWithStreamingResponse:
-        return RulesWithStreamingResponse(self._magic_network_monitoring.rules)
+    def rules(self) -> RulesResourceWithStreamingResponse:
+        return RulesResourceWithStreamingResponse(self._magic_network_monitoring.rules)
 
 
-class AsyncMagicNetworkMonitoringWithStreamingResponse:
-    def __init__(self, magic_network_monitoring: AsyncMagicNetworkMonitoring) -> None:
+class AsyncMagicNetworkMonitoringResourceWithStreamingResponse:
+    def __init__(self, magic_network_monitoring: AsyncMagicNetworkMonitoringResource) -> None:
         self._magic_network_monitoring = magic_network_monitoring
 
     @cached_property
-    def configs(self) -> AsyncConfigsWithStreamingResponse:
-        return AsyncConfigsWithStreamingResponse(self._magic_network_monitoring.configs)
+    def configs(self) -> AsyncConfigsResourceWithStreamingResponse:
+        return AsyncConfigsResourceWithStreamingResponse(self._magic_network_monitoring.configs)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithStreamingResponse:
-        return AsyncRulesWithStreamingResponse(self._magic_network_monitoring.rules)
+    def rules(self) -> AsyncRulesResourceWithStreamingResponse:
+        return AsyncRulesResourceWithStreamingResponse(self._magic_network_monitoring.rules)

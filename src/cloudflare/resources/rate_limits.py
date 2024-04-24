@@ -37,17 +37,17 @@ from ..types.rate_limits.rate_limit_edit_response import RateLimitEditResponse
 from ..types.rate_limits.rate_limit_create_response import RateLimitCreateResponse
 from ..types.rate_limits.rate_limit_delete_response import RateLimitDeleteResponse
 
-__all__ = ["RateLimits", "AsyncRateLimits"]
+__all__ = ["RateLimitsResource", "AsyncRateLimitsResource"]
 
 
-class RateLimits(SyncAPIResource):
+class RateLimitsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RateLimitsWithRawResponse:
-        return RateLimitsWithRawResponse(self)
+    def with_raw_response(self) -> RateLimitsResourceWithRawResponse:
+        return RateLimitsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RateLimitsWithStreamingResponse:
-        return RateLimitsWithStreamingResponse(self)
+    def with_streaming_response(self) -> RateLimitsResourceWithStreamingResponse:
+        return RateLimitsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -297,14 +297,14 @@ class RateLimits(SyncAPIResource):
         )
 
 
-class AsyncRateLimits(AsyncAPIResource):
+class AsyncRateLimitsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRateLimitsWithRawResponse:
-        return AsyncRateLimitsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRateLimitsResourceWithRawResponse:
+        return AsyncRateLimitsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRateLimitsWithStreamingResponse:
-        return AsyncRateLimitsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRateLimitsResourceWithStreamingResponse:
+        return AsyncRateLimitsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -554,8 +554,8 @@ class AsyncRateLimits(AsyncAPIResource):
         )
 
 
-class RateLimitsWithRawResponse:
-    def __init__(self, rate_limits: RateLimits) -> None:
+class RateLimitsResourceWithRawResponse:
+    def __init__(self, rate_limits: RateLimitsResource) -> None:
         self._rate_limits = rate_limits
 
         self.create = to_raw_response_wrapper(
@@ -575,8 +575,8 @@ class RateLimitsWithRawResponse:
         )
 
 
-class AsyncRateLimitsWithRawResponse:
-    def __init__(self, rate_limits: AsyncRateLimits) -> None:
+class AsyncRateLimitsResourceWithRawResponse:
+    def __init__(self, rate_limits: AsyncRateLimitsResource) -> None:
         self._rate_limits = rate_limits
 
         self.create = async_to_raw_response_wrapper(
@@ -596,8 +596,8 @@ class AsyncRateLimitsWithRawResponse:
         )
 
 
-class RateLimitsWithStreamingResponse:
-    def __init__(self, rate_limits: RateLimits) -> None:
+class RateLimitsResourceWithStreamingResponse:
+    def __init__(self, rate_limits: RateLimitsResource) -> None:
         self._rate_limits = rate_limits
 
         self.create = to_streamed_response_wrapper(
@@ -617,8 +617,8 @@ class RateLimitsWithStreamingResponse:
         )
 
 
-class AsyncRateLimitsWithStreamingResponse:
-    def __init__(self, rate_limits: AsyncRateLimits) -> None:
+class AsyncRateLimitsResourceWithStreamingResponse:
+    def __init__(self, rate_limits: AsyncRateLimitsResource) -> None:
         self._rate_limits = rate_limits
 
         self.create = async_to_streamed_response_wrapper(

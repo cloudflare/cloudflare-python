@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .configs import (
-    Configs,
-    AsyncConfigs,
-    ConfigsWithRawResponse,
-    AsyncConfigsWithRawResponse,
-    ConfigsWithStreamingResponse,
-    AsyncConfigsWithStreamingResponse,
+    ConfigsResource,
+    AsyncConfigsResource,
+    ConfigsResourceWithRawResponse,
+    AsyncConfigsResourceWithRawResponse,
+    ConfigsResourceWithStreamingResponse,
+    AsyncConfigsResourceWithStreamingResponse,
 )
 from .hyperdrive import (
     HyperdriveResource,
@@ -18,12 +18,12 @@ from .hyperdrive import (
 )
 
 __all__ = [
-    "Configs",
-    "AsyncConfigs",
-    "ConfigsWithRawResponse",
-    "AsyncConfigsWithRawResponse",
-    "ConfigsWithStreamingResponse",
-    "AsyncConfigsWithStreamingResponse",
+    "ConfigsResource",
+    "AsyncConfigsResource",
+    "ConfigsResourceWithRawResponse",
+    "AsyncConfigsResourceWithRawResponse",
+    "ConfigsResourceWithStreamingResponse",
+    "AsyncConfigsResourceWithStreamingResponse",
     "HyperdriveResource",
     "AsyncHyperdriveResource",
     "HyperdriveResourceWithRawResponse",

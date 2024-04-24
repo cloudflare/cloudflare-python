@@ -3,208 +3,208 @@
 from __future__ import annotations
 
 from .top import (
-    Top,
-    AsyncTop,
-    TopWithRawResponse,
-    AsyncTopWithRawResponse,
-    TopWithStreamingResponse,
-    AsyncTopWithStreamingResponse,
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
 )
 from .ases import (
-    Ases,
-    AsyncAses,
-    AsesWithRawResponse,
-    AsyncAsesWithRawResponse,
-    AsesWithStreamingResponse,
-    AsyncAsesWithStreamingResponse,
+    AsesResource,
+    AsyncAsesResource,
+    AsesResourceWithRawResponse,
+    AsyncAsesResourceWithRawResponse,
+    AsesResourceWithStreamingResponse,
+    AsyncAsesResourceWithStreamingResponse,
 )
 from .summary import (
-    Summary,
-    AsyncSummary,
-    SummaryWithRawResponse,
-    AsyncSummaryWithRawResponse,
-    SummaryWithStreamingResponse,
-    AsyncSummaryWithStreamingResponse,
+    SummaryResource,
+    AsyncSummaryResource,
+    SummaryResourceWithRawResponse,
+    AsyncSummaryResourceWithRawResponse,
+    SummaryResourceWithStreamingResponse,
+    AsyncSummaryResourceWithStreamingResponse,
 )
-from .ases.ases import Ases, AsyncAses
+from .ases.ases import AsesResource, AsyncAsesResource
 from .locations import (
-    Locations,
-    AsyncLocations,
-    LocationsWithRawResponse,
-    AsyncLocationsWithRawResponse,
-    LocationsWithStreamingResponse,
-    AsyncLocationsWithStreamingResponse,
+    LocationsResource,
+    AsyncLocationsResource,
+    LocationsResourceWithRawResponse,
+    AsyncLocationsResourceWithRawResponse,
+    LocationsResourceWithStreamingResponse,
+    AsyncLocationsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from .timeseries_groups import (
-    TimeseriesGroups,
-    AsyncTimeseriesGroups,
-    TimeseriesGroupsWithRawResponse,
-    AsyncTimeseriesGroupsWithRawResponse,
-    TimeseriesGroupsWithStreamingResponse,
-    AsyncTimeseriesGroupsWithStreamingResponse,
+    TimeseriesGroupsResource,
+    AsyncTimeseriesGroupsResource,
+    TimeseriesGroupsResourceWithRawResponse,
+    AsyncTimeseriesGroupsResourceWithRawResponse,
+    TimeseriesGroupsResourceWithStreamingResponse,
+    AsyncTimeseriesGroupsResourceWithStreamingResponse,
 )
-from .locations.locations import Locations, AsyncLocations
+from .locations.locations import LocationsResource, AsyncLocationsResource
 
-__all__ = ["HTTP", "AsyncHTTP"]
+__all__ = ["HTTPResource", "AsyncHTTPResource"]
 
 
-class HTTP(SyncAPIResource):
+class HTTPResource(SyncAPIResource):
     @cached_property
-    def top(self) -> Top:
-        return Top(self._client)
-
-    @cached_property
-    def locations(self) -> Locations:
-        return Locations(self._client)
+    def top(self) -> TopResource:
+        return TopResource(self._client)
 
     @cached_property
-    def ases(self) -> Ases:
-        return Ases(self._client)
+    def locations(self) -> LocationsResource:
+        return LocationsResource(self._client)
 
     @cached_property
-    def summary(self) -> Summary:
-        return Summary(self._client)
+    def ases(self) -> AsesResource:
+        return AsesResource(self._client)
 
     @cached_property
-    def timeseries_groups(self) -> TimeseriesGroups:
-        return TimeseriesGroups(self._client)
+    def summary(self) -> SummaryResource:
+        return SummaryResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> HTTPWithRawResponse:
-        return HTTPWithRawResponse(self)
+    def timeseries_groups(self) -> TimeseriesGroupsResource:
+        return TimeseriesGroupsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> HTTPWithStreamingResponse:
-        return HTTPWithStreamingResponse(self)
-
-
-class AsyncHTTP(AsyncAPIResource):
-    @cached_property
-    def top(self) -> AsyncTop:
-        return AsyncTop(self._client)
+    def with_raw_response(self) -> HTTPResourceWithRawResponse:
+        return HTTPResourceWithRawResponse(self)
 
     @cached_property
-    def locations(self) -> AsyncLocations:
-        return AsyncLocations(self._client)
+    def with_streaming_response(self) -> HTTPResourceWithStreamingResponse:
+        return HTTPResourceWithStreamingResponse(self)
+
+
+class AsyncHTTPResource(AsyncAPIResource):
+    @cached_property
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
 
     @cached_property
-    def ases(self) -> AsyncAses:
-        return AsyncAses(self._client)
+    def locations(self) -> AsyncLocationsResource:
+        return AsyncLocationsResource(self._client)
 
     @cached_property
-    def summary(self) -> AsyncSummary:
-        return AsyncSummary(self._client)
+    def ases(self) -> AsyncAsesResource:
+        return AsyncAsesResource(self._client)
 
     @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroups:
-        return AsyncTimeseriesGroups(self._client)
+    def summary(self) -> AsyncSummaryResource:
+        return AsyncSummaryResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncHTTPWithRawResponse:
-        return AsyncHTTPWithRawResponse(self)
+    def timeseries_groups(self) -> AsyncTimeseriesGroupsResource:
+        return AsyncTimeseriesGroupsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHTTPWithStreamingResponse:
-        return AsyncHTTPWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncHTTPResourceWithRawResponse:
+        return AsyncHTTPResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncHTTPResourceWithStreamingResponse:
+        return AsyncHTTPResourceWithStreamingResponse(self)
 
 
-class HTTPWithRawResponse:
-    def __init__(self, http: HTTP) -> None:
+class HTTPResourceWithRawResponse:
+    def __init__(self, http: HTTPResource) -> None:
         self._http = http
 
     @cached_property
-    def top(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self._http.top)
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._http.top)
 
     @cached_property
-    def locations(self) -> LocationsWithRawResponse:
-        return LocationsWithRawResponse(self._http.locations)
+    def locations(self) -> LocationsResourceWithRawResponse:
+        return LocationsResourceWithRawResponse(self._http.locations)
 
     @cached_property
-    def ases(self) -> AsesWithRawResponse:
-        return AsesWithRawResponse(self._http.ases)
+    def ases(self) -> AsesResourceWithRawResponse:
+        return AsesResourceWithRawResponse(self._http.ases)
 
     @cached_property
-    def summary(self) -> SummaryWithRawResponse:
-        return SummaryWithRawResponse(self._http.summary)
+    def summary(self) -> SummaryResourceWithRawResponse:
+        return SummaryResourceWithRawResponse(self._http.summary)
 
     @cached_property
-    def timeseries_groups(self) -> TimeseriesGroupsWithRawResponse:
-        return TimeseriesGroupsWithRawResponse(self._http.timeseries_groups)
+    def timeseries_groups(self) -> TimeseriesGroupsResourceWithRawResponse:
+        return TimeseriesGroupsResourceWithRawResponse(self._http.timeseries_groups)
 
 
-class AsyncHTTPWithRawResponse:
-    def __init__(self, http: AsyncHTTP) -> None:
+class AsyncHTTPResourceWithRawResponse:
+    def __init__(self, http: AsyncHTTPResource) -> None:
         self._http = http
 
     @cached_property
-    def top(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self._http.top)
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._http.top)
 
     @cached_property
-    def locations(self) -> AsyncLocationsWithRawResponse:
-        return AsyncLocationsWithRawResponse(self._http.locations)
+    def locations(self) -> AsyncLocationsResourceWithRawResponse:
+        return AsyncLocationsResourceWithRawResponse(self._http.locations)
 
     @cached_property
-    def ases(self) -> AsyncAsesWithRawResponse:
-        return AsyncAsesWithRawResponse(self._http.ases)
+    def ases(self) -> AsyncAsesResourceWithRawResponse:
+        return AsyncAsesResourceWithRawResponse(self._http.ases)
 
     @cached_property
-    def summary(self) -> AsyncSummaryWithRawResponse:
-        return AsyncSummaryWithRawResponse(self._http.summary)
+    def summary(self) -> AsyncSummaryResourceWithRawResponse:
+        return AsyncSummaryResourceWithRawResponse(self._http.summary)
 
     @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroupsWithRawResponse:
-        return AsyncTimeseriesGroupsWithRawResponse(self._http.timeseries_groups)
+    def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
+        return AsyncTimeseriesGroupsResourceWithRawResponse(self._http.timeseries_groups)
 
 
-class HTTPWithStreamingResponse:
-    def __init__(self, http: HTTP) -> None:
+class HTTPResourceWithStreamingResponse:
+    def __init__(self, http: HTTPResource) -> None:
         self._http = http
 
     @cached_property
-    def top(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self._http.top)
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._http.top)
 
     @cached_property
-    def locations(self) -> LocationsWithStreamingResponse:
-        return LocationsWithStreamingResponse(self._http.locations)
+    def locations(self) -> LocationsResourceWithStreamingResponse:
+        return LocationsResourceWithStreamingResponse(self._http.locations)
 
     @cached_property
-    def ases(self) -> AsesWithStreamingResponse:
-        return AsesWithStreamingResponse(self._http.ases)
+    def ases(self) -> AsesResourceWithStreamingResponse:
+        return AsesResourceWithStreamingResponse(self._http.ases)
 
     @cached_property
-    def summary(self) -> SummaryWithStreamingResponse:
-        return SummaryWithStreamingResponse(self._http.summary)
+    def summary(self) -> SummaryResourceWithStreamingResponse:
+        return SummaryResourceWithStreamingResponse(self._http.summary)
 
     @cached_property
-    def timeseries_groups(self) -> TimeseriesGroupsWithStreamingResponse:
-        return TimeseriesGroupsWithStreamingResponse(self._http.timeseries_groups)
+    def timeseries_groups(self) -> TimeseriesGroupsResourceWithStreamingResponse:
+        return TimeseriesGroupsResourceWithStreamingResponse(self._http.timeseries_groups)
 
 
-class AsyncHTTPWithStreamingResponse:
-    def __init__(self, http: AsyncHTTP) -> None:
+class AsyncHTTPResourceWithStreamingResponse:
+    def __init__(self, http: AsyncHTTPResource) -> None:
         self._http = http
 
     @cached_property
-    def top(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self._http.top)
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._http.top)
 
     @cached_property
-    def locations(self) -> AsyncLocationsWithStreamingResponse:
-        return AsyncLocationsWithStreamingResponse(self._http.locations)
+    def locations(self) -> AsyncLocationsResourceWithStreamingResponse:
+        return AsyncLocationsResourceWithStreamingResponse(self._http.locations)
 
     @cached_property
-    def ases(self) -> AsyncAsesWithStreamingResponse:
-        return AsyncAsesWithStreamingResponse(self._http.ases)
+    def ases(self) -> AsyncAsesResourceWithStreamingResponse:
+        return AsyncAsesResourceWithStreamingResponse(self._http.ases)
 
     @cached_property
-    def summary(self) -> AsyncSummaryWithStreamingResponse:
-        return AsyncSummaryWithStreamingResponse(self._http.summary)
+    def summary(self) -> AsyncSummaryResourceWithStreamingResponse:
+        return AsyncSummaryResourceWithStreamingResponse(self._http.summary)
 
     @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroupsWithStreamingResponse:
-        return AsyncTimeseriesGroupsWithStreamingResponse(self._http.timeseries_groups)
+    def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
+        return AsyncTimeseriesGroupsResourceWithStreamingResponse(self._http.timeseries_groups)

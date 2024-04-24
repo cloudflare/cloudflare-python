@@ -31,17 +31,17 @@ from ...types.user.invite import Invite
 from ...types.user.invite_get_response import InviteGetResponse
 from ...types.user.invite_edit_response import InviteEditResponse
 
-__all__ = ["Invites", "AsyncInvites"]
+__all__ = ["InvitesResource", "AsyncInvitesResource"]
 
 
-class Invites(SyncAPIResource):
+class InvitesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> InvitesWithRawResponse:
-        return InvitesWithRawResponse(self)
+    def with_raw_response(self) -> InvitesResourceWithRawResponse:
+        return InvitesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> InvitesWithStreamingResponse:
-        return InvitesWithStreamingResponse(self)
+    def with_streaming_response(self) -> InvitesResourceWithStreamingResponse:
+        return InvitesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -156,14 +156,14 @@ class Invites(SyncAPIResource):
         )
 
 
-class AsyncInvites(AsyncAPIResource):
+class AsyncInvitesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncInvitesWithRawResponse:
-        return AsyncInvitesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncInvitesResourceWithRawResponse:
+        return AsyncInvitesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncInvitesWithStreamingResponse:
-        return AsyncInvitesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncInvitesResourceWithStreamingResponse:
+        return AsyncInvitesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -278,8 +278,8 @@ class AsyncInvites(AsyncAPIResource):
         )
 
 
-class InvitesWithRawResponse:
-    def __init__(self, invites: Invites) -> None:
+class InvitesResourceWithRawResponse:
+    def __init__(self, invites: InvitesResource) -> None:
         self._invites = invites
 
         self.list = to_raw_response_wrapper(
@@ -293,8 +293,8 @@ class InvitesWithRawResponse:
         )
 
 
-class AsyncInvitesWithRawResponse:
-    def __init__(self, invites: AsyncInvites) -> None:
+class AsyncInvitesResourceWithRawResponse:
+    def __init__(self, invites: AsyncInvitesResource) -> None:
         self._invites = invites
 
         self.list = async_to_raw_response_wrapper(
@@ -308,8 +308,8 @@ class AsyncInvitesWithRawResponse:
         )
 
 
-class InvitesWithStreamingResponse:
-    def __init__(self, invites: Invites) -> None:
+class InvitesResourceWithStreamingResponse:
+    def __init__(self, invites: InvitesResource) -> None:
         self._invites = invites
 
         self.list = to_streamed_response_wrapper(
@@ -323,8 +323,8 @@ class InvitesWithStreamingResponse:
         )
 
 
-class AsyncInvitesWithStreamingResponse:
-    def __init__(self, invites: AsyncInvites) -> None:
+class AsyncInvitesResourceWithStreamingResponse:
+    def __init__(self, invites: AsyncInvitesResource) -> None:
         self._invites = invites
 
         self.list = async_to_streamed_response_wrapper(

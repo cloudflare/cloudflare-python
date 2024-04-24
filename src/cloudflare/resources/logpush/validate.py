@@ -27,17 +27,17 @@ from ...types.logpush import validate_origin_params, validate_destination_params
 from ...types.logpush.validate_origin_response import ValidateOriginResponse
 from ...types.logpush.validate_destination_response import ValidateDestinationResponse
 
-__all__ = ["Validate", "AsyncValidate"]
+__all__ = ["ValidateResource", "AsyncValidateResource"]
 
 
-class Validate(SyncAPIResource):
+class ValidateResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ValidateWithRawResponse:
-        return ValidateWithRawResponse(self)
+    def with_raw_response(self) -> ValidateResourceWithRawResponse:
+        return ValidateResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ValidateWithStreamingResponse:
-        return ValidateWithStreamingResponse(self)
+    def with_streaming_response(self) -> ValidateResourceWithStreamingResponse:
+        return ValidateResourceWithStreamingResponse(self)
 
     def destination(
         self,
@@ -160,14 +160,14 @@ class Validate(SyncAPIResource):
         )
 
 
-class AsyncValidate(AsyncAPIResource):
+class AsyncValidateResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncValidateWithRawResponse:
-        return AsyncValidateWithRawResponse(self)
+    def with_raw_response(self) -> AsyncValidateResourceWithRawResponse:
+        return AsyncValidateResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncValidateWithStreamingResponse:
-        return AsyncValidateWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncValidateResourceWithStreamingResponse:
+        return AsyncValidateResourceWithStreamingResponse(self)
 
     async def destination(
         self,
@@ -292,8 +292,8 @@ class AsyncValidate(AsyncAPIResource):
         )
 
 
-class ValidateWithRawResponse:
-    def __init__(self, validate: Validate) -> None:
+class ValidateResourceWithRawResponse:
+    def __init__(self, validate: ValidateResource) -> None:
         self._validate = validate
 
         self.destination = to_raw_response_wrapper(
@@ -304,8 +304,8 @@ class ValidateWithRawResponse:
         )
 
 
-class AsyncValidateWithRawResponse:
-    def __init__(self, validate: AsyncValidate) -> None:
+class AsyncValidateResourceWithRawResponse:
+    def __init__(self, validate: AsyncValidateResource) -> None:
         self._validate = validate
 
         self.destination = async_to_raw_response_wrapper(
@@ -316,8 +316,8 @@ class AsyncValidateWithRawResponse:
         )
 
 
-class ValidateWithStreamingResponse:
-    def __init__(self, validate: Validate) -> None:
+class ValidateResourceWithStreamingResponse:
+    def __init__(self, validate: ValidateResource) -> None:
         self._validate = validate
 
         self.destination = to_streamed_response_wrapper(
@@ -328,8 +328,8 @@ class ValidateWithStreamingResponse:
         )
 
 
-class AsyncValidateWithStreamingResponse:
-    def __init__(self, validate: AsyncValidate) -> None:
+class AsyncValidateResourceWithStreamingResponse:
+    def __init__(self, validate: AsyncValidateResource) -> None:
         self._validate = validate
 
         self.destination = async_to_streamed_response_wrapper(

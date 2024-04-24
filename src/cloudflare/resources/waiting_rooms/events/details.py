@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.waiting_rooms.events.detail_get_response import DetailGetResponse
 
-__all__ = ["Details", "AsyncDetails"]
+__all__ = ["DetailsResource", "AsyncDetailsResource"]
 
 
-class Details(SyncAPIResource):
+class DetailsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DetailsWithRawResponse:
-        return DetailsWithRawResponse(self)
+    def with_raw_response(self) -> DetailsResourceWithRawResponse:
+        return DetailsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DetailsWithStreamingResponse:
-        return DetailsWithStreamingResponse(self)
+    def with_streaming_response(self) -> DetailsResourceWithStreamingResponse:
+        return DetailsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -81,14 +81,14 @@ class Details(SyncAPIResource):
         )
 
 
-class AsyncDetails(AsyncAPIResource):
+class AsyncDetailsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDetailsWithRawResponse:
-        return AsyncDetailsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDetailsResourceWithRawResponse:
+        return AsyncDetailsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDetailsWithStreamingResponse:
-        return AsyncDetailsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDetailsResourceWithStreamingResponse:
+        return AsyncDetailsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -138,8 +138,8 @@ class AsyncDetails(AsyncAPIResource):
         )
 
 
-class DetailsWithRawResponse:
-    def __init__(self, details: Details) -> None:
+class DetailsResourceWithRawResponse:
+    def __init__(self, details: DetailsResource) -> None:
         self._details = details
 
         self.get = to_raw_response_wrapper(
@@ -147,8 +147,8 @@ class DetailsWithRawResponse:
         )
 
 
-class AsyncDetailsWithRawResponse:
-    def __init__(self, details: AsyncDetails) -> None:
+class AsyncDetailsResourceWithRawResponse:
+    def __init__(self, details: AsyncDetailsResource) -> None:
         self._details = details
 
         self.get = async_to_raw_response_wrapper(
@@ -156,8 +156,8 @@ class AsyncDetailsWithRawResponse:
         )
 
 
-class DetailsWithStreamingResponse:
-    def __init__(self, details: Details) -> None:
+class DetailsResourceWithStreamingResponse:
+    def __init__(self, details: DetailsResource) -> None:
         self._details = details
 
         self.get = to_streamed_response_wrapper(
@@ -165,8 +165,8 @@ class DetailsWithStreamingResponse:
         )
 
 
-class AsyncDetailsWithStreamingResponse:
-    def __init__(self, details: AsyncDetails) -> None:
+class AsyncDetailsResourceWithStreamingResponse:
+    def __init__(self, details: AsyncDetailsResource) -> None:
         self._details = details
 
         self.get = async_to_streamed_response_wrapper(

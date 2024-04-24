@@ -3,110 +3,110 @@
 from __future__ import annotations
 
 from .jobs import (
-    Jobs,
-    AsyncJobs,
-    JobsWithRawResponse,
-    AsyncJobsWithRawResponse,
-    JobsWithStreamingResponse,
-    AsyncJobsWithStreamingResponse,
+    JobsResource,
+    AsyncJobsResource,
+    JobsResourceWithRawResponse,
+    AsyncJobsResourceWithRawResponse,
+    JobsResourceWithStreamingResponse,
+    AsyncJobsResourceWithStreamingResponse,
 )
 from .fields import (
-    Fields,
-    AsyncFields,
-    FieldsWithRawResponse,
-    AsyncFieldsWithRawResponse,
-    FieldsWithStreamingResponse,
-    AsyncFieldsWithStreamingResponse,
+    FieldsResource,
+    AsyncFieldsResource,
+    FieldsResourceWithRawResponse,
+    AsyncFieldsResourceWithRawResponse,
+    FieldsResourceWithStreamingResponse,
+    AsyncFieldsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Datasets", "AsyncDatasets"]
+__all__ = ["DatasetsResource", "AsyncDatasetsResource"]
 
 
-class Datasets(SyncAPIResource):
+class DatasetsResource(SyncAPIResource):
     @cached_property
-    def fields(self) -> Fields:
-        return Fields(self._client)
-
-    @cached_property
-    def jobs(self) -> Jobs:
-        return Jobs(self._client)
+    def fields(self) -> FieldsResource:
+        return FieldsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> DatasetsWithRawResponse:
-        return DatasetsWithRawResponse(self)
+    def jobs(self) -> JobsResource:
+        return JobsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> DatasetsWithStreamingResponse:
-        return DatasetsWithStreamingResponse(self)
-
-
-class AsyncDatasets(AsyncAPIResource):
-    @cached_property
-    def fields(self) -> AsyncFields:
-        return AsyncFields(self._client)
+    def with_raw_response(self) -> DatasetsResourceWithRawResponse:
+        return DatasetsResourceWithRawResponse(self)
 
     @cached_property
-    def jobs(self) -> AsyncJobs:
-        return AsyncJobs(self._client)
+    def with_streaming_response(self) -> DatasetsResourceWithStreamingResponse:
+        return DatasetsResourceWithStreamingResponse(self)
+
+
+class AsyncDatasetsResource(AsyncAPIResource):
+    @cached_property
+    def fields(self) -> AsyncFieldsResource:
+        return AsyncFieldsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDatasetsWithRawResponse:
-        return AsyncDatasetsWithRawResponse(self)
+    def jobs(self) -> AsyncJobsResource:
+        return AsyncJobsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDatasetsWithStreamingResponse:
-        return AsyncDatasetsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
+        return AsyncDatasetsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDatasetsResourceWithStreamingResponse:
+        return AsyncDatasetsResourceWithStreamingResponse(self)
 
 
-class DatasetsWithRawResponse:
-    def __init__(self, datasets: Datasets) -> None:
+class DatasetsResourceWithRawResponse:
+    def __init__(self, datasets: DatasetsResource) -> None:
         self._datasets = datasets
 
     @cached_property
-    def fields(self) -> FieldsWithRawResponse:
-        return FieldsWithRawResponse(self._datasets.fields)
+    def fields(self) -> FieldsResourceWithRawResponse:
+        return FieldsResourceWithRawResponse(self._datasets.fields)
 
     @cached_property
-    def jobs(self) -> JobsWithRawResponse:
-        return JobsWithRawResponse(self._datasets.jobs)
+    def jobs(self) -> JobsResourceWithRawResponse:
+        return JobsResourceWithRawResponse(self._datasets.jobs)
 
 
-class AsyncDatasetsWithRawResponse:
-    def __init__(self, datasets: AsyncDatasets) -> None:
+class AsyncDatasetsResourceWithRawResponse:
+    def __init__(self, datasets: AsyncDatasetsResource) -> None:
         self._datasets = datasets
 
     @cached_property
-    def fields(self) -> AsyncFieldsWithRawResponse:
-        return AsyncFieldsWithRawResponse(self._datasets.fields)
+    def fields(self) -> AsyncFieldsResourceWithRawResponse:
+        return AsyncFieldsResourceWithRawResponse(self._datasets.fields)
 
     @cached_property
-    def jobs(self) -> AsyncJobsWithRawResponse:
-        return AsyncJobsWithRawResponse(self._datasets.jobs)
+    def jobs(self) -> AsyncJobsResourceWithRawResponse:
+        return AsyncJobsResourceWithRawResponse(self._datasets.jobs)
 
 
-class DatasetsWithStreamingResponse:
-    def __init__(self, datasets: Datasets) -> None:
+class DatasetsResourceWithStreamingResponse:
+    def __init__(self, datasets: DatasetsResource) -> None:
         self._datasets = datasets
 
     @cached_property
-    def fields(self) -> FieldsWithStreamingResponse:
-        return FieldsWithStreamingResponse(self._datasets.fields)
+    def fields(self) -> FieldsResourceWithStreamingResponse:
+        return FieldsResourceWithStreamingResponse(self._datasets.fields)
 
     @cached_property
-    def jobs(self) -> JobsWithStreamingResponse:
-        return JobsWithStreamingResponse(self._datasets.jobs)
+    def jobs(self) -> JobsResourceWithStreamingResponse:
+        return JobsResourceWithStreamingResponse(self._datasets.jobs)
 
 
-class AsyncDatasetsWithStreamingResponse:
-    def __init__(self, datasets: AsyncDatasets) -> None:
+class AsyncDatasetsResourceWithStreamingResponse:
+    def __init__(self, datasets: AsyncDatasetsResource) -> None:
         self._datasets = datasets
 
     @cached_property
-    def fields(self) -> AsyncFieldsWithStreamingResponse:
-        return AsyncFieldsWithStreamingResponse(self._datasets.fields)
+    def fields(self) -> AsyncFieldsResourceWithStreamingResponse:
+        return AsyncFieldsResourceWithStreamingResponse(self._datasets.fields)
 
     @cached_property
-    def jobs(self) -> AsyncJobsWithStreamingResponse:
-        return AsyncJobsWithStreamingResponse(self._datasets.jobs)
+    def jobs(self) -> AsyncJobsResourceWithStreamingResponse:
+        return AsyncJobsResourceWithStreamingResponse(self._datasets.jobs)

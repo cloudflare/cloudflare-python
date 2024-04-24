@@ -13,12 +13,12 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -48,21 +48,21 @@ from ...types.pagerules.pagerule_create_response import PageruleCreateResponse
 from ...types.pagerules.pagerule_delete_response import PageruleDeleteResponse
 from ...types.pagerules.pagerule_update_response import PageruleUpdateResponse
 
-__all__ = ["Pagerules", "AsyncPagerules"]
+__all__ = ["PagerulesResource", "AsyncPagerulesResource"]
 
 
-class Pagerules(SyncAPIResource):
+class PagerulesResource(SyncAPIResource):
     @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> PagerulesWithRawResponse:
-        return PagerulesWithRawResponse(self)
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> PagerulesWithStreamingResponse:
-        return PagerulesWithStreamingResponse(self)
+    def with_raw_response(self) -> PagerulesResourceWithRawResponse:
+        return PagerulesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PagerulesResourceWithStreamingResponse:
+        return PagerulesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -443,18 +443,18 @@ class Pagerules(SyncAPIResource):
         )
 
 
-class AsyncPagerules(AsyncAPIResource):
+class AsyncPagerulesResource(AsyncAPIResource):
     @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPagerulesWithRawResponse:
-        return AsyncPagerulesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPagerulesResourceWithRawResponse:
+        return AsyncPagerulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPagerulesWithStreamingResponse:
-        return AsyncPagerulesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPagerulesResourceWithStreamingResponse:
+        return AsyncPagerulesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -835,8 +835,8 @@ class AsyncPagerules(AsyncAPIResource):
         )
 
 
-class PagerulesWithRawResponse:
-    def __init__(self, pagerules: Pagerules) -> None:
+class PagerulesResourceWithRawResponse:
+    def __init__(self, pagerules: PagerulesResource) -> None:
         self._pagerules = pagerules
 
         self.create = to_raw_response_wrapper(
@@ -859,12 +859,12 @@ class PagerulesWithRawResponse:
         )
 
     @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._pagerules.settings)
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._pagerules.settings)
 
 
-class AsyncPagerulesWithRawResponse:
-    def __init__(self, pagerules: AsyncPagerules) -> None:
+class AsyncPagerulesResourceWithRawResponse:
+    def __init__(self, pagerules: AsyncPagerulesResource) -> None:
         self._pagerules = pagerules
 
         self.create = async_to_raw_response_wrapper(
@@ -887,12 +887,12 @@ class AsyncPagerulesWithRawResponse:
         )
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._pagerules.settings)
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._pagerules.settings)
 
 
-class PagerulesWithStreamingResponse:
-    def __init__(self, pagerules: Pagerules) -> None:
+class PagerulesResourceWithStreamingResponse:
+    def __init__(self, pagerules: PagerulesResource) -> None:
         self._pagerules = pagerules
 
         self.create = to_streamed_response_wrapper(
@@ -915,12 +915,12 @@ class PagerulesWithStreamingResponse:
         )
 
     @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._pagerules.settings)
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._pagerules.settings)
 
 
-class AsyncPagerulesWithStreamingResponse:
-    def __init__(self, pagerules: AsyncPagerules) -> None:
+class AsyncPagerulesResourceWithStreamingResponse:
+    def __init__(self, pagerules: AsyncPagerulesResource) -> None:
         self._pagerules = pagerules
 
         self.create = async_to_streamed_response_wrapper(
@@ -943,5 +943,5 @@ class AsyncPagerulesWithStreamingResponse:
         )
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._pagerules.settings)
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._pagerules.settings)

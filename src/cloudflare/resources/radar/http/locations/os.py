@@ -28,17 +28,17 @@ from ....._base_client import (
 from .....types.radar.http.locations import os_get_params
 from .....types.radar.http.locations.os_get_response import OSGetResponse
 
-__all__ = ["OS", "AsyncOS"]
+__all__ = ["OSResource", "AsyncOSResource"]
 
 
-class OS(SyncAPIResource):
+class OSResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OSWithRawResponse:
-        return OSWithRawResponse(self)
+    def with_raw_response(self) -> OSResourceWithRawResponse:
+        return OSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OSWithStreamingResponse:
-        return OSWithStreamingResponse(self)
+    def with_streaming_response(self) -> OSResourceWithStreamingResponse:
+        return OSResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -174,14 +174,14 @@ class OS(SyncAPIResource):
         )
 
 
-class AsyncOS(AsyncAPIResource):
+class AsyncOSResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOSWithRawResponse:
-        return AsyncOSWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOSResourceWithRawResponse:
+        return AsyncOSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOSWithStreamingResponse:
-        return AsyncOSWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOSResourceWithStreamingResponse:
+        return AsyncOSResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -317,8 +317,8 @@ class AsyncOS(AsyncAPIResource):
         )
 
 
-class OSWithRawResponse:
-    def __init__(self, os: OS) -> None:
+class OSResourceWithRawResponse:
+    def __init__(self, os: OSResource) -> None:
         self._os = os
 
         self.get = to_raw_response_wrapper(
@@ -326,8 +326,8 @@ class OSWithRawResponse:
         )
 
 
-class AsyncOSWithRawResponse:
-    def __init__(self, os: AsyncOS) -> None:
+class AsyncOSResourceWithRawResponse:
+    def __init__(self, os: AsyncOSResource) -> None:
         self._os = os
 
         self.get = async_to_raw_response_wrapper(
@@ -335,8 +335,8 @@ class AsyncOSWithRawResponse:
         )
 
 
-class OSWithStreamingResponse:
-    def __init__(self, os: OS) -> None:
+class OSResourceWithStreamingResponse:
+    def __init__(self, os: OSResource) -> None:
         self._os = os
 
         self.get = to_streamed_response_wrapper(
@@ -344,8 +344,8 @@ class OSWithStreamingResponse:
         )
 
 
-class AsyncOSWithStreamingResponse:
-    def __init__(self, os: AsyncOS) -> None:
+class AsyncOSResourceWithStreamingResponse:
+    def __init__(self, os: AsyncOSResource) -> None:
         self._os = os
 
         self.get = async_to_streamed_response_wrapper(

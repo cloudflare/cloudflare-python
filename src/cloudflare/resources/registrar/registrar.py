@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .domains import (
-    Domains,
-    AsyncDomains,
-    DomainsWithRawResponse,
-    AsyncDomainsWithRawResponse,
-    DomainsWithStreamingResponse,
-    AsyncDomainsWithStreamingResponse,
+    DomainsResource,
+    AsyncDomainsResource,
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Registrar", "AsyncRegistrar"]
+__all__ = ["RegistrarResource", "AsyncRegistrarResource"]
 
 
-class Registrar(SyncAPIResource):
+class RegistrarResource(SyncAPIResource):
     @cached_property
-    def domains(self) -> Domains:
-        return Domains(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> RegistrarWithRawResponse:
-        return RegistrarWithRawResponse(self)
+    def domains(self) -> DomainsResource:
+        return DomainsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> RegistrarWithStreamingResponse:
-        return RegistrarWithStreamingResponse(self)
-
-
-class AsyncRegistrar(AsyncAPIResource):
-    @cached_property
-    def domains(self) -> AsyncDomains:
-        return AsyncDomains(self._client)
+    def with_raw_response(self) -> RegistrarResourceWithRawResponse:
+        return RegistrarResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRegistrarWithRawResponse:
-        return AsyncRegistrarWithRawResponse(self)
+    def with_streaming_response(self) -> RegistrarResourceWithStreamingResponse:
+        return RegistrarResourceWithStreamingResponse(self)
+
+
+class AsyncRegistrarResource(AsyncAPIResource):
+    @cached_property
+    def domains(self) -> AsyncDomainsResource:
+        return AsyncDomainsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRegistrarWithStreamingResponse:
-        return AsyncRegistrarWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncRegistrarResourceWithRawResponse:
+        return AsyncRegistrarResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRegistrarResourceWithStreamingResponse:
+        return AsyncRegistrarResourceWithStreamingResponse(self)
 
 
-class RegistrarWithRawResponse:
-    def __init__(self, registrar: Registrar) -> None:
+class RegistrarResourceWithRawResponse:
+    def __init__(self, registrar: RegistrarResource) -> None:
         self._registrar = registrar
 
     @cached_property
-    def domains(self) -> DomainsWithRawResponse:
-        return DomainsWithRawResponse(self._registrar.domains)
+    def domains(self) -> DomainsResourceWithRawResponse:
+        return DomainsResourceWithRawResponse(self._registrar.domains)
 
 
-class AsyncRegistrarWithRawResponse:
-    def __init__(self, registrar: AsyncRegistrar) -> None:
+class AsyncRegistrarResourceWithRawResponse:
+    def __init__(self, registrar: AsyncRegistrarResource) -> None:
         self._registrar = registrar
 
     @cached_property
-    def domains(self) -> AsyncDomainsWithRawResponse:
-        return AsyncDomainsWithRawResponse(self._registrar.domains)
+    def domains(self) -> AsyncDomainsResourceWithRawResponse:
+        return AsyncDomainsResourceWithRawResponse(self._registrar.domains)
 
 
-class RegistrarWithStreamingResponse:
-    def __init__(self, registrar: Registrar) -> None:
+class RegistrarResourceWithStreamingResponse:
+    def __init__(self, registrar: RegistrarResource) -> None:
         self._registrar = registrar
 
     @cached_property
-    def domains(self) -> DomainsWithStreamingResponse:
-        return DomainsWithStreamingResponse(self._registrar.domains)
+    def domains(self) -> DomainsResourceWithStreamingResponse:
+        return DomainsResourceWithStreamingResponse(self._registrar.domains)
 
 
-class AsyncRegistrarWithStreamingResponse:
-    def __init__(self, registrar: AsyncRegistrar) -> None:
+class AsyncRegistrarResourceWithStreamingResponse:
+    def __init__(self, registrar: AsyncRegistrarResource) -> None:
         self._registrar = registrar
 
     @cached_property
-    def domains(self) -> AsyncDomainsWithStreamingResponse:
-        return AsyncDomainsWithStreamingResponse(self._registrar.domains)
+    def domains(self) -> AsyncDomainsResourceWithStreamingResponse:
+        return AsyncDomainsResourceWithStreamingResponse(self._registrar.domains)

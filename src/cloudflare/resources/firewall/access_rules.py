@@ -37,17 +37,17 @@ from ...types.firewall.access_rule_edit_response import AccessRuleEditResponse
 from ...types.firewall.access_rule_create_response import AccessRuleCreateResponse
 from ...types.firewall.access_rule_delete_response import AccessRuleDeleteResponse
 
-__all__ = ["AccessRules", "AsyncAccessRules"]
+__all__ = ["AccessRulesResource", "AsyncAccessRulesResource"]
 
 
-class AccessRules(SyncAPIResource):
+class AccessRulesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AccessRulesWithRawResponse:
-        return AccessRulesWithRawResponse(self)
+    def with_raw_response(self) -> AccessRulesResourceWithRawResponse:
+        return AccessRulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AccessRulesWithStreamingResponse:
-        return AccessRulesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AccessRulesResourceWithStreamingResponse:
+        return AccessRulesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -401,14 +401,14 @@ class AccessRules(SyncAPIResource):
         )
 
 
-class AsyncAccessRules(AsyncAPIResource):
+class AsyncAccessRulesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAccessRulesWithRawResponse:
-        return AsyncAccessRulesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAccessRulesResourceWithRawResponse:
+        return AsyncAccessRulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAccessRulesWithStreamingResponse:
-        return AsyncAccessRulesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAccessRulesResourceWithStreamingResponse:
+        return AsyncAccessRulesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -762,8 +762,8 @@ class AsyncAccessRules(AsyncAPIResource):
         )
 
 
-class AccessRulesWithRawResponse:
-    def __init__(self, access_rules: AccessRules) -> None:
+class AccessRulesResourceWithRawResponse:
+    def __init__(self, access_rules: AccessRulesResource) -> None:
         self._access_rules = access_rules
 
         self.create = to_raw_response_wrapper(
@@ -783,8 +783,8 @@ class AccessRulesWithRawResponse:
         )
 
 
-class AsyncAccessRulesWithRawResponse:
-    def __init__(self, access_rules: AsyncAccessRules) -> None:
+class AsyncAccessRulesResourceWithRawResponse:
+    def __init__(self, access_rules: AsyncAccessRulesResource) -> None:
         self._access_rules = access_rules
 
         self.create = async_to_raw_response_wrapper(
@@ -804,8 +804,8 @@ class AsyncAccessRulesWithRawResponse:
         )
 
 
-class AccessRulesWithStreamingResponse:
-    def __init__(self, access_rules: AccessRules) -> None:
+class AccessRulesResourceWithStreamingResponse:
+    def __init__(self, access_rules: AccessRulesResource) -> None:
         self._access_rules = access_rules
 
         self.create = to_streamed_response_wrapper(
@@ -825,8 +825,8 @@ class AccessRulesWithStreamingResponse:
         )
 
 
-class AsyncAccessRulesWithStreamingResponse:
-    def __init__(self, access_rules: AsyncAccessRules) -> None:
+class AsyncAccessRulesResourceWithStreamingResponse:
+    def __init__(self, access_rules: AsyncAccessRulesResource) -> None:
         self._access_rules = access_rules
 
         self.create = async_to_streamed_response_wrapper(

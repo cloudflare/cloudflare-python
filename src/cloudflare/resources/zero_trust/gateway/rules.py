@@ -37,17 +37,17 @@ from ....types.zero_trust.gateway.schedule_param import ScheduleParam
 from ....types.zero_trust.gateway.rule_setting_param import RuleSettingParam
 from ....types.zero_trust.gateway.rule_delete_response import RuleDeleteResponse
 
-__all__ = ["Rules", "AsyncRules"]
+__all__ = ["RulesResource", "AsyncRulesResource"]
 
 
-class Rules(SyncAPIResource):
+class RulesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RulesWithRawResponse:
-        return RulesWithRawResponse(self)
+    def with_raw_response(self) -> RulesResourceWithRawResponse:
+        return RulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RulesWithStreamingResponse:
-        return RulesWithStreamingResponse(self)
+    def with_streaming_response(self) -> RulesResourceWithStreamingResponse:
+        return RulesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -394,14 +394,14 @@ class Rules(SyncAPIResource):
         )
 
 
-class AsyncRules(AsyncAPIResource):
+class AsyncRulesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRulesWithRawResponse:
-        return AsyncRulesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
+        return AsyncRulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRulesWithStreamingResponse:
-        return AsyncRulesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRulesResourceWithStreamingResponse:
+        return AsyncRulesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -748,8 +748,8 @@ class AsyncRules(AsyncAPIResource):
         )
 
 
-class RulesWithRawResponse:
-    def __init__(self, rules: Rules) -> None:
+class RulesResourceWithRawResponse:
+    def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
 
         self.create = to_raw_response_wrapper(
@@ -769,8 +769,8 @@ class RulesWithRawResponse:
         )
 
 
-class AsyncRulesWithRawResponse:
-    def __init__(self, rules: AsyncRules) -> None:
+class AsyncRulesResourceWithRawResponse:
+    def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
 
         self.create = async_to_raw_response_wrapper(
@@ -790,8 +790,8 @@ class AsyncRulesWithRawResponse:
         )
 
 
-class RulesWithStreamingResponse:
-    def __init__(self, rules: Rules) -> None:
+class RulesResourceWithStreamingResponse:
+    def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
 
         self.create = to_streamed_response_wrapper(
@@ -811,8 +811,8 @@ class RulesWithStreamingResponse:
         )
 
 
-class AsyncRulesWithStreamingResponse:
-    def __init__(self, rules: AsyncRules) -> None:
+class AsyncRulesResourceWithStreamingResponse:
+    def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
 
         self.create = async_to_streamed_response_wrapper(

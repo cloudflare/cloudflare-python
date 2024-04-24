@@ -22,17 +22,17 @@ from ..._base_client import (
 )
 from ...types.intel.dns_list_response import DNSListResponse
 
-__all__ = ["DNS", "AsyncDNS"]
+__all__ = ["DNSResource", "AsyncDNSResource"]
 
 
-class DNS(SyncAPIResource):
+class DNSResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DNSWithRawResponse:
-        return DNSWithRawResponse(self)
+    def with_raw_response(self) -> DNSResourceWithRawResponse:
+        return DNSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DNSWithStreamingResponse:
-        return DNSWithStreamingResponse(self)
+    def with_streaming_response(self) -> DNSResourceWithStreamingResponse:
+        return DNSResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -91,14 +91,14 @@ class DNS(SyncAPIResource):
         )
 
 
-class AsyncDNS(AsyncAPIResource):
+class AsyncDNSResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDNSWithRawResponse:
-        return AsyncDNSWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDNSResourceWithRawResponse:
+        return AsyncDNSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDNSWithStreamingResponse:
-        return AsyncDNSWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDNSResourceWithStreamingResponse:
+        return AsyncDNSResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -157,8 +157,8 @@ class AsyncDNS(AsyncAPIResource):
         )
 
 
-class DNSWithRawResponse:
-    def __init__(self, dns: DNS) -> None:
+class DNSResourceWithRawResponse:
+    def __init__(self, dns: DNSResource) -> None:
         self._dns = dns
 
         self.list = to_raw_response_wrapper(
@@ -166,8 +166,8 @@ class DNSWithRawResponse:
         )
 
 
-class AsyncDNSWithRawResponse:
-    def __init__(self, dns: AsyncDNS) -> None:
+class AsyncDNSResourceWithRawResponse:
+    def __init__(self, dns: AsyncDNSResource) -> None:
         self._dns = dns
 
         self.list = async_to_raw_response_wrapper(
@@ -175,8 +175,8 @@ class AsyncDNSWithRawResponse:
         )
 
 
-class DNSWithStreamingResponse:
-    def __init__(self, dns: DNS) -> None:
+class DNSResourceWithStreamingResponse:
+    def __init__(self, dns: DNSResource) -> None:
         self._dns = dns
 
         self.list = to_streamed_response_wrapper(
@@ -184,8 +184,8 @@ class DNSWithStreamingResponse:
         )
 
 
-class AsyncDNSWithStreamingResponse:
-    def __init__(self, dns: AsyncDNS) -> None:
+class AsyncDNSResourceWithStreamingResponse:
+    def __init__(self, dns: AsyncDNSResource) -> None:
         self._dns = dns
 
         self.list = async_to_streamed_response_wrapper(

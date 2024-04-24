@@ -26,17 +26,17 @@ from ...._base_client import (
 from ....types.magic_network_monitoring.rules import advertisement_edit_params
 from ....types.magic_network_monitoring.rules.advertisement import Advertisement
 
-__all__ = ["Advertisements", "AsyncAdvertisements"]
+__all__ = ["AdvertisementsResource", "AsyncAdvertisementsResource"]
 
 
-class Advertisements(SyncAPIResource):
+class AdvertisementsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AdvertisementsWithRawResponse:
-        return AdvertisementsWithRawResponse(self)
+    def with_raw_response(self) -> AdvertisementsResourceWithRawResponse:
+        return AdvertisementsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AdvertisementsWithStreamingResponse:
-        return AdvertisementsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AdvertisementsResourceWithStreamingResponse:
+        return AdvertisementsResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -84,14 +84,14 @@ class Advertisements(SyncAPIResource):
         )
 
 
-class AsyncAdvertisements(AsyncAPIResource):
+class AsyncAdvertisementsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAdvertisementsWithRawResponse:
-        return AsyncAdvertisementsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAdvertisementsResourceWithRawResponse:
+        return AsyncAdvertisementsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAdvertisementsWithStreamingResponse:
-        return AsyncAdvertisementsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAdvertisementsResourceWithStreamingResponse:
+        return AsyncAdvertisementsResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -139,8 +139,8 @@ class AsyncAdvertisements(AsyncAPIResource):
         )
 
 
-class AdvertisementsWithRawResponse:
-    def __init__(self, advertisements: Advertisements) -> None:
+class AdvertisementsResourceWithRawResponse:
+    def __init__(self, advertisements: AdvertisementsResource) -> None:
         self._advertisements = advertisements
 
         self.edit = to_raw_response_wrapper(
@@ -148,8 +148,8 @@ class AdvertisementsWithRawResponse:
         )
 
 
-class AsyncAdvertisementsWithRawResponse:
-    def __init__(self, advertisements: AsyncAdvertisements) -> None:
+class AsyncAdvertisementsResourceWithRawResponse:
+    def __init__(self, advertisements: AsyncAdvertisementsResource) -> None:
         self._advertisements = advertisements
 
         self.edit = async_to_raw_response_wrapper(
@@ -157,8 +157,8 @@ class AsyncAdvertisementsWithRawResponse:
         )
 
 
-class AdvertisementsWithStreamingResponse:
-    def __init__(self, advertisements: Advertisements) -> None:
+class AdvertisementsResourceWithStreamingResponse:
+    def __init__(self, advertisements: AdvertisementsResource) -> None:
         self._advertisements = advertisements
 
         self.edit = to_streamed_response_wrapper(
@@ -166,8 +166,8 @@ class AdvertisementsWithStreamingResponse:
         )
 
 
-class AsyncAdvertisementsWithStreamingResponse:
-    def __init__(self, advertisements: AsyncAdvertisements) -> None:
+class AsyncAdvertisementsResourceWithStreamingResponse:
+    def __init__(self, advertisements: AsyncAdvertisementsResource) -> None:
         self._advertisements = advertisements
 
         self.edit = async_to_streamed_response_wrapper(

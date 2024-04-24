@@ -26,17 +26,17 @@ from ....._base_client import (
 from .....types.radar.bgp.hijacks import event_list_params
 from .....types.radar.bgp.hijacks.event_list_response import EventListResponse
 
-__all__ = ["Events", "AsyncEvents"]
+__all__ = ["EventsResource", "AsyncEventsResource"]
 
 
-class Events(SyncAPIResource):
+class EventsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> EventsWithRawResponse:
-        return EventsWithRawResponse(self)
+    def with_raw_response(self) -> EventsResourceWithRawResponse:
+        return EventsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> EventsWithStreamingResponse:
-        return EventsWithStreamingResponse(self)
+    def with_streaming_response(self) -> EventsResourceWithStreamingResponse:
+        return EventsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -161,14 +161,14 @@ class Events(SyncAPIResource):
         )
 
 
-class AsyncEvents(AsyncAPIResource):
+class AsyncEventsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncEventsWithRawResponse:
-        return AsyncEventsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
+        return AsyncEventsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEventsWithStreamingResponse:
-        return AsyncEventsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncEventsResourceWithStreamingResponse:
+        return AsyncEventsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -293,8 +293,8 @@ class AsyncEvents(AsyncAPIResource):
         )
 
 
-class EventsWithRawResponse:
-    def __init__(self, events: Events) -> None:
+class EventsResourceWithRawResponse:
+    def __init__(self, events: EventsResource) -> None:
         self._events = events
 
         self.list = to_raw_response_wrapper(
@@ -302,8 +302,8 @@ class EventsWithRawResponse:
         )
 
 
-class AsyncEventsWithRawResponse:
-    def __init__(self, events: AsyncEvents) -> None:
+class AsyncEventsResourceWithRawResponse:
+    def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
 
         self.list = async_to_raw_response_wrapper(
@@ -311,8 +311,8 @@ class AsyncEventsWithRawResponse:
         )
 
 
-class EventsWithStreamingResponse:
-    def __init__(self, events: Events) -> None:
+class EventsResourceWithStreamingResponse:
+    def __init__(self, events: EventsResource) -> None:
         self._events = events
 
         self.list = to_streamed_response_wrapper(
@@ -320,8 +320,8 @@ class EventsWithStreamingResponse:
         )
 
 
-class AsyncEventsWithStreamingResponse:
-    def __init__(self, events: AsyncEvents) -> None:
+class AsyncEventsResourceWithStreamingResponse:
+    def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
 
         self.list = async_to_streamed_response_wrapper(

@@ -36,17 +36,17 @@ from ....types.zero_trust.networks.virtual_network_edit_response import VirtualN
 from ....types.zero_trust.networks.virtual_network_create_response import VirtualNetworkCreateResponse
 from ....types.zero_trust.networks.virtual_network_delete_response import VirtualNetworkDeleteResponse
 
-__all__ = ["VirtualNetworks", "AsyncVirtualNetworks"]
+__all__ = ["VirtualNetworksResource", "AsyncVirtualNetworksResource"]
 
 
-class VirtualNetworks(SyncAPIResource):
+class VirtualNetworksResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> VirtualNetworksWithRawResponse:
-        return VirtualNetworksWithRawResponse(self)
+    def with_raw_response(self) -> VirtualNetworksResourceWithRawResponse:
+        return VirtualNetworksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> VirtualNetworksWithStreamingResponse:
-        return VirtualNetworksWithStreamingResponse(self)
+    def with_streaming_response(self) -> VirtualNetworksResourceWithStreamingResponse:
+        return VirtualNetworksResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -289,14 +289,14 @@ class VirtualNetworks(SyncAPIResource):
         )
 
 
-class AsyncVirtualNetworks(AsyncAPIResource):
+class AsyncVirtualNetworksResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncVirtualNetworksWithRawResponse:
-        return AsyncVirtualNetworksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncVirtualNetworksResourceWithRawResponse:
+        return AsyncVirtualNetworksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVirtualNetworksWithStreamingResponse:
-        return AsyncVirtualNetworksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncVirtualNetworksResourceWithStreamingResponse:
+        return AsyncVirtualNetworksResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -539,8 +539,8 @@ class AsyncVirtualNetworks(AsyncAPIResource):
         )
 
 
-class VirtualNetworksWithRawResponse:
-    def __init__(self, virtual_networks: VirtualNetworks) -> None:
+class VirtualNetworksResourceWithRawResponse:
+    def __init__(self, virtual_networks: VirtualNetworksResource) -> None:
         self._virtual_networks = virtual_networks
 
         self.create = to_raw_response_wrapper(
@@ -557,8 +557,8 @@ class VirtualNetworksWithRawResponse:
         )
 
 
-class AsyncVirtualNetworksWithRawResponse:
-    def __init__(self, virtual_networks: AsyncVirtualNetworks) -> None:
+class AsyncVirtualNetworksResourceWithRawResponse:
+    def __init__(self, virtual_networks: AsyncVirtualNetworksResource) -> None:
         self._virtual_networks = virtual_networks
 
         self.create = async_to_raw_response_wrapper(
@@ -575,8 +575,8 @@ class AsyncVirtualNetworksWithRawResponse:
         )
 
 
-class VirtualNetworksWithStreamingResponse:
-    def __init__(self, virtual_networks: VirtualNetworks) -> None:
+class VirtualNetworksResourceWithStreamingResponse:
+    def __init__(self, virtual_networks: VirtualNetworksResource) -> None:
         self._virtual_networks = virtual_networks
 
         self.create = to_streamed_response_wrapper(
@@ -593,8 +593,8 @@ class VirtualNetworksWithStreamingResponse:
         )
 
 
-class AsyncVirtualNetworksWithStreamingResponse:
-    def __init__(self, virtual_networks: AsyncVirtualNetworks) -> None:
+class AsyncVirtualNetworksResourceWithStreamingResponse:
+    def __init__(self, virtual_networks: AsyncVirtualNetworksResource) -> None:
         self._virtual_networks = virtual_networks
 
         self.create = async_to_streamed_response_wrapper(

@@ -27,17 +27,17 @@ from .....types.logs.control.retention import flag_create_params
 from .....types.logs.control.retention.flag_get_response import FlagGetResponse
 from .....types.logs.control.retention.flag_create_response import FlagCreateResponse
 
-__all__ = ["Flag", "AsyncFlag"]
+__all__ = ["FlagResource", "AsyncFlagResource"]
 
 
-class Flag(SyncAPIResource):
+class FlagResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> FlagWithRawResponse:
-        return FlagWithRawResponse(self)
+    def with_raw_response(self) -> FlagResourceWithRawResponse:
+        return FlagResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FlagWithStreamingResponse:
-        return FlagWithStreamingResponse(self)
+    def with_streaming_response(self) -> FlagResourceWithStreamingResponse:
+        return FlagResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -122,14 +122,14 @@ class Flag(SyncAPIResource):
         )
 
 
-class AsyncFlag(AsyncAPIResource):
+class AsyncFlagResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncFlagWithRawResponse:
-        return AsyncFlagWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFlagResourceWithRawResponse:
+        return AsyncFlagResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFlagWithStreamingResponse:
-        return AsyncFlagWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFlagResourceWithStreamingResponse:
+        return AsyncFlagResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -214,8 +214,8 @@ class AsyncFlag(AsyncAPIResource):
         )
 
 
-class FlagWithRawResponse:
-    def __init__(self, flag: Flag) -> None:
+class FlagResourceWithRawResponse:
+    def __init__(self, flag: FlagResource) -> None:
         self._flag = flag
 
         self.create = to_raw_response_wrapper(
@@ -226,8 +226,8 @@ class FlagWithRawResponse:
         )
 
 
-class AsyncFlagWithRawResponse:
-    def __init__(self, flag: AsyncFlag) -> None:
+class AsyncFlagResourceWithRawResponse:
+    def __init__(self, flag: AsyncFlagResource) -> None:
         self._flag = flag
 
         self.create = async_to_raw_response_wrapper(
@@ -238,8 +238,8 @@ class AsyncFlagWithRawResponse:
         )
 
 
-class FlagWithStreamingResponse:
-    def __init__(self, flag: Flag) -> None:
+class FlagResourceWithStreamingResponse:
+    def __init__(self, flag: FlagResource) -> None:
         self._flag = flag
 
         self.create = to_streamed_response_wrapper(
@@ -250,8 +250,8 @@ class FlagWithStreamingResponse:
         )
 
 
-class AsyncFlagWithStreamingResponse:
-    def __init__(self, flag: AsyncFlag) -> None:
+class AsyncFlagResourceWithStreamingResponse:
+    def __init__(self, flag: AsyncFlagResource) -> None:
         self._flag = flag
 
         self.create = async_to_streamed_response_wrapper(

@@ -29,17 +29,17 @@ from ...types.cache.smart_tiered_cache_get_response import SmartTieredCacheGetRe
 from ...types.cache.smart_tiered_cache_edit_response import SmartTieredCacheEditResponse
 from ...types.cache.smart_tiered_cache_delete_response import SmartTieredCacheDeleteResponse
 
-__all__ = ["SmartTieredCache", "AsyncSmartTieredCache"]
+__all__ = ["SmartTieredCacheResource", "AsyncSmartTieredCacheResource"]
 
 
-class SmartTieredCache(SyncAPIResource):
+class SmartTieredCacheResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SmartTieredCacheWithRawResponse:
-        return SmartTieredCacheWithRawResponse(self)
+    def with_raw_response(self) -> SmartTieredCacheResourceWithRawResponse:
+        return SmartTieredCacheResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SmartTieredCacheWithStreamingResponse:
-        return SmartTieredCacheWithStreamingResponse(self)
+    def with_streaming_response(self) -> SmartTieredCacheResourceWithStreamingResponse:
+        return SmartTieredCacheResourceWithStreamingResponse(self)
 
     def delete(
         self,
@@ -180,14 +180,14 @@ class SmartTieredCache(SyncAPIResource):
         )
 
 
-class AsyncSmartTieredCache(AsyncAPIResource):
+class AsyncSmartTieredCacheResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSmartTieredCacheWithRawResponse:
-        return AsyncSmartTieredCacheWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSmartTieredCacheResourceWithRawResponse:
+        return AsyncSmartTieredCacheResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSmartTieredCacheWithStreamingResponse:
-        return AsyncSmartTieredCacheWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSmartTieredCacheResourceWithStreamingResponse:
+        return AsyncSmartTieredCacheResourceWithStreamingResponse(self)
 
     async def delete(
         self,
@@ -330,8 +330,8 @@ class AsyncSmartTieredCache(AsyncAPIResource):
         )
 
 
-class SmartTieredCacheWithRawResponse:
-    def __init__(self, smart_tiered_cache: SmartTieredCache) -> None:
+class SmartTieredCacheResourceWithRawResponse:
+    def __init__(self, smart_tiered_cache: SmartTieredCacheResource) -> None:
         self._smart_tiered_cache = smart_tiered_cache
 
         self.delete = to_raw_response_wrapper(
@@ -345,8 +345,8 @@ class SmartTieredCacheWithRawResponse:
         )
 
 
-class AsyncSmartTieredCacheWithRawResponse:
-    def __init__(self, smart_tiered_cache: AsyncSmartTieredCache) -> None:
+class AsyncSmartTieredCacheResourceWithRawResponse:
+    def __init__(self, smart_tiered_cache: AsyncSmartTieredCacheResource) -> None:
         self._smart_tiered_cache = smart_tiered_cache
 
         self.delete = async_to_raw_response_wrapper(
@@ -360,8 +360,8 @@ class AsyncSmartTieredCacheWithRawResponse:
         )
 
 
-class SmartTieredCacheWithStreamingResponse:
-    def __init__(self, smart_tiered_cache: SmartTieredCache) -> None:
+class SmartTieredCacheResourceWithStreamingResponse:
+    def __init__(self, smart_tiered_cache: SmartTieredCacheResource) -> None:
         self._smart_tiered_cache = smart_tiered_cache
 
         self.delete = to_streamed_response_wrapper(
@@ -375,8 +375,8 @@ class SmartTieredCacheWithStreamingResponse:
         )
 
 
-class AsyncSmartTieredCacheWithStreamingResponse:
-    def __init__(self, smart_tiered_cache: AsyncSmartTieredCache) -> None:
+class AsyncSmartTieredCacheResourceWithStreamingResponse:
+    def __init__(self, smart_tiered_cache: AsyncSmartTieredCacheResource) -> None:
         self._smart_tiered_cache = smart_tiered_cache
 
         self.delete = async_to_streamed_response_wrapper(

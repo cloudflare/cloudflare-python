@@ -27,17 +27,17 @@ from ....types.zero_trust.risk_scoring import behaviour_update_params
 from ....types.zero_trust.risk_scoring.behaviour_get_response import BehaviourGetResponse
 from ....types.zero_trust.risk_scoring.behaviour_update_response import BehaviourUpdateResponse
 
-__all__ = ["Behaviours", "AsyncBehaviours"]
+__all__ = ["BehavioursResource", "AsyncBehavioursResource"]
 
 
-class Behaviours(SyncAPIResource):
+class BehavioursResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BehavioursWithRawResponse:
-        return BehavioursWithRawResponse(self)
+    def with_raw_response(self) -> BehavioursResourceWithRawResponse:
+        return BehavioursResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BehavioursWithStreamingResponse:
-        return BehavioursWithStreamingResponse(self)
+    def with_streaming_response(self) -> BehavioursResourceWithStreamingResponse:
+        return BehavioursResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -120,14 +120,14 @@ class Behaviours(SyncAPIResource):
         )
 
 
-class AsyncBehaviours(AsyncAPIResource):
+class AsyncBehavioursResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBehavioursWithRawResponse:
-        return AsyncBehavioursWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBehavioursResourceWithRawResponse:
+        return AsyncBehavioursResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBehavioursWithStreamingResponse:
-        return AsyncBehavioursWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBehavioursResourceWithStreamingResponse:
+        return AsyncBehavioursResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -210,8 +210,8 @@ class AsyncBehaviours(AsyncAPIResource):
         )
 
 
-class BehavioursWithRawResponse:
-    def __init__(self, behaviours: Behaviours) -> None:
+class BehavioursResourceWithRawResponse:
+    def __init__(self, behaviours: BehavioursResource) -> None:
         self._behaviours = behaviours
 
         self.update = to_raw_response_wrapper(
@@ -222,8 +222,8 @@ class BehavioursWithRawResponse:
         )
 
 
-class AsyncBehavioursWithRawResponse:
-    def __init__(self, behaviours: AsyncBehaviours) -> None:
+class AsyncBehavioursResourceWithRawResponse:
+    def __init__(self, behaviours: AsyncBehavioursResource) -> None:
         self._behaviours = behaviours
 
         self.update = async_to_raw_response_wrapper(
@@ -234,8 +234,8 @@ class AsyncBehavioursWithRawResponse:
         )
 
 
-class BehavioursWithStreamingResponse:
-    def __init__(self, behaviours: Behaviours) -> None:
+class BehavioursResourceWithStreamingResponse:
+    def __init__(self, behaviours: BehavioursResource) -> None:
         self._behaviours = behaviours
 
         self.update = to_streamed_response_wrapper(
@@ -246,8 +246,8 @@ class BehavioursWithStreamingResponse:
         )
 
 
-class AsyncBehavioursWithStreamingResponse:
-    def __init__(self, behaviours: AsyncBehaviours) -> None:
+class AsyncBehavioursResourceWithStreamingResponse:
+    def __init__(self, behaviours: AsyncBehavioursResource) -> None:
         self._behaviours = behaviours
 
         self.update = async_to_streamed_response_wrapper(

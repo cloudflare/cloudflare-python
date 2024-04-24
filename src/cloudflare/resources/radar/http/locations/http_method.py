@@ -28,17 +28,17 @@ from ....._base_client import (
 from .....types.radar.http.locations import http_method_get_params
 from .....types.radar.http.locations.http_method_get_response import HTTPMethodGetResponse
 
-__all__ = ["HTTPMethod", "AsyncHTTPMethod"]
+__all__ = ["HTTPMethodResource", "AsyncHTTPMethodResource"]
 
 
-class HTTPMethod(SyncAPIResource):
+class HTTPMethodResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HTTPMethodWithRawResponse:
-        return HTTPMethodWithRawResponse(self)
+    def with_raw_response(self) -> HTTPMethodResourceWithRawResponse:
+        return HTTPMethodResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HTTPMethodWithStreamingResponse:
-        return HTTPMethodWithStreamingResponse(self)
+    def with_streaming_response(self) -> HTTPMethodResourceWithStreamingResponse:
+        return HTTPMethodResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -176,14 +176,14 @@ class HTTPMethod(SyncAPIResource):
         )
 
 
-class AsyncHTTPMethod(AsyncAPIResource):
+class AsyncHTTPMethodResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHTTPMethodWithRawResponse:
-        return AsyncHTTPMethodWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHTTPMethodResourceWithRawResponse:
+        return AsyncHTTPMethodResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHTTPMethodWithStreamingResponse:
-        return AsyncHTTPMethodWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHTTPMethodResourceWithStreamingResponse:
+        return AsyncHTTPMethodResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -321,8 +321,8 @@ class AsyncHTTPMethod(AsyncAPIResource):
         )
 
 
-class HTTPMethodWithRawResponse:
-    def __init__(self, http_method: HTTPMethod) -> None:
+class HTTPMethodResourceWithRawResponse:
+    def __init__(self, http_method: HTTPMethodResource) -> None:
         self._http_method = http_method
 
         self.get = to_raw_response_wrapper(
@@ -330,8 +330,8 @@ class HTTPMethodWithRawResponse:
         )
 
 
-class AsyncHTTPMethodWithRawResponse:
-    def __init__(self, http_method: AsyncHTTPMethod) -> None:
+class AsyncHTTPMethodResourceWithRawResponse:
+    def __init__(self, http_method: AsyncHTTPMethodResource) -> None:
         self._http_method = http_method
 
         self.get = async_to_raw_response_wrapper(
@@ -339,8 +339,8 @@ class AsyncHTTPMethodWithRawResponse:
         )
 
 
-class HTTPMethodWithStreamingResponse:
-    def __init__(self, http_method: HTTPMethod) -> None:
+class HTTPMethodResourceWithStreamingResponse:
+    def __init__(self, http_method: HTTPMethodResource) -> None:
         self._http_method = http_method
 
         self.get = to_streamed_response_wrapper(
@@ -348,8 +348,8 @@ class HTTPMethodWithStreamingResponse:
         )
 
 
-class AsyncHTTPMethodWithStreamingResponse:
-    def __init__(self, http_method: AsyncHTTPMethod) -> None:
+class AsyncHTTPMethodResourceWithStreamingResponse:
+    def __init__(self, http_method: AsyncHTTPMethodResource) -> None:
         self._http_method = http_method
 
         self.get = async_to_streamed_response_wrapper(

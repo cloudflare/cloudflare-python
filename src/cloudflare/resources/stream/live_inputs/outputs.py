@@ -28,17 +28,17 @@ from ...._base_client import (
 from ....types.stream.live_inputs import output_create_params, output_delete_params, output_update_params
 from ....types.stream.live_inputs.output import Output
 
-__all__ = ["Outputs", "AsyncOutputs"]
+__all__ = ["OutputsResource", "AsyncOutputsResource"]
 
 
-class Outputs(SyncAPIResource):
+class OutputsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> OutputsWithRawResponse:
-        return OutputsWithRawResponse(self)
+    def with_raw_response(self) -> OutputsResourceWithRawResponse:
+        return OutputsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> OutputsWithStreamingResponse:
-        return OutputsWithStreamingResponse(self)
+    def with_streaming_response(self) -> OutputsResourceWithStreamingResponse:
+        return OutputsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -262,14 +262,14 @@ class Outputs(SyncAPIResource):
         )
 
 
-class AsyncOutputs(AsyncAPIResource):
+class AsyncOutputsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncOutputsWithRawResponse:
-        return AsyncOutputsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncOutputsResourceWithRawResponse:
+        return AsyncOutputsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncOutputsWithStreamingResponse:
-        return AsyncOutputsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncOutputsResourceWithStreamingResponse:
+        return AsyncOutputsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -493,8 +493,8 @@ class AsyncOutputs(AsyncAPIResource):
         )
 
 
-class OutputsWithRawResponse:
-    def __init__(self, outputs: Outputs) -> None:
+class OutputsResourceWithRawResponse:
+    def __init__(self, outputs: OutputsResource) -> None:
         self._outputs = outputs
 
         self.create = to_raw_response_wrapper(
@@ -511,8 +511,8 @@ class OutputsWithRawResponse:
         )
 
 
-class AsyncOutputsWithRawResponse:
-    def __init__(self, outputs: AsyncOutputs) -> None:
+class AsyncOutputsResourceWithRawResponse:
+    def __init__(self, outputs: AsyncOutputsResource) -> None:
         self._outputs = outputs
 
         self.create = async_to_raw_response_wrapper(
@@ -529,8 +529,8 @@ class AsyncOutputsWithRawResponse:
         )
 
 
-class OutputsWithStreamingResponse:
-    def __init__(self, outputs: Outputs) -> None:
+class OutputsResourceWithStreamingResponse:
+    def __init__(self, outputs: OutputsResource) -> None:
         self._outputs = outputs
 
         self.create = to_streamed_response_wrapper(
@@ -547,8 +547,8 @@ class OutputsWithStreamingResponse:
         )
 
 
-class AsyncOutputsWithStreamingResponse:
-    def __init__(self, outputs: AsyncOutputs) -> None:
+class AsyncOutputsResourceWithStreamingResponse:
+    def __init__(self, outputs: AsyncOutputsResource) -> None:
         self._outputs = outputs
 
         self.create = async_to_streamed_response_wrapper(

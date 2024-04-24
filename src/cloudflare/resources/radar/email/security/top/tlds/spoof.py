@@ -28,17 +28,17 @@ from ......._base_client import (
 from .......types.radar.email.security.top.tlds import spoof_get_params
 from .......types.radar.email.security.top.tlds.spoof_get_response import SpoofGetResponse
 
-__all__ = ["Spoof", "AsyncSpoof"]
+__all__ = ["SpoofResource", "AsyncSpoofResource"]
 
 
-class Spoof(SyncAPIResource):
+class SpoofResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SpoofWithRawResponse:
-        return SpoofWithRawResponse(self)
+    def with_raw_response(self) -> SpoofResourceWithRawResponse:
+        return SpoofResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SpoofWithStreamingResponse:
-        return SpoofWithStreamingResponse(self)
+    def with_streaming_response(self) -> SpoofResourceWithStreamingResponse:
+        return SpoofResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -154,14 +154,14 @@ class Spoof(SyncAPIResource):
         )
 
 
-class AsyncSpoof(AsyncAPIResource):
+class AsyncSpoofResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSpoofWithRawResponse:
-        return AsyncSpoofWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSpoofResourceWithRawResponse:
+        return AsyncSpoofResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSpoofWithStreamingResponse:
-        return AsyncSpoofWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSpoofResourceWithStreamingResponse:
+        return AsyncSpoofResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -277,8 +277,8 @@ class AsyncSpoof(AsyncAPIResource):
         )
 
 
-class SpoofWithRawResponse:
-    def __init__(self, spoof: Spoof) -> None:
+class SpoofResourceWithRawResponse:
+    def __init__(self, spoof: SpoofResource) -> None:
         self._spoof = spoof
 
         self.get = to_raw_response_wrapper(
@@ -286,8 +286,8 @@ class SpoofWithRawResponse:
         )
 
 
-class AsyncSpoofWithRawResponse:
-    def __init__(self, spoof: AsyncSpoof) -> None:
+class AsyncSpoofResourceWithRawResponse:
+    def __init__(self, spoof: AsyncSpoofResource) -> None:
         self._spoof = spoof
 
         self.get = async_to_raw_response_wrapper(
@@ -295,8 +295,8 @@ class AsyncSpoofWithRawResponse:
         )
 
 
-class SpoofWithStreamingResponse:
-    def __init__(self, spoof: Spoof) -> None:
+class SpoofResourceWithStreamingResponse:
+    def __init__(self, spoof: SpoofResource) -> None:
         self._spoof = spoof
 
         self.get = to_streamed_response_wrapper(
@@ -304,8 +304,8 @@ class SpoofWithStreamingResponse:
         )
 
 
-class AsyncSpoofWithStreamingResponse:
-    def __init__(self, spoof: AsyncSpoof) -> None:
+class AsyncSpoofResourceWithStreamingResponse:
+    def __init__(self, spoof: AsyncSpoofResource) -> None:
         self._spoof = spoof
 
         self.get = async_to_streamed_response_wrapper(

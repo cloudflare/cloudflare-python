@@ -27,17 +27,17 @@ from ..._base_client import (
 )
 from ...types.intel.miscategorization_create_response import MiscategorizationCreateResponse
 
-__all__ = ["Miscategorizations", "AsyncMiscategorizations"]
+__all__ = ["MiscategorizationsResource", "AsyncMiscategorizationsResource"]
 
 
-class Miscategorizations(SyncAPIResource):
+class MiscategorizationsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MiscategorizationsWithRawResponse:
-        return MiscategorizationsWithRawResponse(self)
+    def with_raw_response(self) -> MiscategorizationsResourceWithRawResponse:
+        return MiscategorizationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MiscategorizationsWithStreamingResponse:
-        return MiscategorizationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> MiscategorizationsResourceWithStreamingResponse:
+        return MiscategorizationsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -117,14 +117,14 @@ class Miscategorizations(SyncAPIResource):
         )
 
 
-class AsyncMiscategorizations(AsyncAPIResource):
+class AsyncMiscategorizationsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMiscategorizationsWithRawResponse:
-        return AsyncMiscategorizationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMiscategorizationsResourceWithRawResponse:
+        return AsyncMiscategorizationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMiscategorizationsWithStreamingResponse:
-        return AsyncMiscategorizationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMiscategorizationsResourceWithStreamingResponse:
+        return AsyncMiscategorizationsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -204,8 +204,8 @@ class AsyncMiscategorizations(AsyncAPIResource):
         )
 
 
-class MiscategorizationsWithRawResponse:
-    def __init__(self, miscategorizations: Miscategorizations) -> None:
+class MiscategorizationsResourceWithRawResponse:
+    def __init__(self, miscategorizations: MiscategorizationsResource) -> None:
         self._miscategorizations = miscategorizations
 
         self.create = to_raw_response_wrapper(
@@ -213,8 +213,8 @@ class MiscategorizationsWithRawResponse:
         )
 
 
-class AsyncMiscategorizationsWithRawResponse:
-    def __init__(self, miscategorizations: AsyncMiscategorizations) -> None:
+class AsyncMiscategorizationsResourceWithRawResponse:
+    def __init__(self, miscategorizations: AsyncMiscategorizationsResource) -> None:
         self._miscategorizations = miscategorizations
 
         self.create = async_to_raw_response_wrapper(
@@ -222,8 +222,8 @@ class AsyncMiscategorizationsWithRawResponse:
         )
 
 
-class MiscategorizationsWithStreamingResponse:
-    def __init__(self, miscategorizations: Miscategorizations) -> None:
+class MiscategorizationsResourceWithStreamingResponse:
+    def __init__(self, miscategorizations: MiscategorizationsResource) -> None:
         self._miscategorizations = miscategorizations
 
         self.create = to_streamed_response_wrapper(
@@ -231,8 +231,8 @@ class MiscategorizationsWithStreamingResponse:
         )
 
 
-class AsyncMiscategorizationsWithStreamingResponse:
-    def __init__(self, miscategorizations: AsyncMiscategorizations) -> None:
+class AsyncMiscategorizationsResourceWithStreamingResponse:
+    def __init__(self, miscategorizations: AsyncMiscategorizationsResource) -> None:
         self._miscategorizations = miscategorizations
 
         self.create = async_to_streamed_response_wrapper(

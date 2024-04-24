@@ -9,21 +9,21 @@ from .d1 import (
     AsyncD1ResourceWithStreamingResponse,
 )
 from .database import (
-    Database,
-    AsyncDatabase,
-    DatabaseWithRawResponse,
-    AsyncDatabaseWithRawResponse,
-    DatabaseWithStreamingResponse,
-    AsyncDatabaseWithStreamingResponse,
+    DatabaseResource,
+    AsyncDatabaseResource,
+    DatabaseResourceWithRawResponse,
+    AsyncDatabaseResourceWithRawResponse,
+    DatabaseResourceWithStreamingResponse,
+    AsyncDatabaseResourceWithStreamingResponse,
 )
 
 __all__ = [
-    "Database",
-    "AsyncDatabase",
-    "DatabaseWithRawResponse",
-    "AsyncDatabaseWithRawResponse",
-    "DatabaseWithStreamingResponse",
-    "AsyncDatabaseWithStreamingResponse",
+    "DatabaseResource",
+    "AsyncDatabaseResource",
+    "DatabaseResourceWithRawResponse",
+    "AsyncDatabaseResourceWithRawResponse",
+    "DatabaseResourceWithStreamingResponse",
+    "AsyncDatabaseResourceWithStreamingResponse",
     "D1Resource",
     "AsyncD1Resource",
     "D1ResourceWithRawResponse",

@@ -8,12 +8,12 @@ from typing_extensions import Literal
 import httpx
 
 from .entries import (
-    Entries,
-    AsyncEntries,
-    EntriesWithRawResponse,
-    AsyncEntriesWithRawResponse,
-    EntriesWithStreamingResponse,
-    AsyncEntriesWithStreamingResponse,
+    EntriesResource,
+    AsyncEntriesResource,
+    EntriesResourceWithRawResponse,
+    AsyncEntriesResourceWithRawResponse,
+    EntriesResourceWithStreamingResponse,
+    AsyncEntriesResourceWithStreamingResponse,
 )
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ......_utils import (
@@ -35,21 +35,21 @@ from ......_base_client import (
 from ......types.web3.hostnames.ipfs_universal_paths import content_list_update_params
 from ......types.web3.hostnames.ipfs_universal_paths.content_list import ContentList
 
-__all__ = ["ContentLists", "AsyncContentLists"]
+__all__ = ["ContentListsResource", "AsyncContentListsResource"]
 
 
-class ContentLists(SyncAPIResource):
+class ContentListsResource(SyncAPIResource):
     @cached_property
-    def entries(self) -> Entries:
-        return Entries(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> ContentListsWithRawResponse:
-        return ContentListsWithRawResponse(self)
+    def entries(self) -> EntriesResource:
+        return EntriesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ContentListsWithStreamingResponse:
-        return ContentListsWithStreamingResponse(self)
+    def with_raw_response(self) -> ContentListsResourceWithRawResponse:
+        return ContentListsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ContentListsResourceWithStreamingResponse:
+        return ContentListsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -153,18 +153,18 @@ class ContentLists(SyncAPIResource):
         )
 
 
-class AsyncContentLists(AsyncAPIResource):
+class AsyncContentListsResource(AsyncAPIResource):
     @cached_property
-    def entries(self) -> AsyncEntries:
-        return AsyncEntries(self._client)
+    def entries(self) -> AsyncEntriesResource:
+        return AsyncEntriesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncContentListsWithRawResponse:
-        return AsyncContentListsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncContentListsResourceWithRawResponse:
+        return AsyncContentListsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncContentListsWithStreamingResponse:
-        return AsyncContentListsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncContentListsResourceWithStreamingResponse:
+        return AsyncContentListsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -268,8 +268,8 @@ class AsyncContentLists(AsyncAPIResource):
         )
 
 
-class ContentListsWithRawResponse:
-    def __init__(self, content_lists: ContentLists) -> None:
+class ContentListsResourceWithRawResponse:
+    def __init__(self, content_lists: ContentListsResource) -> None:
         self._content_lists = content_lists
 
         self.update = to_raw_response_wrapper(
@@ -280,12 +280,12 @@ class ContentListsWithRawResponse:
         )
 
     @cached_property
-    def entries(self) -> EntriesWithRawResponse:
-        return EntriesWithRawResponse(self._content_lists.entries)
+    def entries(self) -> EntriesResourceWithRawResponse:
+        return EntriesResourceWithRawResponse(self._content_lists.entries)
 
 
-class AsyncContentListsWithRawResponse:
-    def __init__(self, content_lists: AsyncContentLists) -> None:
+class AsyncContentListsResourceWithRawResponse:
+    def __init__(self, content_lists: AsyncContentListsResource) -> None:
         self._content_lists = content_lists
 
         self.update = async_to_raw_response_wrapper(
@@ -296,12 +296,12 @@ class AsyncContentListsWithRawResponse:
         )
 
     @cached_property
-    def entries(self) -> AsyncEntriesWithRawResponse:
-        return AsyncEntriesWithRawResponse(self._content_lists.entries)
+    def entries(self) -> AsyncEntriesResourceWithRawResponse:
+        return AsyncEntriesResourceWithRawResponse(self._content_lists.entries)
 
 
-class ContentListsWithStreamingResponse:
-    def __init__(self, content_lists: ContentLists) -> None:
+class ContentListsResourceWithStreamingResponse:
+    def __init__(self, content_lists: ContentListsResource) -> None:
         self._content_lists = content_lists
 
         self.update = to_streamed_response_wrapper(
@@ -312,12 +312,12 @@ class ContentListsWithStreamingResponse:
         )
 
     @cached_property
-    def entries(self) -> EntriesWithStreamingResponse:
-        return EntriesWithStreamingResponse(self._content_lists.entries)
+    def entries(self) -> EntriesResourceWithStreamingResponse:
+        return EntriesResourceWithStreamingResponse(self._content_lists.entries)
 
 
-class AsyncContentListsWithStreamingResponse:
-    def __init__(self, content_lists: AsyncContentLists) -> None:
+class AsyncContentListsResourceWithStreamingResponse:
+    def __init__(self, content_lists: AsyncContentListsResource) -> None:
         self._content_lists = content_lists
 
         self.update = async_to_streamed_response_wrapper(
@@ -328,5 +328,5 @@ class AsyncContentListsWithStreamingResponse:
         )
 
     @cached_property
-    def entries(self) -> AsyncEntriesWithStreamingResponse:
-        return AsyncEntriesWithStreamingResponse(self._content_lists.entries)
+    def entries(self) -> AsyncEntriesResourceWithStreamingResponse:
+        return AsyncEntriesResourceWithStreamingResponse(self._content_lists.entries)

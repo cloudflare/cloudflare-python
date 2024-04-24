@@ -28,17 +28,17 @@ from ...types.custom_hostnames import BundleMethod
 from ...types.ssl.analyze_create_response import AnalyzeCreateResponse
 from ...types.custom_hostnames.bundle_method import BundleMethod
 
-__all__ = ["Analyze", "AsyncAnalyze"]
+__all__ = ["AnalyzeResource", "AsyncAnalyzeResource"]
 
 
-class Analyze(SyncAPIResource):
+class AnalyzeResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AnalyzeWithRawResponse:
-        return AnalyzeWithRawResponse(self)
+    def with_raw_response(self) -> AnalyzeResourceWithRawResponse:
+        return AnalyzeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AnalyzeWithStreamingResponse:
-        return AnalyzeWithStreamingResponse(self)
+    def with_streaming_response(self) -> AnalyzeResourceWithStreamingResponse:
+        return AnalyzeResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -102,14 +102,14 @@ class Analyze(SyncAPIResource):
         )
 
 
-class AsyncAnalyze(AsyncAPIResource):
+class AsyncAnalyzeResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAnalyzeWithRawResponse:
-        return AsyncAnalyzeWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAnalyzeResourceWithRawResponse:
+        return AsyncAnalyzeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAnalyzeWithStreamingResponse:
-        return AsyncAnalyzeWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAnalyzeResourceWithStreamingResponse:
+        return AsyncAnalyzeResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -173,8 +173,8 @@ class AsyncAnalyze(AsyncAPIResource):
         )
 
 
-class AnalyzeWithRawResponse:
-    def __init__(self, analyze: Analyze) -> None:
+class AnalyzeResourceWithRawResponse:
+    def __init__(self, analyze: AnalyzeResource) -> None:
         self._analyze = analyze
 
         self.create = to_raw_response_wrapper(
@@ -182,8 +182,8 @@ class AnalyzeWithRawResponse:
         )
 
 
-class AsyncAnalyzeWithRawResponse:
-    def __init__(self, analyze: AsyncAnalyze) -> None:
+class AsyncAnalyzeResourceWithRawResponse:
+    def __init__(self, analyze: AsyncAnalyzeResource) -> None:
         self._analyze = analyze
 
         self.create = async_to_raw_response_wrapper(
@@ -191,8 +191,8 @@ class AsyncAnalyzeWithRawResponse:
         )
 
 
-class AnalyzeWithStreamingResponse:
-    def __init__(self, analyze: Analyze) -> None:
+class AnalyzeResourceWithStreamingResponse:
+    def __init__(self, analyze: AnalyzeResource) -> None:
         self._analyze = analyze
 
         self.create = to_streamed_response_wrapper(
@@ -200,8 +200,8 @@ class AnalyzeWithStreamingResponse:
         )
 
 
-class AsyncAnalyzeWithStreamingResponse:
-    def __init__(self, analyze: AsyncAnalyze) -> None:
+class AsyncAnalyzeResourceWithStreamingResponse:
+    def __init__(self, analyze: AsyncAnalyzeResource) -> None:
         self._analyze = analyze
 
         self.create = async_to_streamed_response_wrapper(

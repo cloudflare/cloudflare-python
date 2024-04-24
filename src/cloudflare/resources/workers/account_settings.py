@@ -27,17 +27,17 @@ from ...types.workers import account_setting_update_params
 from ...types.workers.account_setting_get_response import AccountSettingGetResponse
 from ...types.workers.account_setting_update_response import AccountSettingUpdateResponse
 
-__all__ = ["AccountSettings", "AsyncAccountSettings"]
+__all__ = ["AccountSettingsResource", "AsyncAccountSettingsResource"]
 
 
-class AccountSettings(SyncAPIResource):
+class AccountSettingsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AccountSettingsWithRawResponse:
-        return AccountSettingsWithRawResponse(self)
+    def with_raw_response(self) -> AccountSettingsResourceWithRawResponse:
+        return AccountSettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AccountSettingsWithStreamingResponse:
-        return AccountSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AccountSettingsResourceWithStreamingResponse:
+        return AccountSettingsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -120,14 +120,14 @@ class AccountSettings(SyncAPIResource):
         )
 
 
-class AsyncAccountSettings(AsyncAPIResource):
+class AsyncAccountSettingsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAccountSettingsWithRawResponse:
-        return AsyncAccountSettingsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAccountSettingsResourceWithRawResponse:
+        return AsyncAccountSettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAccountSettingsWithStreamingResponse:
-        return AsyncAccountSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAccountSettingsResourceWithStreamingResponse:
+        return AsyncAccountSettingsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -210,8 +210,8 @@ class AsyncAccountSettings(AsyncAPIResource):
         )
 
 
-class AccountSettingsWithRawResponse:
-    def __init__(self, account_settings: AccountSettings) -> None:
+class AccountSettingsResourceWithRawResponse:
+    def __init__(self, account_settings: AccountSettingsResource) -> None:
         self._account_settings = account_settings
 
         self.update = to_raw_response_wrapper(
@@ -222,8 +222,8 @@ class AccountSettingsWithRawResponse:
         )
 
 
-class AsyncAccountSettingsWithRawResponse:
-    def __init__(self, account_settings: AsyncAccountSettings) -> None:
+class AsyncAccountSettingsResourceWithRawResponse:
+    def __init__(self, account_settings: AsyncAccountSettingsResource) -> None:
         self._account_settings = account_settings
 
         self.update = async_to_raw_response_wrapper(
@@ -234,8 +234,8 @@ class AsyncAccountSettingsWithRawResponse:
         )
 
 
-class AccountSettingsWithStreamingResponse:
-    def __init__(self, account_settings: AccountSettings) -> None:
+class AccountSettingsResourceWithStreamingResponse:
+    def __init__(self, account_settings: AccountSettingsResource) -> None:
         self._account_settings = account_settings
 
         self.update = to_streamed_response_wrapper(
@@ -246,8 +246,8 @@ class AccountSettingsWithStreamingResponse:
         )
 
 
-class AsyncAccountSettingsWithStreamingResponse:
-    def __init__(self, account_settings: AsyncAccountSettings) -> None:
+class AsyncAccountSettingsResourceWithStreamingResponse:
+    def __init__(self, account_settings: AsyncAccountSettingsResource) -> None:
         self._account_settings = account_settings
 
         self.update = async_to_streamed_response_wrapper(

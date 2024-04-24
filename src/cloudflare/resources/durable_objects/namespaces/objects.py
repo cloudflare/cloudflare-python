@@ -22,17 +22,17 @@ from ...._base_client import (
 from ....types.durable_objects.namespaces import object_list_params
 from ....types.durable_objects.namespaces.durable_object import DurableObject
 
-__all__ = ["Objects", "AsyncObjects"]
+__all__ = ["ObjectsResource", "AsyncObjectsResource"]
 
 
-class Objects(SyncAPIResource):
+class ObjectsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ObjectsWithRawResponse:
-        return ObjectsWithRawResponse(self)
+    def with_raw_response(self) -> ObjectsResourceWithRawResponse:
+        return ObjectsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ObjectsWithStreamingResponse:
-        return ObjectsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ObjectsResourceWithStreamingResponse:
+        return ObjectsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -95,14 +95,14 @@ class Objects(SyncAPIResource):
         )
 
 
-class AsyncObjects(AsyncAPIResource):
+class AsyncObjectsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncObjectsWithRawResponse:
-        return AsyncObjectsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncObjectsResourceWithRawResponse:
+        return AsyncObjectsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncObjectsWithStreamingResponse:
-        return AsyncObjectsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncObjectsResourceWithStreamingResponse:
+        return AsyncObjectsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -165,8 +165,8 @@ class AsyncObjects(AsyncAPIResource):
         )
 
 
-class ObjectsWithRawResponse:
-    def __init__(self, objects: Objects) -> None:
+class ObjectsResourceWithRawResponse:
+    def __init__(self, objects: ObjectsResource) -> None:
         self._objects = objects
 
         self.list = to_raw_response_wrapper(
@@ -174,8 +174,8 @@ class ObjectsWithRawResponse:
         )
 
 
-class AsyncObjectsWithRawResponse:
-    def __init__(self, objects: AsyncObjects) -> None:
+class AsyncObjectsResourceWithRawResponse:
+    def __init__(self, objects: AsyncObjectsResource) -> None:
         self._objects = objects
 
         self.list = async_to_raw_response_wrapper(
@@ -183,8 +183,8 @@ class AsyncObjectsWithRawResponse:
         )
 
 
-class ObjectsWithStreamingResponse:
-    def __init__(self, objects: Objects) -> None:
+class ObjectsResourceWithStreamingResponse:
+    def __init__(self, objects: ObjectsResource) -> None:
         self._objects = objects
 
         self.list = to_streamed_response_wrapper(
@@ -192,8 +192,8 @@ class ObjectsWithStreamingResponse:
         )
 
 
-class AsyncObjectsWithStreamingResponse:
-    def __init__(self, objects: AsyncObjects) -> None:
+class AsyncObjectsResourceWithStreamingResponse:
+    def __init__(self, objects: AsyncObjectsResource) -> None:
         self._objects = objects
 
         self.list = async_to_streamed_response_wrapper(

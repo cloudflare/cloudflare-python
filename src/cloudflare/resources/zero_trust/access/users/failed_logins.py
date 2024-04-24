@@ -20,17 +20,17 @@ from ....._base_client import (
 )
 from .....types.zero_trust.access.users.failed_login_list_response import FailedLoginListResponse
 
-__all__ = ["FailedLogins", "AsyncFailedLogins"]
+__all__ = ["FailedLoginsResource", "AsyncFailedLoginsResource"]
 
 
-class FailedLogins(SyncAPIResource):
+class FailedLoginsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> FailedLoginsWithRawResponse:
-        return FailedLoginsWithRawResponse(self)
+    def with_raw_response(self) -> FailedLoginsResourceWithRawResponse:
+        return FailedLoginsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FailedLoginsWithStreamingResponse:
-        return FailedLoginsWithStreamingResponse(self)
+    def with_streaming_response(self) -> FailedLoginsResourceWithStreamingResponse:
+        return FailedLoginsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -74,14 +74,14 @@ class FailedLogins(SyncAPIResource):
         )
 
 
-class AsyncFailedLogins(AsyncAPIResource):
+class AsyncFailedLoginsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncFailedLoginsWithRawResponse:
-        return AsyncFailedLoginsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFailedLoginsResourceWithRawResponse:
+        return AsyncFailedLoginsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFailedLoginsWithStreamingResponse:
-        return AsyncFailedLoginsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFailedLoginsResourceWithStreamingResponse:
+        return AsyncFailedLoginsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -125,8 +125,8 @@ class AsyncFailedLogins(AsyncAPIResource):
         )
 
 
-class FailedLoginsWithRawResponse:
-    def __init__(self, failed_logins: FailedLogins) -> None:
+class FailedLoginsResourceWithRawResponse:
+    def __init__(self, failed_logins: FailedLoginsResource) -> None:
         self._failed_logins = failed_logins
 
         self.list = to_raw_response_wrapper(
@@ -134,8 +134,8 @@ class FailedLoginsWithRawResponse:
         )
 
 
-class AsyncFailedLoginsWithRawResponse:
-    def __init__(self, failed_logins: AsyncFailedLogins) -> None:
+class AsyncFailedLoginsResourceWithRawResponse:
+    def __init__(self, failed_logins: AsyncFailedLoginsResource) -> None:
         self._failed_logins = failed_logins
 
         self.list = async_to_raw_response_wrapper(
@@ -143,8 +143,8 @@ class AsyncFailedLoginsWithRawResponse:
         )
 
 
-class FailedLoginsWithStreamingResponse:
-    def __init__(self, failed_logins: FailedLogins) -> None:
+class FailedLoginsResourceWithStreamingResponse:
+    def __init__(self, failed_logins: FailedLoginsResource) -> None:
         self._failed_logins = failed_logins
 
         self.list = to_streamed_response_wrapper(
@@ -152,8 +152,8 @@ class FailedLoginsWithStreamingResponse:
         )
 
 
-class AsyncFailedLoginsWithStreamingResponse:
-    def __init__(self, failed_logins: AsyncFailedLogins) -> None:
+class AsyncFailedLoginsResourceWithStreamingResponse:
+    def __init__(self, failed_logins: AsyncFailedLoginsResource) -> None:
         self._failed_logins = failed_logins
 
         self.list = async_to_streamed_response_wrapper(

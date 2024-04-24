@@ -8,12 +8,12 @@ from typing_extensions import Literal
 import httpx
 
 from .history import (
-    History,
-    AsyncHistory,
-    HistoryWithRawResponse,
-    AsyncHistoryWithRawResponse,
-    HistoryWithStreamingResponse,
-    AsyncHistoryWithStreamingResponse,
+    HistoryResource,
+    AsyncHistoryResource,
+    HistoryResourceWithRawResponse,
+    AsyncHistoryResourceWithRawResponse,
+    HistoryResourceWithStreamingResponse,
+    AsyncHistoryResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -30,7 +30,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from .history.history import History, AsyncHistory
+from .history.history import HistoryResource, AsyncHistoryResource
 from ....._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -44,21 +44,21 @@ from .....types.pages.projects import (
 )
 from .....types.pages.deployment import Deployment
 
-__all__ = ["Deployments", "AsyncDeployments"]
+__all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 
 
-class Deployments(SyncAPIResource):
+class DeploymentsResource(SyncAPIResource):
     @cached_property
-    def history(self) -> History:
-        return History(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> DeploymentsWithRawResponse:
-        return DeploymentsWithRawResponse(self)
+    def history(self) -> HistoryResource:
+        return HistoryResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> DeploymentsWithStreamingResponse:
-        return DeploymentsWithStreamingResponse(self)
+    def with_raw_response(self) -> DeploymentsResourceWithRawResponse:
+        return DeploymentsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> DeploymentsResourceWithStreamingResponse:
+        return DeploymentsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -360,18 +360,18 @@ class Deployments(SyncAPIResource):
         )
 
 
-class AsyncDeployments(AsyncAPIResource):
+class AsyncDeploymentsResource(AsyncAPIResource):
     @cached_property
-    def history(self) -> AsyncHistory:
-        return AsyncHistory(self._client)
+    def history(self) -> AsyncHistoryResource:
+        return AsyncHistoryResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDeploymentsWithRawResponse:
-        return AsyncDeploymentsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDeploymentsResourceWithRawResponse:
+        return AsyncDeploymentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDeploymentsWithStreamingResponse:
-        return AsyncDeploymentsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDeploymentsResourceWithStreamingResponse:
+        return AsyncDeploymentsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -673,8 +673,8 @@ class AsyncDeployments(AsyncAPIResource):
         )
 
 
-class DeploymentsWithRawResponse:
-    def __init__(self, deployments: Deployments) -> None:
+class DeploymentsResourceWithRawResponse:
+    def __init__(self, deployments: DeploymentsResource) -> None:
         self._deployments = deployments
 
         self.create = to_raw_response_wrapper(
@@ -697,12 +697,12 @@ class DeploymentsWithRawResponse:
         )
 
     @cached_property
-    def history(self) -> HistoryWithRawResponse:
-        return HistoryWithRawResponse(self._deployments.history)
+    def history(self) -> HistoryResourceWithRawResponse:
+        return HistoryResourceWithRawResponse(self._deployments.history)
 
 
-class AsyncDeploymentsWithRawResponse:
-    def __init__(self, deployments: AsyncDeployments) -> None:
+class AsyncDeploymentsResourceWithRawResponse:
+    def __init__(self, deployments: AsyncDeploymentsResource) -> None:
         self._deployments = deployments
 
         self.create = async_to_raw_response_wrapper(
@@ -725,12 +725,12 @@ class AsyncDeploymentsWithRawResponse:
         )
 
     @cached_property
-    def history(self) -> AsyncHistoryWithRawResponse:
-        return AsyncHistoryWithRawResponse(self._deployments.history)
+    def history(self) -> AsyncHistoryResourceWithRawResponse:
+        return AsyncHistoryResourceWithRawResponse(self._deployments.history)
 
 
-class DeploymentsWithStreamingResponse:
-    def __init__(self, deployments: Deployments) -> None:
+class DeploymentsResourceWithStreamingResponse:
+    def __init__(self, deployments: DeploymentsResource) -> None:
         self._deployments = deployments
 
         self.create = to_streamed_response_wrapper(
@@ -753,12 +753,12 @@ class DeploymentsWithStreamingResponse:
         )
 
     @cached_property
-    def history(self) -> HistoryWithStreamingResponse:
-        return HistoryWithStreamingResponse(self._deployments.history)
+    def history(self) -> HistoryResourceWithStreamingResponse:
+        return HistoryResourceWithStreamingResponse(self._deployments.history)
 
 
-class AsyncDeploymentsWithStreamingResponse:
-    def __init__(self, deployments: AsyncDeployments) -> None:
+class AsyncDeploymentsResourceWithStreamingResponse:
+    def __init__(self, deployments: AsyncDeploymentsResource) -> None:
         self._deployments = deployments
 
         self.create = async_to_streamed_response_wrapper(
@@ -781,5 +781,5 @@ class AsyncDeploymentsWithStreamingResponse:
         )
 
     @cached_property
-    def history(self) -> AsyncHistoryWithStreamingResponse:
-        return AsyncHistoryWithStreamingResponse(self._deployments.history)
+    def history(self) -> AsyncHistoryResourceWithStreamingResponse:
+        return AsyncHistoryResourceWithStreamingResponse(self._deployments.history)

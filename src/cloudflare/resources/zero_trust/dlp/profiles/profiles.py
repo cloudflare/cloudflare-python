@@ -7,21 +7,21 @@ from typing import Any, cast
 import httpx
 
 from .custom import (
-    Custom,
-    AsyncCustom,
-    CustomWithRawResponse,
-    AsyncCustomWithRawResponse,
-    CustomWithStreamingResponse,
-    AsyncCustomWithStreamingResponse,
+    CustomResource,
+    AsyncCustomResource,
+    CustomResourceWithRawResponse,
+    AsyncCustomResourceWithRawResponse,
+    CustomResourceWithStreamingResponse,
+    AsyncCustomResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .predefined import (
-    Predefined,
-    AsyncPredefined,
-    PredefinedWithRawResponse,
-    AsyncPredefinedWithRawResponse,
-    PredefinedWithStreamingResponse,
-    AsyncPredefinedWithStreamingResponse,
+    PredefinedResource,
+    AsyncPredefinedResource,
+    PredefinedResourceWithRawResponse,
+    AsyncPredefinedResourceWithRawResponse,
+    PredefinedResourceWithStreamingResponse,
+    AsyncPredefinedResourceWithStreamingResponse,
 )
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -40,25 +40,25 @@ from ....._base_client import (
 from .....types.zero_trust.dlp.profile import Profile
 from .....types.zero_trust.dlp.profile_get_response import ProfileGetResponse
 
-__all__ = ["Profiles", "AsyncProfiles"]
+__all__ = ["ProfilesResource", "AsyncProfilesResource"]
 
 
-class Profiles(SyncAPIResource):
+class ProfilesResource(SyncAPIResource):
     @cached_property
-    def custom(self) -> Custom:
-        return Custom(self._client)
-
-    @cached_property
-    def predefined(self) -> Predefined:
-        return Predefined(self._client)
+    def custom(self) -> CustomResource:
+        return CustomResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> ProfilesWithRawResponse:
-        return ProfilesWithRawResponse(self)
+    def predefined(self) -> PredefinedResource:
+        return PredefinedResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ProfilesWithStreamingResponse:
-        return ProfilesWithStreamingResponse(self)
+    def with_raw_response(self) -> ProfilesResourceWithRawResponse:
+        return ProfilesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ProfilesResourceWithStreamingResponse:
+        return ProfilesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -147,22 +147,22 @@ class Profiles(SyncAPIResource):
         )
 
 
-class AsyncProfiles(AsyncAPIResource):
+class AsyncProfilesResource(AsyncAPIResource):
     @cached_property
-    def custom(self) -> AsyncCustom:
-        return AsyncCustom(self._client)
+    def custom(self) -> AsyncCustomResource:
+        return AsyncCustomResource(self._client)
 
     @cached_property
-    def predefined(self) -> AsyncPredefined:
-        return AsyncPredefined(self._client)
+    def predefined(self) -> AsyncPredefinedResource:
+        return AsyncPredefinedResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncProfilesWithRawResponse:
-        return AsyncProfilesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncProfilesResourceWithRawResponse:
+        return AsyncProfilesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncProfilesWithStreamingResponse:
-        return AsyncProfilesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncProfilesResourceWithStreamingResponse:
+        return AsyncProfilesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -251,8 +251,8 @@ class AsyncProfiles(AsyncAPIResource):
         )
 
 
-class ProfilesWithRawResponse:
-    def __init__(self, profiles: Profiles) -> None:
+class ProfilesResourceWithRawResponse:
+    def __init__(self, profiles: ProfilesResource) -> None:
         self._profiles = profiles
 
         self.list = to_raw_response_wrapper(
@@ -263,16 +263,16 @@ class ProfilesWithRawResponse:
         )
 
     @cached_property
-    def custom(self) -> CustomWithRawResponse:
-        return CustomWithRawResponse(self._profiles.custom)
+    def custom(self) -> CustomResourceWithRawResponse:
+        return CustomResourceWithRawResponse(self._profiles.custom)
 
     @cached_property
-    def predefined(self) -> PredefinedWithRawResponse:
-        return PredefinedWithRawResponse(self._profiles.predefined)
+    def predefined(self) -> PredefinedResourceWithRawResponse:
+        return PredefinedResourceWithRawResponse(self._profiles.predefined)
 
 
-class AsyncProfilesWithRawResponse:
-    def __init__(self, profiles: AsyncProfiles) -> None:
+class AsyncProfilesResourceWithRawResponse:
+    def __init__(self, profiles: AsyncProfilesResource) -> None:
         self._profiles = profiles
 
         self.list = async_to_raw_response_wrapper(
@@ -283,16 +283,16 @@ class AsyncProfilesWithRawResponse:
         )
 
     @cached_property
-    def custom(self) -> AsyncCustomWithRawResponse:
-        return AsyncCustomWithRawResponse(self._profiles.custom)
+    def custom(self) -> AsyncCustomResourceWithRawResponse:
+        return AsyncCustomResourceWithRawResponse(self._profiles.custom)
 
     @cached_property
-    def predefined(self) -> AsyncPredefinedWithRawResponse:
-        return AsyncPredefinedWithRawResponse(self._profiles.predefined)
+    def predefined(self) -> AsyncPredefinedResourceWithRawResponse:
+        return AsyncPredefinedResourceWithRawResponse(self._profiles.predefined)
 
 
-class ProfilesWithStreamingResponse:
-    def __init__(self, profiles: Profiles) -> None:
+class ProfilesResourceWithStreamingResponse:
+    def __init__(self, profiles: ProfilesResource) -> None:
         self._profiles = profiles
 
         self.list = to_streamed_response_wrapper(
@@ -303,16 +303,16 @@ class ProfilesWithStreamingResponse:
         )
 
     @cached_property
-    def custom(self) -> CustomWithStreamingResponse:
-        return CustomWithStreamingResponse(self._profiles.custom)
+    def custom(self) -> CustomResourceWithStreamingResponse:
+        return CustomResourceWithStreamingResponse(self._profiles.custom)
 
     @cached_property
-    def predefined(self) -> PredefinedWithStreamingResponse:
-        return PredefinedWithStreamingResponse(self._profiles.predefined)
+    def predefined(self) -> PredefinedResourceWithStreamingResponse:
+        return PredefinedResourceWithStreamingResponse(self._profiles.predefined)
 
 
-class AsyncProfilesWithStreamingResponse:
-    def __init__(self, profiles: AsyncProfiles) -> None:
+class AsyncProfilesResourceWithStreamingResponse:
+    def __init__(self, profiles: AsyncProfilesResource) -> None:
         self._profiles = profiles
 
         self.list = async_to_streamed_response_wrapper(
@@ -323,9 +323,9 @@ class AsyncProfilesWithStreamingResponse:
         )
 
     @cached_property
-    def custom(self) -> AsyncCustomWithStreamingResponse:
-        return AsyncCustomWithStreamingResponse(self._profiles.custom)
+    def custom(self) -> AsyncCustomResourceWithStreamingResponse:
+        return AsyncCustomResourceWithStreamingResponse(self._profiles.custom)
 
     @cached_property
-    def predefined(self) -> AsyncPredefinedWithStreamingResponse:
-        return AsyncPredefinedWithStreamingResponse(self._profiles.predefined)
+    def predefined(self) -> AsyncPredefinedResourceWithStreamingResponse:
+        return AsyncPredefinedResourceWithStreamingResponse(self._profiles.predefined)

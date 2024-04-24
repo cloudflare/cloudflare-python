@@ -7,12 +7,12 @@ from typing import Type, Optional, cast
 import httpx
 
 from .details import (
-    Details,
-    AsyncDetails,
-    DetailsWithRawResponse,
-    AsyncDetailsWithRawResponse,
-    DetailsWithStreamingResponse,
-    AsyncDetailsWithStreamingResponse,
+    DetailsResource,
+    AsyncDetailsResource,
+    DetailsResourceWithRawResponse,
+    AsyncDetailsResourceWithRawResponse,
+    DetailsResourceWithStreamingResponse,
+    AsyncDetailsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -43,21 +43,21 @@ from ....types.waiting_rooms import (
 from ....types.waiting_rooms.event import Event
 from ....types.waiting_rooms.event_delete_response import EventDeleteResponse
 
-__all__ = ["Events", "AsyncEvents"]
+__all__ = ["EventsResource", "AsyncEventsResource"]
 
 
-class Events(SyncAPIResource):
+class EventsResource(SyncAPIResource):
     @cached_property
-    def details(self) -> Details:
-        return Details(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> EventsWithRawResponse:
-        return EventsWithRawResponse(self)
+    def details(self) -> DetailsResource:
+        return DetailsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> EventsWithStreamingResponse:
-        return EventsWithStreamingResponse(self)
+    def with_raw_response(self) -> EventsResourceWithRawResponse:
+        return EventsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> EventsResourceWithStreamingResponse:
+        return EventsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -573,18 +573,18 @@ class Events(SyncAPIResource):
         )
 
 
-class AsyncEvents(AsyncAPIResource):
+class AsyncEventsResource(AsyncAPIResource):
     @cached_property
-    def details(self) -> AsyncDetails:
-        return AsyncDetails(self._client)
+    def details(self) -> AsyncDetailsResource:
+        return AsyncDetailsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncEventsWithRawResponse:
-        return AsyncEventsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
+        return AsyncEventsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEventsWithStreamingResponse:
-        return AsyncEventsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncEventsResourceWithStreamingResponse:
+        return AsyncEventsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -1100,8 +1100,8 @@ class AsyncEvents(AsyncAPIResource):
         )
 
 
-class EventsWithRawResponse:
-    def __init__(self, events: Events) -> None:
+class EventsResourceWithRawResponse:
+    def __init__(self, events: EventsResource) -> None:
         self._events = events
 
         self.create = to_raw_response_wrapper(
@@ -1124,12 +1124,12 @@ class EventsWithRawResponse:
         )
 
     @cached_property
-    def details(self) -> DetailsWithRawResponse:
-        return DetailsWithRawResponse(self._events.details)
+    def details(self) -> DetailsResourceWithRawResponse:
+        return DetailsResourceWithRawResponse(self._events.details)
 
 
-class AsyncEventsWithRawResponse:
-    def __init__(self, events: AsyncEvents) -> None:
+class AsyncEventsResourceWithRawResponse:
+    def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
 
         self.create = async_to_raw_response_wrapper(
@@ -1152,12 +1152,12 @@ class AsyncEventsWithRawResponse:
         )
 
     @cached_property
-    def details(self) -> AsyncDetailsWithRawResponse:
-        return AsyncDetailsWithRawResponse(self._events.details)
+    def details(self) -> AsyncDetailsResourceWithRawResponse:
+        return AsyncDetailsResourceWithRawResponse(self._events.details)
 
 
-class EventsWithStreamingResponse:
-    def __init__(self, events: Events) -> None:
+class EventsResourceWithStreamingResponse:
+    def __init__(self, events: EventsResource) -> None:
         self._events = events
 
         self.create = to_streamed_response_wrapper(
@@ -1180,12 +1180,12 @@ class EventsWithStreamingResponse:
         )
 
     @cached_property
-    def details(self) -> DetailsWithStreamingResponse:
-        return DetailsWithStreamingResponse(self._events.details)
+    def details(self) -> DetailsResourceWithStreamingResponse:
+        return DetailsResourceWithStreamingResponse(self._events.details)
 
 
-class AsyncEventsWithStreamingResponse:
-    def __init__(self, events: AsyncEvents) -> None:
+class AsyncEventsResourceWithStreamingResponse:
+    def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
 
         self.create = async_to_streamed_response_wrapper(
@@ -1208,5 +1208,5 @@ class AsyncEventsWithStreamingResponse:
         )
 
     @cached_property
-    def details(self) -> AsyncDetailsWithStreamingResponse:
-        return AsyncDetailsWithStreamingResponse(self._events.details)
+    def details(self) -> AsyncDetailsResourceWithStreamingResponse:
+        return AsyncDetailsResourceWithStreamingResponse(self._events.details)

@@ -36,17 +36,17 @@ from ...types.challenges.widget import Widget
 from ...types.challenges.widget_domain import WidgetDomain
 from ...types.challenges.widget_list_response import WidgetListResponse
 
-__all__ = ["Widgets", "AsyncWidgets"]
+__all__ = ["WidgetsResource", "AsyncWidgetsResource"]
 
 
-class Widgets(SyncAPIResource):
+class WidgetsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WidgetsWithRawResponse:
-        return WidgetsWithRawResponse(self)
+    def with_raw_response(self) -> WidgetsResourceWithRawResponse:
+        return WidgetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WidgetsWithStreamingResponse:
-        return WidgetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> WidgetsResourceWithStreamingResponse:
+        return WidgetsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -423,14 +423,14 @@ class Widgets(SyncAPIResource):
         )
 
 
-class AsyncWidgets(AsyncAPIResource):
+class AsyncWidgetsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncWidgetsWithRawResponse:
-        return AsyncWidgetsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWidgetsResourceWithRawResponse:
+        return AsyncWidgetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWidgetsWithStreamingResponse:
-        return AsyncWidgetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWidgetsResourceWithStreamingResponse:
+        return AsyncWidgetsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -807,8 +807,8 @@ class AsyncWidgets(AsyncAPIResource):
         )
 
 
-class WidgetsWithRawResponse:
-    def __init__(self, widgets: Widgets) -> None:
+class WidgetsResourceWithRawResponse:
+    def __init__(self, widgets: WidgetsResource) -> None:
         self._widgets = widgets
 
         self.create = to_raw_response_wrapper(
@@ -831,8 +831,8 @@ class WidgetsWithRawResponse:
         )
 
 
-class AsyncWidgetsWithRawResponse:
-    def __init__(self, widgets: AsyncWidgets) -> None:
+class AsyncWidgetsResourceWithRawResponse:
+    def __init__(self, widgets: AsyncWidgetsResource) -> None:
         self._widgets = widgets
 
         self.create = async_to_raw_response_wrapper(
@@ -855,8 +855,8 @@ class AsyncWidgetsWithRawResponse:
         )
 
 
-class WidgetsWithStreamingResponse:
-    def __init__(self, widgets: Widgets) -> None:
+class WidgetsResourceWithStreamingResponse:
+    def __init__(self, widgets: WidgetsResource) -> None:
         self._widgets = widgets
 
         self.create = to_streamed_response_wrapper(
@@ -879,8 +879,8 @@ class WidgetsWithStreamingResponse:
         )
 
 
-class AsyncWidgetsWithStreamingResponse:
-    def __init__(self, widgets: AsyncWidgets) -> None:
+class AsyncWidgetsResourceWithStreamingResponse:
+    def __init__(self, widgets: AsyncWidgetsResource) -> None:
         self._widgets = widgets
 
         self.create = async_to_streamed_response_wrapper(

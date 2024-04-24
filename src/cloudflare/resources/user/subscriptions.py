@@ -37,17 +37,17 @@ from ...types.user.subscription_component_param import SubscriptionComponentPara
 from ...types.user.subscription_delete_response import SubscriptionDeleteResponse
 from ...types.user.subscription_update_response import SubscriptionUpdateResponse
 
-__all__ = ["Subscriptions", "AsyncSubscriptions"]
+__all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
 
 
-class Subscriptions(SyncAPIResource):
+class SubscriptionsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SubscriptionsWithRawResponse:
-        return SubscriptionsWithRawResponse(self)
+    def with_raw_response(self) -> SubscriptionsResourceWithRawResponse:
+        return SubscriptionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SubscriptionsWithStreamingResponse:
-        return SubscriptionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> SubscriptionsResourceWithStreamingResponse:
+        return SubscriptionsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -244,14 +244,14 @@ class Subscriptions(SyncAPIResource):
         )
 
 
-class AsyncSubscriptions(AsyncAPIResource):
+class AsyncSubscriptionsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSubscriptionsWithRawResponse:
-        return AsyncSubscriptionsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSubscriptionsResourceWithRawResponse:
+        return AsyncSubscriptionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSubscriptionsWithStreamingResponse:
-        return AsyncSubscriptionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
+        return AsyncSubscriptionsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -448,8 +448,8 @@ class AsyncSubscriptions(AsyncAPIResource):
         )
 
 
-class SubscriptionsWithRawResponse:
-    def __init__(self, subscriptions: Subscriptions) -> None:
+class SubscriptionsResourceWithRawResponse:
+    def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
         self.update = to_raw_response_wrapper(
@@ -466,8 +466,8 @@ class SubscriptionsWithRawResponse:
         )
 
 
-class AsyncSubscriptionsWithRawResponse:
-    def __init__(self, subscriptions: AsyncSubscriptions) -> None:
+class AsyncSubscriptionsResourceWithRawResponse:
+    def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
         self.update = async_to_raw_response_wrapper(
@@ -484,8 +484,8 @@ class AsyncSubscriptionsWithRawResponse:
         )
 
 
-class SubscriptionsWithStreamingResponse:
-    def __init__(self, subscriptions: Subscriptions) -> None:
+class SubscriptionsResourceWithStreamingResponse:
+    def __init__(self, subscriptions: SubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
         self.update = to_streamed_response_wrapper(
@@ -502,8 +502,8 @@ class SubscriptionsWithStreamingResponse:
         )
 
 
-class AsyncSubscriptionsWithStreamingResponse:
-    def __init__(self, subscriptions: AsyncSubscriptions) -> None:
+class AsyncSubscriptionsResourceWithStreamingResponse:
+    def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
         self._subscriptions = subscriptions
 
         self.update = async_to_streamed_response_wrapper(

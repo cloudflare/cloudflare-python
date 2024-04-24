@@ -7,12 +7,12 @@ from typing import Type, Optional, cast
 import httpx
 
 from .vtt import (
-    Vtt,
-    AsyncVtt,
-    VttWithRawResponse,
-    AsyncVttWithRawResponse,
-    VttWithStreamingResponse,
-    AsyncVttWithStreamingResponse,
+    VttResource,
+    AsyncVttResource,
+    VttResourceWithRawResponse,
+    AsyncVttResourceWithRawResponse,
+    VttResourceWithStreamingResponse,
+    AsyncVttResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -35,21 +35,21 @@ from .....types.stream.caption import Caption
 from .....types.stream.captions import language_delete_params, language_update_params
 from .....types.stream.captions.language_delete_response import LanguageDeleteResponse
 
-__all__ = ["Language", "AsyncLanguage"]
+__all__ = ["LanguageResource", "AsyncLanguageResource"]
 
 
-class Language(SyncAPIResource):
+class LanguageResource(SyncAPIResource):
     @cached_property
-    def vtt(self) -> Vtt:
-        return Vtt(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> LanguageWithRawResponse:
-        return LanguageWithRawResponse(self)
+    def vtt(self) -> VttResource:
+        return VttResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> LanguageWithStreamingResponse:
-        return LanguageWithStreamingResponse(self)
+    def with_raw_response(self) -> LanguageResourceWithRawResponse:
+        return LanguageResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LanguageResourceWithStreamingResponse:
+        return LanguageResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -206,18 +206,18 @@ class Language(SyncAPIResource):
         )
 
 
-class AsyncLanguage(AsyncAPIResource):
+class AsyncLanguageResource(AsyncAPIResource):
     @cached_property
-    def vtt(self) -> AsyncVtt:
-        return AsyncVtt(self._client)
+    def vtt(self) -> AsyncVttResource:
+        return AsyncVttResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncLanguageWithRawResponse:
-        return AsyncLanguageWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLanguageResourceWithRawResponse:
+        return AsyncLanguageResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLanguageWithStreamingResponse:
-        return AsyncLanguageWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLanguageResourceWithStreamingResponse:
+        return AsyncLanguageResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -374,8 +374,8 @@ class AsyncLanguage(AsyncAPIResource):
         )
 
 
-class LanguageWithRawResponse:
-    def __init__(self, language: Language) -> None:
+class LanguageResourceWithRawResponse:
+    def __init__(self, language: LanguageResource) -> None:
         self._language = language
 
         self.update = to_raw_response_wrapper(
@@ -389,12 +389,12 @@ class LanguageWithRawResponse:
         )
 
     @cached_property
-    def vtt(self) -> VttWithRawResponse:
-        return VttWithRawResponse(self._language.vtt)
+    def vtt(self) -> VttResourceWithRawResponse:
+        return VttResourceWithRawResponse(self._language.vtt)
 
 
-class AsyncLanguageWithRawResponse:
-    def __init__(self, language: AsyncLanguage) -> None:
+class AsyncLanguageResourceWithRawResponse:
+    def __init__(self, language: AsyncLanguageResource) -> None:
         self._language = language
 
         self.update = async_to_raw_response_wrapper(
@@ -408,12 +408,12 @@ class AsyncLanguageWithRawResponse:
         )
 
     @cached_property
-    def vtt(self) -> AsyncVttWithRawResponse:
-        return AsyncVttWithRawResponse(self._language.vtt)
+    def vtt(self) -> AsyncVttResourceWithRawResponse:
+        return AsyncVttResourceWithRawResponse(self._language.vtt)
 
 
-class LanguageWithStreamingResponse:
-    def __init__(self, language: Language) -> None:
+class LanguageResourceWithStreamingResponse:
+    def __init__(self, language: LanguageResource) -> None:
         self._language = language
 
         self.update = to_streamed_response_wrapper(
@@ -427,12 +427,12 @@ class LanguageWithStreamingResponse:
         )
 
     @cached_property
-    def vtt(self) -> VttWithStreamingResponse:
-        return VttWithStreamingResponse(self._language.vtt)
+    def vtt(self) -> VttResourceWithStreamingResponse:
+        return VttResourceWithStreamingResponse(self._language.vtt)
 
 
-class AsyncLanguageWithStreamingResponse:
-    def __init__(self, language: AsyncLanguage) -> None:
+class AsyncLanguageResourceWithStreamingResponse:
+    def __init__(self, language: AsyncLanguageResource) -> None:
         self._language = language
 
         self.update = async_to_streamed_response_wrapper(
@@ -446,5 +446,5 @@ class AsyncLanguageWithStreamingResponse:
         )
 
     @cached_property
-    def vtt(self) -> AsyncVttWithStreamingResponse:
-        return AsyncVttWithStreamingResponse(self._language.vtt)
+    def vtt(self) -> AsyncVttResourceWithStreamingResponse:
+        return AsyncVttResourceWithStreamingResponse(self._language.vtt)

@@ -3,112 +3,112 @@
 from __future__ import annotations
 
 from .routing import (
-    Routing,
-    AsyncRouting,
-    RoutingWithRawResponse,
-    AsyncRoutingWithRawResponse,
-    RoutingWithStreamingResponse,
-    AsyncRoutingWithStreamingResponse,
+    RoutingResource,
+    AsyncRoutingResource,
+    RoutingResourceWithRawResponse,
+    AsyncRoutingResourceWithRawResponse,
+    RoutingResourceWithStreamingResponse,
+    AsyncRoutingResourceWithStreamingResponse,
 )
 from .security import (
-    Security,
-    AsyncSecurity,
-    SecurityWithRawResponse,
-    AsyncSecurityWithRawResponse,
-    SecurityWithStreamingResponse,
-    AsyncSecurityWithStreamingResponse,
+    SecurityResource,
+    AsyncSecurityResource,
+    SecurityResourceWithRawResponse,
+    AsyncSecurityResourceWithRawResponse,
+    SecurityResourceWithStreamingResponse,
+    AsyncSecurityResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .routing.routing import Routing, AsyncRouting
-from .security.security import Security, AsyncSecurity
+from .routing.routing import RoutingResource, AsyncRoutingResource
+from .security.security import SecurityResource, AsyncSecurityResource
 
-__all__ = ["Email", "AsyncEmail"]
+__all__ = ["EmailResource", "AsyncEmailResource"]
 
 
-class Email(SyncAPIResource):
+class EmailResource(SyncAPIResource):
     @cached_property
-    def routing(self) -> Routing:
-        return Routing(self._client)
-
-    @cached_property
-    def security(self) -> Security:
-        return Security(self._client)
+    def routing(self) -> RoutingResource:
+        return RoutingResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> EmailWithRawResponse:
-        return EmailWithRawResponse(self)
+    def security(self) -> SecurityResource:
+        return SecurityResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> EmailWithStreamingResponse:
-        return EmailWithStreamingResponse(self)
-
-
-class AsyncEmail(AsyncAPIResource):
-    @cached_property
-    def routing(self) -> AsyncRouting:
-        return AsyncRouting(self._client)
+    def with_raw_response(self) -> EmailResourceWithRawResponse:
+        return EmailResourceWithRawResponse(self)
 
     @cached_property
-    def security(self) -> AsyncSecurity:
-        return AsyncSecurity(self._client)
+    def with_streaming_response(self) -> EmailResourceWithStreamingResponse:
+        return EmailResourceWithStreamingResponse(self)
+
+
+class AsyncEmailResource(AsyncAPIResource):
+    @cached_property
+    def routing(self) -> AsyncRoutingResource:
+        return AsyncRoutingResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncEmailWithRawResponse:
-        return AsyncEmailWithRawResponse(self)
+    def security(self) -> AsyncSecurityResource:
+        return AsyncSecurityResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEmailWithStreamingResponse:
-        return AsyncEmailWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncEmailResourceWithRawResponse:
+        return AsyncEmailResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncEmailResourceWithStreamingResponse:
+        return AsyncEmailResourceWithStreamingResponse(self)
 
 
-class EmailWithRawResponse:
-    def __init__(self, email: Email) -> None:
+class EmailResourceWithRawResponse:
+    def __init__(self, email: EmailResource) -> None:
         self._email = email
 
     @cached_property
-    def routing(self) -> RoutingWithRawResponse:
-        return RoutingWithRawResponse(self._email.routing)
+    def routing(self) -> RoutingResourceWithRawResponse:
+        return RoutingResourceWithRawResponse(self._email.routing)
 
     @cached_property
-    def security(self) -> SecurityWithRawResponse:
-        return SecurityWithRawResponse(self._email.security)
+    def security(self) -> SecurityResourceWithRawResponse:
+        return SecurityResourceWithRawResponse(self._email.security)
 
 
-class AsyncEmailWithRawResponse:
-    def __init__(self, email: AsyncEmail) -> None:
+class AsyncEmailResourceWithRawResponse:
+    def __init__(self, email: AsyncEmailResource) -> None:
         self._email = email
 
     @cached_property
-    def routing(self) -> AsyncRoutingWithRawResponse:
-        return AsyncRoutingWithRawResponse(self._email.routing)
+    def routing(self) -> AsyncRoutingResourceWithRawResponse:
+        return AsyncRoutingResourceWithRawResponse(self._email.routing)
 
     @cached_property
-    def security(self) -> AsyncSecurityWithRawResponse:
-        return AsyncSecurityWithRawResponse(self._email.security)
+    def security(self) -> AsyncSecurityResourceWithRawResponse:
+        return AsyncSecurityResourceWithRawResponse(self._email.security)
 
 
-class EmailWithStreamingResponse:
-    def __init__(self, email: Email) -> None:
+class EmailResourceWithStreamingResponse:
+    def __init__(self, email: EmailResource) -> None:
         self._email = email
 
     @cached_property
-    def routing(self) -> RoutingWithStreamingResponse:
-        return RoutingWithStreamingResponse(self._email.routing)
+    def routing(self) -> RoutingResourceWithStreamingResponse:
+        return RoutingResourceWithStreamingResponse(self._email.routing)
 
     @cached_property
-    def security(self) -> SecurityWithStreamingResponse:
-        return SecurityWithStreamingResponse(self._email.security)
+    def security(self) -> SecurityResourceWithStreamingResponse:
+        return SecurityResourceWithStreamingResponse(self._email.security)
 
 
-class AsyncEmailWithStreamingResponse:
-    def __init__(self, email: AsyncEmail) -> None:
+class AsyncEmailResourceWithStreamingResponse:
+    def __init__(self, email: AsyncEmailResource) -> None:
         self._email = email
 
     @cached_property
-    def routing(self) -> AsyncRoutingWithStreamingResponse:
-        return AsyncRoutingWithStreamingResponse(self._email.routing)
+    def routing(self) -> AsyncRoutingResourceWithStreamingResponse:
+        return AsyncRoutingResourceWithStreamingResponse(self._email.routing)
 
     @cached_property
-    def security(self) -> AsyncSecurityWithStreamingResponse:
-        return AsyncSecurityWithStreamingResponse(self._email.security)
+    def security(self) -> AsyncSecurityResourceWithStreamingResponse:
+        return AsyncSecurityResourceWithStreamingResponse(self._email.security)

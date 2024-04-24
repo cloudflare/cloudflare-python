@@ -23,17 +23,17 @@ from .._base_client import (
 )
 from ..types.plans.available_rate_plan import AvailableRatePlan
 
-__all__ = ["Plans", "AsyncPlans"]
+__all__ = ["PlansResource", "AsyncPlansResource"]
 
 
-class Plans(SyncAPIResource):
+class PlansResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PlansWithRawResponse:
-        return PlansWithRawResponse(self)
+    def with_raw_response(self) -> PlansResourceWithRawResponse:
+        return PlansResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PlansWithStreamingResponse:
-        return PlansWithStreamingResponse(self)
+    def with_streaming_response(self) -> PlansResourceWithStreamingResponse:
+        return PlansResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -116,14 +116,14 @@ class Plans(SyncAPIResource):
         )
 
 
-class AsyncPlans(AsyncAPIResource):
+class AsyncPlansResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPlansWithRawResponse:
-        return AsyncPlansWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPlansResourceWithRawResponse:
+        return AsyncPlansResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPlansWithStreamingResponse:
-        return AsyncPlansWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPlansResourceWithStreamingResponse:
+        return AsyncPlansResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -206,8 +206,8 @@ class AsyncPlans(AsyncAPIResource):
         )
 
 
-class PlansWithRawResponse:
-    def __init__(self, plans: Plans) -> None:
+class PlansResourceWithRawResponse:
+    def __init__(self, plans: PlansResource) -> None:
         self._plans = plans
 
         self.list = to_raw_response_wrapper(
@@ -218,8 +218,8 @@ class PlansWithRawResponse:
         )
 
 
-class AsyncPlansWithRawResponse:
-    def __init__(self, plans: AsyncPlans) -> None:
+class AsyncPlansResourceWithRawResponse:
+    def __init__(self, plans: AsyncPlansResource) -> None:
         self._plans = plans
 
         self.list = async_to_raw_response_wrapper(
@@ -230,8 +230,8 @@ class AsyncPlansWithRawResponse:
         )
 
 
-class PlansWithStreamingResponse:
-    def __init__(self, plans: Plans) -> None:
+class PlansResourceWithStreamingResponse:
+    def __init__(self, plans: PlansResource) -> None:
         self._plans = plans
 
         self.list = to_streamed_response_wrapper(
@@ -242,8 +242,8 @@ class PlansWithStreamingResponse:
         )
 
 
-class AsyncPlansWithStreamingResponse:
-    def __init__(self, plans: AsyncPlans) -> None:
+class AsyncPlansResourceWithStreamingResponse:
+    def __init__(self, plans: AsyncPlansResource) -> None:
         self._plans = plans
 
         self.list = async_to_streamed_response_wrapper(

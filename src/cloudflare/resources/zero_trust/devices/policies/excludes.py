@@ -31,17 +31,17 @@ from .....types.zero_trust.devices.policies.split_tunnel_exclude import SplitTun
 from .....types.zero_trust.devices.policies.exclude_update_response import ExcludeUpdateResponse
 from .....types.zero_trust.devices.policies.split_tunnel_exclude_param import SplitTunnelExcludeParam
 
-__all__ = ["Excludes", "AsyncExcludes"]
+__all__ = ["ExcludesResource", "AsyncExcludesResource"]
 
 
-class Excludes(SyncAPIResource):
+class ExcludesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ExcludesWithRawResponse:
-        return ExcludesWithRawResponse(self)
+    def with_raw_response(self) -> ExcludesResourceWithRawResponse:
+        return ExcludesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ExcludesWithStreamingResponse:
-        return ExcludesWithStreamingResponse(self)
+    def with_streaming_response(self) -> ExcludesResourceWithStreamingResponse:
+        return ExcludesResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -160,14 +160,14 @@ class Excludes(SyncAPIResource):
         )
 
 
-class AsyncExcludes(AsyncAPIResource):
+class AsyncExcludesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncExcludesWithRawResponse:
-        return AsyncExcludesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncExcludesResourceWithRawResponse:
+        return AsyncExcludesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncExcludesWithStreamingResponse:
-        return AsyncExcludesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncExcludesResourceWithStreamingResponse:
+        return AsyncExcludesResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -286,8 +286,8 @@ class AsyncExcludes(AsyncAPIResource):
         )
 
 
-class ExcludesWithRawResponse:
-    def __init__(self, excludes: Excludes) -> None:
+class ExcludesResourceWithRawResponse:
+    def __init__(self, excludes: ExcludesResource) -> None:
         self._excludes = excludes
 
         self.update = to_raw_response_wrapper(
@@ -301,8 +301,8 @@ class ExcludesWithRawResponse:
         )
 
 
-class AsyncExcludesWithRawResponse:
-    def __init__(self, excludes: AsyncExcludes) -> None:
+class AsyncExcludesResourceWithRawResponse:
+    def __init__(self, excludes: AsyncExcludesResource) -> None:
         self._excludes = excludes
 
         self.update = async_to_raw_response_wrapper(
@@ -316,8 +316,8 @@ class AsyncExcludesWithRawResponse:
         )
 
 
-class ExcludesWithStreamingResponse:
-    def __init__(self, excludes: Excludes) -> None:
+class ExcludesResourceWithStreamingResponse:
+    def __init__(self, excludes: ExcludesResource) -> None:
         self._excludes = excludes
 
         self.update = to_streamed_response_wrapper(
@@ -331,8 +331,8 @@ class ExcludesWithStreamingResponse:
         )
 
 
-class AsyncExcludesWithStreamingResponse:
-    def __init__(self, excludes: AsyncExcludes) -> None:
+class AsyncExcludesResourceWithStreamingResponse:
+    def __init__(self, excludes: AsyncExcludesResource) -> None:
         self._excludes = excludes
 
         self.update = async_to_streamed_response_wrapper(

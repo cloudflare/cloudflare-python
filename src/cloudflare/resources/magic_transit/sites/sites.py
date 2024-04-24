@@ -7,28 +7,28 @@ from typing import Type, cast
 import httpx
 
 from .acls import (
-    ACLs,
-    AsyncACLs,
-    ACLsWithRawResponse,
-    AsyncACLsWithRawResponse,
-    ACLsWithStreamingResponse,
-    AsyncACLsWithStreamingResponse,
+    ACLsResource,
+    AsyncACLsResource,
+    ACLsResourceWithRawResponse,
+    AsyncACLsResourceWithRawResponse,
+    ACLsResourceWithStreamingResponse,
+    AsyncACLsResourceWithStreamingResponse,
 )
 from .lans import (
-    LANs,
-    AsyncLANs,
-    LANsWithRawResponse,
-    AsyncLANsWithRawResponse,
-    LANsWithStreamingResponse,
-    AsyncLANsWithStreamingResponse,
+    LANsResource,
+    AsyncLANsResource,
+    LANsResourceWithRawResponse,
+    AsyncLANsResourceWithRawResponse,
+    LANsResourceWithStreamingResponse,
+    AsyncLANsResourceWithStreamingResponse,
 )
 from .wans import (
-    WANs,
-    AsyncWANs,
-    WANsWithRawResponse,
-    AsyncWANsWithRawResponse,
-    WANsWithStreamingResponse,
-    AsyncWANsWithStreamingResponse,
+    WANsResource,
+    AsyncWANsResource,
+    WANsResourceWithRawResponse,
+    AsyncWANsResourceWithRawResponse,
+    WANsResourceWithStreamingResponse,
+    AsyncWANsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -58,29 +58,29 @@ from ....types.magic_transit import (
 from ....types.magic_transit.site import Site
 from ....types.magic_transit.site_location_param import SiteLocationParam
 
-__all__ = ["Sites", "AsyncSites"]
+__all__ = ["SitesResource", "AsyncSitesResource"]
 
 
-class Sites(SyncAPIResource):
+class SitesResource(SyncAPIResource):
     @cached_property
-    def acls(self) -> ACLs:
-        return ACLs(self._client)
-
-    @cached_property
-    def lans(self) -> LANs:
-        return LANs(self._client)
+    def acls(self) -> ACLsResource:
+        return ACLsResource(self._client)
 
     @cached_property
-    def wans(self) -> WANs:
-        return WANs(self._client)
+    def lans(self) -> LANsResource:
+        return LANsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> SitesWithRawResponse:
-        return SitesWithRawResponse(self)
+    def wans(self) -> WANsResource:
+        return WANsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> SitesWithStreamingResponse:
-        return SitesWithStreamingResponse(self)
+    def with_raw_response(self) -> SitesResourceWithRawResponse:
+        return SitesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> SitesResourceWithStreamingResponse:
+        return SitesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -353,26 +353,26 @@ class Sites(SyncAPIResource):
         )
 
 
-class AsyncSites(AsyncAPIResource):
+class AsyncSitesResource(AsyncAPIResource):
     @cached_property
-    def acls(self) -> AsyncACLs:
-        return AsyncACLs(self._client)
+    def acls(self) -> AsyncACLsResource:
+        return AsyncACLsResource(self._client)
 
     @cached_property
-    def lans(self) -> AsyncLANs:
-        return AsyncLANs(self._client)
+    def lans(self) -> AsyncLANsResource:
+        return AsyncLANsResource(self._client)
 
     @cached_property
-    def wans(self) -> AsyncWANs:
-        return AsyncWANs(self._client)
+    def wans(self) -> AsyncWANsResource:
+        return AsyncWANsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncSitesWithRawResponse:
-        return AsyncSitesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSitesResourceWithRawResponse:
+        return AsyncSitesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSitesWithStreamingResponse:
-        return AsyncSitesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSitesResourceWithStreamingResponse:
+        return AsyncSitesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -645,8 +645,8 @@ class AsyncSites(AsyncAPIResource):
         )
 
 
-class SitesWithRawResponse:
-    def __init__(self, sites: Sites) -> None:
+class SitesResourceWithRawResponse:
+    def __init__(self, sites: SitesResource) -> None:
         self._sites = sites
 
         self.create = to_raw_response_wrapper(
@@ -666,20 +666,20 @@ class SitesWithRawResponse:
         )
 
     @cached_property
-    def acls(self) -> ACLsWithRawResponse:
-        return ACLsWithRawResponse(self._sites.acls)
+    def acls(self) -> ACLsResourceWithRawResponse:
+        return ACLsResourceWithRawResponse(self._sites.acls)
 
     @cached_property
-    def lans(self) -> LANsWithRawResponse:
-        return LANsWithRawResponse(self._sites.lans)
+    def lans(self) -> LANsResourceWithRawResponse:
+        return LANsResourceWithRawResponse(self._sites.lans)
 
     @cached_property
-    def wans(self) -> WANsWithRawResponse:
-        return WANsWithRawResponse(self._sites.wans)
+    def wans(self) -> WANsResourceWithRawResponse:
+        return WANsResourceWithRawResponse(self._sites.wans)
 
 
-class AsyncSitesWithRawResponse:
-    def __init__(self, sites: AsyncSites) -> None:
+class AsyncSitesResourceWithRawResponse:
+    def __init__(self, sites: AsyncSitesResource) -> None:
         self._sites = sites
 
         self.create = async_to_raw_response_wrapper(
@@ -699,20 +699,20 @@ class AsyncSitesWithRawResponse:
         )
 
     @cached_property
-    def acls(self) -> AsyncACLsWithRawResponse:
-        return AsyncACLsWithRawResponse(self._sites.acls)
+    def acls(self) -> AsyncACLsResourceWithRawResponse:
+        return AsyncACLsResourceWithRawResponse(self._sites.acls)
 
     @cached_property
-    def lans(self) -> AsyncLANsWithRawResponse:
-        return AsyncLANsWithRawResponse(self._sites.lans)
+    def lans(self) -> AsyncLANsResourceWithRawResponse:
+        return AsyncLANsResourceWithRawResponse(self._sites.lans)
 
     @cached_property
-    def wans(self) -> AsyncWANsWithRawResponse:
-        return AsyncWANsWithRawResponse(self._sites.wans)
+    def wans(self) -> AsyncWANsResourceWithRawResponse:
+        return AsyncWANsResourceWithRawResponse(self._sites.wans)
 
 
-class SitesWithStreamingResponse:
-    def __init__(self, sites: Sites) -> None:
+class SitesResourceWithStreamingResponse:
+    def __init__(self, sites: SitesResource) -> None:
         self._sites = sites
 
         self.create = to_streamed_response_wrapper(
@@ -732,20 +732,20 @@ class SitesWithStreamingResponse:
         )
 
     @cached_property
-    def acls(self) -> ACLsWithStreamingResponse:
-        return ACLsWithStreamingResponse(self._sites.acls)
+    def acls(self) -> ACLsResourceWithStreamingResponse:
+        return ACLsResourceWithStreamingResponse(self._sites.acls)
 
     @cached_property
-    def lans(self) -> LANsWithStreamingResponse:
-        return LANsWithStreamingResponse(self._sites.lans)
+    def lans(self) -> LANsResourceWithStreamingResponse:
+        return LANsResourceWithStreamingResponse(self._sites.lans)
 
     @cached_property
-    def wans(self) -> WANsWithStreamingResponse:
-        return WANsWithStreamingResponse(self._sites.wans)
+    def wans(self) -> WANsResourceWithStreamingResponse:
+        return WANsResourceWithStreamingResponse(self._sites.wans)
 
 
-class AsyncSitesWithStreamingResponse:
-    def __init__(self, sites: AsyncSites) -> None:
+class AsyncSitesResourceWithStreamingResponse:
+    def __init__(self, sites: AsyncSitesResource) -> None:
         self._sites = sites
 
         self.create = async_to_streamed_response_wrapper(
@@ -765,13 +765,13 @@ class AsyncSitesWithStreamingResponse:
         )
 
     @cached_property
-    def acls(self) -> AsyncACLsWithStreamingResponse:
-        return AsyncACLsWithStreamingResponse(self._sites.acls)
+    def acls(self) -> AsyncACLsResourceWithStreamingResponse:
+        return AsyncACLsResourceWithStreamingResponse(self._sites.acls)
 
     @cached_property
-    def lans(self) -> AsyncLANsWithStreamingResponse:
-        return AsyncLANsWithStreamingResponse(self._sites.lans)
+    def lans(self) -> AsyncLANsResourceWithStreamingResponse:
+        return AsyncLANsResourceWithStreamingResponse(self._sites.lans)
 
     @cached_property
-    def wans(self) -> AsyncWANsWithStreamingResponse:
-        return AsyncWANsWithStreamingResponse(self._sites.wans)
+    def wans(self) -> AsyncWANsResourceWithStreamingResponse:
+        return AsyncWANsResourceWithStreamingResponse(self._sites.wans)

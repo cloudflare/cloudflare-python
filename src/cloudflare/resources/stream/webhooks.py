@@ -28,17 +28,17 @@ from ...types.stream.webhook_get_response import WebhookGetResponse
 from ...types.stream.webhook_delete_response import WebhookDeleteResponse
 from ...types.stream.webhook_update_response import WebhookUpdateResponse
 
-__all__ = ["Webhooks", "AsyncWebhooks"]
+__all__ = ["WebhooksResource", "AsyncWebhooksResource"]
 
 
-class Webhooks(SyncAPIResource):
+class WebhooksResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WebhooksWithRawResponse:
-        return WebhooksWithRawResponse(self)
+    def with_raw_response(self) -> WebhooksResourceWithRawResponse:
+        return WebhooksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WebhooksWithStreamingResponse:
-        return WebhooksWithStreamingResponse(self)
+    def with_streaming_response(self) -> WebhooksResourceWithStreamingResponse:
+        return WebhooksResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -179,14 +179,14 @@ class Webhooks(SyncAPIResource):
         )
 
 
-class AsyncWebhooks(AsyncAPIResource):
+class AsyncWebhooksResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncWebhooksWithRawResponse:
-        return AsyncWebhooksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWebhooksResourceWithRawResponse:
+        return AsyncWebhooksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWebhooksWithStreamingResponse:
-        return AsyncWebhooksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWebhooksResourceWithStreamingResponse:
+        return AsyncWebhooksResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -329,8 +329,8 @@ class AsyncWebhooks(AsyncAPIResource):
         )
 
 
-class WebhooksWithRawResponse:
-    def __init__(self, webhooks: Webhooks) -> None:
+class WebhooksResourceWithRawResponse:
+    def __init__(self, webhooks: WebhooksResource) -> None:
         self._webhooks = webhooks
 
         self.update = to_raw_response_wrapper(
@@ -344,8 +344,8 @@ class WebhooksWithRawResponse:
         )
 
 
-class AsyncWebhooksWithRawResponse:
-    def __init__(self, webhooks: AsyncWebhooks) -> None:
+class AsyncWebhooksResourceWithRawResponse:
+    def __init__(self, webhooks: AsyncWebhooksResource) -> None:
         self._webhooks = webhooks
 
         self.update = async_to_raw_response_wrapper(
@@ -359,8 +359,8 @@ class AsyncWebhooksWithRawResponse:
         )
 
 
-class WebhooksWithStreamingResponse:
-    def __init__(self, webhooks: Webhooks) -> None:
+class WebhooksResourceWithStreamingResponse:
+    def __init__(self, webhooks: WebhooksResource) -> None:
         self._webhooks = webhooks
 
         self.update = to_streamed_response_wrapper(
@@ -374,8 +374,8 @@ class WebhooksWithStreamingResponse:
         )
 
 
-class AsyncWebhooksWithStreamingResponse:
-    def __init__(self, webhooks: AsyncWebhooks) -> None:
+class AsyncWebhooksResourceWithStreamingResponse:
+    def __init__(self, webhooks: AsyncWebhooksResource) -> None:
         self._webhooks = webhooks
 
         self.update = async_to_streamed_response_wrapper(

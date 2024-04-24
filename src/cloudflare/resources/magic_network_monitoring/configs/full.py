@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.magic_network_monitoring.configuration import Configuration
 
-__all__ = ["Full", "AsyncFull"]
+__all__ = ["FullResource", "AsyncFullResource"]
 
 
-class Full(SyncAPIResource):
+class FullResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> FullWithRawResponse:
-        return FullWithRawResponse(self)
+    def with_raw_response(self) -> FullResourceWithRawResponse:
+        return FullResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FullWithStreamingResponse:
-        return FullWithStreamingResponse(self)
+    def with_streaming_response(self) -> FullResourceWithStreamingResponse:
+        return FullResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -71,14 +71,14 @@ class Full(SyncAPIResource):
         )
 
 
-class AsyncFull(AsyncAPIResource):
+class AsyncFullResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncFullWithRawResponse:
-        return AsyncFullWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFullResourceWithRawResponse:
+        return AsyncFullResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFullWithStreamingResponse:
-        return AsyncFullWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFullResourceWithStreamingResponse:
+        return AsyncFullResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -118,8 +118,8 @@ class AsyncFull(AsyncAPIResource):
         )
 
 
-class FullWithRawResponse:
-    def __init__(self, full: Full) -> None:
+class FullResourceWithRawResponse:
+    def __init__(self, full: FullResource) -> None:
         self._full = full
 
         self.get = to_raw_response_wrapper(
@@ -127,8 +127,8 @@ class FullWithRawResponse:
         )
 
 
-class AsyncFullWithRawResponse:
-    def __init__(self, full: AsyncFull) -> None:
+class AsyncFullResourceWithRawResponse:
+    def __init__(self, full: AsyncFullResource) -> None:
         self._full = full
 
         self.get = async_to_raw_response_wrapper(
@@ -136,8 +136,8 @@ class AsyncFullWithRawResponse:
         )
 
 
-class FullWithStreamingResponse:
-    def __init__(self, full: Full) -> None:
+class FullResourceWithStreamingResponse:
+    def __init__(self, full: FullResource) -> None:
         self._full = full
 
         self.get = to_streamed_response_wrapper(
@@ -145,8 +145,8 @@ class FullWithStreamingResponse:
         )
 
 
-class AsyncFullWithStreamingResponse:
-    def __init__(self, full: AsyncFull) -> None:
+class AsyncFullResourceWithStreamingResponse:
+    def __init__(self, full: AsyncFullResource) -> None:
         self._full = full
 
         self.get = async_to_streamed_response_wrapper(

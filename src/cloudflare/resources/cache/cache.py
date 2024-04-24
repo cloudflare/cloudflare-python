@@ -13,12 +13,12 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .variants import (
-    Variants,
-    AsyncVariants,
-    VariantsWithRawResponse,
-    AsyncVariantsWithRawResponse,
-    VariantsWithStreamingResponse,
-    AsyncVariantsWithStreamingResponse,
+    VariantsResource,
+    AsyncVariantsResource,
+    VariantsResourceWithRawResponse,
+    AsyncVariantsResourceWithRawResponse,
+    VariantsResourceWithStreamingResponse,
+    AsyncVariantsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -42,12 +42,12 @@ from ..._base_client import (
     make_request_options,
 )
 from .smart_tiered_cache import (
-    SmartTieredCache,
-    AsyncSmartTieredCache,
-    SmartTieredCacheWithRawResponse,
-    AsyncSmartTieredCacheWithRawResponse,
-    SmartTieredCacheWithStreamingResponse,
-    AsyncSmartTieredCacheWithStreamingResponse,
+    SmartTieredCacheResource,
+    AsyncSmartTieredCacheResource,
+    SmartTieredCacheResourceWithRawResponse,
+    AsyncSmartTieredCacheResourceWithRawResponse,
+    SmartTieredCacheResourceWithStreamingResponse,
+    AsyncSmartTieredCacheResourceWithStreamingResponse,
 )
 from .regional_tiered_cache import (
     RegionalTieredCacheResource,
@@ -59,33 +59,33 @@ from .regional_tiered_cache import (
 )
 from ...types.cache.cache_purge_response import CachePurgeResponse
 
-__all__ = ["Cache", "AsyncCache"]
+__all__ = ["CacheResource", "AsyncCacheResource"]
 
 
-class Cache(SyncAPIResource):
+class CacheResource(SyncAPIResource):
     @cached_property
     def cache_reserve(self) -> CacheReserveResource:
         return CacheReserveResource(self._client)
 
     @cached_property
-    def smart_tiered_cache(self) -> SmartTieredCache:
-        return SmartTieredCache(self._client)
+    def smart_tiered_cache(self) -> SmartTieredCacheResource:
+        return SmartTieredCacheResource(self._client)
 
     @cached_property
-    def variants(self) -> Variants:
-        return Variants(self._client)
+    def variants(self) -> VariantsResource:
+        return VariantsResource(self._client)
 
     @cached_property
     def regional_tiered_cache(self) -> RegionalTieredCacheResource:
         return RegionalTieredCacheResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> CacheWithRawResponse:
-        return CacheWithRawResponse(self)
+    def with_raw_response(self) -> CacheResourceWithRawResponse:
+        return CacheResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CacheWithStreamingResponse:
-        return CacheWithStreamingResponse(self)
+    def with_streaming_response(self) -> CacheResourceWithStreamingResponse:
+        return CacheResourceWithStreamingResponse(self)
 
     @overload
     def purge(
@@ -414,30 +414,30 @@ class Cache(SyncAPIResource):
         )
 
 
-class AsyncCache(AsyncAPIResource):
+class AsyncCacheResource(AsyncAPIResource):
     @cached_property
     def cache_reserve(self) -> AsyncCacheReserveResource:
         return AsyncCacheReserveResource(self._client)
 
     @cached_property
-    def smart_tiered_cache(self) -> AsyncSmartTieredCache:
-        return AsyncSmartTieredCache(self._client)
+    def smart_tiered_cache(self) -> AsyncSmartTieredCacheResource:
+        return AsyncSmartTieredCacheResource(self._client)
 
     @cached_property
-    def variants(self) -> AsyncVariants:
-        return AsyncVariants(self._client)
+    def variants(self) -> AsyncVariantsResource:
+        return AsyncVariantsResource(self._client)
 
     @cached_property
     def regional_tiered_cache(self) -> AsyncRegionalTieredCacheResource:
         return AsyncRegionalTieredCacheResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCacheWithRawResponse:
-        return AsyncCacheWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCacheResourceWithRawResponse:
+        return AsyncCacheResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCacheWithStreamingResponse:
-        return AsyncCacheWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCacheResourceWithStreamingResponse:
+        return AsyncCacheResourceWithStreamingResponse(self)
 
     @overload
     async def purge(
@@ -766,8 +766,8 @@ class AsyncCache(AsyncAPIResource):
         )
 
 
-class CacheWithRawResponse:
-    def __init__(self, cache: Cache) -> None:
+class CacheResourceWithRawResponse:
+    def __init__(self, cache: CacheResource) -> None:
         self._cache = cache
 
         self.purge = to_raw_response_wrapper(
@@ -779,20 +779,20 @@ class CacheWithRawResponse:
         return CacheReserveResourceWithRawResponse(self._cache.cache_reserve)
 
     @cached_property
-    def smart_tiered_cache(self) -> SmartTieredCacheWithRawResponse:
-        return SmartTieredCacheWithRawResponse(self._cache.smart_tiered_cache)
+    def smart_tiered_cache(self) -> SmartTieredCacheResourceWithRawResponse:
+        return SmartTieredCacheResourceWithRawResponse(self._cache.smart_tiered_cache)
 
     @cached_property
-    def variants(self) -> VariantsWithRawResponse:
-        return VariantsWithRawResponse(self._cache.variants)
+    def variants(self) -> VariantsResourceWithRawResponse:
+        return VariantsResourceWithRawResponse(self._cache.variants)
 
     @cached_property
     def regional_tiered_cache(self) -> RegionalTieredCacheResourceWithRawResponse:
         return RegionalTieredCacheResourceWithRawResponse(self._cache.regional_tiered_cache)
 
 
-class AsyncCacheWithRawResponse:
-    def __init__(self, cache: AsyncCache) -> None:
+class AsyncCacheResourceWithRawResponse:
+    def __init__(self, cache: AsyncCacheResource) -> None:
         self._cache = cache
 
         self.purge = async_to_raw_response_wrapper(
@@ -804,20 +804,20 @@ class AsyncCacheWithRawResponse:
         return AsyncCacheReserveResourceWithRawResponse(self._cache.cache_reserve)
 
     @cached_property
-    def smart_tiered_cache(self) -> AsyncSmartTieredCacheWithRawResponse:
-        return AsyncSmartTieredCacheWithRawResponse(self._cache.smart_tiered_cache)
+    def smart_tiered_cache(self) -> AsyncSmartTieredCacheResourceWithRawResponse:
+        return AsyncSmartTieredCacheResourceWithRawResponse(self._cache.smart_tiered_cache)
 
     @cached_property
-    def variants(self) -> AsyncVariantsWithRawResponse:
-        return AsyncVariantsWithRawResponse(self._cache.variants)
+    def variants(self) -> AsyncVariantsResourceWithRawResponse:
+        return AsyncVariantsResourceWithRawResponse(self._cache.variants)
 
     @cached_property
     def regional_tiered_cache(self) -> AsyncRegionalTieredCacheResourceWithRawResponse:
         return AsyncRegionalTieredCacheResourceWithRawResponse(self._cache.regional_tiered_cache)
 
 
-class CacheWithStreamingResponse:
-    def __init__(self, cache: Cache) -> None:
+class CacheResourceWithStreamingResponse:
+    def __init__(self, cache: CacheResource) -> None:
         self._cache = cache
 
         self.purge = to_streamed_response_wrapper(
@@ -829,20 +829,20 @@ class CacheWithStreamingResponse:
         return CacheReserveResourceWithStreamingResponse(self._cache.cache_reserve)
 
     @cached_property
-    def smart_tiered_cache(self) -> SmartTieredCacheWithStreamingResponse:
-        return SmartTieredCacheWithStreamingResponse(self._cache.smart_tiered_cache)
+    def smart_tiered_cache(self) -> SmartTieredCacheResourceWithStreamingResponse:
+        return SmartTieredCacheResourceWithStreamingResponse(self._cache.smart_tiered_cache)
 
     @cached_property
-    def variants(self) -> VariantsWithStreamingResponse:
-        return VariantsWithStreamingResponse(self._cache.variants)
+    def variants(self) -> VariantsResourceWithStreamingResponse:
+        return VariantsResourceWithStreamingResponse(self._cache.variants)
 
     @cached_property
     def regional_tiered_cache(self) -> RegionalTieredCacheResourceWithStreamingResponse:
         return RegionalTieredCacheResourceWithStreamingResponse(self._cache.regional_tiered_cache)
 
 
-class AsyncCacheWithStreamingResponse:
-    def __init__(self, cache: AsyncCache) -> None:
+class AsyncCacheResourceWithStreamingResponse:
+    def __init__(self, cache: AsyncCacheResource) -> None:
         self._cache = cache
 
         self.purge = async_to_streamed_response_wrapper(
@@ -854,12 +854,12 @@ class AsyncCacheWithStreamingResponse:
         return AsyncCacheReserveResourceWithStreamingResponse(self._cache.cache_reserve)
 
     @cached_property
-    def smart_tiered_cache(self) -> AsyncSmartTieredCacheWithStreamingResponse:
-        return AsyncSmartTieredCacheWithStreamingResponse(self._cache.smart_tiered_cache)
+    def smart_tiered_cache(self) -> AsyncSmartTieredCacheResourceWithStreamingResponse:
+        return AsyncSmartTieredCacheResourceWithStreamingResponse(self._cache.smart_tiered_cache)
 
     @cached_property
-    def variants(self) -> AsyncVariantsWithStreamingResponse:
-        return AsyncVariantsWithStreamingResponse(self._cache.variants)
+    def variants(self) -> AsyncVariantsResourceWithStreamingResponse:
+        return AsyncVariantsResourceWithStreamingResponse(self._cache.variants)
 
     @cached_property
     def regional_tiered_cache(self) -> AsyncRegionalTieredCacheResourceWithStreamingResponse:

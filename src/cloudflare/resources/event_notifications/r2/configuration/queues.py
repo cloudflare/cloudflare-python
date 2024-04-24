@@ -27,17 +27,17 @@ from .....types.event_notifications.r2.configuration import queue_update_params
 from .....types.event_notifications.r2.configuration.queue_delete_response import QueueDeleteResponse
 from .....types.event_notifications.r2.configuration.queue_update_response import QueueUpdateResponse
 
-__all__ = ["Queues", "AsyncQueues"]
+__all__ = ["QueuesResource", "AsyncQueuesResource"]
 
 
-class Queues(SyncAPIResource):
+class QueuesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> QueuesWithRawResponse:
-        return QueuesWithRawResponse(self)
+    def with_raw_response(self) -> QueuesResourceWithRawResponse:
+        return QueuesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> QueuesWithStreamingResponse:
-        return QueuesWithStreamingResponse(self)
+    def with_streaming_response(self) -> QueuesResourceWithStreamingResponse:
+        return QueuesResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -150,14 +150,14 @@ class Queues(SyncAPIResource):
         )
 
 
-class AsyncQueues(AsyncAPIResource):
+class AsyncQueuesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncQueuesWithRawResponse:
-        return AsyncQueuesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncQueuesResourceWithRawResponse:
+        return AsyncQueuesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncQueuesWithStreamingResponse:
-        return AsyncQueuesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncQueuesResourceWithStreamingResponse:
+        return AsyncQueuesResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -270,8 +270,8 @@ class AsyncQueues(AsyncAPIResource):
         )
 
 
-class QueuesWithRawResponse:
-    def __init__(self, queues: Queues) -> None:
+class QueuesResourceWithRawResponse:
+    def __init__(self, queues: QueuesResource) -> None:
         self._queues = queues
 
         self.update = to_raw_response_wrapper(
@@ -282,8 +282,8 @@ class QueuesWithRawResponse:
         )
 
 
-class AsyncQueuesWithRawResponse:
-    def __init__(self, queues: AsyncQueues) -> None:
+class AsyncQueuesResourceWithRawResponse:
+    def __init__(self, queues: AsyncQueuesResource) -> None:
         self._queues = queues
 
         self.update = async_to_raw_response_wrapper(
@@ -294,8 +294,8 @@ class AsyncQueuesWithRawResponse:
         )
 
 
-class QueuesWithStreamingResponse:
-    def __init__(self, queues: Queues) -> None:
+class QueuesResourceWithStreamingResponse:
+    def __init__(self, queues: QueuesResource) -> None:
         self._queues = queues
 
         self.update = to_streamed_response_wrapper(
@@ -306,8 +306,8 @@ class QueuesWithStreamingResponse:
         )
 
 
-class AsyncQueuesWithStreamingResponse:
-    def __init__(self, queues: AsyncQueues) -> None:
+class AsyncQueuesResourceWithStreamingResponse:
+    def __init__(self, queues: AsyncQueuesResource) -> None:
         self._queues = queues
 
         self.update = async_to_streamed_response_wrapper(

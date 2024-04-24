@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.rules.lists.bulk_operation_get_response import BulkOperationGetResponse
 
-__all__ = ["BulkOperations", "AsyncBulkOperations"]
+__all__ = ["BulkOperationsResource", "AsyncBulkOperationsResource"]
 
 
-class BulkOperations(SyncAPIResource):
+class BulkOperationsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BulkOperationsWithRawResponse:
-        return BulkOperationsWithRawResponse(self)
+    def with_raw_response(self) -> BulkOperationsResourceWithRawResponse:
+        return BulkOperationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BulkOperationsWithStreamingResponse:
-        return BulkOperationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> BulkOperationsResourceWithStreamingResponse:
+        return BulkOperationsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -82,14 +82,14 @@ class BulkOperations(SyncAPIResource):
         )
 
 
-class AsyncBulkOperations(AsyncAPIResource):
+class AsyncBulkOperationsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBulkOperationsWithRawResponse:
-        return AsyncBulkOperationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBulkOperationsResourceWithRawResponse:
+        return AsyncBulkOperationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBulkOperationsWithStreamingResponse:
-        return AsyncBulkOperationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBulkOperationsResourceWithStreamingResponse:
+        return AsyncBulkOperationsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -140,8 +140,8 @@ class AsyncBulkOperations(AsyncAPIResource):
         )
 
 
-class BulkOperationsWithRawResponse:
-    def __init__(self, bulk_operations: BulkOperations) -> None:
+class BulkOperationsResourceWithRawResponse:
+    def __init__(self, bulk_operations: BulkOperationsResource) -> None:
         self._bulk_operations = bulk_operations
 
         self.get = to_raw_response_wrapper(
@@ -149,8 +149,8 @@ class BulkOperationsWithRawResponse:
         )
 
 
-class AsyncBulkOperationsWithRawResponse:
-    def __init__(self, bulk_operations: AsyncBulkOperations) -> None:
+class AsyncBulkOperationsResourceWithRawResponse:
+    def __init__(self, bulk_operations: AsyncBulkOperationsResource) -> None:
         self._bulk_operations = bulk_operations
 
         self.get = async_to_raw_response_wrapper(
@@ -158,8 +158,8 @@ class AsyncBulkOperationsWithRawResponse:
         )
 
 
-class BulkOperationsWithStreamingResponse:
-    def __init__(self, bulk_operations: BulkOperations) -> None:
+class BulkOperationsResourceWithStreamingResponse:
+    def __init__(self, bulk_operations: BulkOperationsResource) -> None:
         self._bulk_operations = bulk_operations
 
         self.get = to_streamed_response_wrapper(
@@ -167,8 +167,8 @@ class BulkOperationsWithStreamingResponse:
         )
 
 
-class AsyncBulkOperationsWithStreamingResponse:
-    def __init__(self, bulk_operations: AsyncBulkOperations) -> None:
+class AsyncBulkOperationsResourceWithStreamingResponse:
+    def __init__(self, bulk_operations: AsyncBulkOperationsResource) -> None:
         self._bulk_operations = bulk_operations
 
         self.get = async_to_streamed_response_wrapper(

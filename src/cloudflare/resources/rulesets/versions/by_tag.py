@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.rulesets.versions.by_tag_get_response import ByTagGetResponse
 
-__all__ = ["ByTag", "AsyncByTag"]
+__all__ = ["ByTagResource", "AsyncByTagResource"]
 
 
-class ByTag(SyncAPIResource):
+class ByTagResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ByTagWithRawResponse:
-        return ByTagWithRawResponse(self)
+    def with_raw_response(self) -> ByTagResourceWithRawResponse:
+        return ByTagResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ByTagWithStreamingResponse:
-        return ByTagWithStreamingResponse(self)
+    def with_streaming_response(self) -> ByTagResourceWithStreamingResponse:
+        return ByTagResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -88,14 +88,14 @@ class ByTag(SyncAPIResource):
         )
 
 
-class AsyncByTag(AsyncAPIResource):
+class AsyncByTagResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncByTagWithRawResponse:
-        return AsyncByTagWithRawResponse(self)
+    def with_raw_response(self) -> AsyncByTagResourceWithRawResponse:
+        return AsyncByTagResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncByTagWithStreamingResponse:
-        return AsyncByTagWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncByTagResourceWithStreamingResponse:
+        return AsyncByTagResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -152,8 +152,8 @@ class AsyncByTag(AsyncAPIResource):
         )
 
 
-class ByTagWithRawResponse:
-    def __init__(self, by_tag: ByTag) -> None:
+class ByTagResourceWithRawResponse:
+    def __init__(self, by_tag: ByTagResource) -> None:
         self._by_tag = by_tag
 
         self.get = to_raw_response_wrapper(
@@ -161,8 +161,8 @@ class ByTagWithRawResponse:
         )
 
 
-class AsyncByTagWithRawResponse:
-    def __init__(self, by_tag: AsyncByTag) -> None:
+class AsyncByTagResourceWithRawResponse:
+    def __init__(self, by_tag: AsyncByTagResource) -> None:
         self._by_tag = by_tag
 
         self.get = async_to_raw_response_wrapper(
@@ -170,8 +170,8 @@ class AsyncByTagWithRawResponse:
         )
 
 
-class ByTagWithStreamingResponse:
-    def __init__(self, by_tag: ByTag) -> None:
+class ByTagResourceWithStreamingResponse:
+    def __init__(self, by_tag: ByTagResource) -> None:
         self._by_tag = by_tag
 
         self.get = to_streamed_response_wrapper(
@@ -179,8 +179,8 @@ class ByTagWithStreamingResponse:
         )
 
 
-class AsyncByTagWithStreamingResponse:
-    def __init__(self, by_tag: AsyncByTag) -> None:
+class AsyncByTagResourceWithStreamingResponse:
+    def __init__(self, by_tag: AsyncByTagResource) -> None:
         self._by_tag = by_tag
 
         self.get = async_to_streamed_response_wrapper(

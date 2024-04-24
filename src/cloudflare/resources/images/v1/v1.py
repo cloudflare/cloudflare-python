@@ -7,36 +7,36 @@ from typing import Any, Type, cast
 import httpx
 
 from .keys import (
-    Keys,
-    AsyncKeys,
-    KeysWithRawResponse,
-    AsyncKeysWithRawResponse,
-    KeysWithStreamingResponse,
-    AsyncKeysWithStreamingResponse,
+    KeysResource,
+    AsyncKeysResource,
+    KeysResourceWithRawResponse,
+    AsyncKeysResourceWithRawResponse,
+    KeysResourceWithStreamingResponse,
+    AsyncKeysResourceWithStreamingResponse,
 )
 from .blobs import (
-    Blobs,
-    AsyncBlobs,
-    BlobsWithRawResponse,
-    AsyncBlobsWithRawResponse,
-    BlobsWithStreamingResponse,
-    AsyncBlobsWithStreamingResponse,
+    BlobsResource,
+    AsyncBlobsResource,
+    BlobsResourceWithRawResponse,
+    AsyncBlobsResourceWithRawResponse,
+    BlobsResourceWithStreamingResponse,
+    AsyncBlobsResourceWithStreamingResponse,
 )
 from .stats import (
-    Stats,
-    AsyncStats,
-    StatsWithRawResponse,
-    AsyncStatsWithRawResponse,
-    StatsWithStreamingResponse,
-    AsyncStatsWithStreamingResponse,
+    StatsResource,
+    AsyncStatsResource,
+    StatsResourceWithRawResponse,
+    AsyncStatsResourceWithRawResponse,
+    StatsResourceWithStreamingResponse,
+    AsyncStatsResourceWithStreamingResponse,
 )
 from .variants import (
-    Variants,
-    AsyncVariants,
-    VariantsWithRawResponse,
-    AsyncVariantsWithRawResponse,
-    VariantsWithStreamingResponse,
-    AsyncVariantsWithStreamingResponse,
+    VariantsResource,
+    AsyncVariantsResource,
+    VariantsResourceWithRawResponse,
+    AsyncVariantsResourceWithRawResponse,
+    VariantsResourceWithStreamingResponse,
+    AsyncVariantsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -62,33 +62,33 @@ from ....types.images.image import Image
 from ....types.images.v1_list_response import V1ListResponse
 from ....types.images.v1_delete_response import V1DeleteResponse
 
-__all__ = ["V1", "AsyncV1"]
+__all__ = ["V1Resource", "AsyncV1Resource"]
 
 
-class V1(SyncAPIResource):
+class V1Resource(SyncAPIResource):
     @cached_property
-    def keys(self) -> Keys:
-        return Keys(self._client)
-
-    @cached_property
-    def stats(self) -> Stats:
-        return Stats(self._client)
+    def keys(self) -> KeysResource:
+        return KeysResource(self._client)
 
     @cached_property
-    def variants(self) -> Variants:
-        return Variants(self._client)
+    def stats(self) -> StatsResource:
+        return StatsResource(self._client)
 
     @cached_property
-    def blobs(self) -> Blobs:
-        return Blobs(self._client)
+    def variants(self) -> VariantsResource:
+        return VariantsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> V1WithRawResponse:
-        return V1WithRawResponse(self)
+    def blobs(self) -> BlobsResource:
+        return BlobsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> V1WithStreamingResponse:
-        return V1WithStreamingResponse(self)
+    def with_raw_response(self) -> V1ResourceWithRawResponse:
+        return V1ResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> V1ResourceWithStreamingResponse:
+        return V1ResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -368,30 +368,30 @@ class V1(SyncAPIResource):
         )
 
 
-class AsyncV1(AsyncAPIResource):
+class AsyncV1Resource(AsyncAPIResource):
     @cached_property
-    def keys(self) -> AsyncKeys:
-        return AsyncKeys(self._client)
+    def keys(self) -> AsyncKeysResource:
+        return AsyncKeysResource(self._client)
 
     @cached_property
-    def stats(self) -> AsyncStats:
-        return AsyncStats(self._client)
+    def stats(self) -> AsyncStatsResource:
+        return AsyncStatsResource(self._client)
 
     @cached_property
-    def variants(self) -> AsyncVariants:
-        return AsyncVariants(self._client)
+    def variants(self) -> AsyncVariantsResource:
+        return AsyncVariantsResource(self._client)
 
     @cached_property
-    def blobs(self) -> AsyncBlobs:
-        return AsyncBlobs(self._client)
+    def blobs(self) -> AsyncBlobsResource:
+        return AsyncBlobsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncV1WithRawResponse:
-        return AsyncV1WithRawResponse(self)
+    def with_raw_response(self) -> AsyncV1ResourceWithRawResponse:
+        return AsyncV1ResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncV1WithStreamingResponse:
-        return AsyncV1WithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncV1ResourceWithStreamingResponse:
+        return AsyncV1ResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -671,8 +671,8 @@ class AsyncV1(AsyncAPIResource):
         )
 
 
-class V1WithRawResponse:
-    def __init__(self, v1: V1) -> None:
+class V1ResourceWithRawResponse:
+    def __init__(self, v1: V1Resource) -> None:
         self._v1 = v1
 
         self.create = to_raw_response_wrapper(
@@ -692,24 +692,24 @@ class V1WithRawResponse:
         )
 
     @cached_property
-    def keys(self) -> KeysWithRawResponse:
-        return KeysWithRawResponse(self._v1.keys)
+    def keys(self) -> KeysResourceWithRawResponse:
+        return KeysResourceWithRawResponse(self._v1.keys)
 
     @cached_property
-    def stats(self) -> StatsWithRawResponse:
-        return StatsWithRawResponse(self._v1.stats)
+    def stats(self) -> StatsResourceWithRawResponse:
+        return StatsResourceWithRawResponse(self._v1.stats)
 
     @cached_property
-    def variants(self) -> VariantsWithRawResponse:
-        return VariantsWithRawResponse(self._v1.variants)
+    def variants(self) -> VariantsResourceWithRawResponse:
+        return VariantsResourceWithRawResponse(self._v1.variants)
 
     @cached_property
-    def blobs(self) -> BlobsWithRawResponse:
-        return BlobsWithRawResponse(self._v1.blobs)
+    def blobs(self) -> BlobsResourceWithRawResponse:
+        return BlobsResourceWithRawResponse(self._v1.blobs)
 
 
-class AsyncV1WithRawResponse:
-    def __init__(self, v1: AsyncV1) -> None:
+class AsyncV1ResourceWithRawResponse:
+    def __init__(self, v1: AsyncV1Resource) -> None:
         self._v1 = v1
 
         self.create = async_to_raw_response_wrapper(
@@ -729,24 +729,24 @@ class AsyncV1WithRawResponse:
         )
 
     @cached_property
-    def keys(self) -> AsyncKeysWithRawResponse:
-        return AsyncKeysWithRawResponse(self._v1.keys)
+    def keys(self) -> AsyncKeysResourceWithRawResponse:
+        return AsyncKeysResourceWithRawResponse(self._v1.keys)
 
     @cached_property
-    def stats(self) -> AsyncStatsWithRawResponse:
-        return AsyncStatsWithRawResponse(self._v1.stats)
+    def stats(self) -> AsyncStatsResourceWithRawResponse:
+        return AsyncStatsResourceWithRawResponse(self._v1.stats)
 
     @cached_property
-    def variants(self) -> AsyncVariantsWithRawResponse:
-        return AsyncVariantsWithRawResponse(self._v1.variants)
+    def variants(self) -> AsyncVariantsResourceWithRawResponse:
+        return AsyncVariantsResourceWithRawResponse(self._v1.variants)
 
     @cached_property
-    def blobs(self) -> AsyncBlobsWithRawResponse:
-        return AsyncBlobsWithRawResponse(self._v1.blobs)
+    def blobs(self) -> AsyncBlobsResourceWithRawResponse:
+        return AsyncBlobsResourceWithRawResponse(self._v1.blobs)
 
 
-class V1WithStreamingResponse:
-    def __init__(self, v1: V1) -> None:
+class V1ResourceWithStreamingResponse:
+    def __init__(self, v1: V1Resource) -> None:
         self._v1 = v1
 
         self.create = to_streamed_response_wrapper(
@@ -766,24 +766,24 @@ class V1WithStreamingResponse:
         )
 
     @cached_property
-    def keys(self) -> KeysWithStreamingResponse:
-        return KeysWithStreamingResponse(self._v1.keys)
+    def keys(self) -> KeysResourceWithStreamingResponse:
+        return KeysResourceWithStreamingResponse(self._v1.keys)
 
     @cached_property
-    def stats(self) -> StatsWithStreamingResponse:
-        return StatsWithStreamingResponse(self._v1.stats)
+    def stats(self) -> StatsResourceWithStreamingResponse:
+        return StatsResourceWithStreamingResponse(self._v1.stats)
 
     @cached_property
-    def variants(self) -> VariantsWithStreamingResponse:
-        return VariantsWithStreamingResponse(self._v1.variants)
+    def variants(self) -> VariantsResourceWithStreamingResponse:
+        return VariantsResourceWithStreamingResponse(self._v1.variants)
 
     @cached_property
-    def blobs(self) -> BlobsWithStreamingResponse:
-        return BlobsWithStreamingResponse(self._v1.blobs)
+    def blobs(self) -> BlobsResourceWithStreamingResponse:
+        return BlobsResourceWithStreamingResponse(self._v1.blobs)
 
 
-class AsyncV1WithStreamingResponse:
-    def __init__(self, v1: AsyncV1) -> None:
+class AsyncV1ResourceWithStreamingResponse:
+    def __init__(self, v1: AsyncV1Resource) -> None:
         self._v1 = v1
 
         self.create = async_to_streamed_response_wrapper(
@@ -803,17 +803,17 @@ class AsyncV1WithStreamingResponse:
         )
 
     @cached_property
-    def keys(self) -> AsyncKeysWithStreamingResponse:
-        return AsyncKeysWithStreamingResponse(self._v1.keys)
+    def keys(self) -> AsyncKeysResourceWithStreamingResponse:
+        return AsyncKeysResourceWithStreamingResponse(self._v1.keys)
 
     @cached_property
-    def stats(self) -> AsyncStatsWithStreamingResponse:
-        return AsyncStatsWithStreamingResponse(self._v1.stats)
+    def stats(self) -> AsyncStatsResourceWithStreamingResponse:
+        return AsyncStatsResourceWithStreamingResponse(self._v1.stats)
 
     @cached_property
-    def variants(self) -> AsyncVariantsWithStreamingResponse:
-        return AsyncVariantsWithStreamingResponse(self._v1.variants)
+    def variants(self) -> AsyncVariantsResourceWithStreamingResponse:
+        return AsyncVariantsResourceWithStreamingResponse(self._v1.variants)
 
     @cached_property
-    def blobs(self) -> AsyncBlobsWithStreamingResponse:
-        return AsyncBlobsWithStreamingResponse(self._v1.blobs)
+    def blobs(self) -> AsyncBlobsResourceWithStreamingResponse:
+        return AsyncBlobsResourceWithStreamingResponse(self._v1.blobs)

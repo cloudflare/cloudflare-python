@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .config import (
-    Config,
-    AsyncConfig,
-    ConfigWithRawResponse,
-    AsyncConfigWithRawResponse,
-    ConfigWithStreamingResponse,
-    AsyncConfigWithStreamingResponse,
+    ConfigResource,
+    AsyncConfigResource,
+    ConfigResourceWithRawResponse,
+    AsyncConfigResourceWithRawResponse,
+    ConfigResourceWithStreamingResponse,
+    AsyncConfigResourceWithStreamingResponse,
 )
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Cmb", "AsyncCmb"]
+__all__ = ["CmbResource", "AsyncCmbResource"]
 
 
-class Cmb(SyncAPIResource):
+class CmbResource(SyncAPIResource):
     @cached_property
-    def config(self) -> Config:
-        return Config(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> CmbWithRawResponse:
-        return CmbWithRawResponse(self)
+    def config(self) -> ConfigResource:
+        return ConfigResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> CmbWithStreamingResponse:
-        return CmbWithStreamingResponse(self)
-
-
-class AsyncCmb(AsyncAPIResource):
-    @cached_property
-    def config(self) -> AsyncConfig:
-        return AsyncConfig(self._client)
+    def with_raw_response(self) -> CmbResourceWithRawResponse:
+        return CmbResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCmbWithRawResponse:
-        return AsyncCmbWithRawResponse(self)
+    def with_streaming_response(self) -> CmbResourceWithStreamingResponse:
+        return CmbResourceWithStreamingResponse(self)
+
+
+class AsyncCmbResource(AsyncAPIResource):
+    @cached_property
+    def config(self) -> AsyncConfigResource:
+        return AsyncConfigResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCmbWithStreamingResponse:
-        return AsyncCmbWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncCmbResourceWithRawResponse:
+        return AsyncCmbResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncCmbResourceWithStreamingResponse:
+        return AsyncCmbResourceWithStreamingResponse(self)
 
 
-class CmbWithRawResponse:
-    def __init__(self, cmb: Cmb) -> None:
+class CmbResourceWithRawResponse:
+    def __init__(self, cmb: CmbResource) -> None:
         self._cmb = cmb
 
     @cached_property
-    def config(self) -> ConfigWithRawResponse:
-        return ConfigWithRawResponse(self._cmb.config)
+    def config(self) -> ConfigResourceWithRawResponse:
+        return ConfigResourceWithRawResponse(self._cmb.config)
 
 
-class AsyncCmbWithRawResponse:
-    def __init__(self, cmb: AsyncCmb) -> None:
+class AsyncCmbResourceWithRawResponse:
+    def __init__(self, cmb: AsyncCmbResource) -> None:
         self._cmb = cmb
 
     @cached_property
-    def config(self) -> AsyncConfigWithRawResponse:
-        return AsyncConfigWithRawResponse(self._cmb.config)
+    def config(self) -> AsyncConfigResourceWithRawResponse:
+        return AsyncConfigResourceWithRawResponse(self._cmb.config)
 
 
-class CmbWithStreamingResponse:
-    def __init__(self, cmb: Cmb) -> None:
+class CmbResourceWithStreamingResponse:
+    def __init__(self, cmb: CmbResource) -> None:
         self._cmb = cmb
 
     @cached_property
-    def config(self) -> ConfigWithStreamingResponse:
-        return ConfigWithStreamingResponse(self._cmb.config)
+    def config(self) -> ConfigResourceWithStreamingResponse:
+        return ConfigResourceWithStreamingResponse(self._cmb.config)
 
 
-class AsyncCmbWithStreamingResponse:
-    def __init__(self, cmb: AsyncCmb) -> None:
+class AsyncCmbResourceWithStreamingResponse:
+    def __init__(self, cmb: AsyncCmbResource) -> None:
         self._cmb = cmb
 
     @cached_property
-    def config(self) -> AsyncConfigWithStreamingResponse:
-        return AsyncConfigWithStreamingResponse(self._cmb.config)
+    def config(self) -> AsyncConfigResourceWithStreamingResponse:
+        return AsyncConfigResourceWithStreamingResponse(self._cmb.config)

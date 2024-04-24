@@ -26,17 +26,17 @@ from ...._base_client import (
 from ....types.zero_trust.dlp import pattern_validate_params
 from ....types.logpush.ownership_validation import OwnershipValidation
 
-__all__ = ["Patterns", "AsyncPatterns"]
+__all__ = ["PatternsResource", "AsyncPatternsResource"]
 
 
-class Patterns(SyncAPIResource):
+class PatternsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PatternsWithRawResponse:
-        return PatternsWithRawResponse(self)
+    def with_raw_response(self) -> PatternsResourceWithRawResponse:
+        return PatternsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PatternsWithStreamingResponse:
-        return PatternsWithStreamingResponse(self)
+    def with_streaming_response(self) -> PatternsResourceWithStreamingResponse:
+        return PatternsResourceWithStreamingResponse(self)
 
     def validate(
         self,
@@ -86,14 +86,14 @@ class Patterns(SyncAPIResource):
         )
 
 
-class AsyncPatterns(AsyncAPIResource):
+class AsyncPatternsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPatternsWithRawResponse:
-        return AsyncPatternsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPatternsResourceWithRawResponse:
+        return AsyncPatternsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPatternsWithStreamingResponse:
-        return AsyncPatternsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPatternsResourceWithStreamingResponse:
+        return AsyncPatternsResourceWithStreamingResponse(self)
 
     async def validate(
         self,
@@ -143,8 +143,8 @@ class AsyncPatterns(AsyncAPIResource):
         )
 
 
-class PatternsWithRawResponse:
-    def __init__(self, patterns: Patterns) -> None:
+class PatternsResourceWithRawResponse:
+    def __init__(self, patterns: PatternsResource) -> None:
         self._patterns = patterns
 
         self.validate = to_raw_response_wrapper(
@@ -152,8 +152,8 @@ class PatternsWithRawResponse:
         )
 
 
-class AsyncPatternsWithRawResponse:
-    def __init__(self, patterns: AsyncPatterns) -> None:
+class AsyncPatternsResourceWithRawResponse:
+    def __init__(self, patterns: AsyncPatternsResource) -> None:
         self._patterns = patterns
 
         self.validate = async_to_raw_response_wrapper(
@@ -161,8 +161,8 @@ class AsyncPatternsWithRawResponse:
         )
 
 
-class PatternsWithStreamingResponse:
-    def __init__(self, patterns: Patterns) -> None:
+class PatternsResourceWithStreamingResponse:
+    def __init__(self, patterns: PatternsResource) -> None:
         self._patterns = patterns
 
         self.validate = to_streamed_response_wrapper(
@@ -170,8 +170,8 @@ class PatternsWithStreamingResponse:
         )
 
 
-class AsyncPatternsWithStreamingResponse:
-    def __init__(self, patterns: AsyncPatterns) -> None:
+class AsyncPatternsResourceWithStreamingResponse:
+    def __init__(self, patterns: AsyncPatternsResource) -> None:
         self._patterns = patterns
 
         self.validate = async_to_streamed_response_wrapper(

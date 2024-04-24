@@ -7,12 +7,12 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from .status import (
-    Status,
-    AsyncStatus,
-    StatusWithRawResponse,
-    AsyncStatusWithRawResponse,
-    StatusWithStreamingResponse,
-    AsyncStatusWithStreamingResponse,
+    StatusResource,
+    AsyncStatusResource,
+    StatusResourceWithRawResponse,
+    AsyncStatusResourceWithRawResponse,
+    StatusResourceWithStreamingResponse,
+    AsyncStatusResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -52,8 +52,8 @@ __all__ = ["OutgoingResource", "AsyncOutgoingResource"]
 
 class OutgoingResource(SyncAPIResource):
     @cached_property
-    def status(self) -> Status:
-        return Status(self._client)
+    def status(self) -> StatusResource:
+        return StatusResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> OutgoingResourceWithRawResponse:
@@ -360,8 +360,8 @@ class OutgoingResource(SyncAPIResource):
 
 class AsyncOutgoingResource(AsyncAPIResource):
     @cached_property
-    def status(self) -> AsyncStatus:
-        return AsyncStatus(self._client)
+    def status(self) -> AsyncStatusResource:
+        return AsyncStatusResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncOutgoingResourceWithRawResponse:
@@ -693,8 +693,8 @@ class OutgoingResourceWithRawResponse:
         )
 
     @cached_property
-    def status(self) -> StatusWithRawResponse:
-        return StatusWithRawResponse(self._outgoing.status)
+    def status(self) -> StatusResourceWithRawResponse:
+        return StatusResourceWithRawResponse(self._outgoing.status)
 
 
 class AsyncOutgoingResourceWithRawResponse:
@@ -724,8 +724,8 @@ class AsyncOutgoingResourceWithRawResponse:
         )
 
     @cached_property
-    def status(self) -> AsyncStatusWithRawResponse:
-        return AsyncStatusWithRawResponse(self._outgoing.status)
+    def status(self) -> AsyncStatusResourceWithRawResponse:
+        return AsyncStatusResourceWithRawResponse(self._outgoing.status)
 
 
 class OutgoingResourceWithStreamingResponse:
@@ -755,8 +755,8 @@ class OutgoingResourceWithStreamingResponse:
         )
 
     @cached_property
-    def status(self) -> StatusWithStreamingResponse:
-        return StatusWithStreamingResponse(self._outgoing.status)
+    def status(self) -> StatusResourceWithStreamingResponse:
+        return StatusResourceWithStreamingResponse(self._outgoing.status)
 
 
 class AsyncOutgoingResourceWithStreamingResponse:
@@ -786,5 +786,5 @@ class AsyncOutgoingResourceWithStreamingResponse:
         )
 
     @cached_property
-    def status(self) -> AsyncStatusWithStreamingResponse:
-        return AsyncStatusWithStreamingResponse(self._outgoing.status)
+    def status(self) -> AsyncStatusResourceWithStreamingResponse:
+        return AsyncStatusResourceWithStreamingResponse(self._outgoing.status)

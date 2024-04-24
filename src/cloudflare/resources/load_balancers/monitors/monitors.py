@@ -8,12 +8,12 @@ from typing_extensions import Literal
 import httpx
 
 from .previews import (
-    Previews,
-    AsyncPreviews,
-    PreviewsWithRawResponse,
-    AsyncPreviewsWithRawResponse,
-    PreviewsWithStreamingResponse,
-    AsyncPreviewsWithStreamingResponse,
+    PreviewsResource,
+    AsyncPreviewsResource,
+    PreviewsResourceWithRawResponse,
+    AsyncPreviewsResourceWithRawResponse,
+    PreviewsResourceWithStreamingResponse,
+    AsyncPreviewsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -22,12 +22,12 @@ from ...._utils import (
 )
 from ...._compat import cached_property
 from .references import (
-    References,
-    AsyncReferences,
-    ReferencesWithRawResponse,
-    AsyncReferencesWithRawResponse,
-    ReferencesWithStreamingResponse,
-    AsyncReferencesWithStreamingResponse,
+    ReferencesResource,
+    AsyncReferencesResource,
+    ReferencesResourceWithRawResponse,
+    AsyncReferencesResourceWithRawResponse,
+    ReferencesResourceWithStreamingResponse,
+    AsyncReferencesResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,25 +51,25 @@ from ....types.load_balancers import (
 from ....types.load_balancers.monitor import Monitor
 from ....types.load_balancers.monitor_delete_response import MonitorDeleteResponse
 
-__all__ = ["Monitors", "AsyncMonitors"]
+__all__ = ["MonitorsResource", "AsyncMonitorsResource"]
 
 
-class Monitors(SyncAPIResource):
+class MonitorsResource(SyncAPIResource):
     @cached_property
-    def previews(self) -> Previews:
-        return Previews(self._client)
-
-    @cached_property
-    def references(self) -> References:
-        return References(self._client)
+    def previews(self) -> PreviewsResource:
+        return PreviewsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> MonitorsWithRawResponse:
-        return MonitorsWithRawResponse(self)
+    def references(self) -> ReferencesResource:
+        return ReferencesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> MonitorsWithStreamingResponse:
-        return MonitorsWithStreamingResponse(self)
+    def with_raw_response(self) -> MonitorsResourceWithRawResponse:
+        return MonitorsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> MonitorsResourceWithStreamingResponse:
+        return MonitorsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -575,22 +575,22 @@ class Monitors(SyncAPIResource):
         )
 
 
-class AsyncMonitors(AsyncAPIResource):
+class AsyncMonitorsResource(AsyncAPIResource):
     @cached_property
-    def previews(self) -> AsyncPreviews:
-        return AsyncPreviews(self._client)
+    def previews(self) -> AsyncPreviewsResource:
+        return AsyncPreviewsResource(self._client)
 
     @cached_property
-    def references(self) -> AsyncReferences:
-        return AsyncReferences(self._client)
+    def references(self) -> AsyncReferencesResource:
+        return AsyncReferencesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncMonitorsWithRawResponse:
-        return AsyncMonitorsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMonitorsResourceWithRawResponse:
+        return AsyncMonitorsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMonitorsWithStreamingResponse:
-        return AsyncMonitorsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMonitorsResourceWithStreamingResponse:
+        return AsyncMonitorsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -1096,8 +1096,8 @@ class AsyncMonitors(AsyncAPIResource):
         )
 
 
-class MonitorsWithRawResponse:
-    def __init__(self, monitors: Monitors) -> None:
+class MonitorsResourceWithRawResponse:
+    def __init__(self, monitors: MonitorsResource) -> None:
         self._monitors = monitors
 
         self.create = to_raw_response_wrapper(
@@ -1120,16 +1120,16 @@ class MonitorsWithRawResponse:
         )
 
     @cached_property
-    def previews(self) -> PreviewsWithRawResponse:
-        return PreviewsWithRawResponse(self._monitors.previews)
+    def previews(self) -> PreviewsResourceWithRawResponse:
+        return PreviewsResourceWithRawResponse(self._monitors.previews)
 
     @cached_property
-    def references(self) -> ReferencesWithRawResponse:
-        return ReferencesWithRawResponse(self._monitors.references)
+    def references(self) -> ReferencesResourceWithRawResponse:
+        return ReferencesResourceWithRawResponse(self._monitors.references)
 
 
-class AsyncMonitorsWithRawResponse:
-    def __init__(self, monitors: AsyncMonitors) -> None:
+class AsyncMonitorsResourceWithRawResponse:
+    def __init__(self, monitors: AsyncMonitorsResource) -> None:
         self._monitors = monitors
 
         self.create = async_to_raw_response_wrapper(
@@ -1152,16 +1152,16 @@ class AsyncMonitorsWithRawResponse:
         )
 
     @cached_property
-    def previews(self) -> AsyncPreviewsWithRawResponse:
-        return AsyncPreviewsWithRawResponse(self._monitors.previews)
+    def previews(self) -> AsyncPreviewsResourceWithRawResponse:
+        return AsyncPreviewsResourceWithRawResponse(self._monitors.previews)
 
     @cached_property
-    def references(self) -> AsyncReferencesWithRawResponse:
-        return AsyncReferencesWithRawResponse(self._monitors.references)
+    def references(self) -> AsyncReferencesResourceWithRawResponse:
+        return AsyncReferencesResourceWithRawResponse(self._monitors.references)
 
 
-class MonitorsWithStreamingResponse:
-    def __init__(self, monitors: Monitors) -> None:
+class MonitorsResourceWithStreamingResponse:
+    def __init__(self, monitors: MonitorsResource) -> None:
         self._monitors = monitors
 
         self.create = to_streamed_response_wrapper(
@@ -1184,16 +1184,16 @@ class MonitorsWithStreamingResponse:
         )
 
     @cached_property
-    def previews(self) -> PreviewsWithStreamingResponse:
-        return PreviewsWithStreamingResponse(self._monitors.previews)
+    def previews(self) -> PreviewsResourceWithStreamingResponse:
+        return PreviewsResourceWithStreamingResponse(self._monitors.previews)
 
     @cached_property
-    def references(self) -> ReferencesWithStreamingResponse:
-        return ReferencesWithStreamingResponse(self._monitors.references)
+    def references(self) -> ReferencesResourceWithStreamingResponse:
+        return ReferencesResourceWithStreamingResponse(self._monitors.references)
 
 
-class AsyncMonitorsWithStreamingResponse:
-    def __init__(self, monitors: AsyncMonitors) -> None:
+class AsyncMonitorsResourceWithStreamingResponse:
+    def __init__(self, monitors: AsyncMonitorsResource) -> None:
         self._monitors = monitors
 
         self.create = async_to_streamed_response_wrapper(
@@ -1216,9 +1216,9 @@ class AsyncMonitorsWithStreamingResponse:
         )
 
     @cached_property
-    def previews(self) -> AsyncPreviewsWithStreamingResponse:
-        return AsyncPreviewsWithStreamingResponse(self._monitors.previews)
+    def previews(self) -> AsyncPreviewsResourceWithStreamingResponse:
+        return AsyncPreviewsResourceWithStreamingResponse(self._monitors.previews)
 
     @cached_property
-    def references(self) -> AsyncReferencesWithStreamingResponse:
-        return AsyncReferencesWithStreamingResponse(self._monitors.references)
+    def references(self) -> AsyncReferencesResourceWithStreamingResponse:
+        return AsyncReferencesResourceWithStreamingResponse(self._monitors.references)

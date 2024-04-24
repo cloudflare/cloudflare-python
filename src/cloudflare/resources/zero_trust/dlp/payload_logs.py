@@ -27,17 +27,17 @@ from ....types.zero_trust.dlp import payload_log_update_params
 from ....types.zero_trust.dlp.payload_log_get_response import PayloadLogGetResponse
 from ....types.zero_trust.dlp.payload_log_update_response import PayloadLogUpdateResponse
 
-__all__ = ["PayloadLogs", "AsyncPayloadLogs"]
+__all__ = ["PayloadLogsResource", "AsyncPayloadLogsResource"]
 
 
-class PayloadLogs(SyncAPIResource):
+class PayloadLogsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PayloadLogsWithRawResponse:
-        return PayloadLogsWithRawResponse(self)
+    def with_raw_response(self) -> PayloadLogsResourceWithRawResponse:
+        return PayloadLogsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PayloadLogsWithStreamingResponse:
-        return PayloadLogsWithStreamingResponse(self)
+    def with_streaming_response(self) -> PayloadLogsResourceWithStreamingResponse:
+        return PayloadLogsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -122,14 +122,14 @@ class PayloadLogs(SyncAPIResource):
         )
 
 
-class AsyncPayloadLogs(AsyncAPIResource):
+class AsyncPayloadLogsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPayloadLogsWithRawResponse:
-        return AsyncPayloadLogsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPayloadLogsResourceWithRawResponse:
+        return AsyncPayloadLogsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPayloadLogsWithStreamingResponse:
-        return AsyncPayloadLogsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPayloadLogsResourceWithStreamingResponse:
+        return AsyncPayloadLogsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -216,8 +216,8 @@ class AsyncPayloadLogs(AsyncAPIResource):
         )
 
 
-class PayloadLogsWithRawResponse:
-    def __init__(self, payload_logs: PayloadLogs) -> None:
+class PayloadLogsResourceWithRawResponse:
+    def __init__(self, payload_logs: PayloadLogsResource) -> None:
         self._payload_logs = payload_logs
 
         self.update = to_raw_response_wrapper(
@@ -228,8 +228,8 @@ class PayloadLogsWithRawResponse:
         )
 
 
-class AsyncPayloadLogsWithRawResponse:
-    def __init__(self, payload_logs: AsyncPayloadLogs) -> None:
+class AsyncPayloadLogsResourceWithRawResponse:
+    def __init__(self, payload_logs: AsyncPayloadLogsResource) -> None:
         self._payload_logs = payload_logs
 
         self.update = async_to_raw_response_wrapper(
@@ -240,8 +240,8 @@ class AsyncPayloadLogsWithRawResponse:
         )
 
 
-class PayloadLogsWithStreamingResponse:
-    def __init__(self, payload_logs: PayloadLogs) -> None:
+class PayloadLogsResourceWithStreamingResponse:
+    def __init__(self, payload_logs: PayloadLogsResource) -> None:
         self._payload_logs = payload_logs
 
         self.update = to_streamed_response_wrapper(
@@ -252,8 +252,8 @@ class PayloadLogsWithStreamingResponse:
         )
 
 
-class AsyncPayloadLogsWithStreamingResponse:
-    def __init__(self, payload_logs: AsyncPayloadLogs) -> None:
+class AsyncPayloadLogsResourceWithStreamingResponse:
+    def __init__(self, payload_logs: AsyncPayloadLogsResource) -> None:
         self._payload_logs = payload_logs
 
         self.update = async_to_streamed_response_wrapper(

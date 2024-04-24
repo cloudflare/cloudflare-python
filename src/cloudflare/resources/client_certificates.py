@@ -29,17 +29,17 @@ from .._base_client import (
 from ..types.client_certificates import client_certificate_list_params, client_certificate_create_params
 from ..types.client_certificates.client_certificate import ClientCertificate
 
-__all__ = ["ClientCertificates", "AsyncClientCertificates"]
+__all__ = ["ClientCertificatesResource", "AsyncClientCertificatesResource"]
 
 
-class ClientCertificates(SyncAPIResource):
+class ClientCertificatesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ClientCertificatesWithRawResponse:
-        return ClientCertificatesWithRawResponse(self)
+    def with_raw_response(self) -> ClientCertificatesResourceWithRawResponse:
+        return ClientCertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ClientCertificatesWithStreamingResponse:
-        return ClientCertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> ClientCertificatesResourceWithStreamingResponse:
+        return ClientCertificatesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -300,14 +300,14 @@ class ClientCertificates(SyncAPIResource):
         )
 
 
-class AsyncClientCertificates(AsyncAPIResource):
+class AsyncClientCertificatesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncClientCertificatesWithRawResponse:
-        return AsyncClientCertificatesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncClientCertificatesResourceWithRawResponse:
+        return AsyncClientCertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncClientCertificatesWithStreamingResponse:
-        return AsyncClientCertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncClientCertificatesResourceWithStreamingResponse:
+        return AsyncClientCertificatesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -568,8 +568,8 @@ class AsyncClientCertificates(AsyncAPIResource):
         )
 
 
-class ClientCertificatesWithRawResponse:
-    def __init__(self, client_certificates: ClientCertificates) -> None:
+class ClientCertificatesResourceWithRawResponse:
+    def __init__(self, client_certificates: ClientCertificatesResource) -> None:
         self._client_certificates = client_certificates
 
         self.create = to_raw_response_wrapper(
@@ -589,8 +589,8 @@ class ClientCertificatesWithRawResponse:
         )
 
 
-class AsyncClientCertificatesWithRawResponse:
-    def __init__(self, client_certificates: AsyncClientCertificates) -> None:
+class AsyncClientCertificatesResourceWithRawResponse:
+    def __init__(self, client_certificates: AsyncClientCertificatesResource) -> None:
         self._client_certificates = client_certificates
 
         self.create = async_to_raw_response_wrapper(
@@ -610,8 +610,8 @@ class AsyncClientCertificatesWithRawResponse:
         )
 
 
-class ClientCertificatesWithStreamingResponse:
-    def __init__(self, client_certificates: ClientCertificates) -> None:
+class ClientCertificatesResourceWithStreamingResponse:
+    def __init__(self, client_certificates: ClientCertificatesResource) -> None:
         self._client_certificates = client_certificates
 
         self.create = to_streamed_response_wrapper(
@@ -631,8 +631,8 @@ class ClientCertificatesWithStreamingResponse:
         )
 
 
-class AsyncClientCertificatesWithStreamingResponse:
-    def __init__(self, client_certificates: AsyncClientCertificates) -> None:
+class AsyncClientCertificatesResourceWithStreamingResponse:
+    def __init__(self, client_certificates: AsyncClientCertificatesResource) -> None:
         self._client_certificates = client_certificates
 
         self.create = async_to_streamed_response_wrapper(

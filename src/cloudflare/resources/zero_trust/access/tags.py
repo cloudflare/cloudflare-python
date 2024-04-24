@@ -29,17 +29,17 @@ from ....types.zero_trust.access import tag_create_params, tag_update_params
 from ....types.zero_trust.access.tag import Tag
 from ....types.zero_trust.access.tag_delete_response import TagDeleteResponse
 
-__all__ = ["Tags", "AsyncTags"]
+__all__ = ["TagsResource", "AsyncTagsResource"]
 
 
-class Tags(SyncAPIResource):
+class TagsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TagsWithRawResponse:
-        return TagsWithRawResponse(self)
+    def with_raw_response(self) -> TagsResourceWithRawResponse:
+        return TagsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TagsWithStreamingResponse:
-        return TagsWithStreamingResponse(self)
+    def with_streaming_response(self) -> TagsResourceWithStreamingResponse:
+        return TagsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -257,14 +257,14 @@ class Tags(SyncAPIResource):
         )
 
 
-class AsyncTags(AsyncAPIResource):
+class AsyncTagsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTagsWithRawResponse:
-        return AsyncTagsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTagsResourceWithRawResponse:
+        return AsyncTagsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTagsWithStreamingResponse:
-        return AsyncTagsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTagsResourceWithStreamingResponse:
+        return AsyncTagsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -482,8 +482,8 @@ class AsyncTags(AsyncAPIResource):
         )
 
 
-class TagsWithRawResponse:
-    def __init__(self, tags: Tags) -> None:
+class TagsResourceWithRawResponse:
+    def __init__(self, tags: TagsResource) -> None:
         self._tags = tags
 
         self.create = to_raw_response_wrapper(
@@ -503,8 +503,8 @@ class TagsWithRawResponse:
         )
 
 
-class AsyncTagsWithRawResponse:
-    def __init__(self, tags: AsyncTags) -> None:
+class AsyncTagsResourceWithRawResponse:
+    def __init__(self, tags: AsyncTagsResource) -> None:
         self._tags = tags
 
         self.create = async_to_raw_response_wrapper(
@@ -524,8 +524,8 @@ class AsyncTagsWithRawResponse:
         )
 
 
-class TagsWithStreamingResponse:
-    def __init__(self, tags: Tags) -> None:
+class TagsResourceWithStreamingResponse:
+    def __init__(self, tags: TagsResource) -> None:
         self._tags = tags
 
         self.create = to_streamed_response_wrapper(
@@ -545,8 +545,8 @@ class TagsWithStreamingResponse:
         )
 
 
-class AsyncTagsWithStreamingResponse:
-    def __init__(self, tags: AsyncTags) -> None:
+class AsyncTagsResourceWithStreamingResponse:
+    def __init__(self, tags: AsyncTagsResource) -> None:
         self._tags = tags
 
         self.create = async_to_streamed_response_wrapper(

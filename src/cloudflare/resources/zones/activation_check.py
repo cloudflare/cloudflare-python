@@ -21,17 +21,17 @@ from ..._base_client import (
 )
 from ...types.zones.activation_check_trigger_response import ActivationCheckTriggerResponse
 
-__all__ = ["ActivationCheck", "AsyncActivationCheck"]
+__all__ = ["ActivationCheckResource", "AsyncActivationCheckResource"]
 
 
-class ActivationCheck(SyncAPIResource):
+class ActivationCheckResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ActivationCheckWithRawResponse:
-        return ActivationCheckWithRawResponse(self)
+    def with_raw_response(self) -> ActivationCheckResourceWithRawResponse:
+        return ActivationCheckResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ActivationCheckWithStreamingResponse:
-        return ActivationCheckWithStreamingResponse(self)
+    def with_streaming_response(self) -> ActivationCheckResourceWithStreamingResponse:
+        return ActivationCheckResourceWithStreamingResponse(self)
 
     def trigger(
         self,
@@ -75,14 +75,14 @@ class ActivationCheck(SyncAPIResource):
         )
 
 
-class AsyncActivationCheck(AsyncAPIResource):
+class AsyncActivationCheckResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncActivationCheckWithRawResponse:
-        return AsyncActivationCheckWithRawResponse(self)
+    def with_raw_response(self) -> AsyncActivationCheckResourceWithRawResponse:
+        return AsyncActivationCheckResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncActivationCheckWithStreamingResponse:
-        return AsyncActivationCheckWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncActivationCheckResourceWithStreamingResponse:
+        return AsyncActivationCheckResourceWithStreamingResponse(self)
 
     async def trigger(
         self,
@@ -126,8 +126,8 @@ class AsyncActivationCheck(AsyncAPIResource):
         )
 
 
-class ActivationCheckWithRawResponse:
-    def __init__(self, activation_check: ActivationCheck) -> None:
+class ActivationCheckResourceWithRawResponse:
+    def __init__(self, activation_check: ActivationCheckResource) -> None:
         self._activation_check = activation_check
 
         self.trigger = to_raw_response_wrapper(
@@ -135,8 +135,8 @@ class ActivationCheckWithRawResponse:
         )
 
 
-class AsyncActivationCheckWithRawResponse:
-    def __init__(self, activation_check: AsyncActivationCheck) -> None:
+class AsyncActivationCheckResourceWithRawResponse:
+    def __init__(self, activation_check: AsyncActivationCheckResource) -> None:
         self._activation_check = activation_check
 
         self.trigger = async_to_raw_response_wrapper(
@@ -144,8 +144,8 @@ class AsyncActivationCheckWithRawResponse:
         )
 
 
-class ActivationCheckWithStreamingResponse:
-    def __init__(self, activation_check: ActivationCheck) -> None:
+class ActivationCheckResourceWithStreamingResponse:
+    def __init__(self, activation_check: ActivationCheckResource) -> None:
         self._activation_check = activation_check
 
         self.trigger = to_streamed_response_wrapper(
@@ -153,8 +153,8 @@ class ActivationCheckWithStreamingResponse:
         )
 
 
-class AsyncActivationCheckWithStreamingResponse:
-    def __init__(self, activation_check: AsyncActivationCheck) -> None:
+class AsyncActivationCheckResourceWithStreamingResponse:
+    def __init__(self, activation_check: AsyncActivationCheckResource) -> None:
         self._activation_check = activation_check
 
         self.trigger = async_to_streamed_response_wrapper(

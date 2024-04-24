@@ -8,12 +8,12 @@ from typing_extensions import Literal
 import httpx
 
 from .summary import (
-    Summary,
-    AsyncSummary,
-    SummaryWithRawResponse,
-    AsyncSummaryWithRawResponse,
-    SummaryWithStreamingResponse,
-    AsyncSummaryWithStreamingResponse,
+    SummaryResource,
+    AsyncSummaryResource,
+    SummaryResourceWithRawResponse,
+    AsyncSummaryResourceWithRawResponse,
+    SummaryResourceWithStreamingResponse,
+    AsyncSummaryResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -22,12 +22,12 @@ from ...._utils import (
 )
 from ...._compat import cached_property
 from .behaviours import (
-    Behaviours,
-    AsyncBehaviours,
-    BehavioursWithRawResponse,
-    AsyncBehavioursWithRawResponse,
-    BehavioursWithStreamingResponse,
-    AsyncBehavioursWithStreamingResponse,
+    BehavioursResource,
+    AsyncBehavioursResource,
+    BehavioursResourceWithRawResponse,
+    AsyncBehavioursResourceWithRawResponse,
+    BehavioursResourceWithStreamingResponse,
+    AsyncBehavioursResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -44,25 +44,25 @@ from ....types.zero_trust import risk_scoring_get_params
 from ....types.zero_trust.risk_scoring_get_response import RiskScoringGetResponse
 from ....types.zero_trust.risk_scoring_reset_response import RiskScoringResetResponse
 
-__all__ = ["RiskScoring", "AsyncRiskScoring"]
+__all__ = ["RiskScoringResource", "AsyncRiskScoringResource"]
 
 
-class RiskScoring(SyncAPIResource):
+class RiskScoringResource(SyncAPIResource):
     @cached_property
-    def behaviours(self) -> Behaviours:
-        return Behaviours(self._client)
-
-    @cached_property
-    def summary(self) -> Summary:
-        return Summary(self._client)
+    def behaviours(self) -> BehavioursResource:
+        return BehavioursResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> RiskScoringWithRawResponse:
-        return RiskScoringWithRawResponse(self)
+    def summary(self) -> SummaryResource:
+        return SummaryResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> RiskScoringWithStreamingResponse:
-        return RiskScoringWithStreamingResponse(self)
+    def with_raw_response(self) -> RiskScoringResourceWithRawResponse:
+        return RiskScoringResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> RiskScoringResourceWithStreamingResponse:
+        return RiskScoringResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -171,22 +171,22 @@ class RiskScoring(SyncAPIResource):
         )
 
 
-class AsyncRiskScoring(AsyncAPIResource):
+class AsyncRiskScoringResource(AsyncAPIResource):
     @cached_property
-    def behaviours(self) -> AsyncBehaviours:
-        return AsyncBehaviours(self._client)
+    def behaviours(self) -> AsyncBehavioursResource:
+        return AsyncBehavioursResource(self._client)
 
     @cached_property
-    def summary(self) -> AsyncSummary:
-        return AsyncSummary(self._client)
+    def summary(self) -> AsyncSummaryResource:
+        return AsyncSummaryResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRiskScoringWithRawResponse:
-        return AsyncRiskScoringWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRiskScoringResourceWithRawResponse:
+        return AsyncRiskScoringResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRiskScoringWithStreamingResponse:
-        return AsyncRiskScoringWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRiskScoringResourceWithStreamingResponse:
+        return AsyncRiskScoringResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -295,8 +295,8 @@ class AsyncRiskScoring(AsyncAPIResource):
         )
 
 
-class RiskScoringWithRawResponse:
-    def __init__(self, risk_scoring: RiskScoring) -> None:
+class RiskScoringResourceWithRawResponse:
+    def __init__(self, risk_scoring: RiskScoringResource) -> None:
         self._risk_scoring = risk_scoring
 
         self.get = to_raw_response_wrapper(
@@ -307,16 +307,16 @@ class RiskScoringWithRawResponse:
         )
 
     @cached_property
-    def behaviours(self) -> BehavioursWithRawResponse:
-        return BehavioursWithRawResponse(self._risk_scoring.behaviours)
+    def behaviours(self) -> BehavioursResourceWithRawResponse:
+        return BehavioursResourceWithRawResponse(self._risk_scoring.behaviours)
 
     @cached_property
-    def summary(self) -> SummaryWithRawResponse:
-        return SummaryWithRawResponse(self._risk_scoring.summary)
+    def summary(self) -> SummaryResourceWithRawResponse:
+        return SummaryResourceWithRawResponse(self._risk_scoring.summary)
 
 
-class AsyncRiskScoringWithRawResponse:
-    def __init__(self, risk_scoring: AsyncRiskScoring) -> None:
+class AsyncRiskScoringResourceWithRawResponse:
+    def __init__(self, risk_scoring: AsyncRiskScoringResource) -> None:
         self._risk_scoring = risk_scoring
 
         self.get = async_to_raw_response_wrapper(
@@ -327,16 +327,16 @@ class AsyncRiskScoringWithRawResponse:
         )
 
     @cached_property
-    def behaviours(self) -> AsyncBehavioursWithRawResponse:
-        return AsyncBehavioursWithRawResponse(self._risk_scoring.behaviours)
+    def behaviours(self) -> AsyncBehavioursResourceWithRawResponse:
+        return AsyncBehavioursResourceWithRawResponse(self._risk_scoring.behaviours)
 
     @cached_property
-    def summary(self) -> AsyncSummaryWithRawResponse:
-        return AsyncSummaryWithRawResponse(self._risk_scoring.summary)
+    def summary(self) -> AsyncSummaryResourceWithRawResponse:
+        return AsyncSummaryResourceWithRawResponse(self._risk_scoring.summary)
 
 
-class RiskScoringWithStreamingResponse:
-    def __init__(self, risk_scoring: RiskScoring) -> None:
+class RiskScoringResourceWithStreamingResponse:
+    def __init__(self, risk_scoring: RiskScoringResource) -> None:
         self._risk_scoring = risk_scoring
 
         self.get = to_streamed_response_wrapper(
@@ -347,16 +347,16 @@ class RiskScoringWithStreamingResponse:
         )
 
     @cached_property
-    def behaviours(self) -> BehavioursWithStreamingResponse:
-        return BehavioursWithStreamingResponse(self._risk_scoring.behaviours)
+    def behaviours(self) -> BehavioursResourceWithStreamingResponse:
+        return BehavioursResourceWithStreamingResponse(self._risk_scoring.behaviours)
 
     @cached_property
-    def summary(self) -> SummaryWithStreamingResponse:
-        return SummaryWithStreamingResponse(self._risk_scoring.summary)
+    def summary(self) -> SummaryResourceWithStreamingResponse:
+        return SummaryResourceWithStreamingResponse(self._risk_scoring.summary)
 
 
-class AsyncRiskScoringWithStreamingResponse:
-    def __init__(self, risk_scoring: AsyncRiskScoring) -> None:
+class AsyncRiskScoringResourceWithStreamingResponse:
+    def __init__(self, risk_scoring: AsyncRiskScoringResource) -> None:
         self._risk_scoring = risk_scoring
 
         self.get = async_to_streamed_response_wrapper(
@@ -367,9 +367,9 @@ class AsyncRiskScoringWithStreamingResponse:
         )
 
     @cached_property
-    def behaviours(self) -> AsyncBehavioursWithStreamingResponse:
-        return AsyncBehavioursWithStreamingResponse(self._risk_scoring.behaviours)
+    def behaviours(self) -> AsyncBehavioursResourceWithStreamingResponse:
+        return AsyncBehavioursResourceWithStreamingResponse(self._risk_scoring.behaviours)
 
     @cached_property
-    def summary(self) -> AsyncSummaryWithStreamingResponse:
-        return AsyncSummaryWithStreamingResponse(self._risk_scoring.summary)
+    def summary(self) -> AsyncSummaryResourceWithStreamingResponse:
+        return AsyncSummaryResourceWithStreamingResponse(self._risk_scoring.summary)

@@ -20,17 +20,17 @@ from ...._base_client import (
 )
 from ....types.zero_trust.gateway.category import Category
 
-__all__ = ["Categories", "AsyncCategories"]
+__all__ = ["CategoriesResource", "AsyncCategoriesResource"]
 
 
-class Categories(SyncAPIResource):
+class CategoriesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CategoriesWithRawResponse:
-        return CategoriesWithRawResponse(self)
+    def with_raw_response(self) -> CategoriesResourceWithRawResponse:
+        return CategoriesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CategoriesWithStreamingResponse:
-        return CategoriesWithStreamingResponse(self)
+    def with_streaming_response(self) -> CategoriesResourceWithStreamingResponse:
+        return CategoriesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -69,14 +69,14 @@ class Categories(SyncAPIResource):
         )
 
 
-class AsyncCategories(AsyncAPIResource):
+class AsyncCategoriesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCategoriesWithRawResponse:
-        return AsyncCategoriesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCategoriesResourceWithRawResponse:
+        return AsyncCategoriesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCategoriesWithStreamingResponse:
-        return AsyncCategoriesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCategoriesResourceWithStreamingResponse:
+        return AsyncCategoriesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -115,8 +115,8 @@ class AsyncCategories(AsyncAPIResource):
         )
 
 
-class CategoriesWithRawResponse:
-    def __init__(self, categories: Categories) -> None:
+class CategoriesResourceWithRawResponse:
+    def __init__(self, categories: CategoriesResource) -> None:
         self._categories = categories
 
         self.list = to_raw_response_wrapper(
@@ -124,8 +124,8 @@ class CategoriesWithRawResponse:
         )
 
 
-class AsyncCategoriesWithRawResponse:
-    def __init__(self, categories: AsyncCategories) -> None:
+class AsyncCategoriesResourceWithRawResponse:
+    def __init__(self, categories: AsyncCategoriesResource) -> None:
         self._categories = categories
 
         self.list = async_to_raw_response_wrapper(
@@ -133,8 +133,8 @@ class AsyncCategoriesWithRawResponse:
         )
 
 
-class CategoriesWithStreamingResponse:
-    def __init__(self, categories: Categories) -> None:
+class CategoriesResourceWithStreamingResponse:
+    def __init__(self, categories: CategoriesResource) -> None:
         self._categories = categories
 
         self.list = to_streamed_response_wrapper(
@@ -142,8 +142,8 @@ class CategoriesWithStreamingResponse:
         )
 
 
-class AsyncCategoriesWithStreamingResponse:
-    def __init__(self, categories: AsyncCategories) -> None:
+class AsyncCategoriesResourceWithStreamingResponse:
+    def __init__(self, categories: AsyncCategoriesResource) -> None:
         self._categories = categories
 
         self.list = async_to_streamed_response_wrapper(

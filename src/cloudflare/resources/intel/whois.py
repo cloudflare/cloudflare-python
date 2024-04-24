@@ -20,22 +20,23 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.intel import whois, whois_get_params
+from ...types.intel import whois_get_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.intel.whois import Whois
 
-__all__ = ["Whois", "AsyncWhois"]
+__all__ = ["WhoisResource", "AsyncWhoisResource"]
 
 
-class Whois(SyncAPIResource):
+class WhoisResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WhoisWithRawResponse:
-        return WhoisWithRawResponse(self)
+    def with_raw_response(self) -> WhoisResourceWithRawResponse:
+        return WhoisResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WhoisWithStreamingResponse:
-        return WhoisWithStreamingResponse(self)
+    def with_streaming_response(self) -> WhoisResourceWithStreamingResponse:
+        return WhoisResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -48,7 +49,7 @@ class Whois(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> whois.Whois:
+    ) -> Whois:
         """
         Get WHOIS Record
 
@@ -73,20 +74,20 @@ class Whois(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"domain": domain}, whois_get_params.WhoisGetParams),
-                post_parser=ResultWrapper[whois.Whois]._unwrapper,
+                post_parser=ResultWrapper[Whois]._unwrapper,
             ),
-            cast_to=cast(Type[whois.Whois], ResultWrapper[whois.Whois]),
+            cast_to=cast(Type[Whois], ResultWrapper[Whois]),
         )
 
 
-class AsyncWhois(AsyncAPIResource):
+class AsyncWhoisResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncWhoisWithRawResponse:
-        return AsyncWhoisWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWhoisResourceWithRawResponse:
+        return AsyncWhoisResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWhoisWithStreamingResponse:
-        return AsyncWhoisWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWhoisResourceWithStreamingResponse:
+        return AsyncWhoisResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -99,7 +100,7 @@ class AsyncWhois(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> whois.Whois:
+    ) -> Whois:
         """
         Get WHOIS Record
 
@@ -124,14 +125,14 @@ class AsyncWhois(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"domain": domain}, whois_get_params.WhoisGetParams),
-                post_parser=ResultWrapper[whois.Whois]._unwrapper,
+                post_parser=ResultWrapper[Whois]._unwrapper,
             ),
-            cast_to=cast(Type[whois.Whois], ResultWrapper[whois.Whois]),
+            cast_to=cast(Type[Whois], ResultWrapper[Whois]),
         )
 
 
-class WhoisWithRawResponse:
-    def __init__(self, whois: Whois) -> None:
+class WhoisResourceWithRawResponse:
+    def __init__(self, whois: WhoisResource) -> None:
         self._whois = whois
 
         self.get = to_raw_response_wrapper(
@@ -139,8 +140,8 @@ class WhoisWithRawResponse:
         )
 
 
-class AsyncWhoisWithRawResponse:
-    def __init__(self, whois: AsyncWhois) -> None:
+class AsyncWhoisResourceWithRawResponse:
+    def __init__(self, whois: AsyncWhoisResource) -> None:
         self._whois = whois
 
         self.get = async_to_raw_response_wrapper(
@@ -148,8 +149,8 @@ class AsyncWhoisWithRawResponse:
         )
 
 
-class WhoisWithStreamingResponse:
-    def __init__(self, whois: Whois) -> None:
+class WhoisResourceWithStreamingResponse:
+    def __init__(self, whois: WhoisResource) -> None:
         self._whois = whois
 
         self.get = to_streamed_response_wrapper(
@@ -157,8 +158,8 @@ class WhoisWithStreamingResponse:
         )
 
 
-class AsyncWhoisWithStreamingResponse:
-    def __init__(self, whois: AsyncWhois) -> None:
+class AsyncWhoisResourceWithStreamingResponse:
+    def __init__(self, whois: AsyncWhoisResource) -> None:
         self._whois = whois
 
         self.get = async_to_streamed_response_wrapper(

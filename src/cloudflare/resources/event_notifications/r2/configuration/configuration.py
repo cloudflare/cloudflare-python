@@ -7,12 +7,12 @@ from typing import Type, cast
 import httpx
 
 from .queues import (
-    Queues,
-    AsyncQueues,
-    QueuesWithRawResponse,
-    AsyncQueuesWithRawResponse,
-    QueuesWithStreamingResponse,
-    AsyncQueuesWithStreamingResponse,
+    QueuesResource,
+    AsyncQueuesResource,
+    QueuesResourceWithRawResponse,
+    AsyncQueuesResourceWithRawResponse,
+    QueuesResourceWithStreamingResponse,
+    AsyncQueuesResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._compat import cached_property
@@ -29,21 +29,21 @@ from ....._base_client import (
 )
 from .....types.event_notifications.r2.configuration_get_response import ConfigurationGetResponse
 
-__all__ = ["Configuration", "AsyncConfiguration"]
+__all__ = ["ConfigurationResource", "AsyncConfigurationResource"]
 
 
-class Configuration(SyncAPIResource):
+class ConfigurationResource(SyncAPIResource):
     @cached_property
-    def queues(self) -> Queues:
-        return Queues(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> ConfigurationWithRawResponse:
-        return ConfigurationWithRawResponse(self)
+    def queues(self) -> QueuesResource:
+        return QueuesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ConfigurationWithStreamingResponse:
-        return ConfigurationWithStreamingResponse(self)
+    def with_raw_response(self) -> ConfigurationResourceWithRawResponse:
+        return ConfigurationResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ConfigurationResourceWithStreamingResponse:
+        return ConfigurationResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -91,18 +91,18 @@ class Configuration(SyncAPIResource):
         )
 
 
-class AsyncConfiguration(AsyncAPIResource):
+class AsyncConfigurationResource(AsyncAPIResource):
     @cached_property
-    def queues(self) -> AsyncQueues:
-        return AsyncQueues(self._client)
+    def queues(self) -> AsyncQueuesResource:
+        return AsyncQueuesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncConfigurationWithRawResponse:
-        return AsyncConfigurationWithRawResponse(self)
+    def with_raw_response(self) -> AsyncConfigurationResourceWithRawResponse:
+        return AsyncConfigurationResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConfigurationWithStreamingResponse:
-        return AsyncConfigurationWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncConfigurationResourceWithStreamingResponse:
+        return AsyncConfigurationResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -150,8 +150,8 @@ class AsyncConfiguration(AsyncAPIResource):
         )
 
 
-class ConfigurationWithRawResponse:
-    def __init__(self, configuration: Configuration) -> None:
+class ConfigurationResourceWithRawResponse:
+    def __init__(self, configuration: ConfigurationResource) -> None:
         self._configuration = configuration
 
         self.get = to_raw_response_wrapper(
@@ -159,12 +159,12 @@ class ConfigurationWithRawResponse:
         )
 
     @cached_property
-    def queues(self) -> QueuesWithRawResponse:
-        return QueuesWithRawResponse(self._configuration.queues)
+    def queues(self) -> QueuesResourceWithRawResponse:
+        return QueuesResourceWithRawResponse(self._configuration.queues)
 
 
-class AsyncConfigurationWithRawResponse:
-    def __init__(self, configuration: AsyncConfiguration) -> None:
+class AsyncConfigurationResourceWithRawResponse:
+    def __init__(self, configuration: AsyncConfigurationResource) -> None:
         self._configuration = configuration
 
         self.get = async_to_raw_response_wrapper(
@@ -172,12 +172,12 @@ class AsyncConfigurationWithRawResponse:
         )
 
     @cached_property
-    def queues(self) -> AsyncQueuesWithRawResponse:
-        return AsyncQueuesWithRawResponse(self._configuration.queues)
+    def queues(self) -> AsyncQueuesResourceWithRawResponse:
+        return AsyncQueuesResourceWithRawResponse(self._configuration.queues)
 
 
-class ConfigurationWithStreamingResponse:
-    def __init__(self, configuration: Configuration) -> None:
+class ConfigurationResourceWithStreamingResponse:
+    def __init__(self, configuration: ConfigurationResource) -> None:
         self._configuration = configuration
 
         self.get = to_streamed_response_wrapper(
@@ -185,12 +185,12 @@ class ConfigurationWithStreamingResponse:
         )
 
     @cached_property
-    def queues(self) -> QueuesWithStreamingResponse:
-        return QueuesWithStreamingResponse(self._configuration.queues)
+    def queues(self) -> QueuesResourceWithStreamingResponse:
+        return QueuesResourceWithStreamingResponse(self._configuration.queues)
 
 
-class AsyncConfigurationWithStreamingResponse:
-    def __init__(self, configuration: AsyncConfiguration) -> None:
+class AsyncConfigurationResourceWithStreamingResponse:
+    def __init__(self, configuration: AsyncConfigurationResource) -> None:
         self._configuration = configuration
 
         self.get = async_to_streamed_response_wrapper(
@@ -198,5 +198,5 @@ class AsyncConfigurationWithStreamingResponse:
         )
 
     @cached_property
-    def queues(self) -> AsyncQueuesWithStreamingResponse:
-        return AsyncQueuesWithStreamingResponse(self._configuration.queues)
+    def queues(self) -> AsyncQueuesResourceWithStreamingResponse:
+        return AsyncQueuesResourceWithStreamingResponse(self._configuration.queues)

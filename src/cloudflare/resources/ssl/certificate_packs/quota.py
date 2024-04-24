@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.ssl.certificate_packs.quota_get_response import QuotaGetResponse
 
-__all__ = ["Quota", "AsyncQuota"]
+__all__ = ["QuotaResource", "AsyncQuotaResource"]
 
 
-class Quota(SyncAPIResource):
+class QuotaResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> QuotaWithRawResponse:
-        return QuotaWithRawResponse(self)
+    def with_raw_response(self) -> QuotaResourceWithRawResponse:
+        return QuotaResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> QuotaWithStreamingResponse:
-        return QuotaWithStreamingResponse(self)
+    def with_streaming_response(self) -> QuotaResourceWithStreamingResponse:
+        return QuotaResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -73,14 +73,14 @@ class Quota(SyncAPIResource):
         )
 
 
-class AsyncQuota(AsyncAPIResource):
+class AsyncQuotaResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncQuotaWithRawResponse:
-        return AsyncQuotaWithRawResponse(self)
+    def with_raw_response(self) -> AsyncQuotaResourceWithRawResponse:
+        return AsyncQuotaResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncQuotaWithStreamingResponse:
-        return AsyncQuotaWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncQuotaResourceWithStreamingResponse:
+        return AsyncQuotaResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -122,8 +122,8 @@ class AsyncQuota(AsyncAPIResource):
         )
 
 
-class QuotaWithRawResponse:
-    def __init__(self, quota: Quota) -> None:
+class QuotaResourceWithRawResponse:
+    def __init__(self, quota: QuotaResource) -> None:
         self._quota = quota
 
         self.get = to_raw_response_wrapper(
@@ -131,8 +131,8 @@ class QuotaWithRawResponse:
         )
 
 
-class AsyncQuotaWithRawResponse:
-    def __init__(self, quota: AsyncQuota) -> None:
+class AsyncQuotaResourceWithRawResponse:
+    def __init__(self, quota: AsyncQuotaResource) -> None:
         self._quota = quota
 
         self.get = async_to_raw_response_wrapper(
@@ -140,8 +140,8 @@ class AsyncQuotaWithRawResponse:
         )
 
 
-class QuotaWithStreamingResponse:
-    def __init__(self, quota: Quota) -> None:
+class QuotaResourceWithStreamingResponse:
+    def __init__(self, quota: QuotaResource) -> None:
         self._quota = quota
 
         self.get = to_streamed_response_wrapper(
@@ -149,8 +149,8 @@ class QuotaWithStreamingResponse:
         )
 
 
-class AsyncQuotaWithStreamingResponse:
-    def __init__(self, quota: AsyncQuota) -> None:
+class AsyncQuotaResourceWithStreamingResponse:
+    def __init__(self, quota: AsyncQuotaResource) -> None:
         self._quota = quota
 
         self.get = async_to_streamed_response_wrapper(
