@@ -12,12 +12,12 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .previews import (
-    Previews,
-    AsyncPreviews,
-    PreviewsWithRawResponse,
-    AsyncPreviewsWithRawResponse,
-    PreviewsWithStreamingResponse,
-    AsyncPreviewsWithStreamingResponse,
+    PreviewsResource,
+    AsyncPreviewsResource,
+    PreviewsResourceWithRawResponse,
+    AsyncPreviewsResourceWithRawResponse,
+    PreviewsResourceWithStreamingResponse,
+    AsyncPreviewsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -46,21 +46,21 @@ from ...types.healthchecks.tcp_configuration_param import TCPConfigurationParam
 from ...types.healthchecks.http_configuration_param import HTTPConfigurationParam
 from ...types.healthchecks.healthcheck_delete_response import HealthcheckDeleteResponse
 
-__all__ = ["Healthchecks", "AsyncHealthchecks"]
+__all__ = ["HealthchecksResource", "AsyncHealthchecksResource"]
 
 
-class Healthchecks(SyncAPIResource):
+class HealthchecksResource(SyncAPIResource):
     @cached_property
-    def previews(self) -> Previews:
-        return Previews(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> HealthchecksWithRawResponse:
-        return HealthchecksWithRawResponse(self)
+    def previews(self) -> PreviewsResource:
+        return PreviewsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> HealthchecksWithStreamingResponse:
-        return HealthchecksWithStreamingResponse(self)
+    def with_raw_response(self) -> HealthchecksResourceWithRawResponse:
+        return HealthchecksResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> HealthchecksResourceWithStreamingResponse:
+        return HealthchecksResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -527,18 +527,18 @@ class Healthchecks(SyncAPIResource):
         )
 
 
-class AsyncHealthchecks(AsyncAPIResource):
+class AsyncHealthchecksResource(AsyncAPIResource):
     @cached_property
-    def previews(self) -> AsyncPreviews:
-        return AsyncPreviews(self._client)
+    def previews(self) -> AsyncPreviewsResource:
+        return AsyncPreviewsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncHealthchecksWithRawResponse:
-        return AsyncHealthchecksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHealthchecksResourceWithRawResponse:
+        return AsyncHealthchecksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHealthchecksWithStreamingResponse:
-        return AsyncHealthchecksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHealthchecksResourceWithStreamingResponse:
+        return AsyncHealthchecksResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -1005,8 +1005,8 @@ class AsyncHealthchecks(AsyncAPIResource):
         )
 
 
-class HealthchecksWithRawResponse:
-    def __init__(self, healthchecks: Healthchecks) -> None:
+class HealthchecksResourceWithRawResponse:
+    def __init__(self, healthchecks: HealthchecksResource) -> None:
         self._healthchecks = healthchecks
 
         self.create = to_raw_response_wrapper(
@@ -1029,12 +1029,12 @@ class HealthchecksWithRawResponse:
         )
 
     @cached_property
-    def previews(self) -> PreviewsWithRawResponse:
-        return PreviewsWithRawResponse(self._healthchecks.previews)
+    def previews(self) -> PreviewsResourceWithRawResponse:
+        return PreviewsResourceWithRawResponse(self._healthchecks.previews)
 
 
-class AsyncHealthchecksWithRawResponse:
-    def __init__(self, healthchecks: AsyncHealthchecks) -> None:
+class AsyncHealthchecksResourceWithRawResponse:
+    def __init__(self, healthchecks: AsyncHealthchecksResource) -> None:
         self._healthchecks = healthchecks
 
         self.create = async_to_raw_response_wrapper(
@@ -1057,12 +1057,12 @@ class AsyncHealthchecksWithRawResponse:
         )
 
     @cached_property
-    def previews(self) -> AsyncPreviewsWithRawResponse:
-        return AsyncPreviewsWithRawResponse(self._healthchecks.previews)
+    def previews(self) -> AsyncPreviewsResourceWithRawResponse:
+        return AsyncPreviewsResourceWithRawResponse(self._healthchecks.previews)
 
 
-class HealthchecksWithStreamingResponse:
-    def __init__(self, healthchecks: Healthchecks) -> None:
+class HealthchecksResourceWithStreamingResponse:
+    def __init__(self, healthchecks: HealthchecksResource) -> None:
         self._healthchecks = healthchecks
 
         self.create = to_streamed_response_wrapper(
@@ -1085,12 +1085,12 @@ class HealthchecksWithStreamingResponse:
         )
 
     @cached_property
-    def previews(self) -> PreviewsWithStreamingResponse:
-        return PreviewsWithStreamingResponse(self._healthchecks.previews)
+    def previews(self) -> PreviewsResourceWithStreamingResponse:
+        return PreviewsResourceWithStreamingResponse(self._healthchecks.previews)
 
 
-class AsyncHealthchecksWithStreamingResponse:
-    def __init__(self, healthchecks: AsyncHealthchecks) -> None:
+class AsyncHealthchecksResourceWithStreamingResponse:
+    def __init__(self, healthchecks: AsyncHealthchecksResource) -> None:
         self._healthchecks = healthchecks
 
         self.create = async_to_streamed_response_wrapper(
@@ -1113,5 +1113,5 @@ class AsyncHealthchecksWithStreamingResponse:
         )
 
     @cached_property
-    def previews(self) -> AsyncPreviewsWithStreamingResponse:
-        return AsyncPreviewsWithStreamingResponse(self._healthchecks.previews)
+    def previews(self) -> AsyncPreviewsResourceWithStreamingResponse:
+        return AsyncPreviewsResourceWithStreamingResponse(self._healthchecks.previews)

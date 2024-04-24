@@ -3,112 +3,112 @@
 from __future__ import annotations
 
 from .events import (
-    Events,
-    AsyncEvents,
-    EventsWithRawResponse,
-    AsyncEventsWithRawResponse,
-    EventsWithStreamingResponse,
-    AsyncEventsWithStreamingResponse,
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from .aggregates import (
-    Aggregates,
-    AsyncAggregates,
-    AggregatesWithRawResponse,
-    AsyncAggregatesWithRawResponse,
-    AggregatesWithStreamingResponse,
-    AsyncAggregatesWithStreamingResponse,
+    AggregatesResource,
+    AsyncAggregatesResource,
+    AggregatesResourceWithRawResponse,
+    AsyncAggregatesResourceWithRawResponse,
+    AggregatesResourceWithStreamingResponse,
+    AsyncAggregatesResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .events.events import Events, AsyncEvents
-from .aggregates.aggregates import Aggregates, AsyncAggregates
+from .events.events import EventsResource, AsyncEventsResource
+from .aggregates.aggregates import AggregatesResource, AsyncAggregatesResource
 
-__all__ = ["Analytics", "AsyncAnalytics"]
+__all__ = ["AnalyticsResource", "AsyncAnalyticsResource"]
 
 
-class Analytics(SyncAPIResource):
+class AnalyticsResource(SyncAPIResource):
     @cached_property
-    def aggregates(self) -> Aggregates:
-        return Aggregates(self._client)
-
-    @cached_property
-    def events(self) -> Events:
-        return Events(self._client)
+    def aggregates(self) -> AggregatesResource:
+        return AggregatesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AnalyticsWithRawResponse:
-        return AnalyticsWithRawResponse(self)
+    def events(self) -> EventsResource:
+        return EventsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AnalyticsWithStreamingResponse:
-        return AnalyticsWithStreamingResponse(self)
-
-
-class AsyncAnalytics(AsyncAPIResource):
-    @cached_property
-    def aggregates(self) -> AsyncAggregates:
-        return AsyncAggregates(self._client)
+    def with_raw_response(self) -> AnalyticsResourceWithRawResponse:
+        return AnalyticsResourceWithRawResponse(self)
 
     @cached_property
-    def events(self) -> AsyncEvents:
-        return AsyncEvents(self._client)
+    def with_streaming_response(self) -> AnalyticsResourceWithStreamingResponse:
+        return AnalyticsResourceWithStreamingResponse(self)
+
+
+class AsyncAnalyticsResource(AsyncAPIResource):
+    @cached_property
+    def aggregates(self) -> AsyncAggregatesResource:
+        return AsyncAggregatesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAnalyticsWithRawResponse:
-        return AsyncAnalyticsWithRawResponse(self)
+    def events(self) -> AsyncEventsResource:
+        return AsyncEventsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAnalyticsWithStreamingResponse:
-        return AsyncAnalyticsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncAnalyticsResourceWithRawResponse:
+        return AsyncAnalyticsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAnalyticsResourceWithStreamingResponse:
+        return AsyncAnalyticsResourceWithStreamingResponse(self)
 
 
-class AnalyticsWithRawResponse:
-    def __init__(self, analytics: Analytics) -> None:
+class AnalyticsResourceWithRawResponse:
+    def __init__(self, analytics: AnalyticsResource) -> None:
         self._analytics = analytics
 
     @cached_property
-    def aggregates(self) -> AggregatesWithRawResponse:
-        return AggregatesWithRawResponse(self._analytics.aggregates)
+    def aggregates(self) -> AggregatesResourceWithRawResponse:
+        return AggregatesResourceWithRawResponse(self._analytics.aggregates)
 
     @cached_property
-    def events(self) -> EventsWithRawResponse:
-        return EventsWithRawResponse(self._analytics.events)
+    def events(self) -> EventsResourceWithRawResponse:
+        return EventsResourceWithRawResponse(self._analytics.events)
 
 
-class AsyncAnalyticsWithRawResponse:
-    def __init__(self, analytics: AsyncAnalytics) -> None:
+class AsyncAnalyticsResourceWithRawResponse:
+    def __init__(self, analytics: AsyncAnalyticsResource) -> None:
         self._analytics = analytics
 
     @cached_property
-    def aggregates(self) -> AsyncAggregatesWithRawResponse:
-        return AsyncAggregatesWithRawResponse(self._analytics.aggregates)
+    def aggregates(self) -> AsyncAggregatesResourceWithRawResponse:
+        return AsyncAggregatesResourceWithRawResponse(self._analytics.aggregates)
 
     @cached_property
-    def events(self) -> AsyncEventsWithRawResponse:
-        return AsyncEventsWithRawResponse(self._analytics.events)
+    def events(self) -> AsyncEventsResourceWithRawResponse:
+        return AsyncEventsResourceWithRawResponse(self._analytics.events)
 
 
-class AnalyticsWithStreamingResponse:
-    def __init__(self, analytics: Analytics) -> None:
+class AnalyticsResourceWithStreamingResponse:
+    def __init__(self, analytics: AnalyticsResource) -> None:
         self._analytics = analytics
 
     @cached_property
-    def aggregates(self) -> AggregatesWithStreamingResponse:
-        return AggregatesWithStreamingResponse(self._analytics.aggregates)
+    def aggregates(self) -> AggregatesResourceWithStreamingResponse:
+        return AggregatesResourceWithStreamingResponse(self._analytics.aggregates)
 
     @cached_property
-    def events(self) -> EventsWithStreamingResponse:
-        return EventsWithStreamingResponse(self._analytics.events)
+    def events(self) -> EventsResourceWithStreamingResponse:
+        return EventsResourceWithStreamingResponse(self._analytics.events)
 
 
-class AsyncAnalyticsWithStreamingResponse:
-    def __init__(self, analytics: AsyncAnalytics) -> None:
+class AsyncAnalyticsResourceWithStreamingResponse:
+    def __init__(self, analytics: AsyncAnalyticsResource) -> None:
         self._analytics = analytics
 
     @cached_property
-    def aggregates(self) -> AsyncAggregatesWithStreamingResponse:
-        return AsyncAggregatesWithStreamingResponse(self._analytics.aggregates)
+    def aggregates(self) -> AsyncAggregatesResourceWithStreamingResponse:
+        return AsyncAggregatesResourceWithStreamingResponse(self._analytics.aggregates)
 
     @cached_property
-    def events(self) -> AsyncEventsWithStreamingResponse:
-        return AsyncEventsWithStreamingResponse(self._analytics.events)
+    def events(self) -> AsyncEventsResourceWithStreamingResponse:
+        return AsyncEventsResourceWithStreamingResponse(self._analytics.events)

@@ -29,17 +29,17 @@ from ...types.stream import watermark_create_params, watermark_delete_params
 from ...types.stream.watermark import Watermark
 from ...types.stream.watermark_delete_response import WatermarkDeleteResponse
 
-__all__ = ["Watermarks", "AsyncWatermarks"]
+__all__ = ["WatermarksResource", "AsyncWatermarksResource"]
 
 
-class Watermarks(SyncAPIResource):
+class WatermarksResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> WatermarksWithRawResponse:
-        return WatermarksWithRawResponse(self)
+    def with_raw_response(self) -> WatermarksResourceWithRawResponse:
+        return WatermarksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> WatermarksWithStreamingResponse:
-        return WatermarksWithStreamingResponse(self)
+    def with_streaming_response(self) -> WatermarksResourceWithStreamingResponse:
+        return WatermarksResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -251,14 +251,14 @@ class Watermarks(SyncAPIResource):
         )
 
 
-class AsyncWatermarks(AsyncAPIResource):
+class AsyncWatermarksResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncWatermarksWithRawResponse:
-        return AsyncWatermarksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWatermarksResourceWithRawResponse:
+        return AsyncWatermarksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWatermarksWithStreamingResponse:
-        return AsyncWatermarksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWatermarksResourceWithStreamingResponse:
+        return AsyncWatermarksResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -470,8 +470,8 @@ class AsyncWatermarks(AsyncAPIResource):
         )
 
 
-class WatermarksWithRawResponse:
-    def __init__(self, watermarks: Watermarks) -> None:
+class WatermarksResourceWithRawResponse:
+    def __init__(self, watermarks: WatermarksResource) -> None:
         self._watermarks = watermarks
 
         self.create = to_raw_response_wrapper(
@@ -488,8 +488,8 @@ class WatermarksWithRawResponse:
         )
 
 
-class AsyncWatermarksWithRawResponse:
-    def __init__(self, watermarks: AsyncWatermarks) -> None:
+class AsyncWatermarksResourceWithRawResponse:
+    def __init__(self, watermarks: AsyncWatermarksResource) -> None:
         self._watermarks = watermarks
 
         self.create = async_to_raw_response_wrapper(
@@ -506,8 +506,8 @@ class AsyncWatermarksWithRawResponse:
         )
 
 
-class WatermarksWithStreamingResponse:
-    def __init__(self, watermarks: Watermarks) -> None:
+class WatermarksResourceWithStreamingResponse:
+    def __init__(self, watermarks: WatermarksResource) -> None:
         self._watermarks = watermarks
 
         self.create = to_streamed_response_wrapper(
@@ -524,8 +524,8 @@ class WatermarksWithStreamingResponse:
         )
 
 
-class AsyncWatermarksWithStreamingResponse:
-    def __init__(self, watermarks: AsyncWatermarks) -> None:
+class AsyncWatermarksResourceWithStreamingResponse:
+    def __init__(self, watermarks: AsyncWatermarksResource) -> None:
         self._watermarks = watermarks
 
         self.create = async_to_streamed_response_wrapper(

@@ -27,17 +27,17 @@ from .....types.zero_trust.dlp.dataset import Dataset
 from .....types.zero_trust.dlp.datasets import upload_edit_params
 from .....types.zero_trust.dlp.datasets.new_version import NewVersion
 
-__all__ = ["Upload", "AsyncUpload"]
+__all__ = ["UploadResource", "AsyncUploadResource"]
 
 
-class Upload(SyncAPIResource):
+class UploadResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> UploadWithRawResponse:
-        return UploadWithRawResponse(self)
+    def with_raw_response(self) -> UploadResourceWithRawResponse:
+        return UploadResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> UploadWithStreamingResponse:
-        return UploadWithStreamingResponse(self)
+    def with_streaming_response(self) -> UploadResourceWithStreamingResponse:
+        return UploadResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -123,14 +123,14 @@ class Upload(SyncAPIResource):
         )
 
 
-class AsyncUpload(AsyncAPIResource):
+class AsyncUploadResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncUploadWithRawResponse:
-        return AsyncUploadWithRawResponse(self)
+    def with_raw_response(self) -> AsyncUploadResourceWithRawResponse:
+        return AsyncUploadResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUploadWithStreamingResponse:
-        return AsyncUploadWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncUploadResourceWithStreamingResponse:
+        return AsyncUploadResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -216,8 +216,8 @@ class AsyncUpload(AsyncAPIResource):
         )
 
 
-class UploadWithRawResponse:
-    def __init__(self, upload: Upload) -> None:
+class UploadResourceWithRawResponse:
+    def __init__(self, upload: UploadResource) -> None:
         self._upload = upload
 
         self.create = to_raw_response_wrapper(
@@ -228,8 +228,8 @@ class UploadWithRawResponse:
         )
 
 
-class AsyncUploadWithRawResponse:
-    def __init__(self, upload: AsyncUpload) -> None:
+class AsyncUploadResourceWithRawResponse:
+    def __init__(self, upload: AsyncUploadResource) -> None:
         self._upload = upload
 
         self.create = async_to_raw_response_wrapper(
@@ -240,8 +240,8 @@ class AsyncUploadWithRawResponse:
         )
 
 
-class UploadWithStreamingResponse:
-    def __init__(self, upload: Upload) -> None:
+class UploadResourceWithStreamingResponse:
+    def __init__(self, upload: UploadResource) -> None:
         self._upload = upload
 
         self.create = to_streamed_response_wrapper(
@@ -252,8 +252,8 @@ class UploadWithStreamingResponse:
         )
 
 
-class AsyncUploadWithStreamingResponse:
-    def __init__(self, upload: AsyncUpload) -> None:
+class AsyncUploadResourceWithStreamingResponse:
+    def __init__(self, upload: AsyncUploadResource) -> None:
         self._upload = upload
 
         self.create = async_to_streamed_response_wrapper(

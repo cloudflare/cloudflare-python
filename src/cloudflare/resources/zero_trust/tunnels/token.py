@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.zero_trust.tunnels.token_get_response import TokenGetResponse
 
-__all__ = ["Token", "AsyncToken"]
+__all__ = ["TokenResource", "AsyncTokenResource"]
 
 
-class Token(SyncAPIResource):
+class TokenResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TokenWithRawResponse:
-        return TokenWithRawResponse(self)
+    def with_raw_response(self) -> TokenResourceWithRawResponse:
+        return TokenResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TokenWithStreamingResponse:
-        return TokenWithStreamingResponse(self)
+    def with_streaming_response(self) -> TokenResourceWithStreamingResponse:
+        return TokenResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -83,14 +83,14 @@ class Token(SyncAPIResource):
         )
 
 
-class AsyncToken(AsyncAPIResource):
+class AsyncTokenResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTokenWithRawResponse:
-        return AsyncTokenWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTokenResourceWithRawResponse:
+        return AsyncTokenResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTokenWithStreamingResponse:
-        return AsyncTokenWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTokenResourceWithStreamingResponse:
+        return AsyncTokenResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -142,8 +142,8 @@ class AsyncToken(AsyncAPIResource):
         )
 
 
-class TokenWithRawResponse:
-    def __init__(self, token: Token) -> None:
+class TokenResourceWithRawResponse:
+    def __init__(self, token: TokenResource) -> None:
         self._token = token
 
         self.get = to_raw_response_wrapper(
@@ -151,8 +151,8 @@ class TokenWithRawResponse:
         )
 
 
-class AsyncTokenWithRawResponse:
-    def __init__(self, token: AsyncToken) -> None:
+class AsyncTokenResourceWithRawResponse:
+    def __init__(self, token: AsyncTokenResource) -> None:
         self._token = token
 
         self.get = async_to_raw_response_wrapper(
@@ -160,8 +160,8 @@ class AsyncTokenWithRawResponse:
         )
 
 
-class TokenWithStreamingResponse:
-    def __init__(self, token: Token) -> None:
+class TokenResourceWithStreamingResponse:
+    def __init__(self, token: TokenResource) -> None:
         self._token = token
 
         self.get = to_streamed_response_wrapper(
@@ -169,8 +169,8 @@ class TokenWithStreamingResponse:
         )
 
 
-class AsyncTokenWithStreamingResponse:
-    def __init__(self, token: AsyncToken) -> None:
+class AsyncTokenResourceWithStreamingResponse:
+    def __init__(self, token: AsyncTokenResource) -> None:
         self._token = token
 
         self.get = async_to_streamed_response_wrapper(

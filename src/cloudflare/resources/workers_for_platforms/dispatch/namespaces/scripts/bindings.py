@@ -21,17 +21,17 @@ from ......_base_client import (
 )
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.binding_get_response import BindingGetResponse
 
-__all__ = ["Bindings", "AsyncBindings"]
+__all__ = ["BindingsResource", "AsyncBindingsResource"]
 
 
-class Bindings(SyncAPIResource):
+class BindingsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BindingsWithRawResponse:
-        return BindingsWithRawResponse(self)
+    def with_raw_response(self) -> BindingsResourceWithRawResponse:
+        return BindingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BindingsWithStreamingResponse:
-        return BindingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> BindingsResourceWithStreamingResponse:
+        return BindingsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -84,14 +84,14 @@ class Bindings(SyncAPIResource):
         )
 
 
-class AsyncBindings(AsyncAPIResource):
+class AsyncBindingsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBindingsWithRawResponse:
-        return AsyncBindingsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBindingsResourceWithRawResponse:
+        return AsyncBindingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBindingsWithStreamingResponse:
-        return AsyncBindingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBindingsResourceWithStreamingResponse:
+        return AsyncBindingsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -144,8 +144,8 @@ class AsyncBindings(AsyncAPIResource):
         )
 
 
-class BindingsWithRawResponse:
-    def __init__(self, bindings: Bindings) -> None:
+class BindingsResourceWithRawResponse:
+    def __init__(self, bindings: BindingsResource) -> None:
         self._bindings = bindings
 
         self.get = to_raw_response_wrapper(
@@ -153,8 +153,8 @@ class BindingsWithRawResponse:
         )
 
 
-class AsyncBindingsWithRawResponse:
-    def __init__(self, bindings: AsyncBindings) -> None:
+class AsyncBindingsResourceWithRawResponse:
+    def __init__(self, bindings: AsyncBindingsResource) -> None:
         self._bindings = bindings
 
         self.get = async_to_raw_response_wrapper(
@@ -162,8 +162,8 @@ class AsyncBindingsWithRawResponse:
         )
 
 
-class BindingsWithStreamingResponse:
-    def __init__(self, bindings: Bindings) -> None:
+class BindingsResourceWithStreamingResponse:
+    def __init__(self, bindings: BindingsResource) -> None:
         self._bindings = bindings
 
         self.get = to_streamed_response_wrapper(
@@ -171,8 +171,8 @@ class BindingsWithStreamingResponse:
         )
 
 
-class AsyncBindingsWithStreamingResponse:
-    def __init__(self, bindings: AsyncBindings) -> None:
+class AsyncBindingsResourceWithStreamingResponse:
+    def __init__(self, bindings: AsyncBindingsResource) -> None:
         self._bindings = bindings
 
         self.get = async_to_streamed_response_wrapper(

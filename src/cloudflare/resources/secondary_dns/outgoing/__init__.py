@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .status import (
-    Status,
-    AsyncStatus,
-    StatusWithRawResponse,
-    AsyncStatusWithRawResponse,
-    StatusWithStreamingResponse,
-    AsyncStatusWithStreamingResponse,
+    StatusResource,
+    AsyncStatusResource,
+    StatusResourceWithRawResponse,
+    AsyncStatusResourceWithRawResponse,
+    StatusResourceWithStreamingResponse,
+    AsyncStatusResourceWithStreamingResponse,
 )
 from .outgoing import (
     OutgoingResource,
@@ -18,12 +18,12 @@ from .outgoing import (
 )
 
 __all__ = [
-    "Status",
-    "AsyncStatus",
-    "StatusWithRawResponse",
-    "AsyncStatusWithRawResponse",
-    "StatusWithStreamingResponse",
-    "AsyncStatusWithStreamingResponse",
+    "StatusResource",
+    "AsyncStatusResource",
+    "StatusResourceWithRawResponse",
+    "AsyncStatusResourceWithRawResponse",
+    "StatusResourceWithStreamingResponse",
+    "AsyncStatusResourceWithStreamingResponse",
     "OutgoingResource",
     "AsyncOutgoingResource",
     "OutgoingResourceWithRawResponse",

@@ -9,12 +9,12 @@ from typing_extensions import Literal
 import httpx
 
 from .top import (
-    Top,
-    AsyncTop,
-    TopWithRawResponse,
-    AsyncTopWithRawResponse,
-    TopWithStreamingResponse,
-    AsyncTopWithStreamingResponse,
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -36,21 +36,21 @@ from ...._base_client import (
 )
 from ....types.radar.netflow_timeseries_response import NetflowTimeseriesResponse
 
-__all__ = ["Netflows", "AsyncNetflows"]
+__all__ = ["NetflowsResource", "AsyncNetflowsResource"]
 
 
-class Netflows(SyncAPIResource):
+class NetflowsResource(SyncAPIResource):
     @cached_property
-    def top(self) -> Top:
-        return Top(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> NetflowsWithRawResponse:
-        return NetflowsWithRawResponse(self)
+    def top(self) -> TopResource:
+        return TopResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> NetflowsWithStreamingResponse:
-        return NetflowsWithStreamingResponse(self)
+    def with_raw_response(self) -> NetflowsResourceWithRawResponse:
+        return NetflowsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> NetflowsResourceWithStreamingResponse:
+        return NetflowsResourceWithStreamingResponse(self)
 
     def timeseries(
         self,
@@ -168,18 +168,18 @@ class Netflows(SyncAPIResource):
         )
 
 
-class AsyncNetflows(AsyncAPIResource):
+class AsyncNetflowsResource(AsyncAPIResource):
     @cached_property
-    def top(self) -> AsyncTop:
-        return AsyncTop(self._client)
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncNetflowsWithRawResponse:
-        return AsyncNetflowsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncNetflowsResourceWithRawResponse:
+        return AsyncNetflowsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncNetflowsWithStreamingResponse:
-        return AsyncNetflowsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncNetflowsResourceWithStreamingResponse:
+        return AsyncNetflowsResourceWithStreamingResponse(self)
 
     async def timeseries(
         self,
@@ -297,8 +297,8 @@ class AsyncNetflows(AsyncAPIResource):
         )
 
 
-class NetflowsWithRawResponse:
-    def __init__(self, netflows: Netflows) -> None:
+class NetflowsResourceWithRawResponse:
+    def __init__(self, netflows: NetflowsResource) -> None:
         self._netflows = netflows
 
         self.timeseries = to_raw_response_wrapper(
@@ -306,12 +306,12 @@ class NetflowsWithRawResponse:
         )
 
     @cached_property
-    def top(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self._netflows.top)
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._netflows.top)
 
 
-class AsyncNetflowsWithRawResponse:
-    def __init__(self, netflows: AsyncNetflows) -> None:
+class AsyncNetflowsResourceWithRawResponse:
+    def __init__(self, netflows: AsyncNetflowsResource) -> None:
         self._netflows = netflows
 
         self.timeseries = async_to_raw_response_wrapper(
@@ -319,12 +319,12 @@ class AsyncNetflowsWithRawResponse:
         )
 
     @cached_property
-    def top(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self._netflows.top)
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._netflows.top)
 
 
-class NetflowsWithStreamingResponse:
-    def __init__(self, netflows: Netflows) -> None:
+class NetflowsResourceWithStreamingResponse:
+    def __init__(self, netflows: NetflowsResource) -> None:
         self._netflows = netflows
 
         self.timeseries = to_streamed_response_wrapper(
@@ -332,12 +332,12 @@ class NetflowsWithStreamingResponse:
         )
 
     @cached_property
-    def top(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self._netflows.top)
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._netflows.top)
 
 
-class AsyncNetflowsWithStreamingResponse:
-    def __init__(self, netflows: AsyncNetflows) -> None:
+class AsyncNetflowsResourceWithStreamingResponse:
+    def __init__(self, netflows: AsyncNetflowsResource) -> None:
         self._netflows = netflows
 
         self.timeseries = async_to_streamed_response_wrapper(
@@ -345,5 +345,5 @@ class AsyncNetflowsWithStreamingResponse:
         )
 
     @cached_property
-    def top(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self._netflows.top)
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._netflows.top)

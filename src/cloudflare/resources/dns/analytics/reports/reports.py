@@ -8,12 +8,12 @@ from datetime import datetime
 import httpx
 
 from .bytimes import (
-    Bytimes,
-    AsyncBytimes,
-    BytimesWithRawResponse,
-    AsyncBytimesWithRawResponse,
-    BytimesWithStreamingResponse,
-    AsyncBytimesWithStreamingResponse,
+    BytimesResource,
+    AsyncBytimesResource,
+    BytimesResourceWithRawResponse,
+    AsyncBytimesResourceWithRawResponse,
+    BytimesResourceWithStreamingResponse,
+    AsyncBytimesResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -35,21 +35,21 @@ from ....._base_client import (
 from .....types.dns.analytics import report_get_params
 from .....types.dns.analytics.report import Report
 
-__all__ = ["Reports", "AsyncReports"]
+__all__ = ["ReportsResource", "AsyncReportsResource"]
 
 
-class Reports(SyncAPIResource):
+class ReportsResource(SyncAPIResource):
     @cached_property
-    def bytimes(self) -> Bytimes:
-        return Bytimes(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> ReportsWithRawResponse:
-        return ReportsWithRawResponse(self)
+    def bytimes(self) -> BytimesResource:
+        return BytimesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ReportsWithStreamingResponse:
-        return ReportsWithStreamingResponse(self)
+    def with_raw_response(self) -> ReportsResourceWithRawResponse:
+        return ReportsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ReportsResourceWithStreamingResponse:
+        return ReportsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -129,18 +129,18 @@ class Reports(SyncAPIResource):
         )
 
 
-class AsyncReports(AsyncAPIResource):
+class AsyncReportsResource(AsyncAPIResource):
     @cached_property
-    def bytimes(self) -> AsyncBytimes:
-        return AsyncBytimes(self._client)
+    def bytimes(self) -> AsyncBytimesResource:
+        return AsyncBytimesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncReportsWithRawResponse:
-        return AsyncReportsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncReportsResourceWithRawResponse:
+        return AsyncReportsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncReportsWithStreamingResponse:
-        return AsyncReportsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncReportsResourceWithStreamingResponse:
+        return AsyncReportsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -220,8 +220,8 @@ class AsyncReports(AsyncAPIResource):
         )
 
 
-class ReportsWithRawResponse:
-    def __init__(self, reports: Reports) -> None:
+class ReportsResourceWithRawResponse:
+    def __init__(self, reports: ReportsResource) -> None:
         self._reports = reports
 
         self.get = to_raw_response_wrapper(
@@ -229,12 +229,12 @@ class ReportsWithRawResponse:
         )
 
     @cached_property
-    def bytimes(self) -> BytimesWithRawResponse:
-        return BytimesWithRawResponse(self._reports.bytimes)
+    def bytimes(self) -> BytimesResourceWithRawResponse:
+        return BytimesResourceWithRawResponse(self._reports.bytimes)
 
 
-class AsyncReportsWithRawResponse:
-    def __init__(self, reports: AsyncReports) -> None:
+class AsyncReportsResourceWithRawResponse:
+    def __init__(self, reports: AsyncReportsResource) -> None:
         self._reports = reports
 
         self.get = async_to_raw_response_wrapper(
@@ -242,12 +242,12 @@ class AsyncReportsWithRawResponse:
         )
 
     @cached_property
-    def bytimes(self) -> AsyncBytimesWithRawResponse:
-        return AsyncBytimesWithRawResponse(self._reports.bytimes)
+    def bytimes(self) -> AsyncBytimesResourceWithRawResponse:
+        return AsyncBytimesResourceWithRawResponse(self._reports.bytimes)
 
 
-class ReportsWithStreamingResponse:
-    def __init__(self, reports: Reports) -> None:
+class ReportsResourceWithStreamingResponse:
+    def __init__(self, reports: ReportsResource) -> None:
         self._reports = reports
 
         self.get = to_streamed_response_wrapper(
@@ -255,12 +255,12 @@ class ReportsWithStreamingResponse:
         )
 
     @cached_property
-    def bytimes(self) -> BytimesWithStreamingResponse:
-        return BytimesWithStreamingResponse(self._reports.bytimes)
+    def bytimes(self) -> BytimesResourceWithStreamingResponse:
+        return BytimesResourceWithStreamingResponse(self._reports.bytimes)
 
 
-class AsyncReportsWithStreamingResponse:
-    def __init__(self, reports: AsyncReports) -> None:
+class AsyncReportsResourceWithStreamingResponse:
+    def __init__(self, reports: AsyncReportsResource) -> None:
         self._reports = reports
 
         self.get = async_to_streamed_response_wrapper(
@@ -268,5 +268,5 @@ class AsyncReportsWithStreamingResponse:
         )
 
     @cached_property
-    def bytimes(self) -> AsyncBytimesWithStreamingResponse:
-        return AsyncBytimesWithStreamingResponse(self._reports.bytimes)
+    def bytimes(self) -> AsyncBytimesResourceWithStreamingResponse:
+        return AsyncBytimesResourceWithStreamingResponse(self._reports.bytimes)

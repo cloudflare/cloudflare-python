@@ -8,12 +8,12 @@ from typing_extensions import Literal
 import httpx
 
 from .versions import (
-    Versions,
-    AsyncVersions,
-    VersionsWithRawResponse,
-    AsyncVersionsWithRawResponse,
-    VersionsWithStreamingResponse,
-    AsyncVersionsWithStreamingResponse,
+    VersionsResource,
+    AsyncVersionsResource,
+    VersionsResourceWithRawResponse,
+    AsyncVersionsResourceWithRawResponse,
+    VersionsResourceWithStreamingResponse,
+    AsyncVersionsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -36,21 +36,21 @@ from ....types.rulesets import phase_update_params
 from ....types.rulesets.phase_get_response import PhaseGetResponse
 from ....types.rulesets.phase_update_response import PhaseUpdateResponse
 
-__all__ = ["Phases", "AsyncPhases"]
+__all__ = ["PhasesResource", "AsyncPhasesResource"]
 
 
-class Phases(SyncAPIResource):
+class PhasesResource(SyncAPIResource):
     @cached_property
-    def versions(self) -> Versions:
-        return Versions(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> PhasesWithRawResponse:
-        return PhasesWithRawResponse(self)
+    def versions(self) -> VersionsResource:
+        return VersionsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> PhasesWithStreamingResponse:
-        return PhasesWithStreamingResponse(self)
+    def with_raw_response(self) -> PhasesResourceWithRawResponse:
+        return PhasesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PhasesResourceWithStreamingResponse:
+        return PhasesResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -266,18 +266,18 @@ class Phases(SyncAPIResource):
         )
 
 
-class AsyncPhases(AsyncAPIResource):
+class AsyncPhasesResource(AsyncAPIResource):
     @cached_property
-    def versions(self) -> AsyncVersions:
-        return AsyncVersions(self._client)
+    def versions(self) -> AsyncVersionsResource:
+        return AsyncVersionsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPhasesWithRawResponse:
-        return AsyncPhasesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPhasesResourceWithRawResponse:
+        return AsyncPhasesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPhasesWithStreamingResponse:
-        return AsyncPhasesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPhasesResourceWithStreamingResponse:
+        return AsyncPhasesResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -493,8 +493,8 @@ class AsyncPhases(AsyncAPIResource):
         )
 
 
-class PhasesWithRawResponse:
-    def __init__(self, phases: Phases) -> None:
+class PhasesResourceWithRawResponse:
+    def __init__(self, phases: PhasesResource) -> None:
         self._phases = phases
 
         self.update = to_raw_response_wrapper(
@@ -505,12 +505,12 @@ class PhasesWithRawResponse:
         )
 
     @cached_property
-    def versions(self) -> VersionsWithRawResponse:
-        return VersionsWithRawResponse(self._phases.versions)
+    def versions(self) -> VersionsResourceWithRawResponse:
+        return VersionsResourceWithRawResponse(self._phases.versions)
 
 
-class AsyncPhasesWithRawResponse:
-    def __init__(self, phases: AsyncPhases) -> None:
+class AsyncPhasesResourceWithRawResponse:
+    def __init__(self, phases: AsyncPhasesResource) -> None:
         self._phases = phases
 
         self.update = async_to_raw_response_wrapper(
@@ -521,12 +521,12 @@ class AsyncPhasesWithRawResponse:
         )
 
     @cached_property
-    def versions(self) -> AsyncVersionsWithRawResponse:
-        return AsyncVersionsWithRawResponse(self._phases.versions)
+    def versions(self) -> AsyncVersionsResourceWithRawResponse:
+        return AsyncVersionsResourceWithRawResponse(self._phases.versions)
 
 
-class PhasesWithStreamingResponse:
-    def __init__(self, phases: Phases) -> None:
+class PhasesResourceWithStreamingResponse:
+    def __init__(self, phases: PhasesResource) -> None:
         self._phases = phases
 
         self.update = to_streamed_response_wrapper(
@@ -537,12 +537,12 @@ class PhasesWithStreamingResponse:
         )
 
     @cached_property
-    def versions(self) -> VersionsWithStreamingResponse:
-        return VersionsWithStreamingResponse(self._phases.versions)
+    def versions(self) -> VersionsResourceWithStreamingResponse:
+        return VersionsResourceWithStreamingResponse(self._phases.versions)
 
 
-class AsyncPhasesWithStreamingResponse:
-    def __init__(self, phases: AsyncPhases) -> None:
+class AsyncPhasesResourceWithStreamingResponse:
+    def __init__(self, phases: AsyncPhasesResource) -> None:
         self._phases = phases
 
         self.update = async_to_streamed_response_wrapper(
@@ -553,5 +553,5 @@ class AsyncPhasesWithStreamingResponse:
         )
 
     @cached_property
-    def versions(self) -> AsyncVersionsWithStreamingResponse:
-        return AsyncVersionsWithStreamingResponse(self._phases.versions)
+    def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
+        return AsyncVersionsResourceWithStreamingResponse(self._phases.versions)

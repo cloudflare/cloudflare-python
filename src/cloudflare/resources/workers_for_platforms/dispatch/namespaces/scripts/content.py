@@ -37,17 +37,17 @@ from ......types.workers.script import Script
 from ......types.workers.worker_metadata_param import WorkerMetadataParam
 from ......types.workers_for_platforms.dispatch.namespaces.scripts import content_update_params
 
-__all__ = ["Content", "AsyncContent"]
+__all__ = ["ContentResource", "AsyncContentResource"]
 
 
-class Content(SyncAPIResource):
+class ContentResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ContentWithRawResponse:
-        return ContentWithRawResponse(self)
+    def with_raw_response(self) -> ContentResourceWithRawResponse:
+        return ContentResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ContentWithStreamingResponse:
-        return ContentWithStreamingResponse(self)
+    def with_streaming_response(self) -> ContentResourceWithStreamingResponse:
+        return ContentResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -171,14 +171,14 @@ class Content(SyncAPIResource):
         )
 
 
-class AsyncContent(AsyncAPIResource):
+class AsyncContentResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncContentWithRawResponse:
-        return AsyncContentWithRawResponse(self)
+    def with_raw_response(self) -> AsyncContentResourceWithRawResponse:
+        return AsyncContentResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncContentWithStreamingResponse:
-        return AsyncContentWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncContentResourceWithStreamingResponse:
+        return AsyncContentResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -302,8 +302,8 @@ class AsyncContent(AsyncAPIResource):
         )
 
 
-class ContentWithRawResponse:
-    def __init__(self, content: Content) -> None:
+class ContentResourceWithRawResponse:
+    def __init__(self, content: ContentResource) -> None:
         self._content = content
 
         self.update = to_raw_response_wrapper(
@@ -315,8 +315,8 @@ class ContentWithRawResponse:
         )
 
 
-class AsyncContentWithRawResponse:
-    def __init__(self, content: AsyncContent) -> None:
+class AsyncContentResourceWithRawResponse:
+    def __init__(self, content: AsyncContentResource) -> None:
         self._content = content
 
         self.update = async_to_raw_response_wrapper(
@@ -328,8 +328,8 @@ class AsyncContentWithRawResponse:
         )
 
 
-class ContentWithStreamingResponse:
-    def __init__(self, content: Content) -> None:
+class ContentResourceWithStreamingResponse:
+    def __init__(self, content: ContentResource) -> None:
         self._content = content
 
         self.update = to_streamed_response_wrapper(
@@ -341,8 +341,8 @@ class ContentWithStreamingResponse:
         )
 
 
-class AsyncContentWithStreamingResponse:
-    def __init__(self, content: AsyncContent) -> None:
+class AsyncContentResourceWithStreamingResponse:
+    def __init__(self, content: AsyncContentResource) -> None:
         self._content = content
 
         self.update = async_to_streamed_response_wrapper(

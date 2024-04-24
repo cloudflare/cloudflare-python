@@ -8,12 +8,12 @@ from typing_extensions import Literal
 import httpx
 
 from .asns import (
-    ASNs,
-    AsyncASNs,
-    ASNsWithRawResponse,
-    AsyncASNsWithRawResponse,
-    ASNsWithStreamingResponse,
-    AsyncASNsWithStreamingResponse,
+    ASNsResource,
+    AsyncASNsResource,
+    ASNsResourceWithRawResponse,
+    AsyncASNsResourceWithRawResponse,
+    ASNsResourceWithStreamingResponse,
+    AsyncASNsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -21,12 +21,12 @@ from ...._utils import (
     async_maybe_transform,
 )
 from .locations import (
-    Locations,
-    AsyncLocations,
-    LocationsWithRawResponse,
-    AsyncLocationsWithRawResponse,
-    LocationsWithStreamingResponse,
-    AsyncLocationsWithStreamingResponse,
+    LocationsResource,
+    AsyncLocationsResource,
+    LocationsResourceWithRawResponse,
+    AsyncLocationsResourceWithRawResponse,
+    LocationsResourceWithStreamingResponse,
+    AsyncLocationsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -43,25 +43,25 @@ from ...._base_client import (
 )
 from ....types.radar.entity_get_response import EntityGetResponse
 
-__all__ = ["Entities", "AsyncEntities"]
+__all__ = ["EntitiesResource", "AsyncEntitiesResource"]
 
 
-class Entities(SyncAPIResource):
+class EntitiesResource(SyncAPIResource):
     @cached_property
-    def asns(self) -> ASNs:
-        return ASNs(self._client)
-
-    @cached_property
-    def locations(self) -> Locations:
-        return Locations(self._client)
+    def asns(self) -> ASNsResource:
+        return ASNsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> EntitiesWithRawResponse:
-        return EntitiesWithRawResponse(self)
+    def locations(self) -> LocationsResource:
+        return LocationsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> EntitiesWithStreamingResponse:
-        return EntitiesWithStreamingResponse(self)
+    def with_raw_response(self) -> EntitiesResourceWithRawResponse:
+        return EntitiesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> EntitiesResourceWithStreamingResponse:
+        return EntitiesResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -111,22 +111,22 @@ class Entities(SyncAPIResource):
         )
 
 
-class AsyncEntities(AsyncAPIResource):
+class AsyncEntitiesResource(AsyncAPIResource):
     @cached_property
-    def asns(self) -> AsyncASNs:
-        return AsyncASNs(self._client)
+    def asns(self) -> AsyncASNsResource:
+        return AsyncASNsResource(self._client)
 
     @cached_property
-    def locations(self) -> AsyncLocations:
-        return AsyncLocations(self._client)
+    def locations(self) -> AsyncLocationsResource:
+        return AsyncLocationsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncEntitiesWithRawResponse:
-        return AsyncEntitiesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncEntitiesResourceWithRawResponse:
+        return AsyncEntitiesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEntitiesWithStreamingResponse:
-        return AsyncEntitiesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncEntitiesResourceWithStreamingResponse:
+        return AsyncEntitiesResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -176,8 +176,8 @@ class AsyncEntities(AsyncAPIResource):
         )
 
 
-class EntitiesWithRawResponse:
-    def __init__(self, entities: Entities) -> None:
+class EntitiesResourceWithRawResponse:
+    def __init__(self, entities: EntitiesResource) -> None:
         self._entities = entities
 
         self.get = to_raw_response_wrapper(
@@ -185,16 +185,16 @@ class EntitiesWithRawResponse:
         )
 
     @cached_property
-    def asns(self) -> ASNsWithRawResponse:
-        return ASNsWithRawResponse(self._entities.asns)
+    def asns(self) -> ASNsResourceWithRawResponse:
+        return ASNsResourceWithRawResponse(self._entities.asns)
 
     @cached_property
-    def locations(self) -> LocationsWithRawResponse:
-        return LocationsWithRawResponse(self._entities.locations)
+    def locations(self) -> LocationsResourceWithRawResponse:
+        return LocationsResourceWithRawResponse(self._entities.locations)
 
 
-class AsyncEntitiesWithRawResponse:
-    def __init__(self, entities: AsyncEntities) -> None:
+class AsyncEntitiesResourceWithRawResponse:
+    def __init__(self, entities: AsyncEntitiesResource) -> None:
         self._entities = entities
 
         self.get = async_to_raw_response_wrapper(
@@ -202,16 +202,16 @@ class AsyncEntitiesWithRawResponse:
         )
 
     @cached_property
-    def asns(self) -> AsyncASNsWithRawResponse:
-        return AsyncASNsWithRawResponse(self._entities.asns)
+    def asns(self) -> AsyncASNsResourceWithRawResponse:
+        return AsyncASNsResourceWithRawResponse(self._entities.asns)
 
     @cached_property
-    def locations(self) -> AsyncLocationsWithRawResponse:
-        return AsyncLocationsWithRawResponse(self._entities.locations)
+    def locations(self) -> AsyncLocationsResourceWithRawResponse:
+        return AsyncLocationsResourceWithRawResponse(self._entities.locations)
 
 
-class EntitiesWithStreamingResponse:
-    def __init__(self, entities: Entities) -> None:
+class EntitiesResourceWithStreamingResponse:
+    def __init__(self, entities: EntitiesResource) -> None:
         self._entities = entities
 
         self.get = to_streamed_response_wrapper(
@@ -219,16 +219,16 @@ class EntitiesWithStreamingResponse:
         )
 
     @cached_property
-    def asns(self) -> ASNsWithStreamingResponse:
-        return ASNsWithStreamingResponse(self._entities.asns)
+    def asns(self) -> ASNsResourceWithStreamingResponse:
+        return ASNsResourceWithStreamingResponse(self._entities.asns)
 
     @cached_property
-    def locations(self) -> LocationsWithStreamingResponse:
-        return LocationsWithStreamingResponse(self._entities.locations)
+    def locations(self) -> LocationsResourceWithStreamingResponse:
+        return LocationsResourceWithStreamingResponse(self._entities.locations)
 
 
-class AsyncEntitiesWithStreamingResponse:
-    def __init__(self, entities: AsyncEntities) -> None:
+class AsyncEntitiesResourceWithStreamingResponse:
+    def __init__(self, entities: AsyncEntitiesResource) -> None:
         self._entities = entities
 
         self.get = async_to_streamed_response_wrapper(
@@ -236,9 +236,9 @@ class AsyncEntitiesWithStreamingResponse:
         )
 
     @cached_property
-    def asns(self) -> AsyncASNsWithStreamingResponse:
-        return AsyncASNsWithStreamingResponse(self._entities.asns)
+    def asns(self) -> AsyncASNsResourceWithStreamingResponse:
+        return AsyncASNsResourceWithStreamingResponse(self._entities.asns)
 
     @cached_property
-    def locations(self) -> AsyncLocationsWithStreamingResponse:
-        return AsyncLocationsWithStreamingResponse(self._entities.locations)
+    def locations(self) -> AsyncLocationsResourceWithStreamingResponse:
+        return AsyncLocationsResourceWithStreamingResponse(self._entities.locations)

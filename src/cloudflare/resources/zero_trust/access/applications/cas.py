@@ -26,17 +26,17 @@ from .....types.zero_trust.access.applications.ca_get_response import CAGetRespo
 from .....types.zero_trust.access.applications.ca_create_response import CACreateResponse
 from .....types.zero_trust.access.applications.ca_delete_response import CADeleteResponse
 
-__all__ = ["CAs", "AsyncCAs"]
+__all__ = ["CAsResource", "AsyncCAsResource"]
 
 
-class CAs(SyncAPIResource):
+class CAsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CAsWithRawResponse:
-        return CAsWithRawResponse(self)
+    def with_raw_response(self) -> CAsResourceWithRawResponse:
+        return CAsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CAsWithStreamingResponse:
-        return CAsWithStreamingResponse(self)
+    def with_streaming_response(self) -> CAsResourceWithStreamingResponse:
+        return CAsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -269,14 +269,14 @@ class CAs(SyncAPIResource):
         )
 
 
-class AsyncCAs(AsyncAPIResource):
+class AsyncCAsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCAsWithRawResponse:
-        return AsyncCAsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCAsResourceWithRawResponse:
+        return AsyncCAsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCAsWithStreamingResponse:
-        return AsyncCAsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCAsResourceWithStreamingResponse:
+        return AsyncCAsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -509,8 +509,8 @@ class AsyncCAs(AsyncAPIResource):
         )
 
 
-class CAsWithRawResponse:
-    def __init__(self, cas: CAs) -> None:
+class CAsResourceWithRawResponse:
+    def __init__(self, cas: CAsResource) -> None:
         self._cas = cas
 
         self.create = to_raw_response_wrapper(
@@ -527,8 +527,8 @@ class CAsWithRawResponse:
         )
 
 
-class AsyncCAsWithRawResponse:
-    def __init__(self, cas: AsyncCAs) -> None:
+class AsyncCAsResourceWithRawResponse:
+    def __init__(self, cas: AsyncCAsResource) -> None:
         self._cas = cas
 
         self.create = async_to_raw_response_wrapper(
@@ -545,8 +545,8 @@ class AsyncCAsWithRawResponse:
         )
 
 
-class CAsWithStreamingResponse:
-    def __init__(self, cas: CAs) -> None:
+class CAsResourceWithStreamingResponse:
+    def __init__(self, cas: CAsResource) -> None:
         self._cas = cas
 
         self.create = to_streamed_response_wrapper(
@@ -563,8 +563,8 @@ class CAsWithStreamingResponse:
         )
 
 
-class AsyncCAsWithStreamingResponse:
-    def __init__(self, cas: AsyncCAs) -> None:
+class AsyncCAsResourceWithStreamingResponse:
+    def __init__(self, cas: AsyncCAsResource) -> None:
         self._cas = cas
 
         self.create = async_to_streamed_response_wrapper(

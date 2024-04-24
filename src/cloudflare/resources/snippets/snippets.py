@@ -7,20 +7,20 @@ from typing import Any, Type, cast
 import httpx
 
 from .rules import (
-    Rules,
-    AsyncRules,
-    RulesWithRawResponse,
-    AsyncRulesWithRawResponse,
-    RulesWithStreamingResponse,
-    AsyncRulesWithStreamingResponse,
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
 from .content import (
-    Content,
-    AsyncContent,
-    ContentWithRawResponse,
-    AsyncContentWithRawResponse,
-    ContentWithStreamingResponse,
-    AsyncContentWithStreamingResponse,
+    ContentResource,
+    AsyncContentResource,
+    ContentResourceWithRawResponse,
+    AsyncContentResourceWithRawResponse,
+    ContentResourceWithStreamingResponse,
+    AsyncContentResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -45,25 +45,25 @@ from ...types.snippets import snippet_update_params
 from ...types.snippets.snippet import Snippet
 from ...types.snippets.snippet_delete_response import SnippetDeleteResponse
 
-__all__ = ["Snippets", "AsyncSnippets"]
+__all__ = ["SnippetsResource", "AsyncSnippetsResource"]
 
 
-class Snippets(SyncAPIResource):
+class SnippetsResource(SyncAPIResource):
     @cached_property
-    def content(self) -> Content:
-        return Content(self._client)
-
-    @cached_property
-    def rules(self) -> Rules:
-        return Rules(self._client)
+    def content(self) -> ContentResource:
+        return ContentResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> SnippetsWithRawResponse:
-        return SnippetsWithRawResponse(self)
+    def rules(self) -> RulesResource:
+        return RulesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> SnippetsWithStreamingResponse:
-        return SnippetsWithStreamingResponse(self)
+    def with_raw_response(self) -> SnippetsResourceWithRawResponse:
+        return SnippetsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> SnippetsResourceWithStreamingResponse:
+        return SnippetsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -250,22 +250,22 @@ class Snippets(SyncAPIResource):
         )
 
 
-class AsyncSnippets(AsyncAPIResource):
+class AsyncSnippetsResource(AsyncAPIResource):
     @cached_property
-    def content(self) -> AsyncContent:
-        return AsyncContent(self._client)
+    def content(self) -> AsyncContentResource:
+        return AsyncContentResource(self._client)
 
     @cached_property
-    def rules(self) -> AsyncRules:
-        return AsyncRules(self._client)
+    def rules(self) -> AsyncRulesResource:
+        return AsyncRulesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncSnippetsWithRawResponse:
-        return AsyncSnippetsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSnippetsResourceWithRawResponse:
+        return AsyncSnippetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSnippetsWithStreamingResponse:
-        return AsyncSnippetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSnippetsResourceWithStreamingResponse:
+        return AsyncSnippetsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -452,8 +452,8 @@ class AsyncSnippets(AsyncAPIResource):
         )
 
 
-class SnippetsWithRawResponse:
-    def __init__(self, snippets: Snippets) -> None:
+class SnippetsResourceWithRawResponse:
+    def __init__(self, snippets: SnippetsResource) -> None:
         self._snippets = snippets
 
         self.update = to_raw_response_wrapper(
@@ -470,16 +470,16 @@ class SnippetsWithRawResponse:
         )
 
     @cached_property
-    def content(self) -> ContentWithRawResponse:
-        return ContentWithRawResponse(self._snippets.content)
+    def content(self) -> ContentResourceWithRawResponse:
+        return ContentResourceWithRawResponse(self._snippets.content)
 
     @cached_property
-    def rules(self) -> RulesWithRawResponse:
-        return RulesWithRawResponse(self._snippets.rules)
+    def rules(self) -> RulesResourceWithRawResponse:
+        return RulesResourceWithRawResponse(self._snippets.rules)
 
 
-class AsyncSnippetsWithRawResponse:
-    def __init__(self, snippets: AsyncSnippets) -> None:
+class AsyncSnippetsResourceWithRawResponse:
+    def __init__(self, snippets: AsyncSnippetsResource) -> None:
         self._snippets = snippets
 
         self.update = async_to_raw_response_wrapper(
@@ -496,16 +496,16 @@ class AsyncSnippetsWithRawResponse:
         )
 
     @cached_property
-    def content(self) -> AsyncContentWithRawResponse:
-        return AsyncContentWithRawResponse(self._snippets.content)
+    def content(self) -> AsyncContentResourceWithRawResponse:
+        return AsyncContentResourceWithRawResponse(self._snippets.content)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithRawResponse:
-        return AsyncRulesWithRawResponse(self._snippets.rules)
+    def rules(self) -> AsyncRulesResourceWithRawResponse:
+        return AsyncRulesResourceWithRawResponse(self._snippets.rules)
 
 
-class SnippetsWithStreamingResponse:
-    def __init__(self, snippets: Snippets) -> None:
+class SnippetsResourceWithStreamingResponse:
+    def __init__(self, snippets: SnippetsResource) -> None:
         self._snippets = snippets
 
         self.update = to_streamed_response_wrapper(
@@ -522,16 +522,16 @@ class SnippetsWithStreamingResponse:
         )
 
     @cached_property
-    def content(self) -> ContentWithStreamingResponse:
-        return ContentWithStreamingResponse(self._snippets.content)
+    def content(self) -> ContentResourceWithStreamingResponse:
+        return ContentResourceWithStreamingResponse(self._snippets.content)
 
     @cached_property
-    def rules(self) -> RulesWithStreamingResponse:
-        return RulesWithStreamingResponse(self._snippets.rules)
+    def rules(self) -> RulesResourceWithStreamingResponse:
+        return RulesResourceWithStreamingResponse(self._snippets.rules)
 
 
-class AsyncSnippetsWithStreamingResponse:
-    def __init__(self, snippets: AsyncSnippets) -> None:
+class AsyncSnippetsResourceWithStreamingResponse:
+    def __init__(self, snippets: AsyncSnippetsResource) -> None:
         self._snippets = snippets
 
         self.update = async_to_streamed_response_wrapper(
@@ -548,9 +548,9 @@ class AsyncSnippetsWithStreamingResponse:
         )
 
     @cached_property
-    def content(self) -> AsyncContentWithStreamingResponse:
-        return AsyncContentWithStreamingResponse(self._snippets.content)
+    def content(self) -> AsyncContentResourceWithStreamingResponse:
+        return AsyncContentResourceWithStreamingResponse(self._snippets.content)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithStreamingResponse:
-        return AsyncRulesWithStreamingResponse(self._snippets.rules)
+    def rules(self) -> AsyncRulesResourceWithStreamingResponse:
+        return AsyncRulesResourceWithStreamingResponse(self._snippets.rules)

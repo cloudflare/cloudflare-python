@@ -4,78 +4,78 @@ from __future__ import annotations
 
 from ..._compat import cached_property
 from .namespaces import (
-    Namespaces,
-    AsyncNamespaces,
-    NamespacesWithRawResponse,
-    AsyncNamespacesWithRawResponse,
-    NamespacesWithStreamingResponse,
-    AsyncNamespacesWithStreamingResponse,
+    NamespacesResource,
+    AsyncNamespacesResource,
+    NamespacesResourceWithRawResponse,
+    AsyncNamespacesResourceWithRawResponse,
+    NamespacesResourceWithStreamingResponse,
+    AsyncNamespacesResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .namespaces.namespaces import Namespaces, AsyncNamespaces
+from .namespaces.namespaces import NamespacesResource, AsyncNamespacesResource
 
-__all__ = ["DurableObjects", "AsyncDurableObjects"]
+__all__ = ["DurableObjectsResource", "AsyncDurableObjectsResource"]
 
 
-class DurableObjects(SyncAPIResource):
+class DurableObjectsResource(SyncAPIResource):
     @cached_property
-    def namespaces(self) -> Namespaces:
-        return Namespaces(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> DurableObjectsWithRawResponse:
-        return DurableObjectsWithRawResponse(self)
+    def namespaces(self) -> NamespacesResource:
+        return NamespacesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> DurableObjectsWithStreamingResponse:
-        return DurableObjectsWithStreamingResponse(self)
-
-
-class AsyncDurableObjects(AsyncAPIResource):
-    @cached_property
-    def namespaces(self) -> AsyncNamespaces:
-        return AsyncNamespaces(self._client)
+    def with_raw_response(self) -> DurableObjectsResourceWithRawResponse:
+        return DurableObjectsResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDurableObjectsWithRawResponse:
-        return AsyncDurableObjectsWithRawResponse(self)
+    def with_streaming_response(self) -> DurableObjectsResourceWithStreamingResponse:
+        return DurableObjectsResourceWithStreamingResponse(self)
+
+
+class AsyncDurableObjectsResource(AsyncAPIResource):
+    @cached_property
+    def namespaces(self) -> AsyncNamespacesResource:
+        return AsyncNamespacesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDurableObjectsWithStreamingResponse:
-        return AsyncDurableObjectsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncDurableObjectsResourceWithRawResponse:
+        return AsyncDurableObjectsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDurableObjectsResourceWithStreamingResponse:
+        return AsyncDurableObjectsResourceWithStreamingResponse(self)
 
 
-class DurableObjectsWithRawResponse:
-    def __init__(self, durable_objects: DurableObjects) -> None:
+class DurableObjectsResourceWithRawResponse:
+    def __init__(self, durable_objects: DurableObjectsResource) -> None:
         self._durable_objects = durable_objects
 
     @cached_property
-    def namespaces(self) -> NamespacesWithRawResponse:
-        return NamespacesWithRawResponse(self._durable_objects.namespaces)
+    def namespaces(self) -> NamespacesResourceWithRawResponse:
+        return NamespacesResourceWithRawResponse(self._durable_objects.namespaces)
 
 
-class AsyncDurableObjectsWithRawResponse:
-    def __init__(self, durable_objects: AsyncDurableObjects) -> None:
+class AsyncDurableObjectsResourceWithRawResponse:
+    def __init__(self, durable_objects: AsyncDurableObjectsResource) -> None:
         self._durable_objects = durable_objects
 
     @cached_property
-    def namespaces(self) -> AsyncNamespacesWithRawResponse:
-        return AsyncNamespacesWithRawResponse(self._durable_objects.namespaces)
+    def namespaces(self) -> AsyncNamespacesResourceWithRawResponse:
+        return AsyncNamespacesResourceWithRawResponse(self._durable_objects.namespaces)
 
 
-class DurableObjectsWithStreamingResponse:
-    def __init__(self, durable_objects: DurableObjects) -> None:
+class DurableObjectsResourceWithStreamingResponse:
+    def __init__(self, durable_objects: DurableObjectsResource) -> None:
         self._durable_objects = durable_objects
 
     @cached_property
-    def namespaces(self) -> NamespacesWithStreamingResponse:
-        return NamespacesWithStreamingResponse(self._durable_objects.namespaces)
+    def namespaces(self) -> NamespacesResourceWithStreamingResponse:
+        return NamespacesResourceWithStreamingResponse(self._durable_objects.namespaces)
 
 
-class AsyncDurableObjectsWithStreamingResponse:
-    def __init__(self, durable_objects: AsyncDurableObjects) -> None:
+class AsyncDurableObjectsResourceWithStreamingResponse:
+    def __init__(self, durable_objects: AsyncDurableObjectsResource) -> None:
         self._durable_objects = durable_objects
 
     @cached_property
-    def namespaces(self) -> AsyncNamespacesWithStreamingResponse:
-        return AsyncNamespacesWithStreamingResponse(self._durable_objects.namespaces)
+    def namespaces(self) -> AsyncNamespacesResourceWithStreamingResponse:
+        return AsyncNamespacesResourceWithStreamingResponse(self._durable_objects.namespaces)

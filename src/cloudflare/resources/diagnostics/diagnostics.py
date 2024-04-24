@@ -5,76 +5,76 @@ from __future__ import annotations
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .traceroutes import (
-    Traceroutes,
-    AsyncTraceroutes,
-    TraceroutesWithRawResponse,
-    AsyncTraceroutesWithRawResponse,
-    TraceroutesWithStreamingResponse,
-    AsyncTraceroutesWithStreamingResponse,
+    TraceroutesResource,
+    AsyncTraceroutesResource,
+    TraceroutesResourceWithRawResponse,
+    AsyncTraceroutesResourceWithRawResponse,
+    TraceroutesResourceWithStreamingResponse,
+    AsyncTraceroutesResourceWithStreamingResponse,
 )
 
-__all__ = ["Diagnostics", "AsyncDiagnostics"]
+__all__ = ["DiagnosticsResource", "AsyncDiagnosticsResource"]
 
 
-class Diagnostics(SyncAPIResource):
+class DiagnosticsResource(SyncAPIResource):
     @cached_property
-    def traceroutes(self) -> Traceroutes:
-        return Traceroutes(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> DiagnosticsWithRawResponse:
-        return DiagnosticsWithRawResponse(self)
+    def traceroutes(self) -> TraceroutesResource:
+        return TraceroutesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> DiagnosticsWithStreamingResponse:
-        return DiagnosticsWithStreamingResponse(self)
-
-
-class AsyncDiagnostics(AsyncAPIResource):
-    @cached_property
-    def traceroutes(self) -> AsyncTraceroutes:
-        return AsyncTraceroutes(self._client)
+    def with_raw_response(self) -> DiagnosticsResourceWithRawResponse:
+        return DiagnosticsResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDiagnosticsWithRawResponse:
-        return AsyncDiagnosticsWithRawResponse(self)
+    def with_streaming_response(self) -> DiagnosticsResourceWithStreamingResponse:
+        return DiagnosticsResourceWithStreamingResponse(self)
+
+
+class AsyncDiagnosticsResource(AsyncAPIResource):
+    @cached_property
+    def traceroutes(self) -> AsyncTraceroutesResource:
+        return AsyncTraceroutesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDiagnosticsWithStreamingResponse:
-        return AsyncDiagnosticsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncDiagnosticsResourceWithRawResponse:
+        return AsyncDiagnosticsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDiagnosticsResourceWithStreamingResponse:
+        return AsyncDiagnosticsResourceWithStreamingResponse(self)
 
 
-class DiagnosticsWithRawResponse:
-    def __init__(self, diagnostics: Diagnostics) -> None:
+class DiagnosticsResourceWithRawResponse:
+    def __init__(self, diagnostics: DiagnosticsResource) -> None:
         self._diagnostics = diagnostics
 
     @cached_property
-    def traceroutes(self) -> TraceroutesWithRawResponse:
-        return TraceroutesWithRawResponse(self._diagnostics.traceroutes)
+    def traceroutes(self) -> TraceroutesResourceWithRawResponse:
+        return TraceroutesResourceWithRawResponse(self._diagnostics.traceroutes)
 
 
-class AsyncDiagnosticsWithRawResponse:
-    def __init__(self, diagnostics: AsyncDiagnostics) -> None:
+class AsyncDiagnosticsResourceWithRawResponse:
+    def __init__(self, diagnostics: AsyncDiagnosticsResource) -> None:
         self._diagnostics = diagnostics
 
     @cached_property
-    def traceroutes(self) -> AsyncTraceroutesWithRawResponse:
-        return AsyncTraceroutesWithRawResponse(self._diagnostics.traceroutes)
+    def traceroutes(self) -> AsyncTraceroutesResourceWithRawResponse:
+        return AsyncTraceroutesResourceWithRawResponse(self._diagnostics.traceroutes)
 
 
-class DiagnosticsWithStreamingResponse:
-    def __init__(self, diagnostics: Diagnostics) -> None:
+class DiagnosticsResourceWithStreamingResponse:
+    def __init__(self, diagnostics: DiagnosticsResource) -> None:
         self._diagnostics = diagnostics
 
     @cached_property
-    def traceroutes(self) -> TraceroutesWithStreamingResponse:
-        return TraceroutesWithStreamingResponse(self._diagnostics.traceroutes)
+    def traceroutes(self) -> TraceroutesResourceWithStreamingResponse:
+        return TraceroutesResourceWithStreamingResponse(self._diagnostics.traceroutes)
 
 
-class AsyncDiagnosticsWithStreamingResponse:
-    def __init__(self, diagnostics: AsyncDiagnostics) -> None:
+class AsyncDiagnosticsResourceWithStreamingResponse:
+    def __init__(self, diagnostics: AsyncDiagnosticsResource) -> None:
         self._diagnostics = diagnostics
 
     @cached_property
-    def traceroutes(self) -> AsyncTraceroutesWithStreamingResponse:
-        return AsyncTraceroutesWithStreamingResponse(self._diagnostics.traceroutes)
+    def traceroutes(self) -> AsyncTraceroutesResourceWithStreamingResponse:
+        return AsyncTraceroutesResourceWithStreamingResponse(self._diagnostics.traceroutes)

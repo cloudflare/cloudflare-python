@@ -28,17 +28,17 @@ from ....types.workers.scripts.tail_get_response import TailGetResponse
 from ....types.workers.scripts.tail_create_response import TailCreateResponse
 from ....types.workers.scripts.tail_delete_response import TailDeleteResponse
 
-__all__ = ["Tail", "AsyncTail"]
+__all__ = ["TailResource", "AsyncTailResource"]
 
 
-class Tail(SyncAPIResource):
+class TailResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TailWithRawResponse:
-        return TailWithRawResponse(self)
+    def with_raw_response(self) -> TailResourceWithRawResponse:
+        return TailResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TailWithStreamingResponse:
-        return TailWithStreamingResponse(self)
+    def with_streaming_response(self) -> TailResourceWithStreamingResponse:
+        return TailResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -178,14 +178,14 @@ class Tail(SyncAPIResource):
         )
 
 
-class AsyncTail(AsyncAPIResource):
+class AsyncTailResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTailWithRawResponse:
-        return AsyncTailWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTailResourceWithRawResponse:
+        return AsyncTailResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTailWithStreamingResponse:
-        return AsyncTailWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTailResourceWithStreamingResponse:
+        return AsyncTailResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -325,8 +325,8 @@ class AsyncTail(AsyncAPIResource):
         )
 
 
-class TailWithRawResponse:
-    def __init__(self, tail: Tail) -> None:
+class TailResourceWithRawResponse:
+    def __init__(self, tail: TailResource) -> None:
         self._tail = tail
 
         self.create = to_raw_response_wrapper(
@@ -340,8 +340,8 @@ class TailWithRawResponse:
         )
 
 
-class AsyncTailWithRawResponse:
-    def __init__(self, tail: AsyncTail) -> None:
+class AsyncTailResourceWithRawResponse:
+    def __init__(self, tail: AsyncTailResource) -> None:
         self._tail = tail
 
         self.create = async_to_raw_response_wrapper(
@@ -355,8 +355,8 @@ class AsyncTailWithRawResponse:
         )
 
 
-class TailWithStreamingResponse:
-    def __init__(self, tail: Tail) -> None:
+class TailResourceWithStreamingResponse:
+    def __init__(self, tail: TailResource) -> None:
         self._tail = tail
 
         self.create = to_streamed_response_wrapper(
@@ -370,8 +370,8 @@ class TailWithStreamingResponse:
         )
 
 
-class AsyncTailWithStreamingResponse:
-    def __init__(self, tail: AsyncTail) -> None:
+class AsyncTailResourceWithStreamingResponse:
+    def __init__(self, tail: AsyncTailResource) -> None:
         self._tail = tail
 
         self.create = async_to_streamed_response_wrapper(

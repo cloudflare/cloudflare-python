@@ -28,17 +28,17 @@ from ...types.certificate_authorities.hostname_association import HostnameAssoci
 from ...types.certificate_authorities.hostname_association_get_response import HostnameAssociationGetResponse
 from ...types.certificate_authorities.hostname_association_update_response import HostnameAssociationUpdateResponse
 
-__all__ = ["HostnameAssociations", "AsyncHostnameAssociations"]
+__all__ = ["HostnameAssociationsResource", "AsyncHostnameAssociationsResource"]
 
 
-class HostnameAssociations(SyncAPIResource):
+class HostnameAssociationsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HostnameAssociationsWithRawResponse:
-        return HostnameAssociationsWithRawResponse(self)
+    def with_raw_response(self) -> HostnameAssociationsResourceWithRawResponse:
+        return HostnameAssociationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HostnameAssociationsWithStreamingResponse:
-        return HostnameAssociationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> HostnameAssociationsResourceWithStreamingResponse:
+        return HostnameAssociationsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -141,14 +141,14 @@ class HostnameAssociations(SyncAPIResource):
         )
 
 
-class AsyncHostnameAssociations(AsyncAPIResource):
+class AsyncHostnameAssociationsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHostnameAssociationsWithRawResponse:
-        return AsyncHostnameAssociationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHostnameAssociationsResourceWithRawResponse:
+        return AsyncHostnameAssociationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHostnameAssociationsWithStreamingResponse:
-        return AsyncHostnameAssociationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHostnameAssociationsResourceWithStreamingResponse:
+        return AsyncHostnameAssociationsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -251,8 +251,8 @@ class AsyncHostnameAssociations(AsyncAPIResource):
         )
 
 
-class HostnameAssociationsWithRawResponse:
-    def __init__(self, hostname_associations: HostnameAssociations) -> None:
+class HostnameAssociationsResourceWithRawResponse:
+    def __init__(self, hostname_associations: HostnameAssociationsResource) -> None:
         self._hostname_associations = hostname_associations
 
         self.update = to_raw_response_wrapper(
@@ -263,8 +263,8 @@ class HostnameAssociationsWithRawResponse:
         )
 
 
-class AsyncHostnameAssociationsWithRawResponse:
-    def __init__(self, hostname_associations: AsyncHostnameAssociations) -> None:
+class AsyncHostnameAssociationsResourceWithRawResponse:
+    def __init__(self, hostname_associations: AsyncHostnameAssociationsResource) -> None:
         self._hostname_associations = hostname_associations
 
         self.update = async_to_raw_response_wrapper(
@@ -275,8 +275,8 @@ class AsyncHostnameAssociationsWithRawResponse:
         )
 
 
-class HostnameAssociationsWithStreamingResponse:
-    def __init__(self, hostname_associations: HostnameAssociations) -> None:
+class HostnameAssociationsResourceWithStreamingResponse:
+    def __init__(self, hostname_associations: HostnameAssociationsResource) -> None:
         self._hostname_associations = hostname_associations
 
         self.update = to_streamed_response_wrapper(
@@ -287,8 +287,8 @@ class HostnameAssociationsWithStreamingResponse:
         )
 
 
-class AsyncHostnameAssociationsWithStreamingResponse:
-    def __init__(self, hostname_associations: AsyncHostnameAssociations) -> None:
+class AsyncHostnameAssociationsResourceWithStreamingResponse:
+    def __init__(self, hostname_associations: AsyncHostnameAssociationsResource) -> None:
         self._hostname_associations = hostname_associations
 
         self.update = async_to_streamed_response_wrapper(

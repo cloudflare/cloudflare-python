@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Universal", "AsyncUniversal"]
+__all__ = ["UniversalResource", "AsyncUniversalResource"]
 
 
-class Universal(SyncAPIResource):
+class UniversalResource(SyncAPIResource):
     @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> UniversalWithRawResponse:
-        return UniversalWithRawResponse(self)
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> UniversalWithStreamingResponse:
-        return UniversalWithStreamingResponse(self)
-
-
-class AsyncUniversal(AsyncAPIResource):
-    @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
+    def with_raw_response(self) -> UniversalResourceWithRawResponse:
+        return UniversalResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncUniversalWithRawResponse:
-        return AsyncUniversalWithRawResponse(self)
+    def with_streaming_response(self) -> UniversalResourceWithStreamingResponse:
+        return UniversalResourceWithStreamingResponse(self)
+
+
+class AsyncUniversalResource(AsyncAPIResource):
+    @cached_property
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUniversalWithStreamingResponse:
-        return AsyncUniversalWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncUniversalResourceWithRawResponse:
+        return AsyncUniversalResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncUniversalResourceWithStreamingResponse:
+        return AsyncUniversalResourceWithStreamingResponse(self)
 
 
-class UniversalWithRawResponse:
-    def __init__(self, universal: Universal) -> None:
+class UniversalResourceWithRawResponse:
+    def __init__(self, universal: UniversalResource) -> None:
         self._universal = universal
 
     @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._universal.settings)
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._universal.settings)
 
 
-class AsyncUniversalWithRawResponse:
-    def __init__(self, universal: AsyncUniversal) -> None:
+class AsyncUniversalResourceWithRawResponse:
+    def __init__(self, universal: AsyncUniversalResource) -> None:
         self._universal = universal
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._universal.settings)
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._universal.settings)
 
 
-class UniversalWithStreamingResponse:
-    def __init__(self, universal: Universal) -> None:
+class UniversalResourceWithStreamingResponse:
+    def __init__(self, universal: UniversalResource) -> None:
         self._universal = universal
 
     @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._universal.settings)
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._universal.settings)
 
 
-class AsyncUniversalWithStreamingResponse:
-    def __init__(self, universal: AsyncUniversal) -> None:
+class AsyncUniversalResourceWithStreamingResponse:
+    def __init__(self, universal: AsyncUniversalResource) -> None:
         self._universal = universal
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._universal.settings)
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._universal.settings)

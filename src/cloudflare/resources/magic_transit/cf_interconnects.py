@@ -28,17 +28,17 @@ from ...types.magic_transit.cf_interconnect_get_response import CfInterconnectGe
 from ...types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
 from ...types.magic_transit.cf_interconnect_update_response import CfInterconnectUpdateResponse
 
-__all__ = ["CfInterconnects", "AsyncCfInterconnects"]
+__all__ = ["CfInterconnectsResource", "AsyncCfInterconnectsResource"]
 
 
-class CfInterconnects(SyncAPIResource):
+class CfInterconnectsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CfInterconnectsWithRawResponse:
-        return CfInterconnectsWithRawResponse(self)
+    def with_raw_response(self) -> CfInterconnectsResourceWithRawResponse:
+        return CfInterconnectsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CfInterconnectsWithStreamingResponse:
-        return CfInterconnectsWithStreamingResponse(self)
+    def with_streaming_response(self) -> CfInterconnectsResourceWithStreamingResponse:
+        return CfInterconnectsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -197,14 +197,14 @@ class CfInterconnects(SyncAPIResource):
         )
 
 
-class AsyncCfInterconnects(AsyncAPIResource):
+class AsyncCfInterconnectsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCfInterconnectsWithRawResponse:
-        return AsyncCfInterconnectsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCfInterconnectsResourceWithRawResponse:
+        return AsyncCfInterconnectsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCfInterconnectsWithStreamingResponse:
-        return AsyncCfInterconnectsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCfInterconnectsResourceWithStreamingResponse:
+        return AsyncCfInterconnectsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -363,8 +363,8 @@ class AsyncCfInterconnects(AsyncAPIResource):
         )
 
 
-class CfInterconnectsWithRawResponse:
-    def __init__(self, cf_interconnects: CfInterconnects) -> None:
+class CfInterconnectsResourceWithRawResponse:
+    def __init__(self, cf_interconnects: CfInterconnectsResource) -> None:
         self._cf_interconnects = cf_interconnects
 
         self.update = to_raw_response_wrapper(
@@ -378,8 +378,8 @@ class CfInterconnectsWithRawResponse:
         )
 
 
-class AsyncCfInterconnectsWithRawResponse:
-    def __init__(self, cf_interconnects: AsyncCfInterconnects) -> None:
+class AsyncCfInterconnectsResourceWithRawResponse:
+    def __init__(self, cf_interconnects: AsyncCfInterconnectsResource) -> None:
         self._cf_interconnects = cf_interconnects
 
         self.update = async_to_raw_response_wrapper(
@@ -393,8 +393,8 @@ class AsyncCfInterconnectsWithRawResponse:
         )
 
 
-class CfInterconnectsWithStreamingResponse:
-    def __init__(self, cf_interconnects: CfInterconnects) -> None:
+class CfInterconnectsResourceWithStreamingResponse:
+    def __init__(self, cf_interconnects: CfInterconnectsResource) -> None:
         self._cf_interconnects = cf_interconnects
 
         self.update = to_streamed_response_wrapper(
@@ -408,8 +408,8 @@ class CfInterconnectsWithStreamingResponse:
         )
 
 
-class AsyncCfInterconnectsWithStreamingResponse:
-    def __init__(self, cf_interconnects: AsyncCfInterconnects) -> None:
+class AsyncCfInterconnectsResourceWithStreamingResponse:
+    def __init__(self, cf_interconnects: AsyncCfInterconnectsResource) -> None:
         self._cf_interconnects = cf_interconnects
 
         self.update = async_to_streamed_response_wrapper(

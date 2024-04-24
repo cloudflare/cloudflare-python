@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .tls import (
-    TLS,
-    AsyncTLS,
-    TLSWithRawResponse,
-    AsyncTLSWithRawResponse,
-    TLSWithStreamingResponse,
-    AsyncTLSWithStreamingResponse,
+    TLSResource,
+    AsyncTLSResource,
+    TLSResourceWithRawResponse,
+    AsyncTLSResourceWithRawResponse,
+    TLSResourceWithStreamingResponse,
+    AsyncTLSResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Settings", "AsyncSettings"]
+__all__ = ["SettingsResource", "AsyncSettingsResource"]
 
 
-class Settings(SyncAPIResource):
+class SettingsResource(SyncAPIResource):
     @cached_property
-    def tls(self) -> TLS:
-        return TLS(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self)
+    def tls(self) -> TLSResource:
+        return TLSResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self)
-
-
-class AsyncSettings(AsyncAPIResource):
-    @cached_property
-    def tls(self) -> AsyncTLS:
-        return AsyncTLS(self._client)
+    def with_raw_response(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self)
+    def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self)
+
+
+class AsyncSettingsResource(AsyncAPIResource):
+    @cached_property
+    def tls(self) -> AsyncTLSResource:
+        return AsyncTLSResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self)
 
 
-class SettingsWithRawResponse:
-    def __init__(self, settings: Settings) -> None:
+class SettingsResourceWithRawResponse:
+    def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
 
     @cached_property
-    def tls(self) -> TLSWithRawResponse:
-        return TLSWithRawResponse(self._settings.tls)
+    def tls(self) -> TLSResourceWithRawResponse:
+        return TLSResourceWithRawResponse(self._settings.tls)
 
 
-class AsyncSettingsWithRawResponse:
-    def __init__(self, settings: AsyncSettings) -> None:
+class AsyncSettingsResourceWithRawResponse:
+    def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
 
     @cached_property
-    def tls(self) -> AsyncTLSWithRawResponse:
-        return AsyncTLSWithRawResponse(self._settings.tls)
+    def tls(self) -> AsyncTLSResourceWithRawResponse:
+        return AsyncTLSResourceWithRawResponse(self._settings.tls)
 
 
-class SettingsWithStreamingResponse:
-    def __init__(self, settings: Settings) -> None:
+class SettingsResourceWithStreamingResponse:
+    def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
 
     @cached_property
-    def tls(self) -> TLSWithStreamingResponse:
-        return TLSWithStreamingResponse(self._settings.tls)
+    def tls(self) -> TLSResourceWithStreamingResponse:
+        return TLSResourceWithStreamingResponse(self._settings.tls)
 
 
-class AsyncSettingsWithStreamingResponse:
-    def __init__(self, settings: AsyncSettings) -> None:
+class AsyncSettingsResourceWithStreamingResponse:
+    def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
 
     @cached_property
-    def tls(self) -> AsyncTLSWithStreamingResponse:
-        return AsyncTLSWithStreamingResponse(self._settings.tls)
+    def tls(self) -> AsyncTLSResourceWithStreamingResponse:
+        return AsyncTLSResourceWithStreamingResponse(self._settings.tls)

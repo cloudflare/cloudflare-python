@@ -8,20 +8,20 @@ from typing_extensions import Literal
 import httpx
 
 from .roles import (
-    Roles,
-    AsyncRoles,
-    RolesWithRawResponse,
-    AsyncRolesWithRawResponse,
-    RolesWithStreamingResponse,
-    AsyncRolesWithStreamingResponse,
+    RolesResource,
+    AsyncRolesResource,
+    RolesResourceWithRawResponse,
+    AsyncRolesResourceWithRawResponse,
+    RolesResourceWithStreamingResponse,
+    AsyncRolesResourceWithStreamingResponse,
 )
 from .members import (
-    Members,
-    AsyncMembers,
-    MembersWithRawResponse,
-    AsyncMembersWithRawResponse,
-    MembersWithStreamingResponse,
-    AsyncMembersWithStreamingResponse,
+    MembersResource,
+    AsyncMembersResource,
+    MembersResourceWithRawResponse,
+    AsyncMembersResourceWithRawResponse,
+    MembersResourceWithStreamingResponse,
+    AsyncMembersResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -46,25 +46,25 @@ from ...types.accounts import account_list_params, account_update_params
 from ...types.accounts.account_get_response import AccountGetResponse
 from ...types.accounts.account_update_response import AccountUpdateResponse
 
-__all__ = ["Accounts", "AsyncAccounts"]
+__all__ = ["AccountsResource", "AsyncAccountsResource"]
 
 
-class Accounts(SyncAPIResource):
+class AccountsResource(SyncAPIResource):
     @cached_property
-    def members(self) -> Members:
-        return Members(self._client)
-
-    @cached_property
-    def roles(self) -> Roles:
-        return Roles(self._client)
+    def members(self) -> MembersResource:
+        return MembersResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AccountsWithRawResponse:
-        return AccountsWithRawResponse(self)
+    def roles(self) -> RolesResource:
+        return RolesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AccountsWithStreamingResponse:
-        return AccountsWithStreamingResponse(self)
+    def with_raw_response(self) -> AccountsResourceWithRawResponse:
+        return AccountsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AccountsResourceWithStreamingResponse:
+        return AccountsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -215,22 +215,22 @@ class Accounts(SyncAPIResource):
         )
 
 
-class AsyncAccounts(AsyncAPIResource):
+class AsyncAccountsResource(AsyncAPIResource):
     @cached_property
-    def members(self) -> AsyncMembers:
-        return AsyncMembers(self._client)
+    def members(self) -> AsyncMembersResource:
+        return AsyncMembersResource(self._client)
 
     @cached_property
-    def roles(self) -> AsyncRoles:
-        return AsyncRoles(self._client)
+    def roles(self) -> AsyncRolesResource:
+        return AsyncRolesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAccountsWithRawResponse:
-        return AsyncAccountsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAccountsResourceWithRawResponse:
+        return AsyncAccountsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAccountsWithStreamingResponse:
-        return AsyncAccountsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAccountsResourceWithStreamingResponse:
+        return AsyncAccountsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -381,8 +381,8 @@ class AsyncAccounts(AsyncAPIResource):
         )
 
 
-class AccountsWithRawResponse:
-    def __init__(self, accounts: Accounts) -> None:
+class AccountsResourceWithRawResponse:
+    def __init__(self, accounts: AccountsResource) -> None:
         self._accounts = accounts
 
         self.update = to_raw_response_wrapper(
@@ -396,16 +396,16 @@ class AccountsWithRawResponse:
         )
 
     @cached_property
-    def members(self) -> MembersWithRawResponse:
-        return MembersWithRawResponse(self._accounts.members)
+    def members(self) -> MembersResourceWithRawResponse:
+        return MembersResourceWithRawResponse(self._accounts.members)
 
     @cached_property
-    def roles(self) -> RolesWithRawResponse:
-        return RolesWithRawResponse(self._accounts.roles)
+    def roles(self) -> RolesResourceWithRawResponse:
+        return RolesResourceWithRawResponse(self._accounts.roles)
 
 
-class AsyncAccountsWithRawResponse:
-    def __init__(self, accounts: AsyncAccounts) -> None:
+class AsyncAccountsResourceWithRawResponse:
+    def __init__(self, accounts: AsyncAccountsResource) -> None:
         self._accounts = accounts
 
         self.update = async_to_raw_response_wrapper(
@@ -419,16 +419,16 @@ class AsyncAccountsWithRawResponse:
         )
 
     @cached_property
-    def members(self) -> AsyncMembersWithRawResponse:
-        return AsyncMembersWithRawResponse(self._accounts.members)
+    def members(self) -> AsyncMembersResourceWithRawResponse:
+        return AsyncMembersResourceWithRawResponse(self._accounts.members)
 
     @cached_property
-    def roles(self) -> AsyncRolesWithRawResponse:
-        return AsyncRolesWithRawResponse(self._accounts.roles)
+    def roles(self) -> AsyncRolesResourceWithRawResponse:
+        return AsyncRolesResourceWithRawResponse(self._accounts.roles)
 
 
-class AccountsWithStreamingResponse:
-    def __init__(self, accounts: Accounts) -> None:
+class AccountsResourceWithStreamingResponse:
+    def __init__(self, accounts: AccountsResource) -> None:
         self._accounts = accounts
 
         self.update = to_streamed_response_wrapper(
@@ -442,16 +442,16 @@ class AccountsWithStreamingResponse:
         )
 
     @cached_property
-    def members(self) -> MembersWithStreamingResponse:
-        return MembersWithStreamingResponse(self._accounts.members)
+    def members(self) -> MembersResourceWithStreamingResponse:
+        return MembersResourceWithStreamingResponse(self._accounts.members)
 
     @cached_property
-    def roles(self) -> RolesWithStreamingResponse:
-        return RolesWithStreamingResponse(self._accounts.roles)
+    def roles(self) -> RolesResourceWithStreamingResponse:
+        return RolesResourceWithStreamingResponse(self._accounts.roles)
 
 
-class AsyncAccountsWithStreamingResponse:
-    def __init__(self, accounts: AsyncAccounts) -> None:
+class AsyncAccountsResourceWithStreamingResponse:
+    def __init__(self, accounts: AsyncAccountsResource) -> None:
         self._accounts = accounts
 
         self.update = async_to_streamed_response_wrapper(
@@ -465,9 +465,9 @@ class AsyncAccountsWithStreamingResponse:
         )
 
     @cached_property
-    def members(self) -> AsyncMembersWithStreamingResponse:
-        return AsyncMembersWithStreamingResponse(self._accounts.members)
+    def members(self) -> AsyncMembersResourceWithStreamingResponse:
+        return AsyncMembersResourceWithStreamingResponse(self._accounts.members)
 
     @cached_property
-    def roles(self) -> AsyncRolesWithStreamingResponse:
-        return AsyncRolesWithStreamingResponse(self._accounts.roles)
+    def roles(self) -> AsyncRolesResourceWithStreamingResponse:
+        return AsyncRolesResourceWithStreamingResponse(self._accounts.roles)

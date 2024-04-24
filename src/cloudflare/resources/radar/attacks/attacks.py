@@ -3,112 +3,112 @@
 from __future__ import annotations
 
 from .layer3 import (
-    Layer3,
-    AsyncLayer3,
-    Layer3WithRawResponse,
-    AsyncLayer3WithRawResponse,
-    Layer3WithStreamingResponse,
-    AsyncLayer3WithStreamingResponse,
+    Layer3Resource,
+    AsyncLayer3Resource,
+    Layer3ResourceWithRawResponse,
+    AsyncLayer3ResourceWithRawResponse,
+    Layer3ResourceWithStreamingResponse,
+    AsyncLayer3ResourceWithStreamingResponse,
 )
 from .layer7 import (
-    Layer7,
-    AsyncLayer7,
-    Layer7WithRawResponse,
-    AsyncLayer7WithRawResponse,
-    Layer7WithStreamingResponse,
-    AsyncLayer7WithStreamingResponse,
+    Layer7Resource,
+    AsyncLayer7Resource,
+    Layer7ResourceWithRawResponse,
+    AsyncLayer7ResourceWithRawResponse,
+    Layer7ResourceWithStreamingResponse,
+    AsyncLayer7ResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .layer3.layer3 import Layer3, AsyncLayer3
-from .layer7.layer7 import Layer7, AsyncLayer7
+from .layer3.layer3 import Layer3Resource, AsyncLayer3Resource
+from .layer7.layer7 import Layer7Resource, AsyncLayer7Resource
 
-__all__ = ["Attacks", "AsyncAttacks"]
+__all__ = ["AttacksResource", "AsyncAttacksResource"]
 
 
-class Attacks(SyncAPIResource):
+class AttacksResource(SyncAPIResource):
     @cached_property
-    def layer3(self) -> Layer3:
-        return Layer3(self._client)
-
-    @cached_property
-    def layer7(self) -> Layer7:
-        return Layer7(self._client)
+    def layer3(self) -> Layer3Resource:
+        return Layer3Resource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AttacksWithRawResponse:
-        return AttacksWithRawResponse(self)
+    def layer7(self) -> Layer7Resource:
+        return Layer7Resource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AttacksWithStreamingResponse:
-        return AttacksWithStreamingResponse(self)
-
-
-class AsyncAttacks(AsyncAPIResource):
-    @cached_property
-    def layer3(self) -> AsyncLayer3:
-        return AsyncLayer3(self._client)
+    def with_raw_response(self) -> AttacksResourceWithRawResponse:
+        return AttacksResourceWithRawResponse(self)
 
     @cached_property
-    def layer7(self) -> AsyncLayer7:
-        return AsyncLayer7(self._client)
+    def with_streaming_response(self) -> AttacksResourceWithStreamingResponse:
+        return AttacksResourceWithStreamingResponse(self)
+
+
+class AsyncAttacksResource(AsyncAPIResource):
+    @cached_property
+    def layer3(self) -> AsyncLayer3Resource:
+        return AsyncLayer3Resource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAttacksWithRawResponse:
-        return AsyncAttacksWithRawResponse(self)
+    def layer7(self) -> AsyncLayer7Resource:
+        return AsyncLayer7Resource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAttacksWithStreamingResponse:
-        return AsyncAttacksWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncAttacksResourceWithRawResponse:
+        return AsyncAttacksResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAttacksResourceWithStreamingResponse:
+        return AsyncAttacksResourceWithStreamingResponse(self)
 
 
-class AttacksWithRawResponse:
-    def __init__(self, attacks: Attacks) -> None:
+class AttacksResourceWithRawResponse:
+    def __init__(self, attacks: AttacksResource) -> None:
         self._attacks = attacks
 
     @cached_property
-    def layer3(self) -> Layer3WithRawResponse:
-        return Layer3WithRawResponse(self._attacks.layer3)
+    def layer3(self) -> Layer3ResourceWithRawResponse:
+        return Layer3ResourceWithRawResponse(self._attacks.layer3)
 
     @cached_property
-    def layer7(self) -> Layer7WithRawResponse:
-        return Layer7WithRawResponse(self._attacks.layer7)
+    def layer7(self) -> Layer7ResourceWithRawResponse:
+        return Layer7ResourceWithRawResponse(self._attacks.layer7)
 
 
-class AsyncAttacksWithRawResponse:
-    def __init__(self, attacks: AsyncAttacks) -> None:
+class AsyncAttacksResourceWithRawResponse:
+    def __init__(self, attacks: AsyncAttacksResource) -> None:
         self._attacks = attacks
 
     @cached_property
-    def layer3(self) -> AsyncLayer3WithRawResponse:
-        return AsyncLayer3WithRawResponse(self._attacks.layer3)
+    def layer3(self) -> AsyncLayer3ResourceWithRawResponse:
+        return AsyncLayer3ResourceWithRawResponse(self._attacks.layer3)
 
     @cached_property
-    def layer7(self) -> AsyncLayer7WithRawResponse:
-        return AsyncLayer7WithRawResponse(self._attacks.layer7)
+    def layer7(self) -> AsyncLayer7ResourceWithRawResponse:
+        return AsyncLayer7ResourceWithRawResponse(self._attacks.layer7)
 
 
-class AttacksWithStreamingResponse:
-    def __init__(self, attacks: Attacks) -> None:
+class AttacksResourceWithStreamingResponse:
+    def __init__(self, attacks: AttacksResource) -> None:
         self._attacks = attacks
 
     @cached_property
-    def layer3(self) -> Layer3WithStreamingResponse:
-        return Layer3WithStreamingResponse(self._attacks.layer3)
+    def layer3(self) -> Layer3ResourceWithStreamingResponse:
+        return Layer3ResourceWithStreamingResponse(self._attacks.layer3)
 
     @cached_property
-    def layer7(self) -> Layer7WithStreamingResponse:
-        return Layer7WithStreamingResponse(self._attacks.layer7)
+    def layer7(self) -> Layer7ResourceWithStreamingResponse:
+        return Layer7ResourceWithStreamingResponse(self._attacks.layer7)
 
 
-class AsyncAttacksWithStreamingResponse:
-    def __init__(self, attacks: AsyncAttacks) -> None:
+class AsyncAttacksResourceWithStreamingResponse:
+    def __init__(self, attacks: AsyncAttacksResource) -> None:
         self._attacks = attacks
 
     @cached_property
-    def layer3(self) -> AsyncLayer3WithStreamingResponse:
-        return AsyncLayer3WithStreamingResponse(self._attacks.layer3)
+    def layer3(self) -> AsyncLayer3ResourceWithStreamingResponse:
+        return AsyncLayer3ResourceWithStreamingResponse(self._attacks.layer3)
 
     @cached_property
-    def layer7(self) -> AsyncLayer7WithStreamingResponse:
-        return AsyncLayer7WithStreamingResponse(self._attacks.layer7)
+    def layer7(self) -> AsyncLayer7ResourceWithStreamingResponse:
+        return AsyncLayer7ResourceWithStreamingResponse(self._attacks.layer7)

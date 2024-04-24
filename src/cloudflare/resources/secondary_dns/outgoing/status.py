@@ -21,17 +21,17 @@ from ...._base_client import (
 )
 from ....types.secondary_dns.enable_transfer import EnableTransfer
 
-__all__ = ["Status", "AsyncStatus"]
+__all__ = ["StatusResource", "AsyncStatusResource"]
 
 
-class Status(SyncAPIResource):
+class StatusResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> StatusWithRawResponse:
-        return StatusWithRawResponse(self)
+    def with_raw_response(self) -> StatusResourceWithRawResponse:
+        return StatusResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> StatusWithStreamingResponse:
-        return StatusWithStreamingResponse(self)
+    def with_streaming_response(self) -> StatusResourceWithStreamingResponse:
+        return StatusResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -71,14 +71,14 @@ class Status(SyncAPIResource):
         )
 
 
-class AsyncStatus(AsyncAPIResource):
+class AsyncStatusResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncStatusWithRawResponse:
-        return AsyncStatusWithRawResponse(self)
+    def with_raw_response(self) -> AsyncStatusResourceWithRawResponse:
+        return AsyncStatusResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncStatusWithStreamingResponse:
-        return AsyncStatusWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncStatusResourceWithStreamingResponse:
+        return AsyncStatusResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -118,8 +118,8 @@ class AsyncStatus(AsyncAPIResource):
         )
 
 
-class StatusWithRawResponse:
-    def __init__(self, status: Status) -> None:
+class StatusResourceWithRawResponse:
+    def __init__(self, status: StatusResource) -> None:
         self._status = status
 
         self.get = to_raw_response_wrapper(
@@ -127,8 +127,8 @@ class StatusWithRawResponse:
         )
 
 
-class AsyncStatusWithRawResponse:
-    def __init__(self, status: AsyncStatus) -> None:
+class AsyncStatusResourceWithRawResponse:
+    def __init__(self, status: AsyncStatusResource) -> None:
         self._status = status
 
         self.get = async_to_raw_response_wrapper(
@@ -136,8 +136,8 @@ class AsyncStatusWithRawResponse:
         )
 
 
-class StatusWithStreamingResponse:
-    def __init__(self, status: Status) -> None:
+class StatusResourceWithStreamingResponse:
+    def __init__(self, status: StatusResource) -> None:
         self._status = status
 
         self.get = to_streamed_response_wrapper(
@@ -145,8 +145,8 @@ class StatusWithStreamingResponse:
         )
 
 
-class AsyncStatusWithStreamingResponse:
-    def __init__(self, status: AsyncStatus) -> None:
+class AsyncStatusResourceWithStreamingResponse:
+    def __init__(self, status: AsyncStatusResource) -> None:
         self._status = status
 
         self.get = async_to_streamed_response_wrapper(

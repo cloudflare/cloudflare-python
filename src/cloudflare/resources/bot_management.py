@@ -29,17 +29,17 @@ from ..types.bot_management import bot_management_update_params
 from ..types.bot_management.bot_management_get_response import BotManagementGetResponse
 from ..types.bot_management.bot_management_update_response import BotManagementUpdateResponse
 
-__all__ = ["BotManagement", "AsyncBotManagement"]
+__all__ = ["BotManagementResource", "AsyncBotManagementResource"]
 
 
-class BotManagement(SyncAPIResource):
+class BotManagementResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BotManagementWithRawResponse:
-        return BotManagementWithRawResponse(self)
+    def with_raw_response(self) -> BotManagementResourceWithRawResponse:
+        return BotManagementResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BotManagementWithStreamingResponse:
-        return BotManagementWithStreamingResponse(self)
+    def with_streaming_response(self) -> BotManagementResourceWithStreamingResponse:
+        return BotManagementResourceWithStreamingResponse(self)
 
     @overload
     def update(
@@ -347,14 +347,14 @@ class BotManagement(SyncAPIResource):
         )
 
 
-class AsyncBotManagement(AsyncAPIResource):
+class AsyncBotManagementResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBotManagementWithRawResponse:
-        return AsyncBotManagementWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBotManagementResourceWithRawResponse:
+        return AsyncBotManagementResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBotManagementWithStreamingResponse:
-        return AsyncBotManagementWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBotManagementResourceWithStreamingResponse:
+        return AsyncBotManagementResourceWithStreamingResponse(self)
 
     @overload
     async def update(
@@ -662,8 +662,8 @@ class AsyncBotManagement(AsyncAPIResource):
         )
 
 
-class BotManagementWithRawResponse:
-    def __init__(self, bot_management: BotManagement) -> None:
+class BotManagementResourceWithRawResponse:
+    def __init__(self, bot_management: BotManagementResource) -> None:
         self._bot_management = bot_management
 
         self.update = to_raw_response_wrapper(
@@ -674,8 +674,8 @@ class BotManagementWithRawResponse:
         )
 
 
-class AsyncBotManagementWithRawResponse:
-    def __init__(self, bot_management: AsyncBotManagement) -> None:
+class AsyncBotManagementResourceWithRawResponse:
+    def __init__(self, bot_management: AsyncBotManagementResource) -> None:
         self._bot_management = bot_management
 
         self.update = async_to_raw_response_wrapper(
@@ -686,8 +686,8 @@ class AsyncBotManagementWithRawResponse:
         )
 
 
-class BotManagementWithStreamingResponse:
-    def __init__(self, bot_management: BotManagement) -> None:
+class BotManagementResourceWithStreamingResponse:
+    def __init__(self, bot_management: BotManagementResource) -> None:
         self._bot_management = bot_management
 
         self.update = to_streamed_response_wrapper(
@@ -698,8 +698,8 @@ class BotManagementWithStreamingResponse:
         )
 
 
-class AsyncBotManagementWithStreamingResponse:
-    def __init__(self, bot_management: AsyncBotManagement) -> None:
+class AsyncBotManagementResourceWithStreamingResponse:
+    def __init__(self, bot_management: AsyncBotManagementResource) -> None:
         self._bot_management = bot_management
 
         self.update = async_to_streamed_response_wrapper(

@@ -29,17 +29,17 @@ from ..._base_client import (
 from ...types.email_routing import address_list_params, address_create_params
 from ...types.email_routing.address import Address
 
-__all__ = ["Addresses", "AsyncAddresses"]
+__all__ = ["AddressesResource", "AsyncAddressesResource"]
 
 
-class Addresses(SyncAPIResource):
+class AddressesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AddressesWithRawResponse:
-        return AddressesWithRawResponse(self)
+    def with_raw_response(self) -> AddressesResourceWithRawResponse:
+        return AddressesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AddressesWithStreamingResponse:
-        return AddressesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AddressesResourceWithStreamingResponse:
+        return AddressesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -239,14 +239,14 @@ class Addresses(SyncAPIResource):
         )
 
 
-class AsyncAddresses(AsyncAPIResource):
+class AsyncAddressesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAddressesWithRawResponse:
-        return AsyncAddressesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAddressesResourceWithRawResponse:
+        return AsyncAddressesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAddressesWithStreamingResponse:
-        return AsyncAddressesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAddressesResourceWithStreamingResponse:
+        return AsyncAddressesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -446,8 +446,8 @@ class AsyncAddresses(AsyncAPIResource):
         )
 
 
-class AddressesWithRawResponse:
-    def __init__(self, addresses: Addresses) -> None:
+class AddressesResourceWithRawResponse:
+    def __init__(self, addresses: AddressesResource) -> None:
         self._addresses = addresses
 
         self.create = to_raw_response_wrapper(
@@ -464,8 +464,8 @@ class AddressesWithRawResponse:
         )
 
 
-class AsyncAddressesWithRawResponse:
-    def __init__(self, addresses: AsyncAddresses) -> None:
+class AsyncAddressesResourceWithRawResponse:
+    def __init__(self, addresses: AsyncAddressesResource) -> None:
         self._addresses = addresses
 
         self.create = async_to_raw_response_wrapper(
@@ -482,8 +482,8 @@ class AsyncAddressesWithRawResponse:
         )
 
 
-class AddressesWithStreamingResponse:
-    def __init__(self, addresses: Addresses) -> None:
+class AddressesResourceWithStreamingResponse:
+    def __init__(self, addresses: AddressesResource) -> None:
         self._addresses = addresses
 
         self.create = to_streamed_response_wrapper(
@@ -500,8 +500,8 @@ class AddressesWithStreamingResponse:
         )
 
 
-class AsyncAddressesWithStreamingResponse:
-    def __init__(self, addresses: AsyncAddresses) -> None:
+class AsyncAddressesResourceWithStreamingResponse:
+    def __init__(self, addresses: AsyncAddressesResource) -> None:
         self._addresses = addresses
 
         self.create = async_to_streamed_response_wrapper(

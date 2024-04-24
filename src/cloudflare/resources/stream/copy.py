@@ -28,17 +28,17 @@ from ...types.stream import copy_create_params
 from ...types.stream.video import Video
 from ...types.stream.allowed_origins import AllowedOrigins
 
-__all__ = ["Copy", "AsyncCopy"]
+__all__ = ["CopyResource", "AsyncCopyResource"]
 
 
-class Copy(SyncAPIResource):
+class CopyResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CopyWithRawResponse:
-        return CopyWithRawResponse(self)
+    def with_raw_response(self) -> CopyResourceWithRawResponse:
+        return CopyResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CopyWithStreamingResponse:
-        return CopyWithStreamingResponse(self)
+    def with_streaming_response(self) -> CopyResourceWithStreamingResponse:
+        return CopyResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -126,14 +126,14 @@ class Copy(SyncAPIResource):
         )
 
 
-class AsyncCopy(AsyncAPIResource):
+class AsyncCopyResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCopyWithRawResponse:
-        return AsyncCopyWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCopyResourceWithRawResponse:
+        return AsyncCopyResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCopyWithStreamingResponse:
-        return AsyncCopyWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCopyResourceWithStreamingResponse:
+        return AsyncCopyResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -221,8 +221,8 @@ class AsyncCopy(AsyncAPIResource):
         )
 
 
-class CopyWithRawResponse:
-    def __init__(self, copy: Copy) -> None:
+class CopyResourceWithRawResponse:
+    def __init__(self, copy: CopyResource) -> None:
         self._copy = copy
 
         self.create = to_raw_response_wrapper(
@@ -230,8 +230,8 @@ class CopyWithRawResponse:
         )
 
 
-class AsyncCopyWithRawResponse:
-    def __init__(self, copy: AsyncCopy) -> None:
+class AsyncCopyResourceWithRawResponse:
+    def __init__(self, copy: AsyncCopyResource) -> None:
         self._copy = copy
 
         self.create = async_to_raw_response_wrapper(
@@ -239,8 +239,8 @@ class AsyncCopyWithRawResponse:
         )
 
 
-class CopyWithStreamingResponse:
-    def __init__(self, copy: Copy) -> None:
+class CopyResourceWithStreamingResponse:
+    def __init__(self, copy: CopyResource) -> None:
         self._copy = copy
 
         self.create = to_streamed_response_wrapper(
@@ -248,8 +248,8 @@ class CopyWithStreamingResponse:
         )
 
 
-class AsyncCopyWithStreamingResponse:
-    def __init__(self, copy: AsyncCopy) -> None:
+class AsyncCopyResourceWithStreamingResponse:
+    def __init__(self, copy: AsyncCopyResource) -> None:
         self._copy = copy
 
         self.create = async_to_streamed_response_wrapper(

@@ -7,12 +7,12 @@ from typing import List, Type, Optional, cast
 import httpx
 
 from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -38,21 +38,21 @@ from .....types.zero_trust.access.certificate import Certificate
 from .....types.zero_trust.access.associated_hostnames import AssociatedHostnames
 from .....types.zero_trust.access.certificate_delete_response import CertificateDeleteResponse
 
-__all__ = ["Certificates", "AsyncCertificates"]
+__all__ = ["CertificatesResource", "AsyncCertificatesResource"]
 
 
-class Certificates(SyncAPIResource):
+class CertificatesResource(SyncAPIResource):
     @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> CertificatesWithRawResponse:
-        return CertificatesWithRawResponse(self)
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> CertificatesWithStreamingResponse:
-        return CertificatesWithStreamingResponse(self)
+    def with_raw_response(self) -> CertificatesResourceWithRawResponse:
+        return CertificatesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> CertificatesResourceWithStreamingResponse:
+        return CertificatesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -357,18 +357,18 @@ class Certificates(SyncAPIResource):
         )
 
 
-class AsyncCertificates(AsyncAPIResource):
+class AsyncCertificatesResource(AsyncAPIResource):
     @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCertificatesWithRawResponse:
-        return AsyncCertificatesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCertificatesResourceWithRawResponse:
+        return AsyncCertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCertificatesWithStreamingResponse:
-        return AsyncCertificatesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCertificatesResourceWithStreamingResponse:
+        return AsyncCertificatesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -673,8 +673,8 @@ class AsyncCertificates(AsyncAPIResource):
         )
 
 
-class CertificatesWithRawResponse:
-    def __init__(self, certificates: Certificates) -> None:
+class CertificatesResourceWithRawResponse:
+    def __init__(self, certificates: CertificatesResource) -> None:
         self._certificates = certificates
 
         self.create = to_raw_response_wrapper(
@@ -694,12 +694,12 @@ class CertificatesWithRawResponse:
         )
 
     @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._certificates.settings)
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._certificates.settings)
 
 
-class AsyncCertificatesWithRawResponse:
-    def __init__(self, certificates: AsyncCertificates) -> None:
+class AsyncCertificatesResourceWithRawResponse:
+    def __init__(self, certificates: AsyncCertificatesResource) -> None:
         self._certificates = certificates
 
         self.create = async_to_raw_response_wrapper(
@@ -719,12 +719,12 @@ class AsyncCertificatesWithRawResponse:
         )
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._certificates.settings)
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._certificates.settings)
 
 
-class CertificatesWithStreamingResponse:
-    def __init__(self, certificates: Certificates) -> None:
+class CertificatesResourceWithStreamingResponse:
+    def __init__(self, certificates: CertificatesResource) -> None:
         self._certificates = certificates
 
         self.create = to_streamed_response_wrapper(
@@ -744,12 +744,12 @@ class CertificatesWithStreamingResponse:
         )
 
     @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._certificates.settings)
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._certificates.settings)
 
 
-class AsyncCertificatesWithStreamingResponse:
-    def __init__(self, certificates: AsyncCertificates) -> None:
+class AsyncCertificatesResourceWithStreamingResponse:
+    def __init__(self, certificates: AsyncCertificatesResource) -> None:
         self._certificates = certificates
 
         self.create = async_to_streamed_response_wrapper(
@@ -769,5 +769,5 @@ class AsyncCertificatesWithStreamingResponse:
         )
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._certificates.settings)
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._certificates.settings)

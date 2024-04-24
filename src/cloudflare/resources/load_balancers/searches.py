@@ -26,17 +26,17 @@ from ..._base_client import (
 from ...types.load_balancers import search_get_params
 from ...types.load_balancers.search_get_response import SearchGetResponse
 
-__all__ = ["Searches", "AsyncSearches"]
+__all__ = ["SearchesResource", "AsyncSearchesResource"]
 
 
-class Searches(SyncAPIResource):
+class SearchesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SearchesWithRawResponse:
-        return SearchesWithRawResponse(self)
+    def with_raw_response(self) -> SearchesResourceWithRawResponse:
+        return SearchesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SearchesWithStreamingResponse:
-        return SearchesWithStreamingResponse(self)
+    def with_streaming_response(self) -> SearchesResourceWithStreamingResponse:
+        return SearchesResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -89,14 +89,14 @@ class Searches(SyncAPIResource):
         )
 
 
-class AsyncSearches(AsyncAPIResource):
+class AsyncSearchesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSearchesWithRawResponse:
-        return AsyncSearchesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSearchesResourceWithRawResponse:
+        return AsyncSearchesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSearchesWithStreamingResponse:
-        return AsyncSearchesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSearchesResourceWithStreamingResponse:
+        return AsyncSearchesResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -149,8 +149,8 @@ class AsyncSearches(AsyncAPIResource):
         )
 
 
-class SearchesWithRawResponse:
-    def __init__(self, searches: Searches) -> None:
+class SearchesResourceWithRawResponse:
+    def __init__(self, searches: SearchesResource) -> None:
         self._searches = searches
 
         self.get = to_raw_response_wrapper(
@@ -158,8 +158,8 @@ class SearchesWithRawResponse:
         )
 
 
-class AsyncSearchesWithRawResponse:
-    def __init__(self, searches: AsyncSearches) -> None:
+class AsyncSearchesResourceWithRawResponse:
+    def __init__(self, searches: AsyncSearchesResource) -> None:
         self._searches = searches
 
         self.get = async_to_raw_response_wrapper(
@@ -167,8 +167,8 @@ class AsyncSearchesWithRawResponse:
         )
 
 
-class SearchesWithStreamingResponse:
-    def __init__(self, searches: Searches) -> None:
+class SearchesResourceWithStreamingResponse:
+    def __init__(self, searches: SearchesResource) -> None:
         self._searches = searches
 
         self.get = to_streamed_response_wrapper(
@@ -176,8 +176,8 @@ class SearchesWithStreamingResponse:
         )
 
 
-class AsyncSearchesWithStreamingResponse:
-    def __init__(self, searches: AsyncSearches) -> None:
+class AsyncSearchesResourceWithStreamingResponse:
+    def __init__(self, searches: AsyncSearchesResource) -> None:
         self._searches = searches
 
         self.get = async_to_streamed_response_wrapper(

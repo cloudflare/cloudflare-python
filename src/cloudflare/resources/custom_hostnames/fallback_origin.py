@@ -28,17 +28,17 @@ from ...types.custom_hostnames.fallback_origin_get_response import FallbackOrigi
 from ...types.custom_hostnames.fallback_origin_delete_response import FallbackOriginDeleteResponse
 from ...types.custom_hostnames.fallback_origin_update_response import FallbackOriginUpdateResponse
 
-__all__ = ["FallbackOrigin", "AsyncFallbackOrigin"]
+__all__ = ["FallbackOriginResource", "AsyncFallbackOriginResource"]
 
 
-class FallbackOrigin(SyncAPIResource):
+class FallbackOriginResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> FallbackOriginWithRawResponse:
-        return FallbackOriginWithRawResponse(self)
+    def with_raw_response(self) -> FallbackOriginResourceWithRawResponse:
+        return FallbackOriginResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FallbackOriginWithStreamingResponse:
-        return FallbackOriginWithStreamingResponse(self)
+    def with_streaming_response(self) -> FallbackOriginResourceWithStreamingResponse:
+        return FallbackOriginResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -179,14 +179,14 @@ class FallbackOrigin(SyncAPIResource):
         )
 
 
-class AsyncFallbackOrigin(AsyncAPIResource):
+class AsyncFallbackOriginResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncFallbackOriginWithRawResponse:
-        return AsyncFallbackOriginWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFallbackOriginResourceWithRawResponse:
+        return AsyncFallbackOriginResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFallbackOriginWithStreamingResponse:
-        return AsyncFallbackOriginWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFallbackOriginResourceWithStreamingResponse:
+        return AsyncFallbackOriginResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -329,8 +329,8 @@ class AsyncFallbackOrigin(AsyncAPIResource):
         )
 
 
-class FallbackOriginWithRawResponse:
-    def __init__(self, fallback_origin: FallbackOrigin) -> None:
+class FallbackOriginResourceWithRawResponse:
+    def __init__(self, fallback_origin: FallbackOriginResource) -> None:
         self._fallback_origin = fallback_origin
 
         self.update = to_raw_response_wrapper(
@@ -344,8 +344,8 @@ class FallbackOriginWithRawResponse:
         )
 
 
-class AsyncFallbackOriginWithRawResponse:
-    def __init__(self, fallback_origin: AsyncFallbackOrigin) -> None:
+class AsyncFallbackOriginResourceWithRawResponse:
+    def __init__(self, fallback_origin: AsyncFallbackOriginResource) -> None:
         self._fallback_origin = fallback_origin
 
         self.update = async_to_raw_response_wrapper(
@@ -359,8 +359,8 @@ class AsyncFallbackOriginWithRawResponse:
         )
 
 
-class FallbackOriginWithStreamingResponse:
-    def __init__(self, fallback_origin: FallbackOrigin) -> None:
+class FallbackOriginResourceWithStreamingResponse:
+    def __init__(self, fallback_origin: FallbackOriginResource) -> None:
         self._fallback_origin = fallback_origin
 
         self.update = to_streamed_response_wrapper(
@@ -374,8 +374,8 @@ class FallbackOriginWithStreamingResponse:
         )
 
 
-class AsyncFallbackOriginWithStreamingResponse:
-    def __init__(self, fallback_origin: AsyncFallbackOrigin) -> None:
+class AsyncFallbackOriginResourceWithStreamingResponse:
+    def __init__(self, fallback_origin: AsyncFallbackOriginResource) -> None:
         self._fallback_origin = fallback_origin
 
         self.update = async_to_streamed_response_wrapper(

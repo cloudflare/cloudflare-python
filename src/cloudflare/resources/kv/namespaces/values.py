@@ -27,17 +27,17 @@ from ....types.kv.namespaces import value_delete_params, value_update_params
 from ....types.kv.namespaces.value_delete_response import ValueDeleteResponse
 from ....types.kv.namespaces.value_update_response import ValueUpdateResponse
 
-__all__ = ["Values", "AsyncValues"]
+__all__ = ["ValuesResource", "AsyncValuesResource"]
 
 
-class Values(SyncAPIResource):
+class ValuesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ValuesWithRawResponse:
-        return ValuesWithRawResponse(self)
+    def with_raw_response(self) -> ValuesResourceWithRawResponse:
+        return ValuesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ValuesWithStreamingResponse:
-        return ValuesWithStreamingResponse(self)
+    def with_streaming_response(self) -> ValuesResourceWithStreamingResponse:
+        return ValuesResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -224,14 +224,14 @@ class Values(SyncAPIResource):
         )
 
 
-class AsyncValues(AsyncAPIResource):
+class AsyncValuesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncValuesWithRawResponse:
-        return AsyncValuesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncValuesResourceWithRawResponse:
+        return AsyncValuesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncValuesWithStreamingResponse:
-        return AsyncValuesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncValuesResourceWithStreamingResponse:
+        return AsyncValuesResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -418,8 +418,8 @@ class AsyncValues(AsyncAPIResource):
         )
 
 
-class ValuesWithRawResponse:
-    def __init__(self, values: Values) -> None:
+class ValuesResourceWithRawResponse:
+    def __init__(self, values: ValuesResource) -> None:
         self._values = values
 
         self.update = to_raw_response_wrapper(
@@ -433,8 +433,8 @@ class ValuesWithRawResponse:
         )
 
 
-class AsyncValuesWithRawResponse:
-    def __init__(self, values: AsyncValues) -> None:
+class AsyncValuesResourceWithRawResponse:
+    def __init__(self, values: AsyncValuesResource) -> None:
         self._values = values
 
         self.update = async_to_raw_response_wrapper(
@@ -448,8 +448,8 @@ class AsyncValuesWithRawResponse:
         )
 
 
-class ValuesWithStreamingResponse:
-    def __init__(self, values: Values) -> None:
+class ValuesResourceWithStreamingResponse:
+    def __init__(self, values: ValuesResource) -> None:
         self._values = values
 
         self.update = to_streamed_response_wrapper(
@@ -463,8 +463,8 @@ class ValuesWithStreamingResponse:
         )
 
 
-class AsyncValuesWithStreamingResponse:
-    def __init__(self, values: AsyncValues) -> None:
+class AsyncValuesResourceWithStreamingResponse:
+    def __init__(self, values: AsyncValuesResource) -> None:
         self._values = values
 
         self.update = async_to_streamed_response_wrapper(

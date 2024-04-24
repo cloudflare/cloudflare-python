@@ -28,17 +28,17 @@ from ....._base_client import (
 from .....types.radar.http.locations import http_protocol_get_params
 from .....types.radar.http.locations.http_protocol_get_response import HTTPProtocolGetResponse
 
-__all__ = ["HTTPProtocol", "AsyncHTTPProtocol"]
+__all__ = ["HTTPProtocolResource", "AsyncHTTPProtocolResource"]
 
 
-class HTTPProtocol(SyncAPIResource):
+class HTTPProtocolResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HTTPProtocolWithRawResponse:
-        return HTTPProtocolWithRawResponse(self)
+    def with_raw_response(self) -> HTTPProtocolResourceWithRawResponse:
+        return HTTPProtocolResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HTTPProtocolWithStreamingResponse:
-        return HTTPProtocolWithStreamingResponse(self)
+    def with_streaming_response(self) -> HTTPProtocolResourceWithStreamingResponse:
+        return HTTPProtocolResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -172,14 +172,14 @@ class HTTPProtocol(SyncAPIResource):
         )
 
 
-class AsyncHTTPProtocol(AsyncAPIResource):
+class AsyncHTTPProtocolResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHTTPProtocolWithRawResponse:
-        return AsyncHTTPProtocolWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHTTPProtocolResourceWithRawResponse:
+        return AsyncHTTPProtocolResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHTTPProtocolWithStreamingResponse:
-        return AsyncHTTPProtocolWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHTTPProtocolResourceWithStreamingResponse:
+        return AsyncHTTPProtocolResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -313,8 +313,8 @@ class AsyncHTTPProtocol(AsyncAPIResource):
         )
 
 
-class HTTPProtocolWithRawResponse:
-    def __init__(self, http_protocol: HTTPProtocol) -> None:
+class HTTPProtocolResourceWithRawResponse:
+    def __init__(self, http_protocol: HTTPProtocolResource) -> None:
         self._http_protocol = http_protocol
 
         self.get = to_raw_response_wrapper(
@@ -322,8 +322,8 @@ class HTTPProtocolWithRawResponse:
         )
 
 
-class AsyncHTTPProtocolWithRawResponse:
-    def __init__(self, http_protocol: AsyncHTTPProtocol) -> None:
+class AsyncHTTPProtocolResourceWithRawResponse:
+    def __init__(self, http_protocol: AsyncHTTPProtocolResource) -> None:
         self._http_protocol = http_protocol
 
         self.get = async_to_raw_response_wrapper(
@@ -331,8 +331,8 @@ class AsyncHTTPProtocolWithRawResponse:
         )
 
 
-class HTTPProtocolWithStreamingResponse:
-    def __init__(self, http_protocol: HTTPProtocol) -> None:
+class HTTPProtocolResourceWithStreamingResponse:
+    def __init__(self, http_protocol: HTTPProtocolResource) -> None:
         self._http_protocol = http_protocol
 
         self.get = to_streamed_response_wrapper(
@@ -340,8 +340,8 @@ class HTTPProtocolWithStreamingResponse:
         )
 
 
-class AsyncHTTPProtocolWithStreamingResponse:
-    def __init__(self, http_protocol: AsyncHTTPProtocol) -> None:
+class AsyncHTTPProtocolResourceWithStreamingResponse:
+    def __init__(self, http_protocol: AsyncHTTPProtocolResource) -> None:
         self._http_protocol = http_protocol
 
         self.get = async_to_streamed_response_wrapper(

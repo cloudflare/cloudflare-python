@@ -35,17 +35,17 @@ from ...types.firewall import (
 from ...types.firewall.lockdown import Lockdown
 from ...types.firewall.lockdown_delete_response import LockdownDeleteResponse
 
-__all__ = ["Lockdowns", "AsyncLockdowns"]
+__all__ = ["LockdownsResource", "AsyncLockdownsResource"]
 
 
-class Lockdowns(SyncAPIResource):
+class LockdownsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> LockdownsWithRawResponse:
-        return LockdownsWithRawResponse(self)
+    def with_raw_response(self) -> LockdownsResourceWithRawResponse:
+        return LockdownsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> LockdownsWithStreamingResponse:
-        return LockdownsWithStreamingResponse(self)
+    def with_streaming_response(self) -> LockdownsResourceWithStreamingResponse:
+        return LockdownsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -318,14 +318,14 @@ class Lockdowns(SyncAPIResource):
         )
 
 
-class AsyncLockdowns(AsyncAPIResource):
+class AsyncLockdownsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncLockdownsWithRawResponse:
-        return AsyncLockdownsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLockdownsResourceWithRawResponse:
+        return AsyncLockdownsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLockdownsWithStreamingResponse:
-        return AsyncLockdownsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLockdownsResourceWithStreamingResponse:
+        return AsyncLockdownsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -598,8 +598,8 @@ class AsyncLockdowns(AsyncAPIResource):
         )
 
 
-class LockdownsWithRawResponse:
-    def __init__(self, lockdowns: Lockdowns) -> None:
+class LockdownsResourceWithRawResponse:
+    def __init__(self, lockdowns: LockdownsResource) -> None:
         self._lockdowns = lockdowns
 
         self.create = to_raw_response_wrapper(
@@ -619,8 +619,8 @@ class LockdownsWithRawResponse:
         )
 
 
-class AsyncLockdownsWithRawResponse:
-    def __init__(self, lockdowns: AsyncLockdowns) -> None:
+class AsyncLockdownsResourceWithRawResponse:
+    def __init__(self, lockdowns: AsyncLockdownsResource) -> None:
         self._lockdowns = lockdowns
 
         self.create = async_to_raw_response_wrapper(
@@ -640,8 +640,8 @@ class AsyncLockdownsWithRawResponse:
         )
 
 
-class LockdownsWithStreamingResponse:
-    def __init__(self, lockdowns: Lockdowns) -> None:
+class LockdownsResourceWithStreamingResponse:
+    def __init__(self, lockdowns: LockdownsResource) -> None:
         self._lockdowns = lockdowns
 
         self.create = to_streamed_response_wrapper(
@@ -661,8 +661,8 @@ class LockdownsWithStreamingResponse:
         )
 
 
-class AsyncLockdownsWithStreamingResponse:
-    def __init__(self, lockdowns: AsyncLockdowns) -> None:
+class AsyncLockdownsResourceWithStreamingResponse:
+    def __init__(self, lockdowns: AsyncLockdownsResource) -> None:
         self._lockdowns = lockdowns
 
         self.create = async_to_streamed_response_wrapper(

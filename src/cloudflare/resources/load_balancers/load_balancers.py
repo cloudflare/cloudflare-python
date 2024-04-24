@@ -8,20 +8,20 @@ from typing_extensions import Literal
 import httpx
 
 from .pools import (
-    Pools,
-    AsyncPools,
-    PoolsWithRawResponse,
-    AsyncPoolsWithRawResponse,
-    PoolsWithStreamingResponse,
-    AsyncPoolsWithStreamingResponse,
+    PoolsResource,
+    AsyncPoolsResource,
+    PoolsResourceWithRawResponse,
+    AsyncPoolsResourceWithRawResponse,
+    PoolsResourceWithStreamingResponse,
+    AsyncPoolsResourceWithStreamingResponse,
 )
 from .regions import (
-    Regions,
-    AsyncRegions,
-    RegionsWithRawResponse,
-    AsyncRegionsWithRawResponse,
-    RegionsWithStreamingResponse,
-    AsyncRegionsWithStreamingResponse,
+    RegionsResource,
+    AsyncRegionsResource,
+    RegionsResourceWithRawResponse,
+    AsyncRegionsResourceWithRawResponse,
+    RegionsResourceWithStreamingResponse,
+    AsyncRegionsResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -29,28 +29,28 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .monitors import (
-    Monitors,
-    AsyncMonitors,
-    MonitorsWithRawResponse,
-    AsyncMonitorsWithRawResponse,
-    MonitorsWithStreamingResponse,
-    AsyncMonitorsWithStreamingResponse,
+    MonitorsResource,
+    AsyncMonitorsResource,
+    MonitorsResourceWithRawResponse,
+    AsyncMonitorsResourceWithRawResponse,
+    MonitorsResourceWithStreamingResponse,
+    AsyncMonitorsResourceWithStreamingResponse,
 )
 from .previews import (
-    Previews,
-    AsyncPreviews,
-    PreviewsWithRawResponse,
-    AsyncPreviewsWithRawResponse,
-    PreviewsWithStreamingResponse,
-    AsyncPreviewsWithStreamingResponse,
+    PreviewsResource,
+    AsyncPreviewsResource,
+    PreviewsResourceWithRawResponse,
+    AsyncPreviewsResourceWithRawResponse,
+    PreviewsResourceWithStreamingResponse,
+    AsyncPreviewsResourceWithStreamingResponse,
 )
 from .searches import (
-    Searches,
-    AsyncSearches,
-    SearchesWithRawResponse,
-    AsyncSearchesWithRawResponse,
-    SearchesWithStreamingResponse,
-    AsyncSearchesWithStreamingResponse,
+    SearchesResource,
+    AsyncSearchesResource,
+    SearchesResourceWithRawResponse,
+    AsyncSearchesResourceWithRawResponse,
+    SearchesResourceWithStreamingResponse,
+    AsyncSearchesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -61,13 +61,13 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from .pools.pools import Pools, AsyncPools
+from .pools.pools import PoolsResource, AsyncPoolsResource
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .monitors.monitors import Monitors, AsyncMonitors
+from .monitors.monitors import MonitorsResource, AsyncMonitorsResource
 from ...types.load_balancers import (
     load_balancer_edit_params,
     load_balancer_create_params,
@@ -83,37 +83,37 @@ from ...types.load_balancers.location_strategy_param import LocationStrategyPara
 from ...types.load_balancers.load_balancer_delete_response import LoadBalancerDeleteResponse
 from ...types.load_balancers.session_affinity_attributes_param import SessionAffinityAttributesParam
 
-__all__ = ["LoadBalancers", "AsyncLoadBalancers"]
+__all__ = ["LoadBalancersResource", "AsyncLoadBalancersResource"]
 
 
-class LoadBalancers(SyncAPIResource):
+class LoadBalancersResource(SyncAPIResource):
     @cached_property
-    def monitors(self) -> Monitors:
-        return Monitors(self._client)
-
-    @cached_property
-    def pools(self) -> Pools:
-        return Pools(self._client)
+    def monitors(self) -> MonitorsResource:
+        return MonitorsResource(self._client)
 
     @cached_property
-    def previews(self) -> Previews:
-        return Previews(self._client)
+    def pools(self) -> PoolsResource:
+        return PoolsResource(self._client)
 
     @cached_property
-    def regions(self) -> Regions:
-        return Regions(self._client)
+    def previews(self) -> PreviewsResource:
+        return PreviewsResource(self._client)
 
     @cached_property
-    def searches(self) -> Searches:
-        return Searches(self._client)
+    def regions(self) -> RegionsResource:
+        return RegionsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> LoadBalancersWithRawResponse:
-        return LoadBalancersWithRawResponse(self)
+    def searches(self) -> SearchesResource:
+        return SearchesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> LoadBalancersWithStreamingResponse:
-        return LoadBalancersWithStreamingResponse(self)
+    def with_raw_response(self) -> LoadBalancersResourceWithRawResponse:
+        return LoadBalancersResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LoadBalancersResourceWithStreamingResponse:
+        return LoadBalancersResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -840,34 +840,34 @@ class LoadBalancers(SyncAPIResource):
         )
 
 
-class AsyncLoadBalancers(AsyncAPIResource):
+class AsyncLoadBalancersResource(AsyncAPIResource):
     @cached_property
-    def monitors(self) -> AsyncMonitors:
-        return AsyncMonitors(self._client)
+    def monitors(self) -> AsyncMonitorsResource:
+        return AsyncMonitorsResource(self._client)
 
     @cached_property
-    def pools(self) -> AsyncPools:
-        return AsyncPools(self._client)
+    def pools(self) -> AsyncPoolsResource:
+        return AsyncPoolsResource(self._client)
 
     @cached_property
-    def previews(self) -> AsyncPreviews:
-        return AsyncPreviews(self._client)
+    def previews(self) -> AsyncPreviewsResource:
+        return AsyncPreviewsResource(self._client)
 
     @cached_property
-    def regions(self) -> AsyncRegions:
-        return AsyncRegions(self._client)
+    def regions(self) -> AsyncRegionsResource:
+        return AsyncRegionsResource(self._client)
 
     @cached_property
-    def searches(self) -> AsyncSearches:
-        return AsyncSearches(self._client)
+    def searches(self) -> AsyncSearchesResource:
+        return AsyncSearchesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncLoadBalancersWithRawResponse:
-        return AsyncLoadBalancersWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLoadBalancersResourceWithRawResponse:
+        return AsyncLoadBalancersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLoadBalancersWithStreamingResponse:
-        return AsyncLoadBalancersWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLoadBalancersResourceWithStreamingResponse:
+        return AsyncLoadBalancersResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -1594,8 +1594,8 @@ class AsyncLoadBalancers(AsyncAPIResource):
         )
 
 
-class LoadBalancersWithRawResponse:
-    def __init__(self, load_balancers: LoadBalancers) -> None:
+class LoadBalancersResourceWithRawResponse:
+    def __init__(self, load_balancers: LoadBalancersResource) -> None:
         self._load_balancers = load_balancers
 
         self.create = to_raw_response_wrapper(
@@ -1618,28 +1618,28 @@ class LoadBalancersWithRawResponse:
         )
 
     @cached_property
-    def monitors(self) -> MonitorsWithRawResponse:
-        return MonitorsWithRawResponse(self._load_balancers.monitors)
+    def monitors(self) -> MonitorsResourceWithRawResponse:
+        return MonitorsResourceWithRawResponse(self._load_balancers.monitors)
 
     @cached_property
-    def pools(self) -> PoolsWithRawResponse:
-        return PoolsWithRawResponse(self._load_balancers.pools)
+    def pools(self) -> PoolsResourceWithRawResponse:
+        return PoolsResourceWithRawResponse(self._load_balancers.pools)
 
     @cached_property
-    def previews(self) -> PreviewsWithRawResponse:
-        return PreviewsWithRawResponse(self._load_balancers.previews)
+    def previews(self) -> PreviewsResourceWithRawResponse:
+        return PreviewsResourceWithRawResponse(self._load_balancers.previews)
 
     @cached_property
-    def regions(self) -> RegionsWithRawResponse:
-        return RegionsWithRawResponse(self._load_balancers.regions)
+    def regions(self) -> RegionsResourceWithRawResponse:
+        return RegionsResourceWithRawResponse(self._load_balancers.regions)
 
     @cached_property
-    def searches(self) -> SearchesWithRawResponse:
-        return SearchesWithRawResponse(self._load_balancers.searches)
+    def searches(self) -> SearchesResourceWithRawResponse:
+        return SearchesResourceWithRawResponse(self._load_balancers.searches)
 
 
-class AsyncLoadBalancersWithRawResponse:
-    def __init__(self, load_balancers: AsyncLoadBalancers) -> None:
+class AsyncLoadBalancersResourceWithRawResponse:
+    def __init__(self, load_balancers: AsyncLoadBalancersResource) -> None:
         self._load_balancers = load_balancers
 
         self.create = async_to_raw_response_wrapper(
@@ -1662,28 +1662,28 @@ class AsyncLoadBalancersWithRawResponse:
         )
 
     @cached_property
-    def monitors(self) -> AsyncMonitorsWithRawResponse:
-        return AsyncMonitorsWithRawResponse(self._load_balancers.monitors)
+    def monitors(self) -> AsyncMonitorsResourceWithRawResponse:
+        return AsyncMonitorsResourceWithRawResponse(self._load_balancers.monitors)
 
     @cached_property
-    def pools(self) -> AsyncPoolsWithRawResponse:
-        return AsyncPoolsWithRawResponse(self._load_balancers.pools)
+    def pools(self) -> AsyncPoolsResourceWithRawResponse:
+        return AsyncPoolsResourceWithRawResponse(self._load_balancers.pools)
 
     @cached_property
-    def previews(self) -> AsyncPreviewsWithRawResponse:
-        return AsyncPreviewsWithRawResponse(self._load_balancers.previews)
+    def previews(self) -> AsyncPreviewsResourceWithRawResponse:
+        return AsyncPreviewsResourceWithRawResponse(self._load_balancers.previews)
 
     @cached_property
-    def regions(self) -> AsyncRegionsWithRawResponse:
-        return AsyncRegionsWithRawResponse(self._load_balancers.regions)
+    def regions(self) -> AsyncRegionsResourceWithRawResponse:
+        return AsyncRegionsResourceWithRawResponse(self._load_balancers.regions)
 
     @cached_property
-    def searches(self) -> AsyncSearchesWithRawResponse:
-        return AsyncSearchesWithRawResponse(self._load_balancers.searches)
+    def searches(self) -> AsyncSearchesResourceWithRawResponse:
+        return AsyncSearchesResourceWithRawResponse(self._load_balancers.searches)
 
 
-class LoadBalancersWithStreamingResponse:
-    def __init__(self, load_balancers: LoadBalancers) -> None:
+class LoadBalancersResourceWithStreamingResponse:
+    def __init__(self, load_balancers: LoadBalancersResource) -> None:
         self._load_balancers = load_balancers
 
         self.create = to_streamed_response_wrapper(
@@ -1706,28 +1706,28 @@ class LoadBalancersWithStreamingResponse:
         )
 
     @cached_property
-    def monitors(self) -> MonitorsWithStreamingResponse:
-        return MonitorsWithStreamingResponse(self._load_balancers.monitors)
+    def monitors(self) -> MonitorsResourceWithStreamingResponse:
+        return MonitorsResourceWithStreamingResponse(self._load_balancers.monitors)
 
     @cached_property
-    def pools(self) -> PoolsWithStreamingResponse:
-        return PoolsWithStreamingResponse(self._load_balancers.pools)
+    def pools(self) -> PoolsResourceWithStreamingResponse:
+        return PoolsResourceWithStreamingResponse(self._load_balancers.pools)
 
     @cached_property
-    def previews(self) -> PreviewsWithStreamingResponse:
-        return PreviewsWithStreamingResponse(self._load_balancers.previews)
+    def previews(self) -> PreviewsResourceWithStreamingResponse:
+        return PreviewsResourceWithStreamingResponse(self._load_balancers.previews)
 
     @cached_property
-    def regions(self) -> RegionsWithStreamingResponse:
-        return RegionsWithStreamingResponse(self._load_balancers.regions)
+    def regions(self) -> RegionsResourceWithStreamingResponse:
+        return RegionsResourceWithStreamingResponse(self._load_balancers.regions)
 
     @cached_property
-    def searches(self) -> SearchesWithStreamingResponse:
-        return SearchesWithStreamingResponse(self._load_balancers.searches)
+    def searches(self) -> SearchesResourceWithStreamingResponse:
+        return SearchesResourceWithStreamingResponse(self._load_balancers.searches)
 
 
-class AsyncLoadBalancersWithStreamingResponse:
-    def __init__(self, load_balancers: AsyncLoadBalancers) -> None:
+class AsyncLoadBalancersResourceWithStreamingResponse:
+    def __init__(self, load_balancers: AsyncLoadBalancersResource) -> None:
         self._load_balancers = load_balancers
 
         self.create = async_to_streamed_response_wrapper(
@@ -1750,21 +1750,21 @@ class AsyncLoadBalancersWithStreamingResponse:
         )
 
     @cached_property
-    def monitors(self) -> AsyncMonitorsWithStreamingResponse:
-        return AsyncMonitorsWithStreamingResponse(self._load_balancers.monitors)
+    def monitors(self) -> AsyncMonitorsResourceWithStreamingResponse:
+        return AsyncMonitorsResourceWithStreamingResponse(self._load_balancers.monitors)
 
     @cached_property
-    def pools(self) -> AsyncPoolsWithStreamingResponse:
-        return AsyncPoolsWithStreamingResponse(self._load_balancers.pools)
+    def pools(self) -> AsyncPoolsResourceWithStreamingResponse:
+        return AsyncPoolsResourceWithStreamingResponse(self._load_balancers.pools)
 
     @cached_property
-    def previews(self) -> AsyncPreviewsWithStreamingResponse:
-        return AsyncPreviewsWithStreamingResponse(self._load_balancers.previews)
+    def previews(self) -> AsyncPreviewsResourceWithStreamingResponse:
+        return AsyncPreviewsResourceWithStreamingResponse(self._load_balancers.previews)
 
     @cached_property
-    def regions(self) -> AsyncRegionsWithStreamingResponse:
-        return AsyncRegionsWithStreamingResponse(self._load_balancers.regions)
+    def regions(self) -> AsyncRegionsResourceWithStreamingResponse:
+        return AsyncRegionsResourceWithStreamingResponse(self._load_balancers.regions)
 
     @cached_property
-    def searches(self) -> AsyncSearchesWithStreamingResponse:
-        return AsyncSearchesWithStreamingResponse(self._load_balancers.searches)
+    def searches(self) -> AsyncSearchesResourceWithStreamingResponse:
+        return AsyncSearchesResourceWithStreamingResponse(self._load_balancers.searches)

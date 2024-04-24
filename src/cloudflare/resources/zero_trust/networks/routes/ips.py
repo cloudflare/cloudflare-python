@@ -26,17 +26,17 @@ from ....._base_client import (
 from .....types.zero_trust.networks.routes import ip_get_params
 from .....types.zero_trust.networks.teamnet import Teamnet
 
-__all__ = ["IPs", "AsyncIPs"]
+__all__ = ["IPsResource", "AsyncIPsResource"]
 
 
-class IPs(SyncAPIResource):
+class IPsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IPsWithRawResponse:
-        return IPsWithRawResponse(self)
+    def with_raw_response(self) -> IPsResourceWithRawResponse:
+        return IPsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IPsWithStreamingResponse:
-        return IPsWithStreamingResponse(self)
+    def with_streaming_response(self) -> IPsResourceWithStreamingResponse:
+        return IPsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -85,14 +85,14 @@ class IPs(SyncAPIResource):
         )
 
 
-class AsyncIPs(AsyncAPIResource):
+class AsyncIPsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIPsWithRawResponse:
-        return AsyncIPsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIPsResourceWithRawResponse:
+        return AsyncIPsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIPsWithStreamingResponse:
-        return AsyncIPsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIPsResourceWithStreamingResponse:
+        return AsyncIPsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -143,8 +143,8 @@ class AsyncIPs(AsyncAPIResource):
         )
 
 
-class IPsWithRawResponse:
-    def __init__(self, ips: IPs) -> None:
+class IPsResourceWithRawResponse:
+    def __init__(self, ips: IPsResource) -> None:
         self._ips = ips
 
         self.get = to_raw_response_wrapper(
@@ -152,8 +152,8 @@ class IPsWithRawResponse:
         )
 
 
-class AsyncIPsWithRawResponse:
-    def __init__(self, ips: AsyncIPs) -> None:
+class AsyncIPsResourceWithRawResponse:
+    def __init__(self, ips: AsyncIPsResource) -> None:
         self._ips = ips
 
         self.get = async_to_raw_response_wrapper(
@@ -161,8 +161,8 @@ class AsyncIPsWithRawResponse:
         )
 
 
-class IPsWithStreamingResponse:
-    def __init__(self, ips: IPs) -> None:
+class IPsResourceWithStreamingResponse:
+    def __init__(self, ips: IPsResource) -> None:
         self._ips = ips
 
         self.get = to_streamed_response_wrapper(
@@ -170,8 +170,8 @@ class IPsWithStreamingResponse:
         )
 
 
-class AsyncIPsWithStreamingResponse:
-    def __init__(self, ips: AsyncIPs) -> None:
+class AsyncIPsResourceWithStreamingResponse:
+    def __init__(self, ips: AsyncIPsResource) -> None:
         self._ips = ips
 
         self.get = async_to_streamed_response_wrapper(

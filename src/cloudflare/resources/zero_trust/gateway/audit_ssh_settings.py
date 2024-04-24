@@ -26,17 +26,17 @@ from ...._base_client import (
 from ....types.zero_trust.gateway import audit_ssh_setting_update_params
 from ....types.zero_trust.gateway.gateway_settings import GatewaySettings
 
-__all__ = ["AuditSSHSettings", "AsyncAuditSSHSettings"]
+__all__ = ["AuditSSHSettingsResource", "AsyncAuditSSHSettingsResource"]
 
 
-class AuditSSHSettings(SyncAPIResource):
+class AuditSSHSettingsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AuditSSHSettingsWithRawResponse:
-        return AuditSSHSettingsWithRawResponse(self)
+    def with_raw_response(self) -> AuditSSHSettingsResourceWithRawResponse:
+        return AuditSSHSettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AuditSSHSettingsWithStreamingResponse:
-        return AuditSSHSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AuditSSHSettingsResourceWithStreamingResponse:
+        return AuditSSHSettingsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -126,14 +126,14 @@ class AuditSSHSettings(SyncAPIResource):
         )
 
 
-class AsyncAuditSSHSettings(AsyncAPIResource):
+class AsyncAuditSSHSettingsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAuditSSHSettingsWithRawResponse:
-        return AsyncAuditSSHSettingsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAuditSSHSettingsResourceWithRawResponse:
+        return AsyncAuditSSHSettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAuditSSHSettingsWithStreamingResponse:
-        return AsyncAuditSSHSettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAuditSSHSettingsResourceWithStreamingResponse:
+        return AsyncAuditSSHSettingsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -223,8 +223,8 @@ class AsyncAuditSSHSettings(AsyncAPIResource):
         )
 
 
-class AuditSSHSettingsWithRawResponse:
-    def __init__(self, audit_ssh_settings: AuditSSHSettings) -> None:
+class AuditSSHSettingsResourceWithRawResponse:
+    def __init__(self, audit_ssh_settings: AuditSSHSettingsResource) -> None:
         self._audit_ssh_settings = audit_ssh_settings
 
         self.update = to_raw_response_wrapper(
@@ -235,8 +235,8 @@ class AuditSSHSettingsWithRawResponse:
         )
 
 
-class AsyncAuditSSHSettingsWithRawResponse:
-    def __init__(self, audit_ssh_settings: AsyncAuditSSHSettings) -> None:
+class AsyncAuditSSHSettingsResourceWithRawResponse:
+    def __init__(self, audit_ssh_settings: AsyncAuditSSHSettingsResource) -> None:
         self._audit_ssh_settings = audit_ssh_settings
 
         self.update = async_to_raw_response_wrapper(
@@ -247,8 +247,8 @@ class AsyncAuditSSHSettingsWithRawResponse:
         )
 
 
-class AuditSSHSettingsWithStreamingResponse:
-    def __init__(self, audit_ssh_settings: AuditSSHSettings) -> None:
+class AuditSSHSettingsResourceWithStreamingResponse:
+    def __init__(self, audit_ssh_settings: AuditSSHSettingsResource) -> None:
         self._audit_ssh_settings = audit_ssh_settings
 
         self.update = to_streamed_response_wrapper(
@@ -259,8 +259,8 @@ class AuditSSHSettingsWithStreamingResponse:
         )
 
 
-class AsyncAuditSSHSettingsWithStreamingResponse:
-    def __init__(self, audit_ssh_settings: AsyncAuditSSHSettings) -> None:
+class AsyncAuditSSHSettingsResourceWithStreamingResponse:
+    def __init__(self, audit_ssh_settings: AsyncAuditSSHSettingsResource) -> None:
         self._audit_ssh_settings = audit_ssh_settings
 
         self.update = async_to_streamed_response_wrapper(

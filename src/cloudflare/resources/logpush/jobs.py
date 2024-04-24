@@ -30,17 +30,17 @@ from ...types.logpush import job_create_params, job_delete_params, job_update_pa
 from ...types.logpush.logpush_job import LogpushJob
 from ...types.logpush.output_options_param import OutputOptionsParam
 
-__all__ = ["Jobs", "AsyncJobs"]
+__all__ = ["JobsResource", "AsyncJobsResource"]
 
 
-class Jobs(SyncAPIResource):
+class JobsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> JobsWithRawResponse:
-        return JobsWithRawResponse(self)
+    def with_raw_response(self) -> JobsResourceWithRawResponse:
+        return JobsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> JobsWithStreamingResponse:
-        return JobsWithStreamingResponse(self)
+    def with_streaming_response(self) -> JobsResourceWithStreamingResponse:
+        return JobsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -397,14 +397,14 @@ class Jobs(SyncAPIResource):
         )
 
 
-class AsyncJobs(AsyncAPIResource):
+class AsyncJobsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncJobsWithRawResponse:
-        return AsyncJobsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncJobsResourceWithRawResponse:
+        return AsyncJobsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncJobsWithStreamingResponse:
-        return AsyncJobsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncJobsResourceWithStreamingResponse:
+        return AsyncJobsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -761,8 +761,8 @@ class AsyncJobs(AsyncAPIResource):
         )
 
 
-class JobsWithRawResponse:
-    def __init__(self, jobs: Jobs) -> None:
+class JobsResourceWithRawResponse:
+    def __init__(self, jobs: JobsResource) -> None:
         self._jobs = jobs
 
         self.create = to_raw_response_wrapper(
@@ -782,8 +782,8 @@ class JobsWithRawResponse:
         )
 
 
-class AsyncJobsWithRawResponse:
-    def __init__(self, jobs: AsyncJobs) -> None:
+class AsyncJobsResourceWithRawResponse:
+    def __init__(self, jobs: AsyncJobsResource) -> None:
         self._jobs = jobs
 
         self.create = async_to_raw_response_wrapper(
@@ -803,8 +803,8 @@ class AsyncJobsWithRawResponse:
         )
 
 
-class JobsWithStreamingResponse:
-    def __init__(self, jobs: Jobs) -> None:
+class JobsResourceWithStreamingResponse:
+    def __init__(self, jobs: JobsResource) -> None:
         self._jobs = jobs
 
         self.create = to_streamed_response_wrapper(
@@ -824,8 +824,8 @@ class JobsWithStreamingResponse:
         )
 
 
-class AsyncJobsWithStreamingResponse:
-    def __init__(self, jobs: AsyncJobs) -> None:
+class AsyncJobsResourceWithStreamingResponse:
+    def __init__(self, jobs: AsyncJobsResource) -> None:
         self._jobs = jobs
 
         self.create = async_to_streamed_response_wrapper(

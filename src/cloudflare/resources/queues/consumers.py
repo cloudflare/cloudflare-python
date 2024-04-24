@@ -29,17 +29,17 @@ from ...types.queues.consumer_create_response import ConsumerCreateResponse
 from ...types.queues.consumer_delete_response import ConsumerDeleteResponse
 from ...types.queues.consumer_update_response import ConsumerUpdateResponse
 
-__all__ = ["Consumers", "AsyncConsumers"]
+__all__ = ["ConsumersResource", "AsyncConsumersResource"]
 
 
-class Consumers(SyncAPIResource):
+class ConsumersResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ConsumersWithRawResponse:
-        return ConsumersWithRawResponse(self)
+    def with_raw_response(self) -> ConsumersResourceWithRawResponse:
+        return ConsumersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ConsumersWithStreamingResponse:
-        return ConsumersWithStreamingResponse(self)
+    def with_streaming_response(self) -> ConsumersResourceWithStreamingResponse:
+        return ConsumersResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -239,14 +239,14 @@ class Consumers(SyncAPIResource):
         )
 
 
-class AsyncConsumers(AsyncAPIResource):
+class AsyncConsumersResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncConsumersWithRawResponse:
-        return AsyncConsumersWithRawResponse(self)
+    def with_raw_response(self) -> AsyncConsumersResourceWithRawResponse:
+        return AsyncConsumersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConsumersWithStreamingResponse:
-        return AsyncConsumersWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncConsumersResourceWithStreamingResponse:
+        return AsyncConsumersResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -446,8 +446,8 @@ class AsyncConsumers(AsyncAPIResource):
         )
 
 
-class ConsumersWithRawResponse:
-    def __init__(self, consumers: Consumers) -> None:
+class ConsumersResourceWithRawResponse:
+    def __init__(self, consumers: ConsumersResource) -> None:
         self._consumers = consumers
 
         self.create = to_raw_response_wrapper(
@@ -464,8 +464,8 @@ class ConsumersWithRawResponse:
         )
 
 
-class AsyncConsumersWithRawResponse:
-    def __init__(self, consumers: AsyncConsumers) -> None:
+class AsyncConsumersResourceWithRawResponse:
+    def __init__(self, consumers: AsyncConsumersResource) -> None:
         self._consumers = consumers
 
         self.create = async_to_raw_response_wrapper(
@@ -482,8 +482,8 @@ class AsyncConsumersWithRawResponse:
         )
 
 
-class ConsumersWithStreamingResponse:
-    def __init__(self, consumers: Consumers) -> None:
+class ConsumersResourceWithStreamingResponse:
+    def __init__(self, consumers: ConsumersResource) -> None:
         self._consumers = consumers
 
         self.create = to_streamed_response_wrapper(
@@ -500,8 +500,8 @@ class ConsumersWithStreamingResponse:
         )
 
 
-class AsyncConsumersWithStreamingResponse:
-    def __init__(self, consumers: AsyncConsumers) -> None:
+class AsyncConsumersResourceWithStreamingResponse:
+    def __init__(self, consumers: AsyncConsumersResource) -> None:
         self._consumers = consumers
 
         self.create = async_to_streamed_response_wrapper(

@@ -29,17 +29,17 @@ from ..._base_client import (
 from ...types.radar.connection_tampering_summary_response import ConnectionTamperingSummaryResponse
 from ...types.radar.connection_tampering_timeseries_groups_response import ConnectionTamperingTimeseriesGroupsResponse
 
-__all__ = ["ConnectionTampering", "AsyncConnectionTampering"]
+__all__ = ["ConnectionTamperingResource", "AsyncConnectionTamperingResource"]
 
 
-class ConnectionTampering(SyncAPIResource):
+class ConnectionTamperingResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ConnectionTamperingWithRawResponse:
-        return ConnectionTamperingWithRawResponse(self)
+    def with_raw_response(self) -> ConnectionTamperingResourceWithRawResponse:
+        return ConnectionTamperingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ConnectionTamperingWithStreamingResponse:
-        return ConnectionTamperingWithStreamingResponse(self)
+    def with_streaming_response(self) -> ConnectionTamperingResourceWithStreamingResponse:
+        return ConnectionTamperingResourceWithStreamingResponse(self)
 
     def summary(
         self,
@@ -247,14 +247,14 @@ class ConnectionTampering(SyncAPIResource):
         )
 
 
-class AsyncConnectionTampering(AsyncAPIResource):
+class AsyncConnectionTamperingResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncConnectionTamperingWithRawResponse:
-        return AsyncConnectionTamperingWithRawResponse(self)
+    def with_raw_response(self) -> AsyncConnectionTamperingResourceWithRawResponse:
+        return AsyncConnectionTamperingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConnectionTamperingWithStreamingResponse:
-        return AsyncConnectionTamperingWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncConnectionTamperingResourceWithStreamingResponse:
+        return AsyncConnectionTamperingResourceWithStreamingResponse(self)
 
     async def summary(
         self,
@@ -462,8 +462,8 @@ class AsyncConnectionTampering(AsyncAPIResource):
         )
 
 
-class ConnectionTamperingWithRawResponse:
-    def __init__(self, connection_tampering: ConnectionTampering) -> None:
+class ConnectionTamperingResourceWithRawResponse:
+    def __init__(self, connection_tampering: ConnectionTamperingResource) -> None:
         self._connection_tampering = connection_tampering
 
         self.summary = to_raw_response_wrapper(
@@ -474,8 +474,8 @@ class ConnectionTamperingWithRawResponse:
         )
 
 
-class AsyncConnectionTamperingWithRawResponse:
-    def __init__(self, connection_tampering: AsyncConnectionTampering) -> None:
+class AsyncConnectionTamperingResourceWithRawResponse:
+    def __init__(self, connection_tampering: AsyncConnectionTamperingResource) -> None:
         self._connection_tampering = connection_tampering
 
         self.summary = async_to_raw_response_wrapper(
@@ -486,8 +486,8 @@ class AsyncConnectionTamperingWithRawResponse:
         )
 
 
-class ConnectionTamperingWithStreamingResponse:
-    def __init__(self, connection_tampering: ConnectionTampering) -> None:
+class ConnectionTamperingResourceWithStreamingResponse:
+    def __init__(self, connection_tampering: ConnectionTamperingResource) -> None:
         self._connection_tampering = connection_tampering
 
         self.summary = to_streamed_response_wrapper(
@@ -498,8 +498,8 @@ class ConnectionTamperingWithStreamingResponse:
         )
 
 
-class AsyncConnectionTamperingWithStreamingResponse:
-    def __init__(self, connection_tampering: AsyncConnectionTampering) -> None:
+class AsyncConnectionTamperingResourceWithStreamingResponse:
+    def __init__(self, connection_tampering: AsyncConnectionTamperingResource) -> None:
         self._connection_tampering = connection_tampering
 
         self.summary = async_to_streamed_response_wrapper(

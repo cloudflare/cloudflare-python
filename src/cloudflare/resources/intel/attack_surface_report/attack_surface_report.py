@@ -3,110 +3,110 @@
 from __future__ import annotations
 
 from .issues import (
-    Issues,
-    AsyncIssues,
-    IssuesWithRawResponse,
-    AsyncIssuesWithRawResponse,
-    IssuesWithStreamingResponse,
-    AsyncIssuesWithStreamingResponse,
+    IssuesResource,
+    AsyncIssuesResource,
+    IssuesResourceWithRawResponse,
+    AsyncIssuesResourceWithRawResponse,
+    IssuesResourceWithStreamingResponse,
+    AsyncIssuesResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from .issue_types import (
-    IssueTypes,
-    AsyncIssueTypes,
-    IssueTypesWithRawResponse,
-    AsyncIssueTypesWithRawResponse,
-    IssueTypesWithStreamingResponse,
-    AsyncIssueTypesWithStreamingResponse,
+    IssueTypesResource,
+    AsyncIssueTypesResource,
+    IssueTypesResourceWithRawResponse,
+    AsyncIssueTypesResourceWithRawResponse,
+    IssueTypesResourceWithStreamingResponse,
+    AsyncIssueTypesResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["AttackSurfaceReport", "AsyncAttackSurfaceReport"]
+__all__ = ["AttackSurfaceReportResource", "AsyncAttackSurfaceReportResource"]
 
 
-class AttackSurfaceReport(SyncAPIResource):
+class AttackSurfaceReportResource(SyncAPIResource):
     @cached_property
-    def issue_types(self) -> IssueTypes:
-        return IssueTypes(self._client)
-
-    @cached_property
-    def issues(self) -> Issues:
-        return Issues(self._client)
+    def issue_types(self) -> IssueTypesResource:
+        return IssueTypesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AttackSurfaceReportWithRawResponse:
-        return AttackSurfaceReportWithRawResponse(self)
+    def issues(self) -> IssuesResource:
+        return IssuesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AttackSurfaceReportWithStreamingResponse:
-        return AttackSurfaceReportWithStreamingResponse(self)
-
-
-class AsyncAttackSurfaceReport(AsyncAPIResource):
-    @cached_property
-    def issue_types(self) -> AsyncIssueTypes:
-        return AsyncIssueTypes(self._client)
+    def with_raw_response(self) -> AttackSurfaceReportResourceWithRawResponse:
+        return AttackSurfaceReportResourceWithRawResponse(self)
 
     @cached_property
-    def issues(self) -> AsyncIssues:
-        return AsyncIssues(self._client)
+    def with_streaming_response(self) -> AttackSurfaceReportResourceWithStreamingResponse:
+        return AttackSurfaceReportResourceWithStreamingResponse(self)
+
+
+class AsyncAttackSurfaceReportResource(AsyncAPIResource):
+    @cached_property
+    def issue_types(self) -> AsyncIssueTypesResource:
+        return AsyncIssueTypesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAttackSurfaceReportWithRawResponse:
-        return AsyncAttackSurfaceReportWithRawResponse(self)
+    def issues(self) -> AsyncIssuesResource:
+        return AsyncIssuesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAttackSurfaceReportWithStreamingResponse:
-        return AsyncAttackSurfaceReportWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncAttackSurfaceReportResourceWithRawResponse:
+        return AsyncAttackSurfaceReportResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAttackSurfaceReportResourceWithStreamingResponse:
+        return AsyncAttackSurfaceReportResourceWithStreamingResponse(self)
 
 
-class AttackSurfaceReportWithRawResponse:
-    def __init__(self, attack_surface_report: AttackSurfaceReport) -> None:
+class AttackSurfaceReportResourceWithRawResponse:
+    def __init__(self, attack_surface_report: AttackSurfaceReportResource) -> None:
         self._attack_surface_report = attack_surface_report
 
     @cached_property
-    def issue_types(self) -> IssueTypesWithRawResponse:
-        return IssueTypesWithRawResponse(self._attack_surface_report.issue_types)
+    def issue_types(self) -> IssueTypesResourceWithRawResponse:
+        return IssueTypesResourceWithRawResponse(self._attack_surface_report.issue_types)
 
     @cached_property
-    def issues(self) -> IssuesWithRawResponse:
-        return IssuesWithRawResponse(self._attack_surface_report.issues)
+    def issues(self) -> IssuesResourceWithRawResponse:
+        return IssuesResourceWithRawResponse(self._attack_surface_report.issues)
 
 
-class AsyncAttackSurfaceReportWithRawResponse:
-    def __init__(self, attack_surface_report: AsyncAttackSurfaceReport) -> None:
+class AsyncAttackSurfaceReportResourceWithRawResponse:
+    def __init__(self, attack_surface_report: AsyncAttackSurfaceReportResource) -> None:
         self._attack_surface_report = attack_surface_report
 
     @cached_property
-    def issue_types(self) -> AsyncIssueTypesWithRawResponse:
-        return AsyncIssueTypesWithRawResponse(self._attack_surface_report.issue_types)
+    def issue_types(self) -> AsyncIssueTypesResourceWithRawResponse:
+        return AsyncIssueTypesResourceWithRawResponse(self._attack_surface_report.issue_types)
 
     @cached_property
-    def issues(self) -> AsyncIssuesWithRawResponse:
-        return AsyncIssuesWithRawResponse(self._attack_surface_report.issues)
+    def issues(self) -> AsyncIssuesResourceWithRawResponse:
+        return AsyncIssuesResourceWithRawResponse(self._attack_surface_report.issues)
 
 
-class AttackSurfaceReportWithStreamingResponse:
-    def __init__(self, attack_surface_report: AttackSurfaceReport) -> None:
+class AttackSurfaceReportResourceWithStreamingResponse:
+    def __init__(self, attack_surface_report: AttackSurfaceReportResource) -> None:
         self._attack_surface_report = attack_surface_report
 
     @cached_property
-    def issue_types(self) -> IssueTypesWithStreamingResponse:
-        return IssueTypesWithStreamingResponse(self._attack_surface_report.issue_types)
+    def issue_types(self) -> IssueTypesResourceWithStreamingResponse:
+        return IssueTypesResourceWithStreamingResponse(self._attack_surface_report.issue_types)
 
     @cached_property
-    def issues(self) -> IssuesWithStreamingResponse:
-        return IssuesWithStreamingResponse(self._attack_surface_report.issues)
+    def issues(self) -> IssuesResourceWithStreamingResponse:
+        return IssuesResourceWithStreamingResponse(self._attack_surface_report.issues)
 
 
-class AsyncAttackSurfaceReportWithStreamingResponse:
-    def __init__(self, attack_surface_report: AsyncAttackSurfaceReport) -> None:
+class AsyncAttackSurfaceReportResourceWithStreamingResponse:
+    def __init__(self, attack_surface_report: AsyncAttackSurfaceReportResource) -> None:
         self._attack_surface_report = attack_surface_report
 
     @cached_property
-    def issue_types(self) -> AsyncIssueTypesWithStreamingResponse:
-        return AsyncIssueTypesWithStreamingResponse(self._attack_surface_report.issue_types)
+    def issue_types(self) -> AsyncIssueTypesResourceWithStreamingResponse:
+        return AsyncIssueTypesResourceWithStreamingResponse(self._attack_surface_report.issue_types)
 
     @cached_property
-    def issues(self) -> AsyncIssuesWithStreamingResponse:
-        return AsyncIssuesWithStreamingResponse(self._attack_surface_report.issues)
+    def issues(self) -> AsyncIssuesResourceWithStreamingResponse:
+        return AsyncIssuesResourceWithStreamingResponse(self._attack_surface_report.issues)

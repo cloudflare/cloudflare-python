@@ -9,28 +9,28 @@ from typing_extensions import Literal
 import httpx
 
 from .spam import (
-    Spam,
-    AsyncSpam,
-    SpamWithRawResponse,
-    AsyncSpamWithRawResponse,
-    SpamWithStreamingResponse,
-    AsyncSpamWithStreamingResponse,
+    SpamResource,
+    AsyncSpamResource,
+    SpamResourceWithRawResponse,
+    AsyncSpamResourceWithRawResponse,
+    SpamResourceWithStreamingResponse,
+    AsyncSpamResourceWithStreamingResponse,
 )
 from .spoof import (
-    Spoof,
-    AsyncSpoof,
-    SpoofWithRawResponse,
-    AsyncSpoofWithRawResponse,
-    SpoofWithStreamingResponse,
-    AsyncSpoofWithStreamingResponse,
+    SpoofResource,
+    AsyncSpoofResource,
+    SpoofResourceWithRawResponse,
+    AsyncSpoofResourceWithRawResponse,
+    SpoofResourceWithStreamingResponse,
+    AsyncSpoofResourceWithStreamingResponse,
 )
 from .malicious import (
-    Malicious,
-    AsyncMalicious,
-    MaliciousWithRawResponse,
-    AsyncMaliciousWithRawResponse,
-    MaliciousWithStreamingResponse,
-    AsyncMaliciousWithStreamingResponse,
+    MaliciousResource,
+    AsyncMaliciousResource,
+    MaliciousResourceWithRawResponse,
+    AsyncMaliciousResourceWithRawResponse,
+    MaliciousResourceWithStreamingResponse,
+    AsyncMaliciousResourceWithStreamingResponse,
 )
 from ......._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ......._utils import (
@@ -52,29 +52,29 @@ from ......._base_client import (
 from .......types.radar.email.security.top import tld_get_params
 from .......types.radar.email.security.top.tld_get_response import TldGetResponse
 
-__all__ = ["Tlds", "AsyncTlds"]
+__all__ = ["TldsResource", "AsyncTldsResource"]
 
 
-class Tlds(SyncAPIResource):
+class TldsResource(SyncAPIResource):
     @cached_property
-    def malicious(self) -> Malicious:
-        return Malicious(self._client)
-
-    @cached_property
-    def spam(self) -> Spam:
-        return Spam(self._client)
+    def malicious(self) -> MaliciousResource:
+        return MaliciousResource(self._client)
 
     @cached_property
-    def spoof(self) -> Spoof:
-        return Spoof(self._client)
+    def spam(self) -> SpamResource:
+        return SpamResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> TldsWithRawResponse:
-        return TldsWithRawResponse(self)
+    def spoof(self) -> SpoofResource:
+        return SpoofResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> TldsWithStreamingResponse:
-        return TldsWithStreamingResponse(self)
+    def with_raw_response(self) -> TldsResourceWithRawResponse:
+        return TldsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> TldsResourceWithStreamingResponse:
+        return TldsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -187,26 +187,26 @@ class Tlds(SyncAPIResource):
         )
 
 
-class AsyncTlds(AsyncAPIResource):
+class AsyncTldsResource(AsyncAPIResource):
     @cached_property
-    def malicious(self) -> AsyncMalicious:
-        return AsyncMalicious(self._client)
+    def malicious(self) -> AsyncMaliciousResource:
+        return AsyncMaliciousResource(self._client)
 
     @cached_property
-    def spam(self) -> AsyncSpam:
-        return AsyncSpam(self._client)
+    def spam(self) -> AsyncSpamResource:
+        return AsyncSpamResource(self._client)
 
     @cached_property
-    def spoof(self) -> AsyncSpoof:
-        return AsyncSpoof(self._client)
+    def spoof(self) -> AsyncSpoofResource:
+        return AsyncSpoofResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncTldsWithRawResponse:
-        return AsyncTldsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTldsResourceWithRawResponse:
+        return AsyncTldsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTldsWithStreamingResponse:
-        return AsyncTldsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTldsResourceWithStreamingResponse:
+        return AsyncTldsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -319,8 +319,8 @@ class AsyncTlds(AsyncAPIResource):
         )
 
 
-class TldsWithRawResponse:
-    def __init__(self, tlds: Tlds) -> None:
+class TldsResourceWithRawResponse:
+    def __init__(self, tlds: TldsResource) -> None:
         self._tlds = tlds
 
         self.get = to_raw_response_wrapper(
@@ -328,20 +328,20 @@ class TldsWithRawResponse:
         )
 
     @cached_property
-    def malicious(self) -> MaliciousWithRawResponse:
-        return MaliciousWithRawResponse(self._tlds.malicious)
+    def malicious(self) -> MaliciousResourceWithRawResponse:
+        return MaliciousResourceWithRawResponse(self._tlds.malicious)
 
     @cached_property
-    def spam(self) -> SpamWithRawResponse:
-        return SpamWithRawResponse(self._tlds.spam)
+    def spam(self) -> SpamResourceWithRawResponse:
+        return SpamResourceWithRawResponse(self._tlds.spam)
 
     @cached_property
-    def spoof(self) -> SpoofWithRawResponse:
-        return SpoofWithRawResponse(self._tlds.spoof)
+    def spoof(self) -> SpoofResourceWithRawResponse:
+        return SpoofResourceWithRawResponse(self._tlds.spoof)
 
 
-class AsyncTldsWithRawResponse:
-    def __init__(self, tlds: AsyncTlds) -> None:
+class AsyncTldsResourceWithRawResponse:
+    def __init__(self, tlds: AsyncTldsResource) -> None:
         self._tlds = tlds
 
         self.get = async_to_raw_response_wrapper(
@@ -349,20 +349,20 @@ class AsyncTldsWithRawResponse:
         )
 
     @cached_property
-    def malicious(self) -> AsyncMaliciousWithRawResponse:
-        return AsyncMaliciousWithRawResponse(self._tlds.malicious)
+    def malicious(self) -> AsyncMaliciousResourceWithRawResponse:
+        return AsyncMaliciousResourceWithRawResponse(self._tlds.malicious)
 
     @cached_property
-    def spam(self) -> AsyncSpamWithRawResponse:
-        return AsyncSpamWithRawResponse(self._tlds.spam)
+    def spam(self) -> AsyncSpamResourceWithRawResponse:
+        return AsyncSpamResourceWithRawResponse(self._tlds.spam)
 
     @cached_property
-    def spoof(self) -> AsyncSpoofWithRawResponse:
-        return AsyncSpoofWithRawResponse(self._tlds.spoof)
+    def spoof(self) -> AsyncSpoofResourceWithRawResponse:
+        return AsyncSpoofResourceWithRawResponse(self._tlds.spoof)
 
 
-class TldsWithStreamingResponse:
-    def __init__(self, tlds: Tlds) -> None:
+class TldsResourceWithStreamingResponse:
+    def __init__(self, tlds: TldsResource) -> None:
         self._tlds = tlds
 
         self.get = to_streamed_response_wrapper(
@@ -370,20 +370,20 @@ class TldsWithStreamingResponse:
         )
 
     @cached_property
-    def malicious(self) -> MaliciousWithStreamingResponse:
-        return MaliciousWithStreamingResponse(self._tlds.malicious)
+    def malicious(self) -> MaliciousResourceWithStreamingResponse:
+        return MaliciousResourceWithStreamingResponse(self._tlds.malicious)
 
     @cached_property
-    def spam(self) -> SpamWithStreamingResponse:
-        return SpamWithStreamingResponse(self._tlds.spam)
+    def spam(self) -> SpamResourceWithStreamingResponse:
+        return SpamResourceWithStreamingResponse(self._tlds.spam)
 
     @cached_property
-    def spoof(self) -> SpoofWithStreamingResponse:
-        return SpoofWithStreamingResponse(self._tlds.spoof)
+    def spoof(self) -> SpoofResourceWithStreamingResponse:
+        return SpoofResourceWithStreamingResponse(self._tlds.spoof)
 
 
-class AsyncTldsWithStreamingResponse:
-    def __init__(self, tlds: AsyncTlds) -> None:
+class AsyncTldsResourceWithStreamingResponse:
+    def __init__(self, tlds: AsyncTldsResource) -> None:
         self._tlds = tlds
 
         self.get = async_to_streamed_response_wrapper(
@@ -391,13 +391,13 @@ class AsyncTldsWithStreamingResponse:
         )
 
     @cached_property
-    def malicious(self) -> AsyncMaliciousWithStreamingResponse:
-        return AsyncMaliciousWithStreamingResponse(self._tlds.malicious)
+    def malicious(self) -> AsyncMaliciousResourceWithStreamingResponse:
+        return AsyncMaliciousResourceWithStreamingResponse(self._tlds.malicious)
 
     @cached_property
-    def spam(self) -> AsyncSpamWithStreamingResponse:
-        return AsyncSpamWithStreamingResponse(self._tlds.spam)
+    def spam(self) -> AsyncSpamResourceWithStreamingResponse:
+        return AsyncSpamResourceWithStreamingResponse(self._tlds.spam)
 
     @cached_property
-    def spoof(self) -> AsyncSpoofWithStreamingResponse:
-        return AsyncSpoofWithStreamingResponse(self._tlds.spoof)
+    def spoof(self) -> AsyncSpoofResourceWithStreamingResponse:
+        return AsyncSpoofResourceWithStreamingResponse(self._tlds.spoof)

@@ -29,17 +29,17 @@ from .....types.spectrum.analytics.events import summary_get_params
 from .....types.spectrum.analytics.dimension import Dimension
 from .....types.spectrum.analytics.events.summary_get_response import SummaryGetResponse
 
-__all__ = ["Summaries", "AsyncSummaries"]
+__all__ = ["SummariesResource", "AsyncSummariesResource"]
 
 
-class Summaries(SyncAPIResource):
+class SummariesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SummariesWithRawResponse:
-        return SummariesWithRawResponse(self)
+    def with_raw_response(self) -> SummariesResourceWithRawResponse:
+        return SummariesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SummariesWithStreamingResponse:
-        return SummariesWithStreamingResponse(self)
+    def with_streaming_response(self) -> SummariesResourceWithStreamingResponse:
+        return SummariesResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -156,14 +156,14 @@ class Summaries(SyncAPIResource):
         )
 
 
-class AsyncSummaries(AsyncAPIResource):
+class AsyncSummariesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSummariesWithRawResponse:
-        return AsyncSummariesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSummariesResourceWithRawResponse:
+        return AsyncSummariesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSummariesWithStreamingResponse:
-        return AsyncSummariesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSummariesResourceWithStreamingResponse:
+        return AsyncSummariesResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -280,8 +280,8 @@ class AsyncSummaries(AsyncAPIResource):
         )
 
 
-class SummariesWithRawResponse:
-    def __init__(self, summaries: Summaries) -> None:
+class SummariesResourceWithRawResponse:
+    def __init__(self, summaries: SummariesResource) -> None:
         self._summaries = summaries
 
         self.get = to_raw_response_wrapper(
@@ -289,8 +289,8 @@ class SummariesWithRawResponse:
         )
 
 
-class AsyncSummariesWithRawResponse:
-    def __init__(self, summaries: AsyncSummaries) -> None:
+class AsyncSummariesResourceWithRawResponse:
+    def __init__(self, summaries: AsyncSummariesResource) -> None:
         self._summaries = summaries
 
         self.get = async_to_raw_response_wrapper(
@@ -298,8 +298,8 @@ class AsyncSummariesWithRawResponse:
         )
 
 
-class SummariesWithStreamingResponse:
-    def __init__(self, summaries: Summaries) -> None:
+class SummariesResourceWithStreamingResponse:
+    def __init__(self, summaries: SummariesResource) -> None:
         self._summaries = summaries
 
         self.get = to_streamed_response_wrapper(
@@ -307,8 +307,8 @@ class SummariesWithStreamingResponse:
         )
 
 
-class AsyncSummariesWithStreamingResponse:
-    def __init__(self, summaries: AsyncSummaries) -> None:
+class AsyncSummariesResourceWithStreamingResponse:
+    def __init__(self, summaries: AsyncSummariesResource) -> None:
         self._summaries = summaries
 
         self.get = async_to_streamed_response_wrapper(

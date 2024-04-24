@@ -31,17 +31,17 @@ from .....types.zero_trust.devices.policies.split_tunnel_include import SplitTun
 from .....types.zero_trust.devices.policies.include_update_response import IncludeUpdateResponse
 from .....types.zero_trust.devices.policies.split_tunnel_include_param import SplitTunnelIncludeParam
 
-__all__ = ["Includes", "AsyncIncludes"]
+__all__ = ["IncludesResource", "AsyncIncludesResource"]
 
 
-class Includes(SyncAPIResource):
+class IncludesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IncludesWithRawResponse:
-        return IncludesWithRawResponse(self)
+    def with_raw_response(self) -> IncludesResourceWithRawResponse:
+        return IncludesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IncludesWithStreamingResponse:
-        return IncludesWithStreamingResponse(self)
+    def with_streaming_response(self) -> IncludesResourceWithStreamingResponse:
+        return IncludesResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -160,14 +160,14 @@ class Includes(SyncAPIResource):
         )
 
 
-class AsyncIncludes(AsyncAPIResource):
+class AsyncIncludesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIncludesWithRawResponse:
-        return AsyncIncludesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIncludesResourceWithRawResponse:
+        return AsyncIncludesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIncludesWithStreamingResponse:
-        return AsyncIncludesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIncludesResourceWithStreamingResponse:
+        return AsyncIncludesResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -286,8 +286,8 @@ class AsyncIncludes(AsyncAPIResource):
         )
 
 
-class IncludesWithRawResponse:
-    def __init__(self, includes: Includes) -> None:
+class IncludesResourceWithRawResponse:
+    def __init__(self, includes: IncludesResource) -> None:
         self._includes = includes
 
         self.update = to_raw_response_wrapper(
@@ -301,8 +301,8 @@ class IncludesWithRawResponse:
         )
 
 
-class AsyncIncludesWithRawResponse:
-    def __init__(self, includes: AsyncIncludes) -> None:
+class AsyncIncludesResourceWithRawResponse:
+    def __init__(self, includes: AsyncIncludesResource) -> None:
         self._includes = includes
 
         self.update = async_to_raw_response_wrapper(
@@ -316,8 +316,8 @@ class AsyncIncludesWithRawResponse:
         )
 
 
-class IncludesWithStreamingResponse:
-    def __init__(self, includes: Includes) -> None:
+class IncludesResourceWithStreamingResponse:
+    def __init__(self, includes: IncludesResource) -> None:
         self._includes = includes
 
         self.update = to_streamed_response_wrapper(
@@ -331,8 +331,8 @@ class IncludesWithStreamingResponse:
         )
 
 
-class AsyncIncludesWithStreamingResponse:
-    def __init__(self, includes: AsyncIncludes) -> None:
+class AsyncIncludesResourceWithStreamingResponse:
+    def __init__(self, includes: AsyncIncludesResource) -> None:
         self._includes = includes
 
         self.update = async_to_streamed_response_wrapper(

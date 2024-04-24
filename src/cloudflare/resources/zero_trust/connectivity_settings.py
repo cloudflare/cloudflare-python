@@ -27,17 +27,17 @@ from ...types.zero_trust import connectivity_setting_edit_params
 from ...types.zero_trust.connectivity_setting_get_response import ConnectivitySettingGetResponse
 from ...types.zero_trust.connectivity_setting_edit_response import ConnectivitySettingEditResponse
 
-__all__ = ["ConnectivitySettings", "AsyncConnectivitySettings"]
+__all__ = ["ConnectivitySettingsResource", "AsyncConnectivitySettingsResource"]
 
 
-class ConnectivitySettings(SyncAPIResource):
+class ConnectivitySettingsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ConnectivitySettingsWithRawResponse:
-        return ConnectivitySettingsWithRawResponse(self)
+    def with_raw_response(self) -> ConnectivitySettingsResourceWithRawResponse:
+        return ConnectivitySettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ConnectivitySettingsWithStreamingResponse:
-        return ConnectivitySettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ConnectivitySettingsResourceWithStreamingResponse:
+        return ConnectivitySettingsResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -131,14 +131,14 @@ class ConnectivitySettings(SyncAPIResource):
         )
 
 
-class AsyncConnectivitySettings(AsyncAPIResource):
+class AsyncConnectivitySettingsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncConnectivitySettingsWithRawResponse:
-        return AsyncConnectivitySettingsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncConnectivitySettingsResourceWithRawResponse:
+        return AsyncConnectivitySettingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConnectivitySettingsWithStreamingResponse:
-        return AsyncConnectivitySettingsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncConnectivitySettingsResourceWithStreamingResponse:
+        return AsyncConnectivitySettingsResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -232,8 +232,8 @@ class AsyncConnectivitySettings(AsyncAPIResource):
         )
 
 
-class ConnectivitySettingsWithRawResponse:
-    def __init__(self, connectivity_settings: ConnectivitySettings) -> None:
+class ConnectivitySettingsResourceWithRawResponse:
+    def __init__(self, connectivity_settings: ConnectivitySettingsResource) -> None:
         self._connectivity_settings = connectivity_settings
 
         self.edit = to_raw_response_wrapper(
@@ -244,8 +244,8 @@ class ConnectivitySettingsWithRawResponse:
         )
 
 
-class AsyncConnectivitySettingsWithRawResponse:
-    def __init__(self, connectivity_settings: AsyncConnectivitySettings) -> None:
+class AsyncConnectivitySettingsResourceWithRawResponse:
+    def __init__(self, connectivity_settings: AsyncConnectivitySettingsResource) -> None:
         self._connectivity_settings = connectivity_settings
 
         self.edit = async_to_raw_response_wrapper(
@@ -256,8 +256,8 @@ class AsyncConnectivitySettingsWithRawResponse:
         )
 
 
-class ConnectivitySettingsWithStreamingResponse:
-    def __init__(self, connectivity_settings: ConnectivitySettings) -> None:
+class ConnectivitySettingsResourceWithStreamingResponse:
+    def __init__(self, connectivity_settings: ConnectivitySettingsResource) -> None:
         self._connectivity_settings = connectivity_settings
 
         self.edit = to_streamed_response_wrapper(
@@ -268,8 +268,8 @@ class ConnectivitySettingsWithStreamingResponse:
         )
 
 
-class AsyncConnectivitySettingsWithStreamingResponse:
-    def __init__(self, connectivity_settings: AsyncConnectivitySettings) -> None:
+class AsyncConnectivitySettingsResourceWithStreamingResponse:
+    def __init__(self, connectivity_settings: AsyncConnectivitySettingsResource) -> None:
         self._connectivity_settings = connectivity_settings
 
         self.edit = async_to_streamed_response_wrapper(

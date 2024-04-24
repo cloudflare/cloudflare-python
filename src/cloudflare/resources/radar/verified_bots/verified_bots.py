@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .top import (
-    Top,
-    AsyncTop,
-    TopWithRawResponse,
-    AsyncTopWithRawResponse,
-    TopWithStreamingResponse,
-    AsyncTopWithStreamingResponse,
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["VerifiedBots", "AsyncVerifiedBots"]
+__all__ = ["VerifiedBotsResource", "AsyncVerifiedBotsResource"]
 
 
-class VerifiedBots(SyncAPIResource):
+class VerifiedBotsResource(SyncAPIResource):
     @cached_property
-    def top(self) -> Top:
-        return Top(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> VerifiedBotsWithRawResponse:
-        return VerifiedBotsWithRawResponse(self)
+    def top(self) -> TopResource:
+        return TopResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> VerifiedBotsWithStreamingResponse:
-        return VerifiedBotsWithStreamingResponse(self)
-
-
-class AsyncVerifiedBots(AsyncAPIResource):
-    @cached_property
-    def top(self) -> AsyncTop:
-        return AsyncTop(self._client)
+    def with_raw_response(self) -> VerifiedBotsResourceWithRawResponse:
+        return VerifiedBotsResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncVerifiedBotsWithRawResponse:
-        return AsyncVerifiedBotsWithRawResponse(self)
+    def with_streaming_response(self) -> VerifiedBotsResourceWithStreamingResponse:
+        return VerifiedBotsResourceWithStreamingResponse(self)
+
+
+class AsyncVerifiedBotsResource(AsyncAPIResource):
+    @cached_property
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVerifiedBotsWithStreamingResponse:
-        return AsyncVerifiedBotsWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncVerifiedBotsResourceWithRawResponse:
+        return AsyncVerifiedBotsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncVerifiedBotsResourceWithStreamingResponse:
+        return AsyncVerifiedBotsResourceWithStreamingResponse(self)
 
 
-class VerifiedBotsWithRawResponse:
-    def __init__(self, verified_bots: VerifiedBots) -> None:
+class VerifiedBotsResourceWithRawResponse:
+    def __init__(self, verified_bots: VerifiedBotsResource) -> None:
         self._verified_bots = verified_bots
 
     @cached_property
-    def top(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self._verified_bots.top)
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._verified_bots.top)
 
 
-class AsyncVerifiedBotsWithRawResponse:
-    def __init__(self, verified_bots: AsyncVerifiedBots) -> None:
+class AsyncVerifiedBotsResourceWithRawResponse:
+    def __init__(self, verified_bots: AsyncVerifiedBotsResource) -> None:
         self._verified_bots = verified_bots
 
     @cached_property
-    def top(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self._verified_bots.top)
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._verified_bots.top)
 
 
-class VerifiedBotsWithStreamingResponse:
-    def __init__(self, verified_bots: VerifiedBots) -> None:
+class VerifiedBotsResourceWithStreamingResponse:
+    def __init__(self, verified_bots: VerifiedBotsResource) -> None:
         self._verified_bots = verified_bots
 
     @cached_property
-    def top(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self._verified_bots.top)
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._verified_bots.top)
 
 
-class AsyncVerifiedBotsWithStreamingResponse:
-    def __init__(self, verified_bots: AsyncVerifiedBots) -> None:
+class AsyncVerifiedBotsResourceWithStreamingResponse:
+    def __init__(self, verified_bots: AsyncVerifiedBotsResource) -> None:
         self._verified_bots = verified_bots
 
     @cached_property
-    def top(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self._verified_bots.top)
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._verified_bots.top)

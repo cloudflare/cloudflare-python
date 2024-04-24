@@ -24,17 +24,17 @@ from ....._base_client import (
 from .....types.zero_trust.dex.fleet_status import device_list_params
 from .....types.zero_trust.dex.fleet_status.device_list_response import DeviceListResponse
 
-__all__ = ["Devices", "AsyncDevices"]
+__all__ = ["DevicesResource", "AsyncDevicesResource"]
 
 
-class Devices(SyncAPIResource):
+class DevicesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DevicesWithRawResponse:
-        return DevicesWithRawResponse(self)
+    def with_raw_response(self) -> DevicesResourceWithRawResponse:
+        return DevicesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DevicesWithStreamingResponse:
-        return DevicesWithStreamingResponse(self)
+    def with_streaming_response(self) -> DevicesResourceWithStreamingResponse:
+        return DevicesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -124,14 +124,14 @@ class Devices(SyncAPIResource):
         )
 
 
-class AsyncDevices(AsyncAPIResource):
+class AsyncDevicesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDevicesWithRawResponse:
-        return AsyncDevicesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDevicesResourceWithRawResponse:
+        return AsyncDevicesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDevicesWithStreamingResponse:
-        return AsyncDevicesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDevicesResourceWithStreamingResponse:
+        return AsyncDevicesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -221,8 +221,8 @@ class AsyncDevices(AsyncAPIResource):
         )
 
 
-class DevicesWithRawResponse:
-    def __init__(self, devices: Devices) -> None:
+class DevicesResourceWithRawResponse:
+    def __init__(self, devices: DevicesResource) -> None:
         self._devices = devices
 
         self.list = to_raw_response_wrapper(
@@ -230,8 +230,8 @@ class DevicesWithRawResponse:
         )
 
 
-class AsyncDevicesWithRawResponse:
-    def __init__(self, devices: AsyncDevices) -> None:
+class AsyncDevicesResourceWithRawResponse:
+    def __init__(self, devices: AsyncDevicesResource) -> None:
         self._devices = devices
 
         self.list = async_to_raw_response_wrapper(
@@ -239,8 +239,8 @@ class AsyncDevicesWithRawResponse:
         )
 
 
-class DevicesWithStreamingResponse:
-    def __init__(self, devices: Devices) -> None:
+class DevicesResourceWithStreamingResponse:
+    def __init__(self, devices: DevicesResource) -> None:
         self._devices = devices
 
         self.list = to_streamed_response_wrapper(
@@ -248,8 +248,8 @@ class DevicesWithStreamingResponse:
         )
 
 
-class AsyncDevicesWithStreamingResponse:
-    def __init__(self, devices: AsyncDevices) -> None:
+class AsyncDevicesResourceWithStreamingResponse:
+    def __init__(self, devices: AsyncDevicesResource) -> None:
         self._devices = devices
 
         self.list = async_to_streamed_response_wrapper(

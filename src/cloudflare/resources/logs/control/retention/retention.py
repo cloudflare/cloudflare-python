@@ -3,78 +3,78 @@
 from __future__ import annotations
 
 from .flag import (
-    Flag,
-    AsyncFlag,
-    FlagWithRawResponse,
-    AsyncFlagWithRawResponse,
-    FlagWithStreamingResponse,
-    AsyncFlagWithStreamingResponse,
+    FlagResource,
+    AsyncFlagResource,
+    FlagResourceWithRawResponse,
+    AsyncFlagResourceWithRawResponse,
+    FlagResourceWithStreamingResponse,
+    AsyncFlagResourceWithStreamingResponse,
 )
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["Retention", "AsyncRetention"]
+__all__ = ["RetentionResource", "AsyncRetentionResource"]
 
 
-class Retention(SyncAPIResource):
+class RetentionResource(SyncAPIResource):
     @cached_property
-    def flag(self) -> Flag:
-        return Flag(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> RetentionWithRawResponse:
-        return RetentionWithRawResponse(self)
+    def flag(self) -> FlagResource:
+        return FlagResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> RetentionWithStreamingResponse:
-        return RetentionWithStreamingResponse(self)
-
-
-class AsyncRetention(AsyncAPIResource):
-    @cached_property
-    def flag(self) -> AsyncFlag:
-        return AsyncFlag(self._client)
+    def with_raw_response(self) -> RetentionResourceWithRawResponse:
+        return RetentionResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncRetentionWithRawResponse:
-        return AsyncRetentionWithRawResponse(self)
+    def with_streaming_response(self) -> RetentionResourceWithStreamingResponse:
+        return RetentionResourceWithStreamingResponse(self)
+
+
+class AsyncRetentionResource(AsyncAPIResource):
+    @cached_property
+    def flag(self) -> AsyncFlagResource:
+        return AsyncFlagResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRetentionWithStreamingResponse:
-        return AsyncRetentionWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncRetentionResourceWithRawResponse:
+        return AsyncRetentionResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRetentionResourceWithStreamingResponse:
+        return AsyncRetentionResourceWithStreamingResponse(self)
 
 
-class RetentionWithRawResponse:
-    def __init__(self, retention: Retention) -> None:
+class RetentionResourceWithRawResponse:
+    def __init__(self, retention: RetentionResource) -> None:
         self._retention = retention
 
     @cached_property
-    def flag(self) -> FlagWithRawResponse:
-        return FlagWithRawResponse(self._retention.flag)
+    def flag(self) -> FlagResourceWithRawResponse:
+        return FlagResourceWithRawResponse(self._retention.flag)
 
 
-class AsyncRetentionWithRawResponse:
-    def __init__(self, retention: AsyncRetention) -> None:
+class AsyncRetentionResourceWithRawResponse:
+    def __init__(self, retention: AsyncRetentionResource) -> None:
         self._retention = retention
 
     @cached_property
-    def flag(self) -> AsyncFlagWithRawResponse:
-        return AsyncFlagWithRawResponse(self._retention.flag)
+    def flag(self) -> AsyncFlagResourceWithRawResponse:
+        return AsyncFlagResourceWithRawResponse(self._retention.flag)
 
 
-class RetentionWithStreamingResponse:
-    def __init__(self, retention: Retention) -> None:
+class RetentionResourceWithStreamingResponse:
+    def __init__(self, retention: RetentionResource) -> None:
         self._retention = retention
 
     @cached_property
-    def flag(self) -> FlagWithStreamingResponse:
-        return FlagWithStreamingResponse(self._retention.flag)
+    def flag(self) -> FlagResourceWithStreamingResponse:
+        return FlagResourceWithStreamingResponse(self._retention.flag)
 
 
-class AsyncRetentionWithStreamingResponse:
-    def __init__(self, retention: AsyncRetention) -> None:
+class AsyncRetentionResourceWithStreamingResponse:
+    def __init__(self, retention: AsyncRetentionResource) -> None:
         self._retention = retention
 
     @cached_property
-    def flag(self) -> AsyncFlagWithStreamingResponse:
-        return AsyncFlagWithStreamingResponse(self._retention.flag)
+    def flag(self) -> AsyncFlagResourceWithStreamingResponse:
+        return AsyncFlagResourceWithStreamingResponse(self._retention.flag)

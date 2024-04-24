@@ -8,12 +8,12 @@ from typing_extensions import Literal
 import httpx
 
 from .items import (
-    Items,
-    AsyncItems,
-    ItemsWithRawResponse,
-    AsyncItemsWithRawResponse,
-    ItemsWithStreamingResponse,
-    AsyncItemsWithStreamingResponse,
+    ItemsResource,
+    AsyncItemsResource,
+    ItemsResourceWithRawResponse,
+    AsyncItemsResourceWithRawResponse,
+    ItemsResourceWithStreamingResponse,
+    AsyncItemsResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
@@ -40,21 +40,21 @@ from .....types.zero_trust.gateway.gateway_item_param import GatewayItemParam
 from .....types.zero_trust.gateway.list_create_response import ListCreateResponse
 from .....types.zero_trust.gateway.list_delete_response import ListDeleteResponse
 
-__all__ = ["Lists", "AsyncLists"]
+__all__ = ["ListsResource", "AsyncListsResource"]
 
 
-class Lists(SyncAPIResource):
+class ListsResource(SyncAPIResource):
     @cached_property
-    def items(self) -> Items:
-        return Items(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> ListsWithRawResponse:
-        return ListsWithRawResponse(self)
+    def items(self) -> ItemsResource:
+        return ItemsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ListsWithStreamingResponse:
-        return ListsWithStreamingResponse(self)
+    def with_raw_response(self) -> ListsResourceWithRawResponse:
+        return ListsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ListsResourceWithStreamingResponse:
+        return ListsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -350,18 +350,18 @@ class Lists(SyncAPIResource):
         )
 
 
-class AsyncLists(AsyncAPIResource):
+class AsyncListsResource(AsyncAPIResource):
     @cached_property
-    def items(self) -> AsyncItems:
-        return AsyncItems(self._client)
+    def items(self) -> AsyncItemsResource:
+        return AsyncItemsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncListsWithRawResponse:
-        return AsyncListsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncListsResourceWithRawResponse:
+        return AsyncListsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncListsWithStreamingResponse:
-        return AsyncListsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncListsResourceWithStreamingResponse:
+        return AsyncListsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -657,8 +657,8 @@ class AsyncLists(AsyncAPIResource):
         )
 
 
-class ListsWithRawResponse:
-    def __init__(self, lists: Lists) -> None:
+class ListsResourceWithRawResponse:
+    def __init__(self, lists: ListsResource) -> None:
         self._lists = lists
 
         self.create = to_raw_response_wrapper(
@@ -681,12 +681,12 @@ class ListsWithRawResponse:
         )
 
     @cached_property
-    def items(self) -> ItemsWithRawResponse:
-        return ItemsWithRawResponse(self._lists.items)
+    def items(self) -> ItemsResourceWithRawResponse:
+        return ItemsResourceWithRawResponse(self._lists.items)
 
 
-class AsyncListsWithRawResponse:
-    def __init__(self, lists: AsyncLists) -> None:
+class AsyncListsResourceWithRawResponse:
+    def __init__(self, lists: AsyncListsResource) -> None:
         self._lists = lists
 
         self.create = async_to_raw_response_wrapper(
@@ -709,12 +709,12 @@ class AsyncListsWithRawResponse:
         )
 
     @cached_property
-    def items(self) -> AsyncItemsWithRawResponse:
-        return AsyncItemsWithRawResponse(self._lists.items)
+    def items(self) -> AsyncItemsResourceWithRawResponse:
+        return AsyncItemsResourceWithRawResponse(self._lists.items)
 
 
-class ListsWithStreamingResponse:
-    def __init__(self, lists: Lists) -> None:
+class ListsResourceWithStreamingResponse:
+    def __init__(self, lists: ListsResource) -> None:
         self._lists = lists
 
         self.create = to_streamed_response_wrapper(
@@ -737,12 +737,12 @@ class ListsWithStreamingResponse:
         )
 
     @cached_property
-    def items(self) -> ItemsWithStreamingResponse:
-        return ItemsWithStreamingResponse(self._lists.items)
+    def items(self) -> ItemsResourceWithStreamingResponse:
+        return ItemsResourceWithStreamingResponse(self._lists.items)
 
 
-class AsyncListsWithStreamingResponse:
-    def __init__(self, lists: AsyncLists) -> None:
+class AsyncListsResourceWithStreamingResponse:
+    def __init__(self, lists: AsyncListsResource) -> None:
         self._lists = lists
 
         self.create = async_to_streamed_response_wrapper(
@@ -765,5 +765,5 @@ class AsyncListsWithStreamingResponse:
         )
 
     @cached_property
-    def items(self) -> AsyncItemsWithStreamingResponse:
-        return AsyncItemsWithStreamingResponse(self._lists.items)
+    def items(self) -> AsyncItemsResourceWithStreamingResponse:
+        return AsyncItemsResourceWithStreamingResponse(self._lists.items)

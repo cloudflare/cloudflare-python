@@ -5,76 +5,78 @@ from __future__ import annotations
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .hostname_associations import (
-    HostnameAssociations,
-    AsyncHostnameAssociations,
-    HostnameAssociationsWithRawResponse,
-    AsyncHostnameAssociationsWithRawResponse,
-    HostnameAssociationsWithStreamingResponse,
-    AsyncHostnameAssociationsWithStreamingResponse,
+    HostnameAssociationsResource,
+    AsyncHostnameAssociationsResource,
+    HostnameAssociationsResourceWithRawResponse,
+    AsyncHostnameAssociationsResourceWithRawResponse,
+    HostnameAssociationsResourceWithStreamingResponse,
+    AsyncHostnameAssociationsResourceWithStreamingResponse,
 )
 
-__all__ = ["CertificateAuthorities", "AsyncCertificateAuthorities"]
+__all__ = ["CertificateAuthoritiesResource", "AsyncCertificateAuthoritiesResource"]
 
 
-class CertificateAuthorities(SyncAPIResource):
+class CertificateAuthoritiesResource(SyncAPIResource):
     @cached_property
-    def hostname_associations(self) -> HostnameAssociations:
-        return HostnameAssociations(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> CertificateAuthoritiesWithRawResponse:
-        return CertificateAuthoritiesWithRawResponse(self)
+    def hostname_associations(self) -> HostnameAssociationsResource:
+        return HostnameAssociationsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> CertificateAuthoritiesWithStreamingResponse:
-        return CertificateAuthoritiesWithStreamingResponse(self)
-
-
-class AsyncCertificateAuthorities(AsyncAPIResource):
-    @cached_property
-    def hostname_associations(self) -> AsyncHostnameAssociations:
-        return AsyncHostnameAssociations(self._client)
+    def with_raw_response(self) -> CertificateAuthoritiesResourceWithRawResponse:
+        return CertificateAuthoritiesResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCertificateAuthoritiesWithRawResponse:
-        return AsyncCertificateAuthoritiesWithRawResponse(self)
+    def with_streaming_response(self) -> CertificateAuthoritiesResourceWithStreamingResponse:
+        return CertificateAuthoritiesResourceWithStreamingResponse(self)
+
+
+class AsyncCertificateAuthoritiesResource(AsyncAPIResource):
+    @cached_property
+    def hostname_associations(self) -> AsyncHostnameAssociationsResource:
+        return AsyncHostnameAssociationsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCertificateAuthoritiesWithStreamingResponse:
-        return AsyncCertificateAuthoritiesWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncCertificateAuthoritiesResourceWithRawResponse:
+        return AsyncCertificateAuthoritiesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncCertificateAuthoritiesResourceWithStreamingResponse:
+        return AsyncCertificateAuthoritiesResourceWithStreamingResponse(self)
 
 
-class CertificateAuthoritiesWithRawResponse:
-    def __init__(self, certificate_authorities: CertificateAuthorities) -> None:
+class CertificateAuthoritiesResourceWithRawResponse:
+    def __init__(self, certificate_authorities: CertificateAuthoritiesResource) -> None:
         self._certificate_authorities = certificate_authorities
 
     @cached_property
-    def hostname_associations(self) -> HostnameAssociationsWithRawResponse:
-        return HostnameAssociationsWithRawResponse(self._certificate_authorities.hostname_associations)
+    def hostname_associations(self) -> HostnameAssociationsResourceWithRawResponse:
+        return HostnameAssociationsResourceWithRawResponse(self._certificate_authorities.hostname_associations)
 
 
-class AsyncCertificateAuthoritiesWithRawResponse:
-    def __init__(self, certificate_authorities: AsyncCertificateAuthorities) -> None:
+class AsyncCertificateAuthoritiesResourceWithRawResponse:
+    def __init__(self, certificate_authorities: AsyncCertificateAuthoritiesResource) -> None:
         self._certificate_authorities = certificate_authorities
 
     @cached_property
-    def hostname_associations(self) -> AsyncHostnameAssociationsWithRawResponse:
-        return AsyncHostnameAssociationsWithRawResponse(self._certificate_authorities.hostname_associations)
+    def hostname_associations(self) -> AsyncHostnameAssociationsResourceWithRawResponse:
+        return AsyncHostnameAssociationsResourceWithRawResponse(self._certificate_authorities.hostname_associations)
 
 
-class CertificateAuthoritiesWithStreamingResponse:
-    def __init__(self, certificate_authorities: CertificateAuthorities) -> None:
+class CertificateAuthoritiesResourceWithStreamingResponse:
+    def __init__(self, certificate_authorities: CertificateAuthoritiesResource) -> None:
         self._certificate_authorities = certificate_authorities
 
     @cached_property
-    def hostname_associations(self) -> HostnameAssociationsWithStreamingResponse:
-        return HostnameAssociationsWithStreamingResponse(self._certificate_authorities.hostname_associations)
+    def hostname_associations(self) -> HostnameAssociationsResourceWithStreamingResponse:
+        return HostnameAssociationsResourceWithStreamingResponse(self._certificate_authorities.hostname_associations)
 
 
-class AsyncCertificateAuthoritiesWithStreamingResponse:
-    def __init__(self, certificate_authorities: AsyncCertificateAuthorities) -> None:
+class AsyncCertificateAuthoritiesResourceWithStreamingResponse:
+    def __init__(self, certificate_authorities: AsyncCertificateAuthoritiesResource) -> None:
         self._certificate_authorities = certificate_authorities
 
     @cached_property
-    def hostname_associations(self) -> AsyncHostnameAssociationsWithStreamingResponse:
-        return AsyncHostnameAssociationsWithStreamingResponse(self._certificate_authorities.hostname_associations)
+    def hostname_associations(self) -> AsyncHostnameAssociationsResourceWithStreamingResponse:
+        return AsyncHostnameAssociationsResourceWithStreamingResponse(
+            self._certificate_authorities.hostname_associations
+        )

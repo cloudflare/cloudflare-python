@@ -23,19 +23,20 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
-from .....types.zero_trust.dex.tests import unique_devices, unique_device_list_params
+from .....types.zero_trust.dex.tests import unique_device_list_params
+from .....types.zero_trust.dex.tests.unique_devices import UniqueDevices
 
-__all__ = ["UniqueDevices", "AsyncUniqueDevices"]
+__all__ = ["UniqueDevicesResource", "AsyncUniqueDevicesResource"]
 
 
-class UniqueDevices(SyncAPIResource):
+class UniqueDevicesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> UniqueDevicesWithRawResponse:
-        return UniqueDevicesWithRawResponse(self)
+    def with_raw_response(self) -> UniqueDevicesResourceWithRawResponse:
+        return UniqueDevicesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> UniqueDevicesWithStreamingResponse:
-        return UniqueDevicesWithStreamingResponse(self)
+    def with_streaming_response(self) -> UniqueDevicesResourceWithStreamingResponse:
+        return UniqueDevicesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -49,7 +50,7 @@ class UniqueDevices(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[unique_devices.UniqueDevices]:
+    ) -> Optional[UniqueDevices]:
         """
         Returns unique count of devices that have run synthetic application monitoring
         tests in the past 7 days.
@@ -84,20 +85,20 @@ class UniqueDevices(SyncAPIResource):
                     },
                     unique_device_list_params.UniqueDeviceListParams,
                 ),
-                post_parser=ResultWrapper[Optional[unique_devices.UniqueDevices]]._unwrapper,
+                post_parser=ResultWrapper[Optional[UniqueDevices]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[unique_devices.UniqueDevices]], ResultWrapper[unique_devices.UniqueDevices]),
+            cast_to=cast(Type[Optional[UniqueDevices]], ResultWrapper[UniqueDevices]),
         )
 
 
-class AsyncUniqueDevices(AsyncAPIResource):
+class AsyncUniqueDevicesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncUniqueDevicesWithRawResponse:
-        return AsyncUniqueDevicesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncUniqueDevicesResourceWithRawResponse:
+        return AsyncUniqueDevicesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUniqueDevicesWithStreamingResponse:
-        return AsyncUniqueDevicesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncUniqueDevicesResourceWithStreamingResponse:
+        return AsyncUniqueDevicesResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -111,7 +112,7 @@ class AsyncUniqueDevices(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[unique_devices.UniqueDevices]:
+    ) -> Optional[UniqueDevices]:
         """
         Returns unique count of devices that have run synthetic application monitoring
         tests in the past 7 days.
@@ -146,14 +147,14 @@ class AsyncUniqueDevices(AsyncAPIResource):
                     },
                     unique_device_list_params.UniqueDeviceListParams,
                 ),
-                post_parser=ResultWrapper[Optional[unique_devices.UniqueDevices]]._unwrapper,
+                post_parser=ResultWrapper[Optional[UniqueDevices]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[unique_devices.UniqueDevices]], ResultWrapper[unique_devices.UniqueDevices]),
+            cast_to=cast(Type[Optional[UniqueDevices]], ResultWrapper[UniqueDevices]),
         )
 
 
-class UniqueDevicesWithRawResponse:
-    def __init__(self, unique_devices: UniqueDevices) -> None:
+class UniqueDevicesResourceWithRawResponse:
+    def __init__(self, unique_devices: UniqueDevicesResource) -> None:
         self._unique_devices = unique_devices
 
         self.list = to_raw_response_wrapper(
@@ -161,8 +162,8 @@ class UniqueDevicesWithRawResponse:
         )
 
 
-class AsyncUniqueDevicesWithRawResponse:
-    def __init__(self, unique_devices: AsyncUniqueDevices) -> None:
+class AsyncUniqueDevicesResourceWithRawResponse:
+    def __init__(self, unique_devices: AsyncUniqueDevicesResource) -> None:
         self._unique_devices = unique_devices
 
         self.list = async_to_raw_response_wrapper(
@@ -170,8 +171,8 @@ class AsyncUniqueDevicesWithRawResponse:
         )
 
 
-class UniqueDevicesWithStreamingResponse:
-    def __init__(self, unique_devices: UniqueDevices) -> None:
+class UniqueDevicesResourceWithStreamingResponse:
+    def __init__(self, unique_devices: UniqueDevicesResource) -> None:
         self._unique_devices = unique_devices
 
         self.list = to_streamed_response_wrapper(
@@ -179,8 +180,8 @@ class UniqueDevicesWithStreamingResponse:
         )
 
 
-class AsyncUniqueDevicesWithStreamingResponse:
-    def __init__(self, unique_devices: AsyncUniqueDevices) -> None:
+class AsyncUniqueDevicesResourceWithStreamingResponse:
+    def __init__(self, unique_devices: AsyncUniqueDevicesResource) -> None:
         self._unique_devices = unique_devices
 
         self.list = async_to_streamed_response_wrapper(

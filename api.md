@@ -254,7 +254,7 @@ Methods:
 
 - <code title="get /user/tokens/permission_groups">client.user.tokens.permission_groups.<a href="./src/cloudflare/resources/user/tokens/permission_groups.py">list</a>() -> <a href="./src/cloudflare/types/user/tokens/permission_group_list_response.py">SyncSinglePage[object]</a></code>
 
-### ValueResource
+### Value
 
 Types:
 
@@ -309,7 +309,7 @@ Methods:
 
 ## Settings
 
-### ZeroRTTResource
+### ZeroRTT
 
 Types:
 
@@ -334,7 +334,7 @@ Methods:
 
 - <code title="get /zones/{zone_id}/settings/advanced_ddos">client.zones.settings.advanced_ddos.<a href="./src/cloudflare/resources/zones/settings/advanced_ddos.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/advanced_ddos.py">Optional</a></code>
 
-### AlwaysOnlineResource
+### AlwaysOnline
 
 Types:
 
@@ -373,7 +373,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/automatic_https_rewrites">client.zones.settings.automatic_https_rewrites.<a href="./src/cloudflare/resources/zones/settings/automatic_https_rewrites.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/automatic_https_rewrite_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/automatic_https_rewrites.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/automatic_https_rewrites">client.zones.settings.automatic_https_rewrites.<a href="./src/cloudflare/resources/zones/settings/automatic_https_rewrites.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/automatic_https_rewrites.py">Optional</a></code>
 
-### AutomaticPlatformOptimizationResource
+### AutomaticPlatformOptimization
 
 Types:
 
@@ -386,7 +386,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/automatic_platform_optimization">client.zones.settings.automatic_platform_optimization.<a href="./src/cloudflare/resources/zones/settings/automatic_platform_optimization.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/automatic_platform_optimization_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/automatic_platform_optimization.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/automatic_platform_optimization">client.zones.settings.automatic_platform_optimization.<a href="./src/cloudflare/resources/zones/settings/automatic_platform_optimization.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/automatic_platform_optimization.py">Optional</a></code>
 
-### BrotliResource
+### Brotli
 
 Types:
 
@@ -399,7 +399,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/brotli">client.zones.settings.brotli.<a href="./src/cloudflare/resources/zones/settings/brotli.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/brotli_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/brotli.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/brotli">client.zones.settings.brotli.<a href="./src/cloudflare/resources/zones/settings/brotli.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/brotli.py">Optional</a></code>
 
-### BrowserCacheTTLResource
+### BrowserCacheTTL
 
 Types:
 
@@ -412,7 +412,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/browser_cache_ttl">client.zones.settings.browser_cache_ttl.<a href="./src/cloudflare/resources/zones/settings/browser_cache_ttl.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/browser_cache_ttl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/browser_cache_ttl.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/browser_cache_ttl">client.zones.settings.browser_cache_ttl.<a href="./src/cloudflare/resources/zones/settings/browser_cache_ttl.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/browser_cache_ttl.py">Optional</a></code>
 
-### BrowserCheckResource
+### BrowserCheck
 
 Types:
 
@@ -425,7 +425,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/browser_check">client.zones.settings.browser_check.<a href="./src/cloudflare/resources/zones/settings/browser_check.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/browser_check_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/browser_check.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/browser_check">client.zones.settings.browser_check.<a href="./src/cloudflare/resources/zones/settings/browser_check.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/browser_check.py">Optional</a></code>
 
-### CacheLevelResource
+### CacheLevel
 
 Types:
 
@@ -438,7 +438,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/cache_level">client.zones.settings.cache_level.<a href="./src/cloudflare/resources/zones/settings/cache_level.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/cache_level_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/cache_level.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/cache_level">client.zones.settings.cache_level.<a href="./src/cloudflare/resources/zones/settings/cache_level.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/cache_level.py">Optional</a></code>
 
-### ChallengeTTLResource
+### ChallengeTTL
 
 Types:
 
@@ -464,7 +464,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/ciphers">client.zones.settings.ciphers.<a href="./src/cloudflare/resources/zones/settings/ciphers.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/cipher_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/ciphers.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/ciphers">client.zones.settings.ciphers.<a href="./src/cloudflare/resources/zones/settings/ciphers.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/ciphers.py">Optional</a></code>
 
-### DevelopmentModeResource
+### DevelopmentMode
 
 Types:
 
@@ -490,7 +490,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/early_hints">client.zones.settings.early_hints.<a href="./src/cloudflare/resources/zones/settings/early_hints.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/early_hint_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/early_hints.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/early_hints">client.zones.settings.early_hints.<a href="./src/cloudflare/resources/zones/settings/early_hints.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/early_hints.py">Optional</a></code>
 
-### EmailObfuscationResource
+### EmailObfuscation
 
 Types:
 
@@ -503,7 +503,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/email_obfuscation">client.zones.settings.email_obfuscation.<a href="./src/cloudflare/resources/zones/settings/email_obfuscation.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/email_obfuscation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/email_obfuscation.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/email_obfuscation">client.zones.settings.email_obfuscation.<a href="./src/cloudflare/resources/zones/settings/email_obfuscation.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/email_obfuscation.py">Optional</a></code>
 
-### H2PrioritizationResource
+### H2Prioritization
 
 Types:
 
@@ -516,7 +516,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/h2_prioritization">client.zones.settings.h2_prioritization.<a href="./src/cloudflare/resources/zones/settings/h2_prioritization.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/h2_prioritization_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/h2_prioritization.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/h2_prioritization">client.zones.settings.h2_prioritization.<a href="./src/cloudflare/resources/zones/settings/h2_prioritization.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/h2_prioritization.py">Optional</a></code>
 
-### HotlinkProtectionResource
+### HotlinkProtection
 
 Types:
 
@@ -529,7 +529,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/hotlink_protection">client.zones.settings.hotlink_protection.<a href="./src/cloudflare/resources/zones/settings/hotlink_protection.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/hotlink_protection_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/hotlink_protection.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/hotlink_protection">client.zones.settings.hotlink_protection.<a href="./src/cloudflare/resources/zones/settings/hotlink_protection.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/hotlink_protection.py">Optional</a></code>
 
-### HTTP2Resource
+### HTTP2
 
 Types:
 
@@ -542,7 +542,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/http2">client.zones.settings.http2.<a href="./src/cloudflare/resources/zones/settings/http2.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/http2_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/http2.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/http2">client.zones.settings.http2.<a href="./src/cloudflare/resources/zones/settings/http2.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/http2.py">Optional</a></code>
 
-### HTTP3Resource
+### HTTP3
 
 Types:
 
@@ -555,7 +555,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/http3">client.zones.settings.http3.<a href="./src/cloudflare/resources/zones/settings/http3.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/http3_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/http3.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/http3">client.zones.settings.http3.<a href="./src/cloudflare/resources/zones/settings/http3.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/http3.py">Optional</a></code>
 
-### ImageResizingResource
+### ImageResizing
 
 Types:
 
@@ -568,7 +568,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/image_resizing">client.zones.settings.image_resizing.<a href="./src/cloudflare/resources/zones/settings/image_resizing.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/image_resizing_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/image_resizing.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/image_resizing">client.zones.settings.image_resizing.<a href="./src/cloudflare/resources/zones/settings/image_resizing.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/image_resizing.py">Optional</a></code>
 
-### IPGeolocationResource
+### IPGeolocation
 
 Types:
 
@@ -581,7 +581,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/ip_geolocation">client.zones.settings.ip_geolocation.<a href="./src/cloudflare/resources/zones/settings/ip_geolocation.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/ip_geolocation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/ip_geolocation.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/ip_geolocation">client.zones.settings.ip_geolocation.<a href="./src/cloudflare/resources/zones/settings/ip_geolocation.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/ip_geolocation.py">Optional</a></code>
 
-### IPV6Resource
+### IPV6
 
 Types:
 
@@ -594,7 +594,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/ipv6">client.zones.settings.ipv6.<a href="./src/cloudflare/resources/zones/settings/ipv6.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/ipv6_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/ipv6.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/ipv6">client.zones.settings.ipv6.<a href="./src/cloudflare/resources/zones/settings/ipv6.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/ipv6.py">Optional</a></code>
 
-### MinTLSVersionResource
+### MinTLSVersion
 
 Types:
 
@@ -607,7 +607,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/min_tls_version">client.zones.settings.min_tls_version.<a href="./src/cloudflare/resources/zones/settings/min_tls_version.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/min_tls_version_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/min_tls_version.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/min_tls_version">client.zones.settings.min_tls_version.<a href="./src/cloudflare/resources/zones/settings/min_tls_version.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/min_tls_version.py">Optional</a></code>
 
-### MinifyResource
+### Minify
 
 Types:
 
@@ -620,7 +620,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/minify">client.zones.settings.minify.<a href="./src/cloudflare/resources/zones/settings/minify.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/minify_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/minify.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/minify">client.zones.settings.minify.<a href="./src/cloudflare/resources/zones/settings/minify.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/minify.py">Optional</a></code>
 
-### MirageResource
+### Mirage
 
 Types:
 
@@ -633,7 +633,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/mirage">client.zones.settings.mirage.<a href="./src/cloudflare/resources/zones/settings/mirage.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/mirage_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/mirage.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/mirage">client.zones.settings.mirage.<a href="./src/cloudflare/resources/zones/settings/mirage.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/mirage.py">Optional</a></code>
 
-### MobileRedirectResource
+### MobileRedirect
 
 Types:
 
@@ -646,7 +646,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/mobile_redirect">client.zones.settings.mobile_redirect.<a href="./src/cloudflare/resources/zones/settings/mobile_redirect.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/mobile_redirect_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/mobile_redirect.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/mobile_redirect">client.zones.settings.mobile_redirect.<a href="./src/cloudflare/resources/zones/settings/mobile_redirect.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/mobile_redirect.py">Optional</a></code>
 
-### NELResource
+### NEL
 
 Types:
 
@@ -659,7 +659,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/nel">client.zones.settings.nel.<a href="./src/cloudflare/resources/zones/settings/nel.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/nel_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/nel.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/nel">client.zones.settings.nel.<a href="./src/cloudflare/resources/zones/settings/nel.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/nel.py">Optional</a></code>
 
-### OpportunisticEncryptionResource
+### OpportunisticEncryption
 
 Types:
 
@@ -672,7 +672,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/opportunistic_encryption">client.zones.settings.opportunistic_encryption.<a href="./src/cloudflare/resources/zones/settings/opportunistic_encryption.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/opportunistic_encryption_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/opportunistic_encryption.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/opportunistic_encryption">client.zones.settings.opportunistic_encryption.<a href="./src/cloudflare/resources/zones/settings/opportunistic_encryption.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/opportunistic_encryption.py">Optional</a></code>
 
-### OpportunisticOnionResource
+### OpportunisticOnion
 
 Types:
 
@@ -685,7 +685,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/opportunistic_onion">client.zones.settings.opportunistic_onion.<a href="./src/cloudflare/resources/zones/settings/opportunistic_onion.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/opportunistic_onion_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/opportunistic_onion.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/opportunistic_onion">client.zones.settings.opportunistic_onion.<a href="./src/cloudflare/resources/zones/settings/opportunistic_onion.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/opportunistic_onion.py">Optional</a></code>
 
-### OrangeToOrangeResource
+### OrangeToOrange
 
 Types:
 
@@ -698,7 +698,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/orange_to_orange">client.zones.settings.orange_to_orange.<a href="./src/cloudflare/resources/zones/settings/orange_to_orange.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/orange_to_orange_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/orange_to_orange.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/orange_to_orange">client.zones.settings.orange_to_orange.<a href="./src/cloudflare/resources/zones/settings/orange_to_orange.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/orange_to_orange.py">Optional</a></code>
 
-### OriginErrorPagePassThruResource
+### OriginErrorPagePassThru
 
 Types:
 
@@ -711,7 +711,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/origin_error_page_pass_thru">client.zones.settings.origin_error_page_pass_thru.<a href="./src/cloudflare/resources/zones/settings/origin_error_page_pass_thru.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/origin_error_page_pass_thru_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/origin_error_page_pass_thru.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/origin_error_page_pass_thru">client.zones.settings.origin_error_page_pass_thru.<a href="./src/cloudflare/resources/zones/settings/origin_error_page_pass_thru.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/origin_error_page_pass_thru.py">Optional</a></code>
 
-### OriginMaxHTTPVersionResource
+### OriginMaxHTTPVersion
 
 Types:
 
@@ -728,7 +728,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/origin_max_http_version">client.zones.settings.origin_max_http_version.<a href="./src/cloudflare/resources/zones/settings/origin_max_http_version.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/origin_max_http_version_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/origin_max_http_version_edit_response.py">OriginMaxHTTPVersionEditResponse</a></code>
 - <code title="get /zones/{zone_id}/settings/origin_max_http_version">client.zones.settings.origin_max_http_version.<a href="./src/cloudflare/resources/zones/settings/origin_max_http_version.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/origin_max_http_version_get_response.py">OriginMaxHTTPVersionGetResponse</a></code>
 
-### PolishResource
+### Polish
 
 Types:
 
@@ -741,7 +741,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/polish">client.zones.settings.polish.<a href="./src/cloudflare/resources/zones/settings/polish.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/polish_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/polish.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/polish">client.zones.settings.polish.<a href="./src/cloudflare/resources/zones/settings/polish.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/polish.py">Optional</a></code>
 
-### PrefetchPreloadResource
+### PrefetchPreload
 
 Types:
 
@@ -754,7 +754,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/prefetch_preload">client.zones.settings.prefetch_preload.<a href="./src/cloudflare/resources/zones/settings/prefetch_preload.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/prefetch_preload_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/prefetch_preload.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/prefetch_preload">client.zones.settings.prefetch_preload.<a href="./src/cloudflare/resources/zones/settings/prefetch_preload.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/prefetch_preload.py">Optional</a></code>
 
-### ProxyReadTimeoutResource
+### ProxyReadTimeout
 
 Types:
 
@@ -767,7 +767,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/proxy_read_timeout">client.zones.settings.proxy_read_timeout.<a href="./src/cloudflare/resources/zones/settings/proxy_read_timeout.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/proxy_read_timeout_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/proxy_read_timeout.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/proxy_read_timeout">client.zones.settings.proxy_read_timeout.<a href="./src/cloudflare/resources/zones/settings/proxy_read_timeout.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/proxy_read_timeout.py">Optional</a></code>
 
-### PseudoIPV4Resource
+### PseudoIPV4
 
 Types:
 
@@ -780,7 +780,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/pseudo_ipv4">client.zones.settings.pseudo_ipv4.<a href="./src/cloudflare/resources/zones/settings/pseudo_ipv4.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/pseudo_ipv4_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/pseudo_ipv4.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/pseudo_ipv4">client.zones.settings.pseudo_ipv4.<a href="./src/cloudflare/resources/zones/settings/pseudo_ipv4.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/pseudo_ipv4.py">Optional</a></code>
 
-### ResponseBufferingResource
+### ResponseBuffering
 
 Types:
 
@@ -793,7 +793,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/response_buffering">client.zones.settings.response_buffering.<a href="./src/cloudflare/resources/zones/settings/response_buffering.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/response_buffering_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/response_buffering.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/response_buffering">client.zones.settings.response_buffering.<a href="./src/cloudflare/resources/zones/settings/response_buffering.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/response_buffering.py">Optional</a></code>
 
-### RocketLoaderResource
+### RocketLoader
 
 Types:
 
@@ -819,7 +819,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/security_header">client.zones.settings.security_headers.<a href="./src/cloudflare/resources/zones/settings/security_headers.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/security_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/security_headers.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/security_header">client.zones.settings.security_headers.<a href="./src/cloudflare/resources/zones/settings/security_headers.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/security_headers.py">Optional</a></code>
 
-### SecurityLevelResource
+### SecurityLevel
 
 Types:
 
@@ -845,7 +845,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/server_side_exclude">client.zones.settings.server_side_excludes.<a href="./src/cloudflare/resources/zones/settings/server_side_excludes.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/server_side_exclude_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/server_side_excludes.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/server_side_exclude">client.zones.settings.server_side_excludes.<a href="./src/cloudflare/resources/zones/settings/server_side_excludes.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/server_side_excludes.py">Optional</a></code>
 
-### SortQueryStringForCacheResource
+### SortQueryStringForCache
 
 Types:
 
@@ -858,7 +858,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/sort_query_string_for_cache">client.zones.settings.sort_query_string_for_cache.<a href="./src/cloudflare/resources/zones/settings/sort_query_string_for_cache.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/sort_query_string_for_cache_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/sort_query_string_for_cache.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/sort_query_string_for_cache">client.zones.settings.sort_query_string_for_cache.<a href="./src/cloudflare/resources/zones/settings/sort_query_string_for_cache.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/sort_query_string_for_cache.py">Optional</a></code>
 
-### SSLResource
+### SSL
 
 Types:
 
@@ -871,7 +871,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/ssl">client.zones.settings.ssl.<a href="./src/cloudflare/resources/zones/settings/ssl.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/ssl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/ssl.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/ssl">client.zones.settings.ssl.<a href="./src/cloudflare/resources/zones/settings/ssl.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/ssl.py">Optional</a></code>
 
-### SSLRecommenderResource
+### SSLRecommender
 
 Types:
 
@@ -884,7 +884,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/ssl_recommender">client.zones.settings.ssl_recommender.<a href="./src/cloudflare/resources/zones/settings/ssl_recommender.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/ssl_recommender_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/ssl_recommender.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/ssl_recommender">client.zones.settings.ssl_recommender.<a href="./src/cloudflare/resources/zones/settings/ssl_recommender.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/ssl_recommender.py">Optional</a></code>
 
-### TLS1_3Resource
+### TLS1_3
 
 Types:
 
@@ -897,7 +897,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/tls_1_3">client.zones.settings.tls_1_3.<a href="./src/cloudflare/resources/zones/settings/tls_1_3.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/tls_1_3_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/tls_1_3.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/tls_1_3">client.zones.settings.tls_1_3.<a href="./src/cloudflare/resources/zones/settings/tls_1_3.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/tls_1_3.py">Optional</a></code>
 
-### TLSClientAuthResource
+### TLSClientAuth
 
 Types:
 
@@ -910,7 +910,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/tls_client_auth">client.zones.settings.tls_client_auth.<a href="./src/cloudflare/resources/zones/settings/tls_client_auth.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/tls_client_auth_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/tls_client_auth.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/tls_client_auth">client.zones.settings.tls_client_auth.<a href="./src/cloudflare/resources/zones/settings/tls_client_auth.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/tls_client_auth.py">Optional</a></code>
 
-### TrueClientIPHeaderResource
+### TrueClientIPHeader
 
 Types:
 
@@ -923,7 +923,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/true_client_ip_header">client.zones.settings.true_client_ip_header.<a href="./src/cloudflare/resources/zones/settings/true_client_ip_header.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/true_client_ip_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/true_client_ip_header.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/true_client_ip_header">client.zones.settings.true_client_ip_header.<a href="./src/cloudflare/resources/zones/settings/true_client_ip_header.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/true_client_ip_header.py">Optional</a></code>
 
-### WAFResource
+### WAF
 
 Types:
 
@@ -936,7 +936,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/waf">client.zones.settings.waf.<a href="./src/cloudflare/resources/zones/settings/waf.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/waf_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/waf.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/waf">client.zones.settings.waf.<a href="./src/cloudflare/resources/zones/settings/waf.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/waf.py">Optional</a></code>
 
-### WebPResource
+### WebP
 
 Types:
 
@@ -949,7 +949,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/settings/webp">client.zones.settings.webp.<a href="./src/cloudflare/resources/zones/settings/webp.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/webp_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/webp.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/webp">client.zones.settings.webp.<a href="./src/cloudflare/resources/zones/settings/webp.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/webp.py">Optional</a></code>
 
-### WebsocketResource
+### Websocket
 
 Types:
 
@@ -1182,7 +1182,7 @@ Methods:
 
 - <code title="post /zones/{zone_id}/purge_cache">client.cache.<a href="./src/cloudflare/resources/cache/cache.py">purge</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/cache_purge_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/cache_purge_response.py">Optional</a></code>
 
-## CacheReserveResource
+## CacheReserve
 
 Types:
 
@@ -1241,7 +1241,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/variant_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/variant_edit_response.py">VariantEditResponse</a></code>
 - <code title="get /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/variant_get_response.py">VariantGetResponse</a></code>
 
-## RegionalTieredCacheResource
+## RegionalTieredCache
 
 Types:
 
@@ -1344,7 +1344,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/ssl/universal/settings">client.ssl.universal.settings.<a href="./src/cloudflare/resources/ssl/universal/settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/universal/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/universal/universal_ssl_settings.py">UniversalSSLSettings</a></code>
 - <code title="get /zones/{zone_id}/ssl/universal/settings">client.ssl.universal.settings.<a href="./src/cloudflare/resources/ssl/universal/settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/ssl/universal/universal_ssl_settings.py">UniversalSSLSettings</a></code>
 
-## VerificationResource
+## Verification
 
 Types:
 
@@ -1667,7 +1667,7 @@ Methods:
 
 - <code title="get /zones/{zone_id}/dns_analytics/report/bytime">client.dns.analytics.reports.bytimes.<a href="./src/cloudflare/resources/dns/analytics/reports/bytimes.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/analytics/reports/bytime_get_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/analytics/reports/by_time.py">Optional</a></code>
 
-## FirewallResource
+## Firewall
 
 Types:
 
@@ -1703,7 +1703,7 @@ Methods:
 
 - <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report/bytime">client.dns.firewall.analytics.reports.bytimes.<a href="./src/cloudflare/resources/dns/firewall/analytics/reports/bytimes.py">get</a>(dns_firewall_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall/analytics/reports/bytime_get_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/analytics/reports/by_time.py">Optional</a></code>
 
-# DNSSECResource
+# DNSSEC
 
 Types:
 
@@ -2320,7 +2320,7 @@ Methods:
 
 # SecondaryDNS
 
-## ForceAXFRResource
+## ForceAXFR
 
 Types:
 
@@ -2332,7 +2332,7 @@ Methods:
 
 - <code title="post /zones/{zone_id}/secondary_dns/force_axfr">client.secondary_dns.force_axfr.<a href="./src/cloudflare/resources/secondary_dns/force_axfr.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/force_axfr_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/force_axfr.py">str</a></code>
 
-## IncomingResource
+## Incoming
 
 Types:
 
@@ -2353,7 +2353,7 @@ Methods:
 - <code title="delete /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">delete</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/incoming_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/incoming_delete_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/incoming_get_response.py">Optional</a></code>
 
-## OutgoingResource
+## Outgoing
 
 Types:
 
@@ -3578,7 +3578,7 @@ Methods:
 
 - <code title="get /accounts/{account_id}/intel/domain/bulk">client.intel.domains.bulks.<a href="./src/cloudflare/resources/intel/domains/bulks.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/domains/bulk_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/domains/bulk_get_response.py">Optional</a></code>
 
-## DomainHistoryResource
+## DomainHistory
 
 Types:
 
@@ -4083,7 +4083,7 @@ Methods:
 - <code title="get /accounts/{account_id}/pcaps">client.pcaps.<a href="./src/cloudflare/resources/pcaps/pcaps.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/pcaps/pcap_list_response.py">SyncSinglePage[PCAPListResponse]</a></code>
 - <code title="get /accounts/{account_id}/pcaps/{pcap_id}">client.pcaps.<a href="./src/cloudflare/resources/pcaps/pcaps.py">get</a>(pcap_id, \*, account_id) -> <a href="./src/cloudflare/types/pcaps/pcap_get_response.py">PCAPGetResponse</a></code>
 
-## OwnershipResource
+## Ownership
 
 Types:
 
@@ -4245,7 +4245,7 @@ Methods:
 
 - <code title="get /accounts/{account_id}/stream/storage-usage">client.stream.videos.<a href="./src/cloudflare/resources/stream/videos.py">storage_usage</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/video_storage_usage_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/video_storage_usage_response.py">Optional</a></code>
 
-## ClipResource
+## Clip
 
 Types:
 
@@ -4463,7 +4463,7 @@ Methods:
 
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/eligible">client.alerting.destinations.eligible.<a href="./src/cloudflare/resources/alerting/destinations/eligible.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/eligible_get_response.py">Optional</a></code>
 
-### PagerdutyResource
+### Pagerduty
 
 Types:
 
@@ -4505,7 +4505,7 @@ Methods:
 - <code title="delete /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">delete</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/webhook_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">get</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/webhooks.py">Webhooks</a></code>
 
-## HistoryResource
+## History
 
 Types:
 
@@ -4540,7 +4540,7 @@ Methods:
 - <code title="delete /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/policy_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/policy.py">Policy</a></code>
 
-# D1Resource
+# D1
 
 Types:
 
@@ -4587,7 +4587,7 @@ Methods:
 - <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket_delete_response.py">object</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket.py">Bucket</a></code>
 
-## SippyResource
+## Sippy
 
 Types:
 
@@ -5966,7 +5966,7 @@ Methods:
 - <code title="get /accounts/{account_id}/challenges/widgets/{sitekey}">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">get</a>(sitekey, \*, account_id) -> <a href="./src/cloudflare/types/challenges/widget.py">Optional</a></code>
 - <code title="post /accounts/{account_id}/challenges/widgets/{sitekey}/rotate_secret">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">rotate_secret</a>(sitekey, \*, account_id, \*\*<a href="src/cloudflare/types/challenges/widget_rotate_secret_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/widget.py">Optional</a></code>
 
-# HyperdriveResource
+# Hyperdrive
 
 Types:
 
@@ -7205,7 +7205,7 @@ Methods:
 - <code title="delete /zones/{zone_id}/speed_api/pages/{url}/tests">client.speed.tests.<a href="./src/cloudflare/resources/speed/tests.py">delete</a>(url, \*, zone_id, \*\*<a href="src/cloudflare/types/speed/test_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/speed/test_delete_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/speed_api/pages/{url}/tests/{test_id}">client.speed.tests.<a href="./src/cloudflare/resources/speed/tests.py">get</a>(test_id, \*, zone_id, url) -> <a href="./src/cloudflare/types/speed/test.py">Optional</a></code>
 
-## ScheduleResource
+## Schedule
 
 Types:
 
@@ -7356,7 +7356,7 @@ Methods:
 - <code title="get /accounts/{account_identifier}/cloudforce-one/requests/quota">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">quota</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/quota.py">Quota</a></code>
 - <code title="get /accounts/{account_identifier}/cloudforce-one/requests/types">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">types</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/request_types.py">RequestTypes</a></code>
 
-### MessageResource
+### Message
 
 Types:
 
@@ -7375,7 +7375,7 @@ Methods:
 - <code title="delete /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}">client.cloudforce_one.requests.message.<a href="./src/cloudflare/resources/cloudforce_one/requests/message.py">delete</a>(message_identifer, \*, account_identifier, request_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/requests/message_delete_response.py">MessageDeleteResponse</a></code>
 - <code title="post /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message">client.cloudforce_one.requests.message.<a href="./src/cloudflare/resources/cloudforce_one/requests/message.py">get</a>(request_identifier, \*, account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/message_get_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/message_get_response.py">MessageGetResponse</a></code>
 
-### PriorityResource
+### Priority
 
 Types:
 

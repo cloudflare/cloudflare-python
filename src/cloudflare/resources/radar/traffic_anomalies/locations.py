@@ -28,17 +28,17 @@ from ...._base_client import (
 from ....types.radar.traffic_anomalies import location_get_params
 from ....types.radar.traffic_anomalies.location_get_response import LocationGetResponse
 
-__all__ = ["Locations", "AsyncLocations"]
+__all__ = ["LocationsResource", "AsyncLocationsResource"]
 
 
-class Locations(SyncAPIResource):
+class LocationsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> LocationsWithRawResponse:
-        return LocationsWithRawResponse(self)
+    def with_raw_response(self) -> LocationsResourceWithRawResponse:
+        return LocationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> LocationsWithStreamingResponse:
-        return LocationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> LocationsResourceWithStreamingResponse:
+        return LocationsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -122,14 +122,14 @@ class Locations(SyncAPIResource):
         )
 
 
-class AsyncLocations(AsyncAPIResource):
+class AsyncLocationsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncLocationsWithRawResponse:
-        return AsyncLocationsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLocationsResourceWithRawResponse:
+        return AsyncLocationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLocationsWithStreamingResponse:
-        return AsyncLocationsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLocationsResourceWithStreamingResponse:
+        return AsyncLocationsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -213,8 +213,8 @@ class AsyncLocations(AsyncAPIResource):
         )
 
 
-class LocationsWithRawResponse:
-    def __init__(self, locations: Locations) -> None:
+class LocationsResourceWithRawResponse:
+    def __init__(self, locations: LocationsResource) -> None:
         self._locations = locations
 
         self.get = to_raw_response_wrapper(
@@ -222,8 +222,8 @@ class LocationsWithRawResponse:
         )
 
 
-class AsyncLocationsWithRawResponse:
-    def __init__(self, locations: AsyncLocations) -> None:
+class AsyncLocationsResourceWithRawResponse:
+    def __init__(self, locations: AsyncLocationsResource) -> None:
         self._locations = locations
 
         self.get = async_to_raw_response_wrapper(
@@ -231,8 +231,8 @@ class AsyncLocationsWithRawResponse:
         )
 
 
-class LocationsWithStreamingResponse:
-    def __init__(self, locations: Locations) -> None:
+class LocationsResourceWithStreamingResponse:
+    def __init__(self, locations: LocationsResource) -> None:
         self._locations = locations
 
         self.get = to_streamed_response_wrapper(
@@ -240,8 +240,8 @@ class LocationsWithStreamingResponse:
         )
 
 
-class AsyncLocationsWithStreamingResponse:
-    def __init__(self, locations: AsyncLocations) -> None:
+class AsyncLocationsResourceWithStreamingResponse:
+    def __init__(self, locations: AsyncLocationsResource) -> None:
         self._locations = locations
 
         self.get = async_to_streamed_response_wrapper(

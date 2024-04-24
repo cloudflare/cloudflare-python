@@ -3,28 +3,28 @@
 from __future__ import annotations
 
 from .acls import (
-    ACLs,
-    AsyncACLs,
-    ACLsWithRawResponse,
-    AsyncACLsWithRawResponse,
-    ACLsWithStreamingResponse,
-    AsyncACLsWithStreamingResponse,
+    ACLsResource,
+    AsyncACLsResource,
+    ACLsResourceWithRawResponse,
+    AsyncACLsResourceWithRawResponse,
+    ACLsResourceWithStreamingResponse,
+    AsyncACLsResourceWithStreamingResponse,
 )
 from .peers import (
-    Peers,
-    AsyncPeers,
-    PeersWithRawResponse,
-    AsyncPeersWithRawResponse,
-    PeersWithStreamingResponse,
-    AsyncPeersWithStreamingResponse,
+    PeersResource,
+    AsyncPeersResource,
+    PeersResourceWithRawResponse,
+    AsyncPeersResourceWithRawResponse,
+    PeersResourceWithStreamingResponse,
+    AsyncPeersResourceWithStreamingResponse,
 )
 from .tsigs import (
-    TSIGs,
-    AsyncTSIGs,
-    TSIGsWithRawResponse,
-    AsyncTSIGsWithRawResponse,
-    TSIGsWithStreamingResponse,
-    AsyncTSIGsWithStreamingResponse,
+    TSIGsResource,
+    AsyncTSIGsResource,
+    TSIGsResourceWithRawResponse,
+    AsyncTSIGsResourceWithRawResponse,
+    TSIGsResourceWithStreamingResponse,
+    AsyncTSIGsResourceWithStreamingResponse,
 )
 from .incoming import (
     IncomingResource,
@@ -54,10 +54,10 @@ from .force_axfr import (
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .outgoing.outgoing import OutgoingResource, AsyncOutgoingResource
 
-__all__ = ["SecondaryDNS", "AsyncSecondaryDNS"]
+__all__ = ["SecondaryDNSResource", "AsyncSecondaryDNSResource"]
 
 
-class SecondaryDNS(SyncAPIResource):
+class SecondaryDNSResource(SyncAPIResource):
     @cached_property
     def force_axfr(self) -> ForceAXFRResource:
         return ForceAXFRResource(self._client)
@@ -71,27 +71,27 @@ class SecondaryDNS(SyncAPIResource):
         return OutgoingResource(self._client)
 
     @cached_property
-    def acls(self) -> ACLs:
-        return ACLs(self._client)
+    def acls(self) -> ACLsResource:
+        return ACLsResource(self._client)
 
     @cached_property
-    def peers(self) -> Peers:
-        return Peers(self._client)
+    def peers(self) -> PeersResource:
+        return PeersResource(self._client)
 
     @cached_property
-    def tsigs(self) -> TSIGs:
-        return TSIGs(self._client)
+    def tsigs(self) -> TSIGsResource:
+        return TSIGsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> SecondaryDNSWithRawResponse:
-        return SecondaryDNSWithRawResponse(self)
+    def with_raw_response(self) -> SecondaryDNSResourceWithRawResponse:
+        return SecondaryDNSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SecondaryDNSWithStreamingResponse:
-        return SecondaryDNSWithStreamingResponse(self)
+    def with_streaming_response(self) -> SecondaryDNSResourceWithStreamingResponse:
+        return SecondaryDNSResourceWithStreamingResponse(self)
 
 
-class AsyncSecondaryDNS(AsyncAPIResource):
+class AsyncSecondaryDNSResource(AsyncAPIResource):
     @cached_property
     def force_axfr(self) -> AsyncForceAXFRResource:
         return AsyncForceAXFRResource(self._client)
@@ -105,28 +105,28 @@ class AsyncSecondaryDNS(AsyncAPIResource):
         return AsyncOutgoingResource(self._client)
 
     @cached_property
-    def acls(self) -> AsyncACLs:
-        return AsyncACLs(self._client)
+    def acls(self) -> AsyncACLsResource:
+        return AsyncACLsResource(self._client)
 
     @cached_property
-    def peers(self) -> AsyncPeers:
-        return AsyncPeers(self._client)
+    def peers(self) -> AsyncPeersResource:
+        return AsyncPeersResource(self._client)
 
     @cached_property
-    def tsigs(self) -> AsyncTSIGs:
-        return AsyncTSIGs(self._client)
+    def tsigs(self) -> AsyncTSIGsResource:
+        return AsyncTSIGsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncSecondaryDNSWithRawResponse:
-        return AsyncSecondaryDNSWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSecondaryDNSResourceWithRawResponse:
+        return AsyncSecondaryDNSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSecondaryDNSWithStreamingResponse:
-        return AsyncSecondaryDNSWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSecondaryDNSResourceWithStreamingResponse:
+        return AsyncSecondaryDNSResourceWithStreamingResponse(self)
 
 
-class SecondaryDNSWithRawResponse:
-    def __init__(self, secondary_dns: SecondaryDNS) -> None:
+class SecondaryDNSResourceWithRawResponse:
+    def __init__(self, secondary_dns: SecondaryDNSResource) -> None:
         self._secondary_dns = secondary_dns
 
     @cached_property
@@ -142,20 +142,20 @@ class SecondaryDNSWithRawResponse:
         return OutgoingResourceWithRawResponse(self._secondary_dns.outgoing)
 
     @cached_property
-    def acls(self) -> ACLsWithRawResponse:
-        return ACLsWithRawResponse(self._secondary_dns.acls)
+    def acls(self) -> ACLsResourceWithRawResponse:
+        return ACLsResourceWithRawResponse(self._secondary_dns.acls)
 
     @cached_property
-    def peers(self) -> PeersWithRawResponse:
-        return PeersWithRawResponse(self._secondary_dns.peers)
+    def peers(self) -> PeersResourceWithRawResponse:
+        return PeersResourceWithRawResponse(self._secondary_dns.peers)
 
     @cached_property
-    def tsigs(self) -> TSIGsWithRawResponse:
-        return TSIGsWithRawResponse(self._secondary_dns.tsigs)
+    def tsigs(self) -> TSIGsResourceWithRawResponse:
+        return TSIGsResourceWithRawResponse(self._secondary_dns.tsigs)
 
 
-class AsyncSecondaryDNSWithRawResponse:
-    def __init__(self, secondary_dns: AsyncSecondaryDNS) -> None:
+class AsyncSecondaryDNSResourceWithRawResponse:
+    def __init__(self, secondary_dns: AsyncSecondaryDNSResource) -> None:
         self._secondary_dns = secondary_dns
 
     @cached_property
@@ -171,20 +171,20 @@ class AsyncSecondaryDNSWithRawResponse:
         return AsyncOutgoingResourceWithRawResponse(self._secondary_dns.outgoing)
 
     @cached_property
-    def acls(self) -> AsyncACLsWithRawResponse:
-        return AsyncACLsWithRawResponse(self._secondary_dns.acls)
+    def acls(self) -> AsyncACLsResourceWithRawResponse:
+        return AsyncACLsResourceWithRawResponse(self._secondary_dns.acls)
 
     @cached_property
-    def peers(self) -> AsyncPeersWithRawResponse:
-        return AsyncPeersWithRawResponse(self._secondary_dns.peers)
+    def peers(self) -> AsyncPeersResourceWithRawResponse:
+        return AsyncPeersResourceWithRawResponse(self._secondary_dns.peers)
 
     @cached_property
-    def tsigs(self) -> AsyncTSIGsWithRawResponse:
-        return AsyncTSIGsWithRawResponse(self._secondary_dns.tsigs)
+    def tsigs(self) -> AsyncTSIGsResourceWithRawResponse:
+        return AsyncTSIGsResourceWithRawResponse(self._secondary_dns.tsigs)
 
 
-class SecondaryDNSWithStreamingResponse:
-    def __init__(self, secondary_dns: SecondaryDNS) -> None:
+class SecondaryDNSResourceWithStreamingResponse:
+    def __init__(self, secondary_dns: SecondaryDNSResource) -> None:
         self._secondary_dns = secondary_dns
 
     @cached_property
@@ -200,20 +200,20 @@ class SecondaryDNSWithStreamingResponse:
         return OutgoingResourceWithStreamingResponse(self._secondary_dns.outgoing)
 
     @cached_property
-    def acls(self) -> ACLsWithStreamingResponse:
-        return ACLsWithStreamingResponse(self._secondary_dns.acls)
+    def acls(self) -> ACLsResourceWithStreamingResponse:
+        return ACLsResourceWithStreamingResponse(self._secondary_dns.acls)
 
     @cached_property
-    def peers(self) -> PeersWithStreamingResponse:
-        return PeersWithStreamingResponse(self._secondary_dns.peers)
+    def peers(self) -> PeersResourceWithStreamingResponse:
+        return PeersResourceWithStreamingResponse(self._secondary_dns.peers)
 
     @cached_property
-    def tsigs(self) -> TSIGsWithStreamingResponse:
-        return TSIGsWithStreamingResponse(self._secondary_dns.tsigs)
+    def tsigs(self) -> TSIGsResourceWithStreamingResponse:
+        return TSIGsResourceWithStreamingResponse(self._secondary_dns.tsigs)
 
 
-class AsyncSecondaryDNSWithStreamingResponse:
-    def __init__(self, secondary_dns: AsyncSecondaryDNS) -> None:
+class AsyncSecondaryDNSResourceWithStreamingResponse:
+    def __init__(self, secondary_dns: AsyncSecondaryDNSResource) -> None:
         self._secondary_dns = secondary_dns
 
     @cached_property
@@ -229,13 +229,13 @@ class AsyncSecondaryDNSWithStreamingResponse:
         return AsyncOutgoingResourceWithStreamingResponse(self._secondary_dns.outgoing)
 
     @cached_property
-    def acls(self) -> AsyncACLsWithStreamingResponse:
-        return AsyncACLsWithStreamingResponse(self._secondary_dns.acls)
+    def acls(self) -> AsyncACLsResourceWithStreamingResponse:
+        return AsyncACLsResourceWithStreamingResponse(self._secondary_dns.acls)
 
     @cached_property
-    def peers(self) -> AsyncPeersWithStreamingResponse:
-        return AsyncPeersWithStreamingResponse(self._secondary_dns.peers)
+    def peers(self) -> AsyncPeersResourceWithStreamingResponse:
+        return AsyncPeersResourceWithStreamingResponse(self._secondary_dns.peers)
 
     @cached_property
-    def tsigs(self) -> AsyncTSIGsWithStreamingResponse:
-        return AsyncTSIGsWithStreamingResponse(self._secondary_dns.tsigs)
+    def tsigs(self) -> AsyncTSIGsResourceWithStreamingResponse:
+        return AsyncTSIGsResourceWithStreamingResponse(self._secondary_dns.tsigs)

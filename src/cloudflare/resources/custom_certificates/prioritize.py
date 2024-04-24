@@ -26,17 +26,17 @@ from ..._base_client import (
 from ...types.custom_certificates import prioritize_update_params
 from ...types.custom_certificates.prioritize_update_response import PrioritizeUpdateResponse
 
-__all__ = ["Prioritize", "AsyncPrioritize"]
+__all__ = ["PrioritizeResource", "AsyncPrioritizeResource"]
 
 
-class Prioritize(SyncAPIResource):
+class PrioritizeResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PrioritizeWithRawResponse:
-        return PrioritizeWithRawResponse(self)
+    def with_raw_response(self) -> PrioritizeResourceWithRawResponse:
+        return PrioritizeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PrioritizeWithStreamingResponse:
-        return PrioritizeWithStreamingResponse(self)
+    def with_streaming_response(self) -> PrioritizeResourceWithStreamingResponse:
+        return PrioritizeResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -84,14 +84,14 @@ class Prioritize(SyncAPIResource):
         )
 
 
-class AsyncPrioritize(AsyncAPIResource):
+class AsyncPrioritizeResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPrioritizeWithRawResponse:
-        return AsyncPrioritizeWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPrioritizeResourceWithRawResponse:
+        return AsyncPrioritizeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPrioritizeWithStreamingResponse:
-        return AsyncPrioritizeWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPrioritizeResourceWithStreamingResponse:
+        return AsyncPrioritizeResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -141,8 +141,8 @@ class AsyncPrioritize(AsyncAPIResource):
         )
 
 
-class PrioritizeWithRawResponse:
-    def __init__(self, prioritize: Prioritize) -> None:
+class PrioritizeResourceWithRawResponse:
+    def __init__(self, prioritize: PrioritizeResource) -> None:
         self._prioritize = prioritize
 
         self.update = to_raw_response_wrapper(
@@ -150,8 +150,8 @@ class PrioritizeWithRawResponse:
         )
 
 
-class AsyncPrioritizeWithRawResponse:
-    def __init__(self, prioritize: AsyncPrioritize) -> None:
+class AsyncPrioritizeResourceWithRawResponse:
+    def __init__(self, prioritize: AsyncPrioritizeResource) -> None:
         self._prioritize = prioritize
 
         self.update = async_to_raw_response_wrapper(
@@ -159,8 +159,8 @@ class AsyncPrioritizeWithRawResponse:
         )
 
 
-class PrioritizeWithStreamingResponse:
-    def __init__(self, prioritize: Prioritize) -> None:
+class PrioritizeResourceWithStreamingResponse:
+    def __init__(self, prioritize: PrioritizeResource) -> None:
         self._prioritize = prioritize
 
         self.update = to_streamed_response_wrapper(
@@ -168,8 +168,8 @@ class PrioritizeWithStreamingResponse:
         )
 
 
-class AsyncPrioritizeWithStreamingResponse:
-    def __init__(self, prioritize: AsyncPrioritize) -> None:
+class AsyncPrioritizeResourceWithStreamingResponse:
+    def __init__(self, prioritize: AsyncPrioritizeResource) -> None:
         self._prioritize = prioritize
 
         self.update = async_to_streamed_response_wrapper(

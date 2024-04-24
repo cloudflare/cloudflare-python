@@ -21,17 +21,17 @@ from ..._base_client import (
 )
 from ...types.speed.availability import Availability
 
-__all__ = ["Availabilities", "AsyncAvailabilities"]
+__all__ = ["AvailabilitiesResource", "AsyncAvailabilitiesResource"]
 
 
-class Availabilities(SyncAPIResource):
+class AvailabilitiesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AvailabilitiesWithRawResponse:
-        return AvailabilitiesWithRawResponse(self)
+    def with_raw_response(self) -> AvailabilitiesResourceWithRawResponse:
+        return AvailabilitiesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AvailabilitiesWithStreamingResponse:
-        return AvailabilitiesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AvailabilitiesResourceWithStreamingResponse:
+        return AvailabilitiesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -73,14 +73,14 @@ class Availabilities(SyncAPIResource):
         )
 
 
-class AsyncAvailabilities(AsyncAPIResource):
+class AsyncAvailabilitiesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAvailabilitiesWithRawResponse:
-        return AsyncAvailabilitiesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAvailabilitiesResourceWithRawResponse:
+        return AsyncAvailabilitiesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAvailabilitiesWithStreamingResponse:
-        return AsyncAvailabilitiesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAvailabilitiesResourceWithStreamingResponse:
+        return AsyncAvailabilitiesResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -122,8 +122,8 @@ class AsyncAvailabilities(AsyncAPIResource):
         )
 
 
-class AvailabilitiesWithRawResponse:
-    def __init__(self, availabilities: Availabilities) -> None:
+class AvailabilitiesResourceWithRawResponse:
+    def __init__(self, availabilities: AvailabilitiesResource) -> None:
         self._availabilities = availabilities
 
         self.list = to_raw_response_wrapper(
@@ -131,8 +131,8 @@ class AvailabilitiesWithRawResponse:
         )
 
 
-class AsyncAvailabilitiesWithRawResponse:
-    def __init__(self, availabilities: AsyncAvailabilities) -> None:
+class AsyncAvailabilitiesResourceWithRawResponse:
+    def __init__(self, availabilities: AsyncAvailabilitiesResource) -> None:
         self._availabilities = availabilities
 
         self.list = async_to_raw_response_wrapper(
@@ -140,8 +140,8 @@ class AsyncAvailabilitiesWithRawResponse:
         )
 
 
-class AvailabilitiesWithStreamingResponse:
-    def __init__(self, availabilities: Availabilities) -> None:
+class AvailabilitiesResourceWithStreamingResponse:
+    def __init__(self, availabilities: AvailabilitiesResource) -> None:
         self._availabilities = availabilities
 
         self.list = to_streamed_response_wrapper(
@@ -149,8 +149,8 @@ class AvailabilitiesWithStreamingResponse:
         )
 
 
-class AsyncAvailabilitiesWithStreamingResponse:
-    def __init__(self, availabilities: AsyncAvailabilities) -> None:
+class AsyncAvailabilitiesResourceWithStreamingResponse:
+    def __init__(self, availabilities: AsyncAvailabilitiesResource) -> None:
         self._availabilities = availabilities
 
         self.list = async_to_streamed_response_wrapper(

@@ -20,17 +20,17 @@ from ..._base_client import (
 )
 from ...types.intel.sinkhole import Sinkhole
 
-__all__ = ["Sinkholes", "AsyncSinkholes"]
+__all__ = ["SinkholesResource", "AsyncSinkholesResource"]
 
 
-class Sinkholes(SyncAPIResource):
+class SinkholesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SinkholesWithRawResponse:
-        return SinkholesWithRawResponse(self)
+    def with_raw_response(self) -> SinkholesResourceWithRawResponse:
+        return SinkholesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SinkholesWithStreamingResponse:
-        return SinkholesWithStreamingResponse(self)
+    def with_streaming_response(self) -> SinkholesResourceWithStreamingResponse:
+        return SinkholesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -69,14 +69,14 @@ class Sinkholes(SyncAPIResource):
         )
 
 
-class AsyncSinkholes(AsyncAPIResource):
+class AsyncSinkholesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSinkholesWithRawResponse:
-        return AsyncSinkholesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncSinkholesResourceWithRawResponse:
+        return AsyncSinkholesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSinkholesWithStreamingResponse:
-        return AsyncSinkholesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncSinkholesResourceWithStreamingResponse:
+        return AsyncSinkholesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -115,8 +115,8 @@ class AsyncSinkholes(AsyncAPIResource):
         )
 
 
-class SinkholesWithRawResponse:
-    def __init__(self, sinkholes: Sinkholes) -> None:
+class SinkholesResourceWithRawResponse:
+    def __init__(self, sinkholes: SinkholesResource) -> None:
         self._sinkholes = sinkholes
 
         self.list = to_raw_response_wrapper(
@@ -124,8 +124,8 @@ class SinkholesWithRawResponse:
         )
 
 
-class AsyncSinkholesWithRawResponse:
-    def __init__(self, sinkholes: AsyncSinkholes) -> None:
+class AsyncSinkholesResourceWithRawResponse:
+    def __init__(self, sinkholes: AsyncSinkholesResource) -> None:
         self._sinkholes = sinkholes
 
         self.list = async_to_raw_response_wrapper(
@@ -133,8 +133,8 @@ class AsyncSinkholesWithRawResponse:
         )
 
 
-class SinkholesWithStreamingResponse:
-    def __init__(self, sinkholes: Sinkholes) -> None:
+class SinkholesResourceWithStreamingResponse:
+    def __init__(self, sinkholes: SinkholesResource) -> None:
         self._sinkholes = sinkholes
 
         self.list = to_streamed_response_wrapper(
@@ -142,8 +142,8 @@ class SinkholesWithStreamingResponse:
         )
 
 
-class AsyncSinkholesWithStreamingResponse:
-    def __init__(self, sinkholes: AsyncSinkholes) -> None:
+class AsyncSinkholesResourceWithStreamingResponse:
+    def __init__(self, sinkholes: AsyncSinkholesResource) -> None:
         self._sinkholes = sinkholes
 
         self.list = async_to_streamed_response_wrapper(

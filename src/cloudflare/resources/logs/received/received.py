@@ -8,12 +8,12 @@ from typing_extensions import Literal
 import httpx
 
 from .fields import (
-    Fields,
-    AsyncFields,
-    FieldsWithRawResponse,
-    AsyncFieldsWithRawResponse,
-    FieldsWithStreamingResponse,
-    AsyncFieldsWithStreamingResponse,
+    FieldsResource,
+    AsyncFieldsResource,
+    FieldsResourceWithRawResponse,
+    AsyncFieldsResourceWithRawResponse,
+    FieldsResourceWithStreamingResponse,
+    AsyncFieldsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -34,21 +34,21 @@ from ...._base_client import (
 )
 from ....types.logs.received_get_response import ReceivedGetResponse
 
-__all__ = ["Received", "AsyncReceived"]
+__all__ = ["ReceivedResource", "AsyncReceivedResource"]
 
 
-class Received(SyncAPIResource):
+class ReceivedResource(SyncAPIResource):
     @cached_property
-    def fields(self) -> Fields:
-        return Fields(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> ReceivedWithRawResponse:
-        return ReceivedWithRawResponse(self)
+    def fields(self) -> FieldsResource:
+        return FieldsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ReceivedWithStreamingResponse:
-        return ReceivedWithStreamingResponse(self)
+    def with_raw_response(self) -> ReceivedResourceWithRawResponse:
+        return ReceivedResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ReceivedResourceWithStreamingResponse:
+        return ReceivedResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -161,18 +161,18 @@ class Received(SyncAPIResource):
         )
 
 
-class AsyncReceived(AsyncAPIResource):
+class AsyncReceivedResource(AsyncAPIResource):
     @cached_property
-    def fields(self) -> AsyncFields:
-        return AsyncFields(self._client)
+    def fields(self) -> AsyncFieldsResource:
+        return AsyncFieldsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncReceivedWithRawResponse:
-        return AsyncReceivedWithRawResponse(self)
+    def with_raw_response(self) -> AsyncReceivedResourceWithRawResponse:
+        return AsyncReceivedResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncReceivedWithStreamingResponse:
-        return AsyncReceivedWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncReceivedResourceWithStreamingResponse:
+        return AsyncReceivedResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -285,8 +285,8 @@ class AsyncReceived(AsyncAPIResource):
         )
 
 
-class ReceivedWithRawResponse:
-    def __init__(self, received: Received) -> None:
+class ReceivedResourceWithRawResponse:
+    def __init__(self, received: ReceivedResource) -> None:
         self._received = received
 
         self.get = to_raw_response_wrapper(
@@ -294,12 +294,12 @@ class ReceivedWithRawResponse:
         )
 
     @cached_property
-    def fields(self) -> FieldsWithRawResponse:
-        return FieldsWithRawResponse(self._received.fields)
+    def fields(self) -> FieldsResourceWithRawResponse:
+        return FieldsResourceWithRawResponse(self._received.fields)
 
 
-class AsyncReceivedWithRawResponse:
-    def __init__(self, received: AsyncReceived) -> None:
+class AsyncReceivedResourceWithRawResponse:
+    def __init__(self, received: AsyncReceivedResource) -> None:
         self._received = received
 
         self.get = async_to_raw_response_wrapper(
@@ -307,12 +307,12 @@ class AsyncReceivedWithRawResponse:
         )
 
     @cached_property
-    def fields(self) -> AsyncFieldsWithRawResponse:
-        return AsyncFieldsWithRawResponse(self._received.fields)
+    def fields(self) -> AsyncFieldsResourceWithRawResponse:
+        return AsyncFieldsResourceWithRawResponse(self._received.fields)
 
 
-class ReceivedWithStreamingResponse:
-    def __init__(self, received: Received) -> None:
+class ReceivedResourceWithStreamingResponse:
+    def __init__(self, received: ReceivedResource) -> None:
         self._received = received
 
         self.get = to_streamed_response_wrapper(
@@ -320,12 +320,12 @@ class ReceivedWithStreamingResponse:
         )
 
     @cached_property
-    def fields(self) -> FieldsWithStreamingResponse:
-        return FieldsWithStreamingResponse(self._received.fields)
+    def fields(self) -> FieldsResourceWithStreamingResponse:
+        return FieldsResourceWithStreamingResponse(self._received.fields)
 
 
-class AsyncReceivedWithStreamingResponse:
-    def __init__(self, received: AsyncReceived) -> None:
+class AsyncReceivedResourceWithStreamingResponse:
+    def __init__(self, received: AsyncReceivedResource) -> None:
         self._received = received
 
         self.get = async_to_streamed_response_wrapper(
@@ -333,5 +333,5 @@ class AsyncReceivedWithStreamingResponse:
         )
 
     @cached_property
-    def fields(self) -> AsyncFieldsWithStreamingResponse:
-        return AsyncFieldsWithStreamingResponse(self._received.fields)
+    def fields(self) -> AsyncFieldsResourceWithStreamingResponse:
+        return AsyncFieldsResourceWithStreamingResponse(self._received.fields)

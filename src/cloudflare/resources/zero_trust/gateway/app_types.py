@@ -22,17 +22,17 @@ from ...._base_client import (
 )
 from ....types.zero_trust.gateway.app_type import AppType
 
-__all__ = ["AppTypes", "AsyncAppTypes"]
+__all__ = ["AppTypesResource", "AsyncAppTypesResource"]
 
 
-class AppTypes(SyncAPIResource):
+class AppTypesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AppTypesWithRawResponse:
-        return AppTypesWithRawResponse(self)
+    def with_raw_response(self) -> AppTypesResourceWithRawResponse:
+        return AppTypesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AppTypesWithStreamingResponse:
-        return AppTypesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AppTypesResourceWithStreamingResponse:
+        return AppTypesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -71,14 +71,14 @@ class AppTypes(SyncAPIResource):
         )
 
 
-class AsyncAppTypes(AsyncAPIResource):
+class AsyncAppTypesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAppTypesWithRawResponse:
-        return AsyncAppTypesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAppTypesResourceWithRawResponse:
+        return AsyncAppTypesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAppTypesWithStreamingResponse:
-        return AsyncAppTypesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAppTypesResourceWithStreamingResponse:
+        return AsyncAppTypesResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -117,8 +117,8 @@ class AsyncAppTypes(AsyncAPIResource):
         )
 
 
-class AppTypesWithRawResponse:
-    def __init__(self, app_types: AppTypes) -> None:
+class AppTypesResourceWithRawResponse:
+    def __init__(self, app_types: AppTypesResource) -> None:
         self._app_types = app_types
 
         self.list = to_raw_response_wrapper(
@@ -126,8 +126,8 @@ class AppTypesWithRawResponse:
         )
 
 
-class AsyncAppTypesWithRawResponse:
-    def __init__(self, app_types: AsyncAppTypes) -> None:
+class AsyncAppTypesResourceWithRawResponse:
+    def __init__(self, app_types: AsyncAppTypesResource) -> None:
         self._app_types = app_types
 
         self.list = async_to_raw_response_wrapper(
@@ -135,8 +135,8 @@ class AsyncAppTypesWithRawResponse:
         )
 
 
-class AppTypesWithStreamingResponse:
-    def __init__(self, app_types: AppTypes) -> None:
+class AppTypesResourceWithStreamingResponse:
+    def __init__(self, app_types: AppTypesResource) -> None:
         self._app_types = app_types
 
         self.list = to_streamed_response_wrapper(
@@ -144,8 +144,8 @@ class AppTypesWithStreamingResponse:
         )
 
 
-class AsyncAppTypesWithStreamingResponse:
-    def __init__(self, app_types: AsyncAppTypes) -> None:
+class AsyncAppTypesResourceWithStreamingResponse:
+    def __init__(self, app_types: AsyncAppTypesResource) -> None:
         self._app_types = app_types
 
         self.list = async_to_streamed_response_wrapper(

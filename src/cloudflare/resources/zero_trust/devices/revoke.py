@@ -26,17 +26,17 @@ from ...._base_client import (
 from ....types.zero_trust.devices import revoke_create_params
 from ....types.zero_trust.devices.revoke_create_response import RevokeCreateResponse
 
-__all__ = ["Revoke", "AsyncRevoke"]
+__all__ = ["RevokeResource", "AsyncRevokeResource"]
 
 
-class Revoke(SyncAPIResource):
+class RevokeResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> RevokeWithRawResponse:
-        return RevokeWithRawResponse(self)
+    def with_raw_response(self) -> RevokeResourceWithRawResponse:
+        return RevokeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> RevokeWithStreamingResponse:
-        return RevokeWithStreamingResponse(self)
+    def with_streaming_response(self) -> RevokeResourceWithStreamingResponse:
+        return RevokeResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -85,14 +85,14 @@ class Revoke(SyncAPIResource):
         )
 
 
-class AsyncRevoke(AsyncAPIResource):
+class AsyncRevokeResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncRevokeWithRawResponse:
-        return AsyncRevokeWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRevokeResourceWithRawResponse:
+        return AsyncRevokeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncRevokeWithStreamingResponse:
-        return AsyncRevokeWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRevokeResourceWithStreamingResponse:
+        return AsyncRevokeResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -141,8 +141,8 @@ class AsyncRevoke(AsyncAPIResource):
         )
 
 
-class RevokeWithRawResponse:
-    def __init__(self, revoke: Revoke) -> None:
+class RevokeResourceWithRawResponse:
+    def __init__(self, revoke: RevokeResource) -> None:
         self._revoke = revoke
 
         self.create = to_raw_response_wrapper(
@@ -150,8 +150,8 @@ class RevokeWithRawResponse:
         )
 
 
-class AsyncRevokeWithRawResponse:
-    def __init__(self, revoke: AsyncRevoke) -> None:
+class AsyncRevokeResourceWithRawResponse:
+    def __init__(self, revoke: AsyncRevokeResource) -> None:
         self._revoke = revoke
 
         self.create = async_to_raw_response_wrapper(
@@ -159,8 +159,8 @@ class AsyncRevokeWithRawResponse:
         )
 
 
-class RevokeWithStreamingResponse:
-    def __init__(self, revoke: Revoke) -> None:
+class RevokeResourceWithStreamingResponse:
+    def __init__(self, revoke: RevokeResource) -> None:
         self._revoke = revoke
 
         self.create = to_streamed_response_wrapper(
@@ -168,8 +168,8 @@ class RevokeWithStreamingResponse:
         )
 
 
-class AsyncRevokeWithStreamingResponse:
-    def __init__(self, revoke: AsyncRevoke) -> None:
+class AsyncRevokeResourceWithStreamingResponse:
+    def __init__(self, revoke: AsyncRevokeResource) -> None:
         self._revoke = revoke
 
         self.create = async_to_streamed_response_wrapper(

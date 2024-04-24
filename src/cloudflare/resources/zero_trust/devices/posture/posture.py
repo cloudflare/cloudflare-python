@@ -14,12 +14,12 @@ from ....._utils import (
 )
 from ....._compat import cached_property
 from .integrations import (
-    Integrations,
-    AsyncIntegrations,
-    IntegrationsWithRawResponse,
-    AsyncIntegrationsWithRawResponse,
-    IntegrationsWithStreamingResponse,
-    AsyncIntegrationsWithStreamingResponse,
+    IntegrationsResource,
+    AsyncIntegrationsResource,
+    IntegrationsResourceWithRawResponse,
+    AsyncIntegrationsResourceWithRawResponse,
+    IntegrationsResourceWithStreamingResponse,
+    AsyncIntegrationsResourceWithStreamingResponse,
 )
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -44,21 +44,21 @@ from .....types.zero_trust.devices.device_match_param import DeviceMatchParam
 from .....types.zero_trust.devices.device_posture_rule import DevicePostureRule
 from .....types.zero_trust.devices.posture_delete_response import PostureDeleteResponse
 
-__all__ = ["Posture", "AsyncPosture"]
+__all__ = ["PostureResource", "AsyncPostureResource"]
 
 
-class Posture(SyncAPIResource):
+class PostureResource(SyncAPIResource):
     @cached_property
-    def integrations(self) -> Integrations:
-        return Integrations(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> PostureWithRawResponse:
-        return PostureWithRawResponse(self)
+    def integrations(self) -> IntegrationsResource:
+        return IntegrationsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> PostureWithStreamingResponse:
-        return PostureWithStreamingResponse(self)
+    def with_raw_response(self) -> PostureResourceWithRawResponse:
+        return PostureResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PostureResourceWithStreamingResponse:
+        return PostureResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -370,18 +370,18 @@ class Posture(SyncAPIResource):
         )
 
 
-class AsyncPosture(AsyncAPIResource):
+class AsyncPostureResource(AsyncAPIResource):
     @cached_property
-    def integrations(self) -> AsyncIntegrations:
-        return AsyncIntegrations(self._client)
+    def integrations(self) -> AsyncIntegrationsResource:
+        return AsyncIntegrationsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPostureWithRawResponse:
-        return AsyncPostureWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPostureResourceWithRawResponse:
+        return AsyncPostureResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPostureWithStreamingResponse:
-        return AsyncPostureWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPostureResourceWithStreamingResponse:
+        return AsyncPostureResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -693,8 +693,8 @@ class AsyncPosture(AsyncAPIResource):
         )
 
 
-class PostureWithRawResponse:
-    def __init__(self, posture: Posture) -> None:
+class PostureResourceWithRawResponse:
+    def __init__(self, posture: PostureResource) -> None:
         self._posture = posture
 
         self.create = to_raw_response_wrapper(
@@ -714,12 +714,12 @@ class PostureWithRawResponse:
         )
 
     @cached_property
-    def integrations(self) -> IntegrationsWithRawResponse:
-        return IntegrationsWithRawResponse(self._posture.integrations)
+    def integrations(self) -> IntegrationsResourceWithRawResponse:
+        return IntegrationsResourceWithRawResponse(self._posture.integrations)
 
 
-class AsyncPostureWithRawResponse:
-    def __init__(self, posture: AsyncPosture) -> None:
+class AsyncPostureResourceWithRawResponse:
+    def __init__(self, posture: AsyncPostureResource) -> None:
         self._posture = posture
 
         self.create = async_to_raw_response_wrapper(
@@ -739,12 +739,12 @@ class AsyncPostureWithRawResponse:
         )
 
     @cached_property
-    def integrations(self) -> AsyncIntegrationsWithRawResponse:
-        return AsyncIntegrationsWithRawResponse(self._posture.integrations)
+    def integrations(self) -> AsyncIntegrationsResourceWithRawResponse:
+        return AsyncIntegrationsResourceWithRawResponse(self._posture.integrations)
 
 
-class PostureWithStreamingResponse:
-    def __init__(self, posture: Posture) -> None:
+class PostureResourceWithStreamingResponse:
+    def __init__(self, posture: PostureResource) -> None:
         self._posture = posture
 
         self.create = to_streamed_response_wrapper(
@@ -764,12 +764,12 @@ class PostureWithStreamingResponse:
         )
 
     @cached_property
-    def integrations(self) -> IntegrationsWithStreamingResponse:
-        return IntegrationsWithStreamingResponse(self._posture.integrations)
+    def integrations(self) -> IntegrationsResourceWithStreamingResponse:
+        return IntegrationsResourceWithStreamingResponse(self._posture.integrations)
 
 
-class AsyncPostureWithStreamingResponse:
-    def __init__(self, posture: AsyncPosture) -> None:
+class AsyncPostureResourceWithStreamingResponse:
+    def __init__(self, posture: AsyncPostureResource) -> None:
         self._posture = posture
 
         self.create = async_to_streamed_response_wrapper(
@@ -789,5 +789,5 @@ class AsyncPostureWithStreamingResponse:
         )
 
     @cached_property
-    def integrations(self) -> AsyncIntegrationsWithStreamingResponse:
-        return AsyncIntegrationsWithStreamingResponse(self._posture.integrations)
+    def integrations(self) -> AsyncIntegrationsResourceWithStreamingResponse:
+        return AsyncIntegrationsResourceWithStreamingResponse(self._posture.integrations)

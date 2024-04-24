@@ -41,17 +41,17 @@ from ...types.vectorize.index_upsert import IndexUpsert
 from ...types.vectorize.index_delete_response import IndexDeleteResponse
 from ...types.vectorize.index_delete_vectors_by_id import IndexDeleteVectorsByID
 
-__all__ = ["Indexes", "AsyncIndexes"]
+__all__ = ["IndexesResource", "AsyncIndexesResource"]
 
 
-class Indexes(SyncAPIResource):
+class IndexesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> IndexesWithRawResponse:
-        return IndexesWithRawResponse(self)
+    def with_raw_response(self) -> IndexesResourceWithRawResponse:
+        return IndexesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IndexesWithStreamingResponse:
-        return IndexesWithStreamingResponse(self)
+    def with_streaming_response(self) -> IndexesResourceWithStreamingResponse:
+        return IndexesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -528,14 +528,14 @@ class Indexes(SyncAPIResource):
         )
 
 
-class AsyncIndexes(AsyncAPIResource):
+class AsyncIndexesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncIndexesWithRawResponse:
-        return AsyncIndexesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIndexesResourceWithRawResponse:
+        return AsyncIndexesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIndexesWithStreamingResponse:
-        return AsyncIndexesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIndexesResourceWithStreamingResponse:
+        return AsyncIndexesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -1012,8 +1012,8 @@ class AsyncIndexes(AsyncAPIResource):
         )
 
 
-class IndexesWithRawResponse:
-    def __init__(self, indexes: Indexes) -> None:
+class IndexesResourceWithRawResponse:
+    def __init__(self, indexes: IndexesResource) -> None:
         self._indexes = indexes
 
         self.create = to_raw_response_wrapper(
@@ -1048,8 +1048,8 @@ class IndexesWithRawResponse:
         )
 
 
-class AsyncIndexesWithRawResponse:
-    def __init__(self, indexes: AsyncIndexes) -> None:
+class AsyncIndexesResourceWithRawResponse:
+    def __init__(self, indexes: AsyncIndexesResource) -> None:
         self._indexes = indexes
 
         self.create = async_to_raw_response_wrapper(
@@ -1084,8 +1084,8 @@ class AsyncIndexesWithRawResponse:
         )
 
 
-class IndexesWithStreamingResponse:
-    def __init__(self, indexes: Indexes) -> None:
+class IndexesResourceWithStreamingResponse:
+    def __init__(self, indexes: IndexesResource) -> None:
         self._indexes = indexes
 
         self.create = to_streamed_response_wrapper(
@@ -1120,8 +1120,8 @@ class IndexesWithStreamingResponse:
         )
 
 
-class AsyncIndexesWithStreamingResponse:
-    def __init__(self, indexes: AsyncIndexes) -> None:
+class AsyncIndexesResourceWithStreamingResponse:
+    def __init__(self, indexes: AsyncIndexesResource) -> None:
         self._indexes = indexes
 
         self.create = async_to_streamed_response_wrapper(

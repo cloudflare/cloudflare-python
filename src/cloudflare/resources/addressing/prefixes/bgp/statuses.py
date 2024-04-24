@@ -27,17 +27,17 @@ from .....types.addressing.prefixes.bgp import status_edit_params
 from .....types.addressing.prefixes.bgp.status_get_response import StatusGetResponse
 from .....types.addressing.prefixes.bgp.status_edit_response import StatusEditResponse
 
-__all__ = ["Statuses", "AsyncStatuses"]
+__all__ = ["StatusesResource", "AsyncStatusesResource"]
 
 
-class Statuses(SyncAPIResource):
+class StatusesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> StatusesWithRawResponse:
-        return StatusesWithRawResponse(self)
+    def with_raw_response(self) -> StatusesResourceWithRawResponse:
+        return StatusesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> StatusesWithStreamingResponse:
-        return StatusesWithStreamingResponse(self)
+    def with_streaming_response(self) -> StatusesResourceWithStreamingResponse:
+        return StatusesResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -132,14 +132,14 @@ class Statuses(SyncAPIResource):
         )
 
 
-class AsyncStatuses(AsyncAPIResource):
+class AsyncStatusesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncStatusesWithRawResponse:
-        return AsyncStatusesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncStatusesResourceWithRawResponse:
+        return AsyncStatusesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncStatusesWithStreamingResponse:
-        return AsyncStatusesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncStatusesResourceWithStreamingResponse:
+        return AsyncStatusesResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -234,8 +234,8 @@ class AsyncStatuses(AsyncAPIResource):
         )
 
 
-class StatusesWithRawResponse:
-    def __init__(self, statuses: Statuses) -> None:
+class StatusesResourceWithRawResponse:
+    def __init__(self, statuses: StatusesResource) -> None:
         self._statuses = statuses
 
         self.edit = to_raw_response_wrapper(
@@ -246,8 +246,8 @@ class StatusesWithRawResponse:
         )
 
 
-class AsyncStatusesWithRawResponse:
-    def __init__(self, statuses: AsyncStatuses) -> None:
+class AsyncStatusesResourceWithRawResponse:
+    def __init__(self, statuses: AsyncStatusesResource) -> None:
         self._statuses = statuses
 
         self.edit = async_to_raw_response_wrapper(
@@ -258,8 +258,8 @@ class AsyncStatusesWithRawResponse:
         )
 
 
-class StatusesWithStreamingResponse:
-    def __init__(self, statuses: Statuses) -> None:
+class StatusesResourceWithStreamingResponse:
+    def __init__(self, statuses: StatusesResource) -> None:
         self._statuses = statuses
 
         self.edit = to_streamed_response_wrapper(
@@ -270,8 +270,8 @@ class StatusesWithStreamingResponse:
         )
 
 
-class AsyncStatusesWithStreamingResponse:
-    def __init__(self, statuses: AsyncStatuses) -> None:
+class AsyncStatusesResourceWithStreamingResponse:
+    def __init__(self, statuses: AsyncStatusesResource) -> None:
         self._statuses = statuses
 
         self.edit = async_to_streamed_response_wrapper(

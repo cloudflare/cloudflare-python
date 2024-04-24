@@ -7,12 +7,12 @@ from typing import Type, cast
 import httpx
 
 from .full import (
-    Full,
-    AsyncFull,
-    FullWithRawResponse,
-    AsyncFullWithRawResponse,
-    FullWithStreamingResponse,
-    AsyncFullWithStreamingResponse,
+    FullResource,
+    AsyncFullResource,
+    FullResourceWithRawResponse,
+    AsyncFullResourceWithRawResponse,
+    FullResourceWithStreamingResponse,
+    AsyncFullResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -39,21 +39,21 @@ from ....types.magic_network_monitoring import (
 )
 from ....types.magic_network_monitoring.configuration import Configuration
 
-__all__ = ["Configs", "AsyncConfigs"]
+__all__ = ["ConfigsResource", "AsyncConfigsResource"]
 
 
-class Configs(SyncAPIResource):
+class ConfigsResource(SyncAPIResource):
     @cached_property
-    def full(self) -> Full:
-        return Full(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> ConfigsWithRawResponse:
-        return ConfigsWithRawResponse(self)
+    def full(self) -> FullResource:
+        return FullResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ConfigsWithStreamingResponse:
-        return ConfigsWithStreamingResponse(self)
+    def with_raw_response(self) -> ConfigsResourceWithRawResponse:
+        return ConfigsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ConfigsResourceWithStreamingResponse:
+        return ConfigsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -250,18 +250,18 @@ class Configs(SyncAPIResource):
         )
 
 
-class AsyncConfigs(AsyncAPIResource):
+class AsyncConfigsResource(AsyncAPIResource):
     @cached_property
-    def full(self) -> AsyncFull:
-        return AsyncFull(self._client)
+    def full(self) -> AsyncFullResource:
+        return AsyncFullResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncConfigsWithRawResponse:
-        return AsyncConfigsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncConfigsResourceWithRawResponse:
+        return AsyncConfigsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConfigsWithStreamingResponse:
-        return AsyncConfigsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncConfigsResourceWithStreamingResponse:
+        return AsyncConfigsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -458,8 +458,8 @@ class AsyncConfigs(AsyncAPIResource):
         )
 
 
-class ConfigsWithRawResponse:
-    def __init__(self, configs: Configs) -> None:
+class ConfigsResourceWithRawResponse:
+    def __init__(self, configs: ConfigsResource) -> None:
         self._configs = configs
 
         self.create = to_raw_response_wrapper(
@@ -479,12 +479,12 @@ class ConfigsWithRawResponse:
         )
 
     @cached_property
-    def full(self) -> FullWithRawResponse:
-        return FullWithRawResponse(self._configs.full)
+    def full(self) -> FullResourceWithRawResponse:
+        return FullResourceWithRawResponse(self._configs.full)
 
 
-class AsyncConfigsWithRawResponse:
-    def __init__(self, configs: AsyncConfigs) -> None:
+class AsyncConfigsResourceWithRawResponse:
+    def __init__(self, configs: AsyncConfigsResource) -> None:
         self._configs = configs
 
         self.create = async_to_raw_response_wrapper(
@@ -504,12 +504,12 @@ class AsyncConfigsWithRawResponse:
         )
 
     @cached_property
-    def full(self) -> AsyncFullWithRawResponse:
-        return AsyncFullWithRawResponse(self._configs.full)
+    def full(self) -> AsyncFullResourceWithRawResponse:
+        return AsyncFullResourceWithRawResponse(self._configs.full)
 
 
-class ConfigsWithStreamingResponse:
-    def __init__(self, configs: Configs) -> None:
+class ConfigsResourceWithStreamingResponse:
+    def __init__(self, configs: ConfigsResource) -> None:
         self._configs = configs
 
         self.create = to_streamed_response_wrapper(
@@ -529,12 +529,12 @@ class ConfigsWithStreamingResponse:
         )
 
     @cached_property
-    def full(self) -> FullWithStreamingResponse:
-        return FullWithStreamingResponse(self._configs.full)
+    def full(self) -> FullResourceWithStreamingResponse:
+        return FullResourceWithStreamingResponse(self._configs.full)
 
 
-class AsyncConfigsWithStreamingResponse:
-    def __init__(self, configs: AsyncConfigs) -> None:
+class AsyncConfigsResourceWithStreamingResponse:
+    def __init__(self, configs: AsyncConfigsResource) -> None:
         self._configs = configs
 
         self.create = async_to_streamed_response_wrapper(
@@ -554,5 +554,5 @@ class AsyncConfigsWithStreamingResponse:
         )
 
     @cached_property
-    def full(self) -> AsyncFullWithStreamingResponse:
-        return AsyncFullWithStreamingResponse(self._configs.full)
+    def full(self) -> AsyncFullResourceWithStreamingResponse:
+        return AsyncFullResourceWithStreamingResponse(self._configs.full)

@@ -7,44 +7,44 @@ from typing import List, Type, Optional, cast, overload
 import httpx
 
 from .tags import (
-    Tags,
-    AsyncTags,
-    TagsWithRawResponse,
-    AsyncTagsWithRawResponse,
-    TagsWithStreamingResponse,
-    AsyncTagsWithStreamingResponse,
+    TagsResource,
+    AsyncTagsResource,
+    TagsResourceWithRawResponse,
+    AsyncTagsResourceWithRawResponse,
+    TagsResourceWithStreamingResponse,
+    AsyncTagsResourceWithStreamingResponse,
 )
 from .content import (
-    Content,
-    AsyncContent,
-    ContentWithRawResponse,
-    AsyncContentWithRawResponse,
-    ContentWithStreamingResponse,
-    AsyncContentWithStreamingResponse,
+    ContentResource,
+    AsyncContentResource,
+    ContentResourceWithRawResponse,
+    AsyncContentResourceWithRawResponse,
+    ContentResourceWithStreamingResponse,
+    AsyncContentResourceWithStreamingResponse,
 )
 from .secrets import (
-    Secrets,
-    AsyncSecrets,
-    SecretsWithRawResponse,
-    AsyncSecretsWithRawResponse,
-    SecretsWithStreamingResponse,
-    AsyncSecretsWithStreamingResponse,
+    SecretsResource,
+    AsyncSecretsResource,
+    SecretsResourceWithRawResponse,
+    AsyncSecretsResourceWithRawResponse,
+    SecretsResourceWithStreamingResponse,
+    AsyncSecretsResourceWithStreamingResponse,
 )
 from .bindings import (
-    Bindings,
-    AsyncBindings,
-    BindingsWithRawResponse,
-    AsyncBindingsWithRawResponse,
-    BindingsWithStreamingResponse,
-    AsyncBindingsWithStreamingResponse,
+    BindingsResource,
+    AsyncBindingsResource,
+    BindingsResourceWithRawResponse,
+    AsyncBindingsResourceWithRawResponse,
+    BindingsResourceWithStreamingResponse,
+    AsyncBindingsResourceWithStreamingResponse,
 )
 from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
 from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
 from ......_utils import (
@@ -68,37 +68,37 @@ from ......types.workers.script import Script as WorkersScript
 from ......types.workers_for_platforms.dispatch.namespaces import script_delete_params, script_update_params
 from ......types.workers_for_platforms.dispatch.namespaces.script import Script as NamespacesScript
 
-__all__ = ["Scripts", "AsyncScripts"]
+__all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
 
-class Scripts(SyncAPIResource):
+class ScriptsResource(SyncAPIResource):
     @cached_property
-    def content(self) -> Content:
-        return Content(self._client)
-
-    @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
+    def content(self) -> ContentResource:
+        return ContentResource(self._client)
 
     @cached_property
-    def bindings(self) -> Bindings:
-        return Bindings(self._client)
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
-    def secrets(self) -> Secrets:
-        return Secrets(self._client)
+    def bindings(self) -> BindingsResource:
+        return BindingsResource(self._client)
 
     @cached_property
-    def tags(self) -> Tags:
-        return Tags(self._client)
+    def secrets(self) -> SecretsResource:
+        return SecretsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> ScriptsWithRawResponse:
-        return ScriptsWithRawResponse(self)
+    def tags(self) -> TagsResource:
+        return TagsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ScriptsWithStreamingResponse:
-        return ScriptsWithStreamingResponse(self)
+    def with_raw_response(self) -> ScriptsResourceWithRawResponse:
+        return ScriptsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ScriptsResourceWithStreamingResponse:
+        return ScriptsResourceWithStreamingResponse(self)
 
     @overload
     def update(
@@ -340,34 +340,34 @@ class Scripts(SyncAPIResource):
         )
 
 
-class AsyncScripts(AsyncAPIResource):
+class AsyncScriptsResource(AsyncAPIResource):
     @cached_property
-    def content(self) -> AsyncContent:
-        return AsyncContent(self._client)
+    def content(self) -> AsyncContentResource:
+        return AsyncContentResource(self._client)
 
     @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
-    def bindings(self) -> AsyncBindings:
-        return AsyncBindings(self._client)
+    def bindings(self) -> AsyncBindingsResource:
+        return AsyncBindingsResource(self._client)
 
     @cached_property
-    def secrets(self) -> AsyncSecrets:
-        return AsyncSecrets(self._client)
+    def secrets(self) -> AsyncSecretsResource:
+        return AsyncSecretsResource(self._client)
 
     @cached_property
-    def tags(self) -> AsyncTags:
-        return AsyncTags(self._client)
+    def tags(self) -> AsyncTagsResource:
+        return AsyncTagsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncScriptsWithRawResponse:
-        return AsyncScriptsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncScriptsResourceWithRawResponse:
+        return AsyncScriptsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncScriptsWithStreamingResponse:
-        return AsyncScriptsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncScriptsResourceWithStreamingResponse:
+        return AsyncScriptsResourceWithStreamingResponse(self)
 
     @overload
     async def update(
@@ -609,8 +609,8 @@ class AsyncScripts(AsyncAPIResource):
         )
 
 
-class ScriptsWithRawResponse:
-    def __init__(self, scripts: Scripts) -> None:
+class ScriptsResourceWithRawResponse:
+    def __init__(self, scripts: ScriptsResource) -> None:
         self._scripts = scripts
 
         self.update = to_raw_response_wrapper(
@@ -624,28 +624,28 @@ class ScriptsWithRawResponse:
         )
 
     @cached_property
-    def content(self) -> ContentWithRawResponse:
-        return ContentWithRawResponse(self._scripts.content)
+    def content(self) -> ContentResourceWithRawResponse:
+        return ContentResourceWithRawResponse(self._scripts.content)
 
     @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._scripts.settings)
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._scripts.settings)
 
     @cached_property
-    def bindings(self) -> BindingsWithRawResponse:
-        return BindingsWithRawResponse(self._scripts.bindings)
+    def bindings(self) -> BindingsResourceWithRawResponse:
+        return BindingsResourceWithRawResponse(self._scripts.bindings)
 
     @cached_property
-    def secrets(self) -> SecretsWithRawResponse:
-        return SecretsWithRawResponse(self._scripts.secrets)
+    def secrets(self) -> SecretsResourceWithRawResponse:
+        return SecretsResourceWithRawResponse(self._scripts.secrets)
 
     @cached_property
-    def tags(self) -> TagsWithRawResponse:
-        return TagsWithRawResponse(self._scripts.tags)
+    def tags(self) -> TagsResourceWithRawResponse:
+        return TagsResourceWithRawResponse(self._scripts.tags)
 
 
-class AsyncScriptsWithRawResponse:
-    def __init__(self, scripts: AsyncScripts) -> None:
+class AsyncScriptsResourceWithRawResponse:
+    def __init__(self, scripts: AsyncScriptsResource) -> None:
         self._scripts = scripts
 
         self.update = async_to_raw_response_wrapper(
@@ -659,28 +659,28 @@ class AsyncScriptsWithRawResponse:
         )
 
     @cached_property
-    def content(self) -> AsyncContentWithRawResponse:
-        return AsyncContentWithRawResponse(self._scripts.content)
+    def content(self) -> AsyncContentResourceWithRawResponse:
+        return AsyncContentResourceWithRawResponse(self._scripts.content)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._scripts.settings)
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._scripts.settings)
 
     @cached_property
-    def bindings(self) -> AsyncBindingsWithRawResponse:
-        return AsyncBindingsWithRawResponse(self._scripts.bindings)
+    def bindings(self) -> AsyncBindingsResourceWithRawResponse:
+        return AsyncBindingsResourceWithRawResponse(self._scripts.bindings)
 
     @cached_property
-    def secrets(self) -> AsyncSecretsWithRawResponse:
-        return AsyncSecretsWithRawResponse(self._scripts.secrets)
+    def secrets(self) -> AsyncSecretsResourceWithRawResponse:
+        return AsyncSecretsResourceWithRawResponse(self._scripts.secrets)
 
     @cached_property
-    def tags(self) -> AsyncTagsWithRawResponse:
-        return AsyncTagsWithRawResponse(self._scripts.tags)
+    def tags(self) -> AsyncTagsResourceWithRawResponse:
+        return AsyncTagsResourceWithRawResponse(self._scripts.tags)
 
 
-class ScriptsWithStreamingResponse:
-    def __init__(self, scripts: Scripts) -> None:
+class ScriptsResourceWithStreamingResponse:
+    def __init__(self, scripts: ScriptsResource) -> None:
         self._scripts = scripts
 
         self.update = to_streamed_response_wrapper(
@@ -694,28 +694,28 @@ class ScriptsWithStreamingResponse:
         )
 
     @cached_property
-    def content(self) -> ContentWithStreamingResponse:
-        return ContentWithStreamingResponse(self._scripts.content)
+    def content(self) -> ContentResourceWithStreamingResponse:
+        return ContentResourceWithStreamingResponse(self._scripts.content)
 
     @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._scripts.settings)
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._scripts.settings)
 
     @cached_property
-    def bindings(self) -> BindingsWithStreamingResponse:
-        return BindingsWithStreamingResponse(self._scripts.bindings)
+    def bindings(self) -> BindingsResourceWithStreamingResponse:
+        return BindingsResourceWithStreamingResponse(self._scripts.bindings)
 
     @cached_property
-    def secrets(self) -> SecretsWithStreamingResponse:
-        return SecretsWithStreamingResponse(self._scripts.secrets)
+    def secrets(self) -> SecretsResourceWithStreamingResponse:
+        return SecretsResourceWithStreamingResponse(self._scripts.secrets)
 
     @cached_property
-    def tags(self) -> TagsWithStreamingResponse:
-        return TagsWithStreamingResponse(self._scripts.tags)
+    def tags(self) -> TagsResourceWithStreamingResponse:
+        return TagsResourceWithStreamingResponse(self._scripts.tags)
 
 
-class AsyncScriptsWithStreamingResponse:
-    def __init__(self, scripts: AsyncScripts) -> None:
+class AsyncScriptsResourceWithStreamingResponse:
+    def __init__(self, scripts: AsyncScriptsResource) -> None:
         self._scripts = scripts
 
         self.update = async_to_streamed_response_wrapper(
@@ -729,21 +729,21 @@ class AsyncScriptsWithStreamingResponse:
         )
 
     @cached_property
-    def content(self) -> AsyncContentWithStreamingResponse:
-        return AsyncContentWithStreamingResponse(self._scripts.content)
+    def content(self) -> AsyncContentResourceWithStreamingResponse:
+        return AsyncContentResourceWithStreamingResponse(self._scripts.content)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._scripts.settings)
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._scripts.settings)
 
     @cached_property
-    def bindings(self) -> AsyncBindingsWithStreamingResponse:
-        return AsyncBindingsWithStreamingResponse(self._scripts.bindings)
+    def bindings(self) -> AsyncBindingsResourceWithStreamingResponse:
+        return AsyncBindingsResourceWithStreamingResponse(self._scripts.bindings)
 
     @cached_property
-    def secrets(self) -> AsyncSecretsWithStreamingResponse:
-        return AsyncSecretsWithStreamingResponse(self._scripts.secrets)
+    def secrets(self) -> AsyncSecretsResourceWithStreamingResponse:
+        return AsyncSecretsResourceWithStreamingResponse(self._scripts.secrets)
 
     @cached_property
-    def tags(self) -> AsyncTagsWithStreamingResponse:
-        return AsyncTagsWithStreamingResponse(self._scripts.tags)
+    def tags(self) -> AsyncTagsResourceWithStreamingResponse:
+        return AsyncTagsResourceWithStreamingResponse(self._scripts.tags)

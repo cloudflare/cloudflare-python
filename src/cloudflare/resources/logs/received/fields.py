@@ -18,17 +18,17 @@ from ...._base_client import (
 )
 from ....types.logs.received.field_get_response import FieldGetResponse
 
-__all__ = ["Fields", "AsyncFields"]
+__all__ = ["FieldsResource", "AsyncFieldsResource"]
 
 
-class Fields(SyncAPIResource):
+class FieldsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> FieldsWithRawResponse:
-        return FieldsWithRawResponse(self)
+    def with_raw_response(self) -> FieldsResourceWithRawResponse:
+        return FieldsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FieldsWithStreamingResponse:
-        return FieldsWithStreamingResponse(self)
+    def with_streaming_response(self) -> FieldsResourceWithStreamingResponse:
+        return FieldsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -68,14 +68,14 @@ class Fields(SyncAPIResource):
         )
 
 
-class AsyncFields(AsyncAPIResource):
+class AsyncFieldsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncFieldsWithRawResponse:
-        return AsyncFieldsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFieldsResourceWithRawResponse:
+        return AsyncFieldsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFieldsWithStreamingResponse:
-        return AsyncFieldsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFieldsResourceWithStreamingResponse:
+        return AsyncFieldsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -115,8 +115,8 @@ class AsyncFields(AsyncAPIResource):
         )
 
 
-class FieldsWithRawResponse:
-    def __init__(self, fields: Fields) -> None:
+class FieldsResourceWithRawResponse:
+    def __init__(self, fields: FieldsResource) -> None:
         self._fields = fields
 
         self.get = to_raw_response_wrapper(
@@ -124,8 +124,8 @@ class FieldsWithRawResponse:
         )
 
 
-class AsyncFieldsWithRawResponse:
-    def __init__(self, fields: AsyncFields) -> None:
+class AsyncFieldsResourceWithRawResponse:
+    def __init__(self, fields: AsyncFieldsResource) -> None:
         self._fields = fields
 
         self.get = async_to_raw_response_wrapper(
@@ -133,8 +133,8 @@ class AsyncFieldsWithRawResponse:
         )
 
 
-class FieldsWithStreamingResponse:
-    def __init__(self, fields: Fields) -> None:
+class FieldsResourceWithStreamingResponse:
+    def __init__(self, fields: FieldsResource) -> None:
         self._fields = fields
 
         self.get = to_streamed_response_wrapper(
@@ -142,8 +142,8 @@ class FieldsWithStreamingResponse:
         )
 
 
-class AsyncFieldsWithStreamingResponse:
-    def __init__(self, fields: AsyncFields) -> None:
+class AsyncFieldsResourceWithStreamingResponse:
+    def __init__(self, fields: AsyncFieldsResource) -> None:
         self._fields = fields
 
         self.get = async_to_streamed_response_wrapper(

@@ -28,17 +28,17 @@ from ......._base_client import (
 from .......types.radar.email.security.top.tlds import malicious_get_params
 from .......types.radar.email.security.top.tlds.malicious_get_response import MaliciousGetResponse
 
-__all__ = ["Malicious", "AsyncMalicious"]
+__all__ = ["MaliciousResource", "AsyncMaliciousResource"]
 
 
-class Malicious(SyncAPIResource):
+class MaliciousResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MaliciousWithRawResponse:
-        return MaliciousWithRawResponse(self)
+    def with_raw_response(self) -> MaliciousResourceWithRawResponse:
+        return MaliciousResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MaliciousWithStreamingResponse:
-        return MaliciousWithStreamingResponse(self)
+    def with_streaming_response(self) -> MaliciousResourceWithStreamingResponse:
+        return MaliciousResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -154,14 +154,14 @@ class Malicious(SyncAPIResource):
         )
 
 
-class AsyncMalicious(AsyncAPIResource):
+class AsyncMaliciousResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMaliciousWithRawResponse:
-        return AsyncMaliciousWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMaliciousResourceWithRawResponse:
+        return AsyncMaliciousResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMaliciousWithStreamingResponse:
-        return AsyncMaliciousWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMaliciousResourceWithStreamingResponse:
+        return AsyncMaliciousResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -277,8 +277,8 @@ class AsyncMalicious(AsyncAPIResource):
         )
 
 
-class MaliciousWithRawResponse:
-    def __init__(self, malicious: Malicious) -> None:
+class MaliciousResourceWithRawResponse:
+    def __init__(self, malicious: MaliciousResource) -> None:
         self._malicious = malicious
 
         self.get = to_raw_response_wrapper(
@@ -286,8 +286,8 @@ class MaliciousWithRawResponse:
         )
 
 
-class AsyncMaliciousWithRawResponse:
-    def __init__(self, malicious: AsyncMalicious) -> None:
+class AsyncMaliciousResourceWithRawResponse:
+    def __init__(self, malicious: AsyncMaliciousResource) -> None:
         self._malicious = malicious
 
         self.get = async_to_raw_response_wrapper(
@@ -295,8 +295,8 @@ class AsyncMaliciousWithRawResponse:
         )
 
 
-class MaliciousWithStreamingResponse:
-    def __init__(self, malicious: Malicious) -> None:
+class MaliciousResourceWithStreamingResponse:
+    def __init__(self, malicious: MaliciousResource) -> None:
         self._malicious = malicious
 
         self.get = to_streamed_response_wrapper(
@@ -304,8 +304,8 @@ class MaliciousWithStreamingResponse:
         )
 
 
-class AsyncMaliciousWithStreamingResponse:
-    def __init__(self, malicious: AsyncMalicious) -> None:
+class AsyncMaliciousResourceWithStreamingResponse:
+    def __init__(self, malicious: AsyncMaliciousResource) -> None:
         self._malicious = malicious
 
         self.get = async_to_streamed_response_wrapper(

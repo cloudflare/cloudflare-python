@@ -34,17 +34,17 @@ from ....types.zero_trust.gateway.gateway_ips import GatewayIPs
 from ....types.zero_trust.gateway.proxy_endpoint import ProxyEndpoint
 from ....types.zero_trust.gateway.proxy_endpoint_delete_response import ProxyEndpointDeleteResponse
 
-__all__ = ["ProxyEndpoints", "AsyncProxyEndpoints"]
+__all__ = ["ProxyEndpointsResource", "AsyncProxyEndpointsResource"]
 
 
-class ProxyEndpoints(SyncAPIResource):
+class ProxyEndpointsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ProxyEndpointsWithRawResponse:
-        return ProxyEndpointsWithRawResponse(self)
+    def with_raw_response(self) -> ProxyEndpointsResourceWithRawResponse:
+        return ProxyEndpointsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ProxyEndpointsWithStreamingResponse:
-        return ProxyEndpointsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ProxyEndpointsResourceWithStreamingResponse:
+        return ProxyEndpointsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -271,14 +271,14 @@ class ProxyEndpoints(SyncAPIResource):
         )
 
 
-class AsyncProxyEndpoints(AsyncAPIResource):
+class AsyncProxyEndpointsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncProxyEndpointsWithRawResponse:
-        return AsyncProxyEndpointsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncProxyEndpointsResourceWithRawResponse:
+        return AsyncProxyEndpointsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncProxyEndpointsWithStreamingResponse:
-        return AsyncProxyEndpointsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncProxyEndpointsResourceWithStreamingResponse:
+        return AsyncProxyEndpointsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -505,8 +505,8 @@ class AsyncProxyEndpoints(AsyncAPIResource):
         )
 
 
-class ProxyEndpointsWithRawResponse:
-    def __init__(self, proxy_endpoints: ProxyEndpoints) -> None:
+class ProxyEndpointsResourceWithRawResponse:
+    def __init__(self, proxy_endpoints: ProxyEndpointsResource) -> None:
         self._proxy_endpoints = proxy_endpoints
 
         self.create = to_raw_response_wrapper(
@@ -526,8 +526,8 @@ class ProxyEndpointsWithRawResponse:
         )
 
 
-class AsyncProxyEndpointsWithRawResponse:
-    def __init__(self, proxy_endpoints: AsyncProxyEndpoints) -> None:
+class AsyncProxyEndpointsResourceWithRawResponse:
+    def __init__(self, proxy_endpoints: AsyncProxyEndpointsResource) -> None:
         self._proxy_endpoints = proxy_endpoints
 
         self.create = async_to_raw_response_wrapper(
@@ -547,8 +547,8 @@ class AsyncProxyEndpointsWithRawResponse:
         )
 
 
-class ProxyEndpointsWithStreamingResponse:
-    def __init__(self, proxy_endpoints: ProxyEndpoints) -> None:
+class ProxyEndpointsResourceWithStreamingResponse:
+    def __init__(self, proxy_endpoints: ProxyEndpointsResource) -> None:
         self._proxy_endpoints = proxy_endpoints
 
         self.create = to_streamed_response_wrapper(
@@ -568,8 +568,8 @@ class ProxyEndpointsWithStreamingResponse:
         )
 
 
-class AsyncProxyEndpointsWithStreamingResponse:
-    def __init__(self, proxy_endpoints: AsyncProxyEndpoints) -> None:
+class AsyncProxyEndpointsResourceWithStreamingResponse:
+    def __init__(self, proxy_endpoints: AsyncProxyEndpointsResource) -> None:
         self._proxy_endpoints = proxy_endpoints
 
         self.create = async_to_streamed_response_wrapper(

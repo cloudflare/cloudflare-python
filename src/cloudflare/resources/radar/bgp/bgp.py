@@ -9,45 +9,45 @@ from typing_extensions import Literal
 import httpx
 
 from .top import (
-    Top,
-    AsyncTop,
-    TopWithRawResponse,
-    AsyncTopWithRawResponse,
-    TopWithStreamingResponse,
-    AsyncTopWithStreamingResponse,
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
 )
 from .leaks import (
-    Leaks,
-    AsyncLeaks,
-    LeaksWithRawResponse,
-    AsyncLeaksWithRawResponse,
-    LeaksWithStreamingResponse,
-    AsyncLeaksWithStreamingResponse,
+    LeaksResource,
+    AsyncLeaksResource,
+    LeaksResourceWithRawResponse,
+    AsyncLeaksResourceWithRawResponse,
+    LeaksResourceWithStreamingResponse,
+    AsyncLeaksResourceWithStreamingResponse,
 )
 from .routes import (
-    Routes,
-    AsyncRoutes,
-    RoutesWithRawResponse,
-    AsyncRoutesWithRawResponse,
-    RoutesWithStreamingResponse,
-    AsyncRoutesWithStreamingResponse,
+    RoutesResource,
+    AsyncRoutesResource,
+    RoutesResourceWithRawResponse,
+    AsyncRoutesResourceWithRawResponse,
+    RoutesResourceWithStreamingResponse,
+    AsyncRoutesResourceWithStreamingResponse,
 )
 from .hijacks import (
-    Hijacks,
-    AsyncHijacks,
-    HijacksWithRawResponse,
-    AsyncHijacksWithRawResponse,
-    HijacksWithStreamingResponse,
-    AsyncHijacksWithStreamingResponse,
+    HijacksResource,
+    AsyncHijacksResource,
+    HijacksResourceWithRawResponse,
+    AsyncHijacksResourceWithRawResponse,
+    HijacksResourceWithStreamingResponse,
+    AsyncHijacksResourceWithStreamingResponse,
 )
-from .top.top import Top, AsyncTop
+from .top.top import TopResource, AsyncTopResource
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
 from ...._compat import cached_property
-from .leaks.leaks import Leaks, AsyncLeaks
+from .leaks.leaks import LeaksResource, AsyncLeaksResource
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -60,36 +60,36 @@ from ....types.radar import bgp_timeseries_params
 from ...._base_client import (
     make_request_options,
 )
-from .hijacks.hijacks import Hijacks, AsyncHijacks
+from .hijacks.hijacks import HijacksResource, AsyncHijacksResource
 from ....types.radar.bgp_timeseries_response import BGPTimeseriesResponse
 
-__all__ = ["BGP", "AsyncBGP"]
+__all__ = ["BGPResource", "AsyncBGPResource"]
 
 
-class BGP(SyncAPIResource):
+class BGPResource(SyncAPIResource):
     @cached_property
-    def leaks(self) -> Leaks:
-        return Leaks(self._client)
-
-    @cached_property
-    def top(self) -> Top:
-        return Top(self._client)
+    def leaks(self) -> LeaksResource:
+        return LeaksResource(self._client)
 
     @cached_property
-    def hijacks(self) -> Hijacks:
-        return Hijacks(self._client)
+    def top(self) -> TopResource:
+        return TopResource(self._client)
 
     @cached_property
-    def routes(self) -> Routes:
-        return Routes(self._client)
+    def hijacks(self) -> HijacksResource:
+        return HijacksResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> BGPWithRawResponse:
-        return BGPWithRawResponse(self)
+    def routes(self) -> RoutesResource:
+        return RoutesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> BGPWithStreamingResponse:
-        return BGPWithStreamingResponse(self)
+    def with_raw_response(self) -> BGPResourceWithRawResponse:
+        return BGPResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> BGPResourceWithStreamingResponse:
+        return BGPResourceWithStreamingResponse(self)
 
     def timeseries(
         self,
@@ -195,30 +195,30 @@ class BGP(SyncAPIResource):
         )
 
 
-class AsyncBGP(AsyncAPIResource):
+class AsyncBGPResource(AsyncAPIResource):
     @cached_property
-    def leaks(self) -> AsyncLeaks:
-        return AsyncLeaks(self._client)
+    def leaks(self) -> AsyncLeaksResource:
+        return AsyncLeaksResource(self._client)
 
     @cached_property
-    def top(self) -> AsyncTop:
-        return AsyncTop(self._client)
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
 
     @cached_property
-    def hijacks(self) -> AsyncHijacks:
-        return AsyncHijacks(self._client)
+    def hijacks(self) -> AsyncHijacksResource:
+        return AsyncHijacksResource(self._client)
 
     @cached_property
-    def routes(self) -> AsyncRoutes:
-        return AsyncRoutes(self._client)
+    def routes(self) -> AsyncRoutesResource:
+        return AsyncRoutesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncBGPWithRawResponse:
-        return AsyncBGPWithRawResponse(self)
+    def with_raw_response(self) -> AsyncBGPResourceWithRawResponse:
+        return AsyncBGPResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBGPWithStreamingResponse:
-        return AsyncBGPWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncBGPResourceWithStreamingResponse:
+        return AsyncBGPResourceWithStreamingResponse(self)
 
     async def timeseries(
         self,
@@ -324,8 +324,8 @@ class AsyncBGP(AsyncAPIResource):
         )
 
 
-class BGPWithRawResponse:
-    def __init__(self, bgp: BGP) -> None:
+class BGPResourceWithRawResponse:
+    def __init__(self, bgp: BGPResource) -> None:
         self._bgp = bgp
 
         self.timeseries = to_raw_response_wrapper(
@@ -333,24 +333,24 @@ class BGPWithRawResponse:
         )
 
     @cached_property
-    def leaks(self) -> LeaksWithRawResponse:
-        return LeaksWithRawResponse(self._bgp.leaks)
+    def leaks(self) -> LeaksResourceWithRawResponse:
+        return LeaksResourceWithRawResponse(self._bgp.leaks)
 
     @cached_property
-    def top(self) -> TopWithRawResponse:
-        return TopWithRawResponse(self._bgp.top)
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._bgp.top)
 
     @cached_property
-    def hijacks(self) -> HijacksWithRawResponse:
-        return HijacksWithRawResponse(self._bgp.hijacks)
+    def hijacks(self) -> HijacksResourceWithRawResponse:
+        return HijacksResourceWithRawResponse(self._bgp.hijacks)
 
     @cached_property
-    def routes(self) -> RoutesWithRawResponse:
-        return RoutesWithRawResponse(self._bgp.routes)
+    def routes(self) -> RoutesResourceWithRawResponse:
+        return RoutesResourceWithRawResponse(self._bgp.routes)
 
 
-class AsyncBGPWithRawResponse:
-    def __init__(self, bgp: AsyncBGP) -> None:
+class AsyncBGPResourceWithRawResponse:
+    def __init__(self, bgp: AsyncBGPResource) -> None:
         self._bgp = bgp
 
         self.timeseries = async_to_raw_response_wrapper(
@@ -358,24 +358,24 @@ class AsyncBGPWithRawResponse:
         )
 
     @cached_property
-    def leaks(self) -> AsyncLeaksWithRawResponse:
-        return AsyncLeaksWithRawResponse(self._bgp.leaks)
+    def leaks(self) -> AsyncLeaksResourceWithRawResponse:
+        return AsyncLeaksResourceWithRawResponse(self._bgp.leaks)
 
     @cached_property
-    def top(self) -> AsyncTopWithRawResponse:
-        return AsyncTopWithRawResponse(self._bgp.top)
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._bgp.top)
 
     @cached_property
-    def hijacks(self) -> AsyncHijacksWithRawResponse:
-        return AsyncHijacksWithRawResponse(self._bgp.hijacks)
+    def hijacks(self) -> AsyncHijacksResourceWithRawResponse:
+        return AsyncHijacksResourceWithRawResponse(self._bgp.hijacks)
 
     @cached_property
-    def routes(self) -> AsyncRoutesWithRawResponse:
-        return AsyncRoutesWithRawResponse(self._bgp.routes)
+    def routes(self) -> AsyncRoutesResourceWithRawResponse:
+        return AsyncRoutesResourceWithRawResponse(self._bgp.routes)
 
 
-class BGPWithStreamingResponse:
-    def __init__(self, bgp: BGP) -> None:
+class BGPResourceWithStreamingResponse:
+    def __init__(self, bgp: BGPResource) -> None:
         self._bgp = bgp
 
         self.timeseries = to_streamed_response_wrapper(
@@ -383,24 +383,24 @@ class BGPWithStreamingResponse:
         )
 
     @cached_property
-    def leaks(self) -> LeaksWithStreamingResponse:
-        return LeaksWithStreamingResponse(self._bgp.leaks)
+    def leaks(self) -> LeaksResourceWithStreamingResponse:
+        return LeaksResourceWithStreamingResponse(self._bgp.leaks)
 
     @cached_property
-    def top(self) -> TopWithStreamingResponse:
-        return TopWithStreamingResponse(self._bgp.top)
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._bgp.top)
 
     @cached_property
-    def hijacks(self) -> HijacksWithStreamingResponse:
-        return HijacksWithStreamingResponse(self._bgp.hijacks)
+    def hijacks(self) -> HijacksResourceWithStreamingResponse:
+        return HijacksResourceWithStreamingResponse(self._bgp.hijacks)
 
     @cached_property
-    def routes(self) -> RoutesWithStreamingResponse:
-        return RoutesWithStreamingResponse(self._bgp.routes)
+    def routes(self) -> RoutesResourceWithStreamingResponse:
+        return RoutesResourceWithStreamingResponse(self._bgp.routes)
 
 
-class AsyncBGPWithStreamingResponse:
-    def __init__(self, bgp: AsyncBGP) -> None:
+class AsyncBGPResourceWithStreamingResponse:
+    def __init__(self, bgp: AsyncBGPResource) -> None:
         self._bgp = bgp
 
         self.timeseries = async_to_streamed_response_wrapper(
@@ -408,17 +408,17 @@ class AsyncBGPWithStreamingResponse:
         )
 
     @cached_property
-    def leaks(self) -> AsyncLeaksWithStreamingResponse:
-        return AsyncLeaksWithStreamingResponse(self._bgp.leaks)
+    def leaks(self) -> AsyncLeaksResourceWithStreamingResponse:
+        return AsyncLeaksResourceWithStreamingResponse(self._bgp.leaks)
 
     @cached_property
-    def top(self) -> AsyncTopWithStreamingResponse:
-        return AsyncTopWithStreamingResponse(self._bgp.top)
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._bgp.top)
 
     @cached_property
-    def hijacks(self) -> AsyncHijacksWithStreamingResponse:
-        return AsyncHijacksWithStreamingResponse(self._bgp.hijacks)
+    def hijacks(self) -> AsyncHijacksResourceWithStreamingResponse:
+        return AsyncHijacksResourceWithStreamingResponse(self._bgp.hijacks)
 
     @cached_property
-    def routes(self) -> AsyncRoutesWithStreamingResponse:
-        return AsyncRoutesWithStreamingResponse(self._bgp.routes)
+    def routes(self) -> AsyncRoutesResourceWithStreamingResponse:
+        return AsyncRoutesResourceWithStreamingResponse(self._bgp.routes)

@@ -28,17 +28,17 @@ from ....._base_client import (
 from .....types.radar.http.ases import device_type_get_params
 from .....types.radar.http.ases.device_type_get_response import DeviceTypeGetResponse
 
-__all__ = ["DeviceType", "AsyncDeviceType"]
+__all__ = ["DeviceTypeResource", "AsyncDeviceTypeResource"]
 
 
-class DeviceType(SyncAPIResource):
+class DeviceTypeResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DeviceTypeWithRawResponse:
-        return DeviceTypeWithRawResponse(self)
+    def with_raw_response(self) -> DeviceTypeResourceWithRawResponse:
+        return DeviceTypeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DeviceTypeWithStreamingResponse:
-        return DeviceTypeWithStreamingResponse(self)
+    def with_streaming_response(self) -> DeviceTypeResourceWithStreamingResponse:
+        return DeviceTypeResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -175,14 +175,14 @@ class DeviceType(SyncAPIResource):
         )
 
 
-class AsyncDeviceType(AsyncAPIResource):
+class AsyncDeviceTypeResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDeviceTypeWithRawResponse:
-        return AsyncDeviceTypeWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDeviceTypeResourceWithRawResponse:
+        return AsyncDeviceTypeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDeviceTypeWithStreamingResponse:
-        return AsyncDeviceTypeWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDeviceTypeResourceWithStreamingResponse:
+        return AsyncDeviceTypeResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -319,8 +319,8 @@ class AsyncDeviceType(AsyncAPIResource):
         )
 
 
-class DeviceTypeWithRawResponse:
-    def __init__(self, device_type: DeviceType) -> None:
+class DeviceTypeResourceWithRawResponse:
+    def __init__(self, device_type: DeviceTypeResource) -> None:
         self._device_type = device_type
 
         self.get = to_raw_response_wrapper(
@@ -328,8 +328,8 @@ class DeviceTypeWithRawResponse:
         )
 
 
-class AsyncDeviceTypeWithRawResponse:
-    def __init__(self, device_type: AsyncDeviceType) -> None:
+class AsyncDeviceTypeResourceWithRawResponse:
+    def __init__(self, device_type: AsyncDeviceTypeResource) -> None:
         self._device_type = device_type
 
         self.get = async_to_raw_response_wrapper(
@@ -337,8 +337,8 @@ class AsyncDeviceTypeWithRawResponse:
         )
 
 
-class DeviceTypeWithStreamingResponse:
-    def __init__(self, device_type: DeviceType) -> None:
+class DeviceTypeResourceWithStreamingResponse:
+    def __init__(self, device_type: DeviceTypeResource) -> None:
         self._device_type = device_type
 
         self.get = to_streamed_response_wrapper(
@@ -346,8 +346,8 @@ class DeviceTypeWithStreamingResponse:
         )
 
 
-class AsyncDeviceTypeWithStreamingResponse:
-    def __init__(self, device_type: AsyncDeviceType) -> None:
+class AsyncDeviceTypeResourceWithStreamingResponse:
+    def __init__(self, device_type: AsyncDeviceTypeResource) -> None:
         self._device_type = device_type
 
         self.get = async_to_streamed_response_wrapper(

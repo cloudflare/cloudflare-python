@@ -19,19 +19,19 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.zones.settings import advanced_ddos
+from ....types.zones.settings.advanced_ddos import AdvancedDDoS
 
-__all__ = ["AdvancedDDoS", "AsyncAdvancedDDoS"]
+__all__ = ["AdvancedDDoSResource", "AsyncAdvancedDDoSResource"]
 
 
-class AdvancedDDoS(SyncAPIResource):
+class AdvancedDDoSResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AdvancedDDoSWithRawResponse:
-        return AdvancedDDoSWithRawResponse(self)
+    def with_raw_response(self) -> AdvancedDDoSResourceWithRawResponse:
+        return AdvancedDDoSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AdvancedDDoSWithStreamingResponse:
-        return AdvancedDDoSWithStreamingResponse(self)
+    def with_streaming_response(self) -> AdvancedDDoSResourceWithStreamingResponse:
+        return AdvancedDDoSResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -43,7 +43,7 @@ class AdvancedDDoS(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[advanced_ddos.AdvancedDDoS]:
+    ) -> Optional[AdvancedDDoS]:
         """
         Advanced protection from Distributed Denial of Service (DDoS) attacks on your
         website. This is an uneditable value that is 'on' in the case of Business and
@@ -69,20 +69,20 @@ class AdvancedDDoS(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[advanced_ddos.AdvancedDDoS]]._unwrapper,
+                post_parser=ResultWrapper[Optional[AdvancedDDoS]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[advanced_ddos.AdvancedDDoS]], ResultWrapper[advanced_ddos.AdvancedDDoS]),
+            cast_to=cast(Type[Optional[AdvancedDDoS]], ResultWrapper[AdvancedDDoS]),
         )
 
 
-class AsyncAdvancedDDoS(AsyncAPIResource):
+class AsyncAdvancedDDoSResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAdvancedDDoSWithRawResponse:
-        return AsyncAdvancedDDoSWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAdvancedDDoSResourceWithRawResponse:
+        return AsyncAdvancedDDoSResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAdvancedDDoSWithStreamingResponse:
-        return AsyncAdvancedDDoSWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAdvancedDDoSResourceWithStreamingResponse:
+        return AsyncAdvancedDDoSResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -94,7 +94,7 @@ class AsyncAdvancedDDoS(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[advanced_ddos.AdvancedDDoS]:
+    ) -> Optional[AdvancedDDoS]:
         """
         Advanced protection from Distributed Denial of Service (DDoS) attacks on your
         website. This is an uneditable value that is 'on' in the case of Business and
@@ -120,14 +120,14 @@ class AsyncAdvancedDDoS(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[advanced_ddos.AdvancedDDoS]]._unwrapper,
+                post_parser=ResultWrapper[Optional[AdvancedDDoS]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[advanced_ddos.AdvancedDDoS]], ResultWrapper[advanced_ddos.AdvancedDDoS]),
+            cast_to=cast(Type[Optional[AdvancedDDoS]], ResultWrapper[AdvancedDDoS]),
         )
 
 
-class AdvancedDDoSWithRawResponse:
-    def __init__(self, advanced_ddos: AdvancedDDoS) -> None:
+class AdvancedDDoSResourceWithRawResponse:
+    def __init__(self, advanced_ddos: AdvancedDDoSResource) -> None:
         self._advanced_ddos = advanced_ddos
 
         self.get = to_raw_response_wrapper(
@@ -135,8 +135,8 @@ class AdvancedDDoSWithRawResponse:
         )
 
 
-class AsyncAdvancedDDoSWithRawResponse:
-    def __init__(self, advanced_ddos: AsyncAdvancedDDoS) -> None:
+class AsyncAdvancedDDoSResourceWithRawResponse:
+    def __init__(self, advanced_ddos: AsyncAdvancedDDoSResource) -> None:
         self._advanced_ddos = advanced_ddos
 
         self.get = async_to_raw_response_wrapper(
@@ -144,8 +144,8 @@ class AsyncAdvancedDDoSWithRawResponse:
         )
 
 
-class AdvancedDDoSWithStreamingResponse:
-    def __init__(self, advanced_ddos: AdvancedDDoS) -> None:
+class AdvancedDDoSResourceWithStreamingResponse:
+    def __init__(self, advanced_ddos: AdvancedDDoSResource) -> None:
         self._advanced_ddos = advanced_ddos
 
         self.get = to_streamed_response_wrapper(
@@ -153,8 +153,8 @@ class AdvancedDDoSWithStreamingResponse:
         )
 
 
-class AsyncAdvancedDDoSWithStreamingResponse:
-    def __init__(self, advanced_ddos: AsyncAdvancedDDoS) -> None:
+class AsyncAdvancedDDoSResourceWithStreamingResponse:
+    def __init__(self, advanced_ddos: AsyncAdvancedDDoSResource) -> None:
         self._advanced_ddos = advanced_ddos
 
         self.get = async_to_streamed_response_wrapper(

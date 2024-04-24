@@ -28,17 +28,17 @@ from ..._base_client import (
 from ...types.argo.tiered_caching_get_response import TieredCachingGetResponse
 from ...types.argo.tiered_caching_edit_response import TieredCachingEditResponse
 
-__all__ = ["TieredCaching", "AsyncTieredCaching"]
+__all__ = ["TieredCachingResource", "AsyncTieredCachingResource"]
 
 
-class TieredCaching(SyncAPIResource):
+class TieredCachingResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TieredCachingWithRawResponse:
-        return TieredCachingWithRawResponse(self)
+    def with_raw_response(self) -> TieredCachingResourceWithRawResponse:
+        return TieredCachingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TieredCachingWithStreamingResponse:
-        return TieredCachingWithStreamingResponse(self)
+    def with_streaming_response(self) -> TieredCachingResourceWithStreamingResponse:
+        return TieredCachingResourceWithStreamingResponse(self)
 
     def edit(
         self,
@@ -133,14 +133,14 @@ class TieredCaching(SyncAPIResource):
         )
 
 
-class AsyncTieredCaching(AsyncAPIResource):
+class AsyncTieredCachingResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTieredCachingWithRawResponse:
-        return AsyncTieredCachingWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTieredCachingResourceWithRawResponse:
+        return AsyncTieredCachingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTieredCachingWithStreamingResponse:
-        return AsyncTieredCachingWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTieredCachingResourceWithStreamingResponse:
+        return AsyncTieredCachingResourceWithStreamingResponse(self)
 
     async def edit(
         self,
@@ -235,8 +235,8 @@ class AsyncTieredCaching(AsyncAPIResource):
         )
 
 
-class TieredCachingWithRawResponse:
-    def __init__(self, tiered_caching: TieredCaching) -> None:
+class TieredCachingResourceWithRawResponse:
+    def __init__(self, tiered_caching: TieredCachingResource) -> None:
         self._tiered_caching = tiered_caching
 
         self.edit = to_raw_response_wrapper(
@@ -247,8 +247,8 @@ class TieredCachingWithRawResponse:
         )
 
 
-class AsyncTieredCachingWithRawResponse:
-    def __init__(self, tiered_caching: AsyncTieredCaching) -> None:
+class AsyncTieredCachingResourceWithRawResponse:
+    def __init__(self, tiered_caching: AsyncTieredCachingResource) -> None:
         self._tiered_caching = tiered_caching
 
         self.edit = async_to_raw_response_wrapper(
@@ -259,8 +259,8 @@ class AsyncTieredCachingWithRawResponse:
         )
 
 
-class TieredCachingWithStreamingResponse:
-    def __init__(self, tiered_caching: TieredCaching) -> None:
+class TieredCachingResourceWithStreamingResponse:
+    def __init__(self, tiered_caching: TieredCachingResource) -> None:
         self._tiered_caching = tiered_caching
 
         self.edit = to_streamed_response_wrapper(
@@ -271,8 +271,8 @@ class TieredCachingWithStreamingResponse:
         )
 
 
-class AsyncTieredCachingWithStreamingResponse:
-    def __init__(self, tiered_caching: AsyncTieredCaching) -> None:
+class AsyncTieredCachingResourceWithStreamingResponse:
+    def __init__(self, tiered_caching: AsyncTieredCachingResource) -> None:
         self._tiered_caching = tiered_caching
 
         self.edit = async_to_streamed_response_wrapper(

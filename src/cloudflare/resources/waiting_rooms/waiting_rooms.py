@@ -8,28 +8,28 @@ from typing_extensions import Literal
 import httpx
 
 from .page import (
-    Page,
-    AsyncPage,
-    PageWithRawResponse,
-    AsyncPageWithRawResponse,
-    PageWithStreamingResponse,
-    AsyncPageWithStreamingResponse,
+    PageResource,
+    AsyncPageResource,
+    PageResourceWithRawResponse,
+    AsyncPageResourceWithRawResponse,
+    PageResourceWithStreamingResponse,
+    AsyncPageResourceWithStreamingResponse,
 )
 from .rules import (
-    Rules,
-    AsyncRules,
-    RulesWithRawResponse,
-    AsyncRulesWithRawResponse,
-    RulesWithStreamingResponse,
-    AsyncRulesWithStreamingResponse,
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
 from .events import (
-    Events,
-    AsyncEvents,
-    EventsWithRawResponse,
-    AsyncEventsWithRawResponse,
-    EventsWithStreamingResponse,
-    AsyncEventsWithStreamingResponse,
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -37,20 +37,20 @@ from ..._utils import (
     async_maybe_transform,
 )
 from .settings import (
-    Settings,
-    AsyncSettings,
-    SettingsWithRawResponse,
-    AsyncSettingsWithRawResponse,
-    SettingsWithStreamingResponse,
-    AsyncSettingsWithStreamingResponse,
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
 from .statuses import (
-    Statuses,
-    AsyncStatuses,
-    StatusesWithRawResponse,
-    AsyncStatusesWithRawResponse,
-    StatusesWithStreamingResponse,
-    AsyncStatusesWithStreamingResponse,
+    StatusesResource,
+    AsyncStatusesResource,
+    StatusesResourceWithRawResponse,
+    AsyncStatusesResourceWithRawResponse,
+    StatusesResourceWithStreamingResponse,
+    AsyncStatusesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -62,7 +62,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from .events.events import Events, AsyncEvents
+from .events.events import EventsResource, AsyncEventsResource
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -79,37 +79,37 @@ from ...types.waiting_rooms.additional_routes_param import AdditionalRoutesParam
 from ...types.waiting_rooms.cookie_attributes_param import CookieAttributesParam
 from ...types.waiting_rooms.waiting_room_delete_response import WaitingRoomDeleteResponse
 
-__all__ = ["WaitingRooms", "AsyncWaitingRooms"]
+__all__ = ["WaitingRoomsResource", "AsyncWaitingRoomsResource"]
 
 
-class WaitingRooms(SyncAPIResource):
+class WaitingRoomsResource(SyncAPIResource):
     @cached_property
-    def page(self) -> Page:
-        return Page(self._client)
-
-    @cached_property
-    def events(self) -> Events:
-        return Events(self._client)
+    def page(self) -> PageResource:
+        return PageResource(self._client)
 
     @cached_property
-    def rules(self) -> Rules:
-        return Rules(self._client)
+    def events(self) -> EventsResource:
+        return EventsResource(self._client)
 
     @cached_property
-    def statuses(self) -> Statuses:
-        return Statuses(self._client)
+    def rules(self) -> RulesResource:
+        return RulesResource(self._client)
 
     @cached_property
-    def settings(self) -> Settings:
-        return Settings(self._client)
+    def statuses(self) -> StatusesResource:
+        return StatusesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> WaitingRoomsWithRawResponse:
-        return WaitingRoomsWithRawResponse(self)
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> WaitingRoomsWithStreamingResponse:
-        return WaitingRoomsWithStreamingResponse(self)
+    def with_raw_response(self) -> WaitingRoomsResourceWithRawResponse:
+        return WaitingRoomsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> WaitingRoomsResourceWithStreamingResponse:
+        return WaitingRoomsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -1321,34 +1321,34 @@ class WaitingRooms(SyncAPIResource):
         )
 
 
-class AsyncWaitingRooms(AsyncAPIResource):
+class AsyncWaitingRoomsResource(AsyncAPIResource):
     @cached_property
-    def page(self) -> AsyncPage:
-        return AsyncPage(self._client)
+    def page(self) -> AsyncPageResource:
+        return AsyncPageResource(self._client)
 
     @cached_property
-    def events(self) -> AsyncEvents:
-        return AsyncEvents(self._client)
+    def events(self) -> AsyncEventsResource:
+        return AsyncEventsResource(self._client)
 
     @cached_property
-    def rules(self) -> AsyncRules:
-        return AsyncRules(self._client)
+    def rules(self) -> AsyncRulesResource:
+        return AsyncRulesResource(self._client)
 
     @cached_property
-    def statuses(self) -> AsyncStatuses:
-        return AsyncStatuses(self._client)
+    def statuses(self) -> AsyncStatusesResource:
+        return AsyncStatusesResource(self._client)
 
     @cached_property
-    def settings(self) -> AsyncSettings:
-        return AsyncSettings(self._client)
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncWaitingRoomsWithRawResponse:
-        return AsyncWaitingRoomsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncWaitingRoomsResourceWithRawResponse:
+        return AsyncWaitingRoomsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncWaitingRoomsWithStreamingResponse:
-        return AsyncWaitingRoomsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncWaitingRoomsResourceWithStreamingResponse:
+        return AsyncWaitingRoomsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -2560,8 +2560,8 @@ class AsyncWaitingRooms(AsyncAPIResource):
         )
 
 
-class WaitingRoomsWithRawResponse:
-    def __init__(self, waiting_rooms: WaitingRooms) -> None:
+class WaitingRoomsResourceWithRawResponse:
+    def __init__(self, waiting_rooms: WaitingRoomsResource) -> None:
         self._waiting_rooms = waiting_rooms
 
         self.create = to_raw_response_wrapper(
@@ -2584,28 +2584,28 @@ class WaitingRoomsWithRawResponse:
         )
 
     @cached_property
-    def page(self) -> PageWithRawResponse:
-        return PageWithRawResponse(self._waiting_rooms.page)
+    def page(self) -> PageResourceWithRawResponse:
+        return PageResourceWithRawResponse(self._waiting_rooms.page)
 
     @cached_property
-    def events(self) -> EventsWithRawResponse:
-        return EventsWithRawResponse(self._waiting_rooms.events)
+    def events(self) -> EventsResourceWithRawResponse:
+        return EventsResourceWithRawResponse(self._waiting_rooms.events)
 
     @cached_property
-    def rules(self) -> RulesWithRawResponse:
-        return RulesWithRawResponse(self._waiting_rooms.rules)
+    def rules(self) -> RulesResourceWithRawResponse:
+        return RulesResourceWithRawResponse(self._waiting_rooms.rules)
 
     @cached_property
-    def statuses(self) -> StatusesWithRawResponse:
-        return StatusesWithRawResponse(self._waiting_rooms.statuses)
+    def statuses(self) -> StatusesResourceWithRawResponse:
+        return StatusesResourceWithRawResponse(self._waiting_rooms.statuses)
 
     @cached_property
-    def settings(self) -> SettingsWithRawResponse:
-        return SettingsWithRawResponse(self._waiting_rooms.settings)
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._waiting_rooms.settings)
 
 
-class AsyncWaitingRoomsWithRawResponse:
-    def __init__(self, waiting_rooms: AsyncWaitingRooms) -> None:
+class AsyncWaitingRoomsResourceWithRawResponse:
+    def __init__(self, waiting_rooms: AsyncWaitingRoomsResource) -> None:
         self._waiting_rooms = waiting_rooms
 
         self.create = async_to_raw_response_wrapper(
@@ -2628,28 +2628,28 @@ class AsyncWaitingRoomsWithRawResponse:
         )
 
     @cached_property
-    def page(self) -> AsyncPageWithRawResponse:
-        return AsyncPageWithRawResponse(self._waiting_rooms.page)
+    def page(self) -> AsyncPageResourceWithRawResponse:
+        return AsyncPageResourceWithRawResponse(self._waiting_rooms.page)
 
     @cached_property
-    def events(self) -> AsyncEventsWithRawResponse:
-        return AsyncEventsWithRawResponse(self._waiting_rooms.events)
+    def events(self) -> AsyncEventsResourceWithRawResponse:
+        return AsyncEventsResourceWithRawResponse(self._waiting_rooms.events)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithRawResponse:
-        return AsyncRulesWithRawResponse(self._waiting_rooms.rules)
+    def rules(self) -> AsyncRulesResourceWithRawResponse:
+        return AsyncRulesResourceWithRawResponse(self._waiting_rooms.rules)
 
     @cached_property
-    def statuses(self) -> AsyncStatusesWithRawResponse:
-        return AsyncStatusesWithRawResponse(self._waiting_rooms.statuses)
+    def statuses(self) -> AsyncStatusesResourceWithRawResponse:
+        return AsyncStatusesResourceWithRawResponse(self._waiting_rooms.statuses)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithRawResponse:
-        return AsyncSettingsWithRawResponse(self._waiting_rooms.settings)
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._waiting_rooms.settings)
 
 
-class WaitingRoomsWithStreamingResponse:
-    def __init__(self, waiting_rooms: WaitingRooms) -> None:
+class WaitingRoomsResourceWithStreamingResponse:
+    def __init__(self, waiting_rooms: WaitingRoomsResource) -> None:
         self._waiting_rooms = waiting_rooms
 
         self.create = to_streamed_response_wrapper(
@@ -2672,28 +2672,28 @@ class WaitingRoomsWithStreamingResponse:
         )
 
     @cached_property
-    def page(self) -> PageWithStreamingResponse:
-        return PageWithStreamingResponse(self._waiting_rooms.page)
+    def page(self) -> PageResourceWithStreamingResponse:
+        return PageResourceWithStreamingResponse(self._waiting_rooms.page)
 
     @cached_property
-    def events(self) -> EventsWithStreamingResponse:
-        return EventsWithStreamingResponse(self._waiting_rooms.events)
+    def events(self) -> EventsResourceWithStreamingResponse:
+        return EventsResourceWithStreamingResponse(self._waiting_rooms.events)
 
     @cached_property
-    def rules(self) -> RulesWithStreamingResponse:
-        return RulesWithStreamingResponse(self._waiting_rooms.rules)
+    def rules(self) -> RulesResourceWithStreamingResponse:
+        return RulesResourceWithStreamingResponse(self._waiting_rooms.rules)
 
     @cached_property
-    def statuses(self) -> StatusesWithStreamingResponse:
-        return StatusesWithStreamingResponse(self._waiting_rooms.statuses)
+    def statuses(self) -> StatusesResourceWithStreamingResponse:
+        return StatusesResourceWithStreamingResponse(self._waiting_rooms.statuses)
 
     @cached_property
-    def settings(self) -> SettingsWithStreamingResponse:
-        return SettingsWithStreamingResponse(self._waiting_rooms.settings)
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._waiting_rooms.settings)
 
 
-class AsyncWaitingRoomsWithStreamingResponse:
-    def __init__(self, waiting_rooms: AsyncWaitingRooms) -> None:
+class AsyncWaitingRoomsResourceWithStreamingResponse:
+    def __init__(self, waiting_rooms: AsyncWaitingRoomsResource) -> None:
         self._waiting_rooms = waiting_rooms
 
         self.create = async_to_streamed_response_wrapper(
@@ -2716,21 +2716,21 @@ class AsyncWaitingRoomsWithStreamingResponse:
         )
 
     @cached_property
-    def page(self) -> AsyncPageWithStreamingResponse:
-        return AsyncPageWithStreamingResponse(self._waiting_rooms.page)
+    def page(self) -> AsyncPageResourceWithStreamingResponse:
+        return AsyncPageResourceWithStreamingResponse(self._waiting_rooms.page)
 
     @cached_property
-    def events(self) -> AsyncEventsWithStreamingResponse:
-        return AsyncEventsWithStreamingResponse(self._waiting_rooms.events)
+    def events(self) -> AsyncEventsResourceWithStreamingResponse:
+        return AsyncEventsResourceWithStreamingResponse(self._waiting_rooms.events)
 
     @cached_property
-    def rules(self) -> AsyncRulesWithStreamingResponse:
-        return AsyncRulesWithStreamingResponse(self._waiting_rooms.rules)
+    def rules(self) -> AsyncRulesResourceWithStreamingResponse:
+        return AsyncRulesResourceWithStreamingResponse(self._waiting_rooms.rules)
 
     @cached_property
-    def statuses(self) -> AsyncStatusesWithStreamingResponse:
-        return AsyncStatusesWithStreamingResponse(self._waiting_rooms.statuses)
+    def statuses(self) -> AsyncStatusesResourceWithStreamingResponse:
+        return AsyncStatusesResourceWithStreamingResponse(self._waiting_rooms.statuses)
 
     @cached_property
-    def settings(self) -> AsyncSettingsWithStreamingResponse:
-        return AsyncSettingsWithStreamingResponse(self._waiting_rooms.settings)
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._waiting_rooms.settings)

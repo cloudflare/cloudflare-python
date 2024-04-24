@@ -37,12 +37,12 @@ from ...._base_client import (
     make_request_options,
 )
 from .permission_groups import (
-    PermissionGroups,
-    AsyncPermissionGroups,
-    PermissionGroupsWithRawResponse,
-    AsyncPermissionGroupsWithRawResponse,
-    PermissionGroupsWithStreamingResponse,
-    AsyncPermissionGroupsWithStreamingResponse,
+    PermissionGroupsResource,
+    AsyncPermissionGroupsResource,
+    PermissionGroupsResourceWithRawResponse,
+    AsyncPermissionGroupsResourceWithRawResponse,
+    PermissionGroupsResourceWithStreamingResponse,
+    AsyncPermissionGroupsResourceWithStreamingResponse,
 )
 from ....types.user.policy_param import PolicyParam
 from ....types.user.token_get_response import TokenGetResponse
@@ -51,25 +51,25 @@ from ....types.user.token_delete_response import TokenDeleteResponse
 from ....types.user.token_update_response import TokenUpdateResponse
 from ....types.user.token_verify_response import TokenVerifyResponse
 
-__all__ = ["Tokens", "AsyncTokens"]
+__all__ = ["TokensResource", "AsyncTokensResource"]
 
 
-class Tokens(SyncAPIResource):
+class TokensResource(SyncAPIResource):
     @cached_property
-    def permission_groups(self) -> PermissionGroups:
-        return PermissionGroups(self._client)
+    def permission_groups(self) -> PermissionGroupsResource:
+        return PermissionGroupsResource(self._client)
 
     @cached_property
     def value(self) -> ValueResource:
         return ValueResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> TokensWithRawResponse:
-        return TokensWithRawResponse(self)
+    def with_raw_response(self) -> TokensResourceWithRawResponse:
+        return TokensResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TokensWithStreamingResponse:
-        return TokensWithStreamingResponse(self)
+    def with_streaming_response(self) -> TokensResourceWithStreamingResponse:
+        return TokensResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -349,22 +349,22 @@ class Tokens(SyncAPIResource):
         )
 
 
-class AsyncTokens(AsyncAPIResource):
+class AsyncTokensResource(AsyncAPIResource):
     @cached_property
-    def permission_groups(self) -> AsyncPermissionGroups:
-        return AsyncPermissionGroups(self._client)
+    def permission_groups(self) -> AsyncPermissionGroupsResource:
+        return AsyncPermissionGroupsResource(self._client)
 
     @cached_property
     def value(self) -> AsyncValueResource:
         return AsyncValueResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncTokensWithRawResponse:
-        return AsyncTokensWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTokensResourceWithRawResponse:
+        return AsyncTokensResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTokensWithStreamingResponse:
-        return AsyncTokensWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTokensResourceWithStreamingResponse:
+        return AsyncTokensResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -644,8 +644,8 @@ class AsyncTokens(AsyncAPIResource):
         )
 
 
-class TokensWithRawResponse:
-    def __init__(self, tokens: Tokens) -> None:
+class TokensResourceWithRawResponse:
+    def __init__(self, tokens: TokensResource) -> None:
         self._tokens = tokens
 
         self.create = to_raw_response_wrapper(
@@ -668,16 +668,16 @@ class TokensWithRawResponse:
         )
 
     @cached_property
-    def permission_groups(self) -> PermissionGroupsWithRawResponse:
-        return PermissionGroupsWithRawResponse(self._tokens.permission_groups)
+    def permission_groups(self) -> PermissionGroupsResourceWithRawResponse:
+        return PermissionGroupsResourceWithRawResponse(self._tokens.permission_groups)
 
     @cached_property
     def value(self) -> ValueResourceWithRawResponse:
         return ValueResourceWithRawResponse(self._tokens.value)
 
 
-class AsyncTokensWithRawResponse:
-    def __init__(self, tokens: AsyncTokens) -> None:
+class AsyncTokensResourceWithRawResponse:
+    def __init__(self, tokens: AsyncTokensResource) -> None:
         self._tokens = tokens
 
         self.create = async_to_raw_response_wrapper(
@@ -700,16 +700,16 @@ class AsyncTokensWithRawResponse:
         )
 
     @cached_property
-    def permission_groups(self) -> AsyncPermissionGroupsWithRawResponse:
-        return AsyncPermissionGroupsWithRawResponse(self._tokens.permission_groups)
+    def permission_groups(self) -> AsyncPermissionGroupsResourceWithRawResponse:
+        return AsyncPermissionGroupsResourceWithRawResponse(self._tokens.permission_groups)
 
     @cached_property
     def value(self) -> AsyncValueResourceWithRawResponse:
         return AsyncValueResourceWithRawResponse(self._tokens.value)
 
 
-class TokensWithStreamingResponse:
-    def __init__(self, tokens: Tokens) -> None:
+class TokensResourceWithStreamingResponse:
+    def __init__(self, tokens: TokensResource) -> None:
         self._tokens = tokens
 
         self.create = to_streamed_response_wrapper(
@@ -732,16 +732,16 @@ class TokensWithStreamingResponse:
         )
 
     @cached_property
-    def permission_groups(self) -> PermissionGroupsWithStreamingResponse:
-        return PermissionGroupsWithStreamingResponse(self._tokens.permission_groups)
+    def permission_groups(self) -> PermissionGroupsResourceWithStreamingResponse:
+        return PermissionGroupsResourceWithStreamingResponse(self._tokens.permission_groups)
 
     @cached_property
     def value(self) -> ValueResourceWithStreamingResponse:
         return ValueResourceWithStreamingResponse(self._tokens.value)
 
 
-class AsyncTokensWithStreamingResponse:
-    def __init__(self, tokens: AsyncTokens) -> None:
+class AsyncTokensResourceWithStreamingResponse:
+    def __init__(self, tokens: AsyncTokensResource) -> None:
         self._tokens = tokens
 
         self.create = async_to_streamed_response_wrapper(
@@ -764,8 +764,8 @@ class AsyncTokensWithStreamingResponse:
         )
 
     @cached_property
-    def permission_groups(self) -> AsyncPermissionGroupsWithStreamingResponse:
-        return AsyncPermissionGroupsWithStreamingResponse(self._tokens.permission_groups)
+    def permission_groups(self) -> AsyncPermissionGroupsResourceWithStreamingResponse:
+        return AsyncPermissionGroupsResourceWithStreamingResponse(self._tokens.permission_groups)
 
     @cached_property
     def value(self) -> AsyncValueResourceWithStreamingResponse:

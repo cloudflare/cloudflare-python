@@ -3,79 +3,79 @@
 from __future__ import annotations
 
 from .projects import (
-    Projects,
-    AsyncProjects,
-    ProjectsWithRawResponse,
-    AsyncProjectsWithRawResponse,
-    ProjectsWithStreamingResponse,
-    AsyncProjectsWithStreamingResponse,
+    ProjectsResource,
+    AsyncProjectsResource,
+    ProjectsResourceWithRawResponse,
+    AsyncProjectsResourceWithRawResponse,
+    ProjectsResourceWithStreamingResponse,
+    AsyncProjectsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .projects.projects import Projects, AsyncProjects
+from .projects.projects import ProjectsResource, AsyncProjectsResource
 
-__all__ = ["Pages", "AsyncPages"]
+__all__ = ["PagesResource", "AsyncPagesResource"]
 
 
-class Pages(SyncAPIResource):
+class PagesResource(SyncAPIResource):
     @cached_property
-    def projects(self) -> Projects:
-        return Projects(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> PagesWithRawResponse:
-        return PagesWithRawResponse(self)
+    def projects(self) -> ProjectsResource:
+        return ProjectsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> PagesWithStreamingResponse:
-        return PagesWithStreamingResponse(self)
-
-
-class AsyncPages(AsyncAPIResource):
-    @cached_property
-    def projects(self) -> AsyncProjects:
-        return AsyncProjects(self._client)
+    def with_raw_response(self) -> PagesResourceWithRawResponse:
+        return PagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncPagesWithRawResponse:
-        return AsyncPagesWithRawResponse(self)
+    def with_streaming_response(self) -> PagesResourceWithStreamingResponse:
+        return PagesResourceWithStreamingResponse(self)
+
+
+class AsyncPagesResource(AsyncAPIResource):
+    @cached_property
+    def projects(self) -> AsyncProjectsResource:
+        return AsyncProjectsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPagesWithStreamingResponse:
-        return AsyncPagesWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncPagesResourceWithRawResponse:
+        return AsyncPagesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncPagesResourceWithStreamingResponse:
+        return AsyncPagesResourceWithStreamingResponse(self)
 
 
-class PagesWithRawResponse:
-    def __init__(self, pages: Pages) -> None:
+class PagesResourceWithRawResponse:
+    def __init__(self, pages: PagesResource) -> None:
         self._pages = pages
 
     @cached_property
-    def projects(self) -> ProjectsWithRawResponse:
-        return ProjectsWithRawResponse(self._pages.projects)
+    def projects(self) -> ProjectsResourceWithRawResponse:
+        return ProjectsResourceWithRawResponse(self._pages.projects)
 
 
-class AsyncPagesWithRawResponse:
-    def __init__(self, pages: AsyncPages) -> None:
+class AsyncPagesResourceWithRawResponse:
+    def __init__(self, pages: AsyncPagesResource) -> None:
         self._pages = pages
 
     @cached_property
-    def projects(self) -> AsyncProjectsWithRawResponse:
-        return AsyncProjectsWithRawResponse(self._pages.projects)
+    def projects(self) -> AsyncProjectsResourceWithRawResponse:
+        return AsyncProjectsResourceWithRawResponse(self._pages.projects)
 
 
-class PagesWithStreamingResponse:
-    def __init__(self, pages: Pages) -> None:
+class PagesResourceWithStreamingResponse:
+    def __init__(self, pages: PagesResource) -> None:
         self._pages = pages
 
     @cached_property
-    def projects(self) -> ProjectsWithStreamingResponse:
-        return ProjectsWithStreamingResponse(self._pages.projects)
+    def projects(self) -> ProjectsResourceWithStreamingResponse:
+        return ProjectsResourceWithStreamingResponse(self._pages.projects)
 
 
-class AsyncPagesWithStreamingResponse:
-    def __init__(self, pages: AsyncPages) -> None:
+class AsyncPagesResourceWithStreamingResponse:
+    def __init__(self, pages: AsyncPagesResource) -> None:
         self._pages = pages
 
     @cached_property
-    def projects(self) -> AsyncProjectsWithStreamingResponse:
-        return AsyncProjectsWithStreamingResponse(self._pages.projects)
+    def projects(self) -> AsyncProjectsResourceWithStreamingResponse:
+        return AsyncProjectsResourceWithStreamingResponse(self._pages.projects)

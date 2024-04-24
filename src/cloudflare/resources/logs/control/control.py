@@ -3,112 +3,112 @@
 from __future__ import annotations
 
 from .cmb import (
-    Cmb,
-    AsyncCmb,
-    CmbWithRawResponse,
-    AsyncCmbWithRawResponse,
-    CmbWithStreamingResponse,
-    AsyncCmbWithStreamingResponse,
+    CmbResource,
+    AsyncCmbResource,
+    CmbResourceWithRawResponse,
+    AsyncCmbResourceWithRawResponse,
+    CmbResourceWithStreamingResponse,
+    AsyncCmbResourceWithStreamingResponse,
 )
-from .cmb.cmb import Cmb, AsyncCmb
+from .cmb.cmb import CmbResource, AsyncCmbResource
 from .retention import (
-    Retention,
-    AsyncRetention,
-    RetentionWithRawResponse,
-    AsyncRetentionWithRawResponse,
-    RetentionWithStreamingResponse,
-    AsyncRetentionWithStreamingResponse,
+    RetentionResource,
+    AsyncRetentionResource,
+    RetentionResourceWithRawResponse,
+    AsyncRetentionResourceWithRawResponse,
+    RetentionResourceWithStreamingResponse,
+    AsyncRetentionResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .retention.retention import Retention, AsyncRetention
+from .retention.retention import RetentionResource, AsyncRetentionResource
 
-__all__ = ["Control", "AsyncControl"]
+__all__ = ["ControlResource", "AsyncControlResource"]
 
 
-class Control(SyncAPIResource):
+class ControlResource(SyncAPIResource):
     @cached_property
-    def retention(self) -> Retention:
-        return Retention(self._client)
-
-    @cached_property
-    def cmb(self) -> Cmb:
-        return Cmb(self._client)
+    def retention(self) -> RetentionResource:
+        return RetentionResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> ControlWithRawResponse:
-        return ControlWithRawResponse(self)
+    def cmb(self) -> CmbResource:
+        return CmbResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ControlWithStreamingResponse:
-        return ControlWithStreamingResponse(self)
-
-
-class AsyncControl(AsyncAPIResource):
-    @cached_property
-    def retention(self) -> AsyncRetention:
-        return AsyncRetention(self._client)
+    def with_raw_response(self) -> ControlResourceWithRawResponse:
+        return ControlResourceWithRawResponse(self)
 
     @cached_property
-    def cmb(self) -> AsyncCmb:
-        return AsyncCmb(self._client)
+    def with_streaming_response(self) -> ControlResourceWithStreamingResponse:
+        return ControlResourceWithStreamingResponse(self)
+
+
+class AsyncControlResource(AsyncAPIResource):
+    @cached_property
+    def retention(self) -> AsyncRetentionResource:
+        return AsyncRetentionResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncControlWithRawResponse:
-        return AsyncControlWithRawResponse(self)
+    def cmb(self) -> AsyncCmbResource:
+        return AsyncCmbResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncControlWithStreamingResponse:
-        return AsyncControlWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncControlResourceWithRawResponse:
+        return AsyncControlResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncControlResourceWithStreamingResponse:
+        return AsyncControlResourceWithStreamingResponse(self)
 
 
-class ControlWithRawResponse:
-    def __init__(self, control: Control) -> None:
+class ControlResourceWithRawResponse:
+    def __init__(self, control: ControlResource) -> None:
         self._control = control
 
     @cached_property
-    def retention(self) -> RetentionWithRawResponse:
-        return RetentionWithRawResponse(self._control.retention)
+    def retention(self) -> RetentionResourceWithRawResponse:
+        return RetentionResourceWithRawResponse(self._control.retention)
 
     @cached_property
-    def cmb(self) -> CmbWithRawResponse:
-        return CmbWithRawResponse(self._control.cmb)
+    def cmb(self) -> CmbResourceWithRawResponse:
+        return CmbResourceWithRawResponse(self._control.cmb)
 
 
-class AsyncControlWithRawResponse:
-    def __init__(self, control: AsyncControl) -> None:
+class AsyncControlResourceWithRawResponse:
+    def __init__(self, control: AsyncControlResource) -> None:
         self._control = control
 
     @cached_property
-    def retention(self) -> AsyncRetentionWithRawResponse:
-        return AsyncRetentionWithRawResponse(self._control.retention)
+    def retention(self) -> AsyncRetentionResourceWithRawResponse:
+        return AsyncRetentionResourceWithRawResponse(self._control.retention)
 
     @cached_property
-    def cmb(self) -> AsyncCmbWithRawResponse:
-        return AsyncCmbWithRawResponse(self._control.cmb)
+    def cmb(self) -> AsyncCmbResourceWithRawResponse:
+        return AsyncCmbResourceWithRawResponse(self._control.cmb)
 
 
-class ControlWithStreamingResponse:
-    def __init__(self, control: Control) -> None:
+class ControlResourceWithStreamingResponse:
+    def __init__(self, control: ControlResource) -> None:
         self._control = control
 
     @cached_property
-    def retention(self) -> RetentionWithStreamingResponse:
-        return RetentionWithStreamingResponse(self._control.retention)
+    def retention(self) -> RetentionResourceWithStreamingResponse:
+        return RetentionResourceWithStreamingResponse(self._control.retention)
 
     @cached_property
-    def cmb(self) -> CmbWithStreamingResponse:
-        return CmbWithStreamingResponse(self._control.cmb)
+    def cmb(self) -> CmbResourceWithStreamingResponse:
+        return CmbResourceWithStreamingResponse(self._control.cmb)
 
 
-class AsyncControlWithStreamingResponse:
-    def __init__(self, control: AsyncControl) -> None:
+class AsyncControlResourceWithStreamingResponse:
+    def __init__(self, control: AsyncControlResource) -> None:
         self._control = control
 
     @cached_property
-    def retention(self) -> AsyncRetentionWithStreamingResponse:
-        return AsyncRetentionWithStreamingResponse(self._control.retention)
+    def retention(self) -> AsyncRetentionResourceWithStreamingResponse:
+        return AsyncRetentionResourceWithStreamingResponse(self._control.retention)
 
     @cached_property
-    def cmb(self) -> AsyncCmbWithStreamingResponse:
-        return AsyncCmbWithStreamingResponse(self._control.cmb)
+    def cmb(self) -> AsyncCmbResourceWithStreamingResponse:
+        return AsyncCmbResourceWithStreamingResponse(self._control.cmb)

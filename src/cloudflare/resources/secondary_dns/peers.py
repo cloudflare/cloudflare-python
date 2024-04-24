@@ -29,17 +29,17 @@ from ...types.secondary_dns import peer_create_params, peer_delete_params, peer_
 from ...types.secondary_dns.peer import Peer
 from ...types.secondary_dns.peer_delete_response import PeerDeleteResponse
 
-__all__ = ["Peers", "AsyncPeers"]
+__all__ = ["PeersResource", "AsyncPeersResource"]
 
 
-class Peers(SyncAPIResource):
+class PeersResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PeersWithRawResponse:
-        return PeersWithRawResponse(self)
+    def with_raw_response(self) -> PeersResourceWithRawResponse:
+        return PeersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PeersWithStreamingResponse:
-        return PeersWithStreamingResponse(self)
+    def with_streaming_response(self) -> PeersResourceWithStreamingResponse:
+        return PeersResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -268,14 +268,14 @@ class Peers(SyncAPIResource):
         )
 
 
-class AsyncPeers(AsyncAPIResource):
+class AsyncPeersResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPeersWithRawResponse:
-        return AsyncPeersWithRawResponse(self)
+    def with_raw_response(self) -> AsyncPeersResourceWithRawResponse:
+        return AsyncPeersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPeersWithStreamingResponse:
-        return AsyncPeersWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncPeersResourceWithStreamingResponse:
+        return AsyncPeersResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -504,8 +504,8 @@ class AsyncPeers(AsyncAPIResource):
         )
 
 
-class PeersWithRawResponse:
-    def __init__(self, peers: Peers) -> None:
+class PeersResourceWithRawResponse:
+    def __init__(self, peers: PeersResource) -> None:
         self._peers = peers
 
         self.create = to_raw_response_wrapper(
@@ -525,8 +525,8 @@ class PeersWithRawResponse:
         )
 
 
-class AsyncPeersWithRawResponse:
-    def __init__(self, peers: AsyncPeers) -> None:
+class AsyncPeersResourceWithRawResponse:
+    def __init__(self, peers: AsyncPeersResource) -> None:
         self._peers = peers
 
         self.create = async_to_raw_response_wrapper(
@@ -546,8 +546,8 @@ class AsyncPeersWithRawResponse:
         )
 
 
-class PeersWithStreamingResponse:
-    def __init__(self, peers: Peers) -> None:
+class PeersResourceWithStreamingResponse:
+    def __init__(self, peers: PeersResource) -> None:
         self._peers = peers
 
         self.create = to_streamed_response_wrapper(
@@ -567,8 +567,8 @@ class PeersWithStreamingResponse:
         )
 
 
-class AsyncPeersWithStreamingResponse:
-    def __init__(self, peers: AsyncPeers) -> None:
+class AsyncPeersResourceWithStreamingResponse:
+    def __init__(self, peers: AsyncPeersResource) -> None:
         self._peers = peers
 
         self.create = async_to_streamed_response_wrapper(

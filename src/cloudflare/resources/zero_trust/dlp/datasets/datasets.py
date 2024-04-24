@@ -7,12 +7,12 @@ from typing import Type, Optional, cast
 import httpx
 
 from .upload import (
-    Upload,
-    AsyncUpload,
-    UploadWithRawResponse,
-    AsyncUploadWithRawResponse,
-    UploadWithStreamingResponse,
-    AsyncUploadWithStreamingResponse,
+    UploadResource,
+    AsyncUploadResource,
+    UploadResourceWithRawResponse,
+    AsyncUploadResourceWithRawResponse,
+    UploadResourceWithStreamingResponse,
+    AsyncUploadResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ....._utils import (
@@ -37,21 +37,21 @@ from .....types.zero_trust.dlp import dataset_create_params, dataset_update_para
 from .....types.zero_trust.dlp.dataset import Dataset
 from .....types.zero_trust.dlp.dataset_creation import DatasetCreation
 
-__all__ = ["Datasets", "AsyncDatasets"]
+__all__ = ["DatasetsResource", "AsyncDatasetsResource"]
 
 
-class Datasets(SyncAPIResource):
+class DatasetsResource(SyncAPIResource):
     @cached_property
-    def upload(self) -> Upload:
-        return Upload(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> DatasetsWithRawResponse:
-        return DatasetsWithRawResponse(self)
+    def upload(self) -> UploadResource:
+        return UploadResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> DatasetsWithStreamingResponse:
-        return DatasetsWithStreamingResponse(self)
+    def with_raw_response(self) -> DatasetsResourceWithRawResponse:
+        return DatasetsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> DatasetsResourceWithStreamingResponse:
+        return DatasetsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -269,18 +269,18 @@ class Datasets(SyncAPIResource):
         )
 
 
-class AsyncDatasets(AsyncAPIResource):
+class AsyncDatasetsResource(AsyncAPIResource):
     @cached_property
-    def upload(self) -> AsyncUpload:
-        return AsyncUpload(self._client)
+    def upload(self) -> AsyncUploadResource:
+        return AsyncUploadResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDatasetsWithRawResponse:
-        return AsyncDatasetsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
+        return AsyncDatasetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDatasetsWithStreamingResponse:
-        return AsyncDatasetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDatasetsResourceWithStreamingResponse:
+        return AsyncDatasetsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -498,8 +498,8 @@ class AsyncDatasets(AsyncAPIResource):
         )
 
 
-class DatasetsWithRawResponse:
-    def __init__(self, datasets: Datasets) -> None:
+class DatasetsResourceWithRawResponse:
+    def __init__(self, datasets: DatasetsResource) -> None:
         self._datasets = datasets
 
         self.create = to_raw_response_wrapper(
@@ -519,12 +519,12 @@ class DatasetsWithRawResponse:
         )
 
     @cached_property
-    def upload(self) -> UploadWithRawResponse:
-        return UploadWithRawResponse(self._datasets.upload)
+    def upload(self) -> UploadResourceWithRawResponse:
+        return UploadResourceWithRawResponse(self._datasets.upload)
 
 
-class AsyncDatasetsWithRawResponse:
-    def __init__(self, datasets: AsyncDatasets) -> None:
+class AsyncDatasetsResourceWithRawResponse:
+    def __init__(self, datasets: AsyncDatasetsResource) -> None:
         self._datasets = datasets
 
         self.create = async_to_raw_response_wrapper(
@@ -544,12 +544,12 @@ class AsyncDatasetsWithRawResponse:
         )
 
     @cached_property
-    def upload(self) -> AsyncUploadWithRawResponse:
-        return AsyncUploadWithRawResponse(self._datasets.upload)
+    def upload(self) -> AsyncUploadResourceWithRawResponse:
+        return AsyncUploadResourceWithRawResponse(self._datasets.upload)
 
 
-class DatasetsWithStreamingResponse:
-    def __init__(self, datasets: Datasets) -> None:
+class DatasetsResourceWithStreamingResponse:
+    def __init__(self, datasets: DatasetsResource) -> None:
         self._datasets = datasets
 
         self.create = to_streamed_response_wrapper(
@@ -569,12 +569,12 @@ class DatasetsWithStreamingResponse:
         )
 
     @cached_property
-    def upload(self) -> UploadWithStreamingResponse:
-        return UploadWithStreamingResponse(self._datasets.upload)
+    def upload(self) -> UploadResourceWithStreamingResponse:
+        return UploadResourceWithStreamingResponse(self._datasets.upload)
 
 
-class AsyncDatasetsWithStreamingResponse:
-    def __init__(self, datasets: AsyncDatasets) -> None:
+class AsyncDatasetsResourceWithStreamingResponse:
+    def __init__(self, datasets: AsyncDatasetsResource) -> None:
         self._datasets = datasets
 
         self.create = async_to_streamed_response_wrapper(
@@ -594,5 +594,5 @@ class AsyncDatasetsWithStreamingResponse:
         )
 
     @cached_property
-    def upload(self) -> AsyncUploadWithStreamingResponse:
-        return AsyncUploadWithStreamingResponse(self._datasets.upload)
+    def upload(self) -> AsyncUploadResourceWithStreamingResponse:
+        return AsyncUploadResourceWithStreamingResponse(self._datasets.upload)

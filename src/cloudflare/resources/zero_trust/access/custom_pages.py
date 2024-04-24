@@ -31,17 +31,17 @@ from ....types.zero_trust.access.custom_page import CustomPage
 from ....types.zero_trust.access.custom_page_without_html import CustomPageWithoutHTML
 from ....types.zero_trust.access.custom_page_delete_response import CustomPageDeleteResponse
 
-__all__ = ["CustomPages", "AsyncCustomPages"]
+__all__ = ["CustomPagesResource", "AsyncCustomPagesResource"]
 
 
-class CustomPages(SyncAPIResource):
+class CustomPagesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CustomPagesWithRawResponse:
-        return CustomPagesWithRawResponse(self)
+    def with_raw_response(self) -> CustomPagesResourceWithRawResponse:
+        return CustomPagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CustomPagesWithStreamingResponse:
-        return CustomPagesWithStreamingResponse(self)
+    def with_streaming_response(self) -> CustomPagesResourceWithStreamingResponse:
+        return CustomPagesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -293,14 +293,14 @@ class CustomPages(SyncAPIResource):
         )
 
 
-class AsyncCustomPages(AsyncAPIResource):
+class AsyncCustomPagesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCustomPagesWithRawResponse:
-        return AsyncCustomPagesWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCustomPagesResourceWithRawResponse:
+        return AsyncCustomPagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCustomPagesWithStreamingResponse:
-        return AsyncCustomPagesWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCustomPagesResourceWithStreamingResponse:
+        return AsyncCustomPagesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -552,8 +552,8 @@ class AsyncCustomPages(AsyncAPIResource):
         )
 
 
-class CustomPagesWithRawResponse:
-    def __init__(self, custom_pages: CustomPages) -> None:
+class CustomPagesResourceWithRawResponse:
+    def __init__(self, custom_pages: CustomPagesResource) -> None:
         self._custom_pages = custom_pages
 
         self.create = to_raw_response_wrapper(
@@ -573,8 +573,8 @@ class CustomPagesWithRawResponse:
         )
 
 
-class AsyncCustomPagesWithRawResponse:
-    def __init__(self, custom_pages: AsyncCustomPages) -> None:
+class AsyncCustomPagesResourceWithRawResponse:
+    def __init__(self, custom_pages: AsyncCustomPagesResource) -> None:
         self._custom_pages = custom_pages
 
         self.create = async_to_raw_response_wrapper(
@@ -594,8 +594,8 @@ class AsyncCustomPagesWithRawResponse:
         )
 
 
-class CustomPagesWithStreamingResponse:
-    def __init__(self, custom_pages: CustomPages) -> None:
+class CustomPagesResourceWithStreamingResponse:
+    def __init__(self, custom_pages: CustomPagesResource) -> None:
         self._custom_pages = custom_pages
 
         self.create = to_streamed_response_wrapper(
@@ -615,8 +615,8 @@ class CustomPagesWithStreamingResponse:
         )
 
 
-class AsyncCustomPagesWithStreamingResponse:
-    def __init__(self, custom_pages: AsyncCustomPages) -> None:
+class AsyncCustomPagesResourceWithStreamingResponse:
+    def __init__(self, custom_pages: AsyncCustomPagesResource) -> None:
         self._custom_pages = custom_pages
 
         self.create = async_to_streamed_response_wrapper(

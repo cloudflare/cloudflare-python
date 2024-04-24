@@ -17,17 +17,17 @@ from ....._base_client import (
     make_request_options,
 )
 
-__all__ = ["Vtt", "AsyncVtt"]
+__all__ = ["VttResource", "AsyncVttResource"]
 
 
-class Vtt(SyncAPIResource):
+class VttResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> VttWithRawResponse:
-        return VttWithRawResponse(self)
+    def with_raw_response(self) -> VttResourceWithRawResponse:
+        return VttResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> VttWithStreamingResponse:
-        return VttWithStreamingResponse(self)
+    def with_streaming_response(self) -> VttResourceWithStreamingResponse:
+        return VttResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -76,14 +76,14 @@ class Vtt(SyncAPIResource):
         )
 
 
-class AsyncVtt(AsyncAPIResource):
+class AsyncVttResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncVttWithRawResponse:
-        return AsyncVttWithRawResponse(self)
+    def with_raw_response(self) -> AsyncVttResourceWithRawResponse:
+        return AsyncVttResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVttWithStreamingResponse:
-        return AsyncVttWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncVttResourceWithStreamingResponse:
+        return AsyncVttResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -132,8 +132,8 @@ class AsyncVtt(AsyncAPIResource):
         )
 
 
-class VttWithRawResponse:
-    def __init__(self, vtt: Vtt) -> None:
+class VttResourceWithRawResponse:
+    def __init__(self, vtt: VttResource) -> None:
         self._vtt = vtt
 
         self.get = to_raw_response_wrapper(
@@ -141,8 +141,8 @@ class VttWithRawResponse:
         )
 
 
-class AsyncVttWithRawResponse:
-    def __init__(self, vtt: AsyncVtt) -> None:
+class AsyncVttResourceWithRawResponse:
+    def __init__(self, vtt: AsyncVttResource) -> None:
         self._vtt = vtt
 
         self.get = async_to_raw_response_wrapper(
@@ -150,8 +150,8 @@ class AsyncVttWithRawResponse:
         )
 
 
-class VttWithStreamingResponse:
-    def __init__(self, vtt: Vtt) -> None:
+class VttResourceWithStreamingResponse:
+    def __init__(self, vtt: VttResource) -> None:
         self._vtt = vtt
 
         self.get = to_streamed_response_wrapper(
@@ -159,8 +159,8 @@ class VttWithStreamingResponse:
         )
 
 
-class AsyncVttWithStreamingResponse:
-    def __init__(self, vtt: AsyncVtt) -> None:
+class AsyncVttResourceWithStreamingResponse:
+    def __init__(self, vtt: AsyncVttResource) -> None:
         self._vtt = vtt
 
         self.get = async_to_streamed_response_wrapper(

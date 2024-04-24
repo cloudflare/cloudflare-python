@@ -14,12 +14,12 @@ from ....._utils import (
 )
 from ....._compat import cached_property
 from .percentiles import (
-    Percentiles,
-    AsyncPercentiles,
-    PercentilesWithRawResponse,
-    AsyncPercentilesWithRawResponse,
-    PercentilesWithStreamingResponse,
-    AsyncPercentilesWithStreamingResponse,
+    PercentilesResource,
+    AsyncPercentilesResource,
+    PercentilesResourceWithRawResponse,
+    AsyncPercentilesResourceWithRawResponse,
+    PercentilesResourceWithStreamingResponse,
+    AsyncPercentilesResourceWithStreamingResponse,
 )
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -35,21 +35,21 @@ from ....._base_client import (
 from .....types.zero_trust.dex import http_test_get_params
 from .....types.zero_trust.dex.http_details import HTTPDetails
 
-__all__ = ["HTTPTests", "AsyncHTTPTests"]
+__all__ = ["HTTPTestsResource", "AsyncHTTPTestsResource"]
 
 
-class HTTPTests(SyncAPIResource):
+class HTTPTestsResource(SyncAPIResource):
     @cached_property
-    def percentiles(self) -> Percentiles:
-        return Percentiles(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> HTTPTestsWithRawResponse:
-        return HTTPTestsWithRawResponse(self)
+    def percentiles(self) -> PercentilesResource:
+        return PercentilesResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> HTTPTestsWithStreamingResponse:
-        return HTTPTestsWithStreamingResponse(self)
+    def with_raw_response(self) -> HTTPTestsResourceWithRawResponse:
+        return HTTPTestsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> HTTPTestsResourceWithStreamingResponse:
+        return HTTPTestsResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -122,18 +122,18 @@ class HTTPTests(SyncAPIResource):
         )
 
 
-class AsyncHTTPTests(AsyncAPIResource):
+class AsyncHTTPTestsResource(AsyncAPIResource):
     @cached_property
-    def percentiles(self) -> AsyncPercentiles:
-        return AsyncPercentiles(self._client)
+    def percentiles(self) -> AsyncPercentilesResource:
+        return AsyncPercentilesResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncHTTPTestsWithRawResponse:
-        return AsyncHTTPTestsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHTTPTestsResourceWithRawResponse:
+        return AsyncHTTPTestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHTTPTestsWithStreamingResponse:
-        return AsyncHTTPTestsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHTTPTestsResourceWithStreamingResponse:
+        return AsyncHTTPTestsResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -206,8 +206,8 @@ class AsyncHTTPTests(AsyncAPIResource):
         )
 
 
-class HTTPTestsWithRawResponse:
-    def __init__(self, http_tests: HTTPTests) -> None:
+class HTTPTestsResourceWithRawResponse:
+    def __init__(self, http_tests: HTTPTestsResource) -> None:
         self._http_tests = http_tests
 
         self.get = to_raw_response_wrapper(
@@ -215,12 +215,12 @@ class HTTPTestsWithRawResponse:
         )
 
     @cached_property
-    def percentiles(self) -> PercentilesWithRawResponse:
-        return PercentilesWithRawResponse(self._http_tests.percentiles)
+    def percentiles(self) -> PercentilesResourceWithRawResponse:
+        return PercentilesResourceWithRawResponse(self._http_tests.percentiles)
 
 
-class AsyncHTTPTestsWithRawResponse:
-    def __init__(self, http_tests: AsyncHTTPTests) -> None:
+class AsyncHTTPTestsResourceWithRawResponse:
+    def __init__(self, http_tests: AsyncHTTPTestsResource) -> None:
         self._http_tests = http_tests
 
         self.get = async_to_raw_response_wrapper(
@@ -228,12 +228,12 @@ class AsyncHTTPTestsWithRawResponse:
         )
 
     @cached_property
-    def percentiles(self) -> AsyncPercentilesWithRawResponse:
-        return AsyncPercentilesWithRawResponse(self._http_tests.percentiles)
+    def percentiles(self) -> AsyncPercentilesResourceWithRawResponse:
+        return AsyncPercentilesResourceWithRawResponse(self._http_tests.percentiles)
 
 
-class HTTPTestsWithStreamingResponse:
-    def __init__(self, http_tests: HTTPTests) -> None:
+class HTTPTestsResourceWithStreamingResponse:
+    def __init__(self, http_tests: HTTPTestsResource) -> None:
         self._http_tests = http_tests
 
         self.get = to_streamed_response_wrapper(
@@ -241,12 +241,12 @@ class HTTPTestsWithStreamingResponse:
         )
 
     @cached_property
-    def percentiles(self) -> PercentilesWithStreamingResponse:
-        return PercentilesWithStreamingResponse(self._http_tests.percentiles)
+    def percentiles(self) -> PercentilesResourceWithStreamingResponse:
+        return PercentilesResourceWithStreamingResponse(self._http_tests.percentiles)
 
 
-class AsyncHTTPTestsWithStreamingResponse:
-    def __init__(self, http_tests: AsyncHTTPTests) -> None:
+class AsyncHTTPTestsResourceWithStreamingResponse:
+    def __init__(self, http_tests: AsyncHTTPTestsResource) -> None:
         self._http_tests = http_tests
 
         self.get = async_to_streamed_response_wrapper(
@@ -254,5 +254,5 @@ class AsyncHTTPTestsWithStreamingResponse:
         )
 
     @cached_property
-    def percentiles(self) -> AsyncPercentilesWithStreamingResponse:
-        return AsyncPercentilesWithStreamingResponse(self._http_tests.percentiles)
+    def percentiles(self) -> AsyncPercentilesResourceWithStreamingResponse:
+        return AsyncPercentilesResourceWithStreamingResponse(self._http_tests.percentiles)

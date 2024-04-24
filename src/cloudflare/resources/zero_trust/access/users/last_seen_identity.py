@@ -21,17 +21,17 @@ from ....._base_client import (
 )
 from .....types.zero_trust.access.users.identity import Identity
 
-__all__ = ["LastSeenIdentity", "AsyncLastSeenIdentity"]
+__all__ = ["LastSeenIdentityResource", "AsyncLastSeenIdentityResource"]
 
 
-class LastSeenIdentity(SyncAPIResource):
+class LastSeenIdentityResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> LastSeenIdentityWithRawResponse:
-        return LastSeenIdentityWithRawResponse(self)
+    def with_raw_response(self) -> LastSeenIdentityResourceWithRawResponse:
+        return LastSeenIdentityResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> LastSeenIdentityWithStreamingResponse:
-        return LastSeenIdentityWithStreamingResponse(self)
+    def with_streaming_response(self) -> LastSeenIdentityResourceWithStreamingResponse:
+        return LastSeenIdentityResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -78,14 +78,14 @@ class LastSeenIdentity(SyncAPIResource):
         )
 
 
-class AsyncLastSeenIdentity(AsyncAPIResource):
+class AsyncLastSeenIdentityResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncLastSeenIdentityWithRawResponse:
-        return AsyncLastSeenIdentityWithRawResponse(self)
+    def with_raw_response(self) -> AsyncLastSeenIdentityResourceWithRawResponse:
+        return AsyncLastSeenIdentityResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLastSeenIdentityWithStreamingResponse:
-        return AsyncLastSeenIdentityWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncLastSeenIdentityResourceWithStreamingResponse:
+        return AsyncLastSeenIdentityResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -132,8 +132,8 @@ class AsyncLastSeenIdentity(AsyncAPIResource):
         )
 
 
-class LastSeenIdentityWithRawResponse:
-    def __init__(self, last_seen_identity: LastSeenIdentity) -> None:
+class LastSeenIdentityResourceWithRawResponse:
+    def __init__(self, last_seen_identity: LastSeenIdentityResource) -> None:
         self._last_seen_identity = last_seen_identity
 
         self.get = to_raw_response_wrapper(
@@ -141,8 +141,8 @@ class LastSeenIdentityWithRawResponse:
         )
 
 
-class AsyncLastSeenIdentityWithRawResponse:
-    def __init__(self, last_seen_identity: AsyncLastSeenIdentity) -> None:
+class AsyncLastSeenIdentityResourceWithRawResponse:
+    def __init__(self, last_seen_identity: AsyncLastSeenIdentityResource) -> None:
         self._last_seen_identity = last_seen_identity
 
         self.get = async_to_raw_response_wrapper(
@@ -150,8 +150,8 @@ class AsyncLastSeenIdentityWithRawResponse:
         )
 
 
-class LastSeenIdentityWithStreamingResponse:
-    def __init__(self, last_seen_identity: LastSeenIdentity) -> None:
+class LastSeenIdentityResourceWithStreamingResponse:
+    def __init__(self, last_seen_identity: LastSeenIdentityResource) -> None:
         self._last_seen_identity = last_seen_identity
 
         self.get = to_streamed_response_wrapper(
@@ -159,8 +159,8 @@ class LastSeenIdentityWithStreamingResponse:
         )
 
 
-class AsyncLastSeenIdentityWithStreamingResponse:
-    def __init__(self, last_seen_identity: AsyncLastSeenIdentity) -> None:
+class AsyncLastSeenIdentityResourceWithStreamingResponse:
+    def __init__(self, last_seen_identity: AsyncLastSeenIdentityResource) -> None:
         self._last_seen_identity = last_seen_identity
 
         self.get = async_to_streamed_response_wrapper(

@@ -3,207 +3,207 @@
 from __future__ import annotations
 
 from .edge import (
-    Edge,
-    AsyncEdge,
-    EdgeWithRawResponse,
-    AsyncEdgeWithRawResponse,
-    EdgeWithStreamingResponse,
-    AsyncEdgeWithStreamingResponse,
+    EdgeResource,
+    AsyncEdgeResource,
+    EdgeResourceWithRawResponse,
+    AsyncEdgeResourceWithRawResponse,
+    EdgeResourceWithStreamingResponse,
+    AsyncEdgeResourceWithStreamingResponse,
 )
 from .jobs import (
-    Jobs,
-    AsyncJobs,
-    JobsWithRawResponse,
-    AsyncJobsWithRawResponse,
-    JobsWithStreamingResponse,
-    AsyncJobsWithStreamingResponse,
+    JobsResource,
+    AsyncJobsResource,
+    JobsResourceWithRawResponse,
+    AsyncJobsResourceWithRawResponse,
+    JobsResourceWithStreamingResponse,
+    AsyncJobsResourceWithStreamingResponse,
 )
 from .datasets import (
-    Datasets,
-    AsyncDatasets,
-    DatasetsWithRawResponse,
-    AsyncDatasetsWithRawResponse,
-    DatasetsWithStreamingResponse,
-    AsyncDatasetsWithStreamingResponse,
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
 )
 from .validate import (
-    Validate,
-    AsyncValidate,
-    ValidateWithRawResponse,
-    AsyncValidateWithRawResponse,
-    ValidateWithStreamingResponse,
-    AsyncValidateWithStreamingResponse,
+    ValidateResource,
+    AsyncValidateResource,
+    ValidateResourceWithRawResponse,
+    AsyncValidateResourceWithRawResponse,
+    ValidateResourceWithStreamingResponse,
+    AsyncValidateResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .ownership import (
-    Ownership,
-    AsyncOwnership,
-    OwnershipWithRawResponse,
-    AsyncOwnershipWithRawResponse,
-    OwnershipWithStreamingResponse,
-    AsyncOwnershipWithStreamingResponse,
+    OwnershipResource,
+    AsyncOwnershipResource,
+    OwnershipResourceWithRawResponse,
+    AsyncOwnershipResourceWithRawResponse,
+    OwnershipResourceWithStreamingResponse,
+    AsyncOwnershipResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .datasets.datasets import Datasets, AsyncDatasets
+from .datasets.datasets import DatasetsResource, AsyncDatasetsResource
 
-__all__ = ["Logpush", "AsyncLogpush"]
+__all__ = ["LogpushResource", "AsyncLogpushResource"]
 
 
-class Logpush(SyncAPIResource):
+class LogpushResource(SyncAPIResource):
     @cached_property
-    def datasets(self) -> Datasets:
-        return Datasets(self._client)
-
-    @cached_property
-    def edge(self) -> Edge:
-        return Edge(self._client)
+    def datasets(self) -> DatasetsResource:
+        return DatasetsResource(self._client)
 
     @cached_property
-    def jobs(self) -> Jobs:
-        return Jobs(self._client)
+    def edge(self) -> EdgeResource:
+        return EdgeResource(self._client)
 
     @cached_property
-    def ownership(self) -> Ownership:
-        return Ownership(self._client)
+    def jobs(self) -> JobsResource:
+        return JobsResource(self._client)
 
     @cached_property
-    def validate(self) -> Validate:
-        return Validate(self._client)
+    def ownership(self) -> OwnershipResource:
+        return OwnershipResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> LogpushWithRawResponse:
-        return LogpushWithRawResponse(self)
+    def validate(self) -> ValidateResource:
+        return ValidateResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> LogpushWithStreamingResponse:
-        return LogpushWithStreamingResponse(self)
-
-
-class AsyncLogpush(AsyncAPIResource):
-    @cached_property
-    def datasets(self) -> AsyncDatasets:
-        return AsyncDatasets(self._client)
+    def with_raw_response(self) -> LogpushResourceWithRawResponse:
+        return LogpushResourceWithRawResponse(self)
 
     @cached_property
-    def edge(self) -> AsyncEdge:
-        return AsyncEdge(self._client)
+    def with_streaming_response(self) -> LogpushResourceWithStreamingResponse:
+        return LogpushResourceWithStreamingResponse(self)
+
+
+class AsyncLogpushResource(AsyncAPIResource):
+    @cached_property
+    def datasets(self) -> AsyncDatasetsResource:
+        return AsyncDatasetsResource(self._client)
 
     @cached_property
-    def jobs(self) -> AsyncJobs:
-        return AsyncJobs(self._client)
+    def edge(self) -> AsyncEdgeResource:
+        return AsyncEdgeResource(self._client)
 
     @cached_property
-    def ownership(self) -> AsyncOwnership:
-        return AsyncOwnership(self._client)
+    def jobs(self) -> AsyncJobsResource:
+        return AsyncJobsResource(self._client)
 
     @cached_property
-    def validate(self) -> AsyncValidate:
-        return AsyncValidate(self._client)
+    def ownership(self) -> AsyncOwnershipResource:
+        return AsyncOwnershipResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncLogpushWithRawResponse:
-        return AsyncLogpushWithRawResponse(self)
+    def validate(self) -> AsyncValidateResource:
+        return AsyncValidateResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncLogpushWithStreamingResponse:
-        return AsyncLogpushWithStreamingResponse(self)
+    def with_raw_response(self) -> AsyncLogpushResourceWithRawResponse:
+        return AsyncLogpushResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncLogpushResourceWithStreamingResponse:
+        return AsyncLogpushResourceWithStreamingResponse(self)
 
 
-class LogpushWithRawResponse:
-    def __init__(self, logpush: Logpush) -> None:
+class LogpushResourceWithRawResponse:
+    def __init__(self, logpush: LogpushResource) -> None:
         self._logpush = logpush
 
     @cached_property
-    def datasets(self) -> DatasetsWithRawResponse:
-        return DatasetsWithRawResponse(self._logpush.datasets)
+    def datasets(self) -> DatasetsResourceWithRawResponse:
+        return DatasetsResourceWithRawResponse(self._logpush.datasets)
 
     @cached_property
-    def edge(self) -> EdgeWithRawResponse:
-        return EdgeWithRawResponse(self._logpush.edge)
+    def edge(self) -> EdgeResourceWithRawResponse:
+        return EdgeResourceWithRawResponse(self._logpush.edge)
 
     @cached_property
-    def jobs(self) -> JobsWithRawResponse:
-        return JobsWithRawResponse(self._logpush.jobs)
+    def jobs(self) -> JobsResourceWithRawResponse:
+        return JobsResourceWithRawResponse(self._logpush.jobs)
 
     @cached_property
-    def ownership(self) -> OwnershipWithRawResponse:
-        return OwnershipWithRawResponse(self._logpush.ownership)
+    def ownership(self) -> OwnershipResourceWithRawResponse:
+        return OwnershipResourceWithRawResponse(self._logpush.ownership)
 
     @cached_property
-    def validate(self) -> ValidateWithRawResponse:
-        return ValidateWithRawResponse(self._logpush.validate)
+    def validate(self) -> ValidateResourceWithRawResponse:
+        return ValidateResourceWithRawResponse(self._logpush.validate)
 
 
-class AsyncLogpushWithRawResponse:
-    def __init__(self, logpush: AsyncLogpush) -> None:
+class AsyncLogpushResourceWithRawResponse:
+    def __init__(self, logpush: AsyncLogpushResource) -> None:
         self._logpush = logpush
 
     @cached_property
-    def datasets(self) -> AsyncDatasetsWithRawResponse:
-        return AsyncDatasetsWithRawResponse(self._logpush.datasets)
+    def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
+        return AsyncDatasetsResourceWithRawResponse(self._logpush.datasets)
 
     @cached_property
-    def edge(self) -> AsyncEdgeWithRawResponse:
-        return AsyncEdgeWithRawResponse(self._logpush.edge)
+    def edge(self) -> AsyncEdgeResourceWithRawResponse:
+        return AsyncEdgeResourceWithRawResponse(self._logpush.edge)
 
     @cached_property
-    def jobs(self) -> AsyncJobsWithRawResponse:
-        return AsyncJobsWithRawResponse(self._logpush.jobs)
+    def jobs(self) -> AsyncJobsResourceWithRawResponse:
+        return AsyncJobsResourceWithRawResponse(self._logpush.jobs)
 
     @cached_property
-    def ownership(self) -> AsyncOwnershipWithRawResponse:
-        return AsyncOwnershipWithRawResponse(self._logpush.ownership)
+    def ownership(self) -> AsyncOwnershipResourceWithRawResponse:
+        return AsyncOwnershipResourceWithRawResponse(self._logpush.ownership)
 
     @cached_property
-    def validate(self) -> AsyncValidateWithRawResponse:
-        return AsyncValidateWithRawResponse(self._logpush.validate)
+    def validate(self) -> AsyncValidateResourceWithRawResponse:
+        return AsyncValidateResourceWithRawResponse(self._logpush.validate)
 
 
-class LogpushWithStreamingResponse:
-    def __init__(self, logpush: Logpush) -> None:
+class LogpushResourceWithStreamingResponse:
+    def __init__(self, logpush: LogpushResource) -> None:
         self._logpush = logpush
 
     @cached_property
-    def datasets(self) -> DatasetsWithStreamingResponse:
-        return DatasetsWithStreamingResponse(self._logpush.datasets)
+    def datasets(self) -> DatasetsResourceWithStreamingResponse:
+        return DatasetsResourceWithStreamingResponse(self._logpush.datasets)
 
     @cached_property
-    def edge(self) -> EdgeWithStreamingResponse:
-        return EdgeWithStreamingResponse(self._logpush.edge)
+    def edge(self) -> EdgeResourceWithStreamingResponse:
+        return EdgeResourceWithStreamingResponse(self._logpush.edge)
 
     @cached_property
-    def jobs(self) -> JobsWithStreamingResponse:
-        return JobsWithStreamingResponse(self._logpush.jobs)
+    def jobs(self) -> JobsResourceWithStreamingResponse:
+        return JobsResourceWithStreamingResponse(self._logpush.jobs)
 
     @cached_property
-    def ownership(self) -> OwnershipWithStreamingResponse:
-        return OwnershipWithStreamingResponse(self._logpush.ownership)
+    def ownership(self) -> OwnershipResourceWithStreamingResponse:
+        return OwnershipResourceWithStreamingResponse(self._logpush.ownership)
 
     @cached_property
-    def validate(self) -> ValidateWithStreamingResponse:
-        return ValidateWithStreamingResponse(self._logpush.validate)
+    def validate(self) -> ValidateResourceWithStreamingResponse:
+        return ValidateResourceWithStreamingResponse(self._logpush.validate)
 
 
-class AsyncLogpushWithStreamingResponse:
-    def __init__(self, logpush: AsyncLogpush) -> None:
+class AsyncLogpushResourceWithStreamingResponse:
+    def __init__(self, logpush: AsyncLogpushResource) -> None:
         self._logpush = logpush
 
     @cached_property
-    def datasets(self) -> AsyncDatasetsWithStreamingResponse:
-        return AsyncDatasetsWithStreamingResponse(self._logpush.datasets)
+    def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:
+        return AsyncDatasetsResourceWithStreamingResponse(self._logpush.datasets)
 
     @cached_property
-    def edge(self) -> AsyncEdgeWithStreamingResponse:
-        return AsyncEdgeWithStreamingResponse(self._logpush.edge)
+    def edge(self) -> AsyncEdgeResourceWithStreamingResponse:
+        return AsyncEdgeResourceWithStreamingResponse(self._logpush.edge)
 
     @cached_property
-    def jobs(self) -> AsyncJobsWithStreamingResponse:
-        return AsyncJobsWithStreamingResponse(self._logpush.jobs)
+    def jobs(self) -> AsyncJobsResourceWithStreamingResponse:
+        return AsyncJobsResourceWithStreamingResponse(self._logpush.jobs)
 
     @cached_property
-    def ownership(self) -> AsyncOwnershipWithStreamingResponse:
-        return AsyncOwnershipWithStreamingResponse(self._logpush.ownership)
+    def ownership(self) -> AsyncOwnershipResourceWithStreamingResponse:
+        return AsyncOwnershipResourceWithStreamingResponse(self._logpush.ownership)
 
     @cached_property
-    def validate(self) -> AsyncValidateWithStreamingResponse:
-        return AsyncValidateWithStreamingResponse(self._logpush.validate)
+    def validate(self) -> AsyncValidateResourceWithStreamingResponse:
+        return AsyncValidateResourceWithStreamingResponse(self._logpush.validate)

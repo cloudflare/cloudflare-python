@@ -21,17 +21,17 @@ from ..._base_client import (
 )
 from ...types.alerting.available_alert_list_response import AvailableAlertListResponse
 
-__all__ = ["AvailableAlerts", "AsyncAvailableAlerts"]
+__all__ = ["AvailableAlertsResource", "AsyncAvailableAlertsResource"]
 
 
-class AvailableAlerts(SyncAPIResource):
+class AvailableAlertsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AvailableAlertsWithRawResponse:
-        return AvailableAlertsWithRawResponse(self)
+    def with_raw_response(self) -> AvailableAlertsResourceWithRawResponse:
+        return AvailableAlertsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AvailableAlertsWithStreamingResponse:
-        return AvailableAlertsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AvailableAlertsResourceWithStreamingResponse:
+        return AvailableAlertsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -78,14 +78,14 @@ class AvailableAlerts(SyncAPIResource):
         )
 
 
-class AsyncAvailableAlerts(AsyncAPIResource):
+class AsyncAvailableAlertsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAvailableAlertsWithRawResponse:
-        return AsyncAvailableAlertsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAvailableAlertsResourceWithRawResponse:
+        return AsyncAvailableAlertsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAvailableAlertsWithStreamingResponse:
-        return AsyncAvailableAlertsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAvailableAlertsResourceWithStreamingResponse:
+        return AsyncAvailableAlertsResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -132,8 +132,8 @@ class AsyncAvailableAlerts(AsyncAPIResource):
         )
 
 
-class AvailableAlertsWithRawResponse:
-    def __init__(self, available_alerts: AvailableAlerts) -> None:
+class AvailableAlertsResourceWithRawResponse:
+    def __init__(self, available_alerts: AvailableAlertsResource) -> None:
         self._available_alerts = available_alerts
 
         self.list = to_raw_response_wrapper(
@@ -141,8 +141,8 @@ class AvailableAlertsWithRawResponse:
         )
 
 
-class AsyncAvailableAlertsWithRawResponse:
-    def __init__(self, available_alerts: AsyncAvailableAlerts) -> None:
+class AsyncAvailableAlertsResourceWithRawResponse:
+    def __init__(self, available_alerts: AsyncAvailableAlertsResource) -> None:
         self._available_alerts = available_alerts
 
         self.list = async_to_raw_response_wrapper(
@@ -150,8 +150,8 @@ class AsyncAvailableAlertsWithRawResponse:
         )
 
 
-class AvailableAlertsWithStreamingResponse:
-    def __init__(self, available_alerts: AvailableAlerts) -> None:
+class AvailableAlertsResourceWithStreamingResponse:
+    def __init__(self, available_alerts: AvailableAlertsResource) -> None:
         self._available_alerts = available_alerts
 
         self.list = to_streamed_response_wrapper(
@@ -159,8 +159,8 @@ class AvailableAlertsWithStreamingResponse:
         )
 
 
-class AsyncAvailableAlertsWithStreamingResponse:
-    def __init__(self, available_alerts: AsyncAvailableAlerts) -> None:
+class AsyncAvailableAlertsResourceWithStreamingResponse:
+    def __init__(self, available_alerts: AsyncAvailableAlertsResource) -> None:
         self._available_alerts = available_alerts
 
         self.list = async_to_streamed_response_wrapper(

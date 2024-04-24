@@ -27,17 +27,17 @@ from ...._base_client import (
 from ....types.images.v2 import direct_upload_create_params
 from ....types.images.v2.direct_upload_create_response import DirectUploadCreateResponse
 
-__all__ = ["DirectUploads", "AsyncDirectUploads"]
+__all__ = ["DirectUploadsResource", "AsyncDirectUploadsResource"]
 
 
-class DirectUploads(SyncAPIResource):
+class DirectUploadsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DirectUploadsWithRawResponse:
-        return DirectUploadsWithRawResponse(self)
+    def with_raw_response(self) -> DirectUploadsResourceWithRawResponse:
+        return DirectUploadsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DirectUploadsWithStreamingResponse:
-        return DirectUploadsWithStreamingResponse(self)
+    def with_streaming_response(self) -> DirectUploadsResourceWithStreamingResponse:
+        return DirectUploadsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -111,14 +111,14 @@ class DirectUploads(SyncAPIResource):
         )
 
 
-class AsyncDirectUploads(AsyncAPIResource):
+class AsyncDirectUploadsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDirectUploadsWithRawResponse:
-        return AsyncDirectUploadsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncDirectUploadsResourceWithRawResponse:
+        return AsyncDirectUploadsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDirectUploadsWithStreamingResponse:
-        return AsyncDirectUploadsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDirectUploadsResourceWithStreamingResponse:
+        return AsyncDirectUploadsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -192,8 +192,8 @@ class AsyncDirectUploads(AsyncAPIResource):
         )
 
 
-class DirectUploadsWithRawResponse:
-    def __init__(self, direct_uploads: DirectUploads) -> None:
+class DirectUploadsResourceWithRawResponse:
+    def __init__(self, direct_uploads: DirectUploadsResource) -> None:
         self._direct_uploads = direct_uploads
 
         self.create = to_raw_response_wrapper(
@@ -201,8 +201,8 @@ class DirectUploadsWithRawResponse:
         )
 
 
-class AsyncDirectUploadsWithRawResponse:
-    def __init__(self, direct_uploads: AsyncDirectUploads) -> None:
+class AsyncDirectUploadsResourceWithRawResponse:
+    def __init__(self, direct_uploads: AsyncDirectUploadsResource) -> None:
         self._direct_uploads = direct_uploads
 
         self.create = async_to_raw_response_wrapper(
@@ -210,8 +210,8 @@ class AsyncDirectUploadsWithRawResponse:
         )
 
 
-class DirectUploadsWithStreamingResponse:
-    def __init__(self, direct_uploads: DirectUploads) -> None:
+class DirectUploadsResourceWithStreamingResponse:
+    def __init__(self, direct_uploads: DirectUploadsResource) -> None:
         self._direct_uploads = direct_uploads
 
         self.create = to_streamed_response_wrapper(
@@ -219,8 +219,8 @@ class DirectUploadsWithStreamingResponse:
         )
 
 
-class AsyncDirectUploadsWithStreamingResponse:
-    def __init__(self, direct_uploads: AsyncDirectUploads) -> None:
+class AsyncDirectUploadsResourceWithStreamingResponse:
+    def __init__(self, direct_uploads: AsyncDirectUploadsResource) -> None:
         self._direct_uploads = direct_uploads
 
         self.create = async_to_streamed_response_wrapper(

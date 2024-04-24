@@ -20,17 +20,17 @@ from ...._base_client import (
     make_request_options,
 )
 
-__all__ = ["Metadata", "AsyncMetadata"]
+__all__ = ["MetadataResource", "AsyncMetadataResource"]
 
 
-class Metadata(SyncAPIResource):
+class MetadataResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MetadataWithRawResponse:
-        return MetadataWithRawResponse(self)
+    def with_raw_response(self) -> MetadataResourceWithRawResponse:
+        return MetadataResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MetadataWithStreamingResponse:
-        return MetadataWithStreamingResponse(self)
+    def with_streaming_response(self) -> MetadataResourceWithStreamingResponse:
+        return MetadataResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -86,14 +86,14 @@ class Metadata(SyncAPIResource):
         )
 
 
-class AsyncMetadata(AsyncAPIResource):
+class AsyncMetadataResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMetadataWithRawResponse:
-        return AsyncMetadataWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMetadataResourceWithRawResponse:
+        return AsyncMetadataResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMetadataWithStreamingResponse:
-        return AsyncMetadataWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMetadataResourceWithStreamingResponse:
+        return AsyncMetadataResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -149,8 +149,8 @@ class AsyncMetadata(AsyncAPIResource):
         )
 
 
-class MetadataWithRawResponse:
-    def __init__(self, metadata: Metadata) -> None:
+class MetadataResourceWithRawResponse:
+    def __init__(self, metadata: MetadataResource) -> None:
         self._metadata = metadata
 
         self.get = to_raw_response_wrapper(
@@ -158,8 +158,8 @@ class MetadataWithRawResponse:
         )
 
 
-class AsyncMetadataWithRawResponse:
-    def __init__(self, metadata: AsyncMetadata) -> None:
+class AsyncMetadataResourceWithRawResponse:
+    def __init__(self, metadata: AsyncMetadataResource) -> None:
         self._metadata = metadata
 
         self.get = async_to_raw_response_wrapper(
@@ -167,8 +167,8 @@ class AsyncMetadataWithRawResponse:
         )
 
 
-class MetadataWithStreamingResponse:
-    def __init__(self, metadata: Metadata) -> None:
+class MetadataResourceWithStreamingResponse:
+    def __init__(self, metadata: MetadataResource) -> None:
         self._metadata = metadata
 
         self.get = to_streamed_response_wrapper(
@@ -176,8 +176,8 @@ class MetadataWithStreamingResponse:
         )
 
 
-class AsyncMetadataWithStreamingResponse:
-    def __init__(self, metadata: AsyncMetadata) -> None:
+class AsyncMetadataResourceWithStreamingResponse:
+    def __init__(self, metadata: AsyncMetadataResource) -> None:
         self._metadata = metadata
 
         self.get = async_to_streamed_response_wrapper(
