@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from .event import Event as Event
-from .setting import Setting as Setting
 from .waiting_room import WaitingRoom as WaitingRoom
 from .rule_edit_params import RuleEditParams as RuleEditParams
 from .additional_routes import AdditionalRoutes as AdditionalRoutes

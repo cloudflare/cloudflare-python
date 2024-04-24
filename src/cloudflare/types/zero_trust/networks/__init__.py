@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .route import Route as Route
 from .teamnet import Teamnet as Teamnet
-from .route_param import RouteParam as RouteParam
 from .virtual_network import VirtualNetwork as VirtualNetwork
 from .route_edit_params import RouteEditParams as RouteEditParams
 from .route_list_params import RouteListParams as RouteListParams
