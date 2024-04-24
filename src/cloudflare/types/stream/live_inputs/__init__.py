@@ -4,5 +4,4 @@ from __future__ import annotations
 
 from .output import Output as Output
 from .output_create_params import OutputCreateParams as OutputCreateParams
-from .output_delete_params import OutputDeleteParams as OutputDeleteParams
 from .output_update_params import OutputUpdateParams as OutputUpdateParams

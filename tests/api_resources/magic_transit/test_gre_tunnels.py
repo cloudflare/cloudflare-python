@@ -210,7 +210,6 @@ class TestGRETunnels:
         gre_tunnel = client.magic_transit.gre_tunnels.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
 
@@ -220,7 +219,6 @@ class TestGRETunnels:
         response = client.magic_transit.gre_tunnels.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -234,7 +232,6 @@ class TestGRETunnels:
         with client.magic_transit.gre_tunnels.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -251,14 +248,12 @@ class TestGRETunnels:
             client.magic_transit.gre_tunnels.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
             client.magic_transit.gre_tunnels.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -506,7 +501,6 @@ class TestAsyncGRETunnels:
         gre_tunnel = await async_client.magic_transit.gre_tunnels.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
 
@@ -516,7 +510,6 @@ class TestAsyncGRETunnels:
         response = await async_client.magic_transit.gre_tunnels.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -530,7 +523,6 @@ class TestAsyncGRETunnels:
         async with async_client.magic_transit.gre_tunnels.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -547,14 +539,12 @@ class TestAsyncGRETunnels:
             await async_client.magic_transit.gre_tunnels.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
             await async_client.magic_transit.gre_tunnels.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

@@ -207,7 +207,6 @@ class TestSites:
         site = client.magic_transit.sites.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Site, site, path=["response"])
 
@@ -217,7 +216,6 @@ class TestSites:
         response = client.magic_transit.sites.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -231,7 +229,6 @@ class TestSites:
         with client.magic_transit.sites.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -248,14 +245,12 @@ class TestSites:
             client.magic_transit.sites.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -503,7 +498,6 @@ class TestAsyncSites:
         site = await async_client.magic_transit.sites.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Site, site, path=["response"])
 
@@ -513,7 +507,6 @@ class TestAsyncSites:
         response = await async_client.magic_transit.sites.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -527,7 +520,6 @@ class TestAsyncSites:
         async with async_client.magic_transit.sites.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -544,14 +536,12 @@ class TestAsyncSites:
             await async_client.magic_transit.sites.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

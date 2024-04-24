@@ -117,7 +117,6 @@ class TestProxyEndpoints:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
@@ -127,7 +126,6 @@ class TestProxyEndpoints:
         response = client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -141,7 +139,6 @@ class TestProxyEndpoints:
         with client.zero_trust.gateway.proxy_endpoints.with_streaming_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -158,14 +155,12 @@ class TestProxyEndpoints:
             client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
                 "ed35569b41ce4d1facfe683550f54086",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `proxy_endpoint_id` but received ''"):
             client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -385,7 +380,6 @@ class TestAsyncProxyEndpoints:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(Optional[ProxyEndpointDeleteResponse], proxy_endpoint, path=["response"])
 
@@ -395,7 +389,6 @@ class TestAsyncProxyEndpoints:
         response = await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -409,7 +402,6 @@ class TestAsyncProxyEndpoints:
         async with async_client.zero_trust.gateway.proxy_endpoints.with_streaming_response.delete(
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -426,14 +418,12 @@ class TestAsyncProxyEndpoints:
             await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
                 "ed35569b41ce4d1facfe683550f54086",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `proxy_endpoint_id` but received ''"):
             await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()

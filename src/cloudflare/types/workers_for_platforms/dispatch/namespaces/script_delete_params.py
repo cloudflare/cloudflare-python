@@ -14,8 +14,6 @@ class ScriptDeleteParams(TypedDict, total=False):
     dispatch_namespace: Required[str]
     """Name of the Workers for Platforms dispatch namespace."""
 
-    body: Required[object]
-
     force: bool
     """
     If set to true, delete will not be stopped by associated service binding,

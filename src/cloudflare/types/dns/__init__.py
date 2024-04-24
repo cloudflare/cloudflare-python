@@ -40,13 +40,11 @@ from .dns_analytics_query import DNSAnalyticsQuery as DNSAnalyticsQuery
 from .firewall_edit_params import FirewallEditParams as FirewallEditParams
 from .firewall_list_params import FirewallListParams as FirewallListParams
 from .record_create_params import RecordCreateParams as RecordCreateParams
-from .record_delete_params import RecordDeleteParams as RecordDeleteParams
 from .record_import_params import RecordImportParams as RecordImportParams
 from .record_scan_response import RecordScanResponse as RecordScanResponse
 from .record_update_params import RecordUpdateParams as RecordUpdateParams
 from .record_process_timing import RecordProcessTiming as RecordProcessTiming
 from .firewall_create_params import FirewallCreateParams as FirewallCreateParams
-from .firewall_delete_params import FirewallDeleteParams as FirewallDeleteParams
 from .record_delete_response import RecordDeleteResponse as RecordDeleteResponse
 from .record_export_response import RecordExportResponse as RecordExportResponse
 from .record_import_response import RecordImportResponse as RecordImportResponse

@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.images.v1 import variant_edit_params, variant_create_params, variant_delete_params
+from ....types.images.v1 import variant_edit_params, variant_create_params
 from ....types.images.v1.variant import Variant
 from ....types.images.v1.variant_get_response import VariantGetResponse
 from ....types.images.v1.variant_edit_response import VariantEditResponse
@@ -141,7 +141,6 @@ class VariantsResource(SyncAPIResource):
         variant_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -171,7 +170,6 @@ class VariantsResource(SyncAPIResource):
             VariantDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/images/v1/variants/{variant_id}",
-                body=maybe_transform(body, variant_delete_params.VariantDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -392,7 +390,6 @@ class AsyncVariantsResource(AsyncAPIResource):
         variant_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -422,7 +419,6 @@ class AsyncVariantsResource(AsyncAPIResource):
             VariantDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/images/v1/variants/{variant_id}",
-                body=await async_maybe_transform(body, variant_delete_params.VariantDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

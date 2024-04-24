@@ -7,9 +7,6 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 from .issue_type import IssueType
-from .product_param import ProductParam
-from .subject_param import SubjectParam
-from .issue_class_param import IssueClassParam
 from .severity_query_param import SeverityQueryParam
 
 __all__ = ["IssueTypeParams"]
@@ -21,22 +18,22 @@ class IssueTypeParams(TypedDict, total=False):
 
     dismissed: bool
 
-    issue_class: IssueClassParam
+    issue_class: List[str]
 
-    issue_class_neq: Annotated[IssueClassParam, PropertyInfo(alias="issue_class~neq")]
+    issue_class_neq: Annotated[List[str], PropertyInfo(alias="issue_class~neq")]
 
     issue_type: List[IssueType]
 
     issue_type_neq: Annotated[List[IssueType], PropertyInfo(alias="issue_type~neq")]
 
-    product: ProductParam
+    product: List[str]
 
-    product_neq: Annotated[ProductParam, PropertyInfo(alias="product~neq")]
+    product_neq: Annotated[List[str], PropertyInfo(alias="product~neq")]
 
     severity: List[SeverityQueryParam]
 
     severity_neq: Annotated[List[SeverityQueryParam], PropertyInfo(alias="severity~neq")]
 
-    subject: SubjectParam
+    subject: List[str]
 
-    subject_neq: Annotated[SubjectParam, PropertyInfo(alias="subject~neq")]
+    subject_neq: Annotated[List[str], PropertyInfo(alias="subject~neq")]

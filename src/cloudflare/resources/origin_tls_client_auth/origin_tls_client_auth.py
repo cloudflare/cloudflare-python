@@ -42,7 +42,7 @@ from ..._base_client import (
     make_request_options,
 )
 from .hostnames.hostnames import HostnamesResource, AsyncHostnamesResource
-from ...types.origin_tls_client_auth import origin_tls_client_auth_create_params, origin_tls_client_auth_delete_params
+from ...types.origin_tls_client_auth import origin_tls_client_auth_create_params
 from ...types.origin_tls_client_auth.zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull
 from ...types.origin_tls_client_auth.origin_tls_client_auth_get_response import OriginTLSClientAuthGetResponse
 from ...types.origin_tls_client_auth.origin_tls_client_auth_create_response import OriginTLSClientAuthCreateResponse
@@ -170,7 +170,6 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         certificate_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -202,7 +201,6 @@ class OriginTLSClientAuthResource(SyncAPIResource):
             OriginTLSClientAuthDeleteResponse,
             self._delete(
                 f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
-                body=maybe_transform(body, origin_tls_client_auth_delete_params.OriginTLSClientAuthDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -385,7 +383,6 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         certificate_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -417,9 +414,6 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
             OriginTLSClientAuthDeleteResponse,
             await self._delete(
                 f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
-                body=await async_maybe_transform(
-                    body, origin_tls_client_auth_delete_params.OriginTLSClientAuthDeleteParams
-                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

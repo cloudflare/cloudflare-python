@@ -222,7 +222,6 @@ class TestPosture:
         posture = client.zero_trust.devices.posture.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(Optional[PostureDeleteResponse], posture, path=["response"])
 
@@ -232,7 +231,6 @@ class TestPosture:
         response = client.zero_trust.devices.posture.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -246,7 +244,6 @@ class TestPosture:
         with client.zero_trust.devices.posture.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -263,14 +260,12 @@ class TestPosture:
             client.zero_trust.devices.posture.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.zero_trust.devices.posture.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -532,7 +527,6 @@ class TestAsyncPosture:
         posture = await async_client.zero_trust.devices.posture.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(Optional[PostureDeleteResponse], posture, path=["response"])
 
@@ -542,7 +536,6 @@ class TestAsyncPosture:
         response = await async_client.zero_trust.devices.posture.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -556,7 +549,6 @@ class TestAsyncPosture:
         async with async_client.zero_trust.devices.posture.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -573,14 +565,12 @@ class TestAsyncPosture:
             await async_client.zero_trust.devices.posture.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.zero_trust.devices.posture.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()

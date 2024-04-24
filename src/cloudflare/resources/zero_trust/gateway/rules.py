@@ -26,11 +26,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.gateway import (
-    rule_create_params,
-    rule_delete_params,
-    rule_update_params,
-)
+from ....types.zero_trust.gateway import rule_create_params, rule_update_params
 from ....types.zero_trust.gateway.gateway_rule import GatewayRule
 from ....types.zero_trust.gateway.gateway_filter import GatewayFilter
 from ....types.zero_trust.gateway.schedule_param import ScheduleParam
@@ -307,7 +303,6 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -337,7 +332,6 @@ class RulesResource(SyncAPIResource):
             Optional[RuleDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/gateway/rules/{rule_id}",
-                body=maybe_transform(body, rule_delete_params.RuleDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -661,7 +655,6 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -691,7 +684,6 @@ class AsyncRulesResource(AsyncAPIResource):
             Optional[RuleDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/gateway/rules/{rule_id}",
-                body=await async_maybe_transform(body, rule_delete_params.RuleDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

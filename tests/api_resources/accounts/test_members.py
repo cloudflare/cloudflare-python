@@ -207,7 +207,6 @@ class TestMembers:
         member = client.accounts.members.delete(
             "4536bcfad5faccb111b47003c79917fa",
             account_id={},
-            body={},
         )
         assert_matches_type(Optional[MemberDeleteResponse], member, path=["response"])
 
@@ -217,7 +216,6 @@ class TestMembers:
         response = client.accounts.members.with_raw_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
             account_id={},
-            body={},
         )
 
         assert response.is_closed is True
@@ -231,7 +229,6 @@ class TestMembers:
         with client.accounts.members.with_streaming_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
             account_id={},
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -248,7 +245,6 @@ class TestMembers:
             client.accounts.members.with_raw_response.delete(
                 "",
                 account_id={},
-                body={},
             )
 
     @pytest.mark.skip()
@@ -487,7 +483,6 @@ class TestAsyncMembers:
         member = await async_client.accounts.members.delete(
             "4536bcfad5faccb111b47003c79917fa",
             account_id={},
-            body={},
         )
         assert_matches_type(Optional[MemberDeleteResponse], member, path=["response"])
 
@@ -497,7 +492,6 @@ class TestAsyncMembers:
         response = await async_client.accounts.members.with_raw_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
             account_id={},
-            body={},
         )
 
         assert response.is_closed is True
@@ -511,7 +505,6 @@ class TestAsyncMembers:
         async with async_client.accounts.members.with_streaming_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
             account_id={},
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -528,7 +521,6 @@ class TestAsyncMembers:
             await async_client.accounts.members.with_raw_response.delete(
                 "",
                 account_id={},
-                body={},
             )
 
     @pytest.mark.skip()

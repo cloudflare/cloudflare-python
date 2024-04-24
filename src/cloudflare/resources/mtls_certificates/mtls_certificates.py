@@ -33,7 +33,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.mtls_certificates import mtls_certificate_create_params, mtls_certificate_delete_params
+from ...types.mtls_certificates import mtls_certificate_create_params
 from ...types.mtls_certificates.mtls_certificate import MTLSCertificate
 from ...types.mtls_certificates.mtls_certificate_create_response import MTLSCertificateCreateResponse
 
@@ -154,7 +154,6 @@ class MTLSCertificatesResource(SyncAPIResource):
         mtls_certificate_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -187,7 +186,6 @@ class MTLSCertificatesResource(SyncAPIResource):
             )
         return self._delete(
             f"/accounts/{account_id}/mtls_certificates/{mtls_certificate_id}",
-            body=maybe_transform(body, mtls_certificate_delete_params.MTLSCertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -359,7 +357,6 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         mtls_certificate_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -392,7 +389,6 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
             )
         return await self._delete(
             f"/accounts/{account_id}/mtls_certificates/{mtls_certificate_id}",
-            body=await async_maybe_transform(body, mtls_certificate_delete_params.MTLSCertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

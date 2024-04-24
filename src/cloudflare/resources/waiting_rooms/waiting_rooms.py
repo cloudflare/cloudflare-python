@@ -71,7 +71,6 @@ from ...types.waiting_rooms import (
     waiting_room_edit_params,
     waiting_room_list_params,
     waiting_room_create_params,
-    waiting_room_delete_params,
     waiting_room_update_params,
 )
 from ...types.waiting_rooms.waiting_room import WaitingRoom
@@ -881,7 +880,6 @@ class WaitingRoomsResource(SyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -909,7 +907,6 @@ class WaitingRoomsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._delete(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
-            body=maybe_transform(body, waiting_room_delete_params.WaitingRoomDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2120,7 +2117,6 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2148,7 +2144,6 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
-            body=await async_maybe_transform(body, waiting_room_delete_params.WaitingRoomDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

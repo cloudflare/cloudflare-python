@@ -149,7 +149,6 @@ class TestPolicies:
         policy = client.zero_trust.devices.policies.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
 
@@ -159,7 +158,6 @@ class TestPolicies:
         response = client.zero_trust.devices.policies.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -173,7 +171,6 @@ class TestPolicies:
         with client.zero_trust.devices.policies.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -190,14 +187,12 @@ class TestPolicies:
             client.zero_trust.devices.policies.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             client.zero_trust.devices.policies.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -465,7 +460,6 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.devices.policies.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
 
@@ -475,7 +469,6 @@ class TestAsyncPolicies:
         response = await async_client.zero_trust.devices.policies.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -489,7 +482,6 @@ class TestAsyncPolicies:
         async with async_client.zero_trust.devices.policies.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -506,14 +498,12 @@ class TestAsyncPolicies:
             await async_client.zero_trust.devices.policies.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             await async_client.zero_trust.devices.policies.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()

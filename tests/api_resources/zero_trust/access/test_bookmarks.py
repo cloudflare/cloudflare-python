@@ -181,7 +181,6 @@ class TestBookmarks:
         bookmark = client.zero_trust.access.bookmarks.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(Optional[BookmarkDeleteResponse], bookmark, path=["response"])
 
@@ -191,7 +190,6 @@ class TestBookmarks:
         response = client.zero_trust.access.bookmarks.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -205,7 +203,6 @@ class TestBookmarks:
         with client.zero_trust.access.bookmarks.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -222,14 +219,12 @@ class TestBookmarks:
             client.zero_trust.access.bookmarks.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.delete(
                 "",
                 identifier="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -450,7 +445,6 @@ class TestAsyncBookmarks:
         bookmark = await async_client.zero_trust.access.bookmarks.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(Optional[BookmarkDeleteResponse], bookmark, path=["response"])
 
@@ -460,7 +454,6 @@ class TestAsyncBookmarks:
         response = await async_client.zero_trust.access.bookmarks.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -474,7 +467,6 @@ class TestAsyncBookmarks:
         async with async_client.zero_trust.access.bookmarks.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             identifier="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -491,14 +483,12 @@ class TestAsyncBookmarks:
             await async_client.zero_trust.access.bookmarks.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.delete(
                 "",
                 identifier="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()

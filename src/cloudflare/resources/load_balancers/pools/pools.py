@@ -45,7 +45,6 @@ from ....types.load_balancers import (
     pool_edit_params,
     pool_list_params,
     pool_create_params,
-    pool_delete_params,
     pool_update_params,
 )
 from ....types.load_balancers.pool import Pool
@@ -347,7 +346,6 @@ class PoolsResource(SyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -375,7 +373,6 @@ class PoolsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return self._delete(
             f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
-            body=maybe_transform(body, pool_delete_params.PoolDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -832,7 +829,6 @@ class AsyncPoolsResource(AsyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -860,7 +856,6 @@ class AsyncPoolsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/load_balancers/pools/{pool_id}",
-            body=await async_maybe_transform(body, pool_delete_params.PoolDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

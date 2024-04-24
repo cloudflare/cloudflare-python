@@ -129,7 +129,6 @@ class TestMTLSCertificates:
         mtls_certificate = client.mtls_certificates.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(MTLSCertificate, mtls_certificate, path=["response"])
 
@@ -139,7 +138,6 @@ class TestMTLSCertificates:
         response = client.mtls_certificates.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -153,7 +151,6 @@ class TestMTLSCertificates:
         with client.mtls_certificates.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -170,14 +167,12 @@ class TestMTLSCertificates:
             client.mtls_certificates.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mtls_certificate_id` but received ''"):
             client.mtls_certificates.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -346,7 +341,6 @@ class TestAsyncMTLSCertificates:
         mtls_certificate = await async_client.mtls_certificates.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(MTLSCertificate, mtls_certificate, path=["response"])
 
@@ -356,7 +350,6 @@ class TestAsyncMTLSCertificates:
         response = await async_client.mtls_certificates.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -370,7 +363,6 @@ class TestAsyncMTLSCertificates:
         async with async_client.mtls_certificates.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -387,14 +379,12 @@ class TestAsyncMTLSCertificates:
             await async_client.mtls_certificates.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mtls_certificate_id` but received ''"):
             await async_client.mtls_certificates.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

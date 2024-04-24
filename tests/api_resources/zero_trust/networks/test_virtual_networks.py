@@ -138,7 +138,6 @@ class TestVirtualNetworks:
         virtual_network = client.zero_trust.networks.virtual_networks.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(VirtualNetworkDeleteResponse, virtual_network, path=["response"])
 
@@ -148,7 +147,6 @@ class TestVirtualNetworks:
         response = client.zero_trust.networks.virtual_networks.with_raw_response.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -162,7 +160,6 @@ class TestVirtualNetworks:
         with client.zero_trust.networks.virtual_networks.with_streaming_response.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -179,14 +176,12 @@ class TestVirtualNetworks:
             client.zero_trust.networks.virtual_networks.with_raw_response.delete(
                 "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `virtual_network_id` but received ''"):
             client.zero_trust.networks.virtual_networks.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -374,7 +369,6 @@ class TestAsyncVirtualNetworks:
         virtual_network = await async_client.zero_trust.networks.virtual_networks.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(VirtualNetworkDeleteResponse, virtual_network, path=["response"])
 
@@ -384,7 +378,6 @@ class TestAsyncVirtualNetworks:
         response = await async_client.zero_trust.networks.virtual_networks.with_raw_response.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -398,7 +391,6 @@ class TestAsyncVirtualNetworks:
         async with async_client.zero_trust.networks.virtual_networks.with_streaming_response.delete(
             "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -415,14 +407,12 @@ class TestAsyncVirtualNetworks:
             await async_client.zero_trust.networks.virtual_networks.with_raw_response.delete(
                 "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `virtual_network_id` but received ''"):
             await async_client.zero_trust.networks.virtual_networks.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()

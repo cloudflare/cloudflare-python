@@ -149,7 +149,6 @@ class TestDeployments:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
         assert_matches_type(object, deployment, path=["response"])
 
@@ -160,7 +159,6 @@ class TestDeployments:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
 
         assert response.is_closed is True
@@ -175,7 +173,6 @@ class TestDeployments:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -193,7 +190,6 @@ class TestDeployments:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -201,7 +197,6 @@ class TestDeployments:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
@@ -209,7 +204,6 @@ class TestDeployments:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -551,7 +545,6 @@ class TestAsyncDeployments:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
         assert_matches_type(object, deployment, path=["response"])
 
@@ -562,7 +555,6 @@ class TestAsyncDeployments:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
 
         assert response.is_closed is True
@@ -577,7 +569,6 @@ class TestAsyncDeployments:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -595,7 +586,6 @@ class TestAsyncDeployments:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -603,7 +593,6 @@ class TestAsyncDeployments:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
@@ -611,7 +600,6 @@ class TestAsyncDeployments:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
     @pytest.mark.skip()

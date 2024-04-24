@@ -39,7 +39,6 @@ from ...types.custom_certificates import (
     custom_certificate_edit_params,
     custom_certificate_list_params,
     custom_certificate_create_params,
-    custom_certificate_delete_params,
 )
 from ...types.custom_hostnames.bundle_method import BundleMethod
 from ...types.custom_certificates.custom_certificate import CustomCertificate
@@ -224,7 +223,6 @@ class CustomCertificatesResource(SyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -256,7 +254,6 @@ class CustomCertificatesResource(SyncAPIResource):
             )
         return self._delete(
             f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
-            body=maybe_transform(body, custom_certificate_delete_params.CustomCertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -587,7 +584,6 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -619,7 +615,6 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
             )
         return await self._delete(
             f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
-            body=await async_maybe_transform(body, custom_certificate_delete_params.CustomCertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

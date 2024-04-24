@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, cast
 
 import httpx
 
@@ -23,12 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.magic_transit import (
-    route_empty_params,
-    route_create_params,
-    route_delete_params,
-    route_update_params,
-)
+from ...types.magic_transit import route_create_params, route_update_params
 from ...types.magic_transit.scope_param import ScopeParam
 from ...types.magic_transit.route_get_response import RouteGetResponse
 from ...types.magic_transit.route_list_response import RouteListResponse
@@ -211,7 +206,6 @@ class RoutesResource(SyncAPIResource):
         route_identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -241,7 +235,6 @@ class RoutesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `route_identifier` but received {route_identifier!r}")
         return self._delete(
             f"/accounts/{account_id}/magic/routes/{route_identifier}",
-            body=maybe_transform(body, route_delete_params.RouteDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -256,7 +249,6 @@ class RoutesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        routes: Iterable[route_empty_params.Route],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -282,7 +274,6 @@ class RoutesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._delete(
             f"/accounts/{account_id}/magic/routes",
-            body=maybe_transform({"routes": routes}, route_empty_params.RouteEmptyParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -509,7 +500,6 @@ class AsyncRoutesResource(AsyncAPIResource):
         route_identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -539,7 +529,6 @@ class AsyncRoutesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `route_identifier` but received {route_identifier!r}")
         return await self._delete(
             f"/accounts/{account_id}/magic/routes/{route_identifier}",
-            body=await async_maybe_transform(body, route_delete_params.RouteDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -554,7 +543,6 @@ class AsyncRoutesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        routes: Iterable[route_empty_params.Route],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -580,7 +568,6 @@ class AsyncRoutesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/magic/routes",
-            body=await async_maybe_transform({"routes": routes}, route_empty_params.RouteEmptyParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

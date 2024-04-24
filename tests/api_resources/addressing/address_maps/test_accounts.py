@@ -81,7 +81,6 @@ class TestAccounts:
         account = client.addressing.address_maps.accounts.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
 
@@ -91,7 +90,6 @@ class TestAccounts:
         response = client.addressing.address_maps.accounts.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -105,7 +103,6 @@ class TestAccounts:
         with client.addressing.address_maps.accounts.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,14 +119,12 @@ class TestAccounts:
             client.addressing.address_maps.accounts.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             client.addressing.address_maps.accounts.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
 
@@ -199,7 +194,6 @@ class TestAsyncAccounts:
         account = await async_client.addressing.address_maps.accounts.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[AccountDeleteResponse], account, path=["response"])
 
@@ -209,7 +203,6 @@ class TestAsyncAccounts:
         response = await async_client.addressing.address_maps.accounts.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -223,7 +216,6 @@ class TestAsyncAccounts:
         async with async_client.addressing.address_maps.accounts.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -240,12 +232,10 @@ class TestAsyncAccounts:
             await async_client.addressing.address_maps.accounts.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             await async_client.addressing.address_maps.accounts.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )

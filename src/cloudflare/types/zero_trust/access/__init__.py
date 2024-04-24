@@ -36,7 +36,6 @@ from .self_hosted_domainsh import SelfHostedDomainsh as SelfHostedDomainsh
 from .group_delete_response import GroupDeleteResponse as GroupDeleteResponse
 from .saas_app_source_param import SaaSAppSourceParam as SaaSAppSourceParam
 from .bookmark_create_params import BookmarkCreateParams as BookmarkCreateParams
-from .bookmark_delete_params import BookmarkDeleteParams as BookmarkDeleteParams
 from .bookmark_update_params import BookmarkUpdateParams as BookmarkUpdateParams
 from .saas_app_name_id_format import SaaSAppNameIDFormat as SaaSAppNameIDFormat
 from .bookmark_delete_response import BookmarkDeleteResponse as BookmarkDeleteResponse

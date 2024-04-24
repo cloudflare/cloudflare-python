@@ -11,8 +11,6 @@ class ScriptDeleteParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    body: Required[object]
-
     force: bool
     """
     If set to true, delete will not be stopped by associated service binding,

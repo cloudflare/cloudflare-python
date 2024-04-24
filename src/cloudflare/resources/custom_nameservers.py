@@ -23,11 +23,7 @@ from .._wrappers import ResultWrapper
 from .._base_client import (
     make_request_options,
 )
-from ..types.custom_nameservers import (
-    custom_nameserver_create_params,
-    custom_nameserver_delete_params,
-    custom_nameserver_verify_params,
-)
+from ..types.custom_nameservers import custom_nameserver_create_params, custom_nameserver_verify_params
 from ..types.custom_nameservers.custom_nameserver import CustomNameserver
 from ..types.custom_nameservers.custom_nameserver_get_response import CustomNameserverGetResponse
 from ..types.custom_nameservers.custom_nameserver_delete_response import CustomNameserverDeleteResponse
@@ -103,7 +99,6 @@ class CustomNameserversResource(SyncAPIResource):
         custom_ns_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -135,7 +130,6 @@ class CustomNameserversResource(SyncAPIResource):
             Optional[CustomNameserverDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/custom_ns/{custom_ns_id}",
-                body=maybe_transform(body, custom_nameserver_delete_params.CustomNameserverDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -337,7 +331,6 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         custom_ns_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -369,7 +362,6 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
             Optional[CustomNameserverDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/custom_ns/{custom_ns_id}",
-                body=await async_maybe_transform(body, custom_nameserver_delete_params.CustomNameserverDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

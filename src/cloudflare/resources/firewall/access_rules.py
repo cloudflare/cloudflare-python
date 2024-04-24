@@ -26,12 +26,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.firewall import (
-    access_rule_edit_params,
-    access_rule_list_params,
-    access_rule_create_params,
-    access_rule_delete_params,
-)
+from ...types.firewall import access_rule_edit_params, access_rule_list_params, access_rule_create_params
 from ...types.firewall.access_rule_get_response import AccessRuleGetResponse
 from ...types.firewall.access_rule_edit_response import AccessRuleEditResponse
 from ...types.firewall.access_rule_create_response import AccessRuleCreateResponse
@@ -212,7 +207,6 @@ class AccessRulesResource(SyncAPIResource):
         self,
         identifier: object,
         *,
-        body: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -254,7 +248,6 @@ class AccessRulesResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
-            body=maybe_transform(body, access_rule_delete_params.AccessRuleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -573,7 +566,6 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         self,
         identifier: object,
         *,
-        body: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -615,7 +607,6 @@ class AsyncAccessRulesResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
-            body=await async_maybe_transform(body, access_rule_delete_params.AccessRuleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

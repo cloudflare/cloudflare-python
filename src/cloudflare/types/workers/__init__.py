@@ -18,7 +18,6 @@ from .r2_binding_param import R2BindingParam as R2BindingParam
 from .mtls_cert_binding import MTLSCERTBinding as MTLSCERTBinding
 from .stepped_migration import SteppedMigration as SteppedMigration
 from .domain_list_params import DomainListParams as DomainListParams
-from .domain_delete_params import DomainDeleteParams as DomainDeleteParams
 from .domain_update_params import DomainUpdateParams as DomainUpdateParams
 from .kv_namespace_binding import KVNamespaceBinding as KVNamespaceBinding
 from .migration_step_param import MigrationStepParam as MigrationStepParam

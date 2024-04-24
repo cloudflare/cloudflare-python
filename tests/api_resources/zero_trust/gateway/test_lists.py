@@ -198,7 +198,6 @@ class TestLists:
         list = client.zero_trust.gateway.lists.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
 
@@ -208,7 +207,6 @@ class TestLists:
         response = client.zero_trust.gateway.lists.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -222,7 +220,6 @@ class TestLists:
         with client.zero_trust.gateway.lists.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -239,14 +236,12 @@ class TestLists:
             client.zero_trust.gateway.lists.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -546,7 +541,6 @@ class TestAsyncLists:
         list = await async_client.zero_trust.gateway.lists.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
         assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
 
@@ -556,7 +550,6 @@ class TestAsyncLists:
         response = await async_client.zero_trust.gateway.lists.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         )
 
         assert response.is_closed is True
@@ -570,7 +563,6 @@ class TestAsyncLists:
         async with async_client.zero_trust.gateway.lists.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -587,14 +579,12 @@ class TestAsyncLists:
             await async_client.zero_trust.gateway.lists.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.delete(
                 "",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body={},
             )
 
     @pytest.mark.skip()

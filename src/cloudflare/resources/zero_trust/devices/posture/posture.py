@@ -34,11 +34,7 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.devices import (
-    posture_create_params,
-    posture_delete_params,
-    posture_update_params,
-)
+from .....types.zero_trust.devices import posture_create_params, posture_update_params
 from .....types.zero_trust.devices.device_input_param import DeviceInputParam
 from .....types.zero_trust.devices.device_match_param import DeviceMatchParam
 from .....types.zero_trust.devices.device_posture_rule import DevicePostureRule
@@ -288,7 +284,6 @@ class PostureResource(SyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -316,7 +311,6 @@ class PostureResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
             f"/accounts/{account_id}/devices/posture/{rule_id}",
-            body=maybe_transform(body, posture_delete_params.PostureDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -611,7 +605,6 @@ class AsyncPostureResource(AsyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -639,7 +632,6 @@ class AsyncPostureResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/devices/posture/{rule_id}",
-            body=await async_maybe_transform(body, posture_delete_params.PostureDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -34,7 +34,7 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.gateway import list_edit_params, list_create_params, list_delete_params, list_update_params
+from .....types.zero_trust.gateway import list_edit_params, list_create_params, list_update_params
 from .....types.zero_trust.gateway.gateway_list import GatewayList
 from .....types.zero_trust.gateway.gateway_item_param import GatewayItemParam
 from .....types.zero_trust.gateway.list_create_response import ListCreateResponse
@@ -208,7 +208,6 @@ class ListsResource(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,7 +237,6 @@ class ListsResource(SyncAPIResource):
             Optional[ListDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/gateway/lists/{list_id}",
-                body=maybe_transform(body, list_delete_params.ListDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -515,7 +513,6 @@ class AsyncListsResource(AsyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -545,7 +542,6 @@ class AsyncListsResource(AsyncAPIResource):
             Optional[ListDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/gateway/lists/{list_id}",
-                body=await async_maybe_transform(body, list_delete_params.ListDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

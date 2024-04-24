@@ -33,12 +33,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.magic_network_monitoring import (
-    rule_edit_params,
-    rule_create_params,
-    rule_delete_params,
-    rule_update_params,
-)
+from ....types.magic_network_monitoring import rule_edit_params, rule_create_params, rule_update_params
 from ....types.magic_network_monitoring.magic_network_monitoring_rule import MagicNetworkMonitoringRule
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
@@ -176,7 +171,6 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -204,7 +198,6 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
             f"/accounts/{account_id}/mnm/rules/{rule_id}",
-            body=maybe_transform(body, rule_delete_params.RuleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -434,7 +427,6 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -462,7 +454,6 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/mnm/rules/{rule_id}",
-            body=await async_maybe_transform(body, rule_delete_params.RuleDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

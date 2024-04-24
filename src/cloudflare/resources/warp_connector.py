@@ -26,12 +26,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.warp_connector import (
-    warp_connector_edit_params,
-    warp_connector_list_params,
-    warp_connector_create_params,
-    warp_connector_delete_params,
-)
+from ..types.warp_connector import warp_connector_edit_params, warp_connector_list_params, warp_connector_create_params
 from ..types.warp_connector.warp_connector_get_response import WARPConnectorGetResponse
 from ..types.warp_connector.warp_connector_edit_response import WARPConnectorEditResponse
 from ..types.warp_connector.warp_connector_list_response import WARPConnectorListResponse
@@ -184,7 +179,6 @@ class WARPConnectorResource(SyncAPIResource):
         tunnel_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -216,7 +210,6 @@ class WARPConnectorResource(SyncAPIResource):
             WARPConnectorDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-                body=maybe_transform(body, warp_connector_delete_params.WARPConnectorDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -537,7 +530,6 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         tunnel_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -569,7 +561,6 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
             WARPConnectorDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-                body=await async_maybe_transform(body, warp_connector_delete_params.WARPConnectorDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

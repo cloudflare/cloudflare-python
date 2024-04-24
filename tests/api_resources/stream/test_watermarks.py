@@ -127,7 +127,6 @@ class TestWatermarks:
         watermark = client.stream.watermarks.delete(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[WatermarkDeleteResponse], watermark, path=["response"])
 
@@ -137,7 +136,6 @@ class TestWatermarks:
         response = client.stream.watermarks.with_raw_response.delete(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -151,7 +149,6 @@ class TestWatermarks:
         with client.stream.watermarks.with_streaming_response.delete(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -168,14 +165,12 @@ class TestWatermarks:
             client.stream.watermarks.with_raw_response.delete(
                 "ea95132c15732412d22c1476fa83f27a",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.stream.watermarks.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -342,7 +337,6 @@ class TestAsyncWatermarks:
         watermark = await async_client.stream.watermarks.delete(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[WatermarkDeleteResponse], watermark, path=["response"])
 
@@ -352,7 +346,6 @@ class TestAsyncWatermarks:
         response = await async_client.stream.watermarks.with_raw_response.delete(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -366,7 +359,6 @@ class TestAsyncWatermarks:
         async with async_client.stream.watermarks.with_streaming_response.delete(
             "ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -383,14 +375,12 @@ class TestAsyncWatermarks:
             await async_client.stream.watermarks.with_raw_response.delete(
                 "ea95132c15732412d22c1476fa83f27a",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.stream.watermarks.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

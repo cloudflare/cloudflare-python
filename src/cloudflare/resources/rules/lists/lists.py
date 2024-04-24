@@ -30,7 +30,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ....types.rules import list_create_params, list_delete_params, list_update_params
+from ....types.rules import list_create_params, list_update_params
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -212,7 +212,6 @@ class ListsResource(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -242,7 +241,6 @@ class ListsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._delete(
             f"/accounts/{account_id}/rules/lists/{list_id}",
-            body=maybe_transform(body, list_delete_params.ListDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -461,7 +459,6 @@ class AsyncListsResource(AsyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -491,7 +488,6 @@ class AsyncListsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/rules/lists/{list_id}",
-            body=await async_maybe_transform(body, list_delete_params.ListDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

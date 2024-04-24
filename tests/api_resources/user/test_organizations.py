@@ -67,7 +67,6 @@ class TestOrganizations:
     def test_method_delete(self, client: Cloudflare) -> None:
         organization = client.user.organizations.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(OrganizationDeleteResponse, organization, path=["response"])
 
@@ -76,7 +75,6 @@ class TestOrganizations:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.user.organizations.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -89,7 +87,6 @@ class TestOrganizations:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.user.organizations.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,7 +102,6 @@ class TestOrganizations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `organization_id` but received ''"):
             client.user.organizations.with_raw_response.delete(
                 "",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -201,7 +197,6 @@ class TestAsyncOrganizations:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.user.organizations.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(OrganizationDeleteResponse, organization, path=["response"])
 
@@ -210,7 +205,6 @@ class TestAsyncOrganizations:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.organizations.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -223,7 +217,6 @@ class TestAsyncOrganizations:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.organizations.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -239,7 +232,6 @@ class TestAsyncOrganizations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `organization_id` but received ''"):
             await async_client.user.organizations.with_raw_response.delete(
                 "",
-                body={},
             )
 
     @pytest.mark.skip()

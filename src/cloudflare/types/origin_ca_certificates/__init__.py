@@ -6,7 +6,6 @@ from .origin_ca_certificate import OriginCACertificate as OriginCACertificate
 from .origin_ca_certificate_list_params import OriginCACertificateListParams as OriginCACertificateListParams
 from .origin_ca_certificate_get_response import OriginCACertificateGetResponse as OriginCACertificateGetResponse
 from .origin_ca_certificate_create_params import OriginCACertificateCreateParams as OriginCACertificateCreateParams
-from .origin_ca_certificate_delete_params import OriginCACertificateDeleteParams as OriginCACertificateDeleteParams
 from .origin_ca_certificate_create_response import (
     OriginCACertificateCreateResponse as OriginCACertificateCreateResponse,
 )

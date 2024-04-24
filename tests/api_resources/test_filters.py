@@ -185,7 +185,6 @@ class TestFilters:
         filter = client.filters.delete(
             "372e67954025e0ba6aaa6d586b9e0b61",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(FirewallFilter, filter, path=["response"])
 
@@ -195,7 +194,6 @@ class TestFilters:
         response = client.filters.with_raw_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b61",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -209,7 +207,6 @@ class TestFilters:
         with client.filters.with_streaming_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b61",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -226,14 +223,12 @@ class TestFilters:
             client.filters.with_raw_response.delete(
                 "372e67954025e0ba6aaa6d586b9e0b61",
                 zone_identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.filters.with_raw_response.delete(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -458,7 +453,6 @@ class TestAsyncFilters:
         filter = await async_client.filters.delete(
             "372e67954025e0ba6aaa6d586b9e0b61",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(FirewallFilter, filter, path=["response"])
 
@@ -468,7 +462,6 @@ class TestAsyncFilters:
         response = await async_client.filters.with_raw_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b61",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -482,7 +475,6 @@ class TestAsyncFilters:
         async with async_client.filters.with_streaming_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b61",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -499,14 +491,12 @@ class TestAsyncFilters:
             await async_client.filters.with_raw_response.delete(
                 "372e67954025e0ba6aaa6d586b9e0b61",
                 zone_identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.filters.with_raw_response.delete(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

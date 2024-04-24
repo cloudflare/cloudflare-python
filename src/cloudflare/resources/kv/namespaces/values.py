@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.kv.namespaces import value_delete_params, value_update_params
+from ....types.kv.namespaces import value_update_params
 from ....types.kv.namespaces.value_delete_response import ValueDeleteResponse
 from ....types.kv.namespaces.value_update_response import ValueUpdateResponse
 
@@ -119,7 +119,6 @@ class ValuesResource(SyncAPIResource):
         *,
         account_id: str,
         namespace_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -158,7 +157,6 @@ class ValuesResource(SyncAPIResource):
             ValueDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
-                body=maybe_transform(body, value_delete_params.ValueDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -313,7 +311,6 @@ class AsyncValuesResource(AsyncAPIResource):
         *,
         account_id: str,
         namespace_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -352,7 +349,6 @@ class AsyncValuesResource(AsyncAPIResource):
             ValueDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
-                body=await async_maybe_transform(body, value_delete_params.ValueDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
