@@ -21,7 +21,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import smart_tiered_cache_edit_params, smart_tiered_cache_delete_params
+from ...types.cache import smart_tiered_cache_edit_params
 from ..._base_client import (
     make_request_options,
 )
@@ -45,7 +45,6 @@ class SmartTieredCacheResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,7 +72,6 @@ class SmartTieredCacheResource(SyncAPIResource):
             SmartTieredCacheDeleteResponse,
             self._delete(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-                body=maybe_transform(body, smart_tiered_cache_delete_params.SmartTieredCacheDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -193,7 +191,6 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -221,7 +218,6 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
             SmartTieredCacheDeleteResponse,
             await self._delete(
                 f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-                body=await async_maybe_transform(body, smart_tiered_cache_delete_params.SmartTieredCacheDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

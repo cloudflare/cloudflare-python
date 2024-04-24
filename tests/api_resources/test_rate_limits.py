@@ -126,7 +126,6 @@ class TestRateLimits:
         rate_limit = client.rate_limits.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
@@ -136,7 +135,6 @@ class TestRateLimits:
         response = client.rate_limits.with_raw_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -150,7 +148,6 @@ class TestRateLimits:
         with client.rate_limits.with_streaming_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -167,14 +164,12 @@ class TestRateLimits:
             client.rate_limits.with_raw_response.delete(
                 "372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.rate_limits.with_raw_response.delete(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -394,7 +389,6 @@ class TestAsyncRateLimits:
         rate_limit = await async_client.rate_limits.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
 
@@ -404,7 +398,6 @@ class TestAsyncRateLimits:
         response = await async_client.rate_limits.with_raw_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -418,7 +411,6 @@ class TestAsyncRateLimits:
         async with async_client.rate_limits.with_streaming_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -435,14 +427,12 @@ class TestAsyncRateLimits:
             await async_client.rate_limits.with_raw_response.delete(
                 "372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.rate_limits.with_raw_response.delete(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

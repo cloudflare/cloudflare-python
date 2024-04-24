@@ -131,7 +131,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.stream import stream_list_params, stream_create_params, stream_delete_params
+from ...types.stream import stream_list_params, stream_create_params
 from .captions.captions import CaptionsResource, AsyncCaptionsResource
 from ...types.stream.video import Video
 from .live_inputs.live_inputs import LiveInputsResource, AsyncLiveInputsResource
@@ -328,7 +328,6 @@ class StreamResource(SyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -359,7 +358,6 @@ class StreamResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/stream/{identifier}",
-            body=maybe_transform(body, stream_delete_params.StreamDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -600,7 +598,6 @@ class AsyncStreamResource(AsyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -631,7 +628,6 @@ class AsyncStreamResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/stream/{identifier}",
-            body=await async_maybe_transform(body, stream_delete_params.StreamDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

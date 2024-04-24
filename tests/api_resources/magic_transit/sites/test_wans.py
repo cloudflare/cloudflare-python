@@ -241,7 +241,6 @@ class TestWANs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(WAN, wan, path=["response"])
 
@@ -252,7 +251,6 @@ class TestWANs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -267,7 +265,6 @@ class TestWANs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -285,7 +282,6 @@ class TestWANs:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
@@ -293,7 +289,6 @@ class TestWANs:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `wan_id` but received ''"):
@@ -301,7 +296,6 @@ class TestWANs:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -594,7 +588,6 @@ class TestAsyncWANs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(WAN, wan, path=["response"])
 
@@ -605,7 +598,6 @@ class TestAsyncWANs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -620,7 +612,6 @@ class TestAsyncWANs:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -638,7 +629,6 @@ class TestAsyncWANs:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
@@ -646,7 +636,6 @@ class TestAsyncWANs:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `wan_id` but received ''"):
@@ -654,7 +643,6 @@ class TestAsyncWANs:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

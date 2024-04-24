@@ -25,7 +25,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.stream import watermark_create_params, watermark_delete_params
+from ...types.stream import watermark_create_params
 from ...types.stream.watermark import Watermark
 from ...types.stream.watermark_delete_response import WatermarkDeleteResponse
 
@@ -160,7 +160,6 @@ class WatermarksResource(SyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -192,7 +191,6 @@ class WatermarksResource(SyncAPIResource):
             Optional[WatermarkDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/stream/watermarks/{identifier}",
-                body=maybe_transform(body, watermark_delete_params.WatermarkDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -379,7 +377,6 @@ class AsyncWatermarksResource(AsyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -411,7 +408,6 @@ class AsyncWatermarksResource(AsyncAPIResource):
             Optional[WatermarkDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/stream/watermarks/{identifier}",
-                body=await async_maybe_transform(body, watermark_delete_params.WatermarkDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

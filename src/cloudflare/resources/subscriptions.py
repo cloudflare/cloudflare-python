@@ -26,7 +26,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.subscriptions import subscription_create_params, subscription_delete_params, subscription_update_params
+from ..types.subscriptions import subscription_create_params, subscription_update_params
 from ..types.user.subscription import Subscription
 from ..types.user.rate_plan_param import RatePlanParam
 from ..types.user.subscription_zone_param import SubscriptionZoneParam
@@ -230,7 +230,6 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_identifier: str,
         *,
         account_identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,7 +261,6 @@ class SubscriptionsResource(SyncAPIResource):
             )
         return self._delete(
             f"/accounts/{account_identifier}/subscriptions/{subscription_identifier}",
-            body=maybe_transform(body, subscription_delete_params.SubscriptionDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -509,7 +507,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_identifier: str,
         *,
         account_identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -541,7 +538,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             )
         return await self._delete(
             f"/accounts/{account_identifier}/subscriptions/{subscription_identifier}",
-            body=await async_maybe_transform(body, subscription_delete_params.SubscriptionDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

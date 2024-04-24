@@ -181,7 +181,6 @@ class TestAccessRules:
     def test_method_delete(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.delete(
             {},
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -192,7 +191,6 @@ class TestAccessRules:
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.delete(
             {},
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -203,7 +201,6 @@ class TestAccessRules:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.delete(
             {},
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -218,7 +215,6 @@ class TestAccessRules:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.delete(
             {},
-            body={},
             account_id="string",
             zone_id="string",
         ) as response:
@@ -236,7 +232,6 @@ class TestAccessRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.firewall.access_rules.with_raw_response.delete(
                 {},
-                body={},
                 account_id="",
                 zone_id="string",
             )
@@ -244,7 +239,6 @@ class TestAccessRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.firewall.access_rules.with_raw_response.delete(
                 {},
-                body={},
                 account_id="string",
                 zone_id="",
             )
@@ -563,7 +557,6 @@ class TestAsyncAccessRules:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.delete(
             {},
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -574,7 +567,6 @@ class TestAsyncAccessRules:
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.delete(
             {},
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -585,7 +577,6 @@ class TestAsyncAccessRules:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.delete(
             {},
-            body={},
             account_id="string",
             zone_id="string",
         )
@@ -600,7 +591,6 @@ class TestAsyncAccessRules:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.delete(
             {},
-            body={},
             account_id="string",
             zone_id="string",
         ) as response:
@@ -618,7 +608,6 @@ class TestAsyncAccessRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.delete(
                 {},
-                body={},
                 account_id="",
                 zone_id="string",
             )
@@ -626,7 +615,6 @@ class TestAsyncAccessRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.delete(
                 {},
-                body={},
                 account_id="string",
                 zone_id="",
             )

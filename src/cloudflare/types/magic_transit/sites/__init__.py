@@ -16,14 +16,11 @@ from .allowed_protocol import AllowedProtocol as AllowedProtocol
 from .dhcp_relay_param import DHCPRelayParam as DHCPRelayParam
 from .acl_configuration import ACLConfiguration as ACLConfiguration
 from .acl_create_params import ACLCreateParams as ACLCreateParams
-from .acl_delete_params import ACLDeleteParams as ACLDeleteParams
 from .acl_update_params import ACLUpdateParams as ACLUpdateParams
 from .dhcp_server_param import DHCPServerParam as DHCPServerParam
 from .lan_create_params import LANCreateParams as LANCreateParams
-from .lan_delete_params import LANDeleteParams as LANDeleteParams
 from .lan_update_params import LANUpdateParams as LANUpdateParams
 from .wan_create_params import WANCreateParams as WANCreateParams
-from .wan_delete_params import WANDeleteParams as WANDeleteParams
 from .wan_update_params import WANUpdateParams as WANUpdateParams
 from .lan_create_response import LANCreateResponse as LANCreateResponse
 from .routed_subnet_param import RoutedSubnetParam as RoutedSubnetParam

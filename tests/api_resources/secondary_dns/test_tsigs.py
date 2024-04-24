@@ -188,7 +188,6 @@ class TestTSIGs:
         tsig = client.secondary_dns.tsigs.delete(
             "69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         )
         assert_matches_type(Optional[TSIGDeleteResponse], tsig, path=["response"])
 
@@ -198,7 +197,6 @@ class TestTSIGs:
         response = client.secondary_dns.tsigs.with_raw_response.delete(
             "69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         )
 
         assert response.is_closed is True
@@ -212,7 +210,6 @@ class TestTSIGs:
         with client.secondary_dns.tsigs.with_streaming_response.delete(
             "69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -229,14 +226,12 @@ class TestTSIGs:
             client.secondary_dns.tsigs.with_raw_response.delete(
                 "69cd1e104af3e6ed3cb344f263fd0d5a",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
             client.secondary_dns.tsigs.with_raw_response.delete(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -464,7 +459,6 @@ class TestAsyncTSIGs:
         tsig = await async_client.secondary_dns.tsigs.delete(
             "69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         )
         assert_matches_type(Optional[TSIGDeleteResponse], tsig, path=["response"])
 
@@ -474,7 +468,6 @@ class TestAsyncTSIGs:
         response = await async_client.secondary_dns.tsigs.with_raw_response.delete(
             "69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         )
 
         assert response.is_closed is True
@@ -488,7 +481,6 @@ class TestAsyncTSIGs:
         async with async_client.secondary_dns.tsigs.with_streaming_response.delete(
             "69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -505,14 +497,12 @@ class TestAsyncTSIGs:
             await async_client.secondary_dns.tsigs.with_raw_response.delete(
                 "69cd1e104af3e6ed3cb344f263fd0d5a",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
             await async_client.secondary_dns.tsigs.with_raw_response.delete(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                body={},
             )
 
     @pytest.mark.skip()

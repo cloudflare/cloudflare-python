@@ -31,12 +31,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.stream import (
-    live_input_list_params,
-    live_input_create_params,
-    live_input_delete_params,
-    live_input_update_params,
-)
+from ....types.stream import live_input_list_params, live_input_create_params, live_input_update_params
 from ....types.stream.live_input import LiveInput
 from ....types.stream.live_input_list_response import LiveInputListResponse
 
@@ -249,7 +244,6 @@ class LiveInputsResource(SyncAPIResource):
         live_input_identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -283,7 +277,6 @@ class LiveInputsResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
-            body=maybe_transform(body, live_input_delete_params.LiveInputDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -545,7 +538,6 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         live_input_identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -579,7 +571,6 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
-            body=await async_maybe_transform(body, live_input_delete_params.LiveInputDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

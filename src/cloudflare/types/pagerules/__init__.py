@@ -12,7 +12,6 @@ from .pagerule_list_params import PageruleListParams as PageruleListParams
 from .pagerule_get_response import PageruleGetResponse as PageruleGetResponse
 from .setting_list_response import SettingListResponse as SettingListResponse
 from .pagerule_create_params import PageruleCreateParams as PageruleCreateParams
-from .pagerule_delete_params import PageruleDeleteParams as PageruleDeleteParams
 from .pagerule_edit_response import PageruleEditResponse as PageruleEditResponse
 from .pagerule_list_response import PageruleListResponse as PageruleListResponse
 from .pagerule_update_params import PageruleUpdateParams as PageruleUpdateParams

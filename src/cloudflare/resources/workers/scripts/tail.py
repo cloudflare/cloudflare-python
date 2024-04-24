@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.workers.scripts import tail_create_params, tail_delete_params
+from ....types.workers.scripts import tail_create_params
 from ....types.workers.scripts.tail_get_response import TailGetResponse
 from ....types.workers.scripts.tail_create_response import TailCreateResponse
 from ....types.workers.scripts.tail_delete_response import TailDeleteResponse
@@ -92,7 +92,6 @@ class TailResource(SyncAPIResource):
         *,
         account_id: str,
         script_name: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -126,7 +125,6 @@ class TailResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/accounts/{account_id}/workers/scripts/{script_name}/tails/{id}",
-            body=maybe_transform(body, tail_delete_params.TailDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -239,7 +237,6 @@ class AsyncTailResource(AsyncAPIResource):
         *,
         account_id: str,
         script_name: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -273,7 +270,6 @@ class AsyncTailResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/accounts/{account_id}/workers/scripts/{script_name}/tails/{id}",
-            body=await async_maybe_transform(body, tail_delete_params.TailDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

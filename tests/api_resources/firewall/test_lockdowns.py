@@ -190,7 +190,6 @@ class TestLockdowns:
         lockdown = client.firewall.lockdowns.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[LockdownDeleteResponse], lockdown, path=["response"])
 
@@ -200,7 +199,6 @@ class TestLockdowns:
         response = client.firewall.lockdowns.with_raw_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -214,7 +212,6 @@ class TestLockdowns:
         with client.firewall.lockdowns.with_streaming_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -231,14 +228,12 @@ class TestLockdowns:
             client.firewall.lockdowns.with_raw_response.delete(
                 "372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.firewall.lockdowns.with_raw_response.delete(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -467,7 +462,6 @@ class TestAsyncLockdowns:
         lockdown = await async_client.firewall.lockdowns.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[LockdownDeleteResponse], lockdown, path=["response"])
 
@@ -477,7 +471,6 @@ class TestAsyncLockdowns:
         response = await async_client.firewall.lockdowns.with_raw_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -491,7 +484,6 @@ class TestAsyncLockdowns:
         async with async_client.firewall.lockdowns.with_streaming_response.delete(
             "372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -508,14 +500,12 @@ class TestAsyncLockdowns:
             await async_client.firewall.lockdowns.with_raw_response.delete(
                 "372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.firewall.lockdowns.with_raw_response.delete(
                 "",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip()

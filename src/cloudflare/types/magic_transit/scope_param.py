@@ -2,17 +2,15 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import TypedDict
-
-from .colo_name_param import ColoNameParam
-from .colo_region_param import ColoRegionParam
 
 __all__ = ["ScopeParam"]
 
 
 class ScopeParam(TypedDict, total=False):
-    colo_names: ColoNameParam
+    colo_names: List[str]
     """List of colo names for the ECMP scope."""
 
-    colo_regions: ColoRegionParam
+    colo_regions: List[str]
     """List of colo regions for the ECMP scope."""

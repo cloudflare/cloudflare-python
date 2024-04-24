@@ -26,7 +26,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.devices import network_create_params, network_delete_params, network_update_params
+from ....types.zero_trust.devices import network_create_params, network_update_params
 from ....types.zero_trust.devices.device_network import DeviceNetwork
 from ....types.zero_trust.devices.network_delete_response import NetworkDeleteResponse
 
@@ -196,7 +196,6 @@ class NetworksResource(SyncAPIResource):
         network_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -225,7 +224,6 @@ class NetworksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return self._delete(
             f"/accounts/{account_id}/devices/networks/{network_id}",
-            body=maybe_transform(body, network_delete_params.NetworkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -442,7 +440,6 @@ class AsyncNetworksResource(AsyncAPIResource):
         network_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -471,7 +468,6 @@ class AsyncNetworksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/devices/networks/{network_id}",
-            body=await async_maybe_transform(body, network_delete_params.NetworkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

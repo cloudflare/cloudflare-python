@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import ip_delete_params, ip_update_params
+from ....types.addressing.address_maps import ip_update_params
 from ....types.addressing.address_maps.ip_delete_response import IPDeleteResponse
 from ....types.addressing.address_maps.ip_update_response import IPUpdateResponse
 
@@ -96,7 +96,6 @@ class IPsResource(SyncAPIResource):
         *,
         account_id: str,
         address_map_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,7 +129,6 @@ class IPsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
-            body=maybe_transform(body, ip_delete_params.IPDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -208,7 +206,6 @@ class AsyncIPsResource(AsyncAPIResource):
         *,
         account_id: str,
         address_map_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -242,7 +239,6 @@ class AsyncIPsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `ip_address` but received {ip_address!r}")
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
-            body=await async_maybe_transform(body, ip_delete_params.IPDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -25,11 +25,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust.gateway import (
-    proxy_endpoint_edit_params,
-    proxy_endpoint_create_params,
-    proxy_endpoint_delete_params,
-)
+from ....types.zero_trust.gateway import proxy_endpoint_edit_params, proxy_endpoint_create_params
 from ....types.zero_trust.gateway.gateway_ips import GatewayIPs
 from ....types.zero_trust.gateway.proxy_endpoint import ProxyEndpoint
 from ....types.zero_trust.gateway.proxy_endpoint_delete_response import ProxyEndpointDeleteResponse
@@ -135,7 +131,6 @@ class ProxyEndpointsResource(SyncAPIResource):
         proxy_endpoint_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -163,7 +158,6 @@ class ProxyEndpointsResource(SyncAPIResource):
             Optional[ProxyEndpointDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
-                body=maybe_transform(body, proxy_endpoint_delete_params.ProxyEndpointDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -369,7 +363,6 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         proxy_endpoint_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -397,7 +390,6 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
             Optional[ProxyEndpointDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
-                body=await async_maybe_transform(body, proxy_endpoint_delete_params.ProxyEndpointDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

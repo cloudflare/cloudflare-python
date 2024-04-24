@@ -32,7 +32,7 @@ from ....._base_client import (
     make_request_options,
 )
 from .....types.stream.caption import Caption
-from .....types.stream.captions import language_delete_params, language_update_params
+from .....types.stream.captions import language_update_params
 from .....types.stream.captions.language_delete_response import LanguageDeleteResponse
 
 __all__ = ["LanguageResource", "AsyncLanguageResource"]
@@ -111,7 +111,6 @@ class LanguageResource(SyncAPIResource):
         *,
         account_id: str,
         identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -145,7 +144,6 @@ class LanguageResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return self._delete(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-            body=maybe_transform(body, language_delete_params.LanguageDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -279,7 +277,6 @@ class AsyncLanguageResource(AsyncAPIResource):
         *,
         account_id: str,
         identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -313,7 +310,6 @@ class AsyncLanguageResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return await self._delete(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-            body=await async_maybe_transform(body, language_delete_params.LanguageDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

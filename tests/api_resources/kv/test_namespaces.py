@@ -183,7 +183,6 @@ class TestNamespaces:
         namespace = client.kv.namespaces.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
 
@@ -193,7 +192,6 @@ class TestNamespaces:
         response = client.kv.namespaces.with_raw_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -207,7 +205,6 @@ class TestNamespaces:
         with client.kv.namespaces.with_streaming_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -224,14 +221,12 @@ class TestNamespaces:
             client.kv.namespaces.with_raw_response.delete(
                 "0f2ac74b498b48028cb68387c421e279",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             client.kv.namespaces.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
 
@@ -401,7 +396,6 @@ class TestAsyncNamespaces:
         namespace = await async_client.kv.namespaces.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(NamespaceDeleteResponse, namespace, path=["response"])
 
@@ -411,7 +405,6 @@ class TestAsyncNamespaces:
         response = await async_client.kv.namespaces.with_raw_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -425,7 +418,6 @@ class TestAsyncNamespaces:
         async with async_client.kv.namespaces.with_streaming_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -442,12 +434,10 @@ class TestAsyncNamespaces:
             await async_client.kv.namespaces.with_raw_response.delete(
                 "0f2ac74b498b48028cb68387c421e279",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             await async_client.kv.namespaces.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )

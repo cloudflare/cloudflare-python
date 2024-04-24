@@ -41,7 +41,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.queues import queue_create_params, queue_delete_params, queue_update_params
+from ...types.queues import queue_create_params, queue_update_params
 from ...types.queues.queue import Queue
 from ...types.queues.queue_created import QueueCreated
 from ...types.queues.queue_updated import QueueUpdated
@@ -195,7 +195,6 @@ class QueuesResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,7 +226,6 @@ class QueuesResource(SyncAPIResource):
             Optional[QueueDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/queues/{queue_id}",
-                body=maybe_transform(body, queue_delete_params.QueueDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -431,7 +429,6 @@ class AsyncQueuesResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -463,7 +460,6 @@ class AsyncQueuesResource(AsyncAPIResource):
             Optional[QueueDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/queues/{queue_id}",
-                body=await async_maybe_transform(body, queue_delete_params.QueueDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

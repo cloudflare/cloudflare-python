@@ -26,11 +26,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.origin_ca_certificates import (
-    origin_ca_certificate_list_params,
-    origin_ca_certificate_create_params,
-    origin_ca_certificate_delete_params,
-)
+from ..types.origin_ca_certificates import origin_ca_certificate_list_params, origin_ca_certificate_create_params
 from ..types.origin_ca_certificates.origin_ca_certificate import OriginCACertificate
 from ..types.origin_ca_certificates.origin_ca_certificate_get_response import OriginCACertificateGetResponse
 from ..types.origin_ca_certificates.origin_ca_certificate_create_response import OriginCACertificateCreateResponse
@@ -159,7 +155,6 @@ class OriginCACertificatesResource(SyncAPIResource):
         self,
         certificate_id: str,
         *,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -188,7 +183,6 @@ class OriginCACertificatesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._delete(
             f"/certificates/{certificate_id}",
-            body=maybe_transform(body, origin_ca_certificate_delete_params.OriginCACertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -367,7 +361,6 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         self,
         certificate_id: str,
         *,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -396,7 +389,6 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._delete(
             f"/certificates/{certificate_id}",
-            body=await async_maybe_transform(body, origin_ca_certificate_delete_params.OriginCACertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

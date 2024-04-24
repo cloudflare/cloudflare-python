@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import account_delete_params, account_update_params
+from ....types.addressing.address_maps import account_update_params
 from ....types.addressing.address_maps.account_delete_response import AccountDeleteResponse
 from ....types.addressing.address_maps.account_update_response import AccountUpdateResponse
 
@@ -90,7 +90,6 @@ class AccountsResource(SyncAPIResource):
         address_map_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,7 +119,6 @@ class AccountsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
-            body=maybe_transform(body, account_delete_params.AccountDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -192,7 +190,6 @@ class AsyncAccountsResource(AsyncAPIResource):
         address_map_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -222,7 +219,6 @@ class AsyncAccountsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
-            body=await async_maybe_transform(body, account_delete_params.AccountDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

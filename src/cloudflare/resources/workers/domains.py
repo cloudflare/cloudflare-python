@@ -25,7 +25,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.workers import domain_list_params, domain_delete_params, domain_update_params
+from ...types.workers import domain_list_params, domain_update_params
 from ...types.workers.domain import Domain
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
@@ -165,7 +165,6 @@ class DomainsResource(SyncAPIResource):
         domain_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -194,7 +193,6 @@ class DomainsResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/workers/domains/{domain_id}",
-            body=maybe_transform(body, domain_delete_params.DomainDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -378,7 +376,6 @@ class AsyncDomainsResource(AsyncAPIResource):
         domain_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -407,7 +404,6 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/workers/domains/{domain_id}",
-            body=await async_maybe_transform(body, domain_delete_params.DomainDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

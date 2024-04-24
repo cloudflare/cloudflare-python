@@ -81,7 +81,6 @@ class TestBulk:
         bulk = client.kv.namespaces.bulk.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         )
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
@@ -91,7 +90,6 @@ class TestBulk:
         response = client.kv.namespaces.bulk.with_raw_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         )
 
         assert response.is_closed is True
@@ -105,7 +103,6 @@ class TestBulk:
         with client.kv.namespaces.bulk.with_streaming_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,14 +119,12 @@ class TestBulk:
             client.kv.namespaces.bulk.with_raw_response.delete(
                 "0f2ac74b498b48028cb68387c421e279",
                 account_id="",
-                body=["My-Key", "My-Key", "My-Key"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             client.kv.namespaces.bulk.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=["My-Key", "My-Key", "My-Key"],
             )
 
 
@@ -199,7 +194,6 @@ class TestAsyncBulk:
         bulk = await async_client.kv.namespaces.bulk.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         )
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
@@ -209,7 +203,6 @@ class TestAsyncBulk:
         response = await async_client.kv.namespaces.bulk.with_raw_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         )
 
         assert response.is_closed is True
@@ -223,7 +216,6 @@ class TestAsyncBulk:
         async with async_client.kv.namespaces.bulk.with_streaming_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -240,12 +232,10 @@ class TestAsyncBulk:
             await async_client.kv.namespaces.bulk.with_raw_response.delete(
                 "0f2ac74b498b48028cb68387c421e279",
                 account_id="",
-                body=["My-Key", "My-Key", "My-Key"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             await async_client.kv.namespaces.bulk.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=["My-Key", "My-Key", "My-Key"],
             )

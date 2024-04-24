@@ -23,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.queues import consumer_create_params, consumer_delete_params, consumer_update_params
+from ...types.queues import consumer_create_params, consumer_update_params
 from ...types.queues.consumer_get_response import ConsumerGetResponse
 from ...types.queues.consumer_create_response import ConsumerCreateResponse
 from ...types.queues.consumer_delete_response import ConsumerDeleteResponse
@@ -144,7 +144,6 @@ class ConsumersResource(SyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,7 +179,6 @@ class ConsumersResource(SyncAPIResource):
             Optional[ConsumerDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
-                body=maybe_transform(body, consumer_delete_params.ConsumerDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -351,7 +349,6 @@ class AsyncConsumersResource(AsyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -387,7 +384,6 @@ class AsyncConsumersResource(AsyncAPIResource):
             Optional[ConsumerDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
-                body=await async_maybe_transform(body, consumer_delete_params.ConsumerDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

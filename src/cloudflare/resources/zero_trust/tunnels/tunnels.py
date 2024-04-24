@@ -66,7 +66,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.zero_trust import tunnel_edit_params, tunnel_list_params, tunnel_create_params, tunnel_delete_params
+from ....types.zero_trust import tunnel_edit_params, tunnel_list_params, tunnel_create_params
 from ....types.zero_trust.tunnel_get_response import TunnelGetResponse
 from ....types.zero_trust.tunnel_edit_response import TunnelEditResponse
 from ....types.zero_trust.tunnel_list_response import TunnelListResponse
@@ -245,7 +245,6 @@ class TunnelsResource(SyncAPIResource):
         tunnel_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -275,7 +274,6 @@ class TunnelsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return self._delete(
             f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            body=maybe_transform(body, tunnel_delete_params.TunnelDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -563,7 +561,6 @@ class AsyncTunnelsResource(AsyncAPIResource):
         tunnel_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -593,7 +590,6 @@ class AsyncTunnelsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            body=await async_maybe_transform(body, tunnel_delete_params.TunnelDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

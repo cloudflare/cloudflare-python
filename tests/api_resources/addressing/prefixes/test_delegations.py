@@ -140,7 +140,6 @@ class TestDelegations:
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[DelegationDeleteResponse], delegation, path=["response"])
 
@@ -151,7 +150,6 @@ class TestDelegations:
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -166,7 +164,6 @@ class TestDelegations:
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -184,7 +181,6 @@ class TestDelegations:
                 "d933b1530bc56c9953cf8ce166da8004",
                 account_id="",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
@@ -192,7 +188,6 @@ class TestDelegations:
                 "d933b1530bc56c9953cf8ce166da8004",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `delegation_id` but received ''"):
@@ -200,7 +195,6 @@ class TestDelegations:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
 
@@ -328,7 +322,6 @@ class TestAsyncDelegations:
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[DelegationDeleteResponse], delegation, path=["response"])
 
@@ -339,7 +332,6 @@ class TestAsyncDelegations:
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -354,7 +346,6 @@ class TestAsyncDelegations:
             "d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -372,7 +363,6 @@ class TestAsyncDelegations:
                 "d933b1530bc56c9953cf8ce166da8004",
                 account_id="",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
@@ -380,7 +370,6 @@ class TestAsyncDelegations:
                 "d933b1530bc56c9953cf8ce166da8004",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `delegation_id` but received ''"):
@@ -388,5 +377,4 @@ class TestAsyncDelegations:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )

@@ -38,7 +38,6 @@ from ...types.custom_hostnames import (
     custom_hostname_edit_params,
     custom_hostname_list_params,
     custom_hostname_create_params,
-    custom_hostname_delete_params,
 )
 from ...types.custom_hostnames.custom_hostname_get_response import CustomHostnameGetResponse
 from ...types.custom_hostnames.custom_hostname_edit_response import CustomHostnameEditResponse
@@ -204,7 +203,6 @@ class CustomHostnamesResource(SyncAPIResource):
         custom_hostname_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -234,7 +232,6 @@ class CustomHostnamesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `custom_hostname_id` but received {custom_hostname_id!r}")
         return self._delete(
             f"/zones/{zone_id}/custom_hostnames/{custom_hostname_id}",
-            body=maybe_transform(body, custom_hostname_delete_params.CustomHostnameDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -515,7 +512,6 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         custom_hostname_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -545,7 +541,6 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `custom_hostname_id` but received {custom_hostname_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/custom_hostnames/{custom_hostname_id}",
-            body=await async_maybe_transform(body, custom_hostname_delete_params.CustomHostnameDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

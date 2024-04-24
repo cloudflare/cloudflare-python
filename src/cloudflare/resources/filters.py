@@ -25,7 +25,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.filters import filter_list_params, filter_create_params, filter_delete_params, filter_update_params
+from ..types.filters import filter_list_params, filter_create_params, filter_update_params
 from ..types.filters.firewall_filter import FirewallFilter
 from ..types.filters.filter_create_response import FilterCreateResponse
 
@@ -207,7 +207,6 @@ class FiltersResource(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -237,7 +236,6 @@ class FiltersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/zones/{zone_identifier}/filters/{id}",
-            body=maybe_transform(body, filter_delete_params.FilterDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -468,7 +466,6 @@ class AsyncFiltersResource(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -498,7 +495,6 @@ class AsyncFiltersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/zones/{zone_identifier}/filters/{id}",
-            body=await async_maybe_transform(body, filter_delete_params.FilterDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

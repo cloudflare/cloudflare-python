@@ -158,7 +158,6 @@ class TestRules:
         rule = client.magic_network_monitoring.rules.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -168,7 +167,6 @@ class TestRules:
         response = client.magic_network_monitoring.rules.with_raw_response.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
         )
 
         assert response.is_closed is True
@@ -182,7 +180,6 @@ class TestRules:
         with client.magic_network_monitoring.rules.with_streaming_response.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -199,14 +196,12 @@ class TestRules:
             client.magic_network_monitoring.rules.with_raw_response.delete(
                 "2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.delete(
                 "",
                 account_id="6f91088a406011ed95aed352566e8d4c",
-                body={},
             )
 
     @pytest.mark.skip()
@@ -462,7 +457,6 @@ class TestAsyncRules:
         rule = await async_client.magic_network_monitoring.rules.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -472,7 +466,6 @@ class TestAsyncRules:
         response = await async_client.magic_network_monitoring.rules.with_raw_response.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
         )
 
         assert response.is_closed is True
@@ -486,7 +479,6 @@ class TestAsyncRules:
         async with async_client.magic_network_monitoring.rules.with_streaming_response.delete(
             "2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -503,14 +495,12 @@ class TestAsyncRules:
             await async_client.magic_network_monitoring.rules.with_raw_response.delete(
                 "2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.delete(
                 "",
                 account_id="6f91088a406011ed95aed352566e8d4c",
-                body={},
             )
 
     @pytest.mark.skip()
