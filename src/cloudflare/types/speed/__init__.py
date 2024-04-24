@@ -7,7 +7,6 @@ from .trend import Trend as Trend
 from .schedule import Schedule as Schedule
 from .availability import Availability as Availability
 from .labeled_region import LabeledRegion as LabeledRegion
-from .schedule_param import ScheduleParam as ScheduleParam
 from .test_list_params import TestListParams as TestListParams
 from .lighthouse_report import LighthouseReport as LighthouseReport
 from .page_list_response import PageListResponse as PageListResponse

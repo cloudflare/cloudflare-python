@@ -15,7 +15,6 @@ from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_delete_params import RuleDeleteParams as RuleDeleteParams
 from .rule_edit_response import RuleEditResponse as RuleEditResponse
 from .rule_update_params import RuleUpdateParams as RuleUpdateParams
-from .configuration_param import ConfigurationParam as ConfigurationParam
 from .ua_rule_list_params import UARuleListParams as UARuleListParams
 from .lockdown_list_params import LockdownListParams as LockdownListParams
 from .rule_create_response import RuleCreateResponse as RuleCreateResponse
