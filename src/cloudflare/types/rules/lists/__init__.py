@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .list_item import ListItem as ListItem
 from .list_cursor import ListCursor as ListCursor
 from .item_list_params import ItemListParams as ItemListParams
 from .operation_status import OperationStatus as OperationStatus
