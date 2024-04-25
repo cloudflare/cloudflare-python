@@ -47,7 +47,7 @@ class MembersResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         email: str,
         roles: List[str],
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
@@ -74,6 +74,8 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/members",
             body=maybe_transform(
@@ -98,7 +100,7 @@ class MembersResource(SyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: object,
+        account_id: str,
         roles: Iterable[member_update_params.Role],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -123,6 +125,8 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return self._put(
@@ -141,7 +145,7 @@ class MembersResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         order: Literal["user.first_name", "user.last_name", "user.email", "status"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -176,6 +180,8 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/members",
             page=SyncV4PagePaginationArray[MemberListResponse],
@@ -202,7 +208,7 @@ class MembersResource(SyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -224,6 +230,8 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return self._delete(
@@ -242,7 +250,7 @@ class MembersResource(SyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -264,6 +272,8 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return self._get(
@@ -291,7 +301,7 @@ class AsyncMembersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: object,
+        account_id: str,
         email: str,
         roles: List[str],
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
@@ -318,6 +328,8 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/members",
             body=await async_maybe_transform(
@@ -342,7 +354,7 @@ class AsyncMembersResource(AsyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: object,
+        account_id: str,
         roles: Iterable[member_update_params.Role],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -367,6 +379,8 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return await self._put(
@@ -385,7 +399,7 @@ class AsyncMembersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: object,
+        account_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         order: Literal["user.first_name", "user.last_name", "user.email", "status"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -420,6 +434,8 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/members",
             page=AsyncV4PagePaginationArray[MemberListResponse],
@@ -446,7 +462,7 @@ class AsyncMembersResource(AsyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -468,6 +484,8 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return await self._delete(
@@ -486,7 +504,7 @@ class AsyncMembersResource(AsyncAPIResource):
         self,
         member_id: str,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -508,6 +526,8 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
         return await self._get(

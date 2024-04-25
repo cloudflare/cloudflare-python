@@ -24,7 +24,6 @@ class TestValidate:
         validate = client.logpush.validate.destination(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
 
@@ -34,7 +33,6 @@ class TestValidate:
         validate = client.logpush.validate.destination(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
 
@@ -44,7 +42,6 @@ class TestValidate:
         response = client.logpush.validate.with_raw_response.destination(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -58,7 +55,6 @@ class TestValidate:
         with client.logpush.validate.with_streaming_response.destination(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,14 +71,12 @@ class TestValidate:
             client.logpush.validate.with_raw_response.destination(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.validate.with_raw_response.destination(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -91,7 +85,6 @@ class TestValidate:
         validate = client.logpush.validate.origin(
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
 
@@ -101,7 +94,6 @@ class TestValidate:
         validate = client.logpush.validate.origin(
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
 
@@ -111,7 +103,6 @@ class TestValidate:
         response = client.logpush.validate.with_raw_response.origin(
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -125,7 +116,6 @@ class TestValidate:
         with client.logpush.validate.with_streaming_response.origin(
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -142,14 +132,12 @@ class TestValidate:
             client.logpush.validate.with_raw_response.origin(
                 logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.validate.with_raw_response.origin(
                 logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -162,7 +150,6 @@ class TestAsyncValidate:
         validate = await async_client.logpush.validate.destination(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
 
@@ -172,7 +159,6 @@ class TestAsyncValidate:
         validate = await async_client.logpush.validate.destination(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
 
@@ -182,7 +168,6 @@ class TestAsyncValidate:
         response = await async_client.logpush.validate.with_raw_response.destination(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -196,7 +181,6 @@ class TestAsyncValidate:
         async with async_client.logpush.validate.with_streaming_response.destination(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -213,14 +197,12 @@ class TestAsyncValidate:
             await async_client.logpush.validate.with_raw_response.destination(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.validate.with_raw_response.destination(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -229,7 +211,6 @@ class TestAsyncValidate:
         validate = await async_client.logpush.validate.origin(
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
 
@@ -239,7 +220,6 @@ class TestAsyncValidate:
         validate = await async_client.logpush.validate.origin(
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
 
@@ -249,7 +229,6 @@ class TestAsyncValidate:
         response = await async_client.logpush.validate.with_raw_response.origin(
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -263,7 +242,6 @@ class TestAsyncValidate:
         async with async_client.logpush.validate.with_streaming_response.origin(
             logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -280,12 +258,10 @@ class TestAsyncValidate:
             await async_client.logpush.validate.with_raw_response.origin(
                 logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.validate.with_raw_response.origin(
                 logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
                 account_id="string",
-                zone_id="",
             )
