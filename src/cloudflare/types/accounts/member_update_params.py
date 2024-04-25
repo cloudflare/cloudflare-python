@@ -9,7 +9,7 @@ __all__ = ["MemberUpdateParams", "Role"]
 
 
 class MemberUpdateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     roles: Required[Iterable[Role]]
     """Roles assigned to this member."""

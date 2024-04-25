@@ -26,7 +26,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -37,7 +36,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -86,7 +84,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -101,7 +98,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -119,7 +115,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="self_hosted",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -127,7 +122,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="self_hosted",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -135,7 +129,6 @@ class TestApplications:
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -144,7 +137,6 @@ class TestApplications:
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -194,7 +186,6 @@ class TestApplications:
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -207,7 +198,6 @@ class TestApplications:
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -223,13 +213,11 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -239,7 +227,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -250,7 +237,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -299,7 +285,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -314,7 +299,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -332,7 +316,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="ssh",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -340,7 +323,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="ssh",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -350,7 +332,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -361,7 +342,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -410,7 +390,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -425,7 +404,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -443,7 +421,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="vnc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -451,7 +428,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="vnc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -460,7 +436,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -470,7 +445,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="app_launcher",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -487,7 +461,6 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.create(
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -501,7 +474,6 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.create(
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -518,14 +490,12 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.create(
                 type="app_launcher",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 type="app_launcher",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -534,7 +504,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="warp",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -544,7 +513,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="warp",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -561,7 +529,6 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.create(
             type="warp",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -575,7 +542,6 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.create(
             type="warp",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -592,14 +558,12 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.create(
                 type="warp",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 type="warp",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -608,7 +572,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="biso",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -618,7 +581,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="biso",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -635,7 +597,6 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.create(
             type="biso",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -649,7 +610,6 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.create(
             type="biso",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -666,14 +626,12 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.create(
                 type="biso",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 type="biso",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -681,7 +639,6 @@ class TestApplications:
     def test_method_create_overload_8(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -690,7 +647,6 @@ class TestApplications:
     def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             account_id="string",
-            zone_id="string",
             app_launcher_visible=True,
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -705,7 +661,6 @@ class TestApplications:
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -718,7 +673,6 @@ class TestApplications:
     def test_streaming_response_create_overload_8(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -734,13 +688,11 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -751,7 +703,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -763,7 +714,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -813,7 +763,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -829,7 +778,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -848,7 +796,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="self_hosted",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -857,7 +804,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="self_hosted",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -866,7 +812,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -876,7 +821,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -927,7 +871,6 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -941,7 +884,6 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -958,14 +900,12 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -976,7 +916,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -988,7 +927,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -1038,7 +976,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1054,7 +991,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1073,7 +1009,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="ssh",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1082,7 +1017,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="ssh",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1093,7 +1027,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -1105,7 +1038,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -1155,7 +1087,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1171,7 +1102,6 @@ class TestApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1190,7 +1120,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="vnc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1199,7 +1128,6 @@ class TestApplications:
                 domain="test.example.com/admin",
                 type="vnc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1209,7 +1137,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -1220,7 +1147,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -1238,7 +1164,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1253,7 +1178,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1271,7 +1195,6 @@ class TestApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="app_launcher",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1279,7 +1202,6 @@ class TestApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="app_launcher",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1289,7 +1211,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -1300,7 +1221,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -1318,7 +1238,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1333,7 +1252,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1351,7 +1269,6 @@ class TestApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="warp",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1359,7 +1276,6 @@ class TestApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="warp",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1369,7 +1285,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -1380,7 +1295,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -1398,7 +1312,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1413,7 +1326,6 @@ class TestApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1431,7 +1343,6 @@ class TestApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="biso",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1439,7 +1350,6 @@ class TestApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="biso",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1448,7 +1358,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -1458,7 +1367,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
             app_launcher_visible=True,
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -1474,7 +1382,6 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1488,7 +1395,6 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1505,14 +1411,12 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1520,7 +1424,6 @@ class TestApplications:
     def test_method_list(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncSinglePage[Application], application, path=["response"])
 
@@ -1529,7 +1432,6 @@ class TestApplications:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncSinglePage[Application], application, path=["response"])
 
@@ -1538,7 +1440,6 @@ class TestApplications:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.list(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1551,7 +1452,6 @@ class TestApplications:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.list(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1567,13 +1467,11 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.list(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.list(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1582,7 +1480,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
@@ -1592,7 +1489,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
@@ -1602,7 +1498,6 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1616,7 +1511,6 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1633,14 +1527,12 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1649,7 +1541,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -1659,7 +1550,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -1669,7 +1559,6 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1683,7 +1572,6 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1700,14 +1588,12 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.get(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.get(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1716,7 +1602,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.revoke_tokens(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(object, application, path=["response"])
 
@@ -1726,7 +1611,6 @@ class TestApplications:
         application = client.zero_trust.access.applications.revoke_tokens(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(object, application, path=["response"])
 
@@ -1736,7 +1620,6 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.revoke_tokens(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1750,7 +1633,6 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.revoke_tokens(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1767,14 +1649,12 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.revoke_tokens(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.revoke_tokens(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -1788,7 +1668,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -1799,7 +1678,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -1848,7 +1726,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1863,7 +1740,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1881,7 +1757,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="self_hosted",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1889,7 +1764,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="self_hosted",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1897,7 +1771,6 @@ class TestAsyncApplications:
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -1906,7 +1779,6 @@ class TestAsyncApplications:
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -1956,7 +1828,6 @@ class TestAsyncApplications:
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1969,7 +1840,6 @@ class TestAsyncApplications:
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1985,13 +1855,11 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2001,7 +1869,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2012,7 +1879,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -2061,7 +1927,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2076,7 +1941,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2094,7 +1958,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="ssh",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2102,7 +1965,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="ssh",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2112,7 +1974,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2123,7 +1984,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -2172,7 +2032,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2187,7 +2046,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2205,7 +2063,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="vnc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2213,7 +2070,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="vnc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2222,7 +2078,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2232,7 +2087,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="app_launcher",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -2249,7 +2103,6 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2263,7 +2116,6 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2280,14 +2132,12 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 type="app_launcher",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 type="app_launcher",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2296,7 +2146,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="warp",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2306,7 +2155,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="warp",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -2323,7 +2171,6 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             type="warp",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2337,7 +2184,6 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             type="warp",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2354,14 +2200,12 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 type="warp",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 type="warp",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2370,7 +2214,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="biso",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2380,7 +2223,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="biso",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -2397,7 +2239,6 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             type="biso",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2411,7 +2252,6 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             type="biso",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2428,14 +2268,12 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 type="biso",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 type="biso",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2443,7 +2281,6 @@ class TestAsyncApplications:
     async def test_method_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2452,7 +2289,6 @@ class TestAsyncApplications:
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             account_id="string",
-            zone_id="string",
             app_launcher_visible=True,
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -2467,7 +2303,6 @@ class TestAsyncApplications:
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2480,7 +2315,6 @@ class TestAsyncApplications:
     async def test_streaming_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2496,13 +2330,11 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2513,7 +2345,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2525,7 +2356,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -2575,7 +2405,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2591,7 +2420,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2610,7 +2438,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="self_hosted",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2619,7 +2446,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="self_hosted",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2628,7 +2454,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2638,7 +2463,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -2689,7 +2513,6 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2703,7 +2526,6 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2720,14 +2542,12 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2738,7 +2558,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2750,7 +2569,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -2800,7 +2618,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2816,7 +2633,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2835,7 +2651,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="ssh",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2844,7 +2659,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="ssh",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2855,7 +2669,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2867,7 +2680,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -2917,7 +2729,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2933,7 +2744,6 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2952,7 +2762,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="vnc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2961,7 +2770,6 @@ class TestAsyncApplications:
                 domain="test.example.com/admin",
                 type="vnc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2971,7 +2779,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -2982,7 +2789,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -3000,7 +2806,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3015,7 +2820,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3033,7 +2837,6 @@ class TestAsyncApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="app_launcher",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3041,7 +2844,6 @@ class TestAsyncApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="app_launcher",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3051,7 +2853,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -3062,7 +2863,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -3080,7 +2880,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3095,7 +2894,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3113,7 +2911,6 @@ class TestAsyncApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="warp",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3121,7 +2918,6 @@ class TestAsyncApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="warp",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3131,7 +2927,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -3142,7 +2937,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
             account_id="string",
-            zone_id="string",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -3160,7 +2954,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3175,7 +2968,6 @@ class TestAsyncApplications:
             "023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3193,7 +2985,6 @@ class TestAsyncApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="biso",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3201,7 +2992,6 @@ class TestAsyncApplications:
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 type="biso",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3210,7 +3000,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -3220,7 +3009,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
             app_launcher_visible=True,
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -3236,7 +3024,6 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3250,7 +3037,6 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3267,14 +3053,12 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3282,7 +3066,6 @@ class TestAsyncApplications:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncSinglePage[Application], application, path=["response"])
 
@@ -3291,7 +3074,6 @@ class TestAsyncApplications:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncSinglePage[Application], application, path=["response"])
 
@@ -3300,7 +3082,6 @@ class TestAsyncApplications:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.list(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3313,7 +3094,6 @@ class TestAsyncApplications:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.list(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3329,13 +3109,11 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.list(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.list(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3344,7 +3122,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
@@ -3354,7 +3131,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
@@ -3364,7 +3140,6 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3378,7 +3153,6 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3395,14 +3169,12 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3411,7 +3183,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -3421,7 +3192,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Application], application, path=["response"])
 
@@ -3431,7 +3201,6 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3445,7 +3214,6 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3462,14 +3230,12 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.get(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.get(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3478,7 +3244,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.revoke_tokens(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(object, application, path=["response"])
 
@@ -3488,7 +3253,6 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.revoke_tokens(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(object, application, path=["response"])
 
@@ -3498,7 +3262,6 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3512,7 +3275,6 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.revoke_tokens(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3529,12 +3291,10 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="string",
-                zone_id="",
             )

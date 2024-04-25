@@ -23,7 +23,6 @@ class TestJobs:
         job = client.logpush.datasets.jobs.get(
             "http_requests",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -33,7 +32,6 @@ class TestJobs:
         job = client.logpush.datasets.jobs.get(
             "http_requests",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -43,7 +41,6 @@ class TestJobs:
         response = client.logpush.datasets.jobs.with_raw_response.get(
             "http_requests",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -57,7 +54,6 @@ class TestJobs:
         with client.logpush.datasets.jobs.with_streaming_response.get(
             "http_requests",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -74,21 +70,18 @@ class TestJobs:
             client.logpush.datasets.jobs.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.datasets.jobs.with_raw_response.get(
                 "http_requests",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.datasets.jobs.with_raw_response.get(
                 "http_requests",
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -101,7 +94,6 @@ class TestAsyncJobs:
         job = await async_client.logpush.datasets.jobs.get(
             "http_requests",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -111,7 +103,6 @@ class TestAsyncJobs:
         job = await async_client.logpush.datasets.jobs.get(
             "http_requests",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -121,7 +112,6 @@ class TestAsyncJobs:
         response = await async_client.logpush.datasets.jobs.with_raw_response.get(
             "http_requests",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -135,7 +125,6 @@ class TestAsyncJobs:
         async with async_client.logpush.datasets.jobs.with_streaming_response.get(
             "http_requests",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -152,19 +141,16 @@ class TestAsyncJobs:
             await async_client.logpush.datasets.jobs.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.datasets.jobs.with_raw_response.get(
                 "http_requests",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.datasets.jobs.with_raw_response.get(
                 "http_requests",
                 account_id="string",
-                zone_id="",
             )

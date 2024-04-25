@@ -30,7 +30,6 @@ class TestGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
@@ -45,7 +44,6 @@ class TestGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -71,7 +69,6 @@ class TestGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -90,7 +87,6 @@ class TestGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -112,7 +108,6 @@ class TestGroups:
                 ],
                 name="Allow devs",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -124,7 +119,6 @@ class TestGroups:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -139,7 +133,6 @@ class TestGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
@@ -155,7 +148,6 @@ class TestGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -182,7 +174,6 @@ class TestGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -202,7 +193,6 @@ class TestGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -225,7 +215,6 @@ class TestGroups:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -238,7 +227,6 @@ class TestGroups:
                 ],
                 name="Allow devs",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -251,7 +239,6 @@ class TestGroups:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -259,7 +246,6 @@ class TestGroups:
     def test_method_list(self, client: Cloudflare) -> None:
         group = client.zero_trust.access.groups.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncSinglePage[ZeroTrustGroup], group, path=["response"])
 
@@ -268,7 +254,6 @@ class TestGroups:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         group = client.zero_trust.access.groups.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncSinglePage[ZeroTrustGroup], group, path=["response"])
 
@@ -277,7 +262,6 @@ class TestGroups:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.groups.with_raw_response.list(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -290,7 +274,6 @@ class TestGroups:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.access.groups.with_streaming_response.list(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -306,13 +289,11 @@ class TestGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.list(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.list(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -321,7 +302,6 @@ class TestGroups:
         group = client.zero_trust.access.groups.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
@@ -331,7 +311,6 @@ class TestGroups:
         group = client.zero_trust.access.groups.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
@@ -341,7 +320,6 @@ class TestGroups:
         response = client.zero_trust.access.groups.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -355,7 +333,6 @@ class TestGroups:
         with client.zero_trust.access.groups.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -372,21 +349,18 @@ class TestGroups:
             client.zero_trust.access.groups.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -395,7 +369,6 @@ class TestGroups:
         group = client.zero_trust.access.groups.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
@@ -405,7 +378,6 @@ class TestGroups:
         group = client.zero_trust.access.groups.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
@@ -415,7 +387,6 @@ class TestGroups:
         response = client.zero_trust.access.groups.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -429,7 +400,6 @@ class TestGroups:
         with client.zero_trust.access.groups.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -446,21 +416,18 @@ class TestGroups:
             client.zero_trust.access.groups.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -478,7 +445,6 @@ class TestAsyncGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
@@ -493,7 +459,6 @@ class TestAsyncGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -519,7 +484,6 @@ class TestAsyncGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -538,7 +502,6 @@ class TestAsyncGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -560,7 +523,6 @@ class TestAsyncGroups:
                 ],
                 name="Allow devs",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -572,7 +534,6 @@ class TestAsyncGroups:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -587,7 +548,6 @@ class TestAsyncGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
@@ -603,7 +563,6 @@ class TestAsyncGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -630,7 +589,6 @@ class TestAsyncGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -650,7 +608,6 @@ class TestAsyncGroups:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -673,7 +630,6 @@ class TestAsyncGroups:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -686,7 +642,6 @@ class TestAsyncGroups:
                 ],
                 name="Allow devs",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -699,7 +654,6 @@ class TestAsyncGroups:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -707,7 +661,6 @@ class TestAsyncGroups:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.zero_trust.access.groups.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncSinglePage[ZeroTrustGroup], group, path=["response"])
 
@@ -716,7 +669,6 @@ class TestAsyncGroups:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.zero_trust.access.groups.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncSinglePage[ZeroTrustGroup], group, path=["response"])
 
@@ -725,7 +677,6 @@ class TestAsyncGroups:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.groups.with_raw_response.list(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -738,7 +689,6 @@ class TestAsyncGroups:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.groups.with_streaming_response.list(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -754,13 +704,11 @@ class TestAsyncGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.list(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.list(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -769,7 +717,6 @@ class TestAsyncGroups:
         group = await async_client.zero_trust.access.groups.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
@@ -779,7 +726,6 @@ class TestAsyncGroups:
         group = await async_client.zero_trust.access.groups.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[GroupDeleteResponse], group, path=["response"])
 
@@ -789,7 +735,6 @@ class TestAsyncGroups:
         response = await async_client.zero_trust.access.groups.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -803,7 +748,6 @@ class TestAsyncGroups:
         async with async_client.zero_trust.access.groups.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -820,21 +764,18 @@ class TestAsyncGroups:
             await async_client.zero_trust.access.groups.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -843,7 +784,6 @@ class TestAsyncGroups:
         group = await async_client.zero_trust.access.groups.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
@@ -853,7 +793,6 @@ class TestAsyncGroups:
         group = await async_client.zero_trust.access.groups.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
 
@@ -863,7 +802,6 @@ class TestAsyncGroups:
         response = await async_client.zero_trust.access.groups.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -877,7 +815,6 @@ class TestAsyncGroups:
         async with async_client.zero_trust.access.groups.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -894,19 +831,16 @@ class TestAsyncGroups:
             await async_client.zero_trust.access.groups.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )

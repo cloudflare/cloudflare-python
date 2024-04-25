@@ -25,7 +25,6 @@ class TestPhases:
             "http_request_firewall_custom",
             rules=[{}, {}, {}],
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
@@ -85,7 +84,6 @@ class TestPhases:
                 },
             ],
             account_id="string",
-            zone_id="string",
             description="My ruleset to execute managed rulesets",
             kind="root",
             name="My ruleset",
@@ -100,7 +98,6 @@ class TestPhases:
             "http_request_firewall_custom",
             rules=[{}, {}, {}],
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -115,7 +112,6 @@ class TestPhases:
             "http_request_firewall_custom",
             rules=[{}, {}, {}],
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -133,7 +129,6 @@ class TestPhases:
                 "http_request_firewall_custom",
                 rules=[{}, {}, {}],
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -141,7 +136,6 @@ class TestPhases:
                 "http_request_firewall_custom",
                 rules=[{}, {}, {}],
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -150,7 +144,6 @@ class TestPhases:
         phase = client.rulesets.phases.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
@@ -160,7 +153,6 @@ class TestPhases:
         phase = client.rulesets.phases.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
@@ -170,7 +162,6 @@ class TestPhases:
         response = client.rulesets.phases.with_raw_response.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -184,7 +175,6 @@ class TestPhases:
         with client.rulesets.phases.with_streaming_response.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -201,14 +191,12 @@ class TestPhases:
             client.rulesets.phases.with_raw_response.get(
                 "http_request_firewall_custom",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.phases.with_raw_response.get(
                 "http_request_firewall_custom",
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -222,7 +210,6 @@ class TestAsyncPhases:
             "http_request_firewall_custom",
             rules=[{}, {}, {}],
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
@@ -282,7 +269,6 @@ class TestAsyncPhases:
                 },
             ],
             account_id="string",
-            zone_id="string",
             description="My ruleset to execute managed rulesets",
             kind="root",
             name="My ruleset",
@@ -297,7 +283,6 @@ class TestAsyncPhases:
             "http_request_firewall_custom",
             rules=[{}, {}, {}],
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -312,7 +297,6 @@ class TestAsyncPhases:
             "http_request_firewall_custom",
             rules=[{}, {}, {}],
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -330,7 +314,6 @@ class TestAsyncPhases:
                 "http_request_firewall_custom",
                 rules=[{}, {}, {}],
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -338,7 +321,6 @@ class TestAsyncPhases:
                 "http_request_firewall_custom",
                 rules=[{}, {}, {}],
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -347,7 +329,6 @@ class TestAsyncPhases:
         phase = await async_client.rulesets.phases.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
@@ -357,7 +338,6 @@ class TestAsyncPhases:
         phase = await async_client.rulesets.phases.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
@@ -367,7 +347,6 @@ class TestAsyncPhases:
         response = await async_client.rulesets.phases.with_raw_response.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -381,7 +360,6 @@ class TestAsyncPhases:
         async with async_client.rulesets.phases.with_streaming_response.get(
             "http_request_firewall_custom",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -398,12 +376,10 @@ class TestAsyncPhases:
             await async_client.rulesets.phases.with_raw_response.get(
                 "http_request_firewall_custom",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.phases.with_raw_response.get(
                 "http_request_firewall_custom",
                 account_id="string",
-                zone_id="",
             )
