@@ -32,7 +32,6 @@ class TestPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Policy], policy, path=["response"])
 
@@ -49,7 +48,6 @@ class TestPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
             approval_groups=[
                 {
                     "approvals_needed": 1,
@@ -94,7 +92,6 @@ class TestPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -115,7 +112,6 @@ class TestPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -139,7 +135,6 @@ class TestPolicies:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -153,7 +148,6 @@ class TestPolicies:
                 ],
                 name="Allow devs",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -167,7 +161,6 @@ class TestPolicies:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -184,7 +177,6 @@ class TestPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Policy], policy, path=["response"])
 
@@ -202,7 +194,6 @@ class TestPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
             approval_groups=[
                 {
                     "approvals_needed": 1,
@@ -248,7 +239,6 @@ class TestPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -270,7 +260,6 @@ class TestPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -295,7 +284,6 @@ class TestPolicies:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -310,7 +298,6 @@ class TestPolicies:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -325,7 +312,6 @@ class TestPolicies:
                 ],
                 name="Allow devs",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -340,7 +326,6 @@ class TestPolicies:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -349,7 +334,6 @@ class TestPolicies:
         policy = client.zero_trust.access.applications.policies.list(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
 
@@ -359,7 +343,6 @@ class TestPolicies:
         policy = client.zero_trust.access.applications.policies.list(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
 
@@ -369,7 +352,6 @@ class TestPolicies:
         response = client.zero_trust.access.applications.policies.with_raw_response.list(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -383,7 +365,6 @@ class TestPolicies:
         with client.zero_trust.access.applications.policies.with_streaming_response.list(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -400,21 +381,18 @@ class TestPolicies:
             client.zero_trust.access.applications.policies.with_raw_response.list(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.policies.with_raw_response.list(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.policies.with_raw_response.list(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -424,7 +402,6 @@ class TestPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
 
@@ -435,7 +412,6 @@ class TestPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
 
@@ -446,7 +422,6 @@ class TestPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -461,7 +436,6 @@ class TestPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -479,7 +453,6 @@ class TestPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -487,7 +460,6 @@ class TestPolicies:
                 "",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -495,7 +467,6 @@ class TestPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -503,7 +474,6 @@ class TestPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -513,7 +483,6 @@ class TestPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Policy], policy, path=["response"])
 
@@ -524,7 +493,6 @@ class TestPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Policy], policy, path=["response"])
 
@@ -535,7 +503,6 @@ class TestPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -550,7 +517,6 @@ class TestPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -568,7 +534,6 @@ class TestPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -576,7 +541,6 @@ class TestPolicies:
                 "",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -584,7 +548,6 @@ class TestPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -592,7 +555,6 @@ class TestPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -612,7 +574,6 @@ class TestAsyncPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Policy], policy, path=["response"])
 
@@ -629,7 +590,6 @@ class TestAsyncPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
             approval_groups=[
                 {
                     "approvals_needed": 1,
@@ -674,7 +634,6 @@ class TestAsyncPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -695,7 +654,6 @@ class TestAsyncPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -719,7 +677,6 @@ class TestAsyncPolicies:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -733,7 +690,6 @@ class TestAsyncPolicies:
                 ],
                 name="Allow devs",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -747,7 +703,6 @@ class TestAsyncPolicies:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -764,7 +719,6 @@ class TestAsyncPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Policy], policy, path=["response"])
 
@@ -782,7 +736,6 @@ class TestAsyncPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
             approval_groups=[
                 {
                     "approvals_needed": 1,
@@ -828,7 +781,6 @@ class TestAsyncPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -850,7 +802,6 @@ class TestAsyncPolicies:
             ],
             name="Allow devs",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -875,7 +826,6 @@ class TestAsyncPolicies:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -890,7 +840,6 @@ class TestAsyncPolicies:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -905,7 +854,6 @@ class TestAsyncPolicies:
                 ],
                 name="Allow devs",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -920,7 +868,6 @@ class TestAsyncPolicies:
                 ],
                 name="Allow devs",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -929,7 +876,6 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.access.applications.policies.list(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
 
@@ -939,7 +885,6 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.access.applications.policies.list(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
 
@@ -949,7 +894,6 @@ class TestAsyncPolicies:
         response = await async_client.zero_trust.access.applications.policies.with_raw_response.list(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -963,7 +907,6 @@ class TestAsyncPolicies:
         async with async_client.zero_trust.access.applications.policies.with_streaming_response.list(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -980,21 +923,18 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.applications.policies.with_raw_response.list(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.list(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.list(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1004,7 +944,6 @@ class TestAsyncPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
 
@@ -1015,7 +954,6 @@ class TestAsyncPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
 
@@ -1026,7 +964,6 @@ class TestAsyncPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1041,7 +978,6 @@ class TestAsyncPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1059,7 +995,6 @@ class TestAsyncPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -1067,7 +1002,6 @@ class TestAsyncPolicies:
                 "",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1075,7 +1009,6 @@ class TestAsyncPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1083,7 +1016,6 @@ class TestAsyncPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1093,7 +1025,6 @@ class TestAsyncPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Policy], policy, path=["response"])
 
@@ -1104,7 +1035,6 @@ class TestAsyncPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[Policy], policy, path=["response"])
 
@@ -1115,7 +1045,6 @@ class TestAsyncPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1130,7 +1059,6 @@ class TestAsyncPolicies:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1148,7 +1076,6 @@ class TestAsyncPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -1156,7 +1083,6 @@ class TestAsyncPolicies:
                 "",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1164,7 +1090,6 @@ class TestAsyncPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1172,5 +1097,4 @@ class TestAsyncPolicies:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 uuid1="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )

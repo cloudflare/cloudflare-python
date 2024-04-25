@@ -23,7 +23,7 @@ class TestRoles:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         role = client.accounts.roles.list(
-            account_id={},
+            account_id="string",
         )
         assert_matches_type(SyncSinglePage[Role], role, path=["response"])
 
@@ -31,7 +31,7 @@ class TestRoles:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.accounts.roles.with_raw_response.list(
-            account_id={},
+            account_id="string",
         )
 
         assert response.is_closed is True
@@ -43,7 +43,7 @@ class TestRoles:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.accounts.roles.with_streaming_response.list(
-            account_id={},
+            account_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -55,10 +55,18 @@ class TestRoles:
 
     @pytest.mark.skip()
     @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.accounts.roles.with_raw_response.list(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         role = client.accounts.roles.get(
             {},
-            account_id={},
+            account_id="string",
         )
         assert_matches_type(RoleGetResponse, role, path=["response"])
 
@@ -67,7 +75,7 @@ class TestRoles:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.roles.with_raw_response.get(
             {},
-            account_id={},
+            account_id="string",
         )
 
         assert response.is_closed is True
@@ -80,7 +88,7 @@ class TestRoles:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.roles.with_streaming_response.get(
             {},
-            account_id={},
+            account_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -90,6 +98,15 @@ class TestRoles:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.accounts.roles.with_raw_response.get(
+                {},
+                account_id="",
+            )
+
 
 class TestAsyncRoles:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -98,7 +115,7 @@ class TestAsyncRoles:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         role = await async_client.accounts.roles.list(
-            account_id={},
+            account_id="string",
         )
         assert_matches_type(AsyncSinglePage[Role], role, path=["response"])
 
@@ -106,7 +123,7 @@ class TestAsyncRoles:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.roles.with_raw_response.list(
-            account_id={},
+            account_id="string",
         )
 
         assert response.is_closed is True
@@ -118,7 +135,7 @@ class TestAsyncRoles:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.roles.with_streaming_response.list(
-            account_id={},
+            account_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -130,10 +147,18 @@ class TestAsyncRoles:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.accounts.roles.with_raw_response.list(
+                account_id="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         role = await async_client.accounts.roles.get(
             {},
-            account_id={},
+            account_id="string",
         )
         assert_matches_type(RoleGetResponse, role, path=["response"])
 
@@ -142,7 +167,7 @@ class TestAsyncRoles:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.roles.with_raw_response.get(
             {},
-            account_id={},
+            account_id="string",
         )
 
         assert response.is_closed is True
@@ -155,7 +180,7 @@ class TestAsyncRoles:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.roles.with_streaming_response.get(
             {},
-            account_id={},
+            account_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -164,3 +189,12 @@ class TestAsyncRoles:
             assert_matches_type(RoleGetResponse, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.accounts.roles.with_raw_response.get(
+                {},
+                account_id="",
+            )

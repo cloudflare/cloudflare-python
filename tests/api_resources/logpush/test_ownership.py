@@ -24,7 +24,6 @@ class TestOwnership:
         ownership = client.logpush.ownership.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
 
@@ -34,7 +33,6 @@ class TestOwnership:
         ownership = client.logpush.ownership.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
 
@@ -44,7 +42,6 @@ class TestOwnership:
         response = client.logpush.ownership.with_raw_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -58,7 +55,6 @@ class TestOwnership:
         with client.logpush.ownership.with_streaming_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,14 +71,12 @@ class TestOwnership:
             client.logpush.ownership.with_raw_response.create(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.ownership.with_raw_response.create(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -92,7 +86,6 @@ class TestOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
@@ -103,7 +96,6 @@ class TestOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
@@ -114,7 +106,6 @@ class TestOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -129,7 +120,6 @@ class TestOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -147,7 +137,6 @@ class TestOwnership:
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -155,7 +144,6 @@ class TestOwnership:
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -168,7 +156,6 @@ class TestAsyncOwnership:
         ownership = await async_client.logpush.ownership.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
 
@@ -178,7 +165,6 @@ class TestAsyncOwnership:
         ownership = await async_client.logpush.ownership.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
 
@@ -188,7 +174,6 @@ class TestAsyncOwnership:
         response = await async_client.logpush.ownership.with_raw_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -202,7 +187,6 @@ class TestAsyncOwnership:
         async with async_client.logpush.ownership.with_streaming_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -219,14 +203,12 @@ class TestAsyncOwnership:
             await async_client.logpush.ownership.with_raw_response.create(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.ownership.with_raw_response.create(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -236,7 +218,6 @@ class TestAsyncOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
@@ -247,7 +228,6 @@ class TestAsyncOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
@@ -258,7 +238,6 @@ class TestAsyncOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -273,7 +252,6 @@ class TestAsyncOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -291,7 +269,6 @@ class TestAsyncOwnership:
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -299,5 +276,4 @@ class TestAsyncOwnership:
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
                 account_id="string",
-                zone_id="",
             )

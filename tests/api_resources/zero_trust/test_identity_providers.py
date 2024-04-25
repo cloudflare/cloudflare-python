@@ -28,7 +28,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -49,7 +48,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -68,7 +66,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -84,7 +81,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -103,7 +99,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -112,7 +107,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -123,7 +117,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -142,7 +135,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -161,7 +153,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -177,7 +168,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -196,7 +186,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -205,7 +194,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -216,7 +204,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -231,7 +218,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -250,7 +236,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -266,7 +251,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -285,7 +269,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -294,7 +277,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -305,7 +287,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -320,7 +301,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -339,7 +319,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -355,7 +334,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -374,7 +352,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -383,7 +360,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -394,7 +370,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -411,7 +386,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -430,7 +404,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -446,7 +419,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -465,7 +437,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -474,7 +445,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -485,7 +455,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -503,7 +472,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -522,7 +490,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -538,7 +505,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -557,7 +523,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -566,7 +531,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -577,7 +541,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -592,7 +555,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -611,7 +573,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -627,7 +588,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -646,7 +606,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -655,7 +614,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -666,7 +624,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -687,7 +644,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -706,7 +662,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -722,7 +677,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -741,7 +695,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -750,7 +703,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -761,7 +713,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -780,7 +731,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -799,7 +749,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -815,7 +764,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -834,7 +782,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -843,7 +790,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -854,7 +800,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -872,7 +817,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -891,7 +835,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -907,7 +850,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -926,7 +868,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -935,7 +876,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -946,7 +886,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -964,7 +903,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -983,7 +921,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -999,7 +936,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1018,7 +954,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1027,7 +962,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1038,7 +972,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1071,7 +1004,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1090,7 +1022,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1106,7 +1037,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1125,7 +1055,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1134,7 +1063,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1145,7 +1073,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1160,7 +1087,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1179,7 +1105,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1195,7 +1120,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1214,7 +1138,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1223,7 +1146,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1234,7 +1156,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1246,7 +1167,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1265,7 +1185,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1281,7 +1200,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1300,7 +1218,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1309,7 +1226,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1321,7 +1237,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1343,7 +1258,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1363,7 +1277,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1380,7 +1293,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1400,7 +1312,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1410,7 +1321,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1420,7 +1330,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1432,7 +1341,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1452,7 +1360,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1472,7 +1379,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1489,7 +1395,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1509,7 +1414,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1519,7 +1423,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1529,7 +1432,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1541,7 +1443,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1557,7 +1458,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1577,7 +1477,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1594,7 +1493,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1614,7 +1512,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1624,7 +1521,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1634,7 +1530,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1646,7 +1541,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1662,7 +1556,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1682,7 +1575,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1699,7 +1591,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1719,7 +1610,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1729,7 +1619,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1739,7 +1628,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1751,7 +1639,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1769,7 +1656,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1789,7 +1675,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1806,7 +1691,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1826,7 +1710,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1836,7 +1719,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1846,7 +1728,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1858,7 +1739,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1877,7 +1757,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1897,7 +1776,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1914,7 +1792,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1934,7 +1811,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1944,7 +1820,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1954,7 +1829,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1966,7 +1840,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1982,7 +1855,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2002,7 +1874,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2019,7 +1890,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2039,7 +1909,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2049,7 +1918,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2059,7 +1927,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2071,7 +1938,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2093,7 +1959,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2113,7 +1978,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2130,7 +1994,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2150,7 +2013,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2160,7 +2022,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2170,7 +2031,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2182,7 +2042,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2202,7 +2061,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2222,7 +2080,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2239,7 +2096,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2259,7 +2115,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2269,7 +2124,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2279,7 +2133,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2291,7 +2144,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2310,7 +2162,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2330,7 +2181,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2347,7 +2197,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2367,7 +2216,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2377,7 +2225,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2387,7 +2234,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2399,7 +2245,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2418,7 +2263,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2438,7 +2282,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2455,7 +2298,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2475,7 +2317,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2485,7 +2326,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2495,7 +2335,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2507,7 +2346,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2541,7 +2379,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2561,7 +2398,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2578,7 +2414,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2598,7 +2433,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2608,7 +2442,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2618,7 +2451,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2630,7 +2462,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2646,7 +2477,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2666,7 +2496,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2683,7 +2512,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2703,7 +2531,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2713,7 +2540,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2723,7 +2549,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2735,7 +2560,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2748,7 +2572,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2768,7 +2591,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2785,7 +2607,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2805,7 +2626,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2815,7 +2635,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2825,7 +2644,6 @@ class TestIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2833,7 +2651,6 @@ class TestIdentityProviders:
     def test_method_list(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -2842,7 +2659,6 @@ class TestIdentityProviders:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -2851,7 +2667,6 @@ class TestIdentityProviders:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.list(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2864,7 +2679,6 @@ class TestIdentityProviders:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.list(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2880,13 +2694,11 @@ class TestIdentityProviders:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.list(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.list(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2895,7 +2707,6 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
@@ -2905,7 +2716,6 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
@@ -2915,7 +2725,6 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2929,7 +2738,6 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2946,21 +2754,18 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2969,7 +2774,6 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2979,7 +2783,6 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2989,7 +2792,6 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3003,7 +2805,6 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3020,21 +2821,18 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -3049,7 +2847,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3070,7 +2867,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3089,7 +2885,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3105,7 +2900,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3124,7 +2918,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3133,7 +2926,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3144,7 +2936,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3163,7 +2954,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3182,7 +2972,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3198,7 +2987,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3217,7 +3005,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3226,7 +3013,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3237,7 +3023,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3252,7 +3037,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3271,7 +3055,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3287,7 +3070,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3306,7 +3088,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3315,7 +3096,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3326,7 +3106,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3341,7 +3120,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3360,7 +3138,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3376,7 +3153,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3395,7 +3171,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3404,7 +3179,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3415,7 +3189,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3432,7 +3205,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3451,7 +3223,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3467,7 +3238,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3486,7 +3256,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3495,7 +3264,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3506,7 +3274,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3524,7 +3291,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3543,7 +3309,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3559,7 +3324,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3578,7 +3342,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3587,7 +3350,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3598,7 +3360,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3613,7 +3374,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3632,7 +3392,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3648,7 +3407,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3667,7 +3425,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3676,7 +3433,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3687,7 +3443,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3708,7 +3463,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3727,7 +3481,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3743,7 +3496,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3762,7 +3514,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3771,7 +3522,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3782,7 +3532,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3801,7 +3550,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3820,7 +3568,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3836,7 +3583,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3855,7 +3601,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3864,7 +3609,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3875,7 +3619,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3893,7 +3636,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3912,7 +3654,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3928,7 +3669,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3947,7 +3687,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3956,7 +3695,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3967,7 +3705,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3985,7 +3722,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4004,7 +3740,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4020,7 +3755,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4039,7 +3773,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4048,7 +3781,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4059,7 +3791,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4092,7 +3823,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4111,7 +3841,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4127,7 +3856,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4146,7 +3874,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4155,7 +3882,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4166,7 +3892,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4181,7 +3906,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4200,7 +3924,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4216,7 +3939,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4235,7 +3957,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4244,7 +3965,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4255,7 +3975,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4267,7 +3986,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4286,7 +4004,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4302,7 +4019,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4321,7 +4037,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4330,7 +4045,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4342,7 +4056,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4364,7 +4077,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4384,7 +4096,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4401,7 +4112,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4421,7 +4131,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -4431,7 +4140,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4441,7 +4149,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4453,7 +4160,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4473,7 +4179,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4493,7 +4198,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4510,7 +4214,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4530,7 +4233,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -4540,7 +4242,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4550,7 +4251,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4562,7 +4262,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4578,7 +4277,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4598,7 +4296,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4615,7 +4312,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4635,7 +4331,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -4645,7 +4340,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4655,7 +4349,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4667,7 +4360,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4683,7 +4375,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4703,7 +4394,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4720,7 +4410,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4740,7 +4429,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -4750,7 +4438,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4760,7 +4447,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4772,7 +4458,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4790,7 +4475,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4810,7 +4494,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4827,7 +4510,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4847,7 +4529,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -4857,7 +4538,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4867,7 +4547,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4879,7 +4558,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4898,7 +4576,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4918,7 +4595,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4935,7 +4611,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4955,7 +4630,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -4965,7 +4639,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4975,7 +4648,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4987,7 +4659,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5003,7 +4674,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5023,7 +4693,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5040,7 +4709,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5060,7 +4728,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5070,7 +4737,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5080,7 +4746,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5092,7 +4757,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5114,7 +4778,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5134,7 +4797,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5151,7 +4813,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5171,7 +4832,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5181,7 +4841,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5191,7 +4850,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5203,7 +4861,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5223,7 +4880,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5243,7 +4899,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5260,7 +4915,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5280,7 +4934,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5290,7 +4943,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5300,7 +4952,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5312,7 +4963,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5331,7 +4981,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5351,7 +5000,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5368,7 +5016,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5388,7 +5035,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5398,7 +5044,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5408,7 +5053,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5420,7 +5064,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5439,7 +5082,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5459,7 +5101,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5476,7 +5117,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5496,7 +5136,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5506,7 +5145,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5516,7 +5154,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5528,7 +5165,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5562,7 +5198,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5582,7 +5217,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5599,7 +5233,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5619,7 +5252,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5629,7 +5261,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5639,7 +5270,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5651,7 +5281,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5667,7 +5296,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5687,7 +5315,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5704,7 +5331,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5724,7 +5350,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5734,7 +5359,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5744,7 +5368,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5756,7 +5379,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5769,7 +5391,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5789,7 +5410,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5806,7 +5426,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5826,7 +5445,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5836,7 +5454,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5846,7 +5463,6 @@ class TestAsyncIdentityProviders:
                 name="Widget Corps IDP",
                 type="onetimepin",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5854,7 +5470,6 @@ class TestAsyncIdentityProviders:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -5863,7 +5478,6 @@ class TestAsyncIdentityProviders:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -5872,7 +5486,6 @@ class TestAsyncIdentityProviders:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.list(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5885,7 +5498,6 @@ class TestAsyncIdentityProviders:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.list(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5901,13 +5513,11 @@ class TestAsyncIdentityProviders:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.list(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.list(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5916,7 +5526,6 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
@@ -5926,7 +5535,6 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
@@ -5936,7 +5544,6 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5950,7 +5557,6 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5967,21 +5573,18 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.delete(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.delete(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5990,7 +5593,6 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -6000,7 +5602,6 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -6010,7 +5611,6 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -6024,7 +5624,6 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6041,19 +5640,16 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.get(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="string",
-                zone_id="",
             )

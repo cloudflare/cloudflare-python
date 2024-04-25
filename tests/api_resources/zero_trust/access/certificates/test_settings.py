@@ -40,7 +40,6 @@ class TestSettings:
                 },
             ],
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
 
@@ -66,7 +65,6 @@ class TestSettings:
                 },
             ],
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
 
@@ -92,7 +90,6 @@ class TestSettings:
                 },
             ],
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -122,7 +119,6 @@ class TestSettings:
                 },
             ],
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -155,7 +151,6 @@ class TestSettings:
                     },
                 ],
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -178,7 +173,6 @@ class TestSettings:
                     },
                 ],
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -186,7 +180,6 @@ class TestSettings:
     def test_method_get(self, client: Cloudflare) -> None:
         setting = client.zero_trust.access.certificates.settings.get(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
 
@@ -195,7 +188,6 @@ class TestSettings:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         setting = client.zero_trust.access.certificates.settings.get(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
 
@@ -204,7 +196,6 @@ class TestSettings:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.certificates.settings.with_raw_response.get(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -217,7 +208,6 @@ class TestSettings:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.access.certificates.settings.with_streaming_response.get(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -233,13 +223,11 @@ class TestSettings:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.certificates.settings.with_raw_response.get(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.certificates.settings.with_raw_response.get(
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -268,7 +256,6 @@ class TestAsyncSettings:
                 },
             ],
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
 
@@ -294,7 +281,6 @@ class TestAsyncSettings:
                 },
             ],
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
 
@@ -320,7 +306,6 @@ class TestAsyncSettings:
                 },
             ],
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -350,7 +335,6 @@ class TestAsyncSettings:
                 },
             ],
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -383,7 +367,6 @@ class TestAsyncSettings:
                     },
                 ],
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -406,7 +389,6 @@ class TestAsyncSettings:
                     },
                 ],
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -414,7 +396,6 @@ class TestAsyncSettings:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zero_trust.access.certificates.settings.get(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
 
@@ -423,7 +404,6 @@ class TestAsyncSettings:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zero_trust.access.certificates.settings.get(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
 
@@ -432,7 +412,6 @@ class TestAsyncSettings:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.certificates.settings.with_raw_response.get(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -445,7 +424,6 @@ class TestAsyncSettings:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.certificates.settings.with_streaming_response.get(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -461,11 +439,9 @@ class TestAsyncSettings:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.certificates.settings.with_raw_response.get(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.certificates.settings.with_raw_response.get(
                 account_id="string",
-                zone_id="",
             )

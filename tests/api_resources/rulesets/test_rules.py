@@ -25,7 +25,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -35,7 +34,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="block",
             action_parameters={
@@ -59,7 +57,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -73,7 +70,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -90,21 +86,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -113,7 +106,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -123,7 +115,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="challenge",
             action_parameters={},
@@ -141,7 +132,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -155,7 +145,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -172,21 +161,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -195,7 +181,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -205,7 +190,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="compress_response",
             action_parameters={"algorithms": [{"name": "none"}]},
@@ -223,7 +207,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -237,7 +220,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -254,21 +236,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -277,7 +256,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -287,7 +265,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="execute",
             action_parameters={
@@ -330,7 +307,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -344,7 +320,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -361,21 +336,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -384,7 +356,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -394,7 +365,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="js_challenge",
             action_parameters={},
@@ -412,7 +382,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -426,7 +395,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -443,21 +411,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -466,7 +431,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -476,7 +440,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="log",
             action_parameters={},
@@ -494,7 +457,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -508,7 +470,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -525,21 +486,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -548,7 +506,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -558,7 +515,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="managed_challenge",
             action_parameters={},
@@ -576,7 +532,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -590,7 +545,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -607,21 +561,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -630,7 +581,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -640,7 +590,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="redirect",
             action_parameters={
@@ -668,7 +617,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -682,7 +630,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -699,21 +646,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -722,7 +666,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -732,7 +675,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="rewrite",
             action_parameters={
@@ -761,7 +703,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -775,7 +716,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -792,21 +732,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -815,7 +752,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -825,7 +761,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="route",
             action_parameters={
@@ -850,7 +785,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -864,7 +798,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -881,21 +814,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -904,7 +834,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -914,7 +843,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="score",
             action_parameters={"increment": 3},
@@ -932,7 +860,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -946,7 +873,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -963,21 +889,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -986,7 +909,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -996,7 +918,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="serve_error",
             action_parameters={
@@ -1018,7 +939,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1032,7 +952,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1049,21 +968,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1072,7 +988,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -1082,7 +997,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_config",
             action_parameters={
@@ -1120,7 +1034,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1134,7 +1047,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1151,21 +1063,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1174,7 +1083,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -1184,7 +1092,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
@@ -1208,7 +1115,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1222,7 +1128,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1239,21 +1144,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1262,7 +1164,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -1272,7 +1173,6 @@ class TestRules:
         rule = client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
@@ -1368,7 +1268,6 @@ class TestRules:
         response = client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1382,7 +1281,6 @@ class TestRules:
         with client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1399,21 +1297,18 @@ class TestRules:
             client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1423,7 +1318,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleDeleteResponse, rule, path=["response"])
 
@@ -1434,7 +1328,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleDeleteResponse, rule, path=["response"])
 
@@ -1445,7 +1338,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1460,7 +1352,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1478,7 +1369,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -1486,7 +1376,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1494,7 +1383,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1502,7 +1390,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1512,7 +1399,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -1523,7 +1409,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="block",
             action_parameters={
@@ -1548,7 +1433,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1563,7 +1447,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1581,7 +1464,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -1589,7 +1471,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1597,7 +1478,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1605,7 +1485,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1615,7 +1494,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -1626,7 +1504,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="challenge",
             action_parameters={},
@@ -1645,7 +1522,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1660,7 +1536,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1678,7 +1553,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -1686,7 +1560,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1694,7 +1567,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1702,7 +1574,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1712,7 +1583,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -1723,7 +1593,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="compress_response",
             action_parameters={"algorithms": [{"name": "none"}]},
@@ -1742,7 +1611,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1757,7 +1625,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1775,7 +1642,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -1783,7 +1649,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1791,7 +1656,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1799,7 +1663,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1809,7 +1672,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -1820,7 +1682,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="execute",
             action_parameters={
@@ -1864,7 +1725,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1879,7 +1739,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1897,7 +1756,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -1905,7 +1763,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1913,7 +1770,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -1921,7 +1777,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -1931,7 +1786,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -1942,7 +1796,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="js_challenge",
             action_parameters={},
@@ -1961,7 +1814,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -1976,7 +1828,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1994,7 +1845,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -2002,7 +1852,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2010,7 +1859,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2018,7 +1866,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2028,7 +1875,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -2039,7 +1885,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="log",
             action_parameters={},
@@ -2058,7 +1903,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2073,7 +1917,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2091,7 +1934,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -2099,7 +1941,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2107,7 +1948,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2115,7 +1955,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2125,7 +1964,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -2136,7 +1974,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="managed_challenge",
             action_parameters={},
@@ -2155,7 +1992,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2170,7 +2006,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2188,7 +2023,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -2196,7 +2030,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2204,7 +2037,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2212,7 +2044,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2222,7 +2053,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -2233,7 +2063,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="redirect",
             action_parameters={
@@ -2262,7 +2091,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2277,7 +2105,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2295,7 +2122,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -2303,7 +2129,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2311,7 +2136,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2319,7 +2143,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2329,7 +2152,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -2340,7 +2162,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="rewrite",
             action_parameters={
@@ -2370,7 +2191,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2385,7 +2205,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2403,7 +2222,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -2411,7 +2229,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2419,7 +2236,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2427,7 +2243,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2437,7 +2252,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -2448,7 +2262,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="route",
             action_parameters={
@@ -2474,7 +2287,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2489,7 +2301,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2507,7 +2318,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -2515,7 +2325,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2523,7 +2332,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2531,7 +2339,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2541,7 +2348,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -2552,7 +2358,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="score",
             action_parameters={"increment": 3},
@@ -2571,7 +2376,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2586,7 +2390,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2604,7 +2407,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -2612,7 +2414,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2620,7 +2421,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2628,7 +2428,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2638,7 +2437,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -2649,7 +2447,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="serve_error",
             action_parameters={
@@ -2672,7 +2469,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2687,7 +2483,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2705,7 +2500,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -2713,7 +2507,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2721,7 +2514,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2729,7 +2521,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2739,7 +2530,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -2750,7 +2540,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_config",
             action_parameters={
@@ -2789,7 +2578,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2804,7 +2592,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2822,7 +2609,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -2830,7 +2616,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2838,7 +2623,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2846,7 +2630,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2856,7 +2639,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -2867,7 +2649,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
@@ -2892,7 +2673,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -2907,7 +2687,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2925,7 +2704,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -2933,7 +2711,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2941,7 +2718,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -2949,7 +2725,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -2959,7 +2734,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -2970,7 +2744,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
@@ -3067,7 +2840,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3082,7 +2854,6 @@ class TestRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3100,7 +2871,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -3108,7 +2878,6 @@ class TestRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -3116,7 +2885,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -3124,7 +2892,6 @@ class TestRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -3137,7 +2904,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -3147,7 +2913,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="block",
             action_parameters={
@@ -3171,7 +2936,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3185,7 +2949,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3202,21 +2965,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3225,7 +2985,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -3235,7 +2994,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="challenge",
             action_parameters={},
@@ -3253,7 +3011,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3267,7 +3024,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3284,21 +3040,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3307,7 +3060,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -3317,7 +3069,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="compress_response",
             action_parameters={"algorithms": [{"name": "none"}]},
@@ -3335,7 +3086,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3349,7 +3099,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3366,21 +3115,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3389,7 +3135,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -3399,7 +3144,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="execute",
             action_parameters={
@@ -3442,7 +3186,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3456,7 +3199,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3473,21 +3215,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3496,7 +3235,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -3506,7 +3244,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="js_challenge",
             action_parameters={},
@@ -3524,7 +3261,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3538,7 +3274,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3555,21 +3290,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3578,7 +3310,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -3588,7 +3319,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="log",
             action_parameters={},
@@ -3606,7 +3336,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3620,7 +3349,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3637,21 +3365,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3660,7 +3385,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -3670,7 +3394,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="managed_challenge",
             action_parameters={},
@@ -3688,7 +3411,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3702,7 +3424,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3719,21 +3440,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3742,7 +3460,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -3752,7 +3469,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="redirect",
             action_parameters={
@@ -3780,7 +3496,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3794,7 +3509,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3811,21 +3525,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3834,7 +3545,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -3844,7 +3554,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="rewrite",
             action_parameters={
@@ -3873,7 +3582,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3887,7 +3595,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3904,21 +3611,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -3927,7 +3631,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -3937,7 +3640,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="route",
             action_parameters={
@@ -3962,7 +3664,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -3976,7 +3677,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3993,21 +3693,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4016,7 +3713,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -4026,7 +3722,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="score",
             action_parameters={"increment": 3},
@@ -4044,7 +3739,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4058,7 +3752,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4075,21 +3768,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4098,7 +3788,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -4108,7 +3797,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="serve_error",
             action_parameters={
@@ -4130,7 +3818,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4144,7 +3831,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4161,21 +3847,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4184,7 +3867,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -4194,7 +3876,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_config",
             action_parameters={
@@ -4232,7 +3913,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4246,7 +3926,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4263,21 +3942,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4286,7 +3962,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -4296,7 +3971,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
@@ -4320,7 +3994,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4334,7 +4007,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4351,21 +4023,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4374,7 +4043,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
 
@@ -4384,7 +4052,6 @@ class TestAsyncRules:
         rule = await async_client.rulesets.rules.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
@@ -4480,7 +4147,6 @@ class TestAsyncRules:
         response = await async_client.rulesets.rules.with_raw_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4494,7 +4160,6 @@ class TestAsyncRules:
         async with async_client.rulesets.rules.with_streaming_response.create(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4511,21 +4176,18 @@ class TestAsyncRules:
             await async_client.rulesets.rules.with_raw_response.create(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.rules.with_raw_response.create(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4535,7 +4197,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleDeleteResponse, rule, path=["response"])
 
@@ -4546,7 +4207,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleDeleteResponse, rule, path=["response"])
 
@@ -4557,7 +4217,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4572,7 +4231,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4590,7 +4248,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -4598,7 +4255,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -4606,7 +4262,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4614,7 +4269,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4624,7 +4278,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -4635,7 +4288,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="block",
             action_parameters={
@@ -4660,7 +4312,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4675,7 +4326,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4693,7 +4343,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -4701,7 +4350,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -4709,7 +4357,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4717,7 +4364,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4727,7 +4373,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -4738,7 +4383,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="challenge",
             action_parameters={},
@@ -4757,7 +4401,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4772,7 +4415,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4790,7 +4432,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -4798,7 +4439,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -4806,7 +4446,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4814,7 +4453,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4824,7 +4462,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -4835,7 +4472,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="compress_response",
             action_parameters={"algorithms": [{"name": "none"}]},
@@ -4854,7 +4490,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4869,7 +4504,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4887,7 +4521,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -4895,7 +4528,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -4903,7 +4535,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -4911,7 +4542,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -4921,7 +4551,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -4932,7 +4561,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="execute",
             action_parameters={
@@ -4976,7 +4604,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -4991,7 +4618,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5009,7 +4635,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -5017,7 +4642,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5025,7 +4649,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5033,7 +4656,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5043,7 +4665,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -5054,7 +4675,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="js_challenge",
             action_parameters={},
@@ -5073,7 +4693,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5088,7 +4707,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5106,7 +4724,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -5114,7 +4731,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5122,7 +4738,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5130,7 +4745,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5140,7 +4754,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -5151,7 +4764,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="log",
             action_parameters={},
@@ -5170,7 +4782,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5185,7 +4796,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5203,7 +4813,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -5211,7 +4820,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5219,7 +4827,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5227,7 +4834,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5237,7 +4843,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -5248,7 +4853,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="managed_challenge",
             action_parameters={},
@@ -5267,7 +4871,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5282,7 +4885,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5300,7 +4902,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -5308,7 +4909,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5316,7 +4916,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5324,7 +4923,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5334,7 +4932,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -5345,7 +4942,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="redirect",
             action_parameters={
@@ -5374,7 +4970,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5389,7 +4984,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5407,7 +5001,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -5415,7 +5008,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5423,7 +5015,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5431,7 +5022,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5441,7 +5031,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -5452,7 +5041,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="rewrite",
             action_parameters={
@@ -5482,7 +5070,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5497,7 +5084,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5515,7 +5101,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -5523,7 +5108,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5531,7 +5115,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5539,7 +5122,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5549,7 +5131,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -5560,7 +5141,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="route",
             action_parameters={
@@ -5586,7 +5166,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5601,7 +5180,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5619,7 +5197,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -5627,7 +5204,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5635,7 +5211,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5643,7 +5218,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5653,7 +5227,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -5664,7 +5237,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="score",
             action_parameters={"increment": 3},
@@ -5683,7 +5255,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5698,7 +5269,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5716,7 +5286,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -5724,7 +5293,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5732,7 +5300,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5740,7 +5307,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5750,7 +5316,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -5761,7 +5326,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="serve_error",
             action_parameters={
@@ -5784,7 +5348,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5799,7 +5362,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5817,7 +5379,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -5825,7 +5386,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5833,7 +5393,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5841,7 +5400,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5851,7 +5409,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -5862,7 +5419,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_config",
             action_parameters={
@@ -5901,7 +5457,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -5916,7 +5471,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5934,7 +5488,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -5942,7 +5495,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -5950,7 +5502,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -5958,7 +5509,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -5968,7 +5518,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -5979,7 +5528,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
@@ -6004,7 +5552,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -6019,7 +5566,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6037,7 +5583,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -6045,7 +5590,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -6053,7 +5597,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6061,7 +5604,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -6071,7 +5613,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -6082,7 +5623,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
@@ -6179,7 +5719,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -6194,7 +5733,6 @@ class TestAsyncRules:
             "3a03d665bac047339bb530ecb439a90d",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6212,7 +5750,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
@@ -6220,7 +5757,6 @@ class TestAsyncRules:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -6228,7 +5764,6 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -6236,5 +5771,4 @@ class TestAsyncRules:
                 "3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )

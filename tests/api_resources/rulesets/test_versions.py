@@ -25,7 +25,6 @@ class TestVersions:
         version = client.rulesets.versions.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncSinglePage[Ruleset], version, path=["response"])
 
@@ -35,7 +34,6 @@ class TestVersions:
         version = client.rulesets.versions.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncSinglePage[Ruleset], version, path=["response"])
 
@@ -45,7 +43,6 @@ class TestVersions:
         response = client.rulesets.versions.with_raw_response.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -59,7 +56,6 @@ class TestVersions:
         with client.rulesets.versions.with_streaming_response.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,21 +72,18 @@ class TestVersions:
             client.rulesets.versions.with_raw_response.list(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.versions.with_raw_response.list(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.versions.with_raw_response.list(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -100,7 +93,6 @@ class TestVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert version is None
 
@@ -111,7 +103,6 @@ class TestVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert version is None
 
@@ -122,7 +113,6 @@ class TestVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -137,7 +127,6 @@ class TestVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -155,7 +144,6 @@ class TestVersions:
                 "1",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
@@ -163,7 +151,6 @@ class TestVersions:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -171,7 +158,6 @@ class TestVersions:
                 "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -179,7 +165,6 @@ class TestVersions:
                 "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -189,7 +174,6 @@ class TestVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(VersionGetResponse, version, path=["response"])
 
@@ -200,7 +184,6 @@ class TestVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(VersionGetResponse, version, path=["response"])
 
@@ -211,7 +194,6 @@ class TestVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -226,7 +208,6 @@ class TestVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -244,7 +225,6 @@ class TestVersions:
                 "1",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
@@ -252,7 +232,6 @@ class TestVersions:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -260,7 +239,6 @@ class TestVersions:
                 "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -268,7 +246,6 @@ class TestVersions:
                 "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -281,7 +258,6 @@ class TestAsyncVersions:
         version = await async_client.rulesets.versions.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncSinglePage[Ruleset], version, path=["response"])
 
@@ -291,7 +267,6 @@ class TestAsyncVersions:
         version = await async_client.rulesets.versions.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncSinglePage[Ruleset], version, path=["response"])
 
@@ -301,7 +276,6 @@ class TestAsyncVersions:
         response = await async_client.rulesets.versions.with_raw_response.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -315,7 +289,6 @@ class TestAsyncVersions:
         async with async_client.rulesets.versions.with_streaming_response.list(
             "2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -332,21 +305,18 @@ class TestAsyncVersions:
             await async_client.rulesets.versions.with_raw_response.list(
                 "",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.versions.with_raw_response.list(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.versions.with_raw_response.list(
                 "2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -356,7 +326,6 @@ class TestAsyncVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert version is None
 
@@ -367,7 +336,6 @@ class TestAsyncVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert version is None
 
@@ -378,7 +346,6 @@ class TestAsyncVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -393,7 +360,6 @@ class TestAsyncVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -411,7 +377,6 @@ class TestAsyncVersions:
                 "1",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
@@ -419,7 +384,6 @@ class TestAsyncVersions:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -427,7 +391,6 @@ class TestAsyncVersions:
                 "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -435,7 +398,6 @@ class TestAsyncVersions:
                 "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -445,7 +407,6 @@ class TestAsyncVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(VersionGetResponse, version, path=["response"])
 
@@ -456,7 +417,6 @@ class TestAsyncVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(VersionGetResponse, version, path=["response"])
 
@@ -467,7 +427,6 @@ class TestAsyncVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -482,7 +441,6 @@ class TestAsyncVersions:
             "1",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -500,7 +458,6 @@ class TestAsyncVersions:
                 "1",
                 ruleset_id="",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
@@ -508,7 +465,6 @@ class TestAsyncVersions:
                 "",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -516,7 +472,6 @@ class TestAsyncVersions:
                 "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -524,5 +479,4 @@ class TestAsyncVersions:
                 "1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="string",
-                zone_id="",
             )

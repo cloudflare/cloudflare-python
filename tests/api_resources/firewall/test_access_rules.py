@@ -28,7 +28,6 @@ class TestAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
@@ -42,7 +41,6 @@ class TestAccessRules:
             },
             mode="challenge",
             account_id="string",
-            zone_id="string",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
@@ -54,7 +52,6 @@ class TestAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -69,7 +66,6 @@ class TestAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -87,7 +83,6 @@ class TestAccessRules:
                 configuration={},
                 mode="challenge",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -95,7 +90,6 @@ class TestAccessRules:
                 configuration={},
                 mode="challenge",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -103,7 +97,6 @@ class TestAccessRules:
     def test_method_list(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(SyncV4PagePaginationArray[object], access_rule, path=["response"])
 
@@ -112,7 +105,6 @@ class TestAccessRules:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.list(
             account_id="string",
-            zone_id="string",
             direction="desc",
             egs_pagination={
                 "json": {
@@ -138,7 +130,6 @@ class TestAccessRules:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.list(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -151,7 +142,6 @@ class TestAccessRules:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.list(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -167,13 +157,11 @@ class TestAccessRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.firewall.access_rules.with_raw_response.list(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.firewall.access_rules.with_raw_response.list(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -182,7 +170,6 @@ class TestAccessRules:
         access_rule = client.firewall.access_rules.delete(
             {},
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
@@ -192,7 +179,6 @@ class TestAccessRules:
         access_rule = client.firewall.access_rules.delete(
             {},
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
@@ -202,7 +188,6 @@ class TestAccessRules:
         response = client.firewall.access_rules.with_raw_response.delete(
             {},
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -216,7 +201,6 @@ class TestAccessRules:
         with client.firewall.access_rules.with_streaming_response.delete(
             {},
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -233,14 +217,12 @@ class TestAccessRules:
             client.firewall.access_rules.with_raw_response.delete(
                 {},
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.firewall.access_rules.with_raw_response.delete(
                 {},
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -251,7 +233,6 @@ class TestAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
@@ -266,7 +247,6 @@ class TestAccessRules:
             },
             mode="challenge",
             account_id="string",
-            zone_id="string",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
@@ -279,7 +259,6 @@ class TestAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -295,7 +274,6 @@ class TestAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -314,7 +292,6 @@ class TestAccessRules:
                 configuration={},
                 mode="challenge",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -323,7 +300,6 @@ class TestAccessRules:
                 configuration={},
                 mode="challenge",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -332,7 +308,6 @@ class TestAccessRules:
         access_rule = client.firewall.access_rules.get(
             {},
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
@@ -342,7 +317,6 @@ class TestAccessRules:
         access_rule = client.firewall.access_rules.get(
             {},
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
@@ -352,7 +326,6 @@ class TestAccessRules:
         response = client.firewall.access_rules.with_raw_response.get(
             {},
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -366,7 +339,6 @@ class TestAccessRules:
         with client.firewall.access_rules.with_streaming_response.get(
             {},
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -383,14 +355,12 @@ class TestAccessRules:
             client.firewall.access_rules.with_raw_response.get(
                 {},
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.firewall.access_rules.with_raw_response.get(
                 {},
                 account_id="string",
-                zone_id="",
             )
 
 
@@ -404,7 +374,6 @@ class TestAsyncAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
@@ -418,7 +387,6 @@ class TestAsyncAccessRules:
             },
             mode="challenge",
             account_id="string",
-            zone_id="string",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
@@ -430,7 +398,6 @@ class TestAsyncAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -445,7 +412,6 @@ class TestAsyncAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -463,7 +429,6 @@ class TestAsyncAccessRules:
                 configuration={},
                 mode="challenge",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -471,7 +436,6 @@ class TestAsyncAccessRules:
                 configuration={},
                 mode="challenge",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -479,7 +443,6 @@ class TestAsyncAccessRules:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.list(
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AsyncV4PagePaginationArray[object], access_rule, path=["response"])
 
@@ -488,7 +451,6 @@ class TestAsyncAccessRules:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.list(
             account_id="string",
-            zone_id="string",
             direction="desc",
             egs_pagination={
                 "json": {
@@ -514,7 +476,6 @@ class TestAsyncAccessRules:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.list(
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -527,7 +488,6 @@ class TestAsyncAccessRules:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.list(
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -543,13 +503,11 @@ class TestAsyncAccessRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.list(
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.list(
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -558,7 +516,6 @@ class TestAsyncAccessRules:
         access_rule = await async_client.firewall.access_rules.delete(
             {},
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
@@ -568,7 +525,6 @@ class TestAsyncAccessRules:
         access_rule = await async_client.firewall.access_rules.delete(
             {},
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
@@ -578,7 +534,6 @@ class TestAsyncAccessRules:
         response = await async_client.firewall.access_rules.with_raw_response.delete(
             {},
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -592,7 +547,6 @@ class TestAsyncAccessRules:
         async with async_client.firewall.access_rules.with_streaming_response.delete(
             {},
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -609,14 +563,12 @@ class TestAsyncAccessRules:
             await async_client.firewall.access_rules.with_raw_response.delete(
                 {},
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.delete(
                 {},
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -627,7 +579,6 @@ class TestAsyncAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
@@ -642,7 +593,6 @@ class TestAsyncAccessRules:
             },
             mode="challenge",
             account_id="string",
-            zone_id="string",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
@@ -655,7 +605,6 @@ class TestAsyncAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -671,7 +620,6 @@ class TestAsyncAccessRules:
             configuration={},
             mode="challenge",
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -690,7 +638,6 @@ class TestAsyncAccessRules:
                 configuration={},
                 mode="challenge",
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -699,7 +646,6 @@ class TestAsyncAccessRules:
                 configuration={},
                 mode="challenge",
                 account_id="string",
-                zone_id="",
             )
 
     @pytest.mark.skip()
@@ -708,7 +654,6 @@ class TestAsyncAccessRules:
         access_rule = await async_client.firewall.access_rules.get(
             {},
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
@@ -718,7 +663,6 @@ class TestAsyncAccessRules:
         access_rule = await async_client.firewall.access_rules.get(
             {},
             account_id="string",
-            zone_id="string",
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
@@ -728,7 +672,6 @@ class TestAsyncAccessRules:
         response = await async_client.firewall.access_rules.with_raw_response.get(
             {},
             account_id="string",
-            zone_id="string",
         )
 
         assert response.is_closed is True
@@ -742,7 +685,6 @@ class TestAsyncAccessRules:
         async with async_client.firewall.access_rules.with_streaming_response.get(
             {},
             account_id="string",
-            zone_id="string",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -759,12 +701,10 @@ class TestAsyncAccessRules:
             await async_client.firewall.access_rules.with_raw_response.get(
                 {},
                 account_id="",
-                zone_id="string",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.get(
                 {},
                 account_id="string",
-                zone_id="",
             )
