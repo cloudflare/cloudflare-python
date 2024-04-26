@@ -78,14 +78,14 @@ class Zone(BaseModel):
     name: str
     """The domain name"""
 
-    name_servers: List[str]
-    """The name servers Cloudflare assigns to a zone"""
-
     original_dnshost: Optional[str] = None
     """DNS host at the time of switching to Cloudflare"""
 
     original_name_servers: Optional[List[str]] = None
-    """Original name servers before moving to Cloudflare"""
+    """
+    Original name servers before moving to Cloudflare Notes: Is this only available
+    for full zones?
+    """
 
     original_registrar: Optional[str] = None
     """Registrar for the domain at the time of switching to Cloudflare"""
