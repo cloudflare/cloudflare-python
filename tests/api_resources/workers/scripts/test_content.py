@@ -17,7 +17,7 @@ from cloudflare._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from cloudflare.types.workers.script import Script
+from cloudflare.types.workers import Script
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

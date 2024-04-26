@@ -10,10 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncCursorPagination, AsyncCursorPagination
-from cloudflare.types.rules.lists.item_get_response import ItemGetResponse
-from cloudflare.types.rules.lists.item_create_response import ItemCreateResponse
-from cloudflare.types.rules.lists.item_delete_response import ItemDeleteResponse
-from cloudflare.types.rules.lists.item_update_response import ItemUpdateResponse
+from cloudflare.types.rules.lists import (
+    ItemGetResponse,
+    ItemCreateResponse,
+    ItemDeleteResponse,
+    ItemUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

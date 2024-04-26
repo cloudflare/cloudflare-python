@@ -9,8 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.ssl.verification_get_response import VerificationGetResponse
-from cloudflare.types.ssl.verification_edit_response import VerificationEditResponse
+from cloudflare.types.ssl import (
+    VerificationGetResponse,
+    VerificationEditResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

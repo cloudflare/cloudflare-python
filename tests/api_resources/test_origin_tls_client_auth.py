@@ -10,12 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.origin_tls_client_auth.zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull
-from cloudflare.types.origin_tls_client_auth.origin_tls_client_auth_get_response import OriginTLSClientAuthGetResponse
-from cloudflare.types.origin_tls_client_auth.origin_tls_client_auth_create_response import (
+from cloudflare.types.origin_tls_client_auth import (
+    ZoneAuthenticatedOriginPull,
+    OriginTLSClientAuthGetResponse,
     OriginTLSClientAuthCreateResponse,
-)
-from cloudflare.types.origin_tls_client_auth.origin_tls_client_auth_delete_response import (
     OriginTLSClientAuthDeleteResponse,
 )
 

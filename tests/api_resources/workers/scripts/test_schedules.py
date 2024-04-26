@@ -9,8 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers.scripts.schedule_get_response import ScheduleGetResponse
-from cloudflare.types.workers.scripts.schedule_update_response import ScheduleUpdateResponse
+from cloudflare.types.workers.scripts import ScheduleGetResponse, ScheduleUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

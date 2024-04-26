@@ -10,11 +10,13 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.user.subscription import Subscription
-from cloudflare.types.subscriptions.subscription_get_response import SubscriptionGetResponse
-from cloudflare.types.subscriptions.subscription_create_response import SubscriptionCreateResponse
-from cloudflare.types.subscriptions.subscription_delete_response import SubscriptionDeleteResponse
-from cloudflare.types.subscriptions.subscription_update_response import SubscriptionUpdateResponse
+from cloudflare.types.user import Subscription
+from cloudflare.types.subscriptions import (
+    SubscriptionGetResponse,
+    SubscriptionCreateResponse,
+    SubscriptionDeleteResponse,
+    SubscriptionUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

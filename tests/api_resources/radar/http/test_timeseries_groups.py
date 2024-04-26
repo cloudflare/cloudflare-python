@@ -10,15 +10,17 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.http.timeseries_group_os_response import TimeseriesGroupOSResponse
-from cloudflare.types.radar.http.timeseries_group_browser_response import TimeseriesGroupBrowserResponse
-from cloudflare.types.radar.http.timeseries_group_bot_class_response import TimeseriesGroupBotClassResponse
-from cloudflare.types.radar.http.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
-from cloudflare.types.radar.http.timeseries_group_device_type_response import TimeseriesGroupDeviceTypeResponse
-from cloudflare.types.radar.http.timeseries_group_tls_version_response import TimeseriesGroupTLSVersionResponse
-from cloudflare.types.radar.http.timeseries_group_http_version_response import TimeseriesGroupHTTPVersionResponse
-from cloudflare.types.radar.http.timeseries_group_http_protocol_response import TimeseriesGroupHTTPProtocolResponse
-from cloudflare.types.radar.http.timeseries_group_browser_family_response import TimeseriesGroupBrowserFamilyResponse
+from cloudflare.types.radar.http import (
+    TimeseriesGroupOSResponse,
+    TimeseriesGroupBrowserResponse,
+    TimeseriesGroupBotClassResponse,
+    TimeseriesGroupIPVersionResponse,
+    TimeseriesGroupDeviceTypeResponse,
+    TimeseriesGroupTLSVersionResponse,
+    TimeseriesGroupHTTPVersionResponse,
+    TimeseriesGroupHTTPProtocolResponse,
+    TimeseriesGroupBrowserFamilyResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

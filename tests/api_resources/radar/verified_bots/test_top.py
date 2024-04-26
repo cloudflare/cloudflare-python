@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.verified_bots.top_bots_response import TopBotsResponse
-from cloudflare.types.radar.verified_bots.top_categories_response import TopCategoriesResponse
+from cloudflare.types.radar.verified_bots import (
+    TopBotsResponse,
+    TopCategoriesResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

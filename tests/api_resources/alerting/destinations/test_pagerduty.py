@@ -9,10 +9,12 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.alerting.destinations.pagerduty_get_response import PagerdutyGetResponse
-from cloudflare.types.alerting.destinations.pagerduty_link_response import PagerdutyLinkResponse
-from cloudflare.types.alerting.destinations.pagerduty_create_response import PagerdutyCreateResponse
-from cloudflare.types.alerting.destinations.pagerduty_delete_response import PagerdutyDeleteResponse
+from cloudflare.types.alerting.destinations import (
+    PagerdutyGetResponse,
+    PagerdutyLinkResponse,
+    PagerdutyCreateResponse,
+    PagerdutyDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

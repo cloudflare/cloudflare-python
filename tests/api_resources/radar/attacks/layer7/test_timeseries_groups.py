@@ -10,20 +10,14 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.attacks.layer7.timeseries_group_get_response import TimeseriesGroupGetResponse
-from cloudflare.types.radar.attacks.layer7.timeseries_group_industry_response import TimeseriesGroupIndustryResponse
-from cloudflare.types.radar.attacks.layer7.timeseries_group_vertical_response import TimeseriesGroupVerticalResponse
-from cloudflare.types.radar.attacks.layer7.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
-from cloudflare.types.radar.attacks.layer7.timeseries_group_http_method_response import (
+from cloudflare.types.radar.attacks.layer7 import (
+    TimeseriesGroupGetResponse,
+    TimeseriesGroupIndustryResponse,
+    TimeseriesGroupVerticalResponse,
+    TimeseriesGroupIPVersionResponse,
     TimeseriesGroupHTTPMethodResponse,
-)
-from cloudflare.types.radar.attacks.layer7.timeseries_group_http_version_response import (
     TimeseriesGroupHTTPVersionResponse,
-)
-from cloudflare.types.radar.attacks.layer7.timeseries_group_managed_rules_response import (
     TimeseriesGroupManagedRulesResponse,
-)
-from cloudflare.types.radar.attacks.layer7.timeseries_group_mitigation_product_response import (
     TimeseriesGroupMitigationProductResponse,
 )
 

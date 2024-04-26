@@ -9,9 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.dns import (
+    FirewallDeleteResponse,
+)
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.dns.firewall.firewall import Firewall
-from cloudflare.types.dns.firewall_delete_response import FirewallDeleteResponse
+from cloudflare.types.dns.firewall import Firewall
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

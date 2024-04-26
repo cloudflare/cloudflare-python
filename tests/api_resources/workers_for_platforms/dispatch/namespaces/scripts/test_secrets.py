@@ -10,8 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts.secret_list_response import SecretListResponse
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts.secret_update_response import (
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
+    SecretListResponse,
     SecretUpdateResponse,
 )
 

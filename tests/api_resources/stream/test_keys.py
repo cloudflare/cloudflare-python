@@ -9,9 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream.keys import Keys
-from cloudflare.types.stream.key_get_response import KeyGetResponse
-from cloudflare.types.stream.key_delete_response import KeyDeleteResponse
+from cloudflare.types.stream import Keys, KeyGetResponse, KeyDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -10,9 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.access.custom_page import CustomPage
-from cloudflare.types.zero_trust.access.custom_page_without_html import CustomPageWithoutHTML
-from cloudflare.types.zero_trust.access.custom_page_delete_response import CustomPageDeleteResponse
+from cloudflare.types.zero_trust.access import (
+    CustomPage,
+    CustomPageWithoutHTML,
+    CustomPageDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

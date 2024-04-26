@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.stream.video import Video
+from cloudflare.types.stream import Video
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

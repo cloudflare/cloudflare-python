@@ -10,11 +10,13 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePagination, AsyncV4PagePagination
-from cloudflare.types.intel.attack_surface_report.issue_list_response import IssueListResponse
-from cloudflare.types.intel.attack_surface_report.issue_type_response import IssueTypeResponse
-from cloudflare.types.intel.attack_surface_report.issue_class_response import IssueClassResponse
-from cloudflare.types.intel.attack_surface_report.issue_dismiss_response import IssueDismissResponse
-from cloudflare.types.intel.attack_surface_report.issue_severity_response import IssueSeverityResponse
+from cloudflare.types.intel.attack_surface_report import (
+    IssueListResponse,
+    IssueTypeResponse,
+    IssueClassResponse,
+    IssueDismissResponse,
+    IssueSeverityResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

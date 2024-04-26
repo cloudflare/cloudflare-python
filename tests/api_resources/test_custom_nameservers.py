@@ -9,11 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.custom_nameservers.custom_nameserver import CustomNameserver
-from cloudflare.types.custom_nameservers.custom_nameserver_get_response import CustomNameserverGetResponse
-from cloudflare.types.custom_nameservers.custom_nameserver_delete_response import CustomNameserverDeleteResponse
-from cloudflare.types.custom_nameservers.custom_nameserver_verify_response import CustomNameserverVerifyResponse
-from cloudflare.types.custom_nameservers.custom_nameserver_availabilty_response import (
+from cloudflare.types.custom_nameservers import (
+    CustomNameserver,
+    CustomNameserverGetResponse,
+    CustomNameserverDeleteResponse,
+    CustomNameserverVerifyResponse,
     CustomNameserverAvailabiltyResponse,
 )
 

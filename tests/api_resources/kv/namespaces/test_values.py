@@ -9,8 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.kv.namespaces.value_delete_response import ValueDeleteResponse
-from cloudflare.types.kv.namespaces.value_update_response import ValueUpdateResponse
+from cloudflare.types.kv.namespaces import (
+    ValueDeleteResponse,
+    ValueUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
