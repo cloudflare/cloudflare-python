@@ -10,9 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.devices.policies.fallback_domain import FallbackDomain
-from cloudflare.types.zero_trust.devices.policies.fallback_domain_get_response import FallbackDomainGetResponse
-from cloudflare.types.zero_trust.devices.policies.fallback_domain_update_response import FallbackDomainUpdateResponse
+from cloudflare.types.zero_trust.devices.policies import (
+    FallbackDomain,
+    FallbackDomainGetResponse,
+    FallbackDomainUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

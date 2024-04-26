@@ -9,9 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_transit.cf_interconnect_get_response import CfInterconnectGetResponse
-from cloudflare.types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
-from cloudflare.types.magic_transit.cf_interconnect_update_response import CfInterconnectUpdateResponse
+from cloudflare.types.magic_transit import (
+    CfInterconnectGetResponse,
+    CfInterconnectListResponse,
+    CfInterconnectUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

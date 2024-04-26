@@ -9,10 +9,12 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.ssl import (
+    CertificatePackGetResponse,
+    CertificatePackEditResponse,
+    CertificatePackDeleteResponse,
+)
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.ssl.certificate_pack_get_response import CertificatePackGetResponse
-from cloudflare.types.ssl.certificate_pack_edit_response import CertificatePackEditResponse
-from cloudflare.types.ssl.certificate_pack_delete_response import CertificatePackDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -9,12 +9,14 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.d1 import (
+    D1,
+    DatabaseListResponse,
+    DatabaseQueryResponse,
+    DatabaseCreateResponse,
+    DatabaseDeleteResponse,
+)
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.d1.d1 import D1
-from cloudflare.types.d1.database_list_response import DatabaseListResponse
-from cloudflare.types.d1.database_query_response import DatabaseQueryResponse
-from cloudflare.types.d1.database_create_response import DatabaseCreateResponse
-from cloudflare.types.d1.database_delete_response import DatabaseDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

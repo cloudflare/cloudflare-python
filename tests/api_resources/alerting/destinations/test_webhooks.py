@@ -10,10 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.alerting.destinations.webhooks import Webhooks
-from cloudflare.types.alerting.destinations.webhook_create_response import WebhookCreateResponse
-from cloudflare.types.alerting.destinations.webhook_delete_response import WebhookDeleteResponse
-from cloudflare.types.alerting.destinations.webhook_update_response import WebhookUpdateResponse
+from cloudflare.types.alerting.destinations import (
+    Webhooks,
+    WebhookCreateResponse,
+    WebhookDeleteResponse,
+    WebhookUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

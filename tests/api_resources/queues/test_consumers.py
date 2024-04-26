@@ -9,10 +9,12 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.queues.consumer_get_response import ConsumerGetResponse
-from cloudflare.types.queues.consumer_create_response import ConsumerCreateResponse
-from cloudflare.types.queues.consumer_delete_response import ConsumerDeleteResponse
-from cloudflare.types.queues.consumer_update_response import ConsumerUpdateResponse
+from cloudflare.types.queues import (
+    ConsumerGetResponse,
+    ConsumerCreateResponse,
+    ConsumerDeleteResponse,
+    ConsumerUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

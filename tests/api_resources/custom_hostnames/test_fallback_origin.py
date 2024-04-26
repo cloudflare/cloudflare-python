@@ -9,9 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.custom_hostnames.fallback_origin_get_response import FallbackOriginGetResponse
-from cloudflare.types.custom_hostnames.fallback_origin_delete_response import FallbackOriginDeleteResponse
-from cloudflare.types.custom_hostnames.fallback_origin_update_response import FallbackOriginUpdateResponse
+from cloudflare.types.custom_hostnames import (
+    FallbackOriginGetResponse,
+    FallbackOriginDeleteResponse,
+    FallbackOriginUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

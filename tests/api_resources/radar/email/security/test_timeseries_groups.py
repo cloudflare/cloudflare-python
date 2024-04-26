@@ -10,17 +10,15 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.email.security.timeseries_group_arc_response import TimeseriesGroupARCResponse
-from cloudflare.types.radar.email.security.timeseries_group_spf_response import TimeseriesGroupSPFResponse
-from cloudflare.types.radar.email.security.timeseries_group_dkim_response import TimeseriesGroupDKIMResponse
-from cloudflare.types.radar.email.security.timeseries_group_spam_response import TimeseriesGroupSpamResponse
-from cloudflare.types.radar.email.security.timeseries_group_dmarc_response import TimeseriesGroupDMARCResponse
-from cloudflare.types.radar.email.security.timeseries_group_spoof_response import TimeseriesGroupSpoofResponse
-from cloudflare.types.radar.email.security.timeseries_group_malicious_response import TimeseriesGroupMaliciousResponse
-from cloudflare.types.radar.email.security.timeseries_group_tls_version_response import (
+from cloudflare.types.radar.email.security import (
+    TimeseriesGroupARCResponse,
+    TimeseriesGroupSPFResponse,
+    TimeseriesGroupDKIMResponse,
+    TimeseriesGroupSpamResponse,
+    TimeseriesGroupDMARCResponse,
+    TimeseriesGroupSpoofResponse,
+    TimeseriesGroupMaliciousResponse,
     TimeseriesGroupTLSVersionResponse,
-)
-from cloudflare.types.radar.email.security.timeseries_group_threat_category_response import (
     TimeseriesGroupThreatCategoryResponse,
 )
 

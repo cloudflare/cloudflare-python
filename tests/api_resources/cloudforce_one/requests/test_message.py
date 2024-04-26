@@ -10,9 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.cloudforce_one.requests.message import Message
-from cloudflare.types.cloudforce_one.requests.message_get_response import MessageGetResponse
-from cloudflare.types.cloudforce_one.requests.message_delete_response import MessageDeleteResponse
+from cloudflare.types.cloudforce_one.requests import (
+    Message,
+    MessageGetResponse,
+    MessageDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -10,9 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePagination, AsyncV4PagePagination
-from cloudflare.types.images.image import Image
-from cloudflare.types.images.v1_list_response import V1ListResponse
-from cloudflare.types.images.v1_delete_response import V1DeleteResponse
+from cloudflare.types.images import (
+    Image,
+    V1ListResponse,
+    V1DeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

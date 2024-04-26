@@ -10,9 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.identity_provider import IdentityProvider
-from cloudflare.types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
-from cloudflare.types.zero_trust.identity_provider_delete_response import IdentityProviderDeleteResponse
+from cloudflare.types.zero_trust import (
+    IdentityProvider,
+    IdentityProviderListResponse,
+    IdentityProviderDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.waiting_rooms.waiting_room import WaitingRoom
-from cloudflare.types.waiting_rooms.waiting_room_delete_response import WaitingRoomDeleteResponse
+from cloudflare.types.waiting_rooms import (
+    WaitingRoom,
+    WaitingRoomDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

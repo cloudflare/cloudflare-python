@@ -11,12 +11,14 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.warp_connector.warp_connector_get_response import WARPConnectorGetResponse
-from cloudflare.types.warp_connector.warp_connector_edit_response import WARPConnectorEditResponse
-from cloudflare.types.warp_connector.warp_connector_list_response import WARPConnectorListResponse
-from cloudflare.types.warp_connector.warp_connector_token_response import WARPConnectorTokenResponse
-from cloudflare.types.warp_connector.warp_connector_create_response import WARPConnectorCreateResponse
-from cloudflare.types.warp_connector.warp_connector_delete_response import WARPConnectorDeleteResponse
+from cloudflare.types.warp_connector import (
+    WARPConnectorGetResponse,
+    WARPConnectorEditResponse,
+    WARPConnectorListResponse,
+    WARPConnectorTokenResponse,
+    WARPConnectorCreateResponse,
+    WARPConnectorDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

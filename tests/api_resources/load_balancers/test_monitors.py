@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.load_balancers.monitor import Monitor
-from cloudflare.types.load_balancers.monitor_delete_response import MonitorDeleteResponse
+from cloudflare.types.load_balancers import (
+    Monitor,
+    MonitorDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

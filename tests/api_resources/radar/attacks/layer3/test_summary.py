@@ -10,12 +10,14 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.attacks.layer3.summary_get_response import SummaryGetResponse
-from cloudflare.types.radar.attacks.layer3.summary_vector_response import SummaryVectorResponse
-from cloudflare.types.radar.attacks.layer3.summary_bitrate_response import SummaryBitrateResponse
-from cloudflare.types.radar.attacks.layer3.summary_duration_response import SummaryDurationResponse
-from cloudflare.types.radar.attacks.layer3.summary_protocol_response import SummaryProtocolResponse
-from cloudflare.types.radar.attacks.layer3.summary_ip_version_response import SummaryIPVersionResponse
+from cloudflare.types.radar.attacks.layer3 import (
+    SummaryGetResponse,
+    SummaryVectorResponse,
+    SummaryBitrateResponse,
+    SummaryDurationResponse,
+    SummaryProtocolResponse,
+    SummaryIPVersionResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

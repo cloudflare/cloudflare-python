@@ -11,8 +11,10 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.firewall.lockdown import Lockdown
-from cloudflare.types.firewall.lockdown_delete_response import LockdownDeleteResponse
+from cloudflare.types.firewall import (
+    Lockdown,
+    LockdownDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

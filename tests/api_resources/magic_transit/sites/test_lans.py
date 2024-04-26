@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.magic_transit.sites.lan import LAN
-from cloudflare.types.magic_transit.sites.lan_create_response import LANCreateResponse
+from cloudflare.types.magic_transit.sites import (
+    LAN,
+    LANCreateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
