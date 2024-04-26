@@ -10,8 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.addressing.prefixes.delegations import Delegations
-from cloudflare.types.addressing.prefixes.delegation_delete_response import DelegationDeleteResponse
+from cloudflare.types.addressing.prefixes import Delegations, DelegationDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

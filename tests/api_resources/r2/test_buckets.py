@@ -9,8 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.r2 import Bucket
 from cloudflare.pagination import SyncCursorPagination, AsyncCursorPagination
-from cloudflare.types.r2.bucket import Bucket
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -10,10 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.rulesets.ruleset import Ruleset
-from cloudflare.types.rulesets.ruleset_get_response import RulesetGetResponse
-from cloudflare.types.rulesets.ruleset_create_response import RulesetCreateResponse
-from cloudflare.types.rulesets.ruleset_update_response import RulesetUpdateResponse
+from cloudflare.types.rulesets import (
+    Ruleset,
+    RulesetGetResponse,
+    RulesetCreateResponse,
+    RulesetUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

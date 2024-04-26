@@ -9,12 +9,14 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.pagerules.pagerule_get_response import PageruleGetResponse
-from cloudflare.types.pagerules.pagerule_edit_response import PageruleEditResponse
-from cloudflare.types.pagerules.pagerule_list_response import PageruleListResponse
-from cloudflare.types.pagerules.pagerule_create_response import PageruleCreateResponse
-from cloudflare.types.pagerules.pagerule_delete_response import PageruleDeleteResponse
-from cloudflare.types.pagerules.pagerule_update_response import PageruleUpdateResponse
+from cloudflare.types.pagerules import (
+    PageruleGetResponse,
+    PageruleEditResponse,
+    PageruleListResponse,
+    PageruleCreateResponse,
+    PageruleDeleteResponse,
+    PageruleUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

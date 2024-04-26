@@ -10,11 +10,13 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.rate_limits.rate_limit import RateLimit
-from cloudflare.types.rate_limits.rate_limit_get_response import RateLimitGetResponse
-from cloudflare.types.rate_limits.rate_limit_edit_response import RateLimitEditResponse
-from cloudflare.types.rate_limits.rate_limit_create_response import RateLimitCreateResponse
-from cloudflare.types.rate_limits.rate_limit_delete_response import RateLimitDeleteResponse
+from cloudflare.types.rate_limits import (
+    RateLimit,
+    RateLimitGetResponse,
+    RateLimitEditResponse,
+    RateLimitCreateResponse,
+    RateLimitDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

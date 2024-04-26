@@ -10,11 +10,13 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.custom_certificates.custom_certificate import CustomCertificate
-from cloudflare.types.custom_certificates.custom_certificate_get_response import CustomCertificateGetResponse
-from cloudflare.types.custom_certificates.custom_certificate_edit_response import CustomCertificateEditResponse
-from cloudflare.types.custom_certificates.custom_certificate_create_response import CustomCertificateCreateResponse
-from cloudflare.types.custom_certificates.custom_certificate_delete_response import CustomCertificateDeleteResponse
+from cloudflare.types.custom_certificates import (
+    CustomCertificate,
+    CustomCertificateGetResponse,
+    CustomCertificateEditResponse,
+    CustomCertificateCreateResponse,
+    CustomCertificateDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

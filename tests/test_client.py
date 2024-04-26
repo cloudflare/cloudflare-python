@@ -18,7 +18,6 @@ from pydantic import ValidationError
 
 from cloudflare import Cloudflare, AsyncCloudflare, APIResponseValidationError
 from cloudflare._types import Omit
-from cloudflare._client import Cloudflare, AsyncCloudflare
 from cloudflare._models import BaseModel, FinalRequestOptions
 from cloudflare._constants import RAW_RESPONSE_HEADER
 from cloudflare._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError

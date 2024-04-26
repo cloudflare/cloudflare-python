@@ -9,10 +9,12 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.radar.entities.asn_ip_response import ASNIPResponse
-from cloudflare.types.radar.entities.asn_get_response import ASNGetResponse
-from cloudflare.types.radar.entities.asn_rel_response import ASNRelResponse
-from cloudflare.types.radar.entities.asn_list_response import ASNListResponse
+from cloudflare.types.radar.entities import (
+    ASNIPResponse,
+    ASNGetResponse,
+    ASNRelResponse,
+    ASNListResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -9,10 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.cloudforce_one.item import Item
-from cloudflare.types.cloudforce_one.quota import Quota
-from cloudflare.types.cloudforce_one.requests.priority import Priority
-from cloudflare.types.cloudforce_one.requests.priority_delete_response import PriorityDeleteResponse
+from cloudflare.types.cloudforce_one import Item, Quota
+from cloudflare.types.cloudforce_one.requests import (
+    Priority,
+    PriorityDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

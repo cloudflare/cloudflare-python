@@ -10,8 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.connection_tampering_summary_response import ConnectionTamperingSummaryResponse
-from cloudflare.types.radar.connection_tampering_timeseries_groups_response import (
+from cloudflare.types.radar import (
+    ConnectionTamperingSummaryResponse,
     ConnectionTamperingTimeseriesGroupsResponse,
 )
 

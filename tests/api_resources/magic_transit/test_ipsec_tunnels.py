@@ -9,12 +9,14 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_transit.ipsec_tunnel_get_response import IPSECTunnelGetResponse
-from cloudflare.types.magic_transit.ipsec_tunnel_list_response import IPSECTunnelListResponse
-from cloudflare.types.magic_transit.ipsec_tunnel_create_response import IPSECTunnelCreateResponse
-from cloudflare.types.magic_transit.ipsec_tunnel_delete_response import IPSECTunnelDeleteResponse
-from cloudflare.types.magic_transit.ipsec_tunnel_update_response import IPSECTunnelUpdateResponse
-from cloudflare.types.magic_transit.ipsec_tunnel_psk_generate_response import IPSECTunnelPSKGenerateResponse
+from cloudflare.types.magic_transit import (
+    IPSECTunnelGetResponse,
+    IPSECTunnelListResponse,
+    IPSECTunnelCreateResponse,
+    IPSECTunnelDeleteResponse,
+    IPSECTunnelUpdateResponse,
+    IPSECTunnelPSKGenerateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

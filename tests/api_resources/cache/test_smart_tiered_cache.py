@@ -9,9 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.cache.smart_tiered_cache_get_response import SmartTieredCacheGetResponse
-from cloudflare.types.cache.smart_tiered_cache_edit_response import SmartTieredCacheEditResponse
-from cloudflare.types.cache.smart_tiered_cache_delete_response import SmartTieredCacheDeleteResponse
+from cloudflare.types.cache import (
+    SmartTieredCacheGetResponse,
+    SmartTieredCacheEditResponse,
+    SmartTieredCacheDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

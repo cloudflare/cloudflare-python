@@ -9,9 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dlp.profiles.custom_profile import CustomProfile
-from cloudflare.types.zero_trust.dlp.profiles.custom_create_response import CustomCreateResponse
-from cloudflare.types.zero_trust.dlp.profiles.custom_delete_response import CustomDeleteResponse
+from cloudflare.types.zero_trust.dlp.profiles import (
+    CustomProfile,
+    CustomCreateResponse,
+    CustomDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

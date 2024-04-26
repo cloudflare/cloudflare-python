@@ -9,8 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream.live_input import LiveInput
-from cloudflare.types.stream.live_input_list_response import LiveInputListResponse
+from cloudflare.types.stream import (
+    LiveInput,
+    LiveInputListResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
