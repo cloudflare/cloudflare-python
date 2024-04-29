@@ -27,13 +27,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTimeseriesGroups:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.get()
         assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.get(
@@ -57,7 +55,6 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.get()
@@ -67,7 +64,6 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.get() as response:
@@ -79,13 +75,11 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_http_method(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.http_method()
         assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_http_method_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.http_method(
@@ -113,7 +107,6 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_http_method(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.http_method()
@@ -123,7 +116,6 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_http_method(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_method() as response:
@@ -135,13 +127,11 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_http_version(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.http_version()
         assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_http_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.http_version(
@@ -169,7 +159,6 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_http_version(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.http_version()
@@ -179,7 +168,6 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_http_version(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_version() as response:
@@ -191,13 +179,11 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_industry(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.industry()
         assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_industry_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.industry(
@@ -227,7 +213,6 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_industry(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.industry()
@@ -237,7 +222,6 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_industry(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.industry() as response:
@@ -249,13 +233,11 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_ip_version(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.ip_version()
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.ip_version(
@@ -283,7 +265,6 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_ip_version(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.ip_version()
@@ -293,7 +274,6 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_ip_version(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.ip_version() as response:
@@ -305,13 +285,11 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_managed_rules(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.managed_rules()
         assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_managed_rules_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.managed_rules(
@@ -340,7 +318,6 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_managed_rules(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.managed_rules()
@@ -350,7 +327,6 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_managed_rules(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.managed_rules() as response:
@@ -362,13 +338,11 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_mitigation_product(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.mitigation_product()
         assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_mitigation_product_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.mitigation_product(
@@ -396,7 +370,6 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_mitigation_product(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.mitigation_product()
@@ -406,7 +379,6 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_mitigation_product(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.mitigation_product() as response:
@@ -418,13 +390,11 @@ class TestTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_vertical(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.vertical()
         assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_vertical_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.vertical(
@@ -454,7 +424,6 @@ class TestTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_vertical(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.vertical()
@@ -464,7 +433,6 @@ class TestTimeseriesGroups:
         timeseries_group = response.parse()
         assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_vertical(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.vertical() as response:
@@ -480,13 +448,11 @@ class TestTimeseriesGroups:
 class TestAsyncTimeseriesGroups:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.get()
         assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.get(
@@ -510,7 +476,6 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.get()
@@ -520,7 +485,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.get() as response:
@@ -532,13 +496,11 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_http_method(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.http_method()
         assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_http_method_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.http_method(
@@ -566,7 +528,6 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_http_method(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.http_method()
@@ -576,7 +537,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_http_method(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_method() as response:
@@ -588,13 +548,11 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_http_version(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.http_version()
         assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_http_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.http_version(
@@ -622,7 +580,6 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_http_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.http_version()
@@ -632,7 +589,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_http_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_version() as response:
@@ -644,13 +600,11 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_industry(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.industry()
         assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_industry_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.industry(
@@ -680,7 +634,6 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_industry(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.industry()
@@ -690,7 +643,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_industry(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.industry() as response:
@@ -702,13 +654,11 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_ip_version(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.ip_version()
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.ip_version(
@@ -736,7 +686,6 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_ip_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.ip_version()
@@ -746,7 +695,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_ip_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.ip_version() as response:
@@ -758,13 +706,11 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_managed_rules(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.managed_rules()
         assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_managed_rules_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.managed_rules(
@@ -793,7 +739,6 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_managed_rules(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.managed_rules()
@@ -803,7 +748,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_managed_rules(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.managed_rules() as response:
@@ -815,13 +759,11 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_mitigation_product(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.mitigation_product()
         assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_mitigation_product_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.mitigation_product(
@@ -849,7 +791,6 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_mitigation_product(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.mitigation_product()
@@ -859,7 +800,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_mitigation_product(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.mitigation_product() as response:
@@ -871,13 +811,11 @@ class TestAsyncTimeseriesGroups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_vertical(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.vertical()
         assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_vertical_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.vertical(
@@ -907,7 +845,6 @@ class TestAsyncTimeseriesGroups:
         )
         assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_vertical(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.vertical()
@@ -917,7 +854,6 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await response.parse()
         assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_vertical(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.vertical() as response:

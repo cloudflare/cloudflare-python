@@ -18,7 +18,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPrefixes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         prefix = client.addressing.prefixes.create(
@@ -29,7 +28,6 @@ class TestPrefixes:
         )
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.with_raw_response.create(
@@ -44,7 +42,6 @@ class TestPrefixes:
         prefix = response.parse()
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.with_streaming_response.create(
@@ -61,7 +58,6 @@ class TestPrefixes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -72,7 +68,6 @@ class TestPrefixes:
                 loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         prefix = client.addressing.prefixes.list(
@@ -80,7 +75,6 @@ class TestPrefixes:
         )
         assert_matches_type(SyncSinglePage[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.with_raw_response.list(
@@ -92,7 +86,6 @@ class TestPrefixes:
         prefix = response.parse()
         assert_matches_type(SyncSinglePage[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.with_streaming_response.list(
@@ -106,7 +99,6 @@ class TestPrefixes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -114,7 +106,6 @@ class TestPrefixes:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         prefix = client.addressing.prefixes.delete(
@@ -123,7 +114,6 @@ class TestPrefixes:
         )
         assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.with_raw_response.delete(
@@ -136,7 +126,6 @@ class TestPrefixes:
         prefix = response.parse()
         assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.with_streaming_response.delete(
@@ -151,7 +140,6 @@ class TestPrefixes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -166,7 +154,6 @@ class TestPrefixes:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         prefix = client.addressing.prefixes.edit(
@@ -176,7 +163,6 @@ class TestPrefixes:
         )
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.with_raw_response.edit(
@@ -190,7 +176,6 @@ class TestPrefixes:
         prefix = response.parse()
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.with_streaming_response.edit(
@@ -206,7 +191,6 @@ class TestPrefixes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -223,7 +207,6 @@ class TestPrefixes:
                 description="Internal test prefix",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         prefix = client.addressing.prefixes.get(
@@ -232,7 +215,6 @@ class TestPrefixes:
         )
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.with_raw_response.get(
@@ -245,7 +227,6 @@ class TestPrefixes:
         prefix = response.parse()
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.with_streaming_response.get(
@@ -260,7 +241,6 @@ class TestPrefixes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -279,7 +259,6 @@ class TestPrefixes:
 class TestAsyncPrefixes:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         prefix = await async_client.addressing.prefixes.create(
@@ -290,7 +269,6 @@ class TestAsyncPrefixes:
         )
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.with_raw_response.create(
@@ -305,7 +283,6 @@ class TestAsyncPrefixes:
         prefix = await response.parse()
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.with_streaming_response.create(
@@ -322,7 +299,6 @@ class TestAsyncPrefixes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -333,7 +309,6 @@ class TestAsyncPrefixes:
                 loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         prefix = await async_client.addressing.prefixes.list(
@@ -341,7 +316,6 @@ class TestAsyncPrefixes:
         )
         assert_matches_type(AsyncSinglePage[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.with_raw_response.list(
@@ -353,7 +327,6 @@ class TestAsyncPrefixes:
         prefix = await response.parse()
         assert_matches_type(AsyncSinglePage[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.with_streaming_response.list(
@@ -367,7 +340,6 @@ class TestAsyncPrefixes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -375,7 +347,6 @@ class TestAsyncPrefixes:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         prefix = await async_client.addressing.prefixes.delete(
@@ -384,7 +355,6 @@ class TestAsyncPrefixes:
         )
         assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.with_raw_response.delete(
@@ -397,7 +367,6 @@ class TestAsyncPrefixes:
         prefix = await response.parse()
         assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.with_streaming_response.delete(
@@ -412,7 +381,6 @@ class TestAsyncPrefixes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -427,7 +395,6 @@ class TestAsyncPrefixes:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         prefix = await async_client.addressing.prefixes.edit(
@@ -437,7 +404,6 @@ class TestAsyncPrefixes:
         )
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.with_raw_response.edit(
@@ -451,7 +417,6 @@ class TestAsyncPrefixes:
         prefix = await response.parse()
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.with_streaming_response.edit(
@@ -467,7 +432,6 @@ class TestAsyncPrefixes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -484,7 +448,6 @@ class TestAsyncPrefixes:
                 description="Internal test prefix",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         prefix = await async_client.addressing.prefixes.get(
@@ -493,7 +456,6 @@ class TestAsyncPrefixes:
         )
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.with_raw_response.get(
@@ -506,7 +468,6 @@ class TestAsyncPrefixes:
         prefix = await response.parse()
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.with_streaming_response.get(
@@ -521,7 +482,6 @@ class TestAsyncPrefixes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

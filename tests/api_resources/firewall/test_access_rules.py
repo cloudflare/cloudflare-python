@@ -23,7 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAccessRules:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.create(
@@ -33,7 +33,7 @@ class TestAccessRules:
         )
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.create(
@@ -47,7 +47,7 @@ class TestAccessRules:
         )
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.create(
@@ -61,7 +61,7 @@ class TestAccessRules:
         access_rule = response.parse()
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.create(
@@ -77,7 +77,7 @@ class TestAccessRules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -94,7 +94,7 @@ class TestAccessRules:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.list(
@@ -102,7 +102,7 @@ class TestAccessRules:
         )
         assert_matches_type(SyncV4PagePaginationArray[object], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.list(
@@ -127,7 +127,7 @@ class TestAccessRules:
         )
         assert_matches_type(SyncV4PagePaginationArray[object], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.list(
@@ -139,7 +139,7 @@ class TestAccessRules:
         access_rule = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[object], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.list(
@@ -153,7 +153,7 @@ class TestAccessRules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -166,7 +166,7 @@ class TestAccessRules:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.delete(
@@ -175,7 +175,7 @@ class TestAccessRules:
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.delete(
@@ -184,7 +184,7 @@ class TestAccessRules:
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.delete(
@@ -197,7 +197,7 @@ class TestAccessRules:
         access_rule = response.parse()
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.delete(
@@ -212,7 +212,7 @@ class TestAccessRules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -227,7 +227,7 @@ class TestAccessRules:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.edit(
@@ -238,7 +238,7 @@ class TestAccessRules:
         )
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.edit(
@@ -253,7 +253,7 @@ class TestAccessRules:
         )
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.edit(
@@ -268,7 +268,7 @@ class TestAccessRules:
         access_rule = response.parse()
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.edit(
@@ -285,7 +285,7 @@ class TestAccessRules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -304,7 +304,7 @@ class TestAccessRules:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.get(
@@ -313,7 +313,7 @@ class TestAccessRules:
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.get(
@@ -322,7 +322,7 @@ class TestAccessRules:
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.get(
@@ -335,7 +335,7 @@ class TestAccessRules:
         access_rule = response.parse()
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.get(
@@ -350,7 +350,7 @@ class TestAccessRules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -369,7 +369,7 @@ class TestAccessRules:
 class TestAsyncAccessRules:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.create(
@@ -379,7 +379,7 @@ class TestAsyncAccessRules:
         )
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.create(
@@ -393,7 +393,7 @@ class TestAsyncAccessRules:
         )
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.create(
@@ -407,7 +407,7 @@ class TestAsyncAccessRules:
         access_rule = await response.parse()
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.create(
@@ -423,7 +423,7 @@ class TestAsyncAccessRules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -440,7 +440,7 @@ class TestAsyncAccessRules:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.list(
@@ -448,7 +448,7 @@ class TestAsyncAccessRules:
         )
         assert_matches_type(AsyncV4PagePaginationArray[object], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.list(
@@ -473,7 +473,7 @@ class TestAsyncAccessRules:
         )
         assert_matches_type(AsyncV4PagePaginationArray[object], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.list(
@@ -485,7 +485,7 @@ class TestAsyncAccessRules:
         access_rule = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[object], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.list(
@@ -499,7 +499,7 @@ class TestAsyncAccessRules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -512,7 +512,7 @@ class TestAsyncAccessRules:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.delete(
@@ -521,7 +521,7 @@ class TestAsyncAccessRules:
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.delete(
@@ -530,7 +530,7 @@ class TestAsyncAccessRules:
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.delete(
@@ -543,7 +543,7 @@ class TestAsyncAccessRules:
         access_rule = await response.parse()
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.delete(
@@ -558,7 +558,7 @@ class TestAsyncAccessRules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -573,7 +573,7 @@ class TestAsyncAccessRules:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.edit(
@@ -584,7 +584,7 @@ class TestAsyncAccessRules:
         )
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.edit(
@@ -599,7 +599,7 @@ class TestAsyncAccessRules:
         )
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.edit(
@@ -614,7 +614,7 @@ class TestAsyncAccessRules:
         access_rule = await response.parse()
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.edit(
@@ -631,7 +631,7 @@ class TestAsyncAccessRules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -650,7 +650,7 @@ class TestAsyncAccessRules:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.get(
@@ -659,7 +659,7 @@ class TestAsyncAccessRules:
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.get(
@@ -668,7 +668,7 @@ class TestAsyncAccessRules:
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.get(
@@ -681,7 +681,7 @@ class TestAsyncAccessRules:
         access_rule = await response.parse()
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.get(
@@ -696,7 +696,7 @@ class TestAsyncAccessRules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
