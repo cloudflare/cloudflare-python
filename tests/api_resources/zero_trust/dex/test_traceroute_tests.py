@@ -28,8 +28,8 @@ class TestTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
@@ -40,8 +40,8 @@ class TestTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
             colo="string",
             device_id=["string", "string", "string"],
         )
@@ -54,8 +54,8 @@ class TestTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
 
         assert response.is_closed is True
@@ -70,8 +70,8 @@ class TestTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -89,8 +89,8 @@ class TestTracerouteTests:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -98,8 +98,8 @@ class TestTracerouteTests:
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
     @pytest.mark.skip()
@@ -110,8 +110,8 @@ class TestTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
         assert_matches_type(Optional[NetworkPathResponse], traceroute_test, path=["response"])
 
@@ -123,8 +123,8 @@ class TestTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
 
         assert response.is_closed is True
@@ -140,8 +140,8 @@ class TestTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -160,8 +160,8 @@ class TestTracerouteTests:
                 account_id="",
                 device_id="string",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -170,8 +170,8 @@ class TestTracerouteTests:
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 device_id="string",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
     @pytest.mark.skip()
@@ -260,8 +260,8 @@ class TestAsyncTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
@@ -272,8 +272,8 @@ class TestAsyncTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
             colo="string",
             device_id=["string", "string", "string"],
         )
@@ -286,8 +286,8 @@ class TestAsyncTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
 
         assert response.is_closed is True
@@ -302,8 +302,8 @@ class TestAsyncTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -321,8 +321,8 @@ class TestAsyncTracerouteTests:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -330,8 +330,8 @@ class TestAsyncTracerouteTests:
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
     @pytest.mark.skip()
@@ -342,8 +342,8 @@ class TestAsyncTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
         assert_matches_type(Optional[NetworkPathResponse], traceroute_test, path=["response"])
 
@@ -355,8 +355,8 @@ class TestAsyncTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
 
         assert response.is_closed is True
@@ -372,8 +372,8 @@ class TestAsyncTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -392,8 +392,8 @@ class TestAsyncTracerouteTests:
                 account_id="",
                 device_id="string",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -402,8 +402,8 @@ class TestAsyncTracerouteTests:
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 device_id="string",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
     @pytest.mark.skip()

@@ -112,7 +112,7 @@ class TestRoutes:
     @parametrize
     def test_method_stats_with_all_params(self, client: Cloudflare) -> None:
         route = client.radar.bgp.routes.stats(
-            asn=0,
+            asn=174,
             format="JSON",
             location="US",
         )
@@ -150,7 +150,7 @@ class TestRoutes:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         route = client.radar.bgp.routes.timeseries(
-            asn=0,
+            asn=174,
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
@@ -275,7 +275,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_stats_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.radar.bgp.routes.stats(
-            asn=0,
+            asn=174,
             format="JSON",
             location="US",
         )
@@ -313,7 +313,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.radar.bgp.routes.timeseries(
-            asn=0,
+            asn=174,
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
