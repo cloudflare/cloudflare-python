@@ -280,14 +280,6 @@ from .rulesets import (
     RulesetsResourceWithStreamingResponse,
     AsyncRulesetsResourceWithStreamingResponse,
 )
-from .snippets import (
-    SnippetsResource,
-    AsyncSnippetsResource,
-    SnippetsResourceWithRawResponse,
-    AsyncSnippetsResourceWithRawResponse,
-    SnippetsResourceWithStreamingResponse,
-    AsyncSnippetsResourceWithStreamingResponse,
-)
 from .spectrum import (
     SpectrumResource,
     AsyncSpectrumResource,
@@ -1112,12 +1104,6 @@ __all__ = [
     "AsyncHostnamesResourceWithRawResponse",
     "HostnamesResourceWithStreamingResponse",
     "AsyncHostnamesResourceWithStreamingResponse",
-    "SnippetsResource",
-    "AsyncSnippetsResource",
-    "SnippetsResourceWithRawResponse",
-    "AsyncSnippetsResourceWithRawResponse",
-    "SnippetsResourceWithStreamingResponse",
-    "AsyncSnippetsResourceWithStreamingResponse",
     "CallsResource",
     "AsyncCallsResource",
     "CallsResourceWithRawResponse",
