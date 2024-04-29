@@ -30,7 +30,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -46,7 +46,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -67,7 +67,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -87,7 +87,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -110,7 +110,7 @@ class TestConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -126,7 +126,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -143,7 +143,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -165,7 +165,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -186,7 +186,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -210,7 +210,7 @@ class TestConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -224,7 +224,7 @@ class TestConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -348,7 +348,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -463,7 +463,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -479,7 +479,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -500,7 +500,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -520,7 +520,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -543,7 +543,7 @@ class TestAsyncConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -559,7 +559,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -576,7 +576,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -598,7 +598,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -619,7 +619,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -643,7 +643,7 @@ class TestAsyncConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -657,7 +657,7 @@ class TestAsyncConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -781,7 +781,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },

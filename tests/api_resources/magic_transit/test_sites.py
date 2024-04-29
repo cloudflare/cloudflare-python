@@ -37,8 +37,8 @@ class TestSites:
             description="string",
             ha_mode=True,
             location={
-                "lat": "string",
-                "lon": "string",
+                "lat": "37.6192",
+                "lon": "122.3816",
             },
             secondary_connector_id="8d67040d3835dbcf46ce29da440dc482",
         )
@@ -99,8 +99,8 @@ class TestSites:
             connector_id="ac60d3d0435248289d446cedd870bcf4",
             description="string",
             location={
-                "lat": "string",
-                "lon": "string",
+                "lat": "37.6192",
+                "lon": "122.3816",
             },
             name="site_1",
             secondary_connector_id="8d67040d3835dbcf46ce29da440dc482",
@@ -328,8 +328,8 @@ class TestAsyncSites:
             description="string",
             ha_mode=True,
             location={
-                "lat": "string",
-                "lon": "string",
+                "lat": "37.6192",
+                "lon": "122.3816",
             },
             secondary_connector_id="8d67040d3835dbcf46ce29da440dc482",
         )
@@ -390,8 +390,8 @@ class TestAsyncSites:
             connector_id="ac60d3d0435248289d446cedd870bcf4",
             description="string",
             location={
-                "lat": "string",
-                "lon": "string",
+                "lat": "37.6192",
+                "lon": "122.3816",
             },
             name="site_1",
             secondary_connector_id="8d67040d3835dbcf46ce29da440dc482",
