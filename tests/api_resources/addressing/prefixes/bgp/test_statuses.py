@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestStatuses:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         status = client.addressing.prefixes.bgp.statuses.edit(
@@ -27,7 +26,6 @@ class TestStatuses:
         )
         assert_matches_type(Optional[StatusEditResponse], status, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.bgp.statuses.with_raw_response.edit(
@@ -41,7 +39,6 @@ class TestStatuses:
         status = response.parse()
         assert_matches_type(Optional[StatusEditResponse], status, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.bgp.statuses.with_streaming_response.edit(
@@ -57,7 +54,6 @@ class TestStatuses:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -74,7 +70,6 @@ class TestStatuses:
                 advertised=True,
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         status = client.addressing.prefixes.bgp.statuses.get(
@@ -83,7 +78,6 @@ class TestStatuses:
         )
         assert_matches_type(Optional[StatusGetResponse], status, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.bgp.statuses.with_raw_response.get(
@@ -96,7 +90,6 @@ class TestStatuses:
         status = response.parse()
         assert_matches_type(Optional[StatusGetResponse], status, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.bgp.statuses.with_streaming_response.get(
@@ -111,7 +104,6 @@ class TestStatuses:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -130,7 +122,6 @@ class TestStatuses:
 class TestAsyncStatuses:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         status = await async_client.addressing.prefixes.bgp.statuses.edit(
@@ -140,7 +131,6 @@ class TestAsyncStatuses:
         )
         assert_matches_type(Optional[StatusEditResponse], status, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.bgp.statuses.with_raw_response.edit(
@@ -154,7 +144,6 @@ class TestAsyncStatuses:
         status = await response.parse()
         assert_matches_type(Optional[StatusEditResponse], status, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.bgp.statuses.with_streaming_response.edit(
@@ -170,7 +159,6 @@ class TestAsyncStatuses:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -187,7 +175,6 @@ class TestAsyncStatuses:
                 advertised=True,
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         status = await async_client.addressing.prefixes.bgp.statuses.get(
@@ -196,7 +183,6 @@ class TestAsyncStatuses:
         )
         assert_matches_type(Optional[StatusGetResponse], status, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.bgp.statuses.with_raw_response.get(
@@ -209,7 +195,6 @@ class TestAsyncStatuses:
         status = await response.parse()
         assert_matches_type(Optional[StatusGetResponse], status, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.bgp.statuses.with_streaming_response.get(
@@ -224,7 +209,6 @@ class TestAsyncStatuses:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

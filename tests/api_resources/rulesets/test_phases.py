@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPhases:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.update(
@@ -27,7 +27,7 @@ class TestPhases:
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.update(
@@ -90,7 +90,7 @@ class TestPhases:
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.phases.with_raw_response.update(
@@ -104,7 +104,7 @@ class TestPhases:
         phase = response.parse()
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.phases.with_streaming_response.update(
@@ -120,7 +120,7 @@ class TestPhases:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -137,7 +137,7 @@ class TestPhases:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.get(
@@ -146,7 +146,7 @@ class TestPhases:
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.get(
@@ -155,7 +155,7 @@ class TestPhases:
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rulesets.phases.with_raw_response.get(
@@ -168,7 +168,7 @@ class TestPhases:
         phase = response.parse()
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rulesets.phases.with_streaming_response.get(
@@ -183,7 +183,7 @@ class TestPhases:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -202,7 +202,7 @@ class TestPhases:
 class TestAsyncPhases:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.update(
@@ -212,7 +212,7 @@ class TestAsyncPhases:
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.update(
@@ -275,7 +275,7 @@ class TestAsyncPhases:
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.phases.with_raw_response.update(
@@ -289,7 +289,7 @@ class TestAsyncPhases:
         phase = await response.parse()
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.phases.with_streaming_response.update(
@@ -305,7 +305,7 @@ class TestAsyncPhases:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -322,7 +322,7 @@ class TestAsyncPhases:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.get(
@@ -331,7 +331,7 @@ class TestAsyncPhases:
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.get(
@@ -340,7 +340,7 @@ class TestAsyncPhases:
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.phases.with_raw_response.get(
@@ -353,7 +353,7 @@ class TestAsyncPhases:
         phase = await response.parse()
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.phases.with_streaming_response.get(
@@ -368,7 +368,7 @@ class TestAsyncPhases:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

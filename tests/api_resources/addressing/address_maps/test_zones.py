@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestZones:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         zone = client.addressing.address_maps.zones.update(
@@ -28,7 +27,6 @@ class TestZones:
         )
         assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.zones.with_raw_response.update(
@@ -43,7 +41,6 @@ class TestZones:
         zone = response.parse()
         assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.zones.with_streaming_response.update(
@@ -60,7 +57,6 @@ class TestZones:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -87,7 +83,6 @@ class TestZones:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         zone = client.addressing.address_maps.zones.delete(
@@ -97,7 +92,6 @@ class TestZones:
         )
         assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.zones.with_raw_response.delete(
@@ -111,7 +105,6 @@ class TestZones:
         zone = response.parse()
         assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.zones.with_streaming_response.delete(
@@ -127,7 +120,6 @@ class TestZones:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -155,7 +147,6 @@ class TestZones:
 class TestAsyncZones:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         zone = await async_client.addressing.address_maps.zones.update(
@@ -166,7 +157,6 @@ class TestAsyncZones:
         )
         assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.zones.with_raw_response.update(
@@ -181,7 +171,6 @@ class TestAsyncZones:
         zone = await response.parse()
         assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.zones.with_streaming_response.update(
@@ -198,7 +187,6 @@ class TestAsyncZones:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -225,7 +213,6 @@ class TestAsyncZones:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         zone = await async_client.addressing.address_maps.zones.delete(
@@ -235,7 +222,6 @@ class TestAsyncZones:
         )
         assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.zones.with_raw_response.delete(
@@ -249,7 +235,6 @@ class TestAsyncZones:
         zone = await response.parse()
         assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.zones.with_streaming_response.delete(
@@ -265,7 +250,6 @@ class TestAsyncZones:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

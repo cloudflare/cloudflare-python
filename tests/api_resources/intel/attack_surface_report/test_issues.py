@@ -24,7 +24,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestIssues:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.list(
@@ -32,7 +31,6 @@ class TestIssues:
         )
         assert_matches_type(SyncV4PagePagination[IssueListResponse], issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.list(
@@ -53,7 +51,6 @@ class TestIssues:
         )
         assert_matches_type(SyncV4PagePagination[IssueListResponse], issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.intel.attack_surface_report.issues.with_raw_response.list(
@@ -65,7 +62,6 @@ class TestIssues:
         issue = response.parse()
         assert_matches_type(SyncV4PagePagination[IssueListResponse], issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.intel.attack_surface_report.issues.with_streaming_response.list(
@@ -79,7 +75,6 @@ class TestIssues:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -87,7 +82,6 @@ class TestIssues:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_class(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.class_(
@@ -95,7 +89,6 @@ class TestIssues:
         )
         assert_matches_type(IssueClassResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_class_with_all_params(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.class_(
@@ -114,7 +107,6 @@ class TestIssues:
         )
         assert_matches_type(IssueClassResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_class(self, client: Cloudflare) -> None:
         response = client.intel.attack_surface_report.issues.with_raw_response.class_(
@@ -126,7 +118,6 @@ class TestIssues:
         issue = response.parse()
         assert_matches_type(IssueClassResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_class(self, client: Cloudflare) -> None:
         with client.intel.attack_surface_report.issues.with_streaming_response.class_(
@@ -140,7 +131,6 @@ class TestIssues:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_class(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -148,7 +138,6 @@ class TestIssues:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_dismiss(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.dismiss(
@@ -157,7 +146,6 @@ class TestIssues:
         )
         assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_dismiss_with_all_params(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.dismiss(
@@ -167,7 +155,6 @@ class TestIssues:
         )
         assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_dismiss(self, client: Cloudflare) -> None:
         response = client.intel.attack_surface_report.issues.with_raw_response.dismiss(
@@ -180,7 +167,6 @@ class TestIssues:
         issue = response.parse()
         assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_dismiss(self, client: Cloudflare) -> None:
         with client.intel.attack_surface_report.issues.with_streaming_response.dismiss(
@@ -195,7 +181,6 @@ class TestIssues:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_dismiss(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -210,7 +195,6 @@ class TestIssues:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_severity(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.severity(
@@ -218,7 +202,6 @@ class TestIssues:
         )
         assert_matches_type(IssueSeverityResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_severity_with_all_params(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.severity(
@@ -237,7 +220,6 @@ class TestIssues:
         )
         assert_matches_type(IssueSeverityResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_severity(self, client: Cloudflare) -> None:
         response = client.intel.attack_surface_report.issues.with_raw_response.severity(
@@ -249,7 +231,6 @@ class TestIssues:
         issue = response.parse()
         assert_matches_type(IssueSeverityResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_severity(self, client: Cloudflare) -> None:
         with client.intel.attack_surface_report.issues.with_streaming_response.severity(
@@ -263,7 +244,6 @@ class TestIssues:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_severity(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -271,7 +251,6 @@ class TestIssues:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_type(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.type(
@@ -279,7 +258,6 @@ class TestIssues:
         )
         assert_matches_type(IssueTypeResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_type_with_all_params(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.type(
@@ -298,7 +276,6 @@ class TestIssues:
         )
         assert_matches_type(IssueTypeResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_type(self, client: Cloudflare) -> None:
         response = client.intel.attack_surface_report.issues.with_raw_response.type(
@@ -310,7 +287,6 @@ class TestIssues:
         issue = response.parse()
         assert_matches_type(IssueTypeResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_type(self, client: Cloudflare) -> None:
         with client.intel.attack_surface_report.issues.with_streaming_response.type(
@@ -324,7 +300,6 @@ class TestIssues:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_type(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -336,7 +311,6 @@ class TestIssues:
 class TestAsyncIssues:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.list(
@@ -344,7 +318,6 @@ class TestAsyncIssues:
         )
         assert_matches_type(AsyncV4PagePagination[IssueListResponse], issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.list(
@@ -365,7 +338,6 @@ class TestAsyncIssues:
         )
         assert_matches_type(AsyncV4PagePagination[IssueListResponse], issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.attack_surface_report.issues.with_raw_response.list(
@@ -377,7 +349,6 @@ class TestAsyncIssues:
         issue = await response.parse()
         assert_matches_type(AsyncV4PagePagination[IssueListResponse], issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.attack_surface_report.issues.with_streaming_response.list(
@@ -391,7 +362,6 @@ class TestAsyncIssues:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -399,7 +369,6 @@ class TestAsyncIssues:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_class(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.class_(
@@ -407,7 +376,6 @@ class TestAsyncIssues:
         )
         assert_matches_type(IssueClassResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_class_with_all_params(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.class_(
@@ -426,7 +394,6 @@ class TestAsyncIssues:
         )
         assert_matches_type(IssueClassResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_class(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.attack_surface_report.issues.with_raw_response.class_(
@@ -438,7 +405,6 @@ class TestAsyncIssues:
         issue = await response.parse()
         assert_matches_type(IssueClassResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_class(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.attack_surface_report.issues.with_streaming_response.class_(
@@ -452,7 +418,6 @@ class TestAsyncIssues:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_class(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -460,7 +425,6 @@ class TestAsyncIssues:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_dismiss(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.dismiss(
@@ -469,7 +433,6 @@ class TestAsyncIssues:
         )
         assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_dismiss_with_all_params(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.dismiss(
@@ -479,7 +442,6 @@ class TestAsyncIssues:
         )
         assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_dismiss(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.attack_surface_report.issues.with_raw_response.dismiss(
@@ -492,7 +454,6 @@ class TestAsyncIssues:
         issue = await response.parse()
         assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_dismiss(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.attack_surface_report.issues.with_streaming_response.dismiss(
@@ -507,7 +468,6 @@ class TestAsyncIssues:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_dismiss(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -522,7 +482,6 @@ class TestAsyncIssues:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_severity(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.severity(
@@ -530,7 +489,6 @@ class TestAsyncIssues:
         )
         assert_matches_type(IssueSeverityResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_severity_with_all_params(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.severity(
@@ -549,7 +507,6 @@ class TestAsyncIssues:
         )
         assert_matches_type(IssueSeverityResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_severity(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.attack_surface_report.issues.with_raw_response.severity(
@@ -561,7 +518,6 @@ class TestAsyncIssues:
         issue = await response.parse()
         assert_matches_type(IssueSeverityResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_severity(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.attack_surface_report.issues.with_streaming_response.severity(
@@ -575,7 +531,6 @@ class TestAsyncIssues:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_severity(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -583,7 +538,6 @@ class TestAsyncIssues:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_type(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.type(
@@ -591,7 +545,6 @@ class TestAsyncIssues:
         )
         assert_matches_type(IssueTypeResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_type_with_all_params(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.type(
@@ -610,7 +563,6 @@ class TestAsyncIssues:
         )
         assert_matches_type(IssueTypeResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_type(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.attack_surface_report.issues.with_raw_response.type(
@@ -622,7 +574,6 @@ class TestAsyncIssues:
         issue = await response.parse()
         assert_matches_type(IssueTypeResponse, issue, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_type(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.attack_surface_report.issues.with_streaming_response.type(
@@ -636,7 +587,6 @@ class TestAsyncIssues:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_type(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

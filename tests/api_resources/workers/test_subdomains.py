@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSubdomains:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         subdomain = client.workers.subdomains.update(
@@ -26,7 +25,6 @@ class TestSubdomains:
         )
         assert_matches_type(Optional[SubdomainUpdateResponse], subdomain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers.subdomains.with_raw_response.update(
@@ -39,7 +37,6 @@ class TestSubdomains:
         subdomain = response.parse()
         assert_matches_type(Optional[SubdomainUpdateResponse], subdomain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers.subdomains.with_streaming_response.update(
@@ -54,7 +51,6 @@ class TestSubdomains:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -63,7 +59,6 @@ class TestSubdomains:
                 body="{'subdomain': 'example-subdomain'}",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         subdomain = client.workers.subdomains.get(
@@ -71,7 +66,6 @@ class TestSubdomains:
         )
         assert_matches_type(Optional[SubdomainGetResponse], subdomain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.subdomains.with_raw_response.get(
@@ -83,7 +77,6 @@ class TestSubdomains:
         subdomain = response.parse()
         assert_matches_type(Optional[SubdomainGetResponse], subdomain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.subdomains.with_streaming_response.get(
@@ -97,7 +90,6 @@ class TestSubdomains:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -109,7 +101,6 @@ class TestSubdomains:
 class TestAsyncSubdomains:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         subdomain = await async_client.workers.subdomains.update(
@@ -118,7 +109,6 @@ class TestAsyncSubdomains:
         )
         assert_matches_type(Optional[SubdomainUpdateResponse], subdomain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.subdomains.with_raw_response.update(
@@ -131,7 +121,6 @@ class TestAsyncSubdomains:
         subdomain = await response.parse()
         assert_matches_type(Optional[SubdomainUpdateResponse], subdomain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.subdomains.with_streaming_response.update(
@@ -146,7 +135,6 @@ class TestAsyncSubdomains:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -155,7 +143,6 @@ class TestAsyncSubdomains:
                 body="{'subdomain': 'example-subdomain'}",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         subdomain = await async_client.workers.subdomains.get(
@@ -163,7 +150,6 @@ class TestAsyncSubdomains:
         )
         assert_matches_type(Optional[SubdomainGetResponse], subdomain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.subdomains.with_raw_response.get(
@@ -175,7 +161,6 @@ class TestAsyncSubdomains:
         subdomain = await response.parse()
         assert_matches_type(Optional[SubdomainGetResponse], subdomain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.subdomains.with_streaming_response.get(
@@ -189,7 +174,6 @@ class TestAsyncSubdomains:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

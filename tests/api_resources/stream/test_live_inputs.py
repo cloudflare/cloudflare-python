@@ -20,7 +20,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestLiveInputs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.create(
@@ -28,7 +27,6 @@ class TestLiveInputs:
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.create(
@@ -45,7 +43,6 @@ class TestLiveInputs:
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.stream.live_inputs.with_raw_response.create(
@@ -57,7 +54,6 @@ class TestLiveInputs:
         live_input = response.parse()
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.stream.live_inputs.with_streaming_response.create(
@@ -71,7 +67,6 @@ class TestLiveInputs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -79,7 +74,6 @@ class TestLiveInputs:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.update(
@@ -88,7 +82,6 @@ class TestLiveInputs:
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.update(
@@ -106,7 +99,6 @@ class TestLiveInputs:
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.stream.live_inputs.with_raw_response.update(
@@ -119,7 +111,6 @@ class TestLiveInputs:
         live_input = response.parse()
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.stream.live_inputs.with_streaming_response.update(
@@ -134,7 +125,6 @@ class TestLiveInputs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -149,7 +139,6 @@ class TestLiveInputs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.list(
@@ -157,7 +146,6 @@ class TestLiveInputs:
         )
         assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.list(
@@ -166,7 +154,6 @@ class TestLiveInputs:
         )
         assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.stream.live_inputs.with_raw_response.list(
@@ -178,7 +165,6 @@ class TestLiveInputs:
         live_input = response.parse()
         assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.stream.live_inputs.with_streaming_response.list(
@@ -192,7 +178,6 @@ class TestLiveInputs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -200,7 +185,6 @@ class TestLiveInputs:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.delete(
@@ -209,7 +193,6 @@ class TestLiveInputs:
         )
         assert live_input is None
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.stream.live_inputs.with_raw_response.delete(
@@ -222,7 +205,6 @@ class TestLiveInputs:
         live_input = response.parse()
         assert live_input is None
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.stream.live_inputs.with_streaming_response.delete(
@@ -237,7 +219,6 @@ class TestLiveInputs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -252,7 +233,6 @@ class TestLiveInputs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.get(
@@ -261,7 +241,6 @@ class TestLiveInputs:
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.stream.live_inputs.with_raw_response.get(
@@ -274,7 +253,6 @@ class TestLiveInputs:
         live_input = response.parse()
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.stream.live_inputs.with_streaming_response.get(
@@ -289,7 +267,6 @@ class TestLiveInputs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -308,7 +285,6 @@ class TestLiveInputs:
 class TestAsyncLiveInputs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.create(
@@ -316,7 +292,6 @@ class TestAsyncLiveInputs:
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.create(
@@ -333,7 +308,6 @@ class TestAsyncLiveInputs:
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.live_inputs.with_raw_response.create(
@@ -345,7 +319,6 @@ class TestAsyncLiveInputs:
         live_input = await response.parse()
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.live_inputs.with_streaming_response.create(
@@ -359,7 +332,6 @@ class TestAsyncLiveInputs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -367,7 +339,6 @@ class TestAsyncLiveInputs:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.update(
@@ -376,7 +347,6 @@ class TestAsyncLiveInputs:
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.update(
@@ -394,7 +364,6 @@ class TestAsyncLiveInputs:
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.live_inputs.with_raw_response.update(
@@ -407,7 +376,6 @@ class TestAsyncLiveInputs:
         live_input = await response.parse()
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.live_inputs.with_streaming_response.update(
@@ -422,7 +390,6 @@ class TestAsyncLiveInputs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -437,7 +404,6 @@ class TestAsyncLiveInputs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.list(
@@ -445,7 +411,6 @@ class TestAsyncLiveInputs:
         )
         assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.list(
@@ -454,7 +419,6 @@ class TestAsyncLiveInputs:
         )
         assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.live_inputs.with_raw_response.list(
@@ -466,7 +430,6 @@ class TestAsyncLiveInputs:
         live_input = await response.parse()
         assert_matches_type(Optional[LiveInputListResponse], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.live_inputs.with_streaming_response.list(
@@ -480,7 +443,6 @@ class TestAsyncLiveInputs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -488,7 +450,6 @@ class TestAsyncLiveInputs:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.delete(
@@ -497,7 +458,6 @@ class TestAsyncLiveInputs:
         )
         assert live_input is None
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.live_inputs.with_raw_response.delete(
@@ -510,7 +470,6 @@ class TestAsyncLiveInputs:
         live_input = await response.parse()
         assert live_input is None
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.live_inputs.with_streaming_response.delete(
@@ -525,7 +484,6 @@ class TestAsyncLiveInputs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -540,7 +498,6 @@ class TestAsyncLiveInputs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.get(
@@ -549,7 +506,6 @@ class TestAsyncLiveInputs:
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.live_inputs.with_raw_response.get(
@@ -562,7 +518,6 @@ class TestAsyncLiveInputs:
         live_input = await response.parse()
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.live_inputs.with_streaming_response.get(
@@ -577,7 +532,6 @@ class TestAsyncLiveInputs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

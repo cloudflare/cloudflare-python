@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWaitingRooms:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.create(
@@ -33,7 +32,6 @@ class TestWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.create(
@@ -75,7 +73,6 @@ class TestWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.waiting_rooms.with_raw_response.create(
@@ -91,7 +88,6 @@ class TestWaitingRooms:
         waiting_room = response.parse()
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.waiting_rooms.with_streaming_response.create(
@@ -109,7 +105,6 @@ class TestWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -121,7 +116,6 @@ class TestWaitingRooms:
                 total_active_users=200,
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.update(
@@ -134,7 +128,6 @@ class TestWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.update(
@@ -177,7 +170,6 @@ class TestWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.waiting_rooms.with_raw_response.update(
@@ -194,7 +186,6 @@ class TestWaitingRooms:
         waiting_room = response.parse()
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.waiting_rooms.with_streaming_response.update(
@@ -213,7 +204,6 @@ class TestWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -236,7 +226,6 @@ class TestWaitingRooms:
                 total_active_users=200,
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.list(
@@ -244,7 +233,6 @@ class TestWaitingRooms:
         )
         assert_matches_type(SyncSinglePage[WaitingRoom], waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.list(
@@ -254,7 +242,6 @@ class TestWaitingRooms:
         )
         assert_matches_type(SyncSinglePage[WaitingRoom], waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.waiting_rooms.with_raw_response.list(
@@ -266,7 +253,6 @@ class TestWaitingRooms:
         waiting_room = response.parse()
         assert_matches_type(SyncSinglePage[WaitingRoom], waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.waiting_rooms.with_streaming_response.list(
@@ -280,7 +266,6 @@ class TestWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -288,7 +273,6 @@ class TestWaitingRooms:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.delete(
@@ -297,7 +281,6 @@ class TestWaitingRooms:
         )
         assert_matches_type(WaitingRoomDeleteResponse, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.waiting_rooms.with_raw_response.delete(
@@ -310,7 +293,6 @@ class TestWaitingRooms:
         waiting_room = response.parse()
         assert_matches_type(WaitingRoomDeleteResponse, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.waiting_rooms.with_streaming_response.delete(
@@ -325,7 +307,6 @@ class TestWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -340,7 +321,6 @@ class TestWaitingRooms:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.edit(
@@ -353,7 +333,6 @@ class TestWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.edit(
@@ -396,7 +375,6 @@ class TestWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.waiting_rooms.with_raw_response.edit(
@@ -413,7 +391,6 @@ class TestWaitingRooms:
         waiting_room = response.parse()
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.waiting_rooms.with_streaming_response.edit(
@@ -432,7 +409,6 @@ class TestWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -455,7 +431,6 @@ class TestWaitingRooms:
                 total_active_users=200,
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.get(
@@ -464,7 +439,6 @@ class TestWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.waiting_rooms.with_raw_response.get(
@@ -477,7 +451,6 @@ class TestWaitingRooms:
         waiting_room = response.parse()
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.waiting_rooms.with_streaming_response.get(
@@ -492,7 +465,6 @@ class TestWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -511,7 +483,6 @@ class TestWaitingRooms:
 class TestAsyncWaitingRooms:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.create(
@@ -523,7 +494,6 @@ class TestAsyncWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.create(
@@ -565,7 +535,6 @@ class TestAsyncWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.waiting_rooms.with_raw_response.create(
@@ -581,7 +550,6 @@ class TestAsyncWaitingRooms:
         waiting_room = await response.parse()
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.waiting_rooms.with_streaming_response.create(
@@ -599,7 +567,6 @@ class TestAsyncWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -611,7 +578,6 @@ class TestAsyncWaitingRooms:
                 total_active_users=200,
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.update(
@@ -624,7 +590,6 @@ class TestAsyncWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.update(
@@ -667,7 +632,6 @@ class TestAsyncWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.waiting_rooms.with_raw_response.update(
@@ -684,7 +648,6 @@ class TestAsyncWaitingRooms:
         waiting_room = await response.parse()
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.waiting_rooms.with_streaming_response.update(
@@ -703,7 +666,6 @@ class TestAsyncWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -726,7 +688,6 @@ class TestAsyncWaitingRooms:
                 total_active_users=200,
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.list(
@@ -734,7 +695,6 @@ class TestAsyncWaitingRooms:
         )
         assert_matches_type(AsyncSinglePage[WaitingRoom], waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.list(
@@ -744,7 +704,6 @@ class TestAsyncWaitingRooms:
         )
         assert_matches_type(AsyncSinglePage[WaitingRoom], waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.waiting_rooms.with_raw_response.list(
@@ -756,7 +715,6 @@ class TestAsyncWaitingRooms:
         waiting_room = await response.parse()
         assert_matches_type(AsyncSinglePage[WaitingRoom], waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.waiting_rooms.with_streaming_response.list(
@@ -770,7 +728,6 @@ class TestAsyncWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -778,7 +735,6 @@ class TestAsyncWaitingRooms:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.delete(
@@ -787,7 +743,6 @@ class TestAsyncWaitingRooms:
         )
         assert_matches_type(WaitingRoomDeleteResponse, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.waiting_rooms.with_raw_response.delete(
@@ -800,7 +755,6 @@ class TestAsyncWaitingRooms:
         waiting_room = await response.parse()
         assert_matches_type(WaitingRoomDeleteResponse, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.waiting_rooms.with_streaming_response.delete(
@@ -815,7 +769,6 @@ class TestAsyncWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -830,7 +783,6 @@ class TestAsyncWaitingRooms:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.edit(
@@ -843,7 +795,6 @@ class TestAsyncWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.edit(
@@ -886,7 +837,6 @@ class TestAsyncWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.waiting_rooms.with_raw_response.edit(
@@ -903,7 +853,6 @@ class TestAsyncWaitingRooms:
         waiting_room = await response.parse()
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.waiting_rooms.with_streaming_response.edit(
@@ -922,7 +871,6 @@ class TestAsyncWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -945,7 +893,6 @@ class TestAsyncWaitingRooms:
                 total_active_users=200,
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.get(
@@ -954,7 +901,6 @@ class TestAsyncWaitingRooms:
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.waiting_rooms.with_raw_response.get(
@@ -967,7 +913,6 @@ class TestAsyncWaitingRooms:
         waiting_room = await response.parse()
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.waiting_rooms.with_streaming_response.get(
@@ -982,7 +927,6 @@ class TestAsyncWaitingRooms:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

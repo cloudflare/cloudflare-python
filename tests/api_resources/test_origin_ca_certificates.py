@@ -23,13 +23,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestOriginCACertificates:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         origin_ca_certificate = client.origin_ca_certificates.create()
         assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         origin_ca_certificate = client.origin_ca_certificates.create(
@@ -40,7 +38,6 @@ class TestOriginCACertificates:
         )
         assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.origin_ca_certificates.with_raw_response.create()
@@ -50,7 +47,6 @@ class TestOriginCACertificates:
         origin_ca_certificate = response.parse()
         assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.origin_ca_certificates.with_streaming_response.create() as response:
@@ -62,13 +58,11 @@ class TestOriginCACertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         origin_ca_certificate = client.origin_ca_certificates.list()
         assert_matches_type(SyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         origin_ca_certificate = client.origin_ca_certificates.list(
@@ -76,7 +70,6 @@ class TestOriginCACertificates:
         )
         assert_matches_type(SyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.origin_ca_certificates.with_raw_response.list()
@@ -86,7 +79,6 @@ class TestOriginCACertificates:
         origin_ca_certificate = response.parse()
         assert_matches_type(SyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.origin_ca_certificates.with_streaming_response.list() as response:
@@ -98,7 +90,6 @@ class TestOriginCACertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         origin_ca_certificate = client.origin_ca_certificates.delete(
@@ -106,7 +97,6 @@ class TestOriginCACertificates:
         )
         assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.origin_ca_certificates.with_raw_response.delete(
@@ -118,7 +108,6 @@ class TestOriginCACertificates:
         origin_ca_certificate = response.parse()
         assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.origin_ca_certificates.with_streaming_response.delete(
@@ -132,7 +121,6 @@ class TestOriginCACertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
@@ -140,7 +128,6 @@ class TestOriginCACertificates:
                 "",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         origin_ca_certificate = client.origin_ca_certificates.get(
@@ -148,7 +135,6 @@ class TestOriginCACertificates:
         )
         assert_matches_type(OriginCACertificateGetResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.origin_ca_certificates.with_raw_response.get(
@@ -160,7 +146,6 @@ class TestOriginCACertificates:
         origin_ca_certificate = response.parse()
         assert_matches_type(OriginCACertificateGetResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.origin_ca_certificates.with_streaming_response.get(
@@ -174,7 +159,6 @@ class TestOriginCACertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
@@ -186,13 +170,11 @@ class TestOriginCACertificates:
 class TestAsyncOriginCACertificates:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         origin_ca_certificate = await async_client.origin_ca_certificates.create()
         assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         origin_ca_certificate = await async_client.origin_ca_certificates.create(
@@ -203,7 +185,6 @@ class TestAsyncOriginCACertificates:
         )
         assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.origin_ca_certificates.with_raw_response.create()
@@ -213,7 +194,6 @@ class TestAsyncOriginCACertificates:
         origin_ca_certificate = await response.parse()
         assert_matches_type(OriginCACertificateCreateResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.origin_ca_certificates.with_streaming_response.create() as response:
@@ -225,13 +205,11 @@ class TestAsyncOriginCACertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         origin_ca_certificate = await async_client.origin_ca_certificates.list()
         assert_matches_type(AsyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         origin_ca_certificate = await async_client.origin_ca_certificates.list(
@@ -239,7 +217,6 @@ class TestAsyncOriginCACertificates:
         )
         assert_matches_type(AsyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.origin_ca_certificates.with_raw_response.list()
@@ -249,7 +226,6 @@ class TestAsyncOriginCACertificates:
         origin_ca_certificate = await response.parse()
         assert_matches_type(AsyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.origin_ca_certificates.with_streaming_response.list() as response:
@@ -261,7 +237,6 @@ class TestAsyncOriginCACertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         origin_ca_certificate = await async_client.origin_ca_certificates.delete(
@@ -269,7 +244,6 @@ class TestAsyncOriginCACertificates:
         )
         assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.origin_ca_certificates.with_raw_response.delete(
@@ -281,7 +255,6 @@ class TestAsyncOriginCACertificates:
         origin_ca_certificate = await response.parse()
         assert_matches_type(OriginCACertificateDeleteResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.origin_ca_certificates.with_streaming_response.delete(
@@ -295,7 +268,6 @@ class TestAsyncOriginCACertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
@@ -303,7 +275,6 @@ class TestAsyncOriginCACertificates:
                 "",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         origin_ca_certificate = await async_client.origin_ca_certificates.get(
@@ -311,7 +282,6 @@ class TestAsyncOriginCACertificates:
         )
         assert_matches_type(OriginCACertificateGetResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.origin_ca_certificates.with_raw_response.get(
@@ -323,7 +293,6 @@ class TestAsyncOriginCACertificates:
         origin_ca_certificate = await response.parse()
         assert_matches_type(OriginCACertificateGetResponse, origin_ca_certificate, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.origin_ca_certificates.with_streaming_response.get(
@@ -337,7 +306,6 @@ class TestAsyncOriginCACertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):

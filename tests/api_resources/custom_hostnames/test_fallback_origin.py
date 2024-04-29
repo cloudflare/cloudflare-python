@@ -21,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFallbackOrigin:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         fallback_origin = client.custom_hostnames.fallback_origin.update(
@@ -30,7 +29,6 @@ class TestFallbackOrigin:
         )
         assert_matches_type(FallbackOriginUpdateResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.custom_hostnames.fallback_origin.with_raw_response.update(
@@ -43,7 +41,6 @@ class TestFallbackOrigin:
         fallback_origin = response.parse()
         assert_matches_type(FallbackOriginUpdateResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.custom_hostnames.fallback_origin.with_streaming_response.update(
@@ -58,7 +55,6 @@ class TestFallbackOrigin:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -67,7 +63,6 @@ class TestFallbackOrigin:
                 origin="fallback.example.com",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         fallback_origin = client.custom_hostnames.fallback_origin.delete(
@@ -75,7 +70,6 @@ class TestFallbackOrigin:
         )
         assert_matches_type(FallbackOriginDeleteResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.custom_hostnames.fallback_origin.with_raw_response.delete(
@@ -87,7 +81,6 @@ class TestFallbackOrigin:
         fallback_origin = response.parse()
         assert_matches_type(FallbackOriginDeleteResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.custom_hostnames.fallback_origin.with_streaming_response.delete(
@@ -101,7 +94,6 @@ class TestFallbackOrigin:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -109,7 +101,6 @@ class TestFallbackOrigin:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         fallback_origin = client.custom_hostnames.fallback_origin.get(
@@ -117,7 +108,6 @@ class TestFallbackOrigin:
         )
         assert_matches_type(FallbackOriginGetResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.custom_hostnames.fallback_origin.with_raw_response.get(
@@ -129,7 +119,6 @@ class TestFallbackOrigin:
         fallback_origin = response.parse()
         assert_matches_type(FallbackOriginGetResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.custom_hostnames.fallback_origin.with_streaming_response.get(
@@ -143,7 +132,6 @@ class TestFallbackOrigin:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -155,7 +143,6 @@ class TestFallbackOrigin:
 class TestAsyncFallbackOrigin:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         fallback_origin = await async_client.custom_hostnames.fallback_origin.update(
@@ -164,7 +151,6 @@ class TestAsyncFallbackOrigin:
         )
         assert_matches_type(FallbackOriginUpdateResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_hostnames.fallback_origin.with_raw_response.update(
@@ -177,7 +163,6 @@ class TestAsyncFallbackOrigin:
         fallback_origin = await response.parse()
         assert_matches_type(FallbackOriginUpdateResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_hostnames.fallback_origin.with_streaming_response.update(
@@ -192,7 +177,6 @@ class TestAsyncFallbackOrigin:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -201,7 +185,6 @@ class TestAsyncFallbackOrigin:
                 origin="fallback.example.com",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         fallback_origin = await async_client.custom_hostnames.fallback_origin.delete(
@@ -209,7 +192,6 @@ class TestAsyncFallbackOrigin:
         )
         assert_matches_type(FallbackOriginDeleteResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_hostnames.fallback_origin.with_raw_response.delete(
@@ -221,7 +203,6 @@ class TestAsyncFallbackOrigin:
         fallback_origin = await response.parse()
         assert_matches_type(FallbackOriginDeleteResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_hostnames.fallback_origin.with_streaming_response.delete(
@@ -235,7 +216,6 @@ class TestAsyncFallbackOrigin:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -243,7 +223,6 @@ class TestAsyncFallbackOrigin:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         fallback_origin = await async_client.custom_hostnames.fallback_origin.get(
@@ -251,7 +230,6 @@ class TestAsyncFallbackOrigin:
         )
         assert_matches_type(FallbackOriginGetResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_hostnames.fallback_origin.with_raw_response.get(
@@ -263,7 +241,6 @@ class TestAsyncFallbackOrigin:
         fallback_origin = await response.parse()
         assert_matches_type(FallbackOriginGetResponse, fallback_origin, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_hostnames.fallback_origin.with_streaming_response.get(
@@ -277,7 +254,6 @@ class TestAsyncFallbackOrigin:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
