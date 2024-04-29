@@ -7273,40 +7273,6 @@ Methods:
 - <code title="delete /zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}">client.hostnames.settings.tls.<a href="./src/cloudflare/resources/hostnames/settings/tls.py">delete</a>(hostname, \*, zone_id, setting_id) -> <a href="./src/cloudflare/types/hostnames/settings/tls_delete_response.py">TLSDeleteResponse</a></code>
 - <code title="get /zones/{zone_id}/hostnames/settings/{setting_id}">client.hostnames.settings.tls.<a href="./src/cloudflare/resources/hostnames/settings/tls.py">get</a>(setting_id, \*, zone_id) -> <a href="./src/cloudflare/types/hostnames/settings/tls_get_response.py">Optional</a></code>
 
-# Snippets
-
-Types:
-
-```python
-from cloudflare.types.snippets import Snippet, SnippetDeleteResponse
-```
-
-Methods:
-
-- <code title="put /zones/{zone_identifier}/snippets/{snippet_name}">client.snippets.<a href="./src/cloudflare/resources/snippets/snippets.py">update</a>(snippet_name, \*, zone_identifier, \*\*<a href="src/cloudflare/types/snippets/snippet_update_params.py">params</a>) -> <a href="./src/cloudflare/types/snippets/snippet.py">Snippet</a></code>
-- <code title="get /zones/{zone_identifier}/snippets">client.snippets.<a href="./src/cloudflare/resources/snippets/snippets.py">list</a>(zone_identifier) -> <a href="./src/cloudflare/types/snippets/snippet.py">SyncSinglePage[Snippet]</a></code>
-- <code title="delete /zones/{zone_identifier}/snippets/{snippet_name}">client.snippets.<a href="./src/cloudflare/resources/snippets/snippets.py">delete</a>(snippet_name, \*, zone_identifier) -> <a href="./src/cloudflare/types/snippets/snippet_delete_response.py">SnippetDeleteResponse</a></code>
-- <code title="get /zones/{zone_identifier}/snippets/{snippet_name}">client.snippets.<a href="./src/cloudflare/resources/snippets/snippets.py">get</a>(snippet_name, \*, zone_identifier) -> <a href="./src/cloudflare/types/snippets/snippet.py">Snippet</a></code>
-
-## Content
-
-Methods:
-
-- <code title="get /zones/{zone_identifier}/snippets/{snippet_name}/content">client.snippets.content.<a href="./src/cloudflare/resources/snippets/content.py">get</a>(snippet_name, \*, zone_identifier) -> BinaryAPIResponse</code>
-
-## Rules
-
-Types:
-
-```python
-from cloudflare.types.snippets import RuleUpdateResponse, RuleListResponse
-```
-
-Methods:
-
-- <code title="put /zones/{zone_identifier}/snippets/snippet_rules">client.snippets.rules.<a href="./src/cloudflare/resources/snippets/rules.py">update</a>(zone_identifier, \*\*<a href="src/cloudflare/types/snippets/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/snippets/rule_update_response.py">RuleUpdateResponse</a></code>
-- <code title="get /zones/{zone_identifier}/snippets/snippet_rules">client.snippets.rules.<a href="./src/cloudflare/resources/snippets/rules.py">list</a>(zone_identifier) -> <a href="./src/cloudflare/types/snippets/rule_list_response.py">SyncSinglePage[RuleListResponse]</a></code>
-
 # Calls
 
 Types:
