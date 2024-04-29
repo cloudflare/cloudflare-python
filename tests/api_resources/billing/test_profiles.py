@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestProfiles:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         profile = client.billing.profiles.get(
@@ -25,7 +24,6 @@ class TestProfiles:
         )
         assert_matches_type(ProfileGetResponse, profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.billing.profiles.with_raw_response.get(
@@ -37,7 +35,6 @@ class TestProfiles:
         profile = response.parse()
         assert_matches_type(ProfileGetResponse, profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.billing.profiles.with_streaming_response.get(
@@ -55,7 +52,6 @@ class TestProfiles:
 class TestAsyncProfiles:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         profile = await async_client.billing.profiles.get(
@@ -63,7 +59,6 @@ class TestAsyncProfiles:
         )
         assert_matches_type(ProfileGetResponse, profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.billing.profiles.with_raw_response.get(
@@ -75,7 +70,6 @@ class TestAsyncProfiles:
         profile = await response.parse()
         assert_matches_type(ProfileGetResponse, profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.billing.profiles.with_streaming_response.get(

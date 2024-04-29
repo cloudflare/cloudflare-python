@@ -20,7 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestValidate:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_destination(self, client: Cloudflare) -> None:
         validate = client.logpush.validate.destination(
@@ -29,7 +29,7 @@ class TestValidate:
         )
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_destination_with_all_params(self, client: Cloudflare) -> None:
         validate = client.logpush.validate.destination(
@@ -38,7 +38,7 @@ class TestValidate:
         )
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_destination(self, client: Cloudflare) -> None:
         response = client.logpush.validate.with_raw_response.destination(
@@ -51,7 +51,7 @@ class TestValidate:
         validate = response.parse()
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_destination(self, client: Cloudflare) -> None:
         with client.logpush.validate.with_streaming_response.destination(
@@ -66,7 +66,7 @@ class TestValidate:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_destination(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -81,7 +81,7 @@ class TestValidate:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_origin(self, client: Cloudflare) -> None:
         validate = client.logpush.validate.origin(
@@ -90,7 +90,7 @@ class TestValidate:
         )
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_origin_with_all_params(self, client: Cloudflare) -> None:
         validate = client.logpush.validate.origin(
@@ -99,7 +99,7 @@ class TestValidate:
         )
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_origin(self, client: Cloudflare) -> None:
         response = client.logpush.validate.with_raw_response.origin(
@@ -112,7 +112,7 @@ class TestValidate:
         validate = response.parse()
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_origin(self, client: Cloudflare) -> None:
         with client.logpush.validate.with_streaming_response.origin(
@@ -127,7 +127,7 @@ class TestValidate:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_origin(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -146,7 +146,7 @@ class TestValidate:
 class TestAsyncValidate:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_destination(self, async_client: AsyncCloudflare) -> None:
         validate = await async_client.logpush.validate.destination(
@@ -155,7 +155,7 @@ class TestAsyncValidate:
         )
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_destination_with_all_params(self, async_client: AsyncCloudflare) -> None:
         validate = await async_client.logpush.validate.destination(
@@ -164,7 +164,7 @@ class TestAsyncValidate:
         )
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_destination(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.validate.with_raw_response.destination(
@@ -177,7 +177,7 @@ class TestAsyncValidate:
         validate = await response.parse()
         assert_matches_type(Optional[ValidateDestinationResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_destination(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.validate.with_streaming_response.destination(
@@ -192,7 +192,7 @@ class TestAsyncValidate:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_destination(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -207,7 +207,7 @@ class TestAsyncValidate:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_origin(self, async_client: AsyncCloudflare) -> None:
         validate = await async_client.logpush.validate.origin(
@@ -216,7 +216,7 @@ class TestAsyncValidate:
         )
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_origin_with_all_params(self, async_client: AsyncCloudflare) -> None:
         validate = await async_client.logpush.validate.origin(
@@ -225,7 +225,7 @@ class TestAsyncValidate:
         )
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_origin(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.validate.with_raw_response.origin(
@@ -238,7 +238,7 @@ class TestAsyncValidate:
         validate = await response.parse()
         assert_matches_type(Optional[ValidateOriginResponse], validate, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_origin(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.validate.with_streaming_response.origin(
@@ -253,7 +253,7 @@ class TestAsyncValidate:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_origin(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

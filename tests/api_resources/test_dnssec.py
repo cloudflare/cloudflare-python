@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDNSSEC:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         dnssec = client.dnssec.delete(
@@ -25,7 +24,6 @@ class TestDNSSEC:
         )
         assert_matches_type(Optional[DNSSECDeleteResponse], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.dnssec.with_raw_response.delete(
@@ -37,7 +35,6 @@ class TestDNSSEC:
         dnssec = response.parse()
         assert_matches_type(Optional[DNSSECDeleteResponse], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.dnssec.with_streaming_response.delete(
@@ -51,7 +48,6 @@ class TestDNSSEC:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -59,7 +55,6 @@ class TestDNSSEC:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         dnssec = client.dnssec.edit(
@@ -67,7 +62,6 @@ class TestDNSSEC:
         )
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         dnssec = client.dnssec.edit(
@@ -78,7 +72,6 @@ class TestDNSSEC:
         )
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.dnssec.with_raw_response.edit(
@@ -90,7 +83,6 @@ class TestDNSSEC:
         dnssec = response.parse()
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.dnssec.with_streaming_response.edit(
@@ -104,7 +96,6 @@ class TestDNSSEC:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -112,7 +103,6 @@ class TestDNSSEC:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         dnssec = client.dnssec.get(
@@ -120,7 +110,6 @@ class TestDNSSEC:
         )
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.dnssec.with_raw_response.get(
@@ -132,7 +121,6 @@ class TestDNSSEC:
         dnssec = response.parse()
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.dnssec.with_streaming_response.get(
@@ -146,7 +134,6 @@ class TestDNSSEC:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -158,7 +145,6 @@ class TestDNSSEC:
 class TestAsyncDNSSEC:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         dnssec = await async_client.dnssec.delete(
@@ -166,7 +152,6 @@ class TestAsyncDNSSEC:
         )
         assert_matches_type(Optional[DNSSECDeleteResponse], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dnssec.with_raw_response.delete(
@@ -178,7 +163,6 @@ class TestAsyncDNSSEC:
         dnssec = await response.parse()
         assert_matches_type(Optional[DNSSECDeleteResponse], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dnssec.with_streaming_response.delete(
@@ -192,7 +176,6 @@ class TestAsyncDNSSEC:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -200,7 +183,6 @@ class TestAsyncDNSSEC:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         dnssec = await async_client.dnssec.edit(
@@ -208,7 +190,6 @@ class TestAsyncDNSSEC:
         )
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dnssec = await async_client.dnssec.edit(
@@ -219,7 +200,6 @@ class TestAsyncDNSSEC:
         )
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dnssec.with_raw_response.edit(
@@ -231,7 +211,6 @@ class TestAsyncDNSSEC:
         dnssec = await response.parse()
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dnssec.with_streaming_response.edit(
@@ -245,7 +224,6 @@ class TestAsyncDNSSEC:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -253,7 +231,6 @@ class TestAsyncDNSSEC:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         dnssec = await async_client.dnssec.get(
@@ -261,7 +238,6 @@ class TestAsyncDNSSEC:
         )
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dnssec.with_raw_response.get(
@@ -273,7 +249,6 @@ class TestAsyncDNSSEC:
         dnssec = await response.parse()
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dnssec.with_streaming_response.get(
@@ -287,7 +262,6 @@ class TestAsyncDNSSEC:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAI:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_1(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -27,7 +26,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_1(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -41,7 +39,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_1(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -57,7 +54,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -74,7 +70,6 @@ class TestAI:
                 text="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_2(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -84,7 +79,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_with_all_params_overload_2(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -99,7 +93,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_2(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -113,7 +106,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_2(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -129,7 +121,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -146,7 +137,6 @@ class TestAI:
                 prompt="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_3(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -157,7 +147,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_3(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -172,7 +161,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_3(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -189,7 +177,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -208,7 +195,6 @@ class TestAI:
                 source="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_4(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -218,7 +204,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_4(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -232,7 +217,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_4(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -248,7 +232,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -265,7 +248,6 @@ class TestAI:
                 text="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_5(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -274,7 +256,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_with_all_params_overload_5(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -284,7 +265,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_5(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -297,7 +277,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_5(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -312,7 +291,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -327,7 +305,6 @@ class TestAI:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_6(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -336,7 +313,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_with_all_params_overload_6(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -346,7 +322,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_6(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -359,7 +334,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_6(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -374,7 +348,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -389,7 +362,6 @@ class TestAI:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_7(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -398,7 +370,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_with_all_params_overload_7(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -408,7 +379,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_7(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -421,7 +391,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_7(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -436,7 +405,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -451,7 +419,6 @@ class TestAI:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_8(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -460,7 +427,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_with_all_params_overload_8(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -488,7 +454,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_8(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -501,7 +466,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_8(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -516,7 +480,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -531,7 +494,6 @@ class TestAI:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_9(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -542,7 +504,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_with_all_params_overload_9(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -554,7 +515,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_9(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -569,7 +529,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_9(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -586,7 +545,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -605,7 +563,6 @@ class TestAI:
                 text="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_10(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -615,7 +572,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_with_all_params_overload_10(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -626,7 +582,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_10(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -640,7 +595,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_10(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -656,7 +610,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -673,7 +626,6 @@ class TestAI:
                 input_text="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_overload_11(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -683,7 +635,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_run_with_all_params_overload_11(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
@@ -711,7 +662,6 @@ class TestAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_run_overload_11(self, client: Cloudflare) -> None:
         response = client.workers.ai.with_raw_response.run(
@@ -725,7 +675,6 @@ class TestAI:
         ai = response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_run_overload_11(self, client: Cloudflare) -> None:
         with client.workers.ai.with_streaming_response.run(
@@ -741,7 +690,6 @@ class TestAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_run_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -762,7 +710,6 @@ class TestAI:
 class TestAsyncAI:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_1(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -772,7 +719,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -786,7 +732,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -802,7 +747,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -819,7 +763,6 @@ class TestAsyncAI:
                 text="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_2(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -829,7 +772,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -844,7 +786,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -858,7 +799,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -874,7 +814,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -891,7 +830,6 @@ class TestAsyncAI:
                 prompt="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_3(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -902,7 +840,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -917,7 +854,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -934,7 +870,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -953,7 +888,6 @@ class TestAsyncAI:
                 source="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_4(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -963,7 +897,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -977,7 +910,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -993,7 +925,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1010,7 +941,6 @@ class TestAsyncAI:
                 text="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_5(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1019,7 +949,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1029,7 +958,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -1042,7 +970,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -1057,7 +984,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1072,7 +998,6 @@ class TestAsyncAI:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_6(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1081,7 +1006,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1091,7 +1015,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -1104,7 +1027,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -1119,7 +1041,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1134,7 +1055,6 @@ class TestAsyncAI:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_7(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1143,7 +1063,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1153,7 +1072,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -1166,7 +1084,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -1181,7 +1098,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1196,7 +1112,6 @@ class TestAsyncAI:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_8(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1205,7 +1120,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1233,7 +1147,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -1246,7 +1159,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -1261,7 +1173,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1276,7 +1187,6 @@ class TestAsyncAI:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_9(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1287,7 +1197,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1299,7 +1208,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -1314,7 +1222,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -1331,7 +1238,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1350,7 +1256,6 @@ class TestAsyncAI:
                 text="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_10(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1360,7 +1265,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1371,7 +1275,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -1385,7 +1288,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -1401,7 +1303,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1418,7 +1319,6 @@ class TestAsyncAI:
                 input_text="x",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_overload_11(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1428,7 +1328,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_run_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
@@ -1456,7 +1355,6 @@ class TestAsyncAI:
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_run_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.ai.with_raw_response.run(
@@ -1470,7 +1368,6 @@ class TestAsyncAI:
         ai = await response.parse()
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_run_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.ai.with_streaming_response.run(
@@ -1486,7 +1383,6 @@ class TestAsyncAI:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_run_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
