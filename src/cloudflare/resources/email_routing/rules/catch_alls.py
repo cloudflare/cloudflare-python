@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -56,7 +56,7 @@ class CatchAllsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CatchAllUpdateResponse:
+    ) -> Optional[CatchAllUpdateResponse]:
         """
         Enable or disable catch-all routing rule, or change action to forward to
         specific destination address.
@@ -98,9 +98,9 @@ class CatchAllsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CatchAllUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CatchAllUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CatchAllUpdateResponse], ResultWrapper[CatchAllUpdateResponse]),
+            cast_to=cast(Type[Optional[CatchAllUpdateResponse]], ResultWrapper[CatchAllUpdateResponse]),
         )
 
     def get(
@@ -113,7 +113,7 @@ class CatchAllsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CatchAllGetResponse:
+    ) -> Optional[CatchAllGetResponse]:
         """
         Get information on the default catch-all routing rule.
 
@@ -137,9 +137,9 @@ class CatchAllsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CatchAllGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CatchAllGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CatchAllGetResponse], ResultWrapper[CatchAllGetResponse]),
+            cast_to=cast(Type[Optional[CatchAllGetResponse]], ResultWrapper[CatchAllGetResponse]),
         )
 
 
@@ -166,7 +166,7 @@ class AsyncCatchAllsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CatchAllUpdateResponse:
+    ) -> Optional[CatchAllUpdateResponse]:
         """
         Enable or disable catch-all routing rule, or change action to forward to
         specific destination address.
@@ -208,9 +208,9 @@ class AsyncCatchAllsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CatchAllUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CatchAllUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CatchAllUpdateResponse], ResultWrapper[CatchAllUpdateResponse]),
+            cast_to=cast(Type[Optional[CatchAllUpdateResponse]], ResultWrapper[CatchAllUpdateResponse]),
         )
 
     async def get(
@@ -223,7 +223,7 @@ class AsyncCatchAllsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CatchAllGetResponse:
+    ) -> Optional[CatchAllGetResponse]:
         """
         Get information on the default catch-all routing rule.
 
@@ -247,9 +247,9 @@ class AsyncCatchAllsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CatchAllGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CatchAllGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CatchAllGetResponse], ResultWrapper[CatchAllGetResponse]),
+            cast_to=cast(Type[Optional[CatchAllGetResponse]], ResultWrapper[CatchAllGetResponse]),
         )
 
 
