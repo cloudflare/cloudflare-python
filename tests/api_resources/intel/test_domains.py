@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ class TestDomains:
         domain = client.intel.domains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
@@ -30,7 +30,7 @@ class TestDomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="string",
         )
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -41,7 +41,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -52,7 +52,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(Domain, domain, path=["response"])
+            assert_matches_type(Optional[Domain], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,7 +72,7 @@ class TestAsyncDomains:
         domain = await async_client.intel.domains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -80,7 +80,7 @@ class TestAsyncDomains:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="string",
         )
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -91,7 +91,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -102,7 +102,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(Domain, domain, path=["response"])
+            assert_matches_type(Optional[Domain], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

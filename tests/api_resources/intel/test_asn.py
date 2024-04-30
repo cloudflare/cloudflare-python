@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -23,7 +23,7 @@ class TestASN:
             0,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ASN, asn, path=["response"])
+        assert_matches_type(Optional[ASN], asn, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -35,7 +35,7 @@ class TestASN:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         asn = response.parse()
-        assert_matches_type(ASN, asn, path=["response"])
+        assert_matches_type(Optional[ASN], asn, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -47,7 +47,7 @@ class TestASN:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             asn = response.parse()
-            assert_matches_type(ASN, asn, path=["response"])
+            assert_matches_type(Optional[ASN], asn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestAsyncASN:
             0,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ASN, asn, path=["response"])
+        assert_matches_type(Optional[ASN], asn, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -81,7 +81,7 @@ class TestAsyncASN:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         asn = await response.parse()
-        assert_matches_type(ASN, asn, path=["response"])
+        assert_matches_type(Optional[ASN], asn, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -93,7 +93,7 @@ class TestAsyncASN:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             asn = await response.parse()
-            assert_matches_type(ASN, asn, path=["response"])
+            assert_matches_type(Optional[ASN], asn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

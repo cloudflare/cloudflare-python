@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -56,7 +56,7 @@ class ASNResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ASN:
+    ) -> Optional[ASN]:
         """
         Get ASN Overview
 
@@ -80,9 +80,9 @@ class ASNResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ASN]._unwrapper,
+                post_parser=ResultWrapper[Optional[ASN]]._unwrapper,
             ),
-            cast_to=cast(Type[ASN], ResultWrapper[int]),
+            cast_to=cast(Type[Optional[ASN]], ResultWrapper[int]),
         )
 
 
@@ -110,7 +110,7 @@ class AsyncASNResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ASN:
+    ) -> Optional[ASN]:
         """
         Get ASN Overview
 
@@ -134,9 +134,9 @@ class AsyncASNResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ASN]._unwrapper,
+                post_parser=ResultWrapper[Optional[ASN]]._unwrapper,
             ),
-            cast_to=cast(Type[ASN], ResultWrapper[int]),
+            cast_to=cast(Type[Optional[ASN]], ResultWrapper[int]),
         )
 
 

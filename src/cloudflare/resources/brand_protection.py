@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -50,7 +50,7 @@ class BrandProtectionResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Submit:
+    ) -> Optional[Submit]:
         """
         Submit suspicious URL for scanning
 
@@ -77,9 +77,9 @@ class BrandProtectionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Submit]._unwrapper,
+                post_parser=ResultWrapper[Optional[Submit]]._unwrapper,
             ),
-            cast_to=cast(Type[Submit], ResultWrapper[Submit]),
+            cast_to=cast(Type[Optional[Submit]], ResultWrapper[Submit]),
         )
 
     def url_info(
@@ -94,7 +94,7 @@ class BrandProtectionResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Info:
+    ) -> Optional[Info]:
         """
         Get results for a URL scan
 
@@ -125,9 +125,9 @@ class BrandProtectionResource(SyncAPIResource):
                     },
                     brand_protection_url_info_params.BrandProtectionURLInfoParams,
                 ),
-                post_parser=ResultWrapper[Info]._unwrapper,
+                post_parser=ResultWrapper[Optional[Info]]._unwrapper,
             ),
-            cast_to=cast(Type[Info], ResultWrapper[Info]),
+            cast_to=cast(Type[Optional[Info]], ResultWrapper[Info]),
         )
 
 
@@ -151,7 +151,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Submit:
+    ) -> Optional[Submit]:
         """
         Submit suspicious URL for scanning
 
@@ -178,9 +178,9 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Submit]._unwrapper,
+                post_parser=ResultWrapper[Optional[Submit]]._unwrapper,
             ),
-            cast_to=cast(Type[Submit], ResultWrapper[Submit]),
+            cast_to=cast(Type[Optional[Submit]], ResultWrapper[Submit]),
         )
 
     async def url_info(
@@ -195,7 +195,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Info:
+    ) -> Optional[Info]:
         """
         Get results for a URL scan
 
@@ -226,9 +226,9 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
                     },
                     brand_protection_url_info_params.BrandProtectionURLInfoParams,
                 ),
-                post_parser=ResultWrapper[Info]._unwrapper,
+                post_parser=ResultWrapper[Optional[Info]]._unwrapper,
             ),
-            cast_to=cast(Type[Info], ResultWrapper[Info]),
+            cast_to=cast(Type[Optional[Info]], ResultWrapper[Info]),
         )
 
 

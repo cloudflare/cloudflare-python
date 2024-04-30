@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from typing_extensions import Literal
 
 from .dns import DNS
@@ -15,7 +15,7 @@ class DNSListResponse(BaseModel):
 
     messages: List[ResponseInfo]
 
-    result: DNS
-
     success: Literal[True]
     """Whether the API call was successful"""
+
+    result: Optional[DNS] = None
