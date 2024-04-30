@@ -26,14 +26,6 @@ from .ips import (
     IPsResourceWithStreamingResponse,
     AsyncIPsResourceWithStreamingResponse,
 )
-from .whois import (
-    WhoisResource,
-    AsyncWhoisResource,
-    WhoisResourceWithRawResponse,
-    AsyncWhoisResourceWithRawResponse,
-    WhoisResourceWithStreamingResponse,
-    AsyncWhoisResourceWithStreamingResponse,
-)
 from .asn.asn import ASNResource, AsyncASNResource
 from .domains import (
     DomainsResource,
@@ -130,10 +122,6 @@ class IntelResource(SyncAPIResource):
         return MiscategorizationsResource(self._client)
 
     @cached_property
-    def whois(self) -> WhoisResource:
-        return WhoisResource(self._client)
-
-    @cached_property
     def indicator_feeds(self) -> IndicatorFeedsResource:
         return IndicatorFeedsResource(self._client)
 
@@ -182,10 +170,6 @@ class AsyncIntelResource(AsyncAPIResource):
     @cached_property
     def miscategorizations(self) -> AsyncMiscategorizationsResource:
         return AsyncMiscategorizationsResource(self._client)
-
-    @cached_property
-    def whois(self) -> AsyncWhoisResource:
-        return AsyncWhoisResource(self._client)
 
     @cached_property
     def indicator_feeds(self) -> AsyncIndicatorFeedsResource:
@@ -241,10 +225,6 @@ class IntelResourceWithRawResponse:
         return MiscategorizationsResourceWithRawResponse(self._intel.miscategorizations)
 
     @cached_property
-    def whois(self) -> WhoisResourceWithRawResponse:
-        return WhoisResourceWithRawResponse(self._intel.whois)
-
-    @cached_property
     def indicator_feeds(self) -> IndicatorFeedsResourceWithRawResponse:
         return IndicatorFeedsResourceWithRawResponse(self._intel.indicator_feeds)
 
@@ -288,10 +268,6 @@ class AsyncIntelResourceWithRawResponse:
     @cached_property
     def miscategorizations(self) -> AsyncMiscategorizationsResourceWithRawResponse:
         return AsyncMiscategorizationsResourceWithRawResponse(self._intel.miscategorizations)
-
-    @cached_property
-    def whois(self) -> AsyncWhoisResourceWithRawResponse:
-        return AsyncWhoisResourceWithRawResponse(self._intel.whois)
 
     @cached_property
     def indicator_feeds(self) -> AsyncIndicatorFeedsResourceWithRawResponse:
@@ -339,10 +315,6 @@ class IntelResourceWithStreamingResponse:
         return MiscategorizationsResourceWithStreamingResponse(self._intel.miscategorizations)
 
     @cached_property
-    def whois(self) -> WhoisResourceWithStreamingResponse:
-        return WhoisResourceWithStreamingResponse(self._intel.whois)
-
-    @cached_property
     def indicator_feeds(self) -> IndicatorFeedsResourceWithStreamingResponse:
         return IndicatorFeedsResourceWithStreamingResponse(self._intel.indicator_feeds)
 
@@ -386,10 +358,6 @@ class AsyncIntelResourceWithStreamingResponse:
     @cached_property
     def miscategorizations(self) -> AsyncMiscategorizationsResourceWithStreamingResponse:
         return AsyncMiscategorizationsResourceWithStreamingResponse(self._intel.miscategorizations)
-
-    @cached_property
-    def whois(self) -> AsyncWhoisResourceWithStreamingResponse:
-        return AsyncWhoisResourceWithStreamingResponse(self._intel.whois)
 
     @cached_property
     def indicator_feeds(self) -> AsyncIndicatorFeedsResourceWithStreamingResponse:
