@@ -32,14 +32,6 @@ from .intel import (
     IntelResourceWithStreamingResponse,
     AsyncIntelResourceWithStreamingResponse,
 )
-from .whois import (
-    WhoisResource,
-    AsyncWhoisResource,
-    WhoisResourceWithRawResponse,
-    AsyncWhoisResourceWithRawResponse,
-    WhoisResourceWithStreamingResponse,
-    AsyncWhoisResourceWithStreamingResponse,
-)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -140,12 +132,6 @@ __all__ = [
     "AsyncMiscategorizationsResourceWithRawResponse",
     "MiscategorizationsResourceWithStreamingResponse",
     "AsyncMiscategorizationsResourceWithStreamingResponse",
-    "WhoisResource",
-    "AsyncWhoisResource",
-    "WhoisResourceWithRawResponse",
-    "AsyncWhoisResourceWithRawResponse",
-    "WhoisResourceWithStreamingResponse",
-    "AsyncWhoisResourceWithStreamingResponse",
     "IndicatorFeedsResource",
     "AsyncIndicatorFeedsResource",
     "IndicatorFeedsResourceWithRawResponse",
