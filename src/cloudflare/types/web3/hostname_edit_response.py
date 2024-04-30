@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["Hostname"]
+__all__ = ["HostnameEditResponse"]
 
 
-class Hostname(BaseModel):
+class HostnameEditResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
