@@ -3409,8 +3409,8 @@ from cloudflare.types.brand_protection import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/brand-protection/submit">client.brand_protection.<a href="./src/cloudflare/resources/brand_protection.py">submit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/brand_protection/brand_protection_submit_params.py">params</a>) -> <a href="./src/cloudflare/types/brand_protection/submit.py">Submit</a></code>
-- <code title="get /accounts/{account_id}/brand-protection/url-info">client.brand_protection.<a href="./src/cloudflare/resources/brand_protection.py">url_info</a>(\*, account_id, \*\*<a href="src/cloudflare/types/brand_protection/brand_protection_url_info_params.py">params</a>) -> <a href="./src/cloudflare/types/brand_protection/info.py">Info</a></code>
+- <code title="post /accounts/{account_id}/brand-protection/submit">client.brand_protection.<a href="./src/cloudflare/resources/brand_protection.py">submit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/brand_protection/brand_protection_submit_params.py">params</a>) -> <a href="./src/cloudflare/types/brand_protection/submit.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/brand-protection/url-info">client.brand_protection.<a href="./src/cloudflare/resources/brand_protection.py">url_info</a>(\*, account_id, \*\*<a href="src/cloudflare/types/brand_protection/brand_protection_url_info_params.py">params</a>) -> <a href="./src/cloudflare/types/brand_protection/info.py">Optional</a></code>
 
 # Diagnostics
 
@@ -3528,7 +3528,7 @@ Methods:
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/asn/{asn}">client.intel.asn.<a href="./src/cloudflare/resources/intel/asn/asn.py">get</a>(asn, \*, account_id) -> <a href="./src/cloudflare/types/shared/asn.py">ASN</a></code>
+- <code title="get /accounts/{account_id}/intel/asn/{asn}">client.intel.asn.<a href="./src/cloudflare/resources/intel/asn/asn.py">get</a>(asn, \*, account_id) -> <a href="./src/cloudflare/types/shared/asn.py">Optional</a></code>
 
 ### Subnets
 
@@ -3564,7 +3564,7 @@ from cloudflare.types.intel import Domain
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/domain">client.intel.domains.<a href="./src/cloudflare/resources/intel/domains/domains.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/domain_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/domain.py">Domain</a></code>
+- <code title="get /accounts/{account_id}/intel/domain">client.intel.domains.<a href="./src/cloudflare/resources/intel/domains/domains.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/domain_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/domain.py">Optional</a></code>
 
 ### Bulks
 
@@ -3624,7 +3624,7 @@ from cloudflare.types.intel import MiscategorizationCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/intel/miscategorization">client.intel.miscategorizations.<a href="./src/cloudflare/resources/intel/miscategorizations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/miscategorization_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/miscategorization_create_response.py">MiscategorizationCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/intel/miscategorization">client.intel.miscategorizations.<a href="./src/cloudflare/resources/intel/miscategorizations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/miscategorization_create_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/miscategorization_create_response.py">Optional</a></code>
 
 ## Whois
 
@@ -3636,7 +3636,7 @@ from cloudflare.types.intel import Whois
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/whois">client.intel.whois.<a href="./src/cloudflare/resources/intel/whois.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/whois_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/whois.py">Whois</a></code>
+- <code title="get /accounts/{account_id}/intel/whois">client.intel.whois.<a href="./src/cloudflare/resources/intel/whois.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/whois_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/whois.py">Optional</a></code>
 
 ## IndicatorFeeds
 

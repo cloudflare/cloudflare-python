@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -49,7 +49,7 @@ class WhoisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Whois:
+    ) -> Optional[Whois]:
         """
         Get WHOIS Record
 
@@ -74,9 +74,9 @@ class WhoisResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"domain": domain}, whois_get_params.WhoisGetParams),
-                post_parser=ResultWrapper[Whois]._unwrapper,
+                post_parser=ResultWrapper[Optional[Whois]]._unwrapper,
             ),
-            cast_to=cast(Type[Whois], ResultWrapper[Whois]),
+            cast_to=cast(Type[Optional[Whois]], ResultWrapper[Whois]),
         )
 
 
@@ -100,7 +100,7 @@ class AsyncWhoisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Whois:
+    ) -> Optional[Whois]:
         """
         Get WHOIS Record
 
@@ -125,9 +125,9 @@ class AsyncWhoisResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"domain": domain}, whois_get_params.WhoisGetParams),
-                post_parser=ResultWrapper[Whois]._unwrapper,
+                post_parser=ResultWrapper[Optional[Whois]]._unwrapper,
             ),
-            cast_to=cast(Type[Whois], ResultWrapper[Whois]),
+            cast_to=cast(Type[Optional[Whois]], ResultWrapper[Whois]),
         )
 
 
