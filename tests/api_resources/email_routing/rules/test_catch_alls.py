@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -24,7 +24,7 @@ class TestCatchAlls:
             actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
             matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
         )
-        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
+        assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -60,7 +60,7 @@ class TestCatchAlls:
             enabled=True,
             name="Send to user@example.net rule.",
         )
-        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
+        assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -73,7 +73,7 @@ class TestCatchAlls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         catch_all = response.parse()
-        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
+        assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -86,7 +86,7 @@ class TestCatchAlls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             catch_all = response.parse()
-            assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
+            assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -104,7 +104,7 @@ class TestCatchAlls:
         catch_all = client.email_routing.rules.catch_alls.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
+        assert_matches_type(Optional[CatchAllGetResponse], catch_all, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -115,7 +115,7 @@ class TestCatchAlls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         catch_all = response.parse()
-        assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
+        assert_matches_type(Optional[CatchAllGetResponse], catch_all, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -126,7 +126,7 @@ class TestCatchAlls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             catch_all = response.parse()
-            assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
+            assert_matches_type(Optional[CatchAllGetResponse], catch_all, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -148,7 +148,7 @@ class TestAsyncCatchAlls:
             actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
             matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
         )
-        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
+        assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -184,7 +184,7 @@ class TestAsyncCatchAlls:
             enabled=True,
             name="Send to user@example.net rule.",
         )
-        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
+        assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -197,7 +197,7 @@ class TestAsyncCatchAlls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         catch_all = await response.parse()
-        assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
+        assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -210,7 +210,7 @@ class TestAsyncCatchAlls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             catch_all = await response.parse()
-            assert_matches_type(CatchAllUpdateResponse, catch_all, path=["response"])
+            assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -228,7 +228,7 @@ class TestAsyncCatchAlls:
         catch_all = await async_client.email_routing.rules.catch_alls.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
+        assert_matches_type(Optional[CatchAllGetResponse], catch_all, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -239,7 +239,7 @@ class TestAsyncCatchAlls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         catch_all = await response.parse()
-        assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
+        assert_matches_type(Optional[CatchAllGetResponse], catch_all, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -250,7 +250,7 @@ class TestAsyncCatchAlls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             catch_all = await response.parse()
-            assert_matches_type(CatchAllGetResponse, catch_all, path=["response"])
+            assert_matches_type(Optional[CatchAllGetResponse], catch_all, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
