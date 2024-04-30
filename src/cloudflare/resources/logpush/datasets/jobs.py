@@ -50,7 +50,8 @@ class JobsResource(SyncAPIResource):
         Lists Logpush jobs for an account or zone for a dataset.
 
         Args:
-          dataset_id: Name of the dataset.
+          dataset_id: Name of the dataset. A list of supported datasets can be found on the
+              [Developer Docs](https://developers.cloudflare.com/logs/reference/log-fields/).
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -117,7 +118,8 @@ class AsyncJobsResource(AsyncAPIResource):
         Lists Logpush jobs for an account or zone for a dataset.
 
         Args:
-          dataset_id: Name of the dataset.
+          dataset_id: Name of the dataset. A list of supported datasets can be found on the
+              [Developer Docs](https://developers.cloudflare.com/logs/reference/log-fields/).
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
