@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestBrandProtection:
         brand_protection = client.brand_protection.submit(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Submit, brand_protection, path=["response"])
+        assert_matches_type(Optional[Submit], brand_protection, path=["response"])
 
     @parametrize
     def test_method_submit_with_all_params(self, client: Cloudflare) -> None:
@@ -33,7 +33,7 @@ class TestBrandProtection:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://www.cloudflare.com",
         )
-        assert_matches_type(Submit, brand_protection, path=["response"])
+        assert_matches_type(Optional[Submit], brand_protection, path=["response"])
 
     @parametrize
     def test_raw_response_submit(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestBrandProtection:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand_protection = response.parse()
-        assert_matches_type(Submit, brand_protection, path=["response"])
+        assert_matches_type(Optional[Submit], brand_protection, path=["response"])
 
     @parametrize
     def test_streaming_response_submit(self, client: Cloudflare) -> None:
@@ -55,7 +55,7 @@ class TestBrandProtection:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand_protection = response.parse()
-            assert_matches_type(Submit, brand_protection, path=["response"])
+            assert_matches_type(Optional[Submit], brand_protection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -71,7 +71,7 @@ class TestBrandProtection:
         brand_protection = client.brand_protection.url_info(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Info, brand_protection, path=["response"])
+        assert_matches_type(Optional[Info], brand_protection, path=["response"])
 
     @parametrize
     def test_method_url_info_with_all_params(self, client: Cloudflare) -> None:
@@ -80,7 +80,7 @@ class TestBrandProtection:
             url="string",
             url_id_param={"url_id": 0},
         )
-        assert_matches_type(Info, brand_protection, path=["response"])
+        assert_matches_type(Optional[Info], brand_protection, path=["response"])
 
     @parametrize
     def test_raw_response_url_info(self, client: Cloudflare) -> None:
@@ -91,7 +91,7 @@ class TestBrandProtection:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand_protection = response.parse()
-        assert_matches_type(Info, brand_protection, path=["response"])
+        assert_matches_type(Optional[Info], brand_protection, path=["response"])
 
     @parametrize
     def test_streaming_response_url_info(self, client: Cloudflare) -> None:
@@ -102,7 +102,7 @@ class TestBrandProtection:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand_protection = response.parse()
-            assert_matches_type(Info, brand_protection, path=["response"])
+            assert_matches_type(Optional[Info], brand_protection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -122,7 +122,7 @@ class TestAsyncBrandProtection:
         brand_protection = await async_client.brand_protection.submit(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Submit, brand_protection, path=["response"])
+        assert_matches_type(Optional[Submit], brand_protection, path=["response"])
 
     @parametrize
     async def test_method_submit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -130,7 +130,7 @@ class TestAsyncBrandProtection:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             url="https://www.cloudflare.com",
         )
-        assert_matches_type(Submit, brand_protection, path=["response"])
+        assert_matches_type(Optional[Submit], brand_protection, path=["response"])
 
     @parametrize
     async def test_raw_response_submit(self, async_client: AsyncCloudflare) -> None:
@@ -141,7 +141,7 @@ class TestAsyncBrandProtection:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand_protection = await response.parse()
-        assert_matches_type(Submit, brand_protection, path=["response"])
+        assert_matches_type(Optional[Submit], brand_protection, path=["response"])
 
     @parametrize
     async def test_streaming_response_submit(self, async_client: AsyncCloudflare) -> None:
@@ -152,7 +152,7 @@ class TestAsyncBrandProtection:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand_protection = await response.parse()
-            assert_matches_type(Submit, brand_protection, path=["response"])
+            assert_matches_type(Optional[Submit], brand_protection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -168,7 +168,7 @@ class TestAsyncBrandProtection:
         brand_protection = await async_client.brand_protection.url_info(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Info, brand_protection, path=["response"])
+        assert_matches_type(Optional[Info], brand_protection, path=["response"])
 
     @parametrize
     async def test_method_url_info_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -177,7 +177,7 @@ class TestAsyncBrandProtection:
             url="string",
             url_id_param={"url_id": 0},
         )
-        assert_matches_type(Info, brand_protection, path=["response"])
+        assert_matches_type(Optional[Info], brand_protection, path=["response"])
 
     @parametrize
     async def test_raw_response_url_info(self, async_client: AsyncCloudflare) -> None:
@@ -188,7 +188,7 @@ class TestAsyncBrandProtection:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand_protection = await response.parse()
-        assert_matches_type(Info, brand_protection, path=["response"])
+        assert_matches_type(Optional[Info], brand_protection, path=["response"])
 
     @parametrize
     async def test_streaming_response_url_info(self, async_client: AsyncCloudflare) -> None:
@@ -199,7 +199,7 @@ class TestAsyncBrandProtection:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand_protection = await response.parse()
-            assert_matches_type(Info, brand_protection, path=["response"])
+            assert_matches_type(Optional[Info], brand_protection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

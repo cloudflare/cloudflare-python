@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Iterable, cast
+from typing import Any, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -56,7 +56,7 @@ class MiscategorizationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MiscategorizationCreateResponse:
+    ) -> Optional[MiscategorizationCreateResponse]:
         """
         Create Miscategorization
 
@@ -88,7 +88,7 @@ class MiscategorizationsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            MiscategorizationCreateResponse,
+            Optional[MiscategorizationCreateResponse],
             self._post(
                 f"/accounts/{account_id}/intel/miscategorization",
                 body=maybe_transform(
@@ -108,7 +108,7 @@ class MiscategorizationsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[MiscategorizationCreateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[MiscategorizationCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[MiscategorizationCreateResponse]
@@ -143,7 +143,7 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MiscategorizationCreateResponse:
+    ) -> Optional[MiscategorizationCreateResponse]:
         """
         Create Miscategorization
 
@@ -175,7 +175,7 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            MiscategorizationCreateResponse,
+            Optional[MiscategorizationCreateResponse],
             await self._post(
                 f"/accounts/{account_id}/intel/miscategorization",
                 body=await async_maybe_transform(
@@ -195,7 +195,7 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[MiscategorizationCreateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[MiscategorizationCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[MiscategorizationCreateResponse]
