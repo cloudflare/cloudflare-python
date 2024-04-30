@@ -3634,10 +3634,6 @@ Types:
 from cloudflare.types.intel import Whois
 ```
 
-Methods:
-
-- <code title="get /accounts/{account_id}/intel/whois">client.intel.whois.<a href="./src/cloudflare/resources/intel/whois.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/whois_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/whois.py">Optional</a></code>
-
 ## IndicatorFeeds
 
 Types:
