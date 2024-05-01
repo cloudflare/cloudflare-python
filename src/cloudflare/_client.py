@@ -124,6 +124,7 @@ class Cloudflare(SyncAPIClient):
     speed: resources.SpeedResource
     dcv_delegation: resources.DCVDelegationResource
     hostnames: resources.HostnamesResource
+    snippets: resources.SnippetsResource
     calls: resources.CallsResource
     cloudforce_one: resources.CloudforceOneResource
     event_notifications: resources.EventNotificationsResource
@@ -279,6 +280,7 @@ class Cloudflare(SyncAPIClient):
         self.speed = resources.SpeedResource(self)
         self.dcv_delegation = resources.DCVDelegationResource(self)
         self.hostnames = resources.HostnamesResource(self)
+        self.snippets = resources.SnippetsResource(self)
         self.calls = resources.CallsResource(self)
         self.cloudforce_one = resources.CloudforceOneResource(self)
         self.event_notifications = resources.EventNotificationsResource(self)
@@ -537,6 +539,7 @@ class AsyncCloudflare(AsyncAPIClient):
     speed: resources.AsyncSpeedResource
     dcv_delegation: resources.AsyncDCVDelegationResource
     hostnames: resources.AsyncHostnamesResource
+    snippets: resources.AsyncSnippetsResource
     calls: resources.AsyncCallsResource
     cloudforce_one: resources.AsyncCloudforceOneResource
     event_notifications: resources.AsyncEventNotificationsResource
@@ -692,6 +695,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.speed = resources.AsyncSpeedResource(self)
         self.dcv_delegation = resources.AsyncDCVDelegationResource(self)
         self.hostnames = resources.AsyncHostnamesResource(self)
+        self.snippets = resources.AsyncSnippetsResource(self)
         self.calls = resources.AsyncCallsResource(self)
         self.cloudforce_one = resources.AsyncCloudforceOneResource(self)
         self.event_notifications = resources.AsyncEventNotificationsResource(self)
@@ -961,6 +965,7 @@ class CloudflareWithRawResponse:
         self.speed = resources.SpeedResourceWithRawResponse(client.speed)
         self.dcv_delegation = resources.DCVDelegationResourceWithRawResponse(client.dcv_delegation)
         self.hostnames = resources.HostnamesResourceWithRawResponse(client.hostnames)
+        self.snippets = resources.SnippetsResourceWithRawResponse(client.snippets)
         self.calls = resources.CallsResourceWithRawResponse(client.calls)
         self.cloudforce_one = resources.CloudforceOneResourceWithRawResponse(client.cloudforce_one)
         self.event_notifications = resources.EventNotificationsResourceWithRawResponse(client.event_notifications)
@@ -1059,6 +1064,7 @@ class AsyncCloudflareWithRawResponse:
         self.speed = resources.AsyncSpeedResourceWithRawResponse(client.speed)
         self.dcv_delegation = resources.AsyncDCVDelegationResourceWithRawResponse(client.dcv_delegation)
         self.hostnames = resources.AsyncHostnamesResourceWithRawResponse(client.hostnames)
+        self.snippets = resources.AsyncSnippetsResourceWithRawResponse(client.snippets)
         self.calls = resources.AsyncCallsResourceWithRawResponse(client.calls)
         self.cloudforce_one = resources.AsyncCloudforceOneResourceWithRawResponse(client.cloudforce_one)
         self.event_notifications = resources.AsyncEventNotificationsResourceWithRawResponse(client.event_notifications)
@@ -1157,6 +1163,7 @@ class CloudflareWithStreamedResponse:
         self.speed = resources.SpeedResourceWithStreamingResponse(client.speed)
         self.dcv_delegation = resources.DCVDelegationResourceWithStreamingResponse(client.dcv_delegation)
         self.hostnames = resources.HostnamesResourceWithStreamingResponse(client.hostnames)
+        self.snippets = resources.SnippetsResourceWithStreamingResponse(client.snippets)
         self.calls = resources.CallsResourceWithStreamingResponse(client.calls)
         self.cloudforce_one = resources.CloudforceOneResourceWithStreamingResponse(client.cloudforce_one)
         self.event_notifications = resources.EventNotificationsResourceWithStreamingResponse(client.event_notifications)
@@ -1261,6 +1268,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.speed = resources.AsyncSpeedResourceWithStreamingResponse(client.speed)
         self.dcv_delegation = resources.AsyncDCVDelegationResourceWithStreamingResponse(client.dcv_delegation)
         self.hostnames = resources.AsyncHostnamesResourceWithStreamingResponse(client.hostnames)
+        self.snippets = resources.AsyncSnippetsResourceWithStreamingResponse(client.snippets)
         self.calls = resources.AsyncCallsResourceWithStreamingResponse(client.calls)
         self.cloudforce_one = resources.AsyncCloudforceOneResourceWithStreamingResponse(client.cloudforce_one)
         self.event_notifications = resources.AsyncEventNotificationsResourceWithStreamingResponse(
