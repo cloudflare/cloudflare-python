@@ -18,6 +18,7 @@ from cloudflare.types.radar.http import (
     TimeseriesGroupDeviceTypeResponse,
     TimeseriesGroupTLSVersionResponse,
     TimeseriesGroupHTTPVersionResponse,
+    TimeseriesGroupPostQuantumResponse,
     TimeseriesGroupHTTPProtocolResponse,
     TimeseriesGroupBrowserFamilyResponse,
 )
@@ -460,6 +461,61 @@ class TestTimeseriesGroups:
 
             timeseries_group = response.parse()
             assert_matches_type(TimeseriesGroupOSResponse, timeseries_group, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_post_quantum(self, client: Cloudflare) -> None:
+        timeseries_group = client.radar.http.timeseries_groups.post_quantum()
+        assert_matches_type(TimeseriesGroupPostQuantumResponse, timeseries_group, path=["response"])
+
+    @parametrize
+    def test_method_post_quantum_with_all_params(self, client: Cloudflare) -> None:
+        timeseries_group = client.radar.http.timeseries_groups.post_quantum(
+            agg_interval="1h",
+            asn=["string", "string", "string"],
+            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            date_range=["1d", "2d", "7d"],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            format="JSON",
+            http_protocol=["HTTP", "HTTPS"],
+            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
+            ip_version=["IPv4", "IPv6"],
+            location=["string", "string", "string"],
+            name=["string", "string", "string"],
+            os=["WINDOWS", "MACOSX", "IOS"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+        )
+        assert_matches_type(TimeseriesGroupPostQuantumResponse, timeseries_group, path=["response"])
+
+    @parametrize
+    def test_raw_response_post_quantum(self, client: Cloudflare) -> None:
+        response = client.radar.http.timeseries_groups.with_raw_response.post_quantum()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        timeseries_group = response.parse()
+        assert_matches_type(TimeseriesGroupPostQuantumResponse, timeseries_group, path=["response"])
+
+    @parametrize
+    def test_streaming_response_post_quantum(self, client: Cloudflare) -> None:
+        with client.radar.http.timeseries_groups.with_streaming_response.post_quantum() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            timeseries_group = response.parse()
+            assert_matches_type(TimeseriesGroupPostQuantumResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -953,6 +1009,61 @@ class TestAsyncTimeseriesGroups:
 
             timeseries_group = await response.parse()
             assert_matches_type(TimeseriesGroupOSResponse, timeseries_group, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_post_quantum(self, async_client: AsyncCloudflare) -> None:
+        timeseries_group = await async_client.radar.http.timeseries_groups.post_quantum()
+        assert_matches_type(TimeseriesGroupPostQuantumResponse, timeseries_group, path=["response"])
+
+    @parametrize
+    async def test_method_post_quantum_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        timeseries_group = await async_client.radar.http.timeseries_groups.post_quantum(
+            agg_interval="1h",
+            asn=["string", "string", "string"],
+            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
+            continent=["string", "string", "string"],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            date_range=["1d", "2d", "7d"],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            format="JSON",
+            http_protocol=["HTTP", "HTTPS"],
+            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
+            ip_version=["IPv4", "IPv6"],
+            location=["string", "string", "string"],
+            name=["string", "string", "string"],
+            os=["WINDOWS", "MACOSX", "IOS"],
+            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+        )
+        assert_matches_type(TimeseriesGroupPostQuantumResponse, timeseries_group, path=["response"])
+
+    @parametrize
+    async def test_raw_response_post_quantum(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.http.timeseries_groups.with_raw_response.post_quantum()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        timeseries_group = await response.parse()
+        assert_matches_type(TimeseriesGroupPostQuantumResponse, timeseries_group, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_post_quantum(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.http.timeseries_groups.with_streaming_response.post_quantum() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            timeseries_group = await response.parse()
+            assert_matches_type(TimeseriesGroupPostQuantumResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -33,8 +33,7 @@ from ......_base_client import (
     make_request_options,
 )
 from ......types.web3.hostnames.ipfs_universal_paths import content_list_update_params
-from ......types.web3.hostnames.ipfs_universal_paths.content_list_get_response import ContentListGetResponse
-from ......types.web3.hostnames.ipfs_universal_paths.content_list_update_response import ContentListUpdateResponse
+from ......types.web3.hostnames.ipfs_universal_paths.content_list import ContentList
 
 __all__ = ["ContentListsResource", "AsyncContentListsResource"]
 
@@ -65,7 +64,7 @@ class ContentListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentListUpdateResponse:
+    ) -> ContentList:
         """
         Update IPFS Universal Path Gateway Content List
 
@@ -104,9 +103,9 @@ class ContentListsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ContentListUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[ContentList]._unwrapper,
             ),
-            cast_to=cast(Type[ContentListUpdateResponse], ResultWrapper[ContentListUpdateResponse]),
+            cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
 
     def get(
@@ -120,7 +119,7 @@ class ContentListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentListGetResponse:
+    ) -> ContentList:
         """
         IPFS Universal Path Gateway Content List Details
 
@@ -148,9 +147,9 @@ class ContentListsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ContentListGetResponse]._unwrapper,
+                post_parser=ResultWrapper[ContentList]._unwrapper,
             ),
-            cast_to=cast(Type[ContentListGetResponse], ResultWrapper[ContentListGetResponse]),
+            cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
 
 
@@ -180,7 +179,7 @@ class AsyncContentListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentListUpdateResponse:
+    ) -> ContentList:
         """
         Update IPFS Universal Path Gateway Content List
 
@@ -219,9 +218,9 @@ class AsyncContentListsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ContentListUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[ContentList]._unwrapper,
             ),
-            cast_to=cast(Type[ContentListUpdateResponse], ResultWrapper[ContentListUpdateResponse]),
+            cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
 
     async def get(
@@ -235,7 +234,7 @@ class AsyncContentListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentListGetResponse:
+    ) -> ContentList:
         """
         IPFS Universal Path Gateway Content List Details
 
@@ -263,9 +262,9 @@ class AsyncContentListsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ContentListGetResponse]._unwrapper,
+                post_parser=ResultWrapper[ContentList]._unwrapper,
             ),
-            cast_to=cast(Type[ContentListGetResponse], ResultWrapper[ContentListGetResponse]),
+            cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
 
 
