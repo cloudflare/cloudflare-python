@@ -32,6 +32,7 @@ from ....types.radar.http import (
     summary_device_type_params,
     summary_tls_version_params,
     summary_http_version_params,
+    summary_post_quantum_params,
     summary_http_protocol_params,
 )
 from ....types.radar.http.summary_os_response import SummaryOSResponse
@@ -40,6 +41,7 @@ from ....types.radar.http.summary_ip_version_response import SummaryIPVersionRes
 from ....types.radar.http.summary_device_type_response import SummaryDeviceTypeResponse
 from ....types.radar.http.summary_tls_version_response import SummaryTLSVersionResponse
 from ....types.radar.http.summary_http_version_response import SummaryHTTPVersionResponse
+from ....types.radar.http.summary_post_quantum_response import SummaryPostQuantumResponse
 from ....types.radar.http.summary_http_protocol_response import SummaryHTTPProtocolResponse
 
 __all__ = ["SummaryResource", "AsyncSummaryResource"]
@@ -801,6 +803,135 @@ class SummaryResource(SyncAPIResource):
                 post_parser=ResultWrapper[SummaryOSResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryOSResponse], ResultWrapper[SummaryOSResponse]),
+        )
+
+    def post_quantum(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryPostQuantumResponse:
+        """
+        Percentage distribution of traffic per Post Quantum support over a given time
+        period.
+
+        Args:
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          bot_class: Filter for bot class. Refer to
+              [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          device_type: Filter for device type.
+
+          format: Format results are returned in.
+
+          http_protocol: Filter for http protocol.
+
+          http_version: Filter for http version.
+
+          ip_version: Filter for ip version.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          os: Filter for os name.
+
+          tls_version: Filter for tls version.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/http/summary/post_quantum",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    summary_post_quantum_params.SummaryPostQuantumParams,
+                ),
+                post_parser=ResultWrapper[SummaryPostQuantumResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SummaryPostQuantumResponse], ResultWrapper[SummaryPostQuantumResponse]),
         )
 
     def tls_version(
@@ -1687,6 +1818,135 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryOSResponse], ResultWrapper[SummaryOSResponse]),
         )
 
+    async def post_quantum(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[
+            Literal[
+                "1d",
+                "2d",
+                "7d",
+                "14d",
+                "28d",
+                "12w",
+                "24w",
+                "52w",
+                "1dControl",
+                "2dControl",
+                "7dControl",
+                "14dControl",
+                "28dControl",
+                "12wControl",
+                "24wControl",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryPostQuantumResponse:
+        """
+        Percentage distribution of traffic per Post Quantum support over a given time
+        period.
+
+        Args:
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          bot_class: Filter for bot class. Refer to
+              [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          device_type: Filter for device type.
+
+          format: Format results are returned in.
+
+          http_protocol: Filter for http protocol.
+
+          http_version: Filter for http version.
+
+          ip_version: Filter for ip version.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          os: Filter for os name.
+
+          tls_version: Filter for tls version.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/http/summary/post_quantum",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    summary_post_quantum_params.SummaryPostQuantumParams,
+                ),
+                post_parser=ResultWrapper[SummaryPostQuantumResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SummaryPostQuantumResponse], ResultWrapper[SummaryPostQuantumResponse]),
+        )
+
     async def tls_version(
         self,
         *,
@@ -1835,6 +2095,9 @@ class SummaryResourceWithRawResponse:
         self.os = to_raw_response_wrapper(
             summary.os,
         )
+        self.post_quantum = to_raw_response_wrapper(
+            summary.post_quantum,
+        )
         self.tls_version = to_raw_response_wrapper(
             summary.tls_version,
         )
@@ -1861,6 +2124,9 @@ class AsyncSummaryResourceWithRawResponse:
         )
         self.os = async_to_raw_response_wrapper(
             summary.os,
+        )
+        self.post_quantum = async_to_raw_response_wrapper(
+            summary.post_quantum,
         )
         self.tls_version = async_to_raw_response_wrapper(
             summary.tls_version,
@@ -1889,6 +2155,9 @@ class SummaryResourceWithStreamingResponse:
         self.os = to_streamed_response_wrapper(
             summary.os,
         )
+        self.post_quantum = to_streamed_response_wrapper(
+            summary.post_quantum,
+        )
         self.tls_version = to_streamed_response_wrapper(
             summary.tls_version,
         )
@@ -1915,6 +2184,9 @@ class AsyncSummaryResourceWithStreamingResponse:
         )
         self.os = async_to_streamed_response_wrapper(
             summary.os,
+        )
+        self.post_quantum = async_to_streamed_response_wrapper(
+            summary.post_quantum,
         )
         self.tls_version = async_to_streamed_response_wrapper(
             summary.tls_version,

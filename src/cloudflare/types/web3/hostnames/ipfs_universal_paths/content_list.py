@@ -5,9 +5,9 @@ from typing_extensions import Literal
 
 from ....._models import BaseModel
 
-__all__ = ["ContentListGetResponse"]
+__all__ = ["ContentList"]
 
 
-class ContentListGetResponse(BaseModel):
+class ContentList(BaseModel):
     action: Optional[Literal["block"]] = None
     """Behavior of the content list."""
