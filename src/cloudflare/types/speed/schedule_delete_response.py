@@ -4,9 +4,9 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["SpeedDeleteResponse"]
+__all__ = ["ScheduleDeleteResponse"]
 
 
-class SpeedDeleteResponse(BaseModel):
+class ScheduleDeleteResponse(BaseModel):
     count: Optional[float] = None
     """Number of items affected."""
