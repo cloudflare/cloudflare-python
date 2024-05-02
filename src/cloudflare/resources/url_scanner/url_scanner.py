@@ -114,19 +114,19 @@ class URLScannerResource(SyncAPIResource):
 
           page_asn: Filter scans by main page Autonomous System Number (ASN).
 
-          page_hostname: Filter scans by main page hostname .
+          page_hostname: Filter scans by main page hostname (domain of effective URL).
 
           page_ip: Filter scans by main page IP address (IPv4 or IPv6).
 
-          page_path: Filter scans by exact match URL path (also supports suffix search).
+          page_path: Filter scans by exact match of effective URL path (also supports suffix search).
 
-          page_url: Filter scans by exact match to scanned URL (_after redirects_)
+          page_url: Filter scans by submitted or scanned URL
 
           path: Filter scans by url path of _any_ request made by the webpage.
 
           scan_id: Scan uuid
 
-          url: Filter scans by exact match URL of _any_ request made by the webpage
+          url: Filter scans by URL of _any_ request made by the webpage
 
           extra_headers: Send extra headers
 
@@ -250,19 +250,19 @@ class AsyncURLScannerResource(AsyncAPIResource):
 
           page_asn: Filter scans by main page Autonomous System Number (ASN).
 
-          page_hostname: Filter scans by main page hostname .
+          page_hostname: Filter scans by main page hostname (domain of effective URL).
 
           page_ip: Filter scans by main page IP address (IPv4 or IPv6).
 
-          page_path: Filter scans by exact match URL path (also supports suffix search).
+          page_path: Filter scans by exact match of effective URL path (also supports suffix search).
 
-          page_url: Filter scans by exact match to scanned URL (_after redirects_)
+          page_url: Filter scans by submitted or scanned URL
 
           path: Filter scans by url path of _any_ request made by the webpage.
 
           scan_id: Scan uuid
 
-          url: Filter scans by exact match URL of _any_ request made by the webpage
+          url: Filter scans by URL of _any_ request made by the webpage
 
           extra_headers: Send extra headers
 
