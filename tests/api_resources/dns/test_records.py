@@ -1410,7 +1410,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "content": "http://example.com/example.html",
+                "target": "http://example.com/example.html",
                 "weight": 20,
             },
             name="example.com",
@@ -3124,7 +3124,7 @@ class TestRecords:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "content": "http://example.com/example.html",
+                "target": "http://example.com/example.html",
                 "weight": 20,
             },
             name="example.com",
@@ -4971,7 +4971,7 @@ class TestRecords:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "content": "http://example.com/example.html",
+                "target": "http://example.com/example.html",
                 "weight": 20,
             },
             name="example.com",
@@ -6617,7 +6617,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "content": "http://example.com/example.html",
+                "target": "http://example.com/example.html",
                 "weight": 20,
             },
             name="example.com",
@@ -8331,7 +8331,7 @@ class TestAsyncRecords:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "content": "http://example.com/example.html",
+                "target": "http://example.com/example.html",
                 "weight": 20,
             },
             name="example.com",
@@ -10178,7 +10178,7 @@ class TestAsyncRecords:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "content": "http://example.com/example.html",
+                "target": "http://example.com/example.html",
                 "weight": 20,
             },
             name="example.com",
