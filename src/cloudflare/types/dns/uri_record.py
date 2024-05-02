@@ -13,7 +13,7 @@ __all__ = ["URIRecord", "Data"]
 
 
 class Data(BaseModel):
-    content: Optional[str] = None
+    target: Optional[str] = None
     """The record content."""
 
     weight: Optional[float] = None

@@ -892,7 +892,7 @@ class URIRecord(TypedDict, total=False):
 
 
 class URIRecordData(TypedDict, total=False):
-    content: str
+    target: str
     """The record content."""
 
     weight: float
