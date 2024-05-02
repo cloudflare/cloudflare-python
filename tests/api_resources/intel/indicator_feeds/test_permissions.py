@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -26,7 +26,7 @@ class TestPermissions:
         permission = client.intel.indicator_feeds.permissions.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PermissionCreateResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionCreateResponse], permission, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -35,7 +35,7 @@ class TestPermissions:
             account_tag="823f45f16fd2f7e21e1e054aga4d2859",
             feed_id=1,
         )
-        assert_matches_type(PermissionCreateResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionCreateResponse], permission, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -46,7 +46,7 @@ class TestPermissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission = response.parse()
-        assert_matches_type(PermissionCreateResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionCreateResponse], permission, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -57,7 +57,7 @@ class TestPermissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission = response.parse()
-            assert_matches_type(PermissionCreateResponse, permission, path=["response"])
+            assert_matches_type(Optional[PermissionCreateResponse], permission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -73,7 +73,7 @@ class TestPermissions:
         permission = client.intel.indicator_feeds.permissions.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PermissionListResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionListResponse], permission, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -84,7 +84,7 @@ class TestPermissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission = response.parse()
-        assert_matches_type(PermissionListResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionListResponse], permission, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -95,7 +95,7 @@ class TestPermissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission = response.parse()
-            assert_matches_type(PermissionListResponse, permission, path=["response"])
+            assert_matches_type(Optional[PermissionListResponse], permission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -111,7 +111,7 @@ class TestPermissions:
         permission = client.intel.indicator_feeds.permissions.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionDeleteResponse], permission, path=["response"])
 
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
@@ -120,7 +120,7 @@ class TestPermissions:
             account_tag="823f45f16fd2f7e21e1e054aga4d2859",
             feed_id=1,
         )
-        assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionDeleteResponse], permission, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -131,7 +131,7 @@ class TestPermissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission = response.parse()
-        assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionDeleteResponse], permission, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -142,7 +142,7 @@ class TestPermissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission = response.parse()
-            assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
+            assert_matches_type(Optional[PermissionDeleteResponse], permission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -162,7 +162,7 @@ class TestAsyncPermissions:
         permission = await async_client.intel.indicator_feeds.permissions.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PermissionCreateResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionCreateResponse], permission, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -171,7 +171,7 @@ class TestAsyncPermissions:
             account_tag="823f45f16fd2f7e21e1e054aga4d2859",
             feed_id=1,
         )
-        assert_matches_type(PermissionCreateResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionCreateResponse], permission, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -182,7 +182,7 @@ class TestAsyncPermissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission = await response.parse()
-        assert_matches_type(PermissionCreateResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionCreateResponse], permission, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -193,7 +193,7 @@ class TestAsyncPermissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission = await response.parse()
-            assert_matches_type(PermissionCreateResponse, permission, path=["response"])
+            assert_matches_type(Optional[PermissionCreateResponse], permission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -209,7 +209,7 @@ class TestAsyncPermissions:
         permission = await async_client.intel.indicator_feeds.permissions.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PermissionListResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionListResponse], permission, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -220,7 +220,7 @@ class TestAsyncPermissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission = await response.parse()
-        assert_matches_type(PermissionListResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionListResponse], permission, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -231,7 +231,7 @@ class TestAsyncPermissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission = await response.parse()
-            assert_matches_type(PermissionListResponse, permission, path=["response"])
+            assert_matches_type(Optional[PermissionListResponse], permission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -247,7 +247,7 @@ class TestAsyncPermissions:
         permission = await async_client.intel.indicator_feeds.permissions.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionDeleteResponse], permission, path=["response"])
 
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -256,7 +256,7 @@ class TestAsyncPermissions:
             account_tag="823f45f16fd2f7e21e1e054aga4d2859",
             feed_id=1,
         )
-        assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionDeleteResponse], permission, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -267,7 +267,7 @@ class TestAsyncPermissions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission = await response.parse()
-        assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
+        assert_matches_type(Optional[PermissionDeleteResponse], permission, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -278,7 +278,7 @@ class TestAsyncPermissions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission = await response.parse()
-            assert_matches_type(PermissionDeleteResponse, permission, path=["response"])
+            assert_matches_type(Optional[PermissionDeleteResponse], permission, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

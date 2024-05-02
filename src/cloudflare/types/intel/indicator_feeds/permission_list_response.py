@@ -14,6 +14,12 @@ class PermissionListResponseItem(BaseModel):
     description: Optional[str] = None
     """The description of the example test"""
 
+    is_attributable: Optional[bool] = None
+    """Whether the indicator feed can be attributed to a provider"""
+
+    is_public: Optional[bool] = None
+    """Whether the indicator feed is exposed to customers"""
+
     name: Optional[str] = None
     """The name of the indicator feed"""
 
