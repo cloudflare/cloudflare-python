@@ -7,27 +7,27 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...types.speed import test_list_params, test_create_params, test_delete_params
-from ..._base_client import (
+from ...._wrappers import ResultWrapper
+from ...._base_client import (
     make_request_options,
 )
-from ...types.speed.test import Test
-from ...types.speed.test_list_response import TestListResponse
-from ...types.speed.test_delete_response import TestDeleteResponse
+from ....types.speed.pages import test_list_params, test_create_params, test_delete_params
+from ....types.speed.pages.test import Test
+from ....types.speed.pages.test_list_response import TestListResponse
+from ....types.speed.pages.test_delete_response import TestDeleteResponse
 
 __all__ = ["TestsResource", "AsyncTestsResource"]
 

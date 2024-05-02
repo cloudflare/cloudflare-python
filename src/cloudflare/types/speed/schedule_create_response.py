@@ -2,9 +2,9 @@
 
 from typing import Optional
 
-from .test import Test
 from .schedule import Schedule
 from ..._models import BaseModel
+from .pages.test import Test
 
 __all__ = ["ScheduleCreateResponse"]
 

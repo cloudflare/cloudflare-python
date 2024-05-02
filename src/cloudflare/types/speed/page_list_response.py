@@ -5,8 +5,8 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from .test import Test
 from ..._models import BaseModel
+from .pages.test import Test
 from .labeled_region import LabeledRegion
 
 __all__ = ["PageListResponse"]
