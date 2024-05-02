@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -52,7 +52,7 @@ class TotalTLSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TotalTLSCreateResponse:
+    ) -> Optional[TotalTLSCreateResponse]:
         """
         Set Total TLS Settings or disable the feature for a Zone.
 
@@ -88,9 +88,9 @@ class TotalTLSResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TotalTLSCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TotalTLSCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TotalTLSCreateResponse], ResultWrapper[TotalTLSCreateResponse]),
+            cast_to=cast(Type[Optional[TotalTLSCreateResponse]], ResultWrapper[TotalTLSCreateResponse]),
         )
 
     def get(
@@ -103,7 +103,7 @@ class TotalTLSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TotalTLSGetResponse:
+    ) -> Optional[TotalTLSGetResponse]:
         """
         Get Total TLS Settings for a Zone.
 
@@ -127,9 +127,9 @@ class TotalTLSResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TotalTLSGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TotalTLSGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TotalTLSGetResponse], ResultWrapper[TotalTLSGetResponse]),
+            cast_to=cast(Type[Optional[TotalTLSGetResponse]], ResultWrapper[TotalTLSGetResponse]),
         )
 
 
@@ -154,7 +154,7 @@ class AsyncTotalTLSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TotalTLSCreateResponse:
+    ) -> Optional[TotalTLSCreateResponse]:
         """
         Set Total TLS Settings or disable the feature for a Zone.
 
@@ -190,9 +190,9 @@ class AsyncTotalTLSResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TotalTLSCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TotalTLSCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TotalTLSCreateResponse], ResultWrapper[TotalTLSCreateResponse]),
+            cast_to=cast(Type[Optional[TotalTLSCreateResponse]], ResultWrapper[TotalTLSCreateResponse]),
         )
 
     async def get(
@@ -205,7 +205,7 @@ class AsyncTotalTLSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TotalTLSGetResponse:
+    ) -> Optional[TotalTLSGetResponse]:
         """
         Get Total TLS Settings for a Zone.
 
@@ -229,9 +229,9 @@ class AsyncTotalTLSResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TotalTLSGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TotalTLSGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TotalTLSGetResponse], ResultWrapper[TotalTLSGetResponse]),
+            cast_to=cast(Type[Optional[TotalTLSGetResponse]], ResultWrapper[TotalTLSGetResponse]),
         )
 
 

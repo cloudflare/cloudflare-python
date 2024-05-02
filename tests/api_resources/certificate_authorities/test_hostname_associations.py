@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestHostnameAssociations:
         hostname_association = client.certificate_authorities.hostname_associations.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationUpdateResponse], hostname_association, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -34,7 +34,7 @@ class TestHostnameAssociations:
             hostnames=["api.example.com", "api.example.com", "api.example.com"],
             mtls_certificate_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         )
-        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationUpdateResponse], hostname_association, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -45,7 +45,7 @@ class TestHostnameAssociations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = response.parse()
-        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationUpdateResponse], hostname_association, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -56,7 +56,7 @@ class TestHostnameAssociations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = response.parse()
-            assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
+            assert_matches_type(Optional[HostnameAssociationUpdateResponse], hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,7 +72,7 @@ class TestHostnameAssociations:
         hostname_association = client.certificate_authorities.hostname_associations.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationGetResponse], hostname_association, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
@@ -80,7 +80,7 @@ class TestHostnameAssociations:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             mtls_certificate_id="b2134436-2555-4acf-be5b-26c48136575e",
         )
-        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationGetResponse], hostname_association, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -91,7 +91,7 @@ class TestHostnameAssociations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = response.parse()
-        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationGetResponse], hostname_association, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -102,7 +102,7 @@ class TestHostnameAssociations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = response.parse()
-            assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
+            assert_matches_type(Optional[HostnameAssociationGetResponse], hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -122,7 +122,7 @@ class TestAsyncHostnameAssociations:
         hostname_association = await async_client.certificate_authorities.hostname_associations.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationUpdateResponse], hostname_association, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -131,7 +131,7 @@ class TestAsyncHostnameAssociations:
             hostnames=["api.example.com", "api.example.com", "api.example.com"],
             mtls_certificate_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         )
-        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationUpdateResponse], hostname_association, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -142,7 +142,7 @@ class TestAsyncHostnameAssociations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = await response.parse()
-        assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationUpdateResponse], hostname_association, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -153,7 +153,7 @@ class TestAsyncHostnameAssociations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = await response.parse()
-            assert_matches_type(HostnameAssociationUpdateResponse, hostname_association, path=["response"])
+            assert_matches_type(Optional[HostnameAssociationUpdateResponse], hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -169,7 +169,7 @@ class TestAsyncHostnameAssociations:
         hostname_association = await async_client.certificate_authorities.hostname_associations.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationGetResponse], hostname_association, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -177,7 +177,7 @@ class TestAsyncHostnameAssociations:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             mtls_certificate_id="b2134436-2555-4acf-be5b-26c48136575e",
         )
-        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationGetResponse], hostname_association, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -188,7 +188,7 @@ class TestAsyncHostnameAssociations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname_association = await response.parse()
-        assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
+        assert_matches_type(Optional[HostnameAssociationGetResponse], hostname_association, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -199,7 +199,7 @@ class TestAsyncHostnameAssociations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname_association = await response.parse()
-            assert_matches_type(HostnameAssociationGetResponse, hostname_association, path=["response"])
+            assert_matches_type(Optional[HostnameAssociationGetResponse], hostname_association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

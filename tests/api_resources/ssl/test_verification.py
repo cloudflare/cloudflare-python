@@ -27,7 +27,7 @@ class TestVerification:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             validation_method="txt",
         )
-        assert_matches_type(VerificationEditResponse, verification, path=["response"])
+        assert_matches_type(Optional[VerificationEditResponse], verification, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -40,7 +40,7 @@ class TestVerification:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         verification = response.parse()
-        assert_matches_type(VerificationEditResponse, verification, path=["response"])
+        assert_matches_type(Optional[VerificationEditResponse], verification, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -53,7 +53,7 @@ class TestVerification:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             verification = response.parse()
-            assert_matches_type(VerificationEditResponse, verification, path=["response"])
+            assert_matches_type(Optional[VerificationEditResponse], verification, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -130,7 +130,7 @@ class TestAsyncVerification:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             validation_method="txt",
         )
-        assert_matches_type(VerificationEditResponse, verification, path=["response"])
+        assert_matches_type(Optional[VerificationEditResponse], verification, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -143,7 +143,7 @@ class TestAsyncVerification:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         verification = await response.parse()
-        assert_matches_type(VerificationEditResponse, verification, path=["response"])
+        assert_matches_type(Optional[VerificationEditResponse], verification, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -156,7 +156,7 @@ class TestAsyncVerification:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             verification = await response.parse()
-            assert_matches_type(VerificationEditResponse, verification, path=["response"])
+            assert_matches_type(Optional[VerificationEditResponse], verification, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

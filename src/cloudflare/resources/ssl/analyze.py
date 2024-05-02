@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -52,7 +52,7 @@ class AnalyzeResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AnalyzeCreateResponse:
+    ) -> Optional[AnalyzeCreateResponse]:
         """
         Returns the set of hostnames, the signature algorithm, and the expiration date
         of the certificate.
@@ -78,7 +78,7 @@ class AnalyzeResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            AnalyzeCreateResponse,
+            Optional[AnalyzeCreateResponse],
             self._post(
                 f"/zones/{zone_id}/ssl/analyze",
                 body=maybe_transform(
@@ -93,7 +93,7 @@ class AnalyzeResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[AnalyzeCreateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[AnalyzeCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AnalyzeCreateResponse]
@@ -123,7 +123,7 @@ class AsyncAnalyzeResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AnalyzeCreateResponse:
+    ) -> Optional[AnalyzeCreateResponse]:
         """
         Returns the set of hostnames, the signature algorithm, and the expiration date
         of the certificate.
@@ -149,7 +149,7 @@ class AsyncAnalyzeResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            AnalyzeCreateResponse,
+            Optional[AnalyzeCreateResponse],
             await self._post(
                 f"/zones/{zone_id}/ssl/analyze",
                 body=await async_maybe_transform(
@@ -164,7 +164,7 @@ class AsyncAnalyzeResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[AnalyzeCreateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[AnalyzeCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[AnalyzeCreateResponse]
