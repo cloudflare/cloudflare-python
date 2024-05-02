@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -27,7 +27,7 @@ class TestOrder:
             validation_method="txt",
             validity_days=14,
         )
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(Optional[OrderCreateResponse], order, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -40,7 +40,7 @@ class TestOrder:
             validity_days=14,
             cloudflare_branding=False,
         )
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(Optional[OrderCreateResponse], order, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -56,7 +56,7 @@ class TestOrder:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         order = response.parse()
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(Optional[OrderCreateResponse], order, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -72,7 +72,7 @@ class TestOrder:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             order = response.parse()
-            assert_matches_type(OrderCreateResponse, order, path=["response"])
+            assert_matches_type(Optional[OrderCreateResponse], order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -102,7 +102,7 @@ class TestAsyncOrder:
             validation_method="txt",
             validity_days=14,
         )
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(Optional[OrderCreateResponse], order, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -115,7 +115,7 @@ class TestAsyncOrder:
             validity_days=14,
             cloudflare_branding=False,
         )
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(Optional[OrderCreateResponse], order, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -131,7 +131,7 @@ class TestAsyncOrder:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         order = await response.parse()
-        assert_matches_type(OrderCreateResponse, order, path=["response"])
+        assert_matches_type(Optional[OrderCreateResponse], order, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -147,7 +147,7 @@ class TestAsyncOrder:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             order = await response.parse()
-            assert_matches_type(OrderCreateResponse, order, path=["response"])
+            assert_matches_type(Optional[OrderCreateResponse], order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

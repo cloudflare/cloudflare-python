@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -27,7 +27,7 @@ class TestFallbackOrigin:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             origin="fallback.example.com",
         )
-        assert_matches_type(FallbackOriginUpdateResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginUpdateResponse], fallback_origin, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -39,7 +39,7 @@ class TestFallbackOrigin:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fallback_origin = response.parse()
-        assert_matches_type(FallbackOriginUpdateResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginUpdateResponse], fallback_origin, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -51,7 +51,7 @@ class TestFallbackOrigin:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fallback_origin = response.parse()
-            assert_matches_type(FallbackOriginUpdateResponse, fallback_origin, path=["response"])
+            assert_matches_type(Optional[FallbackOriginUpdateResponse], fallback_origin, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -68,7 +68,7 @@ class TestFallbackOrigin:
         fallback_origin = client.custom_hostnames.fallback_origin.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(FallbackOriginDeleteResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginDeleteResponse], fallback_origin, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -79,7 +79,7 @@ class TestFallbackOrigin:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fallback_origin = response.parse()
-        assert_matches_type(FallbackOriginDeleteResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginDeleteResponse], fallback_origin, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -90,7 +90,7 @@ class TestFallbackOrigin:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fallback_origin = response.parse()
-            assert_matches_type(FallbackOriginDeleteResponse, fallback_origin, path=["response"])
+            assert_matches_type(Optional[FallbackOriginDeleteResponse], fallback_origin, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -106,7 +106,7 @@ class TestFallbackOrigin:
         fallback_origin = client.custom_hostnames.fallback_origin.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(FallbackOriginGetResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginGetResponse], fallback_origin, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -117,7 +117,7 @@ class TestFallbackOrigin:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fallback_origin = response.parse()
-        assert_matches_type(FallbackOriginGetResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginGetResponse], fallback_origin, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -128,7 +128,7 @@ class TestFallbackOrigin:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fallback_origin = response.parse()
-            assert_matches_type(FallbackOriginGetResponse, fallback_origin, path=["response"])
+            assert_matches_type(Optional[FallbackOriginGetResponse], fallback_origin, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -149,7 +149,7 @@ class TestAsyncFallbackOrigin:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             origin="fallback.example.com",
         )
-        assert_matches_type(FallbackOriginUpdateResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginUpdateResponse], fallback_origin, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -161,7 +161,7 @@ class TestAsyncFallbackOrigin:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fallback_origin = await response.parse()
-        assert_matches_type(FallbackOriginUpdateResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginUpdateResponse], fallback_origin, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -173,7 +173,7 @@ class TestAsyncFallbackOrigin:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fallback_origin = await response.parse()
-            assert_matches_type(FallbackOriginUpdateResponse, fallback_origin, path=["response"])
+            assert_matches_type(Optional[FallbackOriginUpdateResponse], fallback_origin, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -190,7 +190,7 @@ class TestAsyncFallbackOrigin:
         fallback_origin = await async_client.custom_hostnames.fallback_origin.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(FallbackOriginDeleteResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginDeleteResponse], fallback_origin, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -201,7 +201,7 @@ class TestAsyncFallbackOrigin:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fallback_origin = await response.parse()
-        assert_matches_type(FallbackOriginDeleteResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginDeleteResponse], fallback_origin, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -212,7 +212,7 @@ class TestAsyncFallbackOrigin:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fallback_origin = await response.parse()
-            assert_matches_type(FallbackOriginDeleteResponse, fallback_origin, path=["response"])
+            assert_matches_type(Optional[FallbackOriginDeleteResponse], fallback_origin, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -228,7 +228,7 @@ class TestAsyncFallbackOrigin:
         fallback_origin = await async_client.custom_hostnames.fallback_origin.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(FallbackOriginGetResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginGetResponse], fallback_origin, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -239,7 +239,7 @@ class TestAsyncFallbackOrigin:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fallback_origin = await response.parse()
-        assert_matches_type(FallbackOriginGetResponse, fallback_origin, path=["response"])
+        assert_matches_type(Optional[FallbackOriginGetResponse], fallback_origin, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -250,7 +250,7 @@ class TestAsyncFallbackOrigin:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fallback_origin = await response.parse()
-            assert_matches_type(FallbackOriginGetResponse, fallback_origin, path=["response"])
+            assert_matches_type(Optional[FallbackOriginGetResponse], fallback_origin, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

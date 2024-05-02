@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -43,7 +43,7 @@ class QuotaResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> QuotaGetResponse:
+    ) -> Optional[QuotaGetResponse]:
         """
         For a given zone, list certificate pack quotas.
 
@@ -67,9 +67,9 @@ class QuotaResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[QuotaGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[QuotaGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[QuotaGetResponse], ResultWrapper[QuotaGetResponse]),
+            cast_to=cast(Type[Optional[QuotaGetResponse]], ResultWrapper[QuotaGetResponse]),
         )
 
 
@@ -92,7 +92,7 @@ class AsyncQuotaResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> QuotaGetResponse:
+    ) -> Optional[QuotaGetResponse]:
         """
         For a given zone, list certificate pack quotas.
 
@@ -116,9 +116,9 @@ class AsyncQuotaResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[QuotaGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[QuotaGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[QuotaGetResponse], ResultWrapper[QuotaGetResponse]),
+            cast_to=cast(Type[Optional[QuotaGetResponse]], ResultWrapper[QuotaGetResponse]),
         )
 
 

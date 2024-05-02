@@ -52,7 +52,7 @@ class VerificationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VerificationEditResponse:
+    ) -> Optional[VerificationEditResponse]:
         """Edit SSL validation method for a certificate pack.
 
         A PATCH request will request
@@ -91,9 +91,9 @@ class VerificationResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VerificationEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[VerificationEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VerificationEditResponse], ResultWrapper[VerificationEditResponse]),
+            cast_to=cast(Type[Optional[VerificationEditResponse]], ResultWrapper[VerificationEditResponse]),
         )
 
     def get(
@@ -161,7 +161,7 @@ class AsyncVerificationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VerificationEditResponse:
+    ) -> Optional[VerificationEditResponse]:
         """Edit SSL validation method for a certificate pack.
 
         A PATCH request will request
@@ -200,9 +200,9 @@ class AsyncVerificationResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VerificationEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[VerificationEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VerificationEditResponse], ResultWrapper[VerificationEditResponse]),
+            cast_to=cast(Type[Optional[VerificationEditResponse]], ResultWrapper[VerificationEditResponse]),
         )
 
     async def get(

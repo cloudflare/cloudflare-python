@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -60,7 +60,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificate:
+    ) -> Optional[KeylessCertificate]:
         """
         Create Keyless SSL Configuration
 
@@ -111,9 +111,9 @@ class KeylessCertificatesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
+            cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
 
     def list(
@@ -163,7 +163,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificateDeleteResponse:
+    ) -> Optional[KeylessCertificateDeleteResponse]:
         """
         Delete Keyless SSL Configuration
 
@@ -193,9 +193,11 @@ class KeylessCertificatesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[KeylessCertificateDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeylessCertificateDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificateDeleteResponse], ResultWrapper[KeylessCertificateDeleteResponse]),
+            cast_to=cast(
+                Type[Optional[KeylessCertificateDeleteResponse]], ResultWrapper[KeylessCertificateDeleteResponse]
+            ),
         )
 
     def edit(
@@ -214,7 +216,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificate:
+    ) -> Optional[KeylessCertificate]:
         """This will update attributes of a Keyless SSL.
 
         Consists of one or more of the
@@ -267,9 +269,9 @@ class KeylessCertificatesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
+            cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
 
     def get(
@@ -283,7 +285,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificate:
+    ) -> Optional[KeylessCertificate]:
         """
         Get details for one Keyless SSL configuration.
 
@@ -313,9 +315,9 @@ class KeylessCertificatesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
+            cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
 
 
@@ -344,7 +346,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificate:
+    ) -> Optional[KeylessCertificate]:
         """
         Create Keyless SSL Configuration
 
@@ -395,9 +397,9 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
+            cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
 
     def list(
@@ -447,7 +449,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificateDeleteResponse:
+    ) -> Optional[KeylessCertificateDeleteResponse]:
         """
         Delete Keyless SSL Configuration
 
@@ -477,9 +479,11 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[KeylessCertificateDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeylessCertificateDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificateDeleteResponse], ResultWrapper[KeylessCertificateDeleteResponse]),
+            cast_to=cast(
+                Type[Optional[KeylessCertificateDeleteResponse]], ResultWrapper[KeylessCertificateDeleteResponse]
+            ),
         )
 
     async def edit(
@@ -498,7 +502,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificate:
+    ) -> Optional[KeylessCertificate]:
         """This will update attributes of a Keyless SSL.
 
         Consists of one or more of the
@@ -551,9 +555,9 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
+            cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
 
     async def get(
@@ -567,7 +571,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeylessCertificate:
+    ) -> Optional[KeylessCertificate]:
         """
         Get details for one Keyless SSL configuration.
 
@@ -597,9 +601,9 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[KeylessCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[KeylessCertificate], ResultWrapper[KeylessCertificate]),
+            cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
 
 
