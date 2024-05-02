@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["SpeedDeleteParams"]
+__all__ = ["ScheduleDeleteParams"]
 
 
-class SpeedDeleteParams(TypedDict, total=False):
+class ScheduleDeleteParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 

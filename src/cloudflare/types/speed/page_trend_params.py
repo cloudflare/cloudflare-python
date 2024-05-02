@@ -8,10 +8,10 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["SpeedTrendsListParams"]
+__all__ = ["PageTrendParams"]
 
 
-class SpeedTrendsListParams(TypedDict, total=False):
+class PageTrendParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 

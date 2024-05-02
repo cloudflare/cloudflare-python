@@ -16,14 +16,6 @@ from .speed import (
     SpeedResourceWithStreamingResponse,
     AsyncSpeedResourceWithStreamingResponse,
 )
-from .tests import (
-    TestsResource,
-    AsyncTestsResource,
-    TestsResourceWithRawResponse,
-    AsyncTestsResourceWithRawResponse,
-    TestsResourceWithStreamingResponse,
-    AsyncTestsResourceWithStreamingResponse,
-)
 from .schedule import (
     ScheduleResource,
     AsyncScheduleResource,
@@ -42,12 +34,6 @@ from .availabilities import (
 )
 
 __all__ = [
-    "TestsResource",
-    "AsyncTestsResource",
-    "TestsResourceWithRawResponse",
-    "AsyncTestsResourceWithRawResponse",
-    "TestsResourceWithStreamingResponse",
-    "AsyncTestsResourceWithStreamingResponse",
     "ScheduleResource",
     "AsyncScheduleResource",
     "ScheduleResourceWithRawResponse",
