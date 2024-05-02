@@ -18,6 +18,12 @@ class IndicatorFeedListResponse(BaseModel):
     description: Optional[str] = None
     """The description of the example test"""
 
+    is_attributable: Optional[bool] = None
+    """Whether the indicator feed can be attributed to a provider"""
+
+    is_public: Optional[bool] = None
+    """Whether the indicator feed is exposed to customers"""
+
     modified_on: Optional[datetime] = None
     """The date and time when the data entry was last modified"""
 
