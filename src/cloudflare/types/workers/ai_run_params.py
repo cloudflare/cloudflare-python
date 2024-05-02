@@ -120,7 +120,7 @@ class Summarization(TypedDict, total=False):
 class ImageToText(TypedDict, total=False):
     account_id: Required[str]
 
-    image: Required[Iterable[float]]
+    image: Required[Union[Iterable[float], str]]
 
     max_tokens: int
 
