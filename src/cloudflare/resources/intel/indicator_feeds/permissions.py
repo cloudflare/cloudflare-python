@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -52,7 +52,7 @@ class PermissionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionCreateResponse:
+    ) -> Optional[PermissionCreateResponse]:
         """
         Grant permission to indicator feed
 
@@ -87,9 +87,9 @@ class PermissionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PermissionCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PermissionCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PermissionCreateResponse], ResultWrapper[PermissionCreateResponse]),
+            cast_to=cast(Type[Optional[PermissionCreateResponse]], ResultWrapper[PermissionCreateResponse]),
         )
 
     def list(
@@ -102,7 +102,7 @@ class PermissionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionListResponse:
+    ) -> Optional[PermissionListResponse]:
         """
         List indicator feed permissions
 
@@ -126,9 +126,9 @@ class PermissionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PermissionListResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PermissionListResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PermissionListResponse], ResultWrapper[PermissionListResponse]),
+            cast_to=cast(Type[Optional[PermissionListResponse]], ResultWrapper[PermissionListResponse]),
         )
 
     def delete(
@@ -143,7 +143,7 @@ class PermissionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionDeleteResponse:
+    ) -> Optional[PermissionDeleteResponse]:
         """
         Revoke permission to indicator feed
 
@@ -178,9 +178,9 @@ class PermissionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PermissionDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PermissionDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PermissionDeleteResponse], ResultWrapper[PermissionDeleteResponse]),
+            cast_to=cast(Type[Optional[PermissionDeleteResponse]], ResultWrapper[PermissionDeleteResponse]),
         )
 
 
@@ -205,7 +205,7 @@ class AsyncPermissionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionCreateResponse:
+    ) -> Optional[PermissionCreateResponse]:
         """
         Grant permission to indicator feed
 
@@ -240,9 +240,9 @@ class AsyncPermissionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PermissionCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PermissionCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PermissionCreateResponse], ResultWrapper[PermissionCreateResponse]),
+            cast_to=cast(Type[Optional[PermissionCreateResponse]], ResultWrapper[PermissionCreateResponse]),
         )
 
     async def list(
@@ -255,7 +255,7 @@ class AsyncPermissionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionListResponse:
+    ) -> Optional[PermissionListResponse]:
         """
         List indicator feed permissions
 
@@ -279,9 +279,9 @@ class AsyncPermissionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PermissionListResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PermissionListResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PermissionListResponse], ResultWrapper[PermissionListResponse]),
+            cast_to=cast(Type[Optional[PermissionListResponse]], ResultWrapper[PermissionListResponse]),
         )
 
     async def delete(
@@ -296,7 +296,7 @@ class AsyncPermissionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionDeleteResponse:
+    ) -> Optional[PermissionDeleteResponse]:
         """
         Revoke permission to indicator feed
 
@@ -331,9 +331,9 @@ class AsyncPermissionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PermissionDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PermissionDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PermissionDeleteResponse], ResultWrapper[PermissionDeleteResponse]),
+            cast_to=cast(Type[Optional[PermissionDeleteResponse]], ResultWrapper[PermissionDeleteResponse]),
         )
 
 

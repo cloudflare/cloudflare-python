@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -67,7 +67,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedCreateResponse:
+    ) -> Optional[IndicatorFeedCreateResponse]:
         """
         Create new indicator feed
 
@@ -102,9 +102,9 @@ class IndicatorFeedsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[IndicatorFeedCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndicatorFeedCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedCreateResponse], ResultWrapper[IndicatorFeedCreateResponse]),
+            cast_to=cast(Type[Optional[IndicatorFeedCreateResponse]], ResultWrapper[IndicatorFeedCreateResponse]),
         )
 
     def update(
@@ -119,7 +119,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedUpdateResponse:
+    ) -> Optional[IndicatorFeedUpdateResponse]:
         """
         Update indicator feed data
 
@@ -148,9 +148,9 @@ class IndicatorFeedsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[IndicatorFeedUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndicatorFeedUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedUpdateResponse], ResultWrapper[IndicatorFeedUpdateResponse]),
+            cast_to=cast(Type[Optional[IndicatorFeedUpdateResponse]], ResultWrapper[IndicatorFeedUpdateResponse]),
         )
 
     def list(
@@ -239,7 +239,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedGetResponse:
+    ) -> Optional[IndicatorFeedGetResponse]:
         """
         Get indicator feed metadata
 
@@ -265,9 +265,9 @@ class IndicatorFeedsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[IndicatorFeedGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndicatorFeedGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedGetResponse], ResultWrapper[IndicatorFeedGetResponse]),
+            cast_to=cast(Type[Optional[IndicatorFeedGetResponse]], ResultWrapper[IndicatorFeedGetResponse]),
         )
 
 
@@ -296,7 +296,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedCreateResponse:
+    ) -> Optional[IndicatorFeedCreateResponse]:
         """
         Create new indicator feed
 
@@ -331,9 +331,9 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[IndicatorFeedCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndicatorFeedCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedCreateResponse], ResultWrapper[IndicatorFeedCreateResponse]),
+            cast_to=cast(Type[Optional[IndicatorFeedCreateResponse]], ResultWrapper[IndicatorFeedCreateResponse]),
         )
 
     async def update(
@@ -348,7 +348,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedUpdateResponse:
+    ) -> Optional[IndicatorFeedUpdateResponse]:
         """
         Update indicator feed data
 
@@ -379,9 +379,9 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[IndicatorFeedUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndicatorFeedUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedUpdateResponse], ResultWrapper[IndicatorFeedUpdateResponse]),
+            cast_to=cast(Type[Optional[IndicatorFeedUpdateResponse]], ResultWrapper[IndicatorFeedUpdateResponse]),
         )
 
     def list(
@@ -470,7 +470,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IndicatorFeedGetResponse:
+    ) -> Optional[IndicatorFeedGetResponse]:
         """
         Get indicator feed metadata
 
@@ -496,9 +496,9 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[IndicatorFeedGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndicatorFeedGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IndicatorFeedGetResponse], ResultWrapper[IndicatorFeedGetResponse]),
+            cast_to=cast(Type[Optional[IndicatorFeedGetResponse]], ResultWrapper[IndicatorFeedGetResponse]),
         )
 
 
